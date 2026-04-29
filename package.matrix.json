@@ -1,0 +1,614 @@
+{
+  "schemaVersion": "0.2.0",
+  "pricing": {
+    "personal_affiliate": {
+      "price": "19800 JPY",
+      "billing": "one_time",
+      "positioning": "アフィリエイト収益化、AI記事投入、計測可能な買い切りテーマ"
+    },
+    "corporate_lp": {
+      "price": "98000 JPY",
+      "billing": "one_time",
+      "positioning": "AI運用できる法人LP基盤。単なる高額テーマとして売らない"
+    },
+    "migration_plugin": {
+      "price": "0 JPY",
+      "billing": "free",
+      "positioning": "リード獲得とS1誘導"
+    },
+    "automation_seo": {
+      "billing": "separate_paid_addon_or_service",
+      "positioning": "AI原価、移行支援、法人運用支援をテーマ価格と分離して回収"
+    }
+  },
+  "marketPositioningStrategy": {
+    "category": "AI運用型WPテーマ基盤",
+    "decision": "既存テーマのデザイン/SEO/収益化競争に正面衝突せず、AI操作、計測、LP改善、LLMO、運用品質を中核価値にする",
+    "competitorScores": [
+      {
+        "theme": "SWELL",
+        "score": 88,
+        "position": "国産有料テーマの王道・総合型",
+        "take": [
+          "速度設計",
+          "設定UX",
+          "買い切り安心感",
+          "マニュアル/フォーラム"
+        ],
+        "avoid": [
+          "単なる後追いデザイン競争",
+          "AI操作契約なしの人間GUI前提"
+        ]
+      },
+      {
+        "theme": "JIN:R",
+        "score": 82,
+        "position": "デザイン/SEO/ブログ収益化寄りのプレミアム型",
+        "take": [
+          "SEO統合UX",
+          "プリセット思想",
+          "ブロガー心理に刺さる販売導線"
+        ],
+        "avoid": [
+          "グローバルCSS/jQuery前提の速度設計",
+          "SEO設定のテーマ内ロックイン"
+        ]
+      },
+      {
+        "theme": "AFFINGER6 / ACTION PACK",
+        "score": 80,
+        "position": "アフィリエイト収益化特化型",
+        "take": [
+          "収益化ブロック",
+          "CTA/タグ/A-B/CTRの価値訴求",
+          "上位PACK戦略"
+        ],
+        "avoid": [
+          "設定過多",
+          "複雑な人間操作前提"
+        ]
+      },
+      {
+        "theme": "Cocoon",
+        "score": 78,
+        "position": "無料テーマの標準・導入口",
+        "take": [
+          "無料導線",
+          "基本機能の網羅",
+          "フォーラム型安心感"
+        ],
+        "avoid": [
+          "無料比較で価格価値を曖昧にする",
+          "プレミアム感不足"
+        ]
+      },
+      {
+        "theme": "Lightning / Vektor",
+        "score": 76,
+        "position": "法人/中小企業サイト・制作会社向け",
+        "take": [
+          "法人安心感",
+          "拡張/サブスクモデル",
+          "パターン/学習エコシステム"
+        ],
+        "avoid": [
+          "LP改善/計測の弱さ",
+          "AI運用価値の不足"
+        ]
+      }
+    ],
+    "agentNeoTargets": {
+      "core": 92,
+      "personal_affiliate": 90,
+      "corporate_lp": 94
+    },
+    "goToMarket": {
+      "personal_affiliate": "SWELL/JIN:R級の使いやすさに、AFFINGER級の収益化とAI記事投入/計測/LLMOを足す",
+      "corporate_lp": "Lightning級の法人安心感に、LP改善/A-B/計測/AI運用/API契約を足す",
+      "migration_plugin": "Cocoon層を含む既存WPユーザーの無料入口として使い、S1/テーマ購入へ誘導する"
+    }
+  },
+  "automationSeoIntegrationStrategy": {
+    "decision": "SWELL/JIN:Rは移行・診断・設計参考に限定し、運用時の正規ターゲットはAGENT NEOの安定JSON契約にする",
+    "themeFitScores": [
+      {
+        "theme": "SWELL",
+        "score": 73,
+        "good": [
+          "速度基盤",
+          "Entity Graph参考",
+          "LP/再利用パーツ",
+          "SEOプラグイン共存"
+        ],
+        "bad": [
+          "SEOメタ主導権が外部依存寄り",
+          "stable section_id/cta_id契約がない",
+          "safe apply/rollback契約がない"
+        ]
+      },
+      {
+        "theme": "JIN:R",
+        "score": 77,
+        "good": [
+          "SEO統合UX",
+          "SEO post meta show_in_rest",
+          "canonical/noindex/OGP/JSON-LD",
+          "HP/プリセットUX"
+        ],
+        "bad": [
+          "巨大CSS/jQuery/CDNリスク",
+          "classic templateでFSE契約ではない",
+          "stable section_id/cta_id契約がない"
+        ]
+      }
+    ],
+    "automationSeoSide": {
+      "P0": [
+        "theme_capability_scanner",
+        "section_id_resolver_with_confidence",
+        "tracking_context_contract_v2",
+        "safe_recommendation_apply_via_agent_neo",
+        "seo_meta_normalizer"
+      ],
+      "P1": [
+        "cta_offer_mapper",
+        "performance_impact_collector",
+        "blueprint_exporter"
+      ]
+    },
+    "wpThemeSide": {
+      "P0": [
+        "section_registry",
+        "cta_registry",
+        "automation_seo_adapter",
+        "seo_core_contract",
+        "safe_write_api",
+        "theme_plugin_boundary"
+      ],
+      "P1": [
+        "web_vitals_rum",
+        "migration_preview"
+      ]
+    },
+    "contractV2": [
+      "contract_version",
+      "page_type",
+      "section_type",
+      "cta_ids",
+      "offer_ids",
+      "selector_confidence",
+      "schema_hash"
+    ]
+  },
+  "automationSeoBridgePluginStrategy": {
+    "purpose": "既存WPテーマをAutomation SEOが診断・計測・移行提案できるようにする共通ブリッジ",
+    "positioning": "無料/低価格のリード獲得プラグイン。深い自動書き換えではなく、診断、正規化、計測、AGENT NEO/S1誘導を担う",
+    "priorityFeatures": {
+      "P0": [
+        "theme_capability_scanner",
+        "seo_meta_normalizer",
+        "section_cta_registry",
+        "tracking_context_v2",
+        "privacy_data_map"
+      ],
+      "P1": [
+        "plugin_conflict_detector",
+        "performance_impact_collector",
+        "migration_blueprint_exporter",
+        "support_bundle"
+      ],
+      "P2": [
+        "theme_specific_deep_adapter"
+      ]
+    },
+    "ownedInformation": [
+      "site_profile",
+      "theme_profile",
+      "plugin_profile",
+      "page_registry",
+      "section_registry",
+      "cta_registry",
+      "offer_registry",
+      "normalized_seo_meta",
+      "tracking_profile",
+      "privacy_profile",
+      "integration_health",
+      "safe_apply_state",
+      "migration_blueprint"
+    ],
+    "avoid": [
+      "reference_theme_asset_copy",
+      "wordpress_content_source_of_truth_replacement",
+      "raw_pii_long_term_logs",
+      "plain_secret_storage",
+      "seo_guarantee_claims",
+      "deep_write_adapters_for_all_themes"
+    ]
+  },
+  "packages": {
+    "core": {
+      "purpose": "個人/法人の両方で使うWPテーマ基盤",
+      "features": [
+        "theme_bootstrap",
+        "template_parts",
+        "design_tokens",
+        "css_variables",
+        "header_footer_navigation",
+        "mobile_navigation",
+        "seo_base",
+        "seo_core",
+        "seo_profile",
+        "seo_meta_schema",
+        "entity_graph_schema",
+        "seo_plugin_duplicate_guard",
+        "performance_conditional_assets",
+        "performance_profile",
+        "asset_policy_schema",
+        "critical_css_builder",
+        "media_policy_schema",
+        "third_party_tag_governance",
+        "web_vitals_budget",
+        "front_jquery_disabled_by_default",
+        "theme_plugin_boundary",
+        "companion_plugin_required",
+        "plugin_dependency_map",
+        "plugin_conflict_detector",
+        "adapter_capability_map",
+        "graceful_degradation",
+        "local_tracking_fallback",
+        "theme_coding_rules",
+        "thin_bootstrap",
+        "module_register_pattern",
+        "block_json_source_of_truth",
+        "used_block_asset_collector",
+        "wpcs_phpcs",
+        "theme_manifest",
+        "design_ui_principles",
+        "design_preset_schema",
+        "visual_composition_schema",
+        "section_pattern_schema",
+        "conversion_intent_schema",
+        "trust_layer_schema",
+        "ui_risk_schema",
+        "gateway_grid",
+        "proof_near_cta",
+        "ui_audit",
+        "compatibility_matrix",
+        "update_policy_schema",
+        "security_baseline_schema",
+        "plugin_conflict_rules",
+        "availability_profile",
+        "observability_profile",
+        "ops_runbook",
+        "health_check_admin",
+        "update_preflight_postflight",
+        "rollback_export_import",
+        "external_service_fallback",
+        "license_compliance_guard",
+        "privacy_consent_guard",
+        "affiliate_disclosure_guard",
+        "data_portability",
+        "schema_versioning",
+        "page_blueprint_schema",
+        "section_registry_schema",
+        "home_blueprint_schema",
+        "lp_blueprint_schema",
+        "conversion_path_schema",
+        "visual_composition_schema",
+        "proof_schema",
+        "agent_action_schema",
+        "rest_api_surface",
+        "mcp_surface",
+        "wp_cli_surface",
+        "react_admin_surface",
+        "openapi_contract",
+        "api_error_catalog",
+        "job_contract",
+        "event_contract",
+        "webhook_contract",
+        "automation_schedule",
+        "idempotent_jobs",
+        "dead_letter_queue",
+        "wp_cron_wp_cli_external_cron_runners",
+        "mcp_tools_schema",
+        "wp_cli_contract",
+        "contract_tests",
+        "openapi_diff",
+        "agent_operability_schema",
+        "dom_anchor_schema",
+        "content_snapshot_schema",
+        "crawlability_profile",
+        "crawler_access_matrix",
+        "ai_crawler_log",
+        "rendered_content_digest",
+        "agent_readable_sitemap",
+        "settings_intent_schema",
+        "seo_risk_schema",
+        "ai_agent_readiness_score",
+        "theme_review_checklist",
+        "accessibility_profile",
+        "i18n_profile",
+        "release_policy_schema",
+        "build_provenance",
+        "sbom_cdx",
+        "browser_support_matrix",
+        "hosting_compatibility_matrix",
+        "privacy_retention_policy",
+        "uninstall_cleanup_policy",
+        "editor_governance_schema",
+        "block_deprecation_policy",
+        "support_bundle_schema",
+        "documentation_map",
+        "seo_indexing_policy",
+        "qa_test_matrix",
+        "quality_gate_result",
+        "llmo_profile",
+        "answer_unit_schema",
+        "evidence_graph_schema",
+        "content_origin_schema",
+        "ai_visibility_policy",
+        "ai_crawler_policy_schema",
+        "citation_anchor_schema",
+        "llmo_visibility_schema",
+        "claim_risk_schema",
+        "ai_answer_sitemap",
+        "risk_ledger_schema",
+        "seo_hazard_policy",
+        "indexing_safety_check",
+        "cache_compatibility_contract",
+        "cron_reliability_contract",
+        "plugin_conflict_playbook",
+        "wp_environment_diagnostics",
+        "restore_drill_runbook",
+        "content_quality_risk",
+        "theme_db_drift_detector",
+        "data_bloat_budget",
+        "support_cost_model"
+        ,
+        "theme_capability_scanner",
+        "section_id_resolver",
+        "tracking_context_contract_v2",
+        "seo_meta_normalizer",
+        "cta_offer_mapper",
+        "safe_recommendation_apply",
+        "section_registry",
+        "cta_registry",
+        "automation_seo_adapter",
+        "automation_seo_bridge_profile",
+        "plugin_profile_registry",
+        "privacy_data_map",
+        "migration_blueprint_exporter"
+      ],
+      "blocks": [
+        "faq",
+        "step",
+        "button",
+        "accordion",
+        "post-list",
+        "link-list"
+      ]
+    },
+    "personal_affiliate": {
+      "purpose": "アフィリエイト収益化に特化した個人向けパッケージ",
+      "priorityFeatures": {
+        "P0": [
+          "review_block",
+          "ranking_block",
+          "comparison_table",
+          "affiliate_landing_blueprint",
+          "media_home_blueprint",
+          "category_gateway_grid",
+          "affiliate_cta",
+          "ad_tag_manager",
+          "product_card",
+          "blog_card",
+          "related_post",
+          "product_schema",
+          "faq_schema",
+          "review_schema",
+          "breadcrumb_schema",
+          "canonical_noindex_controls",
+          "affiliate_disclosure"
+        ],
+        "P1": [
+          "pickup_banner",
+          "post_slider",
+          "click_tracking",
+          "profile_box",
+          "sns_share"
+        ],
+        "P2": [
+          "simple_lp",
+          "advanced_customizer"
+        ]
+      },
+      "avoid": [
+        "heavy_approval_workflow",
+        "multi_department_governance",
+        "overly_detailed_settings"
+      ]
+    },
+    "corporate_lp": {
+      "purpose": "法人製品の宣伝、LP運用、リード獲得に特化した法人向けパッケージ",
+      "priorityFeatures": {
+        "P0": [
+          "brand_tokens",
+          "lp_section_builder",
+          "lp_blueprint",
+          "home_blueprint",
+          "gateway_grid",
+          "hero_variants",
+          "hero_section",
+          "feature_section",
+          "benefit_section",
+          "use_case_section",
+          "pricing_section",
+          "product_card",
+          "case_study",
+          "proof_section",
+          "cta_manager",
+          "ab_testing",
+          "reusable_parts",
+          "role_permissions"
+        ],
+        "P1": [
+          "lead_tracking",
+          "document_download_cta",
+          "external_form_cta",
+          "organization_schema",
+          "product_offer_schema",
+          "faq_schema",
+          "canonical_noindex_controls",
+          "settings_export_import",
+          "audit_log"
+        ],
+        "P2": [
+          "restricted_area",
+          "approval_workflow"
+        ]
+      },
+      "avoid": [
+        "affiliate_ranking_bias",
+        "ad_tag_first_ui",
+        "review_only_content_model"
+      ]
+    },
+    "migration_plugin": {
+      "purpose": "既存WPサイトからAGENT NEOへの入口を作る無料プラグイン",
+      "priorityFeatures": {
+        "P0": [
+          "wp_rest_extract",
+          "post_media_taxonomy_menu_import",
+          "conversion_preview",
+          "agent_neo_block_mapping"
+        ],
+        "P1": [
+          "automation_seo_full_rebuild_handoff",
+          "semantic_diff",
+          "s1_estimate_request"
+        ],
+        "P2": [
+          "theme_specific_adapter"
+        ]
+      },
+      "avoid": [
+        "per_theme_adapter_first_strategy",
+        "unlimited_free_llm_usage"
+      ]
+    }
+  },
+  "competitorPositioning": {
+    "personal_price_band": [
+      "SWELL 17600 JPY",
+      "JIN:R 19800 JPY",
+      "AFFINGER6 14800 JPY"
+    ],
+    "upper_monetization_band": [
+      "AFFINGER ACTION PACK3 39800 JPY"
+    ],
+    "free_lead_magnet_band": [
+      "Cocoon 0 JPY",
+      "Lightning 0 JPY"
+    ],
+    "subscription_reference": [
+      "Vektor Passport 11000 JPY/year"
+    ]
+  },
+    "agentRules": {
+      "copyPolicy": "reference_theme_code_images_css_and_unique_text_must_not_be_copied",
+      "architecturePolicy": "theme_core_handles_visual_fse_layer_companion_plugin_handles_api_cpt_seo_tracking_ab_blueprints",
+      "distributionPolicy": "wp_org_candidate_plugins_must_avoid_trialware_tracking_without_consent_and_hidden_external_code",
+      "pluginDependencyPolicy": "mandatory_dependency_is_limited_to_agent_neo_theme_plus_core_plugin_third_party_plugins_are_optional_adapters",
+      "themeCodingPolicy": "functions_php_bootstrap_only_block_json_source_of_truth_wpcs_phpcs_context_escape_schema_sanitize_used_block_assets",
+      "designPolicy": "copy_no_visual_assets_extract_information_architecture_preset_ux_and_design_principles",
+      "operationQualityPolicy": "wp_php_plugin_update_security_availability_require_preflight_postflight_fallback_and_rollback_contracts",
+      "apiContractPolicy": "openapi_json_schema_job_contract_error_catalog_contract_tests_required",
+      "aiOperabilityPolicy": "stable_dom_anchors_public_content_snapshot_crawler_access_matrix_and_ai_agent_readiness_score_required",
+      "themeQualityGovernancePolicy": "theme_review_accessibility_i18n_release_sbom_hosting_privacy_seo_indexing_and_documentation_gates_required",
+      "llmoPolicy": "answer_units_evidence_graph_ai_visibility_policy_citation_anchors_and_ai_assisted_conversion_measurement_required",
+      "wpSeoOpsRiskPolicy": "seo_wp_ops_security_ai_uncomfortable_truths_must_be_managed_as_risk_ledger_contracts",
+      "operationMode": "json_contract_first",
+      "requiredGuards": [
+      "dryRun",
+      "schemaValidation",
+      "pathAllowlist",
+      "diffReview",
+      "nonceForRestWrites",
+      "capabilityCheck",
+      "rateLimit",
+      "auditLog",
+      "privacyConsent",
+      "affiliateDisclosure",
+      "licenseComplianceReview",
+      "themePluginBoundaryReview",
+      "pluginDependencyReview",
+      "pluginConflictDetection",
+      "gracefulDegradation",
+      "codingRulesReview",
+      "designPrinciplesReview",
+      "uiAudit",
+      "visualCopyReview",
+      "compatibilityMatrixReview",
+      "updatePreflight",
+      "updatePostflight",
+      "rollbackReadiness",
+      "securityBaselineReview",
+      "availabilityFallbackReview",
+      "opsRunbookReview",
+      "phpcsWpcs",
+      "themeCheck",
+      "blockJsonSchemaCheck",
+      "schemaVersioning",
+      "dataPortability",
+      "apiContractReview",
+      "openapiDiff",
+      "jobIdempotencyReview",
+      "cronReliabilityReview",
+      "ssrfUrlFetchReview",
+      "publicApiRateLimitReview",
+      "aiOperabilityReview",
+      "domAnchorReview",
+      "contentSnapshotReview",
+      "crawlabilityReview",
+      "crawlerAccessMatrixReview",
+      "aiCrawlerLogReview",
+      "seoRiskDiffReview",
+      "themeReviewChecklist",
+      "accessibilityAudit",
+      "i18nRtlReview",
+      "releaseReadinessReview",
+      "sbomLicenseReview",
+      "hostingCompatibilityReview",
+      "privacyRetentionReview",
+      "uninstallCleanupReview",
+      "editorGovernanceReview",
+      "blockDeprecationReview",
+      "documentationSupportReview",
+      "seoIndexingPolicyReview",
+      "qaTestMatrixReview",
+      "qualityGateResultReview",
+      "llmoProfileReview",
+      "answerUnitReview",
+      "evidenceGraphReview",
+      "contentOriginReview",
+      "aiVisibilityPolicyReview",
+      "aiCrawlerPolicyReview",
+      "citationAnchorReview",
+      "llmoVisibilityReview",
+      "claimRiskReview",
+      "aiAnswerSitemapReview",
+      "riskLedgerReview",
+      "seoHazardPolicyReview",
+      "indexingSafetyCheck",
+      "cacheCompatibilityReview",
+      "cronReliabilityReview",
+      "pluginConflictPlaybookReview",
+      "wpEnvironmentDiagnostics",
+      "restoreDrillReview",
+      "contentQualityRiskReview",
+      "themeDbDriftReview",
+      "dataBloatBudgetReview",
+      "supportCostModelReview"
+    ]
+  }
+}

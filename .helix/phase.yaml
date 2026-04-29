@@ -1,0 +1,45 @@
+# phase.yaml — プロジェクトのフェーズ状態追跡
+# helix_template_version: 3
+# プロジェクトルートの .helix/phase.yaml にコピーして使う
+# helix-size / helix-gate / helix-sprint が自動更新する
+
+project: "AGENT NEO"
+current_mode: forward
+current_phase: L1
+gates:
+  G0.5: { status: pending }
+  G1: { status: pending }
+  G1.5: { status: skipped }
+  G1R: { status: skipped }
+  G2: { status: pending }
+  G3: { status: pending }
+  G4: { status: pending }
+  G5: { status: pending }
+  G6: { status: pending }
+  G7: { status: pending }
+sprint:
+  current_step: null
+  status: active
+  drive: agent
+  tracks: null
+  phase: null
+  phase_b:
+    current_step: null
+    status: pending
+    steps:
+      .b1: { status: pending }
+      .b2: { status: pending }
+      .b3: { status: pending }
+  steps:
+    .1a: { status: pending }
+    .1b: { status: pending }
+    .2: { status: pending }
+    .3: { status: pending }
+    .4: { status: pending }
+    .5: { status: pending }
+reverse_gates:
+  RG0: { status: pending }
+  RG1: { status: pending }
+  RG2: { status: pending }
+  RG3: { status: pending }
+reverse: { status: null, completed_at: null }

@@ -1,0 +1,79 @@
+name: agent-neo-dev
+
+services:
+  db:
+    image: mariadb:10.11
+    container_name: agent-neo-db
+    environment:
+      MARIADB_DATABASE: agent_neo
+      MARIADB_USER: wp
+      MARIADB_PASSWORD: wp
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - "3308:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  wordpress:
+    image: wordpress:6.6-php8.2-apache
+    container_name: agent-neo-wp
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8086:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: agent_neo
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('SCRIPT_DEBUG', true);
+        define('WP_ENVIRONMENT_TYPE', 'development');
+    volumes:
+      - wp_core:/var/www/html
+      - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
+      - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
+      - ../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector:/var/www/html/wp-content/plugins/seo-tool-connector:ro
+      - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
+      - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
+      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr:ro
+      - ./jinr-child/jinr-child:/var/www/html/wp-content/themes/jinr-child:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    container_name: agent-neo-cli
+    depends_on:
+      - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: agent_neo
+    volumes:
+      - wp_core:/var/www/html
+      - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
+      - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
+      - ../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector:/var/www/html/wp-content/plugins/seo-tool-connector:ro
+      - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
+      - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
+      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr:ro
+      - ./jinr-child/jinr-child:/var/www/html/wp-content/themes/jinr-child:ro
+      - ./tmp:/tmp/host
+    user: "33:33"
+    entrypoint: ["wp"]
+    command: ["--info"]
+
+volumes:
+  db_data:
+  wp_core:

@@ -1,0 +1,31 @@
+## ローカル設定・機密
+CLAUDE.local.md
+.claude/settings.local.json
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+## リファレンステーマ（解析対象。ライセンス上自社リポでは再配布しない）
+swell-2.16.0/
+swell_child/
+jinr-parent/
+jinr-child/
+
+## Docker / 一時
+tmp/
+*.log
+
+## エディタ / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+## ビルド成果物
+node_modules/
+build/
+dist/
+vendor/

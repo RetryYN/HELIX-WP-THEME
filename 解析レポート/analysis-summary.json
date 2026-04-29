@@ -1,0 +1,1916 @@
+{
+  "schemaVersion": "0.2.0",
+  "lastReviewed": "2026-04-29",
+  "targetThemes": [
+    {
+      "path": "swell-2.16.0/swell",
+      "role": "main_reference",
+      "observations": [
+        "thin_functions_php_bootstrap",
+        "feature_split_lib_classes_parts_blocks",
+        "block_json_based_gutenberg_blocks",
+        "admin_settings_for_performance_editor_ads",
+        "performance_settings_for_async_css_separate_css_lazyload",
+        "conditional_front_assets_and_used_block_css_strategy",
+        "cpt_for_lp_blog_parts_ad_tag",
+        "rest_api_for_settings_and_tracking",
+        "json_ld_entity_graph"
+      ]
+    },
+    {
+      "path": "swell_child/swell_child",
+      "role": "child_theme_reference",
+      "observations": [
+        "minimal_child_theme_enqueue_style"
+      ]
+    },
+    {
+      "path": "jinr-child/jinr-child",
+      "role": "child_theme_reference",
+      "observations": [
+        "minimal_child_theme_parent_style"
+      ]
+    },
+    {
+      "path": "jinr-parent/jinr/jinr",
+      "role": "seo_reference",
+      "observations": [
+        "integrated_theme_seo_head_output",
+        "title_description_canonical_noindex_ogp_in_theme",
+        "json_ld_article_webpage_website_collection_breadcrumb_person_organization",
+        "seo_post_meta_show_in_rest",
+        "admin_noindex_breadcrumb_title_settings",
+        "preload_images_and_font",
+        "lazy_images_srcset_sizes",
+        "large_global_css_and_front_jquery_dependency",
+        "classic_php_template_not_fse"
+      ]
+    }
+  ],
+  "seoStrategy": {
+    "preferredReference": "JIN:R",
+    "localCodeAvailability": {
+      "jinr_parent_theme": "available",
+      "swell_parent_theme": "available"
+    },
+    "decision": "adopt_jinr_integrated_seo_ux_with_swell_portability_guard",
+    "codeEvidence": {
+      "jinr": [
+        "include/head/title.php",
+        "include/head/description.php",
+        "include/head/noindex.php",
+        "include/head/others.php",
+        "include/head/ogp.php",
+        "include/json-ld.php",
+        "include/jinr-setting.php",
+        "include/custom-functions.php"
+      ],
+      "swell": [
+        "classes/Json_Ld.php",
+        "lib/menu/settings/structure_data.php",
+        "lib/gutenberg/render_hook/faq.php",
+        "parts/breadcrumb.php"
+      ]
+    },
+    "coreContracts": [
+      "seo-profile.json",
+      "seo-meta.schema.json",
+      "entity-graph.schema.json",
+      "seo-conflict-rules.json"
+    ],
+    "requiredFeatures": [
+      "title_description_management",
+      "robots_noindex_nofollow",
+      "canonical",
+      "ogp_twitter_card",
+      "organization_person_author",
+      "article_blogposting",
+      "breadcrumb",
+      "product_review_offer",
+      "faq_visible_content_sync",
+      "seo_plugin_duplicate_guard",
+      "automation_seo_adapter"
+    ],
+    "warnings": [
+      "faq_rich_results_are_limited_by_google",
+      "avoid_duplicate_output_with_seo_plugins",
+      "do_not_lock_seo_data_to_theme_only",
+      "jinr_reference_is_classic_php_template_not_fse",
+      "raw_tracking_tags_and_external_url_fetch_require_safer_agent_neo_design"
+    ]
+  },
+  "seoSkillMapReview": {
+    "report": "30-SEOスキルマップ観点テーマ調査.md",
+    "reviewDate": "2026-04-30",
+    "decision": "treat_seo_as_skill_map_based_operations_contract_not_only_meta_tags",
+    "scores": [
+      {
+        "category": "strategy",
+        "swell": 35,
+        "jinr": 40,
+        "gap": "keyword_research_search_intent_competitor_gap_and_clustering_are_not_theme_contracts"
+      },
+      {
+        "category": "on_page",
+        "swell": 65,
+        "jinr": 82,
+        "gap": "jinr_has_integrated_meta_rest_foundation_swell_needs_seo_meta_contract"
+      },
+      {
+        "category": "technical",
+        "swell": 84,
+        "jinr": 68,
+        "gap": "swell_is_stronger_for_entity_graph_speed_and_wp_output_control_jinr_needs_schema_validation_and_performance_redesign"
+      },
+      {
+        "category": "content",
+        "swell": 78,
+        "jinr": 70,
+        "gap": "both_need_topic_cluster_content_blueprint_and_refresh_workflow"
+      },
+      {
+        "category": "off_page",
+        "swell": 30,
+        "jinr": 32,
+        "gap": "link_building_digital_pr_and_brand_mentions_are_outside_theme_scope"
+      },
+      {
+        "category": "international",
+        "swell": 45,
+        "jinr": 25,
+        "gap": "hreflang_locale_canonical_pairing_is_not_productized"
+      },
+      {
+        "category": "analytics",
+        "swell": 75,
+        "jinr": 45,
+        "gap": "swell_has_local_pv_ctr_ab_foundation_jinr_has_raw_tags_but_no_kpi_contract"
+      },
+      {
+        "category": "ux",
+        "swell": 82,
+        "jinr": 72,
+        "gap": "need_unified_cwv_cro_and_ui_risk_contract"
+      },
+      {
+        "category": "ai_seo",
+        "swell": 55,
+        "jinr": 58,
+        "gap": "answer_unit_evidence_graph_citation_anchor_and_ai_visibility_policy_are_absent"
+      },
+      {
+        "category": "growth",
+        "swell": 65,
+        "jinr": 60,
+        "gap": "seo_experiment_content_refresh_and_topic_authority_workflows_are_absent"
+      }
+    ],
+    "requiredContracts": [
+      "seo-skill-map.profile.json",
+      "keyword-cluster.schema.json",
+      "search-intent.schema.json",
+      "content-blueprint.schema.json",
+      "indexability-policy.schema.json",
+      "internal-link-graph.schema.json",
+      "seo-kpi-profile.schema.json",
+      "seo-experiment.schema.json",
+      "llmo-answer-unit.schema.json",
+      "evidence-graph.schema.json"
+    ],
+    "apiCandidates": [
+      "GET /wp-json/agent-neo/v1/seo/skill-map",
+      "POST /wp-json/agent-neo/v1/seo/audit/page",
+      "POST /wp-json/agent-neo/v1/seo/content-plan",
+      "GET /wp-json/agent-neo/v1/seo/internal-link-graph",
+      "GET /wp-json/agent-neo/v1/seo/kpi",
+      "POST /wp-json/agent-neo/v1/seo/experiments"
+    ],
+    "packageImplications": {
+      "personal": [
+        "on_page",
+        "technical",
+        "content",
+        "analytics",
+        "growth_for_affiliate_refresh_and_exit_click_optimization"
+      ],
+      "corporate": [
+        "strategy",
+        "technical",
+        "content",
+        "ux",
+        "analytics",
+        "ai_seo",
+        "growth_for_service_aware_ia_lp_blp_and_leads"
+      ],
+      "automationSeo": [
+        "keyword_research",
+        "search_intent",
+        "competitor_gap",
+        "content_plan",
+        "llmo",
+        "seo_experiments"
+      ],
+      "themeBridgePlugin": [
+        "diagnose_extract_normalize_and_export_theme_seo_state_with_source_confidence"
+      ]
+    },
+    "warnings": [
+      "theme_alone_cannot_do_seo_strategy_without_external_data",
+      "raw_tracking_tag_output_needs_adapter_consent_audit_log",
+      "lazyload_delay_js_pjax_can_hide_content_or_break_measurement",
+      "schema_markup_must_not_be_sold_as_rich_result_guarantee",
+      "international_seo_requires_hreflang_and_locale_canonical_contracts_before_multilingual_launch"
+    ]
+  },
+  "performanceStrategy": {
+    "preferredReference": "SWELL",
+    "decision": "adopt_swell_like_performance_architecture_with_jinr_seo_separated",
+    "coreWebVitalsBudget": {
+      "lcpMs": 2500,
+      "inpMs": 200,
+      "cls": 0.1,
+      "source": "https://web.dev/articles/vitals"
+    },
+    "codeEvidence": {
+      "swell": [
+        "lib/load/front.php",
+        "lib/load/separate.php",
+        "classes/Pre_Parse_Blocks.php",
+        "classes/Data/Default_Settings.php",
+        "lib/content_filter.php",
+        "classes/Utility/Get.php",
+        "lib/output.php"
+      ],
+      "jinr": [
+        "functions.php",
+        "include/head/preload.php",
+        "include/custom-functions.php",
+        "include/font-selection.php"
+      ]
+    },
+    "requiredContracts": [
+      "performance-profile.json",
+      "asset-policy.schema.json",
+      "critical-css.schema.json",
+      "media-policy.schema.json",
+      "third-party-tags.schema.json",
+      "web-vitals-budget.json"
+    ],
+    "requiredFeatures": [
+      "used_block_css",
+      "conditional_js_islands",
+      "critical_css_builder",
+      "lcp_image_policy",
+      "lazy_media_policy",
+      "third_party_tag_governance",
+      "front_jquery_disabled_by_default",
+      "web_vitals_rum",
+      "emoji_embed_cleanup"
+    ],
+    "warnings": [
+      "jinr_large_global_css_is_not_a_performance_model",
+      "do_not_copy_reference_theme_css_or_js",
+      "external_cdn_script_injection_requires_policy_control",
+      "lighthouse_lab_tests_do_not_replace_field_inp_measurement"
+    ]
+  },
+  "pageDesignStrategy": {
+    "decision": "separate_lp_blueprint_and_home_blueprint",
+    "preferredReference": {
+      "lp": "SWELL",
+      "home": "JIN:R"
+    },
+    "codeEvidence": {
+      "swell": [
+        "lib/post_type.php",
+        "single-lp.php",
+        "lib/post_meta/meta_lp.php",
+        "lib/gutenberg/block_pattern/page.php",
+        "lib/gutenberg/block/blog-parts.php",
+        "parts/home_content.php"
+      ],
+      "jinr": [
+        "home.php",
+        "page.php",
+        "object/main-visual/stillimage.php",
+        "object/main-visual/post-slider.php",
+        "include/customizer/ui/main-visual-setting.php",
+        "include/customizer/ui/site-design-setting.php",
+        "include/customizer/controls/core/class-jinr-demo-import-control.php"
+      ]
+    },
+    "requiredContracts": [
+      "page-blueprint.schema.json",
+      "section-registry.schema.json",
+      "lp-blueprint.schema.json",
+      "home-blueprint.schema.json",
+      "conversion-path.schema.json",
+      "visual-composition.schema.json",
+      "copy-intent.schema.json",
+      "proof.schema.json"
+    ],
+    "corporateLpSections": [
+      "hero",
+      "problem",
+      "consequence",
+      "solution",
+      "feature",
+      "benefit",
+      "use_case",
+      "proof",
+      "comparison",
+      "pricing",
+      "faq",
+      "final_cta"
+    ],
+    "homeSections": [
+      "brand_hero",
+      "gateway_grid",
+      "product_overview",
+      "case_studies",
+      "resources",
+      "trust",
+      "final_cta"
+    ],
+    "personalAffiliateSections": [
+      "lead_hero",
+      "best_pick",
+      "ranking",
+      "comparison_table",
+      "review_detail",
+      "pros_cons",
+      "how_to_choose",
+      "faq",
+      "affiliate_cta"
+    ],
+    "requiredTrackingIds": [
+      "section_id",
+      "cta_id",
+      "variant_id",
+      "offer_id",
+      "gateway_id",
+      "proof_id"
+    ]
+  },
+  "constraintsStrategy": {
+    "decision": "split_theme_core_and_companion_plugin",
+    "officialRulesChecked": {
+      "wordpressThemeRequirements": "https://make.wordpress.org/themes/handbook/review/required/",
+      "wordpressPluginGuidelines": "https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/",
+      "caaStealthMarketing": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/"
+    },
+    "packageBoundaries": {
+      "themeCore": [
+        "theme_json",
+        "templates",
+        "template_parts",
+        "patterns",
+        "style_variations",
+        "visual_css"
+      ],
+      "companionPlugin": [
+        "rest_api",
+        "mcp_bridge",
+        "wp_cli",
+        "cpt",
+        "custom_blocks",
+        "seo_core",
+        "tracking_ab",
+        "lp_hp_blueprint",
+        "license_package_gate"
+      ],
+      "migrationPlugin": [
+        "wp_rest_extract",
+        "conversion_preview",
+        "s1_handoff"
+      ],
+      "automationSeo": [
+        "ai_generation",
+        "seo_ia_redesign",
+        "optimization_suggestions"
+      ]
+    },
+    "hardConstraints": [
+      "do_not_copy_reference_theme_code_images_css_unique_text",
+      "gpl_compatible_distribution",
+      "plugin_territory_split_for_cpt_seo_tracking_forms",
+      "tracking_opt_in_and_privacy_policy",
+      "affiliate_disclosure_required",
+      "ai_write_api_requires_dry_run_diff_rollback",
+      "seo_ranking_guarantee_prohibited",
+      "schema_versioning_required",
+      "data_portability_required"
+    ],
+    "guards": [
+      "license_compliance_review",
+      "theme_plugin_boundary_review",
+      "privacy_consent_guard",
+      "affiliate_pr_disclosure_guard",
+      "critical_seo_change_warning",
+      "third_party_tag_governance",
+      "xss_ssrf_prompt_injection_guard",
+      "accessibility_gate_wcag_aa"
+    ]
+  },
+  "pluginDependencyStrategy": {
+    "decision": "mandatory_dependency_limited_to_theme_plus_core_plugin",
+    "dependencyLevels": [
+      {
+        "level": "D0",
+        "target": "wordpress_php",
+        "dependency": "required",
+        "policy": "wp_6_6_plus_php_8_1_plus"
+      },
+      {
+        "level": "D1",
+        "target": "agent_neo_theme",
+        "dependency": "required",
+        "policy": "visual_fse_layer"
+      },
+      {
+        "level": "D2",
+        "target": "agent_neo_core_plugin",
+        "dependency": "effectively_required",
+        "policy": "json_api_mcp_wp_cli_cpt_seo_tracking_ab_blueprint"
+      },
+      {
+        "level": "D3",
+        "target": "agent_neo_migration_plugin",
+        "dependency": "optional",
+        "policy": "migration_only_not_runtime_required"
+      },
+      {
+        "level": "D4",
+        "target": "seo_tool_connector",
+        "dependency": "recommended_adapter",
+        "policy": "automation_seo_tracking_context_compatibility_with_local_fallback"
+      },
+      {
+        "level": "D5",
+        "target": "automation_seo",
+        "dependency": "paid_external_service",
+        "policy": "not_required_for_theme_runtime"
+      },
+      {
+        "level": "D6",
+        "target": "third_party_seo_plugins",
+        "dependency": "optional_coexistence",
+        "policy": "detect_and_avoid_duplicate_meta_schema"
+      },
+      {
+        "level": "D7",
+        "target": "form_crm_plugins",
+        "dependency": "optional_adapter",
+        "policy": "external_form_cta_adapter_no_hard_dependency"
+      },
+      {
+        "level": "D8",
+        "target": "cache_performance_plugins",
+        "dependency": "optional_coexistence",
+        "policy": "theme_owns_asset_policy_not_cache_engine"
+      },
+      {
+        "level": "D9",
+        "target": "ga_gtm_ads_tags",
+        "dependency": "optional_consent_based",
+        "policy": "third_party_tag_governance"
+      }
+    ],
+    "hardRules": [
+      "do_not_require_yoast_rankmath_contactform_cache_plugins",
+      "do_not_hard_bind_to_private_plugin_tables_or_internal_apis",
+      "provide_graceful_degradation_without_automation_seo",
+      "provide_local_lightweight_tracking_fallback_without_seo_tool_connector",
+      "plugin_conflict_detector_required",
+      "supported_adapter_list_required"
+    ]
+  },
+  "themeCodingReverseStrategy": {
+    "decision": "adopt_swell_modular_bootstrap_and_block_json_with_jinr_seo_ux_rebuilt_for_fse",
+    "officialStandards": [
+      "https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/",
+      "https://developer.wordpress.org/plugins/plugin-basics/best-practices/",
+      "https://developer.wordpress.org/plugins/security/"
+    ],
+    "codeEvidence": {
+      "swell": [
+        "functions.php",
+        "lib/load_files.php",
+        "lib/autoloader.php",
+        "lib/gutenberg/register_blocks.php",
+        "classes/Utility/Others.php",
+        "lib/load/front.php",
+        "classes/Pre_Parse_Blocks.php",
+        "classes/Data/Default_Settings.php",
+        "classes/Json_Ld.php"
+      ],
+      "jinr": [
+        "functions.php",
+        "include/head/title.php",
+        "include/json-ld.php",
+        "include/custom-functions.php"
+      ]
+    },
+    "adoptRules": [
+      "thin_functions_php_bootstrap",
+      "module_register_pattern",
+      "block_json_as_source_of_truth",
+      "used_block_asset_policy",
+      "central_default_settings",
+      "context_escape_and_schema_sanitize",
+      "vendor_prefixed_hooks",
+      "stable_section_and_cta_data_attributes",
+      "theme_manifest_for_ai_readability"
+    ],
+    "rejectRules": [
+      "large_functions_php",
+      "global_css_first_architecture",
+      "front_jquery_required_by_default",
+      "theme_owned_cpt_rest_tracking_persistence",
+      "copy_reference_theme_code_css_images_unique_text"
+    ],
+    "targetThemeStructure": [
+      "functions.php",
+      "theme.json",
+      "inc/bootstrap.php",
+      "inc/class-theme.php",
+      "inc/setup/",
+      "inc/assets/",
+      "inc/blocks/",
+      "inc/patterns/",
+      "inc/parts/",
+      "inc/seo/",
+      "inc/compatibility/",
+      "inc/settings/",
+      "inc/security/",
+      "src/",
+      "build/",
+      "templates/",
+      "parts/",
+      "patterns/",
+      "styles/",
+      "config/"
+    ],
+    "codingRuleIds": [
+      "CR-001",
+      "CR-002",
+      "CR-003",
+      "CR-004",
+      "CR-005",
+      "CR-006",
+      "CR-007",
+      "CR-008",
+      "CR-009",
+      "CR-010"
+    ]
+  },
+  "designUiReverseStrategy": {
+    "decision": "extract_failure_resistant_ui_patterns_not_visual_copy",
+    "preferredReferences": {
+      "informationArchitecture": "SWELL",
+      "firstImpressionAndPresetUx": "JIN:R"
+    },
+    "codeEvidence": {
+      "swell": [
+        "parts/home_content.php",
+        "parts/top/main_visual.php",
+        "lib/customizer/top/main_visual.php",
+        "lib/gutenberg/block_pattern/page.php",
+        "src/gutenberg/blocks/*/block.json"
+      ],
+      "jinr": [
+        "include/customizer/ui/site-design-setting.php",
+        "include/customizer/ui/main-visual-setting.php",
+        "object/main-visual/stillimage.php",
+        "object/main-visual/post-slider.php",
+        "scss/object/_main-visual.scss",
+        "scss/object/_design-heading.scss",
+        "scss/object/_background.scss",
+        "scss/object/_cvbutton.scss",
+        "scss/object/_richmenu.scss"
+      ]
+    },
+    "designPrinciples": [
+      "DP-001_purpose_first_sections",
+      "DP-002_bounded_design_presets",
+      "DP-003_gateway_top_page",
+      "DP-004_one_primary_cta",
+      "DP-005_proof_near_cta",
+      "DP-006_visual_reset_for_long_content",
+      "DP-007_section_id_cta_id_required",
+      "DP-008_decoration_tied_to_outcome",
+      "DP-009_japanese_market_trust_layer",
+      "DP-010_no_visual_copy"
+    ],
+    "designPresets": [
+      "affiliate-clear",
+      "affiliate-editorial",
+      "corporate-trust",
+      "corporate-product",
+      "startup-bold",
+      "local-business"
+    ],
+    "requiredContracts": [
+      "design-preset.schema.json",
+      "visual-composition.schema.json",
+      "section-pattern.schema.json",
+      "conversion-intent.schema.json",
+      "trust-layer.schema.json",
+      "ui-risk.schema.json"
+    ],
+    "uiAuditRules": [
+      "cta.overload",
+      "proof.too_late",
+      "hero.vague",
+      "comparison.missing_basis",
+      "visual.no_hierarchy",
+      "mobile.tap_target_small",
+      "affiliate.disclosure_weak"
+    ],
+    "antiPatterns": [
+      "copy_reference_css_images_text_demo",
+      "unbounded_decoration_options",
+      "global_css_jquery_first_design",
+      "unlimited_ctas",
+      "generic_blue_white_saas_ui"
+    ]
+  },
+  "operationQualityStrategy": {
+    "decision": "productize_operations_security_availability_updateability_as_json_contracts",
+    "preferredReference": "SWELL_for_update_and_compatibility_patterns",
+    "officialSources": {
+      "wordpressRequirements": "https://wordpress.org/about/requirements/",
+      "wordpressSecurityRelease692": "https://wordpress.org/news/2026/03/wordpress-6-9-2-release/",
+      "wordpress70Schedule": "https://make.wordpress.org/core/2026/04/22/wordpress-7-0-release-party-updated-schedule/",
+      "restAuthentication": "https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/",
+      "nonces": "https://developer.wordpress.org/apis/security/nonces/",
+      "escaping": "https://developer.wordpress.org/apis/security/escaping/"
+    },
+    "codeEvidence": {
+      "swell": [
+        "style.css",
+        "lib/check_environment.php",
+        "functions.php",
+        "lib/update.php",
+        "lib/updated_action.php",
+        "lib/activate.php",
+        "classes/Utility/Status.php"
+      ],
+      "jinr": [
+        "style.css",
+        "functions.php",
+        "theme-update-checker.php"
+      ]
+    },
+    "requiredContracts": [
+      "compatibility-matrix.json",
+      "update-policy.schema.json",
+      "security-baseline.schema.json",
+      "plugin-conflict-rules.json",
+      "availability-profile.json",
+      "observability-profile.json",
+      "ops-runbook.schema.json"
+    ],
+    "compatibilityPolicy": {
+      "minimumWp": "6.6+",
+      "recommendedWp": "latest_stable_or_previous_major",
+      "minimumPhp": "8.1+",
+      "recommendedDb": "mysql_8_or_mariadb_10_6_plus",
+      "httpsRequiredFor": [
+        "license",
+        "external_api",
+        "application_password",
+        "tracking_export"
+      ],
+      "wp70Focus": [
+        "real_time_collaboration",
+        "metabox_compatibility",
+        "gutenberg_api_changes",
+        "block_editor_data_store"
+      ]
+    },
+    "securityControls": [
+      "nonce_plus_capability_plus_package_scope",
+      "permission_callback_required",
+      "schema_validation",
+      "context_escape_late",
+      "wp_kses_allowlist_for_ai_html",
+      "ssrf_private_ip_redirect_timeout_guard",
+      "critical_seo_change_warning",
+      "pii_minimization_and_log_masking"
+    ],
+    "availabilityControls": [
+      "automation_seo_fallback_to_manual_edit",
+      "seo_tool_connector_fallback_to_local_tracking",
+      "license_grace_period",
+      "crm_form_external_link_fallback",
+      "cache_plugin_compatibility_mode",
+      "update_preflight_postflight",
+      "rollback_export_import"
+    ],
+    "rejectRules": [
+      "sslverify_false_for_update_requests",
+      "theme_level_session_start",
+      "implicit_migration_without_preflight",
+      "plugin_internal_api_tight_coupling",
+      "unmasked_pii_or_secret_logs"
+    ],
+    "pluginConflictCategories": [
+      "seo",
+      "cache_optimize",
+      "form_crm",
+      "security_firewall",
+      "block_extension",
+      "analytics_gtm"
+    ],
+    "opsScreens": [
+      "health",
+      "updates",
+      "security",
+      "plugins",
+      "integrations",
+      "logs",
+      "runbooks"
+    ],
+    "slos": {
+      "publicPageAvailability": "99.9%",
+      "jsonOperationSuccessRate": "95%+",
+      "trackingEventLossRate": "<1%",
+      "postUpdateFatalError": "0",
+      "criticalVulnerabilityResponse": "24h",
+      "highVulnerabilityResponse": "7d"
+    }
+  },
+  "automationApiContractStrategy": {
+    "decision": "contract_first_api_and_job_automation_in_core_plugin",
+    "preferredReference": "swell_rest_and_update_scheduler_patterns_with_stricter_contracts",
+    "officialSources": {
+      "wpCron": "https://developer.wordpress.org/plugins/cron/",
+      "registerRestRoute": "https://developer.wordpress.org/reference/functions/register_rest_route/",
+      "restSchema": "https://developer.wordpress.org/rest-api/extending-the-rest-api/schema/",
+      "httpApi": "https://developer.wordpress.org/plugins/http-api/"
+    },
+    "codeEvidence": {
+      "swell": [
+        "lib/rest_api.php",
+        "lib/rest_api/balloon_api.php",
+        "lib/update/Puc/v4p5/Scheduler.php",
+        "classes/License.php",
+        "classes/Utility/Others.php",
+        "lib/gutenberg/block/rss.php"
+      ],
+      "jinr": [
+        "include/custom-functions.php",
+        "theme-update-checker.php"
+      ]
+    },
+    "requiredContracts": [
+      "openapi.yaml",
+      "agent-actions.schema.json",
+      "job-contract.schema.json",
+      "event-contract.schema.json",
+      "webhook-contract.schema.json",
+      "error-catalog.json",
+      "contract-version-policy.md",
+      "mcp-tools.schema.json",
+      "wp-cli-contract.json",
+      "automation-schedule.schema.json"
+    ],
+    "apiRules": [
+      "vendor_namespace_agent_neo_v1",
+      "standard_response_envelope",
+      "dry_run_apply_separation",
+      "nonce_capability_package_scope",
+      "json_schema_validation",
+      "idempotency_key_for_writes_and_jobs",
+      "rate_limit_public_tracking",
+      "ssrf_guard_for_url_fetch",
+      "contract_tests_required"
+    ],
+    "jobRunners": [
+      "wp_cron_low_criticality",
+      "wp_cli_server_cron_reliable",
+      "external_cron_managed",
+      "manual_admin_fallback"
+    ],
+    "jobTypes": [
+      "seo_sync",
+      "tracking_flush",
+      "ab_rollup",
+      "cache_warm",
+      "contract_validate",
+      "health_check",
+      "license_refresh",
+      "migration_preview",
+      "blueprint_rebuild"
+    ],
+    "rejectRules": [
+      "theme_owns_cron_or_api_state",
+      "wp_v2_namespace_for_product_routes",
+      "mixed_response_shapes",
+      "public_url_fetch_without_ssrf_guard",
+      "ajax_post_without_nonce_schema",
+      "wp_cron_only_for_critical_jobs",
+      "fixed_timestamp_cron_schedule"
+    ]
+  },
+  "aiAgentOperabilityStrategy": {
+    "decision": "make_ai_agent_operability_and_crawlability_first_class_product_contracts",
+    "officialSources": {
+      "openaiCrawlers": "https://developers.openai.com/api/docs/bots",
+      "googleCommonCrawlers": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+      "anthropicCrawlers": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+      "cloudflareManagedRobots": "https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/",
+      "googleTechnicalRequirements": "https://developers.google.com/search/docs/essentials/technical"
+    },
+    "codeEvidence": {
+      "swell": [
+        "classes/Json_Ld.php",
+        "lib/content_filter.php",
+        "lib/load/front.php",
+        "parts/home_content.php",
+        "parts/single/post_head.php",
+        "src/gutenberg/blocks/*/block.json",
+        "src/gutenberg/blocks/*/*.scss"
+      ],
+      "jinr": [
+        "include/head/noindex.php",
+        "include/head/others.php",
+        "include/json-ld.php",
+        "include/custom-functions.php",
+        "include/jinr-setting.php",
+        "functions.php"
+      ]
+    },
+    "uncomfortableTruths": [
+      "browser_ui_automation_is_fragile_without_json_contracts",
+      "dom_classes_are_not_semantic_contracts",
+      "lazyload_tabs_sliders_and_loadmore_hide_content_from_non_interactive_crawlers",
+      "rest_routes_without_openapi_and_standard_responses_are_unsafe_for_agents",
+      "seo_state_is_scattered_across_options_meta_head_output_and_plugins",
+      "robots_txt_is_preference_not_complete_technical_enforcement",
+      "ai_search_visibility_and_ai_training_permission_are_separate_decisions",
+      "settings_need_reason_owner_expiry_and_source_metadata",
+      "public_snapshots_must_not_leak_private_or_draft_content"
+    ],
+    "requiredContracts": [
+      "agent-operability.schema.json",
+      "dom-anchor.schema.json",
+      "content-snapshot.schema.json",
+      "crawlability-profile.json",
+      "crawler-access-matrix.json",
+      "ai-crawler-log.schema.json",
+      "rendered-content-digest.json",
+      "agent-readable-sitemap.xml",
+      "settings-intent.schema.json",
+      "seo-risk.schema.json"
+    ],
+    "domRules": [
+      "data_agent_page_id_required",
+      "data_agent_section_id_required",
+      "data_agent_role_required",
+      "data_agent_editable_required",
+      "data_cta_id_required_for_cta",
+      "data_offer_id_required_for_offer",
+      "data_variant_id_required_for_ab",
+      "data_evidence_id_required_for_claims",
+      "data_crawl_priority_required"
+    ],
+    "crawlerPresets": [
+      "ai_search_open_train_closed",
+      "ai_all_open",
+      "ai_search_only",
+      "ai_closed",
+      "custom"
+    ],
+    "publicEndpoints": [
+      "GET /wp-json/agent-neo/v1/public/pages/{id}/snapshot",
+      "GET /wp-json/agent-neo/v1/public/crawl-map",
+      "GET /wp-json/agent-neo/v1/public/entities"
+    ],
+    "rejectRules": [
+      "ai_agent_relies_on_css_classes_for_semantics",
+      "critical_content_only_available_after_click_or_loadmore",
+      "seo_noindex_canonical_change_without_risk_diff",
+      "robots_policy_single_toggle_for_all_ai_crawlers",
+      "content_snapshot_includes_drafts_private_content_or_secrets",
+      "browser_agent_is_primary_write_path",
+      "crawler_logs_store_unmasked_ip_or_pii_without_policy"
+    ]
+  },
+  "themeConstructionComprehensiveReview": {
+    "decision": "add_theme_quality_and_distribution_readiness_as_p0_contracts",
+    "reviewDate": "2026-04-29",
+    "officialSources": {
+      "wordpressThemeHandbook": "https://developer.wordpress.org/themes/",
+      "themeJson": "https://developer.wordpress.org/themes/global-settings-and-styles/introduction-to-theme-json/",
+      "themeReviewRequired": "https://make.wordpress.org/themes/handbook/review/required/",
+      "wordpressSecurity": "https://developer.wordpress.org/apis/security/",
+      "wordpressEscaping": "https://developer.wordpress.org/apis/security/escaping/",
+      "blockJsonMetadata": "https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/",
+      "themeI18n": "https://developer.wordpress.org/themes/advanced-topics/internationalization/",
+      "wordpressPrivacy": "https://developer.wordpress.org/plugins/privacy/",
+      "themeAccessibility": "https://make.wordpress.org/themes/handbook/review/accessibility/",
+      "wcag22": "https://www.w3.org/TR/WCAG22/",
+      "webVitals": "https://web.dev/articles/vitals",
+      "googleTechnicalRequirements": "https://developers.google.com/search/docs/essentials/technical",
+      "googleStructuredData": "https://developers.google.com/search/docs/guides/intro-structured-data",
+      "wpCliTheme": "https://developer.wordpress.org/cli/commands/theme/"
+    },
+    "coverageVerdict": "passed_with_required_gaps",
+    "missingPerspectives": [
+      "theme_review_and_distribution_readiness",
+      "accessibility_audit_detail",
+      "i18n_rtl_japanese_typography",
+      "release_sbom_supply_chain",
+      "hosting_compatibility",
+      "privacy_retention_export_erase",
+      "block_deprecation_and_editor_governance",
+      "seo_indexing_policy",
+      "documentation_support_lifecycle"
+    ],
+    "requiredContracts": [
+      "theme-review-checklist.json",
+      "accessibility-profile.json",
+      "i18n-profile.json",
+      "release-policy.schema.json",
+      "build-provenance.json",
+      "sbom.cdx.json",
+      "browser-support-matrix.json",
+      "hosting-compatibility-matrix.json",
+      "privacy-retention-policy.json",
+      "uninstall-cleanup-policy.json",
+      "editor-governance.schema.json",
+      "block-deprecation-policy.json",
+      "support-bundle.schema.json",
+      "documentation-map.json",
+      "seo-indexing-policy.json",
+      "qa-test-matrix.json",
+      "quality-gate-result.schema.json"
+    ],
+    "qualityGates": [
+      "theme_review_gate",
+      "accessibility_gate",
+      "i18n_rtl_gate",
+      "release_sbom_gate",
+      "hosting_compatibility_gate",
+      "privacy_retention_gate",
+      "seo_indexing_gate",
+      "documentation_support_gate"
+    ],
+    "l1l2Reflection": {
+      "requirement": "REQ-NF-016",
+      "acceptance": "ACC-NF-010",
+      "adr": "ADR-014",
+      "feature": "F-020",
+      "screen": "S-011"
+    },
+    "warnings": [
+      "do_not_enter_l3_without_p0_quality_contracts",
+      "accessibility_goal_is_insufficient_without_testable_audit_items",
+      "commercial_theme_requires_release_and_support_evidence_not_only_feature_design",
+      "theme_review_constraints_apply_even_if_self_distributed_when_trust_and_plugin_directory_strategy_matter"
+    ]
+  },
+  "llmoStrategy": {
+    "decision": "make_llmo_and_ai_search_visibility_first_class_theme_contracts",
+    "reviewDate": "2026-04-29",
+    "officialSources": {
+      "googleAiFeatures": "https://developers.google.com/search/docs/appearance/ai-features",
+      "googleRobotsMeta": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+      "googleHelpfulContent": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "googleSeoStarterGuide": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+      "googleStructuredData": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+      "googleSitemaps": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+      "openaiCrawlers": "https://developers.openai.com/api/docs/bots",
+      "anthropicCrawlers": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+      "perplexityCrawlers": "https://docs.perplexity.ai/docs/resources/perplexity-crawlers",
+      "cloudflareContentSignals": "https://blog.cloudflare.com/content-signals-policy/",
+      "bingAiPerformance": "https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+      "bingAiSearchMeasurement": "https://blogs.bing.com/webmaster/November-2025/How-AI-Search-Is-Changing%E2%80%AFthe%E2%80%AFWay%E2%80%AFConversions%E2%80%AFare-Measured"
+    },
+    "corePrinciples": [
+      "separate_search_ai_input_and_training_permissions",
+      "structure_pages_as_answer_units",
+      "connect_claims_to_evidence_and_reviewers",
+      "publish_static_ai_readable_snapshots",
+      "measure_ai_crawler_ai_referral_citation_and_conversion",
+      "avoid_llmo_thin_faq_and_unverified_ai_content"
+    ],
+    "requiredContracts": [
+      "llmo-profile.json",
+      "answer-unit.schema.json",
+      "evidence-graph.schema.json",
+      "content-origin.schema.json",
+      "ai-visibility-policy.json",
+      "ai-crawler-policy.schema.json",
+      "citation-anchor.schema.json",
+      "llmo-visibility.schema.json",
+      "claim-risk.schema.json",
+      "ai-answer-sitemap.xml"
+    ],
+    "crawlerPresets": [
+      "ai_search_open_train_closed",
+      "ai_search_only",
+      "ai_all_open",
+      "ai_closed",
+      "custom_by_page"
+    ],
+    "answerUnitFields": [
+      "question",
+      "short_answer",
+      "details",
+      "evidence_ids",
+      "claim_ids",
+      "author_id",
+      "reviewer_id",
+      "updated_at",
+      "valid_until",
+      "cta_id"
+    ],
+    "measurementEvents": [
+      "ai_crawler_visit",
+      "ai_snapshot_fetch",
+      "ai_referral_visit",
+      "ai_citation_detected",
+      "answer_unit_impression",
+      "llmo_cta_click",
+      "ai_assisted_conversion"
+    ],
+    "l1l2Reflection": {
+      "requirement": "REQ-NF-017",
+      "acceptance": "ACC-NF-011",
+      "adr": "ADR-015",
+      "feature": "F-021",
+      "screen": "S-012"
+    },
+    "warnings": [
+      "robots_txt_is_preference_not_enforcement",
+      "google_ai_features_are_controlled_as_search_via_googlebot_and_preview_controls",
+      "do_not_block_search_bots_when_goal_is_ai_search_visibility",
+      "ai_generated_content_needs_who_how_why_evidence_and_review_metadata",
+      "thin_faq_mass_generation_is_not_a_sustainable_llmo_strategy"
+    ]
+  },
+  "wpSeoOpsRiskStrategy": {
+    "decision": "treat_uncomfortable_truths_as_product_contracts_not_notes",
+    "reviewDate": "2026-04-29",
+    "officialSources": {
+      "googleSpamPolicies": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "googleCanonical": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+      "googleLazyLoading": "https://developers.google.com/search/docs/crawling-indexing/javascript/lazy-loading",
+      "googleFacetedNavigation": "https://developers.google.com/search/blog/2024/12/crawling-december-faceted-nav",
+      "googleStructuredData": "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+      "webVitals": "https://web.dev/articles/vitals",
+      "wpRestRoutes": "https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/",
+      "wpRestCustomEndpoints": "https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/",
+      "wpCron": "https://developer.wordpress.org/plugins/cron/",
+      "wpCronSystemScheduler": "https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/",
+      "wpNonces": "https://developer.wordpress.org/apis/security/nonces/",
+      "wpSecurity": "https://developer.wordpress.org/apis/security/",
+      "wpPrivacy": "https://developer.wordpress.org/plugins/privacy/",
+      "wpRequirements": "https://wordpress.org/about/requirements/"
+    },
+    "uncomfortableTruths": [
+      "wordpress_can_generate_duplicate_and_thin_urls_by_default",
+      "sitemap_submission_does_not_guarantee_indexing",
+      "canonical_noindex_robots_sitemap_must_be_evaluated_together",
+      "ai_content_volume_can_become_scaled_content_abuse",
+      "structured_data_can_create_manual_action_or_rich_result_loss_if_misleading",
+      "javascript_tabs_load_more_and_lazy_content_can_hide_critical_content",
+      "core_web_vitals_need_field_data_not_lighthouse_only",
+      "wp_cron_is_page_load_triggered_not_precise_system_cron",
+      "cache_optimization_plugins_can_stale_head_rest_nonce_and_ab_outputs",
+      "fse_db_templates_can_drift_from_theme_files",
+      "plugin_addition_expands_attack_surface_and_support_matrix",
+      "auto_updates_and_delayed_updates_both_have_risk",
+      "nonce_is_not_authentication_or_authorization",
+      "ai_operation_api_is_more_dangerous_than_human_admin_ui",
+      "public_snapshots_can_leak_drafts_private_data_or_secrets_without_allowlist"
+    ],
+    "requiredContracts": [
+      "risk-ledger.schema.json",
+      "seo-hazard-policy.json",
+      "indexing-safety-check.schema.json",
+      "cache-compatibility-contract.json",
+      "cron-reliability-contract.json",
+      "plugin-conflict-playbook.json",
+      "wp-environment-diagnostics.schema.json",
+      "restore-drill-runbook.schema.json",
+      "content-quality-risk.schema.json",
+      "theme-db-drift-detector.json",
+      "data-bloat-budget.json",
+      "support-cost-model.json"
+    ],
+    "hazardCategories": [
+      "seo_indexing",
+      "content_quality",
+      "structured_data",
+      "performance_field_metrics",
+      "cron_and_jobs",
+      "cache_and_cdn",
+      "plugin_conflicts",
+      "updates_and_rollback",
+      "rest_api_security",
+      "privacy_and_logs",
+      "ai_agent_operations",
+      "ai_crawler_and_llmo"
+    ],
+    "l1l2Reflection": {
+      "requirement": "REQ-NF-018",
+      "acceptance": "ACC-NF-012",
+      "adr": "ADR-016",
+      "feature": "F-022",
+      "api": "A-022",
+      "screen": "S-013"
+    },
+    "warnings": [
+      "do_not_sell_ai_content_volume_as_seo_value",
+      "do_not_allow_single_toggle_for_noindex_canonical_robots_sitemap",
+      "do_not_rely_on_wp_cron_for_critical_automation",
+      "do_not_treat_nonce_as_authorization",
+      "do_not_publish_ai_snapshots_by_denylist_only",
+      "do_not_make_all_in_one_theme_store_portable_data"
+    ]
+  },
+  "competitorScoreStrategy": {
+    "decision": "aim_for_ai_operated_wp_theme_platform_not_generic_design_theme",
+    "reviewDate": "2026-04-29",
+    "scoreBasis": [
+      "market_fit_and_sales_power",
+      "design_ux",
+      "seo_structured_data",
+      "performance_core_web_vitals",
+      "monetization_lp_conversion",
+      "operations_updates_support",
+      "ai_operability_future_readiness"
+    ],
+    "scores": [
+      {
+        "theme": "SWELL",
+        "score": 88,
+        "position": "premium_all_rounder",
+        "good": [
+          "one_time_price_license_confidence",
+          "high_usability_admin_blocks_docs_forum",
+          "performance_architecture_reference",
+          "broad_blog_media_lp_fit"
+        ],
+        "bad": [
+          "not_ai_json_operation_first",
+          "corporate_lp_ab_measurement_not_core_category",
+          "llmo_evidence_ai_crawler_contracts_not_productized"
+        ],
+        "adoptAbstractly": [
+          "performance_asset_policy",
+          "settings_ux",
+          "manual_forum_trust",
+          "buy_once_confidence"
+        ]
+      },
+      {
+        "theme": "JIN:R",
+        "score": 82,
+        "position": "design_seo_blog_monetization_premium",
+        "good": [
+          "design_preset_ux",
+          "integrated_seo_ux",
+          "blogger_monetization_story",
+          "community_benefit"
+        ],
+        "bad": [
+          "performance_architecture_weaker_than_swell",
+          "human_gui_first_seo_operation",
+          "enterprise_ops_audit_fallback_not_core"
+        ],
+        "adoptAbstractly": [
+          "seo_integrated_ux",
+          "preset_first_impression",
+          "blogger_psychology_copy",
+          "seo_to_json_contract_conversion"
+        ]
+      },
+      {
+        "theme": "AFFINGER6_ACTION_PACK",
+        "score": 80,
+        "position": "affiliate_monetization_specialist",
+        "good": [
+          "affiliate_revenue_features",
+          "code_tag_manager_ab_ctr_value",
+          "upper_pack_pricing_strategy",
+          "clear_earn_money_message"
+        ],
+        "bad": [
+          "complex_settings_high_cognitive_load",
+          "less_modern_design_ux",
+          "not_ai_intent_driven_operation",
+          "enterprise_governance_not_primary"
+        ],
+        "adoptAbstractly": [
+          "monetization_blocks",
+          "ab_tracking_packaging",
+          "tiered_upsell",
+          "conversion_metrics_positioning"
+        ]
+      },
+      {
+        "theme": "Cocoon",
+        "score": 78,
+        "position": "free_standard_entry_theme",
+        "good": [
+          "free_gpl_entry",
+          "seo_speed_mobile_basic_coverage",
+          "ads_ranking_forum_breadth",
+          "low_adoption_barrier"
+        ],
+        "bad": [
+          "weak_premium_brand_feel",
+          "advanced_lp_ab_ai_ops_absent",
+          "difficult_price_anchor_for_paid_theme"
+        ],
+        "adoptAbstractly": [
+          "free_lead_magnet_strategy",
+          "basic_feature_breadth",
+          "forum_support_model"
+        ]
+      },
+      {
+        "theme": "Lightning_Vektor",
+        "score": 76,
+        "position": "sme_business_site_ecosystem",
+        "good": [
+          "corporate_site_fit",
+          "free_theme_plus_pro_plugin_subscription",
+          "pattern_learning_ecosystem",
+          "agency_friendly_structure"
+        ],
+        "bad": [
+          "affiliate_monetization_weak",
+          "lp_ab_measurement_not_core_message",
+          "ai_operability_llmo_not_differentiator"
+        ],
+        "adoptAbstractly": [
+          "business_trust_positioning",
+          "subscription_extension_model",
+          "pattern_library_and_training"
+        ]
+      }
+    ],
+    "agentNeoTarget": {
+      "category": "AI運用型WPテーマ基盤",
+      "personalScoreTarget": 90,
+      "corporateScoreTarget": 94,
+      "coreScoreTarget": 92,
+      "personalPositioning": "swell_jinr_usability_plus_affinger_monetization_plus_ai_article_tracking_llmo",
+      "corporatePositioning": "lightning_business_trust_plus_lp_ab_tracking_plus_ai_operations",
+      "avoid": [
+        "compete_only_on_beautiful_design",
+        "compete_only_on_low_price",
+        "sell_seo_strength_without_evidence_operations",
+        "put_all_features_into_theme_core",
+        "increase_settings_complexity_as_value",
+        "sell_corporate_package_as_expensive_theme"
+      ]
+    }
+  },
+  "automationSeoThemeFitStrategy": {
+    "decision": "use_swell_and_jinr_as_migration_references_but_make_agent_neo_the_contract_target",
+    "reviewDate": "2026-04-29",
+    "scoreBasis": [
+      "seo_meta_entity_sync",
+      "stable_section_contract",
+      "cta_ab_cro_integration",
+      "article_lp_ingestion",
+      "performance_tracking_coexistence",
+      "api_automation_safety",
+      "migration_portability"
+    ],
+    "scores": [
+      {
+        "theme": "SWELL",
+        "score": 73,
+        "fit": "strong_for_performance_parts_json_ld_weak_for_seo_meta_control",
+        "good": [
+          "performance_architecture",
+          "entity_graph_reference",
+          "lp_cpt_blog_parts_ad_tag_reusable_parts",
+          "rest_settings_parts_classification",
+          "seo_plugin_coexistence"
+        ],
+        "bad": [
+          "seo_meta_control_is_often_plugin_side",
+          "no_stable_section_cta_contract_for_automation_seo",
+          "no_safe_apply_dry_run_rollback_contract",
+          "tracking_can_duplicate_with_seo_tool_connector"
+        ]
+      },
+      {
+        "theme": "JIN:R",
+        "score": 77,
+        "fit": "strong_for_integrated_seo_meta_weak_for_performance_and_stable_contract",
+        "good": [
+          "integrated_seo_ux",
+          "seo_post_meta_show_in_rest",
+          "canonical_noindex_ogp_json_ld_in_theme",
+          "author_person_organization_context",
+          "preset_hp_ux_reference"
+        ],
+        "bad": [
+          "large_global_css_jquery_cdn_risk",
+          "classic_template_not_fse_contract",
+          "no_stable_section_contract",
+          "public_rest_ajax_patterns_need_security_redesign",
+          "theme_specific_seo_meta_requires_normalization"
+        ]
+      }
+    ],
+    "automationSeoSideActions": [
+      "theme_capability_scanner",
+      "section_id_resolver_with_confidence",
+      "tracking_context_contract_v2",
+      "safe_recommendation_apply_via_agent_neo_dry_run",
+      "seo_meta_normalizer",
+      "cta_offer_mapper",
+      "performance_impact_collector",
+      "blueprint_exporter"
+    ],
+    "wpThemeSideActions": [
+      "section_registry",
+      "cta_registry",
+      "automation_seo_adapter",
+      "seo_core_contract",
+      "safe_write_api",
+      "theme_plugin_boundary",
+      "web_vitals_rum",
+      "migration_preview"
+    ],
+    "contextContractV2Fields": [
+      "contract_version",
+      "page_type",
+      "section_type",
+      "cta_ids",
+      "offer_ids",
+      "selector_confidence",
+      "schema_hash"
+    ],
+    "l1l2Reflection": {
+      "requirement": "REQ-NF-019",
+      "acceptance": "ACC-NF-013",
+      "adr": "ADR-018",
+      "feature": "F-023",
+      "api": "A-023",
+      "screen": "S-014"
+    },
+    "warnings": [
+      "do_not_build_deep_theme_specific_adapters_for_swell_jinr",
+      "do_not_apply_ai_recommendations_to_unstable_nth_of_type_selectors",
+      "do_not_copy_theme_css_classes_or_visual_assets",
+      "do_not_make_automation_seo_required_for_basic_theme_runtime"
+    ]
+  },
+  "automationSeoBridgePluginStrategy": {
+    "decision": "Automation SEO Theme Bridge Pluginは既存テーマを直接深く書き換える専用アダプタではなく、診断、正規化、計測、移行入口の契約層にする",
+    "reviewDate": "2026-04-29",
+    "pluginRole": [
+      "theme_capability_scanner",
+      "seo_meta_normalizer",
+      "section_cta_registry",
+      "tracking_context_v2",
+      "plugin_conflict_detector",
+      "privacy_data_map",
+      "migration_blueprint_exporter",
+      "support_bundle"
+    ],
+    "inconvenientTruths": [
+      "dom_css_classes_are_not_stable_api",
+      "heading_based_section_detection_breaks_on_lp_and_theme_updates",
+      "seo_meta_sources_are_fragmented_across_themes_and_plugins",
+      "cta_identity_is_not_standardized",
+      "wp_cron_is_not_reliable_for_sync",
+      "public_tracking_endpoints_need_signature_rate_limit_bot_filter_and_dedupe",
+      "fse_db_templates_can_drift_from_theme_files",
+      "cache_minify_cdn_can_break_tracking_and_ab_tests",
+      "deep_per_theme_write_adapters_create_support_debt"
+    ],
+    "pluginOwnedInfo": [
+      "site_profile",
+      "theme_profile",
+      "plugin_profile",
+      "page_registry",
+      "section_registry",
+      "cta_registry",
+      "offer_registry",
+      "normalized_seo_meta",
+      "tracking_profile",
+      "privacy_profile",
+      "integration_health",
+      "safe_apply_state",
+      "migration_blueprint"
+    ],
+    "pluginMustNotOwn": [
+      "reference_theme_css_images_or_unique_design_assets",
+      "wordpress_content_source_of_truth",
+      "long_term_raw_pii_logs",
+      "llm_secret_prompts_or_api_keys",
+      "plain_payment_or_license_secrets",
+      "seo_ranking_guarantee_claims",
+      "unbounded_deep_write_logic_for_each_theme"
+    ],
+    "agentNeoImplication": "既存テーマ向けブリッジは無料/低価格の診断・リード獲得に使い、AGENT NEO Core Pluginだけを第一級のsafe apply write targetにする",
+    "l1l2Reflection": {
+      "requirement": "REQ-NF-020",
+      "acceptance": "ACC-NF-014",
+      "adr": "ADR-019",
+      "feature": "F-024",
+      "api": "A-024",
+      "screen": "S-015"
+    }
+  },
+  "marketResearch": {
+    "verifiedSources": [
+      {
+        "name": "SWELL",
+        "url": "https://swell-theme.com/download/",
+        "price": "17600 JPY",
+        "model": "one_time",
+        "notes": [
+          "GPL100",
+          "multiple_sites_allowed",
+          "no_monthly_or_annual_fee"
+        ]
+      },
+      {
+        "name": "JIN:R",
+        "url": "https://jinr.jp/download/",
+        "price": "19800 JPY",
+        "model": "one_time",
+        "notes": [
+          "multiple_sites_allowed",
+          "BlogCamp_included",
+          "family_share_allowed"
+        ]
+      },
+      {
+        "name": "AFFINGER6",
+        "url": "https://on-store.net/affinger6/",
+        "price": "14800 JPY",
+        "model": "one_time",
+        "notes": [
+          "customization",
+          "monetization",
+          "click_tracking"
+        ]
+      },
+      {
+        "name": "AFFINGER ACTION PACK3",
+        "url": "https://on-store.net/affinger_puck3_wing/",
+        "price": "39800 JPY",
+        "model": "one_time",
+        "notes": [
+          "AFFINGER6_EX",
+          "tag_manager",
+          "ab_testing",
+          "ctr_tracking"
+        ]
+      },
+      {
+        "name": "Cocoon",
+        "url": "https://wp-cocoon.com/",
+        "price": "0 JPY",
+        "model": "free",
+        "notes": [
+          "seo",
+          "performance",
+          "ad_management",
+          "forum"
+        ]
+      },
+      {
+        "name": "Lightning / Vektor Passport",
+        "url": "https://lightning.vektor-inc.co.jp/lightning-g3-pro-unit/",
+        "price": "11000 JPY per year / 29700 JPY for 3 years / 44000 JPY for 5 years",
+        "model": "subscription",
+        "notes": [
+          "free_theme_plus_pro_plugin",
+          "business_site",
+          "block_extensions"
+        ]
+      }
+    ],
+    "whyTheySell": [
+      "one_time_purchase_confidence",
+      "multiple_site_usage",
+      "design_presets",
+      "block_editor_experience",
+      "monetization_features",
+      "performance_and_seo",
+      "manuals_forums_community",
+      "tracking_and_ab_testing_for_upper_tiers"
+    ]
+  },
+  "pricingStrategy": {
+    "personal_affiliate": {
+      "price": "19800 JPY",
+      "model": "one_time",
+      "positioning": "affiliate_monetization_ai_article_receiver_tracking_enabled_theme",
+      "keep": true
+    },
+    "corporate_lp": {
+      "price": "98000 JPY",
+      "model": "one_time",
+      "positioning": "ai_operated_corporate_lp_platform_not_just_theme",
+      "keep": true
+    },
+    "migration_plugin": {
+      "price": "0 JPY",
+      "model": "lead_magnet",
+      "purpose": "free_entry_and_s1_upsell"
+    },
+    "automation_seo": {
+      "model": "separate_paid_addon_or_service",
+      "decision": "do_not_bundle_unlimited_ai_cost_into_theme_price",
+      "recoveryChannels": [
+        "S1_initial_build",
+        "paid_addon",
+        "usage_based_ai_operations",
+        "bring_your_own_api_key_option"
+      ]
+    }
+  },
+  "packageStrategy": {
+    "core": {
+      "purpose": "shared theme foundation",
+      "adopt": [
+        "bootstrap",
+        "template_parts",
+        "design_tokens",
+        "conditional_assets",
+        "faq_block",
+        "step_block",
+        "button_block",
+        "accordion_block",
+        "post_list_block",
+        "seo_base",
+        "seo_core",
+        "seo_profile",
+        "seo_meta_schema",
+        "entity_graph_schema",
+        "seo_plugin_duplicate_guard",
+        "performance_profile",
+        "asset_policy",
+        "critical_css_builder",
+        "media_policy",
+        "third_party_tag_governance",
+        "web_vitals_budget",
+        "front_jquery_disabled_by_default",
+        "theme_plugin_boundary",
+        "companion_plugin_required",
+        "plugin_dependency_map",
+        "plugin_conflict_detector",
+        "adapter_capability_map",
+        "graceful_degradation",
+        "local_tracking_fallback",
+        "theme_coding_rules",
+        "thin_bootstrap",
+        "module_register_pattern",
+        "block_json_source_of_truth",
+        "used_block_asset_collector",
+        "wpcs_phpcs",
+        "theme_manifest",
+        "design_ui_principles",
+        "design_preset_schema",
+        "visual_composition_schema",
+        "section_pattern_schema",
+        "conversion_intent_schema",
+        "trust_layer_schema",
+        "ui_risk_schema",
+        "gateway_grid",
+        "proof_near_cta",
+        "ui_audit",
+        "compatibility_matrix",
+        "update_policy",
+        "security_baseline",
+        "plugin_conflict_rules",
+        "availability_profile",
+        "observability_profile",
+        "ops_runbook",
+        "health_check_admin",
+        "update_preflight_postflight",
+        "rollback_export_import",
+        "external_service_fallback",
+        "license_compliance_guard",
+        "privacy_consent_guard",
+        "affiliate_disclosure_guard",
+        "data_portability",
+        "schema_versioning",
+        "page_blueprint",
+        "section_registry",
+        "home_blueprint",
+        "lp_blueprint",
+        "conversion_path",
+        "visual_composition",
+        "proof_schema",
+        "agent_json_actions",
+        "rest_api_surface",
+        "mcp_surface",
+        "wp_cli_surface",
+        "react_admin_surface",
+        "openapi_contract",
+        "api_error_catalog",
+        "job_contract",
+        "event_contract",
+        "webhook_contract",
+        "automation_schedule",
+        "idempotent_jobs",
+        "dead_letter_queue",
+        "wp_cron_wp_cli_external_cron_runners",
+        "mcp_tools_schema",
+        "wp_cli_contract",
+        "contract_tests",
+        "openapi_diff",
+        "agent_operability_schema",
+        "dom_anchor_schema",
+        "content_snapshot_schema",
+        "crawlability_profile",
+        "crawler_access_matrix",
+        "ai_crawler_log",
+        "rendered_content_digest",
+        "agent_readable_sitemap",
+        "settings_intent_schema",
+        "seo_risk_schema",
+        "ai_agent_readiness_score",
+        "theme_review_checklist",
+        "accessibility_profile",
+        "i18n_profile",
+        "release_policy",
+        "build_provenance",
+        "sbom",
+        "browser_support_matrix",
+        "hosting_compatibility_matrix",
+        "privacy_retention_policy",
+        "uninstall_cleanup_policy",
+        "editor_governance",
+        "block_deprecation_policy",
+        "support_bundle",
+        "documentation_map",
+        "seo_indexing_policy",
+        "qa_test_matrix",
+        "quality_gate_result",
+        "llmo_profile",
+        "answer_unit_schema",
+        "evidence_graph",
+        "content_origin",
+        "ai_visibility_policy",
+        "ai_crawler_policy",
+        "citation_anchor",
+        "llmo_visibility",
+        "claim_risk",
+        "ai_answer_sitemap"
+      ]
+    },
+    "personal_affiliate": {
+      "purpose": "affiliate monetization",
+      "adopt": [
+        "review_block",
+        "ranking_block",
+        "comparison_table",
+        "product_card",
+        "affiliate_cta",
+        "ad_tag_manager",
+        "click_tracking",
+        "affiliate_disclosure"
+      ],
+      "avoid": [
+        "approval_workflow",
+        "heavy_role_permissions",
+        "corporate_brand_governance"
+      ]
+    },
+    "corporate_lp": {
+      "purpose": "product promotion lead generation and lp optimization",
+      "adopt": [
+        "lp_section_builder",
+        "lp_blueprint",
+        "home_blueprint",
+        "gateway_grid",
+        "hero_variants",
+        "hero_section",
+        "feature_section",
+        "benefit_section",
+        "case_study",
+        "pricing_section",
+        "proof_section",
+        "cta_manager",
+        "ab_testing",
+        "lead_tracking",
+        "brand_tokens",
+        "reusable_parts",
+        "settings_export_import",
+        "audit_log"
+      ],
+      "avoid": [
+        "affiliate_ranking_first_ui",
+        "ad_tag_first_ui",
+        "review_only_content_model"
+      ]
+    }
+  },
+  "jsonOperationDesign": {
+    "requiredFiles": [
+      "theme-manifest.json",
+      "package.matrix.json",
+      "design-tokens.json",
+      "layout-registry.json",
+      "block-registry.json",
+      "component-contracts.json",
+      "agent-actions.schema.json"
+    ],
+    "operationSurfaces": [
+      "rest_api",
+      "mcp_server",
+      "wp_cli",
+      "react_admin"
+    ],
+    "requiredGuards": [
+      "dryRun",
+      "schemaValidation",
+      "pathAllowlist",
+      "diffReview",
+      "nonceForRestWrites",
+      "capabilityCheck",
+      "rateLimitForTracking",
+      "auditLog",
+      "themeReviewGate",
+      "accessibilityGate",
+      "i18nRtlGate",
+      "releaseSbomGate",
+      "hostingCompatibilityGate",
+      "privacyRetentionGate",
+      "seoIndexingGate",
+      "documentationSupportGate"
+    ]
+  },
+  "designReference": {
+    "explicitReports": [
+      "06-設計参考とパーツカタログ.md",
+      "07-計測と連携性分析.md",
+      "08-上位モデル化戦略.md",
+      "09-価格戦略と売れる理由.md",
+      "10-深掘り解析実施計画.md",
+      "11-競合比較マトリクス.md",
+      "12-企画書レビューと要件反映.md",
+      "13-SEO設計比較-JINR優先分析.md",
+      "14-JINR親テーマ実コードSEO解析.md",
+      "15-ページスピード設計比較.md",
+      "16-LP-HP設計方針.md",
+      "17-制約条件と設計ガード.md",
+      "18-テーマコーディングルール逆引き設計.md",
+      "19-デザインUI思想逆引き設計.md",
+      "20-運用セキュリティ可用性更新性分析.md",
+      "21-自動化CronAPI契約設計.md",
+      "22-AIエージェント運用性とクローラビリティ分析.md",
+      "23-テーマ構築観点総合レビュー.md",
+      "24-LLMO時代のテーマ設計重要観点.md",
+      "25-WPサイト運用とSEOの不都合な真実.md",
+      "26-競合テーマ総合評価と市場ポジション.md",
+      "27-AutomationSEO連携観点のSWELL-JINR採点.md",
+      "28-共通強化プラグインとAutomationSEOプラグイン情報設計.md",
+      "29-ドキュメントテーマ群抜け漏れレビュー.md",
+      "30-SEOスキルマップ観点テーマ調査.md"
+    ],
+    "partsCatalog": [
+      "header",
+      "footer",
+      "single_head",
+      "single_bottom",
+      "post_list",
+      "lp_section",
+      "product_card",
+      "review_box",
+      "ranking_list",
+      "comparison_table",
+      "lead_cta"
+    ],
+    "trackingEvents": [
+      "page_view",
+      "cta_impression",
+      "cta_click",
+      "affiliate_click",
+      "ad_impression",
+      "ad_click",
+      "lead_click",
+      "external_form_click",
+      "document_download_click",
+      "section_engagement",
+      "variant_impression"
+    ],
+    "integrationAdapters": [
+      "ga4",
+      "gtm_dataLayer",
+      "affiliate_network_links",
+      "hubspot_external_form",
+      "salesforce_external_form",
+      "automation_seo",
+      "seo_tool_connector",
+      "agent_json_actions"
+    ]
+  },
+  "planningReview": {
+    "l0Planning": "docs/planning/L0-planning.md",
+    "l1Requirements": "docs/requirements/L1-requirements.md",
+    "l2Design": "docs/design/L2-design.md",
+    "initialGate": "failed_due_to_l1_l2_templates",
+    "currentGate": "passed_with_draft",
+    "remainingDecisions": [
+      "upgrade_billing_method",
+      "launch_order",
+      "s1_price_range",
+      "plan_a_free_or_light_paid",
+      "license_validation_provider"
+    ]
+  },
+  "gapReview": {
+    "report": "29-ドキュメントテーマ群抜け漏れレビュー.md",
+    "reviewDate": "2026-04-29",
+    "overall": "planning_and_reverse_analysis_are_broadly_covered_but_implementation_contracts_are_not_frozen",
+    "blockingGaps": [
+      "docs/design/L3-detailed-design.md_still_contains_template_placeholders",
+      "docs/design/L5-visual-design.md_still_contains_placeholder_tokens_and_screen_templates"
+    ],
+    "mediumGaps": [
+      "docs/requirements/L1-requirements.md_traceability_for_REQ-NF-001_to_REQ-NF-007_is_not_explicit",
+      "only_swell_and_jinr_are_locally_code_analyzed_affinger_cocoon_lightning_are_market_comparison_only",
+      "themes_and_plugins_directories_do_not_yet_contain_agent_neo_scaffold"
+    ],
+    "fixedInReview": [
+      "docs/design/L2-design.md_added_ADR-016_F-022_A-022_S-013_to_top_level_tables_and_ia",
+      "docs/reverse/wp-theme-reference-analysis.md_added_jinr_parent_as_analysis_target",
+      "解析レポート/README.md_added_report_29"
+    ],
+    "recommendedNextActions": [
+      "freeze_L3_api_schema_permission_error_catalog_mcp_wpcli_details",
+      "freeze_L5_tokens_wireframes_component_states_and_accessibility_rules",
+      "complete_L1_traceability_for_early_nonfunctional_requirements",
+      "create_agent_neo_theme_core_and_migration_scaffolds",
+      "decide_whether_to_obtain_affinger_cocoon_lightning_code_for_local_reverse_analysis"
+    ],
+    "gateResult": {
+      "RG0": "passed",
+      "RG1": "passed_with_gaps",
+      "RG2": "passed_with_caution",
+      "R4": "passed",
+      "G3Readiness": "failed_until_L3_L5_are_frozen"
+    }
+  },
+  "superiorModelStrategy": {
+    "principle": "copy_no_code_or_assets_extract_patterns_and_rebuild_better",
+    "differentiators": [
+      "ai_first_json_actions",
+      "package_first_ux",
+      "conversion_first_design",
+      "design_token_first_styling",
+      "integration_first_tracking",
+      "verification_first_contracts",
+      "automation_seo_linked_operations",
+      "rest_mcp_wp_cli_unified_contract"
+      ,
+      "ai_agent_operability_score",
+      "crawler_access_matrix",
+      "public_content_snapshot",
+      "theme_quality_governance",
+      "release_readiness_contracts",
+      "support_bundle_for_ai_and_human_diagnostics",
+      "llmo_answer_units",
+      "evidence_graph",
+      "ai_search_visibility_policy",
+      "ai_assisted_conversion_measurement"
+    ],
+    "personalAffiliateUpgrade": [
+      "product_card",
+      "review_box",
+      "ranking",
+      "comparison_table",
+      "affiliate_cta",
+      "ad_tracking",
+      "affiliate_disclosure"
+    ],
+    "corporateLpUpgrade": [
+      "lp_section_builder",
+      "brand_tokens",
+      "lead_cta",
+      "case_study",
+      "pricing_section",
+      "ab_testing",
+      "lead_tracking",
+      "settings_export_import"
+    ]
+  },
+  "gates": {
+    "RG0": "passed",
+    "RG1": "passed",
+    "RG2": "passed",
+    "RG3": "passed_with_user_confirmed_automation_seo_separate_pricing",
+    "R4": "passed",
+    "G0.5": "passed_with_draft"
+  }
+}
