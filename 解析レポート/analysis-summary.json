@@ -1,6 +1,6 @@
 {
   "schemaVersion": "0.2.0",
-  "lastReviewed": "2026-04-29",
+  "lastReviewed": "2026-04-30",
   "targetThemes": [
     {
       "path": "swell-2.16.0/swell",
@@ -1872,8 +1872,7 @@
       "integration_first_tracking",
       "verification_first_contracts",
       "automation_seo_linked_operations",
-      "rest_mcp_wp_cli_unified_contract"
-      ,
+      "rest_mcp_wp_cli_unified_contract",
       "ai_agent_operability_score",
       "crawler_access_matrix",
       "public_content_snapshot",
@@ -1905,12 +1904,533 @@
       "settings_export_import"
     ]
   },
+  "runtimeMeasurementReview": {
+    "report": "31-WPテーマ実測解析.md",
+    "reviewDate": "2026-04-30",
+    "environment": {
+      "wordpress": "6.6.2",
+      "phpApacheImage": "wordpress:6.6-php8.2-apache",
+      "database": "mariadb:10.11",
+      "url": "http://localhost:8086",
+      "rawArtifacts": "tmp/wp-measure/",
+      "logArtifacts": "解析レポート/35-実機検証ログ/"
+    },
+    "measuredThemes": [
+      "jinr",
+      "jinr-child",
+      "swell",
+      "swell_child"
+    ],
+    "validPages": [
+      "/",
+      "/sample-page/"
+    ],
+    "excludedPages": [
+      {
+        "path": "/hello-world/",
+        "reason": "permalink_structure_is_corrupted_to_windows_path"
+      }
+    ],
+    "headlineMetrics": {
+      "jinrHomeAvgTtfbSec": 0.2679,
+      "swellHomeAvgTtfbSec": 0.5138,
+      "jinrHomeHtmlBytes": 57221,
+      "swellHomeHtmlBytes": 40169,
+      "seoToolConnectorJinrHomeTtfbDeltaSec": 0.0112,
+      "seoToolConnectorJinrHomeScriptDelta": 3
+    },
+    "seoFindings": [
+      "jinr_outputs_canonical_ogp_and_two_json_ld_blocks_in_initial_environment",
+      "swell_home_does_not_output_canonical_or_ogp_in_initial_environment",
+      "both_need_entity_graph_contract_and_seo_plugin_duplicate_guard"
+    ],
+    "criticalFindings": [
+      "permalink_structure_corrupted_to_/C:/Program%20Files/Git/%postname%/",
+      "jinr_parent_mount_was_empty_and_restored_from_backup_before_measurement",
+      "jinr_1_0_5_emits_many_php_8_2_null_array_offset_warnings",
+      "lighthouse_core_web_vitals_not_measured_because_browser_tooling_is_missing"
+    ],
+    "agentNeoImplications": [
+      "theme_manifest_section_registry_cta_registry_are_required_for_ai_operations",
+      "seo_profile_entity_graph_asset_policy_and_integration_health_should_be_contracts",
+      "php_8_2_plus_warning_zero_should_be_a_release_gate",
+      "automation_seo_should_use_contracts_not_dom_guessing"
+    ],
+    "gateResult": {
+      "RG0": "passed",
+      "RG1": "passed_with_gaps",
+      "RG2": "passed_with_caution",
+      "R4": "passed",
+      "G4": "passed_with_environment_gaps"
+    }
+  },
+  "themeUpdateReview": {
+    "report": "32-WPテーマ更新ログ.md",
+    "reviewDate": "2026-04-30",
+    "sources": {
+      "swell": "https://swell-theme.com/",
+      "jinr": "https://jinr.jp/update/"
+    },
+    "updates": [
+      {
+        "theme": "jinr",
+        "from": "1.0.5",
+        "to": "1.4.6",
+        "status": "updated_via_manual_zip_replace_due_to_docker_bind_mount"
+      },
+      {
+        "theme": "swell",
+        "from": "2.16.0",
+        "to": "2.16.0",
+        "status": "already_latest"
+      }
+    ],
+    "backup": "jinr-parent.backup-before-update-20260430-030625",
+    "verification": [
+      "wp_theme_list_reports_jinr_active_1_4_6_update_none",
+      "home_http_200_length_64218",
+      "style_css_reports_version_1_4_6"
+    ],
+    "remainingRisks": [
+      "jinr_1_4_6_still_emits_php_8_2_null_array_offset_warnings",
+      "permalink_structure_is_still_corrupted_to_windows_path",
+      "wp_cli_standard_theme_update_fails_when_theme_directory_is_bind_mount_root",
+      "runtime_measurement_report_31_is_for_jinr_1_0_5_and_should_be_rerun"
+    ],
+    "gateResult": {
+      "L7.1": "passed",
+      "L7.2": "passed_with_workaround",
+      "L7.3": "passed_with_gaps"
+    }
+  },
+  "wpRuntimeUpdateReview": {
+    "report": "33-WP運用環境更新ログ.md",
+    "reviewDate": "2026-04-30",
+    "officialSources": {
+      "releaseArchive": "https://wordpress.org/download/releases/",
+      "releaseNews": "https://wordpress.org/news/2026/03/wordpress-6-9-4-release/"
+    },
+    "updates": {
+      "wordpressCore": {
+        "from": "6.6.2",
+        "to": "6.9.4"
+      },
+      "databaseVersion": {
+        "from": "57155",
+        "to": "60717"
+      },
+      "wordpressImage": {
+        "from": "wordpress:6.6-php8.2-apache",
+        "to": "wordpress:6.9.4-php8.3-apache"
+      },
+      "wpCliImage": {
+        "from": "wordpress:cli-php8.2",
+        "to": "wordpress:cli-php8.3"
+      },
+      "akismet": {
+        "from": "5.3.3",
+        "to": "5.7"
+      },
+      "permalinkStructure": {
+        "from": "/C:/Program%20Files/Git/%postname%/",
+        "to": "/%postname%/"
+      }
+    },
+    "backups": [
+      "tmp/backups/wp-core-update-20260430-031136/db-before-core-update.sql",
+      "tmp/backups/wp-core-update-20260430-031136/wp_core-before-core-update.tgz"
+    ],
+    "verification": [
+      "wp_core_version_6_9_4",
+      "db_version_60717",
+      "core_check_update_latest",
+      "core_verify_checksums_passed",
+      "maintenance_mode_not_active",
+      "mariadb_check_all_tables_ok",
+      "home_sample_hello_world_and_wp_json_http_200",
+      "plugins_and_themes_update_none",
+      "compose_config_ok"
+    ],
+    "remainingRisks": [
+      "jinr_1_4_6_still_emits_php_8_3_null_array_offset_warnings_in_wp_cli",
+      "apache_servername_warning_remains",
+      "report_31_measurements_should_be_rerun_after_wp_php_jinr_updates"
+    ],
+    "gateResult": {
+      "L7.1": "passed",
+      "L7.2": "passed",
+      "L7.3": "passed_with_gaps"
+    }
+  },
+  "realWorldSiteObservation": {
+    "report": "34-実運用サイト観測対象と初回観測.md",
+    "reviewDate": "2026-04-30",
+    "scope": "public_http_get_only_no_login_attempts",
+    "targets": [
+      {
+        "name": "jinr_real_operation",
+        "adminUrl": "https://it-shukatu-college.com/wp-admin/",
+        "publicUrl": "https://it-shukatu-college.com/",
+        "expectedTheme": "JIN:R",
+        "observedThemeHints": [
+          "jinr"
+        ],
+        "home": {
+          "status": 200,
+          "ms": 1031,
+          "bytes": 273791,
+          "canonical": true,
+          "jsonLd": 0,
+          "ogTags": 6,
+          "cssLinks": 11,
+          "scripts": 40,
+          "images": 193
+        },
+        "restNamespaces": [
+          "aseo/v1",
+          "jinr",
+          "google-site-kit/v1",
+          "contact-form-7/v1",
+          "wp/v2"
+        ],
+        "pluginHints": [
+          "contact-form-7",
+          "ewww-image-optimizer",
+          "rich-table-of-content",
+          "smart-slider-3",
+          "yyi-rinker"
+        ]
+      },
+      {
+        "name": "swell_real_operation",
+        "adminUrl": "https://solobiz-lab.com/wp-admin/",
+        "publicUrl": "https://solobiz-lab.com/",
+        "expectedTheme": "SWELL",
+        "observedThemeHints": [
+          "swell"
+        ],
+        "home": {
+          "status": 200,
+          "ms": 289,
+          "bytes": 96761,
+          "canonical": true,
+          "jsonLd": 1,
+          "ogTags": 6,
+          "cssLinks": 18,
+          "scripts": 18,
+          "images": 40
+        },
+        "restNamespaces": [
+          "aseo/v1",
+          "google-site-kit/v1",
+          "contact-form-7/v1",
+          "wp/v2"
+        ],
+        "pluginHints": [
+          "contact-form-7",
+          "pochipp",
+          "useful-blocks"
+        ]
+      }
+    ],
+    "importantFindings": [
+      "both_real_sites_expose_wp_admin_login_form_publicly",
+      "both_real_sites_expose_aseo_v1_namespace_in_public_rest_index",
+      "automation_seo_routes_include_ai_write_media_upload_and_update_apply_names_in_public_index",
+      "jinr_real_site_has_much_larger_home_html_images_and_script_count_than_swell_real_site",
+      "swell_real_site_outputs_json_ld_graph_on_home_but_jinr_real_site_home_json_ld_was_not_detected"
+    ],
+    "agentNeoImplications": [
+      "evaluate_initial_theme_state_and_real_operation_state_separately",
+      "ai_write_rest_routes_must_have_capability_nonce_signature_audit_log_and_dry_run_rollback",
+      "real_world_plugin_stack_can_dominate_performance_more_than_theme_core",
+      "add_these_sites_to_periodic_public_observation_targets"
+    ],
+    "gateResult": {
+      "RG0": "passed",
+      "RG1": "passed_with_caution",
+      "RG2": "passed",
+      "R4": "passed"
+    }
+  },
   "gates": {
     "RG0": "passed",
     "RG1": "passed",
     "RG2": "passed",
     "RG3": "passed_with_user_confirmed_automation_seo_separate_pricing",
     "R4": "passed",
-    "G0.5": "passed_with_draft"
+    "G0.5": "passed_with_draft",
+    "runtimeDeepVerification": {
+      "RG0": "pass",
+      "RG1": "pass_with_caution",
+      "RG2": "pass",
+      "RG3": "pass_with_unknowns",
+      "R4": "pass",
+      "notes": "Public sites were observed with GET only. No authentication, POST, setting changes, or write validation was performed."
+    },
+    "wp7PreflightReview": {
+      "RG0": "pass",
+      "RG1": "pass_with_caution",
+      "RG2": "pass",
+      "RG3": "pass_with_unknowns",
+      "R4": "pass"
+    }
+  },
+  "runtimeDeepVerification": {
+    "generatedAt": "2026-04-30",
+    "purpose": "Runtime/code/public-GET verification for SWELL, JIN:R, and Automation SEO. Split facts into code-confirmed, runtime-confirmed, both-confirmed, hypothesis-only, and AGENT NEO design reflection.",
+    "scope": {
+      "local": "Docker WordPress 6.9.4 / PHP 8.3 / MariaDB 10.11. Theme switching, plugin active/inactive checks, HTTP, Lighthouse, Playwright, WP-CLI.",
+      "publicSites": "Public GET-only observation for production JIN:R and SWELL sites. No authentication, no POST, no setting changes, no write operations.",
+      "rawArtifacts": "tmp/runtime-verification/20260430-helix-reverse/"
+    },
+    "deliverables": [
+      "解析レポート/36-実環境検証レポート.md",
+      "解析レポート/37-ファイル解析確定事項と新発見.md",
+      "tmp/runtime-verification/20260430-helix-reverse/code/file-inventory.json",
+      "tmp/runtime-verification/20260430-helix-reverse/http/local-http-summary.json",
+      "tmp/runtime-verification/20260430-helix-reverse/lighthouse/lighthouse-summary.json",
+      "tmp/runtime-verification/20260430-helix-reverse/playwright/playwright-summary.json",
+      "tmp/runtime-verification/20260430-helix-reverse/real/real-public-summary.json"
+    ],
+    "environment": {
+      "wordpress": "6.9.4",
+      "php": "8.3",
+      "database": "MariaDB 10.11",
+      "localRestoredState": {
+        "activeTheme": "jinr 1.4.6",
+        "activePlugin": "seo-tool-connector 1.0.0"
+      },
+      "comparedThemes": {
+        "jinr": "1.4.6 local plus production observation",
+        "swell": "2.16.0 local plus production observation"
+      }
+    },
+    "codeFacts": {
+      "fileInventory": {
+        "swell": {
+          "files": 747,
+          "php": 331,
+          "js": 100,
+          "css": 137,
+          "json": 67,
+          "blockJson": 64,
+          "bytes": 17549963
+        },
+        "jinr": {
+          "files": 644,
+          "php": 374,
+          "js": 22,
+          "css": 13,
+          "json": 29,
+          "blockJson": 0,
+          "bytes": 19084324
+        },
+        "automationSeoConnector": {
+          "files": 14,
+          "php": 5,
+          "js": 3,
+          "css": 1,
+          "json": 0,
+          "blockJson": 0,
+          "bytes": 260093
+        }
+      },
+      "patternCounts": {
+        "swell": {
+          "matchedLines": 281,
+          "rest": 15,
+          "cpt": 4,
+          "enqueue": 79,
+          "jsonLd": 4,
+          "ajax": 2,
+          "nonce": 57,
+          "capability": 25
+        },
+        "jinr": {
+          "matchedLines": 198,
+          "rest": 2,
+          "cpt": 0,
+          "enqueue": 58,
+          "jsonLd": 2,
+          "ajax": 28,
+          "nonce": 15,
+          "capability": 34
+        },
+        "automationSeoConnector": {
+          "matchedLines": 155,
+          "rest": 39,
+          "ajax": 1,
+          "nonce": 5,
+          "capability": 7
+        }
+      }
+    },
+    "measurements": {
+      "lighthouse": {
+        "localJinrMobile": {
+          "performance": 60,
+          "seo": 92,
+          "lcpMs": 7695,
+          "bytes": 833740,
+          "requests": 33
+        },
+        "localSwellMobile": {
+          "performance": 83,
+          "seo": 92,
+          "lcpMs": 4048,
+          "bytes": 187757,
+          "requests": 28
+        },
+        "realJinrMobile": {
+          "performance": 62,
+          "seo": 92,
+          "lcpMs": 12485,
+          "bytes": 3480116,
+          "requests": 120
+        },
+        "realSwellMobile": {
+          "performance": 95,
+          "seo": 100,
+          "lcpMs": 2877,
+          "bytes": 746604,
+          "requests": 41
+        }
+      },
+      "playwright": {
+        "realJinr": {
+          "requests": 78,
+          "scripts": 34,
+          "stylesheets": 11,
+          "domImages": 101,
+          "jsonLd": 0,
+          "h1": 0,
+          "consoleErrors": 4
+        },
+        "realSwell": {
+          "requests": 38,
+          "scripts": 10,
+          "stylesheets": 16,
+          "domImages": 27,
+          "jsonLd": 1,
+          "h1": 1,
+          "consoleErrors": 0
+        }
+      },
+      "publicGetOnly": true
+    },
+    "findings": [
+      "SWELL has 64 block.json files and is stronger for block-level AI operation.",
+      "JIN:R has integrated SEO head/JSON-LD design but needs an adapter layer because it has no block.json and relies more on AJAX/customizer patterns.",
+      "JIN:R 1.4.6 emits PHP 8.3 warnings around customizer settings during WP-CLI execution.",
+      "The production JIN:R site shows heavier plugin/image/DOM load and weaker runtime output than the production SWELL site.",
+      "Automation SEO is REST-centric and AI-friendly, but namespace discovery is required because local uses seo-tool/v1 while production exposes aseo/v1.",
+      "AGENT NEO should standardize section_id, cta_id, content_role, schema_role, and measurement_id as first-class theme contracts."
+    ],
+    "designReflection": {
+      "themeSide": [
+        "Expose blocks, sections, CTAs, schema, and measurements through stable JSON contracts.",
+        "Make SEO head, JSON-LD, canonical, OGP, robots, sitemap references, and indexability verifiable output contracts.",
+        "Separate public tracking routes from protected write/media/update routes.",
+        "Add audit, dry-run, rollback, and capability-matrix assumptions before AI write operations."
+      ],
+      "automationSeoSide": [
+        "Add REST namespace discovery and route capability matrix.",
+        "Add theme adapters for SWELL-like block.json themes and JIN:R-like HTML/AJAX/customizer themes.",
+        "Run weekly Lighthouse, Playwright, REST, HTML, sitemap, and robots observations and store diffs.",
+        "Treat public production checks as GET-only unless the owner explicitly authorizes authenticated write validation."
+      ]
+    },
+    "classification": {
+      "confirmedByCode": [
+        "SWELL REST/CPT/block.json/asset enqueue/JSON-LD registration",
+        "JIN:R SEO head/JSON-LD/customizer/AJAX/REST registration",
+        "Automation SEO connector REST route and cron registration"
+      ],
+      "confirmedByRuntime": [
+        "local HTTP/Lighthouse/Playwright outputs",
+        "public GET HTML/REST/robots/sitemap/wp-admin-login-page response observations"
+      ],
+      "confirmedByBoth": [
+        "SWELL REST route exposure and block-oriented design",
+        "JIN:R SEO integrated output and PHP 8.3 warning risk",
+        "Automation SEO REST-centric operation model"
+      ],
+      "hypothesisOnly": [
+        "Authenticated admin UI behavior",
+        "Actual write/media/update route behavior",
+        "Paid update server contract and license enforcement internals"
+      ]
+    },
+    "gates": {
+      "RG0": "pass",
+      "RG1": "pass_with_caution",
+      "RG2": "pass",
+      "RG3": "pass_with_unknowns",
+      "R4": "pass"
+    }
+  },
+  "wp7PreflightReview": {
+    "generatedAt": "2026-04-30",
+    "report": "解析レポート/38-WP7事前情報とテーマ対応検証.md",
+    "officialStatus": {
+      "releaseDate": "2026-05-20 planned",
+      "previousDate": "2026-04-09 delayed",
+      "rc3Date": "2026-05-08 planned; treated like a new Beta 1 in practice",
+      "rc4Date": "2026-05-14 planned; acting like a new RC1",
+      "phpMinimum": "PHP 7.4 according to official test call",
+      "mainRisk": "real-time collaboration architecture and compatibility feedback"
+    },
+    "themeCompatibility": {
+      "swell": {
+        "localVersion": "2.16.0",
+        "headerRequiresWp": "5.6",
+        "headerRequiresPhp": "7.3.0",
+        "wp7HeaderStatus": "not aligned with PHP 7.4 minimum",
+        "strengths": [
+          "64 block.json files",
+          "REST routes",
+          "register_meta/show_in_rest",
+          "WP_HTML_Tag_Processor polyfill"
+        ],
+        "risks": [
+          "no production root theme.json detected",
+          "needs customCSS/dimensions/navigation-overlay verification",
+          "requires PHP header should be updated for WP7 marketing/support"
+        ]
+      },
+      "jinr": {
+        "localVersion": "1.4.6",
+        "headerRequiresWp": "5.9.1",
+        "headerRequiresPhp": "7.0",
+        "wp7HeaderStatus": "not aligned with PHP 7.4 minimum",
+        "strengths": [
+          "official history shows WP6.5/6.6/6.7/6.8 compatibility updates",
+          "marketing/LP/SEO block design",
+          "show_in_rest usage"
+        ],
+        "risks": [
+          "PHP 8.3 customizer warnings reproduced",
+          "0 block.json",
+          "AJAX/session-heavy design",
+          "WP7 official compatibility declaration not found"
+        ]
+      }
+    },
+    "missingVerification": [
+      "Run a separate WP 7.0 RC3/RC4/final Docker matrix instead of mutating current 6.9.4 environment.",
+      "Test PHP 7.4/8.1/8.2/8.3/8.4/8.5 compatibility.",
+      "Test real-time collaboration on/off with server-rendered blocks, postmeta, customizer, session, and AJAX flows.",
+      "Test individual block custom CSS, dimensions support, pseudo-class theme.json support, and navigation overlays.",
+      "Evaluate WP 7.0 Abilities API for AGENT NEO and Automation SEO operation contracts.",
+      "Test production-like plugin combinations and update/license server behavior."
+    ],
+    "gates": {
+      "RG0": "pass",
+      "RG1": "pass_with_caution",
+      "RG2": "pass",
+      "RG3": "pass_with_unknowns",
+      "R4": "pass"
+    }
   }
 }

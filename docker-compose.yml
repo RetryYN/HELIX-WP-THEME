@@ -20,7 +20,7 @@ services:
       retries: 5
 
   wordpress:
-    image: wordpress:6.6-php8.2-apache
+    image: wordpress:6.9.4-php8.3-apache
     container_name: agent-neo-wp
     depends_on:
       db:
@@ -45,13 +45,13 @@ services:
       - ../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector:/var/www/html/wp-content/plugins/seo-tool-connector:ro
       - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
       - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
-      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr:ro
+      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr
       - ./jinr-child/jinr-child:/var/www/html/wp-content/themes/jinr-child:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   wpcli:
-    image: wordpress:cli-php8.2
+    image: wordpress:cli-php8.3
     container_name: agent-neo-cli
     depends_on:
       - wordpress
@@ -60,6 +60,7 @@ services:
       WORDPRESS_DB_USER: wp
       WORDPRESS_DB_PASSWORD: wp
       WORDPRESS_DB_NAME: agent_neo
+      WP_CLI_CACHE_DIR: /tmp/host/wp-cli-cache
     volumes:
       - wp_core:/var/www/html
       - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
@@ -67,7 +68,7 @@ services:
       - ../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector:/var/www/html/wp-content/plugins/seo-tool-connector:ro
       - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
       - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
-      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr:ro
+      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr
       - ./jinr-child/jinr-child:/var/www/html/wp-content/themes/jinr-child:ro
       - ./tmp:/tmp/host
     user: "33:33"

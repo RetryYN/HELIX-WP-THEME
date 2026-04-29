@@ -38,6 +38,10 @@
 | `28-共通強化プラグインとAutomationSEOプラグイン情報設計.md` | 各テーマを横断強化するAutomation SEO Theme Bridge Pluginの共通機能、不都合、保持情報、AGENT NEOへの責務分離を整理 |
 | `29-ドキュメントテーマ群抜け漏れレビュー.md` | L0/L1/L2/L3/L5と解析レポート、SWELL/JIN:Rテーマ群を突合し、実装前の抜け漏れ、未凍結領域、次アクションを整理 |
 | `30-SEOスキルマップ観点テーマ調査.md` | `SEO skill/references/seo-skill-map.md` の10カテゴリでSWELL/JIN:Rを再調査し、テーマで足りるSEO、Automation SEOへ逃がすSEO、AGENT NEOに追加すべき契約を整理 |
+| `31-WPテーマ実測解析.md` | Docker WP環境でSWELL/JIN:R/子テーマを切り替えてHTTP速度、HTML/SEO出力、JSON-LD、Automation SEO連携影響、環境不整合を実測整理 |
+| `32-WPテーマ更新ログ.md` | Docker WP環境でJIN:Rを1.0.5から1.4.6へ更新し、SWELL/標準テーマの更新なし、bind mount更新制約、残課題を整理 |
+| `33-WP運用環境更新ログ.md` | WordPress Coreを6.6.2から6.9.4へ更新し、DB、Docker PHP 8.3環境、パーマリンク、Akismet、HTTP/REST/DB検証を整理 |
+| `34-実運用サイト観測対象と初回観測.md` | JIN:R/SWELLの実運用サイトを公開範囲で観測し、テーマ痕跡、SEOタグ、REST API露出、ログイン面、Automation SEO連携を整理 |
 | `analysis-summary.json` | AIエージェント参照用の要約データ |
 
 ## 解析対象
@@ -73,3 +77,10 @@
 | 法人版 | `¥98,000`。高額テーマではなく、AI運用できる法人LP基盤 |
 | 移行プラグイン | 無料。リード獲得とS1誘導 |
 | Automation SEO | 別課金。AI原価をテーマ価格に抱え込まない |
+## 最新追加レポート
+
+| ファイル | 内容 |
+|---|---|
+| `36-実環境検証レポート.md` | Docker実測、公開GET観測、Lighthouse、Playwright、REST/API、SEO出力、運用・セキュリティ・可観測性の突合レポート |
+| `37-ファイル解析確定事項と新発見.md` | SWELL/JIN:R/Automation SEOのコード根拠、実測根拠、新発見、AI運用上の不都合、AGENT NEOへの設計反映事項 |
+| `38-WP7事前情報とテーマ対応検証.md` | WordPress 7.0公式事前情報、SWELL/JIN:Rのバージョン対応、WP7検証漏れ、AGENT NEOへの先回り要件 |
