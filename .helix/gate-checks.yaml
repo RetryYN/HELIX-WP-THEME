@@ -1,5 +1,40 @@
 # gate-checks.yaml — matrix compile generated
 # helix_template_version: 3
+
+# G1.5 必要十分性検証ゲート（NSRM）
+# 役割: L1 要件が必要十分条件を満たすことを保証
+# 参照: .helix/nsrm.yaml + docs/requirements/nsrm-*.md
+G1.5:
+  name: "必要十分性検証ゲート（NSRM）"
+  static:
+    - name: "nsrm.yaml が存在する"
+      cmd: "test -f .helix/nsrm.yaml"
+    - name: "ゴール一覧が空でない"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); g=d.get('goals') or []; assert len(g)>=10, f'goals too few: {len(g)}'\" 2>&1"
+    - name: "孤児 REQ が 0 件"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); m=d.get('metrics',{}); assert m.get('orphan_req_count',999)==0, f\\\"orphan REQ: {m.get('orphan_req_count')}\\\"\" 2>&1"
+    - name: "孤児ゴールが 0 件"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); m=d.get('metrics',{}); assert m.get('orphan_goal_count',999)==0, f\\\"orphan goal: {m.get('orphan_goal_count')}\\\"\" 2>&1"
+    - name: "necessity_proof 未記入の REQ が 0 件"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); m=d.get('metrics',{}); assert m.get('reqs_without_necessity_proof',999)==0, f\\\"REQ without proof: {m.get('reqs_without_necessity_proof')}\\\"\" 2>&1"
+    - name: "sufficiency_chain 未記入のゴールが 0 件"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); m=d.get('metrics',{}); assert m.get('goals_without_sufficiency_chain',999)==0, f\\\"goal without chain: {m.get('goals_without_sufficiency_chain')}\\\"\" 2>&1"
+    - name: "Phase 未割当 REQ が 0 件"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); m=d.get('metrics',{}); assert m.get('unassigned_phase_count',999)==0, f\\\"unassigned phase: {m.get('unassigned_phase_count')}\\\"\" 2>&1"
+    - name: "否定境界（NEG-***）が文書化されている"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); n=d.get('negation_boundaries') or []; assert len(n)>=10, f'negation boundaries too few: {len(n)}'\" 2>&1"
+    - name: "Phase 1 MVP が定義されている"
+      cmd: "python3 -c \"import yaml; d=yaml.safe_load(open('.helix/nsrm.yaml')); p=d.get('phase_assignments',{}).get('phase_1_mvp') or []; assert len(p)>=5, f'phase_1_mvp too few: {len(p)}'\" 2>&1"
+    - name: "NSRM 詳細ドキュメント存在"
+      cmd: "test -f docs/requirements/nsrm-01-goals-coverage.md && test -f docs/requirements/nsrm-05-necessity-proofs.md"
+  ai:
+    - name: "PM レビュー: 想定ゴールが企画書（L0）と整合"
+      description: "ゴール体系が L0 の第一原理・製品哲学・差別化要素を漏れなく反映しているか"
+    - name: "PM レビュー: 否定境界の過不足"
+      description: "「やらない」と表明している領域が過剰でも過小でもないか"
+    - name: "PM レビュー: Phase 1 MVP の最小性"
+      description: "Phase 1 で削れる要件がないか、Phase 2 に送れない P0 要件がないか"
+
 G4:
   name: "実装凍結ゲート"
   static:

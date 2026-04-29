@@ -2432,5 +2432,134 @@
       "RG3": "pass_with_unknowns",
       "R4": "pass"
     }
+  },
+  "measurementGapDeepDive": {
+    "generatedAt": "2026-04-30",
+    "report": "??????/39-????????.md",
+    "purpose": "Inventory existing evidence and classify remaining measurement gaps for AGENT NEO theme and Automation SEO planning.",
+    "evidenceInventory": {
+      "reports": "??????/31-38 plus 39",
+      "rawArtifacts": "tmp/runtime-verification/20260430-helix-reverse/",
+      "rawArtifactSummary": {
+        "files": 696,
+        "megabytes": 29.43,
+        "json": 33,
+        "markdown": 20,
+        "csv": 2,
+        "html": 26
+      },
+      "coverage": [
+        "theme_code_scan",
+        "local_docker_http",
+        "wp_cli",
+        "lighthouse",
+        "playwright",
+        "public_get_observation",
+        "rest_index_observation"
+      ]
+    },
+    "topGaps": [
+      "authenticated_editor_e2e_not_measured",
+      "update_api_dry_run_diff_rollback_contract_not_verified",
+      "plugin_contribution_breakdown_not_measured",
+      "field_data_crux_psi_rum_not_measured",
+      "wp7_rc_final_php_matrix_not_measured",
+      "seo_llmo_schema_canonical_sitemap_answer_unit_deep_audit_not_completed",
+      "visual_regression_and_accessibility_deep_checks_not_completed",
+      "license_distribution_boundary_requires_per_asset_review"
+    ],
+    "nextBatches": [
+      "editor_e2e",
+      "plugin_impact_matrix",
+      "field_vitals",
+      "wp7_matrix",
+      "seo_llmo_contract_audit",
+      "update_rollback_log"
+    ],
+    "gates": {
+      "RG0": "pass",
+      "RG1": "pass_with_gaps",
+      "RG2": "pass",
+      "RG3": "pass_with_unknowns",
+      "R4": "pass"
+    }
+  },
+  "ossTechnologyTransferResearch": {
+    "generatedAt": "2026-04-30",
+    "report": "??????/40-OSS???????????.md",
+    "purpose": "Map analysis findings to reusable OSS and official tools for the theme, Core Plugin, Automation SEO, and CI gates.",
+    "adoptNow": [
+      "@wordpress/env",
+      "@wordpress/scripts",
+      "Theme Check",
+      "WordPress Coding Standards",
+      "PHPCompatibilityWP",
+      "WP-CLI",
+      "Playwright",
+      "Lighthouse CI",
+      "PHPStan",
+      "wordpress-stubs",
+      "phpstan-wordpress",
+      "opis/json-schema",
+      "Ajv"
+    ],
+    "pocCandidates": [
+      "@wordpress/create-block",
+      "wp-browser",
+      "BackstopJS",
+      "html-validate",
+      "axe-core",
+      "Pa11y",
+      "Rector",
+      "swagger-php",
+      "OpenTelemetry PHP"
+    ],
+    "referenceOnly": [
+      "schema-dts",
+      "Query Monitor",
+      "Yoast SEO schema/data-model ideas"
+    ],
+    "responsibilitySplit": {
+      "theme": [
+        "theme.json",
+        "block.json",
+        "patterns",
+        "section_registry",
+        "cta_registry",
+        "schema_role",
+        "asset_budget"
+      ],
+      "corePlugin": [
+        "REST/OpenAPI",
+        "JSON Schema",
+        "WP-CLI",
+        "audit_log",
+        "dry_run_diff_rollback",
+        "theme_adapters",
+        "conflict_detector"
+      ],
+      "automationSeo": [
+        "keyword_search_intent",
+        "content_plan",
+        "llmo_audit",
+        "field_data",
+        "experiment_analysis"
+      ],
+      "ci": [
+        "Theme Check",
+        "WPCS",
+        "PHPCompatibilityWP",
+        "PHPStan",
+        "Playwright",
+        "Lighthouse CI",
+        "visual_diff"
+      ]
+    },
+    "gates": {
+      "V-L4": "pass_with_caution",
+      "RG1": "pass",
+      "RG2": "pass",
+      "R4": "pass"
+    }
   }
 }

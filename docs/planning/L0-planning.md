@@ -14,6 +14,540 @@
 **AI エージェントが第一級ユーザーとなる、商用 WordPress FSE テーマ。**
 すべてのコンテンツ・テーマ・ブロック操作が JSON ベース API で完結することを設計の最上位目標とする。
 
+### 1.1 製品哲学（第一原理 — 全設計判断の評価軸）
+
+| # | 原理 | 具体ライン |
+|---|---|---|
+| 1 | **無駄な JavaScript を組まない** | 全 JS は「CV 直結 / 計測 / AI 操作」のいずれかに寄与する場合のみ。jQuery 非依存。block.json で個別宣言した JS のみ条件付き読み込み。**採用時は `defer`/`async` 必須・メインスレッドブロック禁止・1 ブロック ≤ 5KB 目安** |
+| 2 | **ページスピード最優先（ページタイプ別最適化）** | LCP / INP / CLS は **ページ種別ごとに** 予算設定。「重くなってはいけないページ（記事・アーカイブ）」と「重くなることを許容するページ（LP）」を構造的に分離。詳細表は §1.1.1 |
+| 3 | **結果（CV）を届けるテーマ** | 「きれいなテーマ」ではなく「成果が出るテーマ」。個人版=アフィリクリック、法人版=リード獲得、両方の CV を直接最大化する設計を最上位指標 |
+| 4 | **非 AI ユーザーも単独で使える**（AI-first だが AI-only ではない）| AI 連携 OFF でも全 P0 機能が動作。WP 標準エディタ完全互換。AI 機能は**オプトイン**（明示的な有効化が必要）。日本語 UI / 段階的開示 / IT に詳しくない個人ユーザーでも使える設計 |
+
+**実装ルール（第一原理の運用具体化）:**
+
+**画像メディアポリシー（必須）**
+- **写真・コンテンツ画像**: JPEG / WebP がデフォルト
+- **WebP 自動生成**: アップロード時に WebP を自動生成し、元 JPEG をフォールバックに保持。`<picture>` 要素で配信
+- **PNG**: アイコン・透過必須時のみ。コンテンツ写真には使用しない
+- **GIF**: 禁止（アニメーション必要時は WebM / MP4）
+- **AVIF**: オプション（WebP の上位互換、対応ブラウザ拡大時に有効化）
+- **alt 属性**: 必須化（a11y + SEO + AI 機械可読のため）
+
+**JS 採用時の性能担保（必須）**
+- `defer` または `async` 必須（メインスレッドブロック禁止）
+- minify + tree-shake 済みのみ配信
+- 外部スクリプト（YouTube, Twitter 等）は `<link rel=preconnect>` で接続最適化
+- 1 ブロックあたり JS ≤ 5KB を目安、超過時は L3 で分割設計レビュー
+- `requestIdleCallback` / lazy 初期化を活用
+
+#### 1.1.1 ページタイプ別性能予算（隠れ killer feature）
+
+**問題認識**: 既存 WP テーマは「機能を追加 → 全ページに影響 → 全体が重くなる」循環に陥る。SWELL/JIN:R も used_block_css で部分対応するが、**ページタイプ別の予算分離は提供していない**。
+
+**AGENT NEO の解決策**: ページ種別ごとに JS/CSS 予算を**構造的に分離**。`block.json` で page_type allowlist を宣言、フロント enqueue で `is_singular()` / `page_template()` / `is_archive()` を判定して条件付き読み込み。
+
+##### ページタイプ別予算（必達 SLO）
+
+| ページ種別 | 個人版 JS 予算 | 法人版 JS 予算 | LCP 目標 | 想定理由 |
+|---|---:|---:|---:|---|
+| **記事 / BLP** | < 15KB | < 20KB | < 2.0s | SEO 主戦場、モバイル流入最多 |
+| **アーカイブ / カテゴリ** | < 15KB | < 20KB | < 2.0s | 回遊起点、SEO ランディング |
+| **検索結果** | < 10KB | < 15KB | < 2.0s | UX 重要、軽量必須 |
+| **HP** | < 30KB | < 40KB | < 2.5s | ブランド演出を一定許容 |
+| **固定ページ（about/contact 等）** | < 25KB | < 30KB | < 2.5s | フォーム込み |
+| **LP** | < 50KB | < 80KB | < 2.8s | A/B + 動的 CTA + フォーム必要、機能性優先 |
+
+##### 実装機構
+
+1. **block.json で page_type 宣言**:
+   ```json
+   {
+     "name": "agent-neo/lp-hero-slider",
+     "agentNeo": {
+       "allowedPageTypes": ["lp"],
+       "jsKB": 12,
+       "cssKB": 4
+     }
+   }
+   ```
+   → 記事/アーカイブで誤って配置されない・読み込まれない
+
+2. **asset-policy.schema.json でページタイプ別予算定義**: 数値を JSON で凍結、CI で違反検出
+
+3. **フロント enqueue 条件分岐**: `wp_enqueue_scripts` で `is_singular('post')` / `is_page_template('lp')` / `is_archive()` 等を判定し、必要なバンドルのみ読み込み
+
+4. **plugin dequeue adapter**: 軽量ページで Yoast/CF7/Elementor 等のグローバルロード型プラグインを dequeue（管理画面で plugin allowlist を page_type 別に設定可能）
+
+5. **CI per-page-type Lighthouse**: GitHub Actions で代表 URL（記事 / HP / LP / アーカイブ）に対し Lighthouse を個別実行、各予算違反時は CI 失敗
+
+##### 競合との差別化
+
+| 項目 | SWELL | JIN:R | AGENT NEO |
+|---|---|---|---|
+| ブロック単位 CSS 分離 | ✓（used_block_css）| ✗ | ✓ |
+| **ページタイプ別 JS 予算分離** | ✗ | ✗ | **✓**（隠れ killer feature）|
+| **記事だけ < 15KB 保証** | ✗ | ✗ | **✓**（CI で強制）|
+| プラグイン dequeue adapter | △（手動）| ✗ | ✓（page_type 連動）|
+| ページタイプ別 Lighthouse CI | ✗ | ✗ | ✓ |
+
+「LP に機能を盛り込んでも記事は重くならない」を **契約レベルで保証**。マーケ訴求材料: 「他社テーマは全ページが LP の重さに引きずられる。AGENT NEO は記事を絶対に守る」。
+
+**画像変換パイプライン（必須）**
+- アップロード時に **WebP 自動生成**（GD or Imagick 自動選択、Imagick 優先）
+- 元 JPEG を**フォールバック保持**、`<picture>` 要素で配信
+- subsizes（thumbnail / medium / large）も WebP 生成
+- 5MB 超のアップは **Action Scheduler でバックグラウンド処理**（タイムアウト回避）
+- 失敗時は `_agent_neo_webp_status: failed` を attachment meta に記録、admin 通知
+- WP CLI: `wp agent-neo media regenerate-webp --all` で既存メディアの一括変換
+- agent-api（`POST /agent-neo/v1/media/upload`）も同一変換パイプラインを通過
+- 既に WebP の場合は二重変換せずスキップ
+- GIF アニメは変換せず警告通知
+
+### 1.2 データ統一・連携最適化（Automation SEO v2 連携の核）
+
+すべての変更可能データは **JSON で統一**。Automation SEO v2 が「引き出しやすく拡張しやすい」ことを設計上の最上位制約として扱う（v2 は AGENT NEO を中央データハブとして利用する想定）。
+
+#### JSON 統一の範囲
+
+| 領域 | JSON 化 |
+|---|---|
+| デザイントークン | design-tokens.json |
+| HP/LP/BLP 構造 | home-blueprint.json / lp-blueprint.json / blp-blueprint.json |
+| ブロック設定 | block-registry.json + block.json |
+| パッケージ機能フラグ | package.matrix.json |
+| AI 操作スキーマ | agent-actions.schema.json |
+| トラッキング契約 | tracking-context-v2.json（seo-tool-connector 互換） |
+| ブロックコンテンツ | post_content（Gutenberg JSON）+ block_meta（jsonb）|
+| variant 構成 | variants 配列（JSON）|
+| 移行プレビュー差分 | JSON Patch（RFC 6902）|
+
+独自バイナリ形式・シリアライズ形式は**使わない**。永続化も WP post_meta + jsonb（custom table）で統一。
+
+#### Automation SEO v2 連携最適化（拡張性ファースト）
+
+v2 が AGENT NEO から「引き出す」操作を**先回りして API 設計**:
+
+| 機能 | エンドポイント / 仕様 | v2 への利益 |
+|---|---|---|
+| **bulk read** | `GET /agent-neo/v1/posts?since=<ts>` | 差分取得で全件 polling 不要 |
+| **sparse fieldset** | `?fields=id,title,blocks,seo_meta` | 必要列のみ返却、転送量削減 |
+| **ETag / If-None-Match** | 条件付き GET | v2 キャッシュ効率化 |
+| **JSON Patch 出力** | `GET /agent-neo/v1/posts/<id>/diff?from=<ts>` | v2 が差分取り込みしやすい |
+| **outbound webhook** | post/cta/section 変更を v2 にプッシュ | v2 polling 削減 |
+| **vector-friendly export** | `GET /agent-neo/v1/posts/<id>/markdown` | v2 の embedding 生成用 plain text |
+| **schema versioning** | `Accept: application/vnd.agent-neo.v1+json` | v2 が破壊的変更を検知できる |
+| **batch write** | `PATCH /agent-neo/v1/batch` | v2 が一括変更を 1 リクエストで完了 |
+
+#### v2 DB スキーマとの直接マッピング
+
+v2 の `system_design_max/overall/db_schema.md` で定義された主要テーブルと AGENT NEO の構造を 1:1 対応:
+
+| v2 テーブル | AGENT NEO 側の対応 |
+|---|---|
+| `WORDPRESS_CONNECTIONS` | site_token / site_id（seo-tool-connector 経由）|
+| `WP_PAGES` | post_id / template / page_type を露出 |
+| `WP_PAGE_SECTIONS` | section_id / section_type を全ブロックで自動付与 |
+| `SECTION_METRICS_DAILY` | seo-tool-connector が集計、AGENT NEO は section_id を提供するだけ |
+| `GENERATED_ARTICLES` | cms_post_id ↔ post_id の bidirectional マッピング、article_id を post_meta で保持 |
+| `TRACKING_EVENTS` (jsonb data) | event payload は JSON、agent-neo の dispatch も同じ shape |
+
+v2 が「クロール → 5D クラスタリング → 推論 → AGENT NEO に書き戻し」のループを高速で回せるよう、**AGENT NEO 側で v2 の都合を吸収**する設計を採用。
+
+#### 拡張性の確保
+
+- 新しい block type 追加時に v2 の DB スキーマ変更不要（block_meta の jsonb で吸収）
+- 新しい SNS / 計測サービス追加時も adapter で吸収（コア API 変更なし）
+- agent-neo/v1 の破壊的変更は最低 6 ヶ月のデプリケート期間 + v2 で agent-neo/v2 を併走可能
+- 第三者開発者が AGENT NEO 用 plugin を作る際も同じ JSON 契約 + REST API を利用可能（オープン拡張）
+
+### 1.3 AI 自律最適化機構（killer feature・継続価値の核）
+
+AGENT NEO の核は「AI が記事を書ける」ではなく **「AI が継続的にコンテンツを部分最適化し、AB テストで勝者を採用していく」** ループ。これが回ることで、買い切りテーマでありながら**使うほど CV が上がる継続価値**を提供する。
+
+#### 4 つの能力
+
+##### 1. 部分更新性（Partial Update）
+- すべてのブロックが**安定した block_id**（コンテンツ変更で ID が変わらない）を持つ
+- block 単位の CRUD（フル投稿書き換え不要）
+- idempotency-key ヘッダで同一操作の再実行を吸収
+- `PATCH /agent-neo/v1/posts/<id>/blocks/<block_id>` で 1 ブロックだけ更新
+
+##### 2. H2 単位 LLM 編集
+- 各 H2 セクションが**自動的に addressable**（`section_id` 付与）
+- セクション = 開始 H2 + 次の H2 までのコンテンツ範囲
+- AI は単一セクションを **rewrite / expand / summarize / translate / restructure** 可能
+- セクション単位の **dryRun**（差分プレビュー）+ **diff review** + **rollback**
+- セクション単位の version 履歴（最新 N 版を保持、いつでも復元可）
+
+##### 3. 要素差し替え機構（Element Swap）
+
+| 要素 | 安定 ID | swap 内容 |
+|---|---|---|
+| 内部リンク | `link_id` | **テキスト保持・URL のみ差替え** |
+| CTA | `cta_id` | CTA ブロック全体を別の cta_id に差替え |
+| バナー | `banner_id` | バナーブロック全体を差替え |
+| 画像 | `media_id` | `<picture>` の WebP/JPEG ペアを差替え |
+| LP | `blueprint_id` | LP blueprint 全体（全 12 セクション）を別 blueprint に差替え |
+| セクションパーツ | `reusable_part_id` | 法人版の再利用パーツを別パーツに差替え |
+
+すべて **安定 ID 経由で個別 swap 可能**。AI は計測データを見て「この記事の CTA-A は CTR が低い → CTA-B に差替え」を自動実行。
+
+##### 4. AI 自律 A/B テスト
+
+AI 介入のフルループ:
+
+```
+[AI 提案] variant 候補生成 (LLM プロンプトで A/B/C ... 案出力)
+    ↓
+[自動配信] variant を seo-tool-connector の variant_id 経由で配信
+    ↓
+[計測] tracking_event API で impression / click / conversion を記録
+    ↓
+[統計判定] サンプルサイズ閾値到達 + 統計的有意差 → 勝者決定
+    ↓
+[自動採用] 勝者を default に昇格 / loser を archive
+    ↓
+[次サイクル] 勝者を base にさらに variant 生成（継続最適化）
+```
+
+AGENT NEO はこの自律ループの**実行基盤**を提供。実際の「最適化」自体は Automation SEO の LLM が判断（連携前提）。
+
+人間介入ポイント:
+- 法人版: variant 提案を **承認制**（編集者・承認者ロールで gate 可能）
+- 個人版: 全自動（小規模・低リスク前提）
+- 緊急停止: 任意のタイミングで `wp agent-neo ab-test stop --post_id=X` で停止可能
+
+#### 競合との差別化
+
+| | SWELL / JIN:R / AFFINGER | AGENT NEO |
+|---|---|---|
+| AI で記事を書ける | △（外部プラグイン経由） | ✓（Automation SEO 連携） |
+| **block 単位の AI 編集** | ✗ | **✓** |
+| **H2 単位の AI 編集** | ✗ | **✓** |
+| **要素差し替え（CTA/banner/link）by ID** | ✗ | **✓** |
+| **AI 自律 A/B テスト** | ✗（手動 A/B ツールはあり） | **✓** |
+| 継続価値（買い切り後の CV 改善） | △（人間が手動改善） | **✓**（AI が自動改善） |
+
+**この 4 能力が AGENT NEO 法人版 ¥98,000 の正当化の核**。「買い切りなのに使うほど CV が上がる」は他社にない継続価値。
+
+### 1.4 AI フリーフォーム HTML/CSS ブロック（固定パーツ拡充戦略からの脱却）
+
+JIN:R/AFFINGER 路線の「固定パーツをひたすら増やす」戦略は時代遅れ。AI が任意の HTML/CSS を生成できる現代では、**「テーマは安全な canvas を提供、AI が最適なパーツを毎回生成」** が正解。
+
+#### コンセプトの転換
+
+```
+[従来テーマの戦略]
+  テーマが 50 個のブロックを提供
+       ↓
+  ユーザーが 5 個選んで使う、残り 45 個は使われない肥大化要因
+       ↓
+  デザイン変更にはテーマアップデート待ち or 自前 PHP 改造
+
+[AGENT NEO の戦略]
+  テーマは「安全な canvas + 計測フレーム」を提供
+       ↓
+  AI が記事/サイト/サービスに最適化された HTML/CSS を生成
+       ↓
+  即時適用、無限カスタマイズ
+       ↓
+  AI モデル進化 → AGENT NEO サイトも自動進化（テーマ改修不要）
+```
+
+#### 安全性との両立（fail-safe 設計）
+
+「自由」と「安全」の両立は以下で実現:
+
+| 制約 | 仕組み |
+|---|---|
+| **XSS 防止** | `wp_kses` 拡張 allowlist で sanitize。`<script>` 禁止 / `on*=` 属性禁止 / `javascript:` および `data:` URL 制限（画像 base64 は許可）/ inline event handler 禁止 |
+| **CSS 漏洩防止** | 全 selector を `.agent-neo-ai-block-{block_id}` でプレフィックス自動付与（CSS Modules 風）。または Shadow DOM オプション（厳密分離が必要な場合）|
+| **a11y 必達** | axe-core で WCAG 2.2 AA 自動チェック、alt 必須、heading 階層検証、コントラスト比検証 |
+| **性能予算遵守** | HTML/CSS バイト数を page_type 予算にカウント、超過時 dryRun で警告、apply ブロック |
+| **安定 anchor 保護** | block wrapper の `data-agent-section-id` / `cta_id` / `variant_id` は AI が変更不可（システム自動付与）。内部の HTML/CSS のみ自由 |
+| **プロンプトインジェクション防止** | コメント形式の system 命令（`<!-- ignore previous instructions -->` 等）を sanitize で除去 |
+| **JS は禁止** | フリーフォームブロック内に JS は書けない。動的挙動が必要なら別途 block 化（block.json で性能宣言済みの JS のみ） |
+
+#### 2 モード提供
+
+| モード | 用途 | 操作フロー |
+|---|---|---|
+| **ガイドモード**（推奨）| AI が prompt から生成 | プロンプト入力 → Automation SEO 経由で AI 生成 → dryRun プレビュー → 検証パイプライン通過 → 承認 → 適用 |
+| **フリーモード**（上級者）| 直接 HTML/CSS 編集 | エディタで直書き → 保存時に sanitize/scope/a11y/budget 検証 → 違反時 警告/ブロック |
+
+#### 再利用パターン化
+
+完成した AI 生成 HTML/CSS は **reusable-part CPT** に保存可能:
+- 同サイト内で再利用
+- 法人版: service_id 連動でサービス別分類（「サービス A の Hero」「サービス B の CTA」）
+- 法人版: 編集者・承認者 ロールで承認フロー（パターン化前に承認 gate）
+
+#### 編集領域は Slot で制限（自由 ≠ 無秩序）
+
+完全 free-form は「Hero に CTA を置けない」「ナビが消える」等の構造破綻を招く。Blueprint が **named slots** を定義し、各 slot に制約を持たせる:
+
+```
+LP Blueprint 例:
+  [Header — locked]
+  [Hero slot — AI 編集可 / cta_id 必須 / max 10KB CSS]
+  [Problem slot — AI 編集可 / テキスト中心 / max 5KB CSS]
+  [Solution slot — AI 編集可]
+  ...
+  [Pricing slot — AI 編集可 / 構造化データ必須]
+  [CTA slot — AI 編集可 / cta_id 必須 / Sticky 候補]
+  [Footer — locked]
+```
+
+各 slot の constraint 仕様:
+
+| 制約 | 内容 |
+|---|---|
+| `allowed_blocks` | 配置可能 block type の allowlist |
+| `max_html_kb` / `max_css_kb` | バイト数上限（page_type 予算と連動） |
+| `required_attributes` | 必須 data 属性（CTA slot なら cta_id 必須） |
+| `page_type` | この slot が有効なページ種別 |
+| `editable` | true / false（locked slot は AI 編集不可） |
+| `must_contain` | このタイプ要素を最低 1 つ持つこと（CTA slot なら button 必須等） |
+
+これで「自由」と「構造の正しさ」を両立。Slot は blueprint.json で定義、AI は slot 内のみ書き換え可能。
+
+#### 競合との根本的な差別化
+
+| 戦略 | SWELL | JIN:R | AFFINGER | AGENT NEO |
+|---|---|---|---|---|
+| 固定パーツ拡充 | ✓（中） | ✓（多） | ✓（多） | ✗（最小限のみ） |
+| **AI フリーフォーム HTML/CSS** | ✗ | ✗ | ✗ | **✓** |
+| **テーマ更新なしでデザイン進化** | ✗ | ✗ | ✗ | **✓** |
+| **AI モデル進化に自動追従** | ✗ | ✗ | ✗ | **✓** |
+
+訴求材料: 「他社テーマは買った瞬間が機能のピーク。AGENT NEO は AI が賢くなるたびにサイトも進化する初の WP テーマ。」
+
+### 1.5 外部エディタアクセス制御（デフォルト閉鎖 + 有料 Bridge Plugin）
+
+外部 AI エディタ（**Claude Computer Use / Codex CLI / Cursor / Cline / Continue**等）からの**直接書き込みはデフォルト拒否**。
+
+#### 許可される Write 経路（2 つのみ）
+1. **agent-neo/v1** — AGENT NEO 自身（管理画面 + Tier 1 サンドボックス）
+2. **aseo/v1** — Automation SEO 連携
+
+それ以外（外部 AI エディタ / 自前スクリプト / wp/v2 直接の構造的書き込み等）は拒否。
+
+#### 拒否する理由
+
+| 観点 | 内容 |
+|---|---|
+| 品質劣化 | 外部エディタは slot 制約 / page_type 予算 / 検証パイプライン を認識しない → ランダムに構造を壊す |
+| CV 防衛 | 第一原理 3「結果を届ける」を担保するには編集経路の絞り込みが必須 |
+| セキュリティ | 外部エディタは個別の attack surface（認証 / rate limit / 監査が別系統）|
+| 持続可能性 | LLM 課金経路（aseo/v1 / S1 / Phase 2 Credits）を回避されると AGENT NEO 経済が成立しない |
+
+#### Open Editor Bridge Plugin（別売・月額サブスク必須）
+
+外部エディタを使いたいユーザー向けの**有料アドオン**:
+
+```
+Open Editor Bridge Plugin
+  価格: 月額固定（¥3,000-5,000/月想定）
+  ├─ Whitelisted External Editors:
+  │     Claude Computer Use / Codex CLI / Cursor / Cline / Continue / 自前 OAuth 申請
+  ├─ Bridge の役割:
+  │     外部エディタの書き込み → AGENT NEO 検証パイプライン強制通過
+  │     （sanitize / CSS scope / a11y / budget / anchor 保護 / slot 制約）
+  └─ 月額固定の理由:
+        各外部エディタ統合は個別保守コスト（API 変更追従、互換性テスト、サポート）
+        単発購入では外部エディタの仕様変更で破綻
+        サブスク前提でしか開発リソースを継続投入できない
+```
+
+#### 訴求のロジック
+
+```
+「他社テーマは Web エディタ系プラグインで誰でも書き込めて壊しやすい。
+ AGENT NEO は AI 時代の品質を守るため、編集経路を 2 系統に絞った。
+ それ以上の自由度が必要な上級者は Bridge Plugin（月額）で開放できる。
+ 強制ではなく選択肢として提供する。」
+```
+
+### 1.6 サンドボックス環境（2 ティア + Write Authority Lock）
+
+**主用途: HP / LP / 固定ページのデザイン編集サンドボックス**
+
+AI フリーフォーム HTML/CSS / slot-based blueprint / 要素 swap / A/B variant 等は**プレビュー検証が必須**。全機能を AGENT NEO に持たせると複雑化するため、Automation SEO との **責務分担で 2 ティア構成**。
+
+#### コンテンツ種別ごとの編集経路
+
+| コンテンツ | ステークス | 更新頻度 | 編集経路 | サンドボックス |
+|---|---|---|---|---|
+| **HP** | 高（ブランド入口）| 低 | Tier 1 / Tier 2 必須 | ✅ 必須 |
+| **LP** | 高（CV 装置）| 中 | Tier 1 / Tier 2 必須 | ✅ 必須 |
+| **固定ページ**（about / contact / pricing 等）| 中-高 | 低-中 | Tier 1 / Tier 2 | ✅ 必須 |
+| **記事 / BLP**（テキスト中心）| 低-中 | 高 | aseo/v1 直接 PATCH or Tier 1 軽量 | ⚪ 任意 |
+| **アーカイブ / カテゴリ**（自動生成）| 低 | リアルタイム | サンドボックス対象外 | ✗ 不要 |
+
+→ **HP/LP/固定ページに限ってサンドボックス必須化**、記事は軽量経路で済ませる。
+
+#### Tier 1: AGENT NEO 内蔵ライトサンドボックス（standalone 用）
+
+WP 内完結:
+- 各投稿に preview meta `_agent_neo_preview_content`
+- preview URL token: `/?p=123&agent-neo-preview=<token>`
+- agent-neo/v1 PATCH で apply（preview → production）
+- block-level version 履歴は最新 N 版
+
+| 用途 | 特性 |
+|---|---|
+| 個人版・BYOK ユーザー・小規模・単独編集 | 軽量・WP 標準 revision + 少量 jsonb meta |
+| Automation SEO 不要で動作 | AGENT NEO 単独で完結 |
+
+#### Tier 2: Automation SEO 側ヘビーサンドボックス（フル機能）
+
+v2 PostgreSQL で:
+- multi-version time-machine（5〜N preview branches 並行）
+- A/B variant 並行管理 + 計測
+- AI 自律最適化ループの orchestration
+- 多投稿の協調的最適化
+- Migration Plan B の AI 再構築サンドボックス
+- 確定時に aseo/v1 → agent-neo/v1 PATCH で AGENT NEO 反映
+
+| 用途 | 特性 |
+|---|---|
+| 法人版・本格運用・チーム編集 | 既存 v2 インフラ活用（PostgreSQL + Redis + ML feedback） |
+| Automation SEO サブスク必須 | スケール・並行性・履歴の充実 |
+
+#### Write Authority Lock（法人版オプション）
+
+法人版の管理画面で **「Automation SEO Only Mode」ON**:
+- Tier 1（AGENT NEO 内蔵編集）を無効化
+- 全編集が aseo/v1 経由に強制
+- WP 管理画面の編集 UI もロック（Automation SEO 連携メッセージのみ表示）
+
+| 用途 | 価値 |
+|---|---|
+| コンプライアンス重視 | 編集ログの一元化・監査の容易化 |
+| 編集権限の中央集権 | 「記事の更新は Automation SEO のみ」を強制 |
+
+#### 責務境界の最終形
+
+```
+AGENT NEO（テーマ + Companion Plugin）:
+  ├─ レンダリング層
+  ├─ 安全な canvas + slot-based blueprint
+  ├─ Tier 1 ライトサンドボックス
+  ├─ agent-neo/v1 REST API（Read 全開放、Write は両 Tier 受付）
+  ├─ ページタイプ別性能予算 enforce
+  ├─ 検証パイプライン（sanitize / scope / a11y / budget / anchor 保護）
+  └─ 計測 ID 提供（cta_id / section_id / variant_id 等）
+
+Automation SEO（外部システム）:
+  ├─ AI ブレイン（LLM ルーター / 5D クラスタリング / ML feedback）
+  ├─ Tier 2 ヘビーサンドボックス（multi-version / time-machine）
+  ├─ AI 自律最適化ループの orchestration
+  ├─ A/B variant 並行管理 + 統計判定
+  ├─ 複数投稿の協調的最適化
+  ├─ Migration Plan B の AI 再構築
+  └─ aseo/v1 REST API
+```
+
+通信:
+- Read: AGENT NEO 露出 ↔ Automation SEO 引き出し
+- Write: Tier 1 = AGENT NEO 単独 / Tier 2 = Automation SEO 経由
+- Lock: 法人版「Automation SEO Only Mode」で Tier 1 無効化可能
+
+### 1.7 販売寄与モジュール強化（CV 直結ブロック群の充実）
+
+第一原理 3「結果（CV）を届けるテーマ」の具体化。CV に直接寄与するブロック・モジュールを**意図的に厚く実装**する。
+
+#### 個人版（出口クリック最大化）
+
+| 既存 | 追加強化 |
+|---|---|
+| Review / Ranking / Comparison / Pros Cons / Ad Tag / Affiliate CTA / 商品カード / AdSense 配置 | **Sticky/Floating CTA**（スクロール追従・常時表示）/ **Exit-intent CTA**（離脱検知 - 慎重設計、UX 配慮）/ **Smart product recommendation**（記事文脈→関連商品自動表示）/ **AI suggested CTA**（記事内容を AI 解析 → 最適 CTA 自動配置）/ **Click heatmap data 収集**（将来の最適化材料）/ **Pickup banner**（季節/特集強調）|
+
+#### 法人版（リード獲得最大化）
+
+| 既存（LP 12 セクション）| 追加強化 |
+|---|---|
+| Hero / Problem / Consequence / Solution / Feature / Benefit / Use Case / Proof / Comparison / Pricing / FAQ / CTA + 問い合わせフォーム | **Sticky CTA**（LP 常時表示）/ **Multi-step form**（フィールド分割で心理的負担軽減）/ **Click-to-call** / **Click-to-chat** / **LINE 友だち追加ブロック**（日本特有の最強 CTA）/ **Resource DL** / **Webinar registration** / **Demo booking** / **Trust badges**（導入ロゴ・認証マーク・受賞）/ **Social proof**（お客様の声・星評価）/ **Conditional CTA**（utm / リファラ / 時間帯で variant 出し分け）|
+
+#### 共通: AI 主導 CV 最適化
+
+- **AI suggested CTA**: 記事内容を Automation SEO 経由で解析 → 最適 CTA を自動配置（aseo/v1 連携）
+- **Personalized hero**: 流入元別（utm / リファラ / 検索キーワード）に Hero variant 出し分け
+- **Smart internal linking**: 関連コンテンツ → CTA への誘導強化、CTR 最大化のリンク提案
+- **Dynamic pricing display**: キャンペーン期間連動の価格表示・年額割引バッジ
+
+#### 全 CV モジュール共通の必須仕様
+
+1. **計測 ID 必須**: cta_id / offer_id / variant_id / section_id を全 CV ブロックで必須化（自律 A/B テスト連携）
+2. **配置パターン両対応**: above-the-fold / inline / sticky / floating / exit-intent
+3. **CV 設計監査**（L5 Visual Refinement 時必須）: cta.overload / proof.too_late / hero.vague / comparison.missing_basis / affiliate.disclosure_weak 等の UI risk を自動検出
+4. **認知バイアスパターンライブラリ**: scarcity（残り個数）/ authority（受賞・専門家推薦）/ social proof（利用者数）/ commitment（無料お試し）/ reciprocity（無料資料）を再利用パターンとして提供
+
+#### 競合との差別化
+
+| 項目 | SWELL/JIN:R/AFFINGER | AGENT NEO |
+|---|---|---|
+| アフィリ系ブロック | ✓（基本セット） | ✓ + AI 自動配置 + heatmap |
+| LP セクション | ✓ または ✗ | ✓ + 12 標準 + Sticky + Multi-step + LINE |
+| **AI suggested CTA** | ✗ | **✓** |
+| **Personalized hero** | ✗ | **✓** |
+| **CV 設計監査機能** | ✗ | **✓**（UI risk 自動検出） |
+| **認知バイアスパターン化** | ✗（個別実装） | **✓**（再利用パターンライブラリ） |
+
+### 1.8 SNS 連携（基準レベルの必須要素）
+
+**LLMO・分散 SEO 時代において SNS 連携なしのテーマはあり得ない。** SNS 経由トラフィック・ブランドメンション・社会的シグナルは検索評価と AI 検索エンジンの引用に直接寄与する。
+
+#### 必須対応 SNS
+
+| SNS | 主要機能 | 採用パッケージ |
+|---|---|---|
+| **X（旧 Twitter）** | シェア / 自動投稿 / 埋め込み / OGP / Twitter Card | 個人・法人共通 |
+| **Instagram** | シェア / 自動投稿（Meta Graph API）/ 埋め込み / プロフィール表示 | 個人・法人共通 |
+| **Threads** | シェア / 自動投稿（Meta Threads API）/ 埋め込み | 個人・法人共通 |
+| **LINE** | シェア（友だち追加）/ LINE 公式アカウント連携 / LINE Login（法人版） | 個人共通 + 法人版で深い統合 |
+
+#### オプション対応（Phase 2）
+Facebook / Pinterest / YouTube / TikTok — adapter 経由で拡張可能
+
+#### 機能セット
+
+1. **シェアボタン**: JS 軽量・非同期。ボタン未クリック時は何も読み込まない
+2. **自動投稿**: 投稿公開時に指定 SNS へ送信。成功/失敗を post meta に記録、失敗時リトライ
+3. **埋め込み**: oEmbed 標準で X/Insta/Threads 投稿を記事内に展開（lazy load）
+4. **プロフィール表示**: SNS アカウントを footer/sidebar に自動配置（OGP メタと整合）
+5. **SNS フィード ウィジェット**: 最新投稿表示（オプション、lazy load 必須）
+6. **法人版限定**:
+   - **LINE 公式アカウント深い統合**: 友だち追加リンクブロック、Webhook で LINE 経由 CV 計測、Bot シナリオ連携
+   - **SNS 経由 CV 計測**: utm + 自社計測 ID で SNS チャネル別の CV 寄与を可視化
+   - **A/B テスト連携**: SNS 流入時の variant 出し分け
+   - **複数アカウント管理**: 複数 SNS アカウント（複数サービス対応）
+
+#### 認証情報管理
+
+- 各 SNS API キーは Companion Plugin の管理画面で設定
+- API キーは **WP options に暗号化保存**（`openssl_encrypt` + `AUTH_KEY` ベース）
+- 管理画面ダッシュボードで連携状態（接続中 / トークン期限 / 失敗履歴）を可視化
+- 法人版は権限分離（API キー閲覧は管理者のみ、自動投稿は編集者以上）
+
+**この 4 原理に反する機能追加は L2/L3/L4 のいずれのゲートでもブロックする。**
+
+#### 第一原理 4 の運用ルール（非 AI ユーザビリティ）
+
+| 領域 | ルール |
+|---|---|
+| **AI 連携の前提条件化禁止** | 「AI 連携前提」「Automation SEO 必須」のような前提条件化は禁止。AI なしで動く基本機能を必ず併設 |
+| **オプトイン方式** | インストール直後は AI 連携 OFF。ユーザーが管理画面で API キー登録 / Automation SEO 接続を**明示実行**で初めて有効化 |
+| **WP 標準エディタ完全互換** | ブロックエディタ・古い Classic Editor 両対応。AGENT NEO 独自ブロックは WP 標準ブロックのスーパーセット |
+| **段階的開示** | 設定画面は「基本（5 項目以下）→ 詳細（必要時に展開）」の階層。デフォルトで動く |
+| **日本語 UI 完全対応** | 全管理画面・通知・エラーメッセージは日本語。英語は二次（i18n） |
+| **AI 不在時の UI** | AI 提案・自律最適化・ジャーナル等の UI は **AI 連携 OFF 時に非表示**（混乱回避） |
+| **CV モジュールは AI 不在でも動作** | Sticky CTA / フォーム / Trust badges 等の CV ブロックはテーマ単独で動作 |
+| **手動運用可能性** | 管理者が WP エディタで普通に記事更新・LP 編集できる経路を常に確保 |
+| **非 IT 系ユーザー向けチュートリアル** | 動画・スクリーンショット付きマニュアルを日本語で提供（販売パッケージに同梱）|
+
+差別化の柱: 競合テーマ（SWELL/JIN:R 含む）が「機能追加 → 設定肥大化 → JS/CSS 肥大化」の循環に陥っている中で、AGENT NEO は「**機能を絞る → 高速 → CV が上がる**」の循環を選択する。
+
 ---
 
 ## 2. 背景・課題
@@ -314,6 +848,7 @@ AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテー�
 | Q-007 | ライセンス検証方式の希望（独自 / Gumroad / WooCommerce / 課金 SaaS） | PO | L2 開始前 |
 | Q-008 | 販売チャネル（自社サイト / マーケットプレイス併用） | PO | L7 前 |
 | Q-009 | 自社配布テーマと wp.org 申請プラグインで機能ロック/アップセル範囲をどう分けるか | PO/TL | L2 凍結前 |
+| Q-010 | **AGENT NEO 内蔵 SDK + クレジットシステム** の go/no-go（Automation SEO 不要で AI 実行可能化）。要決定: LLM 原価マージン / 残クレジット返金 / プライバシー / BYOK 併存ロジック / Automation SEO との競合関係 / 不正利用対策 | PO + 経営判断 | Phase 2 開始前 |
 
 ---
 

@@ -84,3 +84,5 @@
 | `36-実環境検証レポート.md` | Docker実測、公開GET観測、Lighthouse、Playwright、REST/API、SEO出力、運用・セキュリティ・可観測性の突合レポート |
 | `37-ファイル解析確定事項と新発見.md` | SWELL/JIN:R/Automation SEOのコード根拠、実測根拠、新発見、AI運用上の不都合、AGENT NEOへの設計反映事項 |
 | `38-WP7事前情報とテーマ対応検証.md` | WordPress 7.0公式事前情報、SWELL/JIN:Rのバージョン対応、WP7検証漏れ、AGENT NEOへの先回り要件 |
+| `39-実測漏れ徹底調査.md` | 既存rawログ・実測・公開GET観測・コード解析の棚卸しと、未実施領域の優先度整理 |
+| `40-OSSライブラリ技術転用候補.md` | AGENT NEOテーマ/Core Plugin/Automation SEO/CIへ転用するOSS・公式ツール候補の選定 |
