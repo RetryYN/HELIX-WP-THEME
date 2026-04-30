@@ -56,7 +56,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-010 | ライセンス/パッケージ制御 | 個人版/法人版/アドオンの機能境界を制御できる。AI 操作スコープも個人版（記事 CRUD のみ）/ 法人版（記事 + 構造変更）で agent-api の操作許可リストを切り替える | P1 | ACC-010 |
 | REQ-F-016 | 個人版テンプレ固定構成 | **個人版限定**。HP / sidebar / archive / single の標準テンプレ 1 セットを提供し、ユーザー（および AI）はテンプレ構造を変更できない（記事・カテゴリ・タグ・メディアのみ操作可）。個人ブログ運用にフォーカスし、保守コスト・テスト範囲を最小化する | P0 | ACC-016 |
 | REQ-F-017 | 画像変換パイプライン | アップロード時に WebP 自動生成（GD/Imagick 自動選択、Imagick 優先）し、元 JPEG をフォールバック保持して `<picture>` 要素で配信する。subsizes も WebP 生成。5MB 超は Action Scheduler でバックグラウンド処理。WP CLI `wp agent-neo media regenerate-webp --all` で既存メディアの一括変換。agent-api（POST /agent-neo/v1/media/upload）も同一パイプライン。既存 WebP は二重変換せずスキップ、GIF アニメは変換せず警告通知 | P0 | ACC-017 |
-| REQ-F-018 | SNS 連携基盤（マスト） | LLMO・分散 SEO 時代の必須要素として、**X / Instagram / Threads / LINE** を必須対応 SNS とする。シェアボタン（JS 非同期・lazy）、自動投稿（公開時に指定 SNS へ送信、成功/失敗を post meta に記録）、埋め込み（oEmbed 標準）、プロフィール表示、SNS フィードウィジェット（lazy load）を提供。Facebook / Pinterest / YouTube / TikTok は adapter で Phase 2 対応 | P0 | ACC-018 |
+| REQ-F-018 | SNS 連携基盤（マスト） | LLMO・分散 SEO 時代の必須要素として、**X / Instagram / Threads / LINE** を必須対応 SNS とする。**Phase 1 範囲: シェアボタン**（JS 非同期・lazy）、**OGP / X Card 配信**、**埋め込み**（oEmbed 標準・lazy load）、**プロフィール表示**、**SNS フィードウィジェット**（lazy load）。**自動投稿（公開時に指定 SNS へ送信、成功/失敗を post meta に記録）は Phase 2 送り**（SNS API 仕様変更リスクを Phase 1 から排除する判断、nsrm-08 §4 参照）。Facebook / Pinterest / YouTube / TikTok は adapter で Phase 2 対応 | P0 | ACC-018 / ACC-018a |
 | REQ-F-019 | 法人版 SNS 深い統合 | **法人版限定**。LINE 公式アカウント連携（友だち追加リンクブロック、Webhook で LINE 経由 CV 計測、Bot シナリオ連携）、SNS チャネル別 CV 計測（utm + 自社計測 ID）、SNS 流入時の A/B variant 出し分け、複数アカウント管理（複数サービス対応） | P0 | ACC-019 |
 | REQ-F-020 | SNS API 認証情報管理 | 各 SNS API キーは Companion Plugin 管理画面で設定し、WP options に **暗号化保存**（openssl_encrypt + AUTH_KEY ベース）。管理画面ダッシュボードで連携状態（接続中 / トークン期限 / 失敗履歴）を可視化。権限分離（API キー閲覧は管理者のみ、自動投稿は編集者以上） | P1 | ACC-020 |
 | REQ-F-021 | 部分更新性（partial update）| すべてのブロックに**安定 block_id**（コンテンツ変更で ID が変わらない）を付与し、`PATCH /agent-neo/v1/posts/<id>/blocks/<block_id>` でフル投稿書き換えなしに 1 ブロックだけ更新可能にする。idempotency-key ヘッダで再実行を吸収。block-level の version 履歴を最新 N 版保持し rollback 可能 | P0 | ACC-021 |
@@ -178,8 +178,9 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ACC-017a | REQ-F-017 | JPEG をアップロードしたメディアを確認 | WebP 版が同名拡張で生成され、`<picture>` で WebP 優先 + JPEG フォールバックの配信が確認できる | メディアテスト + HTML 出力検証 |
 | ACC-017b | REQ-F-017 | `wp agent-neo media regenerate-webp --all` を実行 | 既存メディアの WebP が一括生成され、失敗件数 0 で完了する | CLI テスト |
 | ACC-017c | REQ-F-017 | 8MB の画像を agent-api 経由でアップロード | Action Scheduler でバックグラウンド処理され、5 分以内に WebP 生成完了 | 大容量アップロードテスト |
-| ACC-018 | REQ-F-018 | 公開ボタン押下時に X / Instagram / Threads / LINE への自動投稿を有効化 | 各 SNS API へ正しく送信され、成功時 post meta に投稿 ID が記録される | SNS 連携統合テスト |
+| ACC-018 | REQ-F-018 | 公開ボタン押下時に記事 URL を X / Instagram / Threads / LINE のシェア導線で送信し、OGP / X Card のメタ情報が正しく取得される | 各 SNS のシェア URL が正常生成され、OGP / X Card のプレビューが各 SNS 上で正しく表示される（自動投稿は Phase 2 送り、別 ACC で扱う） | SNS シェア導線 + OGP/X Card 検証テスト |
 | ACC-018a | REQ-F-018 | 記事内に X / Instagram / Threads の投稿 URL を埋め込み | oEmbed で展開され、lazy load で初期表示時は外部リソース未読込 | 埋め込みテスト |
+| ACC-018b | REQ-F-018 | （Phase 2）公開ボタン押下時に X / Instagram / Threads / LINE への自動投稿を有効化 | 各 SNS API へ正しく送信され、成功時 post meta に投稿 ID が記録される | SNS 自動投稿統合テスト（Phase 2） |
 | ACC-019 | REQ-F-019 | 法人版で LINE 公式アカウント連携を設定 | 友だち追加ブロックが配置され、LINE 経由訪問が utm + 自社計測 ID で CV 計測される | LINE 連携テスト |
 | ACC-020 | REQ-F-020 | SNS API キーを管理画面で登録し DB を確認 | API キーが暗号化保存（plain text で読めない）され、管理画面では復号表示される | 暗号化テスト |
 | ACC-021 | REQ-F-021 | 5 ブロックの記事の 3 ブロック目だけ更新 | 他 4 ブロックは未変更（block_id, content, position 同じ）、3 ブロック目のみ新内容に更新、history に旧 version 残る | 部分更新 + 履歴テスト |
@@ -323,7 +324,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | AI 操作スコープ | 個人版 = 記事 CRUD のみ / 法人版 = 記事 + 構造変更（HP/LP/BLP/固定ページ/design-tokens/テンプレートパーツ）。agent-api の操作許可リストで強制 |
 | テンプレ固定構成（個人版）| 個人版は HP/sidebar/archive/single の標準テンプレ 1 セットのみ提供し、構造変更不可。個人ブログ運用にフォーカスし保守コスト最小化 |
 | 画像変換パイプライン | アップロード時に WebP 自動生成 + 元 JPEG フォールバック保持、`<picture>` 配信、5MB 超はバックグラウンド処理 |
-| SNS 連携基盤 | X / Instagram / Threads / LINE を必須対応 SNS とした、シェア・自動投稿・埋め込み・プロフィール表示・フィードの統合機能群 |
+| SNS 連携基盤 | X / Instagram / Threads / LINE を必須対応 SNS として扱う基盤。Phase 1: 共有導線（共有ボタン）・OGP/X Card 配信・埋め込み（oEmbed）・プロフィール表示・SNSフィードウィジェット、Phase 2: 自動投稿・複数アカウント管理・LINE深い統合 |
 | LINE 公式アカウント連携（法人版）| 友だち追加ブロック、Webhook で LINE 経由 CV 計測、Bot シナリオ連携の深い統合機能 |
 | 部分更新性（partial update）| 安定 block_id ベースで block 単位の CRUD を実現する API 設計。フル投稿書き換えなしに 1 ブロックだけ更新可能 |
 | H2 単位 LLM 編集 | 各 H2 セクションを section_id で addressable にし、AI が単一セクションを rewrite/expand/summarize/translate/restructure できる仕組み |
@@ -366,7 +367,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 
 | ID | 内容 | 担当 | 期限 | 状態 |
 |---|---|---|---|---|
-| Q-001 | 個人から法人へのアップグレード方式 | PO | L1凍結前 | open |
+| Q-001 | 個人 → 法人アップグレードの実装方式 | PO | **決定: Automation SEO 加入者は加入割引、非加入者は差額課金 ¥78,200（¥98,000 - ¥19,800）。実装方式（オンライン課金 / ライセンスキー再発行）は L2 で具体化** | closed |
 | Q-002 | ローンチ順 | PO | L1凍結前 | open |
 | Q-003 | S1価格レンジ | PO | L2凍結前 | open |
 | Q-004 | 移行プラグインPlan Aの無料/軽課金 | PO | L2凍結前 | open |
@@ -399,11 +400,11 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-NF-011 | F-001/F-012/F-015 | A-004/A-013 | S-001/S-009 | TC-NF-005 |
 | REQ-NF-012 | F-012/F-016 | A-004/A-013 | S-009 | TC-NF-006 |
 | REQ-NF-013 | F-001/F-003/F-014/F-017 | A-001/A-004 | S-001/S-002/S-007 | TC-NF-007 |
-| REQ-NF-014 | F-002/F-003/F-006/F-007/F-018 | A-002/A-003/A-004/A-007/A-008/A-014/A-015/A-016/A-017 | S-002/S-005/S-001 | TC-NF-008 |
+| REQ-NF-014 | F-002/F-003/F-006/F-007/F-018（Phase 2） | A-002/A-003/A-004/A-007/A-008/A-014/A-015/A-016/A-017 | S-002/S-005/S-001 | TC-NF-008 |
 | REQ-NF-015 | F-002/F-011/F-012/F-019 | A-004/A-012/A-013/A-018/A-019/A-020 | S-001/S-002/S-008/S-009/S-010 | TC-NF-009 |
 | REQ-NF-016 | F-001/F-011/F-012/F-017/F-020 | A-001/A-004/A-017 | S-001/S-010/S-011 | TC-NF-010 |
 | REQ-NF-017 | F-006/F-007/F-011/F-012/F-019/F-021 | A-004/A-012/A-013/A-018/A-019/A-020/A-021 | S-008/S-010/S-012 | TC-NF-011 |
-| REQ-NF-018 | F-001/F-002/F-006/F-007/F-011/F-012/F-017/F-018/F-019/F-022 | A-004/A-012/A-013/A-017/A-018/A-019/A-020/A-022 | S-001/S-008/S-010/S-011/S-013 | TC-NF-012 |
+| REQ-NF-018 | F-001/F-002/F-006/F-007/F-011/F-012/F-017/F-018（OGP/X Card・share preview 含む）/F-019/F-022 | A-004/A-012/A-013/A-017/A-018/A-019/A-020/A-022 | S-001/S-008/S-010/S-011/S-013 | TC-NF-012 |
 | REQ-NF-019 | F-006/F-007/F-011/F-012/F-023 | A-004/A-008/A-012/A-013/A-023 | S-005/S-008/S-009/S-014 | TC-NF-013 |
 | REQ-NF-020 | F-007/F-008/F-011/F-012/F-014/F-024 | A-004/A-008/A-012/A-013/A-024 | S-005/S-008/S-009/S-014/S-015 | TC-NF-014 |
 
