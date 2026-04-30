@@ -1,4 +1,4 @@
-# L1 要件定義書 — AGENT NEO
+﻿# L1 要件定義書 — AGENT NEO
 
 ## 1. プロジェクト概要
 
@@ -368,14 +368,14 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ID | 内容 | 担当 | 期限 | 状態 |
 |---|---|---|---|---|
 | Q-001 | 個人 → 法人アップグレードの実装方式 | PO | **決定: Automation SEO 加入者は加入割引、非加入者は差額課金 ¥78,200（¥98,000 - ¥19,800）。実装方式（オンライン課金 / ライセンスキー再発行）は L2 で具体化** | closed |
-| Q-002 | ローンチ順 | PO | L1凍結前 | open |
+| Q-002 | ローンチ順 | PO | **決定: 同時ローンチ。自社サイト = Automation SEO 販売 + アフィリエイト収益 + AGENT NEO 販売 の 3 軸統合ドッグフーディングモデルで両 SKU 機能を同時実証する** | closed |
 | Q-003 | S1価格レンジ | PO | L2凍結前 | open |
 | Q-004 | 移行プラグインPlan Aの無料/軽課金 | PO | L2凍結前 | open |
 | Q-005 | ライセンス検証方式 | PO/TL | L2凍結前 | open |
 | Q-006 | 自社配布テーマとwp.org申請プラグインで機能ロック/アップセル範囲をどう分けるか | PO/TL | L2凍結前 | open |
 | Q-007 | 移行プレビューの差分表示粒度（HTML diff / セマンティック diff / 両方） | TL | L3開始前 | open |
 | Q-008 | 販売チャネル（自社サイト / マーケットプレイス併用 / 代理店） | PO | L7前 | open |
-| Q-009 | **AGENT NEO 内蔵 SDK + クレジットシステム**（Automation SEO 不要で AI 実行可能化）の go/no-go。決定要素: LLM 原価マージン / 残クレジット返金 / プライバシー / BYOK 併存ロジック / Automation SEO との競合関係 / 不正利用対策。Phase 1 MVP では BYOK + Automation SEO + S1 のみ、Phase 2 で再評価 | PO + 経営判断 | Phase 2 開始前 | open |
+| Q-009 | **AGENT NEO 内蔵 SDK + クレジットシステム**（Automation SEO 不要で AI 実行可能化）の go/no-go。決定要素: LLM 原価マージン / 残クレジット返金 / プライバシー / BYOK 併存ロジック / Automation SEO との競合関係 / 不正利用対策。Phase 1 ローンチセットでは BYOK + Automation SEO + S1 のみ、Phase 2 で再評価 | PO + 経営判断 | Phase 2 開始前 | open |
 | Q-010 | **Open Editor Bridge Plugin** の月額価格レンジ確定（¥3,000-5,000/月想定中）と対応外部エディタの優先順位（Claude Computer Use / Codex CLI / Cursor / Cline / Continue 等）の決定 | PO | Phase 2 開始前 | open |
 
 ## 9. トレーサビリティマトリクス
@@ -415,3 +415,4 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | G0.5 | passed_with_draft | L0企画書をL1要件へ反映 |
 | L1 | draft | PO未レビューのため凍結前 |
 | Security | passed_with_caution | 書き込みAPIと参照テーマライセンスの注意点を明記 |
+
