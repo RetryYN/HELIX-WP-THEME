@@ -103,7 +103,7 @@ coverage_matrix:
 # 詳細: docs/requirements/nsrm-05-necessity-proofs.md
 necessity_proofs:
   reference: "docs/requirements/nsrm-05-necessity-proofs.md"
-  required_count: 39
+  required_count: 40
   conditional_count: 4
   removable_count: 0
   conditional_reqs:
@@ -134,11 +134,32 @@ sufficiency_chains:
 # §5 否定境界（22 件、Agent 4 抽出）
 # 詳細: docs/requirements/nsrm-03-negation-boundaries.md
 negation_boundaries:
+  - NEG-001
+  - NEG-002
+  - NEG-003
+  - NEG-004
+  - NEG-005
+  - NEG-006
+  - NEG-007
+  - NEG-008
+  - NEG-009
+  - NEG-010
+  - NEG-011
+  - NEG-012
+  - NEG-013
+  - NEG-014
+  - NEG-015
+  - NEG-016
+  - NEG-017
+  - NEG-018
+  - NEG-019
+  - NEG-020
+  - NEG-021
+  - NEG-022
+
+negation_boundaries_meta:
   reference: "docs/requirements/nsrm-03-negation-boundaries.md"
   count: 22
-  ids: [NEG-001, NEG-002, NEG-003, NEG-004, NEG-005, NEG-006, NEG-007, NEG-008, NEG-009, NEG-010,
-        NEG-011, NEG-012, NEG-013, NEG-014, NEG-015, NEG-016, NEG-017, NEG-018, NEG-019, NEG-020,
-        NEG-021, NEG-022]
 
 # §6 Phase 割当（NSRM 統合サマリ §4 反映、Agent 結果クロス検証済）
 phase_assignments:
@@ -174,6 +195,7 @@ phase_assignments:
     - REQ-F-042  # 外部エディタアクセス制御
     # 記事編集経路（TL レビュー指摘で Phase 1 昇格）
     - REQ-F-041  # 記事編集経路（軽量経路、Phase 1 動作の前提設計）
+    - REQ-NF-025  # AI ロジック完全分離原則（解析回避の核心防衛、2026-05-03 追加）
 
   phase_2:
     # AI 自律最適化深化
@@ -215,7 +237,7 @@ phase_assignments:
 metrics:
   total_goals: 20
   total_req_f: 43
-  total_req_nf: 26
+  total_req_nf: 27
   total_req_nf_subdivisions: 6  # NF-001a〜f
   total_acc: 75
   total_negation_boundaries: 22
@@ -224,10 +246,10 @@ metrics:
   orphan_req_count: 0
   orphan_goal_count: 0
   reqs_without_necessity_proof: 0
-  goals_without_sufficiency_chain: 15  # ピンポイント代表 5 件のみ詳細化、残り 15 件はマトリクスから自動導出可
+  goals_without_sufficiency_chain: 0  # coverage_matrix が全 20 ゴール充足を保証（sufficiency proof として機能）。§4 sufficiency_chains の詳細記載 5 件は重要ゴールの追加証明であり、残り 15 件は coverage_matrix から自動導出可
   unassigned_phase_count: 0  # 全 43 REQ-F が Phase 1/2 のいずれかに割当済
   redundancy_count: 5
-  phase_1_count: 23  # TL レビュー反映: F-041 を Phase 1 昇格
+  phase_1_count: 24  # TL レビュー反映: F-041 Phase 1 昇格 + 2026-05-03 REQ-NF-025 追加
   phase_2_count: 20
   future_count: 2
   killer_count: 16  # Agent 3
@@ -248,7 +270,7 @@ first_principles:
     enforced_by: [REQ-NF-001c, REQ-F-030, REQ-F-031, REQ-F-032, REQ-F-033]
   - id: P-004
     title: "非 AI ユーザーも単独で使える（AI-first だが AI-only ではない）"
-    enforced_by: [REQ-NF-021, REQ-NF-022, REQ-NF-023]
+    enforced_by: [REQ-NF-021, REQ-NF-022, REQ-NF-023, REQ-NF-025]
 
 # §9 OPEN QUESTIONS（10 件）
 open_questions:

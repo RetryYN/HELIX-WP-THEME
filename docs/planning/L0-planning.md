@@ -453,6 +453,43 @@ Automation SEO（外部システム）:
 - Write: Tier 1 = AGENT NEO 単独 / Tier 2 = Automation SEO 経由
 - Lock: 法人版「Automation SEO Only Mode」で Tier 1 無効化可能
 
+#### 1.6.1 AI ロジック完全分離原則（解析回避の核心防衛）
+
+**契約原則**: AI エージェント機能の**判断ロジックは AGENT NEO 側に一切置かない**。AGENT NEO 側に残すのは **AI フック（API ハンドラ + ブロック構造 + 計測 ID）** のみとし、variant 生成、CTA 判定、統計判定、CV 監査、認知バイアス適用判断、リードスコアリング、LLM ルーティング等の保護対象ロジックは **Automation SEO 側に全集約**する。
+
+#### 分離テーブル
+
+| AGENT NEO テーマ側（GPL 配布、解析される前提） | Automation SEO 側（クローズド、保護対象） |
+|---|---|
+| レンダリング層（FSE / block.json / theme.json） | **AI variant 生成** |
+| canvas + slot blueprint（構造定義のみ） | **AI suggested CTA 判定** |
+| 検証パイプライン（sanitize / scope / a11y / budget） | **自律 A/B 統計判定** |
+| ページタイプ別性能予算 enforce | **CV 設計監査ロジック**（cta.overload / proof.too_late / hero.vague 等の判定） |
+| 計測 ID 提供（section_id / cta_id / variant_id 生成） | **認知バイアスパターン適用判断** |
+| REST API ハンドラ（薄い、判断ロジックは外部） | **リードスコアリング / health score** |
+| 記事 CRUD / WP 標準互換 | **LLMRouter / 5D クラスタリング / ML feedback** |
+| 静的ブロック実装（Review / Ranking / Hero 等の構造） | **Migration Plan B AI 再構築判断** |
+| 静的フォーム（フィールド定義 / バリデーション） | **顧客行動解析 / ファネル分析判断** |
+| 移行プラグイン Plan A（REST API 機械変換） | **AI 主導 CV 最適化全般**（Personalized hero / Smart internal linking / Dynamic pricing 判断） |
+| H2 単位編集の **API ハンドラ**（受け取り→反映） | **H2 編集の判断ロジック**（rewrite / expand / summarize / translate の選択 + プロンプト生成） |
+| 要素 swap の **実行 API**（cta_id swap 等） | **要素 swap の判断ロジック**（どの cta_id に swap するか） |
+| 自律 A/B の **配信機構**（variant 切替） | **自律 A/B の variant 生成 + 統計判定 + 勝者選定** |
+
+#### 戦略的意義
+
+1. **GPL の弱点を Automation SEO で埋める**: WP テーマは GPL 配布必須でコードが配布されるが、AI 判断ロジックを Automation SEO 側に置くことでロジック保護を完成させる。
+2. **第一原理 4 との完全整合**: AI 連携 OFF 時は AGENT NEO が静的テーマとして完結し、AI ロジックがないため OFF 時挙動が設計上自明になる。
+3. **解析回避の最大化**: AGENT NEO 単体を解析しても「空の canvas + 静的部品 + AI フック」しか得られず、改善ロジック本体は露出しない。
+4. **課金経路の防衛**: AI 改善ロジックを使うには Automation SEO 契約が必要となり、BYOK / S1 / Phase 2 Credits の経済性を防衛できる。
+5. **L2 ADR-001 の前提固定**: 責務境界を L0/L1 契約レベルで明文化し、ADR 凍結時に AI 判断と実行の境界が揺れないようにする。
+
+#### 契約上の帰結
+
+- AGENT NEO 側に残るのは **AI フック（API ハンドラ + ブロック構造 + 計測 ID）** のみ
+- AI 連携 OFF 時は **静的テーマとして完結**し、第一原理 4 を満たす
+- L2 ADR-001 で本原則を**責務境界契約として凍結**する
+- REQ-F-022/023/024/032/033/034 は「機能として存在する」が、**判断ロジックは持たない**
+
 ### 1.7 販売寄与モジュール強化（CV 直結ブロック群の充実）
 
 第一原理 3「結果（CV）を届けるテーマ」の具体化。CV に直接寄与するブロック・モジュールを**意図的に厚く実装**する。
@@ -859,6 +896,8 @@ Phase 1 繝ｫ繝ｼ繝・  竊・H2 邱ｨ髮・                               
 
 表示面では `Built with AGENT NEO` に加え、Automation SEO 連携で成果を生むページでは `Powered by Automation SEO` 表示も検討対象とする。前者はテーマ実装の証明、後者は運用最適化の証明として機能し、自社サイト全体を「売りながら証明する」構造にする。
 
+**G2 前提条件**: 本ポリシーの未確定項目（同意取得要否 / 集計閾値 / 保存期間 / 公開遅延 / 表示責任者）は G2（設計凍結ゲート）通過前に PO/法務確認のうえ確定する。Q-011 の KPI 数値目標と同期して L2 凍結時に正式凍結する（Q-011 / Q-013 参照）。
+
 ### 6.5 ローンチ順序の方針
 
 **PO 決定: 同時ローンチ + 3 軸統合運用（2026-05-01 確定）**
@@ -1088,5 +1127,6 @@ AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテー�
 | 1.7 | 2026-05-01 | §6 にドッグフーディング型グロース戦略を追加（TL レビュー 4 回 pass、指摘 0 件） | Codex (research) + TL レビュー |
 | 1.8 | 2026-05-01 | Q-001（個人→法人アップグレード方式）を PO 判断で確定。Automation SEO 加入割引 + 非加入者差額方式 | PM (Opus) |
 | 1.9 | 2026-05-01 | Q-002 を PO 判断で確定（同時ローンチ + 3 軸統合モデル）。§3.1 / §6.4 / §6.5 を 3 軸統合構造に更新 | PM (Opus) |
+| 2.0 | 2026-05-03 | AI ロジック完全分離原則を §1.6.1 に追記。AI エージェント機能の判断ロジックを Automation SEO 側に完全集約する設計原則を契約化（解析回避の核心防衛） | PM (Opus) + Codex (research) |
 
 
