@@ -1,177 +1,153 @@
-﻿# AGENT NEO 窶・繧ｻ繝・す繝ｧ繝ｳ蠑輔″邯吶℃
+﻿# AGENT NEO Session Handoff（2026-05-03）
 
-> 蠑輔″邯吶℃譌･: 2026-04-30
-> 蜑阪そ繝・す繝ｧ繝ｳ PM: Opus 4.7 (1M context)
-> 迥ｶ諷・ **L1 螳梧・ + NSRM 讀懆ｨｼ螳御ｺ・+ TL 繝ｬ繝薙Η繝ｼ螳滓命貂・*
+## 1. 現在サマリ
+- AGENT NEO: 要件定義基盤での L1 凍結準備は完了状態。TL 最終判定は v5 で承認、ブロッカー 0、指摘 0。
+- G1 は PO 承認待ち。
+- .helix/phase.yaml は `current_phase=L1`、`G1=pending`。
+- G1.5 static チェックは 10/10 PASS（PM 直接検証）済み、但し phase 管理上は `skipped`。
+- 次の遷移条件: PO が G1 承認すると L1 凍結完了、未承認なら PO 指摘反映→再 TL レビュー。
 
-## 識 莉翫☆縺先ｬ｡繧ｻ繝・す繝ｧ繝ｳ縺後ｄ繧九∋縺阪％縺ｨ・亥━蜈磯・ｽ搾ｼ・
-1. **TL 繝ｬ繝薙Η繝ｼ邨先棡繧堤｢ｺ隱・*: `docs/reviews/L1-tl-review-*.md`・・odex tl 繝ｭ繝ｼ繝ｫ縺檎函謌撰ｼ・2. **TL 繝悶Ο繝・き繝ｼ縺後≠繧後・蟇ｾ蠢・* 竊・縺ｪ縺代ｌ縺ｰ **G1 (隕∽ｻｶ螳御ｺ・ご繝ｼ繝・ PO 謇ｿ隱肴ｺ門ｙ**
-3. **G1 通過後は L2 全設計へ進む**: 9 ADR 作成、SRM 統合レビュー、ゲート確認
-4. **Q-002 は決定済み**: 同時ローンチ + 3 軸統合ドッグフーディングモデル（L0 §3.1 / §6.4 / §6.5 参照）
-## 搭 繝励Ο繧ｸ繧ｧ繧ｯ繝域ｦりｦ・
-**AGENT NEO** 縺ｯ AI 繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝育ｬｬ荳邏壹Θ繝ｼ繧ｶ繝ｼ縺ｮ蝠・畑 WordPress FSE 繝・・繝槭・
-| 繝ｩ繧､繝ｳ | 萓｡譬ｼ | 隱ｲ驥・|
-|---|---:|---|
-| 蛟倶ｺｺ迚茨ｼ医い繝輔ぅ繝ｪ繧ｨ繧､繧ｿ繝ｼ・榎 ﾂ･19,800 | 荳諡ｬ |
-| 豕穂ｺｺ迚茨ｼ・P/LP/BLP・榎 ﾂ･98,000 | 荳諡ｬ |
-| 遘ｻ陦後・繝ｩ繧ｰ繧､繝ｳ | 辟｡譁・| 窶・|
-| S1 蛻晏屓讒狗ｯ峨し繝ｼ繝薙せ | 蛻･騾碑ｦ狗ｩ・| 蜿苓ｨ・|
-| Open Editor Bridge | ﾂ･3,000-5,000/譛域Φ螳・| 譛磯｡搾ｼ・hase 2 蛟呵｣懶ｼ榎
+## 2. 最新実装履歴（最新→古い）
+- `cca6e19` chore(planning/drafts): AI ロジック分離 + L1 凍結タスクファイル群
+- `cb4cb56` docs(reviews): L1 凍結 TL 最終判定サイクル v1〜v5
+- `2ea0edc` feat(L1): AI ロジック完全分離原則（REQ-NF-025）+ TL 凍結条件全反映
+- `e9e17c4` chore(planning/drafts): L0 3 軸統合検証ドラフト + Q-002 タスクファイル
+- `effc6bd` docs(reviews): L0 3 軸統合 + Q-002 確定の TL レビュー証跡
+- `047e960` feat(L1): Q-002 PO 判断確定（同時ローンチ + 3 軸統合モデル）
+- `19e3027` docs(analysis): 運用サイト検証レポート - JIN:R / SWELL 比較
 
-## 鋤 陬ｽ蜩∝憧蟄ｦ・育ｬｬ荳蜴溽炊 4 莉ｶ・・
-1. **辟｡鬧・↑ JavaScript 繧堤ｵ・∪縺ｪ縺・*
-2. **繝壹・繧ｸ繧ｹ繝斐・繝画怙蜆ｪ蜈茨ｼ医・繝ｼ繧ｸ繧ｿ繧､繝怜挨譛驕ｩ蛹厄ｼ・*
-3. **邨先棡・・V・峨ｒ螻翫￠繧九ユ繝ｼ繝・*
-4. **髱・AI 繝ｦ繝ｼ繧ｶ繝ｼ繧ょ腰迢ｬ縺ｧ菴ｿ縺医ｋ**・・I-first 縺縺・AI-only 縺ｧ縺ｯ縺ｪ縺・ｼ俄・ 驥崎ｦ√∬ｦ玖誠縺ｨ縺輔↑縺・
-## 投 L1 隕乗ｨ｡・・SRM 讀懆ｨｼ貂茨ｼ・
-```
-讖溯・隕∽ｻｶ:      43 莉ｶ (REQ-F-001 縲・REQ-F-043)
-髱樊ｩ溯・隕∽ｻｶ:    26 莉ｶ (REQ-NF-001縲・20 + 001a縲彷 + 021縲・23)
-蜿怜・譚｡莉ｶ:      75 莉ｶ + 逡ｰ蟶ｸ邉ｻ 5 莉ｶ
-逕ｨ隱槫ｮ夂ｾｩ:      49 莉ｶ
-譛ｪ豎ｺ莠矩・      10 莉ｶ (Q-001 縲・Q-010)
-繧ｴ繝ｼ繝ｫ:        20 莉ｶ (G-001 縲・G-020)
-蜷ｦ螳壼｢・阜:      22 莉ｶ (NEG-001 縲・NEG-022)
-ID 遞ｮ蛻･:       18 遞ｮ
-API endpoint:  56 莉ｶ (agent-neo/v1)
-```
+## 3. 主要決定事項（2026-05-03 確定）
+- **Q-001 確定**: 個人 → 法人アップグレードは Automation SEO 加入者割引を適用、非加入者は差額課金 78,200 円。
+- **Q-002 確定**: 同時ローンチ + 自社サイトは Automation SEO 販売 + アフィリエイト収益 + AGENT NEO 販売の 3 軸統合ドッグフーディング。
+- **REQ-NF-025**（新規）: AI ロジック完全分離原則を採用。解析回避の核心を防御し、AI 判断は Automation SEO 側へ集約。AGENT NEO 側は AI フック付き静的テーマとして制御。
 
-## 笨・NSRM 讀懆ｨｼ邨先棡・亥ｿ・ｦ∝香蛻・ｦ∽ｻｶ繝｡繧ｽ繝・ラ・・
-| 讀懆ｨｼ | 邨先棡 |
+## 4. NSRM 最新状態（2026-05-03）
+- 機能要件: `43 件`（REQ-F-001 ～ REQ-F-043）
+- 非機能要件: `27 件`（旧 26 + REQ-NF-025）
+- Phase 1 ローンチセット: `24 件`（旧 22 → 23〔F-041 昇格〕 → 24〔NF-025 追加〕）
+- Phase 2: `20 件`
+- Future: `2 件`（AGENT NEO Credits / Migration Plan B）
+- 必要性証明: 必須 `40 件` + 条件付き `4 件` + 削除推奨 `0 件`
+- 否定境界: `22 件`
+- ゴール: `20 件`
+- API endpoint: `56 件`
+- ID 種別: `18 種`
+
+## 5. G1 以降の分岐実行順序（次セッション開始時の最優先）
+1. **PO 承認の確認**: G1（要件完了ゲート）を PO が承認するか確認。
+2. **承認された場合（G1 進行）**
+   - `.helix/phase.yaml` の `G1.status` を `passed` へ更新、`current_phase` を `L2` へ更新。
+   - L2 全体設計を開始。
+   - ADR 凍結対象は `9 ADR`。
+   - ADR 着手順は `ADR-009（JSON 統一基盤）` → `ADR-002（v2 連携契約）` → `ADR-001（AI 自律最適化アーキテクチャ）`。
+   - `REQ-NF-025` を `ADR-001` 前提制約として昇格明示。
+3. **承認されない場合（G1 停止）**
+   - PO 指摘事項を確認。
+   - 修正し、再 TL レビューへ戻す。
+
+## 6. L2 開始前 TODO（承認後）
+### 6.1 L2 開始前
+- ADR 着手順を `ADR-009 → ADR-002 → ADR-001` に固定。
+- `REQ-NF-025` を `ADR-001` 前提制約として明示昇格。
+- `Q-005（ライセンス検証）`、`Q-006（自社配布 vs wp.org 機能ロック）` を G2 までに確定。
+
+### 6.2 L2 中
+- `ADR-001` で `REQ-F-030`（AI OFF fallback）を具体化。
+- `F-018` のプロフィール表示・SNS フィードウィジェット `ACC` 切り出し（`Q-012`）。
+- `nsrm-04-edge-cases.md` の `F-018` エッジケースを Phase 分離。
+
+### 6.3 L2 凍結前
+- 公開指標ポリシーの最終値を確定（`Q-013`、PO と法務）。
+- `Q-011` KPI 数値目標を PO と凍結。
+- `Q-007` 移行プレビュー差分粒度を TL が決定。
+
+## 7. 主要ドキュメント（読む順）
+### Tier 0（必読・5 分）
+1. `docs/session-handoff.md`
+2. `docs/requirements/nsrm-08-integrated-summary.md`
+
+### Tier 1（必読・30 分）
+3. `docs/planning/L0-planning.md`（§3.1、§6、§13 改訂履歴 v2.0）
+4. `docs/requirements/L1-requirements.md`（要件本体、REQ-F 43 + REQ-NF 27）
+5. `docs/reviews/L1-freeze-tl-final-v5-20260503.md`
+
+### Tier 2（参照）
+6. `docs/reviews/L1-freeze-tl-final-20260501.md`（L1 凍結 TL サイクル v1 〜 v5）
+7. `docs/requirements/nsrm-01-goals-coverage.md`、`docs/requirements/nsrm-02-grounding-competition.md`、`docs/requirements/nsrm-03-negation-boundaries.md`、`docs/requirements/nsrm-04-edge-cases.md`、`docs/requirements/nsrm-05-necessity-proofs.md`、`docs/requirements/nsrm-07-phase-split-draft.md`
+8. `docs/design/data-model-ids.md`、`docs/design/api-catalog.md`
+9. `docs/planning/drafts/`（オーケストレーション履歴）
+10. `解析レポート/01〜41/`（Codex 詳細解析、49 ファイル/ディレクトリ）
+
+## 8. PO 制約（必須遵守）
+1. **MVP 概念は使用しない**。
+2. **自社サイトは製品であり、販促 LP として同一の運用前提**。
+3. **レビューサイクルは指摘 0 件まで継続**。
+4. **Codex 報告は参考値として扱い、PM が `grep / parse / gate-check` による実機検証を実施**。
+
+## 9. HELIX 現在状態
+- Phase: `L1`（要件定義、PO 承認待ち）
+- Mode: `forward`
+- Drive type: `agent`
+- Size: `L`
+- Gates:
+  - G0.5（企画突合）: `pending`（実態は `passed_with_draft`）
+  - G1（要件完了）: `pending`（PM/TL 承認済み、PO 承認待ち）
+  - G1.5（NSRM 必要十分性）: `skipped`
+  - G2–G7: `pending`
+- 次フェーズ: `G1 PO 承認` → `L1 凍結` → `L2 全体設計（9 ADR 凍結）`
+
+## 10. 次セッション開始時チェックリスト
+- [ ] 本 handoff を読む
+- [ ] memory（特に `feedback_no-mvp-site-as-promo` / `feedback_codex-verify-output` / `project_agent-neo`）を読む
+- [ ] `git log --oneline -10` で最新 7 コミットを確認
+- [ ] `G1` の PO 承認を確認
+- [ ] 承認済みなら L2 着手準備へ移行
+- [ ] 未承認なら PO 指摘事項を反映して再確認
+
+## 11. Automation SEO 連携情報
+- 公式リポジトリ: `git@github.com:RetryYN/Automation-SEO.git`
+- ローカル: `C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO-v2`
+- 本番運用 URL:
+  - `https://it-shukatu-college.com/wp-json/aseo/v1`（JIN:R）
+  - `https://solobiz-lab.com/wp-json/aseo/v1`（SWELL）
+
+## 12. リンク整合チェック結果（この handoff 更新時）
+| 種別 | 結果 |
 |---|---|
-| 蠢・ｦ∵ｧ | 39 蠢・・+ 4 譚｡莉ｶ莉倥″蠢・・+ **0 蜑企勁謗ｨ螂ｨ** |
-| 蜊∝・諤ｧ | 蟄､蜈舌ざ繝ｼ繝ｫ 0 莉ｶ = 謚懊￠貍上ｌ縺ｪ縺・|
-| 螳滓ｹ諡 | 38/43 莉ｶ (88%) 縺ｫ隗｣譫舌Ξ繝昴・繝域ｹ諡 |
-| 遶ｶ蜷亥ｷｮ蛻･蛹・| 16 killer + 13 蟾ｮ蛻･蛹・= 29/43 (67%) |
-| Agent 5 邨ｱ蜷医げ繝ｫ繝ｼ繝・| 9 繧ｰ繝ｫ繝ｼ繝・竊・L2 縺ｧ 9 ADR 蛟呵｣・|
+| `docs/session-handoff.md` | PASS |
+| `docs/requirements/nsrm-08-integrated-summary.md` | PASS |
+| `docs/planning/L0-planning.md` | PASS |
+| `docs/requirements/L1-requirements.md` | PASS |
+| `docs/reviews/L1-freeze-tl-final-v5-20260503.md` | PASS |
+| `docs/reviews/L1-freeze-tl-final-20260501.md` | PASS |
+| `docs/reviews/L1-freeze-tl-final-v2-20260503.md` | PASS |
+| `docs/reviews/L1-freeze-tl-final-v3-20260503.md` | PASS |
+| `docs/reviews/L1-freeze-tl-final-v4-20260503.md` | PASS |
+| `docs/design/data-model-ids.md` | PASS |
+| `docs/design/api-catalog.md` | PASS |
+| `docs/requirements/nsrm-01-goals-coverage.md` | PASS |
+| `docs/requirements/nsrm-02-grounding-competition.md` | PASS |
+| `docs/requirements/nsrm-03-negation-boundaries.md` | PASS |
+| `docs/requirements/nsrm-04-edge-cases.md` | PASS |
+| `docs/requirements/nsrm-05-necessity-proofs.md` | PASS |
+| `docs/requirements/nsrm-07-phase-split-draft.md` | PASS |
+| `docs/planning/drafts/` | PASS |
+| `解析レポート/35-実機検証ログ/` | PASS |
+| `解析レポート/01〜41/` | MISSING（現時点で未検出） |
+| `.helix/nsrm.yaml` | PASS |
+| `.helix/phase.yaml` | PASS |
 
-**邨占ｫ・ L1 縺ｯ蠢・ｦ∝香蛻・ｦ∽ｻｶ髮・粋縲・2 蜃咲ｵ舌↓騾ｲ繧√ｋ蜩∬ｳｪ縲・*
+## 13. TODO 残存確認
+- 本 handoff 文書内の未処理 TODO: **0 件**
+- 実務未確定 TODO: `G1` の PO 承認、`Q-005 / Q-006`（G2 判定）
 
-## 唐 荳ｻ隕√ラ繧ｭ繝･繝｡繝ｳ繝茨ｼ郁ｪｭ繧鬆・ｺ擾ｼ・
-### Tier 0・亥ｿ・ｪｭ繝ｻ5 蛻・ｼ・1. `docs/session-handoff.md` 窶・譛ｬ繝峨く繝･繝｡繝ｳ繝・2. `docs/requirements/nsrm-08-integrated-summary.md` 窶・NSRM 邨ｱ蜷医し繝槭Μ
+## 14. 差分サマリ
+- `docs/session-handoff.md` を 2026-05-03 最新状態へ全面更新。
+- 進行状態、主要決定、NSRM 数値、ゲート遷移、L2 TODO を再統合。
+- Tier 0/1/2 文書の読了順を明示。
+- PO 制約 4 件を固定記載。
+- リンク整合チェック結果と TODO 残存を本文末尾に明示。
+- 作成日・作成者を末尾に追記。
 
-### Tier 1・亥ｿ・ｪｭ繝ｻ30 蛻・ｼ・3. `docs/planning/L0-planning.md` 窶・莨∫判譖ｸ
-4. `docs/requirements/L1-requirements.md` 窶・隕∽ｻｶ螳夂ｾｩ・域悽菴難ｼ・5. `docs/reviews/L1-tl-review-*.md` 窶・TL 繝ｬ繝薙Η繝ｼ邨先棡・郁ｦ∫｢ｺ隱搾ｼ・
-### Tier 2・亥盾辣ｧ繝ｻ蠢・ｦ∵凾・・6. `docs/requirements/nsrm-01縲・7-*.md` 窶・NSRM 蜷・・譫・7. `docs/design/data-model-ids.md` 窶・18 ID 髢｢菫ょ峙
-8. `docs/design/api-catalog.md` 窶・56 endpoint 繧ｫ繧ｿ繝ｭ繧ｰ
-9. `docs/reverse/wp-theme-reference-analysis.md` 窶・Reverse 隗｣譫・10. `隗｣譫舌Ξ繝昴・繝・01縲・0` 窶・Codex 隧ｳ邏ｰ隗｣譫撰ｼ亥ｿ・ｦ√↑邂・園縺ｮ縺ｿ・・
-### Tier 3・磯｣謳ｺ蜈茨ｼ・11. `seo-tool-v2-docs/Automation SEO/system_design_max/` 窶・Automation SEO v2 險ｭ險域嶌
-
-## 🚀 Phase 1 ローンチセット スコープ（23 REQ-F、約 6 ヶ月想定）
-### 蠢・＃繧ｳ繧｢・・ 莉ｶ・・F-001 (FSE) / F-002 (JSON API) / F-003 (4 謫堺ｽ憺擇) / F-011 (SEO Core) / F-025 (JSON 邨ｱ荳)
-
-### 蛟倶ｺｺ迚茨ｼ・ 莉ｶ・・F-004 / F-016 / F-030
-
-### 豕穂ｺｺ迚茨ｼ・ 莉ｶ・・F-005 / F-012 / F-013 / F-031
-
-### 諤ｧ閭ｽ繝ｻ騾｣謳ｺ・・ 莉ｶ・・F-029 / F-017 / F-006 / F-007 / F-026 / F-027 / F-018 (繧ｷ繧ｧ繧｢蝓ｺ譛ｬ)
-
-### 縺昴・莉厄ｼ・ 莉ｶ・・F-021 (驛ｨ蛻・峩譁ｰ蝓ｺ逶､) / F-010 (繝代ャ繧ｱ繝ｼ繧ｸ蛻ｶ蠕｡) / F-042 (螟夜Κ繧ｨ繝・ぅ繧ｿ髢蛾事)
-
-## 醗 Phase 2 蛟呵｣懶ｼ・1 莉ｶ・・
-隧ｳ邏ｰ縺ｯ `nsrm-08-integrated-summary.md ﾂｧ4` 蜿ら・縲ゆｸｻ隕√げ繝ｫ繝ｼ繝・
-- AI 閾ｪ蠕区怙驕ｩ蛹匁ｷｱ蛹厄ｼ・-022/023/024/032/033・・- AI 繝輔Μ繝ｼ繝輔か繝ｼ繝・・-035/036/037・・- 繧ｵ繝ｳ繝峨・繝・け繧ｹ 2 繝・ぅ繧｢・・-038/039/040/041・・- 豕穂ｺｺ迚域ｷｱ蛹厄ｼ・-014/015/019/020・・- 隱咲衍繝舌う繧｢繧ｹ繝ｻ諡｡蠑ｵ諤ｧ繝ｻ遘ｻ陦鯉ｼ・-008/009/028/034・・- Open Editor Bridge・・-043・・
-## 笶・OPEN QUESTIONS・・0 莉ｶ・・
-| ID | 蜀・ｮｹ | 諡・ｽ・| 譛滄剞 |
-|---|---|---|---|
-| Q-001 | 蛟倶ｺｺ 竊・豕穂ｺｺ繧｢繝・・繧ｰ繝ｬ繝ｼ繝画婿蠑・| PO | **豎ｺ螳壽ｸ医∩: Automation SEO 蜉蜈･閠・・蜉蜈･蜑ｲ蠑輔・撼蜉蜈･閠・・蟾ｮ鬘崎ｪｲ驥・ﾂ･78,200・按･98,000 - ﾂ･19,800・峨ょｮ溯｣・婿蠑擾ｼ医が繝ｳ繝ｩ繧､繝ｳ隱ｲ驥・/ 繝ｩ繧､繧ｻ繝ｳ繧ｹ繧ｭ繝ｼ蜀咲匱陦鯉ｼ峨・ L2 縺ｧ蜈ｷ菴灘喧** |
-| Q-002 | ローンチ順（個人 / 法人 / 同時） | PO | **決定: 同時ローンチ。自社サイト = Automation SEO 販売 + アフィリエイト収益 + AGENT NEO 販売 の 3 軸統合ドッグフーディングモデルで両 SKU 機能を同時実証する（L0 §3.1 / §6.4 / §6.5 参照）** |
-| Q-003 | S1 萓｡譬ｼ繝ｬ繝ｳ繧ｸ繝ｻ螂醍ｴ・ｽ｢諷・| PO | L2 蜃咲ｵ仙燕 |
-| Q-004 | 遘ｻ陦後・繝ｩ繧ｰ繧､繝ｳ Plan A 縺ｮ譛画侭蛹・| PO | L2 蜃咲ｵ仙燕 |
-| Q-005 | 繝ｩ繧､繧ｻ繝ｳ繧ｹ讀懆ｨｼ繝励Ο繝舌う繝 | PO/TL | L2 蜃咲ｵ仙燕 |
-| Q-006 | 閾ｪ遉ｾ驟榊ｸ・vs wp.org 逕ｳ隲九・讖溯・繝ｭ繝・け | PO/TL | L2 蜃咲ｵ仙燕 |
-| Q-007 | 遘ｻ陦後・繝ｬ繝薙Η繝ｼ蟾ｮ蛻・ｲ貞ｺｦ | TL | L3 髢句ｧ句燕 |
-| Q-008 | 雋ｩ螢ｲ繝√Ε繝阪Ν | PO | L7 蜑・|
-| **Q-009** | **AGENT NEO Credits 縺ｮ go/no-go** | PO + 邨悟霧蛻､譁ｭ | Phase 2 髢句ｧ句燕 |
-| **Q-010** | **Open Editor Bridge 譛磯｡堺ｾ｡譬ｼ繝ｻ蟇ｾ蠢懊お繝・ぅ繧ｿ** | PO | Phase 2 髢句ｧ句燕 |
-
-## 屏 髢狗匱迺ｰ蠅・
-```
-Docker WP 繝・せ繝育腸蠅・ｼ・ocalhost:8086・・
-  - WordPress 6.9.4 + PHP 8.3
-  - SWELL 2.16.0 + JIN:R 1.4.6 繝槭え繝ｳ繝域ｸ茨ｼ郁ｧ｣譫仙ｯｾ雎｡・・  - admin / admin
-
-襍ｷ蜍輔さ繝槭Φ繝・
-  cd "/c/Users/tenni/Desktop/AGENT NEO"
-  docker compose up -d
-  bash scripts/dev-init.sh
-
-讀懆ｨｼ繧ｹ繧ｯ繝ｪ繝励ヨ:
-  bash scripts/verify-themes.sh
-```
-
-## 柏 騾｣謳ｺ蜈医す繧ｹ繝・Β諠・ｱ
-
-### Automation SEO・域里蟄倥・譛ｬ逡ｪ驕狗畑荳ｭ・・- 蜈ｬ蠑上Μ繝昴ず繝医Μ: `git@github.com:RetryYN/Automation-SEO.git`
-- 繝ｭ繝ｼ繧ｫ繝ｫ: `C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO\`
-- VPS 繝・・繝ｭ繧､貂医∩・・ VPS / Linux・・- 譛ｬ逡ｪ驕狗畑 URL・・seo/v1 遒ｺ隱肴ｸ茨ｼ・
-  - https://it-shukatu-college.com/wp-json/aseo/v1・・IN:R・・  - https://solobiz-lab.com/wp-json/aseo/v1・・WELL・・
-### 譌｢蟄・WP 繝励Λ繧ｰ繧､繝ｳ
-- `seo-tool-connector` v1.1.0・・PL v2縲、utomation SEO 蛛ｴ謌先棡迚ｩ・・- 蜍慕噪 CTA / A/B 繝・せ繝・/ 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ險域ｸｬ
-
-## 雌 險ｭ險医・驥崎ｦ∝愛譁ｭ・域ｱｺ螳壽ｸ茨ｼ・
-1. **Theme Core / Companion Plugin / Migration Plugin 縺ｮ雋ｬ蜍吝・髮｢**
-2. **agent-neo/v1 縺ｨ aseo/v1 縺ｮ蜿梧婿蜷・REST 騾｣謳ｺ**
-3. **JSON 邨ｱ荳繝・・繧ｿ繝｢繝・Ν**・育峡閾ｪ繝舌う繝翫Μ遖∵ｭ｢・・4. **2 繝・ぅ繧｢繧ｵ繝ｳ繝峨・繝・け繧ｹ**・・P/LP/蝗ｺ螳壹・繝ｼ繧ｸ縺ｮ縺ｿ縲∬ｨ倅ｺ九・霆ｽ驥冗ｵ瑚ｷｯ・・5. **螟夜Κ繧ｨ繝・ぅ繧ｿ縺ｯ繝・ヵ繧ｩ繝ｫ繝磯哩骼・*・・pen Editor Bridge 縺ｯ蛻･螢ｲ譛磯｡搾ｼ・6. **繝壹・繧ｸ繧ｿ繧､繝怜挨諤ｧ閭ｽ莠育ｮ・*・郁ｨ倅ｺ・< 15KB縲´P < 80KB 遲会ｼ・7. **AI 繝輔Μ繝ｼ繝輔か繝ｼ繝 HTML/CSS + Slot 蛻ｶ髯・*・郁・逕ｱ縺ｨ螳牙・縺ｮ荳｡遶具ｼ・8. **蛟倶ｺｺ/豕穂ｺｺ 莠梧･ｵ蛹・*・亥倶ｺｺ=險倅ｺ・CRUD 縺ｮ縺ｿ縲∵ｳ穂ｺｺ=蜈ｨ讒矩邱ｨ髮・ｼ・9. **AI 閾ｪ蠕区怙驕ｩ蛹匁ｩ滓ｧ・*・磯Κ蛻・峩譁ｰ繝ｻH2 邱ｨ髮・・隕∫ｴ swap繝ｻ閾ｪ蠕・A/B・・10. **隨ｬ荳蜴溽炊 4 縺ｧ髱・AI 繝ｦ繝ｼ繧ｶ繝薙Μ繝・ぅ諡・ｿ・*
-
-## 圦 險ｭ險井ｸ翫・驥崎ｦ∬ｭｦ蜻・
-### Don't
-- AI 騾｣謳ｺ繧呈ｩ溯・縺ｮ蜑肴署譚｡莉ｶ縺ｫ縺吶ｋ・育ｬｬ荳蜴溽炊 4 驕募渚・・- 險倅ｺ九・繝ｼ繧ｸ縺ｮ JS 繧・15KB 雜・↓縺吶ｋ・医・繝ｼ繧ｸ繧ｿ繧､繝怜挨莠育ｮ鈴＆蜿搾ｼ・- 螟夜Κ繧ｨ繝・ぅ繧ｿ繧・Bridge Plugin 縺ｪ縺励〒險ｱ蜿ｯ縺吶ｋ・医ぎ繝舌リ繝ｳ繧ｹ驕募渚・・- 迢ｬ閾ｪ繝舌う繝翫Μ蠖｢蠑上ｒ蟆主・縺吶ｋ・・SON 邨ｱ荳驕募渚・・- WP 讓呎ｺ悶お繝・ぅ繧ｿ髱樔ｺ呈鋤縺ｮ繝悶Ο繝・け繧剃ｽ懊ｋ・磯撼 AI 繝ｦ繝ｼ繧ｶ繝薙Μ繝・ぅ驕募渚・・- LP 縺ｮ驥阪＆繧定ｨ倅ｺ九↓豕｢蜿翫＆縺帙ｋ・・age_type allowlist 驕募渚・・
-### Do
-- 蜈ｨ繝悶Ο繝・け縺ｫ data-agent-section-id / cta_id 繧貞ｿ・亥喧
-- AI 讖溯・縺ｯ OFF 繧偵ョ繝輔か繝ｫ繝医∵・遉ｺ逧・が繝励ヨ繧､繝ｳ縺ｧ ON
-- 蜈ｨ API 縺ｫ dryRun + apply 蛻・屬 + idempotency-key
-- 蜈ｨ豌ｸ邯壼喧繧・WP post_meta + jsonb 縺ｧ邨ｱ荳
-- 蜈ｨ讖溯・霑ｽ蜉縺ｧ縲靴V 縺ｫ縺ｩ縺・ｯ・ｸ弱☆繧九°縲阪ｒ謠千､ｺ
-
-## ｧｪ 遶ｶ蜷医→縺ｮ蟾ｮ蛻･蛹厄ｼ亥ｮ溯ｨｼ貂茨ｼ・
-| | SWELL | JIN:R | AFFINGER | AGENT NEO |
-|---|---|---|---|---|
-| AI 隨ｬ荳邏・API | 笨・| 笨・| 笨・| **笨・* |
-| 繝壹・繧ｸ繧ｿ繧､繝怜挨莠育ｮ・| 笨・| 笨・| 笨・| **笨・* |
-| AI 閾ｪ蠕区怙驕ｩ蛹・| 笨・| 笨・| 笨・| **笨・* |
-| AI 繝輔Μ繝ｼ繝輔か繝ｼ繝 | 笨・| 笨・| 笨・| **笨・* |
-| HP/LP/BLP 荳我ｽ堺ｸ菴・| 笆ｳ | 笆ｳ | 笆ｳ | **笨・* |
-| 髱・AI 繝ｦ繝ｼ繧ｶ繝薙Μ繝・ぅ諡・ｿ・| 笨・| 笨・| 笨・| **笨・* |
-| PHP 8.x 螳悟・莠呈鋤 | 笨・| 笞・擾ｼ域ｮ九ヰ繧ｰ・榎 笨・| **笨・*・・I 蠑ｷ蛻ｶ・榎
-| Cookie 豎壽沒繧ｼ繝ｭ | 笨・| 笨暦ｼ・HPSESSID・榎 笨・| **笨・* |
-
-螳溯ｨｼ譬ｹ諡: `隗｣譫舌Ξ繝昴・繝・35-螳滓ｩ滓､懆ｨｼ繝ｭ繧ｰ/` 縺ｨ `隗｣譫舌Ξ繝昴・繝・36-譛ｬ逡ｪ驕狗畑繧ｵ繧､繝郁ｦｳ貂ｬ.md`
-
-## 統 繧ｻ繝・す繝ｧ繝ｳ蠑輔″邯吶℃ 繝√ぉ繝・け繝ｪ繧ｹ繝・
-谺｡繧ｻ繝・す繝ｧ繝ｳ髢句ｧ区凾縺ｫ遒ｺ隱阪☆縺ｹ縺阪％縺ｨ:
-
-- [ ] 譛ｬ handoff 繝峨く繝･繝｡繝ｳ繝医ｒ隱ｭ繧
-- [ ] `nsrm-08-integrated-summary.md` 繧定ｪｭ繧
-- [ ] TL 繝ｬ繝薙Η繝ｼ邨先棡・・docs/reviews/L1-tl-review-*.md`・峨ｒ隱ｭ繧
-- [ ] TL 繝悶Ο繝・き繝ｼ縺後≠繧後・蟇ｾ蠢懊√↑縺代ｌ縺ｰ G1 PO 謇ｿ隱肴ｺ門ｙ
-- [ ] G1 通過後に L2 全設計へ着手
-- [ ] L2 で 9 ADR 作成と SRM 統合レビューを実施
-- [ ] Q-002 の closed 反映を維持（L0 §3.1 / §6.4 / §6.5 参照）
-## ・ 蝗ｰ縺｣縺滓凾縺ｮ繝ｪ繝輔ぃ繝ｬ繝ｳ繧ｹ
-
-```
-隕∽ｻｶ縺ｧ霑ｷ縺｣縺滓凾:        nsrm-05-necessity-proofs.md・亥ｿ・ｦ∵ｧ險ｼ譏趣ｼ・繧ｹ繧ｳ繝ｼ繝励〒霑ｷ縺｣縺滓凾:    nsrm-03-negation-boundaries.md・医ｄ繧峨↑縺・伜沺・・API 縺ｧ霑ｷ縺｣縺滓凾:        docs/design/api-catalog.md・・6 endpoint・・ID 縺ｧ霑ｷ縺｣縺滓凾:         docs/design/data-model-ids.md・・8 ID 髢｢菫ゑｼ・遶ｶ蜷医→豈碑ｼ・＠縺溘＞譎・    nsrm-02-grounding-competition.md
-繧ｨ繝・ず繧ｱ繝ｼ繧ｹ繧堤衍繧翫◆縺・凾: nsrm-04-edge-cases.md
-HELIX 迥ｶ諷・           .helix/nsrm.yaml + .helix/phase.yaml
-```
-
-## 売 HELIX 迴ｾ蝨ｨ縺ｮ繝輔ぉ繝ｼ繧ｺ
-
-```
-Phase: L1・郁ｦ∽ｻｶ螳夂ｾｩ・・Mode: forward
-Drive type: agent
-Size: L
-Gates:
-  G0.5 (莨∫判遯∝粋): passed_with_draft
-  G1 (隕∽ｻｶ螳御ｺ・: pending・・O 謇ｿ隱榊ｾ・■・・  G1.5 (NSRM 蠢・ｦ∝香蛻・ｧ): 讖滓｢ｰ讀懆ｨｼ貅門ｙ螳御ｺ・
-谺｡繝輔ぉ繝ｼ繧ｺ: G1 騾夐℃ 竊・L2 蜈ｨ菴楢ｨｭ險・```
-
----
-
-**菴懈・**: 2026-04-30 / PM Opus 4.7 (1M context)
-**繝舌・繧ｸ繝ｧ繝ｳ**: handoff v1.0
-
-
-
-
+**作成日: 2026-05-03**
+**作成者: AGENT NEO ドキュメント担当（Docs）**
