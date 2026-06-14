@@ -824,5 +824,5 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 | Gate | 判定 | 根拠 |
 |---|---|---|
 | G0.5 | passed_with_draft | L0企画をL2設計へ反映 |
-| L2 | draft | ADR/API詳細/schemaはL3で凍結 |
+| L2 | frozen | G2 passed 2026-06-14。設計方針を凍結。ADR/API/schemaの詳細はL3で凍結 |
 | Security | passed_with_caution | 脅威分析とAPIガードを定義 |

@@ -5,13 +5,13 @@
 
 project: "AGENT NEO"
 current_mode: forward
-current_phase: L1
+current_phase: L3
 gates:
   G0.5: { status: pending }
-  G1: { status: pending }
+  G1: { status: passed, date: 2026-06-14 }
   G1.5: { status: skipped }
   G1R: { status: skipped }
-  G2: { status: pending }
+  G2: { status: passed, date: 2026-06-14 }
   G3: { status: pending }
   G4: { status: pending }
   G5: { status: pending }

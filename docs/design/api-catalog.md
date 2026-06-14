@@ -34,7 +34,7 @@
 | GET | /posts/{id}/diff | JSON Patch 差分エクスポート | REQ-F-026 | `?from=<ts>` で差分を RFC 6902 JSON Patch 形式で返す。v2 引き出し向け |
 | GET | /posts/{id}/markdown | vector-friendly markdown export | REQ-F-026 | Gutenberg JSON → plain markdown。v2 embedding 生成用 |
 | PATCH | /posts/{id}/blocks/{block_id} | ブロック単位部分更新 | REQ-F-021 | idempotency-key ヘッダ必須。block-level version 履歴 N 版保持 |
-| POST | /posts/{id}/sections/{section_id}/edit | H2 単位セクション編集 | REQ-F-022 | dryRun + diff preview + apply + rollback。AI rewrite / expand / summarize / translate / restructure |
+| POST | /posts/{id}/sections/{section_id}/edit | H2 単位セクション編集 | REQ-F-022 | dryRun + diff preview + apply + rollback。rewrite/expand/summarize/translate/restructure の文章判定・生成は Automation SEO 側 LLM が担い、本エンドポイントは確定済みコンテンツの受信・適用のみ（REQ-NF-025） |
 | GET | /sections | セクション一覧 | REQ-F-002, REQ-F-006 | AF-009 |
 | GET | /sections/{section_id} | セクション詳細 | REQ-F-002, REQ-F-006 | AF-009 |
 | POST | /sections/{section_id}/apply | セクション更新（dryRun/apply）| REQ-F-002, REQ-F-006 | AF-009。diff_hash 必須 |
