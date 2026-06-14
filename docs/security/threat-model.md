@@ -98,10 +98,14 @@ flowchart LR
   - once-token: `600` 秒
   - リプレイ検知記録: `900` 秒（監査目的）
 - 保存ポリシー:
-  - 受信時に `event_signature` とキーIDを組み合わせて atomic insert を実行（Redis/WP transient どちらかで先着成功）。
-    - Redis: `SET <once-token> <val> NX EX 600`
-    - WP transient: `add(<once-token>, <val>, 600)`（set ではなく add）
-  - `atomic insert` が成功した場合のみ検証処理へ進む。重複や再送は reject（409）し TOCTOU を許容しない。
+  - 受信時は `event_signature` とキーIDを組み合わせ、**重複無効化を伴う排他保存**を実行する。
+  - Redis: `SET <once-token> <val> NX EX 600`
+  - WP transient fallback: `add(<once-token>, <val>, 600)`（`set` ではなく `add`）
+  - **DB fallback 仕様（L4受入条件）:**
+    - `agent_neo_replay_tokens` に `once_token + event_signature` の複合ユニーク制約を持つ `UNIQUE` を持たせる。
+    - `INSERT ... ON CONFLICT DO NOTHING` で 1 クエリ書込を行う。
+    - `affected_rows = 0` の場合は replay 判定（重複再送とみなす）として `409` を返却し、以後処理を中断する。
+  - いずれの経路でも先着成功/競合判定をトランザクション外の追加問い合わせなしで確定し、重複再送は reject（409）して TOCTOU を残さない（CARRY-G2-007 / TB-05a / HMAC replay）。
   - TTL 経過または `agent_neo_replay_gc` による自然削除を前提とし、検証後の即時削除は実施しない。
 - 署名検証:
   - `canonical_json = json_encode(body, JSON_UNESCAPED_SLASHES + JSON_UNESCAPED_UNICODE + key sort)`  
@@ -117,12 +121,19 @@ flowchart LR
   4. `active` を新規発行し、運用チーム承認を待つまで監視ログ出力を強化
 - **移行ウィンドウ（旧鍵受付）**:
   - `active` 変更時点の `T0` から `+900` 秒は旧鍵を受理。
-  - 旧鍵受理は `F-01` のみ、`F-02` は旧鍵で受理しない（権限逆流対策）。
+  - 受入側責務として、**旧鍵は `F-01` のみ受理対象**とし、`F-02` では旧鍵拒否。`F-03/F-04/F-20` 等他 operation でも旧鍵は受理しない（権限逆流対策）（CARRY-G2-008）。
 - **バックアップ/復旧**:
   - `rotation_reason`, `key_id`, `issued_at`, `retired_at` を監査ログ化
   - 旧鍵は 30 日保管後破棄
 
-### 5.3 ADR-AP01: Application Password 採用判断（OAuth2との差分）
+### 5.3 L4 Carry 受入条件（今回確定）
+- **CARRY-G2-007（TB-05a）**: once-token は「DB 連携時に複合 UNIQUE + `INSERT ... ON CONFLICT DO NOTHING` で原子的に登録し、`affected_rows=0` なら replay 判定」を満たすこと。
+- **CARRY-G2-008（鍵ローテーション）**: 旧鍵受理は受入側で `F-01` のみに限定し、旧鍵受付外 operation は reject することを明文化済みとする。
+- **CARRY-G2-017（TB-20）**: `catalog-update` の送信先（Automation SEO）向け URL は、スキーム `https` 固定・許可ホスト allowlist 一致・DNS 解決後 private/loopback/link-local/metadata IP 拒否・リダイレクト追従禁止を満たすこと。
+- **CARRY-G2-025（TB-22）**: webhook 再送時は各 retry で URL 再解決を再実施し、再解決後 IP 判定（private/loopback/link-local/metadata 拒否）を再適用すること。
+- **CARRY-G2-026（TB-24）**: 公開 snapshot/crawl-map での `section_id` は `public_section_id`（内部逆引き不可）へ変換して公開し、監査レイヤーのみ逆引きを許可すること。
+
+### 5.4 ADR-AP01: Application Password 採用判断（OAuth2との差分）
 - ADR 形式の決定:  
   - **採択:** Application Password  
   - **除外:** OAuth2（現行WP運用時の配備コストが高く、監査境界の複線化を招くため）
@@ -181,11 +192,11 @@ flowchart LR
 | TB-18 | Core Plugin | Elevation of Privilege | package制御バイパスで法人系機能を個人権限から実行 | 9/6/3/9/5 | 32 | package gate + capability + 実行権限レイヤ分離、受注実行テスト | 低〜中（管理者誤設定） | Product Security | L4 |
 | TB-18a | Core Plugin | Elevation of Privilege | 外部ライセンスサーバ障害時に法人機能へ一時昇格（grace period） | 9/7/4/9/6 | 35 | ライセンス障害時のフェイルセーフは必ず `deny`、個人版スコープへ縮退（記事CRUDのみ） | 高（障害同時時）→低（L4後） | Product Security | L3/L4 |
 | TB-19 | MCP local route | Privilege Escension / Tampering | MCP クライアントがマルウェアにより乗っ取られ、危険 tool で apply（dryRunを省略）を実行 | 10/7/6/9/8 | 40 | local MCP client は署名付き registration、実行 tool は `mcp-tools.schema.json` で risk class=apply-only の場合は明示承認必須、dryRun必須、apply 前最終差分ハッシュ確認、将来 remote MCP では mTLS + session-bound allowlist |
-| TB-20 | F-01/F-02 | SSRF | `F-02` の payload に任意外部URL（画像/HTML）を指定され、Automation SEO→AGENT NEO 側で内向きアクセスを誘発 | 8/8/6/6/7 | 35 | URL バリデータで DNS レベル禁止 IP 範囲除外、`http(s)://` スキーマ制御、`private IP deny` + `localhost/IPv6/metadata` フィルタ |
+| TB-20 | F-01/F-02 | SSRF | `F-02` の payload に任意外部URL（画像/HTML）を指定され、Automation SEO→AGENT NEO 側で内向きアクセスを誘発 | 8/8/6/6/7 | 35 | URL バリデータを 4 つ同時に適用: 1) スキームは `https` のみ（HTTP 禁止）、2) 送信先ホストを allowlist で固定（`catalog-update` 送信先含む）、3) DNS 解決後に private/loopback/link-local/metadata IP を拒否、4) リダイレクト追従禁止（redirect follow 禁止）。（CARRY-G2-017） | 中（対策後） | Security Lead | L4 |
 | TB-21 | Migration plugin | SSRF | migration-plugin が外部WPを無制限 pull し、管理端末/社内向けIPへの接続を行う | 8/7/5/7/7 | 34 | migration 先 URL は allowlist 配下のみ、timeout 上限 3 秒、redirect 上限 2 回 |
-| TB-22 | Webhook/Outbound | SSRF | webhook 配信先URL が internal IP（`169.254.*`/`127.0.0.0/8`/RFC1918）へ到達する | 9/8/5/8/8 | 38 | 配信 URL 事前 resolve 検査、`content-length` 上限 1MB、`content-type allowlist`、timeout 3s、リトライで再解決再チェック |
+| TB-22 | Webhook/Outbound | SSRF | webhook 配信先URL が internal IP（`169.254.*`/`127.0.0.0/8`/RFC1918）へ到達する | 9/8/5/8/8 | 38 | 配信 URL は retry 毎に `resolve + denylist` を再実行し、リトライごとに再解決結果で `private IP / loopback / link-local / metadata` 再拒否を行う。`content-length` 上限 1MB、`content-type allowlist`、timeout 3s（CARRY-G2-025）。 | 中（対策後） | Security Lead | L4 |
 | TB-23 | 計測API | Repudiation | bot/spam により tracking / A-B API が汚染され、結果が捏造される（variant_id 偽装含む） | 7/7/6/6/5 | 31 | トークン付与イベントのみ採用、variant_id/section_id の整合検証、bot filter、重複検知、署名付き集計 |
-| TB-24 | Core Plugin ↔ 公開面（snapshot/crawl-map） | Information Disclosure | 公開 snapshot/crawl-map から `section_id` / `cta_id` / `variant_id` が平文取得され、競合が公開ページ構造を継続クロールして A/B テストの variant 構成・CTA 配置を推定できる | 9/5/4/6/5 | 29 | `GET /public/pages/{id}/snapshot` と `GET /public/crawl-map` は `variant_id` を公開レスポンスから除外。`section_id`/`cta_id` は内部 ID と分離した公開用 opaque ID（`public_section_id`, `public_cta_id`）へ変換して返却する。LLMO(ADR-013/015)要件は `opaque` ID で公開可視性と AI 引用性を維持し、内部 ID は管理 API の認証済み経路のみ返却する。 | 低（対策後） | Security Lead | L4 |
+| TB-24 | Core Plugin ↔ 公開面（snapshot/crawl-map） | Information Disclosure | 公開 snapshot/crawl-map から `section_id` / `cta_id` / `variant_id` が平文取得され、競合が公開ページ構造を継続クロールして A/B テストの variant 構成・CTA 配置を推定できる | 9/5/4/6/5 | 29 | `GET /public/pages/{id}/snapshot` と `GET /public/crawl-map` は `variant_id` を公開レスポンスから除外し、`section_id`/`cta_id` は内部 ID と分離した公開用 opaque ID（`public_section_id`, `public_cta_id`）へ**常時変換**して返却する。`public_section_id` の逆引きは監査レイヤーのみ許可、認証済み管理 API でのみ内部 ID を参照可能とする。LLMO(ADR-013/015)要件で `opaque` ID は引用性を維持。該当設計は CARRY-G2-026。 | 低（対策後） | Security Lead | L4 |
 
 ### 6.1 DREAD Exploitability 根拠（現状実装ベース）
 - TB-01: E=4（既存セッション管理＋nonceで一般的な乗っ取りが必要）

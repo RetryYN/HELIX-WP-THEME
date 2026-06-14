@@ -143,7 +143,8 @@
 |------|------|
 | ID 名 | `section_id` |
 | 用途 | H2 セクション（H2 から次 H2 まで）の安定識別子。LLM 編集・エンゲージメント計測の基本単位 |
-| データ型 | slug `h2-{kebab-slug}-{uuid8}` (例: `h2-seo-basics-a1b2c3d4`) |
+| データ型（内部参照） | `h2-{slug_ascii}-{uuid8}`（`slug_ascii` は ASCII-only） |
+| 表示用 slug | `sanitize_title(見出し)` で得た slug。`section_id` の可読表示・ログ用途 |
 | 一意性スコープ | グローバル推奨（最低でも per-site 一意） |
 | 永続化場所 | WP post_meta `_agent_neo_sections` JSON + HTML `data-agent-section-id` 属性 + v2 `WP_PAGE_SECTIONS`（`section_id` カラム） |
 | 生成タイミング | 投稿保存時に H2 を自動検出して付与（auto-section_id）。初回付与後は見出し変更でも維持 |
@@ -160,7 +161,8 @@
 |------|------|
 | ID 名 | `cta_id` |
 | 用途 | CTA ブロック・要素の安定識別子。Element Swap・A/B テスト・CV 計測の基本キー |
-| データ型 | slug `{context}-cta-{seq}` (例: `hero-cta-01`、`sidebar-cta-02`) |
+| データ型（内部参照） | slug `{context_slug_ascii}-cta-{seq}`（`context_slug_ascii` は ASCII-only） |
+| 表示用 slug | `sanitize_title(表示文言)`。`cta_id` 作成時の補助表示に使用 |
 | 一意性スコープ | グローバル（サイト全体で一意） |
 | 永続化場所 | WP ブロック属性 `data-cta-id` + post_meta JSON + v2 TRACKING_EVENTS.data(jsonb) |
 | 生成タイミング | CTA ブロック作成時（人間可読 slug を管理画面で設定、未設定時は自動生成） |
@@ -495,11 +497,13 @@ erDiagram
 - **実装**: soft delete のみ許可。`status: stopped | winner_selected | archived` で状態管理
 
 ### R-09: slug 系 ID の文字規則
-- **ルール**: slug 型 ID（`cta_id`、`service_id`、`offer_id`、`banner_id`、`blueprint_id`、`slot_id`）は以下の形式に従う
+- **ルール**: slug 型 ID（`section_id`、`cta_id`、`service_id`、`offer_id`、`banner_id`、`blueprint_id`、`slot_id`）は以下の形式に従う
   - 使用文字: `[a-z0-9-]`（小文字英数字とハイフン）
+  - 検証式: `^[a-z0-9-]+$`
   - 先頭・末尾: ハイフン禁止
   - 最大長: 128 文字
   - 変更禁止: 一度設定した slug は変更禁止（URL / セレクタへの影響を避けるため）
+  - CARRY 対応: `sanitize_title()` の運用値は `section_id`/`cta_id` の機械参照へ直接使わず、内部参照は ASCII-only slug に正規化する（CARRY-G2-009/CARRY-G2-013）
 
 ---
 
@@ -528,25 +532,46 @@ $block_id = wp_generate_uuid4(); // WP コア関数
 
 ### 5.2 人間可読 slug 推奨 ID（人間設定・管理画面）
 
-以下の ID は人間可読の slug を採用する:
+以下の ID は人間可読 slug と内部参照 slug を分離して採用する:
 
-| ID | フォーマット | 例 | 理由 |
-|----|------------|-----|------|
-| `section_id` | `h2-{slug}-{uuid8}` | `h2-seo-basics-a1b2c3d4` | SEO anchor・デバッグの可読性、末尾 uuid8 で衝突回避 |
-| `cta_id` | `{context}-cta-{seq}` | `hero-cta-01` | 管理画面・ログでの視認性、AI が「hero-cta-01 の CTR が低い」と報告できる |
-| `banner_id` | `{context}-banner-{seq}` | `sidebar-banner-01` | cta_id と同じ理由 |
-| `blueprint_id` | `{type}-{name}-v{n}` | `lp-saas-v1` | バージョン管理の明示性 |
-| `slot_id` | `{blueprint_id}-{slot-name}` | `lp-saas-v1-hero` | blueprint との親子関係が名前から明確 |
-| `offer_id` | `{service}-offer-{name}` | `saas-offer-free-trial` | LP 管理画面での視認性 |
-| `service_id` | `service-{name}` | `service-crm` | 法人管理者が設定するため可読性優先 |
+| ID | 用途 | 内部参照 slug | 表示用 slug（人間向け） | 例 |
+|----|------|--------------|----------------|-----|
+| `section_id` | セクション識別 | `h2-{slug_ascii}-{uuid8}` | `sanitize_title(heading_text)` | `h2-seo-basics-a1b2c3d4` / `seo-basics` |
+| `cta_id` | CTA ブロック識別 | `{context_slug_ascii}-cta-{seq}` | `sanitize_title(context)` | `hero-cta-01` / `hero` |
+| `banner_id` | バナー識別 | `{context_slug_ascii}-banner-{seq}` | `sanitize_title(context)` | `sidebar-banner-01` / `sidebar-banner` |
+| `blueprint_id` | Blueprint 識別 | `{type_slug_ascii}-{name_slug_ascii}-v{n}` | `sanitize_title(type)` + `sanitize_title(name)` | `lp-saas-v1` |
+| `slot_id` | Blueprint slot 識別 | `{blueprint_slug_ascii}-{slot_name_slug_ascii}` | `sanitize_title(slot_name)` | `lp-saas-v1-hero` |
+| `offer_id` | オファー識別 | `{service_slug_ascii}-offer-{name_slug_ascii}` | `sanitize_title(name)` | `saas-offer-free-trial` |
+| `service_id` | 法人サービス識別 | `service-{service_slug_ascii}` | `sanitize_title(service_name)` | `service-crm` |
 
 **slug 自動生成ルール**（未設定時のフォールバック）:
 ```php
-// section_id の例
-$heading_slug = sanitize_title( $heading_text ); // "SEO 基礎" → "seo-基礎"
+// section_id の例（内部参照と表示 slug）
+$heading_slug_display = sanitize_title( $heading_text ); // "SEO 基礎" → "seo-基礎"
+$heading_slug_ascii = sanitize_title( remove_accents( $heading_text ) );
+$heading_slug_ascii = preg_replace('/[^a-z0-9-]/', '-', strtolower($heading_slug_ascii));
+if (strlen($heading_slug_ascii) > 64 || !preg_match('/^[a-z0-9-]+$/', $heading_slug_ascii)) {
+  $heading_slug_ascii = 's-' . substr( hash('sha256', $heading_text), 0, 10 );
+}
 $uuid8 = substr( wp_generate_uuid4(), 0, 8 );
-$section_id = "h2-{$heading_slug}-{$uuid8}";
+$section_id = "h2-{$heading_slug_ascii}-{$uuid8}";
+$public_section_slug = $heading_slug_display;
 ```
+
+```php
+// cta_id の例
+$cta_context_slug_display = sanitize_title( $cta_context );
+$cta_context_slug_ascii = sanitize_title( remove_accents( $cta_context ) );
+$cta_context_slug_ascii = preg_replace('/[^a-z0-9-]/', '-', strtolower($cta_context_slug_ascii));
+if (strlen($cta_context_slug_ascii) > 64 || !preg_match('/^[a-z0-9-]+$/', $cta_context_slug_ascii)) {
+  $cta_context_slug_ascii = 'c-' . substr( hash('sha256', $cta_context), 0, 8 );
+}
+$cta_id = "{$cta_context_slug_ascii}-cta-{$seq}";
+$public_cta_slug = $cta_context_slug_display;
+```
+
+- `section_id` と `cta_id` は内部参照では必ず ASCII-only slug を使うため `data-*` 属性、CSS セレクタ、API route/クエリ引数に非ASCIIを混在させない。
+- いずれも `^[a-z0-9-]+$` 以外は受け付けない。受け付けない値は新規生成値/正規化値に変換する（CARRY-G2-009 / CARRY-G2-013）。
 
 ### 5.3 WP 標準委譲 ID
 

@@ -2,11 +2,7 @@
 
 > 根拠: L1-requirements.md（43 REQ-F）/ L0-planning.md / L2-design.md §5 API概要設計 / docs/features/agent-api/D-REQ-F/requirements.md
 > 作成日: 2026-04-30
-> ステータス: L1 Draft 段階の抽出。L3 API 契約（openapi.yaml）確定後に照合必須。
->
-> **TL レビュー指摘（2026-04-30、要 L3 確定）:**
-> - `/jobs/{job_id}/cancel` (POST) と `/jobs/{job_id}` (DELETE) の意味重複 → L3 で DELETE 廃止、Cancel は明示的 POST に統一推奨
-> - `/seo/meta` と `/seo/{post_id}/apply` の関係整理は L3 ADR で確定
+> ステータス: **L3 API 契約凍結（G3）/ §17 完全一致**（2026-06-14）
 
 すべてのルートは `/wp-json/agent-neo/v1/` プレフィックスに統一。`wp/v2` との混在禁止（REQ-NF-014 / AF-001）。
 
@@ -47,7 +43,7 @@
 |--------|------|------|-------|------|
 | GET | /pages | ページ一覧 | REQ-F-002, REQ-F-012 | AF-008 |
 | GET | /pages/{id} | ページ構造 + blueprint | REQ-F-002, REQ-F-012 | AF-008。blueprint schema 準拠必須 |
-| POST | /pages/{id}/apply | ページ更新（dryRun/apply）| REQ-F-002, REQ-F-012 | AF-008。diff_hash 必須 |
+| POST | /pages/{id}/apply | ページ更新（dryRun/apply / preview反映）| REQ-F-002, REQ-F-012 | AF-008。diff_hash + idempotency_key 必須。`from_preview_token` 指定時は preview → production 反映として扱う（CARRY-G2-016） |
 | POST | /pages/blueprint | LP / HP blueprint 生成・更新 | REQ-F-012 | A-013。LP/HP の内容・コピー・CV 設計の AI 生成は Automation SEO 側。本 endpoint は blueprint/標準セクション定義に基づく静的構造の生成・更新のみ。section_id / cta_id / offer_id / service_id 必須 |
 | POST | /lp/sections | LP セクション生成・更新 | REQ-F-005 | A-006。LP/HP の内容・コピー・CV 設計は Automation SEO 側で行う。本 endpoint は blueprint/標準セクション定義に基づく静的構造の生成・更新のみ。12 標準セクション（Hero → CTA）対応 |
 
@@ -58,7 +54,6 @@
 | Method | Path | 用途 | REQ-F | 備考 |
 |--------|------|------|-------|------|
 | POST | /pages/{id}/preview | preview content 作成（Tier 1） | REQ-F-038 | `_agent_neo_preview_content` meta + token URL 発行。HP / LP / 固定ページが主対象 |
-| PATCH | /pages/{id}/apply | preview → production 反映 | REQ-F-038 | dryRun/apply 分離。blueprint-level version 履歴 N 版 |
 | POST | /pages/{id}/rollback | 旧 version への復元 | REQ-F-038 | rollback_id 指定で完全復元 |
 | POST | /rollback/{rollback_id} | apply 前状態への汎用ロールバック | REQ-F-038, REQ-F-008 | agent-api ANF-013。apply 後 30 日保持 |
 
@@ -93,7 +88,7 @@
 |--------|------|------|-------|------|
 | GET | /seo/{post_id} | SEO メタ取得（canonical / noindex / OGP / JSON-LD）| REQ-F-011 | AF-011 |
 | POST | /seo/{post_id}/apply | SEO メタ更新 | REQ-F-011 | AF-011。SEO risk diff 必須。重複 canonical / noindex 変更を警告 |
-| POST | /seo/meta | SEO メタ・Entity Graph 更新（旧 API）| REQ-F-011 | A-012。AF-011 に統合予定（L3 で整理） |
+| POST | /seo/meta | SEO メタ・Entity Graph 更新（Deprecated）| REQ-F-011, AF-011 | **非推奨**。`/seo/{post_id}/apply` を canonical とし、移行期間中の互換維持目的のみ |
 
 ---
 
@@ -146,8 +141,7 @@
 |--------|------|------|-------|------|
 | POST | /jobs | 非同期ジョブ作成 | REQ-NF-014 | A-014 / AF-013。idempotency_key 必須 |
 | GET | /jobs/{job_id} | ジョブ状態 / 結果取得 | REQ-NF-014 | A-015 / AF-013 |
-| POST | /jobs/{job_id}/cancel | ジョブ取消 | REQ-NF-014 | A-016 |
-| DELETE | /jobs/{job_id} | ジョブ削除（キャンセル）| REQ-NF-014 | AF-013。A-016 と同義または統合対象（L3 で整理） |
+| POST | /jobs/{job_id}/cancel | ジョブ取消 | REQ-NF-014 | A-016。`DELETE /jobs/{job_id}` は重複経路として廃止し、POST 一本化（api-catalog 冒頭 TL 指摘（2026-04-30 / L3 確定）） |
 
 ---
 
@@ -175,36 +169,65 @@
 |--------|------|------|-------|------|
 | GET | /automation-seo/fit | theme capability / section / CTA / SEO mapping 診断 | REQ-NF-019 | A-023。GET は診断のみ |
 | POST | /automation-seo/fit | safe apply readiness 同期 | REQ-NF-019 | A-023。POST は同期 / apply |
-| GET | /automation-seo/bridge-profile | Theme Bridge Plugin 互換プロファイル | REQ-NF-020 | A-024。既存テーマ横断情報を source/confidence 付きで返す |
+| GET | /automation-seo/bridge-profile | Theme Bridge Plugin 互換プロファイル | REQ-NF-020 | A-024。既存テーマ横断情報を source/confidence 付きで返す。`safe_apply_state` は `preview-only` / `write-ready` の2値。既存テーマは `preview-only` 固定、AGENT NEO は `write-ready`（ADR-019 / preview-only 限定）。既存テーマ（非 AGENT NEO）は `safe_apply_state=preview-only` 固定。`write-ready` は AGENT NEO Core Plugin 経由のみで、深い自動書換は禁止。 |
 
 ### External outbound contracts（AGENT NEO → automation SEO）
 
-AGENT NEO Core Plugin（Plugin B）が発火する、外部向け catalog-update 契約。
+AGENT NEO Core Plugin（Plugin B）が発火する、外部向け catalog-update 契約。  
+catalog-update 発火責務は agent-neo-core-plugin（Plugin B）が所有し、ADR-008 配布境界 / §2.4 の範囲制約に準拠する。  
+**正本 = automation SEO `D-PLUGIN-CONTRACT §17`。** 本書は ADR-018 に基づくミラーで、`§17` と差分が出た場合は `§17` が優先。  
 
-| Method | Path | 用途 | REQ-F | 備考 |
-|--------|------|------|-------|------|
-| POST | /aseo/v1/agent-neo/catalog-update | block/template/theme_token の構造変更通知を発火（event contract） | REQ-F-044 | event_kind / idempotency / deduplicated 応答を実装 |
+#### catalog-update Request schema（§17.2）
 
 | 契約項目 | 仕様 |
 |---|---|
+| エンドポイント | `POST /aseo/v1/agent-neo/catalog-update` |
+| `site_hash` | テナント識別子 |
+| `agent_neo_version` | Plugin B のバージョン |
 | `event_kind` | `block_registered` / `block_unregistered` / `template_updated` / `theme_token_updated` |
-| `idempotency` | `event_id` + `idempotency_key` |
-| `deduplicated` 応答 | 初回 `deduplicated=false`。同一 `event_id` 再送は `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` を返却 |
-| 再定義ルール | AGENT NEO 側は automation SEO `D-PLUGIN-CONTRACT §17` の endpoint / enum / dedup を再定義せず互換実装のみ |
+| `event_id` | idempotency key。24時間 TTL のイベント重複抑止キー（CARRY-G2-005 / §17.4） |
+| `occurred_at` | ISO8601 |
+| `payload` | `block_name` / `template_part_slug` / `diff` を含む |
+| 備考 | `event_id` は別個の `idempotency_key` なし。`event_id` が冪等キー（CARRY-G2-005 / §17.2） |
 
-#### catalog-update 契約テスト（正常系4件）
+#### catalog-update Response schema（§17.2）
+
+| 契約項目 | 仕様 |
+|---|---|
+| `received` | `true` / `false` |
+| `event_id` | 受信イベントの `event_id` echo |
+| `deduplicated` | `true` / `false` |
+| `next_action` | `scan-catalog` / `none`（**all responses, dedup 含む**） |
+| 備考 | `event_kind` / `received_at` / `idempotency_key` 等の付加フィールドは付与しない（CARRY-G2-004） |
+
+#### catalog-update 署名・エラー / リトライ（§17.11 / §17.12）
+
+| 項目 | 仕様 |
+|---|---|
+| リトライ対象 | 5xx および 429、network timeout |
+| 初回再試行待機 | 1 秒（指数 2^n、±10% jitter） |
+| 最大再試行回数 | 5 回 |
+| 4xx 挙動 | リトライしない。ただし 429 は retry 対象 |
+| 400 | `VALIDATION_ERROR`（`event_kind` 欠落含む） |
+| 401 | `PLUGIN_AUTH_FAILED` |
+| 409 | `AGENT_NEO_NOT_INSTALLED`（`metadata_json.theme_slug != 'agent-neo'`） |
+| 429 | `RATE_LIMITED` |
+| 備考 | 5xx は §17.11 の再試行方針、4xx は即失敗。5 回失敗時は DLQ 送出し、producer status は `409 RETRY_EXHAUSTED` とする。 |
+
+#### catalog-update 契約テスト
 
 | TestID | 条件 | 期待値 |
 |---|---|---|
-| CAT-001 | event_kind=`block_registered` で payload 送信 | 200 OK、`deduplicated=false` |
-| CAT-002 | event_kind=`block_unregistered` で payload 送信 | 200 OK、`deduplicated=false` |
-| CAT-003 | event_kind=`template_updated` で payload 送信 | 200 OK、`deduplicated=false` |
-| CAT-004 | event_kind=`theme_token_updated` で payload 送信 | 200 OK、`deduplicated=false` |
+| CAT-001 | `event_kind=block_registered` で payload 送信 | 200 OK、`received=true` / `deduplicated=false` / `next_action=none` |
+| CAT-002 | `event_kind=block_unregistered` で payload 送信 | 200 OK、`received=true` / `deduplicated=false` / `next_action=none` |
+| CAT-003 | `event_kind=template_updated` で payload 送信 | 200 OK、`received=true` / `deduplicated=false` / `next_action=none` |
+| CAT-004 | `event_kind=theme_token_updated` で payload 送信 | 200 OK、`received=true` / `deduplicated=false` / `next_action=none` |
+| CAT-005 | 同一 `event_id` 再送 | 200 OK、`received=true` / `deduplicated=true` / `event_id` 保持 / `next_action=none` |
+| CAT-006 | `event_kind` 欠落 | 400 |
 
 補足:
-- 同一 `event_id` 再送: 2回目は `deduplicated=true` で `event_kind` / `event_id` / `received_at` / `idempotency_key` を返す
-- `event_kind` 欠落時: 422
-
+- `next_action` は dedup 含め全応答で必須（`scan-catalog` または `none`）
+- `scan-catalog` 時のみ Plugin B は catalog 再取得を再実行する（CARRY-G2-023）
 ---
 
 ### リスク管理
@@ -231,7 +254,7 @@ AGENT NEO Core Plugin（Plugin B）が発火する、外部向け catalog-update
 | Health / Setup | 4 |
 | コンテンツ操作 | 9 |
 | ページ / Blueprint | 5 |
-| サンドボックス Tier 1 | 4 |
+| サンドボックス Tier 1 | 3 |
 | 要素差し替え | 4 |
 | JSON 操作共通 | 5 |
 | SEO | 3 |
@@ -240,14 +263,14 @@ AGENT NEO Core Plugin（Plugin B）が発火する、外部向け catalog-update
 | 計測 | 2 |
 | ライセンス / パッケージ | 2 |
 | 設定 I/O | 2 |
-| ジョブ管理 | 4 |
+| ジョブ管理 | 3 |
 | ログ | 1 |
 | 公開 API | 3 |
 | Automation SEO 連携 | 3 |
 | リスク管理 | 2 |
 | Affiliate / 収益化 | 1 |
 | External outbound（AGENT NEO→Automation SEO） | 1 |
-| **合計** | **57** |
+| **合計** | **55** |
 
 ---
 
@@ -256,7 +279,9 @@ AGENT NEO Core Plugin（Plugin B）が発火する、外部向け catalog-update
 ### 同パス・複数 method の分離確認
 
 - `/automation-seo/fit`: GET（診断）/ POST（同期）を意図的に分割。A-023 で `GET/POST` と表記されており、L3 で endpoint を分けるか合わせるかを決定する必要あり。
-- `/jobs/{job_id}/cancel`（POST）と `/jobs/{job_id}`（DELETE）は機能が重複する可能性あり。L3 で統一が必要（現在 A-016 と AF-013 で不整合）。
+- `/pages/{id}/apply` は POST のみに統一し、PATCH /pages/{id}/apply は preview 昇格経路の重複として整理（CARRY-G2-016）。
+- `/jobs/{job_id}/cancel`（POST）/`/jobs/{job_id}`（DELETE）は POST 一本化済み。`DELETE` は本資料で廃止（api-catalog 冒頭 TL 指摘（2026-04-30 / L3 確定））。
+- `/seo/{post_id}/apply` を canonical とし、`/seo/meta` は deprecated（api-catalog 冒頭 TL 指摘（2026-04-30 / L3 確定））。
 
 ### RESTful 慣習違反の可能性
 

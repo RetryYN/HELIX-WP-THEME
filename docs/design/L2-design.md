@@ -64,7 +64,7 @@ graph TD
 | ADR | 決定 | 理由 |
 |---|---|---|
 | ADR-001 | FSEテーマとして実装 | block/theme JSONとAI操作の相性が高い |
-| ADR-002 | 4操作面を同一JSON契約に集約 | REST/MCP/WP CLI/UIの実装重複を防ぐ |
+| ADR-002 | 4操作面を同一JSON契約に集約 | REST/MCP/WP CLI/UIの実装重複を防ぐ。`catalog-update` の外部push契約は ADR-012 + §2.4 の範囲で扱う |
 | ADR-003 | Automation SEOは別課金 | AI原価をテーマ買い切り価格に抱え込まない |
 | ADR-004 | 参照テーマは設計抽象のみ取り込む | ライセンス/著作権リスクを避ける |
 | ADR-005 | SEOはJIN:R型の統合UXを採用 | AIがSEOメタ/OGP/canonical/noindex/schemaを一括操作できるようにする |
@@ -172,7 +172,7 @@ AGENT NEOの必須依存は `agent-neo-theme` と `agent-neo-core-plugin` に限
 | REQ-F-023 | 要素差し替えAPI | F-002 / `POST /elements/swap` / F-007 / S-005 | 設計済み |
 | REQ-F-024 | AI自律A/B テスト機構 | F-006 / A-007 / S-005 / §8.6 | 設計済み |
 | REQ-F-025 | JSON統一データモデル | F-002 / F-009 / §5 / A-012 | 設計済み |
-| REQ-F-026 | v2連携最適化API | F-002 / A-014 / `GET /posts` / `PATCH /batch` / `GET /posts/{id}/diff` | 設計済み |
+| REQ-F-026 | v2連携最適化API | F-002 / A-014 / `GET /posts` / `PATCH /batch` / `GET /posts/{id}/diff`（inbound pull）※`catalog-update`/`REQ-F-044` の outbound push 責務は別責務 | 設計済み（CARRY-G2-022） |
 | REQ-F-027 | v2 DBスキーマ直接マッピング | ADR-002 / §4 / A-008 / api-catalog | carry（L3: DB同一射対応） |
 | REQ-F-028 | 拡張性保証（schema versioning） | ADR-012 / ADR-002 / F-018 / §5 | 設計済み |
 | REQ-F-029 | ページタイプ別アセット分離 | §8.1 / ADR-006 / `asset-policy.schema.json` | 設計済み |
@@ -184,13 +184,13 @@ AGENT NEOの必須依存は `agent-neo-theme` と `agent-neo-core-plugin` に限
 | REQ-F-035 | AIフリーフォームHTML/CSS | F-016 / 8.4 / S-010 | carry（L3: フリーフォーム権限/履歴） |
 | REQ-F-036 | AIHTML/CSS検証パイプライン | 7.2 / 7.3 / F-015 / F-035 | carry（L3: sanitize/axeの閾値） |
 | REQ-F-037 | SlotベースBlueprint制約 | F-016 / §4 / §8.3 / `section-pattern.schema.json` | carry（L3: slot詳細設計） |
-| REQ-F-038 | サンドボックスTier1 | F-011 / §8.8 / `POST /pages/{id}/preview` / `PATCH /pages/{id}/apply` | 設計済み |
+| REQ-F-038 | サンドボックスTier1 | F-011 / §8.8 / `POST /pages/{id}/preview` / `POST /pages/{id}/apply` | 設計済み |
 | REQ-F-039 | サンドボックスTier2 | §8.12 / F-023 / `PATCH /batch` / §10 | carry（L3: multi-version運用） |
 | REQ-F-040 | Write Authority Lock | 7.2 / §8.6 / ADR-018 / S-004 | carry（L3: ロック切替フロー） |
 | REQ-F-041 | 記事編集経路 | F-002 / 7.1 / 3.2 / 6.1 | 設計済み |
 | REQ-F-042 | 外部エディタアクセス制御 | 7.1 / 7.2 / ADR-019 / §8.7 | 設計済み |
 | REQ-F-043 | Open Editor Bridge Plugin | 8.13 / §7.3 / ADR-019 / S-015 | carry（L3: サブスク課金運用） |
-| REQ-F-044 | catalog-update発火 | ADR-002 / ADR-012 / ADR-018 / §8.7 / api-catalog external outbound contracts | 設計済み |
+| REQ-F-044 | catalog-update発火 | ADR-002 / ADR-012 / ADR-008 / ADR-018 / `POST /aseo/v1/agent-neo/catalog-update` / §8.7 / api-catalog external outbound contracts（失敗時は §8.7 outbox/DLQ 経路で回復） | 設計済み |
 | REQ-NF-001 | 性能（総則） | §8.1 / `performance-profile.json` / `web-vitals-budget.json` | 設計済み |
 | REQ-NF-002 | セキュリティ | 7.1 / 7.2 / S-001 / A-014 | 設計済み |
 | REQ-NF-003 | ライセンス | 7.1 / ADR-004 / F-013 / §8.9 | 設計済み |
@@ -320,7 +320,7 @@ erDiagram
 | S-008 | SEO Core | title/description/robots/canonical/OGP/schema管理 | F-011 | Core |
 | S-009 | LP/HP Builder | LP/HP blueprint、section、CTA、Proof、Gateway管理 | F-012 | 法人版優先 |
 | S-010 | AI Operability | DOM anchor、snapshot、crawler policy、AI crawler log、SEO risk diff | F-019 | Core |
-| S-011 | Quality Governance | Theme Review、a11y、i18n、release、SBOM、host互換、privacy、SEO indexing、docsのゲート結果を表示 | F-020 | Core |
+| S-011 | Quality Governance | Theme Review Gate、Accessibility Gate、i18n/RTL Gate、Release/SBOM Gate、Hosting Compatibility Gate、Privacy Retention Gate、SEO Indexing Gate、Documentation Support Gateの結果を表示 | F-020 | Core |
 | S-012 | LLMO Visibility | answer unit、evidence、AI visibility policy、citation、AI経由CVを表示 | F-021 | Core |
 | S-013 | Risk Ledger | SEO/WP運用/AI運用のハザード、検出結果、対策状況を表示 | F-022 | Core |
 | S-014 | Automation SEO Fit | theme scan、section ID confidence、SEO meta normalization、CTA/Offer mapping、safe apply readinessを表示 | F-023 | Core |
@@ -371,6 +371,7 @@ AGENT NEO Admin
 - WP CLI: 管理者権限/サーバー権限前提、dangerous operationはconfirm/dryRun必須
 - React UI: WordPress管理者権限に従う
 - 計測イベント: 公開受付が必要なものは署名/nonce相当/rate limitで保護
+- HMAC キー・鍵ローテーションの運用規約: 旧鍵は `catalog-update` 受信のみに限定し、`F-01` 以外の operation では旧鍵を受け付けない
 
 ### 7.3 AI/法令/配布ガード
 
@@ -395,6 +396,7 @@ AGENT NEO Admin
 - `performance-profile.json`、`asset-policy.schema.json`、`media-policy.schema.json`、`web-vitals-budget.json` をL3で契約化する
 - LCP画像は eager/preload/fetchpriority を制御し、初期表示外画像とiframeはlazy化する
 - GA4/GTM/広告/CRM/外部フォームは第三者タグポリシーで遅延、同意、ページ条件付きにする
+- 第三者タグは同意後に `async/defer` で非同期読込するため、`render blocking third-party: 0` と矛盾しない
 - フロントjQueryは初期状態で無効。互換機能が必要な場合のみfeature flagで条件付き読み込みする
 
 | 速度予算 | 目標 |
@@ -425,9 +427,10 @@ AGENT NEOは、LPを「1オファーのCV獲得ページ」、HPを「ブラン�
 
 | Blueprint | 主目的 | 標準セクション |
 |---|---|---|
-| `lp-blueprint` | 問い合わせ、資料DL、購入、ASPクリック | Hero、Problem、Solution、Feature、Benefit、Proof、Comparison、Pricing、FAQ、Final CTA |
+| `lp-blueprint` | 問い合わせ、資料DL、購入、ASPクリック | Hero、Problem、Agitation、Solution、Feature、Benefit、Use Case、Proof、Comparison、Pricing、FAQ、Final CTA |
 | `home-blueprint` | ブランド理解、カテゴリ回遊、主要導線 | Brand Hero、Gateway Grid、Product Overview、Case Studies、Resources、Trust、Final CTA |
 | `affiliate-landing-blueprint` | 比較/レビューからASPクリック | Lead Hero、Best Pick、Ranking、Comparison Table、Review Detail、FAQ、Affiliate CTA |
+| 補足 | `lp-blueprint`は12セクションを採用（`Hero, Problem, Agitation, Solution, Feature, Benefit, Use Case, Proof, Comparison, Pricing, FAQ, Final CTA`）。`Consequence` は除去し `Agitation` に集約、`home-blueprint` / `affiliate-landing-blueprint`は7セクション定義で、api-catalog の `lp-blueprint=12` と分離管理で整合する（INT-001 / CARRY-G2-012） |
 
 | コンポーネント | 責務 |
 |---|---|
@@ -447,7 +450,7 @@ AGENT NEOのデザインは、参照テーマの見た目ではなく「失敗�
 | `design-preset.schema.json` | 用途別の色、フォント、角丸、余白、CTA強度を定義 |
 | `visual-composition.schema.json` | Z型/F型、12カラム、視線リセット、モバイル優先配置を定義 |
 | `section-pattern.schema.json` | Hero、Gateway、Proof、Comparison、Pricing、FAQ、CTAの必須構造を定義 |
-| `conversion-intent.schema.json` | セクションごとの目的、CTA数、期待行動を定義 |
+| `conversion-intent.schema.json` | セクションごとの目的・CTA数・期待行動を**宣言する静的構造定義**（`hero.vague` / `proof.too_late` / `cta.overload` などのCV判定ロジックは持たない。評価結果は `ui-risk.schema.json` 受信形式で受ける） |
 | `trust-layer.schema.json` | 実績、レビュー、運営者、根拠、PR表記、検証日を定義 |
 | `ui-risk.schema.json` | `hero.vague`、`cta.overload`、`proof.too_late`、`affiliate.disclosure_weak` などの **Automation SEO 側で算出した UI risk 監査結果**を受け取り、表示・修正UIへ反映するための受信ペイロード |
 
@@ -517,7 +520,7 @@ AGENT NEOのAPIと自動化は、参照テーマで観測したREST/AJAX/Cronを
 | `mcp-tools.schema.json` | MCP toolのinput/output、権限、危険操作分類の正本 |
 | `wp-cli-contract.json` | `wp agent-neo` のcommand、引数、exit code、JSON出力の正本 |
 | `automation-schedule.schema.json` | schedule、runner、retry/backoff、dead letterの正本 |
-| `catalog-update.schema.json` | `POST /aseo/v1/agent-neo/catalog-update` の payload / event_kind / idempotency / deduplicated 応答を定義（`D-PLUGIN-CONTRACT §17` をミラー） |
+| `catalog-update.schema.json` | `POST /aseo/v1/agent-neo/catalog-update` の payload / event_kind / idempotency / deduplicated 応答は `D-PLUGIN-CONTRACT §17` を互換ミラー（再定義不可） |
 
 ### External outbound contracts（AGENT NEO → automation SEO）
 
@@ -527,9 +530,10 @@ AGENT NEO Core Plugin（Plugin B）が producer、Automation SEO が receiver �
 |---|---|
 | endpoint | `POST /aseo/v1/agent-neo/catalog-update` |
 | event_kind | `block_registered` / `block_unregistered` / `template_updated` / `theme_token_updated` |
-| idempotency | `event_id` + `idempotency_key` |
-| response | 初回送信 `deduplicated=false`、同一 `event_id` 再送時 `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` を返却 |
-| validation | `event_kind` 欠落は 422 |
+| idempotency | `event_id`（UUIDv4、リクエスト別一意、24h TTL、Redis保持）※`idempotency_key` 個別フィールドは持たない |
+| response | `deduplicated=false`、`deduplicated=true`、`event_id`、`received`、`next_action` の 4 フィールドのみを返却（初回/再送とも同一） |
+| validation | `event_kind` 欠落は `400 VALIDATION_ERROR` |
+| error | `400 VALIDATION_ERROR`（`event_kind` 欠落を含む） / `401 PLUGIN_AUTH_FAILED` / `409 AGENT_NEO_NOT_INSTALLED` / `429 RATE_LIMITED` |
 
 | Runner | 用途 | 方針 |
 |---|---|---|
@@ -551,7 +555,7 @@ AGENT NEO Core Plugin（Plugin B）が producer、Automation SEO が receiver �
 | Job状態 | 遷移 |
 |---|---|
 | 基本 | `queued -> running -> succeeded` |
-| 再試行 | `running -> failed -> retrying -> running` |
+| 再試行 | `running -> failed -> retrying -> running`（対象外: 4xx（429 除外） / 401 / 409 は即 `dead_letter`） |
 | 失敗固定 | `failed -> dead_letter` |
 | 取消 | `queued/running -> cancelled` |
 
@@ -559,12 +563,12 @@ AGENT NEO Core Plugin（Plugin B）が producer、Automation SEO が receiver �
 
 `catalog-update` は以下を前提に送信する。
 
-- `max_attempts: 5`（初回含む）  
-- `initial_backoff_seconds: 30`、`backoff_multiplier: 2.0`（指数バックオフ）  
-- ネットワーク障害 / Automation SEO 側 `maintenance` / 5xx / 429 は outbox 保持し再試行  
-- `422` は受信側否認としてまず受領エラーを保存し、AGENT NEO 側で運用停止状態の確認後に再評価して再試行  
-- `failed` が上限に到達した場合は `dead_letter`（event_id, idempotency_key, reason を保持）  
-- 再送時も同一 `event_id` / `idempotency_key` を維持し、Automation SEO 側の重複排除を前提にする。
+- `max_attempts: 5`（初回を含む）  
+- `initial_backoff_seconds: 1`、`backoff_multiplier: 2.0`、`jitter: ±10%`（指数バックオフ）  
+- ネットワーク障害（`network timeout`） / Automation SEO 側 `maintenance` / 5xx / 429 は outbox 保持し再試行  
+- 4xx（429 除外）・401・409 は再試行しない（`failed` 経由で `dead_letter`）  
+- `failed` が上限に到達した場合は `dead_letter`（`event_id`, `reason` を保持）し、producer へ `status: 409 RETRY_EXHAUSTED` を通知（§17.11 / CARRY-G2-006）  
+- 再送時も同一 `event_id` を維持し、Automation SEO 側の重複排除を前提にする。
 
 ### 8.8 AI運用性・クローラビリティ設計
 
@@ -577,6 +581,7 @@ AGENT NEOは、AIエージェントが「見る」「触る」「変更する」
 | `content-snapshot.schema.json` | JS操作なしに読める公開ページ構造、section、CTA、schema、robots状態 |
 | `crawlability-profile.json` | indexability、robots、canonical、sitemap、AI crawler方針を管理 |
 | `crawler-access-matrix.json` | crawler別にsearch、ai-input、ai-trainの許可を定義 |
+| 補足 | `crawler-access-matrix.json` と `ai-visibility-policy.json` の判定キーを `search` / `ai-input` / `ai-train` / `snippet` / `WAF` で一本化し、ADR-013 と整合 |
 | `ai-crawler-log.schema.json` | AI crawler access、robots violation、rate limit、WAF actionを記録 |
 | `rendered-content-digest.json` | HTML、JSON-LD、snapshotの差分hashを記録 |
 | `settings-intent.schema.json` | 設定値の理由、owner、期限、変更元を保持 |
@@ -625,7 +630,7 @@ AGENT NEOは、機能実装後に品質を見るのではなく、商用テー�
 | `i18n-profile.json` | textdomain、翻訳関数、翻訳抽出、RTL、日本語/英語、日時/通貨、長文翻訳崩れを管理 |
 | `release-policy.schema.json` | version、changelog、update channel、rollback、deprecation、support lifetimeを管理 |
 | `build-provenance.json` | zip成果物、build環境、commit/hash、checksum、source map、minified元ソースを管理 |
-| `sbom.cdx.json` | 依存ライブラリ、ライセンス、供給元、脆弱性確認結果を管理 |
+| `sbom.cdx.json` | 依存ライブラリ、ライセンス、供給元、脆弱性確認結果を管理。release build 時に生成し、Release/SBOM Gate で検証し、Theme Review 提出前に確定 |
 | `browser-support-matrix.json` | 対応ブラウザ、mobile/desktop、print、reduced motion、touchの範囲を管理 |
 | `hosting-compatibility-matrix.json` | 共有サーバー、REST、loopback、WP-Cron、WAF、file permission、object cache有無を管理 |
 | `privacy-retention-policy.json` | tracking、cookie、localStorage、外部API、ログの保持期間、export/erase、匿名化を管理 |
@@ -661,11 +666,11 @@ AGENT NEOは、AI検索で読まれ、引用され、CVへ接続される状態�
 | `answer-unit.schema.json` | 質問、短い回答、詳細、claim、evidence、著者、監修者、更新日、CTAをsection単位で管理 |
 | `evidence-graph.schema.json` | claim、source URL、reviewer、検証日、Entity Graph、content hashを接続 |
 | `content-origin.schema.json` | AI生成、人間編集、監修、実測、取材、PR/広告の作成過程を記録 |
-| `ai-visibility-policy.json` | page別のsearch、ai-input、ai-train、snippet、WAF方針を管理 |
+| `ai-visibility-policy.json` | page別のsearch、ai-input、ai-train、snippet、WAF方針を管理。判定キーは `ai-crawler-policy` と同一で `search` / `ai-input` / `ai-train` / `snippet` / `WAF` |
 | `ai-crawler-policy.schema.json` | OpenAI、Google、Anthropic、Perplexity、Bing、Cloudflareのbot別許可を管理 |
 | `citation-anchor.schema.json` | answer anchor、section_id、claim_id、canonical、content_hashを管理 |
 | `llmo-visibility.schema.json` | AI crawler、AI referral、citation、query intent、CTA、CVを計測 |
-| `claim-risk.schema.json` | 保証表現、PR不足、YMYL、古い価格、根拠不足、誤引用リスクの評価結果を受領して表示するための受信ペイロード |
+| `claim-risk.schema.json` | automation SEO 側が算出した claim risk 評価結果を受領して表示するための受信ペイロード（AGENT NEO 側で判定しない） |
 | `ai-answer-sitemap.xml` | AIに読ませたいanswer unit、FAQ、比較、Product、LocalBusinessを列挙 |
 
 
@@ -771,7 +776,7 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 |---|---|
 | `theme-capability.schema.json` | 現在テーマ、SEOメタ取得元、LP/CTA/section/速度/REST対応を診断 |
 | `section-id-resolver.schema.json` | `data-agent-section-id`、block anchor、heading hash、selectorの優先順位とconfidenceを定義 |
-| `tracking-context-v2.schema.json` | `contract_version`、`page_type`、`section_type`、`cta_ids`、`offer_ids`、`selector_confidence`、`schema_hash`をAutomation SEOへ渡す |
+| `tracking-context-v2.schema.json` | `contract_version`、`page_type`、`section_type`、`cta_ids`、`offer_ids`、`selector_confidence`、`selector_contract`、`schema_hash`、`tracking_source`をAutomation SEOへ渡す |
 | `seo-meta-normalizer.schema.json` | SWELL系SEOプラグイン、JIN:Rメタ、AGENT NEO SEO Coreを共通SEOメタへ変換 |
 | `cta-offer-mapper.schema.json` | CTA、ASPリンク、資料DL、外部フォームを `cta_id` / `offer_id` に正規化 |
 | `safe-recommendation-apply.schema.json` | Automation SEO提案をdryRun、diff hash、risk、apply、rollbackに変換 |
@@ -780,6 +785,9 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 |---|---|---|
 | テーマ判定 | Theme Capability ScannerでSWELL/JIN:R/AGENT NEOを判定 | capability endpointとmanifestを返す |
 | セクションID | selector confidenceを計算し、低信頼selectorは提案止まり | `data-agent-section-id` とsection registryを出力 |
+| AI判断 | `catalog-apply` 等の最終判断・改善提案は Automation SEO 側で行い、AGENT NEO は AGENT_NEO側で新規判断ロジックを実装しない（REQ-F-007 / REQ-NF-025） |
+| 公開API | `tracking-context-v2.schema.json` を公開APIとして返却し、`tracking_source` を `page_type` / `section_type` 文脈付きで公開 |
+| 計測送信 | `tracking` / `tracking/context` 系の送信は `A-007` / `A-008` の計測経路に限定し、Core Plugin 側で保持・監査 |
 | SEOメタ | テーマ/SEOプラグイン固有metaを正規化 | SEO Core Contractで保存/出力/重複検知 |
 | CTA/CRO | CTA/Offer Mapperでイベントと改善案を紐付け | `data-cta-id`、`data-offer-id`、`data-variant-id` を出力 |
 | 推奨反映 | AGENT NEOのsafe apply APIへ送る | dryRun/apply/rollback/audit logを提供 |
@@ -808,8 +816,9 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 | `tracking_profile` | section engagement、click、conversion、web vitals、last_seenを保持 |
 | `privacy_profile` | consent、external send targets、cookie use、retention daysを保持 |
 | `integration_health` | last_sync、last_error、retry、connector version、latencyを保持 |
-| `safe_apply_state` | existing themeはpreview-only、AGENT NEOはdryRun/apply/rollbackを保持 |
+| `safe_apply_state` | 既存テーマは preview-only（ADR-019 準拠、write不可）。AGENT NEO Core Plugin は dryRun/apply/rollback を保持 |
 | `migration_blueprint` | target blueprint、unsupported parts、manual review items、confidenceを保持 |
+| 補足 | 既存テーマの write 不可条件は ADR-019 で固定し、write 経路は write-ready=true の AGENT NEO Core Plugin のみ許可。preview-only の根拠は DOM/スキーマ差分リスク低減と権限制御 |
 
 | 禁止/制限 | 理由 |
 |---|---|

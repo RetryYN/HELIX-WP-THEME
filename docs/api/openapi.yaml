@@ -1,0 +1,1809 @@
+openapi: 3.1.0
+info:
+  title: AGENT NEO API
+  version: 0.1.0-L3
+  description: 正本=api-catalog.md。本書は L3 API 契約凍結の機械可読版
+x-api-catalog:
+  source: docs/design/api-catalog.md
+  endpoint_total: 55
+  operationid_total: 54
+  # endpoint_total は catalog 論理件数。operationId 実数は /features 重複集約分を除く 54 となる。
+  note: |
+    /features は catalog に 2 つ用途があるため 1 operation に集約し、x-api-catalog-entries で両系統を保持。
+  x-api-catalog-entries:
+    - method: GET
+      path: /features
+      req_code: PF-003
+      usage: パッケージ別機能フラグ一覧（Health / Setup）
+    - method: GET
+      path: /features
+      req_code: PF-003
+      usage: パッケージ別機能フラグ（License / Package）
+servers:
+  - url: /wp-json/agent-neo/v1
+    description: AGENT NEO Core Plugin 内部 REST API（agent-neo/v1）
+security:
+  - bearer: []
+paths:
+  /status:
+    get:
+      operationId: A-status-get
+      summary: テーマ・Companion Plugin・ライセンス・連携状態
+      tags:
+        - Health
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: license_mode / package / 連携健全性
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          description: リクエスト不正
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /health:
+    get:
+      operationId: AF-health-get
+      summary: REST / DB / Cron / loopback / 外部 API 診断
+      tags:
+        - Health
+      security: []
+      responses:
+        '200':
+          description: 読み取り専用のヘルス状態
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: 競合状態
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /features:
+    get:
+      operationId: AF-features-get
+      summary: パッケージ別機能フラグ一覧
+      tags:
+        - Health
+        - License
+      x-api-catalog-entries:
+        - req: PF-003
+          note: personal/corporate 別機能フラグ
+        - req: PF-003
+          note: Health / Setup および License / Package の共有エントリ
+      parameters:
+        - in: query
+          name: include
+          schema:
+            type: string
+            enum:
+              - package
+              - all
+          required: false
+          description: 返却する機能フラグ種別
+      responses:
+        '200':
+          description: パッケージ別機能フラグ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /contracts:
+    get:
+      operationId: A-contracts-get
+      summary: block / layout / component 契約取得
+      tags:
+        - Health
+      responses:
+        '200':
+          description: OpenAPI 等の定義参照情報
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /posts:
+    get:
+      operationId: A-posts-list
+      summary: 投稿一覧（bulk read）
+      tags:
+        - Content
+      parameters:
+        - in: query
+          name: since
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: 差分取得基準時刻
+        - in: query
+          name: fields
+          required: false
+          schema:
+            type: string
+            example: id,title
+          description: sparse fieldset
+      responses:
+        '200':
+          description: 投稿一覧レスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /posts/{id}:
+    get:
+      operationId: A-posts-get
+      summary: 投稿詳細取得
+      tags:
+        - Content
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: 投稿 ID
+      responses:
+        '200':
+          description: 投稿詳細（block_id / section_id 付き）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /posts/{id}/diff:
+    get:
+      operationId: A-post-diff-get
+      summary: JSON Patch 差分エクスポート
+      tags:
+        - Content
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: from
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: RFC 6902 JSON Patch 形式の差分
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diff'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /posts/{id}/markdown:
+    get:
+      operationId: A-post-markdown-get
+      summary: vector-friendly markdown export
+      tags:
+        - Content
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: markdown 文字列
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /posts/{id}/blocks/{block_id}:
+    patch:
+      operationId: A-post-block-patch
+      summary: ブロック単位部分更新
+      tags:
+        - Content
+      security:
+        - bearer: []
+      parameters:
+        - in: header
+          name: idempotency-key
+          required: true
+          schema:
+            type: string
+          description: 冪等性キー
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - block_json
+              properties:
+                block_json:
+                  type: object
+                  description: ブロック JSON
+                version_hint:
+                  type: integer
+                block_level:
+                  type: integer
+      responses:
+        '200':
+          description: 部分更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: 冪等性/更新競合
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /posts/{id}/sections/{section_id}/edit:
+    post:
+      operationId: A-post-section-edit
+      summary: H2 単位セクション編集
+      tags:
+        - Content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - action
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - rewrite
+                    - expand
+                    - summarize
+                    - translate
+                    - restructure
+                    - dryRun
+                    - apply
+                    - rollback
+                section_body:
+                  type: string
+                locale:
+                  type: string
+                request_id:
+                  type: string
+      responses:
+        '200':
+          description: 編集結果（dryRun/preview/apply）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /sections:
+    get:
+      operationId: A-sections-list
+      summary: セクション一覧
+      tags:
+        - Content
+      responses:
+        '200':
+          description: section 一覧
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /sections/{section_id}:
+    get:
+      operationId: A-section-get
+      summary: セクション詳細
+      tags:
+        - Content
+      parameters:
+        - in: path
+          name: section_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: セクション詳細
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /sections/{section_id}/apply:
+    post:
+      operationId: A-section-apply
+      summary: セクション更新（dryRun/apply）
+      tags:
+        - Content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - diff
+                - diff_hash
+                - idempotency_key
+              properties:
+                diff:
+                  $ref: '#/components/schemas/Diff'
+                diff_hash:
+                  type: string
+                  description: 差分ハッシュ
+                idempotency_key:
+                  type: string
+                  description: 冪等性キー
+                dry_run:
+                  type: boolean
+                  default: false
+      responses:
+        '200':
+          description: apply 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: 競合（再適用拒否）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /pages:
+    get:
+      operationId: A-pages-list
+      summary: ページ一覧
+      tags:
+        - Pages
+      responses:
+        '200':
+          description: ページ一覧
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /pages/{id}:
+    get:
+      operationId: A-page-get
+      summary: ページ構造 + blueprint
+      tags:
+        - Pages
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ページ構造（blueprint 準拠）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /pages/{id}/apply:
+    post:
+      operationId: A-page-apply
+      summary: ページ更新（dryRun/apply / preview反映）
+      tags:
+        - Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - diff
+                - diff_hash
+                - idempotency_key
+              properties:
+                diff:
+                  $ref: '#/components/schemas/Diff'
+                diff_hash:
+                  type: string
+                idempotency_key:
+                  type: string
+                from_preview_token:
+                  type: string
+      responses:
+        '200':
+          description: ページ apply 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: 衝突（preview / apply 制約）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /pages/blueprint:
+    post:
+      operationId: A-pages-blueprint
+      summary: LP / HP blueprint 生成・更新
+      tags:
+        - Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - section_id
+                - cta_id
+                - offer_id
+                - service_id
+              properties:
+                section_id:
+                  type: string
+                cta_id:
+                  type: string
+                offer_id:
+                  type: string
+                service_id:
+                  type: string
+                blueprint:
+                  type: object
+      responses:
+        '200':
+          description: blueprint 生成・更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /lp/sections:
+    post:
+      operationId: A-lp-sections
+      summary: LP セクション生成・更新
+      tags:
+        - Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - section_name
+                - template_id
+              properties:
+                section_name:
+                  type: string
+                template_id:
+                  type: string
+                section_type:
+                  type: string
+                  enum:
+                    - hero
+                    - cta
+                    - body
+                    - faq
+                    - review
+                payload:
+                  type: object
+      responses:
+        '200':
+          description: LP/HP セクション更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /pages/{id}/preview:
+    post:
+      operationId: A-page-preview
+      summary: preview content 作成（Tier 1）
+      tags:
+        - Sandbox
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: object
+                ttl_sec:
+                  type: integer
+                  default: 86400
+      responses:
+        '200':
+          description: preview token と URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /pages/{id}/rollback:
+    post:
+      operationId: A-page-rollback
+      summary: 旧 version への復元
+      tags:
+        - Pages
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - rollback_id
+              properties:
+                rollback_id:
+                  type: string
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: rollback 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: 30 日保持外などで復元不可
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /rollback/{rollback_id}:
+    post:
+      operationId: A-rollback-generic
+      summary: apply 前状態への汎用ロールバック
+      tags:
+        - Pages
+      parameters:
+        - in: path
+          name: rollback_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 汎用ロールバック結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /ctas:
+    get:
+      operationId: A-ctas-list
+      summary: CTA 一覧
+      tags:
+        - Elements
+      responses:
+        '200':
+          description: CTA 一覧
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /ctas/{cta_id}:
+    get:
+      operationId: A-cta-get
+      summary: CTA 詳細
+      tags:
+        - Elements
+      parameters:
+        - in: path
+          name: cta_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: CTA 詳細
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /ctas/{cta_id}/apply:
+    post:
+      operationId: A-cta-apply
+      summary: CTA 更新（swap / 差し替え）
+      tags:
+        - Elements
+      parameters:
+        - in: path
+          name: cta_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - cta_payload
+                - diff_hash
+                - idempotency_key
+              properties:
+                cta_payload:
+                  type: object
+                diff_hash:
+                  type: string
+                idempotency_key:
+                  type: string
+      responses:
+        '200':
+          description: CTA swap 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: swap 競合
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /elements/swap:
+    post:
+      operationId: A-elements-swap
+      summary: 要素差し替え汎用 API
+      tags:
+        - Elements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - target_type
+                - target_id
+                - replacement
+              properties:
+                target_type:
+                  type: string
+                  enum:
+                    - link_id
+                    - banner_id
+                    - media_id
+                    - blueprint_id
+                    - reusable_part_id
+                target_id:
+                  type: string
+                replacement:
+                  type: object
+      responses:
+        '200':
+          description: swap 完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /actions/dry-run:
+    post:
+      operationId: A-actions-dry-run
+      summary: JSON 操作の検証（副作用なし）
+      tags:
+        - Actions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - target
+                - operations
+              properties:
+                target:
+                  type: string
+                  description: 対象リソース識別子
+                operations:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: dryRun 結果（risk を含む判定値は automation SEO 側が算出した受信値）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /actions/apply:
+    post:
+      operationId: A-actions-apply
+      summary: JSON 操作の適用（apply 前に dryRun 必須）
+      tags:
+        - Actions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - operations
+                - diff_hash
+                - idempotency_key
+              properties:
+                operations:
+                  type: array
+                  items:
+                    type: object
+                diff_hash:
+                  type: string
+                idempotency_key:
+                  type: string
+      responses:
+        '200':
+          description: apply 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: 再実行抑止または競合
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /batch:
+    patch:
+      operationId: A-batch-patch
+      summary: バッチ操作（最大 20 件）
+      tags:
+        - Actions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - operations
+              properties:
+                operations:
+                  type: array
+                  maxItems: 20
+                  items:
+                    type: object
+                dry_run:
+                  type: boolean
+      responses:
+        '200':
+          description: 成功/失敗分離レスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /design-tokens/apply:
+    post:
+      operationId: A-design-tokens-apply
+      summary: デザイントークン更新
+      tags:
+        - Design
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tokens
+              properties:
+                tokens:
+                  type: object
+                  properties:
+                    color:
+                      type: object
+                    font:
+                      type: object
+                    spacing:
+                      type: object
+      responses:
+        '200':
+          description: token 更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /design-tokens:
+    get:
+      operationId: A-design-tokens-get
+      summary: デザイントークン取得
+      tags:
+        - Design
+      responses:
+        '200':
+          description: token 一覧
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /seo/{post_id}:
+    get:
+      operationId: A-seo-get
+      summary: SEO メタ取得
+      tags:
+        - SEO
+      parameters:
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: canonical / noindex / OGP / JSON-LD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /seo/{post_id}/apply:
+    post:
+      operationId: A-seo-apply
+      summary: SEO メタ更新
+      tags:
+        - SEO
+      parameters:
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - canonical
+              properties:
+                canonical:
+                  type: string
+                  format: uri
+                noindex:
+                  type: boolean
+                ogp:
+                  type: object
+                json_ld:
+                  type: object
+                seo_risk_diff:
+                  $ref: '#/components/schemas/Diff'
+      responses:
+        '200':
+          description: SEO 更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: canonical/noindex の重複など
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /seo/meta:
+    post:
+      operationId: A-seo-meta-deprecated
+      summary: SEO メタ・Entity Graph 更新（Deprecated）
+      tags:
+        - SEO
+      deprecated: true
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              description: 互換維持のみのため非推奨。新規実装は /seo/{post_id}/apply
+      responses:
+        '200':
+          description: 互換更新完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /media/upload:
+    post:
+      operationId: A-media-upload
+      summary: 画像アップロード（WebP 変換）
+      tags:
+        - Media
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                post_id:
+                  type: integer
+                  format: int64
+      responses:
+        '200':
+          description: アップロード結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /migration/jobs:
+    post:
+      operationId: A-migration-jobs
+      summary: 移行ジョブ作成（Plan A / Plan B）
+      tags:
+        - Migration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mode
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - plan_a
+                    - plan_b
+                options:
+                  type: object
+      responses:
+        '202':
+          description: 非同期ジョブ受付
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /tracking/event:
+    post:
+      operationId: A-tracking-event
+      summary: 計測イベント受付
+      tags:
+        - Tracking
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - section_id
+                - cta_id
+                - variant_id
+              properties:
+                section_id:
+                  type: string
+                cta_id:
+                  type: string
+                variant_id:
+                  type: string
+                event_type:
+                  type: string
+                nonce:
+                  type: string
+      responses:
+        '200':
+          description: 計測受付結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '429':
+          description: レート制限
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /tracking/context:
+    post:
+      operationId: A-tracking-context
+      summary: Automation SEO 互換 context 送信
+      tags:
+        - Tracking
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - site_id
+                - article_id
+                - section_id
+              properties:
+                site_id:
+                  type: string
+                article_id:
+                  type: string
+                section_id:
+                  type: string
+      responses:
+        '200':
+          description: context 同期結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /license/validate:
+    post:
+      operationId: A-license-validate
+      summary: ライセンス検証
+      tags:
+        - License
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - license_key
+              properties:
+                license_key:
+                  type: string
+                mode:
+                  type: string
+                  enum:
+                    - full
+                    - readonly
+      responses:
+        '200':
+          description: 検証結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+  /settings/export:
+    post:
+      operationId: A-settings-export
+      summary: 設定 export（design-tokens / blueprints / package-matrix）
+      tags:
+        - Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - target
+              properties:
+                target:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - design-tokens
+                      - blueprints
+                      - package-matrix
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: export 用 JSON（bit-identical）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /settings/import:
+    post:
+      operationId: A-settings-import
+      summary: 設定 import
+      tags:
+        - Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - settings_payload
+              properties:
+                settings_payload:
+                  type: object
+      responses:
+        '200':
+          description: import 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /jobs:
+    post:
+      operationId: A-jobs-create
+      summary: 非同期ジョブ作成
+      tags:
+        - Jobs
+      parameters:
+        - in: header
+          name: idempotency_key
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - job_type
+              properties:
+                job_type:
+                  type: string
+                payload:
+                  type: object
+      responses:
+        '202':
+          description: 非同期ジョブ受付
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /jobs/{job_id}:
+    get:
+      operationId: A-job-get
+      summary: ジョブ状態 / 結果取得
+      tags:
+        - Jobs
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ジョブ状態
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /jobs/{job_id}/cancel:
+    post:
+      operationId: A-job-cancel
+      summary: ジョブ取消
+      tags:
+        - Jobs
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ジョブ取消結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '409':
+          description: ジョブ取り消し不可
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /logs:
+    get:
+      operationId: A-logs
+      summary: 操作ログ取得
+      tags:
+        - Logs
+      parameters:
+        - in: query
+          name: actor
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: request_id
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+      responses:
+        '200':
+          description: 操作ログ配列
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /public/pages/{id}/snapshot:
+    get:
+      operationId: A-public-snapshot
+      summary: 公開ページの AI Snapshot
+      tags:
+        - Public
+      security: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: section 一覧・CTA label・JSON-LD・canonical・robots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+  /public/crawl-map:
+    get:
+      operationId: A-public-crawl-map
+      summary: 全公開ページの crawl map
+      tags:
+        - Public
+      security: []
+      responses:
+        '200':
+          description: canonical / robots / 更新日 / section 数 / content_type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /public/llmo/answers:
+    get:
+      operationId: A-public-llmo
+      summary: answer unit / citation anchor / evidence graph
+      tags:
+        - Public
+      security: []
+      responses:
+        '200':
+          description: LLMO 向け公開回答情報
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /automation-seo/fit:
+    get:
+      operationId: A-fit-get
+      summary: theme capability / section / CTA / SEO mapping 診断
+      tags:
+        - AutomationSEO
+      responses:
+        '200':
+          description: 診断結果（read）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+    post:
+      operationId: AF-fit-sync
+      summary: safe apply readiness 同期
+      tags:
+        - AutomationSEO
+      responses:
+        '200':
+          description: 同期 / apply 結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+  /automation-seo/bridge-profile:
+    get:
+      operationId: A-bridge-profile
+      summary: Theme Bridge Plugin 互換プロファイル
+      tags:
+        - AutomationSEO
+      responses:
+        '200':
+          description: source/confidence 付き theme 情報
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /risks/hazards:
+    get:
+      operationId: AF-risks-ledger
+      summary: SEO / WP 運用 / AI 運用の risk-ledger と検出結果
+      tags:
+        - Risks
+      responses:
+        '200':
+          description: ハザード一覧
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /crawler-policy:
+    post:
+      operationId: A-crawler-policy
+      summary: crawler access matrix 更新
+      tags:
+        - Risks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - policy
+              properties:
+                policy:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      crawler_name:
+                        type: string
+                      allow:
+                        type: boolean
+                      reason:
+                        type: string
+      responses:
+        '200':
+          description: 更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /affiliate/block:
+    post:
+      operationId: A-affiliate-block
+      summary: 収益化ブロック生成
+      tags:
+        - Affiliate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - block_type
+                - payload
+              properties:
+                block_type:
+                  type: string
+                  enum:
+                    - review
+                    - ranking
+                    - comparison
+                    - affiliate_cta
+                    - product_card
+                payload:
+                  type: object
+      responses:
+        '200':
+          description: 収益化ブロック構築結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /aseo/v1/agent-neo/catalog-update:
+    post:
+      operationId: A-catalog-update
+      summary: catalog-update 通知受信（automation SEO 契約 §17）
+      tags:
+        - External
+      security: []
+      # catalog-update は automation SEO 側（aseo/v1）への送信契約。agent-neo 内部 server とは別境界。
+      servers:
+        - url: /wp-json/aseo/v1
+          description: automation SEO 外部契約エンドポイント
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogUpdateRequest'
+      responses:
+        '200':
+          description: >
+            event_id が冪等キー（24h TTL）。retry=5xx と 429、初回 1 秒、指数 2^n、最大 5 回、各 retry ±10% jitter、4xx（429 除く）リトライ対象外。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogUpdateResponse'
+        '400':
+          description: schema / validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                validation_error:
+                  value:
+                    code: VALIDATION_ERROR
+                    message: catalog payload validation failed
+        '401':
+          description: plugin auth failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                auth_failed:
+                  value:
+                    code: PLUGIN_AUTH_FAILED
+                    message: Authentication to plugin failed
+        '409':
+          description: AGENT_NEO_NOT_INSTALLED / RETRY_EXHAUSTED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                not_installed:
+                  value:
+                    code: AGENT_NEO_NOT_INSTALLED
+                    message: Agent NEO plugin is not installed
+                retry_exhausted:
+                  value:
+                    code: RETRY_EXHAUSTED
+                    message: Catalog update exceeded retry limit
+        '500':
+          description: INTERNAL_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                internal_error:
+                  value:
+                    code: INTERNAL_ERROR
+                    message: Internal error (retryable)
+        '429':
+          description: rate limited (retryable) / RATE_LIMITED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                rate_limited:
+                  value:
+                    code: RATE_LIMITED
+                    message: rate limited (retryable)
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - success
+      properties:
+        success:
+          type: boolean
+          description: 処理成功フラグ
+        data:
+          type: object
+          nullable: true
+          description: 各 API の本体データ
+        meta:
+          type: object
+          required:
+            - request_id
+          properties:
+            request_id:
+              type: string
+              description: トレース用 request id
+        error:
+          type: object
+          nullable: true
+          required:
+            - code
+          properties:
+            code:
+              type: string
+              enum:
+                - VALIDATION_ERROR
+                - UNAUTHORIZED
+                - NOT_FOUND
+                - CONFLICT
+                - RATE_LIMITED
+                - AGENT_NEO_NOT_INSTALLED
+                - PLUGIN_AUTH_FAILED
+                - RETRY_EXHAUSTED
+                - INTERNAL_ERROR
+            message:
+              type: string
+              description: エラーメッセージ
+            details:
+              type: object
+              additionalProperties: true
+              description: 補足情報
+      example:
+        success: true
+        data: {}
+        meta:
+          request_id: req_01H0... 
+        error: null
+    Diff:
+      type: object
+      description: リソース差分（RFC6902 互換）
+      required:
+        - operations
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            required:
+              - op
+              - path
+            properties:
+              op:
+                type: string
+                enum:
+                  - add
+                  - remove
+                  - replace
+                  - move
+                  - copy
+                  - test
+              path:
+                type: string
+              from:
+                type: string
+              value:
+                type: object
+                additionalProperties: true
+              from_value:
+                type: object
+                additionalProperties: true
+      additionalProperties: false
+    RollbackPoint:
+      type: object
+      required:
+        - rollback_id
+        - created_at
+      properties:
+        rollback_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        actor:
+          type: string
+        target:
+          type: string
+        scope:
+          type: string
+      additionalProperties: false
+    CatalogUpdateRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - site_hash
+        - agent_neo_version
+        - event_kind
+        - event_id
+        - occurred_at
+        - payload
+      properties:
+        site_hash:
+          type: string
+          description: テナント識別子
+        agent_neo_version:
+          type: string
+          description: Plugin B のバージョン
+        event_kind:
+          type: string
+          enum:
+            - block_registered
+            - block_unregistered
+            - template_updated
+            - theme_token_updated
+        event_id:
+          type: string
+          description: 冪等キー（24h TTL）
+        occurred_at:
+          type: string
+          format: date-time
+        payload:
+          type: object
+          additionalProperties: false
+          required:
+            - block_name
+            - template_part_slug
+            - diff
+          properties:
+            block_name:
+              type: string
+            template_part_slug:
+              type: string
+            diff:
+              $ref: '#/components/schemas/Diff'
+    CatalogUpdateResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - received
+        - event_id
+        - deduplicated
+        - next_action
+      properties:
+        received:
+          type: boolean
+        event_id:
+          type: string
+        deduplicated:
+          type: boolean
+        next_action:
+          type: string
+          enum:
+            - scan-catalog
+            - none
+    Error:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - VALIDATION_ERROR
+            - UNAUTHORIZED
+            - NOT_FOUND
+            - CONFLICT
+            - RATE_LIMITED
+            - AGENT_NEO_NOT_INSTALLED
+            - PLUGIN_AUTH_FAILED
+            - RETRY_EXHAUSTED
+            - INTERNAL_ERROR
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
+  responses:
+    UnauthorizedResponse:
+      description: 認証失敗
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StandardResponse'
+          example:
+            success: false
+            data: null
+            meta:
+              request_id: req-unauth
+            error:
+              code: UNAUTHORIZED
+              message: unauthorized
+    BadRequestResponse:
+      description: リクエストエラー
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StandardResponse'
+          example:
+            success: false
+            data: null
+            meta:
+              request_id: req-bad
+            error:
+              code: VALIDATION_ERROR
+              message: invalid request
+    NotFoundResponse:
+      description: 対象未発見
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StandardResponse'
+          example:
+            success: false
+            data: null
+            meta:
+              request_id: req-notfound
+            error:
+              code: NOT_FOUND
+              message: resource not found
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: AI 操作・内部管理 API 用の認証
+    public:
+      type: apiKey
+      in: header
+      name: X-AGENT-NEO-PUBLIC
+      description: "public / tracking 系は security: [] で認証不要。互換用に定義。"
