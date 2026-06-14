@@ -31,3 +31,12 @@ node_modules/
 build/
 dist/
 vendor/
+
+## HELIX ランタイム（= 自動生成 / コミット不要。成果物 yaml/json は追跡継続）
+.helix/helix.db
+.helix/*.lock
+.helix/session-summaries/
+.helix/**/*.prev
+
+## MCP 設定（DB認証情報を含みうる）
+.mcp.json

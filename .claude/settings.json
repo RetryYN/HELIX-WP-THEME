@@ -1,0 +1,96 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer *)",
+      "Bash(wp *)",
+      "Bash(php *)",
+      "Bash(./vendor/bin/phpunit *)",
+      "Bash(docker compose *)",
+      "Bash(docker logs *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/ai-dev-kit-vscode/cli/helix-session-start",
+            "timeout": 5,
+            "statusMessage": "Loading HELIX framework...",
+            "blockOnFailure": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/ai-dev-kit-vscode/cli/helix-check-claudemd",
+            "timeout": 5,
+            "statusMessage": "Checking CLAUDE.md template...",
+            "blockOnFailure": true
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/ai-dev-kit-vscode/cli/libexec/helix-pre-bash",
+            "timeout": 5,
+            "statusMessage": "Checking HELIX LLM execution guard...",
+            "blockOnFailure": true
+          }
+        ]
+      },
+      {
+        "matcher": "WebSearch|WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/ai-dev-kit-vscode/cli/libexec/helix-pre-research",
+            "timeout": 5,
+            "statusMessage": "Checking HELIX research tool guard...",
+            "blockOnFailure": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/ai-dev-kit-vscode/cli/libexec/helix-post-tool-use",
+            "timeout": 10,
+            "statusMessage": "HELIX design sync check...",
+            "blockOnFailure": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/ai-dev-kit-vscode/cli/helix-session-summary",
+            "timeout": 8,
+            "statusMessage": "Generating session summary...",
+            "blockOnFailure": false
+          }
+        ]
+      }
+    ]
+  }
+}
