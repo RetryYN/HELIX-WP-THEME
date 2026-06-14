@@ -83,6 +83,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-042 | 外部エディタアクセス制御（デフォルト閉鎖）| 外部 AI エディタ（Claude Computer Use / Codex CLI / Cursor / Cline / Continue 等）からの直接書き込みをデフォルト拒否。許可される Write 経路は agent-neo/v1（AGENT NEO 自身）と aseo/v1（Automation SEO）の 2 経路のみ。それ以外の経路（wp/v2 直接の構造的書き込み、自前スクリプト等も含む）からの構造変更系書き込みは 403 Forbidden で拒否し監査ログに記録 | P0 | ACC-042 |
 | REQ-F-043 | Open Editor Bridge Plugin（別売・月額サブスク）| 外部エディタを使いたいユーザー向けの**有料アドオンプラグイン**（月額固定課金、価格レンジ ¥3,000-5,000/月想定）。Whitelisted external editors（Claude / Codex / Cursor / Cline / Continue / 自前 OAuth 申請）からの書き込みを許可するが、必ず **AGENT NEO 検証パイプライン**（sanitize / CSS scope / a11y / budget / anchor 保護 / slot 制約）を強制通過させる。月額固定で個別保守コスト（API 追従・互換性テスト・サポート）を回収 | P1 | ACC-043 |
 | REQ-F-011 | SEO Core | title、description、robots、canonical、OGP、構造化データをテーマ標準UI/APIで管理できる | P0 | ACC-011 |
+| REQ-F-044 | Automation SEO catalog-update 発火（Plugin B producer）| AGENT NEO Core Plugin（Plugin B）が `POST /aseo/v1/agent-neo/catalog-update` を producer として、block/template/theme_token の構造変更通知を送信する。`event_kind` は `block_registered` / `block_unregistered` / `template_updated` / `theme_token_updated` の4値固定、`event_id` + `idempotency_key` で冪等制御し、初回は `deduplicated=false`、同一event_id再送時は `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` を含めて返却する。`event_kind` 欠落は 422。`event_kind` 欠落・再送整合は automation SEO D-PLUGIN-CONTRACT §17 を正本として AGENT NEO は endpoint/enum/deduplicated を再定義せずミラー実装する。REQ-F-026 の post/cta/section outbound webhook（内容変更通知）とは分離する | P0 | ACC-044 |
 | REQ-F-012 | LP/HP/BLPブループリント | **法人版限定**。LP・HP・BLPを別JSON契約で生成・更新し、必須section_id/cta_id/offer_id/service_idを持つブループリントを管理できる。複数サービスを持つ企業向けにservice-aware IA（service_idでコンテンツとサービスを紐付け）に対応する | P0 | ACC-012 |
 | REQ-F-013 | 法人版リード獲得 | **法人版限定**。問い合わせフォーム / 資料 DL / 無料相談予約 / Webinar 登録 / メルマガ登録ブロックを提供し、reCAPTCHA・honeypot・レート制限による spam 対策、自動返信メール、submission の管理画面一覧 + CSV エクスポートを備える | P0 | ACC-013 |
 | REQ-F-014 | 法人版顧客行動管理 | **法人版限定**。セッション単位ジャーニー追跡、ファネル分析、リードスコアリング、顧客健康度（health score）を提供。admin-dashboard でジャーニー可視化・リード一覧・スコアランキングを表示する | P0 | ACC-014 |
@@ -233,6 +234,8 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ACC-043 | REQ-F-043 | Open Editor Bridge Plugin を有効化 + 月額サブスク認証 | Whitelisted エディタからの書き込みが Bridge 経由で受け入れられ、必ず AGENT NEO 検証パイプライン通過 | Bridge 有効テスト |
 | ACC-043a | REQ-F-043 | Bridge 経由の外部エディタが slot 制約違反 / a11y 違反のコードを送信 | 検証パイプラインで違反検出、apply ブロック、エディタにエラーレスポンス返却 | Bridge 検証強制テスト |
 | ACC-043b | REQ-F-043 | サブスク期限切れ状態で外部エディタからアクセス | Bridge が拒否、サブスク更新誘導メッセージを返却 | サブスク強制テスト |
+| ACC-044 | REQ-F-044 | Core Plugin が block unregister/register、template/theme_token 変更を発火 | `POST /aseo/v1/agent-neo/catalog-update` で `event_kind=block_registered` または `event_kind=block_unregistered` 等を付与して通知し、`event_id`+`idempotency_key` の contract payload が受信側で受理される | catalog-update 契約テスト |
+| ACC-044a | REQ-F-044 | 同一 event_id の再送を受ける | 1回目 `deduplicated=false`、同一 event_id 再送時は `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` が返る | catalog-update 冪等性テスト |
 | ACC-NF-001 | REQ-NF-001 | 代表テンプレートで速度予算を測定 | LCP `2.5s` 以下、INP `200ms` 以下、CLS `0.1` 以下。初期CSS/JSと第三者タグが予算内 | Lighthouse/CrUX/RUM |
 | ACC-NF-002 | REQ-NF-008 | 配布物と機能境界を監査 | Theme Coreに永続データ/CPT/計測保存/SEO保存を持たせず、Companion Plugin側で扱う | compliance review |
 | ACC-NF-003 | REQ-NF-009 | PR表記、外部送信、第三者依存、販売文言を監査 | PR表記block、privacy policy template、依存ライセンス一覧、SEO保証禁止ルールが揃う | compliance review |
@@ -420,4 +423,3 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | G0.5 | passed_with_draft | L0企画書をL1要件へ反映 |
 | L1 | draft | PO未レビューのため凍結前 |
 | Security | passed_with_caution | 書き込みAPIと参照テーマライセンスの注意点を明記 |
-

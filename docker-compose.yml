@@ -42,7 +42,7 @@ services:
       - wp_core:/var/www/html
       - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
       - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
-      - ../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector:/var/www/html/wp-content/plugins/seo-tool-connector:ro
+      - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
       - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
       - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
       - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr
@@ -65,7 +65,7 @@ services:
       - wp_core:/var/www/html
       - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
       - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
-      - ../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector:/var/www/html/wp-content/plugins/seo-tool-connector:ro
+      - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
       - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
       - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
       - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr

@@ -180,8 +180,9 @@
 | データ型 | UUID v4 |
 | 一意性スコープ | グローバル |
 | 永続化場所 | WP post_meta `_agent_neo_ab_variants` JSON + v2 `AB_TEST_VARIANTS.id` |
-| 生成タイミング | A/B テスト作成時に AI が variant 候補を生成した時点 |
+| 生成タイミング | A/B テスト作成時に Automation SEO 側 LLM が variant 候補を生成した時点 |
 | 不変性 | テスト期間中は不変。テスト終了後（勝者昇格 / loser archive）に無効化 |
+| 所有責務 | AGENT NEO は variant 生成 API を持たず、受け取った variant を保存・配信・計測紐付けのみ実施する |
 | 関連 ID | `variant_group_id`（親 A/B テスト）、`cta_id`（variant が差替える CTA）、`section_id`（variant が属するセクション） |
 | 提供 API | `POST /agent-neo/v1/posts/<id>/ab-test/start`、`wp agent-neo ab-test stop --post_id=X`（variant_id で計測ログを保持） |
 | v2 DB 対応 | `AB_TEST_VARIANTS.id`（UUID PK）。`TRACKING_EVENTS.data.variant_id` でイベント紐付け |
@@ -516,7 +517,7 @@ erDiagram
 | `block_id` | グローバル一意必須、PATCH API の主キー |
 | `link_id` | ブロック内の細粒度 ID、自動生成が自然 |
 | `media_id` | WP メディア投稿との対応（自動生成） |
-| `variant_id` | AI が自動生成するバリアント |
+| `variant_id` | Automation SEO 側 LLM が自動生成するバリアント |
 | `variant_group_id` | A/B テスト実験の一意識別（自動生成） |
 | `reusable_part_id` | CPT 登録時に自動生成 |
 

@@ -48,8 +48,8 @@
 | GET | /pages | ページ一覧 | REQ-F-002, REQ-F-012 | AF-008 |
 | GET | /pages/{id} | ページ構造 + blueprint | REQ-F-002, REQ-F-012 | AF-008。blueprint schema 準拠必須 |
 | POST | /pages/{id}/apply | ページ更新（dryRun/apply）| REQ-F-002, REQ-F-012 | AF-008。diff_hash 必須 |
-| POST | /pages/blueprint | LP / HP blueprint 生成・更新 | REQ-F-012 | A-013。法人版限定機能。section_id / cta_id / offer_id / service_id 必須 |
-| POST | /lp/sections | LP セクション生成・更新 | REQ-F-005 | A-006。法人版。12 標準セクション（Hero → CTA）対応 |
+| POST | /pages/blueprint | LP / HP blueprint 生成・更新 | REQ-F-012 | A-013。LP/HP の内容・コピー・CV 設計の AI 生成は Automation SEO 側。本 endpoint は blueprint/標準セクション定義に基づく静的構造の生成・更新のみ。section_id / cta_id / offer_id / service_id 必須 |
+| POST | /lp/sections | LP セクション生成・更新 | REQ-F-005 | A-006。LP/HP の内容・コピー・CV 設計は Automation SEO 側で行う。本 endpoint は blueprint/標準セクション定義に基づく静的構造の生成・更新のみ。12 標準セクション（Hero → CTA）対応 |
 
 ---
 
@@ -79,7 +79,7 @@
 
 | Method | Path | 用途 | REQ-F | 備考 |
 |--------|------|------|-------|------|
-| POST | /actions/dry-run | JSON 操作の検証（副作用なし）| REQ-F-002 | A-002 / AF-003。schema validation + diff + risk score を返す |
+| POST | /actions/dry-run | JSON 操作の検証（副作用なし）| REQ-F-002 | A-002 / AF-003。schema validation + diff + risk score を返す。ここで返す risk score は Automation SEO 側が算出した受信値、および schema/diff の構造検証結果であり、AGENT NEO 側で risk を算出しない |
 | POST | /actions/apply | JSON 操作の適用 | REQ-F-002 | A-003 / AF-003。diff_hash + idempotency_key 必須。apply 前に dryRun 必須 |
 | PATCH | /batch | バッチ操作（最大 20 件）| REQ-F-026 | AF-014。v2 が一括変更に使用。部分失敗時は成功/失敗を分離返却 |
 | POST | /design-tokens/apply | デザイントークン更新 | REQ-F-009 | AF-012。color / font / spacing を JSON で操作 |
@@ -177,6 +177,34 @@
 | POST | /automation-seo/fit | safe apply readiness 同期 | REQ-NF-019 | A-023。POST は同期 / apply |
 | GET | /automation-seo/bridge-profile | Theme Bridge Plugin 互換プロファイル | REQ-NF-020 | A-024。既存テーマ横断情報を source/confidence 付きで返す |
 
+### External outbound contracts（AGENT NEO → automation SEO）
+
+AGENT NEO Core Plugin（Plugin B）が発火する、外部向け catalog-update 契約。
+
+| Method | Path | 用途 | REQ-F | 備考 |
+|--------|------|------|-------|------|
+| POST | /aseo/v1/agent-neo/catalog-update | block/template/theme_token の構造変更通知を発火（event contract） | REQ-F-044 | event_kind / idempotency / deduplicated 応答を実装 |
+
+| 契約項目 | 仕様 |
+|---|---|
+| `event_kind` | `block_registered` / `block_unregistered` / `template_updated` / `theme_token_updated` |
+| `idempotency` | `event_id` + `idempotency_key` |
+| `deduplicated` 応答 | 初回 `deduplicated=false`。同一 `event_id` 再送は `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` を返却 |
+| 再定義ルール | AGENT NEO 側は automation SEO `D-PLUGIN-CONTRACT §17` の endpoint / enum / dedup を再定義せず互換実装のみ |
+
+#### catalog-update 契約テスト（正常系4件）
+
+| TestID | 条件 | 期待値 |
+|---|---|---|
+| CAT-001 | event_kind=`block_registered` で payload 送信 | 200 OK、`deduplicated=false` |
+| CAT-002 | event_kind=`block_unregistered` で payload 送信 | 200 OK、`deduplicated=false` |
+| CAT-003 | event_kind=`template_updated` で payload 送信 | 200 OK、`deduplicated=false` |
+| CAT-004 | event_kind=`theme_token_updated` で payload 送信 | 200 OK、`deduplicated=false` |
+
+補足:
+- 同一 `event_id` 再送: 2回目は `deduplicated=true` で `event_kind` / `event_id` / `received_at` / `idempotency_key` を返す
+- `event_kind` 欠落時: 422
+
 ---
 
 ### リスク管理
@@ -192,7 +220,7 @@
 
 | Method | Path | 用途 | REQ-F | 備考 |
 |--------|------|------|-------|------|
-| POST | /affiliate/block | 収益化ブロック生成 | REQ-F-004 | A-005。Review / Ranking / Comparison / Affiliate CTA / 商品カード。個人版 |
+| POST | /affiliate/block | 収益化ブロック生成 | REQ-F-004 | A-005。Amazon Product API 等の提供データから静的にブロック構造を組み立てる処理。AI による内容判断・文章生成は行わない(それは Automation SEO 側)。Review / Ranking / Comparison / Affiliate CTA / 商品カード。個人版 |
 
 ---
 
@@ -218,7 +246,8 @@
 | Automation SEO 連携 | 3 |
 | リスク管理 | 2 |
 | Affiliate / 収益化 | 1 |
-| **合計** | **56** |
+| External outbound（AGENT NEO→Automation SEO） | 1 |
+| **合計** | **57** |
 
 ---
 
@@ -247,6 +276,8 @@
 | `/migration/jobs` vs `/jobs` | 移行ジョブと汎用ジョブで分離されている。責務が異なるため意図的分離だが L3 で確認 |
 
 ### agent-neo/v1 と aseo/v1 の責務境界
+
+本 API の「生成／作成」は、LP/HP/収益化/リスク検証向けの**静的構造の組み立て**を指し、AI による内容生成・判定・最適化は一切含まれない（REQ-NF-025）。AI の内容生成・判定は Automation SEO 側（LLM / 統計判定 / variant 生成）で実施する。
 
 | 責務 | agent-neo/v1 | aseo/v1（外部）|
 |------|-------------|---------------|
