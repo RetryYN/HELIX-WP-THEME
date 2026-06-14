@@ -23,6 +23,60 @@ plugins/                                    → wp-content/plugins/agent-neo-plu
 `themes/` 配下に AGENT NEO テーマ本体を、`plugins/` 配下に移行プラグイン等を配置する想定。
 seo-tool-connector は隣接ディレクトリから読み取り専用でマウントされ、統合テストに利用。
 
+## Linux 環境での mount path 修正 (2026-05-20 追記)
+
+`docker-compose.yml` の mount path は Windows ローカル開発想定 (`C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO-v2\wordpress-plugin\seo-tool-connector`) で記述されている。Linux 環境 (= VPS / Docker Linux host) で起動する場合、以下の path 調整が必要。
+
+### 想定 vs Linux 実環境
+
+| mount 対象 | docker-compose.yml 記載 (Windows 想定) | Linux 環境での実 path |
+|---|---|---|
+| seo-tool-connector | `../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector` | `../seo-tool/v2/plugin` (= /opt/seo-tool/v2/plugin の隣接想定) |
+| swell theme | `./swell-2.16.0/swell` | 開発環境内で別途配置 (= AGENT-NEO repo 外部) |
+| swell_child | `./swell_child/swell_child` | 同上 |
+| jinr-parent | `./jinr-parent/jinr/jinr` | 同上 |
+| jinr-child | `./jinr-child/jinr-child` | 同上 |
+
+### 修正方法
+
+#### 方法 A: docker-compose.yml を直接書き換え (= 個別開発環境用)
+個人開発環境の docker-compose.override.yml を作成し、対応 service の volumes を上書きする。
+
+```yaml
+# docker-compose.override.yml (個別環境 / gitignore 対象)
+services:
+  wordpress:
+    volumes:
+      - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
+      # swell / jinr 系は実環境で配置できれば追加、できない場合は省略可
+  wpcli:
+    volumes:
+      - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
+```
+
+`docker-compose.override.yml` は `.gitignore` 対象として個別開発環境用に保持し、本体の `docker-compose.yml` は Windows ローカル想定のまま維持する。
+
+#### 方法 B: symlink で対応 (= 環境差異吸収)
+AGENT-NEO repo の隣接位置に `seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector` の symlink を作成。
+
+```bash
+mkdir -p ../seo-tool-v2-docs/"Automation SEO"/wordpress-plugin
+ln -s /opt/seo-tool/v2/plugin ../seo-tool-v2-docs/"Automation SEO"/wordpress-plugin/seo-tool-connector
+```
+
+#### 推奨: 方法 A (= override file 方式)
+- docker-compose.yml 本体を変更しないので git diff が出ない
+- 各環境で個別調整可能
+- swell / jinr 系も同様に対応可能
+
+### automation SEO 側 (= /opt/seo-tool) の関係
+
+automation SEO 本体は `git@github.com:RetryYN/Automation-SEO.git` (= 別名 SEO Tool v2 / seo-tool-connector)。`/opt/seo-tool/v2/plugin/` に WP plugin (= automation-seo.php / 26 ルート / v2.0.0) が配置されている。AGENT-NEO の docker-compose.yml が mount しているのは **この既存 plugin**。
+
+L1 要件確定 (2026-05-20 user 判断): AGENT-NEO Core Plugin (= AGENT-NEO テーマ専用 Companion Plugin) は **別 plugin として** AGENT-NEO repo 内 `./plugins/agent-neo-plugins/` 配下に実装予定。Plugin A (= seo-tool-connector / 既存) と Plugin B (= AGENT NEO Core / 未実装) の 2 plugin 分離設計。
+
+参照: automation SEO 側 memory `project_agent_neo_theme.md` §3.1。
+
 ## 起動
 
 ```bash
