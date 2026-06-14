@@ -501,9 +501,80 @@ erDiagram
   - 使用文字: `[a-z0-9-]`（小文字英数字とハイフン）
   - 検証式: `^[a-z0-9-]+$`
   - 先頭・末尾: ハイフン禁止
-  - 最大長: 128 文字
+  - 最大長: 128 文字（超過分は末尾切り捨て）
   - 変更禁止: 一度設定した slug は変更禁止（URL / セレクタへの影響を避けるため）
   - CARRY 対応: `sanitize_title()` の運用値は `section_id`/`cta_id` の機械参照へ直接使わず、内部参照は ASCII-only slug に正規化する（CARRY-G2-009/CARRY-G2-013）
+
+#### R-09a: `sanitize_slug()` 正規化アルゴリズム（CARRY-G2-009）
+
+slug 生成に用いる `sanitize_slug()` は以下のステップを順番に実行する:
+
+| ステップ | 処理 | 備考 |
+|---------|------|------|
+| 1. Unicode 正規化 | `unicodedata.normalize('NFKD', input)` | 合成文字を分解（例: ä → a + ̈） |
+| 2. ASCII 変換 | `.encode('ascii', 'ignore').decode('ascii')` | 非 ASCII バイトを除去 |
+| 3. 小文字化 | `.lower()` | - |
+| 4. 許可外文字の置換 | `re.sub(r'[^a-z0-9-]', '-', result)` | スペース・記号をハイフンへ |
+| 5. 連続ハイフン圧縮 | `re.sub(r'-{2,}', '-', result)` | `---` → `-` |
+| 6. 先頭・末尾ハイフン除去 | `.strip('-')` | - |
+| 7. 最大長切り捨て | `result[:128]` + 末尾ハイフン再除去 | 128文字超を切り捨て後 `.strip('-')` |
+| 8. フォールバック判定 | 上記結果が空文字 / `^[a-z0-9-]+$` 不一致の場合 | UUIDv4 先頭 12 文字（例: `a1b2c3d4e5f6`）を使用 |
+
+**フォールバック例**（全非 ASCII 入力）:
+```
+入力: "日本語のみ"
+ステップ1-6後: "" （空）
+フォールバック: "a1b2c3d4e5f6"  # UUIDv4短縮形
+```
+
+**sanitize_title との分離原則（CARRY-G2-013）**:
+- `sanitize_title()` の戻り値は表示用 slug（ログ・管理画面ラベル）にのみ使用する。
+- `section_id`・`cta_id` の DB カラム・API route パラメータ・WP ブロック属性 (`data-agent-section-id` 等)・CSS セレクタへの書き込みには、必ず `sanitize_slug()` を経た ASCII-only 値のみを使用する。
+- 非 ASCII を含む `sanitize_title()` 結果をそのまま内部参照値として保存・参照することは禁止する（TC-017b で検証）。
+
+### R-10: 公開 ID 変換（CARRY-G2-026）
+
+> **CARRY-TO-L4 宣言**: 本 §R-10 は L3 で確定した「原則・不変性・露出境界」を定義する。具体的な HTTP route 定義・OpenAPI スキーマ・フィールド詳細・WBS タスクは **L4（carry-026）で api-catalog / openapi / WBS に追加する**（L3 段階では frozen contract に含めない）。
+
+> **適用範囲: 公開 read 面（`GET /public/pages/{id}/snapshot` / `GET /public/crawl-map`）に限定。**  
+> 認証付き `/tracking/event`（site_token 認証の first-party 計測経路）は内部 `section_id` / `cta_id` / `variant_id` をそのまま使用する。これは認証済み first-party 計測であり公開クローラー面ではないため、内部 ID 使用が正しい。本ルール（§R-10）の対象外とする。
+
+公開 API（`GET /public/pages/{id}/snapshot`・`GET /public/crawl-map`）で返却する ID は、内部 slug を直接露出しない。
+
+#### R-10a: 公開 ID の定義
+
+生成方式は**決定論的 opaque ID**に統一する（UUIDv4 ランダム生成は採用しない）。
+
+| 内部 ID | 公開 ID（L2 frozen 命名） | 生成方式 | 形式例 |
+|---------|---------|---------|--------|
+| `section_id` | `section_id_public` | `HMAC-SHA256(server_secret, sanitize_slug(section_id))` の先頭 32 hex に接頭辞 `sec_` を付与 | `sec_a1b2c3d4e5f6...` |
+| `cta_id` | `cta_id_public` | `HMAC-SHA256(server_secret, sanitize_slug(cta_id))` の先頭 32 hex に接頭辞 `cta_` を付与（`section_id` 系列とは独立） | `cta_9f8e7d6c5b4a...` |
+
+- **HMAC 適用対象**: `sanitize_slug()` 済みの内部 ID（ASCII-only 値）に対して適用する。`sanitize_title()` 戻り値をそのまま HMAC の入力にしてはならない（R-9 sanitize 分離原則に準じる）。
+- **決定論的安定性**: 同一の `server_secret` と内部 ID からは常に同一の公開 ID が生成される。これによりレンダリング間・キャッシュ間で公開 ID が安定し、内部 slug を外部に露出しない。
+- **生成タイミング**: 内部 slug が初回確定した時点で生成・永続化する（post_meta `_agent_neo_public_ids` JSON に保存）。
+- **逆引きは永続化対応表経由**: HMAC は前方向のみ安定であり逆算不可能なため、`section_id_public` → `section_id` の逆引きは永続化した対応表（audit mapping テーブル）を参照して行う。公開レスポンスでは内部 ID を一切返さない。
+- **`server_secret` ローテーション時の方針**: ローテーション前の secret で生成した対応表エントリは破棄せず保持し、旧 public ID を引き続き解決できるようにする。新 secret による再生成は次回 slug 確定タイミングで行う。
+- **`variant_id` の扱い**: 公開レスポンスから完全除外する（`null` または フィールド自体を省略）。
+
+#### R-10b: 露出境界ルール
+
+| 経路 | 内部 slug 露出 | `public_*` 露出 |
+|------|--------------|----------------|
+| 公開 snapshot / crawl-map API | **禁止** | **必須** |
+| `/tracking/event`（site_token 認証 / first-party 計測）| **内部 `section_id` / `cta_id` / `variant_id` をそのまま使用**（本ルール対象外） | — |
+| 認証済み管理 API (`agent-neo/v1`) | 許可 | — |
+| 監査レイヤー（内部ログ・監査テーブル） | 許可（内部 slug ↔ public ID の対応を保持） | — |
+
+> **補足**: `/tracking/event` は site_token で認証された first-party 計測経路であり、クローラー・匿名外部アクセスを受ける公開面ではない。内部 ID を直接受信・保存するため `section_id_public` への変換は不要（ホットパスで逆引きも発生しない）。OpenAPI の `/tracking/event` 契約（`section_id` / `cta_id` / `variant_id` を required とする現行仕様）は変更不要。
+
+#### R-10c: 逆引き許可ポリシー
+
+- 逆引き（`section_id_public` → `section_id`）は**監査用途の内部機能**とする。実装は audit mapping テーブルを直接参照する内部サービス層が担い、公開レスポンスに内部 ID を露出しない。
+- 逆引きを実行した場合は監査ログに `actor_id`・`public_id`・解決結果を記録する。
+- HTTP 契約化が必要な場合の具体 route 定義（例: `GET /agent-neo/v1/audit/resolve-public-id` 等）は **L4（carry-026）で api-catalog / openapi / WBS に追加する**（L3 では frozen contract に含めない）。
+- **公開クローラー向け出力**（`GET /public/pages/{id}/snapshot` / `GET /public/crawl-map`）の JSON レスポンスには内部 slug を一切出力しない（`section_id` は `section_id_public` で代替する）。
+- **ライブ DOM の `data-agent-section-id` anchor**（carry-026）: anchor が内部 `section_id` を使うか `section_id_public` を使うか、および `/tracking/event` との ID 整合（tracking JS が anchor から ID を読む経路を含む）は、**L4（carry-026）での設計判断として繰り延べ**る。現行 frozen の `/tracking/event` 契約は内部 `section_id` / `cta_id` / `variant_id` を使用するため、anchor が内部 ID を保持する設計も L4 で選択肢として検討する。L3 段階では断定しない。
 
 ---
 

@@ -121,17 +121,24 @@ flowchart LR
   4. `active` を新規発行し、運用チーム承認を待つまで監視ログ出力を強化
 - **移行ウィンドウ（旧鍵受付）**:
   - `active` 変更時点の `T0` から `+900` 秒は旧鍵を受理。
-  - 受入側責務として、**旧鍵は `F-01` のみ受理対象**とし、`F-02` では旧鍵拒否。`F-03/F-04/F-20` 等他 operation でも旧鍵は受理しない（権限逆流対策）（CARRY-G2-008）。
+  - 受入側責務として、**旧鍵は `F-01` のみ受理対象**とし、`F-02` では旧鍵拒否。`F-03/F-04/F-20` 等他 operation でも旧鍵は受理しない（権限逆流対策）。
+  - **設計解決済み（L2→L3 設計転記で解消）**: 旧鍵受理スコープ（F-01 のみ）および F-02 以降での即時拒否は上記ルールとして本節で確定済みのため、CARRY-G2-008 は L4 carry を解除し設計確定扱いとする。
 - **バックアップ/復旧**:
   - `rotation_reason`, `key_id`, `issued_at`, `retired_at` を監査ログ化
   - 旧鍵は 30 日保管後破棄
 
 ### 5.3 L4 Carry 受入条件（今回確定）
 - **CARRY-G2-007（TB-05a）**: once-token は「DB 連携時に複合 UNIQUE + `INSERT ... ON CONFLICT DO NOTHING` で原子的に登録し、`affected_rows=0` なら replay 判定」を満たすこと。
-- **CARRY-G2-008（鍵ローテーション）**: 旧鍵受理は受入側で `F-01` のみに限定し、旧鍵受付外 operation は reject することを明文化済みとする。
-- **CARRY-G2-017（TB-20）**: `catalog-update` の送信先（Automation SEO）向け URL は、スキーム `https` 固定・許可ホスト allowlist 一致・DNS 解決後 private/loopback/link-local/metadata IP 拒否・リダイレクト追従禁止を満たすこと。
+- **CARRY-G2-009（slug 型 ID サニタイズ）**: slug 型 ID 生成時、`[a-z0-9-]` 以外を含む入力は `sanitize_slug()` で ASCII-only に変換する。変換後も `[a-z0-9-]` に一致しない（空・全非 ASCII 等）場合は UUIDv4 短縮形（先頭 12 文字）を fallback として使用する。CSSセレクタ・WPブロック属性・APIルートパラメータに非 ASCII slug を出力しないことを CI で保証すること。**主たる受入条件は `sanitize_slug()` の単体テスト**とし、「入力に非 ASCII を含む場合も出力が `^[a-z0-9-]+$` に一致すること」および「全非 ASCII 入力で fallback UUID が返ること」をアサートする。ファイル全体への静的 grep は使用しない（GNU `grep -E` は `\xNN` をバイトエスケープ解釈せず誤マッチを起こす）。必要な場合は `sanitize_slug()` の呼び出し点に限定し `LC_ALL=C grep -nP '[^\x00-\x7F]'` を用いること。
+- **CARRY-G2-013（sanitize_title の直接参照禁止）**: `sanitize_title()` の結果を `section_id` / `cta_id` の内部機械参照値（DBカラム・API route・WP属性）へ直接使用しない。非 ASCII 入力はサニタイズ後の ASCII-only slug に変換してからのみ保存する。TC-017b（section_id 非 ASCII 入力テスト）で検証済みであることを確認すること。
+- **CARRY-G2-014（ライセンス失敗時 2モード縮退）**: ライセンス失敗を2モードで分離し、L4 実装者が混同しないよう挙動を確定する。  
+  - **(A) transient 失敗モード**（ライセンスサーバが 502 または 3 回連続失敗など一時的到達不能）: grace period **48 時間**（package-matrix PF-002 SSOT）を適用し、期間中は現スコープを **readonly 縮退**（計測・公開・閲覧は維持、`apply` 系操作はブロック）で継続する。grace 満了後に個人版スコープ（記事 CRUD のみ）へ自動降格する。法人版 write 系 endpoint（代表: `POST /pages/{id}/apply`）は grace 中は `503 / StandardResponse { success: false, data: null, meta: { request_id: "..." }, error: { code: "LICENSE_GRACE_PERIOD", message: "license server unreachable, write operations suspended", details: { reason: "license_unreachable", grace_remaining_hours: N } } }` を返す。  
+  - **(B) invalid / 失効モード**（ライセンス自体が invalid・失効・未ライセンスとしてサーバが応答）: **即時 deny**（grace なし）。法人版機能を無効化し個人版スコープ（記事 CRUD のみ）へ縮退する。法人版 write 系 endpoint は `403 / StandardResponse { success: false, data: null, meta: { request_id: "..." }, error: { code: "FEATURE_DISABLED", message: "license invalid or expired", details: { reason: "license_invalid" } } }` を返す。  
+  - bare JSON `{"code":"FEATURE_DISABLED","reason":"..."}` はエンベロープ非準拠のため使用しない。`error` オブジェクトのフィールドは openapi `StandardResponse.error` スキーマ（`code` / `message` / `details`）に従う。  
+  - TC-011 拡張テストで両モードの縮退動作を検証すること（transient: grace 中 503 + grace 超過後 403 / invalid: 即時 403）。
+- **CARRY-G2-017（TB-20）**: `catalog-update` の送信先（Automation SEO）向け URL は、以下の 4 ガードをすべて満たすこと: 1) スキーム `https` 固定（HTTP 禁止）、2) 送信先ホストを allowlist で固定、3) DNS 解決後 private/loopback/link-local/metadata IP を拒否、4) リダイレクト追従禁止。R-013（§10）が要求する rate limit / 署名検証 / SSRF guard / schema validation / error catalog / 監査ログの各ガードとの対応を実装時に確認すること。
 - **CARRY-G2-025（TB-22）**: webhook 再送時は各 retry で URL 再解決を再実施し、再解決後 IP 判定（private/loopback/link-local/metadata 拒否）を再適用すること。
-- **CARRY-G2-026（TB-24）**: 公開 snapshot/crawl-map での `section_id` は `public_section_id`（内部逆引き不可）へ変換して公開し、監査レイヤーのみ逆引きを許可すること。
+- **CARRY-G2-026（TB-24）**: 公開 snapshot/crawl-map での `section_id` は `section_id_public`（内部逆引き不可）へ、`cta_id` は `cta_id_public` へ変換して公開し、監査レイヤーのみ逆引きを許可すること。`data-model-ids.md §R-10` の公開 ID 変換仕様（`section_id_public` / `cta_id_public` 命名）に従って実装すること。
 
 ### 5.4 ADR-AP01: Application Password 採用判断（OAuth2との差分）
 - ADR 形式の決定:  
@@ -190,13 +197,13 @@ flowchart LR
 | TB-16 | Theme側 ↔ Automation SEO（AI境界） | Information Disclosure | 配布前提の Theme から `agent-neo/v1` endpoint名、param 名、`security-baseline.schema`、once-token/署名生成ロジックが推定される | 7/4/5/6/6 | 28 | AI判断/署名生成ロジックは Core Plugin/サーバー側固定、テーマ配布物には hook/API ハンドラとID/計測のみを残置 | 低〜中（配布時に発生） | Docs/Architecture | L4 |
 | TB-17 | Core Plugin 公開API | DoS | public snapshot/tracking API を短期高頻度で叩かれ表示劣化 | 6/9/5/7/6 | 33 | レート制御、キャッシュ、bot filter、重要資源分離 | 中（大規模 bot） | Infra/Operations | L4/L6 |
 | TB-18 | Core Plugin | Elevation of Privilege | package制御バイパスで法人系機能を個人権限から実行 | 9/6/3/9/5 | 32 | package gate + capability + 実行権限レイヤ分離、受注実行テスト | 低〜中（管理者誤設定） | Product Security | L4 |
-| TB-18a | Core Plugin | Elevation of Privilege | 外部ライセンスサーバ障害時に法人機能へ一時昇格（grace period） | 9/7/4/9/6 | 35 | ライセンス障害時のフェイルセーフは必ず `deny`、個人版スコープへ縮退（記事CRUDのみ） | 高（障害同時時）→低（L4後） | Product Security | L3/L4 |
+| TB-18a | Core Plugin | Elevation of Privilege | 外部ライセンスサーバ障害時に法人機能へ一時昇格（grace period の悪用） | 9/7/4/9/6 | 35 | ライセンス失敗を2モードで分離: (1) **transient 失敗**（サーバ到達不能・502・3回連続）→ grace period 48h 中は readonly 縮退（apply ブロック）、grace 満了後に個人版スコープへ降格。(2) **invalid / 失効**（ライセンス自体が無効・失効・未ライセンス）→ 即時 deny、個人版スコープへ縮退（grace なし）。fail-open は絶対禁止。grace 48h 値は package-matrix PF-002 を SSOT とする | 高（障害同時時）→低（L4後） | Product Security | L3/L4 |
 | TB-19 | MCP local route | Privilege Escension / Tampering | MCP クライアントがマルウェアにより乗っ取られ、危険 tool で apply（dryRunを省略）を実行 | 10/7/6/9/8 | 40 | local MCP client は署名付き registration、実行 tool は `mcp-tools.schema.json` で risk class=apply-only の場合は明示承認必須、dryRun必須、apply 前最終差分ハッシュ確認、将来 remote MCP では mTLS + session-bound allowlist |
 | TB-20 | F-01/F-02 | SSRF | `F-02` の payload に任意外部URL（画像/HTML）を指定され、Automation SEO→AGENT NEO 側で内向きアクセスを誘発 | 8/8/6/6/7 | 35 | URL バリデータを 4 つ同時に適用: 1) スキームは `https` のみ（HTTP 禁止）、2) 送信先ホストを allowlist で固定（`catalog-update` 送信先含む）、3) DNS 解決後に private/loopback/link-local/metadata IP を拒否、4) リダイレクト追従禁止（redirect follow 禁止）。（CARRY-G2-017） | 中（対策後） | Security Lead | L4 |
 | TB-21 | Migration plugin | SSRF | migration-plugin が外部WPを無制限 pull し、管理端末/社内向けIPへの接続を行う | 8/7/5/7/7 | 34 | migration 先 URL は allowlist 配下のみ、timeout 上限 3 秒、redirect 上限 2 回 |
 | TB-22 | Webhook/Outbound | SSRF | webhook 配信先URL が internal IP（`169.254.*`/`127.0.0.0/8`/RFC1918）へ到達する | 9/8/5/8/8 | 38 | 配信 URL は retry 毎に `resolve + denylist` を再実行し、リトライごとに再解決結果で `private IP / loopback / link-local / metadata` 再拒否を行う。`content-length` 上限 1MB、`content-type allowlist`、timeout 3s（CARRY-G2-025）。 | 中（対策後） | Security Lead | L4 |
 | TB-23 | 計測API | Repudiation | bot/spam により tracking / A-B API が汚染され、結果が捏造される（variant_id 偽装含む） | 7/7/6/6/5 | 31 | トークン付与イベントのみ採用、variant_id/section_id の整合検証、bot filter、重複検知、署名付き集計 |
-| TB-24 | Core Plugin ↔ 公開面（snapshot/crawl-map） | Information Disclosure | 公開 snapshot/crawl-map から `section_id` / `cta_id` / `variant_id` が平文取得され、競合が公開ページ構造を継続クロールして A/B テストの variant 構成・CTA 配置を推定できる | 9/5/4/6/5 | 29 | `GET /public/pages/{id}/snapshot` と `GET /public/crawl-map` は `variant_id` を公開レスポンスから除外し、`section_id`/`cta_id` は内部 ID と分離した公開用 opaque ID（`public_section_id`, `public_cta_id`）へ**常時変換**して返却する。`public_section_id` の逆引きは監査レイヤーのみ許可、認証済み管理 API でのみ内部 ID を参照可能とする。LLMO(ADR-013/015)要件で `opaque` ID は引用性を維持。該当設計は CARRY-G2-026。 | 低（対策後） | Security Lead | L4 |
+| TB-24 | Core Plugin ↔ 公開面（snapshot/crawl-map） | Information Disclosure | 公開 snapshot/crawl-map から `section_id` / `cta_id` / `variant_id` が平文取得され、競合が公開ページ構造を継続クロールして A/B テストの variant 構成・CTA 配置を推定できる | 9/5/4/6/5 | 29 | `GET /public/pages/{id}/snapshot` と `GET /public/crawl-map` は `variant_id` を公開レスポンスから除外し、`section_id`/`cta_id` は内部 ID と分離した公開用 opaque ID（`section_id_public`, `cta_id_public`）へ**常時変換**して返却する。`section_id_public` の逆引きは監査レイヤーのみ許可、認証済み管理 API でのみ内部 ID を参照可能とする。LLMO(ADR-013/015)要件で `opaque` ID は引用性を維持。該当設計は CARRY-G2-026。 | 低（対策後） | Security Lead | L4 |
 
 ### 6.1 DREAD Exploitability 根拠（現状実装ベース）
 - TB-01: E=4（既存セッション管理＋nonceで一般的な乗っ取りが必要）

@@ -2,7 +2,21 @@ openapi: 3.1.0
 info:
   title: AGENT NEO API
   version: 0.1.0-L3
-  description: 正本=api-catalog.md。本書は L3 API 契約凍結の機械可読版
+  description: |
+    正本=api-catalog.md。本書は L3 API 契約凍結の機械可読版
+
+    ## ライセンス縮退応答（横断ポリシー / TB-18a）
+
+    ライセンス縮退応答（403 FEATURE_DISABLED / 503 LICENSE_GRACE_PERIOD）は**全法人スコープ write endpoint に適用される横断的応答**。
+    個人スコープ（記事 CRUD: POST /posts・PATCH /posts/{id} 等）は grace 中も継続可能であり、縮退対象外。
+
+    | コード | モード | 条件 | 意味 |
+    |--------|--------|------|------|
+    | 403 FEATURE_DISABLED | invalid（即時 deny） | ライセンスキー無効・失効が確定 | 法人版機能を無効化し個人版スコープに縮退。deny-first |
+    | 503 LICENSE_GRACE_PERIOD | transient（grace 中） | ライセンスサーバ到達不能・502 / 3 回連続失敗 | 48h grace 中は readonly 縮退し write 系 endpoint は 503 を返す。grace 満了後は 403 に遷移 |
+
+    法人スコープ write endpoint への per-endpoint 完全契約化は L4（carry-014）で実施。
+    本書では主要な構造変更系 endpoint に 403/503 を明示し、それ以外も上記横断ポリシーが適用される旨を本 note で宣言する。
 x-api-catalog:
   source: docs/design/api-catalog.md
   endpoint_total: 55
@@ -262,6 +276,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /posts/{id}/sections/{section_id}/edit:
     post:
       operationId: A-post-section-edit
@@ -304,6 +332,20 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /sections:
     get:
       operationId: A-sections-list
@@ -382,6 +424,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /pages:
     get:
       operationId: A-pages-list
@@ -452,6 +508,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。invalid（即時 403）と transient（grace 中 503）は意味的に別モード: invalid はライセンスが確定的に無効、transient はライセンスサーバ障害による一時的縮退。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
         '409':
           description: 衝突（preview / apply 制約）
           content:
@@ -495,6 +565,20 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /lp/sections:
     post:
       operationId: A-lp-sections
@@ -534,6 +618,20 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /pages/{id}/preview:
     post:
       operationId: A-page-preview
@@ -602,7 +700,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
         '409':
-          description: 30 日保持外などで復元不可
+          description: 競合（active job 存在、または対象ページが書き込みロック中）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '410':
+          description: 対象 rollback_point が TTL 切れ（30日保持外）で復元不可
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
           content:
             application/json:
               schema:
@@ -628,6 +746,26 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '410':
+          description: 対象 rollback_point が TTL 切れ（30日保持外）で復元不可
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /ctas:
     get:
       operationId: A-ctas-list
@@ -705,6 +843,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /elements/swap:
     post:
       operationId: A-elements-swap
@@ -743,6 +895,20 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /actions/dry-run:
     post:
       operationId: A-actions-dry-run
@@ -808,6 +974,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
         '409':
           description: 再実行抑止または競合
           content:
@@ -845,6 +1025,20 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /design-tokens/apply:
     post:
       operationId: A-design-tokens-apply
@@ -872,6 +1066,20 @@ paths:
       responses:
         '200':
           description: token 更新結果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
           content:
             application/json:
               schema:
@@ -951,6 +1159,20 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
         '409':
           description: canonical/noindex の重複など
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '403':
+          description: |
+            ライセンス invalid/失効時（即時deny）: ライセンスキーが無効・失効している場合、法人版機能が無効化され個人版スコープ（記事CRUDのみ）に縮退（deny-first / TB-18a）。error.code=FEATURE_DISABLED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '503':
+          description: |
+            ライセンス transient 失敗時（grace 中）: ライセンス検証サーバ到達不能またはライセンスサーバ 502 / 3 回連続失敗の場合、48h grace 中は readonly 縮退し write 系 endpoint（apply 等）は 503 を返す。grace 満了後は 403 FEATURE_DISABLED で個人版縮退（TB-18a 2モード）。error.code=LICENSE_GRACE_PERIOD
           content:
             application/json:
               schema:
@@ -1391,11 +1613,20 @@ paths:
         - AutomationSEO
       responses:
         '200':
-          description: source/confidence 付き theme 情報
+          description: |
+            source/confidence 付き theme 情報（safe_apply_state enum 含む）。
+            data フィールドの形状は BridgeProfile スキーマで型強制される。
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandardResponse'
+                allOf:
+                  - $ref: '#/components/schemas/StandardResponse'
+                  - type: object
+                    required:
+                      - data
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/BridgeProfile'
   /risks/hazards:
     get:
       operationId: AF-risks-ledger
@@ -1593,12 +1824,19 @@ components:
               enum:
                 - VALIDATION_ERROR
                 - UNAUTHORIZED
+                - FORBIDDEN
                 - NOT_FOUND
                 - CONFLICT
+                - GONE
+                - PRECONDITION_FAILED
                 - RATE_LIMITED
+                - FEATURE_DISABLED
+                - LICENSE_GRACE_PERIOD
                 - AGENT_NEO_NOT_INSTALLED
                 - PLUGIN_AUTH_FAILED
                 - RETRY_EXHAUSTED
+                - SIGNATURE_INVALID
+                - LICENSE_GATEWAY_ERROR
                 - INTERNAL_ERROR
             message:
               type: string
@@ -1709,6 +1947,43 @@ components:
               type: string
             diff:
               $ref: '#/components/schemas/Diff'
+    BridgeProfile:
+      type: object
+      additionalProperties: false
+      description: |
+        Theme Bridge Plugin 互換プロファイル（StandardResponse.data の形状）。ADR-019 準拠:
+        既存テーマ（SWELL/JIN:R 等）は preview-only 固定。
+        write-ready は AGENT NEO 専用テーマ環境でのみ設定される。
+        GET /automation-seo/bridge-profile の 200 レスポンスは StandardResponse エンベロープに
+        ラップされ、data フィールドにこのスキーマのオブジェクトが格納される。
+      required:
+        - theme_slug
+        - safe_apply_state
+      properties:
+        theme_slug:
+          type: string
+          description: 検出されたテーマスラッグ
+        theme_version:
+          type: string
+          description: テーマバージョン（取得可能な場合）
+        safe_apply_state:
+          type: string
+          enum:
+            - preview-only
+            - write-ready
+          description: |
+            preview-only: 既存テーマ環境（SWELL/JIN:R 等）。block 書き込み API は無効。
+            write-ready: AGENT NEO 専用テーマ環境。block 書き込み全機能有効。
+        confidence:
+          type: string
+          enum:
+            - high
+            - medium
+            - low
+          description: テーマ検出の確信度
+        source:
+          type: string
+          description: "プロファイル取得元（例: theme-catalog / probe）"
     CatalogUpdateResponse:
       type: object
       additionalProperties: false
@@ -1741,12 +2016,19 @@ components:
           enum:
             - VALIDATION_ERROR
             - UNAUTHORIZED
+            - FORBIDDEN
             - NOT_FOUND
             - CONFLICT
+            - GONE
+            - PRECONDITION_FAILED
             - RATE_LIMITED
+            - FEATURE_DISABLED
+            - LICENSE_GRACE_PERIOD
             - AGENT_NEO_NOT_INSTALLED
             - PLUGIN_AUTH_FAILED
             - RETRY_EXHAUSTED
+            - SIGNATURE_INVALID
+            - LICENSE_GATEWAY_ERROR
             - INTERNAL_ERROR
         message:
           type: string

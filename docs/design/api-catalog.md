@@ -157,8 +157,8 @@
 
 | Method | Path | 用途 | REQ-F | 備考 |
 |--------|------|------|-------|------|
-| GET | /public/pages/{id}/snapshot | 公開ページの AI Snapshot | REQ-NF-015 | A-018 / SF-003。section 一覧・CTA label・JSON-LD・canonical・robots を返す。認証不要 |
-| GET | /public/crawl-map | 全公開ページの crawl map | REQ-NF-015 | A-019 / SF-012。canonical・robots・更新日・section 数・content_type を返す |
+| GET | /public/pages/{id}/snapshot | 公開ページの AI Snapshot | REQ-NF-015 | A-018 / SF-003。section 一覧・CTA label・JSON-LD・canonical・robots を返す。認証不要。**レスポンス原則**（carry-026 = CARRY-TO-L4 / data-model-ids.md §R-10 / threat-model TB-24）: 各セクションには `section_id_public`（内部 `section_id` を公開 ID に変換）を付与。CTA 参照を返す場合は `cta_id_public`（内部 `cta_id` を公開 ID に変換）を使用し、内部 `cta_id` を直接露出しない。`variant_id` はレスポンスから除外。内部 slug を一切露出しない。フィールド名・スキーマ詳細は L4（carry-026）で api-catalog / openapi / WBS に確定する |
+| GET | /public/crawl-map | 全公開ページの crawl map | REQ-NF-015 | A-019 / SF-012。canonical・robots・更新日・section 数・content_type を返す。**レスポンス原則**（carry-026 = CARRY-TO-L4 / data-model-ids.md §R-10 / threat-model TB-24）: section エントリには `section_id_public` を付与。CTA 参照を含む場合は `cta_id_public`（内部 `cta_id` を公開 ID に変換）を使用し、内部 `cta_id` を直接露出しない。`variant_id` 除外・内部 slug 非露出。フィールド名・スキーマ詳細は L4（carry-026）で確定する |
 | GET | /public/llmo/answers | answer unit / citation anchor / evidence graph | REQ-NF-017 | A-021。LLMO 向け公開エンドポイント。認証不要 |
 
 ---
@@ -309,7 +309,30 @@ catalog-update 発火責務は agent-neo-core-plugin（Plugin B）が所有し�
 | コンテンツ書き込み（apply）| owner | 経由して agent-neo/v1 へ書き込む |
 | AI 自律最適化ループ | 基盤提供（計測 ID / rollback / 検証パイプライン）| オーケストレーション（LLM / 統計判定 / variant 生成）|
 | Tier 1 サンドボックス | owner | 不関与 |
-| Tier 2 サンドボックス | PATCH apply の受け手 | オーナー（multi-version / A/B / time-machine）|
+| Tier 2 サンドボックス | `POST /pages/{id}/apply`（from_preview_token 経由）の受け手 | オーナー（multi-version / A/B / time-machine）|
 | 外部エディタ制御 | デフォルト 403 拒否 | 唯一の許可 Write 経路の一つ |
 
-**境界違反リスク**: `aseo/v1` が `wp/v2` を直接書き込む経路を使うと REQ-F-042 違反になる。`aseo/v1 → agent-neo/v1 PATCH` の経路強制を L3 で契約化すること。
+**境界違反リスク**: `aseo/v1` が `wp/v2` を直接書き込む経路を使うと REQ-F-042 違反になる。`aseo/v1 → agent-neo/v1 POST /pages/{id}/apply`（または `PATCH /batch`）への経路強制は L3-detailed-design §A-005 で契約済み。
+
+---
+
+## 変更履歴
+
+| 日付 | carry | アクション | §/行 | before → after |
+|------|-------|-----------|------|----------------|
+| 2026-06-15 | carry-016 | 是正: Tier 2 サンドボックス行の廃止 PATCH 記述を正規経路に変更 | 旧312行（現行312行付近） | `PATCH apply の受け手` → `POST /pages/{id}/apply（from_preview_token 経由）の受け手` |
+| 2026-06-15 | carry-016 | 是正: 境界違反リスク行の open TODO を L3-detailed-design §A-005 参照に置換 | 旧315行（現行最終行付近） | `…PATCH の経路強制を L3 で契約化すること` → `…POST /pages/{id}/apply（または PATCH /batch）への経路強制は L3-detailed-design §A-005 で契約済み` |
+| 2026-06-15 | carry-026 | 追記: `/public/pages/{id}/snapshot` レスポンスに `section_id_public` 原則・variant_id 除外・内部 slug 非露出を記載（carry-026 = CARRY-TO-L4。フィールド名含む具体 schema は L4 で確定） | 行160 | 備考末尾に **レスポンス原則** ブロック追加。`public_section_id` → `section_id_public`（L2 frozen 命名に統一） |
+| 2026-06-15 | carry-026 | 追記: `/public/crawl-map` レスポンスに同 `section_id_public` 原則を記載（carry-026 = CARRY-TO-L4） | 行161 | 備考末尾に **レスポンス原則** ブロック追加。`public_section_id` → `section_id_public`（L2 frozen 命名に統一） |
+| 2026-06-15 | carry-012 | 確認: lp-blueprint 12 セクション名称リストの有無 | 行48 | **名称リスト不在**。行48 に「12 標準セクション（Hero → CTA）対応」と件数・起点・終点のみ記載。12 セクションの個別名称定義が未確定。PO / 設計判断が必要（L4 carry 候補） |
+| 2026-06-15 | carry-023 | 確認のみ（編集不要）: `next_action` が dedup 含め全応答で返却される記述の正確な行 | **行200**（`next_action` Response schema テーブル）・**行229**（補足テキスト）が正本アンカー。openapi 側で対応済みのため api-catalog 側編集なし |
+
+### PATCH grep 全ヒットと判定
+
+| 行 | 内容 | 判定 |
+|----|------|------|
+| 32 | `PATCH /posts/{id}/blocks/{block_id}` ブロック単位部分更新 | **残す**（正当な PATCH） |
+| 79 | `PATCH /batch` バッチ操作 | **残す**（正当な PATCH） |
+| 旧282 | `PATCH /pages/{id}/apply は preview 昇格経路の重複として整理` の説明テキスト | **残す**（廃止理由の説明文。既に「POST のみ統一」と正確に記述されている） |
+| 旧312 | `Tier 2 サンドボックス | PATCH apply の受け手` | **是正済み**（→ `POST /pages/{id}/apply（from_preview_token 経由）の受け手`） |
+| 旧315 | `aseo/v1 → agent-neo/v1 PATCH の経路強制を L3 で契約化すること` | **是正済み**（→ L3-detailed-design §A-005 参照に置換） |

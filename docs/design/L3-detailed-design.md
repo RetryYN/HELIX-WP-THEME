@@ -60,6 +60,8 @@ sequenceDiagram
 | JSON操作API | manifest only | owner |
 | CPT/A-B/tracking storage | no | owner |
 
+**ADR-008 配布境界との整合確認済み（CARRY-G2-019）**: catalog-update の発火は Core Plugin の責務であり、テーマは表示責務のみを担う。テーマ側が catalog-update の送信・制御ロジックを持つことは ADR-008 配布境界違反となるため禁止。
+
 ## 1. API 詳細仕様（D-API）
 
 **注記:** 正本は `api-catalog.md`（55 endpoint 一覧）を参照。ここでは Phase1 ローンチに直結する中核 endpoint のみ I/O を具体化する。  
@@ -76,6 +78,8 @@ sequenceDiagram
 | `A-007` | `POST /tracking/event` |
 | `A-008` | `POST /license/validate` |
 | `A-009` | `POST /aseo/v1/agent-neo/catalog-update` |
+
+**A-008 二重定義注記**: L3 ローカル `A-008` = `POST /license/validate` であり、`api-catalog.md` の `A-008` = `POST /tracking/context` とは **別体系で矛盾ではない**。`api-catalog.md` における `POST /license/validate` は `A-011` に相当する。実装時は参照元（L3 本節 vs api-catalog）を必ず明示し、tracking-context と license/validate の ID を混同しないこと。
 
 ### A-001: `POST /actions/dry-run`
 
@@ -407,7 +411,7 @@ sequenceDiagram
 
 - **Method**: `POST`
 - **Path**: `/aseo/v1/agent-neo/catalog-update`
-- **認証**: HMAC/nonce（Automation SEO canonical）
+- **認証**: HMAC/nonce（Automation SEO canonical）。**旧鍵受付は catalog-update（F-01）のみ**。F-02 以降の operation では旧鍵を reject（権限逆流対策 / CARRY-G2-008）。
 - **対応 REQ-F**: REQ-F-044, REQ-NF-025（契約分離）
 - **正本**: `D-PLUGIN-CONTRACT §17`（再定義しない）
 - **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
@@ -525,11 +529,11 @@ sequenceDiagram
 | `mcp-tools.schema.json` | MCP 連携 I/O と許可操作を定義 | Core Plugin |
 | `wp-cli-contract.json` | CLI 運用コマンド入力検証 | Core Plugin |
 | `automation-schedule.schema.json` | 時間系ジョブ定義の契約 | Core Plugin |
-| `catalog-update.schema.json` | catalog-update 要求の検証。**ADR-018 準拠（再定義しない互換ミラー）**。AGENT NEO 側は受信側スキーマ検証を再定義せず、payload は §17.2 の送信保証を採用。※CARRY-G2-002 |
+| `catalog-update.schema.json` | catalog-update 要求の検証。**ADR-018 準拠（再定義しない互換ミラー）**。AGENT-NEO 側は本スキーマを参照コピーとして保持し自律変更禁止。automation SEO 側 `D-PLUGIN-CONTRACT §17` を正本とし、CI 差分ゼロ検証で一致を担保する。payload は §17.2 の送信保証を採用。※CARRY-G2-002 解決済 |
 | `agent-operability.schema.json` | 運用監査データの検証 | Core Plugin |
 | `dom-anchor.schema.json` | DOM anchor と section anchor の検証 | Core Plugin |
 | `content-snapshot.schema.json` | スナップショット保存内容の契約 | Core Plugin |
-| `tracking-context-v2.schema.json` | 計測文脈と署名検証の前提契約。`selector_contract`（block anchor / heading hash / selector）を明記し、取得元解釈責務を分離。※CARRY-G2-024 |
+| `tracking-context-v2.schema.json` | 計測文脈と署名検証の前提契約。`selector_contract`（block anchor / heading hash / selector）を明記し、取得元解釈責務を分離（CARRY-G2-024）およびスキーマフィールド統一（CARRY-G2-027）の両 carry を本スキーマで閉じる。※CARRY-G2-024 / CARRY-G2-027 |
 | `crawler-access-matrix` | `search` / `ai-input` / `ai-train` / `snippet` / `WAF` 判定キーを `ADR-013` で一元管理。`ai-visibility-policy` と重複しない。※CARRY-G2-020 |
 | `ai-crawler-policy` | ADR-013 の機械契約に基づく公開判定・可視化ルールの定義。`crawler-access-matrix` の対で運用。※CARRY-G2-020 |
 | `theme-capability.schema.json` | Theme/Plugin 能力宣言の検証 | Core Plugin |
@@ -544,7 +548,19 @@ sequenceDiagram
 | `performance-profile.json` | パフォーマンス予算プロファイル | Theme/Core 連携 |
 | `web-vitals-budget.json` | LCP/INP/CLS 許容閾値 | Theme/Core 連携 |
 
-### 2.6 ID 体系（data-model-ids）運用
+### 2.6 ADR-013 クローラー契約 責務境界（CARRY-G2-020）
+
+ADR-013 が規定するクローラー制御 3 アーティファクトの責務と評価順序を以下に定める。
+
+| アーティファクト | 粒度 | 責務 | 備考 |
+|---|---|---|---|
+| `crawler-access-matrix.json` | bot/crawler 種別（Googlebot / GPTBot / ClaudeBot 等） | 許可マトリクスの source of truth。`robots.txt` 生成の起点 | ai-visibility-policy と重複しない |
+| `ai-visibility-policy.json` | ページ粒度 | crawler-access-matrix に対するページ単位の override | 基底マトリクスを上書きする補正レイヤー |
+| `ai-crawler-policy` | bot 別公開判定 | crawler-access-matrix の導出先。機械契約ベースの可視化ルール定義 | crawler-access-matrix と対で運用 |
+
+**評価順序**: `crawler-access-matrix`（基底）→ `ai-visibility-policy`（ページ override）。conflict 時はより制限的な方を採用する。L2 §8.8 / §8.10 と同方針。
+
+### 2.7 ID 体系（data-model-ids）運用
 
 - 内部 slug（保存・ルーティング）: `^[a-z0-9-]+$`。
 - 表示用 slug: 別途 `sanitize_title` で別管理。
@@ -585,6 +601,9 @@ sequenceDiagram
 - **主なコンポーネント**: パッケージ選択、検証トリガ、期限表示、fail-open ではない縮退表示
 - **状態**: `valid` / `expired` / `readonly_mode` / `pending`
 - **データソース**: `POST /license/validate`, options: `agent_neo_license_state`
+- **2モード縮退（CARRY-G2-014 / L2 §8.6 / TB-18a / T-013 準拠）**: ライセンス障害の種別に応じて挙動を分離する。fail-open は両モード共通で絶対禁止。
+  - **invalid / 失効（確定的に無効）**: ライセンス自体が invalid・失効・明確に未ライセンスとしてサーバが応答した場合。**即時 deny**（grace なし）→ 法人機能を無効化 → 個人版スコープ（記事 CRUD のみ）へ縮退。HTTP レスポンス: `403 FEATURE_DISABLED`。TB-18a「必ず deny」はこのモードを対象とする。
+  - **transient（サーバ到達不能 / 502 / 3回連続失敗）**: ライセンスサーバへの一時的な到達不能の場合。**grace period 48h を適用**。grace 期間中は現スコープを **readonly 縮退**（計測・公開・閲覧は維持、write 系操作はブロック）で継続し、write 系リクエストには `503 LICENSE_GRACE_PERIOD` を返す。grace 満了後に個人版スコープ（記事 CRUD のみ）へ自動降格（`403 FEATURE_DISABLED`）。grace period の具体値（48h）は package-matrix `PF-002` / `PF-010` を SSOT とする。
 
 #### S-008 SEO Core
 - **目的**: meta/OGP/canonical/robots の保存と重複検知表示を運用
@@ -721,6 +740,6 @@ sequenceDiagram
 ## 6. 工程表（WBS）
 
 本節は単独正本 `docs/design/L3-WBS.md` に移管済み。  
-要約: F-001、F-002、F-044、F-011、F-006/F-007/F-026/F-027（連携群）を軸に 25 タスクを管理し、`.1a〜.5` sprint で実装分割。  
-クリティカルパスは `T-001 → T-004 → T-006 → T-007 → T-010 → T-011 → T-014 → T-015 → T-018 → T-024`。  
+要約: F-001、F-002、F-044、F-011、F-006/F-007/F-026/F-027（連携群）を軸に 26 タスクを管理し、`.1a〜.5` sprint で実装分割。  
+クリティカルパスは `T-001 → T-004 → T-006 → T-007 → T-010 → T-011 → T-014 → T-015 → T-024`（T-018 は並走・本線外）。  
 正本: `docs/design/L3-WBS.md`

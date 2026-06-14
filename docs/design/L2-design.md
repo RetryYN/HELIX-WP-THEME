@@ -505,6 +505,20 @@ AGENT NEOは、WPコア更新、PHP/DB更新、プラグイン追加、外部連
 | Critical脆弱性対応 | `24h` |
 | High脆弱性対応 | `7d` |
 
+#### ライセンス検証障害時のフェイルセーフ（CARRY-G2-014 / threat-model TB-18a 準拠）
+
+ライセンス失敗モードは **2種を厳密に区別** し、挙動を分離する（package-matrix PF-002/PF-010 の確定値に基づく）。
+
+| 失敗モード | 定義 | 挙動 |
+|---|---|---|
+| **transient 失敗**（サーバ到達不能） | ライセンスサーバが 502 / タイムアウト / 3回連続失敗など、一時的な到達不能 | grace period **48時間** を適用。期間中は現スコープを **readonly 縮退**（計測・公開・閲覧維持、apply 操作はブロック）で継続。grace 満了後に個人版スコープ（記事CRUDのみ）へ降格 |
+| **invalid / 失効**（ライセンス自体の問題） | ライセンス自体が invalid・失効・明確に未ライセンスとしてサーバが応答 | **即時 deny**（grace なし）。法人版機能を無効化し個人版スコープ（記事CRUDのみ）へ縮退 |
+
+- fail-open は絶対禁止（transient 失敗時の grace 期間中も apply 操作はブロック）
+- TB-18a の「必ず deny」は **invalid/失効モード** を対象とする（transient 失敗は grace 適用が正しい挙動）
+- `availability-profile.json` の `license` 障害フォールバック定義は本ポリシーの2モード分離と双方向で参照し整合させる（`availability-profile.json` ↔ §8.6 / TB-18a）
+- grace period の具体値（48時間）は package-matrix `PF-002` / `PF-010` を SSOT とする。変更時は当該ファイルを先に更新し、本節はその参照として扱う
+
 ### 8.7 API/自動化契約設計
 
 AGENT NEOのAPIと自動化は、参照テーマで観測したREST/AJAX/Cronをそのまま移植せず、Core Plugin側の契約ファースト基盤として実装する。REST、MCP、WP CLI、React UIは同一のJSON契約を参照し、Cronや外部Webhookもjob contractに揃える。
@@ -558,6 +572,8 @@ AGENT NEO Core Plugin（Plugin B）が producer、Automation SEO が receiver �
 | 再試行 | `running -> failed -> retrying -> running`（対象外: 4xx（429 除外） / 401 / 409 は即 `dead_letter`） |
 | 失敗固定 | `failed -> dead_letter` |
 | 取消 | `queued/running -> cancelled` |
+
+> **注記（CARRY-G2-003）**: `catalog-update` outbox は本テーブルの適用外。独自 retry カウンタ（初回 1s・指数 2^n・最大 5 回・±10% jitter / §17.11 準拠）を使用し、CPT へ状態保存しない（L3 §4.2 / CARRY-G2-003）。
 
 #### catalog-update 送信障害設計（ADR-012 準拠 / producer = AGENT NEO Core Plugin）
 
@@ -666,7 +682,7 @@ AGENT NEOは、AI検索で読まれ、引用され、CVへ接続される状態�
 | `answer-unit.schema.json` | 質問、短い回答、詳細、claim、evidence、著者、監修者、更新日、CTAをsection単位で管理 |
 | `evidence-graph.schema.json` | claim、source URL、reviewer、検証日、Entity Graph、content hashを接続 |
 | `content-origin.schema.json` | AI生成、人間編集、監修、実測、取材、PR/広告の作成過程を記録 |
-| `ai-visibility-policy.json` | page別のsearch、ai-input、ai-train、snippet、WAF方針を管理。判定キーは `ai-crawler-policy` と同一で `search` / `ai-input` / `ai-train` / `snippet` / `WAF` |
+| `ai-visibility-policy.json` | ページ粒度 override のみを担当。bot 粒度の許可判定と robots.txt 生成は `crawler-access-matrix`（ADR-013 / §8.8）を source of truth とし、`ai-visibility-policy.json` は per-page の上書き設定に限定する（責務分割: `crawler-access-matrix`=bot粒度許可マトリクス・robots.txt source / `ai-visibility-policy`=ページ粒度override / `ai-crawler-policy`=bot別公開判定 / CARRY-G2-020）。判定キー（`search` / `ai-input` / `ai-train` / `snippet` / `WAF`）の定義正本は ADR-013 / `crawler-access-matrix` に置く |
 | `ai-crawler-policy.schema.json` | OpenAI、Google、Anthropic、Perplexity、Bing、Cloudflareのbot別許可を管理 |
 | `citation-anchor.schema.json` | answer anchor、section_id、claim_id、canonical、content_hashを管理 |
 | `llmo-visibility.schema.json` | AI crawler、AI referral、citation、query intent、CTA、CVを計測 |
