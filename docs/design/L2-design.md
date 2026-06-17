@@ -20,7 +20,7 @@ AGENT NEO は、WordPress FSEテーマをAIエージェントが安全に操作�
 - GPL互換
 - Theme CoreはFSE表示層、Companion PluginはAPI/CPT/SEO/計測/A-B/Blueprint層に分離
 - Automation SEO / seo-tool-connector の既存APIと整合
-- テーマ本体は買い切り、Automation SEOは別課金
+- Automation SEO 専用配布・課金は Automation SEO 契約のみ（ADR-024 / 2026-06-18 確定）
 
 ## 2. アーキテクチャ
 
@@ -65,7 +65,7 @@ graph TD
 |---|---|---|
 | ADR-001 | FSEテーマとして実装 | block/theme JSONとAI操作の相性が高い |
 | ADR-002 | 4操作面を同一JSON契約に集約 | REST/MCP/WP CLI/UIの実装重複を防ぐ。`catalog-update` の外部push契約は ADR-012 + §2.4 の範囲で扱う |
-| ADR-003 | Automation SEOは別課金 | AI原価をテーマ買い切り価格に抱え込まない |
+| ADR-003 | Automation SEO専用配布・課金は Automation SEO 契約のみ | テーマ単体販売・買い切りは廃止。AI原価を含む全機能の課金は Automation SEO プラン階層で管理する（ADR-024 / 2026-06-18 確定） |
 | ADR-004 | 参照テーマは設計抽象のみ取り込む | ライセンス/著作権リスクを避ける |
 | ADR-005 | SEOはJIN:R型の統合UXを採用 | AIがSEOメタ/OGP/canonical/noindex/schemaを一括操作できるようにする |
 | ADR-006 | 速度設計はSWELL型の条件付きアセット戦略を採用 | JIN:RはSEO統合に強いが、速度基盤はSWELLのCSS分割/遅延読み込み/不要機能抑制を優先する |
@@ -90,7 +90,7 @@ graph TD
 | `agent-neo-theme` | `theme.json`、templates、parts、patterns、style variations、表示CSS | CPT、SEO保存、計測保存、フォーム処理、AI操作API、構造データ永続化 |
 | `agent-neo-core-plugin` | REST/MCP/WP CLI、CPT、custom blocks、SEO Core、Tracking/A-B、LP/HP Blueprint、License gate、`SiteProfile`/`AgentAction`/`Section`/`post_meta` の構造データ管理、`catalog-update` 発火 | 見た目だけのテーマスタイル責務 |
 | `agent-neo-migration-plugin` | WP REST抽出、変換プレビュー、S1ハンドオフ | 無制限AI再構築、テーマ別専用アダプタ乱立 |
-| Automation SEO | AI生成、IA/SEO再設計、改善提案 | テーマ買い切り価格へのAI原価内包 |
+| Automation SEO | AI生成、IA/SEO再設計、改善提案 | テーマ単体販売・買い切りは廃止。AI原価を含む課金は Automation SEO 契約で一本管理（ADR-024 / 2026-06-18 確定） |
 
 ### 2.5 プラグイン依存度
 
@@ -103,12 +103,12 @@ AGENT NEOの必須依存は `agent-neo-theme` と `agent-neo-core-plugin` に限
 | D2 | `agent-neo-core-plugin` | 実質必須 | JSON API、MCP、WP CLI、CPT、SEO、計測、A/B、Blueprint |
 | D3 | `agent-neo-migration-plugin` | 任意 | 移行時のみ。通常運用に必須化しない |
 | D4 | `seo-tool-connector` | 推奨 | Automation SEO連携。未導入時はローカル軽量計測へfallback |
-| D5 | Automation SEO | 有料外部依存 | AI生成/IA再設計。テーマの通常動作には必須化しない |
+| D5 | Automation SEO | 必須外部依存（Automation SEO 契約で一本管理） | AGENT NEO は Automation SEO 専用配布。AI生成/IA再設計の課金は Automation SEO プラン階層のみ（ADR-024 / 2026-06-18 確定） |
 | D6 | Yoast / Rank Math等 | 任意共存 | 重複meta/schemaを検出して抑制 |
 | D7 | フォーム/CRM系 | 任意adapter | 外部フォームCTAとして扱う |
 | D8 | キャッシュ/高速化系 | 任意共存 | テーマはasset policyを持つがcache engineを持たない |
 | D9 | GA4/GTM/広告タグ | 任意同意制 | third-party tag governanceで管理 |
-| D10 | Automation SEO Theme Bridge Plugin | 任意/推奨 | 既存テーマの診断・正規化・移行入口。AGENT NEOではCore Pluginが正規write target |
+| D10 | Automation SEO Theme Bridge Plugin | 任意/推奨 | 既存テーマの診断・正規化・移行入口（ADR-019 存続）。AGENT NEO では Core Plugin が正規 write target。**REQ-F-043 Open Editor Bridge Plugin（外部AI write受口）は廃止（ADR-024 / 2026-06-18 確定）** |
 
 ## 3. 機能設計
 
@@ -189,7 +189,7 @@ AGENT NEOの必須依存は `agent-neo-theme` と `agent-neo-core-plugin` に限
 | REQ-F-040 | Write Authority Lock | 7.2 / §8.6 / ADR-018 / S-004 | carry（L3: ロック切替フロー） |
 | REQ-F-041 | 記事編集経路 | F-002 / 7.1 / 3.2 / 6.1 | 設計済み |
 | REQ-F-042 | 外部エディタアクセス制御 | 7.1 / 7.2 / ADR-019 / §8.7 | 設計済み |
-| REQ-F-043 | Open Editor Bridge Plugin | 8.13 / §7.3 / ADR-019 / S-015 | carry（L3: サブスク課金運用） |
+| REQ-F-043 | Open Editor Bridge Plugin | — | **廃止（ADR-024 / 2026-06-18 確定）**。外部AI write 受口は不採用。AI 操作経路は Automation SEO（aseo/v1）とテーマ自身（agent-neo/v1）のみ |
 | REQ-F-044 | catalog-update発火 | ADR-002 / ADR-012 / ADR-008 / ADR-018 / `POST /aseo/v1/agent-neo/catalog-update` / §8.7 / api-catalog external outbound contracts（失敗時は §8.7 outbox/DLQ 経路で回復） | 設計済み |
 | REQ-NF-001 | 性能（総則） | §8.1 / `performance-profile.json` / `web-vitals-budget.json` | 設計済み |
 | REQ-NF-002 | セキュリティ | 7.1 / 7.2 / S-001 / A-014 | 設計済み |
@@ -730,7 +730,7 @@ AGENT NEOは、AI検索で読まれ、引用され、CVへ接続される状態�
 | ID | リスク | 影響度 | 発生確率 | 対策 |
 |---|---|---|---|---|
 | R-001 | 法人版が高額テーマに見える | 高 | 中 | LP運用基盤/S1/計測改善として訴求 |
-| R-002 | AI原価がテーマ価格を圧迫 | 高 | 中 | Automation SEO別課金、BYO APIキー候補 |
+| R-002 | AI原価の課金構造リスク | 高 | 低 | Automation SEO 専用配布・課金一本化により解消（ADR-024 / 2026-06-18 確定）。AI原価はテーマ価格から切り離され Automation SEO プラン階層で管理する |
 | R-003 | 参照テーマ流用リスク | 高 | 低 | コード/画像/CSS/固有文言コピー禁止 |
 | R-004 | JSON操作でサイト破損 | 高 | 中 | dryRun、diffReview、schema validation、rollback |
 | R-005 | REST公開計測APIの悪用 | 中 | 中 | rate limit、bot filter、署名 |
@@ -810,11 +810,13 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 
 ## 8.13 Automation SEO Theme Bridge Plugin情報設計
 
+> **注記（ADR-024 / 2026-06-18 確定）**: **REQ-F-043 Open Editor Bridge Plugin（外部AI write受口）は廃止**。AI 操作経路は Automation SEO（aseo/v1）とテーマ自身（agent-neo/v1）のみとする。本節が扱う「Automation SEO Theme Bridge Plugin」（ADR-019）は既存テーマの診断・正規化・移行入口に限定する別概念であり、ADR-019 は存続する。
+
 既存テーマを横断的に強化するAutomation SEO側プラグインは、テーマを直接改造するものではなく、診断・正規化・計測・移行入口の契約層として扱う。SWELL/JIN:R/AFFINGER/Cocoon/Lightningでは原則preview-only、AGENT NEOではCore PluginがdryRun/apply/rollbackを持つ正規write targetになる。
 
 | 追加ID | 種別 | 内容 |
 |---|---|---|
-| ADR-019 | ADR | Theme Bridge Pluginは既存テーマの深い自動書き換えではなく、source/confidence付き情報契約に限定する |
+| ADR-019 | ADR | Theme Bridge Pluginは既存テーマの深い自動書き換えではなく、source/confidence付き情報契約に限定する（ADR-024後も存続） |
 | F-024 | Feature | Automation SEO Theme Bridge。site/theme/plugin/page/section/CTA/offer/SEO/tracking/privacy/health/safe apply/migration blueprintを管理 |
 | A-024 | API | `/wp-json/agent-neo/v1/automation-seo/bridge-profile` でTheme Bridge Plugin互換profileを返す |
 | S-015 | Screen | Theme Bridge Profile。既存テーマ横断の診断、preview-only/write-ready、移行blueprintを表示する |
@@ -850,4 +852,5 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 |---|---|---|
 | G0.5 | passed_with_draft | L0企画をL2設計へ反映 |
 | L2 | frozen | G2 passed 2026-06-14。設計方針を凍結。ADR/API/schemaの詳細はL3で凍結 |
+| L2 配布モデル改訂 | 反映済み | 2026-06-18 ADR-024 確定によりテーマ単体販売・買い切りSKU廃止・REQ-F-043廃止を凍結設計へ反映 |
 | Security | passed_with_caution | 脅威分析とAPIガードを定義 |

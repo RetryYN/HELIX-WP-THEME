@@ -1,5 +1,11 @@
 ﻿# L1 要件定義書 — AGENT NEO
 
+> **2026-06-18 配布・課金モデル改訂（PO確定 / ADR-024）**:
+> - テーマ単体販売（個人¥19,800 / 法人¥98,000）を**廃止**。AGENT NEO は Automation SEO 専用配布テーマに一本化。課金は Automation SEO 契約のみ。
+> - **REQ-F-043（Open Editor Bridge Plugin）を廃止**。外部 AI からの write 操作は受け付けない。AI 操作経路は Automation SEO（aseo/v1）経由のみ。
+> - 個人/法人の AI 操作スコープ差（記事 CRUD vs HP/LP 構造変更）は機能境界として維持。課金ひも付けは Automation SEO プラン階層へ（厳密対応は follow-up）。
+> - 移行プラグイン（無料 / wp.org lead magnet）は維持。
+>
 > **2026-06-18 G1-carry 整合補正**: ACC-NF ↔ REQ-NF 番号整合 + REQ-NF-001〜007 トレーサビリティ補完。
 > 是正方針(b)採用: ACC-NF-002〜015 の番号・本文は保持し、各行の「対応要件」列で REQ-NF 対応を明示。
 > REQ-NF-002〜007 の受入条件は ACC-NF-016〜021 として新規追加（ACC-SEC-001 は REQ-NF-002 のセキュリティ特化版として残存）。
@@ -11,14 +17,26 @@
 
 AGENT NEO は、AIエージェントが第一級ユーザーとして操作できる商用 WordPress FSE テーマである。既存の有料テーマは人間GUI前提で、AIが安全にサイト構造、ブロック、CTA、計測、SEOを更新するための安定したJSON契約が弱い。AGENT NEO は WordPress エコシステムを維持しつつ、REST API、MCP、WP CLI、React管理画面を通じてAI運用可能なテーマ基盤を提供する。
 
-### 1.2 ターゲットユーザー
+### 1.2 ターゲットユーザー・配布モデル
 
-| ティア | ペルソナ | 主な利用シナリオ |
+> **【2026-06-18 改訂 / ADR-024】** AGENT NEO はテーマ単体販売を廃止し、**Automation SEO 専用配布テーマ**に一本化。
+> 課金は Automation SEO 契約のみ。テーマは Automation SEO サブスクリプションの特典として提供される。
+
+| ティア | ペルソナ | 主な利用シナリオ | 取得経路 |
+|---|---|---|---|
+| 個人プラン利用者 | 中級以上のアフィリエイター（Amazon/メルカリ/AdSense/ASP系） | **出口クリック最適化**: 高 CTR 記事から ASP/AdSense へ送客し、クリック収益を最大化 | Automation SEO 個人プラン加入 → テーマ配布 |
+| 法人プラン利用者 | 中小企業、スタートアップ、代理店 | **全ファネル所有**: HP/LP/BLP 導線で問い合わせ・資料 DL を獲得 → 顧客行動・育成・LTV まで自社管理 | Automation SEO 法人プラン加入 → テーマ配布 |
+| 移行プラグイン利用者 | 既存WPサイト所有者 | 既存コンテンツをAGENT NEOの標準構造へ移す | **無料配布 / wp.org（lead magnet）** — Automation SEO 加入促進 |
+| S1 | 法人、本気の事業者 | Automation SEOでIA/SEO/LPを再設計し、検収付きで公開する | Automation SEO S1 プラン |
+
+**廃止 SKU（ADR-024 / 2026-06-18）**:
+
+| ~~SKU~~ | ~~価格~~ | 廃止理由 |
 |---|---|---|
-| 個人版 | 中級以上のアフィリエイター（Amazon/メルカリ/AdSense/ASP系） | **出口クリック最適化**: 高 CTR 記事から ASP/AdSense へ送客し、クリック収益を最大化 |
-| 法人版 | 中小企業、スタートアップ、代理店 | **全ファネル所有**: HP/LP/BLP 導線で問い合わせ・資料 DL を獲得 → 顧客行動・育成・LTV まで自社管理 |
-| 移行プラグイン | 既存WPサイト所有者 | 既存コンテンツをAGENT NEOの標準構造へ移す |
-| S1 | 法人、本気の事業者 | Automation SEOでIA/SEO/LPを再設計し、検収付きで公開する |
+| ~~テーマ単体 個人版~~ | ~~¥19,800（買い切り）~~ | Automation SEO 専用配布に一本化 |
+| ~~テーマ単体 法人版~~ | ~~¥98,000（買い切り）~~ | Automation SEO 専用配布に一本化 |
+
+**機能境界（維持）**: 個人/法人の AI 操作スコープ差（個人 = 記事 CRUD のみ / 法人 = 記事 + 構造変更）は Automation SEO プラン階層にひも付ける機能境界として引き続き維持。プラン階層との厳密マッピングは Automation SEO 側 follow-up。
 
 ### 1.3 成功指標
 
@@ -85,8 +103,8 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-039 | HP/LP/固定ページ デザイン編集サンドボックス Tier 2（Automation SEO 側ヘビー）| **主対象: HP / LP / 固定ページ**。v2 PostgreSQL で multi-version time-machine（5〜N preview branches 並行）/ A/B variant 並行管理 + 計測 / AI 自律最適化ループの orchestration / 複数 LP / 複数 HP の協調的最適化 / Migration Plan B AI 再構築サンドボックス。確定時に aseo/v1 → agent-neo/v1 PATCH で AGENT NEO 反映。法人版・本格運用・チーム編集向け、Automation SEO サブスク必須 | P0 | ACC-039 |
 | REQ-F-040 | Write Authority Lock（Automation SEO Only Mode）| **法人版オプション**。管理画面でこのモードを ON にすると Tier 1 を無効化、全編集（記事 / HP / LP / 固定ページ全て）が aseo/v1 経由に強制される。WP 管理画面の編集 UI もロック（Automation SEO 連携誘導メッセージのみ表示）。コンプライアンス・編集権限中央集権・監査一元化用途 | P1 | ACC-040 |
 | REQ-F-041 | 記事編集経路（サンドボックス対象外）| **記事 / BLP** はテキスト中心・低ステークス・高頻度更新のため、サンドボックスを通さず以下のいずれかの軽量経路で編集: (a) WP 標準エディタで直接編集 / (b) agent-neo/v1 PATCH で直接更新 / (c) aseo/v1 → agent-neo/v1 で Automation SEO 経由更新。WP 標準 revision で履歴管理（最新 N 版）、blueprint レベルの preview/承認フローは不要 | P0 | ACC-041 |
-| REQ-F-042 | 外部エディタアクセス制御（デフォルト閉鎖）| 外部 AI エディタ（Claude Computer Use / Codex CLI / Cursor / Cline / Continue 等）からの直接書き込みをデフォルト拒否。許可される Write 経路は agent-neo/v1（AGENT NEO 自身）と aseo/v1（Automation SEO）の 2 経路のみ。それ以外の経路（wp/v2 直接の構造的書き込み、自前スクリプト等も含む）からの構造変更系書き込みは 403 Forbidden で拒否し監査ログに記録 | P0 | ACC-042 |
-| REQ-F-043 | Open Editor Bridge Plugin（別売・月額サブスク）| 外部エディタを使いたいユーザー向けの**有料アドオンプラグイン**（月額固定課金、価格レンジ ¥3,000-5,000/月想定）。Whitelisted external editors（Claude / Codex / Cursor / Cline / Continue / 自前 OAuth 申請）からの書き込みを許可するが、必ず **AGENT NEO 検証パイプライン**（sanitize / CSS scope / a11y / budget / anchor 保護 / slot 制約）を強制通過させる。月額固定で個別保守コスト（API 追従・互換性テスト・サポート）を回収 | P1 | ACC-043 |
+| REQ-F-042 | 外部エディタ・外部 AI アクセス制御（恒久閉鎖）| **【2026-06-18 強化 / ADR-024】** 外部 AI エージェント（Claude Computer Use / Codex CLI / Cursor / Cline / Continue / 第三者 MCP クライアント / 外部エディタ等）からの write 操作は**一切受け付けない**（デフォルト拒否を恒久方針に格上げ）。許可される正規 Write 経路は **agent-neo/v1（AGENT NEO 自身）と aseo/v1（Automation SEO）の 2 経路のみ**。それ以外の経路（wp/v2 直接の構造的書き込み、自前スクリプト、第三者 MCP 経由 write 等を含む）からの構造変更系書き込みはすべて 403 Forbidden で拒否し監査ログに記録。REQ-F-043（Open Editor Bridge Plugin）が廃止（ADR-024）されたことにより、bridge 経由の例外許可経路も存在しない。外部 AI との連携は Read 専用（pull 型 / Automation SEO 経由）に限定する | P0 | ACC-042 |
+| REQ-F-043 | ~~Open Editor Bridge Plugin（別売・月額サブスク）~~ **【廃止 2026-06-18 / ADR-024】** | **廃止理由**: 外部 AI からの write 受口は不採用。AI 操作経路は Automation SEO（aseo/v1）のみに集約する方針確定（PO 決定 / ADR-024）。以下は履歴保持のための原文: ~~外部エディタを使いたいユーザー向けの有料アドオンプラグイン（月額固定課金、価格レンジ ¥3,000-5,000/月想定）。Whitelisted external editors（Claude / Codex / Cursor / Cline / Continue / 自前 OAuth 申請）からの書き込みを許可するが、必ず AGENT NEO 検証パイプライン（sanitize / CSS scope / a11y / budget / anchor 保護 / slot 制約）を強制通過させる。月額固定で個別保守コスト（API 追従・互換性テスト・サポート）を回収。~~ **本要件は L4 以降で実装しない。ACC-043・ACC-043a・ACC-043b はテスト対象外（廃止）。Q-010 も close。** | ~~P1~~ **廃止** | ~~ACC-043~~ |
 | REQ-F-011 | SEO Core | title、description、robots、canonical、OGP、構造化データをテーマ標準UI/APIで管理できる | P0 | ACC-011 |
 | REQ-F-044 | Automation SEO catalog-update 発火（Plugin B producer）| AGENT NEO Core Plugin（Plugin B）が `POST /aseo/v1/agent-neo/catalog-update` を producer として、block/template/theme_token の構造変更通知を送信する。`event_kind` は `block_registered` / `block_unregistered` / `template_updated` / `theme_token_updated` の4値固定、`event_id` + `idempotency_key` で冪等制御し、初回は `deduplicated=false`、同一event_id再送時は `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` を含めて返却する。`event_kind` 欠落は 422。`event_kind` 欠落・再送整合は automation SEO D-PLUGIN-CONTRACT §17 を正本として AGENT NEO は endpoint/enum/deduplicated を再定義せずミラー実装する。REQ-F-026 の post/cta/section outbound webhook（内容変更通知）とは分離する | P0 | ACC-044 |
 | REQ-F-012 | LP/HP/BLPブループリント | **法人版限定**。LP・HP・BLPを別JSON契約で生成・更新し、必須section_id/cta_id/offer_id/service_idを持つブループリントを管理できる。複数サービスを持つ企業向けにservice-aware IA（service_idでコンテンツとサービスを紐付け）に対応する | P0 | ACC-012 |
@@ -236,9 +254,9 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ACC-041a | REQ-F-041 | LP（page_template=lp）を編集試行 | サンドボックス Tier 1 or Tier 2 経由が必須、直接公開はブロック | HP/LP サンドボックス必須テスト |
 | ACC-042 | REQ-F-042 | 外部 AI エディタから wp/v2 経由で投稿構造を直接 PATCH 試行 | 403 Forbidden で拒否、監査ログに「経路: wp/v2、結果: 拒否、理由: 外部エディタアクセス制御」記録 | 外部エディタ拒否テスト |
 | ACC-042a | REQ-F-042 | agent-neo/v1 と aseo/v1 経由で同じ操作を実行 | 正常に処理、操作ログに経路と認証情報が記録される | 許可経路テスト |
-| ACC-043 | REQ-F-043 | Open Editor Bridge Plugin を有効化 + 月額サブスク認証 | Whitelisted エディタからの書き込みが Bridge 経由で受け入れられ、必ず AGENT NEO 検証パイプライン通過 | Bridge 有効テスト |
-| ACC-043a | REQ-F-043 | Bridge 経由の外部エディタが slot 制約違反 / a11y 違反のコードを送信 | 検証パイプラインで違反検出、apply ブロック、エディタにエラーレスポンス返却 | Bridge 検証強制テスト |
-| ACC-043b | REQ-F-043 | サブスク期限切れ状態で外部エディタからアクセス | Bridge が拒否、サブスク更新誘導メッセージを返却 | サブスク強制テスト |
+| ACC-043 | ~~REQ-F-043~~ **【廃止 2026-06-18 / ADR-024】** | ~~Open Editor Bridge Plugin を有効化 + 月額サブスク認証~~ | ~~Whitelisted エディタからの書き込みが Bridge 経由で受け入れられ、必ず AGENT NEO 検証パイプライン通過~~ **廃止: REQ-F-043 廃止に伴いテスト不要** | ~~Bridge 有効テスト~~ |
+| ACC-043a | ~~REQ-F-043~~ **【廃止 2026-06-18 / ADR-024】** | ~~Bridge 経由の外部エディタが slot 制約違反 / a11y 違反のコードを送信~~ | ~~検証パイプラインで違反検出、apply ブロック、エディタにエラーレスポンス返却~~ **廃止** | ~~Bridge 検証強制テスト~~ |
+| ACC-043b | ~~REQ-F-043~~ **【廃止 2026-06-18 / ADR-024】** | ~~サブスク期限切れ状態で外部エディタからアクセス~~ | ~~Bridge が拒否、サブスク更新誘導メッセージを返却~~ **廃止** | ~~サブスク強制テスト~~ |
 | ACC-044 | REQ-F-044 | Core Plugin が block unregister/register、template/theme_token 変更を発火 | `POST /aseo/v1/agent-neo/catalog-update` で `event_kind=block_registered` または `event_kind=block_unregistered` 等を付与して通知し、`event_id`+`idempotency_key` の contract payload が受信側で受理される | catalog-update 契約テスト |
 | ACC-044a | REQ-F-044 | 同一 event_id の再送を受ける | 1回目 `deduplicated=false`、同一 event_id 再送時は `deduplicated=true` と `event_kind` / `event_id` / `received_at` / `idempotency_key` が返る | catalog-update 冪等性テスト |
 | ACC-NF-001 | REQ-NF-001 | 代表テンプレートで速度予算を測定 | LCP `2.5s` 以下、INP `200ms` 以下、CLS `0.1` 以下。初期CSS/JSと第三者タグが予算内 | Lighthouse/CrUX/RUM |
@@ -306,7 +324,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | 種別 | 内容 |
 |---|---|
 | 技術制約 | WordPress 6.6+、PHP 8.1+、FSE、theme.json、block.json |
-| 価格制約 | 個人版 `¥19,800`、法人版 `¥98,000`、Automation SEOは別課金 |
+| 配布・課金 | **【2026-06-18 改訂 / ADR-024】** テーマ単体販売（~~個人版 ¥19,800 / 法人版 ¥98,000~~）廃止。AGENT NEO は **Automation SEO 専用配布テーマ**。課金は Automation SEO 契約のみ。移行プラグインは無料 / wp.org lead magnet 配布を維持 |
 | 外部依存 | Automation SEO、seo-tool-connector |
 | ライセンス | GPL互換。第三者依存は監査必須 |
 | 配布 | 移行プラグインはwp.org申請可能品質 |
@@ -368,7 +386,8 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | Tier 2 サンドボックス | Automation SEO 側のヘビーサンドボックス。**HP/LP/固定ページのデザイン編集が主対象**。v2 PostgreSQL で multi-version time-machine + A/B 並行管理 + AI orchestration + Migration Plan B。法人版・本格運用向け |
 | 記事軽量経路 | 記事 / BLP は高頻度・低ステークスのためサンドボックス対象外。WP 標準エディタ直接編集 / agent-neo/v1 直接 PATCH / aseo/v1 経由のいずれかで更新、WP revision で履歴管理 |
 | 外部エディタアクセス制御 | Claude Computer Use / Codex CLI 等の外部 AI エディタからの直接書き込みをデフォルト拒否する仕組み。許可経路は agent-neo/v1 と aseo/v1 のみ |
-| Open Editor Bridge Plugin | 外部エディタを使いたいユーザー向けの月額サブスク有料アドオン。Whitelisted エディタの書き込みを AGENT NEO 検証パイプライン強制通過で許可 |
+| ~~Open Editor Bridge Plugin~~ **【廃止 2026-06-18 / ADR-024】** | ~~外部エディタを使いたいユーザー向けの月額サブスク有料アドオン。Whitelisted エディタの書き込みを AGENT NEO 検証パイプライン強制通過で許可~~ → 廃止: 外部 AI write 不採用。AI 操作経路は aseo/v1 のみ |
+| 外部 AI write 禁止原則 | **【2026-06-18 確定 / ADR-024】** 外部 AI エージェント・第三者 MCP クライアント・外部エディタからの write 操作は一切受け付けない恒久方針。正規 Write 経路は agent-neo/v1 と aseo/v1 の 2 経路のみ（REQ-F-042 / REQ-NF-025 enforced_by） |
 | Write Authority Lock | 法人版オプションで Tier 1 を無効化、全編集を aseo/v1 経由に強制する Mode。コンプライアンス・編集権限中央集権・監査一元化用途 |
 | AI Snapshot | AIエージェント/クローラがJS操作なしに読める公開ページ構造 |
 | Crawler Access Matrix | 検索、AI入力、AI学習の許可方針をcrawler別に表す設定 |
@@ -392,7 +411,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | Q-007 | 移行プレビューの差分表示粒度（HTML diff / セマンティック diff / 両方） | TL | L3開始前 | open |
 | Q-008 | 販売チャネル（自社サイト / マーケットプレイス併用 / 代理店） | PO | L7前 | open |
 | Q-009 | **AGENT NEO 内蔵 SDK + クレジットシステム**（Automation SEO 不要で AI 実行可能化）の go/no-go。決定要素: LLM 原価マージン / 残クレジット返金 / プライバシー / BYOK 併存ロジック / Automation SEO との競合関係 / 不正利用対策。Phase 1 ローンチセットでは BYOK + Automation SEO + S1 のみ、Phase 2 で再評価 | PO + 経営判断 | Phase 2 開始前 | open |
-| Q-010 | **Open Editor Bridge Plugin** の月額価格レンジ確定（¥3,000-5,000/月想定中）と対応外部エディタの優先順位（Claude Computer Use / Codex CLI / Cursor / Cline / Continue 等）の決定 | PO | Phase 2 開始前 | open |
+| Q-010 | ~~**Open Editor Bridge Plugin** の月額価格レンジ確定（¥3,000-5,000/月想定中）と対応外部エディタの優先順位（Claude Computer Use / Codex CLI / Cursor / Cline / Continue 等）の決定~~ | PO | — | **closed（2026-06-18 / ADR-024）: REQ-F-043 廃止により Bridge Plugin 自体を不採用。価格・優先順位の決定不要** |
 | Q-012 | F-018 の「プロフィール表示」 / 「SNS フィードウィジェット」に対応する受入条件（ACC）の切り出し方針。L2 ADR-006 で「F-018 内の追加 ACC として受入条件を補完する」か「別 REQ-F として切り出す」かを決定 | TL/PO | L2 ADR-006 着手前 | open |
 | Q-013 | 公開指標ポリシー（L0 §6.4）の未確定項目（同意取得要否 / 集計閾値 / 保存期間 / 公開遅延 / 表示責任者）の最終値確定。G2 通過前に PO/法務確認のうえ凍結する | PO/法務 | G2 通過前 | open |
 | Q-011 | グロース KPI の数値目標（検索流入、X 規模、記事 PV、CV、テーマ販売数、S1 問い合わせ数）の確定。L0 §6.7 / §10 と同期 | PO | L2 開始前 | open |
@@ -434,10 +453,12 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-NF-019 | F-006/F-007/F-011/F-012/F-023 | A-004/A-008/A-012/A-013/A-023 | S-005/S-008/S-009/S-014 | TC-NF-013 |
 | REQ-NF-020 | F-007/F-008/F-011/F-012/F-014/F-024 | A-004/A-008/A-012/A-013/A-024 | S-005/S-008/S-009/S-014/S-015 | TC-NF-014 |
 
+> **【2026-06-18 廃止整合 / ADR-024】** REQ-F-043（Open Editor Bridge Plugin）はトレーサビリティマトリクス未掲載（実装未着手で廃止）。ACC-043 / ACC-043a / ACC-043b はテスト対象から除外。REQ-F-042 の受入条件（ACC-042 / ACC-042a）は引き続き有効。REQ-NF-002 行の F-042 参照は維持。
+
 ## Gate
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
 | G0.5 | passed_with_draft | L0企画書をL1要件へ反映 |
-| L1 | draft | PO未レビューのため凍結前 |
-| Security | passed_with_caution | 書き込みAPIと参照テーマライセンスの注意点を明記 |
+| L1 | draft（**2026-06-18 改訂中** — PO配布・課金モデル確定反映 / ADR-024 / G1正式凍結は後続wave） | PO確定事項（ADR-024）を反映した改訂版。G1正式凍結前 |
+| Security | passed_with_caution | 書き込みAPIと参照テーマライセンスの注意点を明記。REQ-F-043廃止により外部AIwrite経路が消滅し、セキュリティ境界はREQ-F-042で一本化（強化） |

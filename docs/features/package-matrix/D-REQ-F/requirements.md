@@ -2,7 +2,9 @@
 
 ## 概要
 
-`package-matrix` は AGENT NEO の個人版（¥19,800）・法人版（¥98,000）・アドオン・移行プラグインの機能境界を制御する feature である。ライセンス検証・feature flag 管理・個人→法人アップグレードパス・Theme Core と Companion Plugin の責務境界を定義する。
+`package-matrix` は AGENT NEO の個人版・法人版・アドオン・移行プラグインの機能境界を制御する feature である。ライセンス検証・feature flag 管理・個人→法人アップグレードパス・Theme Core と Companion Plugin の責務境界を定義する。
+
+> **2026-06-18 / ADR-024 確定**: AGENT NEO テーマは独立した有償ライセンス販売を行わない。Automation SEO 専用配布とし、課金は Automation SEO 契約のみで管理する。個人版／法人版の区分は機能境界（個人: 記事 CRUD 操作 / 法人: 構造変更・LP/HP/BLP ブループリント等）として引き続き維持し、プラン階層は Automation SEO のプラン階層に紐づける。
 
 ライセンス制御は Companion Plugin が所有し、Theme Core はライセンス情報を保持しない。feature flag はライセンス検証結果から動的に決定され、フラグの変更は REST API から取得できる。
 

@@ -69,7 +69,7 @@ flowchart LR
 |---|---|---|---|---|
 | F-01 | AGENT NEO Core Plugin → Automation SEO | catalog-update push（section/cta/seo metadata） | HTTPS/JSON | HMAC + timestamp + replay防止（確定値） |
 | F-02 | Automation SEO → AGENT NEO `agent-neo/v1` PATCH | posts/blocks/sections patch, swap 指示 | HTTPS REST | Application Password + `X-App-Timestamp/nonce` + JSON Schema検証 |
-| F-03 | 外部AIエディタ → AGENT NEO `agent-neo/v1` | 外部構造変更要求（POST/PATCH） | HTTPS REST | `agent-neo/v1` / `aseo/v1` のみ許可、その他 `403`（REQ-F-042） |
+| F-03 | 外部AIエディタ → AGENT NEO `agent-neo/v1` | 外部構造変更要求（POST/PATCH） | HTTPS REST | 外部 AI/外部エディタからの write は**全経路 403（例外なし）**。正規 write = `aseo/v1` + `agent-neo/v1` のみ（REQ-F-042 / ADR-024: REQ-F-043 廃止 2026-06-18） |
 | F-04 | 外部AIエディタ → `wp/v2` | 投稿構造変更 | HTTPS REST（WP標準） | デフォルト拒否（403） |
 | F-05 | WP Internal → AGENT NEO Core | 計測イベント（public 接続） | 署名付き公開API | 入力制限 + 速度制御 |
 | F-06 | 外部AIエディタ/MCP クライアント → MCP Server → AGENT NEO | Agent JSON Contracts（dryRun/diff/apply） | MCP transport + HTTP bridge | MCP ツール許可制御 + capability + local session |
@@ -189,8 +189,8 @@ flowchart LR
 | TB-08a | Automation SEO → `agent-neo/v1` PATCH (F-02) | Tampering | 管理者アカウント侵害により AP が差替えされ、攻撃者のpatchを正規経路に偽装 | 10/7/7/9/8 | 41 | 管理者AP自動監査、管理者変更時の即時セッション失効、AP失効アラート、定期ローテーション | 高（管理者端末侵害） | Security Lead | L3 |
 | TB-09 | Automation SEO → `agent-neo/v1` (F-02) | Tampering | patch 内容が想定外フィールドへ書き込む（AI判定ロジック混入） | 8/8/5/8/6 | 35 | strict schema validation、diff review、AI判定ロジックは拒否ルールで除外 | 中（API仕様不一致） | API Owner | L3/L4 |
 | TB-10 | Automation SEO → `agent-neo/v1` (F-02) | Repudiation | patch 適用結果の経路紐付け欠如 | 5/6/4/5/6 | 26 | req-id、差分 hash、監査テーブル（経路/署名/アクションID） | 低（証跡欠損） | Security Lead | L4 |
-| TB-11 | 外部AIエディタ → `agent-neo/v1` / `wp-v2` (F-03/F-04) | Spoofing | 外部エディタが許可経路を偽装し構造変更を試行 | 9/7/4/8/8 | 36 | `/wp-json/` discovery では公開許可 namespace 以外を 404（`agent-neo/v1`, `aseo/v1`, `wp/v2`のみ列挙）、content-type が `application/json` の場合のみ write受け付け、multipart は `415`、REQ-F-043(bridge経由)以外は 403、`wp/v2`への write ルートは固定拒否 |
-| TB-12 | 外部AIエディタ → `agent-neo/v1` / `wp/v2` (F-03/F-04) | Tampering | wp/v2 経由でHTML構造やメタを上書き | 8/8/5/9/7 | 37 | `wp/v2` 構造変更系 write の明示拒否、`wp/v2` は body schema 検査ログで監査、許可経路との差分ハッシュ監査、bridge例外は path allowlist + AP有効期限検証 |
+| TB-11 | 外部AIエディタ → `agent-neo/v1` / `wp-v2` (F-03/F-04) | Spoofing | 外部エディタが許可経路を偽装し構造変更を試行 | 9/7/4/8/8 | 36 | `/wp-json/` discovery では公開許可 namespace 以外を 404（`agent-neo/v1`, `aseo/v1`, `wp/v2`のみ列挙）、content-type が `application/json` の場合のみ write 受け付け、multipart は `415`、外部 AI/外部エディタからの write は**全経路 403（例外なし）**。正規 write = `aseo/v1`（Automation SEO）+ `agent-neo/v1`（テーマ自身）のみ（REQ-F-042 / ADR-024: REQ-F-043 廃止 2026-06-18）、`wp/v2` への write ルートは固定拒否 |
+| TB-12 | 外部AIエディタ → `agent-neo/v1` / `wp/v2` (F-03/F-04) | Tampering | wp/v2 経由でHTML構造やメタを上書き | 8/8/5/9/7 | 37 | `wp/v2` 構造変更系 write の明示拒否、`wp/v2` は body schema 検査ログで監査、許可経路との差分ハッシュ監査。Open Editor Bridge Plugin 廃止（ADR-024 / REQ-F-043 廃止 2026-06-18）により bridge 例外は不要化・削除済み。外部 AI からの write attack surface は消滅（例外経路ゼロ） |
 | TB-13 | 外部AIエディタ → `agent-neo/v1` | Information Disclosure | エラーメッセージに internal endpoint / stack / token が流出 | 6/6/3/5/9 | 29 | 汎用エラー共通化、トレースIDのみ返却、5xx 詳細非表示 | 低 | Documentation/Support | L3 |
 | TB-14 | API 仕様/契約境界 | Repudiation | 破壊的変更時に後方互換性判断不能 | 6/4/3/6/7 | 26 | openapi contract test、schema diff、破壊変更は6ヶ月併走運用 | 中（運用逸脱） | API Owner | L4/L6 |
 | TB-15 | Theme側 ↔ Automation SEO（AI境界） | Tampering | 予期せぬファイルで判断ロジック（variant生成等）を含めて配布 | 9/5/4/8/4 | 30 | REQ-NF-025に基づき実装禁止領域を固定、AST/grep静的検査（ACC-NF-015） | 中（外部ライブラリ混入） | Security Lead | L4 |
@@ -247,8 +247,8 @@ flowchart LR
 | TB-06 | 変更イベント JSON 改ざん | MEDIUM（監視対象） | MEDIUM（署名再計算 + schema 検証） | L4 |
 | TB-08 | AP 偽装で patch 実行 | MEDIUM（AP盗難） | MEDIUM（AP固定化 + 監査） | L3 |
 | TB-09 | patch 内容の不正改ざん | MEDIUM（許可外フィールド） | MEDIUM（schema/hardening） | L4 |
-| TB-11 | 外部AIエディタ経路偽装 | MEDIUM（discovery経路） | LOW（namespace固定化 + write拒否） | L4 |
-| TB-12 | wp/v2 経由で構造上書き | MEDIUM（path固定で悪用可能） | MEDIUM（wp/v2 write固定拒否） | L4 |
+| TB-11 | 外部AIエディタ経路偽装 | MEDIUM（discovery経路） | **LOW（namespace固定化 + write全経路拒否 + bridge 廃止で attack surface 消滅 / ADR-024 2026-06-18）** | L4 |
+| TB-12 | wp/v2 経由で構造上書き | MEDIUM（path固定で悪用可能） | **LOW（wp/v2 write 固定拒否 + bridge 例外削除により外部 write 経路がゼロに / ADR-024 2026-06-18）** | L4 |
 | TB-17 | 公開API DoS | MEDIUM（既知） | MEDIUM（レート/キャッシュ継続） | L4 |
 | TB-18a | ライセンス障害時昇格 | HIGH（実装前は仕様不足） | LOW（deny→個人版縮退） | L4 |
 | TB-19 | MCP 権限制御（remote 対応 carry） | HIGH（ローカル依存リスク） | MEDIUM（local MCP 実装後） / `Post-L4 carry`（remote MCP） | L4 |
@@ -276,7 +276,7 @@ flowchart LR
 1. 資産一覧、信頼境界、DFD、STRIDE×DREAD を本文書に収載
 2. 主要フロー F-01/F-02/F-03/F-06 を脅威ベースで評価（残留リスク付き）
 3. 認証方式を実装値まで明文化（候補を残さない）
-4. REQ-F-042（外部AIエディタ 403 + `agent-neo/v1`/`aseo/v1` 許可）を採択
+4. REQ-F-042（外部AI/外部エディタからの write は全経路 403 / 正規 write = `agent-neo/v1`+`aseo/v1` のみ）を採択。REQ-F-043（Open Editor Bridge Plugin）は ADR-024 により 2026-06-18 廃止。bridge 経由 write 例外は**存在しない**
 5. REQ-NF-025 に基づく AI 判定ロジック分離を監査観点まで反映
 6. HMAC replay 防止の実装値（`timestamp`、once-token、TTL、保存先）を記載
 7. LICENSE 障害時 `deny` のフォールバックを明示し、個人版へ縮退
@@ -300,7 +300,7 @@ flowchart LR
 - 作成ファイル: `docs/security/threat-model.md`
 - 主要脅威要点:
   - 外部サーバー通信は **HMAC + timestamp + replay防止**を固定。timestamp は **±300秒**、once-token TTL **600秒**、保存先は **Redis or WP transient**。
-  - 外部AIエディタ経路は **REQ-F-042準拠**の `agent-neo/v1`/`aseo/v1` のみ。`wp/v2` は固定 403。
+  - 外部 AI/外部エディタからの write は**全経路 403（例外なし）**（REQ-F-042 / ADR-024: REQ-F-043 廃止 2026-06-18）。正規 write = `agent-neo/v1`（テーマ自身）+ `aseo/v1`（Automation SEO）の 2 経路のみ。`wp/v2` は固定 403。bridge 例外は不要化・削除済み。
   - `agent-neo/v1` 書き込みは **nonce + capability + DREAD採点済みログ**を前提に固定。
   - 外部 API 連携認証は **Application Password**（OAuth2 は採用対象外）。既知弱点は scope/expiry で、対策を明文化。
   - AI判断ロジックは **Automation SEO 側のみ**固定。Theme/配布物から署名/AI判定ロジックを分離。
