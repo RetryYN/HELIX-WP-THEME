@@ -98,11 +98,11 @@
 
 ## 4. P0 / P1 / P2 分類
 
-- P0: CAT-001〜CAT-008、TC-002、TC-003、TC-005、TC-006、TC-007、TC-009、TC-010、TC-011、TC-016、TC-019、TC-020、TC-021、TC-023a、TC-023b、TC-024
-- P1: CAT-009、TC-001、TC-004、TC-008、TC-012、TC-013、TC-014、TC-015、TC-017a、TC-017b、TC-018、TC-025、TC-026、TC-027、TC-028、TC-029、TC-030
-- P2: TC-022（監査ログ整合と運用連携）
+- P0: CAT-001〜CAT-008、TC-002、TC-003、TC-005、TC-006、TC-007、TC-009、TC-010、TC-011、TC-016、TC-019、TC-020、TC-021、TC-023a、TC-023b、TC-024、TC-042、TC-043、TC-045、TC-047、TC-048、TC-049、TC-050
+- P1: CAT-009、TC-001、TC-004、TC-008、TC-012、TC-013、TC-014、TC-015、TC-017a、TC-017b、TC-018、TC-025、TC-026、TC-027、TC-028、TC-029、TC-030、TC-031、TC-032、TC-033、TC-034、TC-035、TC-037、TC-038、TC-040、TC-044、TC-046、TC-051、TC-052、TC-053、TC-054、TC-055、TC-056、TC-057、TC-058、TC-059、TC-060
+- P2: TC-022（監査ログ整合と運用連携）、TC-036（SLO レポート）、TC-039（AI citation log）、TC-041（LLMO 計測サマリ）
 
-※ 優先度整合・受入条件は INT-002 / DC-F-002 に基づき `§4` 一覧を `TC` テーブルに合わせて更新済み（CAT-009 は P1）。TC-017 を TC-017a/TC-017b に分割。TC-027〜TC-030 を P1 で追加。
+※ 優先度整合・受入条件は INT-002 / DC-F-002 に基づき `§4` 一覧を `TC` テーブルに合わせて更新済み（CAT-009 は P1）。TC-017 を TC-017a/TC-017b に分割。TC-027〜TC-030 を P1 で追加。§8 追加分 P0（TC-042/043/045/047/048/049/050）を §4 正本リストに反映済み（2026-06-18）。§8 追加分（TC-031〜060）を P0/P1/P2 とも §4 正本に反映済み（2026-06-18）。
 
 ## 5. L4 carry（007/009/011/012/013/015/017/021/025/026/028）検証観点（設計解決済みL4検証: 006/014）
 
@@ -132,17 +132,159 @@
 - `diff_hash` / `event_id` / `once-token` に関する整合不具合が残存しないこと
 - `apply/rollback` の正常・異常・冪等性が検証済みであること
 
+---
+
+## 8. 2026-06-18 追加（実テーマギャップ監査由来 / GAP-RT-036〜041）
+
+> 本節は `docs/reviews/L3-real-theme-gap-register.md` の GAP-RT-036〜041 により判明した「受入条件はあるが独立 TC が存在しない」ギャップを埋める TC 群です。  
+> 既存 TC の最大採番 TC-030 に続き、TC-031〜TC-060 として連番付与しています。  
+> 各 TC の対象要件・前提・手順・期待結果・分類（unit / integration / E2E / CI gate）・優先度（P0〜P3）を記載します。
+
+---
+
+### 8.1 GAP-RT-036: 運用品質（ACC-NF-007 / REQ-NF-013）— 独立 TC 群
+
+**背景**: ACC-NF-007 は REQ-NF-013（運用品質: WP/PHP 互換・更新前後チェック・rollback・plugin 衝突検出・可用性 fallback・SLO/health check を契約化する）の受入条件だが、個別の TC が存在しなかった。
+
+| TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-031 | ACC-NF-007 / REQ-NF-013 | WP 6.6+ + PHP 8.1+ + AGENT NEO 有効化済み環境 | (1) WP コアをマイナーバージョンアップ (2) `GET /agent-neo/v1/status` でヘルスチェックエンドポイントを呼ぶ (3) `wp agent-neo health-check` CLI コマンドを実行 | (a) `status: healthy` が返り fatal error なし (b) CLI が compatibility matrix の検証結果を JSON で出力し、PASS / WARN / FAIL が判定される | integration | P1 |
+| TC-032 | ACC-NF-007 / REQ-NF-013 | PHP 8.2 で AGENT NEO を動作させられるテスト環境 | (1) PHP バージョンを 8.1→8.2 へ切り替え (2) AGENT NEO の全主要クラスをインスタンス化 (3) PHPCS + PHPCompatibilityWP を実行 | (a) deprecated dynamic properties 警告ゼロ (b) PHPCompatibilityWP CI チェックが PASS (c) 管理画面・フロント両方でエラーなく動作する | CI gate | P1 |
+| TC-033 | ACC-NF-007 / REQ-NF-013 | AGENT NEO 有効化環境に互換テスト用ダミープラグインを追加 | (1) Yoast SEO / Contact Form 7 / WP Rocket の 3 プラグインを有効化 (2) `wp agent-neo conflict-scan` CLI を実行 (3) 管理画面「プラグイン競合」パネルを確認 | (a) 各プラグインとの衝突検出結果（conflict_severity: none / low / medium / high）が JSON で返る (b) 高衝突（high）が検出された場合、管理画面に admin_notice が表示される | integration | P1 |
+| TC-034 | ACC-NF-007 / REQ-NF-013 | AGENT NEO 有効化環境 | (1) テーマアップデート前に `wp agent-neo update-preflight` を実行 (2) アップデートを適用 (3) `wp agent-neo update-postflight` を実行 | (a) preflight が DB スキーマ・設定値・rollback_point を記録し JSON で出力 (b) アップデート後に postflight が事前記録と差分 0 を確認 (c) 差分ありの場合、rollback_point から設定値を復元できる | integration | P1 |
+| TC-035 | ACC-NF-007 / REQ-NF-013 | WP-Cron が有効な環境 | (1) WP-Cron の scheduled events を確認 (`wp cron event list`) (2) AGENT NEO が登録した定期ジョブ（health-check / catalog-sync 等）が一覧に存在することを確認 (3) `wp cron event run agent_neo_health_check` でジョブを強制実行 | (a) ジョブが正常に実行され、ログに `cron_run: success` が記録される (b) 実行失敗（外部依存エラー）時は DLQ エントリが生成され管理画面に警告が表示される | integration | P1 |
+| TC-036 | ACC-NF-007 / REQ-NF-013 | `GET /agent-neo/v1/status` エンドポイントが実装済み | (1) 外部監視ツール（UptimeRobot 等）が 1 分間隔でエンドポイントをポーリングする状況をシミュレート (2) DB 接続を意図的に切断（テスト環境） (3) エンドポイントのレスポンスを確認 | (a) DB 切断時も `status: degraded` または `status: unavailable` を JSON で返し 500 を返さない (b) SLO 目標（稼働率 99.5%）に対するレポートが CLI で出力できる | integration | P2 |
+
+---
+
+### 8.2 GAP-RT-037: LLMO — AI クローラビリティ・構造化データ品質（ACC-NF-011 / REQ-NF-017）
+
+**背景**: ACC-NF-011 は REQ-NF-017（LLMO/AI 検索最適化: answer unit・evidence graph・content origin・AI visibility policy・citation anchor・LLMO 計測・claim risk を契約化する）の受入条件だが、個別の TC が存在しなかった。
+
+| TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-037 | ACC-NF-011 / REQ-NF-017 | AGENT NEO Core Plugin 有効化・記事が 1 件以上公開済み | (1) answer unit が定義された記事（H2 + 短回答 + 根拠リンク + CTA を持つセクション）を作成 (2) `GET /agent-neo/v1/posts/{id}/markdown` を呼ぶ | (a) レスポンスに `answer_units` 配列が含まれ、各要素が `question / short_answer / details / evidence_refs / updated_at / cta_id` フィールドを持つ (b) 空の H2 セクションは answer unit として出力されない | integration | P1 |
+| TC-038 | ACC-NF-011 / REQ-NF-017 | Robots.txt / X-Robots-Tag が設定済みの記事環境 | (1) `GET /agent-neo/v1/ai-crawlers/access-matrix` を呼ぶ | (a) Googlebot / GPTBot / ClaudeBot / PerplexityBot 等の主要 AI クローラ別に `allowed / blocked / noindex` 状態が列挙された JSON が返る (b) クローラプリセット切替（`agent_neo_ai_crawler_preset: permissive / balanced / restrictive`）を設定変更後に再取得すると値が変わる | integration | P1 |
+| TC-039 | ACC-NF-011 / REQ-NF-017 | GA4 または custom tracking endpoint が設定済み | (1) `<link rel="me">` または `data-agent-citation-anchor` 属性付きコンテンツを含む記事ページを表示 (2) AI クローラ UA（例: GPTBot）でページを GET | (a) レスポンスヘッダに `X-Agent-Citation-Policy` が含まれる (b) フロント HTML の主要コンテンツに `data-agent-citation-anchor` が付与されている (c) AI クローラからのアクセスログが `ai_crawler_log` テーブルに記録される | integration | P2 |
+| TC-040 | ACC-NF-011 / REQ-NF-017 | Entity Graph が設定された記事（§ L3-A3 entity-graph.schema.json） | (1) 記事を公開 (2) `GET /agent-neo/v1/posts/{id}/snapshot` でスナップショットを取得 | (a) レスポンスに `entity_graph` フィールドが含まれ、`@graph` 内に Article / Person / Organization の少なくとも 2 ノードが存在する (b) `evidence_graph` が claim / source / reviewer / verified_date フィールドを持つ | integration | P1 |
+| TC-041 | ACC-NF-011 / REQ-NF-017 | LLMO 計測イベントが tracking/event に統合済み | (1) AI クローラからページにアクセスして tracking event を発火させる (2) `GET /agent-neo/v1/tracking/llmo-summary` でサマリを取得 | (a) `ai_impressions / ai_citations / ai_referral_clicks` の 3 指標が 24 時間集計で返る (b) AI referral（Perplexity / Claude 等経由の訪問）が UA 解析で分類され、通常訪問と区別してカウントされる | integration | P2 |
+
+---
+
+### 8.3 GAP-RT-038: Consent Gate（Cookie 同意前後のスクリプト発火タイムライン）
+
+**背景**: TC-028 は Lighthouse render-blocking に特化した TC だが、「同意バナー表示 → 第三者タグ / GA4 の非発火 → 同意付与 → 発火」のタイムライン検証 TC が独立して存在しなかった。REQ-NF-004（データ保護）・REQ-NF-009（外部送信同意）・L3-A4（`third-party-tags.schema.json` / Consent Mode v2）に基づく。
+
+| TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-042 | REQ-NF-004 / REQ-NF-009 | GA4 タグが `async_after_consent` / `consentRequired: ["analytics_storage"]` で設定済み・同意バナーあり・Consent Mode v2 設定済み（`defaultConsentState` が全 `denied`） | (1) プライベートブラウジングで記事ページを開く（Cookie なし状態） (2) DevTools Network パネルを監視 (3) 同意バナーが表示された状態のまま 5 秒待機 | (a) **analytics/ads の計測 ping**（`google-analytics.com/g/collect` 等の collect エンドポイント）へのリクエストが 0 件 (b) **GTM コンテナ本体（`googletagmanager.com/gtm.js` 等）のロードが発生しない** (c) 注意: Consent Mode v2 の `gtag('consent','default',{...denied})` 初期化スニペット自体は `<head>` で呼ばれることが正常仕様であり、本 TC の非発火対象に含まない（TC-044 で独立検証する） | E2E | P0 |
+| TC-043 | REQ-NF-004 / REQ-NF-009 | TC-042 に続けて実施 | (1) 同意バナーで「すべて受け入れる」を押す (2) DevTools Network を確認 | (a) 同意 click から 1 秒以内に GA4 ping リクエストが送信される (b) `gtag('consent', 'update', { analytics_storage: 'granted' })` が実行されたことが Console log で確認できる (c) GA4 タグの読み込みが `async`（parser-blocking でない）で完了する | E2E | P0 |
+| TC-044 | REQ-NF-009 / L3-A4 §third-party-tags | Consent Mode v2 設定済み（`defaultConsentState` が全 `denied`） | (1) ページロード直後に `window.dataLayer` の内容を確認 | (a) `gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' })` が `<head>` 最上位で呼ばれている | unit / E2E | P1 |
+| TC-045 | REQ-NF-009 / L3-A4 §third-party-tags | `advertising` カテゴリのタグが設定済み | (1) 同意なし状態でページを表示 (2) `advertising` タグの HTML 出力を確認 | (a) `advertising` カテゴリのタグ HTML が `<head>` / `<body>` に出力されていない (b) Playwright でタグ要素の存在を確認 → 0 件 | E2E | P0 |
+| TC-046 | REQ-NF-009 / L3-A4 §third-party-tags | Playwright E2E 環境 + DevTools Protocol 利用可能 | (1) 同意バナー表示→選択「拒否」ルートを Playwright でシミュレート | (a) 拒否選択後も GA4 ネットワークリクエストが発生しない (b) 拒否フラグが Cookie に保存され、再訪問時も同意バナーが再表示されない | E2E | P1 |
+
+---
+
+### 8.4 GAP-RT-039: 公開 Snapshot Allowlist（draft/private 記事・機密データ漏洩防止）
+
+**背景**: TC-026 は「public snapshot が内部 ID を返さない」を検証するが、draft/private 記事・WP nonce・ライセンスキー等の機密情報が snapshot や crawl-map に含まれないことを確認する独立 TC が存在しなかった。REQ-NF-004（データ保護）・REQ-NF-015（AI 運用性/クローラビリティ）に基づく。
+
+> **【軸分離注記】本節（TC-047〜051）は snapshot の情報漏洩（draft/private 記事・nonce・ライセンスキーの公開エンドポイントへの漏洩）を検証するセキュリティテストです。視覚回帰テスト（スタイル差分の承認フロー / BackstopJS による pixel 比較 / ADR-021 PoC）とは別軸であり、本 TC 群で視覚回帰カバレッジが担保されるわけではありません。視覚回帰は MG-009 系 carry および ADR-021 PoC として別途 L4〜L5 carry で追跡されます。**
+
+| TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-047 | REQ-NF-004 / REQ-NF-015 | draft ステータスの記事が 1 件以上存在する | (1) 未認証 HTTP GET で `GET /agent-neo/v1/public/pages/snapshot` を呼ぶ | (a) draft / private ステータスの記事 ID・スラッグ・コンテンツがレスポンスに含まれない (b) レスポンスの `allowed_posts` が published かつ snapshot_allowed=true の記事のみを含む | integration | P0 |
+| TC-048 | REQ-NF-004 / REQ-NF-015 | public crawl-map エンドポイントが実装済み | (1) 未認証で `GET /agent-neo/v1/public/crawl-map` を呼ぶ | (a) draft / private / password-protected 記事の URL がリストに含まれない (b) `noindex=true` の記事 URL もリストから除外されている | integration | P0 |
+| TC-049 | REQ-NF-004 / REQ-NF-015 | `GET /agent-neo/v1/public/pages/{id}/snapshot` が実装済み | (1) 有効な WP nonce を HTML 内に持つページの snapshot を未認証で取得 | (a) レスポンス HTML / JSON に `_wpnonce` 文字列が含まれない (b) `nonce` キーを持つフィールドが snapshot レスポンスのどの階層にも存在しない | integration | P0 |
+| TC-050 | REQ-NF-004 / REQ-NF-002 | ライセンスキーが `wp_options` に保存済み | (1) 未認証で `/agent-neo/v1/public/` 配下の全公開エンドポイントに GET を送る (2) 認証済み管理者で `/agent-neo/v1/settings/` を GET する | (a) 公開エンドポイントのどのレスポンスにも `license_key` / `api_key` フィールドが含まれない (b) 認証済み管理者の `/settings/` レスポンスでもライセンスキーが平文で返らない（マスク済み：例 `sk-xxxx...xxxx`） | integration | P0 |
+| TC-051 | REQ-NF-015 | snapshot allowlist 設定が管理画面で変更可能な環境 | (1) 管理画面で特定の記事を `snapshot_allowed=false` に設定 (2) `GET /agent-neo/v1/public/pages/{id}/snapshot` を未認証で呼ぶ | (a) `403 Forbidden` または `404 Not Found` が返る (b) 対象記事のコンテンツがレスポンスに一切含まれない | integration | P1 |
+
+---
+
+### 8.5 GAP-RT-040: Canonical + OGP の同時評価（同時 toggle 禁止・二重出力排除）
+
+**背景**: TC-014/TC-015 は SEO 競合検知（重複 meta / JSON-LD）に特化しているが、「同一ページで canonical URL と `og:url` が整合する」「既存 SEO プラグインとの共存時に OGP が二重出力されない」「noindex が robots と sitemap に同時反映される」という複合検証 TC が独立して存在しなかった。REQ-F-011（SEO Core）・REQ-NF-018（SEO/WP 運用ハザード管理）に基づく。
+
+| TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-052 | REQ-F-011 / REQ-NF-018 | SEO プラグインなし環境で記事が公開済み | (1) 記事の SEO メタで canonical を `https://example.com/post-a/` に設定 (2) 記事ページの HTML ソースを確認 | (a) `<link rel="canonical" href="https://example.com/post-a/">` が 1 件のみ出力される (b) `<meta property="og:url" content="https://example.com/post-a/">` が canonical と同一 URL で出力される (c) canonical と og:url が異なる場合は管理画面に warning が表示される | integration | P1 |
+| TC-053 | REQ-F-011 / REQ-NF-018 | Yoast SEO が有効化されている環境 | (1) Yoast SEO が有効な状態で記事ページを表示 (2) HTML ソースの `<head>` を確認 | (a) `<meta property="og:*">` が 2 セット出力されない（Yoast または AGENT NEO のどちらか一方のみ） (b) AGENT NEO の `SeoConflictDetector` が canonical / robots は AGENT NEO 優先、OGP は Yoast 優先として出力を制御している | integration | P1 |
+| TC-054 | REQ-F-011 / REQ-NF-018 | AGENT NEO SEO 設定で特定ページを noindex に設定 | (1) 記事の SEO メタで `robots.index=false` を設定 (2) ページの HTML ソース・sitemap.xml・robots.txt を確認 | (a) `<meta name="robots" content="noindex,follow">` が出力される (b) XML sitemap からその URL が除外されている（単純 toggle ではなく両方に同時反映） (c) robots.txt に個別ルールが不要（sitemap 除外で十分に機能する） | integration | P1 |
+| TC-055 | REQ-F-011 / REQ-NF-018 | JSON-LD が有効な環境 | (1) 記事に Article + FAQPage + BreadcrumbList の 3 ノードを持つ @graph を設定 (2) ページの `<script type="application/ld+json">` を検証 | (a) `<script type="application/ld+json">` が 1 件のみ出力される（@graph 統合、複数の個別 script タグに分割されない） (b) `@graph` 配列に重複 `@type` ノードが存在しない | integration | P1 |
+
+---
+
+### 8.6 GAP-RT-041: 移行 SEO（URL マッピング / redirect / canonical / 画像 diff）
+
+**背景**: ACC-008 は「移行プレビューと投入結果が一致する」を検証するが、「旧テーマ→AGENT NEO 移行時の 301 リダイレクト保持・canonical 整合・パーマリンク変化・画像差分レポート」の独立 TC が存在しなかった。REQ-F-008（移行プラグイン）・REQ-NF-018（SEO ハザード管理）に基づく。
+
+| TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-056 | REQ-F-008 / REQ-NF-018 | 移行元の旧テーマサイト（WP REST アクセス可）と移行先 AGENT NEO 環境が準備済み | (1) 移行プラグインで旧テーマから投稿 10 件を抽出 (2) URL マッピングファイル（旧 URL → 新 URL）を生成 | (a) URL マッピングが JSON / CSV 形式で出力される (b) 旧パーマリンクと新パーマリンクが全 10 件分マップされ、漏れゼロ | integration | P1 |
+| TC-057 | REQ-F-008 / REQ-NF-018 | TC-056 の URL マッピングが生成済み | (1) `wp agent-neo migration redirect-setup --mapping=mapping.json` を実行 (2) 旧 URL にアクセス | (a) HTTP 301 レスポンスが返り、`Location` ヘッダに新 URL が設定されている (b) 全 10 件の旧 URL で 301 が確認できる (c) 301 チェーン（301→301 の連鎖）が発生していない | integration | P1 |
+| TC-058 | REQ-F-008 / REQ-NF-018 | 移行後に canonical が設定済み | (1) 移行後の記事ページの HTML ソースを確認 (2) 移行元 URL での canonical 設定と比較 | (a) 移行後の `<link rel="canonical">` が新 AGENT NEO パーマリンクを指している (b) 旧テーマの canonical を引き継ぐ場合は `seo-meta.schema.json` の `canonical.source=manual` で明示的に指定されている | integration | P1 |
+| TC-059 | REQ-F-008 / REQ-NF-018 | 移行元サイトに画像付き記事が 5 件以上存在 | (1) `wp agent-neo migration diff-images --post_ids=1,2,3,4,5` を実行 | (a) 移行前後の画像 URL 差分レポートが出力される (b) 移行後に media_id が再割り当てされた場合、旧 img src と新 img src のマッピングが diff に含まれる (c) 消失した画像（旧にあり新にない）が `missing_images` リストに列挙される | integration | P1 |
+| TC-060 | REQ-F-008 / REQ-NF-018 | 移行プラグインが構造変換プレビュー機能を持つ | (1) 移行プレビューを実行（dry-run mode） (2) 旧 WP ブロック構造と AGENT NEO ブロック構造の変換差分を確認 | (a) プレビューで変換結果が表示され、本番適用前に管理者が確認できる (b) プレビューと実際の投入結果が bit-identical（ACC-008 との整合） (c) 変換できないブロック（旧テーマ固有ショートコード等）が `unconverted_elements` として明示される | E2E | P1 |
+
+---
+
+### 8.7 P0 / P1 / P2 分類（§8 追加分）
+
+- **P0 追加分**: TC-042（同意前 GA4 非発火）/ TC-043（同意後 GA4 発火）/ TC-045（advertising タグ非出力）/ TC-047（draft snapshot 除外）/ TC-048（crawl-map draft 除外）/ TC-049（nonce 漏洩防止）/ TC-050（ライセンスキー漏洩防止）
+- **P1 追加分**: TC-031〜TC-035（運用品質）/ TC-037〜TC-038（LLMO）/ TC-040（LLMO entity graph）/ TC-044（Consent Mode v2 default denied）/ TC-046（拒否ルート）/ TC-051（snapshot allowlist 個別制御）/ TC-052〜TC-055（canonical+OGP 同時評価）/ TC-056〜TC-060（移行 SEO）
+- **P2 追加分**: TC-036（SLO レポート）/ TC-039（AI citation log）/ TC-041（LLMO 計測サマリ）
+
+---
+
+### 8.8 GAP-RT ↔ TC マッピング表
+
+| GAP-ID | カテゴリ | カバーする TC | 残存 carry |
+|---|---|---|---|
+| GAP-RT-036 | 運用品質（ACC-NF-007 / REQ-NF-013） | TC-031（WP 更新 preflight/postflight health-check）/ TC-032（PHP 8.2 互換 CI gate）/ TC-033（plugin conflict scan）/ TC-034（update preflight/postflight rollback）/ TC-035（cron 信頼性 + DLQ）/ TC-036（SLO health check 縮退） | PHP 8.3/8.4/8.5 の互換 TC は L4 carry（PERF-CARRY-002 相当）/ SLO 数値目標は PO 裁定待ち（GAP-RT-045 相当） |
+| GAP-RT-037 | LLMO（ACC-NF-011 / REQ-NF-017） | TC-037（answer unit 生成）/ TC-038（AI crawler プリセット切替）/ TC-039（citation anchor + AI crawler log）/ TC-040（evidence graph + entity-graph スナップショット）/ TC-041（AI referral 計測イベント） | evidence graph の Automation SEO 連携 API 契約は L4 carry（CARRY-A3-003 相当）/ LLMO visibility ダッシュボードは Phase 2 |
+| GAP-RT-038 | Consent Gate（REQ-NF-004 / REQ-NF-009） | TC-042（同意前非発火）/ TC-043（同意後発火 async 確認）/ TC-044（Consent Mode v2 default denied）/ TC-045（advertising タグ非出力 E2E）/ TC-046（拒否ルート） | 同意バナープラグイン選定（PERF-CARRY-002）が P1 blocking carry。選定前は TC-042〜046 は「外部バナープラグインを Mock に差し替え」で実施 |
+| GAP-RT-039 | Snapshot allowlist（REQ-NF-004 / REQ-NF-015） | TC-047（draft snapshot 除外）/ TC-048（crawl-map draft 除外）/ TC-049（nonce 漏洩防止）/ TC-050（ライセンスキー漏洩防止）/ TC-051（snapshot_allowed=false 個別制御） | public ID opaque 化（CARRY-TO-L4 の L4 繰延分）は TC-026 と TC-047〜051 が補完関係。L4 で public_id 変換が実装された段階で TC-049 を更新 |
+| GAP-RT-040 | Canonical + OGP 同時評価（REQ-F-011 / REQ-NF-018） | TC-052（canonical ↔ og:url 整合）/ TC-053（Yoast 共存時 OGP 二重出力排除）/ TC-054（noindex → sitemap 同時除外）/ TC-055（@graph 統合 JSON-LD 1件出力） | seo-conflict-rules.json OGP 優先ルール詳細は CARRY-A3-001（ADR Wave3 申し送り）。ADR 確定後に TC-053 の期待結果を更新 |
+| GAP-RT-041 | 移行 SEO（REQ-F-008 / REQ-NF-018） | TC-056（URL マッピング生成）/ TC-057（301 リダイレクト設定・検証）/ TC-058（移行後 canonical 整合）/ TC-059（画像 diff レポート）/ TC-060（構造変換プレビュー ↔ 投入整合） | 移行差分表示粒度（HTML diff / セマンティック diff）は Q-007（未確定）。TC-060 の「bit-identical」条件は Q-007 解決後に精度を更新 |
+
+---
+
+### 8.9 L4 実装で実テスト化が必要な carry 一覧
+
+以下の TC は L4 実装が完了するまで実テスト化が困難な項目（carry）です。
+
+| Carry-ID | 関連 TC | 理由 | 解消条件 |
+|---|---|---|---|
+| CARRY-GRT036-001 | TC-031〜036 | `wp agent-neo health-check` / `conflict-scan` / `update-preflight` 等の CLI コマンドが未実装 | L4 で CLI コマンド実装後に実テスト化 |
+| CARRY-GRT036-002 | TC-032 | PHP 8.2+ 専用テスト環境の準備が必要 | CI matrix に PHP バージョン別 job を追加（GAP-RT-031 ADR 対応後） |
+| CARRY-GRT037-001 | TC-037 | answer unit フィールドを持つ `/posts/{id}/markdown` レスポンス拡張が未実装 | L4 LLMO 実装 Sprint で対応 |
+| CARRY-GRT037-002 | TC-038〜041 | AI crawler access matrix / citation anchor / LLMO tracking endpoint が未実装 | L4 LLMO 実装 Sprint で対応（REQ-NF-017 サブタスク） |
+| CARRY-GRT038-001 | TC-042〜046 | 同意バナープラグイン選定（PERF-CARRY-002）が blocking P1 carry。選定前は Mock バナーで代替 | PERF-CARRY-002 解消（ADR 更新）後にフル E2E に切り替え |
+| CARRY-GRT039-001 | TC-047〜051 | `GET /agent-neo/v1/public/pages/snapshot` エンドポイントの snapshot allowlist 機能が未実装 | L4 snapshot 実装 Sprint で対応 |
+| CARRY-GRT040-001 | TC-053 | Yoast SEO 共存時の OGP 二重出力排除は CARRY-A3-001（ADR Wave3 SEO 出力境界 ADR）が確定するまで期待結果が確定しない | ADR Wave3 確定後に TC-053 期待結果を更新し実テスト化 |
+| CARRY-GRT041-001 | TC-056〜060 | 移行プラグイン（REQ-F-008）が未実装 | L4 移行プラグイン Sprint（P1）で対応 |
+| CARRY-GRT041-002 | TC-060 | 移行差分表示粒度（HTML diff / セマンティック diff）は Q-007 未確定 | PO が Q-007 を裁定後に TC-060 の受入条件を精緻化 |
+
+---
+
 ## 7. 変更履歴（changelog）
 
 | 日付 | 修正者 | 内容 |
 |---|---|---|
+| 2026-06-18 | 実テーマギャップ監査由来 TC 追加 | §8 を新設（GAP-RT-036〜041 対応）。TC-031〜TC-060 を新規追加（30 TC）。内訳: TC-031〜036（GAP-RT-036 運用品質）/ TC-037〜041（GAP-RT-037 LLMO）/ TC-042〜046（GAP-RT-038 Consent Gate）/ TC-047〜051（GAP-RT-039 snapshot allowlist）/ TC-052〜055（GAP-RT-040 canonical+OGP 同時評価）/ TC-056〜060（GAP-RT-041 移行 SEO）。GAP-RT↔TC マッピング表（§8.8）・L4 carry 一覧（§8.9）を追記。P0 追加: TC-042/043/045/047/048/049/050。 |
 | 2026-06-15 | L4着手前敵対検証修正 | TC-017 → TC-017a / TC-017b に分割（i18n/RTL gate + sanitize_title 分離単体テスト）。TC-025 受入条件を強化（`sanitize_slug()` `[a-z0-9-]` 正規化・単体テスト必須、ログ化のみ合格不可）。TC-027（SBOM gate / P1）を新設。TC-028（Lighthouse CI render-blocking / consent / P1）新設。TC-029（lp-blueprint 12セクション整合 / P1）新設。TC-030（bridge-profile safe_apply_state / ADR-019準拠 / P1）新設。TC-011 に P0 シナリオ追加（ライセンスサーバ 502 / deny-first / TB-18a 準拠）、優先度を P1 → P0 に昇格。§5 carry テーブルを全面是正: 列に TC 参照列を追加、carry-006/011/012/014/021 を新規追加、carry-013→TC-017b、carry-015→TC-027、carry-017→TC-023a、carry-025→TC-023b に参照修正。§4 P0/P1 リスト整合。 |
 
-**本ファイルが TC / CAT 件数の正本（2026-06-15 時点）**
+**本ファイルが TC / CAT 件数の正本（2026-06-18 時点）**
 
 - CAT 系: CAT-001〜CAT-009 = **9 件**
-- TC 系: TC-001〜TC-030（TC-017a / TC-017b を個別カウント、TC-023a / TC-023b を個別カウント）= **32 件**
-  - 内訳: TC-001〜TC-016, TC-017a, TC-017b, TC-018〜TC-024, TC-025〜TC-030（TC-023a / TC-023b 含む）
-- **合計: 41 件**
+- TC 系（§3.2 既存）: TC-001〜TC-030（TC-017a / TC-017b を個別カウント、TC-023a / TC-023b を個別カウント）= **32 件**
+- TC 系（§8 追加）: TC-031〜TC-060 = **30 件**
+  - TC-031〜036: GAP-RT-036 運用品質（6 件）
+  - TC-037〜041: GAP-RT-037 LLMO（5 件）
+  - TC-042〜046: GAP-RT-038 Consent Gate（5 件）
+  - TC-047〜051: GAP-RT-039 snapshot allowlist（5 件）
+  - TC-052〜055: GAP-RT-040 canonical+OGP 同時評価（4 件）
+  - TC-056〜060: GAP-RT-041 移行 SEO（5 件）
+- **合計: 71 件（CAT 9 + TC 62）**
 
-※ 旧来の「35 TC」はこの更新以前の件数であり、以後は本ファイルの 41 件（CAT 9 + TC 32）が正本。
+※ 旧来の「41 件」は 2026-06-15 時点の件数。2026-06-18 追加分 30 件を加算し 71 件が正本。

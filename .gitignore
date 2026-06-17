@@ -1,6 +1,7 @@
 ## ローカル設定・機密
 CLAUDE.local.md
 .claude/settings.local.json
+.claude/agent-memory/
 .env
 .env.*
 *.pem
@@ -14,6 +15,10 @@ jinr-parent/
 jinr-child/
 jinr-parent.backup-*/
 seo-tool-v2-docs/
+## 展開元 ZIP も配布禁止（ライセンス違反防止）
+swell-2.16.0.zip
+jinr-*.zip
+*.zip
 
 ## Docker / 一時
 tmp/
@@ -35,6 +40,7 @@ vendor/
 ## HELIX ランタイム（= 自動生成 / コミット不要。成果物 yaml/json は追跡継続）
 .helix/helix.db
 .helix/*.lock
+.helix/cache/
 .helix/session-summaries/
 .helix/**/*.prev
 

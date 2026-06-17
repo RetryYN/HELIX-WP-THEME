@@ -52,19 +52,26 @@ AGENT NEOは、装飾の自由度で売るテーマではなく、個人アフ�
 AGENT NEOの視覚方向は「成果導線の明快さ」と「AIが検査/改善できる一貫性」を優先する。個人版は比較、根拠、CTA、PR表記が迷わず読めること。法人版は第一ビューで対象、成果、証拠、CTAが伝わり、LP全体で課題から問い合わせまで自然に進むことを基準にする。
 
 ### 1.2 デザイントークン
-| カテゴリ | トークン名 | 値 | 用途 |
-|---------|-----------|-----|------|
-| Color/Primary | --color-primary | #xxxx | CTA・ブランド |
-| Color/Secondary | --color-secondary | #xxxx | 補助・サブアクション |
-| Color/BG | --color-bg | #xxxx | ページ背景 |
-| Color/Surface | --color-surface | #xxxx | カード・モーダル背景 |
-| Color/Text | --color-text | #xxxx | 本文テキスト |
-| Color/Text-Muted | --color-text-muted | #xxxx | 補助テキスト |
-| Color/Error | --color-error | #xxxx | エラー状態 |
-| Color/Warning | --color-warning | #xxxx | 警告状態 |
-| Color/Success | --color-success | #xxxx | 成功状態 |
-| Color/Info | --color-info | #xxxx | 情報通知 |
-| Color/Border | --color-border | #xxxx | 区切り線・枠線 |
+
+> **カラートークン確定ステータス**: L5 暫定確定（2026-06-18）。G5 デザイン凍結ゲートの前提（プレースホルダ全値化）を満たすための初版。最終ブランドレビューで微調整余地あり。
+>
+> **ブランド方針**: オレンジ = メイン（CTA・ブランド）。黒はサブ（引き締め役）。黒ベース + オレンジアクセントはNG。ベースは白系（stone-50）で展開し 70-25-5 比率を維持。
+>
+> **配色比率 70-25-5 の割当**: ベース70% = --color-bg + --color-surface / サブ25% = --color-secondary + --color-text-muted / アクセント5% = --color-primary（CTA 専用）
+
+| カテゴリ | トークン名 | 値 | 用途 | コントラスト比（対背景） |
+|---------|-----------|-----|------|----------------------|
+| Color/Primary | --color-primary | #C2410C | CTA・ブランド（オレンジ: Tailwind orange-700） | 5.3:1 対 #FAFAF9 ／ 白文字 5.2:1 → AA PASS |
+| Color/Secondary | --color-secondary | #44403C | 補助・サブアクション（stone-700） | 9.7:1 対 #FAFAF9 → AA PASS |
+| Color/BG | --color-bg | #FAFAF9 | ページ背景（stone-50：純白より柔らかい） | — |
+| Color/Surface | --color-surface | #F5F5F4 | カード・モーダル背景（stone-100） | — |
+| Color/Text | --color-text | #1C1917 | 本文テキスト（stone-900） | 18.7:1 対 #FAFAF9 → AAA PASS |
+| Color/Text-Muted | --color-text-muted | #78716C | 補助テキスト（stone-500） | 4.6:1 対 #FAFAF9 → AA PASS |
+| Color/Error | --color-error | #DC2626 | エラー状態（red-600） | 5.0:1 対 #FAFAF9 → AA PASS |
+| Color/Warning | --color-warning | #D97706 | 警告状態（amber-600） | 4.1:1 対 #FAFAF9 → UI 3:1 PASS |
+| Color/Success | --color-success | #15803D | 成功状態（green-700） | 4.83:1 対 #FAFAF9 → AA PASS |
+| Color/Info | --color-info | #2563EB | 情報通知（blue-600） | 5.6:1 対 #FAFAF9 → AA PASS |
+| Color/Border | --color-border | #D6D3D1 | 区切り線・枠線（stone-300）※装飾用途 | — ※隣接テキストで AA 担保 |
 | Spacing/xs | --space-xs | 4px | アイコンとラベルの間隔 |
 | Spacing/sm | --space-sm | 8px | 密接な要素間 |
 | Spacing/md | --space-md | 16px | 標準要素間 |

@@ -1,5 +1,10 @@
 ﻿# L1 要件定義書 — AGENT NEO
 
+> **2026-06-18 G1-carry 整合補正**: ACC-NF ↔ REQ-NF 番号整合 + REQ-NF-001〜007 トレーサビリティ補完。
+> 是正方針(b)採用: ACC-NF-002〜015 の番号・本文は保持し、各行の「対応要件」列で REQ-NF 対応を明示。
+> REQ-NF-002〜007 の受入条件は ACC-NF-016〜021 として新規追加（ACC-SEC-001 は REQ-NF-002 のセキュリティ特化版として残存）。
+> §9 トレーサビリティマトリクスに REQ-NF-001〜007 行を補完。要件の意味・本文は変更なし。
+
 ## 1. プロジェクト概要
 
 ### 1.1 目的・背景
@@ -252,6 +257,12 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ACC-NF-014 | REQ-NF-020 | Theme Bridge Plugin情報設計を検証 | site/theme/plugin/page/section/CTA/offer/SEO/tracking/privacy/health/safe apply/migration blueprintがsource/confidence付きで出力され、既存テーマはpreview-only、AGENT NEOはdryRun/apply/rollback対象として判定される | integration contract test |
 | ACC-NF-015 | REQ-NF-025 | AGENT NEO テーマソースを完全静的解析（AST + grep + 許可 API 層リスト照合） | (1) AST 解析: PHP/JS の関数定義に variant 生成・統計判定・CV 監査・バイアス適用ロジックが存在しない (2) grep 検出: 'variant_generate', 'statistical_significance', 'cv_audit', 'bias_pattern_apply' 等の禁止関数名・キーワードゼロヒット (3) 許可 API 層リスト照合: 外部 HTTP 呼び出しが aseo/v1 / agent-neo/v1 / 標準 WP API のみで、独自の AI ロジック層を含まない | ロジック分離静的検査スイート（CI 必須） |
 | ACC-SEC-001 | REQ-NF-002 | 未認証で書き込みAPIを実行 | 拒否され、監査ログに残る | セキュリティテスト |
+| ACC-NF-016 | REQ-NF-002 | nonce/capability/rate limit/schema validation を備えた書き込み API に対し、正常認証・不正認証・レート超過の 3 パターンを実行 | 正常認証は 200、不正認証は 401/403、レート超過は 429 が返り、いずれも監査ログに記録される | セキュリティ/契約テスト（TC-NF-002n） |
+| ACC-NF-017 | REQ-NF-003 | テーマ本体・Companion Plugin・バンドル済みライブラリのライセンスを静的解析で棚卸し | 全コンポーネントが GPL 互換、参照テーマのコード/画像/CSS/固有文言のコピー混入ゼロ、SBOM に第三者依存が全件列挙されている | ライセンス監査（SBOM 生成 + 手動確認）（TC-NF-003n） |
+| ACC-NF-018 | REQ-NF-004 | 計測イベントのペイロードを DB ダンプで確認 | IP アドレス・メールアドレス等の個人情報フィールドが存在せず、必要最小限フィールド（session_token, section_id, event_type, ts）のみが保存されている | データ保護監査（TC-NF-004n） |
+| ACC-NF-019 | REQ-NF-005 | 代表テンプレート（HP/LP/BLP/記事/アーカイブ）を axe-core + 手動スクリーンリーダーで検証 | WCAG 2.2 AA の自動検査違反ゼロ、キーボードナビゲーション・フォーカス順序・代替テキストが適切 | axe-core CI + 手動 a11y 検査（TC-NF-005n） |
+| ACC-NF-020 | REQ-NF-006 | 全管理画面・フロント出力を日本語ロケール/英語ロケールで動作確認 | 翻訳済み文字列の欠落ゼロ、英語環境でも UI が正常表示、RTL レイアウト崩れなし（初版スコープ内） | i18n テスト（WP_LANG 切り替え）（TC-NF-006n） |
+| ACC-NF-021 | REQ-NF-007 | JSON 操作 API 呼び出し・計測イベント発火・Automation SEO 同期失敗を発生させる | 各操作のログエントリが構造化 JSON 形式で出力され、操作種別・タイムスタンプ・結果・エラー詳細が含まれる | ログ出力テスト（TC-NF-007n） |
 
 ### 4.1 異常系・境界値
 
@@ -402,6 +413,13 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-010 | F-010 | A-011 | S-007 | TC-010 |
 | REQ-F-011 | F-011 | A-012 | S-008 | TC-011 |
 | REQ-F-012 | F-012 | A-013 | S-009 | TC-012 |
+| REQ-NF-001 | F-001/F-002/F-003/F-029 | A-001/A-002/A-003 | S-001/S-002 | ACC-NF-001（TC-NF-001） |
+| REQ-NF-002 | F-002/F-003/F-042 | A-002/A-003/A-004 | S-002/S-007 | ACC-NF-016、ACC-SEC-001（TC-NF-002n） |
+| REQ-NF-003 | F-001/F-010/F-015 | — | S-001/S-007 | ACC-NF-017（TC-NF-003n） |
+| REQ-NF-004 | F-006/F-007/F-013/F-014 | A-007/A-008/A-009 | S-005/S-006 | ACC-NF-018（TC-NF-004n） |
+| REQ-NF-005 | F-001/F-004/F-005/F-013/F-031/F-036 | A-001/A-005/A-006 | S-001/S-003/S-004 | ACC-NF-019（TC-NF-005n） |
+| REQ-NF-006 | F-001/F-002/F-003 | A-001/A-002/A-003/A-004 | S-001/S-002/S-007 | ACC-NF-020（TC-NF-006n） |
+| REQ-NF-007 | F-002/F-006/F-007/F-026 | A-002/A-007/A-008/A-014 | S-002/S-005 | ACC-NF-021（TC-NF-007n） |
 | REQ-NF-008 | F-001/F-003/F-006/F-011/F-012 | A-002/A-003/A-012/A-013 | S-001/S-008/S-009 | TC-NF-002 |
 | REQ-NF-009 | F-004/F-006/F-007/F-010/F-011 | A-005/A-007/A-008/A-011/A-012 | S-003/S-005/S-007/S-008 | TC-NF-003 |
 | REQ-NF-010 | F-001/F-003/F-006/F-007/F-011/F-012/F-013 | A-001/A-004/A-007/A-008/A-012/A-013 | S-001/S-005/S-008/S-009 | TC-NF-004 |
