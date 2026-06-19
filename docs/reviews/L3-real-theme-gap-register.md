@@ -77,6 +77,7 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | GAP-RT-052 | セキュリティ精査（外部AI操作境界） | WP7 Abilities API（ADR-020）の**公開スコープ未定義**。`wp_register_ability()` の ability 宣言が WP REST 経由で機械可読公開されると、AGENT NEO の内部操作構造（エンドポイント/操作可否）が第三者AIに露出する情報漏洩になりうる | `docs/security/threat-model.md` §3／§5.1／TB-19 / `docs/adr/ADR-020.md`（D-1: `wp_register_ability()` 宣言 / 公開 REST 前提の記述）/ `docs/design/api-catalog.md`（公開 API 一覧） | MISSING | **低**（ADR-024 前提で露出リスク低減: 外部AI write 受口を廃止（REQ-F-043 廃止）したため Abilities API が外部AIに悪用される攻撃経路が消滅。READ 系メタ公開のみ残存するため重大度を 中→低 に見直し） | ADR補足 / L4-carry | **CARRY-TO-L4**（ADR-020 補足として: Abilities レスポンスを `agent-neo/v1` 認証必須エンドポイントから提供する or 公開参照は操作 ID のみに限定する方針を L4 entry 前に確定。CARRY-SEC-001 として L4 CI/セキュリティ Sprint で実装。ADR-024 により外部AI write 受口廃止のため当初リスクより低減済み）|
 | GAP-RT-053 | セキュリティ精査（外部AI操作境界） | **REQ-F-043 Open Editor Bridge Plugin の OAuth 申請フロー未定義**。許可リスト済み外部AIエディタ（Claude/Codex/Cursor/Cline/Continue + 自前OAuth申請）の write を許可する有料アドオンだが、OAuth の発行主体・scope 制限・審査フロー・revoke 手順が未定義。設計を誤ると第三者AIの write 受け口が意図せず開く | L1 `docs/requirements/` REQ-F-043 / `docs/security/threat-model.md` §5.1（外部AI write 攻撃面）/ `docs/design/api-catalog.md`（公開 API 一覧） | MISSING | 中 | PO-ESCALATION / security | **RESOLVED-BY-DECISION**（2026-06-18 / ADR-024）: REQ-F-043 廃止により外部AI write 受口が消滅し OAuth 設計は不要。AI 操作は Automation SEO 経由のみに一本化。PO-ESCALATION から除外。|
 | GAP-RT-054 | セキュリティ精査（外部AI操作境界） | `mcp-tools.schema.json` が L3 設計書で参照されるのみで**実ファイルが docs 内に不在**。L4 で tool allowlist 境界が曖昧化しないよう、L4 entry 時に実 schema を確認/作成する必要がある | `docs/security/threat-model.md` §5.1（TB-19: tool allowlist 境界）/ `docs/design/L3-detailed-design.md`（`mcp-tools.schema.json` 参照箇所）/ `docs/design/api-catalog.md` | MISSING | 低 | L4-carry | **CARRY-TO-L4**（L4 entry 時に `mcp-tools.schema.json` の実ファイル存在を確認し、未存在なら作成。CARRY-SEC-002 として L4 セキュリティ Sprint 冒頭タスクに追加）|
+| GAP-RT-055 | D 法規制対応 | **AI 生成コンテンツ開示の法規制**（EU AI Act Article 50 / California SB 942 / C2PA v2.4）が本製品の AI 記事量産ユースケースに正面から適用される。これらの法規制に対する対応方針・責務帰属・テーマ側の関与範囲が設計ドキュメントに未収載であった | EU AI Act Article 50（2026-08-02 施行 / 既存システム 2026-12-02 猶予）/ California SB 942（2026-01-01 施行済み）/ C2PA v2.4 / ADR-024 §Decision §1〜3（AI write 操作の Automation SEO 経由一本化）/ REQ-NF-025（AI 判断ロジック完全分離） | MISSING | **高**（EU AI Act の猶予期限 2026-12-02 が L4 実装サイクル内に到来。施行済みの SB 942 も対象となりうる） | ADR / L4-carry | **RESOLVED-BY-DECISION**（2026-06-20 / ADR-025）: Automation SEO 登録時の同意に開示責務を集約。マーキングロジックは Automation SEO 側。AGENT-NEO は disclosure レンダリングフック（スロット / schema.org creator フィールド）のみ提供。詳細は ADR-025 参照。L4 carry CARRY-ADR025-001〜005 として継続管理。|
 
 ---
 
@@ -92,6 +93,7 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | **PO-escalation** | 6 | GAP-RT-043, 044, 045, 046, 047, 048 |
 | **L1-fix** | 3 | GAP-RT-049, 050, 051 |
 | **セキュリティ精査（外部AI操作境界）** | 3 | GAP-RT-052, 053, 054 |
+| **法規制対応（ADR）** | 1 | GAP-RT-055 |
 
 ### 振り分け先別（重複なし・主分類ベース）
 
@@ -102,40 +104,45 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | test-plan | 6 件（GAP-RT-036〜041） |
 | PO-escalation | 6 件（GAP-RT-043〜048）※ GAP-RT-053 は 2026-06-18 ADR-024 により RESOLVED-BY-DECISION に変更 |
 | L1-fix | 3 件（GAP-RT-049〜051） |
-| **合計** | **54 件** |
+| **法規制対応（ADR）** | **1 件（GAP-RT-055）** |
+| **合計** | **55 件** |
 
 ### 重大度別
 
 | 重大度 | 件数 | 該当 GAP-RT |
 |---|---|---|
-| 高 | 30 件 | GAP-RT-001〜005, 010〜012, 014〜017, 019, 021〜022, 024, 027〜030, 036〜038, 042〜044, 046〜047, 049〜050 |
+| 高 | 31 件 | GAP-RT-001〜005, 010〜012, 014〜017, 019, 021〜022, 024, 027〜030, 036〜038, 042〜044, 046〜047, 049〜050, **055** |
 | 中 | 22 件 | GAP-RT-006〜009, 013, 018, 020, 023, 025〜026, 031〜035, 039〜041, 045, 048, 051, 053（うち GAP-RT-053 は RESOLVED-BY-DECISION） |
 | 低 | 2 件 | GAP-RT-052（ADR-024: 外部AI write 受口廃止により 中→低 に見直し済み）/ GAP-RT-054 |
 | DEFERRED | 0 件 | —（GAP-RT-051: RESOLVED-IN-L3 に更新済み / 2026-06-18） |
 
-> **重大度別検算**: 高 30 + 中 22 + 低 2 = **54 件**（GAP-RT 総数と一致）
+> **重大度別検算**: 高 31 + 中 22 + 低 2 = **55 件**（GAP-RT 総数と一致）
 > - 中の内訳: active 21 件（GAP-RT-006〜009, 013, 018, 020, 023, 025〜026, 031〜035, 039〜041, 045, 048, 051）+ 解消 1 件（GAP-RT-053 / RESOLVED-BY-DECISION）= 22 件
-> - disposition サマリと二重検算: disposition 合計 24 + 8 + 15 + 1 + 6 + 0 + 0 = **54 件**（一致）
+> - disposition サマリと二重検算: disposition 合計 24 + 8 + 15 + 2 + 6 + 0 + 0 = **55 件**（一致）
 
 ---
 
 ## disposition サマリ
 
-> 更新日: 2026-06-18（セキュリティ精査追記）→ 2026-06-18（ADR-024 PO確定: 配布・課金モデル変更 / GAP-RT-053 re-disposition）/ 本日のギャップ closure 作業（A群 addenda 4本 / ADR 4本 / test-plan TC追加 / PO裁定パケット / L1整合 / L5トークン）による全 51 件 disposition 確定結果に、セキュリティ精査（外部AI操作境界）3件（GAP-RT-052/053/054）を追加し計 54 件。ADR-024（Automation SEO 専用配布一本化・REQ-F-043 廃止）により GAP-RT-053 を PO-ESCALATION → RESOLVED-BY-DECISION に再 disposition。
+> 更新日: 2026-06-18（セキュリティ精査追記）→ 2026-06-18（ADR-024 PO確定: 配布・課金モデル変更 / GAP-RT-053 re-disposition）→ 2026-06-20（ADR-025 追記: GAP-RT-055 法規制対応 1 件追加 / 総数 54 → 55 件）/ 本日のギャップ closure 作業（A群 addenda 4本 / ADR 4本 / test-plan TC追加 / PO裁定パケット / L1整合 / L5トークン）による全 51 件 disposition 確定結果に、セキュリティ精査（外部AI操作境界）3件（GAP-RT-052/053/054）を追加し計 54 件、さらに法規制対応 1 件（GAP-RT-055）を追加し計 **55 件**。ADR-024（Automation SEO 専用配布一本化・REQ-F-043 廃止）により GAP-RT-053 を PO-ESCALATION → RESOLVED-BY-DECISION に再 disposition。
 
 | disposition 種別 | 件数 | 該当 GAP-RT |
 |---|---:|---|
 | **RESOLVED-IN-L3** | 24 件 | GAP-RT-001, 003, 005, 007, 008, 009（A1 ブロック 6 件）/ GAP-RT-016, 019, 020（A3 SEO 純 RESOLVED 3 件）/ GAP-RT-021（A4 パフォーマンス / PERF-CARRY-001 ADR-021 統合解消）/ GAP-RT-029, 031, 032, 033, 034, 035（OSS/CI 群 6 件）/ GAP-RT-036, 037, 039, 040, 041（test-plan TC 追加 5 件）/ **GAP-RT-049, 050（L1 整合補正 ACC-NF↔REQ-NF / 2026-06-18 適用済み）/ GAP-RT-051（L5 カラートークン #xxxx 残ゼロ確認済み / 2026-06-18）** |
 | **CARRY-TO-L4（単独）** | 8 件 | GAP-RT-004（C-A1-002）/ GAP-RT-010（CARRY-A2-001）/ GAP-RT-011（CARRY-A2-002）/ GAP-RT-012（CARRY-A2-003）/ GAP-RT-013（CARRY-A2-004）/ GAP-RT-014（CARRY-A2-005 / CARRY-A2-006）/ **GAP-RT-052（CARRY-SEC-001: ADR-020 補足 + Abilities 公開スコープ確定）/ GAP-RT-054（CARRY-SEC-002: mcp-tools.schema.json 実ファイル作成）** |
 | **RESOLVED-IN-L3 + CARRY-TO-L4（両立）** | 15 件 | GAP-RT-002, 006, 015, 017, 018, 022, 023, 024, 025, 026（L3 設計確定 + 残項目が L4 carry）/ GAP-RT-027, 028, 030（ADR-020 方針確定 + carry 残存）/ GAP-RT-038（TC 追加済み + PERF-CARRY-002 blocking）/ GAP-RT-042（ADR-023 + carry 4 件）|
-| **RESOLVED-BY-DECISION** | 1 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要） |
+| **RESOLVED-BY-DECISION** | 2 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要 / carry なし）/ **GAP-RT-055**（2026-06-20 / ADR-025: Automation SEO 登録時の同意に集約・テーマは disclosure フックのみ / **+ CARRY-TO-L4: CARRY-ADR025-001〜005 を L4 継続管理**） |
 | **PO-ESCALATION** | 6 件 | GAP-RT-043, 044, 045, 046, 047, 048 |
 | **L1-FIX-PENDING** | 0 件 | — （GAP-RT-049/050 は RESOLVED-IN-L3 に更新済み） |
 | **DEFERRED** | 0 件 | — （GAP-RT-051 は RESOLVED-IN-L3 に更新済み） |
 
-> **検算**: 24 + 8 + 15 + 1 + 6 + 0 + 0 = **54 件**（GAP-RT 総数と一致）
+> **検算**: 24 + 8 + 15 + 2 + 6 + 0 + 0 = **55 件**（GAP-RT 総数と一致）
 >
-> **注意**: RESOLVED-IN-L3 単独と RESOLVED-IN-L3 + CARRY-TO-L4 の両立を合計すると **RESOLVED（設計確定）= 39 件**。RESOLVED-BY-DECISION = 1 件（GAP-RT-053 / ADR-024）。CARRY-TO-L4 単独 = 8 件（うち 2 件は今次追加）。純 OPEN 残存（PO 裁定待ち）= **6 件**（GAP-RT-043〜048）。
+> **注意**: RESOLVED-IN-L3 単独と RESOLVED-IN-L3 + CARRY-TO-L4 の両立を合計すると **RESOLVED（設計確定）= 39 件**。RESOLVED-BY-DECISION = 2 件（GAP-RT-053 / ADR-024 + GAP-RT-055 / ADR-025）。CARRY-TO-L4 単独 = 8 件（うち 2 件は今次追加）。純 OPEN 残存（PO 裁定待ち）= **6 件**（GAP-RT-043〜048）。
+>
+> **RESOLVED-BY-DECISION 内の carry 有無の区別**:
+> - GAP-RT-053（ADR-024）: 純 RESOLVED-BY-DECISION。carry なし。REQ-F-043 廃止により設計判断で完結。
+> - GAP-RT-055（ADR-025）: RESOLVED-BY-DECISION **かつ** CARRY-TO-L4 保有。ADR-025 による方針決定（= decision 部分）は完了だが、L4 実装 carry（CARRY-ADR025-001〜005）が残存する。**GAP は 1 件として計上**（disposition 件数への二重計上なし）するが、L4 未完了作業が存在することを本行の注記で明示する。
 
 ### ADR 化サマリ（GAP → ADR 対応表）
 
@@ -145,6 +152,7 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | ADR-021（OSS/CI ツールチェーン） | GAP-RT-029, 031, 032, 033, 034, 035 + PERF-CARRY-001 解消 |
 | ADR-022（SEO 出力責務境界） | GAP-RT-016 + CARRY-A3-001 解消 |
 | ADR-023（FSE 再設計コスト） | GAP-RT-042 |
+| ADR-025（AI 生成コンテンツ開示法規制） | GAP-RT-055 |
 
 ---
 
@@ -174,10 +182,10 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | **PERF-CARRY-004** | GAP-RT-024 | web-vitals npm バージョン固定（major lock + semver policy） | TC-018（performance gate） | L4 performance Sprint | P2 | false |
 | **PERF-CARRY-005** | GAP-RT-025 | 遅延ブロックサーバーキャッシュ設計（lazyload endpoint キャッシュ戦略） | TC（L4 lazyload Sprint で追加） | L4 lazyload Sprint | P2 | false |
 | **PERF-CARRY-006** | GAP-RT-026 | an-hero-pc WebP 生成接続仕様 | TC（L4 media Sprint で追加） | L4 media Sprint | P3 | false |
-| **CARRY-WP7-001** | GAP-RT-027 | WP 7.0-RC Docker 環境構築 + Abilities API PoC（PO-WP7-01 承認後） | TC（L4 WP7 PoC Sprint で追加） | L4 WP7 PoC Sprint | P1 | **true**（PO-WP7-01 裁定待ち） |
+| **CARRY-WP7-001** | GAP-RT-027 | ~~WP 7.0-RC Docker 環境構築 + Abilities API PoC~~ → **WP 7.0（GA/stable）環境構築 + Abilities API 本格組み込み検証**（GA 済み 2026-05-20 / RC PoC は本格実装検証へ移行済み / ADR-020 2026-06-20 追記参照。PO-WP7-01 承認後）| TC（L4 WP7 Sprint で追加） | L4 WP7 Sprint | P1 | **true**（PO-WP7-01 裁定待ち） |
 | **CARRY-WP7-002** | GAP-RT-027 | `wp_register_ability()` wrapper 実装 | TC（L4 WP7 Sprint で追加） | L4 WP7 Sprint | P1 | false |
 | **CARRY-WP7-003** | GAP-RT-030 | WordPress.org Theme Check CI 組み込み（Q-006 wp.org 申請方針確定後） | TC-027（SBOM gate）/ TC-032（PHP CI gate） | L4 CI Sprint | P1 | false（Q-006 PO 裁定で要否確定） |
-| **CARRY-WP7-004** | GAP-RT-027, 030 | WP 7.0 CI マトリクス（WP 6.6〜7.0-RC 並列テスト matrix） | TC-031〜034（運用品質 TC）| L4 CI Sprint | P2 | false |
+| **CARRY-WP7-004** | GAP-RT-027, 030 | WP 7.0 CI マトリクス（~~WP 6.6〜7.0-RC 並列テスト matrix~~ → **WP 6.6〜7.0 Tier A 必達マトリクス / RC レーンは GA 済みで Tier A 昇格済み** / ADR-020 D-2 + CARRY-WP7-012 参照）| TC-031〜034（運用品質 TC）| L4 CI Sprint | P2 | false |
 | **CARRY-WP7-005** | GAP-RT-028 | `423 Locked` / `409 Conflict` 衝突検出実装（PO-WP7-02 裁定後） | TC（L4 REST Sprint で追加） | L4 REST Sprint | P1 | false（L4 REST 実装スプリント着手前に裁定） |
 | **CARRY-WP7-006** | GAP-RT-030 | Gutenberg pre-release ブランチ互換テスト統合 | TC（L4 CI Sprint で追加） | L4 CI Sprint | P2 | false |
 | **CARRY-WP7-007** | GAP-RT-030 | `block.json` `apiVersion` 3 対応スクリプト | TC（L4 block Sprint で追加） | L4 block Sprint | P2 | false |
@@ -195,6 +203,11 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | **CARRY-ADR023-002** | GAP-RT-042 | ウィジェット系ブロックスプリント分解（SNS フィードウィジェット Phase 1/2 境界確定後） | TC（L4 widget Sprint で追加） | L4 widget Sprint（Phase 1/2 境界要 PO 裁定: Q-012） | P2 | false |
 | **CARRY-ADR023-003** | GAP-RT-042 | FSE Query Loop 拡張（ウィジェット代替フィルタ実装） | TC（L4 FSE Sprint で追加） | L4 FSE Sprint | P2 | false |
 | **CARRY-ADR023-004** | GAP-RT-042 | Bridge Plugin JIN:R ショートコード変換スコープ確定（PO 裁定後、ADR-019 追記） | TC（L4 Bridge Plugin Sprint 着手前に確定） | L4 Bridge Plugin Sprint 着手前 | P1 | **true**（PO 裁定 CARRY-ADR023-004 待ち） |
+| **CARRY-ADR025-001** | GAP-RT-055 | 登録時同意フローの具体的な同意文言・UI 設計の法務確認（EU AI Act / SB 942 要件を満たす文言を法務レビュー後に確定）。Automation SEO 登録フロー同意ステップの外部依存契約テスト（TC-061 旧定義部分）は AGENT-NEO リポでは実行不可のため本 carry で管理 | TC-061（外部依存部分） | L4 同意フロー Sprint 着手時に draft、法務レビュー後に確定 | P1 | false |
+| **CARRY-ADR025-002** | GAP-RT-055 | California SB 942 適用対象範囲の Legal opinion 取得（日本法人が California 居住者向けにサービス提供する場合の適用可否） | — | L4 法務 Sprint | P2 | false |
+| **CARRY-ADR025-003** | GAP-RT-055 | "fully AI-generated" vs "AI-assisted" 区別情報を受け取る disclosure フック仕様の L4 確定（AGENT-NEO 側 disclosure スロット API 設計） | TC-062〜064 | L4 disclosure Sprint 着手前に確定 | P1 | false |
+| **CARRY-ADR025-004** | GAP-RT-055 | EU AI Act 既存システム猶予（2026-12-02）に対応するための L4 WBS マイルストーン設定。Automation SEO 側の機械可読マーキング実装タイミングとの調整 | TC-064 | L4 WBS 設計時 | P1 | false |
+| **CARRY-ADR025-005** | GAP-RT-055 | C2PA 画像 latent マーキングの Automation SEO 画像生成パイプライン実装計画（AGENT-NEO 側は not-in-scope、Automation SEO 側の PM 議題化を推奨） | — | Automation SEO 側 PM 議題化後 | P2 | false |
 
 > **G2-carry-register 相互参照**: `docs/reviews/G2-carry-register.md`  
 > - 本 L4-carry 集約表は GAP-RT 由来の新規 carry のみを収録。G2 carry 由来（CARRY-G2-007/009/011/012/013/015/017/021/025/026/028 等）は G2-carry-register 本体を正本とし、本表には重複記載しない。  
@@ -223,3 +236,4 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 *disposition 更新: 2026-06-18（TL [P2] 指摘対応）/ 担当: 文書統合担当（Sonnet）/ 参照成果物: L3-A1〜A4 addenda / ADR-020〜023 / L3-test-plan §8 / L3-PO-decision-packet / G2-carry-register / L1-requirements.md（ACC-NF 整合補正・§9 トレーサビリティ補完）/ L5-visual-design.md（カラートークン全値確定）*
 *セキュリティ精査追記: 2026-06-18 / GAP-RT-052〜054（外部AI操作境界 3 件）追加 / 総数 51 → 54 件 / 担当: 文書担当（Sonnet）*
 *ADR-024 re-disposition: 2026-06-18 / GAP-RT-053 を PO-ESCALATION → RESOLVED-BY-DECISION に更新 / GAP-RT-052 重大度 中→低 に見直し（外部AI write 受口廃止による露出リスク低減）/ PO-ESCALATION 7件 → 6件 / 担当: 文書整合担当（Sonnet）*
+*ADR-025 追記: 2026-06-20 / GAP-RT-055（AI 生成コンテンツ開示法規制 / 重大度=高）追加・RESOLVED-BY-DECISION（ADR-025 / PO確定）/ 総数 54 → 55 件 / 高 30 → 31 件 / RESOLVED-BY-DECISION 1 → 2 件 / disposition 検算 54 → 55 件 / ADR化サマリ更新 / 担当: 文書整合担当（Sonnet）*

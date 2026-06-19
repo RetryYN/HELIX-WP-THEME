@@ -99,8 +99,8 @@
 ## 4. P0 / P1 / P2 分類
 
 - P0: CAT-001〜CAT-008、TC-002、TC-003、TC-005、TC-006、TC-007、TC-009、TC-010、TC-011、TC-016、TC-019、TC-020、TC-021、TC-023a、TC-023b、TC-024、TC-042、TC-043、TC-045、TC-047、TC-048、TC-049、TC-050
-- P1: CAT-009、TC-001、TC-004、TC-008、TC-012、TC-013、TC-014、TC-015、TC-017a、TC-017b、TC-018、TC-025、TC-026、TC-027、TC-028、TC-029、TC-030、TC-031、TC-032、TC-033、TC-034、TC-035、TC-037、TC-038、TC-040、TC-044、TC-046、TC-051、TC-052、TC-053、TC-054、TC-055、TC-056、TC-057、TC-058、TC-059、TC-060
-- P2: TC-022（監査ログ整合と運用連携）、TC-036（SLO レポート）、TC-039（AI citation log）、TC-041（LLMO 計測サマリ）
+- P1: CAT-009、TC-001、TC-004、TC-008、TC-012、TC-013、TC-014、TC-015、TC-017a、TC-017b、TC-018、TC-025、TC-026、TC-027、TC-028、TC-029、TC-030、TC-031、TC-032、TC-033、TC-034、TC-035、TC-037、TC-038、TC-040、TC-044、TC-046、TC-051、TC-052、TC-053、TC-054、TC-055、TC-056、TC-057、TC-058、TC-059、TC-060、TC-061、TC-062、TC-063、TC-064
+- P2: TC-022（監査ログ整合と運用連携）、TC-036（SLO レポート）、TC-039（AI citation log）、TC-041（LLMO 計測サマリ）、TC-065（disclosure 非注入時デフォルト動作）
 
 ※ 優先度整合・受入条件は INT-002 / DC-F-002 に基づき `§4` 一覧を `TC` テーブルに合わせて更新済み（CAT-009 は P1）。TC-017 を TC-017a/TC-017b に分割。TC-027〜TC-030 を P1 で追加。§8 追加分 P0（TC-042/043/045/047/048/049/050）を §4 正本リストに反映済み（2026-06-18）。§8 追加分（TC-031〜060）を P0/P1/P2 とも §4 正本に反映済み（2026-06-18）。
 
@@ -267,14 +267,70 @@
 
 ---
 
+---
+
+## 9. 2026-06-20 追加（ADR-025 由来 / AI 生成コンテンツ開示法規制対応）
+
+> 本節は `docs/adr/ADR-025.md` の L4 検証 TC 候補（TC-061〜TC-065）を test-plan SSOT へ登録するものです。
+> ADR-025 の L4 carry（CARRY-ADR025-001〜005）が実装されるまでは原則的に L4 carry として管理します。
+> TC-ID は GAP-RT-041 対応 TC-060 に続き **TC-061 から採番**しています。
+
+---
+
+### 9.1 GAP-RT-055: AI 生成コンテンツ開示法規制（ADR-025）
+
+**背景**: EU AI Act Article 50 / California SB 942 / C2PA v2.4 への対応方針が ADR-025（2026-06-20 PO確定）で確定した。対応責務は Automation SEO 登録時の同意に集約し、AGENT-NEO は disclosure レンダリングフックのみ提供する。本節ではその設計意図を検証するための TC 群を登録する。
+
+| TC | 対象 | 種別 | 優先度 | 受入観点 |
+|---|---|---|---|---|
+| TC-061 | disclosure レンダリングフック / スロットの出力確認（注入データあり時） | Unit | P1 | AGENT-NEO テーマが disclosure スロット（フックポイント）を提供しており、Automation SEO からの注入データが存在する場合に disclosure ラベルが正しく HTML 出力されることを検証する。具体的には: (a) disclosure フック呼び出し時にスロットの HTML 出力が存在すること。※ 注入データなし時のデフォルト動作は TC-065（P2）が単独 owner であるため本 TC の受入観点に含まない（TC-065 参照）。※ Automation SEO 登録フロー自体の同意取得検証（未同意時のサービス停止等）は AGENT-NEO リポの検証対象外（Automation SEO 側の外部依存テスト）のため、CARRY-ADR025-001 に carry として分離する |
+| TC-062 | テーマ disclosure スロットのレンダリング | Integration | P1 | Automation SEO が disclosure マーキング情報を AGENT-NEO の disclosure フック（スロット）へ注入した場合、フロントエンドに開示ラベルが正しくレンダリングされることを検証する |
+| TC-063 | schema.org creator フィールドの AI マーキング出力 | Integration | P1 | Article JSON-LD の `creator` / `author` フィールドが、Automation SEO から受領した値を用いて標準 schema.org プロパティ（`creator` / `author` を `Person` または `Organization` の `@type` で）正しく出力できることを検証する。具体的な AI 生成を示すスキーマ形状（非標準プロパティ等）は「Automation SEO から受領する schema 形状に従い L4 で確定」（CARRY-ADR025-003 参照）のため、本 TC では出力構造の正確性のみを検証し、AI-generated を示す具体的プロパティ名を受入条件として固定しない |
+| TC-064 | "fully AI-generated" vs "AI-assisted" 区別表示 | Integration | P1 | Automation SEO が disclosure フック経由で "fully AI-generated" または "AI-assisted" の区別情報を送信した場合、AGENT-NEO が対応するラベルを正しく表示することを検証する（EU AI Act Article 50 の 2 種別要件） |
+| TC-065 | disclosure スロット非注入時のデフォルト動作 | Unit | P2 | Automation SEO から disclosure 情報が注入されない場合、AGENT-NEO が独自に AI 生成ラベルを出力しないことを検証する（テーマは AI 判断をしない原則 / REQ-NF-025 整合確認） |
+
+---
+
+### 9.2 P0 / P1 / P2 分類（§9 追加分）
+
+- **P0 追加分**: なし（法規制対応は L4 実装 carry のため P1 以下）
+- **P1 追加分**: TC-061（AGENT-NEO disclosure スロット出力確認・注入データあり時のみ / 非注入時デフォルト動作は TC-065 が単独 owner / 登録フロー検証は CARRY-ADR025-001 に分離）/ TC-062（disclosure スロットレンダリング）/ TC-063（schema.org AI マーキング）/ TC-064（AI 種別区別表示）
+- **P2 追加分**: TC-065（非注入時デフォルト動作）
+
+§4 P0/P1 リスト更新:
+
+- P1 に追加: TC-061、TC-062、TC-063、TC-064
+- P2 に追加: TC-065
+
+---
+
+### 9.3 GAP-RT ↔ TC マッピング（§9 追加分）
+
+| GAP-ID | カテゴリ | カバーする TC | 残存 carry |
+|---|---|---|---|
+| GAP-RT-055 | 法規制対応（AI 開示）| TC-061（disclosure スロット出力確認・**注入データあり時のみ（P1）** / 非注入時デフォルトは TC-065 が owner / 旧「登録時同意フロー」はCARRY-ADR025-001へ分離）/ TC-062（disclosure スロット）/ TC-063（schema.org AI マーキング）/ TC-064（AI 種別区別表示）/ TC-065（**非注入時デフォルト動作（P2）** / TC-061 と責務分離） | CARRY-ADR025-001（同意文言法務確認 + Automation SEO 登録フロー同意ステップの外部依存契約テスト）/ CARRY-ADR025-002（SB 942 Legal opinion）/ CARRY-ADR025-003（disclosure フック仕様 L4 確定）/ CARRY-ADR025-004（EU AI Act 2026-12-02 猶予 WBS）/ CARRY-ADR025-005（C2PA 画像 latent マーキング Automation SEO 側実装計画） |
+
+---
+
+### 9.4 L4 実装で実テスト化が必要な carry 一覧（§9 追加分）
+
+| Carry-ID | 関連 TC | 理由 | 解消条件 |
+|---|---|---|---|
+| CARRY-ADR025-001 | TC-061（外部依存部分）| (a) 登録時同意フローの具体的な文言・UI が法務確認前に未確定、(b) Automation SEO 登録フローの同意ステップ検証（未同意時のサービス停止）は AGENT-NEO リポでは実行不可の外部依存テスト | 法務レビュー完了後に Automation SEO 側と連動した契約テストとして実テスト化。TC-061（AGENT-NEO 側 disclosure スロット出力確認）は AGENT-NEO リポ内で独立実施可能 |
+| CARRY-ADR025-003 | TC-062〜064（特に TC-063） | (a) disclosure フック仕様（disclosure スロット API、"fully AI-generated" / "AI-assisted" 区別情報の受け渡し形式）が L4 entry 前に未確定、および (b) Automation SEO から受領する disclosure の **JSON-LD payload 形状**（schema.org 標準プロパティ `creator` / `author` を用いた AI マーキング表現の具体的契約 — 値の型・必須フィールド・"fully AI-generated" / "AI-assisted" 区別フラグの埋め込み方式）が L4 entry 前に未確定。TC-063 は (b) の契約確定まで受入条件の精緻化が不可能 | L4 disclosure Sprint 着手前に (a)(b) 両仕様を確定後、TC-062〜064 の受入条件を精緻化。TC-063 は JSON-LD payload 形状の L4 確定が owner となる |
+| CARRY-ADR025-005 | — | C2PA 画像 latent マーキングは Automation SEO 画像生成パイプラインの実装に依存（AGENT-NEO 側 not-in-scope） | Automation SEO 側 PM 議題化・実装完了後に AGENT-NEO 側への影響がないことを確認 |
+
+---
+
 ## 7. 変更履歴（changelog）
 
 | 日付 | 修正者 | 内容 |
 |---|---|---|
 | 2026-06-18 | 実テーマギャップ監査由来 TC 追加 | §8 を新設（GAP-RT-036〜041 対応）。TC-031〜TC-060 を新規追加（30 TC）。内訳: TC-031〜036（GAP-RT-036 運用品質）/ TC-037〜041（GAP-RT-037 LLMO）/ TC-042〜046（GAP-RT-038 Consent Gate）/ TC-047〜051（GAP-RT-039 snapshot allowlist）/ TC-052〜055（GAP-RT-040 canonical+OGP 同時評価）/ TC-056〜060（GAP-RT-041 移行 SEO）。GAP-RT↔TC マッピング表（§8.8）・L4 carry 一覧（§8.9）を追記。P0 追加: TC-042/043/045/047/048/049/050。 |
+| 2026-06-20 | ADR-025 由来 TC 追加 | §9 を新設（GAP-RT-055 / AI 生成コンテンツ開示法規制 / ADR-025 対応）。TC-061〜TC-065 を新規追加（5 TC）。P1 追加: TC-061〜064。P2 追加: TC-065。GAP-RT↔TC マッピング（§9.3）・L4 carry 一覧（§9.4）を追記。 |
 | 2026-06-15 | L4着手前敵対検証修正 | TC-017 → TC-017a / TC-017b に分割（i18n/RTL gate + sanitize_title 分離単体テスト）。TC-025 受入条件を強化（`sanitize_slug()` `[a-z0-9-]` 正規化・単体テスト必須、ログ化のみ合格不可）。TC-027（SBOM gate / P1）を新設。TC-028（Lighthouse CI render-blocking / consent / P1）新設。TC-029（lp-blueprint 12セクション整合 / P1）新設。TC-030（bridge-profile safe_apply_state / ADR-019準拠 / P1）新設。TC-011 に P0 シナリオ追加（ライセンスサーバ 502 / deny-first / TB-18a 準拠）、優先度を P1 → P0 に昇格。§5 carry テーブルを全面是正: 列に TC 参照列を追加、carry-006/011/012/014/021 を新規追加、carry-013→TC-017b、carry-015→TC-027、carry-017→TC-023a、carry-025→TC-023b に参照修正。§4 P0/P1 リスト整合。 |
 
-**本ファイルが TC / CAT 件数の正本（2026-06-18 時点）**
+**本ファイルが TC / CAT 件数の正本（2026-06-20 時点）**
 
 - CAT 系: CAT-001〜CAT-009 = **9 件**
 - TC 系（§3.2 既存）: TC-001〜TC-030（TC-017a / TC-017b を個別カウント、TC-023a / TC-023b を個別カウント）= **32 件**
@@ -285,6 +341,8 @@
   - TC-047〜051: GAP-RT-039 snapshot allowlist（5 件）
   - TC-052〜055: GAP-RT-040 canonical+OGP 同時評価（4 件）
   - TC-056〜060: GAP-RT-041 移行 SEO（5 件）
-- **合計: 71 件（CAT 9 + TC 62）**
+- TC 系（§9 追加）: TC-061〜TC-065 = **5 件**
+  - TC-061〜065: GAP-RT-055 AI 生成コンテンツ開示法規制（ADR-025）（5 件）
+- **合計: 76 件（CAT 9 + TC 67）**
 
-※ 旧来の「41 件」は 2026-06-15 時点の件数。2026-06-18 追加分 30 件を加算し 71 件が正本。
+※ 旧来の「41 件」は 2026-06-15 時点の件数。2026-06-18 追加分 30 件 + 2026-06-20 追加分 5 件を加算し 76 件が正本。
