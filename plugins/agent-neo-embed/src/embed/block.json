@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "agent-neo/embed",
+  "version": "0.1.0",
+  "title": "AGENT NEO Embed",
+  "category": "embed",
+  "icon": "embed-generic",
+  "description": "Renders AGENT NEO static or interactive isolated embeds.",
+  "textdomain": "agent-neo-embed",
+  "attributes": {
+    "mode": {
+      "type": "string",
+      "enum": ["static", "interactive"],
+      "default": "static"
+    },
+    "embedUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "AGENT NEO embed"
+    },
+    "payloadId": {
+      "type": "string",
+      "default": ""
+    },
+    "staticHtml": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "customClassName": false,
+    "customCSS": false,
+    "html": false
+  },
+  "render": "file:./render.php",
+  "viewScript": "agent-neo-embed-view",
+  "editorScript": "agent-neo-embed-editor",
+  "style": "agent-neo-embed-style"
+}

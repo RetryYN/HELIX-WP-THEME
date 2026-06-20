@@ -1,0 +1,40 @@
+.wp-block-agent-neo-embed {
+  display: block;
+  width: 100%;
+}
+
+.agent-neo-embed__frame {
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  border: 0;
+}
+
+.agent-neo-embed__notice,
+.agent-neo-embed__blocked,
+.agent-neo-embed-editor__summary {
+	margin: 0;
+	padding: 12px;
+	border: 1px solid #d8dde7;
+	background: #f7f9fc;
+  color: #1f2937;
+  font-size: 14px;
+	line-height: 1.5;
+}
+
+.agent-neo-embed__blocked {
+	border-color: #c2410c;
+	background: #fff7ed;
+	color: #7c2d12;
+}
+
+.agent-neo-embed__blocked p {
+	margin: 0;
+}
+
+.agent-neo-embed-editor__summary {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
