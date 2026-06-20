@@ -19,6 +19,33 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 
 ---
 
+## 2026-06-21 disposition 同期（L3 close check / 本節が以下個別行の状態に優先する正本）
+
+> L3 上下チェック（L1↔L2↔L3）で、PM裁定(2026-06-20)・VERIFIED(2026-06-21) が本レジスタの個別行・サマリに未伝播だった陳腐化を是正。**以下の最新状態が正本**であり、本文中の個別 GAP/CARRY 行・旧サマリ表の古い記述は本節で上書きされる（個別行の逐次修正は L4 hygiene で実施）。根拠正本: `docs/reviews/L3-PO-decision-packet.md`（PM-RESOLVED / VERIFIED）。
+
+| 項目 | 旧状態 | 最新状態（正本） | 根拠 |
+|---|---|---|---|
+| GAP-RT-043（Q-005 ライセンス検証方式） | PO-ESCALATION | **PM-RESOLVED(2026-06-20)** Automation SEO 契約 entitlement 確認に統合 | PO-decision-packet §PM確定 |
+| GAP-RT-045（Q-013 公開指標ポリシー） | PO-ESCALATION | **PM-RESOLVED(2026-06-20)** 安全側＝同意バナーあり前提 | 同上 |
+| GAP-RT-048（Q-012 SNS フィード Phase 境界） | PO-ESCALATION | **PM-RESOLVED(2026-06-20)** フィードのみ Phase2 送り | 同上 |
+| 純 OPEN（PO 裁定待ち）残 | 6 件（043〜048） | **3 件（GAP-RT-044/046/047）** | 同上 |
+| CARRY-WP7-001（Abilities API 検証） | blocking=true（PO-WP7-01 待ち） | **blocking=false / VERIFIED(2026-06-21)** WP7.0 GA+6.9.4 で register→get→execute 実証 | PO-decision-packet PO-WP7-01 / poc/wp7-abilities |
+| CARRY-ADR023-004（Bridge ショートコード変換） | blocking=true（PO 裁定待ち） | **blocking=false / PM-RESOLVED(2026-06-20)** 主要3種 Phase1 確定 | PO-decision-packet §PM確定 |
+| PERF-CARRY-002（Cookie Consent） | blocking=true（Q-013 待ち） | **blocking=false / PM-RESOLVED(2026-06-20)** 外部 adapter 方式・Q-013 確定 | 同上 |
+| CARRY-ADR023-001（S-DESIGN-TOKEN） | blocking=true | **blocking=true（維持）** ※PO 裁定 stale ではなく、L4 内のスプリント順序依存（design-token 先行）。L3 close を妨げない | — |
+
+### L3 close 前の真の blocking 残（L4 sprint 着手前に解消 / PO 裁定 stale 由来は除外済み）
+P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾーン・ad_tag CPT・event_type・disclosure）/ CARRY-A3-004（監査ログ）。これらは **L4 各 Sprint の初手タスクであり L3 設計クローズの妨げにはならない**（設計は確定済み、実装が L4）。
+
+### WP7.0 固有機能の採否（新規 L4 carry 登録 / WP7-THEME-COMPLETENESS-AUDIT §C 由来）
+| carry-id | 内容 | 解消条件 | 優先度 | blocking |
+|---|---|---|---|---|
+| **CARRY-WP7-013** | Block Bindings API の採用/非採用を ADR で凍結 | L4 entry / theme scaffold 着手前に決定（参照: WP7-THEME-COMPLETENESS-AUDIT.md §C） | P1 | false |
+| **CARRY-WP7-014** | Interactivity API の採用/非採用を ADR で凍結 | 同上（a11y 実装方式と連動） | P1 | false |
+| **CARRY-WP7-015** | Section Styles（theme.json）の採用/非採用を ADR で凍結 | 同上（theme.json v3 構造に影響） | P1 | false |
+
+---
+
 ## ギャップ一覧
 
 | GAP-ID | カテゴリ | 内容 | 実コード・解析根拠 | 設計側カバー状態 | 重大度 | 振り分け先 | 状態 |
@@ -138,7 +165,8 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | **CARRY-TO-L4（単独）** | 8 件 | GAP-RT-004（C-A1-002）/ GAP-RT-010（CARRY-A2-001）/ GAP-RT-011（CARRY-A2-002）/ GAP-RT-012（CARRY-A2-003）/ GAP-RT-013（CARRY-A2-004）/ GAP-RT-014（CARRY-A2-005 / CARRY-A2-006）/ **GAP-RT-052（CARRY-SEC-001: ADR-020 補足 + Abilities 公開スコープ確定）/ GAP-RT-054（CARRY-SEC-002: mcp-tools.schema.json 実ファイル作成）** |
 | **RESOLVED-IN-L3 + CARRY-TO-L4（両立）** | 18 件 | GAP-RT-002, 006, 015, 017, 018, 022, 023, 024, 025, 026（L3 設計確定 + 残項目が L4 carry）/ GAP-RT-027, 028, 030（ADR-020 方針確定 + carry 残存）/ GAP-RT-038（TC 追加済み + PERF-CARRY-002 blocking）/ GAP-RT-042（ADR-023 + carry 4 件）/ **GAP-RT-056（L3-A4 addendum 追記済み + PERF-CARRY-007〜009 carry）/ GAP-RT-057（L5-visual-design 新 5 要件追記済み + CARRY-A11Y-001 carry）/ GAP-RT-058（ADR-026 方針確定 + CARRY-EMBED-001〜006 carry）** |
 | **RESOLVED-BY-DECISION** | 2 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要 / carry なし）/ **GAP-RT-055**（2026-06-20 / ADR-025: Automation SEO 登録時の同意に集約・テーマは disclosure フックのみ / **+ CARRY-TO-L4: CARRY-ADR025-001〜005 を L4 継続管理**） |
-| **PO-ESCALATION** | 6 件 | GAP-RT-043, 044, 045, 046, 047, 048 |
+| **PO-ESCALATION** | 3 件 | GAP-RT-044, 046, 047（GAP-RT-043/045/048 は PM-RESOLVED 2026-06-20 / 冒頭 §同期 参照）|
+| **PM-RESOLVED（旧 PO-ESCALATION）** | 3 件 | GAP-RT-043, 045, 048（2026-06-20 / PO-decision-packet §PM確定）|
 | **L1-FIX-PENDING** | 0 件 | — （GAP-RT-049/050 は RESOLVED-IN-L3 に更新済み） |
 | **DEFERRED** | 0 件 | — （GAP-RT-051 は RESOLVED-IN-L3 に更新済み） |
 
@@ -242,10 +270,10 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | CARRY-A2-003 | P0 | event_type enum 未確定のまま tracking Sprint 着手不可 |
 | CARRY-A2-005 | P0 | disclosure ブロック仕様未確定のまま景表法対応 Sprint 着手不可 |
 | CARRY-A3-004 | P1 | 監査ログストレージ設計が未確定のまま任意タグ Sprint 着手不可 |
-| PERF-CARRY-002 | P1 | Q-013 PO 裁定（公開指標ポリシー）確定後に解除。consent 実装 Sprint の前提 |
-| CARRY-WP7-001 | P1 | PO-WP7-01（WP7 PoC 人日承認）確定後に解除 |
-| CARRY-ADR023-001 | P1 | S-DESIGN-TOKEN スプリント未実施のまま L4 デザイントークン実装着手不可 |
-| CARRY-ADR023-004 | P1 | PO 裁定（Bridge Plugin ショートコード変換スコープ）確定後に解除。L4 Bridge Plugin Sprint 着手の前提 |
+| ~~PERF-CARRY-002~~ | — | **RESOLVED(2026-06-20)**: Q-013 PM-RESOLVED / Cookie Consent 外部 adapter 方式確定。blocking 解除（冒頭 §同期 参照）|
+| ~~CARRY-WP7-001~~ | — | **RESOLVED(2026-06-21)**: PO-WP7-01 VERIFIED / WP7.0 GA で Abilities API 実証。blocking 解除（冒頭 §同期 参照）|
+| CARRY-ADR023-001 | P1 | S-DESIGN-TOKEN スプリント未実施のまま L4 デザイントークン実装着手不可（L4 sprint 順序依存であり L3 設計 close は妨げない）|
+| ~~CARRY-ADR023-004~~ | — | **RESOLVED(2026-06-20)**: PM-RESOLVED / Bridge ショートコード変換 主要3種 Phase1 確定。blocking 解除（冒頭 §同期 参照）|
 
 ---
 

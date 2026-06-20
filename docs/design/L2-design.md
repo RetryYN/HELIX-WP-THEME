@@ -82,6 +82,13 @@ graph TD
 | ADR-017 | 市場カテゴリをAI運用型WPテーマ基盤として定義する | 既存テーマのデザイン/SEO/価格競争に正面衝突せず、AI操作、LP改善、計測、LLMO、運用品質を中核価値にするため |
 | ADR-018 | Automation SEO連携はAGENT NEO契約を正規ターゲットにする | SWELL/JIN:Rは移行・診断・設計参考に限定し、運用時はstable section/CTA/SEO契約とsafe applyを持つAGENT NEOへ集約するため |
 | ADR-019 | Automation SEO Theme Bridge Pluginは診断・正規化・移行入口に限定する | 既存テーマのDOM/CSS/SEOメタは安定APIではないため、深い自動書き換えではなくsource/confidence付き情報契約として扱う |
+| ADR-020 | WordPress 7.0 先回り対応（Abilities API/共同編集/PHP互換/Theme Check CI）(Accepted) | WP7.0 GA を待たず互換 CI と Abilities API 公開方針を確定。CARRY-WP7-001 VERIFIED(2026-06-21) |
+| ADR-021 | OSS/CIツールチェーン確定（PHPCompatibilityWP/PHPStan/opis/Ajv/composer audit） | テーマ品質ゲートを CI で機械化するため |
+| ADR-022 | SEO出力責務境界の確定（OGP/meta/JSON-LD の内蔵 vs 外部プラグイン委譲） | GAP-RT-016 解消。重複meta/schema を検出・抑制 |
+| ADR-023 | FSE 再設計コスト方針（classic→Block Theme 移植不可領域の代替実装） | SWELL/JIN:R のcustomizer/widget/PHPフィルターを Pattern/theme.json/Block Binding で再設計 |
+| ADR-024 | Automation SEO 専用配布に一本化・課金は Automation SEO 契約のみ（テーマ単体販売廃止 / REQ-F-043 廃止） | GPL露出とAIロジック保護の両立。外部AI write 受口を恒久閉鎖 |
+| ADR-025 | AI生成コンテンツ開示法規制（EU AI Act/SB942/C2PA）を Automation SEO 登録時同意に集約 | マーキングは Automation SEO 側。テーマは disclosure レンダリングフックのみ |
+| ADR-026 | AI生成HTML埋め込みブロック `agent-neo/embed`（CSS隔離 dual-mode）(Accepted) | static=Shadow DOM+DSD / interactive=別オリジン sandbox iframe。embed隔離PoC+実WP検証 PASS |
 
 ### 2.4 配布境界
 

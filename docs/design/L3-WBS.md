@@ -14,7 +14,7 @@
 | T-006 | F-002 | `POST /actions/dry-run` 実装 I/O 契約 | T-005 | dry-run で `diff_hash` を返却 | .1b | `docs/design/api-catalog.md`, `docs/api/openapi.yaml` |
 | T-007 | F-002 | `POST /actions/apply` idempotency + rollback point | T-006 | `diff_hash` 検証＋再送時 no-op | .1b | `docs/design/api-catalog.md`, `docs/api/openapi.yaml` |
 | T-008 | F-021 | ブロック PATCH endpoint 契約実装（単位更新） | T-007 | section/block 履歴 N 版 | .1b | `docs/design/api-catalog.md` |
-| T-009 | F-021 | `PATCH /posts/{id}/sections/{section_id}/edit` 実装 | T-007 | target section のみ差分反映 | .1b | `docs/design/api-catalog.md` |
+| T-009 | F-022 | `POST /posts/{id}/sections/{section_id}/edit` 実装 | T-007 | target section のみ差分反映 | .1b | `docs/design/api-catalog.md` |
 | T-010 | F-002 | `/pages/{id}/apply` + `from_preview_token` 昇格実装 | T-009 | patch 版依存排除、rollback_point 取得 | .2 | `docs/design/api-catalog.md`, `docs/api/openapi.yaml` |
 | T-011 | F-002 | rollback API（`/pages/{id}/rollback` / `/rollback/{rollback_id}`）実装 | T-010 | 410/404 を明示ハンドル | .2 | `docs/design/api-catalog.md` |
 | T-012 | F-006 | `/tracking/event` 署名/nonce/bot filter | T-010 | `section_id/cta_id/variant_id` required | .2 | `docs/design/api-catalog.md`, `docs/security/threat-model.md` |
@@ -50,11 +50,13 @@
 
 | Carry | 想定着手 sprint | 対応 WBS | テスト観点 |
 |---|---|---|---|
+| CARRY-G2-006 | .2 | T-012 / T-024 | CAT-007（once-token replay 防止 / 設計解決済み・L4 検証） |
 | CARRY-G2-007 | .2 | T-012 / T-024 | `docs/test-plan/L3-test-plan.md` |
 | CARRY-G2-009 | .4 | T-023 | TC-025（slug/selector 安全性） |
 | CARRY-G2-011 | .4 | T-023 | TC-028（Lighthouse CI render-blocking third-party=0 / consent 前後タグ） |
 | CARRY-G2-012 | .3 | T-021 | TC-029（lp-blueprint 12 セクション整合。※セクション名称は L4 で確定） |
 | CARRY-G2-013 | .4 | T-023 | TC-017b（i18n/RTL gate） |
+| CARRY-G2-014 | .2 | T-013 | TC-011（license 2モード failure: transient→grace/readonly + invalid→即時deny / 設計解決済み・L4 検証） |
 | CARRY-G2-015 | .5 | T-025 | `docs/test-plan/L3-test-plan.md` |
 | CARRY-G2-017 | .5 | T-024 | TC-023a（SSRF 初回検証） |
 | CARRY-G2-021 | .2 | T-010 | TC-030（既存テーマ preview-only / write 拒否） |
@@ -64,5 +66,5 @@
 
 ### 6.3.2 L4 で満たすべき追加受入観点
 
-- carry 検証は `docs/test-plan/L3-test-plan.md` の「L4 carry（007/009/011/012/013/015/017/021/025/026/028）検証観点」を満たし、該当 TC（TC-024 / TC-025 / TC-017a / TC-017b / TC-023a / TC-023b / TC-026 / TC-027 / TC-028 / TC-029 / TC-030）が PASS していること。
+- carry 検証は `docs/test-plan/L3-test-plan.md` の「L4 carry（006/007/009/011/012/013/014/015/017/021/025/026/028）検証観点」を満たし、該当 TC（CAT-007 / TC-011 / TC-024 / TC-025 / TC-017a / TC-017b / TC-023a / TC-023b / TC-026 / TC-027 / TC-028 / TC-029 / TC-030）が PASS していること。
 - carry 由来の追加失敗は `docs/reviews/G2-carry-register.md` の承認条件と整合すること。
