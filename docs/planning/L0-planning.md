@@ -20,7 +20,7 @@
 
 | # | 原理 | 具体ライン |
 |---|---|---|
-| 1 | **無駄な JavaScript を組まない** | 全 JS は「CV 直結 / 計測 / AI 操作」のいずれかに寄与する場合のみ。jQuery 非依存。block.json で個別宣言した JS のみ条件付き読み込み。**採用時は `defer`/`async` 必須・メインスレッドブロック禁止・1 ブロック ≤ 5KB 目安** |
+| 1 | **無駄な JavaScript を組まない** | 全 JS は「CV 直結 / 計測 / AI 操作」のいずれかに寄与する場合のみ。jQuery 非依存。block.json で個別宣言した JS のみ条件付き読み込み。**採用時の性能規律はコンテキスト別**（詳細は §JS採用時の性能担保）: ページ本体 JS は `defer`/`async` 必須・メインスレッドブロック禁止・1 ブロック ≤ 5KB 目安。mode=interactive の別オリジン iframe payload JS（sandbox-origin 配信）は独立ドキュメント内で実行され page 本体の defer と切り離される・INP/Long Task 実測担保（ADR-026 §JS 許可根拠参照） |
 | 2 | **ページスピード最優先（ページタイプ別最適化）** | LCP / INP / CLS は **ページ種別ごとに** 予算設定。「重くなってはいけないページ（記事・アーカイブ）」と「重くなることを許容するページ（LP）」を構造的に分離。詳細表は §1.1.1 |
 | 3 | **結果（CV）を届けるテーマ** | 「きれいなテーマ」ではなく「成果が出るテーマ」。個人版=アフィリクリック、法人版=リード獲得、両方の CV を直接最大化する設計を最上位指標 |
 | 4 | **非 AI ユーザーも単独で使える**（AI-first だが AI-only ではない）| AI 連携 OFF でも全 P0 機能が動作。WP 標準エディタ完全互換。AI 機能は**オプトイン**（明示的な有効化が必要）。日本語 UI / 段階的開示 / IT に詳しくない個人ユーザーでも使える設計 |
@@ -35,12 +35,20 @@
 - **AVIF**: オプション（WebP の上位互換、対応ブラウザ拡大時に有効化）
 - **alt 属性**: 必須化（a11y + SEO + AI 機械可読のため）
 
-**JS 採用時の性能担保（必須）**
+**JS 採用時の性能担保（必須・コンテキスト別定義）**
+
+**【ページ本体コンテキスト JS】**（light DOM ブロック・親側 postMessage リスナー等）:
 - `defer` または `async` 必須（メインスレッドブロック禁止）
 - minify + tree-shake 済みのみ配信
 - 外部スクリプト（YouTube, Twitter 等）は `<link rel=preconnect>` で接続最適化
 - 1 ブロックあたり JS ≤ 5KB を目安、超過時は L3 で分割設計レビュー
 - `requestIdleCallback` / lazy 初期化を活用
+
+**【mode=interactive の別オリジン iframe payload JS（sandbox-origin 配信）】**:
+- 別オリジン iframe 内スクリプトは独立したドキュメント内で実行され、page 本体の defer/async と切り離される。上記の defer/async 必須は親ページ JS に適用し、iframe 内スクリプトにはここに適用しない
+- 代わりに「別オリジン iframe 隔離（ADR-026 mode=interactive / sandbox="allow-scripts" / allow-same-origin 不含）+ frame-src allowlist + `loading="lazy"` + page_type 性能予算カウント + INP / Long Task 実測（親ページ性能劣化が許容閾値内）+ 実行時間制限（`requestIdleCallback` / Web Worker 化 / タイムアウト設定）」で非ブロッキング契約を担保する
+- **`allow-same-origin` を含まない sandbox のため `event.origin` は opaque（`"null"`）になり特定 origin 一致照合は機能しない**。postMessage 検証主軸は `event.source === iframe.contentWindow` + nonce/payload-id（ADR-026 §postMessage 設計原則）。cross-origin `<iframe src>` 採用の利点は「HTTP レスポンスヘッダによる CSP 分離（親 CSP を継承しない）」であり、origin が opaque でも CSP 分離の効果は完全に有効。sandbox-origin 側の HTTP CSP + 親の frame-src allowlist が防御境界（ADR-026 §JS 許可根拠と整合）
+- ※ 旧設計（srcdoc 属性 + CSP meta prepend）は廃止済み
 
 #### 1.1.1 ページタイプ別性能予算（隠れ killer feature）
 
@@ -268,7 +276,7 @@ JIN:R/AFFINGER 路線の「固定パーツをひたすら増やす」戦略は�
 | **性能予算遵守** | HTML/CSS バイト数を page_type 予算にカウント、超過時 dryRun で警告、apply ブロック |
 | **安定 anchor 保護** | block wrapper の `data-agent-section-id` / `cta_id` / `variant_id` は AI が変更不可（システム自動付与）。内部の HTML/CSS のみ自由 |
 | **プロンプトインジェクション防止** | コメント形式の system 命令（`<!-- ignore previous instructions -->` 等）を sanitize で除去 |
-| **JS は禁止** | フリーフォームブロック内に JS は書けない。動的挙動が必要なら別途 block 化（block.json で性能宣言済みの JS のみ） |
+| **ページ本体コンテキストの未サニタイズ inline script 禁止** | フリーフォームブロックのページ本体（light DOM / Shadow DOM static）コンテキストで未サニタイズ inline `<script>` / `on*=` は禁止。**JS 自体は禁止ではない**。正規 JS はコンテキスト別に規律を分離する: ①ページ本体 JS は REQ-NF-001e（defer/async 必須・メインスレッドブロック禁止・1 ブロック ≤ 5KB 目安）を適用、② mode=interactive の別オリジン iframe payload JS（sandbox-origin 配信）は独立ドキュメント内で実行され page 本体の defer と切り離される・INP/Long Task 実測 + 実行時間制限で担保（ADR-026 §JS 許可根拠）。防御境界: 別オリジン iframe 隔離（sandbox 属性・allow-same-origin 不含）+ サンドボックスオリジン HTTP CSP + 親 frame-src allowlist。**postMessage 検証は `event.source === iframe.contentWindow` + nonce/payload-id が主軸**（`allow-same-origin` 不含のため `event.origin` は opaque/`"null"` になり特定 origin 一致照合は機能しない・`event.origin` の `=== <sandbox-origin>` 一致は要求しない）（ADR-026 §postMessage 設計原則）。いずれも別オリジン sandbox iframe 隔離（ADR-026 mode=interactive）の条件下で許可（= 無駄 JS 禁止・JS 絶対禁止ではない） |
 
 #### 2 モード提供
 

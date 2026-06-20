@@ -243,19 +243,45 @@ AGENT NEOの視覚方向は「成果導線の明快さ」と「AIが検査/改�
 - オフライン: 再接続待ちアニメーション
 
 ## 5. アクセシビリティ
-### 5.1 WCAG 2.1 AA 準拠チェック
+### 5.1 WCAG 2.2 AA 準拠チェック
+
+> **⚠️ WordPress.org accessibility-ready 基準改定（2026-05-06）/ 再評価期限: 2026-06-30**  
+> WordPress.org の accessibility-ready 基準が 2026-05-06 に WCAG 2.2 AA ベースへ改定された（出典: `docs/research/wp-ecosystem-20260620.md` §アクセシビリティ）。  
+> **accessibility-ready を訴求するには L4 着手前に以下「新 5 要件（§5.1.A）」の受入条件を確定する必要がある**。  
+> EU EAA（2025-06 施行）・ADA 訴訟増加（+23.8%）とも方向が一致しており、AGENT NEO の WCAG 2.2 AA 目標と整合する。
+
+#### 5.1.A WordPress.org accessibility-ready 新 5 要件（2026-05-06 改定 / 欠落追記）
+
+以下は既存 WCAG 2.2 AA チェックリストに加え、**2026-05-06 改定で明示化された 5 要件**を補完する。  
+具体的な実装仕様・受入 TC は L4 着手前に確定（GAP-RT-057 / CARRY-A11Y-001 参照）。
+
+| # | 要件 | 受入観点（L4 確定） | 対応 WCAG 2.2 SC |
+|---|---|---|---|
+| ① | **responsive reflow & text-spacing（200% 拡大対応）**: ページを 200% 拡大しても横スクロールが発生しない。行間・字間を CSS 上書きで調整しても情報の損失・重複が起きない | Playwright で 200% zoom + text-spacing bookmarklet 適用 → 横スクロール 0 を CI で確認 | SC 1.4.10 Reflow / SC 1.4.12 Text Spacing |
+| ② | **context-change 防止**: フォーカス移動・ホバーによる予期しないコンテキスト変遷（ページ遷移・フォーム送信・ウィンドウ生成）が発生しない | axe / Playwright でフォーカス移動時の URL 変化を確認 | SC 3.2.1 On Focus / SC 3.2.2 On Input |
+| ③ | **accessible hover/focus state（outline 除去禁止）**: `outline: none` / `outline: 0` を CSS に書かない。フォーカスリングは 2px 以上・コントラスト比 3:1 以上の視覚変化を保証する | ESLint / stylelint で `outline` 除去を禁止ルール化。axe で focus indicator を CI 検証 | SC 2.4.11 Focus Appearance (Min) / SC 2.4.12 Focus Appearance (Enhanced) |
+| ④ | **accessibility statement 掲載**: テーマ利用サイトが掲載できるアクセシビリティ声明（accessibility statement）のサンプルテンプレートをドキュメントまたは管理画面で提供する | L4 デプロイ前に管理画面「アクセシビリティ情報」ページ or docs にテンプレートを追加 | WCAG 2.1 Guideline 文書化要件 / W3C EARL |
+| ⑤ | **非アクセシブル plugin を推奨しない**: AGENT NEO 管理画面の「推奨プラグイン」リスト・ドキュメント内リンクに、WCAG 不合格プラグインを掲載しない方針を持つ | 推奨プラグインリスト審査プロセス（L4 CI には組み込まない、運用規約として管理） | WCAG 2.1 適合方針 |
+
+**注記**: 新 5 要件のうち①〜③は CI 自動検証を目指す。④⑤は運用・ドキュメント対応。  
+具体 TC は `docs/test-plan/L3-test-plan.md` §11（GAP-RT-057 / CARRY-A11Y-001 由来 / TC-074〜TC-078）に登録済み（CARRY-A11Y-001 の TC 登録部分を完了）。なお §10 は ADR-026 / GAP-RT-058 埋め込みブロック専用であり、a11y 新 5 要件は §11 が正本。
+
+---
+
+#### 5.1.B 既存 WCAG 2.2 AA チェック（継続）
+
 - [ ] コントラスト比 4.5:1 以上（通常テキスト: --font-size-md 以下）
 - [ ] コントラスト比 3:1 以上（大テキスト: --font-size-lg 以上）
 - [ ] コントラスト比 3:1 以上（UI コンポーネント・アイコン）
-- [ ] フォーカスインジケータ visible（2px 以上の明確な視覚変化）
+- [ ] フォーカスインジケータ visible（2px 以上の明確な視覚変化）— **新 5 要件③と整合。outline 除去禁止**
 - [ ] キーボードナビゲーション可能（Tab / Shift+Tab / Enter / Escape）
 - [ ] フォーカストラップ実装（モーダル・ダイアログ内）
 - [ ] aria-label / aria-describedby 設定（アイコンボタン・入力フィールド）
-- [ ] aria-live 設定（動的に変化するコンテンツ・通知）
+- [ ] aria-live 設定（動的に変化するコンテンツ・通知）— **ADR-026 interactive ブロックの診断結果出力と整合**
 - [ ] スクリーンリーダー対応（見出し階層・ランドマーク・読み上げ順序）
 - [ ] 画像に alt テキスト（装飾画像は alt=""）
 - [ ] color だけに依存しない情報伝達（エラーはアイコン + テキスト併用）
-- [ ] 動きの無効化対応（prefers-reduced-motion）
+- [ ] 動きの無効化対応（prefers-reduced-motion）— **ADR-026 interactive ブロックの animation 制御と整合**
 
 ### 5.2 レスポンシブチェック
 - [ ] mobile (< 640px) 表示崩れなし

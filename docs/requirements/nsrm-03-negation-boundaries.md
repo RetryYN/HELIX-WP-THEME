@@ -98,13 +98,29 @@
 関連 OPEN QUESTIONS: Q-001（個人→法人アップグレード方式）
 ```
 
-## NEG-010: フリーフォームブロック内で JavaScript を実行させない
+## NEG-010: フリーフォームブロックのページ本体コンテキストで未サニタイズ inline script を実行させない
 
 ```
-対象: AI フリーフォーム HTML/CSS ブロックへの JavaScript 記述・実行
-理由: XSS・プロンプトインジェクション・未管理の外部スクリプト実行を防ぐ。動的挙動が必要な場合は block.json で宣言した JS のみ（REQ-F-036）
+対象: AI フリーフォーム HTML/CSS ブロックへのページ本体（light DOM / Shadow DOM static）コンテキストでの未サニタイズ inline <script> / on*= 属性記述・実行
+理由: XSS・プロンプトインジェクション・未管理の外部スクリプト実行を防ぐ。
+      JS 自体は禁止ではない。正規 JS はコンテキストにより以下の通り規律を分離する:
+      【ページ本体コンテキスト JS】（light DOM ブロック・親側 postMessage リスナー等）:
+        REQ-NF-001e（defer/async 必須・メインスレッドブロック禁止・minify+tree-shake 済み・1ブロック≤5KB目安）
+        + セキュリティ隔離（別オリジン sandbox iframe / ADR-026 mode=interactive）の条件下で許可する。
+      【mode=interactive の別オリジン iframe payload JS（sandbox-origin 配信）】:
+        別オリジン iframe 内スクリプトは独立したドキュメント内で実行され、page 本体の defer/async と切り離される。
+        REQ-NF-001e の defer/async 必須は親ページ JS に適用し、iframe 内スクリプトにはここに適用しない。
+        代わりに「別オリジン iframe 隔離（allow-same-origin 不含 sandbox 属性）+ frame-src allowlist +
+        loading="lazy" + page_type 性能予算カウント + INP / Long Task 実測（親ページ性能劣化が許容閾値内）+
+        実行時間制限（requestIdleCallback / Web Worker 化 / タイムアウト設定）」で非ブロッキング契約を担保する。
+        防御境界: 別オリジン iframe 隔離 + HTTP CSP（sandbox-origin サーバー配信）+ 親 frame-src allowlist +
+        sandbox 属性（allow-same-origin を含まない）。allow-same-origin を含まないため event.origin は opaque（"null"）になり
+        特定 origin 一致照合は機能しない。postMessage 検証主軸は event.source === iframe.contentWindow + nonce/payload-id（ADR-026 §postMessage）。
+        cross-origin src の利点は HTTP レスポンスヘッダによる CSP 分離（親 CSP 非継承）であり origin が opaque でも有効。
+        ※ 旧設計（srcdoc 属性 + CSP meta prepend）は廃止済み。
+      （= 無駄JS禁止・JS絶対禁止ではない）
 関連 REQ-F: REQ-F-036
-根拠: L0 §1.4「JS は禁止」、L1 REQ-F-036「(7) JS 禁止」
+根拠: L0 §1.4「フリーフォームブロック内の page 本体コンテキストで未サニタイズ inline script / on*= 禁止（JS 自体は性能規律+sandbox下で許可）」、L1 REQ-F-036「(7) JS 性能規律（REQ-NF-001e 準拠 + 別オリジン sandbox iframe 隔離下で許可 / 無駄JS禁止であってJS絶対禁止ではない）」
 関連 OPEN QUESTIONS: なし
 ```
 
@@ -243,7 +259,7 @@
 | NEG-007 | WordPress.com 保証なし | L1 §5.2 |
 | NEG-008 | Theme Core は REST / CPT / 計測を持たない | REQ-NF-008 |
 | NEG-009 | 個人版は LP / HP 操作なし | REQ-F-010, REQ-F-016 |
-| NEG-010 | フリーフォームブロックで JS 禁止 | REQ-F-036 |
+| NEG-010 | フリーフォームブロックのページ本体コンテキストで未サニタイズ inline script 禁止（JS自体は性能規律+sandbox下で許可） | REQ-F-036 |
 | NEG-011 | GIF アニメを変換しない | REQ-F-017 |
 | NEG-012 | AI 自律最適化のオーケストレーションは Automation SEO | REQ-F-024 |
 | NEG-013 | Theme Bridge は既存テーマへの自動書き込みなし | REQ-NF-020 |

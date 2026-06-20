@@ -932,3 +932,83 @@ Hero 画像は `loading="eager" fetchpriority="high"` を付与し、LCP 対象�
 | §6 カスタム画像サイズ | GAP-RT-026 | 中 | `asset-policy.schema.json` への追記 | なし（POST `/media/upload` レスポンス拡張） |
 
 *作成: 2026-06-18 / 担当: L3 drafter (be-logic) / 次アクション: PERF-CARRY-001/002 の ADR 補記 (P1) → L4 実装着手*
+
+---
+
+## 2026-06-20 追記: 性能 enforce 機構の補強（GAP-RT-056 方針）
+
+> **出典**: `docs/research/wp-ecosystem-20260620.md` §性能  
+> **位置づけ**: 「無駄JS禁止」第一原理（REQ-NF-001a / ADR-006）を **enforce 可能** にする具体機構。具体閾値・実装詳細は L4 carry（GAP-RT-056 / PERF-CARRY-007〜009）。
+
+### § 0 iframe payload JS の page_type 性能予算カウント（round16 P2 対応 / ADR-026 連動）
+
+`agent-neo/embed` ブロック（GAP-RT-058 / ADR-026）の **mode=interactive** は、Automation SEO が専用サブドメイン（sandbox-origin）でホスト・配信する別オリジン sandbox iframe を用いる。この方式に関して、性能予算上の以下の原則を本 addendum に明示する。
+
+| 原則 | 内容 |
+|---|---|
+| **iframe payload JS は page_type 予算にカウントする** | mode=interactive の iframe が存在するページは、当該 iframe がロードする JS（sandbox-origin から配信される payload JS）を当該ページの JS 予算消費として扱う。CI の初期 JS 計測から除外しない。 |
+| **別スレッド保証には依拠しない** | 別オリジン sandbox iframe はメインスレッドを共有し得る（ブラウザが別スレッドに分離する保証はない）。iframe payload JS に起因する INP / Long Task の懸念はメインスレッドの実測（RUM: web_vitals_rum / INP 計測）で担保する。「別オリジンだから安全」という前提で性能予算を免除しない。 |
+| **CI 計測対象** | page_type 別 JS 予算の CI 検証（PERF-CARRY-007）において、interactive ブロックを含むテンプレートは iframe payload JS のサイズ（gzip 後 KB）を合算して評価する。sandbox-origin 配信分を CI から除外するホワイトリスト処理は禁止。 |
+| **standalone / 個人版の適用除外** | standalone・個人版では interactive は提供不可（Automation SEO 契約必須）のため、当該プランでは mode=static のみとなり iframe payload JS は発生しない（ADR-026 §mode 選択条件 参照）。 |
+
+> **受入観点（L4）**: interactive ブロックを含む article / lp テンプレートで Lighthouse + RUM（INP 計測）を実行し、iframe payload JS を含む合計 JS バジェットが REQ-NF-001f の page_type 別閾値を超えないことを CI で検証する。
+
+### § A ページ別アセット分離 enforce（REQ-NF-001a 系）
+
+WordPress 6.3+ 以降、`should_load_separate_core_block_assets` フィルタにより **ページ上に存在する core ブロックの CSS のみ** を per-block に分離してロードできる。本フィルタは **core ブロック CSS の分離のみ** を制御するものであり、JS の条件ロード・抑制はしない点に注意する。AGENT NEO はこれを page-type 別アセット分離の enforce 手段として採用する方針とする。
+
+> **役割分担**: CSS の per-block 分離は `should_load_separate_core_block_assets` フィルタで担保する。**JS の条件ロードは別機構**（block.json の `viewScript` フィールドを使い、ブロックが実際にレンダリングされたページでのみ enqueue されるよう per-block enqueue/dequeue を設計する。不要な view script は `wp_dequeue_script` で除外する）で対応する。具体的な per-block enqueue 実装は L4 carry（PERF-CARRY-007）。
+
+| enforce 項目 | 方針 | 実装担当 | L4 carry |
+|---|---|---|---|
+| ブロック別 CSS 分離 | `should_load_separate_core_block_assets` を `true` として有効化し、ページ上に存在する core ブロックの CSS のみ per-block で分離ロード（**JS 分離はしない**） | `inc/assets/asset-loader.php` | PERF-CARRY-007 |
+| page-type 別 JS 分離 | block.json の `viewScript` を活用してブロックが存在するページにのみ view script を enqueue。不要な JS は `wp_dequeue_script` で排除。`critical-css.schema.json` の `policies`（page_type）と連動 | 同上 | PERF-CARRY-007 |
+| 不要コアブロック CSS の無効化 | AGENT NEO ブロックに含まれないコアブロック CSS ハンドルを `wp_dequeue_style` で除外する許可リストを管理 | `inc/setup/dequeue-policy.php` | PERF-CARRY-007 |
+
+**受入観点（L4）**: page_type=lp テンプレートで初期 CSS が `<=20KB`（gzip）かつ、記事テンプレートに存在しないブロックの CSS がロードされないことを CI で検証する。具体閾値は REQ-NF-001f を参照し、L4 CI Sprint で確定する。
+
+### § B Speculative Loading（投機的プリフェッチ / WP 6.8+）
+
+WordPress 6.8+ の Speculation Rules API に対応した Speculative Loading が標準装備される（出典: `docs/research/wp-ecosystem-20260620.md`）。AGENT NEO は以下の方針で採用する。
+
+| 方針 | 内容 |
+|---|---|
+| 採用意思 | **採用する**（訪問者のページ遷移を LCP 改善に直結させる） |
+| スコープ | 記事一覧 → 記事詳細 / LP の CTA ランディング先 を投機的プリフェッチ対象とする |
+| sensitive URL の明示除外 | 管理画面（`/wp-admin/`）・プレビュー（`?preview=true` 等）・ログイン（`/wp-login.php`）・認証必須パスは Speculation Rules から **明示除外**する。`eagerness: moderate` は投機の **速度を下げるだけで opt-out にはならない**（moderate でも prefetch が走る）。除外は **`where` 条件の否定ルール**（例: `"where": { "not": { "href_matches": "/wp-admin/*" } }` のような除外ルール）で表現する。**`eagerness: never` は Speculation Rules の有効値ではなく（有効値は `conservative` / `moderate` / `eager` / `immediate` のみ）、ブラウザに無視されるため除外手段にならない**。具体的なルール JSON は L4 carry（PERF-CARRY-008）。|
+| 具体実装 | `wp_get_speculation_rules()` API 利用 or JSON 直出力の選択は L4 で確定 |
+
+**受入観点（L4）**: 記事一覧ページで DevTools の "Speculative loads" パネルに記事詳細 URL がプリフェッチ候補として登録されることを Playwright で確認する。
+
+### § C Font Library（ローカルフォント配信 / WP 6.5+）
+
+WordPress 6.5+ で Font Library が標準装備され、Google Fonts CDN を経由せずにフォントをローカル配信できる（出典: `docs/research/wp-ecosystem-20260620.md`）。GAP-RT-023 の `font-policy.schema.json` と組み合わせ、以下の方針とする。
+
+| 方針 | 内容 |
+|---|---|
+| 採用意思 | **条件付き採用**。日本語フォント（重量が大きく CDN 遅延が効きやすい）はローカル配信を優先する |
+| Google Fonts CDN との使い分け | `font-policy.schema.json` の `source` フィールドで `"local"` を選択した場合は Font Library 経由でローカル配信。`"google_fonts"` は CDN 経由（preconnect 必須）|
+| AVIF との組み合わせ | AVIF 画像対応（WP 6.5+ / GAP-RT-026 対応済み）と合わせ、フォント + 画像の両面で外部 CDN 依存を最小化する |
+| preconnect 残存条件 | `source=google_fonts` のフォントが 1 件以上存在する場合のみ `preconnectOrigins` に `fonts.googleapis.com` / `fonts.gstatic.com` を出力し、不要時は出力しない |
+
+**受入観点（L4）**: source=local フォント選択時に `<link rel="preconnect" href="https://fonts.googleapis.com">` が HTML に出力されないことを単体テストで検証する。具体的なフォントバンドルサイズ上限は L4 fonts Sprint で確定する。
+
+### 節構成サマリ更新（§ A〜C 追記分）
+
+| 節 | 対象 | 機構 | L4 carry |
+|---|---|---|---|
+| § A ページ別アセット分離 | REQ-NF-001a / ADR-006 | `should_load_separate_core_block_assets` + dequeue 許可リスト | PERF-CARRY-007 |
+| § B Speculative Loading | REQ-NF-001 / LCP 改善 | `wp_get_speculation_rules()` / Speculation Rules API | PERF-CARRY-008 |
+| § C Font Library | GAP-RT-023 / font-policy.schema.json | WP 6.5+ Font Library ローカル配信 | PERF-CARRY-009 |
+
+---
+
+## L4 carry エントリ追加（2026-06-20）
+
+以下を既存の PERF-CARRY 一覧に追加する。
+
+| CARRY-ID | 対象 | 優先度 | 内容 | 解消条件 |
+|---|---|---|---|---|
+| PERF-CARRY-007 | GAP-RT-056（§ A） | P2 | `should_load_separate_core_block_assets` 有効化 + dequeue 許可リスト実装 + CI 閾値確定（page_type=lp の初期 CSS ≤ 20KB gzip） | L4 asset Sprint 着手前に閾値確定 |
+| PERF-CARRY-008 | GAP-RT-056（§ B） | P2 | Speculative Loading 採用 + `wp_get_speculation_rules()` vs JSON 直出力 選択 + `where` 否定ルールによる sensitive URL 除外実装（`eagerness: never` は無効値のため使用しない） | L4 performance Sprint で実装 |
+| PERF-CARRY-009 | GAP-RT-056（§ C） | P2 | Font Library ローカル配信採用 + `source=local` 時の preconnect 非出力 TC + フォントバンドルサイズ上限確定 | L4 fonts Sprint（PERF-CARRY-003 と並行）|
