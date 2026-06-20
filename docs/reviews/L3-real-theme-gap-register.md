@@ -33,6 +33,10 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | CARRY-ADR023-004（Bridge ショートコード変換） | blocking=true（PO 裁定待ち） | **blocking=false / PM-RESOLVED(2026-06-20)** 主要3種 Phase1 確定 | PO-decision-packet §PM確定 |
 | PERF-CARRY-002（Cookie Consent） | blocking=true（Q-013 待ち） | **blocking=false / PM-RESOLVED(2026-06-20)** 外部 adapter 方式・Q-013 確定 | 同上 |
 | CARRY-ADR023-001（S-DESIGN-TOKEN） | blocking=true | **blocking=true（維持）** ※PO 裁定 stale ではなく、L4 内のスプリント順序依存（design-token 先行）。L3 close を妨げない | — |
+| CARRY-WP7-013（Block Bindings 採否） | L4-entry carry / 未凍結 | **RESOLVED(2026-06-21)** ADR-027 D1 採用凍結 | ADR-027 |
+| CARRY-WP7-014（Interactivity 採否） | L4-entry carry / 未凍結 | **RESOLVED(2026-06-21)** ADR-027 D2 採用凍結（性能予算内限定） | ADR-027 |
+| CARRY-WP7-015（Section Styles 採否） | L4-entry carry / 未凍結 | **RESOLVED(2026-06-21)** ADR-027 D3 採用凍結 | ADR-027 |
+| CARRY-TEST-ALIGN-001（エンドポイント整合） | L4-entry carry / 未凍結 | **RESOLVED(2026-06-21)** test-plan↔api-catalog↔openapi 整合（TC-038→GET /crawler-policy、TC-040→/public/pages/{id}/snapshot+/public/llmo/answers、TC-041→GET /tracking/llmo-summary、GET 2本新設） | api-catalog/openapi/test-plan |
 
 ### L3 close 前の真の blocking 残（L4 sprint 着手前に解消 / PO 裁定 stale 由来は除外済み）
 P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾーン・ad_tag CPT・event_type・disclosure）/ CARRY-A3-004（監査ログ）。これらは **L4 各 Sprint の初手タスクであり L3 設計クローズの妨げにはならない**（設計は確定済み、実装が L4）。
@@ -40,9 +44,9 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 ### WP7.0 固有機能の採否（新規 L4 carry 登録 / WP7-THEME-COMPLETENESS-AUDIT §C 由来）
 | carry-id | 内容 | 解消条件 | 優先度 | blocking |
 |---|---|---|---|---|
-| **CARRY-WP7-013** | Block Bindings API の採用/非採用を ADR で凍結 | L4 entry / theme scaffold 着手前に決定（参照: WP7-THEME-COMPLETENESS-AUDIT.md §C） | P1 | false |
-| **CARRY-WP7-014** | Interactivity API の採用/非採用を ADR で凍結 | 同上（a11y 実装方式と連動） | P1 | false |
-| **CARRY-WP7-015** | Section Styles（theme.json）の採用/非採用を ADR で凍結 | 同上（theme.json v3 構造に影響） | P1 | false |
+| ~~**CARRY-WP7-013**~~ | ~~Block Bindings API の採用/非採用を ADR で凍結~~ | ~~L4 entry / theme scaffold 着手前に決定（参照: WP7-THEME-COMPLETENESS-AUDIT.md §C）~~ | P1 | false（**RESOLVED(2026-06-21 / ADR-027）**） |
+| ~~**CARRY-WP7-014**~~ | ~~Interactivity API の採用/非採用を ADR で凍結~~ | ~~同上（a11y 実装方式と連動）~~ | P1 | false（**RESOLVED(2026-06-21 / ADR-027）**） |
+| ~~**CARRY-WP7-015**~~ | ~~Section Styles（theme.json）の採用/非採用を ADR で凍結~~ | ~~同上（theme.json v3 構造に影響）~~ | P1 | false（**RESOLVED(2026-06-21 / ADR-027）**） |
 
 ---
 
@@ -223,6 +227,9 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | **CARRY-WP7-004** | GAP-RT-027, 030 | WP 7.0 CI マトリクス（~~WP 6.6〜7.0-RC 並列テスト matrix~~ → **WP 6.6〜7.0 Tier A 必達マトリクス / RC レーンは GA 済みで Tier A 昇格済み** / ADR-020 D-2 + CARRY-WP7-012 参照）| TC-031〜034（運用品質 TC）| L4 CI Sprint | P2 | false |
 | **CARRY-WP7-005** | GAP-RT-028 | `423 Locked` / `409 Conflict` 衝突検出実装（PO-WP7-02 裁定後） | TC（L4 REST Sprint で追加） | L4 REST Sprint | P1 | false（L4 REST 実装スプリント着手前に裁定） |
 | **CARRY-WP7-006** | GAP-RT-030 | Gutenberg pre-release ブランチ互換テスト統合 | TC（L4 CI Sprint で追加） | L4 CI Sprint | P2 | false |
+| CARRY-WP7-013-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D1 | source 登録=register_block_bindings_source（get_value_callback/uses_context、callback 内 current_user_can + transient）／束縛 meta=register_post_meta（show_in_rest/sanitize_callback/auth_callback） | 受入条件 TC=L4 で追加 | L4 sprint=theme scaffold / be-logic | P2 | false |
+| CARRY-WP7-014-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D2 | Interactivity directive 対象 UI（accordion / tabs / モバイルメニュー / FAQ トグル）の実装 + 性能予算（REQ-NF-001e）+ a11y 受入条件追加 | 受入条件 TC=TC-074〜078（WCAG2.2 AA）連動 | L4 sprint=fe + qa | P2 | false |
+| CARRY-WP7-015-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D3 | /styles/ section style partial（blockTypes 指定）設計・命名 + S-DESIGN-TOKEN 連動を追加 | 受入条件 TC=L4 で追加 | L4 sprint=fe-design / S-DESIGN-TOKEN | P2 | false |
 | **CARRY-WP7-007** | GAP-RT-030 | `block.json` `apiVersion` 3 対応スクリプト | TC（L4 block Sprint で追加） | L4 block Sprint | P2 | false |
 | **CARRY-WP7-008** | GAP-RT-027, 028 | WP7 Feature Flags ゲート実装 | TC（L4 WP7 Sprint で追加） | L4 WP7 Sprint | P1 | false |
 | **CARRY-WP7-009** | GAP-RT-030 | WP Playground + browser-extension 統合テスト | TC（L4 E2E Sprint で追加） | L4 E2E Sprint | P2 | false |
@@ -272,6 +279,10 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | CARRY-A3-004 | P1 | 監査ログストレージ設計が未確定のまま任意タグ Sprint 着手不可 |
 | ~~PERF-CARRY-002~~ | — | **RESOLVED(2026-06-20)**: Q-013 PM-RESOLVED / Cookie Consent 外部 adapter 方式確定。blocking 解除（冒頭 §同期 参照）|
 | ~~CARRY-WP7-001~~ | — | **RESOLVED(2026-06-21)**: PO-WP7-01 VERIFIED / WP7.0 GA で Abilities API 実証。blocking 解除（冒頭 §同期 参照）|
+| ~~CARRY-TEST-ALIGN-001~~ | — | **RESOLVED(2026-06-21)**: test-plan↔api-catalog↔openapi 整合（GET /crawler-policy・GET /public/pages/{id}/snapshot / GET /public/llmo/answers / GET /tracking/llmo-summary） |
+| ~~CARRY-WP7-013~~ | — | **RESOLVED(2026-06-21)**: ADR-027（D1）: Block Bindings API 採用凍結 |
+| ~~CARRY-WP7-014~~ | — | **RESOLVED(2026-06-21)**: ADR-027（D2）: Interactivity 採用凍結（性能予算内限定） |
+| ~~CARRY-WP7-015~~ | — | **RESOLVED(2026-06-21)**: ADR-027（D3）: Section Styles 採用凍結 |
 | CARRY-ADR023-001 | P1 | S-DESIGN-TOKEN スプリント未実施のまま L4 デザイントークン実装着手不可（L4 sprint 順序依存であり L3 設計 close は妨げない）|
 | ~~CARRY-ADR023-004~~ | — | **RESOLVED(2026-06-20)**: PM-RESOLVED / Bridge ショートコード変換 主要3種 Phase1 確定。blocking 解除（冒頭 §同期 参照）|
 
@@ -286,3 +297,4 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 *P1 是正追記: 2026-06-20 / CARRY-A11Y-001 → TC-074〜TC-078 を test-plan §11 に登録完了（CARRY-A11Y-001 TC 登録部分 RESOLVED）/ ADR-026 postMessage origin 検証を `event.source` 照合 + nonce 検証方式に修正（origin allowlist 文言削除）/ ADR-026 TC 表を test-plan §10（SSOT）と完全一致に是正 / ADR-026 GAP 参照を GAP-RT-056 → GAP-RT-058 に統一（8行・223行）/ test-plan §11 新設（TC-074〜078 / a11y 新 5 要件 / P1 × 5）/ §4 P1 リスト更新（TC-074〜078 追加）/ TC 総数 84 → 89 件（CAT 9 + TC 80）/ L5-visual-design.md のテスト登録先参照を §10 → §11 に修正 / gap-register CARRY-A11Y-001 の TC 参照・blocking 状態を更新 / 担当: 文書整合担当（Sonnet）*
 *carry 完全性 cascade 予防是正: 2026-06-20（Codex TL レビュー P1×1 / P2×2 是正 / 15巡目） / CARRY-EMBED-002 carry 行に「汎用 parent storage bridge 禁止（非交渉制約）」を追記 / CARRY-EMBED-003 carry 行に「CSP `<meta>` 先頭 prepend の PHP 実装確定（必須）」を追記 / CARRY-EMBED-004 carry 行に「Shadow DOM host リセット適用範囲・例外確定（mode=static 必須項目）」および「srcdoc 属性コンテキストエスケープ + DOM well-formed 検証」を追記 / 担当: 文書整合担当（Sonnet）*
 *案A確定 / 別オリジン iframe モデル反映: 2026-06-20 / GAP-RT-058 状態欄に dual-mode 設計詳細（mode=interactive = 別オリジン sandbox iframe / mode=static = Shadow DOM + DSD）を明記 / CARRY-EMBED-003 の「srcdoc-scoped CSP」を「サンドボックスオリジン HTTP CSP + 親 frame-src allowlist」に更新 / CARRY-EMBED-004 の旧 srcdoc 属性エスケープ項目を「廃止（別オリジン配信のため不要）/ standalone interactive 不可の明示」に更新 / 担当: 文書整合担当（Sonnet）*
+*L4-entry carry 解消: 2026-06-21 / CARRY-WP7-013/014/015 を ADR-027（WP7.0 固有機能採否凍結 / Accepted）で RESOLVED / CARRY-TEST-ALIGN-001 を test-plan↔api-catalog↔openapi 整合（GET /crawler-policy・GET /tracking/llmo-summary 新設 / 総数 55→57）で RESOLVED / 担当: docs drafter（Codex）*

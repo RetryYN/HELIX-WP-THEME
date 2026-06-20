@@ -164,9 +164,9 @@
 | TC | 対象要件 | 前提 | 手順 | 期待結果 | 分類 | 優先度 |
 |---|---|---|---|---|---|---|
 | TC-037 | ACC-NF-011 / REQ-NF-017 | AGENT NEO Core Plugin 有効化・記事が 1 件以上公開済み | (1) answer unit が定義された記事（H2 + 短回答 + 根拠リンク + CTA を持つセクション）を作成 (2) `GET /agent-neo/v1/posts/{id}/markdown` を呼ぶ | (a) レスポンスに `answer_units` 配列が含まれ、各要素が `question / short_answer / details / evidence_refs / updated_at / cta_id` フィールドを持つ (b) 空の H2 セクションは answer unit として出力されない | integration | P1 |
-| TC-038 | ACC-NF-011 / REQ-NF-017 | Robots.txt / X-Robots-Tag が設定済みの記事環境 | (1) `GET /agent-neo/v1/ai-crawlers/access-matrix` を呼ぶ | (a) Googlebot / GPTBot / ClaudeBot / PerplexityBot 等の主要 AI クローラ別に `allowed / blocked / noindex` 状態が列挙された JSON が返る (b) クローラプリセット切替（`agent_neo_ai_crawler_preset: permissive / balanced / restrictive`）を設定変更後に再取得すると値が変わる | integration | P1 |
+| TC-038 | ACC-NF-011 / REQ-NF-017 | Robots.txt / X-Robots-Tag が設定済みの記事環境 | (1) `GET /agent-neo/v1/crawler-policy` を呼ぶ | (a) Googlebot / GPTBot / ClaudeBot / PerplexityBot 等の主要 AI クローラ別に `allowed / blocked / noindex` 状態が列挙された JSON が返る (b) クローラプリセット切替（`agent_neo_ai_crawler_preset: permissive / balanced / restrictive`）を設定変更後に再取得すると値が変わる | integration | P1 |
 | TC-039 | ACC-NF-011 / REQ-NF-017 | GA4 または custom tracking endpoint が設定済み | (1) `<link rel="me">` または `data-agent-citation-anchor` 属性付きコンテンツを含む記事ページを表示 (2) AI クローラ UA（例: GPTBot）でページを GET | (a) レスポンスヘッダに `X-Agent-Citation-Policy` が含まれる (b) フロント HTML の主要コンテンツに `data-agent-citation-anchor` が付与されている (c) AI クローラからのアクセスログが `ai_crawler_log` テーブルに記録される | integration | P2 |
-| TC-040 | ACC-NF-011 / REQ-NF-017 | Entity Graph が設定された記事（§ L3-A3 entity-graph.schema.json） | (1) 記事を公開 (2) `GET /agent-neo/v1/posts/{id}/snapshot` でスナップショットを取得 | (a) レスポンスに `entity_graph` フィールドが含まれ、`@graph` 内に Article / Person / Organization の少なくとも 2 ノードが存在する (b) `evidence_graph` が claim / source / reviewer / verified_date フィールドを持つ | integration | P1 |
+| TC-040 | ACC-NF-011 / REQ-NF-017 | Entity Graph が設定された記事（§ L3-A3 entity-graph.schema.json） | (1) 記事を公開 (2) `GET /agent-neo/v1/public/pages/{id}/snapshot` でスナップショットを取得 (3) `GET /agent-neo/v1/public/llmo/answers?page_id={id}` を取得し LLMO回答を確認する | (a) `GET /public/pages/{id}/snapshot` レスポンスに `entity_graph` フィールドが含まれ、`@graph` 内に Article / Person / Organization の少なくとも 2 ノードが存在する (b) `/public/llmo/answers?page_id={id}` の `payload` の `evidence_graph` は当該ページのものと一致し、`claim` / `source` / `reviewer` / `verified_date` フィールドを持つ | integration | P1 |
 | TC-041 | ACC-NF-011 / REQ-NF-017 | LLMO 計測イベントが tracking/event に統合済み | (1) AI クローラからページにアクセスして tracking event を発火させる (2) `GET /agent-neo/v1/tracking/llmo-summary` でサマリを取得 | (a) `ai_impressions / ai_citations / ai_referral_clicks` の 3 指標が 24 時間集計で返る (b) AI referral（Perplexity / Claude 等経由の訪問）が UA 解析で分類され、通常訪問と区別してカウントされる | integration | P2 |
 
 ---
@@ -258,7 +258,7 @@
 | CARRY-GRT036-001 | TC-031〜036 | `wp agent-neo health-check` / `conflict-scan` / `update-preflight` 等の CLI コマンドが未実装 | L4 で CLI コマンド実装後に実テスト化 |
 | CARRY-GRT036-002 | TC-032 | PHP 8.2+ 専用テスト環境の準備が必要 | CI matrix に PHP バージョン別 job を追加（GAP-RT-031 ADR 対応後） |
 | CARRY-GRT037-001 | TC-037 | answer unit フィールドを持つ `/posts/{id}/markdown` レスポンス拡張が未実装 | L4 LLMO 実装 Sprint で対応 |
-| CARRY-GRT037-002 | TC-038〜041 | AI crawler access matrix / citation anchor / LLMO tracking endpoint が未実装 | L4 LLMO 実装 Sprint で対応（REQ-NF-017 サブタスク） |
+| CARRY-GRT037-002 | TC-038〜041 | `access matrix` / `citation anchor` / `LLMO tracking endpoint` の参照先は `GET /agent-neo/v1/crawler-policy`、`GET /agent-neo/v1/public/llmo/answers`、`GET /agent-neo/v1/tracking/llmo-summary` へ統一。実装実体は L4 LLMO Sprint で完了見込 | L4 LLMO 実装 Sprint で対応（REQ-NF-017 サブタスク） |
 | CARRY-GRT038-001 | TC-042〜046 | 同意バナープラグイン選定（PERF-CARRY-002）が blocking P1 carry。選定前は Mock バナーで代替 | PERF-CARRY-002 解消（ADR 更新）後にフル E2E に切り替え |
 | CARRY-GRT039-001 | TC-047〜051 | `GET /agent-neo/v1/public/pages/snapshot` エンドポイントの snapshot allowlist 機能が未実装 | L4 snapshot 実装 Sprint で対応 |
 | CARRY-GRT040-001 | TC-053 | Yoast SEO 共存時の OGP 二重出力排除は CARRY-A3-001（ADR Wave3 SEO 出力境界 ADR）が確定するまで期待結果が確定しない | ADR Wave3 確定後に TC-053 期待結果を更新し実テスト化 |

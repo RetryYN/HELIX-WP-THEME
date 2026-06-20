@@ -19,9 +19,9 @@ info:
     本書では主要な構造変更系 endpoint に 403/503 を明示し、それ以外も上記横断ポリシーが適用される旨を本 note で宣言する。
 x-api-catalog:
   source: docs/design/api-catalog.md
-  endpoint_total: 55
-  operationid_total: 54
-  # endpoint_total は catalog 論理件数。operationId 実数は /features 重複集約分を除く 54 となる。
+  endpoint_total: 57
+  operationid_total: 56
+  # endpoint_total は catalog 論理件数。operationId 実数は /features 重複集約分を除く 56 となる。
   note: |
     /features は catalog に 2 つ用途があるため 1 operation に集約し、x-api-catalog-entries で両系統を保持。
   x-api-catalog-entries:
@@ -1331,6 +1331,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
+  /tracking/llmo-summary:
+    get:
+      operationId: A-tracking-llmo-summary
+      summary: LLMO 計測サマリ（ai_impressions/ai_citations/ai_referral_clicks 24h）
+      tags:
+        - Tracking
+      responses:
+        '200':
+          description: ai_impressions / ai_citations / ai_referral_clicks の24h集計
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /license/validate:
     post:
       operationId: A-license-validate
@@ -1570,6 +1583,14 @@ paths:
       summary: answer unit / citation anchor / evidence graph
       tags:
         - Public
+      parameters:
+        - in: query
+          name: page_id
+          required: false
+          schema:
+            type: integer
+            format: int64
+          description: 指定時は当該ページの answer unit / evidence graph のみ返す
       security: []
       responses:
         '200':
@@ -1641,6 +1662,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/StandardResponse'
   /crawler-policy:
+    get:
+      operationId: A-crawler-policy-get
+      summary: crawler access matrix 取得
+      tags:
+        - Risks
+      responses:
+        '200':
+          description: crawler 別 allowed/blocked/noindex マトリクス + active preset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
     post:
       operationId: A-crawler-policy
       summary: crawler access matrix 更新
@@ -1666,6 +1699,12 @@ paths:
                         type: boolean
                       reason:
                         type: string
+                preset:
+                  type: string
+                  enum:
+                    - permissive
+                    - balanced
+                    - restrictive
       responses:
         '200':
           description: 更新結果

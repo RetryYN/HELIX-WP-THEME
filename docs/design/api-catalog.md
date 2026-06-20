@@ -114,6 +114,7 @@
 |--------|------|------|-------|------|
 | POST | /tracking/event | 計測イベント受付 | REQ-F-006 | A-007。公開受付（署名 / nonce 相当 / rate limit）。section_id / cta_id / variant_id 必須 |
 | POST | /tracking/context | Automation SEO 互換 context 送信 | REQ-F-007 | A-008。site_id / article_id / section_id を同期 |
+| GET | /tracking/llmo-summary | LLMO 計測サマリ（ai_impressions / ai_citations / ai_referral_clicks の24h集計、AI referral を UA 解析で分類） | REQ-NF-017 | A-021 系。LLMO visibility ダッシュボード(Phase2)の裏付け契約。認証要 |
 
 ---
 
@@ -159,7 +160,7 @@
 |--------|------|------|-------|------|
 | GET | /public/pages/{id}/snapshot | 公開ページの AI Snapshot | REQ-NF-015 | A-018 / SF-003。section 一覧・CTA label・JSON-LD・canonical・robots を返す。認証不要。**レスポンス原則**（carry-026 = CARRY-TO-L4 / data-model-ids.md §R-10 / threat-model TB-24）: 各セクションには `section_id_public`（内部 `section_id` を公開 ID に変換）を付与。CTA 参照を返す場合は `cta_id_public`（内部 `cta_id` を公開 ID に変換）を使用し、内部 `cta_id` を直接露出しない。`variant_id` はレスポンスから除外。内部 slug を一切露出しない。フィールド名・スキーマ詳細は L4（carry-026）で api-catalog / openapi / WBS に確定する |
 | GET | /public/crawl-map | 全公開ページの crawl map | REQ-NF-015 | A-019 / SF-012。canonical・robots・更新日・section 数・content_type を返す。**レスポンス原則**（carry-026 = CARRY-TO-L4 / data-model-ids.md §R-10 / threat-model TB-24）: section エントリには `section_id_public` を付与。CTA 参照を含む場合は `cta_id_public`（内部 `cta_id` を公開 ID に変換）を使用し、内部 `cta_id` を直接露出しない。`variant_id` 除外・内部 slug 非露出。フィールド名・スキーマ詳細は L4（carry-026）で確定する |
-| GET | /public/llmo/answers | answer unit / citation anchor / evidence graph | REQ-NF-017 | A-021。LLMO 向け公開エンドポイント。認証不要 |
+| GET | /public/llmo/answers | answer unit / citation anchor / evidence graph | REQ-NF-017 | A-021。LLMO 向け公開エンドポイント。認証不要。任意 `page_id` クエリでページ単位にフィルタ可（省略時はサイト全体）。`page_id` 指定時は当該ページの answer unit / evidence graph のみ返す |
 
 ---
 
@@ -235,7 +236,8 @@ catalog-update 発火責務は agent-neo-core-plugin（Plugin B）が所有し�
 | Method | Path | 用途 | REQ-F | 備考 |
 |--------|------|------|-------|------|
 | GET | /risks/hazards | SEO / WP 運用 / AI 運用の risk-ledger と検出結果 | REQ-NF-018 | A-022。canonical / cache / cron / plugin conflict 等のハザード一覧 |
-| POST | /crawler-policy | crawler access matrix 更新 | REQ-NF-015 | A-020。AI 学習 / クローラ別許可方針を設定 |
+| GET | /crawler-policy | crawler access matrix 取得（crawler 別 allowed/blocked/noindex + active preset） | REQ-NF-015 | A-020。POST /crawler-policy(更新)と read/write 対称。preset: permissive/balanced/restrictive |
+| POST | /crawler-policy | crawler access matrix 更新 | REQ-NF-015 | A-020。AI 学習 / クローラ別許可方針を設定。任意 preset フィールド(permissive/balanced/restrictive)受付 |
 
 ---
 
@@ -260,17 +262,17 @@ catalog-update 発火責務は agent-neo-core-plugin（Plugin B）が所有し�
 | SEO | 3 |
 | メディア | 1 |
 | 移行 | 1 |
-| 計測 | 2 |
+| 計測 | 3 |
 | ライセンス / パッケージ | 2 |
 | 設定 I/O | 2 |
 | ジョブ管理 | 3 |
 | ログ | 1 |
 | 公開 API | 3 |
 | Automation SEO 連携 | 3 |
-| リスク管理 | 2 |
+| リスク管理 | 3 |
 | Affiliate / 収益化 | 1 |
 | External outbound（AGENT NEO→Automation SEO） | 1 |
-| **合計** | **55** |
+| **合計** | **57** |
 
 ---
 
@@ -326,6 +328,9 @@ catalog-update 発火責務は agent-neo-core-plugin（Plugin B）が所有し�
 | 2026-06-15 | carry-026 | 追記: `/public/crawl-map` レスポンスに同 `section_id_public` 原則を記載（carry-026 = CARRY-TO-L4） | 行161 | 備考末尾に **レスポンス原則** ブロック追加。`public_section_id` → `section_id_public`（L2 frozen 命名に統一） |
 | 2026-06-15 | carry-012 | 確認: lp-blueprint 12 セクション名称リストの有無 | 行48 | **名称リスト不在**。行48 に「12 標準セクション（Hero → CTA）対応」と件数・起点・終点のみ記載。12 セクションの個別名称定義が未確定。PO / 設計判断が必要（L4 carry 候補） |
 | 2026-06-15 | carry-023 | 確認のみ（編集不要）: `next_action` が dedup 含め全応答で返却される記述の正確な行 | **行200**（`next_action` Response schema テーブル）・**行229**（補足テキスト）が正本アンカー。openapi 側で対応済みのため api-catalog 側編集なし |
+| 2026-06-21 | CARRY-TEST-ALIGN-001 | 追加: `GET /crawler-policy` 新設（TC-038 整合） | 行238 | `POST` の対になる `GET` を追加し、備考に preset の対称仕様を追記 |
+| 2026-06-21 | CARRY-TEST-ALIGN-001 | 追加: `GET /tracking/llmo-summary` 新設（TC-041 整合） | 行116 | `計測` 行を 2→3 に更新 |
+| 2026-06-21 | CARRY-TEST-ALIGN-001 | TC-040 のパス是正は test-plan 側で対応（api-catalog の `/public/pages/{id}/snapshot` と `/public/llmo/answers` は既存のまま） | 行160-162 | `TC-040` の実在エンドポイント参照は `test-plan` 側で既存 SSOT に揃える |
 
 ### PATCH grep 全ヒットと判定
 

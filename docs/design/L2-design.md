@@ -89,6 +89,7 @@ graph TD
 | ADR-024 | Automation SEO 専用配布に一本化・課金は Automation SEO 契約のみ（テーマ単体販売廃止 / REQ-F-043 廃止） | GPL露出とAIロジック保護の両立。外部AI write 受口を恒久閉鎖 |
 | ADR-025 | AI生成コンテンツ開示法規制（EU AI Act/SB942/C2PA）を Automation SEO 登録時同意に集約 | マーキングは Automation SEO 側。テーマは disclosure レンダリングフックのみ |
 | ADR-026 | AI生成HTML埋め込みブロック `agent-neo/embed`（CSS隔離 dual-mode）(Accepted) | static=Shadow DOM+DSD / interactive=別オリジン sandbox iframe。embed隔離PoC+実WP検証 PASS |
+| ADR-027 | WP7.0 固有機能の採否凍結（Block Bindings/Interactivity/Section Styles を採用、Font Library/Speculative Loading/separate-assets は確認）(Accepted / 2026-06-21) | WP7.0 完全性監査 §C の未凍結機能を L4 entry 前に採否確定。REQ-NF-025 責務分担と theme.json v3 SSOT に整合 |
 
 ### 2.4 配布境界
 

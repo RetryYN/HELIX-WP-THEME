@@ -64,7 +64,7 @@ sequenceDiagram
 
 ## 1. API 詳細仕様（D-API）
 
-**注記:** 正本は `api-catalog.md`（55 endpoint 一覧）を参照。ここでは Phase1 ローンチに直結する中核 endpoint のみ I/O を具体化する。  
+**注記:** 正本は `api-catalog.md`（57 endpoint 一覧）を参照。ここでは Phase1 ローンチに直結する中核 endpoint のみ I/O を具体化する。  
 **INT-006**: 本節の `A-001`〜`A-009` は L3 詳細化9 endpoint のローカル連番であり、`api-catalog.md` の `A-001(GET /status)` などとは別体系。対応は以下。
 
 | L3-A-ID | 対応 endpoint |
@@ -87,7 +87,7 @@ sequenceDiagram
 - **Path**: `/actions/dry-run`
 - **認証**: REST write 経路 `nonce + capability`（`edit_posts` 以上）
 - **対応 REQ-F**: REQ-F-002, REQ-F-021, REQ-F-022, REQ-F-044
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -129,7 +129,7 @@ sequenceDiagram
 - **Path**: `/actions/apply`
 - **認証**: REST write `nonce + capability`
 - **対応 REQ-F**: REQ-F-002, REQ-F-021, REQ-F-022
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -173,7 +173,7 @@ sequenceDiagram
 - **Path**: `/posts/{id}/blocks/{block_id}`
 - **認証**: REST write `nonce + capability`
 - **対応 REQ-F**: REQ-F-021
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -212,7 +212,7 @@ sequenceDiagram
 - **認証**: REST write `nonce + capability`
 - **設計制約**: Section の受信・適用のみ。文章生成・方針選定は AGENT NEO 外部側（Automation SEO）に委任。
 - **対応 REQ-F**: REQ-F-002, REQ-F-021, REQ-F-022
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -252,7 +252,7 @@ sequenceDiagram
 - **Path**: `/pages/{id}/apply`
 - **認証**: REST write `nonce + capability` + package boundary
 - **対応 REQ-F**: REQ-F-002, REQ-F-012, REQ-F-038
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -295,7 +295,7 @@ sequenceDiagram
   - `/rollback/{rollback_id}`
 - **認証**: REST write `nonce + capability`
 - **対応 REQ-F**: REQ-F-021, REQ-F-038
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request（共通）
 
@@ -333,7 +333,7 @@ sequenceDiagram
 - **Path**: `/tracking/event`
 - **認証**: 公開受付。`site_token`/`signature`/`nonce`/`rate_limit` を検証
 - **対応 REQ-F**: REQ-F-006
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -374,7 +374,7 @@ sequenceDiagram
 - **Path**: `/license/validate`
 - **認証**: REST write `nonce + capability`
 - **対応 REQ-F**: REQ-F-010, REQ-F-016
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 
 #### Request
 
@@ -414,7 +414,7 @@ sequenceDiagram
 - **認証**: HMAC/nonce（Automation SEO canonical）。**旧鍵受付は catalog-update（F-01）のみ**。F-02 以降の operation では旧鍵を reject（権限逆流対策 / CARRY-G2-008）。
 - **対応 REQ-F**: REQ-F-044, REQ-NF-025（契約分離）
 - **正本**: `D-PLUGIN-CONTRACT §17`（再定義しない）
-- **正本参照**: `api-catalog.md`（55 endpoint）。I/O とエラー定義のみ本節で展開。
+- **正本参照**: `api-catalog.md`（57 endpoint）。I/O とエラー定義のみ本節で展開。
 - **補足**: Producer は Core Plugin。Theme/Plugin 受信側は `4` フィールド応答（`received/event_id/deduplicated/next_action`）と DLQ 作成を厳守。
 
 - **CARRY-G2-001**: `catalog-update` 外部 push とその責務境界を明確化（ADR-012 優先）。

@@ -5,8 +5,8 @@
 ## 成果（L3 deliverable）
 | deliverable | 種別 | 概要 |
 |---|---|---|
-| `docs/design/api-catalog.md` | ツール契約 | 55 endpoint 凍結。catalog-update を §17 正本へ完全ミラー |
-| `docs/api/openapi.yaml` | ツール契約（機械可読） | OpenAPI 3.1 / 54 operation / Error enum 16 値 |
+| `docs/design/api-catalog.md` | ツール契約 | 57 endpoint 凍結（G3 時 55 → 2026-06-21 CARRY-TEST-ALIGN-001 で GET 2 本追加し 57） |
+| `docs/api/openapi.yaml` | ツール契約（機械可読） | OpenAPI 3.1 / 56 operation（G3 時 54 → 2026-06-21 CARRY-TEST-ALIGN-001 で GET 2 本追加し 56）/ Error enum 16 値 |
 | `docs/design/L3-detailed-design.md` | 詳細設計 | D-API（A-001〜009）/ storage / 処理フロー / §5・§6 はポインタ |
 | `docs/test-plan/L3-test-plan.md` | 統合テスト設計 | **32 TC + 9 CAT**（contract test 含む、合計 41 件）※ 旧来の「35 TC + 14 CAT」は 2026-06-15 再検証で訂正 |
 | `docs/design/L3-WBS.md` | 工程表 | Phase1 ローンチ 26 タスク + クリティカルパス |
