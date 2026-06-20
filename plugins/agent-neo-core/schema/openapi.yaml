@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: AGENT NEO Core Plugin Scaffold API
+  version: 0.1.0
+  description: >
+    Scaffold copy for Plugin B. The full SSOT remains docs/api/openapi.yaml.
+servers:
+  - url: /wp-json/agent-neo/v1
+paths:
+  /status:
+    get:
+      operationId: A-status-get
+      summary: Theme, license, integration, and Core Plugin status
+      tags:
+        - Health
+      responses:
+        '200':
+          description: license_mode / package / integration health
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - success
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          nullable: true
+        meta:
+          type: object
+          required:
+            - request_id
+          properties:
+            request_id:
+              type: string
+        error:
+          type: object
+          nullable: true
+          required:
+            - code
+          properties:
+            code:
+              type: string
+              enum:
+                - VALIDATION_ERROR
+                - UNAUTHORIZED
+                - FORBIDDEN
+                - NOT_FOUND
+                - CONFLICT
+                - GONE
+                - PRECONDITION_FAILED
+                - RATE_LIMITED
+                - FEATURE_DISABLED
+                - LICENSE_GRACE_PERIOD
+                - AGENT_NEO_NOT_INSTALLED
+                - PLUGIN_AUTH_FAILED
+                - RETRY_EXHAUSTED
+                - SIGNATURE_INVALID
+                - LICENSE_GATEWAY_ERROR
+                - INTERNAL_ERROR
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true

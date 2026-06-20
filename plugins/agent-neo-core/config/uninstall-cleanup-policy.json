@@ -1,0 +1,37 @@
+{
+  "version": "0.1.0",
+  "owner": "agent-neo-core",
+  "scope": "core-plugin-owned-data-only",
+  "batch_size": 500,
+  "custom_post_types": [
+    "agent_action",
+    "agent_section_registry",
+    "agent_agent_license"
+  ],
+  "post_meta_prefixes": [
+    "_agent_neo_"
+  ],
+  "options": [
+    "agent_neo_core_version",
+    "agent_neo_license_state",
+    "agent_neo_feature_flags",
+    "agent_neo_schema_errors",
+    "agent_neo_catalog_cache",
+    "agent_neo_tracking_signature_cache",
+    "agent_neo_once_tokens",
+    "agent_neo_replay_tokens"
+  ],
+  "transient_prefixes": [
+    "agent_neo_"
+  ],
+  "cron_hooks": [
+    "agent_neo_catalog_update_retry"
+  ],
+  "preserve": [
+    "theme templates",
+    "theme styles",
+    "theme config",
+    "non agent_neo options",
+    "non _agent_neo post meta"
+  ]
+}

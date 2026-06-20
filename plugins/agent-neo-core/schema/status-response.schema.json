@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-neo.local/schema/status-response.schema.json",
+  "title": "AGENT NEO Core status response",
+  "type": "object",
+  "required": ["success", "data", "meta", "error"],
+  "additionalProperties": false,
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "status",
+        "license_mode",
+        "package",
+        "integration_health",
+        "theme",
+        "core_plugin_version"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "license_mode": {
+          "type": "string"
+        },
+        "package": {
+          "type": "string"
+        },
+        "integration_health": {
+          "type": "object"
+        },
+        "theme": {
+          "type": "object"
+        },
+        "core_plugin_version": {
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": ["request_id"],
+      "additionalProperties": true,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "nullable": true
+    }
+  }
+}
