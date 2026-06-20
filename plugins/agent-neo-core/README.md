@@ -23,6 +23,10 @@ AGENT NEO Core Plugin scaffold for `agent-neo/v1`.
 
 Tracking, license validate, and catalog-update send endpoints are intentionally not implemented in this sprint.
 
+## REST Controller Registration
+
+New REST controllers must live under `inc/rest/` as `class-{name}-controller.php`. The bootstrap glob-loads `inc/rest/*-controller.php`, so adding a controller only requires self-registration at the end of that controller file with `add_action( 'agent_neo_core_register_rest', ... )`, pulling constructor dependencies from `Agent_Neo_Core_Container` and calling `$container->register_module( 'rest-{name}' )` for health reporting. Do not edit `inc/bootstrap.php` or `inc/class-agent-neo-core.php` when adding a controller; the kernel fires the shared registration hook once after shared modules are ready.
+
 ## Verification Commands
 
 ```bash
@@ -159,3 +163,45 @@ Additional verification on 2026-06-21 for L4 Sprint `.2a` TL review fixes:
   - Package boundary regression: `package_status=403`, `package_code=FORBIDDEN`.
   - Generic rollback restored a `post` rollback point from `/actions/apply`: `post_apply_status=200`, `post_rollback_point_present=yes`, `generic_post_rollback_status=200`, `generic_post_rollback_post_type=post`, `post_content_after_rollback=before`.
   - Generic rollback errors stayed explicit: `missing_rollback_status=404`, `missing_rollback_code=NOT_FOUND`, `expired_rollback_status=410`, `expired_rollback_code=GONE`.
+
+Additional verification on 2026-06-21 for REST controller self-registration refactor:
+
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- `bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, variant generation, statistical decision logic, or prompt construction in PHP files.
+- `docker exec agent-neo-wp ln -sfn agent-neo-plugins/agent-neo-core /var/www/html/wp-content/plugins/agent-neo-core && docker compose run --rm wpcli plugin activate agent-neo-core` completed without fatal; plugin was already active.
+- Route discovery via `curl -s http://localhost:8086/wp-json/agent-neo/v1` confirmed the same implemented route set:
+  - `/agent-neo/v1/status`
+  - `/agent-neo/v1/actions/dry-run`
+  - `/agent-neo/v1/actions/apply`
+  - `/agent-neo/v1/posts/(?P<id>\d+)/blocks/(?P<block_id>[A-Za-z0-9_-]+)`
+  - `/agent-neo/v1/posts/(?P<id>\d+)/sections/(?P<section_id>[a-z0-9-]+)/edit`
+  - `/agent-neo/v1/pages/(?P<id>\d+)/apply`
+  - `/agent-neo/v1/pages/(?P<id>\d+)/rollback`
+  - `/agent-neo/v1/rollback/(?P<rollback_id>[A-Za-z0-9_-]+)`
+- Authenticated status check returned `status=200`, `success=true`, and `loaded_modules=schema-loader,auth,license,agent-action-cpt,rest-status,rest-actions,rest-blocks,rest-sections,rest-pages,catalog-update-producer`.
+- `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `8/57` with `ORPHAN (0)`.
+- Existing flow regression stayed green:
+  - `dry_status=200`, `dry_success=true`, `diff_hash_present=yes`, `db_unchanged_after_dry=yes`
+  - `apply_status=200`, `apply_success=true`, `apply_applied=true`, `rollback_point_present=yes`, `db_changed_after_apply=yes`
+  - `replay_status=200`, `replay_applied=false`
+  - `rollback_status=200`, `rollback_success=true`, `content_after_rollback=before`, `audit_present=yes`
+
+Additional verification on 2026-06-21 for REST controller glob autoload:
+
+- `php -l plugins/agent-neo-core/inc/bootstrap.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `8/57` with `ORPHAN (0)`.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, variant/statistical decision logic, or prompt construction in PHP files.
+- WP 6.9.4 / PHP 8.3 re-activation completed without fatal:
+  - `docker compose run --rm wpcli plugin activate agent-neo-core --allow-root`
+  - Result: plugin already active / activated successfully.
+- Authenticated status after deleting the temporary controller returned the legacy module order:
+  - `status=200`, `success=true`
+  - `loaded_modules=schema-loader,auth,license,agent-action-cpt,rest-status,rest-actions,rest-blocks,rest-sections,rest-pages,catalog-update-producer`
+- Temporary autoload proof:
+  - Added `inc/rest/class-zztest-controller.php` with `agent_neo_core_register_rest` self-registration, a test `GET /agent-neo/v1/zztest` route, and `$container->register_module( 'rest-zztest' )`.
+  - Re-activation/status check loaded the new controller without editing bootstrap or kernel:
+    - `loaded_modules=schema-loader,auth,license,agent-action-cpt,rest-status,rest-actions,rest-blocks,rest-sections,rest-pages,rest-zztest,catalog-update-producer`
+  - `GET http://localhost:8086/wp-json/agent-neo/v1/zztest` returned `200` with `{"success":true}`.
+  - Deleted `inc/rest/class-zztest-controller.php`; `test ! -e plugins/agent-neo-core/inc/rest/class-zztest-controller.php` returned `zztest_removed`.

@@ -14,13 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 final class Agent_Neo_Core {
 	/**
-	 * 読み込み済み module。
-	 *
-	 * @var array<int, string>
-	 */
-	private array $loaded_modules = array();
-
-	/**
 	 * 起動 step の記録。
 	 *
 	 * @var array<string, bool>
@@ -28,102 +21,11 @@ final class Agent_Neo_Core {
 	private array $steps = array();
 
 	/**
-	 * Schema loader。
+	 * DI container。
 	 *
-	 * @var Agent_Neo_Core_Schema_Loader
+	 * @var Agent_Neo_Core_Container
 	 */
-	private Agent_Neo_Core_Schema_Loader $schema_loader;
-
-	/**
-	 * Auth helper。
-	 *
-	 * @var Agent_Neo_Core_Auth
-	 */
-	private Agent_Neo_Core_Auth $auth;
-
-	/**
-	 * License state helper。
-	 *
-	 * @var Agent_Neo_Core_License_State
-	 */
-	private Agent_Neo_Core_License_State $license_state;
-
-	/**
-	 * AgentAction CPT。
-	 *
-	 * @var Agent_Neo_Core_Agent_Action_CPT
-	 */
-	private Agent_Neo_Core_Agent_Action_CPT $agent_action_cpt;
-
-	/**
-	 * Status REST controller。
-	 *
-	 * @var Agent_Neo_Core_Status_Controller
-	 */
-	private Agent_Neo_Core_Status_Controller $status_controller;
-
-	/**
-	 * JSON Patch helper。
-	 *
-	 * @var Agent_Neo_Core_JSON_Patch
-	 */
-	private Agent_Neo_Core_JSON_Patch $json_patch;
-
-	/**
-	 * Dry-run store。
-	 *
-	 * @var Agent_Neo_Core_Dry_Run_Store
-	 */
-	private Agent_Neo_Core_Dry_Run_Store $dry_run_store;
-
-	/**
-	 * Idempotency store。
-	 *
-	 * @var Agent_Neo_Core_Idempotency_Store
-	 */
-	private Agent_Neo_Core_Idempotency_Store $idempotency_store;
-
-	/**
-	 * Rollback store。
-	 *
-	 * @var Agent_Neo_Core_Rollback_Store
-	 */
-	private Agent_Neo_Core_Rollback_Store $rollback_store;
-
-	/**
-	 * Audit log helper。
-	 *
-	 * @var Agent_Neo_Core_Audit_Log
-	 */
-	private Agent_Neo_Core_Audit_Log $audit_log;
-
-	/**
-	 * Actions REST controller。
-	 *
-	 * @var Agent_Neo_Core_Actions_Controller
-	 */
-	private Agent_Neo_Core_Actions_Controller $actions_controller;
-
-	/**
-	 * Blocks REST controller。
-	 *
-	 * @var Agent_Neo_Core_Blocks_Controller
-	 */
-	private Agent_Neo_Core_Blocks_Controller $blocks_controller;
-
-	/**
-	 * Sections REST controller。
-	 *
-	 * @var Agent_Neo_Core_Sections_Controller
-	 */
-	private Agent_Neo_Core_Sections_Controller $sections_controller;
-
-	/**
-	 * Pages REST controller。
-	 *
-	 * @var Agent_Neo_Core_Pages_Controller
-	 */
-	private Agent_Neo_Core_Pages_Controller $pages_controller;
+	private Agent_Neo_Core_Container $container;
 
 	/**
 	 * catalog-update producer skeleton。
@@ -138,20 +40,7 @@ final class Agent_Neo_Core {
 	public function __construct() {
 		$this->trace_step( 'construct' );
 
-		$this->schema_loader           = new Agent_Neo_Core_Schema_Loader( AGENT_NEO_CORE_DIR . 'schema/' );
-		$this->auth                    = new Agent_Neo_Core_Auth();
-		$this->license_state           = new Agent_Neo_Core_License_State();
-		$this->agent_action_cpt        = new Agent_Neo_Core_Agent_Action_CPT();
-		$this->status_controller       = new Agent_Neo_Core_Status_Controller( $this->schema_loader, $this->license_state );
-		$this->json_patch              = new Agent_Neo_Core_JSON_Patch();
-		$this->dry_run_store           = new Agent_Neo_Core_Dry_Run_Store();
-		$this->idempotency_store       = new Agent_Neo_Core_Idempotency_Store();
-		$this->rollback_store          = new Agent_Neo_Core_Rollback_Store();
-		$this->audit_log               = new Agent_Neo_Core_Audit_Log();
-		$this->actions_controller      = new Agent_Neo_Core_Actions_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->dry_run_store, $this->idempotency_store, $this->rollback_store, $this->audit_log );
-		$this->blocks_controller       = new Agent_Neo_Core_Blocks_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->idempotency_store, $this->rollback_store, $this->audit_log );
-		$this->sections_controller     = new Agent_Neo_Core_Sections_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->idempotency_store, $this->rollback_store, $this->audit_log );
-		$this->pages_controller        = new Agent_Neo_Core_Pages_Controller( $this->auth, $this->license_state, $this->json_patch, $this->dry_run_store, $this->idempotency_store, $this->rollback_store, $this->audit_log );
+		$this->container               = new Agent_Neo_Core_Container( AGENT_NEO_CORE_DIR . 'schema/' );
 		$this->catalog_update_producer = new Agent_Neo_Core_Catalog_Update_Producer();
 	}
 
@@ -163,35 +52,24 @@ final class Agent_Neo_Core {
 	public function register(): void {
 		$this->trace_step( 'register_start' );
 
-		$this->schema_loader->load();
-		$this->loaded_modules[] = 'schema-loader';
+		$container = $this->container;
 
-		$this->auth->register();
-		$this->loaded_modules[] = 'auth';
+		$container->schema_loader()->load();
+		$container->register_module( 'schema-loader' );
 
-		$this->license_state->register();
-		$this->loaded_modules[] = 'license';
+		$container->auth()->register();
+		$container->register_module( 'auth' );
 
-		$this->agent_action_cpt->register();
-		$this->loaded_modules[] = 'agent-action-cpt';
+		$container->license_state()->register();
+		$container->register_module( 'license' );
 
-		$this->status_controller->register();
-		$this->loaded_modules[] = 'rest-status';
+		$container->agent_action_cpt()->register();
+		$container->register_module( 'agent-action-cpt' );
 
-		$this->actions_controller->register();
-		$this->loaded_modules[] = 'rest-actions';
-
-		$this->blocks_controller->register();
-		$this->loaded_modules[] = 'rest-blocks';
-
-		$this->sections_controller->register();
-		$this->loaded_modules[] = 'rest-sections';
-
-		$this->pages_controller->register();
-		$this->loaded_modules[] = 'rest-pages';
+		do_action( 'agent_neo_core_register_rest', $container );
 
 		$this->catalog_update_producer->register();
-		$this->loaded_modules[] = 'catalog-update-producer';
+		$container->register_module( 'catalog-update-producer' );
 
 		$this->trace_step( 'register_complete' );
 	}
@@ -205,11 +83,11 @@ final class Agent_Neo_Core {
 		return array(
 			'loaded'                  => true,
 			'version'                 => AGENT_NEO_CORE_VERSION,
-			'loaded_modules'          => $this->loaded_modules,
-			'schema_valid'            => $this->schema_loader->is_valid(),
-			'schema_errors'           => $this->schema_loader->get_errors(),
+			'loaded_modules'          => $this->container->loaded_modules(),
+			'schema_valid'            => $this->container->schema_loader()->is_valid(),
+			'schema_errors'           => $this->container->schema_loader()->get_errors(),
 			'agent_action_registered' => post_type_exists( Agent_Neo_Core_Agent_Action_CPT::POST_TYPE ),
-			'license'                 => $this->license_state->summary(),
+			'license'                 => $this->container->license_state()->summary(),
 			'catalog_update'          => $this->catalog_update_producer->contract_summary(),
 			'steps'                   => $this->steps,
 		);

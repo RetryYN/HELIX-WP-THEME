@@ -660,3 +660,20 @@ final class Agent_Neo_Core_Pages_Controller extends Agent_Neo_Core_REST_Controll
 		return 1 === preg_match( '/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i', $value );
 	}
 }
+
+add_action(
+	'agent_neo_core_register_rest',
+	static function ( Agent_Neo_Core_Container $container ): void {
+		$controller = new Agent_Neo_Core_Pages_Controller(
+			$container->auth(),
+			$container->license_state(),
+			$container->json_patch(),
+			$container->dry_run_store(),
+			$container->idempotency_store(),
+			$container->rollback_store(),
+			$container->audit_log()
+		);
+		$controller->register();
+		$container->register_module( 'rest-pages' );
+	}
+);

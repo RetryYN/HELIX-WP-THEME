@@ -149,3 +149,15 @@ final class Agent_Neo_Core_Status_Controller extends Agent_Neo_Core_REST_Control
 		return 'agent-neo-theme' === basename( $slug ) || str_ends_with( $slug, '/agent-neo-theme' );
 	}
 }
+
+add_action(
+	'agent_neo_core_register_rest',
+	static function ( Agent_Neo_Core_Container $container ): void {
+		$controller = new Agent_Neo_Core_Status_Controller(
+			$container->schema_loader(),
+			$container->license_state()
+		);
+		$controller->register();
+		$container->register_module( 'rest-status' );
+	}
+);

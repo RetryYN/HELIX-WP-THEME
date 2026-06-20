@@ -188,3 +188,19 @@ final class Agent_Neo_Core_Blocks_Controller extends Agent_Neo_Core_REST_Control
 		return rest_ensure_response( Agent_Neo_Core_Auth::success_response( $result, $request_id ) );
 	}
 }
+
+add_action(
+	'agent_neo_core_register_rest',
+	static function ( Agent_Neo_Core_Container $container ): void {
+		$controller = new Agent_Neo_Core_Blocks_Controller(
+			$container->auth(),
+			$container->schema_loader(),
+			$container->json_patch(),
+			$container->idempotency_store(),
+			$container->rollback_store(),
+			$container->audit_log()
+		);
+		$controller->register();
+		$container->register_module( 'rest-blocks' );
+	}
+);
