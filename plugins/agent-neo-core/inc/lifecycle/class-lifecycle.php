@@ -61,6 +61,7 @@ final class Agent_Neo_Core_Lifecycle {
 	 */
 	public static function deactivate(): void {
 		wp_clear_scheduled_hook( 'agent_neo_catalog_update_retry' );
+		wp_clear_scheduled_hook( 'agent_neo_catalog_update_process_outbox' );
 		self::delete_agent_neo_transients();
 		flush_rewrite_rules();
 	}

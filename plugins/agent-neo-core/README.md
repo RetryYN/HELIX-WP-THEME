@@ -19,9 +19,9 @@ AGENT NEO Core Plugin scaffold for `agent-neo/v1`.
 - Adds schema loader foundation for `openapi.yaml` and JSON Schema files.
 - Registers the private audit CPT `agent_action`.
 - Adds activation, deactivation, and uninstall cleanup hooks.
-- Places the catalog-update producer skeleton without outbound send logic.
+- Implements the catalog-update producer outbox without adding a public `agent-neo/v1` route.
 
-Tracking, license validate, and catalog-update send endpoints are intentionally not implemented in this sprint.
+catalog-update remains a producer-only outbound integration; no new public receive endpoint is registered in this plugin.
 
 ## REST Controller Registration
 
@@ -279,3 +279,55 @@ Additional verification on 2026-06-21 for L4 fan-out TL review fixes:
 - Tracking rate limit IP source verification:
   - No trusted proxy configured: changing `X-Forwarded-For` still used `REMOTE_ADDR`; second request hit `RATE_LIMITED`.
   - Trusted proxy configured through `agent_neo_trusted_proxies`: different `X-Forwarded-For` values used separate keys, while repeating the same forwarded IP hit `RATE_LIMITED`.
+
+Additional verification on 2026-06-21 for L4 `.2c` catalog-update producer:
+
+- Research notes used before implementation:
+  - WordPress `wp_remote_post()` returns an array or `WP_Error`; `pre_http_request` can short-circuit HTTP calls for mocks.
+  - WordPress `wp_after_insert_post` runs after post/template persistence; `updated_option` runs after successful option updates.
+- `php -l plugins/agent-neo-core/inc/catalog/class-catalog-update-producer.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- `bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, prompt construction, or variant/statistical decision logic in PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `12/57` with `ORPHAN (0)`; `POST /aseo/v1/agent-neo/catalog-update` remains missing by design because this task implements the producer, not an `agent-neo/v1` public route.
+- WP 6.9.4 / PHP 8.3 plugin health:
+  - `health=yes`
+  - `catalog=implemented`
+- WP-CLI request construction verification:
+  - `block_registered=ok`, payload keys: `block_name`
+  - `block_unregistered=ok`, payload keys: `block_name`
+  - `template_updated=ok`, payload keys: `template_part_slug,diff`
+  - `theme_token_updated=ok`, payload keys: `diff`
+- WP-CLI `pre_http_request` success mock:
+  - Configured endpoint `https://aseo.example.test/aseo/v1/agent-neo/catalog-update`, allowed host `aseo.example.test`, and a test HMAC key.
+  - Mocked `200` response with `received=true`, matching `event_id`, `deduplicated=false`, and `next_action=scan-catalog`.
+  - Result: `sent=1`, `outbox_count=0`, `receipt_next=scan-catalog`, `scan_hook=yes`.
+  - HMAC headers were present (`has_sig=yes`).
+- WP-CLI deduplicated response mock:
+  - Mocked `200` response with `deduplicated=true`, `next_action=none`.
+  - Result: `sent=1`, `deduplicated=true`, `next_action=none`.
+- WP-CLI retry verification:
+  - `500` response: `attempts=1`, `status=retrying`, `delay=1`.
+  - Follow-up `429` response: `attempts2=2`, `last_status2=429`, `delay2=2`.
+  - `WP_Error( http_request_failed )` timeout mock: `retrying=1`, `attempts=1`, `last_error=http_request_failed`.
+- WP-CLI non-retry 4xx verification:
+  - `400` response: `dead=1`, `outbox_count=0`, `dlq_status=400`, `dlq_reason=VALIDATION_ERROR`, `attempts=1`.
+- WP-CLI DLQ exhaustion verification:
+  - Five consecutive `500` responses moved the event to DLQ.
+  - Result: `outbox_count=0`, `dlq_status=409`, `dlq_reason=RETRY_EXHAUSTED`, `attempts=5`, `producer_status=409 RETRY_EXHAUSTED`.
+- WP-CLI idempotency verification:
+  - Same `event_id` re-enqueue within TTL returned `second_enqueued=no`, `second_dedup=yes`, `outbox_count=1`.
+
+Additional verification on 2026-06-21 for L4 `.2c` lifecycle/uninstall cleanup fixes:
+
+- Research notes used before implementation:
+  - WordPress `wp_clear_scheduled_hook()` unschedules all events for a hook when the same hook/args combination is supplied.
+  - WordPress plugin `uninstall.php` must keep the `WP_UNINSTALL_PLUGIN` guard and should remove plugin-owned options during uninstall, not deactivation.
+- Producer source of truth:
+  - Cron hooks cleared on deactivation: `agent_neo_catalog_update_retry`, `agent_neo_catalog_update_process_outbox`.
+  - Catalog-update options deleted on uninstall: `agent_neo_catalog_update_outbox`, `agent_neo_catalog_update_dlq`, `agent_neo_catalog_update_receipts`, `agent_neo_catalog_update_known_blocks`.
+- `php -l plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php` passed.
+- `php -l plugins/agent-neo-core/uninstall.php` passed.
+- `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `12/57` with `ORPHAN (0)`.
+- Deactivation simulation with stubbed WordPress functions confirmed both scheduled hooks were cleared and `agent_neo_catalog_update_process_outbox` would have `wp_next_scheduled(...) === false` after clear.
+- Uninstall simulation with stubbed WordPress functions confirmed all four producer-owned catalog-update options were passed to `delete_option()`.

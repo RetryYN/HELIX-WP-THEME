@@ -41,6 +41,17 @@ $agent_neo_core_options = isset( $agent_neo_core_policy['options'] ) && is_array
 		'agent_neo_replay_tokens',
 	);
 
+$agent_neo_core_options = array_merge(
+	$agent_neo_core_options,
+	array(
+		'agent_neo_catalog_update_outbox',
+		'agent_neo_catalog_update_dlq',
+		'agent_neo_catalog_update_receipts',
+		'agent_neo_catalog_update_known_blocks',
+	)
+);
+$agent_neo_core_options = array_values( array_unique( $agent_neo_core_options ) );
+
 foreach ( $agent_neo_core_options as $agent_neo_core_option ) {
 	if ( is_string( $agent_neo_core_option ) && 0 === strpos( $agent_neo_core_option, 'agent_neo_' ) ) {
 		delete_option( $agent_neo_core_option );
