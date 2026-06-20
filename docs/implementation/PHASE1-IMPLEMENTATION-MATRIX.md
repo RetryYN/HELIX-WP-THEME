@@ -2,14 +2,15 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **5** / IMPL **2** / SCAFFOLD **0** / NONE **22** *(total 29)*
-- **Endpoint coverage**: `GET /status` **1** (Y), `other / 未実装` **56** (N) *(total 57)*
+- **Sprint/Task progress**: VERIFIED **9** / IMPL **2** / SCAFFOLD **0** / NONE **18** *(total 29)*
+- **Endpoint coverage**: `Y` **5** / `N` **52** *(total 57)*
 - **Phase1 launch F-ID**: **完了 1** / 残 **23** *(total 24)*
 - **残タスク（next）**:
-  - `.1b` 未実装: **T-006 / T-007 / T-008 / T-009**
+  - `.2`: **T-010 / T-011 / T-012 / T-013 / T-014 / T-015 / T-016**
 - **運用ルール（更新時）**:
   - 各 sprint 完了時に本表を更新
   - `bin/check-impl-coverage.sh`（別途 se 作成予定）を実行し、`endpoint 漏れ=0` を確認
+  - 注記: endpoint の実在(Y/N)は `bin/check-impl-coverage.sh` を正本とし、sprint 完了時点で同期
 
 ---
 
@@ -22,10 +23,10 @@
 | T-003 | F-001 | theme-manifest / section-registry スキーマ反映 | .1a | theme | VERIFIED | `themes/agent-neo-theme/config/theme-manifest.json`, `themes/agent-neo-theme/config/section-registry.json`, `themes/agent-neo-theme/inc/class-config-loader.php` | config loader の fail-fast / schema validation 実体 | 04154e1 |
 | T-004 | F-001 | `agent_neo` プレフィックス規約静的検査 | .1a | theme | VERIFIED | `themes/agent-neo-theme/inc/class-config-loader.php`, `themes/agent-neo-theme/config/schema-reference.json` | schema-reference の `json_prefix: agent_neo` + naming 検査 | 04154e1 |
 | T-005 | F-025 | `agent_neo` 統一 JSON 方針と schema 参照表作成 | .1a | theme | VERIFIED | `themes/agent-neo-theme/config/schema-reference.json`, `themes/agent-neo-theme/inc/class-config-loader.php` | `schema-reference` 読込と openapi/schema 参照定義 | 04154e1 |
-| T-006 | F-002 | `POST /actions/dry-run` 実装 I/O 契約 | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/class-rest-controller-base.php`, `plugins/agent-neo-core/inc/rest/class-auth.php`, `plugins/agent-neo-core/inc/schema/class-schema-loader.php`, `plugins/agent-neo-core/schema/openapi.yaml` | `GET /status` のみ実体あり（`T-006〜T-025 は未実装`）、`register_rest_route` 該当は `status` のみ | 04154e1 |
-| T-007 | F-002 | `POST /actions/apply` 実装 I/O 契約 | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | `diff_hash/idempotency` 未実装。`status` のみ実装 | 04154e1 |
-| T-008 | F-021 | ブロック PATCH endpoint 契約実装（単位更新） | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | `/posts/{id}/blocks/{block_id}` 未実装。`status` のみ実装 | 04154e1 |
-| T-009 | F-021 | `POST /posts/{id}/sections/{section_id}/edit` 実装 | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | 対応 endpoint 未実装（A-013, `status` 以外なし） | 04154e1 |
+| T-006 | F-002 | `POST /actions/dry-run` 実装 I/O 契約 | .1b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-actions-controller.php`（scaffold 実体） | dry-run200 (DB不変) / 権限403 / action412 | 5de1a57 |
+| T-007 | F-002 | `POST /actions/apply` 実装 I/O 契約 | .1b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-actions-controller.php` | apply200 (DB変化) / replay applied=false / rollback_point | 5de1a57 |
+| T-008 | F-021 | ブロック PATCH endpoint 契約実装（単位更新） | .1b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-blocks-controller.php`, `plugins/agent-neo-core/inc/json/class-json-patch.php`, `plugins/agent-neo-core/inc/json/class-dry-run-store.php`, `plugins/agent-neo-core/inc/json/class-idempotency-store.php`, `plugins/agent-neo-core/inc/json/class-rollback-store.php`, `plugins/agent-neo-core/inc/json/class-audit-log.php` | section2回200 / audit CPT / 権限403 | 5de1a57 |
+| T-009 | F-021 | `POST /posts/{id}/sections/{section_id}/edit` 実装 | .1b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-sections-controller.php`, `plugins/agent-neo-core/inc/json/class-json-patch.php`, `plugins/agent-neo-core/inc/json/class-dry-run-store.php`, `plugins/agent-neo-core/inc/json/class-idempotency-store.php`, `plugins/agent-neo-core/inc/json/class-rollback-store.php`, `plugins/agent-neo-core/inc/json/class-audit-log.php` | section2回200 / audit CPT | 5de1a57 |
 | T-010 | F-002 | `/pages/{id}/apply` + `from_preview_token` | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | `status` 以外の POST 実装なし | 04154e1 |
 | T-011 | F-002 | rollback API 実装 | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | 対応 route 未実装 | 04154e1 |
 | T-012 | F-006 | `/tracking/event` 署名/nonce/bot filter | .1b | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | endpoint 未実装。`status` のみ実装 | 04154e1 |
@@ -61,8 +62,8 @@
 | GET | /posts/{id} | - | - | NONE | N | - |
 | GET | /posts/{id}/diff | - | - | NONE | N | - |
 | GET | /posts/{id}/markdown | - | - | NONE | N | - |
-| PATCH | /posts/{id}/blocks/{block_id} | - | - | NONE | N | - |
-| POST | /posts/{id}/sections/{section_id}/edit | - | - | NONE | N | - |
+| PATCH | /posts/{id}/blocks/{block_id} | T-008 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-blocks-controller.php` |
+| POST | /posts/{id}/sections/{section_id}/edit | T-009 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-sections-controller.php` |
 | GET | /sections | - | - | NONE | N | - |
 | GET | /sections/{section_id} | - | - | NONE | N | - |
 | POST | /sections/{section_id}/apply | - | - | NONE | N | - |
@@ -78,8 +79,8 @@
 | GET | /ctas/{cta_id} | - | - | NONE | N | - |
 | POST | /ctas/{cta_id}/apply | - | - | NONE | N | - |
 | POST | /elements/swap | - | - | NONE | N | - |
-| POST | /actions/dry-run | - | - | NONE | N | - |
-| POST | /actions/apply | - | - | NONE | N | - |
+| POST | /actions/dry-run | T-006 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-actions-controller.php` |
+| POST | /actions/apply | T-007 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-actions-controller.php` |
 | PATCH | /batch | - | - | NONE | N | - |
 | POST | /design-tokens/apply | - | - | NONE | N | - |
 | GET | /design-tokens | - | - | NONE | N | - |
@@ -117,7 +118,7 @@
 | F-ID | 対応 T-ID | status | 現状 |
 |---|---|---|---|
 | F-001 | T-001, T-002, T-003, T-004 | VERIFIED | launch 必達として完了 | 
-| F-002 | T-006, T-007, T-010, T-011 | NONE | `GET /status` 以外未実装 | 
+| F-002 | T-006, T-007, T-010, T-011 | PARTIAL | dry-run/apply 実装・実機検証済み。pages apply/rollback は未実装 |
 | F-003 | T-026 | NONE | 操作面統合（dry-run/apply を含む）未実装 | 
 | F-004 | T-027 | IMPL | static embed 機能は存在。Interactive 統合は T-028 | 
 | F-005 | T-020 | NONE | API 契約・blueprint系未実装 | 
@@ -136,8 +137,8 @@
 | F-018 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-019 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-020 | T-025 | NONE | SNS API 設定・機能未実装 | 
-| F-021 | T-008 | NONE | 部分更新 API 未実装 | 
-| F-022 | T-009 | NONE | セクション編集 API 未実装 | 
+| F-021 | T-008, T-009 | PARTIAL | section編集（block/section） endpoint は実装・検証済み。全体ロールは未完了 |
+| F-022 | T-009 | PARTIAL | section edit endpoint は実装済み。apply/rollback など未実装 |
 | F-023 | T-023, T-025 | NONE | swap / CV関連 API 未実装 | 
 | F-024 | T-023 | NONE | A/B テスト運用連携未実装 | 
 
@@ -164,9 +165,9 @@
 - 参照リンクはすべて本リポジトリ内の相対パスで統一。
 - `docs/design/L3-WBS.md` と `docs/design/api-catalog.md` の行数・件数との整合:
   - WBS: T-001〜T-029 を漏れなく反映
-  - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `GET /status` 1 件のみ）
+  - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `5/57`）
   - F-ID: 24 件（F-001〜F-024）を抽出
 - TODO 残存:
-  - `Table 1`: T-006〜T-025, T-026, T-029 が NONE（埋め込みを除く）
-  - `Table 2`: `register_rest_route` Y が `GET /status` のみ
-  - `Table 3`: F-002〜F-024 の未完了が継続
+  - `Table 1`: T-010〜T-016、T-018〜T-029 は NONE（T-006〜T-009 は VERIFIED）
+  - `Table 2`: Y が 5 / N が 52。`/health`, `/features`, `/contracts` 等未実装が残存
+  - `Table 3`: F-002/F-021 は partial、F-003〜F-024 ほぼ未完了
