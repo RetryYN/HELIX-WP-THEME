@@ -2,7 +2,7 @@
 
 本書は `docs/design/L3-detailed-design.md` の §6「工程表（WBS）」を分離して SSOT 化したものです。
 
-## 6.1 Phase1 ローンチセット（26件）
+## 6.1 Phase1 ローンチセット（29件）
 
 | T-ID | 対応 F-ID | 内容 | 依存 | 受入条件 | 想定 L4 sprint | reference_doc |
 |---|---|---|---|---|---|---|
@@ -32,6 +32,9 @@
 | T-024 | F-006/F-007/F-026/F-027 | 連携契約（tracking-context / webhook / catalog cache）【INT-003】 | T-015 / T-018 | 契約テスト群（CAT-001〜CAT-009 + TC-013）全 PASS | .5 | `docs/design/api-catalog.md`, `docs/api/openapi.yaml`, `docs/test-plan/L3-test-plan.md` |
 | T-025 | F-020/F-021/F-023 | SBOM 生成・検証（release build 時 `sbom.cdx.json` 生成→Release/SBOM Gate→Theme Review 提出前確定）【INT-003 / CARRY-G2-015】 | T-024 | `sbom.cdx.json` 生成・依存整合・脆弱性/ライセンス検査・Release/SBOM Gate PASS。Theme Review 提出前に SBOM 固定 | .5 | `docs/design/L2-design.md` §8.9 |
 | T-026 | F-003 | F-003 操作面（REST/MCP/WP CLI/React UI）統合検証 | T-007 / T-010 | REST/MCP/WP CLI/React UI の 4 操作面が同一契約で一貫して受入可能（機能差異・欠落なし） | .1a〜.2 | `docs/design/L2-design.md` §5, `docs/design/api-catalog.md` |
+| T-027 | REQ-F-038 / ADR-026 | `agent-neo/embed` static モード実装（Shadow DOM + 外部 reset CSS） | T-024 / T-026 | strict mode での host/style 継承干渉ゼロ・Light DOM 侵入なし（静的検証） | .4 | `docs/adr/ADR-026.md`, `docs/test-plan/L3-test-plan.md`, `poc/embed-isolation/RESULTS.md` |
+| T-028 | REQ-F-038 / ADR-026 | `agent-neo/embed` interactive モード実装（別オリジン sandbox iframe / postMessage source+nonce / CARRY-EMBED-002,003,005） | T-027 | `egress sink0` + cross-origin opaque + `allow-top-navigation*` / `allow-same-origin` 不在・`allow-scripts` 必須・`allow-forms` は L4 判断で許容／`form-action` 無害化確認 | .4 | `docs/adr/ADR-026.md`, `docs/test-plan/L3-test-plan.md`, `poc/embed-isolation/verify.py`, `poc/embed-isolation/RESULTS.md` |
+| T-029 | CARRY-EMBED-006 / ADR-026 | embed 隔離 CI ゲート（`poc/embed-isolation/verify.py` を Playwright CI 化） | T-027 / T-028 | `poc/embed-isolation/verify.py` を CI 実行パイプラインへ統合し、10本テストを継続回帰。all green / fail-fast | .4 | `poc/embed-isolation/verify.py`, `docs/test-plan/L3-test-plan.md`, `docs/adr/ADR-026.md` |
 
 ## 6.2 クリティカルパス
 
@@ -39,6 +42,7 @@
 
 - 理由: Theme Kernel/JSON API/操作面/SEO Core/連携の順で、データ整合、監査、外部連携の前提が成立するため
 - 注記: T-018（計測/SEO 監査ログ）は T-017 起点の並行ブランチであり、T-024 の前提として依存に含める。T-018 をクリティカルパス本線に置くとパスが T-017 依存の迂回経路を通る矛盾が生じるため、本線からは除外し T-024 の依存列に明示する。
+- 注記: T-027〜T-029 は `agent-neo/embed` 用の並行ブランチとして扱う。Phase1本線（`T-001`〜`T-026`）とは別進行で、セキュリティ隔離・PoC移管工数を集中し、完了後に `embed` carry の受入完了を同期する。
 
 ## 6.3 L4 carry（実装引き継ぎ）
 
