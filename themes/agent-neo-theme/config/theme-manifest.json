@@ -1,0 +1,50 @@
+{
+  "$schema": "https://agent-neo.local/schemas/theme-manifest.schema.json",
+  "name": "AGENT NEO",
+  "slug": "agent-neo-theme",
+  "version": "0.1.0",
+  "text_domain": "agent-neo",
+  "modules": [
+    "config-loader",
+    "boundary-guard",
+    "theme-setup"
+  ],
+  "boundary": {
+    "fse_templates_patterns_styles": {
+      "owner": "theme",
+      "theme_allowed": true,
+      "core_plugin_role": "reference"
+    },
+    "visual_only_block": {
+      "owner": "theme",
+      "theme_allowed": true,
+      "core_plugin_role": "optional_integration"
+    },
+    "section_id_cta_id_attributes": {
+      "owner": "theme",
+      "theme_allowed": true,
+      "core_plugin_role": "tracking_optimization"
+    },
+    "seo_head_render": {
+      "owner": "theme_adapter",
+      "theme_allowed": true,
+      "core_plugin_role": "meta_persistence_conflict_detection"
+    },
+    "json_operation_api": {
+      "owner": "core_plugin",
+      "theme_allowed": false,
+      "theme_role": "manifest_only"
+    },
+    "cpt_ab_tracking_storage": {
+      "owner": "core_plugin",
+      "theme_allowed": false,
+      "theme_role": "none"
+    },
+    "catalog_update_trigger": {
+      "owner": "core_plugin",
+      "theme_allowed": false,
+      "theme_role": "none",
+      "contract_source": "automation-seo D-PLUGIN-CONTRACT §17 mirror"
+    }
+  }
+}

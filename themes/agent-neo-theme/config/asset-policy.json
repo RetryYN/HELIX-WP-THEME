@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-neo.local/schemas/asset-policy.schema.json",
+  "version": "0.1.0",
+  "routes": {
+    "front": {
+      "strategy": "theme_json_first",
+      "jquery": false
+    },
+    "singular": {
+      "strategy": "theme_json_first",
+      "jquery": false
+    }
+  },
+  "blocks": {
+    "core/group": {
+      "strategy": "core_block_assets",
+      "jquery": false
+    }
+  },
+  "parts": {
+    "header": {
+      "strategy": "template_part_only",
+      "jquery": false
+    },
+    "footer": {
+      "strategy": "template_part_only",
+      "jquery": false
+    }
+  }
+}

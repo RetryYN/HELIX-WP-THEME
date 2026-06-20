@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-neo.local/schemas/section-registry.schema.json",
+  "version": "0.1.0",
+  "required_sections": [
+    "agent_neo_hero"
+  ],
+  "sections": [
+    {
+      "section_id": "agent_neo_hero",
+      "type": "hero",
+      "template": "page",
+      "pattern": "agent-neo/hero"
+    }
+  ]
+}

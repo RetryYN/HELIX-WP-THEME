@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-neo.local/schemas/schema-reference.schema.json",
+  "json_prefix": "agent_neo",
+  "naming": "snake_case",
+  "openapi": "docs/api/openapi.yaml#/components/schemas",
+  "schemas": [
+    {
+      "config": "theme-manifest.json",
+      "schema": "theme-manifest.schema.json",
+      "openapi_reference": null,
+      "owner": "theme",
+      "notes": "テーマ識別、module、Theme/Core 境界宣言のみ。REST payload は所有しない。"
+    },
+    {
+      "config": "section-registry.json",
+      "schema": "section-registry.schema.json",
+      "openapi_reference": "BridgeProfile",
+      "owner": "theme",
+      "notes": "section_id は snake_case の agent_neo_* で管理し、公開 API data 内の section 参照と命名を合わせる。"
+    },
+    {
+      "config": "asset-policy.json",
+      "schema": "asset-policy.schema.json",
+      "openapi_reference": "StandardResponse",
+      "owner": "theme",
+      "notes": "Core Plugin が返す health/status 系 StandardResponse と矛盾しない診断用 config。"
+    },
+    {
+      "config": "catalog-update",
+      "schema": "catalog-update.schema.json",
+      "openapi_reference": "CatalogUpdateRequest",
+      "owner": "core_plugin",
+      "notes": "テーマは発火・送信・再定義を行わず、境界宣言のみ保持する。"
+    }
+  ]
+}
