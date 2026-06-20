@@ -2,11 +2,10 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **14** / IMPL **2** / SCAFFOLD **0** / NONE **13** *(total 29)*
+- **Sprint/Task progress**: VERIFIED **16** / IMPL **2** / SCAFFOLD **0** / NONE **11** *(total 29)*
 - **Endpoint coverage**: `Y` **12** / `N` **45** *(total 57)*
 - **Phase1 launch F-ID**: **完了 2** / 残 **23** *(total 25)*
 - **残タスク（next）**:
-  - `.2c`: **T-014 / T-015**
   - `.3〜.5`: **T-017〜T-026**
 - **運用ルール（更新時）**:
   - 各 sprint 完了時に本表を更新
@@ -32,8 +31,8 @@
 | T-011 | F-002 | rollback API 実装 | .1b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-pages-controller.php`, `inc/json/class-rollback-store.php`（post_type 永続化） | apply(request_id無し)200 / diff_hash欠落400 / generic rollback で post 内容復元200 / TTL切れ410 / 不在404 / package境界403 | 18d982f |
 | T-012 | F-006 | `/tracking/event` 署名/nonce/bot filter | .2b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php` | tracking 署名200/401/section欠落400/replay/429 を実機検証 | 70fbbb0 |
 | T-013 | F-010 | `/license/validate` + failure 制御 | .2b | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-license-controller.php`, `plugins/agent-neo-core/inc/license/class-license-state.php` | license 2モード(grace503/invalid403)+24hキャッシュ（非refresh upstream0）を実機検証 | 70fbbb0 |
-| T-014 | F-044 | catalog-update request schema 受け口と応答固定 | .2 | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | `/aseo/v1/agent-neo/catalog-update` route 未実装 | 04154e1 |
-| T-015 | F-044 | Outbox retry / DLQ | .2 | theme/core-plugin | NONE | `plugins/agent-neo-core/inc`（scaffold） | 再試行/DLQ 実装未検出 | 04154e1 |
+| T-014 | F-044 | catalog-update request schema 受け口と応答固定 | .2 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/catalog/class-catalog-update-producer.php` (`class-catalog-update-producer.php`), `plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php`, `plugins/agent-neo-core/uninstall.php` | `event_kind`4種 enqueue、HMAC署名push、受信/重複排除/次アクション分岐検証、4xx即DLQ、`event_id` 24h冪等、cron/option cleanup 実機検証 | b1f33ad |
+| T-015 | F-044 | Outbox retry / DLQ | .2 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/catalog/class-catalog-update-producer.php` (`class-catalog-update-producer.php`), `plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php`, `plugins/agent-neo-core/uninstall.php` | 指数バックオフ(1s/2^n/±10%、max5)、5xx/429/timeout retry、409 RETRY_EXHAUSTED の5回DLQ、event_kind4種 enqueue、実機検証 | b1f33ad |
 | T-016 | F-025 | JSON 統合入出力（settings） | .2b/.2c | theme/core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-settings-controller.php` | settings bit-identical / import guard を実機検証 | 70fbbb0 |
 | T-017 | F-011 | SEO 入力検証・共存 | .3 | theme/core-plugin | NONE | `plugins/agent-neo-core/inc/rest/`（scaffold） | SEO 関連 endpoint 全未実装（`status` 限定） | 04154e1 |
 | T-018 | F-011 | 計測/SEO 監査ログ保存（agent_action CPT） | .3 | core-plugin | NONE | `plugins/agent-neo-core/inc/cpt/class-agent-action-cpt.php`（CPT 定義のみ） | CPT 定義あり。ログ運用 API route は未実装 | 04154e1 |
@@ -143,6 +142,7 @@
 | F-023 | T-023, T-025 | NONE | swap / CV関連 API 未実装 | 
 | F-024 | T-023 | NONE | A/B テスト運用連携未実装 | 
 | F-025 | T-016 | VERIFIED | 設定 settings import/export の JSON 統合は実機検証済み | 
+| F-044 | T-014, T-015 | VERIFIED | catalog-update 受け口と Outbox/DLQ は実機検証済み |
 
 ### Phase1 status summary
 - **完了**: F-001, F-025（2）
@@ -170,6 +170,6 @@
   - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `12/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
-  - `Table 1`: T-014 / T-015 / T-018〜T-029 は NONE（T-006〜T-013、T-016 は VERIFIED）
+  - `Table 1`: T-018〜T-029 は NONE（T-006〜T-013、T-016 は VERIFIED）
   - `Table 2`: Y が 12 / N が 45。`/health`, `/features`, `/contracts` 等未実装が残存
   - `Table 3`: F-021/F-022 は partial、F-003〜F-024 ほぼ未完了。F-025 は完了
