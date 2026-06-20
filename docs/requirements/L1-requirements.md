@@ -405,16 +405,19 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 |---|---|---|---|---|
 | Q-001 | 個人 → 法人アップグレードの実装方式 | PO | **決定: Automation SEO 加入者は加入割引、非加入者は差額課金 ¥78,200（¥98,000 - ¥19,800）。実装方式（オンライン課金 / ライセンスキー再発行）は L2 で具体化** ／ **【改訂 2026-06-18 / ADR-024】テーマ単体販売廃止により旧「非加入者差額課金 ¥78,200」前提は廃止。AGENT NEO は Automation SEO 加入が前提（専用配布）。個人→法人アップグレードは Automation SEO プラン階層の変更で行い、テーマ操作スコープ（記事 CRUD → 構造変更）も連動する。具体的な課金・プラン対応は Automation SEO 側で確定（FU-024-01）。** | closed |
 | Q-002 | ローンチ順 | PO | **決定: 同時ローンチ。自社サイト = Automation SEO 販売 + アフィリエイト収益 + AGENT NEO 販売 の 3 軸統合ドッグフーディングモデルで両 SKU 機能を同時実証する** | closed |
+| CARRY-ADR023-004 | Bridge Plugin ショートコード変換対象の Phase1 スコープ確定（`fukidashi` / `jin_icon` / `blogcard` のみ） | TL/PM | L4着手前 | PM-RESOLVED（2026-06-20） |
 | Q-003 | S1価格レンジ | PO | L2凍結前 | open |
 | Q-004 | 移行プラグインPlan Aの無料/軽課金 | PO | L2凍結前 | open |
-| Q-005 | ライセンス検証方式 | PO/TL | L2凍結前 | open |
+| Q-005 | ライセンス検証方式（Automation SEO 契約 entitlement 確認へ統合・自社 API 実装、48h transient grace は凍結維持） | PO/TL | L2凍結前 | PM-RESOLVED（2026-06-20） |
+| PERF-CARRY-002 | Cookie Consent 実装方針（外部プラグイン adapter 方式） | TL/PM | L4着手前 | PM-RESOLVED（2026-06-20） |
 | Q-006 | 自社配布テーマとwp.org申請プラグインで機能ロック/アップセル範囲をどう分けるか | PO/TL | L2凍結前 | open |
+| PO-WP7-01 | WP7.0 Abilities API 本格組み込み検証（GA 環境で実施） | PM/TL | L4 entry 前 | PM-RESOLVED（2026-06-20） |
 | Q-007 | 移行プレビューの差分表示粒度（HTML diff / セマンティック diff / 両方） | TL | L3開始前 | open |
 | Q-008 | 販売チャネル（自社サイト / マーケットプレイス併用 / 代理店） | PO | L7前 | open |
 | Q-009 | **AGENT NEO 内蔵 SDK + クレジットシステム**（Automation SEO 不要で AI 実行可能化）の go/no-go。決定要素: LLM 原価マージン / 残クレジット返金 / プライバシー / BYOK 併存ロジック / Automation SEO との競合関係 / 不正利用対策。Phase 1 ローンチセットでは BYOK + Automation SEO + S1 のみ、Phase 2 で再評価 | PO + 経営判断 | Phase 2 開始前 | open |
 | Q-010 | ~~**Open Editor Bridge Plugin** の月額価格レンジ確定（¥3,000-5,000/月想定中）と対応外部エディタの優先順位（Claude Computer Use / Codex CLI / Cursor / Cline / Continue 等）の決定~~ | PO | — | **closed（2026-06-18 / ADR-024）: REQ-F-043 廃止により Bridge Plugin 自体を不採用。価格・優先順位の決定不要** |
-| Q-012 | F-018 の「プロフィール表示」 / 「SNS フィードウィジェット」に対応する受入条件（ACC）の切り出し方針。L2 ADR-006 で「F-018 内の追加 ACC として受入条件を補完する」か「別 REQ-F として切り出す」かを決定 | TL/PO | L2 ADR-006 着手前 | open |
-| Q-013 | 公開指標ポリシー（L0 §6.4）の未確定項目（同意取得要否 / 集計閾値 / 保存期間 / 公開遅延 / 表示責任者）の最終値確定。G2 通過前に PO/法務確認のうえ凍結する | PO/法務 | G2 通過前 | open |
+| Q-012 | F-018 の「プロフィール表示」 / 「SNS フィードウィジェット」に対応する受入条件（ACC）の切り出し方針。L2 ADR-006 で「F-018 内の追加 ACC として受入条件を補完する」か「別 REQ-F として切り出す」かを決定（SNS フィードウィジェットは Phase2 送り、主要4機能は Phase1） | TL/PO | L2 ADR-006 着手前 | PM-RESOLVED（2026-06-20） |
+| Q-013 | 公開指標ポリシー（L0 §6.4）の未確定項目（同意取得要否 / 集計閾値 / 保存期間 / 公開遅延 / 表示責任者）の最終値確定。G2 通過前に PO/法務確認のうえ凍結する（選択肢B：同意バナーあり前提、閾値・保存期間・責任者は L4 で Automation SEO retention と整合） | PO/法務 | G2 通過前 | PM-RESOLVED（2026-06-20） |
 | Q-011 | グロース KPI の数値目標（検索流入、X 規模、記事 PV、CV、テーマ販売数、S1 問い合わせ数）の確定。L0 §6.7 / §10 と同期 | PO | L2 開始前 | open |
 
 ## 9. トレーサビリティマトリクス

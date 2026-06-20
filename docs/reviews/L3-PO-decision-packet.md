@@ -44,6 +44,23 @@
 
 ---
 
+## 2026-06-20 PM確定（L4着手前 残6件）
+
+> **確定日**: 2026-06-20 / **根拠**: PM 裁定（AI 補助）
+
+以下6論点の disposition を PM-RESOLVED（再評価）として確定。
+
+| 論点ID | disposition | PM 裁定内容 |
+|---|---|---|
+| CARRY-ADR023-004 | PM-RESOLVED | 選択肢A：旧テーマのショートコード変換は主要3種（`fukidashi` / `jin_icon` / `blogcard`）のみを Phase1 で提供、残りは非対応で明記 |
+| Q-012 | PM-RESOLVED | 選択肢B：SNS フィードウィジェットは Phase2 送り。シェア/OGP/X Card/埋め込み/プロフィール表示は Phase1 とする |
+| Q-005 | PM-RESOLVED | ライセンス検証は Automation SEO 契約 entitlement 確認へ統合。自社 API 実装。48h transient grace は凍結維持で再オープンしない |
+| PO-WP7-01 | PM-RESOLVED | WP7.0 は GA 済みのため GA 環境で Abilities API 本格組み込み検証を L4 entry で実施。承認規模は 0.5〜1人日 |
+| PERF-CARRY-002 | PM-RESOLVED | 選択肢A：Cookie Consent は外部プラグイン adapter 方式。テーマは Consent Mode v2 の受け口（入力 API / 更新受け取り）を提供 |
+| Q-013 | PM-RESOLVED | 選択肢B：安全側（Cookie Consent バナーあり前提）で進行。保存期間・集計閾値・表示責任者は L4 で Automation SEO 側 retention と整合して確定。将来「通知のみで法的に足りる」根拠が示されれば再評価 |
+
+---
+
 ## 概要
 
 本パケットは以下の 5 グループ計 12 論点を収録する（うち 1 件は ADR-024 により解消済み）。各論点に「緊急度」を付与し、末尾に **L4 着手前に必達の裁定リスト** を一覧化する。
@@ -440,14 +457,14 @@ ADR-024（2026-06-18 PO確定）により **REQ-F-043（Open Editor Bridge Plugi
 
 以下 **6 件**は L4 実装開始前に PO 裁定が必要な論点。残り 4 件は L4 途中または L7 前での裁定でよい。
 
-| 優先順 | 論点 ID | 論点名 | 関連 blocking carry | ADR-024 影響 |
-|---:|---|---|---|---|
-| 1 | CARRY-ADR023-004 | Bridge Plugin ショートコード変換スコープ | CARRY-ADR023-001, CARRY-ADR023-004 (blocking=true) | 変更なし |
-| 2 | PERF-CARRY-002 | Cookie Consent バナー外部 vs 内蔵 | PERF-CARRY-002 (P1 blocking) | 変更なし |
-| 3 | Q-013 | 公開指標ポリシー（同意取得要否・保存期間等） | PERF-CARRY-002 の前提 | 変更なし |
-| 4 | Q-005 | ライセンス検証方式 **→ Automation SEO 契約確認の実装方式（縮小）** | REQ-F-010 実装設計 | 旧 Freemius 判断不要化。自社 API 方式で大筋確定。48h grace は凍結済み・残課題は契約 entitlement 検証統合のみ |
-| 5 | Q-012 | SNS フィードウィジェット Phase 1/2 境界 | F-018 実装スプリントのスコープ | 変更なし |
-| 6 | PO-WP7-01 | WP 7.0 Abilities API 本格組み込み検証 人日承認（~~RC PoC~~ → GA 済みのため本格組み込み検証に移行済み / ADR-020 2026-06-20 追記参照） | CARRY-WP7-001 (P1) | 変更なし |
+| 優先順 | 論点 ID | 論点名 | 関連 blocking carry | ADR-024 影響 | disposition |
+|---:|---|---|---|---|---|
+| 1 | CARRY-ADR023-004 | Bridge Plugin ショートコード変換スコープ | CARRY-ADR023-001, CARRY-ADR023-004 (blocking=true) | 変更なし（主要3種を Phase1 で確定） | PM-RESOLVED(2026-06-20) |
+| 2 | PERF-CARRY-002 | Cookie Consent バナー外部 vs 内蔵 | PERF-CARRY-002 (P1 blocking) | 変更なし（外部プラグイン adapter 方針） | PM-RESOLVED(2026-06-20) |
+| 3 | Q-013 | 公開指標ポリシー（同意取得要否・保存期間等） | PERF-CARRY-002 の前提 | 変更なし（選択肢B確定） | PM-RESOLVED(2026-06-20) |
+| 4 | Q-005 | ライセンス検証方式 **→ Automation SEO 契約確認の実装方式（縮小）** | REQ-F-010 実装設計 | 旧 Freemius 判断不要化。自社 API 方式で大筋確定。48h grace は凍結済み・残課題は契約 entitlement 検証統合のみ | PM-RESOLVED(2026-06-20) |
+| 5 | Q-012 | SNS フィードウィジェット Phase 1/2 境界 | F-018 実装スプリントのスコープ | 変更なし（Widget は Phase2） | PM-RESOLVED(2026-06-20) |
+| 6 | PO-WP7-01 | WP 7.0 Abilities API 本格組み込み検証 人日承認（~~RC PoC~~ → GA 済みのため本格組み込み検証に移行済み / ADR-020 2026-06-20 追記参照） | CARRY-WP7-001 (P1) | GA 環境での L4 entry 実行へ更新 | PM-RESOLVED(2026-06-20) |
 
 > **PO-WP7-04（PHP 7.4 非サポート確認）**: ADR-020 D-2 ですでに「PHP 8.1+ 推奨・PHP 7.4 は非サポート（参考情報のみ）」と設計決定されているが、これを配布 LP の「動作環境」表記に反映させるには PO の最終確認が必要。L4 着手前に確認しておくことで LP 制作と実装の表記が揃う。（Automation SEO 専用配布に変わったため LP 掲載の要否も合わせて確認推奨）
 
