@@ -1,22 +1,17 @@
-<!-- wp:group {"className":"an-site-header-inner","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
-<div class="wp-block-group an-site-header-inner">
+<!-- wp:group {"className":"an-site-header-inner","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"border":{"bottom":{"color":"var(--wp--preset--color--secondary)","width":"1px","style":"solid"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
+<div class="wp-block-group an-site-header-inner" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);border-bottom:1px solid var(--wp--preset--color--secondary)">
 
-	<!-- wp:group {"className":"an-site-branding","layout":{"type":"flex","flexWrap":"nowrap"}} -->
-	<div class="wp-block-group an-site-branding">
+	<!-- wp:group {"className":"an-site-branding","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
+	<div class="wp-block-group an-site-branding" style="gap:var(--wp--preset--spacing--20)">
 
-		<!-- wp:site-logo {"width":48} /-->
+		<!-- wp:site-logo {"width":40} /-->
 
-		<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-		<div class="wp-block-group">
-			<!-- wp:site-title {"level":1,"isLink":true} /-->
-			<!-- wp:site-tagline /-->
-		</div>
-		<!-- /wp:group -->
+		<!-- wp:site-title {"level":0,"isLink":true,"style":{"typography":{"fontWeight":"700","fontSize":"1.25rem"},"color":{"text":"var(--wp--preset--color--foreground)"}}} /-->
 
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"1.5rem"}}} /-->
+	<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"},"typography":{"fontWeight":"600","fontSize":"0.9375rem"}},"textColor":"foreground"} /-->
 
 </div>
 <!-- /wp:group -->

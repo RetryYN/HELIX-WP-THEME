@@ -33,6 +33,16 @@
           "slug": "foreground",
           "color": "#1a1a1a",
           "name": "Foreground"
+        },
+        {
+          "slug": "footer-bg",
+          "color": "#111111",
+          "name": "Footer Background"
+        },
+        {
+          "slug": "muted",
+          "color": "#767676",
+          "name": "Muted"
         }
       ],
       "gradients": [],
@@ -82,8 +92,13 @@
         },
         {
           "slug": "xx-large",
-          "size": "2rem",
+          "size": "2.25rem",
           "name": "XX Large"
+        },
+        {
+          "slug": "xxx-large",
+          "size": "3rem",
+          "name": "XXX Large"
         }
       ],
       "customFontSize": true,
@@ -123,6 +138,11 @@
           "slug": "50",
           "size": "3rem",
           "name": "XL"
+        },
+        {
+          "slug": "60",
+          "size": "4rem",
+          "name": "XXL"
         }
       ],
       "padding": true,
@@ -161,7 +181,11 @@
       "lineHeight": "1.6"
     },
     "spacing": {
-      "blockGap": "var(--wp--preset--spacing--30)"
+      "blockGap": "var(--wp--preset--spacing--30)",
+      "padding": {
+        "left": "var(--wp--preset--spacing--40)",
+        "right": "var(--wp--preset--spacing--40)"
+      }
     },
     "elements": {
       "link": {
@@ -186,7 +210,16 @@
           "radius": "4px"
         },
         "typography": {
-          "fontWeight": "700"
+          "fontWeight": "700",
+          "fontSize": "var(--wp--preset--font-size--medium)"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.875rem",
+            "bottom": "0.875rem",
+            "left": "2rem",
+            "right": "2rem"
+          }
         },
         ":hover": {
           "color": {
@@ -206,17 +239,30 @@
       },
       "h1": {
         "typography": {
-          "fontSize": "var(--wp--preset--font-size--xx-large)"
+          "fontSize": "var(--wp--preset--font-size--xxx-large)",
+          "lineHeight": "1.1"
         }
       },
       "h2": {
         "typography": {
-          "fontSize": "var(--wp--preset--font-size--x-large)"
+          "fontSize": "var(--wp--preset--font-size--xx-large)"
         }
       },
       "h3": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--large)"
+        }
+      }
+    },
+    "blocks": {
+      "core/template-part": {},
+      "core/site-title": {
+        "typography": {
+          "fontWeight": "700",
+          "fontSize": "var(--wp--preset--font-size--large)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--foreground)"
         }
       }
     }
