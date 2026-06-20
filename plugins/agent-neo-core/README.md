@@ -15,6 +15,10 @@ AGENT NEO Core Plugin scaffold for `agent-neo/v1`.
   - `POST /wp-json/agent-neo/v1/pages/{id}/apply`
   - `POST /wp-json/agent-neo/v1/pages/{id}/rollback`
   - `POST /wp-json/agent-neo/v1/rollback/{rollback_id}`
+- Implements SEO Core endpoints for L4 Sprint `.3`:
+  - `GET /wp-json/agent-neo/v1/seo/{post_id}`
+  - `POST /wp-json/agent-neo/v1/seo/{post_id}/apply`
+  - `POST /wp-json/agent-neo/v1/seo/meta` (deprecated compatibility route)
 - Adds write-route auth helpers for future `nonce + capability` checks.
 - Adds schema loader foundation for `openapi.yaml` and JSON Schema files.
 - Registers the private audit CPT `agent_action`.
@@ -331,3 +335,51 @@ Additional verification on 2026-06-21 for L4 `.2c` lifecycle/uninstall cleanup f
 - `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `12/57` with `ORPHAN (0)`.
 - Deactivation simulation with stubbed WordPress functions confirmed both scheduled hooks were cleared and `agent_neo_catalog_update_process_outbox` would have `wp_next_scheduled(...) === false` after clear.
 - Uninstall simulation with stubbed WordPress functions confirmed all four producer-owned catalog-update options were passed to `delete_option()`.
+
+Additional verification on 2026-06-21 for L4 `.3` SEO Core:
+
+- Research notes used before implementation:
+  - WordPress `register_rest_route()` must run on `rest_api_init` and requires `permission_callback`.
+  - WordPress `get_post_meta()` / `update_post_meta()` are the stable post meta persistence primitives for Core Plugin-owned SEO metadata.
+  - `WP_REST_Response::header()` can mark deprecated compatibility responses with `Deprecation: true`.
+- `php -l plugins/agent-neo-core/inc/rest/class-seo-controller.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- `bash bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, prompt construction, or variant/statistical decision logic in PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` increased coverage from `12/57` to `15/57` with `ORPHAN (0)` by adding `GET /seo/{post_id}`, `POST /seo/{post_id}/apply`, and deprecated `POST /seo/meta`.
+- WP 6.9.4 / PHP 8.3 route registration:
+  - `/agent-neo/v1/seo/(?P<post_id>\d+)=yes`
+  - `/agent-neo/v1/seo/(?P<post_id>\d+)/apply=yes`
+  - `/agent-neo/v1/seo/meta=yes`
+  - `rest_seo_module=yes`
+- WP-CLI REST verification via `rest_do_request()`:
+  - GET: `get_status=200`, `get_has_canonical=yes`.
+  - Apply with existing AGENT NEO canonical and Yoast-style canonical/noindex meta: `apply_status=200`, `apply_success=yes`, `apply_reflected=yes`, `warning_canonical=yes`, `warning_noindex=yes`, `rollback_present=yes`, `risk_passthrough=yes`.
+  - GET after apply: `get_after_canonical=yes`, `jsonld_key_preserved=yes`.
+  - Missing `seo_risk_diff`: `missing_risk_status=400`, `missing_risk_code=VALIDATION_ERROR`.
+  - Invalid `seo_risk_diff` schema: `invalid_risk_status=400`, `invalid_risk_code=VALIDATION_ERROR`.
+  - Unauthenticated GET: `unauth_status=401`, `unauth_code=UNAUTHORIZED`.
+  - Unauthenticated apply: `unauth_apply_status=401`, `unauth_apply_code=UNAUTHORIZED`.
+  - Object-level edit denial: `forbidden_status=403`, `forbidden_code=FORBIDDEN`.
+  - Missing post: `not_found_status=404`, `not_found_code=NOT_FOUND`.
+  - Deprecated `/seo/meta`: `deprecated_status=200`, `deprecated_header=yes`, `deprecated_warning=yes`.
+- `vendor/bin/phpunit` was not available in this workspace (`phpunit-not-installed`).
+
+Additional verification on 2026-06-21 for L4 `.3` SEO Core JSON post meta escaping:
+
+- Research note used before implementation:
+  - WordPress `update_post_meta()` passes stored post meta values through `stripslashes()`, so JSON strings with escaped quotes/backslashes must be passed through `wp_slash()` before persistence.
+- Fix scope:
+  - `_agent_neo_seo_meta` is encoded with `wp_json_encode()` and now saved via `update_post_meta( ..., wp_slash( $encoded_after ) )`.
+  - `_agent_neo_seo_rollback_points` remains array meta and is not a JSON string save path.
+- `php -l plugins/agent-neo-core/inc/rest/class-seo-controller.php` passed.
+- `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `15/57` with `ORPHAN (0)`.
+- Static grep confirmed the SEO controller has one JSON-string post meta save path: `_agent_neo_seo_meta`.
+- WP-CLI REST round-trip verification via `rest_do_request()` using OGP and JSON-LD values containing quotes and backslashes:
+  - `apply_status=200`, `get_status=200`, `raw_json_decode=yes`.
+  - `og_title_roundtrip=yes`, `jsonld_name_roundtrip=yes`, `jsonld_path_roundtrip=yes`, `roundtrip=pass`.
+- WP-CLI REST regression verification for existing T-017 flow:
+  - GET: `get_status=200`, `get_has_canonical=yes`.
+  - Apply with Yoast-style canonical/noindex meta: `apply_status=200`, `apply_success=yes`, `apply_reflected=yes`, `warning_canonical=yes`, `warning_noindex=yes`, `rollback_present=yes`, `risk_passthrough=yes`.
+  - Risk validation: `missing_risk_status=400`, `invalid_risk_status=400`.
+  - Deprecated `/seo/meta`: `deprecated_status=200`, `deprecated_header=yes`, `deprecated_warning=yes`.
