@@ -63,6 +63,62 @@ final class Agent_Neo_Core {
 	private Agent_Neo_Core_Status_Controller $status_controller;
 
 	/**
+	 * JSON Patch helper。
+	 *
+	 * @var Agent_Neo_Core_JSON_Patch
+	 */
+	private Agent_Neo_Core_JSON_Patch $json_patch;
+
+	/**
+	 * Dry-run store。
+	 *
+	 * @var Agent_Neo_Core_Dry_Run_Store
+	 */
+	private Agent_Neo_Core_Dry_Run_Store $dry_run_store;
+
+	/**
+	 * Idempotency store。
+	 *
+	 * @var Agent_Neo_Core_Idempotency_Store
+	 */
+	private Agent_Neo_Core_Idempotency_Store $idempotency_store;
+
+	/**
+	 * Rollback store。
+	 *
+	 * @var Agent_Neo_Core_Rollback_Store
+	 */
+	private Agent_Neo_Core_Rollback_Store $rollback_store;
+
+	/**
+	 * Audit log helper。
+	 *
+	 * @var Agent_Neo_Core_Audit_Log
+	 */
+	private Agent_Neo_Core_Audit_Log $audit_log;
+
+	/**
+	 * Actions REST controller。
+	 *
+	 * @var Agent_Neo_Core_Actions_Controller
+	 */
+	private Agent_Neo_Core_Actions_Controller $actions_controller;
+
+	/**
+	 * Blocks REST controller。
+	 *
+	 * @var Agent_Neo_Core_Blocks_Controller
+	 */
+	private Agent_Neo_Core_Blocks_Controller $blocks_controller;
+
+	/**
+	 * Sections REST controller。
+	 *
+	 * @var Agent_Neo_Core_Sections_Controller
+	 */
+	private Agent_Neo_Core_Sections_Controller $sections_controller;
+
+	/**
 	 * catalog-update producer skeleton。
 	 *
 	 * @var Agent_Neo_Core_Catalog_Update_Producer
@@ -80,6 +136,14 @@ final class Agent_Neo_Core {
 		$this->license_state           = new Agent_Neo_Core_License_State();
 		$this->agent_action_cpt        = new Agent_Neo_Core_Agent_Action_CPT();
 		$this->status_controller       = new Agent_Neo_Core_Status_Controller( $this->schema_loader, $this->license_state );
+		$this->json_patch              = new Agent_Neo_Core_JSON_Patch();
+		$this->dry_run_store           = new Agent_Neo_Core_Dry_Run_Store();
+		$this->idempotency_store       = new Agent_Neo_Core_Idempotency_Store();
+		$this->rollback_store          = new Agent_Neo_Core_Rollback_Store();
+		$this->audit_log               = new Agent_Neo_Core_Audit_Log();
+		$this->actions_controller      = new Agent_Neo_Core_Actions_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->dry_run_store, $this->idempotency_store, $this->rollback_store, $this->audit_log );
+		$this->blocks_controller       = new Agent_Neo_Core_Blocks_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->idempotency_store, $this->rollback_store, $this->audit_log );
+		$this->sections_controller     = new Agent_Neo_Core_Sections_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->idempotency_store, $this->rollback_store, $this->audit_log );
 		$this->catalog_update_producer = new Agent_Neo_Core_Catalog_Update_Producer();
 	}
 
@@ -105,6 +169,15 @@ final class Agent_Neo_Core {
 
 		$this->status_controller->register();
 		$this->loaded_modules[] = 'rest-status';
+
+		$this->actions_controller->register();
+		$this->loaded_modules[] = 'rest-actions';
+
+		$this->blocks_controller->register();
+		$this->loaded_modules[] = 'rest-blocks';
+
+		$this->sections_controller->register();
+		$this->loaded_modules[] = 'rest-sections';
 
 		$this->catalog_update_producer->register();
 		$this->loaded_modules[] = 'catalog-update-producer';

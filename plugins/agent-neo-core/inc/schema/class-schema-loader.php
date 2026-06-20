@@ -51,7 +51,10 @@ final class Agent_Neo_Core_Schema_Loader {
 		$this->schemas = array();
 
 		$this->validate_openapi_file();
-		$this->schemas['status-response'] = $this->read_json_schema( 'status-response.schema.json' );
+
+		foreach ( $this->schema_files() as $schema_name => $file ) {
+			$this->schemas[ $schema_name ] = $this->read_json_schema( $file );
+		}
 	}
 
 	/**
@@ -221,6 +224,14 @@ final class Agent_Neo_Core_Schema_Loader {
 			return array( $path . ' must be string' );
 		}
 
+		if ( 'integer' === $type && ! is_int( $value ) ) {
+			return array( $path . ' must be integer' );
+		}
+
+		if ( 'array' === $type && ! is_array( $value ) ) {
+			return array( $path . ' must be array' );
+		}
+
 		if ( 'object' === $type ) {
 			if ( ! is_array( $value ) ) {
 				return array( $path . ' must be object' );
@@ -230,5 +241,20 @@ final class Agent_Neo_Core_Schema_Loader {
 		}
 
 		return array();
+	}
+
+	/**
+	 * 読み込む schema file 一覧を返す。
+	 *
+	 * @return array<string, string>
+	 */
+	private function schema_files(): array {
+		return array(
+			'status-response'         => 'status-response.schema.json',
+			'action-dry-run-request'  => 'action-dry-run-request.schema.json',
+			'action-apply-request'    => 'action-apply-request.schema.json',
+			'block-patch-request'     => 'block-patch-request.schema.json',
+			'section-edit-request'    => 'section-edit-request.schema.json',
+		);
 	}
 }

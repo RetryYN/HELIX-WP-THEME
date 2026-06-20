@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["action", "resource_id", "diff_hash", "idempotency_key", "request_id"],
+  "properties": {
+    "action": { "type": "string" },
+    "resource_id": { "type": "integer" },
+    "resource_sub_id": { "type": "string" },
+    "diff_hash": { "type": "string" },
+    "idempotency_key": { "type": "string" },
+    "request_id": { "type": "string" },
+    "rollback_reason": { "type": "string" },
+    "from_preview_token": { "type": "string" }
+  }
+}

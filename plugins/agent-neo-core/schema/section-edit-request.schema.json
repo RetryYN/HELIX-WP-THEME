@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["section_payload", "changes", "idempotency_key"],
+  "properties": {
+    "section_id": { "type": "string" },
+    "section_payload": { "type": "object" },
+    "changes": { "type": "array" },
+    "idempotency_key": { "type": "string" },
+    "preview_only": { "type": "boolean" },
+    "risk": { "type": "object" }
+  }
+}

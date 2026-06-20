@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["action", "resource_id", "changes", "request_id"],
+  "properties": {
+    "action": { "type": "string" },
+    "resource_id": { "type": "integer" },
+    "resource_sub_id": { "type": "string" },
+    "changes": { "type": "array" },
+    "options": { "type": "object" },
+    "request_id": { "type": "string" },
+    "risk": { "type": "object" }
+  }
+}
