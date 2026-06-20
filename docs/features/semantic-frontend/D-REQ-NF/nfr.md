@@ -2,7 +2,7 @@
 
 ## 概要
 
-`semantic-frontend` の非機能要件は、セマンティックなフロントエンド構造が性能・アクセシビリティ・国際化・配布品質・AI 運用継続性の観点で維持されることを保証する。Core Web Vitals 基準・WCAG 2.2 AA 基準・JSON-LD 検証・Crawler Access Matrix 整合性を品質ゲートとして定義する。
+`semantic-frontend` の非機能要件は、セマンティックなフロントエンド構造が性能・アクセシビリティ・国際化・配布品質・AI 運用継続性の観点で維持されることを保証する。Core Web Vitals 基準・日本市場向けの基本 a11y 配慮・JSON-LD 検証・Crawler Access Matrix 整合性を品質ゲートとして定義する。
 
 ## 非機能要件の分類
 
@@ -21,7 +21,7 @@
 | SNF-001 | Core Web Vitals | 性能 | LCP 2.5s 以下、INP 200ms 以下、CLS 0.1 以下を代表テンプレート（LP/HP/記事）で保証する | P0 | REQ-NF-001 |
 | SNF-002 | 条件付きアセット | 性能 | JSON-LD・計測スクリプト・A/B スクリプトは使用ページのみ読み込み、全ページ読み込みを禁止する | P0 | REQ-NF-001 |
 | SNF-003 | LCP 画像制御 | 性能 | Hero ブロックの LCP 候補画像に `fetchpriority="high"` と `loading="eager"` を付与し、遅延読み込みを抑制する | P0 | REQ-NF-001 |
-| SNF-004 | WCAG 2.2 AA | アクセシビリティ | axe-core による自動検査を CI に組み込み、Critical/Serious 指摘 0 件を要件とする | P1 | REQ-NF-005 |
+| SNF-004 | a11y 基本配慮 | アクセシビリティ | axe-core による自動検査を CI に組み込み、Critical/Serious 指摘 0 件を目安にしつつ、日本市場向けの基本配慮を満たす | P1 | REQ-NF-005 |
 | SNF-005 | フォーカス可視性 | アクセシビリティ | `:focus-visible` によるフォーカスリングを全インタラクション要素に実装し、CTA・フォーム・ナビが keyboard 操作可能 | P1 | REQ-NF-005 |
 | SNF-006 | aria-label 網羅 | アクセシビリティ | 図像のみの CTA・ハンバーガーメニュー・ランキング星評価に適切な aria-label または aria-labelledby を付与する | P1 | REQ-NF-005 |
 | SNF-007 | i18n 対応 | 国際化 | 全 UI 文字列を `__()` / `_e()` でラップし、`agent-neo.pot` に抽出できる状態にする | P1 | REQ-NF-006 |

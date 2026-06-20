@@ -160,7 +160,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-NF-002 | セキュリティ | 書き込みAPIはnonce/capability/rate limit/schema validationを必須にする | P0 |
 | REQ-NF-003 | ライセンス | テーマ本体/プラグインはGPL互換。参照テーマのコード/画像/CSS/固有文言はコピーしない | P0 |
 | REQ-NF-004 | データ保護 | 計測データは必要最小限とし、個人情報を直接収集しない設計を基本にする | P0 |
-| REQ-NF-005 | アクセシビリティ | WCAG 2.2 AAを目標にする | P1 |
+| REQ-NF-005 | アクセシビリティ | 日本市場向けの基本配慮として、コントラスト比・見出し構造・alt・キーボード操作・フォーカス可視・200% 拡大時の reflow・予期しない context-change 防止を満たす | P1 |
 | REQ-NF-006 | 国際化 | 初版は日本語/英語対応 | P1 |
 | REQ-NF-007 | 可観測性 | JSON操作、計測イベント、同期失敗をログ化する | P1 |
 | REQ-NF-008 | 配布/機能境界 | Theme CoreはFSE表示層に限定し、CPT、SEO保存、計測、A/B、JSON操作APIはCompanion Pluginへ分離する | P0 |

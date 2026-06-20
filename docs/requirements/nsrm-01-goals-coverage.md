@@ -216,7 +216,7 @@ title / description / robots / canonical / OGP / 構造化データをテーマ�
 種別: 法令ゴール  
 優先度: P0
 
-GPL 互換ライセンス・WCAG 2.2 AA アクセシビリティ・景表法 PR 表記・SBOM・プラグイン衝突検出・rollback 準備・i18n（ja/en）・WP Coding Standards 等の商用配布品質を全て担保する。
+GPL 互換ライセンス・日本市場向けの基本 a11y 配慮・景表法 PR 表記・SBOM・プラグイン衝突検出・rollback 準備・i18n（ja/en）・WP Coding Standards 等の商用配布品質を全て担保する。
 
 ---
 

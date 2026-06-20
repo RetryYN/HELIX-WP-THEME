@@ -111,7 +111,7 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | GAP-RT-055 | D 法規制対応 | **AI 生成コンテンツ開示の法規制**（EU AI Act Article 50 / California SB 942 / C2PA v2.4）が本製品の AI 記事量産ユースケースに正面から適用される。これらの法規制に対する対応方針・責務帰属・テーマ側の関与範囲が設計ドキュメントに未収載であった | EU AI Act Article 50（2026-08-02 施行 / 既存システム 2026-12-02 猶予）/ California SB 942（2026-01-01 施行済み）/ C2PA v2.4 / ADR-024 §Decision §1〜3（AI write 操作の Automation SEO 経由一本化）/ REQ-NF-025（AI 判断ロジック完全分離） | MISSING | **高**（EU AI Act の猶予期限 2026-12-02 が L4 実装サイクル内に到来。施行済みの SB 942 も対象となりうる） | ADR / L4-carry | **RESOLVED-BY-DECISION**（2026-06-20 / ADR-025）: Automation SEO 登録時の同意に開示責務を集約。マーキングロジックは Automation SEO 側。AGENT-NEO は disclosure レンダリングフック（スロット / schema.org creator フィールド）のみ提供。詳細は ADR-025 参照。L4 carry CARRY-ADR025-001〜005 として継続管理。|
 
 | GAP-RT-056 | A-4 パフォーマンス（enforce 機構） | ページ別アセット分離 enforce 機構（`should_load_separate_core_block_assets` / Speculative Loading / Font Library ローカル配信）が設計に記載されていなかった。「無駄JS禁止」原則を enforce 可能にする具体機構の方針が未追記 | `docs/research/wp-ecosystem-20260620.md` §性能 / REQ-NF-001a / ADR-006 | MISSING（addendum 追記前） | 中 | L3-patch（addendum追記） | **RESOLVED-IN-L3 + CARRY-TO-L4**（L3-A4 addendum §2026-06-20 追記で方針確定 / 具体実装・閾値は PERF-CARRY-007〜009 / L4 carry）|
-| GAP-RT-057 | L5 アクセシビリティ（新 5 要件） | WordPress.org accessibility-ready 基準が 2026-05-06 に改定（WCAG 2.2 AA ベース / 新 5 要件）されたが L5 設計書に反映されていなかった。再評価期限 2026-06-30 を考慮すると L4 着手前に受入条件確定が必要 | `docs/research/wp-ecosystem-20260620.md` §アクセシビリティ / WordPress.org accessibility-ready 改定（2026-05-06）/ L5-visual-design.md §5 | MISSING（L5 追記前） | 高 | L3-patch（L5追記） | **RESOLVED-IN-L3 + CARRY-TO-L4**（L5-visual-design.md §5.1.A に新 5 要件を追記済み / 具体 TC は CARRY-A11Y-001 として L4 着手前に test-plan **§11（TC-074〜078）** に登録済み / 再評価期限 2026-06-30）|
+| GAP-RT-057 | L5 アクセシビリティ（通常品質） | 日本市場向けでは WordPress.org accessibility-ready / EU EAA / ADA を要件根拠にしない。a11y は SEO/UX と重複する基本配慮を L4 theme 実装の通常品質として扱う | `docs/design/L5-visual-design.md` §5 / `docs/test-plan/L3-test-plan.md` §11 | RESOLVED | 低 | L3-patch（方針是正） | **RESOLVED-BY-DECISION**（2026-06-21）: 市場=日本、ADR-024 で Automation SEO 専用配布のため wp.org accessibility-ready 基準は対象外。EU EAA / ADA は日本向けサイトに非適用。reflow / context-change / focus 可視は SEO/UX 重複ぶんを通常品質として実施し、新 5 要件のゲート化・6/30 期限は撤去。|
 | GAP-RT-058 | B 埋め込みブロック未設計 | Automation SEO が生成するフリーフォーム自己完結 HTML（図解 / ゲーム / 診断）を投稿・固定ページ等の任意のブロック編集領域に差し込める特殊ブロック（`agent-neo/embed`）として CSS 隔離・セキュリティ隔離で実装する設計が存在しなかった。テーマ CSS との相互干渉・XSS 封じ込め・SEO 非indexed 領域の管理方針が未定義 | REQ-NF-001a / REQ-NF-025 / `docs/research/wp-ecosystem-20260620.md` | MISSING | 高 | ADR | **RESOLVED-IN-L3 + CARRY-TO-L4**（ADR-026 で dual-mode 設計・セキュリティ原則・ADR 整合を確定 / 投稿・固定ページ双方での利用方針を明記。**dual-mode 設計概要: mode=interactive = 別オリジン sandbox iframe（`<iframe src="https://<sandbox-origin>/embed/{id}" sandbox="allow-scripts">` / Automation SEO が生成・ホスト・配信する専用サブドメイン / CSP はサンドボックスオリジン HTTP ヘッダで配信 / 親ページは frame-src で sandbox-origin のみ allowlist / postMessage は `allow-same-origin` を外した sandbox のため `event.origin` は opaque（`"null"`）になり特定 origin 一致照合は機能しない。テーマ側は **`event.source === iframe.contentWindow`**（送信元 Window 照合）+ **iframe 生成時に埋め込む一意トークン（nonce / payload-id）のペイロード内検証** を主軸とし `event.origin === <sandbox-origin>` の特定 origin 一致は要求しない（ADR-026 / TC-068 と整合）/ standalone・個人版では static のみ）; mode=static = Shadow DOM + DSD（Declarative Shadow DOM）。旧 srcdoc / opaque origin モデルは廃止。** / 具体 block.json / sandbox 属性最終セット / CSP 文字列 / sanitize allowlist / DSD 詳細は CARRY-EMBED-001〜006 として L4 carry）|
 
 ---
@@ -148,14 +148,14 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 
 | 重大度 | 件数 | 該当 GAP-RT |
 |---|---|---|
-| 高 | 33 件 | GAP-RT-001〜005, 010〜012, 014〜017, 019, 021〜022, 024, 027〜030, 036〜038, 042〜044, 046〜047, 049〜050, **055**, **057**, **058** |
+| 高 | 32 件 | GAP-RT-001〜005, 010〜012, 014〜017, 019, 021〜022, 024, 027〜030, 036〜038, 042〜044, 046〜047, 049〜050, **055**, **058** |
 | 中 | 23 件 | GAP-RT-006〜009, 013, 018, 020, 023, 025〜026, 031〜035, 039〜041, 045, 048, 051, 053（うち GAP-RT-053 は RESOLVED-BY-DECISION）, **056** |
-| 低 | 2 件 | GAP-RT-052（ADR-024: 外部AI write 受口廃止により 中→低 に見直し済み）/ GAP-RT-054 |
+| 低 | 3 件 | GAP-RT-052（ADR-024: 外部AI write 受口廃止により 中→低 に見直し済み）/ GAP-RT-054/ GAP-RT-057（2026-06-21: a11y 通常品質化により 高→低） |
 | DEFERRED | 0 件 | —（GAP-RT-051: RESOLVED-IN-L3 に更新済み / 2026-06-18） |
 
-> **重大度別検算**: 高 33 + 中 23 + 低 2 = **58 件**（GAP-RT 総数と一致）
+> **重大度別検算**: 高 32 + 中 23 + 低 3 = **58 件**（GAP-RT 総数と一致）
 > - 中の内訳: active 22 件（GAP-RT-006〜009, 013, 018, 020, 023, 025〜026, 031〜035, 039〜041, 045, 048, 051, 056）+ 解消 1 件（GAP-RT-053 / RESOLVED-BY-DECISION）= 23 件
-> - disposition サマリと二重検算: disposition 合計 24 + 8 + 18 + 2 + 6 + 0 + 0 = **58 件**（一致）
+> - disposition サマリと二重検算: disposition 合計 24 + 8 + 17 + 3 + 6 + 0 + 0 = **58 件**（一致）
 
 ---
 
@@ -167,16 +167,16 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 |---|---:|---|
 | **RESOLVED-IN-L3** | 24 件 | GAP-RT-001, 003, 005, 007, 008, 009（A1 ブロック 6 件）/ GAP-RT-016, 019, 020（A3 SEO 純 RESOLVED 3 件）/ GAP-RT-021（A4 パフォーマンス / PERF-CARRY-001 ADR-021 統合解消）/ GAP-RT-029, 031, 032, 033, 034, 035（OSS/CI 群 6 件）/ GAP-RT-036, 037, 039, 040, 041（test-plan TC 追加 5 件）/ **GAP-RT-049, 050（L1 整合補正 ACC-NF↔REQ-NF / 2026-06-18 適用済み）/ GAP-RT-051（L5 カラートークン #xxxx 残ゼロ確認済み / 2026-06-18）** |
 | **CARRY-TO-L4（単独）** | 8 件 | GAP-RT-004（C-A1-002）/ GAP-RT-010（CARRY-A2-001）/ GAP-RT-011（CARRY-A2-002）/ GAP-RT-012（CARRY-A2-003）/ GAP-RT-013（CARRY-A2-004）/ GAP-RT-014（CARRY-A2-005 / CARRY-A2-006）/ **GAP-RT-052（CARRY-SEC-001: ADR-020 補足 + Abilities 公開スコープ確定）/ GAP-RT-054（CARRY-SEC-002: mcp-tools.schema.json 実ファイル作成）** |
-| **RESOLVED-IN-L3 + CARRY-TO-L4（両立）** | 18 件 | GAP-RT-002, 006, 015, 017, 018, 022, 023, 024, 025, 026（L3 設計確定 + 残項目が L4 carry）/ GAP-RT-027, 028, 030（ADR-020 方針確定 + carry 残存）/ GAP-RT-038（TC 追加済み + PERF-CARRY-002 blocking）/ GAP-RT-042（ADR-023 + carry 4 件）/ **GAP-RT-056（L3-A4 addendum 追記済み + PERF-CARRY-007〜009 carry）/ GAP-RT-057（L5-visual-design 新 5 要件追記済み + CARRY-A11Y-001 carry）/ GAP-RT-058（ADR-026 方針確定 + CARRY-EMBED-001〜006 carry）** |
-| **RESOLVED-BY-DECISION** | 2 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要 / carry なし）/ **GAP-RT-055**（2026-06-20 / ADR-025: Automation SEO 登録時の同意に集約・テーマは disclosure フックのみ / **+ CARRY-TO-L4: CARRY-ADR025-001〜005 を L4 継続管理**） |
+| **RESOLVED-IN-L3 + CARRY-TO-L4（両立）** | 17 件 | GAP-RT-002, 006, 015, 017, 018, 022, 023, 024, 025, 026（L3 設計確定 + 残項目が L4 carry）/ GAP-RT-027, 028, 030（ADR-020 方針確定 + carry 残存）/ GAP-RT-038（TC 追加済み + PERF-CARRY-002 blocking）/ GAP-RT-042（ADR-023 + carry 4 件）/ **GAP-RT-056（L3-A4 addendum 追記済み + PERF-CARRY-007〜009 carry）/ GAP-RT-058（ADR-026 方針確定 + CARRY-EMBED-001〜006 carry）** |
+| **RESOLVED-BY-DECISION** | 3 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要 / carry なし）/ **GAP-RT-055**（2026-06-20 / ADR-025: Automation SEO 登録時の同意に集約・テーマは disclosure フックのみ / **+ CARRY-TO-L4: CARRY-ADR025-001〜005 を L4 継続管理**）/ **GAP-RT-057**（2026-06-21 / 日本市場向け通常品質へ再定位） |
 | **PO-ESCALATION** | 3 件 | GAP-RT-044, 046, 047（GAP-RT-043/045/048 は PM-RESOLVED 2026-06-20 / 冒頭 §同期 参照）|
 | **PM-RESOLVED（旧 PO-ESCALATION）** | 3 件 | GAP-RT-043, 045, 048（2026-06-20 / PO-decision-packet §PM確定）|
 | **L1-FIX-PENDING** | 0 件 | — （GAP-RT-049/050 は RESOLVED-IN-L3 に更新済み） |
 | **DEFERRED** | 0 件 | — （GAP-RT-051 は RESOLVED-IN-L3 に更新済み） |
 
-> **検算**: 24 + 8 + 18 + 2 + 6 + 0 + 0 = **58 件**（GAP-RT 総数と一致）
+> **検算**: 24 + 8 + 17 + 3 + 6 + 0 + 0 = **58 件**（GAP-RT 総数と一致）
 >
-> **注意**: RESOLVED-IN-L3 単独と RESOLVED-IN-L3 + CARRY-TO-L4 の両立を合計すると **RESOLVED（設計確定）= 42 件**。RESOLVED-BY-DECISION = 2 件（GAP-RT-053 / ADR-024 + GAP-RT-055 / ADR-025）。CARRY-TO-L4 単独 = 8 件（うち 2 件は今次追加）。純 OPEN 残存（PO 裁定待ち）= **6 件**（GAP-RT-043〜048）。
+> **注意**: RESOLVED-IN-L3 単独と RESOLVED-IN-L3 + CARRY-TO-L4 の両立を合計すると **RESOLVED（設計確定）= 42 件**。RESOLVED-BY-DECISION = 3 件（GAP-RT-053 / ADR-024 + GAP-RT-055 / ADR-025 + GAP-RT-057 / 通常品質化）。CARRY-TO-L4 単独 = 8 件。純 OPEN 残存（PO 裁定待ち）= **6 件**（GAP-RT-043〜048）。
 >
 > **RESOLVED-BY-DECISION 内の carry 有無の区別**:
 > - GAP-RT-053（ADR-024）: 純 RESOLVED-BY-DECISION。carry なし。REQ-F-043 廃止により設計判断で完結。
@@ -228,7 +228,7 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | **CARRY-WP7-005** | GAP-RT-028 | `423 Locked` / `409 Conflict` 衝突検出実装（PO-WP7-02 裁定後） | TC（L4 REST Sprint で追加） | L4 REST Sprint | P1 | false（L4 REST 実装スプリント着手前に裁定） |
 | **CARRY-WP7-006** | GAP-RT-030 | Gutenberg pre-release ブランチ互換テスト統合 | TC（L4 CI Sprint で追加） | L4 CI Sprint | P2 | false |
 | CARRY-WP7-013-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D1 | source 登録=register_block_bindings_source（get_value_callback/uses_context、callback 内 current_user_can + transient）／束縛 meta=register_post_meta（show_in_rest/sanitize_callback/auth_callback） | 受入条件 TC=L4 で追加 | L4 sprint=theme scaffold / be-logic | P2 | false |
-| CARRY-WP7-014-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D2 | Interactivity directive 対象 UI（accordion / tabs / モバイルメニュー / FAQ トグル）の実装 + 性能予算（REQ-NF-001e）+ a11y 受入条件追加 | 受入条件 TC=TC-074〜078（WCAG2.2 AA）連動 | L4 sprint=fe + qa | P2 | false |
+| CARRY-WP7-014-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D2 | Interactivity directive 対象 UI（accordion / tabs / モバイルメニュー / FAQ トグル）の実装 + 性能予算（REQ-NF-001e）+ a11y 受入条件追加 | 受入条件 TC=TC-074〜076（基本 a11y 配慮）連動 | L4 sprint=fe + qa | P2 | false |
 | CARRY-WP7-015-IMPL | GAP-RT（WP7.0 §C）/ ADR-027 D3 | /styles/ section style partial（blockTypes 指定）設計・命名 + S-DESIGN-TOKEN 連動を追加 | 受入条件 TC=L4 で追加 | L4 sprint=fe-design / S-DESIGN-TOKEN | P2 | false |
 | **CARRY-WP7-007** | GAP-RT-030 | `block.json` `apiVersion` 3 対応スクリプト | TC（L4 block Sprint で追加） | L4 block Sprint | P2 | false |
 | **CARRY-WP7-008** | GAP-RT-027, 028 | WP7 Feature Flags ゲート実装 | TC（L4 WP7 Sprint で追加） | L4 WP7 Sprint | P1 | false |
@@ -253,7 +253,6 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | **PERF-CARRY-007** | GAP-RT-056 | `should_load_separate_core_block_assets` フィルター実装（**core ブロック CSS の per-block 分離**のみ / JS 分離は block.json `viewScript` + per-block enqueue で別途対応）/ dequeue 許可リスト確定 | TC（L4 performance Sprint で追加） | L4 performance Sprint | P2 | false |
 | **PERF-CARRY-008** | GAP-RT-056 | Speculative Loading（WP 6.8+）`wp_get_speculation_rules()` vs JSON 出力方式の選定・実装。admin/プレビュー/ログイン等 sensitive URL は **`where` 否定ルール**（`"where": { "not": { "href_matches": "..." } }` 等）で明示除外（`eagerness: moderate` は opt-out にならないため不使用。`eagerness: never` は有効値でなく無視されるため使用しない） | TC（L4 performance Sprint で追加） | L4 performance Sprint | P2 | false |
 | **PERF-CARRY-009** | GAP-RT-056 | Font Library（WP 6.5+）ローカルフォント配信の採用判断・`source=local` font-policy 統合・preconnect 抑制実装 | TC（L4 fonts Sprint で追加） | L4 fonts Sprint | P2 | false |
-| **CARRY-A11Y-001** | GAP-RT-057 | WordPress.org accessibility-ready 新 5 要件（2026-05-06 改定 / WCAG 2.2 AA）の具体受入 TC 追加と CI 自動化（reflow / context-change 防止 / focus outline 禁止ルール化 / statement template / 推奨 plugin 審査フロー） | **TC-074〜TC-078（test-plan §11 / 2026-06-20 登録完了）**。TC 登録済み。CI 自動化（TC-074 Playwright reflow / TC-076 stylelint outline 禁止）は L4 通常作業として継続。§10 は ADR-026 / GAP-RT-058 埋め込みブロック専用のため a11y 新 5 要件は §11 に独立分節 | L4 着手前必須（再評価期限 2026-06-30）。TC 登録は 2026-06-20 完了。CI 自動化は L4 carry として継続 | P1 | false |
 | **CARRY-EMBED-001** | GAP-RT-058 | `agent-neo/embed` block.json 完全形の確定（name / apiVersion 3 / supports / attributes / render_callback 等）| TC（L4 embed Sprint で追加） | L4 embed Sprint 着手前 | P1 | false |
 | **CARRY-EMBED-002** | GAP-RT-058 | iframe sandbox 属性最終セット確定（`allow-scripts` のみか追加属性を付与するか）/ postMessage プロトコル仕様（height resize / origin 検証方式）。**【非交渉制約】汎用 parent localStorage / storage bridge は禁止（任意キー / 任意値 read/write 不可）。永続化が要る場合も namespace 固定 + 値 schema 検証 + write 専用等の厳格プロトコルに限定し、デフォルトは bridge 不持方針を優先（ADR-026 §Consequences 参照 / 不変制約）** | TC（L4 embed Sprint で追加） | L4 embed Sprint 着手前 | P1 | false |
 | **CARRY-EMBED-003** | GAP-RT-058 | CSP 文字列確定（`frame-src` / `default-src` / `script-src` 等）/ Automation SEO から payload を受け取る REST エンドポイント設計。**egress allowlist: `connect-src` / `img-src` / `form-action` を default-deny（`'none'` または自 origin のみ）とし、許可 origin を明示列挙する CSP 文字列を確定する（iframe 内 JS の fetch/XHR/sendBeacon/img beacon/form POST による診断フォーム入力の外部 exfiltration 防止 / ADR-026 §2 egress 制御節参照 / TC-079 の前提）。【mode=interactive 別オリジン配信への更新（案A確定 / 2026-06-20）】旧 srcdoc-scoped CSP（`<meta http-equiv="Content-Security-Policy">` インライン）は廃止。代替: サンドボックスオリジン（`https://<sandbox-origin>`）が HTTP レスポンスヘッダで CSP を配信する（`script-src 'self'` + egress default-deny）。親ページの CSP には `frame-src https://<sandbox-origin>` を追加して sandbox-origin のみ allowlist とする（別オリジン配信のため旧 srcdoc 先頭 prepend 実装も不要となる / TC-079 前提は維持）。** | TC-079（L4 セキュリティ Sprint で実テスト化） | L4 セキュリティ Sprint 着手前 | P1 | false |

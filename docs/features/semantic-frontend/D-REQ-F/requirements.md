@@ -36,7 +36,7 @@ section_id / cta_id / offer_id / service_id / variant_id / article_id の命名�
 | SF-007 | Review JSON-LD | レビューブロック（Pros Cons / Review Detail）に schema.org/Review（reviewRating, author, itemReviewed）を出力する | P0 | REQ-F-004, REQ-NF-017 |
 | SF-008 | Organization JSON-LD | HP に schema.org/Organization（name, url, logo, sameAs, contactPoint）を出力する | P0 | REQ-F-011, REQ-NF-017 |
 | SF-009 | Breadcrumb JSON-LD | 全ページに schema.org/BreadcrumbList を出力し、canonical と整合させる | P0 | REQ-F-011, REQ-NF-017 |
-| SF-010 | WCAG 2.2 AA | color contrast ratio 4.5:1 以上、全インタラクション要素に keyboard 操作・focus visible・aria-label を実装する | P1 | REQ-NF-005, REQ-NF-016 |
+| SF-010 | a11y 基本配慮 | color contrast ratio 4.5:1 以上、全インタラクション要素に keyboard 操作・focus visible・aria-label を実装する | P1 | REQ-NF-005, REQ-NF-016 |
 | SF-011 | JS 非依存コンテンツ | タブ・アコーディオン・スライダーの主要コンテンツは HTML に展開した状態を持ち、JS が無効でも閲覧・クロールできる | P0 | REQ-NF-015 |
 | SF-012 | crawl-map | `GET /wp-json/agent-neo/v1/public/crawl-map` で全公開ページの canonical・robots・更新日・section 数・content_type を一覧できる | P1 | REQ-NF-015 |
 | SF-013 | content_hash | ページスナップショットに `content_hash` と `schema_hash` を含め、AI エージェントが差分検出に使えるようにする | P1 | REQ-NF-015 |

@@ -49,7 +49,7 @@
 | SF-007 Review JSON-LD | ACC-SF-008 |
 | SF-008 Organization JSON-LD | ACC-SF-009 |
 | SF-009 Breadcrumb JSON-LD | ACC-SF-010 |
-| SF-010 WCAG 2.2 AA | ACC-SF-011, 012 |
+| SF-010 a11y 基本配慮 | ACC-SF-011, 012 |
 | SF-011 JS 非依存 | ACC-SF-013 |
 | SF-014 BLP 計測 ID | ACC-SF-014 |
 | SF-015 service-aware IA | ACC-SF-015 |
