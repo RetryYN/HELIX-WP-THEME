@@ -93,6 +93,17 @@ final class Agent_Neo_Core_Agent_Action_CPT {
 			'_agent_neo_diff_hash'       => $string_meta,
 			'_agent_neo_idempotency_key' => $string_meta,
 			'_agent_neo_status'          => $string_meta,
+			'_agent_neo_actor'           => $string_meta,
+			'_agent_neo_target'          => $string_meta,
+			'_agent_neo_diff'            => array(
+				'type'              => 'string',
+				'single'            => true,
+				'show_in_rest'      => false,
+				'sanitize_callback' => 'sanitize_textarea_field',
+				'auth_callback'     => static function (): bool {
+					return current_user_can( 'edit_posts' );
+				},
+			),
 		);
 	}
 }

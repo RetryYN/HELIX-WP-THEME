@@ -19,6 +19,8 @@ AGENT NEO Core Plugin scaffold for `agent-neo/v1`.
   - `GET /wp-json/agent-neo/v1/seo/{post_id}`
   - `POST /wp-json/agent-neo/v1/seo/{post_id}/apply`
   - `POST /wp-json/agent-neo/v1/seo/meta` (deprecated compatibility route)
+- Implements operation log endpoint for L4 Sprint `.3`:
+  - `GET /wp-json/agent-neo/v1/logs`
 - Adds write-route auth helpers for future `nonce + capability` checks.
 - Adds schema loader foundation for `openapi.yaml` and JSON Schema files.
 - Registers the private audit CPT `agent_action`.
@@ -358,12 +360,43 @@ Additional verification on 2026-06-21 for L4 `.3` SEO Core:
   - GET after apply: `get_after_canonical=yes`, `jsonld_key_preserved=yes`.
   - Missing `seo_risk_diff`: `missing_risk_status=400`, `missing_risk_code=VALIDATION_ERROR`.
   - Invalid `seo_risk_diff` schema: `invalid_risk_status=400`, `invalid_risk_code=VALIDATION_ERROR`.
+
   - Unauthenticated GET: `unauth_status=401`, `unauth_code=UNAUTHORIZED`.
   - Unauthenticated apply: `unauth_apply_status=401`, `unauth_apply_code=UNAUTHORIZED`.
   - Object-level edit denial: `forbidden_status=403`, `forbidden_code=FORBIDDEN`.
   - Missing post: `not_found_status=404`, `not_found_code=NOT_FOUND`.
   - Deprecated `/seo/meta`: `deprecated_status=200`, `deprecated_header=yes`, `deprecated_warning=yes`.
 - `vendor/bin/phpunit` was not available in this workspace (`phpunit-not-installed`).
+
+Additional verification on 2026-06-21 for L4 `.3` LP/HP blueprint API:
+
+- Research notes used before implementation:
+  - WordPress `register_rest_route()` must run on `rest_api_init` and requires `permission_callback`.
+  - WordPress `WP_REST_Request::get_json_params()` is the stable JSON body reader for REST callbacks.
+  - WordPress `parse_blocks()` / `serialize_blocks()` support Gutenberg block structure round-trips.
+  - Twenty Twenty-Four keeps reusable page/pattern structures as discrete pattern files, including hero, CTA, pricing, FAQ, testimonial, and page home/landing patterns.
+- `php -l plugins/agent-neo-core/inc/rest/class-blueprint-controller.php` passed.
+- `bash bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, prompt construction, variant generation, or statistical decision logic in PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` reported `/pages/blueprint` and `/lp/sections` as covered, with `ORPHAN (0)`. Current workspace coverage is `18/57` because parallel branches are also present.
+- Route registration via REST index confirmed:
+  - `/agent-neo/v1/pages/blueprint`
+  - `/agent-neo/v1/lp/sections`
+- WP 6.9.4 / PHP 8.3 REST verification via `rest_do_request()`:
+  - Unauthenticated `/pages/blueprint`: `unauth_status=401`.
+  - Personal package `/pages/blueprint`: `personal_status=403`, `personal_code=FORBIDDEN`.
+  - Corporate package `/pages/blueprint`: `blueprint_status=200`, `blueprint_success=true`, `blueprint_id=lp-saas-v1`.
+  - TC-029: `sections_count=12`, `first_kind=hero`, `last_kind=final-cta`, `consistency_valid=true`.
+  - Invalid `/lp/sections` `section_kind=body`: `bad_kind_status=400`, `bad_kind_code=VALIDATION_ERROR`.
+  - Valid `/lp/sections` `section_kind=proof`: `section_status=200`, `section_kind=proof`.
+  - Blueprint page apply connection: `page_apply_available=true`.
+  - Existing `/pages/{id}/apply` consumed the blueprint dry-run payload: `apply_status=200`, `apply_applied=true`, `rollback_point_present=true`, `content_has_cta_section=true`.
+  - Existing `/pages/{id}/rollback` restored the page: `rollback_status=200`, `rollback_success=true`, `content_after_rollback=before`.
+- TL findings fix verification:
+  - Frozen L2 `lp-blueprint` order: `sections_order=yes`, `first_kind=hero`, `last_kind=final-cta`, `content_has_final_cta_section=yes`.
+  - Contract-external section kinds are rejected: `bad_voice_status=400`, `bad_offer_status=400`, `bad_gateway_status=400`.
+  - Missing page target is fail-before-write: `missing_status=404`, `missing_option_unchanged=yes`, `missing_dry_run_unchanged=yes`.
+  - Blueprint store failure does not create dry-run state: `store_failure_status=409`, `store_failure_dry_run_unchanged=yes`.
 
 Additional verification on 2026-06-21 for L4 `.3` SEO Core JSON post meta escaping:
 
@@ -383,3 +416,32 @@ Additional verification on 2026-06-21 for L4 `.3` SEO Core JSON post meta escapi
   - Apply with Yoast-style canonical/noindex meta: `apply_status=200`, `apply_success=yes`, `apply_reflected=yes`, `warning_canonical=yes`, `warning_noindex=yes`, `rollback_present=yes`, `risk_passthrough=yes`.
   - Risk validation: `missing_risk_status=400`, `invalid_risk_status=400`.
   - Deprecated `/seo/meta`: `deprecated_status=200`, `deprecated_header=yes`, `deprecated_warning=yes`.
+
+Additional verification on 2026-06-21 for L4 `.3` operation logs API:
+
+- Research notes used before implementation:
+  - WordPress `register_rest_route()` must run on `rest_api_init` and requires `permission_callback`.
+  - WordPress `WP_Query` supports CPT filtering with `meta_query`, `date_query`, and paged result totals.
+  - WordPress core REST controllers use `WP_REST_Server::READABLE` for GET route registration.
+- `php -l plugins/agent-neo-core/inc/rest/class-logs-controller.php` passed.
+- `php -l plugins/agent-neo-core/inc/json/class-audit-log.php` passed.
+- `php -l plugins/agent-neo-core/inc/cpt/class-agent-action-cpt.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- `bash bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, prompt construction, or variant/statistical decision logic in PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` reported `GET /logs` as covered with `ORPHAN (0)`. Current workspace coverage is `18/57` because parallel branches are also present.
+- WP 6.9.4 / PHP 8.3 route registration:
+  - REST index confirmed `/agent-neo/v1/logs`.
+  - Authenticated status showed `rest-logs` in `loaded_modules`.
+  - Unauthenticated HTTP `GET /wp-json/agent-neo/v1/logs` returned `401`.
+- WP-CLI REST verification via `rest_do_request()`:
+  - SEO apply created an `agent_action` audit entry: `seo_apply_status=200`, `seo_apply_success=true`.
+  - `GET /logs` with `status=applied`, `actor=1`, `target=post:{id}`, `from`, `to`, `page=1`, `per_page=1` returned `logs_status=200`, `logs_count=1`.
+  - Returned entry had all required fields: `actor=1`, matching `request_id`, `target=post:{id}`, `status=applied`, `diff` array present.
+  - Pagination meta returned `page=1`, `per_page=1`.
+  - Invalid date filter returned `400 VALIDATION_ERROR`.
+  - Logged-in user without `edit_others_posts` returned `403 FORBIDDEN`.
+  - Tracking accepted hook created a `tracking_event` audit entry queryable with `actor=system`, `target=tracking:article_id:post-42|section_id:sec-a|cta_id:cta-b|variant_id:var-c`, and required fields present.
+  - Audit `diff` / `details` JSON values containing quotes and backslashes round-tripped through `GET /logs`: `roundtrip_diff_ok=yes`, `roundtrip_details_ok=yes`.
+- TL findings fix verification:
+  - `GET /logs?request_id=aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa` returned only that request: `logs_request_status=200`, `logs_request_count=1`, `logs_only_request_a=yes`, `logs_contains_request_b=no`.
