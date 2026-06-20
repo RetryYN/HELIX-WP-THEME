@@ -205,3 +205,77 @@ Additional verification on 2026-06-21 for REST controller glob autoload:
     - `loaded_modules=schema-loader,auth,license,agent-action-cpt,rest-status,rest-actions,rest-blocks,rest-sections,rest-pages,rest-zztest,catalog-update-producer`
   - `GET http://localhost:8086/wp-json/agent-neo/v1/zztest` returned `200` with `{"success":true}`.
   - Deleted `inc/rest/class-zztest-controller.php`; `test ! -e plugins/agent-neo-core/inc/rest/class-zztest-controller.php` returned `zztest_removed`.
+
+Additional verification on 2026-06-21 for L4 Sprint `.2b-1` tracking event API:
+
+- `php -l plugins/agent-neo-core/inc/rest/class-tracking-controller.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files in the current workspace.
+- `bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, variant generation, statistical decision logic, or prompt construction in PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` reported `POST /tracking/event` as covered and `ORPHAN (0)`. Current workspace coverage was `12/57` because parallel license/settings branches are also present.
+- Route discovery via `curl -s http://localhost:8086/wp-json/agent-neo/v1` confirmed `/agent-neo/v1/tracking/event`.
+- Authenticated status check showed self-registration loaded `rest-tracking` without editing the kernel or bootstrap.
+- WP-CLI REST verification with `wp_set_current_user( 0 )`:
+  - Valid `site_token` + HMAC signature + `section_id` / `cta_id` / `variant_id`: `ok_status=200`, `ok_success=true`, `ok_replay=false`, `ok_event_id=evt_d401ecc3c5bc6070ed650bf2931feefd`.
+  - Invalid signature: `bad_sig_status=401`, `bad_sig_code=SIGNATURE_INVALID`.
+  - Missing `section_id`: `missing_status=400`, `missing_code=VALIDATION_ERROR`.
+  - Same nonce replay: `replay_status=200`, `replay_flag=true`.
+  - Rate limit with isolated IP/token and test filter limit `1`: `rate_first_status=200`, `rate_second_status=429`, `rate_second_code=RATE_LIMITED`, `rate_retry_status=429`.
+  - Bot policy block via metadata: `bot_status=403`, `bot_code=FORBIDDEN`.
+  - Missing nonce: `missing_nonce_status=401`, `missing_nonce_code=SIGNATURE_INVALID`.
+
+Additional verification on 2026-06-21 for L4 `.2c-1` settings export/import:
+
+- `php -l plugins/agent-neo-core/inc/rest/class-settings-controller.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, prompt construction, or variant/statistical decision logic in PHP files.
+- `bash bin/check-impl-coverage.sh` reported coverage `12/57` and `ORPHAN (0)`, including:
+  - `POST /settings/export`
+  - `POST /settings/import`
+- WP 6.9.4 / PHP 8.3 REST verification via `rest_do_request()`:
+  - Route registration: `route_export=yes`, `route_import=yes`.
+  - Two consecutive exports: `export_status_1=200`, `export_status_2=200`, `export_bit_identical=yes`.
+  - Export payload import: `import_status=200`.
+  - Re-export after import: `roundtrip_bit_identical=yes`.
+  - Unauthenticated export: `unauth_status=401`, `unauth_code=UNAUTHORIZED`.
+  - Invalid import schema: `invalid_status=400`, `invalid_code=VALIDATION_ERROR`.
+
+Additional verification on 2026-06-21 for L4 `.2b-2` license validate API:
+
+- `php -l plugins/agent-neo-core/inc/license/class-license-state.php` passed.
+- `php -l plugins/agent-neo-core/inc/rest/class-license-controller.php` passed.
+- `find plugins/agent-neo-core -name '*.php' -print -exec php -l {} \;` passed for all plugin PHP files.
+- `bin/check-prefix.sh` passed.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, prompt construction, or variant/statistical decision logic in PHP files.
+- `bash bin/check-impl-coverage.sh --strict-orphan` reported coverage `12/57` and `ORPHAN (0)`, including `POST /license/validate`. Current workspace already includes parallel tracking/settings branches, so the aggregate coverage is above the single license delta.
+- Route discovery via `curl -s http://localhost:8086/wp-json/agent-neo/v1` confirmed `/agent-neo/v1/license/validate`.
+- Unauthenticated HTTP:
+  - `curl -s -o /tmp/agent-neo-license-unauth.json -w "%{http_code}" -X POST http://localhost:8086/wp-json/agent-neo/v1/license/validate ...`
+  - Result: `401` with `UNAUTHORIZED`.
+- WP 6.9.4 / PHP 8.3 REST verification via `rest_do_request()` with `agent_neo_core_license_verification_result` filter:
+  - Valid corporate entitlement: `valid_status=200`, `valid_success=true`, `valid_package=corporate`.
+  - Transient verification failure after valid state: `grace_validate_status=200`, `grace_readonly=true`, `grace_reason=license_unreachable`.
+  - Grace active write guard: `grace_write_status=503`, `grace_write_code=LICENSE_GRACE_PERIOD`.
+  - Grace expired write guard: `expired_write_status=403`, `expired_write_code=FEATURE_DISABLED`.
+  - Invalid license validate: `invalid_validate_status=403`, `invalid_validate_code=FEATURE_DISABLED`.
+  - Invalid license write guard: `invalid_write_status=403`, `invalid_write_code=FEATURE_DISABLED`.
+- After verification, local `agent_neo_license_state` was reset to `license_mode=readonly`, `package=personal`.
+
+Additional verification on 2026-06-21 for L4 fan-out TL review fixes:
+
+- `php -l plugins/agent-neo-core/inc/license/class-license-state.php` passed.
+- `php -l plugins/agent-neo-core/inc/rest/class-tracking-controller.php` passed.
+- `bash bin/check-impl-coverage.sh --strict-orphan` kept coverage at `12/57` with `ORPHAN (0)`.
+- License cache verification with a saved valid corporate entitlement and future `next_check_at`:
+  - `refresh=false` with upstream forced unreachable: `cache_status=200`, `cache_valid=true`, `cache_readonly=false`, `upstream_calls_after_cache=0`.
+  - `refresh=true` with the same upstream failure: `refresh_status=200`, `refresh_readonly=true`, `refresh_reason=license_unreachable`, `upstream_calls_after_refresh=1`.
+- License write guard for settings import/export:
+  - Grace state `/settings/import`: `grace_import_status=503`, `grace_import_code=LICENSE_GRACE_PERIOD`.
+  - Grace state `/settings/export`: `grace_export_status=200`.
+  - Invalid state `/settings/import`: `invalid_import_status=403`, `invalid_import_code=FEATURE_DISABLED`.
+- Tracking nonce concurrent replay simulation:
+  - Pre-existing nonce value with a preserved timeout forced the `add_option( value )` conflict path.
+  - Result: `race_replay=true`, `race_event_id=evt_existing_race`, `timeout_exists_after_race=true`.
+- Tracking rate limit IP source verification:
+  - No trusted proxy configured: changing `X-Forwarded-For` still used `REMOTE_ADDR`; second request hit `RATE_LIMITED`.
+  - Trusted proxy configured through `agent_neo_trusted_proxies`: different `X-Forwarded-For` values used separate keys, while repeating the same forwarded IP hit `RATE_LIMITED`.
