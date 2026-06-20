@@ -1,10 +1,10 @@
 <?php
 /**
  * Title: LP 最終 CTA（締め）
- * Slug: agent-neo/lp-cta
+ * Slug: agent-neo/lp-final-cta
  * Categories: agent-neo
  * Description: LP 最終 CTA セクション。濃インク帯・白見出し・オレンジ CTA ボタン（大）。コントラスト強め。
- * Keywords: lp, cta, contact, close, footer-cta
+ * Keywords: lp, cta, contact, close, footer-cta, final
  * Viewport Width: 1280
  * Block Types: core/group
  * Post Types: page, wp_template
@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<!-- wp:group {"align":"full","className":"an-lp-cta","backgroundColor":"primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull an-lp-cta has-primary-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40)">
+<!-- wp:group {"align":"full","className":"an-lp-final-cta","backgroundColor":"primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull an-lp-final-cta has-primary-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40)">
 
 	<!-- wp:heading {"level":2,"textAlign":"center","style":{"typography":{"fontWeight":"800","fontSize":"var(--wp--preset--font-size--xx-large)","lineHeight":"1.2"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}},"color":{"text":"#ffffff"}}} -->
 	<h2 class="wp-block-heading has-text-align-center" style="font-weight:800;font-size:var(--wp--preset--font-size--xx-large);line-height:1.2;color:#ffffff;margin-bottom:var(--wp--preset--spacing--30)">WordPress 運用の課題、<br>今すぐ解決しませんか。</h2>
