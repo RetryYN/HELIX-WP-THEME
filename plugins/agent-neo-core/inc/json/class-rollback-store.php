@@ -18,6 +18,7 @@ final class Agent_Neo_Core_Rollback_Store {
 	private const HISTORY_META  = '_agent_neo_block_history';
 	private const MAX_POINTS    = 30;
 	private const HISTORY_LIMIT = 5;
+	private const SNAPSHOT_TTL  = 30 * DAY_IN_SECONDS;
 
 	/**
 	 * apply 前 snapshot を保存する。
@@ -31,10 +32,12 @@ final class Agent_Neo_Core_Rollback_Store {
 		$rollback_point_id = 'rb_' . wp_generate_uuid4();
 		$points            = get_post_meta( $post_id, self::SNAPSHOT_META, true );
 		$points            = is_array( $points ) ? $points : array();
+		$post              = get_post( $post_id );
 
 		$points[] = array(
 			'rollback_point_id' => $rollback_point_id,
 			'post_id'           => $post_id,
+			'post_type'         => $post instanceof WP_Post ? $post->post_type : '',
 			'content'           => $content,
 			'reason'            => $reason,
 			'created_at'        => gmdate( 'c' ),
@@ -69,6 +72,90 @@ final class Agent_Neo_Core_Rollback_Store {
 	 */
 	public function resource_version( int $post_id ): int {
 		return (int) get_post_meta( $post_id, self::VERSION_META, true );
+	}
+
+	/**
+	 * post 内の rollback point を返す。
+	 *
+	 * @param int    $post_id Post id。
+	 * @param string $rollback_point_id Rollback point id。
+	 * @return array<string, mixed>|WP_Error
+	 */
+	public function get_snapshot( int $post_id, string $rollback_point_id ) {
+		$point = $this->find_point_in_post( $post_id, $rollback_point_id );
+		if ( null === $point ) {
+			return Agent_Neo_Core_Auth::error(
+				'NOT_FOUND',
+				__( 'Rollback point was not found.', 'agent-neo-core' ),
+				array(
+					'post_id'           => $post_id,
+					'rollback_point_id' => $rollback_point_id,
+				)
+			);
+		}
+
+		if ( $this->is_expired( $point ) ) {
+			return Agent_Neo_Core_Auth::error(
+				'GONE',
+				__( 'Rollback point has expired.', 'agent-neo-core' ),
+				array(
+					'post_id'           => $post_id,
+					'rollback_point_id' => $rollback_point_id,
+				)
+			);
+		}
+
+		return $point;
+	}
+
+	/**
+	 * rollback point id から snapshot を検索する。
+	 *
+	 * @param string $rollback_point_id Rollback point id。
+	 * @return array<string, mixed>|WP_Error
+	 */
+	public function find_snapshot( string $rollback_point_id ) {
+		global $wpdb;
+
+		$like = '%' . $wpdb->esc_like( $rollback_point_id ) . '%';
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value LIKE %s",
+				self::SNAPSHOT_META,
+				$like
+			)
+		);
+
+		foreach ( $rows as $row ) {
+			$post_id = isset( $row->post_id ) ? (int) $row->post_id : 0;
+			if ( $post_id < 1 ) {
+				continue;
+			}
+
+			$point = $this->find_point_in_post( $post_id, $rollback_point_id );
+			if ( null === $point ) {
+				continue;
+			}
+
+			if ( $this->is_expired( $point ) ) {
+				return Agent_Neo_Core_Auth::error(
+					'GONE',
+					__( 'Rollback point has expired.', 'agent-neo-core' ),
+					array(
+						'post_id'           => $post_id,
+						'rollback_point_id' => $rollback_point_id,
+					)
+				);
+			}
+
+			return $point;
+		}
+
+		return Agent_Neo_Core_Auth::error(
+			'NOT_FOUND',
+			__( 'Rollback point was not found.', 'agent-neo-core' ),
+			array( 'rollback_point_id' => $rollback_point_id )
+		);
 	}
 
 	/**
@@ -132,5 +219,44 @@ final class Agent_Neo_Core_Rollback_Store {
 			},
 			$items
 		);
+	}
+
+	/**
+	 * post meta から rollback point を検索する。
+	 *
+	 * @param int    $post_id Post id。
+	 * @param string $rollback_point_id Rollback point id。
+	 * @return array<string, mixed>|null
+	 */
+	private function find_point_in_post( int $post_id, string $rollback_point_id ): ?array {
+		$points = get_post_meta( $post_id, self::SNAPSHOT_META, true );
+		$points = is_array( $points ) ? $points : array();
+
+		foreach ( $points as $point ) {
+			if ( ! is_array( $point ) ) {
+				continue;
+			}
+
+			if ( isset( $point['rollback_point_id'] ) && hash_equals( (string) $point['rollback_point_id'], $rollback_point_id ) ) {
+				return $point;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * rollback point の TTL 切れを判定する。
+	 *
+	 * @param array<string, mixed> $point Rollback point。
+	 * @return bool
+	 */
+	private function is_expired( array $point ): bool {
+		$created_at = isset( $point['created_at'] ) && is_string( $point['created_at'] ) ? strtotime( $point['created_at'] ) : false;
+		if ( false === $created_at ) {
+			return true;
+		}
+
+		return ( time() - $created_at ) > self::SNAPSHOT_TTL;
 	}
 }

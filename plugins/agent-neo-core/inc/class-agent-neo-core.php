@@ -119,6 +119,13 @@ final class Agent_Neo_Core {
 	private Agent_Neo_Core_Sections_Controller $sections_controller;
 
 	/**
+	 * Pages REST controller。
+	 *
+	 * @var Agent_Neo_Core_Pages_Controller
+	 */
+	private Agent_Neo_Core_Pages_Controller $pages_controller;
+
+	/**
 	 * catalog-update producer skeleton。
 	 *
 	 * @var Agent_Neo_Core_Catalog_Update_Producer
@@ -144,6 +151,7 @@ final class Agent_Neo_Core {
 		$this->actions_controller      = new Agent_Neo_Core_Actions_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->dry_run_store, $this->idempotency_store, $this->rollback_store, $this->audit_log );
 		$this->blocks_controller       = new Agent_Neo_Core_Blocks_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->idempotency_store, $this->rollback_store, $this->audit_log );
 		$this->sections_controller     = new Agent_Neo_Core_Sections_Controller( $this->auth, $this->schema_loader, $this->json_patch, $this->idempotency_store, $this->rollback_store, $this->audit_log );
+		$this->pages_controller        = new Agent_Neo_Core_Pages_Controller( $this->auth, $this->license_state, $this->json_patch, $this->dry_run_store, $this->idempotency_store, $this->rollback_store, $this->audit_log );
 		$this->catalog_update_producer = new Agent_Neo_Core_Catalog_Update_Producer();
 	}
 
@@ -178,6 +186,9 @@ final class Agent_Neo_Core {
 
 		$this->sections_controller->register();
 		$this->loaded_modules[] = 'rest-sections';
+
+		$this->pages_controller->register();
+		$this->loaded_modules[] = 'rest-pages';
 
 		$this->catalog_update_producer->register();
 		$this->loaded_modules[] = 'catalog-update-producer';

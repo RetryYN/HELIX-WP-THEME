@@ -11,13 +11,17 @@ AGENT NEO Core Plugin scaffold for `agent-neo/v1`.
   - `POST /wp-json/agent-neo/v1/actions/apply`
   - `PATCH /wp-json/agent-neo/v1/posts/{id}/blocks/{block_id}`
   - `POST /wp-json/agent-neo/v1/posts/{id}/sections/{section_id}/edit`
+- Implements page apply / rollback endpoints for L4 Sprint `.2a`:
+  - `POST /wp-json/agent-neo/v1/pages/{id}/apply`
+  - `POST /wp-json/agent-neo/v1/pages/{id}/rollback`
+  - `POST /wp-json/agent-neo/v1/rollback/{rollback_id}`
 - Adds write-route auth helpers for future `nonce + capability` checks.
 - Adds schema loader foundation for `openapi.yaml` and JSON Schema files.
 - Registers the private audit CPT `agent_action`.
 - Adds activation, deactivation, and uninstall cleanup hooks.
 - Places the catalog-update producer skeleton without outbound send logic.
 
-Tracking, license validate, catalog-update send, pages apply, and rollback API endpoints are intentionally not implemented in this sprint.
+Tracking, license validate, and catalog-update send endpoints are intentionally not implemented in this sprint.
 
 ## Verification Commands
 
@@ -117,3 +121,41 @@ Additional verification on 2026-06-21 for L4 Sprint `.1b` TL review fixes:
 - Regression flow:
   - `dry-run -> apply -> idempotent replay -> rollback point -> audit` stayed green.
   - Result: `reg_dry_status=200`, `reg_db_unchanged_after_dry=yes`, `reg_apply_status=200`, `reg_apply_applied=true`, `reg_rollback_point_present=yes`, `reg_replay_status=200`, `reg_replay_applied=false`, `reg_audit_present=yes`.
+
+Additional verification on 2026-06-21 for L4 Sprint `.2a` pages apply / rollback API:
+
+- `php -l` passed for all PHP files under `plugins/agent-neo-core`.
+- `bin/check-prefix.sh` passed.
+- `bin/check-impl-coverage.sh --strict-orphan` reported coverage `8/57` and `ORPHAN (0)`.
+- Static grep found no `wp/v2` route registration, AI SDK import, local risk scoring, or variant/statistical decision logic in PHP files.
+- Route discovery:
+  - `curl -s http://localhost:8086/wp-json/agent-neo/v1`
+  - Confirmed routes: `/pages/(?P<id>\d+)/apply`, `/pages/(?P<id>\d+)/rollback`, `/rollback/(?P<rollback_id>[A-Za-z0-9_-]+)`.
+- Unauthenticated HTTP:
+  - `curl -s -o /tmp/agent-neo-pages-unauth.json -w "%{http_code}" -X POST http://localhost:8086/wp-json/agent-neo/v1/pages/1/apply ...`
+  - Result: `401`.
+- WP-CLI REST page dry-run/apply/rollback flow:
+  - `dry_status=200`, `dry_success=true`, `diff_hash_present=true`
+  - `/pages/{id}/apply`: `apply_status=200`, `apply_success=true`, `rollback_point_present=true`, `applied_blocks=1`, `content_after_apply=after`
+  - idempotent replay: `replay_status=200`, `replay_applied=false`
+  - `/pages/{id}/rollback`: `rollback_status=200`, `restored_version_present=true`, `content_after_rollback=before`
+  - expired rollback point: `expired_status=410`, `expired_code=GONE`
+  - missing generic rollback point: `missing_status=404`, `missing_code=NOT_FOUND`
+  - personal package with LP/template apply: `package_status=403`, `package_code=FORBIDDEN`
+- Generic rollback success:
+  - `/rollback/{rollback_id}` returned `generic_rollback_status=200`, `generic_restored_version_present=true`, `generic_content_after=before`.
+
+Additional verification on 2026-06-21 for L4 Sprint `.2a` TL review fixes:
+
+- `php -l plugins/agent-neo-core/inc/rest/class-pages-controller.php` passed.
+- `php -l plugins/agent-neo-core/inc/json/class-rollback-store.php` passed.
+- `bin/check-prefix.sh` passed.
+- `bin/check-impl-coverage.sh --strict-orphan` kept coverage at `8/57` with `ORPHAN (0)`.
+- WP-CLI REST verification:
+  - A-005 compliant apply without `request_id`: `page_dry_status=200`, `page_apply_no_request_status=200`, `page_apply_success=true`, `page_content_after_apply=after`.
+  - `diff_hash` missing: `missing_diff_status=400`, `missing_diff_code=VALIDATION_ERROR`.
+  - Dry-run action mismatch for page apply: `mismatch_status=412`, `mismatch_code=PRECONDITION_FAILED`.
+  - Existing page rollback regression: `page_rollback_status=200`, `page_rollback_success=true`, `page_content_after_rollback=before`.
+  - Package boundary regression: `package_status=403`, `package_code=FORBIDDEN`.
+  - Generic rollback restored a `post` rollback point from `/actions/apply`: `post_apply_status=200`, `post_rollback_point_present=yes`, `generic_post_rollback_status=200`, `generic_post_rollback_post_type=post`, `post_content_after_rollback=before`.
+  - Generic rollback errors stayed explicit: `missing_rollback_status=404`, `missing_rollback_code=NOT_FOUND`, `expired_rollback_status=410`, `expired_rollback_code=GONE`.

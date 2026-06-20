@@ -21,6 +21,7 @@ require_once AGENT_NEO_CORE_DIR . 'inc/json/class-dry-run-store.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-actions-controller.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-blocks-controller.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-sections-controller.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-pages-controller.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/cpt/class-agent-action-cpt.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/license/class-license-state.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/lifecycle/class-lifecycle.php';
