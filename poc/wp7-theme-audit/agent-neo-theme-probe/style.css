@@ -1,0 +1,18 @@
+/*
+Theme Name: AGENT NEO Theme Probe
+Theme URI: https://github.com/agent-neo/theme-probe
+Author: AGENT NEO Team
+Author URI: https://agent-neo.example.com
+Description: WP7.0 ブロックテーマ（FSE）の最小要件を実測するための検証用フィクスチャ。Theme Check / WP7.0 必須項目を網羅する。本番テーマではない。
+Version: 0.0.1
+Requires at least: 6.6
+Tested up to: 7.0
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: agent-neo-probe
+Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-logo, editor-style, wide-blocks, one-column, two-columns, blog, portfolio
+
+このファイルはブロックテーマでは実質的に空でよい。
+スタイルはすべて theme.json および各ブロックの block-styles で管理する。
+*/
