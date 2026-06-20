@@ -55,7 +55,7 @@
 | CARRY-ADR023-004 | PM-RESOLVED | 選択肢A：旧テーマのショートコード変換は主要3種（`fukidashi` / `jin_icon` / `blogcard`）のみを Phase1 で提供、残りは非対応で明記 |
 | Q-012 | PM-RESOLVED | 選択肢B：SNS フィードウィジェットは Phase2 送り。シェア/OGP/X Card/埋め込み/プロフィール表示は Phase1 とする |
 | Q-005 | PM-RESOLVED | ライセンス検証は Automation SEO 契約 entitlement 確認へ統合。自社 API 実装。48h transient grace は凍結維持で再オープンしない |
-| PO-WP7-01 | PM-RESOLVED | WP7.0 は GA 済みのため GA 環境で Abilities API 本格組み込み検証を L4 entry で実施。承認規模は 0.5〜1人日 |
+| PO-WP7-01 | VERIFIED(2026-06-21) | WP7.0 GA と WP 6.9.4 の双方で Abilities API register -> get -> execute を実測済み。根拠: `poc/wp7-abilities/RESULTS.md` |
 | PERF-CARRY-002 | PM-RESOLVED | 選択肢A：Cookie Consent は外部プラグイン adapter 方式。テーマは Consent Mode v2 の受け口（入力 API / 更新受け取り）を提供 |
 | Q-013 | PM-RESOLVED | 選択肢B：安全側（Cookie Consent バナーあり前提）で進行。保存期間・集計閾値・表示責任者は L4 で Automation SEO 側 retention と整合して確定。将来「通知のみで法的に足りる」根拠が示されれば再評価 |
 
@@ -340,6 +340,8 @@ PO 確定必須。PM 視点では **選択肢 A（主要3種を Phase 1 で提�
 ### PO-WP7-01: WP 7.0 Abilities API 本格組み込み検証 人日投資承認
 
 > **2026-06-20 更新**: WP 7.0 は 2026-05-20 に GA リリース済み（ADR-020 2026-06-20 追記参照）。以下の「RC 段階」「RC PoC」「RC → final」の記述は起票時点（GA前）の草案表現であり、現在は「GA済み本格組み込み検証」に読み替える。RC 乖離リスクは解消済み。選択肢 A の「RC 段階で即 PoC」は「GA 環境で本格組み込み検証」として既に選択済みと解釈してよい（ADR-020 CARRY-WP7-001 更新済み）。
+>
+> **2026-06-21 検証完了**: PO-WP7-01 は **VERIFIED(2026-06-21)**。WordPress 7.0 (GA) と WordPress 6.9.4 の双方で `agent-neo/diag-ping` ability の register -> get -> execute を確認した。実測根拠は `poc/wp7-abilities/RESULTS.md`。
 
 **論点 ID**: PO-WP7-01 / ADR-020 §PO 論点
 **背景**
@@ -464,7 +466,7 @@ ADR-024（2026-06-18 PO確定）により **REQ-F-043（Open Editor Bridge Plugi
 | 3 | Q-013 | 公開指標ポリシー（同意取得要否・保存期間等） | PERF-CARRY-002 の前提 | 変更なし（選択肢B確定） | PM-RESOLVED(2026-06-20) |
 | 4 | Q-005 | ライセンス検証方式 **→ Automation SEO 契約確認の実装方式（縮小）** | REQ-F-010 実装設計 | 旧 Freemius 判断不要化。自社 API 方式で大筋確定。48h grace は凍結済み・残課題は契約 entitlement 検証統合のみ | PM-RESOLVED(2026-06-20) |
 | 5 | Q-012 | SNS フィードウィジェット Phase 1/2 境界 | F-018 実装スプリントのスコープ | 変更なし（Widget は Phase2） | PM-RESOLVED(2026-06-20) |
-| 6 | PO-WP7-01 | WP 7.0 Abilities API 本格組み込み検証 人日承認（~~RC PoC~~ → GA 済みのため本格組み込み検証に移行済み / ADR-020 2026-06-20 追記参照） | CARRY-WP7-001 (P1) | GA 環境での L4 entry 実行へ更新 | PM-RESOLVED(2026-06-20) |
+| 6 | PO-WP7-01 | WP 7.0 Abilities API 本格組み込み検証 人日承認（~~RC PoC~~ → GA 済みのため本格組み込み検証に移行済み / ADR-020 2026-06-20 追記参照） | CARRY-WP7-001 (P1) | WP7.0 GA + WP 6.9.4 で register -> get -> execute 実測済み。根拠: `poc/wp7-abilities/RESULTS.md` | VERIFIED(2026-06-21) |
 
 > **PO-WP7-04（PHP 7.4 非サポート確認）**: ADR-020 D-2 ですでに「PHP 8.1+ 推奨・PHP 7.4 は非サポート（参考情報のみ）」と設計決定されているが、これを配布 LP の「動作環境」表記に反映させるには PO の最終確認が必要。L4 着手前に確認しておくことで LP 制作と実装の表記が揃う。（Automation SEO 専用配布に変わったため LP 掲載の要否も合わせて確認推奨）
 
