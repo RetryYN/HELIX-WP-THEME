@@ -84,6 +84,7 @@ WP 7.0 は「インフラであってエンドユーザー AI 機能ではない
 ## アクセシビリティ（a11y）
 
 - **WCAG 2.2 AA が WP.org accessibility-ready 新基準**（2026-05-06 改定 / 2026-06-30 再評価期限）
+  - **※ AGENT-NEO では適用外（GAP-RT-057 RESOLVED-BY-DECISION / 2026-06-21）**: ADR-024 で Automation SEO 専用配布のため wp.org accessibility-ready 基準・6-30 期限は対象外。a11y は日本市場の通常品質として実施。
 - 新 5 要件:
   1. reflow / text-spacing 対応
   2. context-change 防止
@@ -91,7 +92,8 @@ WP 7.0 は「インフラであってエンドユーザー AI 機能ではない
   4. a11y 声明の提供
   5. 非 a11y plugin 推奨禁止
 - EU EAA 施行 (2025-06) / ADA 訴訟 +23.8%
-- AGENT-NEO の WCAG 2.2 AA 目標と一致
+  - **※ AGENT-NEO では適用外（GAP-RT-057 RESOLVED-BY-DECISION / 2026-06-21）**: EU EAA / ADA は日本向けサイトに非適用。
+- AGENT-NEO の WCAG 2.2 AA 目標と一致（→ GAP-RT-057 で通常品質化・フル準拠目標・accessibility-ready 認定目標は撤去）
 
 ---
 
@@ -155,9 +157,17 @@ AGENT-NEO の対応方針は ADR-025 参照。
 2. **生成 / write は WP Connectors を使わず Automation SEO に完全集約**（REQ-NF-025 追認）。WP Connectors 採用はロジック露出 / 課金経路崩壊で却下が正
 3. Block Bindings API でテーマ = 計測 ID 提供 / Automation SEO = データ の分担が自然に実現
 4. Interactivity API + theme.json v3 でパフォーマンス優先設計と整合
-5. WCAG 2.2 AA 目標は WP.org 新基準と一致 → accessibility-ready 認定を視野に入れた開発が可能
+5. WCAG 2.2 AA は日本市場の通常品質として実施済み。**accessibility-ready 認定・wp.org 新基準・6-30 期限は AGENT-NEO では対象外（GAP-RT-057 RESOLVED-BY-DECISION / 2026-06-21）**。ADR-024 で Automation SEO 専用配布のため accessibility-ready 訴求は行わない。
 
 ---
 
 *作成: 2026-06-20 / Haiku 4体並列調査に基づき AGENT-NEO リポ内 SSOT として再構成*
 *出典: developer.wordpress.org / make.wordpress.org/core / WordPress News / EUR-Lex / California Legislative Information / C2PA.org*
+
+---
+
+## 変更履歴
+
+| 日付 | 内容 |
+|------|------|
+| 2026-06-21 | WCAG 2.2 AA 6-30 幻記述を GAP-RT-057 整合へ廃止。a11y §・含意 §5 に「AGENT-NEO では適用外」注記を追記 |

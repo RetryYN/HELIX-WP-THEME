@@ -47,12 +47,9 @@
 - **重大度**: 中〜高（設計未確定）
 
 ### (D) アクセシビリティ WCAG 2.2 AA / accessibility-ready
-- **要件**: skip link、コントラスト 4.5:1、キーボード操作、`focus-visible`、`aria`、`prefers-reduced-motion`
-- **WP7.0での要否**: 高（公開品質と法務/運用対応に直結）
-- **AGENT-NEO設計での扱い**: L5-visual に要件化のみ
-- **実装状況**: **未実装**
-- **重大度**: 高
-- **期限**: 2026-06-30（約 9 日後）
+- **WCAG 2.2 AA フル準拠・accessibility-ready 認定・2026-06-30 期限は GAP-RT-057（RESOLVED-BY-DECISION / 2026-06-21）で対象外として撤去済み**。市場=日本・ADR-024 で Automation SEO 専用配布のため wp.org accessibility-ready 基準は非適用。EU EAA / ADA は日本向けサイトに非適用。
+- **実装状況**: a11y は SEO/UX と重複する基本配慮を**通常品質**として L4 で実装済み（実機 axe: critical=0 / serious=0 / color-contrast 違反=0、skip link・focus-visible・aria・キーボード操作 実装済、残 moderate=landmark-unique 1件のみ）。
+- **重大度**: 低（通常品質）。期限ゲートなし。
 
 ### (E) 品質・配布
 - **要件**: Theme Check 主要観点（escaping/prefix/text domain/license/deprecated 無し） / i18n (.pot) / readme / SBOM（ADR-014 / T-025）
@@ -79,6 +76,14 @@
 ## 4. 推奨アクション（優先順）
 
 - **P0**: `agent-neo-theme` 本体の L2/L3 を WP7.0 機能採否込みで凍結し、L4 で scaffold（probe を出発点に昇格）
-- **P0**: WCAG 2.2 AA（accessibility-ready）を 2026-06-30 までに要件確定。期限内実現不可なら `accessibility-ready` 訴求を見送る意思決定
+- （参考）a11y は GAP-RT-057 で通常品質化済み・accessibility-ready 訴求と 6-30 期限は撤去。新規アクションなし（RESOLVED-BY-DECISION / 2026-06-21）
 - **P1**: WP7.0 機能採否（Block Bindings / Interactivity / Font Library / Section Styles）を ADR 化し凍結
 - **P1**: 本番テンプレ群・patterns・style variations・`screenshot.png`・`i18n` の作成計画を WBS へ追加
+
+---
+
+## 変更履歴
+
+| 日付 | 内容 |
+|------|------|
+| 2026-06-21 | WCAG 2.2 AA 6-30 幻記述を GAP-RT-057 整合へ廃止（§(D) 是正・§4 P0 撤去・通常品質化） |

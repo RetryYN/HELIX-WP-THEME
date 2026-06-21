@@ -1,5 +1,11 @@
 これは Haiku 調査の生資料。誤りを含み docs/reviews/WP7-THEME-COMPLETENESS-AUDIT.md が正本(§是正参照)
 
+> ⚠️ **SUPERSEDED / 生調査資料・要件根拠にするな（2026-06-21）**
+> 本ファイルは Haiku による WP7.0 調査の生メモ。以下は **誤り or 撤去済み**:
+> - WCAG 2.2 AA フル準拠 / accessibility-ready タグ / 「2026-06-30 期限」/ EU EAA・ADA を要件根拠にする記述 → **GAP-RT-057（RESOLVED-BY-DECISION / 2026-06-21）で対象外として撤去**（市場=日本・ADR-024 Automation SEO 専用配布）。a11y は通常品質。
+> - その他の誤り4件は `docs/reviews/WP7-THEME-COMPLETENESS-AUDIT.md` §3 を正とする。
+> 正本: `docs/reviews/WP7-THEME-COMPLETENESS-AUDIT.md` / `docs/reviews/L3-real-theme-gap-register.md`（GAP-RT-057）
+
 # WordPress 7.0 FSE テーマ 完全対応要件チェックリスト
 
 **対象プロジェクト**: AGENT-NEO（WP7.0 カスタム FSE テーマ）  
@@ -451,7 +457,7 @@ register_block_bindings_source(
 | **i18n** | `load_theme_textdomain()` の実装（任意） / block.json `textDomain` 指定 | ❌ |
 | **Custom Logo / Header / Background** | `add_theme_support()` で宣言（WP7.0で推奨/必須？） | ❌ |
 | **PHP Compatibility** | PHP 8.0+ / 8.3推奨。WP 6.7+ テスト済み | ❌ |
-| **Accessibility** | WCAG 2.2 AA 達成目標（新要件） | ❌ |
+| **Accessibility** | WCAG 2.2 AA 達成目標（新要件） | ❌ |（→ GAP-RT-057 で撤去済み・通常品質）
 
 **出典**: WP.org Theme Review Guidelines / `reference_wp_ecosystem_20260620.md §3-7`
 
@@ -464,7 +470,7 @@ register_block_bindings_source(
 | **Block Bindings対応宣言** | (新規チェック内容未取得) | 🟢 任意 | ❌ |
 | **Interactivity API サポート** | (新規チェック内容未取得) | 🟢 任意 | ❌ |
 | **Abilities API非採用宣言** | テーマは Abilities API を明示的に採用しないことを宣言（推奨） | 🟡 推奨 | ❌ |
-| **WCAG 2.2 AA対応** | accessibility-ready tag + 5新要件（下述） | 🔴 必須 | ❌ |
+| **WCAG 2.2 AA対応** | accessibility-ready tag + 5新要件（下述） | 🔴 必須 | ❌ |（→ GAP-RT-057 で撤去済み・通常品質）
 
 ---
 
@@ -509,7 +515,7 @@ register_block_bindings_source(
 
 ### 6.1 WCAG 2.2 AA準拠要件（WP7.0で新基準）
 
-🔴 **Critical** — 2026-06-30期限（EU EAA施行 / ADA訴訟増加）
+🔴 **Critical** — 2026-06-30期限（EU EAA施行 / ADA訴訟増加）（→ GAP-RT-057 で撤去済み・AGENT-NEO では通常品質）
 
 | 要件 | WCAG基準 | テーマ実装 | チェック |
 |------|---------|---------|---------|
@@ -751,7 +757,7 @@ register_block_bindings_source(
 | 🔴 **screenshot.png** | 1200x900 PNG | ❌ |
 | 🔴 **license.txt** | GPL v2以上 | ❌ |
 | 🔴 **Security** | 全 HTML エスケープ（esc_html / wp_kses） | ❌ |
-| 🔴 **Accessibility** | WCAG 2.2 AA + skip link + Color Contrast + キーボード操作 | ❌ |
+| 🔴 **Accessibility** | WCAG 2.2 AA + skip link + Color Contrast + キーボード操作 | ❌ |（→ GAP-RT-057 で撤去済み・通常品質）
 | 🟡 **readme.txt** | Description / Install / Changelog 等（マークダウン非対応） | ❌ |
 | 🟡 **PHP 8.0+ テスト** | 実環境テスト必須 | ❌ |
 | 🟡 **WP 6.7+ テスト** | WP 7.0 テスト済み記載 | ❌ |
@@ -845,7 +851,7 @@ register_block_bindings_source(
 | **functions.php作成は後回し** | テーマ機能の9割は theme.json で実装可。L2でスコープ判定 | ✅ |
 | **block.json検証** | VSCode + JSON Schema 拡張で自動検証 / wp_theme_json_validate() | ❌ |
 | **Sandbox iframe CSP** | ADR-026で設計済。実装時は postMessage nonce検証必須 | ✅ |
-| **WCAG期限** | **2026-06-30** — EU EAA施行 + ADA訴訟増加で対応必須 | ⚠️ 急! |
+| **WCAG期限** | **2026-06-30** — EU EAA施行 + ADA訴訟増加で対応必須（→ GAP-RT-057 で撤去済み・通常品質・期限ゲートなし） | ⚠️ 急! |
 | **wp.org提出** | L8 before — 変更が多いため早期提出は非推奨 | — |
 
 ---
@@ -897,3 +903,11 @@ register_block_bindings_source(
 ---
 
 **最終更新**: 2026-06-21 / **次アクション**: L1 PO承認待ち
+
+---
+
+## 変更履歴
+
+| 日付 | 内容 |
+|------|------|
+| 2026-06-21 | WCAG 2.2 AA 6-30 幻記述を GAP-RT-057 整合へ廃止。冒頭 SUPERSEDED バナー追加・本文 WCAG/期限/必須 各行に無効化注記を追記 |
