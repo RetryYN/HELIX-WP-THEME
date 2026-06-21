@@ -144,9 +144,12 @@
 | F-025 | T-016 | VERIFIED | 設定 settings import/export の JSON 統合は実機検証済み | 
 | F-044 | T-014, T-015 | VERIFIED | catalog-update 受け口と Outbox/DLQ は実機検証済み |
 
-### Phase1 status summary
-- **完了**: F-001, F-025（2）
-- **残**: F-002〜F-024（23）
+### Phase1 status summary（F-001〜F-025 の 25 件を集計。F-044 は Phase1 launch set 外として別行扱い）
+- **VERIFIED**: F-001〜F-008, F-010〜F-013, F-025（13 件）
+- **PARTIAL**: F-016, F-020, F-021, F-022（4 件）
+- **NONE**: F-009, F-014, F-015, F-017, F-018, F-019, F-023, F-024（8 件）
+
+> **注記**: 「VERIFIED」は endpoint/API の実機検証済みを意味する。機能として完全達成（launch-complete）は F-001/F-025 等に限定。残りは API 層 VERIFIED でも機能面は PARTIAL または未実装の場合がある。
 
 ---
 
@@ -156,9 +159,9 @@
 |---|---|---|---|---|
 | Theme kernel（bootstrap） | 起動・ヘルス取得 | `themes/agent-neo-theme/inc/bootstrap.php`, `themes/agent-neo-theme/functions.php` | VERIFIED | `theme_health` 呼び出しと `trace_step` 実装 |
 | Theme kernel（manifest/boundary/prefix） | `theme-manifest` / `section-registry` / `schema-reference` | `themes/agent-neo-theme/config/theme-manifest.json`, `themes/agent-neo-theme/config/section-registry.json`, `themes/agent-neo-theme/config/schema-reference.json`, `themes/agent-neo-theme/inc/class-config-loader.php`, `themes/agent-neo-theme/inc/setup/class-boundary-guard.php` | VERIFIED | `config_valid` / boundary 検査ロジックが実体 |
-| Core plugin（lifecycle/CPT/schema） | bootstrap/lifecycle/CPT/schema loader | `plugins/agent-neo-core/inc/bootstrap.php`, `plugins/agent-neo-core/inc/class-agent-neo-core.php`, `plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php`, `plugins/agent-neo-core/inc/schema/class-schema-loader.php`, `plugins/agent-neo-core/inc/cpt/class-agent-action-cpt.php` | IMPL（scaffold） | `agent_neo_core_health()`、`schema-loader` ロード処理 |
-| Core plugin（REST scaffolding） | REST 基盤（base controller / auth） | `plugins/agent-neo-core/inc/rest/class-rest-controller-base.php`, `plugins/agent-neo-core/inc/rest/class-auth.php`, `plugins/agent-neo-core/schema/openapi.yaml`, `plugins/agent-neo-core/schema/status-response.schema.json` | IMPL（scaffold） | `register_rest_route` は `/status` のみ登録 |
-| CI / SBOM / gate | TC-016〜 / SBOM | - | NONE | 本表での対象 artifacts / script 未存在 | 
+| Core plugin（lifecycle/CPT/schema） | bootstrap/lifecycle/CPT/schema loader | `plugins/agent-neo-core/inc/bootstrap.php`, `plugins/agent-neo-core/inc/class-agent-neo-core.php`, `plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php`, `plugins/agent-neo-core/inc/schema/class-schema-loader.php`, `plugins/agent-neo-core/inc/cpt/class-agent-action-cpt.php` | VERIFIED | lifecycle（T-014/T-015）・CPT（T-018）・bootstrap が実機検証済み。`plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php` と `inc/cpt/class-agent-action-cpt.php` 実在確認済み |
+| Core plugin（REST scaffolding） | REST 基盤（base controller / auth） | `plugins/agent-neo-core/inc/rest/class-rest-controller-base.php`, `plugins/agent-neo-core/inc/rest/class-auth.php`, `plugins/agent-neo-core/schema/openapi.yaml`, `plugins/agent-neo-core/schema/status-response.schema.json` | VERIFIED | 15 controller が `register_rest_route` をバックエンド委譲経由で登録。`bin/check-impl-coverage.sh` で 25/57 endpoint 実在確認済み（`/status` のみという記述は誤記） |
+| CI / SBOM / gate | TC-016〜 / SBOM | `bin/check-theme-quality.sh`, `bin/generate-sbom.php`, `bin/check-sbom-gate.sh`, `sbom.cdx.json`, `.github/workflows/theme-quality-gate.yml`, `.github/workflows/embed-isolation.yml` | VERIFIED | T-023（performance/a11y/i18n/RTL gate）、T-025（SBOM CycloneDX 1.6・5 component）、T-029（embed CI gate）が実機検証済み。全ファイルの実在を `ls` で確認済み | 
 
 ---
 
@@ -167,9 +170,9 @@
 - 参照リンクはすべて本リポジトリ内の相対パスで統一。
 - `docs/design/L3-WBS.md` と `docs/design/api-catalog.md` の行数・件数との整合:
   - WBS: T-001〜T-029 を漏れなく反映
-  - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `18/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
+  - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `25/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
 - `Table 1`: **全29タスク VERIFIED**（NONE/IMPL なし）。T-001〜T-029 完了
 - `Table 2`: Y が 25 / N が 32（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
-- `Table 3`: F-011 は PARTIAL、F-021/F-022 は partial、F-003〜F-024 ほぼ未完了。F-025 は完了
+- `Table 3`: VERIFIED 13 / PARTIAL 4 / NONE 8（F-001〜F-025 計 25 件。F-044 は別行）。各 F-ID の status は Table 3 本文参照
