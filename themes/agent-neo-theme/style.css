@@ -147,3 +147,82 @@ Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-log
   text-align: end;
   margin-inline-start: auto;
 }
+
+/* ============================================================
+ * 一覧面（index / archive / search / 404）
+ * ============================================================ */
+
+/* ---- アーカイブ共通ヘッダー ---- */
+
+/* query-title (h1) の下余白補完 */
+.an-archive-heading {
+  margin-block-end: var(--wp--preset--spacing--40);
+}
+
+/* アーカイブ説明文 (term-description) */
+.an-archive-description {
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--muted);
+  margin-block-end: var(--wp--preset--spacing--40);
+  line-height: 1.7;
+}
+
+/* ---- カードグリッド レスポンシブ補完 ---- */
+
+/*
+ * WP コアの post-template grid は columnCount 属性で列数を制御するが、
+ * ビューポート幅によって自動調整されないため CSS で補完する。
+ * 600px 未満: 1カラム / 900px 未満: 2カラム / 900px 以上: 3カラム（コア指定維持）
+ */
+/* .is-flex-container を二重連結し特異度を加算、コアの inline grid スタイルに勝たせる（意図的） */
+@media (max-width: 899px) {
+  .wp-block-post-template.is-flex-container.is-flex-container.columns-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 599px) {
+  .wp-block-post-template.is-flex-container.is-flex-container.columns-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- ページネーション 余白補完 ---- */
+.wp-block-query-pagination {
+  margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* ---- 検索フォーム ---- */
+
+/* search.html / 404.html 共用の検索ウィジェット幅制限と配置 */
+.an-search-form.wp-block-search {
+  max-inline-size: 480px;
+  margin-block: var(--wp--preset--spacing--30);
+}
+
+/* ---- 404 固有レイアウト ---- */
+
+/* 404 ヒーローエリア: 中央寄せ + 最大幅制限 */
+.an-404-hero {
+  max-inline-size: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* 404 ホームボタン hover アフォーダンス */
+.an-cta--404-home .wp-block-button__link {
+  transition: opacity 0.15s ease;
+}
+.an-cta--404-home .wp-block-button__link:hover {
+  opacity: 0.88;
+}
+
+/* 404 区切り線上下余白 */
+.an-section-divider {
+  margin-block: var(--wp--preset--spacing--50) 0;
+}
+
+/* 404「最新の記事」見出し */
+.an-404-latest-heading {
+  margin-block-start: var(--wp--preset--spacing--50);
+  margin-block-end: var(--wp--preset--spacing--40);
+}

@@ -3,10 +3,17 @@
 <!-- wp:group {"tagName":"main","className":"an-site-main","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group an-site-main" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60);padding-inline:var(--wp--preset--spacing--40)">
 
-	<!-- index.html は投稿一覧専用フォールバック。アーカイブ種別に依らない固定見出しのため query-title を使わず heading を直書きする。 -->
-	<!-- wp:heading {"level":1,"className":"an-archive-heading","style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--x-large)"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-	<h1 class="wp-block-heading an-archive-heading" style="font-weight:700;font-size:var(--wp--preset--font-size--x-large);margin-block-end:var(--wp--preset--spacing--40)">記事一覧</h1>
-	<!-- /wp:heading -->
+	<!-- wp:group {"tagName":"nav","ariaLabel":"パンくず","className":"an-breadcrumb","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+	<nav class="wp-block-group an-breadcrumb" aria-label="パンくず" style="padding-block:var(--wp--preset--spacing--20)">
+		<!-- wp:html -->
+		<a href="/">ホーム</a>
+		<!-- /wp:html -->
+	</nav>
+	<!-- /wp:group -->
+
+	<!-- wp:query-title {"type":"archive","showPrefix":true,"level":1,"textAlign":"left","className":"an-archive-heading","style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--x-large)"},"spacing":{"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|20"}}}} /-->
+
+	<!-- wp:term-description {"className":"an-archive-description","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}},"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"var(--wp--preset--color--muted)"}}} /-->
 
 	<!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"layout":{"type":"default"}} -->
 	<div class="wp-block-query">
