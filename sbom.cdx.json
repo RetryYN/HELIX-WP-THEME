@@ -1,0 +1,265 @@
+{
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.6",
+    "version": 1,
+    "serialNumber": "urn:uuid:1eaf2646-a798-5d02-bad7-c78eece4c34e",
+    "metadata": {
+        "timestamp": "2026-06-21T00:00:00Z",
+        "tools": [
+            {
+                "type": "application",
+                "name": "AGENT NEO SBOM Generator",
+                "version": "1.0.0",
+                "vendor": "RetryYN"
+            }
+        ],
+        "component": {
+            "type": "application",
+            "name": "AGENT NEO Distribution",
+            "version": "0.1.0",
+            "supplier": {
+                "name": "AGENT NEO / RetryYN",
+                "url": [
+                    "https://github.com/RetryYN/AGENT-NEO"
+                ],
+                "contact": []
+            },
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0-or-later",
+                        "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+                    }
+                }
+            ],
+            "description": "AGENT NEO テーマ + 2 プラグインの商用配布パッケージ（first-party のみ・外部サードパーティ依存ゼロ）"
+        }
+    },
+    "components": [
+        {
+            "type": "application",
+            "bom-ref": "pkg:wordpress-plugin/agent-neo-core@0.1.0",
+            "name": "AGENT NEO Core",
+            "version": "0.1.0",
+            "description": "AGENT NEO REST API・監査ログ・スキーマ・ライフサイクル基盤プラグイン",
+            "supplier": {
+                "name": "AGENT NEO / RetryYN",
+                "url": [
+                    "https://github.com/RetryYN/AGENT-NEO"
+                ],
+                "contact": []
+            },
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0-or-later",
+                        "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+                    }
+                }
+            ],
+            "purl": "pkg:wordpress-plugin/agent-neo-core@0.1.0",
+            "hashes": [
+                {
+                    "alg": "SHA-256",
+                    "content": "1db8b934f2d0827c585dffd7a0d9c9008a6f74d76102dc614309494adfe4c2dc"
+                }
+            ],
+            "properties": [
+                {
+                    "name": "wordpress:text-domain",
+                    "value": "agent-neo-core"
+                },
+                {
+                    "name": "wordpress:requires-php",
+                    "value": "8.1"
+                },
+                {
+                    "name": "wordpress:requires-at-least",
+                    "value": "6.6"
+                }
+            ]
+        },
+        {
+            "type": "application",
+            "bom-ref": "pkg:wordpress-plugin/agent-neo-embed@0.1.0",
+            "name": "AGENT NEO Embed",
+            "version": "0.1.0",
+            "description": "AGENT NEO dual-mode 埋め込みブロック（Shadow DOM / sandbox iframe）プラグイン",
+            "supplier": {
+                "name": "AGENT NEO / RetryYN",
+                "url": [
+                    "https://github.com/RetryYN/AGENT-NEO"
+                ],
+                "contact": []
+            },
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0-or-later",
+                        "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+                    }
+                }
+            ],
+            "purl": "pkg:wordpress-plugin/agent-neo-embed@0.1.0",
+            "hashes": [
+                {
+                    "alg": "SHA-256",
+                    "content": "2b9f8a4bbdc625ce1d9f9bffe1b56174cdc14f36a92d5db9cdb44b76642553af"
+                }
+            ],
+            "properties": [
+                {
+                    "name": "wordpress:text-domain",
+                    "value": "agent-neo-embed"
+                },
+                {
+                    "name": "wordpress:requires-php",
+                    "value": "8.1"
+                },
+                {
+                    "name": "wordpress:requires-at-least",
+                    "value": "6.3"
+                }
+            ]
+        },
+        {
+            "type": "application",
+            "bom-ref": "pkg:wordpress-theme/agent-neo@0.1.0",
+            "name": "AGENT NEO",
+            "version": "0.1.0",
+            "description": "AI エージェントが安全に参照できる WordPress FSE テーマ基盤",
+            "supplier": {
+                "name": "AGENT NEO / RetryYN",
+                "url": [
+                    "https://github.com/RetryYN/AGENT-NEO"
+                ],
+                "contact": []
+            },
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0-or-later",
+                        "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+                    }
+                }
+            ],
+            "purl": "pkg:wordpress-theme/agent-neo@0.1.0",
+            "hashes": [
+                {
+                    "alg": "SHA-256",
+                    "content": "5a1e24819dbd44d925ad7dca59c48bf6a2b1365778fda53c81be74eef2ec1a59"
+                }
+            ],
+            "properties": [
+                {
+                    "name": "wordpress:text-domain",
+                    "value": "agent-neo"
+                },
+                {
+                    "name": "wordpress:requires-php",
+                    "value": "8.1"
+                },
+                {
+                    "name": "wordpress:requires-at-least",
+                    "value": "6.6"
+                }
+            ]
+        },
+        {
+            "type": "framework",
+            "bom-ref": "pkg:generic/wordpress@6.9-or-later",
+            "name": "WordPress",
+            "version": ">=6.9",
+            "description": "WordPress CMS プラットフォーム（実行基盤）",
+            "supplier": {
+                "name": "WordPress Foundation",
+                "url": [
+                    "https://wordpress.org/"
+                ]
+            },
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0-or-later",
+                        "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+                    }
+                }
+            ],
+            "purl": "pkg:generic/wordpress@6.9",
+            "properties": [
+                {
+                    "name": "sbom:role",
+                    "value": "platform-runtime"
+                },
+                {
+                    "name": "sbom:note",
+                    "value": "AGENT NEO の実行基盤。配布物には含まれない。"
+                }
+            ]
+        },
+        {
+            "type": "framework",
+            "bom-ref": "pkg:generic/php@8.1-or-later",
+            "name": "PHP",
+            "version": ">=8.1",
+            "description": "PHP ランタイム（実行基盤）",
+            "supplier": {
+                "name": "The PHP Group",
+                "url": [
+                    "https://www.php.net/"
+                ]
+            },
+            "licenses": [
+                {
+                    "license": {
+                        "id": "PHP-3.01",
+                        "url": "https://www.php.net/license/3_01.txt"
+                    }
+                }
+            ],
+            "purl": "pkg:generic/php@8.1",
+            "properties": [
+                {
+                    "name": "sbom:role",
+                    "value": "platform-runtime"
+                },
+                {
+                    "name": "sbom:note",
+                    "value": "AGENT NEO の実行基盤。配布物には含まれない。"
+                }
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "ref": "pkg:generic/agent-neo-distribution@0.1.0",
+            "dependsOn": [
+                "pkg:wordpress-plugin/agent-neo-core@0.1.0",
+                "pkg:wordpress-plugin/agent-neo-embed@0.1.0",
+                "pkg:wordpress-theme/agent-neo@0.1.0"
+            ],
+            "properties": [
+                {
+                    "name": "sbom:external-dependencies",
+                    "value": "none"
+                },
+                {
+                    "name": "sbom:dependency-note",
+                    "value": "外部サードパーティ依存ゼロ。composer.json / package.json / vendor/ / node_modules/ は存在しない。全て first-party コード。"
+                }
+            ]
+        },
+        {
+            "ref": "pkg:wordpress-plugin/agent-neo-core@0.1.0",
+            "dependsOn": []
+        },
+        {
+            "ref": "pkg:wordpress-plugin/agent-neo-embed@0.1.0",
+            "dependsOn": []
+        },
+        {
+            "ref": "pkg:wordpress-theme/agent-neo@0.1.0",
+            "dependsOn": []
+        }
+    ]
+}

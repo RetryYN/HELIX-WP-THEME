@@ -6,6 +6,8 @@
  * Requires at least: 6.3
  * Requires PHP: 8.1
  * Author: AGENT NEO
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: agent-neo-embed
  *
  * @package AgentNeoEmbed
