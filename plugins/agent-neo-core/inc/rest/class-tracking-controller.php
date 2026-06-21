@@ -49,6 +49,15 @@ final class Agent_Neo_Core_Tracking_Controller extends Agent_Neo_Core_REST_Contr
 				'permission_callback' => array( $this, 'check_tracking_permission' ),
 			)
 		);
+
+		$this->register_agent_route(
+			'/tracking/context',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'accept_context' ),
+				'permission_callback' => array( $this, 'check_context_permission' ),
+			)
+		);
 	}
 
 	/**
@@ -66,6 +75,76 @@ final class Agent_Neo_Core_Tracking_Controller extends Agent_Neo_Core_REST_Contr
 		$validation = $this->validate_tracking_request( $params );
 		if ( is_wp_error( $validation ) ) {
 			return $validation;
+		}
+
+		$secrets = $this->tracking_secrets();
+		if ( is_wp_error( $secrets ) ) {
+			return $secrets;
+		}
+
+		if ( ! hash_equals( $secrets['site_token'], (string) $params['site_token'] ) ) {
+			return $this->signature_error();
+		}
+
+		$signature = $this->verify_signature( $request, $params, $secrets['hmac_key'] );
+		if ( is_wp_error( $signature ) ) {
+			return $signature;
+		}
+
+		$nonce = $this->consume_nonce( (string) $params['site_token'], (string) $params['nonce'], $signature );
+		if ( is_wp_error( $nonce ) ) {
+			return $nonce;
+		}
+
+		$context = array(
+			'accepted_at' => isset( $nonce['accepted_at'] ) ? (string) $nonce['accepted_at'] : gmdate( 'c' ),
+			'event_id'    => isset( $nonce['event_id'] ) ? (string) $nonce['event_id'] : $this->event_id( $params, $signature ),
+			'params'      => $params,
+			'replay'      => ! empty( $nonce['replay'] ),
+			'signature'   => $signature,
+		);
+
+		if ( empty( $context['replay'] ) ) {
+			$bot_filter = $this->check_bot_policy( $request, $params );
+			if ( is_wp_error( $bot_filter ) ) {
+				$this->delete_nonce( (string) $params['site_token'], (string) $params['nonce'] );
+				return $bot_filter;
+			}
+
+			$rate_limit = $this->check_rate_limit( $request, (string) $params['site_token'] );
+			if ( is_wp_error( $rate_limit ) ) {
+				$this->delete_nonce( (string) $params['site_token'], (string) $params['nonce'] );
+				return $rate_limit;
+			}
+		}
+
+		$this->request_context[ spl_object_id( $request ) ] = $context;
+		return true;
+	}
+
+	/**
+	 * POST /tracking/context 専用 permission callback。
+	 *
+	 * /tracking/event と同じ署名検証コア（site_token / HMAC / nonce / bot policy / rate limit）を
+	 * 実行するが、event 固有フィールド（cta_id / variant_id / event_type）は検証しない。
+	 * semantic フィールド（site_id / article_id / section_id）の必須検証は
+	 * ハンドラ accept_context 側で行う。
+	 *
+	 * @param WP_REST_Request $request Request。
+	 * @return true|WP_Error
+	 */
+	public function check_context_permission( WP_REST_Request $request ) {
+		$params = $this->json_params( $request );
+		if ( is_wp_error( $params ) ) {
+			return $params;
+		}
+
+		// 認証フィールド（site_token / signature / nonce）の存在・string のみ検証する。
+		// event 固有フィールド（cta_id / variant_id / event_type）は検証しない。
+		foreach ( array( 'site_token', 'signature', 'nonce' ) as $field ) {
+			if ( empty( $params[ $field ] ) || ! is_string( $params[ $field ] ) ) {
+				return $this->signature_error();
+			}
 		}
 
 		$secrets = $this->tracking_secrets();
@@ -162,6 +241,106 @@ final class Agent_Neo_Core_Tracking_Controller extends Agent_Neo_Core_REST_Contr
 					'accepted_at' => (string) $context['accepted_at'],
 				),
 				$event_id
+			)
+		);
+	}
+
+	/**
+	 * POST /tracking/context。
+	 *
+	 * Automation SEO 互換 context を受理・同期する。
+	 * site_id / article_id / section_id を正規化して記録し、
+	 * StandardResponse 封筒で受理確認を返す。
+	 *
+	 * @param WP_REST_Request $request Request。
+	 * @return WP_REST_Response|WP_Error
+	 */
+	public function accept_context( WP_REST_Request $request ) {
+		// permission_callback 経由で設定された request context を取得する。
+		$context = $this->request_context[ spl_object_id( $request ) ] ?? null;
+		if ( ! is_array( $context ) ) {
+			// フォールバック: context 専用 permission コールバックで署名検証を再実行する。
+			$permission = $this->check_context_permission( $request );
+			if ( is_wp_error( $permission ) ) {
+				return $permission;
+			}
+			$context = $this->request_context[ spl_object_id( $request ) ] ?? null;
+		}
+
+		if ( ! is_array( $context ) || ! isset( $context['params'] ) || ! is_array( $context['params'] ) ) {
+			return Agent_Neo_Core_Auth::error( 'INTERNAL_ERROR', __( 'Tracking request context is unavailable.', 'agent-neo-core' ) );
+		}
+
+		$params = $context['params'];
+
+		// context 固有フィールドのバリデーション（site_id / article_id / section_id 必須 / string 型）。
+		foreach ( array( 'site_id', 'article_id', 'section_id' ) as $field ) {
+			if ( ! isset( $params[ $field ] ) || ! is_string( $params[ $field ] ) || '' === trim( $params[ $field ] ) ) {
+				return Agent_Neo_Core_Auth::error(
+					'VALIDATION_ERROR',
+					sprintf(
+						/* translators: %s: field name */
+						__( '%s is required.', 'agent-neo-core' ),
+						$field
+					),
+					array( 'field' => $field )
+				);
+			}
+
+			if ( strlen( $params[ $field ] ) > self::MAX_STRING_SIZE ) {
+				return Agent_Neo_Core_Auth::error(
+					'VALIDATION_ERROR',
+					sprintf(
+						/* translators: %s: field name */
+						__( '%s exceeds maximum length.', 'agent-neo-core' ),
+						$field
+					),
+					array( 'field' => $field )
+				);
+			}
+		}
+
+		// 外部入力を sanitize して正規化する。
+		$site_id    = sanitize_text_field( (string) $params['site_id'] );
+		$article_id = sanitize_text_field( (string) $params['article_id'] );
+		$section_id = sanitize_text_field( (string) $params['section_id'] );
+
+		$received_at = gmdate( 'c' );
+		// nonce を追加して同秒・同一フィールド値のリクエストによる context_id 衝突を防ぐ。
+		// check_context_permission が検証済みの nonce は $context['params']['nonce'] に保存されている。
+		$ctx_nonce  = isset( $context['params']['nonce'] ) && is_string( $context['params']['nonce'] ) ? $context['params']['nonce'] : '';
+		$context_id = 'ctx_' . substr( hash( 'sha256', $site_id . '|' . $article_id . '|' . $section_id . '|' . $received_at . '|' . $ctx_nonce ), 0, 32 );
+
+		// Automation SEO 互換 context を WordPress option に記録する（tracking/event の queue_event に準じた軽量記録）。
+		$record = array(
+			'context_id'  => $context_id,
+			'site_id'     => $site_id,
+			'article_id'  => $article_id,
+			'section_id'  => $section_id,
+			'received_at' => $received_at,
+		);
+		set_transient( 'agent_neo_tracking_context_' . $context_id, $record, self::EVENT_TTL );
+
+		/**
+		 * 受理した context を外部ストアに同期するための hook。
+		 *
+		 * @param array<string,mixed> $record Context record。
+		 */
+		do_action( 'agent_neo_tracking_context_accepted', $record );
+
+		unset( $this->request_context[ spl_object_id( $request ) ] );
+
+		return rest_ensure_response(
+			Agent_Neo_Core_Auth::success_response(
+				array(
+					'context_id'  => $context_id,
+					'site_id'     => $site_id,
+					'article_id'  => $article_id,
+					'section_id'  => $section_id,
+					'received'    => true,
+					'received_at' => $received_at,
+				),
+				$context_id
 			)
 		);
 	}
@@ -300,6 +479,10 @@ final class Agent_Neo_Core_Tracking_Controller extends Agent_Neo_Core_REST_Contr
 
 	/**
 	 * 署名対象 payload を作る。
+	 *
+	 * canonical パスは `/agent-neo/v1/tracking/event` で固定する。
+	 * `/tracking/context` エンドポイントの署名検証でも意図的に同一 canonical を共有している。
+	 * クライアント（Automation SEO）と署名規約を統一するための設計であり、誤記ではない。
 	 *
 	 * @param WP_REST_Request     $request Request。
 	 * @param array<string,mixed> $params Params。
