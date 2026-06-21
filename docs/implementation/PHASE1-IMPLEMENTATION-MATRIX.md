@@ -2,7 +2,7 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **28** / IMPL **0** / SCAFFOLD **0** / NONE **1** *(total 29)*
+- **Sprint/Task progress**: VERIFIED **29** / IMPL **0** / SCAFFOLD **0** / NONE **0** *(total 29)*
 - **Endpoint coverage**: `Y` **25** / `N` **32** *(total 57)*
 - **Phase1 launch F-ID**: **完了 2** / 残 **23** *(total 25)*
 - **残タスク（next）**:
@@ -43,7 +43,7 @@
 | T-023 | F-011/F-023/F-024 | Performance + a11y + i18n/RTL gate パイプライン | .4 | theme | VERIFIED | `bin/check-theme-quality.sh`, `plugins/agent-neo-core/inc/util/class-slug.php`, `bin/verify-slug.php`, `.github/workflows/theme-quality-gate.yml` | sanitize_slug TC-017b/TC-025 単体11/0 PASS・i18n/RTL/a11y(axe critical-serious 0)/perf(web-vitals budget) 4ゲート RESULT PASS(FAIL0)・テーマ a11y serious 11→0・実LCP/INP/CLS は CI lhci | 29ee7b5 |
 | T-024 | F-006/F-007/F-026/F-027 | 連携契約（tracking-context / CAT契約テスト） | .5 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php`, `bin/verify-catalog-contract.php` | POST /tracking/context（TC-013 署名401/schema400/正常200 実機VDD）+ CAT-001〜009 全PASS（4フィールド応答/dedup/validation/backoff 1s・2^n・max5・±10%jitter/DLQ409/retry429）。catalog-update producer は T-014/T-015 実装済 | 979a1a7 |
 | T-025 | F-020/F-021/F-023 | SBOM 生成・検証 | .5 | core-plugin | VERIFIED | `bin/generate-sbom.php`, `bin/check-sbom-gate.sh`, `sbom.cdx.json` | CycloneDX 1.6・5 component・外部依存ゼロ。Release/SBOM Gate（依存元/ライセンス/checksum/changelog/rollback）PASS 6/0WARN/0FAIL。embed License補完+3CHANGELOG+runbook-rollback | 6a29a55 |
-| T-026 | F-003 | 操作面（REST/MCP/WP CLI/React UI）統合検証 | .1a〜.2 | core-plugin | NONE | `plugins/agent-neo-core`, `themes/agent-neo-theme` | `dry-run/apply` 統合導線は未実装 | - |
+| T-026 | F-003 | 操作面（REST/MCP/WP CLI/React UI）統合検証 | .1a〜.2 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/cli/class-cli-command.php`, `plugins/agent-neo-core/inc/mcp/class-abilities.php`, `plugins/agent-neo-core/inc/admin/class-admin-page.php` | 4操作面を同一 JSON 契約に集約（ADR-002/012）。WP-CLI/MCP(Abilities) は rest_do_request・React UI は apiFetch で REST 契約へ委譲。GET /status が REST/WP-CLI/MCP 完全一致+React UI 登録を実機検証（機能差異ゼロ） | eddb6de |
 | T-027 | REQ-F-038 / ADR-026 | embed static mode 実装 | .4 | embed-plugin | VERIFIED | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/block.json`, `plugins/agent-neo-embed/src/embed/render.php`, `plugins/agent-neo-embed/assets/embed-reset.css`, `plugins/agent-neo-embed/src/embed/view.js` | PoC verify.py 10本 all PASS（static Shadow DOM 非継承/継承 CSS隔離・Light DOM侵入なし実測）+ 実WP DSD SSR。poc/embed-isolation/RESULTS.md VERDICT PASS | 721642c |
 | T-028 | REQ-F-038 / ADR-026 | embed interactive mode 実装 | .4 | embed-plugin | VERIFIED | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/edit.js`, `plugins/agent-neo-embed/src/embed/view.js`, `plugins/agent-neo-embed/src/embed/block.json` | PoC verify.py PASS: iframe sandbox（allow-scripts のみ/allow-same-origin・allow-top-navigation 不在）・parent-cannot-read-iframe・egress sink0・form-action CSP・postMessage source+nonce。実運用ホスト接続は CARRY-EMBED-005（deploy 繰延） | 721642c |
 | T-029 | CARRY-EMBED-006 / ADR-026 | embed CI gate 自動化 | .4 | embed-plugin | VERIFIED | `.github/workflows/embed-isolation.yml`, `poc/embed-isolation/verify.py` | verify.py（10本 all PASS・exit 0/非0 正常）を GitHub Actions CI（push/PR・fail-fast）へ統合。継続回帰ゲート確立 | 721642c |
@@ -119,7 +119,7 @@
 |---|---|---|---|
 | F-001 | T-001, T-002, T-003, T-004 | VERIFIED | launch 必達として完了 | 
 | F-002 | T-006, T-007, T-010, T-011 | VERIFIED | dry-run/apply/pages が実機検証済み。`POST /pages/{id}/apply` / `POST /pages/{id}/rollback` / `POST /rollback/{rollback_id}` は `18d982f`（fix 含む）で検証済み |
-| F-003 | T-026 | NONE | 操作面統合（dry-run/apply を含む）未実装 | 
+| F-003 | T-026 | VERIFIED | 4操作面（REST/MCP/WP-CLI/React UI）を同一契約で実装・GET /status 一致を実機検証 |
 | F-004 | T-020 | VERIFIED | 収益化ブロック生成 API（/affiliate/block・5 block_type）実機検証済。AI生成なし（REQ-NF-025） |
 | F-005 | T-021 | VERIFIED | blueprint API 実装（section kind、section_id/blueprint_id、pages apply接続）検証済み |
 | F-006 | T-012, T-024 | VERIFIED | `/tracking/event`（T-012）+ `/tracking/context`（T-024）+ catalog-update CAT契約テスト 全実機検証済 |
@@ -170,6 +170,6 @@
   - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `18/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
-- `Table 1`: T-026 のみ NONE（T-006〜T-013、T-016〜T-025、T-027〜T-029 は VERIFIED。IMPL なし）
+- `Table 1`: **全29タスク VERIFIED**（NONE/IMPL なし）。T-001〜T-029 完了
 - `Table 2`: Y が 25 / N が 32（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
 - `Table 3`: F-011 は PARTIAL、F-021/F-022 は partial、F-003〜F-024 ほぼ未完了。F-025 は完了
