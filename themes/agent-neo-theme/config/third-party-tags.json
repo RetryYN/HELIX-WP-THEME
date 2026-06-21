@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-neo.local/schemas/third-party-tags.schema.json",
+  "version": "1.0.0",
+  "consentModeVersion": "v2",
+  "defaultConsentState": {
+    "analytics_storage": "denied",
+    "ad_storage": "denied",
+    "ad_user_data": "denied",
+    "ad_personalization": "denied"
+  },
+  "tags": [
+    {
+      "tag_id": "ga4-main",
+      "label": "Google Analytics 4",
+      "category": "analytics",
+      "provider": "google",
+      "loadStrategy": "async_after_consent",
+      "consentRequired": ["analytics_storage"],
+      "measurementId": "G-TEST0000",
+      "pageConditions": {
+        "allowedPageTypes": ["all"]
+      },
+      "renderBlockingGuarantee": true
+    },
+    {
+      "tag_id": "advertising-sample",
+      "label": "広告タグサンプル（設定枠のみ・同意なし非出力）",
+      "category": "advertising",
+      "provider": "google",
+      "loadStrategy": "blocked_no_consent",
+      "consentRequired": ["ad_storage", "ad_user_data", "ad_personalization"],
+      "pageConditions": {
+        "allowedPageTypes": ["article", "lp"]
+      },
+      "renderBlockingGuarantee": true
+    }
+  ]
+}

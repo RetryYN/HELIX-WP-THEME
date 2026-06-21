@@ -49,13 +49,22 @@ final class Agent_Neo_Theme {
 	private Agent_Neo_Theme_Setup $theme_setup;
 
 	/**
+	 * サードパーティタグ管理 module。
+	 *
+	 * @var Agent_Neo_Third_Party_Manager
+	 */
+	private Agent_Neo_Third_Party_Manager $third_party_manager;
+
+	/**
 	 * module を生成する。
 	 */
 	public function __construct() {
 		$this->trace_step( 'construct' );
-		$this->config_loader  = new Agent_Neo_Config_Loader( AGENT_NEO_DIR . 'config/' );
-		$this->boundary_guard = new Agent_Neo_Boundary_Guard();
-		$this->theme_setup    = new Agent_Neo_Theme_Setup();
+		$this->config_loader       = new Agent_Neo_Config_Loader( AGENT_NEO_DIR . 'config/' );
+		$this->boundary_guard      = new Agent_Neo_Boundary_Guard();
+		$this->theme_setup         = new Agent_Neo_Theme_Setup();
+		// third-party-tags.json はロード前に空配列でインスタンス化し、register() 後に設定を渡す。
+		$this->third_party_manager = new Agent_Neo_Third_Party_Manager( array() );
 	}
 
 	/**
@@ -84,7 +93,37 @@ final class Agent_Neo_Theme {
 			return;
 		}
 
+		// サードパーティタグ管理を初期化し、フックを登録する。
+		// config-loader の is_valid() 確認後に配線することで、不正設定時は graceful skip。
+		$third_party_config = $this->load_third_party_config();
+		$this->third_party_manager = new Agent_Neo_Third_Party_Manager( $third_party_config );
+		$this->third_party_manager->register();
+		$this->loaded_modules[] = 'third-party-manager';
+		$this->trace_step( 'third_party_registered' );
+
 		$this->trace_step( 'register_complete' );
+	}
+
+	/**
+	 * third-party-tags.json を読み込む。
+	 * ファイルが存在しない場合は空配列を返す（graceful degradation）。
+	 *
+	 * @return array<string, mixed>
+	 */
+	private function load_third_party_config(): array {
+		$path = AGENT_NEO_DIR . 'config/third-party-tags.json';
+
+		if ( ! is_readable( $path ) ) {
+			return array();
+		}
+
+		$contents = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		if ( false === $contents ) {
+			return array();
+		}
+
+		$data = json_decode( $contents, true );
+		return is_array( $data ) ? $data : array();
 	}
 
 	/**
@@ -120,15 +159,16 @@ final class Agent_Neo_Theme {
 	 */
 	public function health(): array {
 		return array(
-			'loaded'           => true,
-			'version'          => AGENT_NEO_VERSION,
-			'loaded_modules'   => $this->loaded_modules,
-			'config_valid'     => $this->config_loader->is_valid(),
-			'boundary_valid'   => $this->boundary_guard->is_valid(),
-			'steps'            => $this->steps,
-			'config_errors'    => $this->config_loader->get_errors(),
-			'boundary_errors'  => $this->boundary_guard->get_errors(),
-			'registered_files' => $this->config_loader->registered_files(),
+			'loaded'               => true,
+			'version'              => AGENT_NEO_VERSION,
+			'loaded_modules'       => $this->loaded_modules,
+			'config_valid'         => $this->config_loader->is_valid(),
+			'boundary_valid'       => $this->boundary_guard->is_valid(),
+			'steps'                => $this->steps,
+			'config_errors'        => $this->config_loader->get_errors(),
+			'boundary_errors'      => $this->boundary_guard->get_errors(),
+			'registered_files'     => $this->config_loader->registered_files(),
+			'third_party_manager'  => in_array( 'third-party-manager', $this->loaded_modules, true ),
 		);
 	}
 

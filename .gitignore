@@ -41,6 +41,8 @@ dist/
 vendor/
 .phpunit.cache/
 .phpunit.result.cache
+test-results/
+playwright-report/
 
 ## HELIX ランタイム（= 自動生成 / コミット不要。成果物 yaml/json は追跡継続）
 .helix/helix.db

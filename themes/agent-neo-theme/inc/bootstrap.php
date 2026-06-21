@@ -13,6 +13,7 @@ require_once AGENT_NEO_DIR . 'inc/class-config-loader.php';
 require_once AGENT_NEO_DIR . 'inc/setup/class-boundary-guard.php';
 require_once AGENT_NEO_DIR . 'inc/setup/class-theme-setup.php';
 require_once AGENT_NEO_DIR . 'inc/class-related-query.php';
+require_once AGENT_NEO_DIR . 'inc/assets/class-third-party-manager.php';
 require_once AGENT_NEO_DIR . 'inc/class-agent-neo-theme.php';
 
 $agent_neo_theme = new Agent_Neo_Theme();
