@@ -2,7 +2,7 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **27** / IMPL **0** / SCAFFOLD **0** / NONE **2** *(total 29)*
+- **Sprint/Task progress**: VERIFIED **28** / IMPL **0** / SCAFFOLD **0** / NONE **1** *(total 29)*
 - **Endpoint coverage**: `Y` **25** / `N` **32** *(total 57)*
 - **Phase1 launch F-ID**: **完了 2** / 残 **23** *(total 25)*
 - **残タスク（next）**:
@@ -40,7 +40,7 @@
 | T-020 | F-004/F-030 | 個人版 CV module（収益化ブロック生成） | .3 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-affiliate-controller.php` | POST /affiliate/block の block_type 5種（review/ranking/comparison/affiliate_cta/product_card）静的構造組立・XSSエスケープ・enum外400・payload欠落400・review rating必須(0-5)400・未認証401 を実機WP VDD（AI生成なし=REQ-NF-025） | 3c23c08 |
 | T-021 | F-005/F-012 | LP/HP blueprint API とページ apply 接続 | .3 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-blueprint-controller.php` | section_kind検証（hero…final-cta）・blueprint_id/section_id 一貫・契約外kind400・package境界403・pages apply接続・fail-before-write | 0cd46bb |
 | T-022 | F-013/F-031 | 法人版リード寄与権限制御（CTA管理） | .4 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-ctas-controller.php` | GET /ctas・GET /ctas/{cta_id}・POST /ctas/{cta_id}/apply を corporate 専用化（個人→403 越境拒否）・apply diff_hash409/idempotency applied=false/license guard grace503・invalid403/route slug制約 を実機WP VDD。content-level element swap（ACC-023）は別 /elements/swap（REQ-F-023・未実装）の責務 | b47f1de |
-| T-023 | F-011/F-023/F-024 | Performance + a11y + i18n/RTL gate パイプライン | .4 | theme | NONE | `themes/agent-neo-theme`, `plugins/agent-neo-core`（scaffold） | 性能/a11y/RTL の CI gate 実装未確認（`TC-016` 以降未着手） | 04154e1 |
+| T-023 | F-011/F-023/F-024 | Performance + a11y + i18n/RTL gate パイプライン | .4 | theme | VERIFIED | `bin/check-theme-quality.sh`, `plugins/agent-neo-core/inc/util/class-slug.php`, `bin/verify-slug.php`, `.github/workflows/theme-quality-gate.yml` | sanitize_slug TC-017b/TC-025 単体11/0 PASS・i18n/RTL/a11y(axe critical-serious 0)/perf(web-vitals budget) 4ゲート RESULT PASS(FAIL0)・テーマ a11y serious 11→0・実LCP/INP/CLS は CI lhci | 29ee7b5 |
 | T-024 | F-006/F-007/F-026/F-027 | 連携契約（tracking-context / CAT契約テスト） | .5 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php`, `bin/verify-catalog-contract.php` | POST /tracking/context（TC-013 署名401/schema400/正常200 実機VDD）+ CAT-001〜009 全PASS（4フィールド応答/dedup/validation/backoff 1s・2^n・max5・±10%jitter/DLQ409/retry429）。catalog-update producer は T-014/T-015 実装済 | 979a1a7 |
 | T-025 | F-020/F-021/F-023 | SBOM 生成・検証 | .5 | core-plugin | VERIFIED | `bin/generate-sbom.php`, `bin/check-sbom-gate.sh`, `sbom.cdx.json` | CycloneDX 1.6・5 component・外部依存ゼロ。Release/SBOM Gate（依存元/ライセンス/checksum/changelog/rollback）PASS 6/0WARN/0FAIL。embed License補完+3CHANGELOG+runbook-rollback | 6a29a55 |
 | T-026 | F-003 | 操作面（REST/MCP/WP CLI/React UI）統合検証 | .1a〜.2 | core-plugin | NONE | `plugins/agent-neo-core`, `themes/agent-neo-theme` | `dry-run/apply` 統合導線は未実装 | - |
@@ -127,7 +127,7 @@
 | F-008 | T-024 | VERIFIED | tracking/webhook 連携（context 同期 + catalog-update push 契約）実機検証済 |
 | F-009 | T-021 | NONE | 設定 import/export endpoint 未実装 | 
 | F-010 | T-013, T-019 | VERIFIED | `/license/validate`（T-013）+ /features package境界フラグ（T-019）とも実機検証済 | 
-| F-011 | T-017, T-018, T-023 | PARTIAL | SEO Core はT-017,T-018実装済み（canonical/noindex/OGP/JSON-LD/rollback/risk passthrough、duplicate warning、deprecated、GET /logs）。`T-023` は未着手。 |
+| F-011 | T-017, T-018, T-023 | VERIFIED | SEO Core（T-017/T-018）+ perf/a11y/i18n/RTL 品質ゲート（T-023・RESULT PASS）とも実機検証済 |
 | F-012 | T-021 | VERIFIED | LP/HP blueprint API（`POST /pages/blueprint`, `POST /lp/sections`）実装済み |
 | F-013 | T-022 | VERIFIED | CTA管理 API（/ctas 3種）corporate 専用・個人→403 越境拒否を実機検証 | 
 | F-014 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
@@ -170,6 +170,6 @@
   - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `18/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
-- `Table 1`: T-023・T-026 は NONE（T-006〜T-013、T-016〜T-022、T-024、T-025、T-027〜T-029 は VERIFIED。IMPL なし）
+- `Table 1`: T-026 のみ NONE（T-006〜T-013、T-016〜T-025、T-027〜T-029 は VERIFIED。IMPL なし）
 - `Table 2`: Y が 25 / N が 32（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
 - `Table 3`: F-011 は PARTIAL、F-021/F-022 は partial、F-003〜F-024 ほぼ未完了。F-025 は完了
