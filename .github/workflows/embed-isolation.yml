@@ -1,0 +1,46 @@
+name: embed-isolation-gate
+
+on:
+  push:
+    paths:
+      - 'plugins/agent-neo-embed/**'
+      - 'poc/embed-isolation/**'
+      - '.github/workflows/embed-isolation.yml'
+  pull_request:
+    paths:
+      - 'plugins/agent-neo-embed/**'
+      - 'poc/embed-isolation/**'
+      - '.github/workflows/embed-isolation.yml'
+  workflow_dispatch:
+
+jobs:
+  embed-isolation:
+    name: ADR-026 embed isolation verify (CARRY-EMBED-006)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Playwright
+        run: pip install playwright
+
+      - name: Install Chromium (with system deps)
+        run: playwright install --with-deps chromium
+
+      - name: Run embed isolation verify
+        working-directory: poc/embed-isolation
+        run: python verify.py
+
+      - name: Upload RESULTS.md as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: embed-isolation-results
+          path: poc/embed-isolation/RESULTS.md
+          if-no-files-found: warn
