@@ -2,14 +2,14 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **22** / IMPL **2** / SCAFFOLD **0** / NONE **5** *(total 29)*
-- **Endpoint coverage**: `Y` **24** / `N` **33** *(total 57)*
+- **Sprint/Task progress**: VERIFIED **23** / IMPL **2** / SCAFFOLD **0** / NONE **4** *(total 29)*
+- **Endpoint coverage**: `Y` **25** / `N` **32** *(total 57)*
 - **Phase1 launch F-ID**: **完了 2** / 残 **23** *(total 25)*
 - **残タスク（next）**:
   - `.3〜.5`: **T-017〜T-026**
 - **運用ルール（更新時）**:
   - 各 sprint 完了時に本表を更新
-  - `bin/check-impl-coverage.sh` で `coverage = 24/57` を確認済み（`/aseo/v1/agent-neo/catalog-update` は受け口/外部連携枠）
+  - `bin/check-impl-coverage.sh` で `coverage = 25/57` を確認済み（`/aseo/v1/agent-neo/catalog-update` は受け口/外部連携枠）
   - 注記: endpoint の実在(Y/N)は `bin/check-impl-coverage.sh` を正本とし、sprint 完了時点で同期
 
 ---
@@ -41,7 +41,7 @@
 | T-021 | F-005/F-012 | LP/HP blueprint API とページ apply 接続 | .3 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-blueprint-controller.php` | section_kind検証（hero…final-cta）・blueprint_id/section_id 一貫・契約外kind400・package境界403・pages apply接続・fail-before-write | 0cd46bb |
 | T-022 | F-013/F-031 | 法人版リード寄与権限制御（CTA管理） | .4 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-ctas-controller.php` | GET /ctas・GET /ctas/{cta_id}・POST /ctas/{cta_id}/apply を corporate 専用化（個人→403 越境拒否）・apply diff_hash409/idempotency applied=false/license guard grace503・invalid403/route slug制約 を実機WP VDD。content-level element swap（ACC-023）は別 /elements/swap（REQ-F-023・未実装）の責務 | b47f1de |
 | T-023 | F-011/F-023/F-024 | Performance + a11y + i18n/RTL gate パイプライン | .4 | theme | NONE | `themes/agent-neo-theme`, `plugins/agent-neo-core`（scaffold） | 性能/a11y/RTL の CI gate 実装未確認（`TC-016` 以降未着手） | 04154e1 |
-| T-024 | F-006/F-007/F-026/F-027 | 連携契約（tracking-context / webhook / catalog cache） | .5 | core-plugin | NONE | `plugins/agent-neo-core/inc`（scaffold） | 連携契約/契約テストは未実装。catalog-update scaffold も未実装 | 04154e1 |
+| T-024 | F-006/F-007/F-026/F-027 | 連携契約（tracking-context / CAT契約テスト） | .5 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php`, `bin/verify-catalog-contract.php` | POST /tracking/context（TC-013 署名401/schema400/正常200 実機VDD）+ CAT-001〜009 全PASS（4フィールド応答/dedup/validation/backoff 1s・2^n・max5・±10%jitter/DLQ409/retry429）。catalog-update producer は T-014/T-015 実装済 | 979a1a7 |
 | T-025 | F-020/F-021/F-023 | SBOM 生成・検証 | .5 | core-plugin | NONE | `plugins/agent-neo-core`（scaffold） | `sbom.cdx.json` 生成/Release Gate 未検出 | 04154e1 |
 | T-026 | F-003 | 操作面（REST/MCP/WP CLI/React UI）統合検証 | .1a〜.2 | core-plugin | NONE | `plugins/agent-neo-core`, `themes/agent-neo-theme` | `dry-run/apply` 統合導線は未実装 | - |
 | T-027 | REQ-F-038 / ADR-026 | embed static mode 実装 | .4 | embed-plugin | IMPL | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/block.json`, `plugins/agent-neo-embed/src/embed/render.php`, `plugins/agent-neo-embed/assets/embed-reset.css`, `plugins/agent-neo-embed/src/embed/view.js` | shadow DOM + リセット CSS 由来の静的 embed 実装あり（`mode=static`） | - |
@@ -90,7 +90,7 @@
 | POST | /media/upload | - | - | NONE | N | - |
 | POST | /migration/jobs | - | - | NONE | N | - |
 | POST | /tracking/event | T-012 | .2b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php` |
-| POST | /tracking/context | - | - | NONE | N | - |
+| POST | /tracking/context | T-024 | .5 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php` |
 | GET | /tracking/llmo-summary | - | - | NONE | N | - |
 | POST | /license/validate | T-013 | .2b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-license-controller.php` |
 | POST | /settings/export | T-016 | .2b/.2c | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-settings-controller.php` |
@@ -122,9 +122,9 @@
 | F-003 | T-026 | NONE | 操作面統合（dry-run/apply を含む）未実装 | 
 | F-004 | T-020 | VERIFIED | 収益化ブロック生成 API（/affiliate/block・5 block_type）実機検証済。AI生成なし（REQ-NF-025） |
 | F-005 | T-021 | VERIFIED | blueprint API 実装（section kind、section_id/blueprint_id、pages apply接続）検証済み |
-| F-006 | T-012, T-024 | PARTIAL | `/tracking/event` は実機検証済み（T-012）。`tracking-context/webhook/cache` は継続実装待ち（T-024） | 
-| F-007 | T-024 | NONE | webhook 連携未実装 | 
-| F-008 | T-024 | NONE | tracking/webhook 連携未実装 | 
+| F-006 | T-012, T-024 | VERIFIED | `/tracking/event`（T-012）+ `/tracking/context`（T-024）+ catalog-update CAT契約テスト 全実機検証済 |
+| F-007 | T-024 | VERIFIED | Automation SEO 連携（/tracking/context A-008 + catalog-update CAT-001〜009）実機検証済 |
+| F-008 | T-024 | VERIFIED | tracking/webhook 連携（context 同期 + catalog-update push 契約）実機検証済 |
 | F-009 | T-021 | NONE | 設定 import/export endpoint 未実装 | 
 | F-010 | T-013, T-019 | VERIFIED | `/license/validate`（T-013）+ /features package境界フラグ（T-019）とも実機検証済 | 
 | F-011 | T-017, T-018, T-023 | PARTIAL | SEO Core はT-017,T-018実装済み（canonical/noindex/OGP/JSON-LD/rollback/risk passthrough、duplicate warning、deprecated、GET /logs）。`T-023` は未着手。 |
@@ -170,6 +170,6 @@
   - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `18/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
-- `Table 1`: T-023〜T-026、T-029 は NONE（T-006〜T-013、T-016〜T-022 は VERIFIED / T-027・T-028 は IMPL）
-- `Table 2`: Y が 24 / N が 33（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
+- `Table 1`: T-023・T-025・T-026・T-029 は NONE（T-006〜T-013、T-016〜T-022、T-024 は VERIFIED / T-027・T-028 は IMPL）
+- `Table 2`: Y が 25 / N が 32（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
 - `Table 3`: F-011 は PARTIAL、F-021/F-022 は partial、F-003〜F-024 ほぼ未完了。F-025 は完了
