@@ -64,3 +64,86 @@ Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-log
 /* カード hover アフォーダンス（box-shadow のみ; border-color はブロック側インライン指定が優先されるため触らない） */
 .an-card { transition: box-shadow .15s ease; }
 .an-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+/* ============================================================
+ * 記事面スタイル（single.html 固有）
+ * ============================================================ */
+
+/* パンくず */
+.an-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--muted);
+}
+.an-breadcrumb a {
+  color: var(--wp--preset--color--muted);
+  text-decoration: none;
+}
+.an-breadcrumb a:hover {
+  color: var(--wp--preset--color--accent);
+  text-decoration: underline;
+}
+.an-breadcrumb span[aria-hidden] {
+  color: var(--wp--preset--color--muted);
+}
+
+/* エントリーメタ（日付・著者・カテゴリ・読了時間） */
+.an-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--muted);
+}
+.an-entry-meta > * + *::before {
+  content: "·";
+  margin-inline-end: 1rem;
+  color: var(--wp--preset--color--muted);
+}
+.an-entry-meta .wp-block-avatar img {
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+/* 記事末エリア（タグ・CTA・著者・関連・前後ナビ） */
+.an-article-end {
+  border-top: 1px solid var(--wp--preset--color--secondary);
+}
+
+/* 著者ボックス */
+.an-author-box {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1.5rem;
+  border: 1px solid var(--wp--preset--color--secondary);
+  border-radius: 10px;
+  padding: var(--wp--preset--spacing--30);
+}
+.an-author-box .wp-block-avatar img {
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* 関連記事エリア（an-card は home で定義済みのため grid gap のみ補完） */
+.an-related .wp-block-post-template {
+  gap: var(--wp--preset--spacing--30);
+}
+
+/* 前後記事ナビ */
+.an-post-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top: 1px solid var(--wp--preset--color--secondary);
+  padding-top: var(--wp--preset--spacing--40);
+  gap: var(--wp--preset--spacing--20);
+}
+.an-post-nav .wp-block-post-navigation-link:last-child {
+  text-align: end;
+  margin-inline-start: auto;
+}
