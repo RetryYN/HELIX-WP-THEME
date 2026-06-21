@@ -31,9 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-buttons">
-		<!-- wp:button {"backgroundColor":"accent","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"800","fontSize":"1.125rem"},"spacing":{"padding":{"top":"1.25rem","bottom":"1.25rem","left":"3rem","right":"3rem"}}}} -->
+		<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"800","fontSize":"1.125rem"},"spacing":{"padding":{"top":"1.25rem","bottom":"1.25rem","left":"3rem","right":"3rem"}}}} -->
 		<div class="wp-block-button">
-			<a class="wp-block-button__link has-accent-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:800;font-size:1.125rem;padding-top:1.25rem;padding-bottom:1.25rem;padding-left:3rem;padding-right:3rem"><?php esc_html_e( '14日間 無料で試す →', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:800;font-size:1.125rem;padding-top:1.25rem;padding-bottom:1.25rem;padding-left:3rem;padding-right:3rem;background-color:var(--wp--preset--color--accent-aa)"><?php esc_html_e( '14日間 無料で試す →', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 	</div>

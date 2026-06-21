@@ -31,9 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-buttons">
-		<!-- wp:button {"backgroundColor":"accent","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
+		<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
 		<div class="wp-block-button">
-			<a class="wp-block-button__link has-accent-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '無料で試してみる →', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '無料で試してみる →', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 		<!-- wp:button {"className":"is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600","fontSize":"1rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2rem","right":"2rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->

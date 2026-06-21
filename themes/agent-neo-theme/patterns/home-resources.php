@@ -70,9 +70,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
 	<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)">
 
-		<!-- wp:button {"className":"an-cta an-cta--resources_all is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--accent-aa)","width":"2px"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem","left":"2rem","right":"2rem"}}}} -->
+		<!-- wp:button {"className":"an-cta an-cta--resources_all is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--accent-aa)","width":"2px"},"color":{"text":"#8a3d00"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem","left":"2rem","right":"2rem"}}}} -->
 		<div class="wp-block-button is-style-outline an-cta an-cta--resources_all">
-			<a class="wp-block-button__link wp-element-button" href="/" style="border-radius:6px;border:2px solid var(--wp--preset--color--accent-aa);color:var(--wp--preset--color--accent-aa);font-weight:700;font-size:1.0625rem;padding-top:0.875rem;padding-bottom:0.875rem;padding-left:2rem;padding-right:2rem"><?php esc_html_e( '記事一覧へ →', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link wp-element-button" href="/" style="border-radius:6px;border:2px solid var(--wp--preset--color--accent-aa);color:#8a3d00;font-weight:700;font-size:1.0625rem;padding-top:0.875rem;padding-bottom:0.875rem;padding-left:2rem;padding-right:2rem"><?php esc_html_e( '記事一覧へ →', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 

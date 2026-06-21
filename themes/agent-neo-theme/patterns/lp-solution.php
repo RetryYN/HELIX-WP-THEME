@@ -39,8 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- 機能項目 1 -->
 			<!-- wp:group {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group" style="margin-bottom:var(--wp--preset--spacing--40);gap:var(--wp--preset--spacing--10)">
-				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent)"}}} -->
-				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent)"><?php esc_html_e( '01 — 自動コンテンツ生成', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"}}} -->
+				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa)"><?php esc_html_e( '01 — 自動コンテンツ生成', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#333333"}}} -->
 				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#333333"><?php esc_html_e( 'キーワード選定から構成案・本文・タイトル・メタ説明まで AI が一貫して生成。編集者はレビューと承認のみに集中できます。', 'agent-neo' ); ?></p>
@@ -51,8 +51,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- 機能項目 2 -->
 			<!-- wp:group {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group" style="margin-bottom:var(--wp--preset--spacing--40);gap:var(--wp--preset--spacing--10)">
-				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent)"}}} -->
-				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent)"><?php esc_html_e( '02 — 継続的 SEO 最適化', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"}}} -->
+				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa)"><?php esc_html_e( '02 — 継続的 SEO 最適化', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#333333"}}} -->
 				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#333333"><?php esc_html_e( '検索順位・クリック率を継続監視し、タイトル改善・内部リンク最適化・古い記事のリライトを自動スケジュールします。', 'agent-neo' ); ?></p>
@@ -63,8 +63,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- 機能項目 3 -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group" style="gap:var(--wp--preset--spacing--10)">
-				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent)"}}} -->
-				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent)"><?php esc_html_e( '03 — 一元管理ダッシュボード', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"}}} -->
+				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa)"><?php esc_html_e( '03 — 一元管理ダッシュボード', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#333333"}}} -->
 				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#333333"><?php esc_html_e( 'PV・順位・CV・生成ステータスをひとつの画面で把握。施策の効果を即座に判断し、戦略に反映できます。', 'agent-neo' ); ?></p>

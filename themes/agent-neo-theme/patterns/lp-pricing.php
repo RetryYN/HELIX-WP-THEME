@@ -40,16 +40,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'スターター', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#888888"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
-			<p style="font-size:var(--wp--preset--font-size--small);color:#888888;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( '小規模サイト・個人メディア向け', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#6b6b6b"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
+			<p style="font-size:var(--wp--preset--font-size--small);color:#6b6b6b;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( '小規模サイト・個人メディア向け', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--primary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
 			<p style="font-weight:800;font-size:2.5rem;line-height:1.0;color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10)">¥29,800<span style="font-size:1rem;font-weight:400"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#888888"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-			<p style="font-size:var(--wp--preset--font-size--small);color:#888888;margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( '（税抜）', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#6b6b6b"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
+			<p style="font-size:var(--wp--preset--font-size--small);color:#6b6b6b;margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( '（税抜）', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20","margin":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"flex","orientation":"vertical"}} -->
@@ -66,11 +66,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#333333"}}} -->
 				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#333333">✓ &nbsp;<?php esc_html_e( '分析ダッシュボード', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#aaaaaa"}}} -->
-				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#aaaaaa">— &nbsp;<?php esc_html_e( 'マルチサイト管理', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#6b6b6b"}}} -->
+				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#6b6b6b">— &nbsp;<?php esc_html_e( 'マルチサイト管理', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#aaaaaa"}}} -->
-				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#aaaaaa">— &nbsp;<?php esc_html_e( '専任サポート', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#6b6b6b"}}} -->
+				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#6b6b6b">— &nbsp;<?php esc_html_e( '専任サポート', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -97,22 +97,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
 				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary)"><?php esc_html_e( 'プロ', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"border":{"radius":"4px"},"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#ffffff","background":"var(--wp--preset--color--accent)"},"spacing":{"padding":{"top":"0.2rem","bottom":"0.2rem","left":"0.6rem","right":"0.6rem"}}}} -->
-				<p style="border-radius:4px;font-weight:700;font-size:var(--wp--preset--font-size--small);color:#ffffff;background-color:var(--wp--preset--color--accent);padding:0.2rem 0.6rem"><?php esc_html_e( 'おすすめ', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"border":{"radius":"4px"},"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#ffffff","background":"var(--wp--preset--color--accent-aa)"},"spacing":{"padding":{"top":"0.2rem","bottom":"0.2rem","left":"0.6rem","right":"0.6rem"}}}} -->
+				<p style="border-radius:4px;font-weight:700;font-size:var(--wp--preset--font-size--small);color:#ffffff;background-color:var(--wp--preset--color--accent-aa);padding:0.2rem 0.6rem"><?php esc_html_e( 'おすすめ', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#888888"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
-			<p style="font-size:var(--wp--preset--font-size--small);color:#888888;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( '成長フェーズの企業・メディア向け', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#6b6b6b"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
+			<p style="font-size:var(--wp--preset--font-size--small);color:#6b6b6b;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( '成長フェーズの企業・メディア向け', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--accent)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-			<p style="font-weight:800;font-size:2.5rem;line-height:1.0;color:var(--wp--preset--color--accent);margin-bottom:var(--wp--preset--spacing--10)">¥89,800<span style="font-size:1rem;font-weight:400;color:#333333"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+			<p style="font-weight:800;font-size:2.5rem;line-height:1.0;color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--10)">¥89,800<span style="font-size:1rem;font-weight:400;color:#333333"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#888888"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-			<p style="font-size:var(--wp--preset--font-size--small);color:#888888;margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( '（税抜）', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#6b6b6b"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
+			<p style="font-size:var(--wp--preset--font-size--small);color:#6b6b6b;margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( '（税抜）', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20","margin":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"flex","orientation":"vertical"}} -->
@@ -132,17 +132,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"600","fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#333333"}}} -->
 				<p style="font-weight:600;font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#333333">✓ &nbsp;<?php esc_html_e( 'マルチサイト一元管理', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"600","fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#aaaaaa"}}} -->
-				<p style="font-weight:600;font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#aaaaaa">— &nbsp;<?php esc_html_e( '専任サポート', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"600","fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.5"},"color":{"text":"#6b6b6b"}}} -->
+				<p style="font-weight:600;font-size:var(--wp--preset--font-size--medium);line-height:1.5;color:#6b6b6b">— &nbsp;<?php esc_html_e( '専任サポート', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
-				<!-- wp:button {"backgroundColor":"accent","textColor":"background","width":100,"style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}}}} -->
+				<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","width":100,"style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}}}} -->
 				<div class="wp-block-button has-custom-width wp-block-button__width-100">
-					<a class="wp-block-button__link has-accent-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;padding-top:0.875rem;padding-bottom:0.875rem"><?php esc_html_e( '無料で試す →', 'agent-neo' ); ?></a>
+					<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;padding-top:0.875rem;padding-bottom:0.875rem"><?php esc_html_e( '無料で試す →', 'agent-neo' ); ?></a>
 				</div>
 				<!-- /wp:button -->
 			</div>
@@ -159,16 +159,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'エンタープライズ', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#888888"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
-			<p style="font-size:var(--wp--preset--font-size--small);color:#888888;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( '大規模メディア・複数ブランド運営向け', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#6b6b6b"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
+			<p style="font-size:var(--wp--preset--font-size--small);color:#6b6b6b;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( '大規模メディア・複数ブランド運営向け', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--primary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
 			<p style="font-weight:800;font-size:2rem;line-height:1.0;color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( '要お問い合わせ', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#888888"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-			<p style="font-size:var(--wp--preset--font-size--small);color:#888888;margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( '規模・要件に応じた個別見積もり', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--small)"},"color":{"text":"#6b6b6b"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
+			<p style="font-size:var(--wp--preset--font-size--small);color:#6b6b6b;margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( '規模・要件に応じた個別見積もり', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20","margin":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"flex","orientation":"vertical"}} -->

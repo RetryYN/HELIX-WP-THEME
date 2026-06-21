@@ -38,9 +38,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<!-- /wp:button -->
 
-		<!-- wp:button {"className":"an-cta an-cta--home_hero_secondary is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--accent-aa)","width":"2px"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
+		<!-- wp:button {"className":"an-cta an-cta--home_hero_secondary is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--accent-aa)","width":"2px"},"color":{"text":"#8a3d00"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
 		<div class="wp-block-button is-style-outline an-cta an-cta--home_hero_secondary">
-			<a class="wp-block-button__link wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--accent-aa);color:var(--wp--preset--color--accent-aa);font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '機能を見る', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--accent-aa);color:#8a3d00;font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '機能を見る', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 
