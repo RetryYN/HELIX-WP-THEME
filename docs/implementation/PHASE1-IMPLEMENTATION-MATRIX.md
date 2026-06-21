@@ -2,14 +2,14 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **29** / IMPL **0** / SCAFFOLD **0** / NONE **0** *(total 29)*
-- **Endpoint coverage**: `Y` **25** / `N` **32** *(total 57)*
-- **Phase1 launch F-ID**: **VERIFIED 13** / PARTIAL 4 / NONE 8 *(total 25)*（NONE 8 は T-ID 未割当=29タスク計画外の将来スコープ。29 WBS タスクは全 VERIFIED）
+- **Sprint/Task progress**: VERIFIED **30** / IMPL **0** / SCAFFOLD **0** / NONE **0** *(total 30)*
+- **Endpoint coverage**: `Y` **56** / `N` **1** *(total 57)*（N 1 = `POST /aseo/v1/agent-neo/catalog-update` は automation SEO 側の外部受け口・agent-neo 実装範囲外）
+- **Phase1 launch F-ID**: **VERIFIED 15** / PARTIAL 2 / NONE 5 *(total 25、F-014/F-015/F-018/F-019/F-024 は T-ID 未割当=30タスク計画外の将来スコープ。30 WBS タスクは全 VERIFIED)*
 - **残タスク（next）**:
-  - `.3〜.5`: **T-017〜T-026**
+  - 残 endpoint は外部受け口（`/aseo/v1/agent-neo/catalog-update`）のみ。agent-neo 実装スコープ外
 - **運用ルール（更新時）**:
   - 各 sprint 完了時に本表を更新
-  - `bin/check-impl-coverage.sh` で `coverage = 25/57` を確認済み（`/aseo/v1/agent-neo/catalog-update` は受け口/外部連携枠）
+  - `bin/check-impl-coverage.sh` で `coverage = 56/57 (98%)` を確認済み（2026-06-22 実機 VDD 検証。`/aseo/v1/agent-neo/catalog-update` は受け口/外部連携枠のため MISSING 扱い）
   - 注記: endpoint の実在(Y/N)は `bin/check-impl-coverage.sh` を正本とし、sprint 完了時点で同期
 
 ---
@@ -47,6 +47,7 @@
 | T-027 | REQ-F-038 / ADR-026 | embed static mode 実装 | .4 | embed-plugin | VERIFIED | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/block.json`, `plugins/agent-neo-embed/src/embed/render.php`, `plugins/agent-neo-embed/assets/embed-reset.css`, `plugins/agent-neo-embed/src/embed/view.js` | PoC verify.py 10本 all PASS（static Shadow DOM 非継承/継承 CSS隔離・Light DOM侵入なし実測）+ 実WP DSD SSR。poc/embed-isolation/RESULTS.md VERDICT PASS | 721642c |
 | T-028 | REQ-F-038 / ADR-026 | embed interactive mode 実装 | .4 | embed-plugin | VERIFIED | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/edit.js`, `plugins/agent-neo-embed/src/embed/view.js`, `plugins/agent-neo-embed/src/embed/block.json` | PoC verify.py PASS: iframe sandbox（allow-scripts のみ/allow-same-origin・allow-top-navigation 不在）・parent-cannot-read-iframe・egress sink0・form-action CSP・postMessage source+nonce。実運用ホスト接続は CARRY-EMBED-005（deploy 繰延） | 721642c |
 | T-029 | CARRY-EMBED-006 / ADR-026 | embed CI gate 自動化 | .4 | embed-plugin | VERIFIED | `.github/workflows/embed-isolation.yml`, `poc/embed-isolation/verify.py` | verify.py（10本 all PASS・exit 0/非0 正常）を GitHub Actions CI（push/PR・fail-fast）へ統合。継続回帰ゲート確立 | 721642c |
+| T-030 | F-009/F-017/F-021/F-022/F-023（関連 31 endpoint） | 残 31 endpoint 一括実装（2026-06-22） | .6 | core-plugin | VERIFIED | `class-posts-controller.php`, `class-health-controller.php`, `class-sections-read-controller.php`, `class-pages-read-controller.php`, `class-design-tokens-controller.php`, `class-jobs-controller.php`, `class-media-controller.php`, `class-migration-controller.php`, `class-public-controller.php`, `class-automation-seo-controller.php`, `class-risks-controller.php`, `class-elements-controller.php`, `class-llmo-summary-controller.php`（13 コントローラ新規）| 全 php -l 通過 / `bin/check-impl-coverage.sh` = 56/57 (98%) / 実機 VDD（read 200・write 201/200・enum外 400・auth 401・公開エンドポイント 200）/ code-reviewer TL 2巡是正（Critical: public 無制限クエリ上限化・sections-read XSS→wp_kses_post・sections-read UUID正規表現バグ・media MIME偽装→wp_check_filetype_and_ext・design-tokens batch EDITABLE→PATCH / Important: jobs index上限・冪等cancel・SSRF guard・save失敗CONFLICT 等）/ REQ-NF-025 準拠（AI ロジックなし・静的/read/passthrough のみ）| — |
 
 ---
 
@@ -55,59 +56,59 @@
 | method | path | 対応 T-ID | sprint | status | register_rest_route 実在(Y/N) | 実装ファイル |
 |---|---|---|---|---|---|---|
 | GET | /status | T-005 | .1a | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-status-controller.php` |
-| GET | /health | - | - | NONE | N | - |
+| GET | /health | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-health-controller.php` |
 | GET | /features | T-019 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-features-controller.php` |
-| GET | /contracts | - | - | NONE | N | - |
-| GET | /posts | - | - | NONE | N | - |
-| GET | /posts/{id} | - | - | NONE | N | - |
-| GET | /posts/{id}/diff | - | - | NONE | N | - |
-| GET | /posts/{id}/markdown | - | - | NONE | N | - |
+| GET | /contracts | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-health-controller.php` |
+| GET | /posts | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-posts-controller.php` |
+| GET | /posts/{id} | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-posts-controller.php` |
+| GET | /posts/{id}/diff | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-posts-controller.php` |
+| GET | /posts/{id}/markdown | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-posts-controller.php` |
 | PATCH | /posts/{id}/blocks/{block_id} | T-008 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-blocks-controller.php` |
 | POST | /posts/{id}/sections/{section_id}/edit | T-009 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-sections-controller.php` |
-| GET | /sections | - | - | NONE | N | - |
-| GET | /sections/{section_id} | - | - | NONE | N | - |
-| POST | /sections/{section_id}/apply | - | - | NONE | N | - |
-| GET | /pages | - | - | NONE | N | - |
-| GET | /pages/{id} | - | - | NONE | N | - |
+| GET | /sections | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-sections-read-controller.php` |
+| GET | /sections/{section_id} | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-sections-read-controller.php` |
+| POST | /sections/{section_id}/apply | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-sections-read-controller.php` |
+| GET | /pages | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-pages-read-controller.php` |
+| GET | /pages/{id} | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-pages-read-controller.php` |
 | POST | /pages/blueprint | T-021 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-blueprint-controller.php` |
 | POST | /lp/sections | T-021 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-blueprint-controller.php` |
-| POST | /pages/{id}/preview | - | - | NONE | N | - |
+| POST | /pages/{id}/preview | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-pages-read-controller.php` |
 | POST | /pages/{id}/apply | - | - | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-pages-controller.php` |
 | POST | /pages/{id}/rollback | - | - | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-pages-controller.php` |
 | POST | /rollback/{rollback_id} | - | - | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-pages-controller.php` |
 | GET | /ctas | T-022 | .4 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-ctas-controller.php` |
 | GET | /ctas/{cta_id} | T-022 | .4 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-ctas-controller.php` |
 | POST | /ctas/{cta_id}/apply | T-022 | .4 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-ctas-controller.php` |
-| POST | /elements/swap | - | - | NONE | N | - |
+| POST | /elements/swap | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-elements-controller.php` |
 | POST | /actions/dry-run | T-006 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-actions-controller.php` |
 | POST | /actions/apply | T-007 | .1b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-actions-controller.php` |
-| PATCH | /batch | - | - | NONE | N | - |
-| POST | /design-tokens/apply | - | - | NONE | N | - |
-| GET | /design-tokens | - | - | NONE | N | - |
+| PATCH | /batch | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-design-tokens-controller.php` |
+| POST | /design-tokens/apply | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-design-tokens-controller.php` |
+| GET | /design-tokens | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-design-tokens-controller.php` |
 | GET | /seo/{post_id} | T-017 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-seo-controller.php` |
 | POST | /seo/{post_id}/apply | T-017 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-seo-controller.php` |
 | POST | /seo/meta | T-017 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-seo-controller.php` |
-| POST | /media/upload | - | - | NONE | N | - |
-| POST | /migration/jobs | - | - | NONE | N | - |
+| POST | /media/upload | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-media-controller.php` |
+| POST | /migration/jobs | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-migration-controller.php` |
 | POST | /tracking/event | T-012 | .2b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php` |
 | POST | /tracking/context | T-024 | .5 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php` |
-| GET | /tracking/llmo-summary | - | - | NONE | N | - |
+| GET | /tracking/llmo-summary | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-llmo-summary-controller.php` |
 | POST | /license/validate | T-013 | .2b | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-license-controller.php` |
 | POST | /settings/export | T-016 | .2b/.2c | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-settings-controller.php` |
 | POST | /settings/import | T-016 | .2b/.2c | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-settings-controller.php` |
-| POST | /jobs | - | - | NONE | N | - |
-| GET | /jobs/{job_id} | - | - | NONE | N | - |
-| POST | /jobs/{job_id}/cancel | - | - | NONE | N | - |
+| POST | /jobs | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-jobs-controller.php` |
+| GET | /jobs/{job_id} | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-jobs-controller.php` |
+| POST | /jobs/{job_id}/cancel | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-jobs-controller.php` |
 | GET | /logs | T-018 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-logs-controller.php` |
-| GET | /public/pages/{id}/snapshot | - | - | NONE | N | - |
-| GET | /public/crawl-map | - | - | NONE | N | - |
-| GET | /public/llmo/answers | - | - | NONE | N | - |
-| GET | /automation-seo/fit | - | - | NONE | N | - |
-| POST | /automation-seo/fit | - | - | NONE | N | - |
-| GET | /automation-seo/bridge-profile | - | - | NONE | N | - |
-| GET | /risks/hazards | - | - | NONE | N | - |
-| GET | /crawler-policy | - | - | NONE | N | - |
-| POST | /crawler-policy | - | - | NONE | N | - |
+| GET | /public/pages/{id}/snapshot | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-public-controller.php` |
+| GET | /public/crawl-map | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-public-controller.php` |
+| GET | /public/llmo/answers | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-public-controller.php` |
+| GET | /automation-seo/fit | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-automation-seo-controller.php` |
+| POST | /automation-seo/fit | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-automation-seo-controller.php` |
+| GET | /automation-seo/bridge-profile | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-automation-seo-controller.php` |
+| GET | /risks/hazards | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-risks-controller.php` |
+| GET | /crawler-policy | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-risks-controller.php` |
+| POST | /crawler-policy | T-030 | .6 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-risks-controller.php` |
 | POST | /affiliate/block | T-020 | .3 | VERIFIED | Y | `plugins/agent-neo-core/inc/rest/class-affiliate-controller.php` |
 | POST | /aseo/v1/agent-neo/catalog-update | T-014 / T-015 | .2 | NONE | N | external receiver / out of agent-neo scope（coverage 除外対象） |
 
@@ -125,7 +126,7 @@
 | F-006 | T-012, T-024 | VERIFIED | `/tracking/event`（T-012）+ `/tracking/context`（T-024）+ catalog-update CAT契約テスト 全実機検証済 |
 | F-007 | T-024 | VERIFIED | Automation SEO 連携（/tracking/context A-008 + catalog-update CAT-001〜009）実機検証済 |
 | F-008 | T-024 | VERIFIED | tracking/webhook 連携（context 同期 + catalog-update push 契約）実機検証済 |
-| F-009 | T-021 | NONE | 設定 import/export endpoint 未実装 | 
+| F-009 | T-030 | VERIFIED | GET /design-tokens・POST /design-tokens/apply・PATCH /batch 実装（T-030）。デザイントークン取得・適用・一括 PATCH API 層実機検証済み（AF-012 対応） | 
 | F-010 | T-013, T-019 | VERIFIED | `/license/validate`（T-013）+ /features package境界フラグ（T-019）とも実機検証済 | 
 | F-011 | T-017, T-018, T-023 | VERIFIED | SEO Core（T-017/T-018）+ perf/a11y/i18n/RTL 品質ゲート（T-023・RESULT PASS）とも実機検証済 |
 | F-012 | T-021 | VERIFIED | LP/HP blueprint API（`POST /pages/blueprint`, `POST /lp/sections`）実装済み |
@@ -133,21 +134,23 @@
 | F-014 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-015 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-016 | T-019 | PARTIAL | package 境界フラグ（/features）と既存 check_package_scope による個人版 HP/LP 書換え拒否は実装。テンプレ固定構成の全 enforcement は残 | 
-| F-017 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
+| F-017 | T-030 | VERIFIED | POST /media/upload 実装（T-030）。MIME偽装→wp_check_filetype_and_ext 是正・実機検証済み（API 層） | 
 | F-018 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-019 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-020 | T-025, T-023 | PARTIAL | Release/SBOM Gate（T-025）実装・PASS。a11y/i18n/RTL/Theme Review gate は T-023 で残 | 
-| F-021 | T-008, T-009 | PARTIAL | section編集（block/section） endpoint は実装・検証済み。全体ロールは未完了 |
-| F-022 | T-009 | PARTIAL | section edit endpoint は実装済み。apply/rollback など未実装 |
-| F-023 | T-023, T-025 | NONE | swap / CV関連 API 未実装 | 
+| F-021 | T-008, T-009, T-030 | VERIFIED | block PATCH（T-008）+ section edit（T-009）に加え、GET /posts/{id}・GET /sections/{section_id}（block_id/section_id 返却）+ POST /sections/{section_id}/apply（T-030）が追加。API 層実機検証済み |
+| F-022 | T-009, T-030 | VERIFIED | section edit endpoint（T-009）に加え、POST /sections/{section_id}/apply（T-030）実装・実機検証済み |
+| F-023 | T-022, T-030 | VERIFIED | POST /elements/swap（T-030）実装・実機検証済み。/ctas（T-022）と合わせて CV module API 層完了 | 
 | F-024 | T-023 | NONE | A/B テスト運用連携未実装 | 
 | F-025 | T-016 | VERIFIED | 設定 settings import/export の JSON 統合は実機検証済み | 
 | F-044 | T-014, T-015 | VERIFIED | catalog-update 受け口と Outbox/DLQ は実機検証済み |
 
 ### Phase1 status summary（F-001〜F-025 の 25 件を集計。F-044 は Phase1 launch set 外として別行扱い）
-- **VERIFIED**: F-001〜F-008, F-010〜F-013, F-025（13 件）
-- **PARTIAL**: F-016, F-020, F-021, F-022（4 件）
-- **NONE**: F-009, F-014, F-015, F-017, F-018, F-019, F-023, F-024（8 件）
+- **VERIFIED**: F-001〜F-013, F-017, F-021〜F-023, F-025（15 件）
+- **PARTIAL**: F-016, F-020（2 件）
+- **NONE**: F-014, F-015, F-018, F-019, F-024（5 件。T-ID 未割当=30タスク計画外の将来スコープ）
+
+> 2026-06-22 T-030（残 31 endpoint 実装）により F-009, F-017, F-021, F-022, F-023 が VERIFIED に昇格。NONE 8 件 → 5 件、PARTIAL 4 件 → 2 件、VERIFIED 13 件 → 15 件。
 
 > **注記**: 「VERIFIED」は endpoint/API の実機検証済みを意味する。機能として完全達成（launch-complete）は F-001/F-025 等に限定。残りは API 層 VERIFIED でも機能面は PARTIAL または未実装の場合がある。
 
@@ -160,7 +163,7 @@
 | Theme kernel（bootstrap） | 起動・ヘルス取得 | `themes/agent-neo-theme/inc/bootstrap.php`, `themes/agent-neo-theme/functions.php` | VERIFIED | `theme_health` 呼び出しと `trace_step` 実装 |
 | Theme kernel（manifest/boundary/prefix） | `theme-manifest` / `section-registry` / `schema-reference` | `themes/agent-neo-theme/config/theme-manifest.json`, `themes/agent-neo-theme/config/section-registry.json`, `themes/agent-neo-theme/config/schema-reference.json`, `themes/agent-neo-theme/inc/class-config-loader.php`, `themes/agent-neo-theme/inc/setup/class-boundary-guard.php` | VERIFIED | `config_valid` / boundary 検査ロジックが実体 |
 | Core plugin（lifecycle/CPT/schema） | bootstrap/lifecycle/CPT/schema loader | `plugins/agent-neo-core/inc/bootstrap.php`, `plugins/agent-neo-core/inc/class-agent-neo-core.php`, `plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php`, `plugins/agent-neo-core/inc/schema/class-schema-loader.php`, `plugins/agent-neo-core/inc/cpt/class-agent-action-cpt.php` | VERIFIED | lifecycle（T-014/T-015）・CPT（T-018）・bootstrap が実機検証済み。`plugins/agent-neo-core/inc/lifecycle/class-lifecycle.php` と `inc/cpt/class-agent-action-cpt.php` 実在確認済み |
-| Core plugin（REST scaffolding） | REST 基盤（base controller / auth） | `plugins/agent-neo-core/inc/rest/class-rest-controller-base.php`, `plugins/agent-neo-core/inc/rest/class-auth.php`, `plugins/agent-neo-core/schema/openapi.yaml`, `plugins/agent-neo-core/schema/status-response.schema.json` | VERIFIED | 15 controller が `register_rest_route` をバックエンド委譲経由で登録。`bin/check-impl-coverage.sh` で 25/57 endpoint 実在確認済み（`/status` のみという記述は誤記） |
+| Core plugin（REST scaffolding） | REST 基盤（base controller / auth） | `plugins/agent-neo-core/inc/rest/class-rest-controller-base.php`, `plugins/agent-neo-core/inc/rest/class-auth.php`, `plugins/agent-neo-core/schema/openapi.yaml`, `plugins/agent-neo-core/schema/status-response.schema.json` | VERIFIED | 28 controller が `register_rest_route` を登録。`bin/check-impl-coverage.sh` で 56/57 (98%) endpoint 実在確認済み（2026-06-22 T-030 完了後）。残 1 = `POST /aseo/v1/agent-neo/catalog-update`（automation SEO 側外部受け口・agent-neo スコープ外） |
 | CI / SBOM / gate | TC-016〜 / SBOM | `bin/check-theme-quality.sh`, `bin/generate-sbom.php`, `bin/check-sbom-gate.sh`, `sbom.cdx.json`, `.github/workflows/theme-quality-gate.yml`, `.github/workflows/embed-isolation.yml` | VERIFIED | T-023（performance/a11y/i18n/RTL gate）、T-025（SBOM CycloneDX 1.6・5 component）、T-029（embed CI gate）が実機検証済み。全ファイルの実在を `ls` で確認済み | 
 
 ---
@@ -170,9 +173,9 @@
 - 参照リンクはすべて本リポジトリ内の相対パスで統一。
 - `docs/design/L3-WBS.md` と `docs/design/api-catalog.md` の行数・件数との整合:
   - WBS: T-001〜T-029 を漏れなく反映
-  - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `25/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
+  - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `56/57 (98%)`・2026-06-22 T-030 完了後）。`/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
-- `Table 1`: **全29タスク VERIFIED**（NONE/IMPL なし）。T-001〜T-029 完了
-- `Table 2`: Y が 25 / N が 32（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
-- `Table 3`: VERIFIED 13 / PARTIAL 4 / NONE 8（F-001〜F-025 計 25 件。F-044 は別行）。各 F-ID の status は Table 3 本文参照
+- `Table 1`: **全30タスク VERIFIED**（NONE/IMPL なし）。T-001〜T-030 完了
+- `Table 2`: Y が 56 / N が 1（`/aseo/v1/agent-neo/catalog-update` のみ・automation SEO 外部受け口）。`bin/check-impl-coverage.sh` で `coverage = 56/57 (98%)` を確認済み（2026-06-22）
+- `Table 3`: VERIFIED 15 / PARTIAL 2 / NONE 5（F-001〜F-025 計 25 件。F-044 は別行）。各 F-ID の status は Table 3 本文参照
