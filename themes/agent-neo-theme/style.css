@@ -226,3 +226,67 @@ Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-log
   margin-block-start: var(--wp--preset--spacing--50);
   margin-block-end: var(--wp--preset--spacing--40);
 }
+
+/* ============================================================
+ * header / footer 磨き込み（2026-06-21）
+ * ============================================================ */
+
+/* --- sticky header ----------------------------------------- */
+/*
+ * template-part area=header の wrapper に当たる .an-site-header-inner の親要素が
+ * <header> タグとしてレンダリングされる。WP FSE はブロック全体を wrap した
+ * .wp-site-blocks > header に相当するが、template-part 自体には追加 class がないため
+ * 上位セレクタ .wp-site-blocks > .wp-block-template-part[data-area="header"] か、
+ * 慣習的に .site-header / header.wp-site-header を使う。
+ * ここでは an-site-header-inner の親 header 要素を狙う複合セレクタを使用する。
+ */
+header:has(.an-site-header-inner),
+.wp-block-template-part[data-type="core/template-part"]:has(.an-site-header-inner) {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  background-color: var(--wp--preset--color--background);
+}
+
+/* --- header CTA ボタン（an-header-cta） -------------------- */
+/* ホバーで若干暗く（opacity で accent-aa のまま維持） */
+.an-header-cta .wp-block-button__link {
+  transition: opacity 0.15s ease;
+}
+.an-header-cta .wp-block-button__link:hover {
+  opacity: 0.88;
+}
+
+/* モバイル: ハンバーガーメニュー展開時も CTA を維持する余白補完 */
+@media (max-width: 599px) {
+  .an-header-cta .wp-block-button__link {
+    padding-inline: 1rem;
+  }
+}
+
+/* --- footer 3カラム --------------------------------------- */
+/* 見出し（.an-footer-col-heading）の色は has-background-color で #fff が当たる。
+ * 下記はフッタリンク色（customTextColor=#cccccc が inline で当たるがフォールバック） */
+.an-site-footer-inner .an-footer-col .wp-block-navigation a,
+.an-site-footer-inner .an-footer-col .wp-block-navigation .wp-block-navigation-item__content {
+  color: #cccccc;
+  text-decoration: none;
+}
+.an-site-footer-inner .an-footer-col .wp-block-navigation a:hover {
+  color: #ffffff;
+}
+
+/* カラム間 gap（WP columns の isStackedOnMobile で 600px 以下は縦積み） */
+.an-site-footer-inner .wp-block-columns {
+  gap: var(--wp--preset--spacing--50);
+}
+
+/* モバイル縦積み時の余白補完 */
+@media (max-width: 599px) {
+  .an-site-footer-inner .wp-block-columns {
+    gap: var(--wp--preset--spacing--40);
+  }
+  .an-site-footer-inner .wp-block-column {
+    padding-inline: 0;
+  }
+}

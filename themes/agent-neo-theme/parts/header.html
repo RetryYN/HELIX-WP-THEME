@@ -11,11 +11,27 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"},"typography":{"fontWeight":"600","fontSize":"0.9375rem"}},"textColor":"foreground"} -->
-		<!-- wp:navigation-link {"label":"ホーム","url":"/","kind":"custom","isTopLevelLink":true} /-->
-		<!-- wp:navigation-link {"label":"記事","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
-		<!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
-	<!-- /wp:navigation -->
+	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"right"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
+	<div class="wp-block-group" style="gap:var(--wp--preset--spacing--30)">
+
+		<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"},"typography":{"fontWeight":"600","fontSize":"0.9375rem"}},"textColor":"foreground"} -->
+			<!-- wp:navigation-link {"label":"ホーム","url":"/","kind":"custom","isTopLevelLink":true} /-->
+			<!-- wp:navigation-link {"label":"記事","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
+			<!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
+		<!-- /wp:navigation -->
+
+		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
+		<div class="wp-block-buttons">
+			<!-- wp:button {"className":"an-header-cta","backgroundColor":"accent-aa","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700","fontSize":"0.9375rem"},"spacing":{"padding":{"top":"0.625rem","bottom":"0.625rem","left":"1.25rem","right":"1.25rem"}}}} -->
+			<div class="wp-block-button an-header-cta">
+				<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="/contact/" style="border-radius:6px;background-color:var(--wp--preset--color--accent-aa);color:var(--wp--preset--color--background);font-weight:700;font-size:0.9375rem;padding-top:0.625rem;padding-bottom:0.625rem;padding-inline-start:1.25rem;padding-inline-end:1.25rem">無料で相談</a>
+			</div>
+			<!-- /wp:button -->
+		</div>
+		<!-- /wp:buttons -->
+
+	</div>
+	<!-- /wp:group -->
 
 </div>
 <!-- /wp:group -->
