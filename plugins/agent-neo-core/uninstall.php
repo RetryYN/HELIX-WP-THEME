@@ -39,6 +39,7 @@ $agent_neo_core_options = isset( $agent_neo_core_policy['options'] ) && is_array
 		'agent_neo_tracking_signature_cache',
 		'agent_neo_once_tokens',
 		'agent_neo_replay_tokens',
+		'agent_neo_ctas',
 	);
 
 $agent_neo_core_options = array_merge(

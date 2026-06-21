@@ -627,6 +627,8 @@ final class Agent_Neo_Core_License_State {
 					'#^/agent-neo/v1/rollback/#',
 					'#^/agent-neo/v1/actions/apply$#',
 					'#^/agent-neo/v1/settings/import$#',
+					// CTA swap（agent_neo_ctas option 永続更新）を license guard 対象に追加。
+					'#^/agent-neo/v1/ctas/[a-z0-9-]+/apply$#',
 				) as $pattern
 			) {
 				if ( 1 === preg_match( $pattern, $route ) ) {
