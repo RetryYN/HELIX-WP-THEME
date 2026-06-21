@@ -1,0 +1,30 @@
+<?php
+/**
+ * wp-phpunit 用 WordPress テスト設定テンプレート。
+ *
+ * このファイルを `tests/wp-tests-config.php` としてコピーし、
+ * 環境に合わせて値を変更してください。
+ * wp-tests-config.php は .gitignore に追加されています（認証情報を含むため）。
+ *
+ * CI では環境変数（AGENT_NEO_WP_DB_* / WP_TESTS_TABLE_PREFIX）で上書き可能。
+ *
+ * @package AgentNeoCore\Tests
+ */
+
+// DB 設定。docker-compose.yml の db サービスに合わせる。
+define( 'DB_NAME',     getenv( 'AGENT_NEO_WP_DB_NAME' )     ?: 'agent_neo' );
+define( 'DB_USER',     getenv( 'AGENT_NEO_WP_DB_USER' )     ?: 'wp' );
+define( 'DB_PASSWORD', getenv( 'AGENT_NEO_WP_DB_PASSWORD' ) ?: 'wp' );
+define( 'DB_HOST',     getenv( 'AGENT_NEO_WP_DB_HOST' )     ?: '127.0.0.1:3308' );
+define( 'DB_CHARSET',  'utf8mb4' );
+define( 'DB_COLLATE',  '' );
+
+// テーブルプレフィックス（本番 wp_ と衝突しないよう変更する）。
+$table_prefix = getenv( 'WP_TESTS_TABLE_PREFIX' ) ?: 'wptests_';
+
+// WP をデバッグモードで動かす。
+define( 'WP_DEBUG', true );
+
+// テスト環境の WordPress パス（wp-phpunit が自動解決するため通常変更不要）。
+define( 'ABSPATH',  dirname( dirname( __DIR__ ) ) . '/vendor/wp-phpunit/wp-phpunit/' );
+define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', dirname( __DIR__ ) . '/vendor/yoast/phpunit-polyfills' );

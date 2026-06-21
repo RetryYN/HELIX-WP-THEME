@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+    bootstrap="tests/bootstrap-unit.php"
+    cacheResultFile=".phpunit.cache/test-results"
+    colors="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    beStrictAboutOutputDuringTests="true"
+>
+
+    <!-- ================================================================
+         テストスイート定義
+         - unit       : WP 非依存。Brain Monkey でスタブ。高速に実行。
+         - integration: 実 WP DB が必要。wp-phpunit bootstrap を使用。
+                        phpunit.xml.dist のルート bootstrap は unit/security 用。
+                        integration はコマンドラインで bootstrap を上書きする。
+                        例: vendor/bin/phpunit testsuite integration
+                            bootstrap tests/bootstrap-integration.php
+         - security   : REST 認証 / 権限昇格 / インジェクションの静的検証。
+                        unit と同じ bootstrap（Brain Monkey）を使用。
+         ================================================================ -->
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+        <testsuite name="security">
+            <directory>tests/Security</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- ================================================================
+         カバレッジ対象: plugins/agent-neo-core/inc/
+         除外: vendor / tests 自身 / bootstrap / WP-CLI アダプタ
+         ================================================================ -->
+    <coverage>
+        <include>
+            <directory suffix=".php">plugins/agent-neo-core/inc</directory>
+        </include>
+        <exclude>
+            <file>plugins/agent-neo-core/inc/bootstrap.php</file>
+            <directory>plugins/agent-neo-core/inc/cli</directory>
+        </exclude>
+        <report>
+            <clover outputFile="tests/coverage/clover.xml"/>
+            <html outputDirectory="tests/coverage/html"/>
+            <text outputFile="php://stdout" showUncoveredFiles="false"/>
+        </report>
+    </coverage>
+
+    <!-- ================================================================
+         テスト共通 PHP 環境変数
+         (個別の値は .env.testing で上書き可)
+         ================================================================ -->
+    <php>
+        <!-- unit スイートでは ABSPATH を定義しない（Brain Monkey スタブで代替） -->
+        <env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-tests-config.php"/>
+        <const name="AGENT_NEO_TESTS_DIR" value="tests/"/>
+    </php>
+</phpunit>
