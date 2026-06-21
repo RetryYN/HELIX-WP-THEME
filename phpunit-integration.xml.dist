@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Integration スイート専用 PHPUnit 設定。
+
+    PHPUnit 9 はテストスイートごとに bootstrap を切り替える機能を持たない。
+    そのため integration スイートは本ファイルを使用して実行する。
+
+    実行コマンド:
+        composer test:integration
+        （= vendor/bin/phpunit -c phpunit-integration.xml.dist）
+
+    前提:
+        - wordpress_test DB が作成済みであること（agent_neo_wp7 とは別）
+        - tests/wp-tests-config.php が存在すること（.gitignore 済）
+        - WP コアが docker volume /var/lib/docker/volumes/agent-neo-dev_wp_core/_data/ に存在すること
+
+    unit / security スイートには phpunit.xml.dist を使用すること（本ファイルでは実行しない）。
+-->
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+    bootstrap="tests/bootstrap-integration.php"
+    cacheResultFile=".phpunit.cache/test-results-integration"
+    colors="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    beStrictAboutOutputDuringTests="false"
+>
+    <!-- Integration スイートのみ。unit / security はここに含めない。 -->
+    <testsuites>
+        <testsuite name="integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- カバレッジは integration では収集しない（実 WP ロード時の xdebug オーバーヘッド回避）。 -->
+    <!-- coverage レポートが必要な場合は phpunit.xml.dist 側の unit スイートで取得する。 -->
+
+    <php>
+        <!-- wp-phpunit が WP_PHPUNIT__TESTS_CONFIG 環境変数でテスト設定ファイルを解決する。 -->
+        <env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-tests-config.php"/>
+        <const name="AGENT_NEO_TESTS_DIR" value="tests/"/>
+    </php>
+</phpunit>

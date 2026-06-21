@@ -8,6 +8,9 @@ CLAUDE.local.md
 *.key
 credentials.json
 
+## テスト設定（DB 認証情報を含む。.example のみ追跡）
+tests/wp-tests-config.php
+
 ## リファレンステーマ（解析対象。ライセンス上自社リポでは再配布しない）
 swell-2.16.0/
 swell_child/
