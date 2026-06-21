@@ -1,0 +1,32 @@
+{
+  "$schema": "https://agent-neo.example.com/schemas/i18n-profile.json",
+  "_comment": "i18n / RTL 設定（CARRY-G2-013 / TC-017a 契約）。",
+  "version": "1.0.0",
+  "text_domain": "agent-neo",
+  "locales": {
+    "primary": "ja",
+    "supported": ["ja", "en"]
+  },
+  "rtl": {
+    "strategy": "logical-properties",
+    "_comment": "CSS logical properties（margin-inline-start 等）を使用。物理プロパティは原則禁止。",
+    "allowed_physical_exceptions": [
+      "border-radius",
+      "top",
+      "bottom"
+    ],
+    "rtl_stylesheet": false,
+    "_rtl_stylesheet_note": "logical-properties 戦略のため専用 RTL スタイルシートは不要。"
+  },
+  "i18n_functions": {
+    "required": ["__", "_e", "esc_html__", "esc_html_e", "esc_attr__", "esc_attr_e", "esc_url"],
+    "prohibited_patterns": [
+      "echo '...' (未翻訳日本語直書き)",
+      "echo \"...\" (未翻訳日本語直書き)"
+    ]
+  },
+  "pot_file": "languages/agent-neo.pot",
+  "po_files": {
+    "ja": "languages/ja.po"
+  }
+}

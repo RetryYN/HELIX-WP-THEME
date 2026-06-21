@@ -1,0 +1,47 @@
+{
+  "$schema": "https://agent-neo.example.com/schemas/web-vitals-budget.json",
+  "_comment": "Core Web Vitals 予算（L2-design §8.1 契約）。ページタイプ別に budget を定義。",
+  "version": "1.0.0",
+  "defaults": {
+    "LCP": { "budget_ms": 2500, "warn_ms": 2000 },
+    "INP": { "budget_ms": 200,  "warn_ms": 150  },
+    "CLS": { "budget":    0.1,  "warn":    0.05 },
+    "FID": { "budget_ms": 100,  "warn_ms": 75   },
+    "TTFB": { "budget_ms": 800, "warn_ms": 600  }
+  },
+  "page_types": {
+    "front-page": {
+      "_comment": "トップページ: ヒーロー画像あり / LCP は画像依存",
+      "LCP":  { "budget_ms": 2500, "warn_ms": 2000 },
+      "INP":  { "budget_ms": 200,  "warn_ms": 150  },
+      "CLS":  { "budget":    0.1,  "warn":    0.05 },
+      "TTFB": { "budget_ms": 800,  "warn_ms": 600  }
+    },
+    "single": {
+      "_comment": "記事ページ: テキスト主体 / LCP は厳しめ",
+      "LCP":  { "budget_ms": 2000, "warn_ms": 1500 },
+      "INP":  { "budget_ms": 200,  "warn_ms": 150  },
+      "CLS":  { "budget":    0.05, "warn":    0.02 },
+      "TTFB": { "budget_ms": 600,  "warn_ms": 400  }
+    },
+    "page": {
+      "_comment": "固定ページ: デフォルトに準拠",
+      "LCP":  { "budget_ms": 2500, "warn_ms": 2000 },
+      "INP":  { "budget_ms": 200,  "warn_ms": 150  },
+      "CLS":  { "budget":    0.1,  "warn":    0.05 },
+      "TTFB": { "budget_ms": 800,  "warn_ms": 600  }
+    },
+    "lp": {
+      "_comment": "LP（ランディングページ）: 視覚要素多め / LCP 緩め・CLS 厳しめ",
+      "LCP":  { "budget_ms": 2500, "warn_ms": 2200 },
+      "INP":  { "budget_ms": 200,  "warn_ms": 150  },
+      "CLS":  { "budget":    0.05, "warn":    0.02 },
+      "TTFB": { "budget_ms": 800,  "warn_ms": 600  }
+    }
+  },
+  "render_blocking_checks": {
+    "max_sync_scripts_in_head": 0,
+    "max_css_imports_per_file": 2,
+    "allow_async_defer": true
+  }
+}

@@ -25,6 +25,11 @@
           "name": "Accent"
         },
         {
+          "slug": "accent-aa",
+          "color": "#bf5200",
+          "name": "Accent AA (白文字対応)"
+        },
+        {
           "slug": "background",
           "color": "#ffffff",
           "name": "Background"
@@ -203,7 +208,7 @@
       },
       "button": {
         "color": {
-          "background": "var(--wp--preset--color--accent)",
+          "background": "var(--wp--preset--color--accent-aa)",
           "text": "var(--wp--preset--color--background)"
         },
         "border": {

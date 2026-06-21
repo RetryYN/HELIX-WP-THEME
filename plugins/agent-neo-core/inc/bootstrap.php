@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once AGENT_NEO_CORE_DIR . 'inc/util/class-slug.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/schema/class-schema-loader.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-auth.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-rest-controller-base.php';

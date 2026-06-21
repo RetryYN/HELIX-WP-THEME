@@ -15,3 +15,48 @@ Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-log
 
 ブロックテーマの表示スタイルは theme.json と block/pattern 側で管理する。
 */
+
+/*
+ * a11y カラーオーバーライド
+ * 白文字(#ffffff)が乗るオレンジ背景の WCAG AA 準拠対応（2.86:1 → 4.75:1）
+ * ブランドオレンジ #ff6b00 は白文字が乗らない箇所（リンク・ボーダー・アクセント等）では維持。
+ * 白文字 on オレンジ の 2 系統のみ #bf5200 に darker 化。
+ */
+
+/* A1: ボタン — has-accent-background-color で accent(#ff6b00) が適用される箇所を override
+ * .wp-block-button__link 単体も含め特異度を二重指定して WP preset クラスに確実に勝つ。
+ */
+.wp-block-button__link.has-accent-background-color,
+.wp-block-button .wp-block-button__link.has-accent-background-color,
+.wp-element-button.has-accent-background-color {
+  background-color: #bf5200 !important;
+  color: #ffffff !important;
+}
+
+/* A2: カテゴリタグ（an-card-category）— accent(#ff6b00) 背景 + 白文字の組み合わせを override */
+.an-card-category.has-accent-background-color,
+.an-card-category .has-accent-background-color,
+.wp-block-post-terms.an-card-category {
+  background-color: #bf5200 !important;
+}
+
+/* an-card-category 内リンクのアクセントカラー（白文字維持） */
+.an-card-category a,
+.an-card-category a[rel="tag"] {
+  color: #ffffff !important;
+}
+
+/* a11y AA: ページネーション オレンジ文字 (#ff6b00 on #fff = 2.85:1) → darker orange (#bf5200 on #fff = 4.75:1) */
+.wp-block-query-pagination-next,
+.wp-block-query-pagination-previous,
+.wp-block-query-pagination-numbers a { color: #bf5200 !important; }
+
+/* a11y AA: フッター コピーライト (#767676 on dark #111 = 4.15:1) → 暗背景で十分明るく (#adadad on #111 = 7.0:1) */
+.an-footer-copyright { color: #adadad !important; }
+
+/* a11y AA: 白文字 on オレンジ ボタン/タグを確実に #bf5200 化（class 単体・複合指定の残対策） */
+.wp-block-button__link,
+.an-card-category,
+.an-card-category a,
+.an-card-category a[rel="tag"],
+.taxonomy-category.an-card-category a[rel="tag"] { background-color: #bf5200 !important; }

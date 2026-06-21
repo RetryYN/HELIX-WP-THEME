@@ -13,7 +13,12 @@
 	<!-- /wp:group -->
 
 	<!-- 中段: フッターナビ -->
-	<!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"var:preset|spacing|30","margin":{"bottom":"var:preset|spacing|40"}},"typography":{"fontSize":"0.9375rem"}},"textColor":"background","customTextColor":"#cccccc"} /-->
+	<!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"var:preset|spacing|30","margin":{"bottom":"var:preset|spacing|40"}},"typography":{"fontSize":"0.9375rem"}},"textColor":"background","customTextColor":"#cccccc"} -->
+		<!-- wp:navigation-link {"label":"ホーム","url":"/","kind":"custom","isTopLevelLink":true} /-->
+		<!-- wp:navigation-link {"label":"記事","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
+		<!-- wp:navigation-link {"label":"プライバシーポリシー","url":"/privacy-policy/","kind":"custom","isTopLevelLink":true} /-->
+		<!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
+	<!-- /wp:navigation -->
 
 	<!-- 区切り線 -->
 	<!-- wp:separator {"style":{"color":{"background":"#333333"}}} -->
@@ -24,8 +29,8 @@
 	<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);gap:var(--wp--preset--spacing--20)">
 
-		<!-- wp:paragraph {"className":"an-footer-copyright","style":{"typography":{"fontSize":"0.8125rem"},"color":{"text":"#767676"}}} -->
-		<p class="an-footer-copyright" style="font-size:0.8125rem;color:#767676">&copy; 2025 AGENT NEO. All rights reserved.</p>
+		<!-- wp:paragraph {"className":"an-footer-copyright","style":{"typography":{"fontSize":"0.8125rem"},"color":{"text":"#adadad"}}} -->
+		<p class="an-footer-copyright" style="font-size:0.8125rem;color:#adadad">&copy; 2025 AGENT NEO. All rights reserved.</p>
 		<!-- /wp:paragraph -->
 
 	</div>

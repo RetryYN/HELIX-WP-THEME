@@ -1,0 +1,184 @@
+name: theme-quality-gate
+
+on:
+  push:
+    paths:
+      - 'themes/agent-neo-theme/**'
+      - 'bin/check-theme-quality.sh'
+      - '.github/workflows/theme-quality-gate.yml'
+  pull_request:
+    paths:
+      - 'themes/agent-neo-theme/**'
+      - 'bin/check-theme-quality.sh'
+      - '.github/workflows/theme-quality-gate.yml'
+  workflow_dispatch:
+
+jobs:
+  static-gate:
+    name: i18n + RTL + perf static checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run static quality gates (i18n / RTL / perf-static)
+        env:
+          WP_URL: "http://localhost:8086"
+        run: bash bin/check-theme-quality.sh
+        # a11y ゲートは WP が稼働していないためスキップされる（WARN のみ）
+        # WP 込みの a11y 検査は axe-gate ジョブで実施する
+
+  axe-gate:
+    name: a11y gate (axe-core + WordPress)
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wp
+          MYSQL_PASSWORD: wp
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      wordpress:
+        image: wordpress:6.6-apache
+        env:
+          WORDPRESS_DB_HOST: db:3306
+          WORDPRESS_DB_USER: wp
+          WORDPRESS_DB_PASSWORD: wp
+          WORDPRESS_DB_NAME: wordpress
+          WORDPRESS_DEBUG: "1"
+        ports:
+          - 8086:80
+        options: >-
+          --health-cmd="curl -sf http://localhost:80/ || exit 1"
+          --health-interval=15s
+          --health-timeout=10s
+          --health-retries=8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+
+      - name: Wait for WordPress to be ready
+        run: |
+          for i in $(seq 1 20); do
+            if curl -sf http://localhost:8086/ -o /dev/null; then
+              echo "WordPress ready"
+              break
+            fi
+            echo "Waiting... ($i/20)"
+            sleep 5
+          done
+
+      - name: Copy theme into WP container
+        run: |
+          WP_CONTAINER=$(docker ps --filter "ancestor=wordpress:6.6-apache" --format "{{.ID}}" | head -1)
+          docker cp themes/agent-neo-theme/ "${WP_CONTAINER}:/var/www/html/wp-content/themes/agent-neo-theme"
+          # テーマを有効化（wp-cli 経由）
+          docker exec "${WP_CONTAINER}" bash -c \
+            "wp --allow-root --path=/var/www/html theme activate agent-neo-theme || true"
+
+      - name: Run all quality gates (i18n / RTL / a11y / perf-static)
+        env:
+          WP_URL: "http://localhost:8086"
+        run: bash bin/check-theme-quality.sh
+
+  lhci-gate:
+    name: Core Web Vitals (Lighthouse CI)
+    runs-on: ubuntu-latest
+    # フル CWV 測定は workflow_dispatch または main へのマージ時のみ実行
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+
+    services:
+      db:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wp
+          MYSQL_PASSWORD: wp
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      wordpress:
+        image: wordpress:6.6-apache
+        env:
+          WORDPRESS_DB_HOST: db:3306
+          WORDPRESS_DB_USER: wp
+          WORDPRESS_DB_PASSWORD: wp
+          WORDPRESS_DB_NAME: wordpress
+        ports:
+          - 8086:80
+        options: >-
+          --health-cmd="curl -sf http://localhost:80/ || exit 1"
+          --health-interval=15s
+          --health-timeout=10s
+          --health-retries=8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.14.x
+
+      - name: Wait for WordPress
+        run: |
+          for i in $(seq 1 20); do
+            if curl -sf http://localhost:8086/ -o /dev/null; then break; fi
+            sleep 5
+          done
+
+      - name: Copy theme into WP container
+        run: |
+          WP_CONTAINER=$(docker ps --filter "ancestor=wordpress:6.6-apache" --format "{{.ID}}" | head -1)
+          docker cp themes/agent-neo-theme/ "${WP_CONTAINER}:/var/www/html/wp-content/themes/agent-neo-theme"
+          docker exec "${WP_CONTAINER}" bash -c \
+            "wp --allow-root --path=/var/www/html theme activate agent-neo-theme || true"
+
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun \
+            --collect.url=http://localhost:8086/ \
+            --collect.numberOfRuns=3 \
+            --assert.preset=lighthouse:no-pwa \
+            --assert.assertions.largest-contentful-paint.maxNumericValue=2500 \
+            --assert.assertions.interactive.maxNumericValue=200 \
+            --assert.assertions.cumulative-layout-shift.maxNumericValue=0.1 \
+            --upload.target=temporary-public-storage \
+            2>&1 || true
+          # lhci の結果は artifact に保存（FAIL でも続行し結果を確認）
+
+      - name: Upload LHCI report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lhci-report
+          path: .lighthouseci/
+          if-no-files-found: warn
