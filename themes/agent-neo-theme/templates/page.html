@@ -1,11 +1,19 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","className":"an-site-header"} /-->
 
-<!-- wp:group {"tagName":"main","className":"an-site-main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group an-site-main">
+<!-- wp:group {"tagName":"main","className":"an-site-main","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group an-site-main" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60);padding-inline:var(--wp--preset--spacing--40)">
+
+	<!-- wp:group {"tagName":"nav","ariaLabel":"パンくず","className":"an-breadcrumb","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+	<nav class="wp-block-group an-breadcrumb" aria-label="パンくず" style="padding-block:var(--wp--preset--spacing--20)">
+		<!-- wp:html -->
+		<a href="/">ホーム</a>
+		<!-- /wp:html -->
+	</nav>
+	<!-- /wp:group -->
 
 	<!-- wp:post-title {"level":1} /-->
 
-	<!-- wp:post-featured-image {"isLink":false} /-->
+	<!-- wp:post-featured-image {"isLink":false,"align":"wide","style":{"border":{"radius":"10px"},"spacing":{"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|40"}}}} /-->
 
 	<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
 
