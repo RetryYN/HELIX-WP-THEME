@@ -2,7 +2,7 @@
 
 ## Summary
 
-- **Sprint/Task progress**: VERIFIED **23** / IMPL **2** / SCAFFOLD **0** / NONE **4** *(total 29)*
+- **Sprint/Task progress**: VERIFIED **24** / IMPL **2** / SCAFFOLD **0** / NONE **3** *(total 29)*
 - **Endpoint coverage**: `Y` **25** / `N` **32** *(total 57)*
 - **Phase1 launch F-ID**: **完了 2** / 残 **23** *(total 25)*
 - **残タスク（next）**:
@@ -42,7 +42,7 @@
 | T-022 | F-013/F-031 | 法人版リード寄与権限制御（CTA管理） | .4 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-ctas-controller.php` | GET /ctas・GET /ctas/{cta_id}・POST /ctas/{cta_id}/apply を corporate 専用化（個人→403 越境拒否）・apply diff_hash409/idempotency applied=false/license guard grace503・invalid403/route slug制約 を実機WP VDD。content-level element swap（ACC-023）は別 /elements/swap（REQ-F-023・未実装）の責務 | b47f1de |
 | T-023 | F-011/F-023/F-024 | Performance + a11y + i18n/RTL gate パイプライン | .4 | theme | NONE | `themes/agent-neo-theme`, `plugins/agent-neo-core`（scaffold） | 性能/a11y/RTL の CI gate 実装未確認（`TC-016` 以降未着手） | 04154e1 |
 | T-024 | F-006/F-007/F-026/F-027 | 連携契約（tracking-context / CAT契約テスト） | .5 | core-plugin | VERIFIED | `plugins/agent-neo-core/inc/rest/class-tracking-controller.php`, `bin/verify-catalog-contract.php` | POST /tracking/context（TC-013 署名401/schema400/正常200 実機VDD）+ CAT-001〜009 全PASS（4フィールド応答/dedup/validation/backoff 1s・2^n・max5・±10%jitter/DLQ409/retry429）。catalog-update producer は T-014/T-015 実装済 | 979a1a7 |
-| T-025 | F-020/F-021/F-023 | SBOM 生成・検証 | .5 | core-plugin | NONE | `plugins/agent-neo-core`（scaffold） | `sbom.cdx.json` 生成/Release Gate 未検出 | 04154e1 |
+| T-025 | F-020/F-021/F-023 | SBOM 生成・検証 | .5 | core-plugin | VERIFIED | `bin/generate-sbom.php`, `bin/check-sbom-gate.sh`, `sbom.cdx.json` | CycloneDX 1.6・5 component・外部依存ゼロ。Release/SBOM Gate（依存元/ライセンス/checksum/changelog/rollback）PASS 6/0WARN/0FAIL。embed License補完+3CHANGELOG+runbook-rollback | 6a29a55 |
 | T-026 | F-003 | 操作面（REST/MCP/WP CLI/React UI）統合検証 | .1a〜.2 | core-plugin | NONE | `plugins/agent-neo-core`, `themes/agent-neo-theme` | `dry-run/apply` 統合導線は未実装 | - |
 | T-027 | REQ-F-038 / ADR-026 | embed static mode 実装 | .4 | embed-plugin | IMPL | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/block.json`, `plugins/agent-neo-embed/src/embed/render.php`, `plugins/agent-neo-embed/assets/embed-reset.css`, `plugins/agent-neo-embed/src/embed/view.js` | shadow DOM + リセット CSS 由来の静的 embed 実装あり（`mode=static`） | - |
 | T-028 | REQ-F-038 / ADR-026 | embed interactive mode 実装 | .4 | embed-plugin | IMPL | `plugins/agent-neo-embed/agent-neo-embed.php`, `plugins/agent-neo-embed/src/embed/edit.js`, `plugins/agent-neo-embed/src/embed/view.js`, `plugins/agent-neo-embed/src/embed/block.json` | iframe/sandbox-origin 由来ロジックは実装。実運用（実ホスト接続）側の検証は未完了 | - |
@@ -136,7 +136,7 @@
 | F-017 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-018 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-019 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
-| F-020 | T-025 | NONE | SNS API 設定・機能未実装 | 
+| F-020 | T-025, T-023 | PARTIAL | Release/SBOM Gate（T-025）実装・PASS。a11y/i18n/RTL/Theme Review gate は T-023 で残 | 
 | F-021 | T-008, T-009 | PARTIAL | section編集（block/section） endpoint は実装・検証済み。全体ロールは未完了 |
 | F-022 | T-009 | PARTIAL | section edit endpoint は実装済み。apply/rollback など未実装 |
 | F-023 | T-023, T-025 | NONE | swap / CV関連 API 未実装 | 
@@ -170,6 +170,6 @@
   - endpoint: 57 件（api-catalog `endpoint 総数サマリ` を採用。実装実態は `18/57`）。ただし `/aseo/v1/agent-neo/catalog-update` は automation SEO 側受け口で agent-neo 実装範囲外として注記
   - F-ID: 25 件（F-001〜F-025）を抽出
 - TODO 残存:
-- `Table 1`: T-023・T-025・T-026・T-029 は NONE（T-006〜T-013、T-016〜T-022、T-024 は VERIFIED / T-027・T-028 は IMPL）
+- `Table 1`: T-023・T-026・T-029 は NONE（T-006〜T-013、T-016〜T-022、T-024、T-025 は VERIFIED / T-027・T-028 は IMPL）
 - `Table 2`: Y が 25 / N が 32（/features は 2 catalog entry で +2）。`/health`, `/contracts` 等未実装が残存
 - `Table 3`: F-011 は PARTIAL、F-021/F-022 は partial、F-003〜F-024 ほぼ未完了。F-025 は完了
