@@ -88,8 +88,12 @@ while IFS= read -r file; do
     if echo "$match" | grep -qP 'esc_html_e|esc_html__|esc_attr_e|esc_attr__|_e\s*\(|__\s*\('; then
       continue
     fi
-    # PHP の echo/print で日本語を直書きしている行
-    if echo "$match" | grep -qP 'echo|print'; then
+    # PHP コメント行（* // # /*）はスキップ（行番号:コンテンツ 形式）
+    if echo "$match" | grep -qP '^\s*[0-9]+:\s*(\*|//|#|/\*)'; then
+      continue
+    fi
+    # PHP の echo/print で日本語を直書きしている行（単語境界で一致: blueprint/sprint を除外）
+    if echo "$match" | grep -qP '\b(echo|print)\b'; then
       fail "未翻訳ハードコード: ${file}: $(echo "${match}" | head -c 120)"
       HARDCODE_COUNT=$((HARDCODE_COUNT + 1))
     fi
@@ -513,7 +517,7 @@ while IFS= read -r file; do
 done < <(theme_php_files)
 
 while IFS= read -r cssfile; do
-  import_count=$(grep -cP '@import\s' "${cssfile}" 2>/dev/null | head -1)
+  import_count=$(grep -cP '@import\s' "${cssfile}" 2>/dev/null | head -1 || true)
   import_count=${import_count:-0}
   max_imports=2
   if [ "$import_count" -gt "$max_imports" ]; then

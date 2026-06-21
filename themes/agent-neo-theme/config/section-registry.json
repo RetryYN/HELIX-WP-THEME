@@ -10,6 +10,48 @@
       "type": "hero",
       "template": "page",
       "pattern": "agent-neo/hero"
+    },
+    {
+      "section_id": "home_hero",
+      "type": "hero",
+      "template": "front-page",
+      "pattern": "agent-neo/home-hero"
+    },
+    {
+      "section_id": "home_gateway",
+      "type": "gateway",
+      "template": "front-page",
+      "pattern": "agent-neo/home-gateway"
+    },
+    {
+      "section_id": "home_overview",
+      "type": "overview",
+      "template": "front-page",
+      "pattern": "agent-neo/home-overview"
+    },
+    {
+      "section_id": "home_cases",
+      "type": "cases",
+      "template": "front-page",
+      "pattern": "agent-neo/home-cases"
+    },
+    {
+      "section_id": "home_resources",
+      "type": "resources",
+      "template": "front-page",
+      "pattern": "agent-neo/home-resources"
+    },
+    {
+      "section_id": "home_trust",
+      "type": "trust",
+      "template": "front-page",
+      "pattern": "agent-neo/home-trust"
+    },
+    {
+      "section_id": "home_final_cta",
+      "type": "cta",
+      "template": "front-page",
+      "pattern": "agent-neo/home-final-cta"
     }
   ]
 }

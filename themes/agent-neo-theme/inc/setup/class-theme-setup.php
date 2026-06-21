@@ -21,6 +21,7 @@ final class Agent_Neo_Theme_Setup {
 	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup_theme' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'init', array( $this, 'register_pattern_categories' ) );
 	}
 
 	/**
@@ -38,6 +39,23 @@ final class Agent_Neo_Theme_Setup {
 			array(),
 			wp_get_theme()->get( 'Version' )
 		);
+	}
+
+	/**
+	 * AGENT NEO 固有のブロックパターンカテゴリを登録する。
+	 *
+	 * WP 6.0+ は patterns/ 配下の PHP ヘッダを自動登録するが、
+	 * カスタムカテゴリは init フックで事前登録が必要。
+	 *
+	 * @return void
+	 */
+	public function register_pattern_categories(): void {
+		if ( function_exists( 'register_block_pattern_category' ) ) {
+			register_block_pattern_category(
+				'agent-neo-home',
+				array( 'label' => __( 'AGENT NEO ホーム', 'agent-neo' ) )
+			);
+		}
 	}
 
 	/**
