@@ -1,0 +1,257 @@
+/*
+ * AGENT NEO 管理ページ — 最小スタイル
+ * ブランドカラー: オレンジメイン #ff6b00 / 白文字乗せは AA 対応 #bf5200
+ * clean B2B プロツール。説明文を増やさない。ドメイン用語を堂々と使う。
+ */
+
+/* -------------------------------------------------------------------------
+ * 変数（デザイントークン）
+ * ---------------------------------------------------------------------- */
+:root {
+	--an-orange:        #ff6b00;
+	--an-orange-dark:   #bf5200; /* 白文字の AA コントラスト対応 */
+	--an-orange-light:  #fff3eb;
+	--an-surface:       #ffffff;
+	--an-bg:            #f6f7f7; /* wp-admin の背景に馴染む */
+	--an-border:        #dcdcde;
+	--an-text:          #1e1e1e;
+	--an-text-muted:    #646970;
+	--an-green:         #00a32a;
+	--an-red:           #d63638;
+	--an-radius:        4px;
+	--an-shadow:        0 1px 4px rgba(0,0,0,.08);
+	--an-font-mono:     ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+/* -------------------------------------------------------------------------
+ * レイアウト
+ * ---------------------------------------------------------------------- */
+#agent-neo-admin-root {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-size: 13px;
+	color: var(--an-text);
+	background: var(--an-bg);
+	min-height: 200px;
+	padding-bottom: 32px;
+}
+
+.an-wrap {
+	max-width: 960px;
+}
+
+.an-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+	gap: 20px;
+	padding: 0 20px;
+}
+
+/* -------------------------------------------------------------------------
+ * ヘッダー
+ * ---------------------------------------------------------------------- */
+.an-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 20px 20px 16px;
+	border-bottom: 3px solid var(--an-orange);
+	margin-bottom: 20px;
+}
+
+.an-header__logo {
+	color: var(--an-orange);
+	font-size: 22px;
+	line-height: 1;
+}
+
+.an-header__title {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--an-text);
+	letter-spacing: .04em;
+}
+
+/* -------------------------------------------------------------------------
+ * カード
+ * ---------------------------------------------------------------------- */
+.an-card {
+	background: var(--an-surface);
+	border: 1px solid var(--an-border);
+	border-radius: var(--an-radius);
+	box-shadow: var(--an-shadow);
+	overflow: hidden;
+}
+
+.an-card__title {
+	margin: 0;
+	padding: 12px 16px;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--an-orange-dark);
+	background: var(--an-orange-light);
+	border-bottom: 1px solid var(--an-border);
+	letter-spacing: .02em;
+}
+
+/* エンドポイント参照（同一 REST 契約の消費先を明示） */
+.an-endpoint-hint {
+	margin: 0;
+	padding: 6px 16px;
+	font-size: 11px;
+	color: var(--an-text-muted);
+	border-bottom: 1px solid var(--an-border);
+	background: #fafafa;
+}
+
+.an-endpoint-hint code {
+	font-family: var(--an-font-mono);
+	font-size: 11px;
+	color: var(--an-text);
+}
+
+/* -------------------------------------------------------------------------
+ * テーブル
+ * ---------------------------------------------------------------------- */
+.an-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.an-table tr + tr {
+	border-top: 1px solid var(--an-border);
+}
+
+.an-row-label,
+.an-row-value {
+	padding: 8px 16px;
+	vertical-align: middle;
+}
+
+.an-row-label {
+	font-weight: 600;
+	color: var(--an-text-muted);
+	width: 40%;
+	white-space: nowrap;
+}
+
+.an-row-value {
+	color: var(--an-text);
+}
+
+.an-mono {
+	font-family: var(--an-font-mono);
+	font-size: 12px;
+}
+
+/* パッケージヘッダー行 */
+.an-pkg-header {
+	background: #f0f0f1;
+}
+
+.an-pkg-label {
+	padding: 6px 16px;
+	font-size: 11px;
+	font-weight: 700;
+	color: var(--an-text-muted);
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.an-flag-name {
+	padding: 7px 16px;
+	font-family: var(--an-font-mono);
+	font-size: 12px;
+	color: var(--an-text);
+}
+
+.an-flag-val {
+	padding: 7px 16px;
+}
+
+/* -------------------------------------------------------------------------
+ * バッジ・ドット
+ * ---------------------------------------------------------------------- */
+.an-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 10px;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .02em;
+}
+
+.an-badge--healthy {
+	background: #edfaef;
+	color: var(--an-green);
+	border: 1px solid #7fd18b;
+}
+
+.an-badge--degraded {
+	background: #fce8e8;
+	color: var(--an-red);
+	border: 1px solid #f0a8a8;
+}
+
+.an-dot {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 1px 6px;
+	border-radius: 3px;
+}
+
+.an-dot--on {
+	background: #edfaef;
+	color: var(--an-green);
+}
+
+.an-dot--off {
+	background: #f0f0f1;
+	color: var(--an-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+ * エラー
+ * ---------------------------------------------------------------------- */
+.an-error {
+	margin: 0 20px 16px;
+	padding: 10px 14px;
+	background: #fce8e8;
+	border-left: 4px solid var(--an-red);
+	color: var(--an-red);
+	border-radius: 0 var(--an-radius) var(--an-radius) 0;
+	font-size: 13px;
+}
+
+/* -------------------------------------------------------------------------
+ * スケルトン（ローディング）
+ * ---------------------------------------------------------------------- */
+@keyframes an-shimmer {
+	from { background-position: -400px 0; }
+	to   { background-position:  400px 0; }
+}
+
+.an-card--loading {
+	padding: 16px;
+}
+
+.an-skeleton {
+	border-radius: var(--an-radius);
+	background: linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%);
+	background-size: 800px 100%;
+	animation: an-shimmer 1.4s infinite linear;
+}
+
+.an-skeleton--title {
+	height: 18px;
+	width: 40%;
+	margin-bottom: 16px;
+}
+
+.an-skeleton--row {
+	height: 14px;
+	width: 100%;
+	margin-top: 10px;
+}

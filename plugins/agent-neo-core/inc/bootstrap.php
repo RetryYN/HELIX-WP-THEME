@@ -54,7 +54,26 @@ if ( is_array( $agent_neo_core_rest_controllers ) ) {
 		require_once $agent_neo_core_rest_controller;
 	}
 }
+require_once AGENT_NEO_CORE_DIR . 'inc/mcp/class-abilities.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/class-agent-neo-core.php';
+
+// WP-CLI 操作面: REST contract と同一の JSON 封筒を rest_do_request() 経由で返す薄いアダプタ。
+// WP_CLI 定数が定義されている場合のみ読み込む（通常 HTTP リクエストへの影響ゼロ）。
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	require_once AGENT_NEO_CORE_DIR . 'inc/cli/class-cli-command.php';
+}
+
+// React UI 操作面: wp-admin 管理ページ。同一 REST 契約を apiFetch で消費する薄いアダプタ。
+// is_admin() チェックは enqueue_assets フック内で行うためここでは常時 require。
+require_once AGENT_NEO_CORE_DIR . 'inc/admin/class-admin-page.php';
+
+add_action(
+	'init',
+	static function (): void {
+		$admin_page = new Agent_Neo_Core_Admin_Page();
+		$admin_page->register();
+	}
+);
 
 register_activation_hook( AGENT_NEO_CORE_FILE, array( 'Agent_Neo_Core_Lifecycle', 'activate' ) );
 register_deactivation_hook( AGENT_NEO_CORE_FILE, array( 'Agent_Neo_Core_Lifecycle', 'deactivate' ) );
