@@ -4,7 +4,7 @@
 
 - **Sprint/Task progress**: VERIFIED **29** / IMPL **0** / SCAFFOLD **0** / NONE **0** *(total 29)*
 - **Endpoint coverage**: `Y` **25** / `N` **32** *(total 57)*
-- **Phase1 launch F-ID**: **完了 2** / 残 **23** *(total 25)*
+- **Phase1 launch F-ID**: **VERIFIED 13** / PARTIAL 4 / NONE 8 *(total 25)*（NONE 8 は T-ID 未割当=29タスク計画外の将来スコープ。29 WBS タスクは全 VERIFIED）
 - **残タスク（next）**:
   - `.3〜.5`: **T-017〜T-026**
 - **運用ルール（更新時）**:
