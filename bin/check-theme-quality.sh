@@ -112,6 +112,10 @@ while IFS= read -r pfile; do
     || true)
   if [ -n "$matches" ]; then
     while IFS= read -r line; do
+      # 1b と同様に esc_* でラップ済みの行はスキップ（FP 回避）
+      if echo "$line" | grep -qP 'esc_html_e|esc_html__|esc_attr_e|esc_attr__|_e\s*\(|__\s*\('; then
+        continue
+      fi
       warn "HTML内ハードコード（パターンファイル・改善推奨）: ${pfile}: $(echo "${line}" | head -c 100)"
       PATTERN_HARDCODE=$((PATTERN_HARDCODE + 1))
     done <<< "$matches"

@@ -22,11 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wp-block-group alignfull an-lp-feature has-background-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40)">
 
 	<!-- wp:heading {"level":2,"textAlign":"center","style":{"typography":{"fontWeight":"700"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-	<h2 class="wp-block-heading has-text-align-center" style="font-weight:700;margin-bottom:var(--wp--preset--spacing--20)">AGENT NEO の主要機能</h2>
+	<h2 class="wp-block-heading has-text-align-center" style="font-weight:700;margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'AGENT NEO の主要機能', 'agent-neo' ); ?></h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}},"color":{"text":"#555555"}}} -->
-	<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--medium);margin-bottom:var(--wp--preset--spacing--50);color:#555555">WordPress 運用に必要なすべての工程を、ひとつのシステムでカバーします。</p>
+	<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--medium);margin-bottom:var(--wp--preset--spacing--50);color:#555555"><?php esc_html_e( 'WordPress 運用に必要なすべての工程を、ひとつのシステムでカバーします。', 'agent-neo' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|30","left":"var:preset|spacing|30"}}}} -->
@@ -39,10 +39,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p style="font-weight:800;font-size:2rem;line-height:1.0;color:var(--wp--preset--color--accent);margin-bottom:var(--wp--preset--spacing--20)">F1</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)">AI コンテンツ生成</p>
+			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'AI コンテンツ生成', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444">キーワード選定・構成・本文・タイトル・メタ説明を一気通貫で生成。独自の品質スコアで基準を下回る記事は自動修正します。</p>
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( 'キーワード選定・構成・本文・タイトル・メタ説明を一気通貫で生成。独自の品質スコアで基準を下回る記事は自動修正します。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -54,10 +54,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p style="font-weight:800;font-size:2rem;line-height:1.0;color:var(--wp--preset--color--accent);margin-bottom:var(--wp--preset--spacing--20)">F2</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)">継続 SEO 最適化</p>
+			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '継続 SEO 最適化', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444">検索順位・CTR を24時間監視。タイトル A/B テスト・内部リンク補強・古記事のリライトを自動スケジュールして継続的に改善します。</p>
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( '検索順位・CTR を24時間監視。タイトル A/B テスト・内部リンク補強・古記事のリライトを自動スケジュールして継続的に改善します。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -69,10 +69,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p style="font-weight:800;font-size:2rem;line-height:1.0;color:var(--wp--preset--color--accent);margin-bottom:var(--wp--preset--spacing--20)">F3</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)">統合分析ダッシュボード</p>
+			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '統合分析ダッシュボード', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444">PV・順位・CV・生成ステータスをひとつの画面に集約。ツールを横断する手間なく、施策の効果を即座に判断できます。</p>
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( 'PV・順位・CV・生成ステータスをひとつの画面に集約。ツールを横断する手間なく、施策の効果を即座に判断できます。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -84,10 +84,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p style="font-weight:800;font-size:2rem;line-height:1.0;color:var(--wp--preset--color--accent);margin-bottom:var(--wp--preset--spacing--20)">F4</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)">WP シームレス連携</p>
+			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'WP シームレス連携', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444">専用プラグインをインストールするだけで接続完了。既存テーマ・プラグインへの影響ゼロで、REST API 経由で安全に連携します。</p>
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( '専用プラグインをインストールするだけで接続完了。既存テーマ・プラグインへの影響ゼロで、REST API 経由で安全に連携します。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
