@@ -1,0 +1,72 @@
+/**
+ * Disclosure ブロック フロントエンドスタイル。
+ *
+ * ADR-025 準拠: AI生成コンテンツ開示・PR表記の最小スタイル定義。
+ * REQ-NF-025 厳守: スタイルのみ。AI ロジックは含まない。
+ *
+ * @package AgentNeoCore
+ */
+
+.agent-neo-disclosure {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.5em 0.75em;
+	border: 1px solid currentColor;
+	border-radius: 4px;
+	font-size: 0.85em;
+	line-height: 1.4;
+	opacity: 0.8;
+}
+
+/* position: before_content（デフォルト）— 通常フロー上に表示 */
+.agent-neo-disclosure--pos-before_content {
+	margin-bottom: 1em;
+}
+
+/* position: after_content — コンテンツ末尾 */
+.agent-neo-disclosure--pos-after_content {
+	margin-top: 1em;
+}
+
+/* position: inline — フロー内 */
+.agent-neo-disclosure--pos-inline {
+	display: inline-flex;
+	margin: 0 0.25em;
+}
+
+/* タイプ別カラーリング（枠線・テキスト色）*/
+.agent-neo-disclosure--ai_generated {
+	color: #555;
+	border-color: #bbb;
+	background-color: #f9f9f9;
+}
+
+.agent-neo-disclosure--affiliate {
+	color: #a05000;
+	border-color: #e0a050;
+	background-color: #fffaf0;
+}
+
+.agent-neo-disclosure--sponsored {
+	color: #005090;
+	border-color: #5090d0;
+	background-color: #f0f5ff;
+}
+
+.agent-neo-disclosure--custom {
+	color: #333;
+	border-color: #ccc;
+	background-color: #fafafa;
+}
+
+/* アイコン */
+.agent-neo-disclosure__icon {
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+}
+
+.agent-neo-disclosure__text {
+	flex: 1;
+}

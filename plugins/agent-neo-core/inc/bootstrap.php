@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once AGENT_NEO_CORE_DIR . 'inc/util/class-slug.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/util/class-ssrf-guard.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/schema/class-schema-loader.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-auth.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/rest/class-rest-controller-base.php';
@@ -19,6 +20,7 @@ require_once AGENT_NEO_CORE_DIR . 'inc/json/class-rollback-store.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/json/class-audit-log.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/json/class-dry-run-store.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/cpt/class-agent-action-cpt.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/cpt/class-ad-tag-cpt.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/license/class-license-state.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/lifecycle/class-lifecycle.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/catalog/class-catalog-update-producer.php';
@@ -72,6 +74,39 @@ add_action(
 	static function (): void {
 		$admin_page = new Agent_Neo_Core_Admin_Page();
 		$admin_page->register();
+	}
+);
+
+// Gutenberg ブロック: blocks/*/block.json を glob して一括登録する。
+// 複数ブロックへの拡張に対応できるよう glob ループで処理する。
+add_action(
+	'init',
+	static function (): void {
+		$block_dirs = glob( AGENT_NEO_CORE_DIR . 'blocks/*/block.json' );
+		if ( ! is_array( $block_dirs ) ) {
+			return;
+		}
+
+		foreach ( $block_dirs as $block_json ) {
+			$block_dir = dirname( $block_json );
+			register_block_type( $block_dir );
+		}
+	}
+);
+
+// フロント計測 JS (ad-tracking.js) を wp_enqueue_scripts で登録する。
+// agentNeoTracking 設定オブジェクトは Automation SEO 側が wp_localize_script で注入する。
+// プラグイン単体では空設定のまま enqueue し、設定がない場合は JS 内で self-disable する。
+add_action(
+	'wp_enqueue_scripts',
+	static function (): void {
+		wp_enqueue_script(
+			'agent-neo-ad-tracking',
+			AGENT_NEO_CORE_URL . 'assets/js/ad-tracking.js',
+			array(),
+			AGENT_NEO_CORE_VERSION,
+			true // フッターに出力してページ描画をブロックしない。
+		);
 	}
 );
 

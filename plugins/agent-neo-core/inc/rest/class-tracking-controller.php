@@ -403,8 +403,28 @@ final class Agent_Neo_Core_Tracking_Controller extends Agent_Neo_Core_REST_Contr
 			return Agent_Neo_Core_Auth::error( 'VALIDATION_ERROR', __( 'event_type is required.', 'agent-neo-core' ), array( 'field' => 'event_type' ) );
 		}
 
-		if ( ! in_array( $params['event_type'], array( 'impression', 'click', 'conversion' ), true ) ) {
-			return Agent_Neo_Core_Auth::error( 'VALIDATION_ERROR', __( 'event_type is invalid.', 'agent-neo-core' ), array( 'field' => 'event_type' ) );
+		// CARRY-A2-003: 広告計測イベントを含む拡張 enum。
+		// 基本系: impression / click / conversion
+		// 広告視認性: ad_impression / viewable_impression
+		// アフィリエイト: affiliate_click
+		// エンゲージメント: scroll_depth / view_time / video_play / video_complete
+		$allowed_event_types = array(
+			// 基本計測。
+			'impression',
+			'click',
+			'conversion',
+			// 広告計測（CARRY-A2-003）。
+			'ad_impression',
+			'viewable_impression',
+			'affiliate_click',
+			// エンゲージメント計測（CARRY-A2-003）。
+			'scroll_depth',
+			'view_time',
+			'video_play',
+			'video_complete',
+		);
+		if ( ! in_array( $params['event_type'], $allowed_event_types, true ) ) {
+			return Agent_Neo_Core_Auth::error( 'VALIDATION_ERROR', __( 'event_type is invalid.', 'agent-neo-core' ), array( 'field' => 'event_type', 'allowed' => $allowed_event_types ) );
 		}
 
 		if ( isset( $params['article_id'] ) && ( ! is_string( $params['article_id'] ) || strlen( $params['article_id'] ) > self::MAX_STRING_SIZE ) ) {

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "agent-neo/disclosure",
+  "version": "1.0.0",
+  "title": "Disclosure (AI生成・PR表記)",
+  "category": "text",
+  "icon": "info",
+  "description": "AI生成コンテンツ開示・アフィリエイト開示（PR表記・ステマ規制）の静的表示ブロック。ADR-025準拠。マーキング判断はAutomation SEO側、テーマは表示フックのみ提供する。",
+  "textdomain": "agent-neo-core",
+  "attributes": {
+    "disclosureType": {
+      "type": "string",
+      "enum": ["ai_generated", "affiliate", "sponsored", "custom"],
+      "default": "ai_generated"
+    },
+    "customText": {
+      "type": "string",
+      "default": ""
+    },
+    "position": {
+      "type": "string",
+      "enum": ["before_content", "after_content", "inline"],
+      "default": "before_content"
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "align": false,
+    "customClassName": true,
+    "customCSS": false,
+    "html": false,
+    "color": {
+      "background": false,
+      "text": false
+    }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-neo.com/schema/ad-zone.schema.json",
+  "title": "AdZone",
+  "description": "広告ゾーン定義スキーマ。CARRY-A2-001: JIN:R の4ゾーン(h2前挿入/記事終/関連上/カテゴリ別上書き)に対応する静的管理。REQ-NF-025厳守。",
+  "type": "object",
+  "required": ["zone_id", "zone_name", "position"],
+  "additionalProperties": false,
+  "properties": {
+    "zone_id": {
+      "type": "string",
+      "description": "ゾーン識別子（slug 形式）。例: before_h2, after_article, above_related, category_override",
+      "pattern": "^[a-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "zone_name": {
+      "type": "string",
+      "description": "管理画面表示名。",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "position": {
+      "type": "string",
+      "description": "挿入位置識別子。",
+      "enum": [
+        "before_h2",
+        "after_article",
+        "above_related",
+        "category_override",
+        "custom"
+      ]
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "ゾーンの有効/無効フラグ。",
+      "default": true
+    },
+    "ad_tag_id": {
+      "type": ["string", "null"],
+      "description": "このゾーンに紐づく ad_tag CPT の post ID（文字列）。null = 未割り当て。",
+      "maxLength": 32
+    },
+    "category_ids": {
+      "type": "array",
+      "description": "category_override ポジション用: 上書き対象カテゴリ ID 一覧。他ポジションでは無視する。",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "maxItems": 50,
+      "uniqueItems": true
+    },
+    "priority": {
+      "type": "integer",
+      "description": "WordPress フィルター優先度相当の表示順序。小さいほど先に表示する。",
+      "minimum": 1,
+      "maximum": 999,
+      "default": 10
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC 作成日時。"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC 更新日時。"
+    }
+  }
+}
