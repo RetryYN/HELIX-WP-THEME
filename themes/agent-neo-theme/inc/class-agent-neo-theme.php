@@ -56,6 +56,27 @@ final class Agent_Neo_Theme {
 	private Agent_Neo_Third_Party_Manager $third_party_manager;
 
 	/**
+	 * OGP / Twitter Card メタ出力 module（REQ-F-018）。
+	 *
+	 * @var Agent_Neo_Head_Meta
+	 */
+	private Agent_Neo_Head_Meta $head_meta;
+
+	/**
+	 * JSON-LD 構造化データ出力 module（REQ-F-018）。
+	 *
+	 * @var Agent_Neo_Structured_Data
+	 */
+	private Agent_Neo_Structured_Data $structured_data;
+
+	/**
+	 * oEmbed lazy loading module（REQ-F-018）。
+	 *
+	 * @var Agent_Neo_Oembed_Lazy
+	 */
+	private Agent_Neo_Oembed_Lazy $oembed_lazy;
+
+	/**
 	 * module を生成する。
 	 */
 	public function __construct() {
@@ -65,6 +86,10 @@ final class Agent_Neo_Theme {
 		$this->theme_setup         = new Agent_Neo_Theme_Setup();
 		// third-party-tags.json はロード前に空配列でインスタンス化し、register() 後に設定を渡す。
 		$this->third_party_manager = new Agent_Neo_Third_Party_Manager( array() );
+		// REQ-F-018: SNS連携基盤モジュール。
+		$this->head_meta       = new Agent_Neo_Head_Meta();
+		$this->structured_data = new Agent_Neo_Structured_Data();
+		$this->oembed_lazy     = new Agent_Neo_Oembed_Lazy();
 	}
 
 	/**
@@ -100,6 +125,19 @@ final class Agent_Neo_Theme {
 		$this->third_party_manager->register();
 		$this->loaded_modules[] = 'third-party-manager';
 		$this->trace_step( 'third_party_registered' );
+
+		// REQ-F-018: SNS連携基盤モジュールを登録する。
+		// boundary: seo_head_render は theme_adapter 所有・theme_allowed=true のため問題なし。
+		$this->head_meta->register();
+		$this->loaded_modules[] = 'head-meta';
+
+		$this->structured_data->register();
+		$this->loaded_modules[] = 'structured-data';
+
+		$this->oembed_lazy->register();
+		$this->loaded_modules[] = 'oembed-lazy';
+
+		$this->trace_step( 'seo_modules_registered' );
 
 		$this->trace_step( 'register_complete' );
 	}

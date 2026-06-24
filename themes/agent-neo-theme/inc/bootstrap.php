@@ -14,6 +14,10 @@ require_once AGENT_NEO_DIR . 'inc/setup/class-boundary-guard.php';
 require_once AGENT_NEO_DIR . 'inc/setup/class-theme-setup.php';
 require_once AGENT_NEO_DIR . 'inc/class-related-query.php';
 require_once AGENT_NEO_DIR . 'inc/assets/class-third-party-manager.php';
+// REQ-F-018: SNS連携基盤 — OGP / Twitter Card / JSON-LD / oEmbed lazy。
+require_once AGENT_NEO_DIR . 'inc/seo/class-head-meta.php';
+require_once AGENT_NEO_DIR . 'inc/seo/class-structured-data.php';
+require_once AGENT_NEO_DIR . 'inc/seo/class-oembed-lazy.php';
 require_once AGENT_NEO_DIR . 'inc/class-agent-neo-theme.php';
 
 $agent_neo_theme = new Agent_Neo_Theme();
