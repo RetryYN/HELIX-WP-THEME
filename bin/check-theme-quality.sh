@@ -79,10 +79,13 @@ fi
 info "1b. ハードコード日本語文字列チェック（echo の生 UTF-8 テキスト）"
 HARDCODE_COUNT=0
 
+# 「日本語」の判定を実 CJK 範囲に限定する。
+# em-dash（U+2014）等の一般句読点・記号は対象外。
+# 対象: ひらがな / カタカナ / CJK統合漢字 / CJK記号と句読点 / 全角形
+CJK_PATTERN='[\p{Hiragana}\p{Katakana}\p{Han}\x{3000}-\x{303F}\x{FF00}-\x{FFEF}]'
+
 while IFS= read -r file; do
-  # echo / print で直接日本語文字（U+3000以上）を出力している行を検出
-  # esc_html_e / esc_html__ でラップされていないものが対象
-  # WordPress パターンファイルの HTML コメント内テキスト（<!-- -->）は除外
+  # CJK 文字を含む行を候補として取得
   while IFS= read -r match; do
     # i18n 関数でラップされている行は除外
     if echo "$match" | grep -qP 'esc_html_e|esc_html__|esc_attr_e|esc_attr__|_e\s*\(|__\s*\('; then
@@ -92,12 +95,19 @@ while IFS= read -r file; do
     if echo "$match" | grep -qP '^\s*[0-9]+:\s*(\*|//|#|/\*)'; then
       continue
     fi
+    # 行内コメント（// 以降）を除去してから CJK を再判定する。
+    # 除去後に CJK が残らない場合は「コメント内の日本語」なのでスキップ。
+    # （例: echo $var; // 日本語コメント → スキップ）
+    stripped=$(echo "$match" | sed 's|//.*||')
+    if ! echo "$stripped" | grep -qP "${CJK_PATTERN}"; then
+      continue
+    fi
     # PHP の echo/print で日本語を直書きしている行（単語境界で一致: blueprint/sprint を除外）
-    if echo "$match" | grep -qP '\b(echo|print)\b'; then
+    if echo "$stripped" | grep -qP '\b(echo|print)\b'; then
       fail "未翻訳ハードコード: ${file}: $(echo "${match}" | head -c 120)"
       HARDCODE_COUNT=$((HARDCODE_COUNT + 1))
     fi
-  done < <(grep -nP '[^\x00-\x7F]' "${file}" 2>/dev/null || true)
+  done < <(grep -nP "${CJK_PATTERN}" "${file}" 2>/dev/null || true)
 done < <(theme_php_files)
 
 # パターンファイルの HTML 内（WordPress ブロックコメント外）のハードコードを検出
@@ -107,7 +117,8 @@ while IFS= read -r pfile; do
   # PHP ヒアドキュメント / HTML 部分の日本語直書き（i18n 関数非使用）
   # wp:heading や wp:paragraph の content に直接書かれた日本語テキストを検出
   # （PHP echo 外の HTML テキストノード）
-  matches=$(grep -nP '>(?:[^<]*)[^\x00-\x7F]+(?:[^<]*)<' "${pfile}" 2>/dev/null \
+  # 「日本語」判定を CJK 範囲に限定（em-dash 等の一般記号は対象外）
+  matches=$(grep -nP ">(?:[^<]*)${CJK_PATTERN}+(?:[^<]*)<" "${pfile}" 2>/dev/null \
     | grep -vP '<!--.*-->' \
     || true)
   if [ -n "$matches" ]; then
