@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+  AGENT NEO — PHPCS / WPCS ルールセット
+  段階導入方針:
+    Phase 1 (現在): セキュリティ必須 sniff + PHP 構文 + 命名プレフィックスのみ
+    Phase 2 (目安 ~50件以下): WordPress-Extra を追加
+    Phase 3 (目安 ~10件以下): WordPress (フルセット) へ昇格
+  REQ-NF-011 / ACC-NF-005 対応
+-->
+<ruleset name="AgentNeo">
+    <description>AGENT NEO PHP Coding Standards — Phase 1 (Security-first minimum)</description>
+
+    <!-- スキャン対象 -->
+    <file>plugins/</file>
+    <!-- themes/ は別エージェント管理のため除外 -->
+
+    <!-- 除外パターン -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/poc/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/assets/*</exclude-pattern>
+    <exclude-pattern>*/src/embed/edit.js</exclude-pattern>
+    <exclude-pattern>*/src/embed/view.js</exclude-pattern>
+    <exclude-pattern>*.css</exclude-pattern>
+    <exclude-pattern>*.js</exclude-pattern>
+
+    <!-- PHP バージョン -->
+    <config name="testVersion" value="8.1-"/>
+
+    <!-- テキストドメイン設定 -->
+    <config name="text_domain" value="agent-neo"/>
+
+    <!-- プレフィックス設定 -->
+    <config name="prefixes" value="agent_neo,AGENT_NEO,Agent_Neo,AgentNeo"/>
+
+    <!-- ======================================================
+         Phase 1 ルールセット: セキュリティ必須 + 最小品質
+         ====================================================== -->
+
+    <!-- 1. PHP 構文チェック（致命的エラーを防ぐ） -->
+    <rule ref="Generic.PHP.Syntax"/>
+
+    <!-- 2. XSS 対策: echo/print に必ずエスケープ関数を使う -->
+    <rule ref="WordPress.Security.EscapeOutput"/>
+
+    <!-- 3. CSRF 対策: データ更新処理で nonce を検証する -->
+    <rule ref="WordPress.Security.NonceVerification"/>
+
+    <!-- 4. SQL インジェクション対策: $wpdb->prepare() 必須 -->
+    <rule ref="WordPress.DB.PreparedSQL"/>
+    <rule ref="WordPress.DB.PreparedSQLPlaceholders"/>
+
+    <!-- 5. グローバル名前空間汚染防止: プレフィックス必須 -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="agent_neo"/>
+                <element value="AGENT_NEO"/>
+                <element value="Agent_Neo"/>
+                <element value="AgentNeo"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- 6. ダイレクトアクセス防止: ABSPATH 未定義チェック -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+
+    <!-- ======================================================
+         除外: 既存コードへの機械的違反が多い sniff を一時停止
+         Phase 2 以降で順次有効化する
+         ====================================================== -->
+    <!-- WordPress ファイル命名規則 (class-*.php) — 既存ファイル多数で Phase 2 へ -->
+    <!-- WordPress.Files.FileName: Phase 2 -->
+    <!-- WordPress.WhiteSpace: Phase 2 -->
+    <!-- WordPress.Arrays: Phase 2 -->
+    <!-- Squiz.Commenting: Phase 2 -->
+
+</ruleset>

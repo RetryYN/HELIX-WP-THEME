@@ -1,0 +1,81 @@
+name: PHPCS / WPCS lint
+
+# REQ-NF-011 / ACC-NF-005: PHPCS/WPCS を CI で強制する
+# ルールセット: .phpcs.xml.dist (Phase 1 セキュリティ必須 minimum)
+# Phase 1 対象 sniff:
+#   - Generic.PHP.Syntax
+#   - WordPress.Security.EscapeOutput
+#   - WordPress.Security.NonceVerification
+#   - WordPress.DB.PreparedSQL / PreparedSQLPlaceholders
+#   - WordPress.NamingConventions.PrefixAllGlobals (prefix: agent_neo / AGENT_NEO)
+#   - WordPress.Security.ValidatedSanitizedInput
+#
+# 違反が 1 件でも存在する場合 exit 1 → CI ブロック。
+
+on:
+  push:
+    paths:
+      - 'plugins/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.phpcs.xml.dist'
+      - '.github/workflows/phpcs.yml'
+  pull_request:
+    paths:
+      - 'plugins/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.phpcs.xml.dist'
+  workflow_dispatch:
+
+jobs:
+  phpcs:
+    name: PHPCS / WPCS (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.1', '8.3']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, json, tokenizer, xml
+          tools: composer:v2
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-phpcs-php${{ matrix.php }}-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-phpcs-php${{ matrix.php }}-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Verify WPCS is registered
+        run: vendor/bin/phpcs -i
+
+      - name: Run PHPCS (plugins/ のみ / Phase 1 ルールセット)
+        run: vendor/bin/phpcs --standard=.phpcs.xml.dist --report=full --colors
+        # 違反あり = exit 1 → CI ブロック（Phase 1 ゲート）
+        # Phase 2 移行時: .phpcs.xml.dist の sniff を拡張すること
+
+      - name: Upload PHPCS report (失敗時)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phpcs-report-php${{ matrix.php }}
+          path: /tmp/phpcs-report.xml
+          if-no-files-found: ignore
