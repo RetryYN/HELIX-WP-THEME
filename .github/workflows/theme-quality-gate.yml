@@ -171,6 +171,7 @@ jobs:
             --assert.assertions.largest-contentful-paint.maxNumericValue=2500 \
             --assert.assertions.interactive.maxNumericValue=200 \
             --assert.assertions.cumulative-layout-shift.maxNumericValue=0.1 \
+            --assert.assertions.render-blocking-resources=error \
             --upload.target=temporary-public-storage \
             2>&1 || true
           # lhci の結果は artifact に保存（FAIL でも続行し結果を確認）

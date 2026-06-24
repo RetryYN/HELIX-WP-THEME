@@ -160,3 +160,41 @@ if ( ! class_exists( 'WP_Post' ) ) {
         public string $post_title   = '';
     }
 }
+
+// ------------------------------------------------------------------
+// WP_REST_Response スタブ
+// ------------------------------------------------------------------
+
+if ( ! class_exists( 'WP_REST_Response' ) ) {
+    /**
+     * WP_REST_Response 最小スタブ。
+     */
+    class WP_REST_Response {
+        /** @var mixed */
+        private $data;
+        private int $status;
+
+        /**
+         * @param mixed $data   レスポンスデータ。
+         * @param int   $status HTTP ステータスコード。
+         */
+        public function __construct( $data = null, int $status = 200 ) {
+            $this->data   = $data;
+            $this->status = $status;
+        }
+
+        /** @return mixed */
+        public function get_data() {
+            return $this->data;
+        }
+
+        public function get_status(): int {
+            return $this->status;
+        }
+
+        /** @param mixed $data */
+        public function set_data( $data ): void {
+            $this->data = $data;
+        }
+    }
+}
