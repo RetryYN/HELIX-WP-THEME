@@ -124,6 +124,115 @@ class Agent_Neo_Core_CLI_Command {
 	}
 
 	/**
+	 * A/B テスト操作サブコマンド群。
+	 *
+	 * ## SUBCOMMANDS
+	 *
+	 *   stop — A/B テストを緊急停止し、以後 variant エンドポイントが default を返すようにする。
+	 *
+	 * ## EXAMPLES
+	 *
+	 *   wp agent-neo ab-test stop --post_id=42
+	 *
+	 * @param array<int, string>    $args       positional args。args[0] = サブコマンド名。
+	 * @param array<string, string> $assoc_args named options。
+	 * @return void
+	 */
+	public function ab_test( array $args, array $assoc_args ): void {
+		$subcommand = isset( $args[0] ) ? $args[0] : '';
+
+		if ( 'stop' !== $subcommand ) {
+			WP_CLI::error(
+				sprintf(
+					'不明なサブコマンド "%s"。使用可能なサブコマンド: stop',
+					$subcommand
+				)
+			);
+		}
+
+		$this->ab_test_stop( $assoc_args );
+	}
+
+	/**
+	 * 指定投稿の A/B テストを緊急停止する。
+	 *
+	 * _agent_neo_ab_active を "false" に設定する。
+	 * 以後、GET /agent-neo/v1/ab-test/variant は default variant を返す。
+	 *
+	 * ACC-024b（緊急停止 CLI）充足。
+	 * REQ-NF-025 順守: AI 判定ロジックなし。meta フラグを書き換えるだけ。
+	 *
+	 * ## OPTIONS
+	 *
+	 * --post_id=<post_id>
+	 * : 停止対象の投稿 ID。
+	 *
+	 * [--format=<format>]
+	 * : 出力フォーマット。json（省略時）または yaml。
+	 * ---
+	 * default: json
+	 * options:
+	 *   - json
+	 *   - yaml
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *   wp agent-neo ab-test stop --post_id=42
+	 *
+	 * @param array<string, string> $assoc_args named options。
+	 * @return void
+	 */
+	private function ab_test_stop( array $assoc_args ): void {
+		if ( empty( $assoc_args['post_id'] ) || ! ctype_digit( (string) $assoc_args['post_id'] ) ) {
+			WP_CLI::error( '--post_id に正の整数を指定してください。例: --post_id=42' );
+		}
+
+		$post_id = (int) $assoc_args['post_id'];
+		if ( $post_id <= 0 ) {
+			WP_CLI::error( '--post_id に正の整数を指定してください。' );
+		}
+
+		// rest_do_request() 経由で実行するため管理者ユーザーを確立する。
+		$this->ensure_admin_user();
+
+		// post の存在確認（get_post は 0 / 負値を正しく処理できない）。
+		$post = get_post( $post_id );
+		if ( ! $post instanceof WP_Post ) {
+			WP_CLI::error( sprintf( '投稿 ID=%d が見つかりません。', $post_id ) );
+		}
+
+		// _agent_neo_ab_active を "false" に設定する。
+		update_post_meta( $post_id, Agent_Neo_Core_AB_Test_Controller::META_ACTIVE, 'false' );
+
+		/**
+		 * A/B テスト緊急停止後に外部処理をトリガーするための action hook。
+		 *
+		 * @param int    $post_id    対象投稿 ID。
+		 * @param string $stopped_at 停止日時（ISO 8601）。
+		 */
+		do_action( 'agent_neo_ab_test_stopped', $post_id, gmdate( 'c' ) );
+
+		$format = $assoc_args['format'] ?? 'json';
+		WP_CLI::print_value(
+			array(
+				'success' => true,
+				'data'    => array(
+					'post_id'        => $post_id,
+					'ab_test_active' => false,
+					'stopped_at'     => gmdate( 'c' ),
+					'message'        => sprintf( '投稿 ID=%d の A/B テストを停止しました。以後 default variant を配信します。', $post_id ),
+				),
+				'meta'    => array(
+					'request_id' => 'ab_stop_' . substr( hash( 'sha256', (string) $post_id . '|' . gmdate( 'c' ) ), 0, 24 ),
+				),
+				'error'   => null,
+			),
+			array( 'format' => $format )
+		);
+	}
+
+	/**
 	 * 任意の agent-neo/v1 ルートを rest_do_request() 経由で呼ぶ汎用コマンド。
 	 *
 	 * 同一契約の実証に有用。route は /agent-neo/v1/ から始まる絶対パス
