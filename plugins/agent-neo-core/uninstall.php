@@ -94,9 +94,15 @@ do {
 	}
 
 	$agent_neo_core_meta_ids = array_map( 'absint', $agent_neo_core_meta_ids );
-	$agent_neo_core_ids_sql  = implode( ',', $agent_neo_core_meta_ids );
 
-	$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE meta_id IN ({$agent_neo_core_ids_sql})" );
+	$agent_neo_core_ids_placeholders = implode( ',', array_fill( 0, count( $agent_neo_core_meta_ids ), '%d' ) );
+	// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- sprintf でプレースホルダを動的確定後に prepare() に渡す。静的解析はプレースホルダ数を計算できないため偽陽性。
+	$agent_neo_core_ids_sql = $wpdb->prepare(
+		sprintf( 'DELETE FROM %s WHERE meta_id IN (%s)', $wpdb->postmeta, $agent_neo_core_ids_placeholders ),
+		...$agent_neo_core_meta_ids
+	);
+	// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+	$wpdb->query( $agent_neo_core_ids_sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- 上で prepare() 済み。
 } while ( count( $agent_neo_core_meta_ids ) === $agent_neo_core_batch_size );
 
 $agent_neo_core_cpts = isset( $agent_neo_core_policy['custom_post_types'] ) && is_array( $agent_neo_core_policy['custom_post_types'] )
