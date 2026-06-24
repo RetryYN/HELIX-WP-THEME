@@ -552,6 +552,166 @@ fi
 
 
 # =============================================================================
+# GATE 5: Theme Review Checklist（静的検査）
+# REQ-NF-016 / ACC-NF-010
+# =============================================================================
+title "GATE 5: Theme Review Checklist（静的検査）"
+
+REVIEW_FAIL=0
+REVIEW_WARN=0
+
+# --- 5a. screenshot.png 存在確認 ---
+info "5a. screenshot.png 存在確認"
+if [ -f "${THEME_DIR}/screenshot.png" ]; then
+  pass "screenshot.png 存在"
+else
+  fail "screenshot.png が存在しません（${THEME_DIR}/screenshot.png）"
+  REVIEW_FAIL=$((REVIEW_FAIL + 1))
+fi
+
+# --- 5b. style.css 必須ヘッダー項目確認 ---
+info "5b. style.css 必須ヘッダー項目確認"
+STYLE_CSS="${THEME_DIR}/style.css"
+REQUIRED_HEADERS=("Theme Name" "Version" "License" "License URI" "Text Domain" "Requires at least" "Requires PHP")
+HEADER_FAIL=0
+
+if [ -f "${STYLE_CSS}" ]; then
+  # style.css の先頭コメントブロック（最大 50 行）を取得
+  HEADER_BLOCK=$(head -50 "${STYLE_CSS}")
+  for header in "${REQUIRED_HEADERS[@]}"; do
+    if echo "${HEADER_BLOCK}" | grep -qiP "^\s*\*?\s*${header}\s*:"; then
+      pass "style.css ヘッダー存在: ${header}"
+    else
+      fail "style.css ヘッダー欠落: ${header}"
+      HEADER_FAIL=$((HEADER_FAIL + 1))
+      REVIEW_FAIL=$((REVIEW_FAIL + 1))
+    fi
+  done
+else
+  fail "style.css が存在しません: ${STYLE_CSS}"
+  REVIEW_FAIL=$((REVIEW_FAIL + 1))
+fi
+
+# --- 5c. README.md または readme.txt 存在確認 ---
+info "5c. README.md / readme.txt 存在確認"
+if [ -f "${THEME_DIR}/README.md" ] || [ -f "${THEME_DIR}/readme.txt" ]; then
+  FOUND_README=""
+  [ -f "${THEME_DIR}/README.md" ] && FOUND_README="README.md"
+  [ -f "${THEME_DIR}/readme.txt" ] && FOUND_README="${FOUND_README:+${FOUND_README}, }readme.txt"
+  pass "README ファイル存在: ${FOUND_README}"
+else
+  fail "README.md / readme.txt が存在しません"
+  REVIEW_FAIL=$((REVIEW_FAIL + 1))
+fi
+
+# --- 5d. 必須 FSE テンプレート確認 ---
+info "5d. 必須 FSE テンプレートファイル確認"
+REQUIRED_TEMPLATES=("index.html" "single.html" "page.html" "archive.html" "search.html" "404.html")
+TEMPLATE_DIR="${THEME_DIR}/templates"
+TEMPLATE_FAIL=0
+
+for tpl in "${REQUIRED_TEMPLATES[@]}"; do
+  if [ -f "${TEMPLATE_DIR}/${tpl}" ]; then
+    pass "必須テンプレート存在: templates/${tpl}"
+  else
+    fail "必須テンプレート欠落: templates/${tpl}"
+    TEMPLATE_FAIL=$((TEMPLATE_FAIL + 1))
+    REVIEW_FAIL=$((REVIEW_FAIL + 1))
+  fi
+done
+
+# --- 5e. languages/ に .pot ファイル存在確認 ---
+info "5e. languages/ .pot ファイル存在確認"
+LANG_DIR="${THEME_DIR}/languages"
+POT_COUNT=$(find "${LANG_DIR}" -name "*.pot" -type f 2>/dev/null | wc -l | tr -d ' ')
+POT_COUNT=${POT_COUNT:-0}
+
+if [ "${POT_COUNT}" -gt 0 ]; then
+  POT_FILES=$(find "${LANG_DIR}" -name "*.pot" -type f 2>/dev/null | head -5 | xargs -I{} basename {})
+  pass ".pot ファイル存在（${POT_COUNT} 件）: ${POT_FILES}"
+else
+  fail "languages/ に .pot ファイルが存在しません"
+  REVIEW_FAIL=$((REVIEW_FAIL + 1))
+fi
+
+# --- 5f. theme.json customTemplates の実体ファイル整合確認 ---
+info "5f. theme.json customTemplates ↔ templates/ 実体ファイル整合確認"
+if [ -f "${THEME_DIR}/theme.json" ]; then
+  # 環境変数でパスを渡し、heredoc 内は展開しない（set -e と相性が良い形式）
+  CUSTOM_TPL_CHECK=$(
+    export THEME_JSON_PATH="${THEME_DIR}/theme.json"
+    export TEMPLATE_DIR_PATH="${TEMPLATE_DIR}"
+    python3 - <<'PYEOF_TPL' 2>/dev/null || true
+import json, sys, os
+
+theme_json_path = os.environ.get("THEME_JSON_PATH", "")
+template_dir    = os.environ.get("TEMPLATE_DIR_PATH", "")
+
+if not theme_json_path:
+    print("SKIP: THEME_JSON_PATH 未設定")
+    sys.exit(0)
+
+with open(theme_json_path) as f:
+    data = json.load(f)
+
+custom_templates = data.get("customTemplates", [])
+if not custom_templates:
+    print("SKIP: customTemplates 宣言なし（0件）")
+    sys.exit(0)
+
+errors = []
+for tpl in custom_templates:
+    name = tpl.get("name", "")
+    title = tpl.get("title", name)
+    expected_file = os.path.join(template_dir, f"{name}.html")
+    if os.path.isfile(expected_file):
+        print(f"PASS: customTemplate '{name}' ({title}) -> templates/{name}.html 存在")
+    else:
+        print(f"FAIL: customTemplate '{name}' ({title}) -> templates/{name}.html が見つかりません")
+        errors.append(name)
+
+if errors:
+    print(f"---CT_FAIL--- count={len(errors)}")
+else:
+    print("---CT_PASS---")
+PYEOF_TPL
+  )
+
+  # 結果を1行ずつ処理
+  while IFS= read -r line; do
+    if echo "${line}" | grep -q "^PASS:"; then
+      pass "${line#PASS: }"
+    elif echo "${line}" | grep -q "^FAIL:"; then
+      fail "${line#FAIL: }"
+      REVIEW_FAIL=$((REVIEW_FAIL + 1))
+    elif echo "${line}" | grep -q "^SKIP:"; then
+      info "${line#SKIP: }"
+    elif echo "${line}" | grep -q "^---CT_FAIL---"; then
+      CT_COUNT=$(echo "${line}" | grep -oP 'count=\K[0-9]+' || echo "?")
+      fail "customTemplate 実体不整合: ${CT_COUNT} 件"
+    fi
+  done <<< "${CUSTOM_TPL_CHECK}"
+
+  if echo "${CUSTOM_TPL_CHECK}" | grep -q "^---CT_PASS---"; then
+    pass "customTemplates 全件実体ファイル確認（整合）"
+  fi
+else
+  warn "theme.json が存在しないため customTemplates チェックをスキップ"
+  REVIEW_WARN=$((REVIEW_WARN + 1))
+fi
+
+# GATE 5 総評
+if [ "${REVIEW_FAIL}" -gt 0 ]; then
+  fail "Theme Review GATE: FAIL ${REVIEW_FAIL} 件"
+else
+  pass "Theme Review GATE: 全項目 PASS"
+fi
+if [ "${REVIEW_WARN}" -gt 0 ]; then
+  warn "Theme Review GATE: WARN ${REVIEW_WARN} 件"
+fi
+
+
+# =============================================================================
 # 最終サマリ
 # =============================================================================
 title "品質ゲート サマリ"
