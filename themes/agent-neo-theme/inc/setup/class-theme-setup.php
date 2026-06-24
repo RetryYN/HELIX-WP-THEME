@@ -55,6 +55,10 @@ final class Agent_Neo_Theme_Setup {
 				'agent-neo-home',
 				array( 'label' => __( 'AGENT NEO ホーム', 'agent-neo' ) )
 			);
+			register_block_pattern_category(
+				'agent-neo',
+				array( 'label' => __( 'AGENT NEO LP', 'agent-neo' ) )
+			);
 		}
 	}
 
