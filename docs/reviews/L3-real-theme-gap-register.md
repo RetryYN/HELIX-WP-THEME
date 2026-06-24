@@ -28,7 +28,7 @@ SWELL / JIN:R はどちらも**クラシックテーマ**（widgets + `functions
 | GAP-RT-043（Q-005 ライセンス検証方式） | PO-ESCALATION | **PM-RESOLVED(2026-06-20)** Automation SEO 契約 entitlement 確認に統合 | PO-decision-packet §PM確定 |
 | GAP-RT-045（Q-013 公開指標ポリシー） | PO-ESCALATION | **PM-RESOLVED(2026-06-20)** 安全側＝同意バナーあり前提 | 同上 |
 | GAP-RT-048（Q-012 SNS フィード Phase 境界） | PO-ESCALATION | **PM-RESOLVED(2026-06-20)** フィードのみ Phase2 送り | 同上 |
-| 純 OPEN（PO 裁定待ち）残 | 6 件（043〜048） | **3 件（GAP-RT-044/046/047）** | 同上 |
+| 純 OPEN（PO 裁定待ち）残 | 6 件（043〜048） | ~~3 件（GAP-RT-044/046/047）~~ **0 件（2026-06-25 PO 裁定でクローズ）**: GAP-RT-044=RESOLVED-BY-DECISION / GAP-RT-046=DEFERRED-TO-LP-PHASE / GAP-RT-047=RESOLVED-BY-DECISION | PO 裁定 2026-06-25 |
 | CARRY-WP7-001（Abilities API 検証） | blocking=true（PO-WP7-01 待ち） | **blocking=false / VERIFIED(2026-06-21)** WP7.0 GA+6.9.4 で register→get→execute 実証 | PO-decision-packet PO-WP7-01 / poc/wp7-abilities |
 | CARRY-ADR023-004（Bridge ショートコード変換） | blocking=true（PO 裁定待ち） | **blocking=false / PM-RESOLVED(2026-06-20)** 主要3種 Phase1 確定 | PO-decision-packet §PM確定 |
 | PERF-CARRY-002（Cookie Consent） | blocking=true（Q-013 待ち） | **blocking=false / PM-RESOLVED(2026-06-20)** 外部 adapter 方式・Q-013 確定 | 同上 |
@@ -97,10 +97,10 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | GAP-RT-041 | B テスト計画 | 移行 SEO TC（旧テーマ→AGENT-NEO 移行時の 301 リダイレクト・permalink 保持）が存在しない | 解析レポート `23-テーマ構築観点総合レビュー.md` | MISSING | 中 | test-plan | **RESOLVED-IN-L3**（L3-test-plan §8.6 で TC-056〜060 を追加。TC-060 bit-identical 条件は Q-007 解決後に更新）|
 | GAP-RT-042 | B FSE 転換コスト | SWELL / JIN:R はクラシックテーマ。AGENT-NEO は FSE（Block Theme）。customizer・ウィジェット・PHP フィルターの直接移植不可領域の範囲と代替実装方針（Block Pattern / theme.json / Block Binding API）が ADR に未明示 | `swell-2.16.0/functions.php`（`add_theme_support( 'customize-selective-refresh-widgets' )`等）/ 解析レポート `18-テーマコーディングルール逆引き設計.md` | MISSING | 高 | ADR | **RESOLVED-IN-L3**（ADR-023 で FSE 再設計コスト方針確定）+ **CARRY-TO-L4**（→ CARRY-ADR023-001〜004）|
 | GAP-RT-043 | C PO 裁定待ち | Q-005: ライセンス検証方式（wp.org API 参照 vs 自社 license server）の採用可否が未確定 | `docs/design/L2-design.md §8.6` / `docs/security/threat-model.md §TB-18a` | OPEN | 高 | PO-escalation | **PO-ESCALATION**（L3-PO-decision-packet Q-005: L4 着手前必須裁定。Freemius 推奨）|
-| GAP-RT-044 | C PO 裁定待ち | Q-006: wp.org への機能ロック（`is_plugin_active` ゲート）の粒度・フォールバック方針が未確定 | `docs/design/L2-design.md §8.6` | OPEN | 高 | PO-escalation | **PO-ESCALATION**（L3-PO-decision-packet Q-006: L4 着手前必須裁定。移行プラグインのみ wp.org 申請推奨）|
+| GAP-RT-044 | C PO 裁定待ち | Q-006: wp.org への機能ロック（`is_plugin_active` ゲート）の粒度・フォールバック方針が未確定 | `docs/design/L2-design.md §8.6` | ~~OPEN~~ **RESOLVED** | 高 | PO-escalation | **RESOLVED-BY-DECISION**（2026-06-25 / PO 裁定）: wp.org 非採用・公式サイト / Automation SEO 側配布に一本化。移行プラグインの wp.org 申請不採用で論点クローズ。|
 | GAP-RT-045 | C PO 裁定待ち | Q-013: 公開パフォーマンス指標（Web Vitals / CWV スコア）の公開ポリシー（ユーザー向け開示レベル）が未確定 | 解析レポート `26-競合テーマ総合評価と市場ポジション.md` | OPEN | 中 | PO-escalation | **PO-ESCALATION**（L3-PO-decision-packet Q-013: L4 着手前必須裁定。同意バナー必須推奨。PERF-CARRY-002 の前提）|
-| GAP-RT-046 | C PO 裁定待ち | Q-003: S1 プラン価格帯（月額・年額・初期費）の確定。移行 PG ユーザーへの課金フローが未確定 | `docs/design/L2-design.md §ライセンス` / 解析レポート `09-価格戦略と売れる理由.md` | OPEN | 高 | PO-escalation | **PO-ESCALATION**（L3-PO-decision-packet Q-003: L7 前でOK。¥300,000〜¥500,000 明示推奨）|
-| GAP-RT-047 | C PO 裁定待ち | Q-004: 移行プログラム（PG）ユーザーへの課金開始タイミング・猶予期間の確定 | `docs/design/L2-design.md §ライセンス` | OPEN | 高 | PO-escalation | **PO-ESCALATION**（L3-PO-decision-packet Q-004: L4 途中まで猶予。無料・単独配布推奨）|
+| GAP-RT-046 | C PO 裁定待ち | Q-003: S1 プラン価格帯（月額・年額・初期費）の確定。移行 PG ユーザーへの課金フローが未確定 | `docs/design/L2-design.md §ライセンス` / 解析レポート `09-価格戦略と売れる理由.md` | ~~OPEN~~ **DEFERRED** | 高 | PO-escalation | **DEFERRED-TO-LP-PHASE**（2026-06-25 / PO 裁定）: 公式サイト / 販売 LP 制作フェーズで確定。現フェーズ（L4）の PO 裁定対象外。|
+| GAP-RT-047 | C PO 裁定待ち | Q-004: 移行プログラム（PG）ユーザーへの課金開始タイミング・猶予期間の確定 | `docs/design/L2-design.md §ライセンス` | ~~OPEN~~ **RESOLVED** | 高 | PO-escalation | **RESOLVED-BY-DECISION**（2026-06-25 / PO 裁定）: 公式サイト / Automation SEO 側からの配布に一本化で確定。配布チャネル詳細は LP 制作フェーズで確定。論点クローズ。|
 | GAP-RT-048 | C PO 裁定待ち | Q-012: F-018「プロフィール表示 / SNS フィードウィジェット」の ACC 適合レベル / Phase 1・2 スコープ決定（PO 裁定）。Phase 1 対象範囲と Phase 2 送りウィジェットの境界が未確定 | `docs/requirements/` F-018 / `docs/test-plan/L3-test-plan.md` ACC-NF | OPEN | 中 | PO-escalation | **PO-ESCALATION**（L3-PO-decision-packet Q-012: L4 着手前必須裁定。SNS フィードウィジェットは Phase 2 送り推奨。CARRY-ADR023-002 と連動）|
 | GAP-RT-049 | C 設計内部バグ | L1 ACC-NF 番号不整合: 設計書上の ACC-NF-002〜007 が実際は ACC-NF-008〜013 を指している（採番が 6 ずれている）。テスト計画との突合が壊れている | `docs/requirements/` ACC-NF 節 vs `docs/test-plan/L3-test-plan.md` CAT 節 | MISSING | 高 | L1-fix | **RESOLVED-IN-L3**（L1 整合補正パッチ適用済み / 2026-06-18。`docs/requirements/L1-requirements.md` で ACC-NF-016〜021 追加・採番整合修正により解消）|
 | GAP-RT-050 | C 設計内部バグ | REQ-NF-001〜007 のトレーサビリティが L1→L3 を通じて欠落。テスト計画・詳細設計のどこで対処されるかが未連結 | `docs/requirements/` REQ-NF 節 / `docs/design/L3-detailed-design.md`（REQ-NF-001〜007 への明示的ポインタなし） | MISSING | 高 | L1-fix | **RESOLVED-IN-L3**（L1 整合補正パッチ適用済み / 2026-06-18。`docs/requirements/L1-requirements.md` §9 トレーサビリティ補完（REQ-NF-001〜007 → L3 設計ポインタ追記）により解消）|
@@ -168,15 +168,16 @@ P0 実装系のみ: C-A1-001（SSRF）/ CARRY-A2-001/002/003/005（広告ゾー�
 | **RESOLVED-IN-L3** | 24 件 | GAP-RT-001, 003, 005, 007, 008, 009（A1 ブロック 6 件）/ GAP-RT-016, 019, 020（A3 SEO 純 RESOLVED 3 件）/ GAP-RT-021（A4 パフォーマンス / PERF-CARRY-001 ADR-021 統合解消）/ GAP-RT-029, 031, 032, 033, 034, 035（OSS/CI 群 6 件）/ GAP-RT-036, 037, 039, 040, 041（test-plan TC 追加 5 件）/ **GAP-RT-049, 050（L1 整合補正 ACC-NF↔REQ-NF / 2026-06-18 適用済み）/ GAP-RT-051（L5 カラートークン #xxxx 残ゼロ確認済み / 2026-06-18）** |
 | **CARRY-TO-L4（単独）** | 8 件 | GAP-RT-004（C-A1-002）/ GAP-RT-010（CARRY-A2-001）/ GAP-RT-011（CARRY-A2-002）/ GAP-RT-012（CARRY-A2-003）/ GAP-RT-013（CARRY-A2-004）/ GAP-RT-014（CARRY-A2-005 / CARRY-A2-006）/ **GAP-RT-052（CARRY-SEC-001: ADR-020 補足 + Abilities 公開スコープ確定）/ GAP-RT-054（CARRY-SEC-002: mcp-tools.schema.json 実ファイル作成）** |
 | **RESOLVED-IN-L3 + CARRY-TO-L4（両立）** | 17 件 | GAP-RT-002, 006, 015, 017, 018, 022, 023, 024, 025, 026（L3 設計確定 + 残項目が L4 carry）/ GAP-RT-027, 028, 030（ADR-020 方針確定 + carry 残存）/ GAP-RT-038（TC 追加済み + PERF-CARRY-002 blocking）/ GAP-RT-042（ADR-023 + carry 4 件）/ **GAP-RT-056（L3-A4 addendum 追記済み + PERF-CARRY-007〜009 carry）/ GAP-RT-058（ADR-026 方針確定 + CARRY-EMBED-001〜006 carry）** |
-| **RESOLVED-BY-DECISION** | 3 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要 / carry なし）/ **GAP-RT-055**（2026-06-20 / ADR-025: Automation SEO 登録時の同意に集約・テーマは disclosure フックのみ / **+ CARRY-TO-L4: CARRY-ADR025-001〜005 を L4 継続管理**）/ **GAP-RT-057**（2026-06-21 / 日本市場向け通常品質へ再定位） |
-| **PO-ESCALATION** | 3 件 | GAP-RT-044, 046, 047（GAP-RT-043/045/048 は PM-RESOLVED 2026-06-20 / 冒頭 §同期 参照）|
+| **RESOLVED-BY-DECISION** | 5 件 | **GAP-RT-053**（2026-06-18 / ADR-024: REQ-F-043 廃止により外部AI write 受口消滅・OAuth 設計不要 / carry なし）/ **GAP-RT-055**（2026-06-20 / ADR-025: Automation SEO 登録時の同意に集約・テーマは disclosure フックのみ / **+ CARRY-TO-L4: CARRY-ADR025-001〜005 を L4 継続管理**）/ **GAP-RT-057**（2026-06-21 / 日本市場向け通常品質へ再定位）/ **GAP-RT-044**（2026-06-25 / PO 裁定: wp.org 非採用・公式サイト配布一本化）/ **GAP-RT-047**（2026-06-25 / PO 裁定: 公式サイト / Automation SEO 配布一本化） |
+| **DEFERRED-TO-LP-PHASE** | 1 件 | **GAP-RT-046**（2026-06-25 / PO 裁定: S1 価格レンジは LP 制作フェーズで確定） |
+| **PO-ESCALATION** | ~~3 件~~ **0 件** | ~~GAP-RT-044, 046, 047~~ **2026-06-25 PO 裁定ですべてクローズ**（GAP-RT-043/045/048 は PM-RESOLVED 2026-06-20 / 冒頭 §同期 参照）|
 | **PM-RESOLVED（旧 PO-ESCALATION）** | 3 件 | GAP-RT-043, 045, 048（2026-06-20 / PO-decision-packet §PM確定）|
 | **L1-FIX-PENDING** | 0 件 | — （GAP-RT-049/050 は RESOLVED-IN-L3 に更新済み） |
 | **DEFERRED** | 0 件 | — （GAP-RT-051 は RESOLVED-IN-L3 に更新済み） |
 
-> **検算**: 24 + 8 + 17 + 3 + 6 + 0 + 0 = **58 件**（GAP-RT 総数と一致）
+> **検算**: 24 + 8 + 17 + 5 + 1 + 0 + 3 + 0 + 0 = **58 件**（GAP-RT 総数と一致）
 >
-> **注意**: RESOLVED-IN-L3 単独と RESOLVED-IN-L3 + CARRY-TO-L4 の両立を合計すると **RESOLVED（設計確定）= 42 件**。RESOLVED-BY-DECISION = 3 件（GAP-RT-053 / ADR-024 + GAP-RT-055 / ADR-025 + GAP-RT-057 / 通常品質化）。CARRY-TO-L4 単独 = 8 件。純 OPEN 残存（PO 裁定待ち）= **6 件**（GAP-RT-043〜048）。
+> **注意**: RESOLVED-IN-L3 単独と RESOLVED-IN-L3 + CARRY-TO-L4 の両立を合計すると **RESOLVED（設計確定）= 42 件**。RESOLVED-BY-DECISION = 5 件（GAP-RT-053 / ADR-024 + GAP-RT-055 / ADR-025 + GAP-RT-057 / 通常品質化 + GAP-RT-044/047 / 2026-06-25 PO 裁定）。DEFERRED-TO-LP-PHASE = 1 件（GAP-RT-046）。CARRY-TO-L4 単独 = 8 件。純 OPEN 残存（PO 裁定待ち）= **0 件**（2026-06-25 PO 裁定ですべてクローズ）。
 >
 > **RESOLVED-BY-DECISION 内の carry 有無の区別**:
 > - GAP-RT-053（ADR-024）: 純 RESOLVED-BY-DECISION。carry なし。REQ-F-043 廃止により設計判断で完結。
