@@ -4,7 +4,7 @@
 
 - **Sprint/Task progress**: VERIFIED **30** / IMPL **0** / SCAFFOLD **0** / NONE **0** *(total 30)*
 - **Endpoint coverage**: `Y` **56** / `N` **1** *(total 57)*（N 1 = `POST /aseo/v1/agent-neo/catalog-update` は automation SEO 側の外部受け口・agent-neo 実装範囲外）
-- **Phase1 launch F-ID**: **VERIFIED 15** / PARTIAL 2 / NONE 5 *(total 25、F-014/F-015/F-018/F-019/F-024 は T-ID 未割当=30タスク計画外の将来スコープ。30 WBS タスクは全 VERIFIED)*
+- **Phase1 launch F-ID**: **VERIFIED 17** / PARTIAL 2 / NONE 3 *(total 25、F-014/F-015/F-024 は T-ID 未割当=30タスク計画外の将来スコープ。F-018/F-019 は 2026-06-25 是正で NONE→VERIFIED。30 WBS タスクは全 VERIFIED)*
 - **残タスク（next）**:
   - 残 endpoint は外部受け口（`/aseo/v1/agent-neo/catalog-update`）のみ。agent-neo 実装スコープ外
 - **運用ルール（更新時）**:
@@ -116,6 +116,8 @@
 
 ## Table 3: Phase1 launch set F-ID coverage（F-001〜F-025）
 
+> ⚠️ 本表 F-ID は L1 REQ-F と L2 Feature ID が混在。L1 REQ-F-018（SNS 連携基盤）/ REQ-F-024（A/B テスト）は本表 F-018 / F-019 と別物で未実装（finding_agent_neo_impl_gaps_20260625 参照）。本表 status は L2 Feature ID 基準。
+
 | F-ID | 対応 T-ID | status | 現状 |
 |---|---|---|---|
 | F-001 | T-001, T-002, T-003, T-004 | VERIFIED | launch 必達として完了 | 
@@ -135,8 +137,8 @@
 | F-015 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
 | F-016 | T-019 | PARTIAL | package 境界フラグ（/features）と既存 check_package_scope による個人版 HP/LP 書換え拒否は実装。テンプレ固定構成の全 enforcement は残 | 
 | F-017 | T-030 | VERIFIED | POST /media/upload 実装（T-030）。MIME偽装→wp_check_filetype_and_ext 是正・実機検証済み（API 層） | 
-| F-018 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
-| F-019 | - | NONE | 該当 T-ID が未割当（Phase1表では未着手） | 
+| F-018 | T-024, T-030 | VERIFIED | L2 Feature ID。T-024（/tracking/context CAT 契約テスト・openapi jobs 契約検証）/ T-030（contract テスト全 endpoint 実機検証）で実装済み | 
+| F-019 | T-030 | VERIFIED | L2 Feature ID。T-030（GET /public/pages/{id}/snapshot・GET /public/crawl-map・GET /crawler-policy・GET /tracking/llmo-summary 実装）で実装済み | 
 | F-020 | T-025, T-023 | PARTIAL | Release/SBOM Gate（T-025）実装・PASS。a11y/i18n/RTL/Theme Review gate は T-023 で残 | 
 | F-021 | T-008, T-009, T-030 | VERIFIED | block PATCH（T-008）+ section edit（T-009）に加え、GET /posts/{id}・GET /sections/{section_id}（block_id/section_id 返却）+ POST /sections/{section_id}/apply（T-030）が追加。API 層実機検証済み |
 | F-022 | T-009, T-030 | VERIFIED | section edit endpoint（T-009）に加え、POST /sections/{section_id}/apply（T-030）実装・実機検証済み |
@@ -146,9 +148,9 @@
 | F-044 | T-014, T-015 | VERIFIED | catalog-update 受け口と Outbox/DLQ は実機検証済み |
 
 ### Phase1 status summary（F-001〜F-025 の 25 件を集計。F-044 は Phase1 launch set 外として別行扱い）
-- **VERIFIED**: F-001〜F-013, F-017, F-021〜F-023, F-025（15 件）
+- **VERIFIED**: F-001〜F-013, F-017, F-018, F-019, F-021〜F-023, F-025（17 件）
 - **PARTIAL**: F-016, F-020（2 件）
-- **NONE**: F-014, F-015, F-018, F-019, F-024（5 件。T-ID 未割当=30タスク計画外の将来スコープ）
+- **NONE**: F-014, F-015, F-024（3 件。T-ID 未割当=30タスク計画外の将来スコープ）
 
 > 2026-06-22 T-030（残 31 endpoint 実装）により F-009, F-017, F-021, F-022, F-023 が VERIFIED に昇格。NONE 8 件 → 5 件、PARTIAL 4 件 → 2 件、VERIFIED 13 件 → 15 件。
 
@@ -178,4 +180,4 @@
 - TODO 残存:
 - `Table 1`: **全30タスク VERIFIED**（NONE/IMPL なし）。T-001〜T-030 完了
 - `Table 2`: Y が 56 / N が 1（`/aseo/v1/agent-neo/catalog-update` のみ・automation SEO 外部受け口）。`bin/check-impl-coverage.sh` で `coverage = 56/57 (98%)` を確認済み（2026-06-22）
-- `Table 3`: VERIFIED 15 / PARTIAL 2 / NONE 5（F-001〜F-025 計 25 件。F-044 は別行）。各 F-ID の status は Table 3 本文参照
+- `Table 3`: VERIFIED 17 / PARTIAL 2 / NONE 3（F-001〜F-025 計 25 件。F-044 は別行）。各 F-ID の status は Table 3 本文参照
