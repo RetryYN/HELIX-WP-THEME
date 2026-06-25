@@ -116,7 +116,7 @@ flag 不要の場合も、WBS の `feature flag` 列に `N/A` を明記する。
 
 > 追記: 2026-06-26。正本: `fse-customization-design-spec.md §5 末尾工程表`。
 > 対象要件: REQ-F-045 / REQ-F-046 / REQ-NF-026 / ADR-028。
-> **実装状況**: FC-001〜FC-008 は HEAD=e5b7e24 で L4 実装完了済み。本 Appendix は設計根拠・工程記録として残す。
+> **実装状況**: FC-001〜FC-008 は HEAD=1c8d914 で L4 実装完了済み。本 Appendix は設計根拠・工程記録として残す。
 
 ### A.0 前提
 
@@ -172,8 +172,8 @@ FSE-001(theme.json) → FSE-002(light) → FSE-003(dark) → FSE-007(docs) → F
 FSE-001 ─────────────────────────→ FSE-005(post-footer) → FSE-006(single.html) → FSE-009
 ```
 
-Wave1（fe-style）: FSE-001 → FSE-002 → FSE-003  
-Wave2（fe-component）: FSE-004 → FSE-005 → FSE-006（Wave1 完了不要・並列可。ただし逐次 dispatch で git 事故回避）  
+Wave1（fe-style）: FSE-001 → FSE-002 → FSE-003
+Wave2（fe-component）: FSE-004 → FSE-005 → FSE-006（Wave1 完了不要・並列可。ただし逐次 dispatch で git 事故回避）
 Wave3: FSE-007 + FSE-008 + FSE-009（両 Wave 完了後）
 
 ### A.5 feature flag 定義
@@ -211,4 +211,4 @@ Wave3: FSE-007 + FSE-008 + FSE-009（両 Wave 完了後）
 - [x] 全 WBS に rollback または `N/A` がある。
 - [x] API / Schema Freeze の状態が明記されている（N/A）。
 - [x] クリティカルパスと高リスク対策が明記されている。
-- [x] 実装完了済みであることを注記している（HEAD=e5b7e24）。
+- [x] 実装完了済みであることを注記している（HEAD=1c8d914）。

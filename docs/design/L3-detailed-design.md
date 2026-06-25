@@ -747,7 +747,7 @@ sequenceDiagram
 ## 7. FSE カスタマイズ余地 詳細実装仕様（D-FSE / REQ-F-045 / REQ-F-046 / REQ-NF-026）
 
 > 追記: 2026-06-26。正本: `fse-customization-design-spec.md §5`。ADR-028 / L2-design.md §8.14 に対する L3 詳細実装単位。
-> **実装状況注記**: 下記 FC-001〜FC-008 は HEAD=e5b7e24 時点で L4 実装が完了している。本節は設計根拠の文書化を目的とする。
+> **実装状況注記**: 下記 FC-001〜FC-008 は HEAD=1c8d914 時点で L4 実装が完了している。本節は設計根拠の文書化を目的とする。
 
 ### 7.1 実装単位一覧
 
@@ -755,7 +755,7 @@ sequenceDiagram
 |---|---|---|---|
 | FC-001 | `styles/light.json` | ライト（標準）Style Variation の新規作成。theme.json 本体と同値 palette 8色を明示見本として定義。styles override は最小（本体同値のため不要または空）。 | ADR-028 D3 / REQ-F-045 |
 | FC-002 | `styles/dark.json` | ダーク Style Variation の新規作成。palette override（background/foreground/primary/secondary/accent/accent-aa/footer-bg/muted の8色）と必須 styles override（ボタン文字色の暗背景対応）。axe 実測で WCAG 2.2 AA を確認し色値を確定。 | ADR-028 D3 / REQ-F-045 |
-| FC-003 | `theme.json` | `settings.templateParts` に post-header / post-footer を追加（area=uncategorized）。`settings.typography.customFontFamily: true` を明示追加。`custom:false` 等のロックフラグは追加しない。 | ADR-028 D4 / REQ-NF-026 |
+| FC-003 | `theme.json` | `templateParts`（top-level）に post-header / post-footer を追加（area=uncategorized）。`settings.typography.customFontFamily: true` を明示追加。`custom:false` 等のロックフラグは追加しない。 | ADR-028 D4 / REQ-NF-026 |
 | FC-004 | `parts/post-header.html` | 記事ヘッダーパーツの新規作成。breadcrumb + post-title(h1) + entry-meta（date/avatar/author/category/time-to-read）を含む。area=uncategorized。singular context 継承で動作。 | ADR-028 D4 / REQ-F-046 |
 | FC-005 | `parts/post-footer.html` | 記事フッターパーツの新規作成（ラッパーpart方式）。post-terms(tags) + share-buttons pattern 参照 + article-cta pattern 参照 + an-author-box + author-profile pattern 参照 + an-related（関連query） + an-post-nav をラップ。comments は single.html に残す。PHP 動的パターンは `<!-- wp:pattern {"slug":...} /-->` 参照で保持。 | ADR-028 D4 / REQ-F-046 |
 | FC-006 | `templates/single.html` | 記事テンプレートを改修。breadcrumb/title/meta 相当インラインを `<!-- wp:template-part {"slug":"post-header","theme":"agent-neo-theme"} /-->` 参照に置換。an-article-end 内の各要素を `<!-- wp:template-part {"slug":"post-footer","theme":"agent-neo-theme"} /-->` 参照に置換。featured-image と post-content は template に残す。表示結果が改修前と同等であることを確認。 | ADR-028 D4 / REQ-F-046 / AC4 |

@@ -723,6 +723,45 @@ fi
 
 
 # =============================================================================
+# GATE 6: synced パターン不在チェック（WARN only / REQ-NF-026-c / FC-008 / AC6）
+# =============================================================================
+title "GATE 6: synced パターン不在チェック（patterns/ 内に同期パターン参照がないこと）"
+
+SYNCED_WARN=0
+PATTERNS_DIR="${THEME_DIR}/patterns"
+
+if [ -d "${PATTERNS_DIR}" ]; then
+  info "6a. patterns/ 配下 .php ファイルに Synced: yes / wp:block 参照 / core/block 参照がないことを確認"
+
+  while IFS= read -r pfile; do
+    # 「Synced: yes」（再利用ブロックヘッダー）
+    synced_yes=$(grep -nP 'Synced\s*:\s*yes' "${pfile}" 2>/dev/null || true)
+    # 「<!-- wp:block ...」（コア再利用ブロック参照）
+    wp_block=$(grep -nP '<!--\s*wp:block\s' "${pfile}" 2>/dev/null || true)
+    # 「core/block」（同上の別表記パターン）
+    core_block=$(grep -nP '\bcore/block\b' "${pfile}" 2>/dev/null || true)
+
+    for match in "$synced_yes" "$wp_block" "$core_block"; do
+      if [ -n "$match" ]; then
+        while IFS= read -r line; do
+          warn "synced パターン参照検出（非同期化を推奨）: ${pfile}: $(echo "${line}" | head -c 120)"
+          SYNCED_WARN=$((SYNCED_WARN + 1))
+        done <<< "$match"
+      fi
+    done
+  done < <(find "${PATTERNS_DIR}" -name "*.php" -type f 2>/dev/null)
+
+  if [ "${SYNCED_WARN}" -eq 0 ]; then
+    pass "synced パターン: patterns/ 内に同期パターン参照 0 件（PASS）"
+  else
+    warn "synced パターン GATE: ${SYNCED_WARN} 件の同期パターン参照を検出（WARN のみ / gate は落とさない）"
+  fi
+else
+  info "patterns/ ディレクトリ未存在のため synced チェックをスキップ"
+fi
+
+
+# =============================================================================
 # 最終サマリ
 # =============================================================================
 title "品質ゲート サマリ"
