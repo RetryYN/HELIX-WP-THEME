@@ -58,6 +58,8 @@ if ( is_array( $agent_neo_core_rest_controllers ) ) {
 }
 require_once AGENT_NEO_CORE_DIR . 'inc/mcp/class-abilities.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/payment-link.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-tracking-assets.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/class-agent-neo-core.php';
 
 // WP-CLI 操作面: REST contract と同一の JSON 封筒を rest_do_request() 経由で返す薄いアダプタ。
@@ -95,21 +97,17 @@ add_action(
 	}
 );
 
-// フロント計測 JS (ad-tracking.js) を wp_enqueue_scripts で登録する。
-// agentNeoTracking 設定オブジェクトは Automation SEO 側が wp_localize_script で注入する。
-// プラグイン単体では空設定のまま enqueue し、設定がない場合は JS 内で self-disable する。
-add_action(
-	'wp_enqueue_scripts',
-	static function (): void {
-		wp_enqueue_script(
-			'agent-neo-ad-tracking',
-			AGENT_NEO_CORE_URL . 'assets/js/ad-tracking.js',
-			array(),
-			AGENT_NEO_CORE_VERSION,
-			true // フッターに出力してページ描画をブロックしない。
-		);
-	}
-);
+// フロント計測 JS (ad-tracking.js) の enqueue + token 供給 + consent gate 設定。
+// class-tracking-assets.php が wp_localize_script で agentNeoTracking を注入する。
+// site_token / hmac_key は class-tracking-controller.php の検証元（option）と一致させる。
+// consent キーは consent.js の STORAGE_KEY（agent_neo_consent_v2）に合わせる。
+$agent_neo_tracking_assets = new Agent_Neo_Core_Tracking_Assets();
+$agent_neo_tracking_assets->register();
+
+// CTA / バナー計装: render_block フィルタで data 属性を付与する。
+// WP_HTML_Tag_Processor（WP6.2+）を使用。アフィリエイトリンク + banner 系 div が対象。
+$agent_neo_cta_instrumenter = new Agent_Neo_Core_CTA_Instrumenter();
+$agent_neo_cta_instrumenter->register();
 
 register_activation_hook( AGENT_NEO_CORE_FILE, array( 'Agent_Neo_Core_Lifecycle', 'activate' ) );
 register_deactivation_hook( AGENT_NEO_CORE_FILE, array( 'Agent_Neo_Core_Lifecycle', 'deactivate' ) );

@@ -75,6 +75,55 @@
 	}
 
 	/**
+	 * analytics 同意が得られているか確認する。
+	 *
+	 * consent.js が保存する localStorage/Cookie（STORAGE_KEY = consentKey）の
+	 * analytics_storage === 'granted' を確認する。
+	 * consentKey が未設定の場合は fail-open（計測継続）とする。
+	 *
+	 * @returns {boolean}
+	 */
+	function hasConsent() {
+		var consentKey = cfg.consentKey;
+		if ( ! consentKey ) {
+			// consentKey が注入されていない場合は従来どおり動作する（fail-open）。
+			return true;
+		}
+
+		var raw = null;
+
+		// localStorage から読み込む（consent.js と同じ優先順位）。
+		try {
+			raw = localStorage.getItem( consentKey );
+		} catch ( e ) {
+			// プライベートブラウジング等で localStorage が使えない場合は Cookie にフォールバック。
+		}
+
+		// Cookie から読み込む。
+		if ( ! raw ) {
+			var cookies = document.cookie.split( ';' );
+			for ( var i = 0; i < cookies.length; i++ ) {
+				var parts = cookies[ i ].trim().split( '=' );
+				if ( parts[ 0 ] === consentKey && parts.length > 1 ) {
+					raw = decodeURIComponent( parts.slice( 1 ).join( '=' ) );
+					break;
+				}
+			}
+		}
+
+		if ( ! raw ) {
+			return false;
+		}
+
+		try {
+			var state = JSON.parse( raw );
+			return state && state.analytics_storage === 'granted';
+		} catch ( e ) {
+			return false;
+		}
+	}
+
+	/**
 	 * 計測イベントを REST エンドポイントに送信する。
 	 *
 	 * @param {string} eventType イベント種別（ad_impression / viewable_impression / affiliate_click 等）。
@@ -83,6 +132,10 @@
 	 * @param {Object} metadata  追加メタデータ。
 	 */
 	async function sendEvent( eventType, ctaId, variantId, metadata ) {
+		// consent gate: analytics 未同意の場合は送信しない（プライバシー必須要件）。
+		if ( ! hasConsent() ) {
+			return;
+		}
 		var dedupeKey = eventType + ':' + ctaId + ':' + variantId;
 
 		// viewable_impression と ad_impression は同一要素で1回のみ。
