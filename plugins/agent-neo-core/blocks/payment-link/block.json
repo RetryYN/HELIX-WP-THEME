@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "agent-neo/payment-link",
+  "version": "1.0.0",
+  "title": "決済ボタン (Stripe)",
+  "category": "text",
+  "icon": "cart",
+  "description": "Stripe ホスト型決済リンク（Payment Link / Checkout）へのボタンブロック。REQ-NF-027 準拠: サイト側にシークレット鍵・カード情報・決済 API を持たない（PCI SAQ-A）。",
+  "textdomain": "agent-neo-core",
+  "attributes": {
+    "paymentUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": "購入する"
+    },
+    "note": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "customClassName": true,
+    "html": false
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

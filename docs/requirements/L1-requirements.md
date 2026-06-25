@@ -113,6 +113,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-015 | CRM/MA 連携アドオン | **法人版限定（A1 系・別課金候補）**。HubSpot / Salesforce / kintone / Zoho / Pipedrive 等の CRM、SendGrid / Mailchimp 等のメール基盤に対する Webhook + REST 連携、Zapier / Make 経由のアダプタブロックを提供する | P1 | ACC-015 |
 | REQ-F-045 | テーマスタイルバリエーション（Style Variations）| テーマは `styles/` 配下に FSE スタイルバリエーションを同梱し、サイトエディタ「スタイル」からワンクリックで切り替えができる。最低限 light（標準）/ dark（ダーク）を見本として提供する。バリエーションは theme.json の palette slug を参照する設計とし、palette の色値差し替えのみで業種別バリエーションを派生できる骨格とする。上位: REQ-NF-008 | P0 | FC-ACC-001, FC-ACC-002, FC-ACC-003 |
 | REQ-F-046 | 記事用テンプレートパーツ（post-header / post-footer）| 記事表示の見出し部（パンくず・タイトル・メタ）と末尾部（タグ・シェア・CTA・著者・関連・ナビ）を template part として切り出し、single テンプレートから参照する。これにより記事レイアウトの再利用性と、制作側の局所的な上書きを可能にする。上位: REQ-NF-008 | P1 | FC-ACC-004, FC-ACC-007 |
+| REQ-F-047 | Stripe 決済ボタンブロック | Companion Plugin が決済サイト所有者が作成した Stripe Payment Link / Checkout URL を配置して決済導線を作る block を提供し、決済処理・カード情報・API 参照を AGENT NEO 側に持たせない（Stripe ホスト型） | P1 | REQ-F-010 |
 
 ### 2.1 ユースケース
 
@@ -285,6 +286,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ACC-NF-019 | REQ-NF-005 | 代表テンプレート（HP/LP/BLP/記事/アーカイブ）を axe-core + 手動スクリーンリーダーで検証 | WCAG 2.2 AA の自動検査違反ゼロ、キーボードナビゲーション・フォーカス順序・代替テキストが適切 | axe-core CI + 手動 a11y 検査（TC-NF-005n） |
 | ACC-NF-020 | REQ-NF-006 | 全管理画面・フロント出力を日本語ロケール/英語ロケールで動作確認 | 翻訳済み文字列の欠落ゼロ、英語環境でも UI が正常表示、RTL レイアウト崩れなし（初版スコープ内） | i18n テスト（WP_LANG 切り替え）（TC-NF-006n） |
 | ACC-NF-021 | REQ-NF-007 | JSON 操作 API 呼び出し・計測イベント発火・Automation SEO 同期失敗を発生させる | 各操作のログエントリが構造化 JSON 形式で出力され、操作種別・タイムスタンプ・結果・エラー詳細が含まれる | ログ出力テスト（TC-NF-007n） |
+| ACC-NF-027 | REQ-NF-027 | URL ホワイトリスト（buy.stripe.com / checkout.stripe.com）以外の Stripe 非準拠 URL を拒否し、シークレット鍵・カード情報・決済 API/Webhook を AGENT NEO が保持しないことを受け入れテストで確認する | 決済 URL が `https://buy.stripe.com/...` 及び `https://checkout.stripe.com/...` のみ許可。拒否ケースを含むユニットテスト（空/非 https/userinfo/外部ドメイン/javascript）を実行し、非許可 URL はボタン非表示または遷移阻止。Theme/Plugin 側に秘密鍵・カード情報・決済 API/Webhook 実装がないことを grep/smoke test で確認 | URL・鍵非保持監査テスト |
 
 ### 4.1 異常系・境界値
 
@@ -462,6 +464,8 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-045 | F-045 | — | S-FSE-001 | FC-ACC-001/002/003 |
 | REQ-F-046 | F-046 | — | S-FSE-001 | FC-ACC-004/007 |
 | REQ-NF-026 | F-045/F-046 | — | S-FSE-001 | FC-ACC-005/006 |
+| REQ-F-047 | F-047 | — | — | SP-ACC-001 / SP-ACC-002 / SP-ACC-005 |
+| REQ-NF-027 | F-047 | — | — | SP-ACC-003 / SP-ACC-004 |
 
 > **【2026-06-26 追加 / FSE カスタマイズ余地設計】** REQ-F-045 / REQ-F-046 / REQ-NF-026 を採番。feature docs は `docs/features/fse-customization/` に配置。ADR-028 で設計判断を明文化。
 

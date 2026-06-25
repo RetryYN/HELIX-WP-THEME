@@ -57,6 +57,7 @@ if ( is_array( $agent_neo_core_rest_controllers ) ) {
 	}
 }
 require_once AGENT_NEO_CORE_DIR . 'inc/mcp/class-abilities.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/payment-link.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/class-agent-neo-core.php';
 
 // WP-CLI 操作面: REST contract と同一の JSON 封筒を rest_do_request() 経由で返す薄いアダプタ。
