@@ -743,3 +743,101 @@ sequenceDiagram
 要約: F-001、F-002、F-044、F-011、F-006/F-007/F-026/F-027（連携群）を軸に 26 タスクを管理し、`.1a〜.5` sprint で実装分割。  
 クリティカルパスは `T-001 → T-004 → T-006 → T-007 → T-010 → T-011 → T-014 → T-015 → T-024`（T-018 は並走・本線外）。  
 正本: `docs/design/L3-WBS.md`
+
+## 7. FSE カスタマイズ余地 詳細実装仕様（D-FSE / REQ-F-045 / REQ-F-046 / REQ-NF-026）
+
+> 追記: 2026-06-26。正本: `fse-customization-design-spec.md §5`。ADR-028 / L2-design.md §8.14 に対する L3 詳細実装単位。
+> **実装状況注記**: 下記 FC-001〜FC-008 は HEAD=e5b7e24 時点で L4 実装が完了している。本節は設計根拠の文書化を目的とする。
+
+### 7.1 実装単位一覧
+
+| FC-ID | 対象ファイル | 実装内容 | 対応 ADR / REQ |
+|---|---|---|---|
+| FC-001 | `styles/light.json` | ライト（標準）Style Variation の新規作成。theme.json 本体と同値 palette 8色を明示見本として定義。styles override は最小（本体同値のため不要または空）。 | ADR-028 D3 / REQ-F-045 |
+| FC-002 | `styles/dark.json` | ダーク Style Variation の新規作成。palette override（background/foreground/primary/secondary/accent/accent-aa/footer-bg/muted の8色）と必須 styles override（ボタン文字色の暗背景対応）。axe 実測で WCAG 2.2 AA を確認し色値を確定。 | ADR-028 D3 / REQ-F-045 |
+| FC-003 | `theme.json` | `settings.templateParts` に post-header / post-footer を追加（area=uncategorized）。`settings.typography.customFontFamily: true` を明示追加。`custom:false` 等のロックフラグは追加しない。 | ADR-028 D4 / REQ-NF-026 |
+| FC-004 | `parts/post-header.html` | 記事ヘッダーパーツの新規作成。breadcrumb + post-title(h1) + entry-meta（date/avatar/author/category/time-to-read）を含む。area=uncategorized。singular context 継承で動作。 | ADR-028 D4 / REQ-F-046 |
+| FC-005 | `parts/post-footer.html` | 記事フッターパーツの新規作成（ラッパーpart方式）。post-terms(tags) + share-buttons pattern 参照 + article-cta pattern 参照 + an-author-box + author-profile pattern 参照 + an-related（関連query） + an-post-nav をラップ。comments は single.html に残す。PHP 動的パターンは `<!-- wp:pattern {"slug":...} /-->` 参照で保持。 | ADR-028 D4 / REQ-F-046 |
+| FC-006 | `templates/single.html` | 記事テンプレートを改修。breadcrumb/title/meta 相当インラインを `<!-- wp:template-part {"slug":"post-header","theme":"agent-neo-theme"} /-->` 参照に置換。an-article-end 内の各要素を `<!-- wp:template-part {"slug":"post-footer","theme":"agent-neo-theme"} /-->` 参照に置換。featured-image と post-content は template に残す。表示結果が改修前と同等であることを確認。 | ADR-028 D4 / REQ-F-046 / AC4 |
+| FC-007 | `docs/` / `README` | 業種別 variation 複製手順の文書化。「`styles/light.json` をコピー → title と palette 色値（accent/accent-aa/primary/secondary）を変更 → 保存で新 variation がサイトエディタに出現」を明記。制作側カスタマイズ方針（AI 再生成と競合しないテーマ層調整を推奨）を明記。 | ADR-028 D3 / AC3 |
+| FC-008 | `bin/check-theme-quality.sh` | （任意）patterns/ 内に `Synced: yes` または synced 参照が無いことを確認する軽チェックを追加。P2 扱い・WARN 可（gate FAIL にはしない）。 | REQ-NF-026 / AC6 |
+
+### 7.2 FC-001〜FC-002: Style Variation 実装詳細
+
+**共通規約**:
+- ファイルは `{"version":2,"title":"...","settings":{"color":{"palette":[...]}},"styles":{...}}` の形式に従う。
+- palette エントリは `[{"slug":"background","color":"...","name":"..."}]` 形式。
+- slug 名は theme.json 本体の palette slug と一致させる（`background` / `foreground` / `primary` / `secondary` / `accent` / `accent-aa` / `footer-bg` / `muted`）。
+- styles 内の色参照は `var(--wp--preset--color--<slug>)` を使い、hex 直書きはしない。
+
+**FC-002 dark.json の暗背景 styles override 対象**:
+
+| 対象 | プロパティ | 初期案 | 確定方法 |
+|---|---|---|---|
+| `styles.elements.button.color.text` | ボタン文字色 | `#121212`（暗文字）| axe 実測で AA 確認し調整 |
+| `styles.elements.button.color.background` | ボタン背景色 | `var(--wp--preset--color--accent-aa)` = `#ff7a1a` | axe 実測で AA 確認し調整 |
+
+上記以外の styles は var 参照で自動追従するため override 不要。
+
+### 7.3 FC-003: theme.json 変更詳細
+
+追加・変更箇所のみ記述（全体構造は既存 theme.json を維持）:
+
+```jsonc
+{
+  "settings": {
+    "typography": {
+      "customFontFamily": true   // 追加（未指定から明示へ）
+    },
+    "templateParts": [
+      // 既存エントリを維持した上で以下を追加
+      { "area": "uncategorized", "name": "post-header", "title": "Post Header" },
+      { "area": "uncategorized", "name": "post-footer", "title": "Post Footer" }
+    ]
+  }
+}
+```
+
+`custom:false` / `color.custom:false` 等のロックフラグは追加しない（REQ-NF-026 準拠）。
+
+### 7.4 FC-004〜FC-006: template parts 実装詳細
+
+**FC-004 post-header.html に含める要素**:
+
+| 要素 | ブロック | 備考 |
+|---|---|---|
+| パンくずリスト | `<!-- wp:an/breadcrumb /-->` 等 | 既存 single.html の実装に従う |
+| 記事タイトル | `<!-- wp:post-title {"level":1} /-->` | |
+| 公開日 / 更新日 | `<!-- wp:post-date /-->` 等 | |
+| 著者情報（アバター・名前） | `<!-- wp:post-author /-->` 等 | |
+| カテゴリ | `<!-- wp:post-terms {"term":"category"} /-->` | |
+| 想定読了時間 | `<!-- wp:an/time-to-read /-->` 等 | テーマ独自ブロックが存在する場合 |
+
+**FC-005 post-footer.html に含める要素（ラッパーpart方式）**:
+
+| 要素 | 実装方式 | 備考 |
+|---|---|---|
+| タグ一覧 | `<!-- wp:post-terms {"term":"post_tag"} /-->` | |
+| シェアボタン | `<!-- wp:pattern {"slug":"share-buttons",...} /-->` | PHP 動的パターンのため pattern 参照 |
+| 記事 CTA | `<!-- wp:pattern {"slug":"article-cta",...} /-->` | |
+| 著者ボックス | `<!-- wp:an/author-box /-->` 等 | |
+| 著者プロフィール | `<!-- wp:pattern {"slug":"author-profile",...} /-->` | PHP 動的パターンのため pattern 参照 |
+| 関連記事 | `<!-- wp:query /-->` 等（an-related 相当） | |
+| 前後記事ナビ | `<!-- wp:post-navigation-link /-->` 等 | |
+
+**FC-006 single.html 改修方針**:
+- 改修前後で表示結果が同等（breadcrumb/title/meta/tags/share/cta/author/related/nav が欠落しない）ことを AC4 として確認する。
+- featured-image と post-content は template に残す（part は header=本文前メタ / footer=本文後）。
+- comments ブロックは single.html に残す。
+
+### 7.5 受入条件との対応（FC ↔ AC）
+
+| 受入条件 | 対応 FC |
+|---|---|
+| AC1: light/dark の2バリエーションがサイトエディタに表示される | FC-001 / FC-002 |
+| AC2: dark が WCAG 2.2 AA を満たす（axe critical/serious=0） | FC-002（axe 実測必須） |
+| AC3: 業種別複製手順が文書化されている | FC-007 |
+| AC4: single.html が post-header / post-footer を参照し表示同等性を確認 | FC-004 / FC-005 / FC-006 |
+| AC5: Global Styles で accent 色変更が反映される（ロックなし） | FC-003 / REQ-NF-026 |
+| AC6: 同梱パターンに synced が無いことを静的確認 | FC-008（任意） |
+| AC7: `bash bin/check-theme-quality.sh` PASS / unit 47 / security 48 が緑維持 | 全 FC（品質ゲート） |

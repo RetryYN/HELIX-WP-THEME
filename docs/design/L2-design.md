@@ -854,6 +854,72 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 | selector低信頼のAI自動反映を禁止する | テーマ更新やDOM変更で破壊的変更になりやすい |
 | 既存テーマごとのdeep write adapterをP0にしない | 更新追従コストとサポート負債を抑える |
 
+## 8.14 FSE カスタマイズ余地 Visual 方針（ADR-028 / REQ-F-045 / REQ-NF-026）
+
+> 追記: 2026-06-26。正本: `fse-customization-design-spec.md §4`。
+> 本節は ADR-028 で明文化した「制作側カスタマイズ余地の保持」と Style Variations・template parts 追加の Visual 方針を記述する。
+
+### 8.14.1 Style Variation アーキテクチャ
+
+- theme.json 本体 = 既定（= light）。`styles` セクションは全て `var(--wp--preset--color--*)` で palette slug 参照とし、実装上すでに徹底されている。
+- バリエーションは **palette の色値のみ override**。styles 内の var 参照が新 palette を自動で指すため、レイアウト・タイポグラフィは再定義不要。これが「palette を変えるだけで業種別が作れる骨格」の核である。
+- 例外: 暗背景で破綻する箇所（ボタン文字色等）のみ variation 内で最小 styles override を行う（§8.14.3 dark 参照）。
+
+### 8.14.2 light.json（標準・明示見本）
+
+- `title`: "ライト（標準）"
+- palette = theme.json 本体と同値の8色を明示見本として複製。業種別 variation 複製の起点として機能する。
+- styles override は不要（本体と同一のため空または最小）。
+
+### 8.14.3 dark.json（ダーク）
+
+- `title`: "ダーク"
+- ブランドの accent オレンジは維持（`feedback_brand_orange_main` 準拠）。
+- palette override 方針:
+
+| slug | light | dark | 意図 |
+|---|---|---|---|
+| background | #ffffff | #121212 | 主面 |
+| foreground | #1a1a1a | #ededed | 本文文字 |
+| primary | #1a1a1a | #f5f5f5 | 見出し/濃色（dark で明色へ） |
+| secondary | #f0f0f0 | #262626 | カード境界・淡面（dark で暗面へ） |
+| accent | #ff6b00 | #ff6b00 | **ブランドオレンジ維持** |
+| accent-aa | #bf5200 | #ff7a1a | ボタン背景。dark は明オレンジ + 暗文字で AA 確保 |
+| footer-bg | #111111 | #000000 | フッタ |
+| muted | #767676 | #9a9a9a | 補助文字（暗背景で可読な中間色） |
+
+- **必須 styles override**: theme.json 本体のボタン `text=var(--color--background)` は、dark で background=#121212 になるとオレンジ背景でコントラスト不足になる。dark.json で `styles.elements.button.color.text` を明示し、axe 実測で AA 通過する組み合わせを確定する（初期案: accent-aa=#ff7a1a + button text=#121212）。
+- a11y: WCAG 2.2 AA（本文/ボタン/リンク/カテゴリバッジ）。fe-style が axe で実測し微調整する。
+
+### 8.14.4 業種別バリエーション骨格（作り込まない）
+
+- `styles/` には light/dark の2本のみ置く（`styles/*.json` は全て variation として読まれるため雛形を `styles/` に置かない）。
+- 複製手順（README / docs に記載）: `styles/light.json` をコピー → `title` と palette の色値（特に accent/accent-aa/primary/secondary）を変更 → 保存で新 variation がサイトエディタに出現。block styles は theme.json 一元管理のため触らない。
+
+### 8.14.5 template parts 構成（post-header / post-footer）
+
+- `parts/post-header.html`（area=uncategorized, title="Post Header"）: single.html の breadcrumb + post-title(h1) + entry-meta（date/avatar/author/category/time-to-read）を切り出す。
+- `parts/post-footer.html`（area=uncategorized, title="Post Footer"）: single.html の an-article-end 内にある post-terms(tags)・share-buttons pattern・article-cta pattern・an-author-box・author-profile pattern・an-related（関連query）・an-post-nav をラップする。comments は single.html に残す。
+- 既存 PHP 動的パターン（author-profile/share-buttons）は `.html` 直変換不可のため、post-footer.html 内で `<!-- wp:pattern {"slug":...} /-->` 参照のままラッパー part として扱う（ラッパーpart方式）。
+- post-header/post-footer 内の `wp:post-*` ブロックは single の singular context を継承して解決される（動作保証）。
+- single.html 改修: 該当インラインを `<!-- wp:template-part {"slug":"post-header",...} /-->` / `post-footer` 参照に置換。featured-image と post-content は template に残す。
+- page.html / archive.html は今回**触らない**（記事専用 parts のため影響最小化）。
+
+### 8.14.6 Global Styles 上書き保持
+
+- 現状の theme.json（`appearanceTools:true` / `color.custom:true` / `customFontSize:true` 等）を維持し、制作側の上書きを阻害するロックフラグ（`custom:false` 等）を一切入れない（REQ-NF-026）。
+- 明示追加: `typography.customFontFamily: true`（未指定から明示へ）。`color.customDuotone` は false 据え置き可。
+- テーマ層（Style Variations / Global Styles / 追加CSS）での調整は AI 再生成で消えないため推奨経路とする。ブロック単位インライン上書きは再生成で消えうるため非推奨。
+
+### 8.14.7 パターン編集可保証
+
+- 同梱パターンは全て非同期（ファイルベース）。synced パターン（core/block CPT 参照）を同梱しない。
+- （任意）`check-theme-quality.sh` に「patterns/ 内に `Synced: yes` / synced 参照が無い」軽チェック追加（P2・gate FAIL にはせず WARN 可）。
+
+### 8.14.8 配布境界との整合
+
+本節の実装内容（Style Variations / template parts / theme.json 設定）は全てテーマ表示層の責務であり、`agent-neo-theme` 配布物の範囲内に収まる（§2.4 配布境界）。CPT・SEO保存・計測保存をテーマに混入させない原則（ADR-008）と矛盾しない。ADR-028 も同旨を明文化している。
+
 ## Gate
 
 | Gate | 判定 | 根拠 |
@@ -861,4 +927,5 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 | G0.5 | passed_with_draft | L0企画をL2設計へ反映 |
 | L2 | frozen | G2 passed 2026-06-14。設計方針を凍結。ADR/API/schemaの詳細はL3で凍結 |
 | L2 配布モデル改訂 | 反映済み | 2026-06-18 ADR-024 確定によりテーマ単体販売・買い切りSKU廃止・REQ-F-043廃止を凍結設計へ反映 |
+| L2 FSEカスタマイズ余地 | 追記済み | 2026-06-26 ADR-028 / REQ-F-045 / REQ-NF-026 に基づく Visual 方針を §8.14 に追記 |
 | Security | passed_with_caution | 脅威分析とAPIガードを定義 |

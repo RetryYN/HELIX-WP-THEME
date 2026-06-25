@@ -61,7 +61,8 @@ AGENT NEOの視覚方向は「成果導線の明快さ」と「AIが検査/改�
 
 | カテゴリ | トークン名 | 値 | 用途 | コントラスト比（対背景） |
 |---------|-----------|-----|------|----------------------|
-| Color/Primary | --color-primary | #C2410C | CTA・ブランド（オレンジ: Tailwind orange-700） | 5.3:1 対 #FAFAF9 ／ 白文字 5.2:1 → AA PASS |
+| Color/Primary | --color-primary | #ff6b00 | CTA・ブランド（オレンジ）— theme.json `accent` palette slug に対応。light variation での値。2026-06-26 実装値へ是正（旧: #C2410C） | 3.4:1 対 #FAFAF9（大テキスト・UI部品として PASS）／白文字 使用時は accent-aa を使うこと |
+| Color/Primary-AA | --color-primary-aa | #bf5200 | ボタン背景（AA確保用）— theme.json `accent-aa` palette slug に対応。light variation での値。2026-06-26 追加（実装値）。白文字と組み合わせて使う | 5.2:1 対 #FAFAF9（白文字との比: 3.0:1 以上）→ AA PASS（大テキスト） |
 | Color/Secondary | --color-secondary | #44403C | 補助・サブアクション（stone-700） | 9.7:1 対 #FAFAF9 → AA PASS |
 | Color/BG | --color-bg | #FAFAF9 | ページ背景（stone-50：純白より柔らかい） | — |
 | Color/Surface | --color-surface | #F5F5F4 | カード・モーダル背景（stone-100） | — |
@@ -282,29 +283,34 @@ AGENT NEOの視覚方向は「成果導線の明快さ」と「AIが検査/改�
 - [ ] テキスト折り返し正常（長い文字列・日本語）
 - [ ] 画像・メディアのアスペクト比維持
 
-## 6. ダークモード（該当する場合）
-| トークン | ライト | ダーク |
-|---------|--------|------|
-| --color-bg | | |
-| --color-surface | | |
-| --color-text | | |
-| --color-text-muted | | |
-| --color-border | | |
-| --color-primary | | |
-| --color-error | | |
-| --color-success | | |
+## 6. ダークモード（Style Variation: styles/dark.json）
 
-<!-- 記入例:
-| --color-bg | #FFFFFF | #0F172A |
-| --color-surface | #F8FAFC | #1E293B |
-| --color-text | #0F172A | #F8FAFC |
-| --color-text-muted | #64748B | #94A3B8 |
-| --color-border | #E2E8F0 | #334155 |
--->
+> **2026-06-26 更新**: FSE Style Variation 方式で実装。OS の `prefers-color-scheme` ではなく、サイトエディタの「スタイル」でユーザーが手動切り替えする設計。CSS カスタムプロパティではなく theme.json の palette slug override で実現。
+> ブランドの accent オレンジは light / dark 両方で維持（`feedback_brand_orange_main` 準拠）。
+
+| palette slug（theme.json） | docs トークン名 | ライト値 | ダーク値 | 変更意図 |
+|---|---|---|---|---|
+| background | --color-bg | #ffffff | #121212 | 主面を暗色に |
+| foreground | --color-text | #1a1a1a | #ededed | 本文文字を明色に |
+| primary | — | #1a1a1a | #f5f5f5 | 見出し/濃色（dark で明色へ） |
+| secondary | — | #f0f0f0 | #262626 | カード境界・淡面（dark で暗面へ） |
+| accent | --color-primary | #ff6b00 | #ff6b00 | **ブランドオレンジ維持** |
+| accent-aa | --color-primary-aa | #bf5200 | #ff7a1a | ボタン背景。dark は明オレンジ + 暗文字で AA 確保 |
+| footer-bg | — | #111111 | #000000 | フッタ背景 |
+| muted | --color-text-muted | #767676 | #9a9a9a | 補助文字（暗背景で可読な中間色） |
+
+**dark variation 追加 styles override（最小限）**:
+
+| 対象 | プロパティ | dark 値 | 理由 |
+|---|---|---|---|
+| `styles.elements.button.color.text` | ボタン文字色 | `#121212`（初期案） | background が #121212 になると var 参照で暗文字になりオレンジ背景でコントラスト不足。axe 実測で確定 |
+| `styles.elements.button.color.background` | ボタン背景色 | `var(--wp--preset--color--accent-aa)` = `#ff7a1a` | 初期案。axe 実測で調整 |
+
+上記以外の styles は var 参照で自動追従（override 不要）。
 
 ### 6.1 ダークモード切替方式
-- [ ] system（OS設定に追従: prefers-color-scheme）
-- [ ] manual（ユーザー手動切替）
+- [x] manual（サイトエディタの「スタイル」でユーザーが手動切り替え）
+- [ ] system（OS設定に追従: prefers-color-scheme）— 本実装では非採用（FSE Variation 方式のため）
 - [ ] 両対応（デフォルト system + 手動オーバーライド）
 
 ## 7. アイコン・画像ガイドライン

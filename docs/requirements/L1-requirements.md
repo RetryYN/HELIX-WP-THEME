@@ -111,6 +111,8 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-013 | 法人版リード獲得 | **法人版限定**。問い合わせフォーム / 資料 DL / 無料相談予約 / Webinar 登録 / メルマガ登録ブロックを提供し、reCAPTCHA・honeypot・レート制限による spam 対策、自動返信メール、submission の管理画面一覧 + CSV エクスポートを備える | P0 | ACC-013 |
 | REQ-F-014 | 法人版顧客行動管理 | **法人版限定**。セッション単位ジャーニー追跡、ファネル分析、リードスコアリング、顧客健康度（health score）を提供。admin-dashboard でジャーニー可視化・リード一覧・スコアランキングを表示する | P0 | ACC-014 |
 | REQ-F-015 | CRM/MA 連携アドオン | **法人版限定（A1 系・別課金候補）**。HubSpot / Salesforce / kintone / Zoho / Pipedrive 等の CRM、SendGrid / Mailchimp 等のメール基盤に対する Webhook + REST 連携、Zapier / Make 経由のアダプタブロックを提供する | P1 | ACC-015 |
+| REQ-F-045 | テーマスタイルバリエーション（Style Variations）| テーマは `styles/` 配下に FSE スタイルバリエーションを同梱し、サイトエディタ「スタイル」からワンクリックで切り替えができる。最低限 light（標準）/ dark（ダーク）を見本として提供する。バリエーションは theme.json の palette slug を参照する設計とし、palette の色値差し替えのみで業種別バリエーションを派生できる骨格とする。上位: REQ-NF-008 | P0 | FC-ACC-001, FC-ACC-002, FC-ACC-003 |
+| REQ-F-046 | 記事用テンプレートパーツ（post-header / post-footer）| 記事表示の見出し部（パンくず・タイトル・メタ）と末尾部（タグ・シェア・CTA・著者・関連・ナビ）を template part として切り出し、single テンプレートから参照する。これにより記事レイアウトの再利用性と、制作側の局所的な上書きを可能にする。上位: REQ-NF-008 | P1 | FC-ACC-004, FC-ACC-007 |
 
 ### 2.1 ユースケース
 
@@ -176,6 +178,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-NF-018 | SEO/WP運用ハザード管理 | canonical/noindex/robots/sitemap、Core Web Vitals、WP-Cron、cache、plugin conflict、update/rollback、privacy/log、AI snapshotの危険変更をrisk-ledgerで契約化する | P0 |
 | REQ-NF-019 | Automation SEO連携適合性 | Theme Capability Scanner、Section ID Resolver、Context Contract v2、SEO Meta Normalizer、CTA/Offer Mapper、Safe Recommendation Applyを契約化し、Automation SEO側とWPテーマ側の責務を分離する | P0 |
 | REQ-NF-020 | Automation SEO Theme Bridge Plugin情報設計 | 既存テーマ横断でsite/theme/plugin/page/section/CTA/offer/SEO/tracking/privacy/health/safe apply/migration blueprintを保持し、既存テーマではpreview/診断中心、AGENT NEOではsafe apply対象として扱う | P0 |
+| REQ-NF-026 | 制作側カスタマイズ余地の保持（Editability Preservation）| Theme Core は制作・運営側による以下の上書きを阻害しない: (a) Global Styles（サイトエディタ）での色/タイポ/余白の上書き、(b) 追加 CSS、(c) 同梱パターンの流し込み後編集（非同期パターンのみ同梱・synced 禁止）、(d) Style Variation 複製による派生。theme.json は値を「初期値」として提供し、ロックフラグ（`custom:false` 等）を使わない。一方、エンドユーザー向けの分厚い設定 UI（Customizer 大量オプション等）は提供しない（ADR-028）。上位: REQ-NF-008, REQ-NF-025 | P0 |
 
 ## 4. 受入条件 (D-ACC)
 
@@ -456,6 +459,11 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-NF-018 | F-001/F-002/F-006/F-007/F-011/F-012/F-017/F-018（OGP/X Card・share preview 含む）/F-019/F-022 | A-004/A-012/A-013/A-017/A-018/A-019/A-020/A-022 | S-001/S-008/S-010/S-011/S-013 | TC-NF-012 |
 | REQ-NF-019 | F-006/F-007/F-011/F-012/F-023 | A-004/A-008/A-012/A-013/A-023 | S-005/S-008/S-009/S-014 | TC-NF-013 |
 | REQ-NF-020 | F-007/F-008/F-011/F-012/F-014/F-024 | A-004/A-008/A-012/A-013/A-024 | S-005/S-008/S-009/S-014/S-015 | TC-NF-014 |
+| REQ-F-045 | F-045 | — | S-FSE-001 | FC-ACC-001/002/003 |
+| REQ-F-046 | F-046 | — | S-FSE-001 | FC-ACC-004/007 |
+| REQ-NF-026 | F-045/F-046 | — | S-FSE-001 | FC-ACC-005/006 |
+
+> **【2026-06-26 追加 / FSE カスタマイズ余地設計】** REQ-F-045 / REQ-F-046 / REQ-NF-026 を採番。feature docs は `docs/features/fse-customization/` に配置。ADR-028 で設計判断を明文化。
 
 > **【2026-06-18 廃止整合 / ADR-024】** REQ-F-043（Open Editor Bridge Plugin）はトレーサビリティマトリクス未掲載（実装未着手で廃止）。ACC-043 / ACC-043a / ACC-043b はテスト対象から除外。REQ-F-042 の受入条件（ACC-042 / ACC-042a）は引き続き有効。REQ-NF-002 行の F-042 参照は維持。
 

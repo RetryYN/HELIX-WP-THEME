@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "ダーク",
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#f5f5f5",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#262626",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#ff6b00",
+          "name": "Accent"
+        },
+        {
+          "slug": "accent-aa",
+          "color": "#ff7a1a",
+          "name": "Accent AA (暗文字対応)"
+        },
+        {
+          "slug": "background",
+          "color": "#121212",
+          "name": "Background"
+        },
+        {
+          "slug": "foreground",
+          "color": "#ededed",
+          "name": "Foreground"
+        },
+        {
+          "slug": "footer-bg",
+          "color": "#000000",
+          "name": "Footer Background"
+        },
+        {
+          "slug": "muted",
+          "color": "#9a9a9a",
+          "name": "Muted"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "elements": {
+      "button": {
+        "color": {
+          "text": "#121212"
+        }
+      }
+    }
+  }
+}

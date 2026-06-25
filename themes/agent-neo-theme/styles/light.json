@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "ライト（標準）",
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#1a1a1a",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#f0f0f0",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#ff6b00",
+          "name": "Accent"
+        },
+        {
+          "slug": "accent-aa",
+          "color": "#bf5200",
+          "name": "Accent AA (白文字対応)"
+        },
+        {
+          "slug": "background",
+          "color": "#ffffff",
+          "name": "Background"
+        },
+        {
+          "slug": "foreground",
+          "color": "#1a1a1a",
+          "name": "Foreground"
+        },
+        {
+          "slug": "footer-bg",
+          "color": "#111111",
+          "name": "Footer Background"
+        },
+        {
+          "slug": "muted",
+          "color": "#767676",
+          "name": "Muted"
+        }
+      ]
+    }
+  }
+}

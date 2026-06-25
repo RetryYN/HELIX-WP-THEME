@@ -107,6 +107,7 @@
         }
       ],
       "customFontSize": true,
+      "customFontFamily": true,
       "lineHeight": true,
       "letterSpacing": true
     },
@@ -288,6 +289,16 @@
       "name": "footer",
       "title": "Footer",
       "area": "footer"
+    },
+    {
+      "name": "post-header",
+      "title": "Post Header",
+      "area": "uncategorized"
+    },
+    {
+      "name": "post-footer",
+      "title": "Post Footer",
+      "area": "uncategorized"
     }
   ],
   "customTemplates": [
