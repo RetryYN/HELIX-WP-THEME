@@ -31,3 +31,4 @@
 | ADR-027 | ADR-027: WP 7.0 固有機能の採否凍結 | — | 2026-06-21 |
 | ADR-028 | ADR-028: テーマのカスタマイズ余地境界 ― エンドユーザー設定UIは持たない / 制作側の Global Styles・Variation・パターン編集の余地は残す | — | 2026-06-26 |
 | ADR-029 | ADR-029: Stripe 決済は Stripe ホスト型導線に限定する | Accepted | 2026-06-26 |
+| ADR-030 | ADR-030: 計測ループは PULL(問い合わせ型/MCP風 read) を採用し PUSH を不採用 | Accepted | 2026-06-26 |
