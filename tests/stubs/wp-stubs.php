@@ -174,9 +174,19 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
     /**
      * WP_HTML_Tag_Processor 最小スタブ（unit テスト専用）。
      *
-     * next_tag() / get_attribute() / set_attribute() / get_updated_html() のみ実装。
-     * 実際の WP_HTML_Tag_Processor と完全互換ではない。
-     * テストが必要とする属性付与動作を再現する簡易実装。
+     * 実WP の WP_HTML_Tag_Processor（WP6.2+）の挙動に忠実な最小実装。
+     * - next_tag(null)   : 任意タグを線形スキャン（開き/閉じ両方）
+     * - next_tag('DIV')  : 指定タグ名のみスキャン（実WP の query 形式に準拠）
+     * - is_tag_closer()  : 現在のトークンが閉じタグか判定
+     * - get_tag()        : 現在のタグ名を大文字で返す
+     * - get_attribute()  : 属性値を返す（存在しなければ null）
+     * - set_attribute()  : 属性をセットする
+     * - get_updated_html(): 変更済み HTML を返す
+     *
+     * 内部実装: DOMDocument でパースし、DOMElement を文書順フラットリストとして保持。
+     * next_tag() 引数なし = 全要素を順に走査、引数あり = 指定タグのみ。
+     * is_tag_closer() は DOM ベースのスタブでは常に false（開き要素のみリスト化）。
+     * 実WP との差異: 閉じタグを明示的に走査するケースは本プロジェクトでは不要。
      */
     class WP_HTML_Tag_Processor {
         /** @var string 入力 HTML */
@@ -185,14 +195,35 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
         /** @var \DOMDocument */
         private \DOMDocument $dom;
 
-        /** @var \DOMNodeList<\DOMElement>|null 現在対象のタグリスト */
-        private ?\DOMNodeList $node_list = null;
+        /**
+         * 文書順の全 DOMElement フラットリスト（開き要素のみ）。
+         *
+         * @var list<\DOMElement>
+         */
+        private array $all_elements = array();
 
-        /** @var int 現在のカーソル位置 */
+        /**
+         * next_tag() が返す要素のリスト（フィルタ後）。
+         *
+         * @var list<\DOMElement>
+         */
+        private array $filtered_list = array();
+
+        /** @var int 現在のカーソル位置（filtered_list インデックス） */
         private int $cursor = -1;
 
-        /** @var string 現在対象のタグ名（大文字） */
-        private string $current_tag = '';
+        /**
+         * 前回の next_tag() のフィルタ条件。
+         *
+         * null  = 全タグ（引数なし呼び出し）
+         * ''    = 未初期化（コンストラクタ後・まだ next_tag() 未呼び出し）
+         *
+         * @var string|null
+         */
+        private ?string $last_filter = ''; // '' = sentinel（未初期化、nullと区別）
+
+        /** @var bool next_tag() が一度でも呼ばれたか */
+        private bool $initialized = false;
 
         /**
          * @param string $html 入力 HTML。
@@ -200,29 +231,98 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
         public function __construct( string $html ) {
             $this->html = $html;
             $this->dom  = new \DOMDocument();
-            // エラー抑制しつつロード。文字コード保持のため meta charset を付与。
-            $wrapped = '<?xml encoding="UTF-8"><root>' . $html . '</root>';
+            $wrapped    = '<?xml encoding="UTF-8"><root>' . $html . '</root>';
             @$this->dom->loadHTML( $wrapped, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING );
+
+            // 文書順に全 DOMElement を収集する（再帰 DOMTreeWalker 相当）。
+            $root = $this->dom->getElementsByTagName( 'root' )->item( 0 );
+            if ( $root instanceof \DOMElement ) {
+                $this->collect_elements( $root );
+            }
         }
 
         /**
-         * 指定タグ名の次のノードへ進む。
+         * DOMElement を文書順でフラットリストに収集する。
          *
-         * @param string $tag_name タグ名（大文字・小文字不問）。
+         * @param \DOMElement $node 起点ノード（root 要素）。
+         * @return void
+         */
+        private function collect_elements( \DOMElement $node ): void {
+            foreach ( $node->childNodes as $child ) {
+                if ( $child instanceof \DOMElement ) {
+                    $this->all_elements[] = $child;
+                    $this->collect_elements( $child );
+                }
+            }
+        }
+
+        /**
+         * 次のタグへ進む。
+         *
+         * - 引数なし（null）: 全タグを文書順で線形スキャン。
+         * - 文字列指定: 指定タグ名のみスキャン。
+         * - フィルタが変わった場合はリストを再構築しカーソルをリセット。
+         *
+         * @param string|array|null $query タグ名文字列、クエリ配列、または null（任意タグ）。
          * @return bool 次のノードが存在すれば true。
          */
-        public function next_tag( string $tag_name = '' ): bool {
-            $tag_upper = strtoupper( $tag_name );
+        public function next_tag( $query = null ): bool {
+            // フィルタ条件を正規化する（null = 全タグ、文字列 = 指定タグ）。
+            $filter = null;
+            if ( is_string( $query ) && '' !== $query ) {
+                $filter = strtoupper( $query );
+            } elseif ( is_array( $query ) && isset( $query['tag_name'] ) && '' !== $query['tag_name'] ) {
+                $filter = strtoupper( (string) $query['tag_name'] );
+            }
 
-            if ( $this->current_tag !== $tag_upper || null === $this->node_list ) {
-                // タグが切り替わった場合はリストを再取得。
-                $this->node_list   = $this->dom->getElementsByTagName( strtolower( $tag_name ) );
+            // フィルタ条件が変わった場合（または初回呼び出し）はリストを再構築してカーソルをリセットする。
+            // last_filter の初期値は '' (sentinel)。null（全タグ）とも '' とも区別する。
+            if ( ! $this->initialized || $filter !== $this->last_filter ) {
+                if ( null === $filter ) {
+                    $this->filtered_list = $this->all_elements;
+                } else {
+                    $this->filtered_list = array_values(
+                        array_filter(
+                            $this->all_elements,
+                            static function ( \DOMElement $el ) use ( $filter ): bool {
+                                return strtoupper( $el->tagName ) === $filter;
+                            }
+                        )
+                    );
+                }
                 $this->cursor      = -1;
-                $this->current_tag = $tag_upper;
+                $this->last_filter = $filter;
+                $this->initialized = true;
             }
 
             ++$this->cursor;
-            return $this->cursor < $this->node_list->length;
+            return $this->cursor < count( $this->filtered_list );
+        }
+
+        /**
+         * 現在のトークンが閉じタグかを返す。
+         *
+         * DOM ベースのスタブは開き要素のみリスト化するため常に false を返す。
+         * 実WP では next_tag() 引数なしで閉じタグも走査できるが、
+         * 本プロジェクトの instrument_affiliate_links() は is_tag_closer() で
+         * スキップするだけなので false 固定で正しい動作になる。
+         *
+         * @return bool
+         */
+        public function is_tag_closer(): bool {
+            return false;
+        }
+
+        /**
+         * 現在のタグ名を大文字で返す。
+         *
+         * @return string|null タグ名（大文字）、マッチなしは null。
+         */
+        public function get_tag(): ?string {
+            if ( $this->cursor < 0 || $this->cursor >= count( $this->filtered_list ) ) {
+                return null;
+            }
+            return strtoupper( $this->filtered_list[ $this->cursor ]->tagName );
         }
 
         /**
@@ -232,11 +332,8 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
          * @return string|null 属性値。属性が存在しない場合は null。
          */
         public function get_attribute( string $name ): ?string {
-            if ( null === $this->node_list || $this->cursor < 0 || $this->cursor >= $this->node_list->length ) {
-                return null;
-            }
-            $node = $this->node_list->item( $this->cursor );
-            if ( ! ( $node instanceof \DOMElement ) ) {
+            $node = $this->current_node();
+            if ( null === $node ) {
                 return null;
             }
             if ( ! $node->hasAttribute( $name ) ) {
@@ -250,16 +347,15 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
          *
          * @param string $name  属性名。
          * @param string $value 属性値。
-         * @return void
+         * @return bool
          */
-        public function set_attribute( string $name, string $value ): void {
-            if ( null === $this->node_list || $this->cursor < 0 || $this->cursor >= $this->node_list->length ) {
-                return;
+        public function set_attribute( string $name, string $value ): bool {
+            $node = $this->current_node();
+            if ( null === $node ) {
+                return false;
             }
-            $node = $this->node_list->item( $this->cursor );
-            if ( $node instanceof \DOMElement ) {
-                $node->setAttribute( $name, $value );
-            }
+            $node->setAttribute( $name, $value );
+            return true;
         }
 
         /**
@@ -268,7 +364,6 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
          * @return string 更新後 HTML。
          */
         public function get_updated_html(): string {
-            // <root>...</root> を取り出して元の形に戻す。
             $root = $this->dom->getElementsByTagName( 'root' )->item( 0 );
             if ( ! ( $root instanceof \DOMElement ) ) {
                 return $this->html;
@@ -278,6 +373,18 @@ if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
                 $inner .= $this->dom->saveHTML( $child );
             }
             return $inner;
+        }
+
+        /**
+         * 現在カーソルが指す DOMElement を返す。
+         *
+         * @return \DOMElement|null
+         */
+        private function current_node(): ?\DOMElement {
+            if ( $this->cursor < 0 || $this->cursor >= count( $this->filtered_list ) ) {
+                return null;
+            }
+            return $this->filtered_list[ $this->cursor ];
         }
     }
 }

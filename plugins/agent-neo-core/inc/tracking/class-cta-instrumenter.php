@@ -33,7 +33,8 @@ final class Agent_Neo_Core_CTA_Instrumenter {
 	/**
 	 * render_block フィルタ本体。
 	 *
-	 * - `an-cta--<id>` クラスを持つ `<a>` に affiliate 属性を付与する。
+	 * - `an-cta--<id>` クラスを持つ任意要素（div / p / a 等）を起点に
+	 *   内側の `<a>` に affiliate 属性を付与する。
 	 * - banner 系 div（an-article-cta / an-*-final-cta / an-cta-banner）に ad 属性を付与する。
 	 *
 	 * @param string              $block_content ブロック出力 HTML。
@@ -56,7 +57,7 @@ final class Agent_Neo_Core_CTA_Instrumenter {
 			return $block_content;
 		}
 
-		// --- アフィリエイトリンク (<a> に an-cta--<id>) ---
+		// --- アフィリエイトリンク（an-cta--<id> を持つ任意要素 → 内側 <a>）---
 		$block_content = $this->instrument_affiliate_links( $block_content );
 
 		// --- バナー系 (<div> の最外要素に an-article-cta 等) ---
@@ -68,33 +69,16 @@ final class Agent_Neo_Core_CTA_Instrumenter {
 	/**
 	 * `an-cta--<id>` クラスを持つ要素を起点に `<a>` へ affiliate data 属性を付与する。
 	 *
-	 * WP 標準の wp:button 構造では an-cta--<id> クラスはラッパ <div> に付き、
-	 * 内側の <a>（wp-block-button__link）には付かない。そのため 2 パス方式で対応する:
+	 * WP_HTML_Tag_Processor の線形スキャン（next_tag() 引数なし）で全タグを順に走査し、
+	 * an-cta--<id> クラスを持つ要素の種類に応じて計装を行う:
 	 *
-	 * パス A（<a> 直付け / 後方互換）:
-	 *   an-cta--<id> が <a> 自身に付いている場合 → その <a> を計装。
+	 * - 要素が `<a>` の場合（直付け型）: その場で計装する。
+	 * - 要素が `<a>` 以外の場合（ラッパ型: div / p / span 等任意要素）:
+	 *   $pending_cta_id に cta_id を保持し、次に現れる `<a>` 開きタグで計装して pending をクリアする。
+	 *   pending 中に別の an-cta-- 要素が来た場合は pending を最新で上書きする。
 	 *
-	 * パス B（div ラッパ → 内側 <a>）:
-	 *   ① <div> スキャンで an-cta--<id> を持つラッパの cta_id を収集する。
-	 *   ② 各ラッパに対して対応する内側 <a> を正規表現で特定し、
-	 *      WP_HTML_Tag_Processor で計装する。
-	 *
-	 * パス B の "対応する内側 <a>" の解決:
-	 *   an-cta--<id> を持つ <div> の直後の <a> を探す。実装では、
-	 *   PHP preg_match で div_open + 内側最初の a_open を抽出し、
-	 *   cta_id をマップとして保持する（div[class=an-cta--X] → a[id=Y] の対応）。
-	 *   その後 <a> スキャンで href 一致を使って計装する。
-	 *
-	 * ただし、この preg_match ベースの a 特定は HTML 構造の複雑さに依存する。
-	 * よりシンプルかつ堅牢な実装として:
-	 *   <div> スキャンで an-cta--<id> の直後に来る href を持つ <a> の href 値を
-	 *   preg_match で抽出し、href をキーにした pending マップを作成する。
-	 *   次の <a> スキャンで pending マップの href と一致したものを計装する。
-	 *
-	 * ただし WP_HTML_Tag_Processor は線形でタグ種別を混在スキャンできるため、
-	 * 本番実装（実WP）は next_tag() 引数なし走査が可能。
-	 * テストスタブは next_tag(string) のみサポートするため、
-	 * 2パス（DIV スキャン → A スキャン）方式で互換を保つ。
+	 * 二重付与防止は `get_attribute('data-agent-neo-affiliate') !== null` の完全判定を使う
+	 * （strpos 部分一致による誤スキップを避けるため）。
 	 *
 	 * REQ-NF-025 厳守: 純粋な文字列操作のみ。AI ロジック不使用。
 	 *
@@ -102,126 +86,50 @@ final class Agent_Neo_Core_CTA_Instrumenter {
 	 * @return string
 	 */
 	private function instrument_affiliate_links( string $html ): string {
-		// --- パス A: <a> 自身に an-cta--<id> が付いているケース（テキストリンク型 / 後方互換） ---
-		$html = $this->instrument_direct_cta_links( $html );
+		$p           = new WP_HTML_Tag_Processor( $html );
+		$pending_cta = null; // string|null: 次の <a> に付与する cta_id
 
-		// --- パス B: div ラッパの an-cta--<id> を起点に内側 <a> を計装 ---
-		$html = $this->instrument_wrapper_div_cta_links( $html );
-
-		return $html;
-	}
-
-	/**
-	 * <a> 自身に an-cta--<id> が付いているケースを計装する（後方互換パス）。
-	 *
-	 * @param string $html 入力 HTML。
-	 * @return string
-	 */
-	private function instrument_direct_cta_links( string $html ): string {
-		$processor = new WP_HTML_Tag_Processor( $html );
-
-		while ( $processor->next_tag( 'A' ) ) {
-			$class_attr = (string) ( $processor->get_attribute( 'class' ) ?? '' );
-			$cta_id     = agent_neo_core_extract_cta_id_from_class( $class_attr );
-
-			if ( '' === $cta_id ) {
+		while ( $p->next_tag() ) {
+			// 閉じタグはスキップ。
+			if ( $p->is_tag_closer() ) {
 				continue;
 			}
 
-			// 二重付与防止: 既に data-agent-neo-affiliate が付いていればスキップ。
-			if ( null !== $processor->get_attribute( 'data-agent-neo-affiliate' ) ) {
-				continue;
-			}
-
-			$processor->set_attribute( 'data-agent-neo-affiliate', '' );
-			$processor->set_attribute( 'data-cta-id', $cta_id );
-			$processor->set_attribute( 'data-variant-id', 'default' );
-		}
-
-		return $processor->get_updated_html();
-	}
-
-	/**
-	 * div ラッパに an-cta--<id> が付いているケースを計装する（WP ボタン構造対応パス）。
-	 *
-	 * 処理手順:
-	 *   1. <div> スキャンで an-cta--<id> を持つラッパを検出する。
-	 *   2. ラッパ直後の <a> の href を正規表現で抽出し、href → cta_id の pending マップを作成する。
-	 *   3. <a> スキャンで pending マップの href と一致する要素を計装する。
-	 *      href が空またはマッチしない場合は、ラッパ直後の最初の <a> を対象とするため、
-	 *      div 開始位置インデックスベースの順序マップを使う。
-	 *
-	 * シンプル実装として: div ラッパ + 内側 <a> を正規表現で一括捕捉し、
-	 * <a> タグに data 属性を直接文字列置換する。HTML の入れ子が単純な場合（WP ボタン構造）
-	 * は正規表現で安全に処理できる。複雑な入れ子は WP_HTML_Tag_Processor で対応。
-	 *
-	 * @param string $html 入力 HTML。
-	 * @return string
-	 */
-	private function instrument_wrapper_div_cta_links( string $html ): string {
-		// <div> スキャンで an-cta--<id> を持つラッパを検出し、
-		// その直後の最初の <a> に data 属性を付与する。
-		// WP_HTML_Tag_Processor でスキャン: div → cta_id 収集、a → 照合・計装。
-
-		// --- ステップ 1: div スキャンで an-cta--<id> を持つラッパの cta_id リストを作成 ---
-		$div_proc  = new WP_HTML_Tag_Processor( $html );
-		$div_ctaids = array(); // cta_id の順序リスト（出現順）
-
-		while ( $div_proc->next_tag( 'DIV' ) ) {
-			$class_attr = (string) ( $div_proc->get_attribute( 'class' ) ?? '' );
+			$tag        = $p->get_tag();
+			$class_attr = (string) ( $p->get_attribute( 'class' ) ?? '' );
 			$cta_id     = agent_neo_core_extract_cta_id_from_class( $class_attr );
-			if ( '' !== $cta_id ) {
-				$div_ctaids[] = $cta_id;
-			}
-		}
 
-		if ( empty( $div_ctaids ) ) {
-			// ラッパ <div> に an-cta-- が無い場合はそのまま返す。
-			return $html;
-		}
-
-		// --- ステップ 2: 各ラッパの直後の <a> を正規表現で特定して計装 ---
-		// 正規表現パターン: <div ...class="...an-cta--<id>..."...><a ... />
-		// WP ボタン構造は div > a の 1 段入れ子なので、div 開き直後の最初の <a> を対象とする。
-		// preg_replace_callback でマッチした <a> に data 属性を追加する。
-		foreach ( $div_ctaids as $cta_id ) {
-			// --- ラッパ div + 内側最初の <a> を捕捉するパターン ---
-			// パターン: div タグ（class に an-cta--{cta_id} を含む）の直後の最初の <a> タグ
-			// - an-cta--{cta_id} の直後の <a> のみを対象（div 閉じタグ前）
-			// - 既に data-agent-neo-affiliate が付いている <a> はスキップ（二重付与防止）
-			$escaped_id = preg_quote( $cta_id, '/' );
-			$pattern    = '/(<div\s[^>]*\ban-cta--' . $escaped_id . '\b[^>]*>)((?:(?!<a[\s>]).)*?)(<a\s)([^>]*>)/s';
-
-			$html = preg_replace_callback(
-				$pattern,
-				static function ( array $m ) use ( $cta_id ): string {
-					// $m[1] = <div ...>
-					// $m[2] = div と <a> の間のテキスト（空白等）
-					// $m[3] = '<a '
-					// $m[4] = <a> の残り属性 + '>'
-
-					// <a> が既に data-agent-neo-affiliate を持つ場合はスキップ。
-					if ( false !== strpos( $m[4], 'data-agent-neo-affiliate' ) ) {
-						return $m[0];
+			if ( 'A' === $tag ) {
+				// <a> 自身に an-cta-- がある（直付け型）: 直接計装する。
+				if ( '' !== $cta_id ) {
+					if ( null === $p->get_attribute( 'data-agent-neo-affiliate' ) ) {
+						$p->set_attribute( 'data-agent-neo-affiliate', '' );
+						$p->set_attribute( 'data-cta-id', $cta_id );
+						$p->set_attribute( 'data-variant-id', 'default' );
 					}
+					// 直付け型は pending を消費しない（<a> 自身が担当）。
+					// pending はそのまま保持し、次の <a> で使う。
+					continue;
+				}
 
-					// data 属性を <a> の末尾（>の直前）に挿入する。
-					// $m[4] は '>'' で終わるので、'>' の直前に挿入する。
-					// cta_id は agent_neo_core_extract_cta_id_from_class が [A-Za-z0-9_-]+ のみ
-					// 許可するためエスケープ不要（REQ-NF-025 / XSS リスクなし）。
-					$a_attrs_with_data = rtrim( $m[4], '>' )
-						. ' data-agent-neo-affiliate=""'
-						. ' data-cta-id="' . $cta_id . '"'
-						. ' data-variant-id="default">';
-
-					return $m[1] . $m[2] . $m[3] . $a_attrs_with_data;
-				},
-				$html,
-				1 // 最初のマッチのみ（ラッパ 1 つにつき 1 回）
-			) ?? $html; // preg_replace_callback 失敗時は元文字列を返す（fail-safe）
+				// <a> 自身には an-cta-- がないが pending がある（ラッパ型）: pending で計装する。
+				if ( null !== $pending_cta ) {
+					if ( null === $p->get_attribute( 'data-agent-neo-affiliate' ) ) {
+						$p->set_attribute( 'data-agent-neo-affiliate', '' );
+						$p->set_attribute( 'data-cta-id', $pending_cta );
+						$p->set_attribute( 'data-variant-id', 'default' );
+					}
+					$pending_cta = null; // pending 消費。
+				}
+			} else {
+				// 非 <a> タグで an-cta--<id> が付いている: ラッパ検出、pending に記録する。
+				if ( '' !== $cta_id ) {
+					$pending_cta = $cta_id; // 複数連続するときは最新で上書き。
+				}
+			}
 		}
 
-		return $html;
+		return $p->get_updated_html();
 	}
 
 	/**

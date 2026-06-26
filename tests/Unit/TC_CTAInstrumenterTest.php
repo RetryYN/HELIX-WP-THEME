@@ -315,6 +315,259 @@ class TC_CTAInstrumenterTest extends TestCase {
 	}
 
 	// ------------------------------------------------------------------
+	// TC-CTA-030: <p> ラッパ CTA 計装（gw_* 型 / home-gateway.php 由来）
+	//
+	// wp:paragraph の <p class="an-cta an-cta--x"><a href="#">...</a></p> 構造で
+	// 内側 <a> に data-cta-id が付くこと（旧実装では漏れていた）。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-030: <p> ラッパ CTA（gateway 型）で内側 <a> に計装されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_p_wrapper_cta_instruments_inner_a(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<p class="an-cta an-cta--gw_affiliate"><a href="#">記事運用を見る →</a></p>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString(
+			'data-agent-neo-affiliate',
+			$result,
+			'<p> ラッパ CTA: 内側 <a> に data-agent-neo-affiliate が付与されること'
+		);
+		$this->assertStringContainsString(
+			'data-cta-id="gw_affiliate"',
+			$result,
+			'<p> ラッパ CTA: 内側 <a> に data-cta-id="gw_affiliate" が付与されること'
+		);
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-031: div ラッパ型（wp:button）の計装（再確認）
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-031: <div> ラッパ CTA（button 型）で内側 <a> に計装されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_div_wrapper_button_type(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<div class="wp-block-button an-cta an-cta--hero_primary">'
+			. '<a class="wp-block-button__link" href="https://example.com">導入をはじめる</a>'
+			. '</div>';
+		$parsed_block  = array( 'blockName' => 'core/button', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString( 'data-agent-neo-affiliate', $result );
+		$this->assertStringContainsString( 'data-cta-id="hero_primary"', $result );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-032: <a> 直付け型（後方互換）
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-032: <a> 自身に an-cta--<id> がある場合（直付け型）に計装されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_a_direct_type(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<a class="an-cta an-cta--direct_link" href="https://example.com">直付けCTA</a>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString( 'data-agent-neo-affiliate', $result );
+		$this->assertStringContainsString( 'data-cta-id="direct_link"', $result );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-033: 同一 cta_id のラッパが 2 つ → 両方の内側 <a> が計装されること（M-02 解消）
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-033: 同一 cta_id のラッパが 2 つある場合、両方の内側 <a> が計装されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_duplicate_cta_id_both_instrumented(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		// 同じ cta_id を持つラッパが 2 つ。
+		$block_content = '<p class="an-cta an-cta--duplicate"><a href="https://a.example.com">リンク1</a></p>'
+			. '<p class="an-cta an-cta--duplicate"><a href="https://b.example.com">リンク2</a></p>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		// data-cta-id="duplicate" が 2 箇所に付くこと。
+		$count = substr_count( $result, 'data-cta-id="duplicate"' );
+		$this->assertSame( 2, $count, '同一 cta_id のラッパが 2 つある場合、両方の内側 <a> が計装されること' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-034: ラッパ内に <a> が複数 → 最初の <a> のみ計装されること
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-034: ラッパ内に <a> が複数ある場合、最初の <a> のみ計装されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_multiple_a_inside_wrapper_only_first(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		// ラッパ内に <a> が 2 つ（実際にはまれだが fail-safe として検証）。
+		$block_content = '<div class="an-cta an-cta--multi">'
+			. '<a href="https://first.example.com">1番目</a>'
+			. '<a href="https://second.example.com">2番目</a>'
+			. '</div>';
+		$parsed_block  = array( 'blockName' => 'core/group', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		// 最初の <a> だけに計装（pending は最初の <a> で消費されるため）。
+		$count = substr_count( $result, 'data-cta-id="multi"' );
+		$this->assertSame( 1, $count, 'ラッパ内に <a> が複数ある場合、最初の <a> のみ計装されること' );
+
+		// 2番目の <a> には data-agent-neo-affiliate がないこと。
+		$this->assertStringContainsString( '<a href="https://second.example.com">2番目</a>', $result, '2番目の <a> は改変されないこと' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-035: class名に "data-agent-neo-affiliate" 文字列を含むが属性は無いケース
+	//             → 計装される（M-01: strpos 部分一致で誤スキップしない）
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-035: class 名に "data-agent-neo-affiliate" 文字列を含むが
+	 * 属性として付いていない場合、計装されること（M-01 解消確認）。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_class_contains_attribute_name_string_still_instruments(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		// class に "data-agent-neo-affiliate" という文字列を含むが属性ではない。
+		// 旧実装では strpos 部分一致でスキップしてしまっていた。
+		$block_content = '<a class="an-cta an-cta--tricky data-agent-neo-affiliate-like" href="https://example.com">トリッキー</a>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		// 属性としては存在しないので計装されるべき。
+		$this->assertStringContainsString(
+			'data-cta-id="tricky"',
+			$result,
+			'class 名に data-agent-neo-affiliate 文字列を含んでも属性がなければ計装されること（M-01）'
+		);
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-036: 既に data-agent-neo-affiliate 属性がある <a> → スキップ（二重付与防止）
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-036: 既に data-agent-neo-affiliate 属性がある <a> はスキップされること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_already_instrumented_a_is_skipped(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<p class="an-cta an-cta--existing">'
+			. '<a href="https://example.com" data-agent-neo-affiliate="" data-cta-id="old_id" data-variant-id="default">既計装</a>'
+			. '</p>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		// data-cta-id は old_id のままであること（上書きされていないこと）。
+		$this->assertStringContainsString( 'data-cta-id="old_id"', $result, '既存の data-cta-id が保持されること' );
+		$this->assertStringNotContainsString( 'data-cta-id="existing"', $result, '二重付与されないこと' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-037: ラッパに an-cta-- があるが内側に <a> が無い → fatal なし・誤付与なし
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-037: ラッパに an-cta-- が付いているが内側に <a> が存在しない場合、
+	 * fatal が発生せず data-agent-neo-affiliate が付与されないこと。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_wrapper_without_a_is_safe(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<div class="an-cta an-cta--no_link"><span>リンクなし</span></div>';
+		$parsed_block  = array( 'blockName' => 'core/group', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringNotContainsString( 'data-agent-neo-affiliate', $result, '内側に <a> が無い場合は計装されないこと' );
+		$this->assertStringContainsString( 'an-cta--no_link', $result, '元の class が維持されること' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-038: 不正 cta_id（特殊文字）→ extract 側で弾かれる
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-038: cta_id に特殊文字が含まれる場合、extract_cta_id_from_class() が
+	 * 空文字を返すため計装されないこと。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_invalid_cta_id_not_instrumented(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		// an-cta-- の直後にスペース = \b で境界マッチしない → extract 側で '' を返す。
+		$block_content = '<a class="an-cta an-cta-- invalid" href="https://example.com">不正ID</a>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringNotContainsString( 'data-agent-neo-affiliate', $result, '不正 cta_id では計装されないこと' );
+	}
+
+	// ------------------------------------------------------------------
 	// TC-CTA-012: instrument_block() 本経路 — an-cta--<id> 付き banner div
 	//
 	// banner div が an-cta--<id> クラスも持つ場合、CTA ID が抽出されること（122行目経路）。
@@ -339,6 +592,112 @@ class TC_CTAInstrumenterTest extends TestCase {
 
 		$this->assertStringContainsString( 'data-agent-neo-ad', $result, 'data-agent-neo-ad 属性が付与されること' );
 		$this->assertStringContainsString( 'data-cta-id="my-banner"', $result, 'an-cta--my-banner から ID が抽出されること' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-039: ネスト誤爆防止 — 外側 an-cta-- が内側 an-cta-- で上書きされること（I-1）
+	//
+	// <div class="an-cta--outer"><div class="an-cta--inner"><a> の構造では
+	// 最も内側の an-cta--inner が優先されること。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-039: 外側 an-cta--outer < 内側 an-cta--inner の優先順位確認（I-1）。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_nested_cta_inner_wins(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		// 外側 an-cta--outer 内に 内側 an-cta--inner があり、直後に <a>。
+		// pending は outer → inner で上書きされ、<a> には inner が付くこと。
+		$block_content = '<div class="an-cta an-cta--outer">'
+			. '<div class="an-cta an-cta--inner">'
+			. '<a href="https://example.com">ネスト</a>'
+			. '</div>'
+			. '</div>';
+		$parsed_block  = array( 'blockName' => 'core/group', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString(
+			'data-cta-id="inner"',
+			$result,
+			'ネスト時は内側 an-cta--inner が優先されること（I-1）'
+		);
+		$this->assertStringNotContainsString(
+			'data-cta-id="outer"',
+			$result,
+			'外側 an-cta--outer は誤爆しないこと'
+		);
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-040: href に & を含む <a> — data 属性が付与されること（I-5）
+	//
+	// スタブ注意: DOMDocument は & を &amp; に正規化するため、
+	// get_updated_html() の出力では & が &amp; になる場合がある。
+	// ここでは data-cta-id の付与を確認し、href 変換は許容する。
+	// 実WP での挙動は WP_HTML_Tag_Processor が & を保持する（curl で確認済み）。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-040: href に & を含む <a> にも data 属性が付与されること。
+	 *
+	 * スタブの DOMDocument は & を &amp; に変換する場合があるため、
+	 * href 値の変換は許容し data-cta-id の付与のみ確認する。
+	 * 実WP での & 保持は curl 実機確認で担保。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_href_with_ampersand(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<a class="an-cta an-cta--amp_test" href="https://example.com/?a=1&amp;b=2">リンク</a>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		// data-cta-id が付与されること（href の & 変換はスタブの許容範囲）。
+		$this->assertStringContainsString(
+			'data-cta-id="amp_test"',
+			$result,
+			'href に &amp; を含む <a> にも data-cta-id が付与されること'
+		);
+		$this->assertStringContainsString( 'data-agent-neo-affiliate', $result );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-041: ラッパとリンクが混在する複合構造 — それぞれ正しく計装されること（I-5）
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-041: p ラッパ + div ラッパ + <a> 直付けが同一 HTML に混在する場合。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_mixed_wrapper_types(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<p class="an-cta an-cta--gw_affiliate"><a href="#">p型</a></p>'
+			. '<div class="wp-block-button an-cta--hero_primary"><a class="wp-block-button__link" href="#">div型</a></div>'
+			. '<a class="an-cta an-cta--direct_x" href="#">直付け</a>';
+		$parsed_block  = array( 'blockName' => 'core/group', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString( 'data-cta-id="gw_affiliate"', $result, 'p ラッパ型が計装されること' );
+		$this->assertStringContainsString( 'data-cta-id="hero_primary"', $result, 'div ラッパ型が計装されること' );
+		$this->assertStringContainsString( 'data-cta-id="direct_x"', $result, '直付け型が計装されること' );
 	}
 
 	// ------------------------------------------------------------------
