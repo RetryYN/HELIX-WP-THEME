@@ -135,6 +135,213 @@ class TC_CTAInstrumenterTest extends TestCase {
 	}
 
 	// ------------------------------------------------------------------
+	// TC-CTA-010: instrument_block() 本経路 — アフィリエイトリンク計装
+	//
+	// 回帰テスト: 修正前は self::extract_cta_id_from_class() 呼び出しで
+	// PHP Fatal Error が発生し、全フロントページが HTTP 500 になっていた。
+	// instrument_block() を通じて (1) fatal が出ない (2) data-agent-neo-affiliate
+	// と data-cta-id が付与される ことを確認する。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-010: an-cta--<id> クラスを持つ <a> を含む block_content を
+	 * instrument_block() に渡すと data-agent-neo-affiliate / data-cta-id が付与されること。
+	 *
+	 * WP_HTML_Tag_Processor スタブが wp-stubs.php に存在するため本経路が通る。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_affiliate_link_adds_data_attributes(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<p><a class="an-cta an-cta--article_cta" href="https://example.com">リンク</a></p>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString( 'data-agent-neo-affiliate', $result, 'data-agent-neo-affiliate 属性が付与されること' );
+		$this->assertStringContainsString( 'data-cta-id="article_cta"', $result, 'data-cta-id="article_cta" が付与されること' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-011: instrument_block() 本経路 — banner 系 div 計装
+	//
+	// 回帰テスト: 122行目の self::extract_cta_id_from_class() 呼び出し経路も
+	// agent_neo_core_extract_cta_id_from_class() に修正されていることを確認する。
+	// an-article-cta の div を渡し、data-agent-neo-ad が付与されること。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-011: an-article-cta クラスを持つ <div> を含む block_content を
+	 * instrument_block() に渡すと data-agent-neo-ad / data-cta-id が付与されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_banner_div_adds_ad_attributes(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<div class="wp-block-group an-article-cta"><p>バナー</p></div>';
+		$parsed_block  = array( 'blockName' => 'core/group', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString( 'data-agent-neo-ad', $result, 'data-agent-neo-ad 属性が付与されること' );
+		$this->assertStringContainsString( 'data-cta-id=', $result, 'data-cta-id 属性が付与されること' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-020: WP 標準ボタン構造（div ラッパ） — 内側 <a> に計装されること
+	//
+	// 実テーマの wp:button 構造:
+	//   <div class="wp-block-button an-cta an-cta--hero_primary">
+	//     <a class="wp-block-button__link" href="...">CTA</a>
+	//   </div>
+	// この場合、an-cta--<id> は div に付き <a> には付かない。
+	// 修正後は内側の <a> に data-agent-neo-affiliate と data-cta-id が付くこと。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-020: WP 標準 wp:button 構造で div ラッパに an-cta--<id> が付いている場合、
+	 * 内側の <a> に data-agent-neo-affiliate / data-cta-id="hero_primary" が付与されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_wp_button_wrapper_div_instruments_inner_a(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<div class="wp-block-button an-cta an-cta--hero_primary">'
+			. '<a class="wp-block-button__link" href="https://example.com">導入をはじめる</a>'
+			. '</div>';
+		$parsed_block  = array( 'blockName' => 'core/button', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString(
+			'data-agent-neo-affiliate',
+			$result,
+			'内側 <a> に data-agent-neo-affiliate が付与されること'
+		);
+		$this->assertStringContainsString(
+			'data-cta-id="hero_primary"',
+			$result,
+			'内側 <a> に data-cta-id="hero_primary" が付与されること'
+		);
+
+		// <a> の class に an-cta-- は付いていない（div に付いている）→ 計装がラッパ経由で行われていること。
+		$this->assertStringNotContainsString(
+			'wp-block-button__link" data-agent-neo-affiliate',
+			$result,
+			'<a> 自身の class 列は改変されていないこと'
+		);
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-021: <a> 直付けケースの後方互換
+	//
+	// テキストリンク型 CTA: <a class="an-cta an-cta--article_cta" href="...">
+	// 修正後も <a> 自身への計装が機能すること。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-021: <a> 自身に an-cta--<id> が付いている場合（テキストリンク型 CTA）、
+	 * 引き続き data-agent-neo-affiliate / data-cta-id が付与されること（後方互換）。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_a_direct_class_backward_compat(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<p><a class="an-cta an-cta--text_link_cta" href="https://example.com">テキストCTA</a></p>';
+		$parsed_block  = array( 'blockName' => 'core/paragraph', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString(
+			'data-agent-neo-affiliate',
+			$result,
+			'<a> 直付けケースでも data-agent-neo-affiliate が付与されること'
+		);
+		$this->assertStringContainsString(
+			'data-cta-id="text_link_cta"',
+			$result,
+			'<a> 直付けケースでも data-cta-id="text_link_cta" が付与されること'
+		);
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-022: div ラッパに an-cta-- があるが内側に <a> が無いケース
+	//
+	// fatal / 誤付与しないこと（fail-safe）。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-022: div ラッパに an-cta--<id> が付いているが内側に <a> が存在しない場合、
+	 * fatal が発生せず、出力 HTML に data-agent-neo-affiliate が付与されないこと。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_wrapper_div_without_inner_a_is_safe(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		// <a> のない div ラッパ（スパン等）。
+		$block_content = '<div class="wp-block-button an-cta an-cta--no_link"><span>テキスト</span></div>';
+		$parsed_block  = array( 'blockName' => 'core/button', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		// fatal / 例外なし（test 自体が通れば OK）。
+		$this->assertStringNotContainsString(
+			'data-agent-neo-affiliate',
+			$result,
+			'内側に <a> が無い場合は data-agent-neo-affiliate が付与されないこと'
+		);
+		// HTML は改変されないこと（元文字列を返す）。
+		$this->assertStringContainsString( 'an-cta--no_link', $result, '元の class 属性が維持されること' );
+	}
+
+	// ------------------------------------------------------------------
+	// TC-CTA-012: instrument_block() 本経路 — an-cta--<id> 付き banner div
+	//
+	// banner div が an-cta--<id> クラスも持つ場合、CTA ID が抽出されること（122行目経路）。
+	// ------------------------------------------------------------------
+
+	/**
+	 * TC-CTA-012: an-article-cta かつ an-cta--<id> を持つ div を instrument_block() に渡すと
+	 * data-cta-id="<id>" が付与されること。
+	 *
+	 * @return void
+	 */
+	public function test_instrument_block_banner_with_cta_id_class(): void {
+		if ( ! class_exists( 'Agent_Neo_Core_CTA_Instrumenter' ) ) {
+			require_once AGENT_NEO_CORE_DIR . 'inc/tracking/class-cta-instrumenter.php';
+		}
+
+		$block_content = '<div class="wp-block-group an-article-cta an-cta--my-banner"><p>バナー</p></div>';
+		$parsed_block  = array( 'blockName' => 'core/group', 'attrs' => array() );
+
+		$instrumenter = new \Agent_Neo_Core_CTA_Instrumenter();
+		$result       = $instrumenter->instrument_block( $block_content, $parsed_block );
+
+		$this->assertStringContainsString( 'data-agent-neo-ad', $result, 'data-agent-neo-ad 属性が付与されること' );
+		$this->assertStringContainsString( 'data-cta-id="my-banner"', $result, 'an-cta--my-banner から ID が抽出されること' );
+	}
+
+	// ------------------------------------------------------------------
 	// TC-CTA-101: export 集計 — queue から events を整形できること
 	// ------------------------------------------------------------------
 

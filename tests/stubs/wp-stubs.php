@@ -162,6 +162,127 @@ if ( ! class_exists( 'WP_Post' ) ) {
 }
 
 // ------------------------------------------------------------------
+// WP_HTML_Tag_Processor スタブ（WP6.2+ / unit テスト用最小実装）
+//
+// instrument_block() が class_exists('WP_HTML_Tag_Processor') でガードしているため、
+// このスタブを定義することで本経路（79行目・122行目の agent_neo_core_extract_cta_id_from_class
+// 呼び出し経路）をユニットテスト上で通せるようにする。
+// PHP の DOMDocument を使って <a> / <div> の属性操作を最小実装する。
+// ------------------------------------------------------------------
+
+if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+    /**
+     * WP_HTML_Tag_Processor 最小スタブ（unit テスト専用）。
+     *
+     * next_tag() / get_attribute() / set_attribute() / get_updated_html() のみ実装。
+     * 実際の WP_HTML_Tag_Processor と完全互換ではない。
+     * テストが必要とする属性付与動作を再現する簡易実装。
+     */
+    class WP_HTML_Tag_Processor {
+        /** @var string 入力 HTML */
+        private string $html;
+
+        /** @var \DOMDocument */
+        private \DOMDocument $dom;
+
+        /** @var \DOMNodeList<\DOMElement>|null 現在対象のタグリスト */
+        private ?\DOMNodeList $node_list = null;
+
+        /** @var int 現在のカーソル位置 */
+        private int $cursor = -1;
+
+        /** @var string 現在対象のタグ名（大文字） */
+        private string $current_tag = '';
+
+        /**
+         * @param string $html 入力 HTML。
+         */
+        public function __construct( string $html ) {
+            $this->html = $html;
+            $this->dom  = new \DOMDocument();
+            // エラー抑制しつつロード。文字コード保持のため meta charset を付与。
+            $wrapped = '<?xml encoding="UTF-8"><root>' . $html . '</root>';
+            @$this->dom->loadHTML( $wrapped, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING );
+        }
+
+        /**
+         * 指定タグ名の次のノードへ進む。
+         *
+         * @param string $tag_name タグ名（大文字・小文字不問）。
+         * @return bool 次のノードが存在すれば true。
+         */
+        public function next_tag( string $tag_name = '' ): bool {
+            $tag_upper = strtoupper( $tag_name );
+
+            if ( $this->current_tag !== $tag_upper || null === $this->node_list ) {
+                // タグが切り替わった場合はリストを再取得。
+                $this->node_list   = $this->dom->getElementsByTagName( strtolower( $tag_name ) );
+                $this->cursor      = -1;
+                $this->current_tag = $tag_upper;
+            }
+
+            ++$this->cursor;
+            return $this->cursor < $this->node_list->length;
+        }
+
+        /**
+         * 現在のノードの属性値を返す。
+         *
+         * @param string $name 属性名。
+         * @return string|null 属性値。属性が存在しない場合は null。
+         */
+        public function get_attribute( string $name ): ?string {
+            if ( null === $this->node_list || $this->cursor < 0 || $this->cursor >= $this->node_list->length ) {
+                return null;
+            }
+            $node = $this->node_list->item( $this->cursor );
+            if ( ! ( $node instanceof \DOMElement ) ) {
+                return null;
+            }
+            if ( ! $node->hasAttribute( $name ) ) {
+                return null;
+            }
+            return $node->getAttribute( $name );
+        }
+
+        /**
+         * 現在のノードに属性をセットする。
+         *
+         * @param string $name  属性名。
+         * @param string $value 属性値。
+         * @return void
+         */
+        public function set_attribute( string $name, string $value ): void {
+            if ( null === $this->node_list || $this->cursor < 0 || $this->cursor >= $this->node_list->length ) {
+                return;
+            }
+            $node = $this->node_list->item( $this->cursor );
+            if ( $node instanceof \DOMElement ) {
+                $node->setAttribute( $name, $value );
+            }
+        }
+
+        /**
+         * 変更済み HTML を返す。
+         *
+         * @return string 更新後 HTML。
+         */
+        public function get_updated_html(): string {
+            // <root>...</root> を取り出して元の形に戻す。
+            $root = $this->dom->getElementsByTagName( 'root' )->item( 0 );
+            if ( ! ( $root instanceof \DOMElement ) ) {
+                return $this->html;
+            }
+            $inner = '';
+            foreach ( $root->childNodes as $child ) {
+                $inner .= $this->dom->saveHTML( $child );
+            }
+            return $inner;
+        }
+    }
+}
+
+// ------------------------------------------------------------------
 // WP_REST_Response スタブ
 // ------------------------------------------------------------------
 
