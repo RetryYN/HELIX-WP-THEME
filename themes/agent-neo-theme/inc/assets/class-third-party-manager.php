@@ -241,7 +241,7 @@ final class Agent_Neo_Third_Party_Manager {
 			outline-offset: 2px;
 		}
 		.agent-neo-consent-btn--accept {
-			background-color: var(--wp--preset--color--accent-aa, var(--wp--preset--color--accent, #cc4400));
+			background-color: var(--wp--preset--color--accent-aa, var(--wp--preset--color--accent, #bf5200));
 			color: var(--wp--preset--color--background, #ffffff);
 		}
 		.agent-neo-consent-btn--deny {

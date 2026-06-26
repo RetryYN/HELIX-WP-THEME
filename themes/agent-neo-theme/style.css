@@ -280,7 +280,8 @@ header:has(.an-site-header-inner),
 }
 
 /* --- footer 3カラム --------------------------------------- */
-/* 見出し（.an-footer-col-heading）の色は has-background-color で #fff が当たる。
+/* 見出し（.an-footer-col-heading）の色は footer.html でインライン color:#ffffff を明示。
+ * textColor:"background" は削除済（dark で #121212 = footer-bg #000000 on 1.12 になるため）。
  * 下記はフッタリンク色（customTextColor=#cccccc が inline で当たるがフォールバック） */
 .an-site-footer-inner .an-footer-col .wp-block-navigation a,
 .an-site-footer-inner .an-footer-col .wp-block-navigation .wp-block-navigation-item__content {
@@ -305,3 +306,34 @@ header:has(.an-site-header-inner),
     padding-inline: 0;
   }
 }
+
+/* ============================================================
+ * figcaption / table caption — dark variation 追従（2026-06-27）
+ * ============================================================ */
+/*
+ * WP コアは figcaption / table caption に固定 #555 等を適用する場合がある。
+ * dark palette (#121212 背景) では 2.51:1 以下になりWCAG AA 不適合となるため、
+ * palette の muted slug を参照させ light/dark 両対応にする。
+ * light: muted=#767676 on background=#ffffff = 4.48:1（AA 境界）
+ * dark:  muted=#9a9a9a on background=#121212 = 5.28:1（AA 合格）
+ */
+figcaption,
+.wp-block-table figcaption,
+.wp-element-caption,
+.wp-block-image figcaption {
+  color: var(--wp--preset--color--muted);
+}
+
+/* ============================================================
+ * SNS シェアボタン — ブランド色の意図的 WCAG 例外（2026-06-27）
+ * ============================================================ */
+/*
+ * .an-share-btn--facebook (#1877f2 / 白文字 4.23:1)
+ * .an-share-btn--line     (#06c755 / 白文字 2.25:1)
+ * .an-share-btn--hatena   (#00a4de / 白文字 2.85:1)
+ *
+ * 上記は各 SNS プラットフォームの公式ブランドカラーガイドラインに準拠した色。
+ * ブランド認知を損なわないため色の変更は行わない（意図的例外）。
+ * WCAG 2.1 達成基準 1.4.3 の例外として記録する。
+ * X（黒 #000000 / 白文字 21:1）は AA 合格のため対象外。
+ */
