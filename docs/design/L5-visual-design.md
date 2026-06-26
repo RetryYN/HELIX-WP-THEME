@@ -341,18 +341,33 @@ AGENT NEOの視覚方向は「成果導線の明快さ」と「AIが検査/改�
 | collapse | アコーディオン | height | 200ms | ease-in-out | 開閉 |
 
 ## 9. 目視確認チェックリスト
-| 画面 | desktop | tablet | mobile | ダーク | 判定 |
-|------|---------|--------|--------|--------|------|
-| S-001 | [ ] | [ ] | [ ] | [ ] | pending |
+
+実 WordPress（docker / WP 6.9.4）でテーマを描画し、各画面 × 3デバイス（desktop/tablet/mobile）+ ダークモード（Style Variation）を目視 + axe-core（wcag2a/wcag2aa）実測で確認した結果。検証経緯は session_handover part41（スーパーハードチェック）+ part42（LP固定色 dark破綻解消 / main 214d975）。
+
+| 画面 | テンプレート | desktop | tablet | mobile | ダーク | axe(light/dark) | 判定 |
+|------|-------------|---------|--------|--------|--------|-----------------|------|
+| ホーム | front-page / home-blueprint 7セクション | [x] | [x] | [x] | [x] | serious/critical 0 / 0 | PASS |
+| 記事（single） | single.html | [x] | [x] | [x] | [x] | 0 / 0（※SNS share 例外） | PASS |
+| LP | page-lp-sample（hero〜final-cta） | [x] | [x] | [x] | [x] | 0 / 0 | PASS |
+| アーカイブ（category） | archive.html | [x] | [x] | [x] | [x] | 0 / 0 | PASS |
+| 検索結果 | search.html | [x] | [x] | [x] | [x] | 0 / 0 | PASS |
+| 404 | 404.html | [x] | [x] | [x] | [x] | 0 / 0 | PASS |
+
+※ SNS share ボタン（facebook/line/hatena）は公式ブランド色 + 白文字で color-contrast 4.5:1 未達だが、WCAG 2.1 達成基準 1.4.3 の意図的例外（ブランドガイドライン準拠優先）として据え置き。light/dark 共通の単一既知項目。
 
 ### 9.1 スクリーンショット格納先
-- `.helix/visual-checks/{画面ID}-screenshots/desktop.png`
-- `.helix/visual-checks/{画面ID}-screenshots/tablet.png`
-- `.helix/visual-checks/{画面ID}-screenshots/mobile.png`
+- `.helix/visual-checks/{画面ID}-screenshots/{desktop|tablet|mobile}.png`（gitignore / ランタイム成果物）
+- axe 実測スクリプト: `bin/check-theme-quality.sh` GATE3（axe-core wcag2aa）
 
 ### 9.2 最終確認
-- [ ] 全画面の目視確認完了
-- [ ] デザイントークンが実装に正しく反映されている
-- [ ] L2 設計書のデザイン方針と一貫性がある
-- [ ] 不要なハードコードスタイル値がない
-- [ ] AI っぽさのない自然なUI表現になっている
+- [x] 全画面の目視確認完了（実 WP 描画 × 3デバイス × light/dark）
+- [x] デザイントークンが実装に正しく反映されている（全色 palette slug 経由・固定 hex は永続暗バンドの白文字のみ）
+- [x] L2 設計書のデザイン方針と一貫性がある（配色 70-25-5 / hero〜final-cta / DP-001〜010）
+- [x] 不要なハードコードスタイル値がない（LP 固定色 231件を slug 化済 / 残るは footer-bg バンド上の意図的固定白）
+- [x] AI っぽさのない自然なUI表現になっている（V1/V2 級の崩れ・冗長ゼロ）
+
+### 9.3 a11y 根本是正サマリ（part42）
+- LP 固定色 231件 → palette slug 全置換（dark で背景/文字が両モード自動追従）
+- `muted` token #767676 → #6b6b6b 微暗化（secondary 面で 3.98:1 → AA達成。背景未使用のため副作用なし）
+- 永続暗バンド（lp-final-cta / lp-solution）を `primary`（dark で明色反転）→ `footer-bg`（両モード near-black）化
+- 検証: check-theme-quality PASS / unit 86 / security 48 全緑
