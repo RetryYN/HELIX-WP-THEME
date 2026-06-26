@@ -65,6 +65,8 @@
 | `next_cursor` | integer | 次ページ取得時の `after` へ渡す値 |
 | `count` | integer | 当該件数 |
 
+> **セキュリティ注記（consumer 責務 / G6 carry-003）**: `metadata` 内の URL 系フィールド（例: `affiliate_click` の `metadata.href`）はサーバ側で `sanitize_text_field` を通すのみで URL スキーム検証は行わない。`javascript:` 等のスキームが格納され得るため、**consumer（Automation SEO）は href 等の URL 値を DOM／リンクとして展開する前に必ず `esc_url()` 相当のサニタイズを適用すること**。export は `edit_posts` 権限の認証下でのみ取得可能で、AGENT-NEO フロント側に当該値をレンダリングする経路は存在しない。
+
 ## event_type 取りうる値（実装観点）
 
 - `ad_impression`
