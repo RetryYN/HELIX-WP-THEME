@@ -5,9 +5,16 @@
  * TC-PT-001〜TC-PT-005: Agent_Neo_Core_Tracking_Assets::detect_page_type() の
  * 5 分岐（home / post / lp / page / other）をカバーする。
  *
+ * 判定順（修正後）:
+ *   1. is_page() かつ LP テンプレート（'page-lp' で始まる）→ 'lp'  ← LP-as-frontpage 対応
+ *   2. is_front_page() || is_home()                          → 'home'
+ *   3. is_singular('post')                                   → 'post'
+ *   4. is_page()（LP テンプレートなし）                      → 'page'
+ *   5. 上記以外                                              → 'other'
+ *
  * テスト戦略:
  *   - WP 条件関数（is_front_page / is_home / is_singular / is_page）は Brain Monkey でスタブ。
- *   - get_page_template_slug() も Brain Monkey でスタブ。
+ *   - get_page_template_slug() / get_queried_object_id() も Brain Monkey でスタブ。
  *   - Reflection で private メソッドにアクセスし、各分岐の戻り値を検証する。
  *
  * @package AgentNeo\Tests\Unit
@@ -64,21 +71,27 @@ class TC_TrackingPageTypeTest extends TestCase {
 	}
 
 	// ------------------------------------------------------------------
-	// TC-PT-001: is_front_page() === true → 'home' を返す
+	// TC-PT-001: is_front_page() === true（固定ページではないトップ）→ 'home' を返す
+	//
+	// 判定順変更後: is_page() が先に評価される。
+	// ブログ投稿インデックスをトップに設定した場合は is_page()=false のため
+	// LP テンプレート判定をスキップし、is_front_page()=true で 'home' を返す。
 	// ------------------------------------------------------------------
 
 	/**
-	 * is_front_page() が true の場合、'home' が返ること。
+	 * is_front_page() が true かつ is_page() が false の場合、'home' が返ること。
 	 *
 	 * @return void
 	 */
 	public function test_detect_page_type_front_page_returns_home(): void {
+		// 修正後: is_page() を最初に評価する。is_page=false のため LP チェックをスキップ。
+		Functions\expect( 'is_page' )->once()->andReturn( false );
 		Functions\expect( 'is_front_page' )->once()->andReturn( true );
-		// is_home は呼ばれない（短絡評価）ため expect しない。
+		// is_home は短絡評価でスキップされる。
 
 		$result = $this->detect_method->invoke( $this->assets_instance );
 
-		$this->assertSame( 'home', $result, 'is_front_page() true → home' );
+		$this->assertSame( 'home', $result, 'is_front_page() true（is_page=false）→ home' );
 	}
 
 	// ------------------------------------------------------------------
@@ -91,6 +104,8 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_home_returns_home(): void {
+		// 修正後: is_page() を最初に評価する。is_page=false のため LP チェックをスキップ。
+		Functions\expect( 'is_page' )->once()->andReturn( false );
 		Functions\expect( 'is_front_page' )->once()->andReturn( false );
 		Functions\expect( 'is_home' )->once()->andReturn( true );
 
@@ -109,6 +124,8 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_singular_post_returns_post(): void {
+		// 修正後: is_page() を最初に評価する。is_page=false のため LP チェックをスキップ。
+		Functions\expect( 'is_page' )->once()->andReturn( false );
 		Functions\expect( 'is_front_page' )->once()->andReturn( false );
 		Functions\expect( 'is_home' )->once()->andReturn( false );
 		Functions\expect( 'is_singular' )
@@ -131,12 +148,11 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_lp_template_returns_lp(): void {
-		Functions\expect( 'is_front_page' )->once()->andReturn( false );
-		Functions\expect( 'is_home' )->once()->andReturn( false );
-		Functions\expect( 'is_singular' )->once()->with( 'post' )->andReturn( false );
+		// 修正後: is_page()=true → get_queried_object_id() → get_page_template_slug(id) で LP 判定。
 		Functions\expect( 'is_page' )->once()->andReturn( true );
+		Functions\expect( 'get_queried_object_id' )->once()->andReturn( 42 );
 		// LP テンプレートスラッグ（'page-lp' で始まる）。
-		Functions\expect( 'get_page_template_slug' )->once()->andReturn( 'page-lp-service' );
+		Functions\expect( 'get_page_template_slug' )->once()->with( 42 )->andReturn( 'page-lp-service' );
 
 		$result = $this->detect_method->invoke( $this->assets_instance );
 
@@ -153,11 +169,9 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_lp_template_exact_slug_returns_lp(): void {
-		Functions\expect( 'is_front_page' )->once()->andReturn( false );
-		Functions\expect( 'is_home' )->once()->andReturn( false );
-		Functions\expect( 'is_singular' )->once()->with( 'post' )->andReturn( false );
 		Functions\expect( 'is_page' )->once()->andReturn( true );
-		Functions\expect( 'get_page_template_slug' )->once()->andReturn( 'page-lp' );
+		Functions\expect( 'get_queried_object_id' )->once()->andReturn( 1 );
+		Functions\expect( 'get_page_template_slug' )->once()->with( 1 )->andReturn( 'page-lp' );
 
 		$result = $this->detect_method->invoke( $this->assets_instance );
 
@@ -166,6 +180,9 @@ class TC_TrackingPageTypeTest extends TestCase {
 
 	// ------------------------------------------------------------------
 	// TC-PT-005: is_page() === true かつ LP テンプレートでない → 'page' を返す
+	//
+	// 修正後: is_page()=true, template='' → is_front_page/is_home/is_singular を経由して
+	// 2 度目の is_page()=true で 'page' を返す。
 	// ------------------------------------------------------------------
 
 	/**
@@ -174,12 +191,16 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_normal_page_returns_page(): void {
+		// 1回目の is_page(): LP テンプレート判定のため呼ばれる。
+		// 2回目の is_page(): 'page' 返却のため呼ばれる。
+		Functions\expect( 'is_page' )->twice()->andReturn( true );
+		Functions\expect( 'get_queried_object_id' )->once()->andReturn( 5 );
+		// 通常固定ページ（テンプレートなし）。
+		Functions\expect( 'get_page_template_slug' )->once()->with( 5 )->andReturn( '' );
+		// LP 非該当のため is_front_page / is_home / is_singular を経由する。
 		Functions\expect( 'is_front_page' )->once()->andReturn( false );
 		Functions\expect( 'is_home' )->once()->andReturn( false );
 		Functions\expect( 'is_singular' )->once()->with( 'post' )->andReturn( false );
-		Functions\expect( 'is_page' )->once()->andReturn( true );
-		// 通常固定ページ（テンプレートなし）。
-		Functions\expect( 'get_page_template_slug' )->once()->andReturn( '' );
 
 		$result = $this->detect_method->invoke( $this->assets_instance );
 
@@ -196,11 +217,12 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_non_lp_template_returns_page(): void {
+		Functions\expect( 'is_page' )->twice()->andReturn( true );
+		Functions\expect( 'get_queried_object_id' )->once()->andReturn( 7 );
+		Functions\expect( 'get_page_template_slug' )->once()->with( 7 )->andReturn( 'page-about' );
 		Functions\expect( 'is_front_page' )->once()->andReturn( false );
 		Functions\expect( 'is_home' )->once()->andReturn( false );
 		Functions\expect( 'is_singular' )->once()->with( 'post' )->andReturn( false );
-		Functions\expect( 'is_page' )->once()->andReturn( true );
-		Functions\expect( 'get_page_template_slug' )->once()->andReturn( 'page-about' );
 
 		$result = $this->detect_method->invoke( $this->assets_instance );
 
@@ -217,10 +239,13 @@ class TC_TrackingPageTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function test_detect_page_type_archive_returns_other(): void {
+		// 修正後の判定順で is_page() が 2 回呼ばれる:
+		//   1回目: LP テンプレート判定（先頭）→ false でスキップ
+		//   2回目: 'page' 返却判定（is_front_page / is_home / is_singular の後）→ false → 'other'
+		Functions\expect( 'is_page' )->twice()->andReturn( false );
 		Functions\expect( 'is_front_page' )->once()->andReturn( false );
 		Functions\expect( 'is_home' )->once()->andReturn( false );
 		Functions\expect( 'is_singular' )->once()->with( 'post' )->andReturn( false );
-		Functions\expect( 'is_page' )->once()->andReturn( false );
 
 		$result = $this->detect_method->invoke( $this->assets_instance );
 

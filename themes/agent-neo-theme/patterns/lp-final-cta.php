@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:group {"align":"full","className":"an-lp-final-cta","backgroundColor":"footer-bg","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull an-lp-final-cta has-footer-bg-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40)">
 
+	<!-- footer-bg 反転帯上の意図的固定白: light/dark 両モードで 21:1 維持（slug化対象外） -->
 	<!-- wp:heading {"level":2,"textAlign":"center","style":{"typography":{"fontWeight":"800","fontSize":"var(--wp--preset--font-size--xx-large)","lineHeight":"1.2"},"spacing":{"margin":{"bottom":"var:preset|spacing|30"}},"color":{"text":"#ffffff"}}} -->
 	<h2 class="wp-block-heading has-text-align-center" style="font-weight:800;font-size:var(--wp--preset--font-size--xx-large);line-height:1.2;color:#ffffff;margin-bottom:var(--wp--preset--spacing--30)"><?php esc_html_e( 'WordPress 運用の課題、', 'agent-neo' ); ?><br><?php esc_html_e( '今すぐ解決しませんか。', 'agent-neo' ); ?></h2>
 	<!-- /wp:heading -->

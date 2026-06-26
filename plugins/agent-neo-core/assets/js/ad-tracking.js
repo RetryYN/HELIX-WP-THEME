@@ -64,6 +64,36 @@
 	}
 
 	/**
+	 * PHP 側 canonical_json() / sort_recursive() と一致する再帰キーソートを行う。
+	 *
+	 * PHP の sort_recursive は連想配列（assoc）のキーのみ ksort し、
+	 * 数値インデックス配列（sequential array）は順序を保持する。
+	 * JS の Array は常に順序保持とみなし、Object（プレーン）は
+	 * キーを昇順ソートして再帰処理する。
+	 *
+	 * 注意: metadata が空オブジェクト {} の場合、PHP 側が json_decode で
+	 * [] （数値配列）に変換する可能性があるが、page_type が常に付与されるため
+	 * 実運用では空 metadata は発生しない（本修正の対象外）。
+	 *
+	 * @param {*} value ソート対象の任意値。
+	 * @returns {*} キーを再帰的に昇順ソートした値。
+	 */
+	function canonicalizeForSignature( value ) {
+		if ( Array.isArray( value ) ) {
+			// 配列は要素を再帰処理するが順序は保持する。
+			return value.map( canonicalizeForSignature );
+		}
+		if ( value !== null && typeof value === 'object' ) {
+			// オブジェクトはキーを昇順ソートして再構築する。
+			return Object.keys( value ).sort().reduce( function ( acc, k ) {
+				acc[ k ] = canonicalizeForSignature( value[ k ] );
+				return acc;
+			}, {} );
+		}
+		return value;
+	}
+
+	/**
 	 * 16文字のランダム nonce を生成する。
 	 *
 	 * @returns {string}
@@ -147,8 +177,8 @@
 		// 全イベントに page_type を横断付与する。
 		// metadata は呼び出し元が渡した追加フィールドを保持しつつ、
 		// php 側が localize した pageType をマージする。
-		// HMAC canonical はキー昇順 sort 後に body 全体を署名するため、
-		// metadata 内のキー増加による署名ロジック変更は不要。
+		// canonical 生成は canonicalizeForSignature() が metadata 内部も再帰ソートするため、
+		// PHP 側 sort_recursive() と完全に一致する。
 		var meta = Object.assign( {}, metadata || {} );
 		if ( cfg.pageType ) {
 			meta.page_type = cfg.pageType;
@@ -165,13 +195,15 @@
 			metadata:   meta
 		};
 
-		// JSON をキー昇順に並べた canonical string で HMAC 署名。
-		var canonical = JSON.stringify(
-			Object.keys( body )
-				.filter( function ( k ) { return k !== 'signature'; } )
-				.sort()
-				.reduce( function ( acc, k ) { acc[ k ] = body[ k ]; return acc; }, {} )
-		);
+		// PHP 検証側 canonical_json() と一致させるため、signature を除いた body を
+		// canonicalizeForSignature() で再帰的にキーソートして署名文字列を生成する。
+		var unsigned = {};
+		Object.keys( body ).forEach( function ( k ) {
+			if ( k !== 'signature' ) {
+				unsigned[ k ] = body[ k ];
+			}
+		} );
+		var canonical = JSON.stringify( canonicalizeForSignature( unsigned ) );
 		var payload = 'POST|/agent-neo/v1/tracking/event|' + nonce + '|' + await sha256( canonical );
 
 		var signature = await hmacSHA256( payload, cfg.hmacKey || '' );

@@ -80,6 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:group {"style":{"border":{"radius":"12px"},"dimensions":{"minHeight":"360px"},"color":{"background":"var(--wp--preset--color--footer-bg)"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
 			<div class="wp-block-group" style="border-radius:12px;min-height:360px;background-color:var(--wp--preset--color--footer-bg);padding:var(--wp--preset--spacing--50);display:flex;flex-direction:column;align-items:center;justify-content:center">
+				<!-- footer-bg 反転帯上の意図的固定白: light/dark 両モードで 21:1 維持（slug化対象外） -->
 				<!-- wp:paragraph {"align":"center","style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--xx-large)","lineHeight":"1.2"},"color":{"text":"#ffffff"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 				<p class="has-text-align-center" style="font-weight:700;font-size:var(--wp--preset--font-size--xx-large);line-height:1.2;color:#ffffff;margin-bottom:var(--wp--preset--spacing--20)">AGENT NEO</p>
 				<!-- /wp:paragraph -->

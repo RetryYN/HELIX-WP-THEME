@@ -98,12 +98,20 @@ final class Agent_Neo_Core_Tracking_Assets {
 	 * 現在表示中のページ種別を文字列で返す。
 	 *
 	 * 判定順（優先度高 → 低）:
-	 *   1. トップページ / ブログトップ → 'home'
-	 *   2. 投稿（post）単一表示       → 'post'
-	 *   3. 固定ページ
-	 *      - テンプレートスラッグが 'page-lp' で始まる → 'lp'
-	 *      - それ以外                                   → 'page'
-	 *   4. 上記以外（アーカイブ・検索・404 等）         → 'other'
+	 *   1. 固定ページかつ LP テンプレート（'page-lp' で始まるスラッグ）→ 'lp'
+	 *      LP をフロントページに設定した場合でも 'lp' を優先する。
+	 *      LP 変換計測の分離をサイト構成に依存させないための設計。
+	 *   2. トップページ / ブログトップ → 'home'
+	 *   3. 投稿（post）単一表示       → 'post'
+	 *   4. 固定ページ（LP テンプレートなし）→ 'page'
+	 *   5. 上記以外（アーカイブ・検索・404 等）→ 'other'
+	 *
+	 * is_front_page() より LP テンプレート判定を先行させる理由:
+	 *   SaaS では LP をドメインルートに設定するケースが多い。
+	 *   旧実装では is_front_page() を最優先していたため LP が 'home' に
+	 *   誤分類され、LP 変換計測が home バケットに混入していた（確定欠陥 #2）。
+	 *   get_queried_object_id() を明示することで front_page 文脈でも
+	 *   queried page のテンプレートを確実に取得する。
 	 *
 	 * この関数は wp_enqueue_scripts アクション内で呼ばれるため、
 	 * WP クエリが確定した後でのみ実行される。
@@ -111,7 +119,18 @@ final class Agent_Neo_Core_Tracking_Assets {
 	 * @return string 'home' | 'post' | 'lp' | 'page' | 'other'
 	 */
 	private function detect_page_type(): string {
-		// トップページ・ブログトップを最優先で判定する。
+		// LP テンプレートはフロントページに設定された場合でも 'lp' を優先する
+		// （LP 変換計測の分離をサイト構成に依存せず保つため）。
+		// get_queried_object_id() を明示することで front_page 文脈でも
+		// queried page のテンプレートを確実に取得する。
+		if ( is_page() ) {
+			$template = (string) get_page_template_slug( get_queried_object_id() );
+			if ( 0 === strpos( $template, 'page-lp' ) ) {
+				return 'lp';
+			}
+		}
+
+		// トップページ・ブログトップ（非 LP）。
 		if ( is_front_page() || is_home() ) {
 			return 'home';
 		}
@@ -121,16 +140,13 @@ final class Agent_Neo_Core_Tracking_Assets {
 			return 'post';
 		}
 
-		// 固定ページ。テンプレートスラッグで LP か通常ページかを区別する。
+		// 固定ページ（LP テンプレートなし）。
 		if ( is_page() ) {
-			$template_slug = (string) get_page_template_slug();
-			if ( '' !== $template_slug && str_starts_with( $template_slug, 'page-lp' ) ) {
-				return 'lp';
-			}
 			return 'page';
 		}
 
-		// アーカイブ・検索・404 等はすべて 'other' に集約する。
+		// アーカイブ・検索・404・カスタム投稿タイプ single 等はすべて 'other' に集約する。
+		// TODO: カスタム投稿タイプを front 描画する場合は is_singular() 分岐を追加検討。
 		return 'other';
 	}
 
