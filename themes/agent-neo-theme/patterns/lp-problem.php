@@ -25,42 +25,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<h2 class="wp-block-heading has-text-align-center" style="font-weight:700;margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'こんなお悩みは', 'agent-neo' ); ?><br><?php esc_html_e( 'ありませんか？', 'agent-neo' ); ?></h2>
 	<!-- /wp:heading -->
 
-	<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}},"color":{"text":"#555555"}}} -->
-	<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--medium);margin-bottom:var(--wp--preset--spacing--50);color:#555555"><?php esc_html_e( 'WordPress の運用に追われ、本来の業務に集中できていませんか。', 'agent-neo' ); ?></p>
+	<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+	<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--medium);margin-bottom:var(--wp--preset--spacing--50);color:var(--wp--preset--color--foreground)"><?php esc_html_e( 'WordPress の運用に追われ、本来の業務に集中できていませんか。', 'agent-neo' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|30","left":"var:preset|spacing|30"}}}} -->
 	<div class="wp-block-columns is-not-stacked-on-mobile" style="gap:var(--wp--preset--spacing--30)">
 
-		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"#ffffff"}}} -->
-		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:#ffffff">
+		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}}} -->
+		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '記事更新が追いつかない', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( 'ライター確保・編集・公開の工程に時間を取られ、更新頻度を上げられない。品質を維持しながら量を増やすことが困難です。', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:var(--wp--preset--color--foreground)"><?php esc_html_e( 'ライター確保・編集・公開の工程に時間を取られ、更新頻度を上げられない。品質を維持しながら量を増やすことが困難です。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"#ffffff"}}} -->
-		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:#ffffff">
+		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}}} -->
+		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'SEO 対策が属人的になっている', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( '担当者が変わるたびに施策がリセットされる。キーワード選定・内部リンク・タイトル最適化を一貫して続けられていません。', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:var(--wp--preset--color--foreground)"><?php esc_html_e( '担当者が変わるたびに施策がリセットされる。キーワード選定・内部リンク・タイトル最適化を一貫して続けられていません。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"#ffffff"}}} -->
-		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:#ffffff">
+		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}}} -->
+		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '成果が数値で把握できない', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#444444"}}} -->
-			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#444444"><?php esc_html_e( 'PV・順位・CV がバラバラのツールに散在し、施策の効果を判断するまでに時間がかかります。改善の優先順位を決めにくい状態です。', 'agent-neo' ); ?></p>
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+			<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:var(--wp--preset--color--foreground)"><?php esc_html_e( 'PV・順位・CV がバラバラのツールに散在し、施策の効果を判断するまでに時間がかかります。改善の優先順位を決めにくい状態です。', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

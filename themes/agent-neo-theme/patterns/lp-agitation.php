@@ -25,16 +25,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<h2 class="wp-block-heading has-text-align-center" style="font-weight:700;margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'このまま放置すると、', 'agent-neo' ); ?><br><?php esc_html_e( '競合にどんどん差をつけられます。', 'agent-neo' ); ?></h2>
 	<!-- /wp:heading -->
 
-	<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}},"color":{"text":"#555555"}}} -->
-	<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--medium);margin-bottom:var(--wp--preset--spacing--50);color:#555555"><?php esc_html_e( '「いつかやろう」と先延ばしにするたびに、失っているものがあります。', 'agent-neo' ); ?></p>
+	<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+	<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--medium);margin-bottom:var(--wp--preset--spacing--50);color:var(--wp--preset--color--foreground)"><?php esc_html_e( '「いつかやろう」と先延ばしにするたびに、失っているものがあります。', 'agent-neo' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 	<div class="wp-block-group" style="gap:var(--wp--preset--spacing--20)">
 
 		<!-- リスク項目 1 -->
-		<!-- wp:group {"style":{"border":{"radius":"8px","left":{"color":"var(--wp--preset--color--accent)","width":"4px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"#ffffff"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-		<div class="wp-block-group" style="border-radius:8px;border-left:4px solid var(--wp--preset--color--accent);padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);background-color:#ffffff;display:flex;align-items:center;gap:var(--wp--preset--spacing--30)">
+		<!-- wp:group {"style":{"border":{"radius":"8px","left":{"color":"var(--wp--preset--color--accent)","width":"4px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group" style="border-radius:8px;border-left:4px solid var(--wp--preset--color--accent);padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background);display:flex;align-items:center;gap:var(--wp--preset--spacing--30)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","fontSize":"1.5rem","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"right":"var:preset|spacing|30"}}}} -->
 			<p style="font-weight:800;font-size:1.5rem;line-height:1.0;color:var(--wp--preset--color--accent-aa);margin-right:var(--wp--preset--spacing--30);flex-shrink:0">01</p>
 			<!-- /wp:paragraph -->
@@ -43,8 +43,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
 				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary)"><?php esc_html_e( '検索順位は時間とともに下落する', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#555555"}}} -->
-				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#555555"><?php esc_html_e( "競合が記事を更新し続ける中、更新が止まったサイトは Googleから「鮮度の低いコンテンツ」と評価され、半年で順位が大幅に落ちるケースが多数あります。", 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:var(--wp--preset--color--foreground)"><?php esc_html_e( "競合が記事を更新し続ける中、更新が止まったサイトは Googleから「鮮度の低いコンテンツ」と評価され、半年で順位が大幅に落ちるケースが多数あります。", 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -52,8 +52,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- /wp:group -->
 
 		<!-- リスク項目 2 -->
-		<!-- wp:group {"style":{"border":{"radius":"8px","left":{"color":"var(--wp--preset--color--accent)","width":"4px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"#ffffff"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-		<div class="wp-block-group" style="border-radius:8px;border-left:4px solid var(--wp--preset--color--accent);padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);background-color:#ffffff;display:flex;align-items:center;gap:var(--wp--preset--spacing--30)">
+		<!-- wp:group {"style":{"border":{"radius":"8px","left":{"color":"var(--wp--preset--color--accent)","width":"4px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group" style="border-radius:8px;border-left:4px solid var(--wp--preset--color--accent);padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background);display:flex;align-items:center;gap:var(--wp--preset--spacing--30)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","fontSize":"1.5rem","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"right":"var:preset|spacing|30"}}}} -->
 			<p style="font-weight:800;font-size:1.5rem;line-height:1.0;color:var(--wp--preset--color--accent-aa);margin-right:var(--wp--preset--spacing--30);flex-shrink:0">02</p>
 			<!-- /wp:paragraph -->
@@ -62,8 +62,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
 				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary)"><?php esc_html_e( '人件費は増え続け、成果は比例しない', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#555555"}}} -->
-				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#555555"><?php esc_html_e( 'ライター発注・編集・校正・入稿で1記事あたり数万円のコストがかかります。それでも更新速度には限界があり、投資対効果が出にくい構造です。', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:var(--wp--preset--color--foreground)"><?php esc_html_e( 'ライター発注・編集・校正・入稿で1記事あたり数万円のコストがかかります。それでも更新速度には限界があり、投資対効果が出にくい構造です。', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -71,8 +71,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- /wp:group -->
 
 		<!-- リスク項目 3 -->
-		<!-- wp:group {"style":{"border":{"radius":"8px","left":{"color":"var(--wp--preset--color--accent)","width":"4px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"#ffffff"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-		<div class="wp-block-group" style="border-radius:8px;border-left:4px solid var(--wp--preset--color--accent);padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);background-color:#ffffff;display:flex;align-items:center;gap:var(--wp--preset--spacing--30)">
+		<!-- wp:group {"style":{"border":{"radius":"8px","left":{"color":"var(--wp--preset--color--accent)","width":"4px"}},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group" style="border-radius:8px;border-left:4px solid var(--wp--preset--color--accent);padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background);display:flex;align-items:center;gap:var(--wp--preset--spacing--30)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","fontSize":"1.5rem","lineHeight":"1.0"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"right":"var:preset|spacing|30"}}}} -->
 			<p style="font-weight:800;font-size:1.5rem;line-height:1.0;color:var(--wp--preset--color--accent-aa);margin-right:var(--wp--preset--spacing--30);flex-shrink:0">03</p>
 			<!-- /wp:paragraph -->
@@ -81,8 +81,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
 				<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--primary)"><?php esc_html_e( '担当者が変わるたびにゼロからやり直し', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"#555555"}}} -->
-				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:#555555"><?php esc_html_e( 'SEO ノウハウが個人に依存していると、退職・異動のたびに施策が止まります。属人化した運用は、組織としての競争力を持続できません。', 'agent-neo' ); ?></p>
+				<!-- wp:paragraph {"style":{"typography":{"fontSize":"var(--wp--preset--font-size--medium)","lineHeight":"1.7"},"color":{"text":"var(--wp--preset--color--foreground)"}}} -->
+				<p style="font-size:var(--wp--preset--font-size--medium);line-height:1.7;color:var(--wp--preset--color--foreground)"><?php esc_html_e( 'SEO ノウハウが個人に依存していると、退職・異動のたびに施策が止まります。属人化した運用は、組織としての競争力を持続できません。', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
