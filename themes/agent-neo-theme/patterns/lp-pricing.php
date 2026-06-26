@@ -77,8 +77,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
-				<!-- wp:button {"className":"is-style-outline","width":100,"style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
-				<div class="wp-block-button is-style-outline has-custom-width wp-block-button__width-100">
+				<!-- wp:button {"className":"is-style-outline an-cta an-cta--lp_pricing_starter","width":100,"style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
+				<div class="wp-block-button is-style-outline an-cta an-cta--lp_pricing_starter has-custom-width wp-block-button__width-100">
 					<a class="wp-block-button__link wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--primary);font-weight:600;padding-top:0.875rem;padding-bottom:0.875rem;color:var(--wp--preset--color--primary)"><?php esc_html_e( '無料で試す', 'agent-neo' ); ?></a>
 				</div>
 				<!-- /wp:button -->
@@ -140,8 +140,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
-				<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","width":100,"style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}}}} -->
-				<div class="wp-block-button has-custom-width wp-block-button__width-100">
+				<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","className":"an-cta an-cta--lp_pricing_pro","width":100,"style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}}}} -->
+				<div class="wp-block-button an-cta an-cta--lp_pricing_pro has-custom-width wp-block-button__width-100">
 					<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;padding-top:0.875rem;padding-bottom:0.875rem"><?php esc_html_e( '無料で試す →', 'agent-neo' ); ?></a>
 				</div>
 				<!-- /wp:button -->
@@ -196,8 +196,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
-				<!-- wp:button {"className":"is-style-outline","width":100,"style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
-				<div class="wp-block-button is-style-outline has-custom-width wp-block-button__width-100">
+				<!-- wp:button {"className":"is-style-outline an-cta an-cta--lp_pricing_business","width":100,"style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
+				<div class="wp-block-button is-style-outline an-cta an-cta--lp_pricing_business has-custom-width wp-block-button__width-100">
 					<a class="wp-block-button__link wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--primary);font-weight:600;padding-top:0.875rem;padding-bottom:0.875rem;color:var(--wp--preset--color--primary)"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a>
 				</div>
 				<!-- /wp:button -->

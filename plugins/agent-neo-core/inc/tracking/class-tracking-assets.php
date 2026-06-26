@@ -89,8 +89,49 @@ final class Agent_Neo_Core_Tracking_Assets {
 				'hmacKey'    => $tokens['hmac_key'],
 				'sectionId'  => 'ad',
 				'consentKey' => self::CONSENT_STORAGE_KEY,
+				'pageType'   => $this->detect_page_type(),
 			)
 		);
+	}
+
+	/**
+	 * 現在表示中のページ種別を文字列で返す。
+	 *
+	 * 判定順（優先度高 → 低）:
+	 *   1. トップページ / ブログトップ → 'home'
+	 *   2. 投稿（post）単一表示       → 'post'
+	 *   3. 固定ページ
+	 *      - テンプレートスラッグが 'page-lp' で始まる → 'lp'
+	 *      - それ以外                                   → 'page'
+	 *   4. 上記以外（アーカイブ・検索・404 等）         → 'other'
+	 *
+	 * この関数は wp_enqueue_scripts アクション内で呼ばれるため、
+	 * WP クエリが確定した後でのみ実行される。
+	 *
+	 * @return string 'home' | 'post' | 'lp' | 'page' | 'other'
+	 */
+	private function detect_page_type(): string {
+		// トップページ・ブログトップを最優先で判定する。
+		if ( is_front_page() || is_home() ) {
+			return 'home';
+		}
+
+		// 投稿（post）単一表示。
+		if ( is_singular( 'post' ) ) {
+			return 'post';
+		}
+
+		// 固定ページ。テンプレートスラッグで LP か通常ページかを区別する。
+		if ( is_page() ) {
+			$template_slug = (string) get_page_template_slug();
+			if ( '' !== $template_slug && str_starts_with( $template_slug, 'page-lp' ) ) {
+				return 'lp';
+			}
+			return 'page';
+		}
+
+		// アーカイブ・検索・404 等はすべて 'other' に集約する。
+		return 'other';
 	}
 
 	/**

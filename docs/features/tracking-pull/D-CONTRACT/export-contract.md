@@ -60,7 +60,8 @@
 | `events[].variant_id` | string / null | 配信 variant の識別子 |
 | `events[].occurred_at` | string | 発生時刻（ISO8601） |
 | `events[].canonical_url` | string | 対象コンテンツ URL |
-| `events[].metadata` | object | 追加情報（ページ種別・表示率・スクロール深度など） |
+| `events[].metadata` | object | 追加情報（ページ種別・表示率・スクロール深度など）。consumer は未知キーを無視して前方互換を維持すること |
+| `events[].metadata.page_type` | string / null | ページ種別。`home`（トップ）/ `lp`（ランディングページ）/ `page`（固定ページ）/ `post`（記事）/ `other`（アーカイブ・検索・404 等）のいずれか。クライアント JS が agentNeoTracking.pageType を受信できなかった場合はキー欠損となる（null 相当）。schema_version は据え置き（metadata 内追加のため version 変更不要）|
 | `next_cursor` | integer | 次ページ取得時の `after` へ渡す値 |
 | `count` | integer | 当該件数 |
 

@@ -144,6 +144,16 @@
 		}
 		sent.add( dedupeKey );
 
+		// 全イベントに page_type を横断付与する。
+		// metadata は呼び出し元が渡した追加フィールドを保持しつつ、
+		// php 側が localize した pageType をマージする。
+		// HMAC canonical はキー昇順 sort 後に body 全体を署名するため、
+		// metadata 内のキー増加による署名ロジック変更は不要。
+		var meta = Object.assign( {}, metadata || {} );
+		if ( cfg.pageType ) {
+			meta.page_type = cfg.pageType;
+		}
+
 		var nonce = generateNonce();
 		var body = {
 			site_token: cfg.siteToken,
@@ -152,7 +162,7 @@
 			section_id: cfg.sectionId || 'ad',
 			cta_id:     ctaId,
 			variant_id: variantId,
-			metadata:   metadata || {}
+			metadata:   meta
 		};
 
 		// JSON をキー昇順に並べた canonical string で HMAC 署名。

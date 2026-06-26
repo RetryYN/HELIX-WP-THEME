@@ -31,13 +31,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-buttons">
-		<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
-		<div class="wp-block-button">
+		<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","className":"an-cta an-cta--lp_hero_primary","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
+		<div class="wp-block-button an-cta an-cta--lp_hero_primary">
 			<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '無料で試してみる →', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
-		<!-- wp:button {"className":"is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600","fontSize":"1rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2rem","right":"2rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
-		<div class="wp-block-button is-style-outline">
+		<!-- wp:button {"className":"is-style-outline an-cta an-cta--lp_hero_secondary","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--primary)","width":"2px"},"typography":{"fontWeight":"600","fontSize":"1rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2rem","right":"2rem"}},"color":{"text":"var(--wp--preset--color--primary)"}}} -->
+		<div class="wp-block-button is-style-outline an-cta an-cta--lp_hero_secondary">
 			<a class="wp-block-button__link wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--primary);font-weight:600;font-size:1rem;padding-top:1rem;padding-bottom:1rem;padding-left:2rem;padding-right:2rem;color:var(--wp--preset--color--primary)"><?php esc_html_e( '導入事例を見る', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
