@@ -198,6 +198,11 @@ Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-log
   margin-block: var(--wp--preset--spacing--30);
 }
 
+/* 検索ボタンのラベル折返し防止（モバイル狭幅で「検索」が2行になるのを抑止） */
+.an-search-form .wp-block-search__button {
+  white-space: nowrap;
+}
+
 /* ---- 404 固有レイアウト ---- */
 
 /* 404 ヒーローエリア: 中央寄せ + 最大幅制限 */
