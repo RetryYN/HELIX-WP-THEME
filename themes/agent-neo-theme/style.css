@@ -203,6 +203,17 @@ Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-log
   white-space: nowrap;
 }
 
+/* ---- コメントフォーム入力欄（dark variation 追従）---- */
+/* 既定の白入力欄は dark で浮くため、palette 参照で light/dark 両対応にする */
+.an-entry-comments :where( input[type="text"], input[type="email"], input[type="url"], textarea ) {
+  background-color: var(--wp--preset--color--secondary);
+  color: var(--wp--preset--color--foreground);
+  border: 1px solid var(--wp--preset--color--muted);
+}
+.an-entry-comments :where( input[type="text"], input[type="email"], input[type="url"], textarea )::placeholder {
+  color: var(--wp--preset--color--muted);
+}
+
 /* ---- 404 固有レイアウト ---- */
 
 /* 404 ヒーローエリア: 中央寄せ + 最大幅制限 */

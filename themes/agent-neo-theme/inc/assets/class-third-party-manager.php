@@ -197,7 +197,7 @@ final class Agent_Neo_Third_Party_Manager {
 			bottom: 0;
 			left: 0;
 			right: 0;
-			background-color: var(--wp--preset--color--base, #ffffff);
+			background-color: var(--wp--preset--color--background, #ffffff);
 			border-top: 2px solid var(--wp--preset--color--accent-aa, var(--wp--preset--color--accent, #ff6b00));
 			box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
 			z-index: 9999;
@@ -215,7 +215,7 @@ final class Agent_Neo_Third_Party_Manager {
 			flex: 1 1 280px;
 			margin: 0;
 			font-size: 0.875rem;
-			color: var(--wp--preset--color--contrast, #1a1a1a);
+			color: var(--wp--preset--color--foreground, #1a1a1a);
 			line-height: 1.6;
 		}
 		.agent-neo-consent-banner__actions {
@@ -242,12 +242,12 @@ final class Agent_Neo_Third_Party_Manager {
 		}
 		.agent-neo-consent-btn--accept {
 			background-color: var(--wp--preset--color--accent-aa, var(--wp--preset--color--accent, #cc4400));
-			color: #ffffff;
+			color: var(--wp--preset--color--background, #ffffff);
 		}
 		.agent-neo-consent-btn--deny {
 			background-color: transparent;
-			color: var(--wp--preset--color--contrast, #1a1a1a);
-			border-color: var(--wp--preset--color--contrast-2, #6b6b6b);
+			color: var(--wp--preset--color--foreground, #1a1a1a);
+			border-color: var(--wp--preset--color--muted, #6b6b6b);
 		}
 		@media (max-width: 600px) {
 			.agent-neo-consent-banner__inner {
