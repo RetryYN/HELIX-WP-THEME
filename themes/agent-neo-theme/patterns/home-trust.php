@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="wp-block-group" style="padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--20);text-align:center">
 
 				<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(--wp--preset--font-size--xxx-large)","fontWeight":"800"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-				<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--xxx-large);font-weight:800;color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( '構造化データ', 'agent-neo' ); ?></p>
+				<p class="has-text-align-center" style="font-size:var(--wp--preset--font-size--xxx-large);font-weight:800;color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'SEO標準', 'agent-neo' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"align":"center","fontSize":"small","style":{"color":{"text":"var(--wp--preset--color--muted)"}}} -->
