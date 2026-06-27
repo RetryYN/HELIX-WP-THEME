@@ -244,10 +244,17 @@ final class Agent_Neo_Structured_Data {
 		}
 
 		// sameAs: ユーザープロフィール URL（user_url）があれば追加（IM-5）。
-		$same_as    = array();
+		// schema.org sameAs は「外部の同一エンティティ参照」の意であるため、
+		// 自サイト同一ドメインの URL は除外する。
+		$same_as        = array();
 		$author_website = esc_url_raw( get_the_author_meta( 'user_url', $author_id ) );
 		if ( '' !== $author_website ) {
-			$same_as[] = $author_website;
+			$home_host    = wp_parse_url( home_url( '/' ), PHP_URL_HOST );
+			$author_host  = wp_parse_url( $author_website, PHP_URL_HOST );
+			// ホストが異なる（外部ドメイン）場合のみ sameAs に追加。
+			if ( is_string( $home_host ) && is_string( $author_host ) && $home_host !== $author_host ) {
+				$same_as[] = $author_website;
+			}
 		}
 		if ( ! empty( $same_as ) ) {
 			$person['sameAs'] = $same_as;
@@ -349,14 +356,20 @@ final class Agent_Neo_Structured_Data {
 		$title       = sanitize_text_field( get_the_title( $post_id ) );
 		$description = $this->get_post_description( $post );
 
-		return array(
-			'@type'       => 'WebPage',
-			'@id'         => $post_url . '#webpage',
-			'name'        => $title,
-			'url'         => $post_url,
-			'description' => $description,
-			'isPartOf'    => array( '@id' => $site_url . '#website' ),
+		$node = array(
+			'@type'    => 'WebPage',
+			'@id'      => $post_url . '#webpage',
+			'name'     => $title,
+			'url'      => $post_url,
+			'isPartOf' => array( '@id' => $site_url . '#website' ),
 		);
+
+		// description が空の場合はキーを出力しない（空文字列 JSON は仕様違反）。
+		if ( '' !== $description ) {
+			$node['description'] = $description;
+		}
+
+		return $node;
 	}
 
 	/**
@@ -412,8 +425,12 @@ final class Agent_Neo_Structured_Data {
 			'item'     => esc_url_raw( (string) get_permalink( $post_id ) ),
 		);
 
+		// @id を付与して @graph 内ノード参照を可能にする（ENH-1）。
+		$current_url = esc_url_raw( (string) get_permalink( $post_id ) );
+
 		return array(
 			'@type'           => 'BreadcrumbList',
+			'@id'             => $current_url . '#breadcrumb',
 			'itemListElement' => $items,
 		);
 	}

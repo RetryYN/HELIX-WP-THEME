@@ -547,4 +547,262 @@ class TC_ThemeSeoTest extends TestCase {
 		// author @id に #author が含まれること（Person ノード参照）。
 		$this->assertStringContainsString( '#author', $result['author']['@id'], 'author @id に #author が含まれる' );
 	}
+
+	// ---------------------------------------------------------------
+	// TC-SEO-014: FIX-1 og:locale を ja_JP 形式に変換
+	// ---------------------------------------------------------------
+
+	/**
+	 * get_locale() が "ja" を返す場合、og:locale が "ja_JP" になること。
+	 */
+	public function test_seo_014_og_locale_ja_to_ja_jp(): void {
+		Functions\when( 'get_locale' )->justReturn( 'ja' );
+
+		$result = $this->call_hm_method( 'get_og_locale' );
+
+		$this->assertSame( 'ja_JP', $result, '"ja" ロケールは "ja_JP" に変換される' );
+	}
+
+	/**
+	 * get_locale() が "en" を返す場合、og:locale が "en_US" になること。
+	 */
+	public function test_seo_014b_og_locale_en_to_en_us(): void {
+		Functions\when( 'get_locale' )->justReturn( 'en' );
+
+		$result = $this->call_hm_method( 'get_og_locale' );
+
+		$this->assertSame( 'en_US', $result, '"en" ロケールは "en_US" に変換される' );
+	}
+
+	/**
+	 * get_locale() がすでに "ja_JP" 形式を返す場合、そのまま返すこと。
+	 */
+	public function test_seo_014c_og_locale_already_correct(): void {
+		Functions\when( 'get_locale' )->justReturn( 'ja_JP' );
+
+		$result = $this->call_hm_method( 'get_og_locale' );
+
+		$this->assertSame( 'ja_JP', $result, '"ja_JP" はそのまま返す' );
+	}
+
+	/**
+	 * get_locale() がマップにない言語コードを返す場合、そのまま返すこと。
+	 */
+	public function test_seo_014d_og_locale_unknown_lang_passthrough(): void {
+		Functions\when( 'get_locale' )->justReturn( 'fr' );
+
+		$result = $this->call_hm_method( 'get_og_locale' );
+
+		// マップにない言語コードは機械的な xx_XX 変換をしない。
+		$this->assertSame( 'fr', $result, 'マップにない言語コードはそのまま返す' );
+	}
+
+	// ---------------------------------------------------------------
+	// TC-SEO-015: FIX-2 Person.sameAs から自サイト同一ドメイン URL を除外
+	// ---------------------------------------------------------------
+
+	/**
+	 * user_url が自サイトドメインの場合、Person.sameAs に含まれないこと。
+	 */
+	public function test_seo_015_person_same_as_excludes_own_domain(): void {
+		$post                    = new \WP_Post();
+		$post->ID                = 1;
+		$post->post_author       = 1;
+		$post->post_content      = '記事本文';
+		$post->post_type         = 'post';
+		$post->post_date_gmt     = '2026-06-27 00:00:00';
+		$post->post_modified_gmt = '2026-06-27 00:00:00';
+
+		Functions\when( 'get_the_ID' )->justReturn( 1 );
+		Functions\when( 'get_post' )->justReturn( $post );
+		Functions\when( 'get_the_author_meta' )->alias(
+			function ( string $field, int $id ): string {
+				return match ( $field ) {
+					'display_name'  => 'テスト著者',
+					'user_nicename' => 'test-author',
+					'login'         => 'testauthor',
+					// user_url が自サイトドメイン（localhost:8086）。
+					'user_url'      => 'http://localhost:8086',
+					'description'   => '',
+					default         => '',
+				};
+			}
+		);
+		Functions\when( 'get_author_posts_url' )->justReturn( 'http://localhost:8086/author/testauthor/' );
+		Functions\when( 'get_user_meta' )->justReturn( '' );
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'esc_url_raw' )->returnArg();
+		// home_url が自サイト（localhost:8086）を返す。
+		Functions\when( 'home_url' )->justReturn( 'http://localhost:8086/' );
+		Functions\when( 'wp_parse_url' )->alias(
+			function ( string $url, int $component = -1 ) {
+				return parse_url( $url, $component );
+			}
+		);
+		Functions\when( 'get_userdata' )->justReturn( (object) array( 'ID' => 1 ) );
+		Functions\when( 'get_users' )->justReturn( array( 1 ) );
+
+		$result = $this->call_sd_method( 'build_author_person' );
+
+		// 自サイト URL は sameAs に入らない（キー自体が存在しないか空配列）。
+		if ( isset( $result['sameAs'] ) ) {
+			$this->assertNotContains(
+				'http://localhost:8086',
+				$result['sameAs'],
+				'自サイト URL は sameAs に含まれない'
+			);
+		} else {
+			$this->assertArrayNotHasKey( 'sameAs', $result, '自サイト URL のみの場合 sameAs キーが存在しない' );
+		}
+	}
+
+	/**
+	 * user_url が外部ドメインの場合、Person.sameAs に含まれること。
+	 */
+	public function test_seo_015b_person_same_as_includes_external_domain(): void {
+		$post                    = new \WP_Post();
+		$post->ID                = 2;
+		$post->post_author       = 1;
+		$post->post_content      = '記事本文';
+		$post->post_type         = 'post';
+		$post->post_date_gmt     = '2026-06-27 00:00:00';
+		$post->post_modified_gmt = '2026-06-27 00:00:00';
+
+		Functions\when( 'get_the_ID' )->justReturn( 2 );
+		Functions\when( 'get_post' )->justReturn( $post );
+		Functions\when( 'get_the_author_meta' )->alias(
+			function ( string $field, int $id ): string {
+				return match ( $field ) {
+					'display_name'  => '外部著者',
+					'user_nicename' => 'external-author',
+					'login'         => 'externalauthor',
+					// user_url が外部ドメイン（twitter.com 等）。
+					'user_url'      => 'https://twitter.com/example_author',
+					'description'   => '',
+					default         => '',
+				};
+			}
+		);
+		Functions\when( 'get_author_posts_url' )->justReturn( 'http://localhost:8086/author/externalauthor/' );
+		Functions\when( 'get_user_meta' )->justReturn( '' );
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'esc_url_raw' )->returnArg();
+		// home_url は自サイト（localhost:8086）。
+		Functions\when( 'home_url' )->justReturn( 'http://localhost:8086/' );
+		Functions\when( 'wp_parse_url' )->alias(
+			function ( string $url, int $component = -1 ) {
+				return parse_url( $url, $component );
+			}
+		);
+		Functions\when( 'get_userdata' )->justReturn( (object) array( 'ID' => 1 ) );
+		Functions\when( 'get_users' )->justReturn( array( 1 ) );
+
+		$result = $this->call_sd_method( 'build_author_person' );
+
+		// 外部 URL は sameAs に含まれる。
+		$this->assertArrayHasKey( 'sameAs', $result, '外部ドメインのとき sameAs キーが存在する' );
+		$this->assertContains(
+			'https://twitter.com/example_author',
+			$result['sameAs'],
+			'外部ドメイン URL が sameAs に含まれる'
+		);
+	}
+
+	// ---------------------------------------------------------------
+	// TC-SEO-016: FIX-3 WebPage.description が空なら省略
+	// ---------------------------------------------------------------
+
+	/**
+	 * get_post_description が空文字を返す場合、WebPage に description キーが含まれないこと。
+	 */
+	public function test_seo_016_web_page_no_empty_description(): void {
+		$post                = new \WP_Post();
+		$post->ID            = 102;
+		$post->post_author   = 1;
+		// post_content が空（LP 等でコンテンツなし）。
+		$post->post_content  = '';
+		$post->post_type     = 'page';
+
+		Functions\when( 'get_the_ID' )->justReturn( 102 );
+		Functions\when( 'get_post' )->justReturn( $post );
+		Functions\when( 'get_the_title' )->justReturn( 'LP ページ' );
+		Functions\when( 'get_permalink' )->justReturn( 'http://localhost:8086/lp/' );
+		Functions\when( 'home_url' )->justReturn( 'http://localhost:8086/' );
+		// get_the_excerpt が空 → wp_trim_words も空 → description は空文字になる。
+		Functions\when( 'get_the_excerpt' )->justReturn( '' );
+		Functions\when( 'wp_trim_words' )->justReturn( '' );
+		Functions\when( 'wp_strip_all_tags' )->justReturn( '' );
+		Functions\when( 'html_entity_decode' )->returnArg();
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'esc_url_raw' )->returnArg();
+
+		$result = $this->call_sd_method( 'build_web_page' );
+
+		// description が空文字のとき、キー自体を出力しない。
+		$this->assertArrayNotHasKey( 'description', $result, 'description が空のとき WebPage に description キーが含まれない' );
+	}
+
+	/**
+	 * get_post_description が非空を返す場合、WebPage に description キーが含まれること。
+	 */
+	public function test_seo_016b_web_page_has_description_when_non_empty(): void {
+		$post                = new \WP_Post();
+		$post->ID            = 103;
+		$post->post_author   = 1;
+		$post->post_content  = 'LP の詳細説明文';
+		$post->post_type     = 'page';
+
+		Functions\when( 'get_the_ID' )->justReturn( 103 );
+		Functions\when( 'get_post' )->justReturn( $post );
+		Functions\when( 'get_the_title' )->justReturn( 'LP ページ有り説明' );
+		Functions\when( 'get_permalink' )->justReturn( 'http://localhost:8086/lp-with-desc/' );
+		Functions\when( 'home_url' )->justReturn( 'http://localhost:8086/' );
+		// 抜粋ありで description が非空になる。
+		Functions\when( 'get_the_excerpt' )->justReturn( 'LP の詳細説明文' );
+		Functions\when( 'wp_strip_all_tags' )->returnArg();
+		Functions\when( 'html_entity_decode' )->returnArg();
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'esc_url_raw' )->returnArg();
+
+		$result = $this->call_sd_method( 'build_web_page' );
+
+		// description が非空のとき、キーが存在し正しい値を持つ。
+		$this->assertArrayHasKey( 'description', $result, '非空 description のとき WebPage に description キーが含まれる' );
+		$this->assertSame( 'LP の詳細説明文', $result['description'], 'description の値が正しい' );
+	}
+
+	// ---------------------------------------------------------------
+	// TC-SEO-017: ENH-1 BreadcrumbList に @id 付与
+	// ---------------------------------------------------------------
+
+	/**
+	 * build_breadcrumb_list() が @id を持つこと。
+	 */
+	public function test_seo_017_breadcrumb_list_has_id(): void {
+		$post           = new \WP_Post();
+		$post->ID       = 256;
+		$post->post_author  = 1;
+		$post->post_content = '記事本文';
+		$post->post_type    = 'post';
+
+		Functions\when( 'get_the_ID' )->justReturn( 256 );
+		Functions\when( 'get_permalink' )->justReturn( 'http://localhost:8086/fse-checklist/' );
+		Functions\when( 'home_url' )->justReturn( 'http://localhost:8086/' );
+		Functions\when( 'is_singular' )->alias(
+			function ( $type = null ) {
+				return 'post' === $type || null === $type;
+			}
+		);
+		Functions\when( 'get_the_category' )->justReturn( array() );
+		Functions\when( 'get_the_title' )->justReturn( 'FSE テーマ移行チェックリスト' );
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'esc_url_raw' )->returnArg();
+		Functions\when( '__' )->justReturn( 'ホーム' );
+
+		$result = $this->call_sd_method( 'build_breadcrumb_list' );
+
+		$this->assertArrayHasKey( '@id', $result, 'BreadcrumbList に @id が存在する' );
+		$this->assertStringContainsString( '#breadcrumb', $result['@id'], '@id に #breadcrumb が含まれる' );
+		$this->assertStringContainsString( 'fse-checklist', $result['@id'], '@id に投稿 URL が含まれる' );
+	}
 }

@@ -384,19 +384,44 @@ final class Agent_Neo_Head_Meta {
 	}
 
 	/**
-	 * WP ロケールを OGP locale 形式（ja_JP 等）に変換して返す。
+	 * WP ロケールを OGP locale 形式（language_TERRITORY 例: ja_JP）に変換して返す。
 	 *
-	 * @return string
+	 * OGP 仕様は language_TERRITORY 形式を要求する。
+	 * get_locale() が "ja" のような 2 文字言語コードのみを返す場合は
+	 * 言語→ロケールマップで地域を補完する。
+	 * マップにない言語コードはそのまま返す（機械的な xx_XX 生成はしない）。
+	 * すでに xx_XX / xx_XXX 形式ならそのまま返す。
+	 * 不正な文字列の場合は ja_JP にフォールバック。
+	 *
+	 * @return string OGP locale 値（例: ja_JP）。
 	 */
 	private function get_og_locale(): string {
 		$locale = get_locale();
 
-		// WP ロケールはすでに ja_JP 形式なのでそのまま返す。
-		// 不正な文字があれば ja_JP にフォールバック。
-		if ( preg_match( '/\A[a-zA-Z]{2,3}(_[a-zA-Z]{2,3})?\z/', $locale ) ) {
+		// すでに language_TERRITORY 形式（例: ja_JP、zh_CN）なら検証してそのまま返す。
+		if ( preg_match( '/\A[a-zA-Z]{2,3}_[a-zA-Z]{2,3}\z/', $locale ) ) {
 			return $locale;
 		}
 
+		// 2〜3 文字の言語コードのみの場合、マップで地域補完を試みる。
+		if ( preg_match( '/\A[a-zA-Z]{2,3}\z/', $locale ) ) {
+			$lang_to_locale = array(
+				'ja' => 'ja_JP',
+				'en' => 'en_US',
+				'zh' => 'zh_CN',
+				'ko' => 'ko_KR',
+			);
+
+			$lang = strtolower( $locale );
+			if ( isset( $lang_to_locale[ $lang ] ) ) {
+				return $lang_to_locale[ $lang ];
+			}
+
+			// マップにない言語コードはそのまま返す（機械的な大文字変換はしない）。
+			return $locale;
+		}
+
+		// 不正な文字列は ja_JP にフォールバック。
 		return 'ja_JP';
 	}
 }
