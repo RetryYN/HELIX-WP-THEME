@@ -66,6 +66,10 @@ final class Agent_Neo_Core {
 		$container->agent_action_cpt()->register();
 		$container->register_module( 'agent-action-cpt' );
 
+		$design_tokens_presenter = new Agent_Neo_Core_Design_Tokens_Presenter();
+		$design_tokens_presenter->register();
+		$container->register_module( 'design-tokens-presenter' );
+
 		do_action( 'agent_neo_core_register_rest', $container );
 
 		$this->catalog_update_producer->register();
