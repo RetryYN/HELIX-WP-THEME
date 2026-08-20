@@ -9,6 +9,14 @@
 > **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
 
+## 統合層規律の継承
+
+本リポ（HELIX-WP-THEME、旧 AGENT-NEO）は HELIX-MARKETING-HARNESS（統合層）の
+`base/wp-theme/` submodule として結合されており、**統合層 CLAUDE.md の
+「傘下リポ共通規律」を継承する**（PO 承認前の外部 write 禁止／credential 非格納／
+PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作は PO 明示判断）。
+本ファイルの以降の節はリポ固有の追記であり、共通規律と矛盾する場合は統合層が優先。
+
 ## 概要
 
 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
