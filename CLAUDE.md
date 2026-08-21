@@ -80,19 +80,19 @@ automation SEO（/opt/seo-tool）
 - **正本**: automation SEO `D-PLUGIN-CONTRACT §17` のミラー。独自定義しない
 - 契約変更時は automation SEO 側で先に D-PLUGIN-CONTRACT を更新し、AGENT NEO 側はそれに追従する
 
-## 現在地
+## 参照スナップショットの状態
+
+> 本リポは HELIX-MARKETING-HARNESS の `base/wp-theme/` に置かれた開発ベースであり、
+> `media/wp/` の現行プロジェクト進捗ではない。formal state は `.helix/phase.yaml`、
+> 後続の検証実績は `docs/L6-integration-verification.md` を参照する。
+> 両者に差がある場合は差を明示し、コミットメッセージだけで gate を更新済みと判断しない。
 
 | 項目 | 状態 |
 |------|------|
-| Drive | agent |
-| Size | L |
-| 現在フェーズ | **L4（実装）** |
-| G0.5 / G1 / G2 / G3 | passed |
-| **G4（実装凍結）** | **passed 2026-06-22** |
-| G5（デザイン凍結）/ G6（統合検証） | 次の候補 |
-| API coverage | 56 / 57（agent-neo/v1） |
-| テスト | unit + security / integration / E2E 構築済（G4 PASS 101 件全緑） |
-| carry | `docs/reviews/` の gap-register / carry-register で追跡 |
+| 用途 | 開発ベース / read-only 参照を既定とする |
+| formal state | `.helix/phase.yaml` |
+| 後続検証記録 | `docs/L6-integration-verification.md` |
+| carry | `docs/reviews/` の gap-register / carry-register |
 
 ## コーディング規約
 
