@@ -77,6 +77,7 @@
 | ブロック語彙 | 中間 JSON の意図語彙（point/faq/steps/balloon 等）に対応する装飾ブロック実装（現状 3 種） |
 | 目次 | レンダラ生成+`helix/toc` ブロック。見出し単位 on/off は中間 JSON の `toc:false` |
 | MCP トランスポート PoC | XServer 共用サーバーで リモート MCP（streamable HTTP）が成立するか |
+| **WP 7.1 Abilities API 対応** | コア標準の能力登録機構（7.1「Mary Lou」2026-08-19）へ agent-neo の操作群を登録し、コア標準・公式 MCP アダプタ系譜へ接続する（独自 REST は互換維持）。エディタ iframe 化への検証コード追従、theme.json ブレークポイント（レスポンシブのトークン制御化）も同時に取り込む |
 | クローラー計測 | 2 段計測（フック+ログ解析）の実装とダッシュボード |
 | L7 残課題 | リリース zip workflow・SBOM ゲート CI・セキュリティ本番前確認（既存残課題を製品化要件へ昇格） |
 
