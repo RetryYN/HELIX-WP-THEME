@@ -1,0 +1,24 @@
+# THEME-INV-05: デザイントークンの正本と投影方式を決める
+
+labels: investigation, design-tokens, priority:medium
+depends: なし
+
+## 背景（実測）
+| テーマ | トークン数 | 保持方式 |
+|---|---|---|
+| JIN:R | CSS 変数 **151** | カスタマイザ値（`jinr_*` 個別オプション 1,225）→ CSS 変数。`--cv-button` `--fukidashi-*` `--compare-*` `--header-style-*` など**部品の見た目そのものが変数** |
+| SWELL | CSS 変数 **155** | 単一配列 `swell_options`（既定 540 キー）→ `classes/Style/`(11 ファイル) が **PHP で動的に CSS 生成** |
+| agent-neo | palette 8 + fontSizes 6 + spacingScale + custom(fontWeight/lineHeight) | **theme.json v3 静的宣言** + `styles/{light,dark}.json` |
+
+粒度が根本的に違う。両テーマは「部品ごとの見た目」を変数にしており、agent-neo は「意味的トークン」を宣言している。
+
+## 調査項目
+1. 151 / 155 の変数を **意味的トークン（色・余白・タイポ・角丸・影）** と **部品固有スタイル**に仕分ける
+2. 意味的トークンが theme.json の語彙で表現可能かを検証（不足カテゴリの洗い出し）
+3. 部品固有スタイルは中間 JSON レンダラ側の責務か theme.json の `styles.blocks` かを判断
+4. 「JSON デザイントークン → theme.json 投影」の既存実証（HELIX Neo）との接続点を確認
+
+## 完了条件
+- [ ] 306 変数の仕分け表（意味的 / 部品固有 / 廃棄）が存在する
+- [ ] theme.json で表現できない意味的トークンが列挙されている
+- [ ] トークン正本を JSON 一方向投影にできるか否かの結論が出ている

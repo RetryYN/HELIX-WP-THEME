@@ -1,0 +1,108 @@
+===== PROBE JIN-R =====
+-- add_shortcode --
+jinr_button jinr_fukidashi jinr_heading_iconbox jinr_profile jinr_simple_iconbox message 
+-- register_post_type --
+
+-- register_taxonomy --
+
+-- register_sidebar count --
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/widgets.php:1
+-- sidebar ids --
+footer-widget hamburger-widget new_item_in_admin_bar post-bottom-widget post-end-widget post-start-widget post-top-widget relatedpost-bottom-widget sidebar sidebar-tracking toppage-widget カテゴリーID 
+-- register_nav_menus --
+'footer-menu'    => 'glonavi'        => 'hamburger'      => 
+-- add_theme_support --
+automatic-feed-links menus post-thumbnails title-tag 
+-- register_block_type (php) --
+
+-- block.json name fields --
+
+-- registerBlockType (js/jsx) --
+
+-- register_block_style --
+
+-- register_rest_route --
+
+-- own do_action --
+3
+-- own apply_filters --
+1
+-- customizer add_setting count --
+18
+-- get_option / theme_mod keys (top) --
+     27 page_on_front
+      9 jinr_choise_category_
+      5 preset_data
+      5 jinr_paidpost_secret_key
+      5 jinr_aff
+      4 posts_per_page
+      4 jinr_top_next_noindex
+      4 jinr_tag_noindex
+      4 jinr_tag_next_noindex
+      4 jinr_separation_title
+      4 jinr_paidpost_subscription_check
+      4 jinr_image_page_noindex
+      4 jinr_h2_sp_display
+      4 jinr_finish_sp_display_02
+      4 jinr_finish_sp_display_01
+===== PROBE SWELL =====
+-- add_shortcode --
+ad ad_tag blog_parts custom_banner full_wide_content html icon only_login only_logout pcbr post_link post_list pr_notation review_stars spbr speech_balloon swell_toc ふきだし アイコン カスタムバナー ブログパーツ 
+-- register_post_type --
+
+-- register_taxonomy --
+
+-- register_sidebar count --
+/home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/widget.php:20
+-- sidebar ids --
+ID after_related before_footer before_related customize fix_sidebar footer_box1 footer_box2 footer_box3 footer_sp front_bottom front_top head_box lp_content_width page_bottom page_top publisher_logo_url sidebar-1 sidebar_sp sidebar_top single_bottom single_cta single_top sp_menu_bottom swell_meta_related_posts swell_meta_subttl swell_meta_thumb_caption swell_meta_youtube swell_settings swell_settings__clear_cache swell_settings__clear_card_cache swell_settings_activate swell_settings_editor_menu swell_settings_forum_link swell_settings_icon_demo swell_settings_manual_link swell_settings_menu 
+-- register_nav_menus --
+'fix_bottom_menu' => 'footer_menu'     => 'header_menu'     => 'nav_sp_menu'     => 'pickup_banner'   => 'sp_head_menu'    => 
+-- add_theme_support --
+align-wide automatic-feed-links custom-line-height custom-units editor-color-palette html5 menus post-thumbnails responsive-embeds title-tag widgets 
+-- register_block_type (php) --
+
+-- block.json name fields --
+core/heading core/paragraph loos/ab-test loos/ab-test-a loos/ab-test-b loos/accordion loos/accordion-item loos/ad-tag loos/balloon loos/banner-link loos/blog-parts loos/box-menu loos/box-menu-item loos/button loos/cap-block loos/column loos/columns loos/dd loos/dl loos/dt loos/faq loos/faq-item loos/full-wide loos/link-list loos/link-list-item loos/post-link loos/post-list loos/restricted-area loos/review loos/rss loos/step loos/step-item loos/tab loos/tab-body 
+-- registerBlockType (js/jsx) --
+
+-- register_block_style --
+
+-- register_rest_route --
+register_rest_route( 'wp/v2', '/swell-block-settings'
+register_rest_route( 'wp/v2', '/swell-ct-ad-data'
+register_rest_route( 'wp/v2', '/swell-ct-btn-data'
+register_rest_route( 'wp/v2', '/swell-ct-pv'
+register_rest_route( 'wp/v2', '/swell-do-update-action'
+register_rest_route( 'wp/v2', '/swell-lazyload-contents'
+register_rest_route( 'wp/v2', '/swell-reset-ad-data'
+register_rest_route( 'wp/v2', '/swell-reset-cache'
+register_rest_route( 'wp/v2', '/swell-reset-settings'
+register_rest_route( 'wp/v2', '/swell-term-list'
+register_rest_route('wp/v2', '/swell-balloon'
+register_rest_route('wp/v2', '/swell-balloon-copy'
+register_rest_route('wp/v2', '/swell-balloon-recover'
+register_rest_route('wp/v2', '/swell-balloon-sort'
+
+-- own do_action --
+5
+-- own apply_filters --
+79
+-- customizer add_setting count --
+12
+-- get_option / theme_mod keys (top) --
+      4 date_format
+      2 sweller_email
+      2 swell_block_settings
+      2 page_on_front
+      2 page_for_posts
+      2 blogname
+      2 blogdescription
+      1 widget_swell_prof_widget
+      1 use_pjax
+      1 use_json_ld
+      1 use_delay_js
+      1 swell_version
+      1 swell_free_version
+      1 sticky_posts
+      1 sidebars_widgets

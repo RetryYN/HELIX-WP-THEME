@@ -1,0 +1,302 @@
+===== JINR register_block_type block (functions.php 720-1000) =====
+		'profile_image'       => jinr__profile_image_url(),
+		'profile_name'       => jinr__profile_name(),
+		'profile_job'       => jinr__profile_job(),
+		'profile_introduction'       => jinr__profile_introduction(),
+		'profile_button_link'       => jinr__profile_button_link(),
+		'profile_label_text'       => jinr__profile_label_text(),
+		'profile_button_sns_display'       => jinr__sns_follow_display_proile(),
+		'profile_sns_color'       => jinr__profile_sns_color(),
+		'sns_follow_twitter'       => jinr__tw_url(),
+		'sns_follow_facebook'       => jinr__fb_url(),
+		'sns_follow_youtube'       => jinr__youtube_url(),
+		'sns_follow_instagram'       => jinr__insta_url(),
+		'sns_follow_line'       => jinr__line_url(),
+		'contact_url'       => jinr__contact_url(),
+		'fukidashi_panel_link' => $fukidashi_panel_link,
+		'iconbox_panel_link' => $iconbox_panel_link,
+		'articleColumn' => jinr__post_column_style(),
+		'thumbnailOriginalUsed' => jinr__thumbnail_original_used(),
+		'permalink_structure' => $permalink_structure,
+		'page_thanks_id' => $page_thanks_id,
+		'max_pages_array' => $max_pages_array,
+	);
+	wp_localize_script('jinr-blocks-script', 'JINR_VAR', $jinr_var);
+	$style_css = '/block.css';
+	wp_register_style(
+		'jinr-blocks-editor-style',
+		get_template_directory_uri() . $style_css,
+		array(),
+		filemtime("$dir/$style_css")
+	);
+
+	register_block_type(
+		'jinr-blocks/postcard',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_post_card_dynamic_render_callback',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/postlist',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_post_list_dynamic_render_callback',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/paidpost',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_paidpost_dynamic_render_callback',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/designtitle',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/slider',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_slider_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/button',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_button_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/syntax-hl',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/simplebox',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/richmenu',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/richmenuchild',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/designborder',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/fukidashi',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/iconbox',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/fullwidth',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/blogcard',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_blog_card_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/category',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+			'render_callback' => 'jinr_category_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/accordion',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/accordionchild',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/compare',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/comparechild',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/tab',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'jinr-blocks/tabchild',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/timeline',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/timelinechild',
+		array(
+			'editor_script'   => 'jinr-blocks-script',
+			'editor_style'    => 'jinr-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'jinr-blocks/background',
+		array(
+			'editor_script' => 'jinr-blocks-script',
+			'editor_style'  => 'jinr-blocks-editor-style',
+		)
+	);
+
+
+	register_block_style(
+		'core/list',
+		array(
+			'name' => 'jinr-checkmark',
+			'label' => __('チェック１'),
+			'style_handle' => 'jinr-checkmark',
+		)
+	);
+
+	register_block_style(
+		'core/list',
+		array(
+			'name' => 'jinr-checkmark-square',
+			'label' => __('チェック２'),
+			'style_handle' => 'jinr-checkmark-square',
+		)
+	);
+}
+add_action('init', 'create_block_jinr_blocks_block_init');
+
+//管理画面でoption値保存時にtipsを表示させる
+function jinr_save_settings_callback()
+{
+	if (isset($_GET['settings-updated']) && $_GET['settings-updated']) {
+		$_SESSION['settings_updated'] = true;
+		jinr_show_saved_message();
+	} elseif (isset($_SESSION['settings_updated'])) {
+		unset($_SESSION['settings_updated']);
+	}
+}
+
+function jinr_show_saved_message()
+{
+	if (isset($_SESSION['settings_updated']) && $_SESSION['settings_updated']) {
+?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php _e('設定を保存しました。', 'my-text-domain'); ?></p>
+		</div>
+<?php
+	}
+}
+
+/**
+ * 記事内でページネーションを表示する際、通常ではページネーションのリンク先がページのURLになるが、
+ * /pages/2/などのURLになるようにする
+ */
+add_filter('redirect_canonical', 'jinr_disable_redirect_canonical');
+function jinr_disable_redirect_canonical($redirect_url)
+{
+	$redirect_url = false;
+	return $redirect_url;
+}
+
+function jinr_init_session_start()
+{
+	if (session_status() !== PHP_SESSION_ACTIVE) {
+		session_start();
+		session_regenerate_id();
+	}
+}
+add_action('template_redirect', 'jinr_init_session_start');
+
+//テーマアップデート
+require 'theme-update-checker.php';
+$example_update_checker = new ThemeUpdateChecker(
+	'jinr',
+	'https://jinr-update.cps-wp-dev.com/jinr/update.json'
+);
+===== SWELL post_type.php =====

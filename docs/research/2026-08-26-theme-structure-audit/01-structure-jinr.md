@@ -1,0 +1,79 @@
+# 構造調査 A — JIN:R（it-shukatu-college.com）
+
+- 調査日: 2026-08-26 / 手段: XServer SSH 読み取り専用（`ssh -p 10022 xs887843@xs887843.xsrv.jp`）+ WP-CLI 読み取りクエリ
+- 対象: `~/it-shukatu-college.com/public_html/wp-content/themes/jinr`（親）/ `jinr-child`（子）
+- テーマ: JIN:R 1.4.6 / CROOVER inc. / Requires PHP 7.0 / WP core 7.0.2
+- 書き込み: なし（find・grep・cat・ls・SELECT のみ）
+
+## 1. 物理構造
+
+| 項目 | 値 |
+|---|---|
+| サイズ / ファイル数 | 22MB / 679 |
+| 拡張子内訳 | php 374・png 122・scss 59・webp 35・json 29・js 22・css 13 |
+| ルート直下 | 古典テンプレート階層一式（`index/single/page/archive/category/search/404/attachment/comments/header/footer/sidebar/searchform`）+ `template-full-width.php` / `template-thanks-page.php` / `ad-finish.php` / `ad-related.php` |
+| 主要ディレクトリ | `include/`(179、うち `customizer/` 162)・`lib/`(80)・`scss/`(63)・`object/`(22)・`vendor/`(298、うち `stripe/` 286)・`editor/build/`(3) |
+| theme.json | **無し**（クラシックテーマ） |
+| 子テーマ | `jinr-child` は 6 ファイル・親 style.css を enqueue するだけ（実質カスタム無し） |
+
+## 2. パーツ機構
+
+### 2.1 Gutenberg ブロック（25 種・名前空間 `jinr-blocks/`）
+`functions.php` 内で **PHP から一括 `register_block_type`**。全ブロックが単一の
+`editor_script = jinr-blocks-script`（`editor/build/index.js`）と単一 `editor_style`（`block.css`）を共有する。
+
+- **動的（`render_callback` 有り）**: postcard / postlist / paidpost / slider / button / blogcard / category ほか
+- **静的（save 出力）**: designtitle / syntax-hl / simplebox / richmenu / richmenuchild / designborder / fukidashi / iconbox / fullwidth / accordion(+child) / compare(+child) / timeline(+child) / tab(+child) / background / profile
+- ブロックへ渡す環境値は `wp_localize_script` の `JINR_VAR`（プロフィール・SNS URL・パーマリンク構造・記事カラム等）に集約 → **ブロックの描画がテーマ設定値に強結合**
+
+### 2.2 ショートコード（6 種）
+`jinr_button` / `jinr_fukidashi` / `jinr_heading_iconbox` / `jinr_profile` / `jinr_simple_iconbox` / `message`
+
+### 2.3 ウィジェットエリア（11）
+`sidebar` / `sidebar-tracking`（追尾）/ `post-top-widget` / `post-start-widget` / `post-end-widget` / `post-bottom-widget` / `relatedpost-bottom-widget` / `toppage-widget` / `footer-widget` / `hamburger-widget` ほか
+→ **記事内の広告・CV 挿入位置がウィジェットエリアとして仕様化されている**
+
+### 2.4 メニュー（3）
+`glonavi` / `hamburger` / `footer-menu`
+
+### 2.5 表示部品（`object/` 22 ファイル）
+breadcrumb / cvbutton / hamburger / header-layout-left / header-parts / informationbar / logo /
+main-visual（stillimage・image-slider・movie・post-slider・post-slider-jin）/ new-post-list /
+nextpage / paidpost-popup / related-post / sidepr / sns-share(+selected) / spmenu / time
+
+## 3. 設定・データの持ち方
+
+| 項目 | 実測 |
+|---|---|
+| オプションキー | **`jinr_*` 個別キーが 1,225 種**（単一配列にまとめない設計） |
+| カスタマイザ | `include/customizer/` 162 ファイル（`controls/` に独自コントロール群）、`add_setting` を含むファイル 18 |
+| add_theme_support | `automatic-feed-links` / `menus` / `post-thumbnails` / `title-tag` の 4 つのみ |
+| CSS カスタムプロパティ | 151 種（`--cv-button` `--fukidashi-*` `--compare-*` `--header-style-*` など**部品の見た目そのものが変数化**） |
+| 構造化データ | `include/json-ld.php`（344 行）。出力型は `Organization` / `Person` / `ListItem` / `ImageObject` |
+| 拡張点 | 自前 `do_action` 3・`apply_filters` 1 → **外部からの介入点がほぼ無い** |
+| REST | 独自ルート **0 本** |
+| CPT / タクソノミ | **0**（再利用パーツは番号スロット型 shortcode + テーマオプションで保持） |
+| 決済 | `vendor/stripe` 286 ファイル（`jinr-blocks/paidpost` = 有料記事機能） |
+
+## 4. 実使用（it-shukatu-college.com 公開記事 59 本 + 固定 10 本の実測）
+
+| ブロック | 使用数 | | ブロック | 使用数 |
+|---|---|---|---|---|
+| core/paragraph | 6,293 | | jinr-blocks/comparechild | 177 |
+| core/heading | 1,540 | | jinr-blocks/compare | 59 |
+| core/list-item | 715 | | flexible-table-block/table | 46 |
+| **jinr-blocks/simplebox** | **697** | | jinr-blocks/postlist | 38 |
+| **jinr-blocks/button** | **339** | | jinr-blocks/designtitle | 37 |
+| **jinr-blocks/blogcard** | **330** | | jinr-blocks/background | 33 |
+| core/image | 324 | | richmenuchild / accordionchild | 16 / 15 |
+| **jinr-blocks/fukidashi** | **186** | | 他 13 種 | 各 1〜10 |
+
+ショートコード実使用: `[jinr_fukidashi]` 186・`[smartslider]` 1・`[jinr_profile]` 1・`[jinr_heading_iconbox]` 1・`[contact]` 1
+投稿タイプ実態: post 59 / page 10 / attachment 232（**CPT 無し**）
+
+## 5. 構造的性格（要約）
+
+1. **設定駆動のクラシックテーマ**。1,225 個の個別オプション + 162 ファイルのカスタマイザが実質の「正本」で、テンプレートはそれを読むだけ。
+2. **ブロックは 25 種あるが疎結合ではない** — 単一 editor バンドルと `JINR_VAR` に依存し、テーマ外へ切り出せる形になっていない。
+3. **広告・CV 位置はウィジェットエリアとして明示的**（post-top/start/end/bottom・relatedpost-bottom・sidebar-tracking）。ここが agent-neo の `ad-zone.schema.json` が既に参照している 4 ゾーンの出どころ。
+4. **拡張点（フック）がほぼ無い** → 外部エージェントからの制御は REST でもフックでもなく「オプション書き換え」しか経路が無い。
