@@ -1,0 +1,238 @@
+===== JINR file line counts (top 30 php) =====
+  33931 合計
+   5214 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/custom-functions.php
+   4065 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/controls/core/class-jinr-demo-import-control.php
+   2692 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/jinr-setting.php
+   2153 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/main-visual-setting.php
+   2100 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/load-customizer-value.php
+   1600 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/controls/icon/fontawesome.php
+   1495 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/button-design-setting.php
+   1394 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/site-design-setting.php
+   1074 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/spmenu-setting.php
+    999 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/functions.php
+    891 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/fukidashi-setting.php
+    891 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/color-setting.php
+    639 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/box-design-setting.php
+    586 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/sns-setting.php
+    505 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/information-setting.php
+    368 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/shortcode.php
+    343 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/json-ld.php
+    302 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/theme-update-checker.php
+    281 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/controls/core/class-jinr-video-control.php
+    244 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/representation-act-setting.php
+    233 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/ad-related.php
+    220 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/single.php
+    215 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/thumbnails-setting.php
+    215 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/ad-finish.php
+    214 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/others-setting.php
+    206 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/object/main-visual/post-slider.php
+    195 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/headline-design-setting.php
+    186 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/object/paidpost-popup.php
+    183 /home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/object/cvbutton.php
+===== JINR functions.php: require/include order =====
+15:	define('JINR_PHP_INCLUDE', trailingslashit(get_template_directory()) . 'include/');
+40:add_action('wp_enqueue_scripts', 'jinr_jquery_enqueue');
+92:add_action('wp_enqueue_scripts', 'jinr_enqueue_script');
+94:add_action('admin_enqueue_scripts', function () {
+114:add_action('admin_enqueue_scripts', 'jinr_gutenberg_script');
+124:add_action('wp_enqueue_scripts', 'jinr_enqueue_style');
+139:add_action('wp_footer', 'jinr_enqueue_style_footer');
+149:add_action('admin_print_styles', 'jinr_admin_print_styles');
+162:add_action('admin_enqueue_scripts', 'jinr_settings_styles');
+174:add_filter('big_image_size_threshold', '__return_false');
+179:require_once JINR_PHP_INCLUDE . 'customizer.php';
+180:require_once JINR_PHP_INCLUDE . 'load-customizer-value.php';
+186:get_template_part('include/widgets');
+192:get_template_part('include/shortcode');
+198:get_template_part('include/jinr-setting');
+204:get_template_part('include/head/title');
+210:get_template_part('include/font-selection');
+217:	get_template_part('include/json-ld');
+224:get_template_part('include/custom-functions');
+243:	$script_asset = require $script_asset_path;
+950:add_action('init', 'create_block_jinr_blocks_block_init');
+978:add_filter('redirect_canonical', 'jinr_disable_redirect_canonical');
+992:add_action('template_redirect', 'jinr_init_session_start');
+995:require 'theme-update-checker.php';
+===== SWELL file line counts (top 30 php) =====
+  45622 合計
+   2267 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/polyfill/html-api/class-wp-html-tag-processor.php
+   1537 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/update/vendor/Parsedown.php
+   1535 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/update/vendor/ParsedownLegacy.php
+   1484 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Utility/Get.php
+    926 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/update/Puc/v4p5/UpdateChecker.php
+    667 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Data/Default_Settings.php
+    660 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Utility/Others.php
+    657 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Style.php
+    636 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/shortcode.php
+    589 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/tiny_mce.php
+    526 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Style/Post.php
+    486 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/hooks/admin_display.php
+    482 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/SWELL_THEME/Menu/Tab_Custom.php
+    472 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Json_Ld.php
+    471 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/SWELL_THEME/Menu/Tab_Colors.php
+    469 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Theme_Data.php
+    448 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/customizer/header.php
+    429 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/rest_api.php
+    424 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/SWELL_THEME/Parts/Post_List.php
+    420 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Utility/Status.php
+    412 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/update/Puc/v4p5/Vcs/GitHubApi.php
+    396 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/update/Puc/v4p5/Plugin/UpdateChecker.php
+    391 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/rest_api/balloon_api.php
+    382 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Pre_Parse_Blocks.php
+    367 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Utility/Balloon.php
+    365 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/customizer/post_list.php
+    355 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/lib/pluggable_parts.php
+    351 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/classes/Menu/Setting_Field.php
+    350 /home/xs887843/solobiz-lab.com/public_html/wp-content/themes/swell/parts/breadcrumb.php
+===== SWELL functions.php =====
+<?php
+/**
+ * @link https://swell-theme.com/
+ *
+ * @package swell
+ * @author ddryo
+ * @license GPL-2.0+
+ */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * 動作環境チェック
+ */
+require_once __DIR__ . '/lib/check_environment.php';
+
+/**
+ * 各種パスを定数化
+ */
+define( 'T_DIRE', get_template_directory() );
+define( 'S_DIRE', get_stylesheet_directory() );
+define( 'T_DIRE_URI', get_template_directory_uri() );
+define( 'S_DIRE_URI', get_stylesheet_directory_uri() );
+
+/**
+ * CLASSのオートロード
+ */
+require_once __DIR__ . '/lib/autoloader.php';
+
+/**
+ * php関数のpolyfill
+ */
+require_once __DIR__ . '/lib/polyfill/php_functions.php';
+// require_once __DIR__ . '/lib/polyfill/html-api.php';
+
+
+/**
+ * メインクラス
+ */
+class SWELL_Theme extends \SWELL_Theme\Theme_Data {
+
+	use \SWELL_Theme\Utility\Get;
+	use \SWELL_Theme\Utility\Attrs;
+	use \SWELL_Theme\Utility\Balloon;
+	use \SWELL_Theme\Utility\Parts;
+	use \SWELL_Theme\Utility\Status;
+	use \SWELL_Theme\Utility\Others;
+
+	public function __construct() {
+
+		self::data_init();
+
+		// テーマセットアップ
+		require_once __DIR__ . '/lib/theme_setup.php';
+
+		// 定数定義
+		require_once __DIR__ . '/lib/define_const.php';
+
+		// ファイル読み込み
+		require_once __DIR__ . '/lib/load_files.php';
+
+		// カスタマイザー
+		require_once __DIR__ . '/lib/customizer.php';
+
+		// 投稿タイプ
+		require_once __DIR__ . '/lib/post_type.php';
+
+		// タクソノミー
+		require_once __DIR__ . '/lib/taxonomy.php';
+
+		// カスタムメニュー
+		require_once __DIR__ . '/lib/custom_menu.php';
+
+		// ウィジェット
+		require_once __DIR__ . '/lib/widget.php';
+
+		// TinyMCE
+		require_once __DIR__ . '/lib/tiny_mce.php';
+
+		// コードの出力関係
+		require_once __DIR__ . '/lib/output.php';
+
+		// Gutenberg
+		require_once __DIR__ . '/lib/gutenberg.php';
+
+		// カスタムフィールド
+		require_once __DIR__ . '/lib/post_meta.php';
+
+		// タームメタ
+		require_once __DIR__ . '/lib/term_meta.php';
+
+		// ショートコード
+		require_once __DIR__ . '/lib/shortcode.php';
+
+		// 処理内容が上書き可能なもの
+		require_once __DIR__ . '/lib/pluggable.php';
+
+		// 関数で呼び出すパーツ
+		require_once __DIR__ . '/lib/pluggable_parts.php';
+
+		// 設定上書き処理
+		require_once __DIR__ . '/lib/overwrite.php';
+
+		// コンテンツフィルター
+		require_once __DIR__ . '/lib/content_filter.php';
+
+		// REST API
+		require_once __DIR__ . '/lib/rest_api.php';
+
+		// その他、フック処理
+		require_once __DIR__ . '/lib/hooks.php';
+
+		// その他、フック処理
+		require_once __DIR__ . '/lib/rewrite_html.php';
+
+		// 管理者ログイン時
+		if ( current_user_can( 'manage_options' ) ) {
+			// アクティベート
+			require_once __DIR__ . '/lib/activate.php';
+
+			// アップデートチェック
+			require_once __DIR__ . '/lib/update.php';
+
+			// アップデート時の処理
+			require_once __DIR__ . '/lib/updated_action.php';
+		}
+
+		// 管理画面でのみ
+		if ( is_admin() ) {
+			require_once __DIR__ . '/lib/notice.php';
+
+			// ユーザーメタ情報
+			new \SWELL_Theme\Meta_User();
+
+			// メニュー生成
+			new \SWELL_Theme\Admin_Menu();
+		}
+	}
+}
+
+/**
+ * SWELL start!
+ */
+new SWELL_Theme();
+===== SWELL lib/load =====
+admin.php
+block_assets.php
+check_code.php
+front.php
+jquery.php
+separate.php

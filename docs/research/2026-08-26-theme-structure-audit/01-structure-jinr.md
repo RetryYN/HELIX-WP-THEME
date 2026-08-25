@@ -51,7 +51,7 @@ nextpage / paidpost-popup / related-post / sidepr / sns-share(+selected) / spmen
 | CSS カスタムプロパティ | 151 種（`--cv-button` `--fukidashi-*` `--compare-*` `--header-style-*` など**部品の見た目そのものが変数化**） |
 | 構造化データ | `include/json-ld.php`（344 行）。出力型は `Organization` / `Person` / `ListItem` / `ImageObject` |
 | 拡張点 | 自前 `do_action` 3・`apply_filters` 1 → **外部からの介入点がほぼ無い** |
-| REST | 独自ルート **0 本** |
+| REST | 独自ルート **2 本**（`jinr/post_by_url` / `jinr/external_url`、いずれも `permission_callback => __return_true`）+ `rest_api_init` 経由の PV orderby 拡張 2 本 |
 | CPT / タクソノミ | **0**（再利用パーツは番号スロット型 shortcode + テーマオプションで保持） |
 | 決済 | `vendor/stripe` 286 ファイル（`jinr-blocks/paidpost` = 有料記事機能） |
 
@@ -76,4 +76,5 @@ nextpage / paidpost-popup / related-post / sidepr / sns-share(+selected) / spmen
 1. **設定駆動のクラシックテーマ**。1,225 個の個別オプション + 162 ファイルのカスタマイザが実質の「正本」で、テンプレートはそれを読むだけ。
 2. **ブロックは 25 種あるが疎結合ではない** — 単一 editor バンドルと `JINR_VAR` に依存し、テーマ外へ切り出せる形になっていない。
 3. **広告・CV 位置はウィジェットエリアとして明示的**（post-top/start/end/bottom・relatedpost-bottom・sidebar-tracking）。ここが agent-neo の `ad-zone.schema.json` が既に参照している 4 ゾーンの出どころ。
-4. **拡張点（フック）がほぼ無い** → 外部エージェントからの制御は REST でもフックでもなく「オプション書き換え」しか経路が無い。
+4. **拡張点（フック）がほぼ無い** → 外部エージェントからの制御は実質「オプション書き換え」しか経路が無い。
+   REST は 2 本あるがブロック描画のための内部用途で、操作 API ではない（詳細は `10-reverse-jinr.md`）。

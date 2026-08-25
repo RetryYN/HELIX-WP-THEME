@@ -1,0 +1,96 @@
+===== where jinr__ accessors are defined =====
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/spmenu-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/button-design-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/thumbnails-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/information-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/site-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/design-preset-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/animation-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/representation-act-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/site-design-setting.php
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/profile-setting.php
+-- count per file --
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/spmenu-setting.php:75
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/button-design-setting.php:181
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/thumbnails-setting.php:9
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/information-setting.php:20
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/site-setting.php:3
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/design-preset-setting.php:1
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/animation-setting.php:5
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/representation-act-setting.php:10
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/site-design-setting.php:53
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/profile-setting.php:8
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/others-setting.php:8
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/color-setting.php:47
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/box-design-setting.php:49
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/main-visual-setting.php:80
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/fukidashi-setting.php:121
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/sns-setting.php:29
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/ui/headline-design-setting.php:4
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/custom-functions.php:1
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/jinr-setting.php:3
+===== accessor pattern sample (customizer.php) =====
+<?php
+
+/**
+ * JIN:R Theme Customizer
+ *
+ * @package JINR:R
+ */
+
+/**
+ * カスタマイザーのパネルとセクションを呼び出す
+ */
+$felt_panels = array(
+	'site-setting',
+	'design-preset-setting',
+	'site-design-setting',
+	'color-setting',
+	'main-visual-setting',
+	'headline-design-setting',
+	'box-design-setting',
+	'button-design-setting',
+	'fukidashi-setting',
+	'profile-setting',
+	'information-setting',
+	'thumbnails-setting',
+	'sns-setting',
+	'spmenu-setting',
+	'animation-setting',
+	'others-setting',
+	'representation-act-setting',
+);
+
+foreach ($felt_panels as $p) {
+	require JINR_PHP_INCLUDE . 'customizer/ui/' . $p . '.php';
+}
+
+
+/**
+ * カスタマイザーに任意のCSSを読み込ませる
+ */
+
+function jinr_customizer_css()
+{
+	wp_enqueue_style('jinr-block', get_template_directory_uri() . '/block.css');
+	wp_enqueue_style('jinr-customizer-css', get_template_directory_uri() . '/jinr-customizer.css');
+	if (has_filter('use_widgets_block_editor')) {
+		wp_enqueue_style('jinr-block', get_template_directory_uri() . '/block.css');
+	}
+}
+add_action('customize_controls_enqueue_scripts', 'jinr_customizer_css');
+
+/**
+ * カスタマイザーに任意のCSSをインラインで読み込ませる
+ */
+function jinr_customizer_inline_css()
+{
+	$theme_color              = jinr__theme_color();
+	$text_color               = jinr__text_color();
+	$theme_color_rgba 		  = jinr_hex_to_rgb($theme_color);
+	$text_color_rgba 		  = jinr_hex_to_rgb($text_color);
+?>
+===== set_theme_mod occurrences in render path =====
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/customizer/controls/core/class-jinr-demo-import-control.php:43
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/custom-functions.php:1
+/home/xs887843/it-shukatu-college.com/public_html/wp-content/themes/jinr/include/load-customizer-value.php:5

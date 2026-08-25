@@ -19,7 +19,7 @@
 | 構造化データ | Organization/Person/ListItem/ImageObject | Article/WebSite/WebPage/CollectionPage/Breadcrumb/SearchAction ほか | BlogPosting/WebPage/WebSite/Breadcrumb ほか | 部分 |
 | 目次 | 外部プラグイン RTOC | **テーマ内蔵** `swell_toc` | レンダラ生成 | 部分 |
 | 拡張点（自前 filter） | **1** | **79** | （プラグイン側で提供） | 思想差 |
-| REST | **0** | 14（`wp/v2` 相乗り） | **34 コントローラ**（`agent-neo/v1`） | 優位 |
+| REST | 2（内部用途・未認証） | 14（`wp/v2` 相乗り） | **34 コントローラ**（`agent-neo/v1`） | 優位 |
 | 決済・会員 | Stripe 同梱・paidpost | restricted-area / only_login | 無し | 思想差（スコープ判断） |
 | A/B テスト | 無し | `loos/ab-test` | ab-test コントローラ | 対応済 |
 
@@ -52,7 +52,7 @@
 | P-01 | 設定の正本 | 個別オプション 1,225 | 単一配列 540 | JSON ファイル | 運用サイト移管時に何を正本にするか |
 | P-02 | ブロックの所属 | テーマ内蔵・環境変数結合 | テーマ内蔵・block.json | パターン化して自作しない | Graphix NEO はブロックを持つのか持たないのか |
 | P-03 | 描画の決定論 | 9/25 が render_callback（SSR） | 静的 save 中心 | 中間 JSON → 決定論レンダラ | SSR ブロックは中間 JSON へ写像できるか |
-| P-04 | 拡張点 | filter 1 本＝介入不能 | filter 79 本＝介入前提 | REST/契約で介入 | 移植先の介入モデル |
+| P-04 | 拡張点 | filter 1 本 + pluggable ガード無し＝介入不能 | filter 79 本 + pluggable 関数群＝介入前提 | REST/契約で介入 | 移植先の介入モデル |
 | P-05 | 収益機構 | Stripe 同梱・有料記事 | restricted-area | 無し | 会員・課金をスコープに入れるか |
 
 ## 4. 実使用に基づく移植優先度（証跡ベース）
