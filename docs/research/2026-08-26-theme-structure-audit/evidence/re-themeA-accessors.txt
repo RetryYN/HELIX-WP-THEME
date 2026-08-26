@@ -1,0 +1,96 @@
+===== where themeA__ accessors are defined =====
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/spmenu-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/button-design-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/thumbnails-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/information-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/site-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/design-preset-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/animation-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/representation-act-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/site-design-setting.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/profile-setting.php
+-- count per file --
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/spmenu-setting.php:75
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/button-design-setting.php:181
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/thumbnails-setting.php:9
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/information-setting.php:20
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/site-setting.php:3
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/design-preset-setting.php:1
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/animation-setting.php:5
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/representation-act-setting.php:10
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/site-design-setting.php:53
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/profile-setting.php:8
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/others-setting.php:8
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/color-setting.php:47
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/box-design-setting.php:49
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/main-visual-setting.php:80
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/fukidashi-setting.php:121
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/sns-setting.php:29
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/ui/headline-design-setting.php:4
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/custom-functions.php:1
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/themeA-setting.php:3
+===== accessor pattern sample (customizer.php) =====
+<?php
+
+/**
+ * テーマA Theme Customizer
+ *
+ * @package THEMEA:R
+ */
+
+/**
+ * カスタマイザーのパネルとセクションを呼び出す
+ */
+$felt_panels = array(
+	'site-setting',
+	'design-preset-setting',
+	'site-design-setting',
+	'color-setting',
+	'main-visual-setting',
+	'headline-design-setting',
+	'box-design-setting',
+	'button-design-setting',
+	'fukidashi-setting',
+	'profile-setting',
+	'information-setting',
+	'thumbnails-setting',
+	'sns-setting',
+	'spmenu-setting',
+	'animation-setting',
+	'others-setting',
+	'representation-act-setting',
+);
+
+foreach ($felt_panels as $p) {
+	require THEMEA_PHP_INCLUDE . 'customizer/ui/' . $p . '.php';
+}
+
+
+/**
+ * カスタマイザーに任意のCSSを読み込ませる
+ */
+
+function themeA_customizer_css()
+{
+	wp_enqueue_style('themeA-block', get_template_directory_uri() . '/block.css');
+	wp_enqueue_style('themeA-customizer-css', get_template_directory_uri() . '/themeA-customizer.css');
+	if (has_filter('use_widgets_block_editor')) {
+		wp_enqueue_style('themeA-block', get_template_directory_uri() . '/block.css');
+	}
+}
+add_action('customize_controls_enqueue_scripts', 'themeA_customizer_css');
+
+/**
+ * カスタマイザーに任意のCSSをインラインで読み込ませる
+ */
+function themeA_customizer_inline_css()
+{
+	$theme_color              = themeA__theme_color();
+	$text_color               = themeA__text_color();
+	$theme_color_rgba 		  = themeA_hex_to_rgb($theme_color);
+	$text_color_rgba 		  = themeA_hex_to_rgb($text_color);
+?>
+===== set_theme_mod occurrences in render path =====
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/controls/core/class-themeA-demo-import-control.php:43
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/custom-functions.php:1
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/load-customizer-value.php:5

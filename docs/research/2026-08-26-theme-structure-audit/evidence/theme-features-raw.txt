@@ -1,0 +1,108 @@
+===== PROBE テーマA =====
+-- add_shortcode --
+themeA_button themeA_fukidashi themeA_heading_iconbox themeA_profile themeA_simple_iconbox message
+-- register_post_type --
+
+-- register_taxonomy --
+
+-- register_sidebar count --
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/widgets.php:1
+-- sidebar ids --
+footer-widget hamburger-widget new_item_in_admin_bar post-bottom-widget post-end-widget post-start-widget post-top-widget relatedpost-bottom-widget sidebar sidebar-tracking toppage-widget カテゴリーID
+-- register_nav_menus --
+'footer-menu'    => 'glonavi'        => 'hamburger'      =>
+-- add_theme_support --
+automatic-feed-links menus post-thumbnails title-tag
+-- register_block_type (php) --
+
+-- block.json name fields --
+
+-- registerBlockType (js/jsx) --
+
+-- register_block_style --
+
+-- register_rest_route --
+
+-- own do_action --
+3
+-- own apply_filters --
+1
+-- customizer add_setting count --
+18
+-- get_option / theme_mod keys (top) --
+     27 page_on_front
+      9 themeA_choise_category_
+      5 preset_data
+      5 themeA_paidpost_secret_key
+      5 themeA_aff
+      4 posts_per_page
+      4 themeA_top_next_noindex
+      4 themeA_tag_noindex
+      4 themeA_tag_next_noindex
+      4 themeA_separation_title
+      4 themeA_paidpost_subscription_check
+      4 themeA_image_page_noindex
+      4 themeA_h2_sp_display
+      4 themeA_finish_sp_display_02
+      4 themeA_finish_sp_display_01
+===== PROBE テーマB =====
+-- add_shortcode --
+ad ad_tag blog_parts custom_banner full_wide_content html icon only_login only_logout pcbr post_link post_list pr_notation review_stars spbr speech_balloon themeB_toc ふきだし アイコン カスタムバナー ブログパーツ
+-- register_post_type --
+
+-- register_taxonomy --
+
+-- register_sidebar count --
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/widget.php:20
+-- sidebar ids --
+ID after_related before_footer before_related customize fix_sidebar footer_box1 footer_box2 footer_box3 footer_sp front_bottom front_top head_box lp_content_width page_bottom page_top publisher_logo_url sidebar-1 sidebar_sp sidebar_top single_bottom single_cta single_top sp_menu_bottom themeB_meta_related_posts themeB_meta_subttl themeB_meta_thumb_caption themeB_meta_youtube themeB_settings themeB_settings__clear_cache themeB_settings__clear_card_cache themeB_settings_activate themeB_settings_editor_menu themeB_settings_forum_link themeB_settings_icon_demo themeB_settings_manual_link themeB_settings_menu
+-- register_nav_menus --
+'fix_bottom_menu' => 'footer_menu'     => 'header_menu'     => 'nav_sp_menu'     => 'pickup_banner'   => 'sp_head_menu'    =>
+-- add_theme_support --
+align-wide automatic-feed-links custom-line-height custom-units editor-color-palette html5 menus post-thumbnails responsive-embeds title-tag widgets
+-- register_block_type (php) --
+
+-- block.json name fields --
+core/heading core/paragraph themeB/ab-test themeB/ab-test-a themeB/ab-test-b themeB/accordion themeB/accordion-item themeB/ad-tag themeB/balloon themeB/banner-link themeB/blog-parts themeB/box-menu themeB/box-menu-item themeB/button themeB/cap-block themeB/column themeB/columns themeB/dd themeB/dl themeB/dt themeB/faq themeB/faq-item themeB/full-wide themeB/link-list themeB/link-list-item themeB/post-link themeB/post-list themeB/restricted-area themeB/review themeB/rss themeB/step themeB/step-item themeB/tab themeB/tab-body
+-- registerBlockType (js/jsx) --
+
+-- register_block_style --
+
+-- register_rest_route --
+register_rest_route( 'wp/v2', '/themeB-block-settings'
+register_rest_route( 'wp/v2', '/themeB-ct-ad-data'
+register_rest_route( 'wp/v2', '/themeB-ct-btn-data'
+register_rest_route( 'wp/v2', '/themeB-ct-pv'
+register_rest_route( 'wp/v2', '/themeB-do-update-action'
+register_rest_route( 'wp/v2', '/themeB-lazyload-contents'
+register_rest_route( 'wp/v2', '/themeB-reset-ad-data'
+register_rest_route( 'wp/v2', '/themeB-reset-cache'
+register_rest_route( 'wp/v2', '/themeB-reset-settings'
+register_rest_route( 'wp/v2', '/themeB-term-list'
+register_rest_route('wp/v2', '/themeB-balloon'
+register_rest_route('wp/v2', '/themeB-balloon-copy'
+register_rest_route('wp/v2', '/themeB-balloon-recover'
+register_rest_route('wp/v2', '/themeB-balloon-sort'
+
+-- own do_action --
+5
+-- own apply_filters --
+79
+-- customizer add_setting count --
+12
+-- get_option / theme_mod keys (top) --
+      4 date_format
+      2 themeBer_email
+      2 themeB_block_settings
+      2 page_on_front
+      2 page_for_posts
+      2 blogname
+      2 blogdescription
+      1 widget_themeB_prof_widget
+      1 use_pjax
+      1 use_json_ld
+      1 use_delay_js
+      1 themeB_version
+      1 themeB_free_version
+      1 sticky_posts
+      1 sidebars_widgets

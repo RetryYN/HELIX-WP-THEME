@@ -1,0 +1,246 @@
+===== single.php =====
+<?php get_header(); ?>
+<?php
+//表示設定の値
+$themeA_thumbnail_display = get_post_meta($post->ID, '_themeA_thumbnail_display', true);
+?>
+
+<?php if (themeA_isset_widets('post-top-widget', true)) : ?>
+	<section id="themeA-posttop-widget-area" class="o--widget-area t--main-width t--padding">
+		<div id="themeA-posttop-widget-area-inner">
+			<?php dynamic_sidebar('post-top-widget'); ?>
+		</div>
+	</section>
+<?php endif; ?>
+
+<main id="mainContent" class="<?php themeA_mainContent_class_insert(); ?>">
+	<div id="mainContentInner" class="t--main-width">
+		<?php
+		if (have_posts()) :
+			while (have_posts()) :
+				the_post();
+		?>
+				<article id="themeAArticle" class="<?php themeA_themeAArticle_class_insert(); ?>">
+					<?php
+					$themeA_author_id = get_the_author_meta('ID');
+					if (get_the_category() != false) {
+						$category = get_the_category();
+						$cat_id   = $category[0]->cat_ID;
+						$cat_name = $category[0]->cat_name;
+						$cat_slug = $category[0]->category_nicename;
+						$cat_link = get_category_link($cat_id);
+					}
+
+					$post_youtube_url = get_post_meta(get_the_ID(), '_themeA_url_youtube', true);
+					if (strpos($post_youtube_url, "watch") != false) {
+						$youtube_id = substr($post_youtube_url, (strpos($post_youtube_url, "=") + 1));
+					} else {
+						$youtube_id = substr($post_youtube_url, (strpos($post_youtube_url, "youtu.be/") + 9));
+					}
+
+					// wp_localize_scriptでidをyoutube.jsに値を渡す
+					wp_localize_script('themeA-youtube-script', 'YoutubeInfo', array(
+						'id' => $youtube_id,
+					));
+					?>
+
+					<header id="postHeader">
+						<div id="postHeaderInner" class="<?php echo themeA__article_width(); ?>">
+							<div id="themeAPostMeta">
+								<?php get_template_part('object/time'); ?>
+								<?php if (get_the_category() != false) : ?>
+									<div class="a--post-cat category-<?php echo $cat_slug; ?>"><a href="<?php echo $cat_link ?>"><span class="jif jin-ifont-archive" aria-hidden="true"></span><?php echo $cat_name; ?></a></div>
+								<?php endif; ?>
+								<?php
+								if (get_post_meta($post->ID, '_themeA_representations_display', true) === '') : ?>
+									<?php if (themeA__representation_display_category_side() === true && themeA__representation_display_post() === true) : ?>
+										<?php
+										$display_category = false; // 表示するカテゴリーかどうかのフラグ
+										$none_display_category_ids = explode(",", themeA__representations_none_display_ids());
+										foreach ($none_display_category_ids as $none_display_category_id) {
+											$current_category_id = $cat_id;
+											if ($current_category_id == $none_display_category_id) {
+												$display_category = true;
+											}
+										}
+										if ($display_category === false) :
+										?>
+											<div class="c--labeling-small-act <?php echo themeA__representation_design_type(); ?>"><span class="a--labeling-small-act"><?php echo themeA__representations_pr_text_category_side(); ?></span></div>
+										<?php endif; ?>
+									<?php endif; ?>
+								<?php endif; ?>
+							</div>
+							<h1 id="themeAPostTitle" class="c--entry-title"><?php the_title(); ?></h1>
+
+						</div>
+						<?php if (themeA__eyecatch_off() == true) : ?>
+							<?php if ($themeA_thumbnail_display !== "1") : ?>
+								<?php if (!empty($post_youtube_url)) : ?>
+									<div id="themeAPostThumb" <?php themeA_themeAPostThumb_class_insert(); ?>>
+										<div id="themeAYoutubeVideo"></div>
+										<div class="a--pip-stop"></div>
+										<div class="a--pip-background"></div>
+									</div>
+								<?php elseif (has_post_thumbnail()) : ?>
+									<?php if (themeA__thumbnail_original_used() !== true) : ?>
+										<div id="themeAPostThumb" <?php themeA_themeAPostThumb_class_insert(); ?>>
+											<?php echo the_post_thumbnail('large_size'); ?>
+										</div>
+									<?php else : ?>
+										<div id="themeAPostThumb" <?php themeA_themeAPostThumb_class_insert(); ?>>
+											<?php
+											$imgID = get_post_thumbnail_id($post->ID);
+											$img = wp_get_attachment_image_src($imgID, 'full', false, '');
+											$imgAlt = get_post_meta($imgID, '_wp_attachment_image_alt', true);
+											$imgWidth = $img[1];
+											$imgHeight = $img[2];
+											?>
+											<img src="<?php echo esc_url($img[0]); ?>" alt="<?php echo esc_html($imgAlt); ?>" height="<?php echo esc_html($imgHeight); ?>" width="<?php echo esc_html($imgWidth); ?>" />
+										</div>
+									<?php endif; ?>
+								<?php endif; ?>
+							<?php endif; ?>
+						<?php endif; ?>
+					</header>
+					<div class="c--writer d--display-none"><?php the_author(); ?></div>
+
+					<section id="postContent" class="<?php echo themeA__article_width(); ?> <?php echo themeA__font_size(); ?> <?php echo themeA__font_size_sp(); ?>">
+						<?php if (get_post_meta($post->ID, '_themeA_representations_display', true) === '') : ?>
+							<?php if (themeA__representation_display_postfirst() === true && themeA__representation_display_post() === true) : ?>
+								<?php
+								$display_category = false; // 表示するカテゴリーかどうかのフラグ
+								$none_display_category_ids = explode(",", themeA__representations_none_display_ids());
+								foreach ($none_display_category_ids as $none_display_category_id) {
+									$current_category_id = $cat_id;
+									if ($current_category_id == $none_display_category_id) {
+										$display_category = true;
+									}
+								}
+								if ($display_category === false) :
+								?>
+									<div class="c--labeling-act <?php echo themeA__representation_design_type(); ?>"><span class="a--labeling-act"><?php echo themeA__representations_pr_text_postfirst(); ?></span></div>
+								<?php endif; ?>
+							<?php endif; ?>
+						<?php endif; ?>
+						<?php if (themeA_isset_widets('post-start-widget', true)) : ?>
+							<section id="themeA-post-start-widget-area" class="o--widget-area">
+								<div id="themeA-post-start-widget-area-inner">
+									<?php dynamic_sidebar('post-start-widget'); ?>
+								</div>
+							</section>
+						<?php endif; ?>
+
+						<?php the_content(); ?>
+
+						<?php get_template_part('object/nextpage'); ?>
+
+						<?php get_template_part('object/sns-share-selected'); ?>
+
+						<?php if (themeA_isset_widets('post-end-widget', true)) : ?>
+							<section id="themeA-post-end-widget-area" class="o--widget-area">
+								<div id="themeA-post-end-widget-area-inner">
+									<?php dynamic_sidebar('post-end-widget'); ?>
+								</div>
+							</section>
+						<?php endif; ?>
+
+						<?php
+						$arr = get_the_tags();
+						if ($arr) {
+							echo '<div id="postTagBox">';
+							foreach ((array) $arr as $tag) {
+								echo '<a href="' . get_tag_link($tag->term_id) . '">#' . $tag->name . '</a>';
+							}
+							echo '</div>';
+						}
+						?>
+						<?php if (!get_post_meta($post->ID, '_themeA_ads_display', true) == "1") : ?>
+							<?php get_template_part('ad-finish'); ?>
+						<?php endif; ?>
+
+						<?php if (themeA__comment_remove()) : ?>
+							<?php comments_template(); ?>
+						<?php endif; ?>
+
+						<?php if (themeA__profile_display_postbottom() == true) : ?>
+							<?php if (!get_post_meta($post->ID, '_themeA_profile_display', true) == "1") : ?>
+								<div class="themeA-profile-label ef"><span><?php echo themeA__profile_label_text(); ?></span></div>
+								<?php echo do_shortcode('[themeA_profile design="d--profile-author" author_id="' . $themeA_author_id . '"]'); ?>
+							<?php endif; ?>
+						<?php endif; ?>
+
+					</section>
+
+					<footer id="postFooter">
+						<?php
+						// var_dump(get_the_author_meta('ID'));
+						if (themeA__sns_share_bottom_display()) : ?>
+							<?php if (!get_post_meta($post->ID, '_themeA_snsbutton_display', true) == "1") : ?>
+								<div id="snsShareBottom" class="<?php echo themeA__sns_share_design(); ?> <?php echo themeA__sns_share_color(); ?> <?php echo themeA__sns_share_color() == "d--sns-share-color-solid" ? "t--round" : ""; ?>">
+									<div id="snsShareBottomInner">
+										<?php get_template_part('object/sns-share'); ?>
+									</div>
+								</div>
+							<?php endif; ?>
+						<?php endif; ?>
+					</footer>
+				</article>
+
+		<?php endwhile;
+		endif; ?>
+
+		<?php if (themeA__post_column_style() == 't--post-two-column') : ?>
+			<?php if (!get_post_meta($post->ID, '_themeA_sidebar2col_display', true) == "1") : ?>
+				<?php get_sidebar(); ?>
+			<?php endif; ?>
+		<?php else : ?>
+			<?php if (get_post_meta($post->ID, '_themeA_sidebar1col_display', true) == "1") : ?>
+				<?php get_sidebar(); ?>
+			<?php endif; ?>
+		<?php endif; ?>
+	</div>
+</main>
+
+<?php if (themeA_isset_widets('post-bottom-widget', true)) : ?>
+	<section id="themeA-postbottom-widget-area" class="o--widget-area t--padding t--main-width">
+		<div id="themeA-postbottom-widget-area-inner">
+			<?php dynamic_sidebar('post-bottom-widget'); ?>
+		</div>
+	</section>
+<?php endif; ?>
+
+<?php if (!get_post_meta($post->ID, '_themeA_ads_display', true) == "1") : ?>
+	<?php get_template_part('ad-related'); ?>
+<?php endif; ?>
+
+<?php if (themeA__related_post_remove() == true) : ?>
+	<?php if (!get_post_meta($post->ID, '_themeA_relatedpost_display', true) == "1") : ?>
+		<?php get_template_part('object/related-post'); ?>
+	<?php endif; ?>
+<?php endif; ?>
+
+<?php get_footer(); ?>===== the_content filters in theme =====
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/custom-functions.php:1250:add_filter('the_content', 'wrap_iframe_in_div');
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/custom-functions.php:3433:		add_filter('the_content', 'themeA_paid_content_display_switch', 9);
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/custom-functions.php:4523:add_filter('the_content', 'themeA_h2_ads_concert');
+===== ad insertion mechanism =====
+264:	$classes .= ' ' . themeA__h2_style() . ' ' . themeA__h3_style() . ' ' . themeA__h4_style();
+501:	$h2 = themeA__h2_style();
+505:	echo $a_class . ' ' . $article_width . ' ' . $h2 . ' ' . $h3 . ' ' . $h4 . ' ' . $round;
+4317://記事中の最初のh2タグの上に広告自動設置
+4318:function themeA_h2_ads_concert($the_content)
+4337:		$themeA_h2_sponsor_text = get_option('themeA_h2_sponsor_text');
+4338:		$themeA_h2_ads_code = get_option('themeA_h2_ads_code');
+4339:		$themeA_h2_sp_display = get_option('themeA_h2_sp_display');
+4487:						$themeA_h2_sponsor_text = get_option('themeA_h2_sponsor_text_' . $i . '');
+4488:						$themeA_h2_ads_code = get_option('themeA_h2_ads_code_' . $i . '');
+4489:						$themeA_h2_sp_display = get_option('themeA_h2_sp_display_' . $i . '');
+4495:		if ($themeA_h2_sp_display == '1') {
+4501:		if (!$themeA_h2_ads_code == null) {
+4502:			$ad .= '<div class="o--ads-area o--before-h2-ads">';
+4503:			if (!$themeA_h2_sponsor_text == null) {
+4504:				$ad .= '<div class="a--ads-sponser">' . $themeA_h2_sponsor_text . '</div>';
+4506:			$ad .= '<section class="c--ads-area d--minwidth-100 ' . $themeA_sp_display . '"><div class="a--ads-rectangle">' . $themeA_h2_ads_code . '</div></section></div>';
+4507:			$tag = '/<h2.*?>/i';
+4509:				if (strpos($tags[0], 'a--h2rich-maincopy') !== false) {
+4523:add_filter('the_content', 'themeA_h2_ads_concert');

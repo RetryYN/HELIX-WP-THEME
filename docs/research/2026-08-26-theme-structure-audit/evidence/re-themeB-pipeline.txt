@@ -1,0 +1,580 @@
+===== lib/content_filter.php =====
+<?php
+namespace THEMEB_Theme\Content_Filter;
+
+use \THEMEB_Theme as テーマB;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * コンテンツに対する処理
+ * memo: ショートコード展開の優先度:11
+ *       ダイナミックブロック展開の優先度:9
+ *
+ *       優先度12 → ショートコード展開より後に実行するため
+ *       widget_text → カスタムHTMLウィジェット
+ *       widget_text_content → テキストウィジェット
+ *       widget_block_content → ブロックで出力されるウィジェット
+ *
+ *       rest読み込みを考慮すると wp フックでは遅いので wp_loaded
+ *
+ *       widgetエリアのブログパーツ内にある画像にlazyloadがつかない
+ */
+
+// ajax遅延読み込み時も is_admin() true になる
+add_action( 'wp_loaded', function () {
+
+	// 遅延読み込み以外での普通の is_admin時（エディター側で走る the_content フックなど）は何もしない
+	if ( ! テーマB::is_rest() && is_admin() ) return;
+
+	// 再利用ブロックでも埋め込みを有効化する
+	global $wp_embed;
+	add_filter( 'the_content', [ $wp_embed, 'autoembed' ], 12 );
+	add_filter( 'widget_text', [ $wp_embed, 'autoembed' ], 12 );
+	add_filter( 'widget_text_content', [ $wp_embed, 'autoembed' ], 12 );
+	add_filter( 'widget_block_content', [ $wp_embed, 'autoembed' ], 12 );
+
+	// カスタムHTMLウィジェットでもショートコードを展開
+	add_filter( 'widget_text', 'do_shortcode' );
+
+	// 目次追加
+	add_filter( 'widget_text', __NAMESPACE__ . '\add_toc_on_widget', 12 );
+	add_filter( 'widget_text_content', __NAMESPACE__ . '\add_toc_on_widget', 12 );
+	add_filter( 'widget_block_content', __NAMESPACE__ . '\add_toc_on_widget', 12 );
+
+	// 空のpタグ除去
+	if ( ! テーマB::get_option( 'remove_delete_empp' ) ) {
+		add_filter( 'the_content', __NAMESPACE__ . '\remove_empty_p', 12 );
+		add_filter( 'widget_text', __NAMESPACE__ . '\remove_empty_p', 12 );
+		add_filter( 'widget_text_content', __NAMESPACE__ . '\remove_empty_p', 12 );
+		add_filter( 'widget_block_content', __NAMESPACE__ . '\remove_empty_p', 12 );
+	}
+
+	// lazyload
+	if ( 'lazysizes' === テーマB::$lazy_type ) {
+		add_filter( 'widget_text', __NAMESPACE__ . '\add_lazysizes', 12 );
+		add_filter( 'widget_text_content', __NAMESPACE__ . '\add_lazysizes', 12 );
+		add_filter( 'widget_block_content', __NAMESPACE__ . '\add_lazysizes', 12 );
+	}
+
+	// 本文へのフック → SEOプラグインのmetaディスクリプション生成時に発火しないように、登録を遅らせる。
+	add_action('wp_head', function () {
+
+		// 目次の追加
+		add_filter( 'the_content', __NAMESPACE__ . '\add_toc', 12 );
+
+		// URLの自動ブログカード化機能: プラグインなどで不具合があるページだけオフにしたりできるように apply_filters 付き
+		$remove_url_to_card = apply_filters( 'themeB_remove_url_to_card', テーマB::get_option( 'remove_url2card' ) );
+		if ( ! $remove_url_to_card ) {
+			add_filter( 'the_content', __NAMESPACE__ . '\url_to_blog_card', 12 );
+		}
+
+		// lazyload
+		if ( 'lazysizes' === テーマB::$lazy_type ) {
+			add_filter( 'the_content', __NAMESPACE__ . '\add_lazysizes', 12 );
+		}
+	}, 99 );
+}, 20 );
+
+// 過去ブロックとの後方互換性を保つための処理
+// require_once( T_DIRE.'/lib/block/replace_old_blocks.php' );
+
+
+/**
+ * ショートコードによるpタグのズレを除去
+ */
+// function remove_p_by_shortcode( $content ) {
+//  $content = preg_replace( '/<p>\[([^\]]*)\]<\/p>/', '[$1]', $content );
+//  return $content;
+// }
+
+
+/**
+ * 空のpタグを除去
+ */
+function remove_empty_p( $content ) {
+	$content = str_replace( '<p></p>', '', $content );
+	return $content;
+}
+
+/**
+ * 目次ショートコードだけセット
+ */
+function add_toc_on_widget( $content ) {
+	return add_toc( $content, false );
+}
+
+
+/**
+ * 目次 + 目次広告のセット
+ */
+function add_toc( $content, $is_content_hook = true ) {
+
+	// ウィジェットですでにthemeB_tocで生成されている時に本文エリアでの2重生成を防ぐ
+	// if ( テーマB::$added_toc ) return $content;
+
+	$SETTING = テーマB::get_setting();
+	$toc_ad  = '';
+	$toc     = '';
+
+	// ショートコードで目次が挿入されているかどうか
+	if ( false !== strpos( $content, 'class="themeB-toc-placeholder"' ) ) {
+
+		// 目次本体
+		$toc = '<div class="p-toc -called-from-sc -' . $SETTING['index_style'] . '">' .
+			'<span class="p-toc__ttl">' . $SETTING['toc_title'] . '</span></div>';
+
+		// 目次広告コード
+		if ( テーマB::is_show_toc_ad() ) {
+			$toc_ad = \THEMEB_PARTS::toc_ad();
+		}
+
+		// 広告を目次の前に設置するか、後ろに設置するか
+		$toc_content = 'after' === $SETTING['toc_ad_position'] ? $toc . $toc_ad : $toc_ad . $toc;
+
+		$content = str_replace(
+			'<div class="themeB-toc-placeholder"></div>',
+			$toc_content,
+			$content
+		);
+
+		テーマB::$added_toc = true;
+
+	} elseif ( $is_content_hook ) {
+
+		if ( テーマB::$added_toc ) return $content;
+
+		// 目次本体
+		if ( テーマB::is_show_index() ) {
+			$toc = '<div class="p-toc -' . $SETTING['index_style'] . '">' .
+				'<span class="p-toc__ttl">' . $SETTING['toc_title'] . '</span></div>';
+		}
+
+		// 目次広告コード
+		if ( テーマB::is_show_toc_ad() ) {
+			$toc_ad = \THEMEB_PARTS::toc_ad();
+		}
+
+		// 広告を目次の前に設置するか、後ろに設置するか
+		$toc_content = 'after' === $SETTING['toc_ad_position'] ? $toc . $toc_ad : $toc_ad . $toc;
+
+		// １つ目の見出しの前へ設置
+		$tag = '/^<h2.*?>/im';
+		if ( $toc_content && preg_match( $tag, $content, $tags ) ) {
+
+			// $h_count = substr_count( $content, '</h2' );
+			// if ( 1 ) $h_count += substr_count( $content, '</h3' );
+
+			if ( (int) get_query_var( 'page' ) > 1 ) {
+				// ２ページ目以降の時はコンテンツ上部に目次を追加
+				$content = $toc_content . $content;
+			} else {
+				$content = preg_replace( $tag, $toc_content . $tags[0], $content, 1 );
+			}
+
+			テーマB::$added_toc = true;
+		}
+	}
+
+	return $content;
+}
+
+
+/**
+ * lazyloadを追加
+ */
+function add_lazysizes( $content ) {
+
+	// サーバーサイドレンダー, wp-json/wp/v2 などからはフック通さない (コンテンツ遅延読み込み時は通す)
+	$is_rest = ! テーマB::is_rest( 'lazyload' ) && テーマB::is_rest();
+	if ( $is_rest || テーマB::is_iframe() ) return $content;
+
+	// iframe
+	$content = preg_replace_callback( '/<iframe([^>]*)>/', function( $matches ) {
+		$props = rtrim( $matches[1], '/' );
+
+		// youtubeの埋め込みは153エラーになるので loading=lazyを代わりに付与
+		if ( strpos( $props, 'youtube.com/embed/' ) !== false ) {
+		return '<iframe loading="lazy"' . $props . '>';
+		}
+
+		// すでにlazyload設定が済んでいれば何もせず返す
+		if ( strpos( $props, ' data-src=' ) !== false ) {
+			return $matches[0];
+		}
+
+		$noscript = '<noscript>' . $matches[0] . '</noscript>';
+
+		// src を data-srcへ
+		$props = str_replace( ' src=', ' data-src=', $props );
+
+		// クラスの追加
+		if ( strpos( $props, 'class=' ) === false ) {
+			// class自体がまだがなければ
+			$props .= ' class="lazyload" ';
+		} else {
+			// クラスの中身を調べる
+			$props = preg_replace_callback( '/class="([^"]*)"/', function( $class_match ) {
+				$class_value = $class_match[1];
+				// クラスにまだ 'lazyload' が付与されていなければ
+				if ( strpos( $class_value, 'lazyload' ) === false ) {
+					return 'class="' . $class_value . ' lazyload"';
+				}
+				return $class_match[0];
+			}, $props );
+		}
+
+		return $noscript . '<iframe' . $props . '>';
+	}, $content );
+
+	// img, video
+	$content = preg_replace_callback( '/<(img|video)([^>]*)>/', function( $matches ) {
+		// var_dump( $matches );
+		$tag   = $matches[1];
+		$props = rtrim( $matches[2], '/' );
+
+		$noscript = '<noscript><' . $tag . $props . '></noscript>';
+
+		// すでにlazyload設定が済んでいれば何もせず返す
+		if ( strpos( $props, ' data-src=' ) !== false || strpos( $props, ' data-srcset=' ) !== false ) {
+			return $matches[0];
+		}
+
+		// インライン画像の場合は -no-lb つけるだけ
+		// if ( 'img' === $tag && strpos( $props, 'style=' ) !== false ) {
+		//  $props = str_replace( ' class="', ' class="-no-lb ', $props );
+		//  return '<' . $tag . $props . '>';
+		// }
+
+		// srcを取得
+		preg_match( '/\ssrc="([^"]*)"/', $props, $src_matches );
+		$src = ( $src_matches ) ? $src_matches[1] : '';
+		if ( ! $src ) return $matches[0]; // srcなければ何もせず返す
+
+		// src を data-srcへ
+		$props = str_replace( ' src=', ' src="' . テーマB::$placeholder . '" data-src=', $props );
+
+		// srcset を data-srcsetへ
+		$props = str_replace( ' srcset=', ' data-srcset=', $props );
+
+		$is_inline = false !== strpos( $props, 'style=' ) && false !== strpos( $props, 'width:' );
+
+		// width , height指定を取得（インライン画像の場合はスキップ）
+		if ( ! $is_inline ) {
+			$props = テーマB::set_aspectratio( $props, $src );
+		}
+
+		// クラスの追加
+		if ( strpos( $props, 'class=' ) === false ) {
+			// class自体がまだがなければ
+			$props .= ' class="lazyload" ';
+		} else {
+			// クラスの中身を調べる
+			$props = preg_replace_callback( '/class="([^"]*)"/', function( $class_match ) {
+				$class_value = $class_match[1];
+				// クラスにまだ 'lazyload' が付与されていなければ
+				if ( strpos( $class_value, 'lazyload' ) === false ) {
+					return 'class="' . $class_value . ' lazyload"';
+				}
+				return $class_match[0];
+			}, $props );
+		}
+
+		return '<' . $tag . $props . '>' . $noscript;
+	}, $content );
+
+	return $content;
+}
+
+
+/**
+ * URLから自動でブログカード化
+ */
+function url_to_blog_card( $content ) {
+
+	// ( ? ) -> 過去のブログカードに対する処理...？
+	// $content = preg_replace( '/<div class="wp-block-embed__wrapper">([^<]+?)<\/div>/is', '$1', $content );
+
+	$pat_sub = preg_quote( '-._~%:/?#[]@!$&\'()*+,;=', '/' );
+	/* $pat     = '/^(<p>)?(<a.+?>)?(https?:\/\/[0-9a-z' . $pat_sub . ']+)(<\/a>)?(<\/p>)?/im'; */
+
+	// pタグの中のURL
+	$content = preg_replace_callback(
+		'/^<p>(https?:\/\/[0-9a-z' . $pat_sub . ']+)<\/p>/im',
+		__NAMESPACE__ . '\url_matches_callback',
+		$content
+	);
+
+	// embedブロックの中のURL
+	$content = preg_replace_callback(
+		'/<div class="wp-block-embed__wrapper">[\n\s]*(https?:\/\/[0-9a-z' . $pat_sub . ']+)[\n\s]*<\/div>/im',
+		__NAMESPACE__ . '\url_matches_callback',
+		$content
+	);
+
+	return $content;
+}
+
+
+function url_matches_callback( $matches ) {
+
+	$url = wp_strip_all_tags( $matches[1] );
+
+	if ( strpos( $url, 'instagram.com' ) !== false ) return $url;
+	if ( strpos( $url, 'facebook.com' ) !== false ) return $url;
+	if ( strpos( $url, 'twitter.com' ) !== false ) return $url;
+	if ( strpos( $url, 'youtube.com' ) !== false ) return $url;
+
+	$post_id = url_to_postid( $url );
+	if ( $post_id ) {
+		// 内部リンク
+		return テーマB::get_internal_blog_card( $post_id );
+	} else {
+		// 外部リンク
+		return テーマB::get_external_blog_card( $url );
+	}
+	return $url;
+}
+===== classes/Style.php (head 120) =====
+<?php
+namespace THEMEB_Theme;
+
+use \THEMEB_Theme as テーマB;
+use \THEMEB_Theme\Style as Style;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class Style {
+
+	/**
+	 * CSS変数をまとめておく
+	 */
+	public static $root_styles = [
+		'all'    => '',
+		'pc'     => '',
+		'sp'     => '',
+		'tab'    => '',
+		'mobile' => '',
+	];
+
+	/**
+	 * 最終的に吐き出すCSS
+	 */
+	public static $styles = [
+		'all'    => '',
+		'pc'     => '',
+		'sp'     => '',
+		'tab'    => '',
+		'mobile' => '',
+	];
+
+	/**
+	 * 別ファイルとして分離しているCSS
+	 */
+	public static $modules = [];
+
+	/**
+	 * 直書きスタイル
+	 */
+	public static $ex_css = '';
+
+	/**
+	 * 外部からのインタンス呼び出し無効
+	 */
+	private function __construct() {}
+
+
+	/**
+	 * reset
+	 */
+	public static function reset() {
+		self::$root_styles = [
+			'all'    => '',
+			'pc'     => '',
+			'sp'     => '',
+			'tab'    => '',
+			'mobile' => '',
+		];
+
+		self::$styles = [
+			'all'    => '',
+			'pc'     => '',
+			'sp'     => '',
+			'tab'    => '',
+			'mobile' => '',
+		];
+
+		self::$ex_css = '';
+	}
+
+
+	/**
+	 * :rootスタイル生成
+	 */
+	public static function add_root( $name, $val, $media_query = 'all' ) {
+		self::$root_styles[ $media_query ] .= $name . ':' . $val . ';';
+	}
+
+
+	/**
+	 * スタイル生成
+	 */
+	public static function add( $selectors, $properties, $media_query = 'all', $branch = '' ) {
+
+		if ( empty( $properties ) ) return;
+
+		if ( is_array( $selectors ) ) {
+			$selectors = implode( ',', $selectors );
+		}
+
+		if ( is_array( $properties ) ) {
+			$properties = implode( ';', $properties );
+		}
+
+		if ( 'editor' === $branch ) {
+			if ( ! is_admin() ) return;
+		} elseif ( 'front' === $branch ) {
+			if ( is_admin() ) return;
+		}
+
+		self::$styles[ $media_query ] .= $selectors . '{' . $properties . '}';
+	}
+
+
+	/**
+	 * スタイル生成（フロントとエディターで出し分ける）
+	 */
+	public static function add_post_style( $selectors, $properties, $media_query = 'all', $branch = 'both' ) {
+
+		if ( empty( $properties ) ) return;
+		if ( 'editor' === $branch && ! is_admin() ) return;
+		if ( 'front' === $branch && is_admin() ) return;
+
+		$new_selector = '';
+		foreach ( $selectors as $s ) {
+			if ( is_admin() ) {
+				$new_selector .= '.mce-content-body ' . $s . ', .editor-styles-wrapper ' . $s;
+			} else {
+				$new_selector .= '.post_content ' . $s;
+===== Style.php function list =====
+14:	public static $root_styles = [
+25:	public static $styles = [
+36:	public static $modules = [];
+41:	public static $ex_css = '';
+46:	private function __construct() {}
+52:	public static function reset() {
+76:	public static function add_root( $name, $val, $media_query = 'all' ) {
+84:	public static function add( $selectors, $properties, $media_query = 'all', $branch = '' ) {
+109:	public static function add_post_style( $selectors, $properties, $media_query = 'all', $branch = 'both' ) {
+134:	public static function add_module( $filename = '' ) {
+142:	public static function generate_css() {
+163:	public static function load_modules( $is_inline ) {
+185:	public static function set_front_common_modules() {
+231:	public static function get_front_common_style() {
+299:	public static function get_front_page_style() {
+364:	public static function set_content_style() {
+443:	public static function get_editor_css() {
+477:	public static function get_front_css() {
+518:	public static function get_nocache_css() {
+550:	public static function get_nocache_inline_modules() {
+588:	public static function get_nocache_modules() {
+===== lib/load/block_assets.php =====
+<?php
+namespace THEMEB_Theme\Load_Files;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * Gutenberg用スクリプト
+ */
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\hook_enqueue_block_editor_assets', 20 );
+function hook_enqueue_block_editor_assets() {
+
+	// ブロックエディター用CSS
+	wp_enqueue_style( 'themeB_editor_style', T_DIRE_URI . '/build/css/editor/editor_style.css', [], THEMEB_VERSION );
+	wp_enqueue_style( 'themeB_editor_gutenberg', T_DIRE_URI . '/build/css/editor/gutenberg.css', [], THEMEB_VERSION );
+	wp_enqueue_style( 'themeB_blocks', T_DIRE_URI . '/build/css/blocks.css', [], THEMEB_VERSION );
+
+	// googleフォント memo: @import使うので inline_style の中で一番先頭になるようにする。
+	$google_font = \THEMEB_Theme::get_google_font();
+	if ( $google_font ) {
+		wp_add_inline_style( 'themeB_editor_style', "@import url('$google_font');" );
+	}
+
+	// 動的CSS
+	wp_add_inline_style( 'themeB_editor_style', \THEMEB_Theme\Style::get_editor_css() );
+
+	// カスタムフォーマット用CSS
+	$custom_format_css = \THEMEB_Theme::get_editor( 'custom_format_css' );
+	if ( $custom_format_css ) {
+		wp_add_inline_style( 'themeB_editor_style', $custom_format_css );
+	}
+
+	// icons
+	wp_enqueue_script( 'themeB_icon_ls', T_DIRE_URI . '/build/icons/index.js', [], THEMEB_VERSION, true );
+	wp_enqueue_script( 'themeB_icon_ph', T_DIRE_URI . '/build/icons/ph.js', [], THEMEB_VERSION, true );
+	wp_enqueue_script( 'themeB_icon_fi', T_DIRE_URI . '/build/icons/fi.js', [], THEMEB_VERSION, true );
+	wp_enqueue_script( 'themeB_icon_io', T_DIRE_URI . '/build/icons/io.js', [], THEMEB_VERSION, true );
+	wp_enqueue_script( 'themeB_icon_fa', T_DIRE_URI . '/build/icons/fa.js', [], THEMEB_VERSION, true );
+
+	// エディター用の基本スクリプト
+	$asset = include T_DIRE . '/build/gutenberg/index.asset.php';
+	wp_enqueue_script( 'themeB_blocks', T_DIRE_URI . '/build/gutenberg/index.js', $asset['dependencies'], $asset['version'], true );
+
+	global $hook_suffix;
+	if ( 'post.php' === $hook_suffix || 'post-new.php' === $hook_suffix ) {
+		// $asset = include T_DIRE . 'build/gutenberg/post_editor.asset.php';
+		wp_enqueue_script( 'themeB_post_editor', T_DIRE_URI . '/build/gutenberg/post_editor.js', [], THEMEB_VERSION, true );
+	}
+	// elseif ( 'widgets.php' === $hook_suffix || 'customize.php' === $hook_suffix ) {
+	// 	wp_enqueue_script( 'themeB_widget_editor', T_DIRE_URI . '/build/gutenberg/widget_editor.js', [], THEMEB_VERSION, true );
+	// }
+
+	// fse関連ブロックの非表示
+	if ( apply_filters( 'themeB_hide_fse_blocks', true ) ) {
+		wp_enqueue_script( 'themeB_hide_fse_blocks', T_DIRE_URI . '/build/gutenberg/hide_fse_blocks.js', [], THEMEB_VERSION, true );
+	}
+
+	// JS用翻訳ファイルの読み込み
+	if ( function_exists( 'wp_set_script_translations' ) ) {
+		wp_set_script_translations( 'themeB_blocks', 'themeB', \THEMEB_Theme::get_languages_dir() );
+	}
+
+	/**
+	 * 旧ブロック
+	 */
+	wp_enqueue_script( 'themeB-old-blocks', \THEMEB_Theme::get_block_path( T_DIRE_URI, 'old-blocks', 'index.js' ), [ 'themeB_blocks' ], THEMEB_VERSION, true );
+}
+
+
+// ブロックに必要なデータを admin_footer で出力(TinyMceでも利用することに注意。)
+add_action( 'admin_footer', __NAMESPACE__ . '\output_content_data', 20 );
+
+
+/**
+ * エディターに渡すデータ
+ */
+function output_content_data() {
+
+	// エディター画面でのみ出力
+	global $hook_suffix;
+	$has_editor = 'post.php' === $hook_suffix || 'post-new.php' === $hook_suffix || 'widgets.php' === $hook_suffix || 'customize.php' === $hook_suffix;
+	if ( ! $has_editor ) return;
+
+	echo '<script id="themeB_content_data">';
+
+	// キャプションブロックのカラーセット
+	echo 'window.capBlockColors = ' . wp_json_encode( \THEMEB_Theme::get_cap_colors_data(), JSON_UNESCAPED_UNICODE ) . ';';
+
+	// ふきだし
+	echo 'window.themeBBalloons = ' . wp_json_encode( \THEMEB_Theme::get_all_balloons(), JSON_UNESCAPED_UNICODE ) . ';';
+
+	// ブログパーツ
+	echo 'window.themeBBlogParts = ' . wp_json_encode( \THEMEB_Theme::get_blog_parts_data(), JSON_UNESCAPED_UNICODE ) . ';';
+	echo 'window.themeBPartsUses = ' . wp_json_encode( \THEMEB_Theme::get_blog_parts_uses(), JSON_UNESCAPED_UNICODE ) . ';';
+
+	// 広告
+	echo 'window.themeBAdTags = ' . wp_json_encode( \THEMEB_Theme::get_ad_tag_data(), JSON_UNESCAPED_UNICODE ) . ';';
+
+	echo '</script>' . PHP_EOL;
+}

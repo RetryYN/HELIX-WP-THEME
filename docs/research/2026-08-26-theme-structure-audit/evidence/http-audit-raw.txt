@@ -1,0 +1,26 @@
+# 監査目的: 自社所有サイトへの read-only HTTP GET（PO 承認済み 2026-08-27）。
+# INV-13 の到達性は「事実の要約」に留め、応答本文（PHP Warning 全文・絶対パス）は転記しない。
+
+===== INV-06: JSON-LD presence by page kind =====
+front    ld+json blocks=0   og:type=website
+single   ld+json blocks=0   og:type=article
+category ld+json blocks=0   og:type=article
+search   ld+json blocks=0   og:type=article
+→ 構造化データ（JSON-LD）は全ページ種別で不在。
+
+===== INV-17: redirect_canonical actual behavior =====
+記事 URL 末尾スラッシュ「有」 -> 200 redirects=0
+記事 URL 末尾スラッシュ「無」 -> 200 redirects=0（Location ヘッダなし）
+→ 正規化リダイレクトが停止し、同一内容が複数 URL で 200 を返す。
+
+===== INV-17: session cookie on every page =====
+front / category / search の 3 ページとも Set-Cookie: PHPSESSID を 1 本発行。
+→ 全ページで session_start が走る。
+
+===== INV-13: unauthenticated REST route reachability（事実の要約） =====
+- /wp-json/ の namespace 一覧に themeA が露出。
+- /wp-json/themeA/post_by_url : 無認証で HTTP 200。解決不能な入力時に PHP Warning を本文へ出力し、
+  サーバー絶対パスとテーマの行番号（3726）を開示（詳細は finding #21）。
+- /wp-json/themeA/external_url : 無認証で HTTP 200。指定 URL をサーバー側が取得して og メタを返す（SSRF）。
+  検証は自サイトのフロントページを取得先とした良性リクエストのみ。内部宛の探索は行っていない。
+- 対照: 存在しないルートは 404。

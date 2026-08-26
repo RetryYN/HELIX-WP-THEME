@@ -1,0 +1,227 @@
+===== THEME テーマA (/home/<account>/site-A.example/public_html/wp-content/themes/themeA) =====
+-- size --
+22M	/home/<account>/site-A.example/public_html/wp-content/themes/themeA
+-- total files --
+679
+-- ext counts --
+    374 php
+    122 png
+     59 scss
+     35 webp
+     29 json
+     22 js
+     13 css
+      2 md
+      1 woff
+      1 txt
+      1 svg
+      1 mp4
+      1 ico
+      1 crt
+-- root files --
+404.php
+ad-finish.php
+ad-related.php
+archive.php
+attachment.php
+block.css
+category.php
+comments.php
+editor
+footer.php
+functions.php
+header.php
+home.php
+include
+index.php
+themeA-customizer.css
+themeA-login.css
+themeA-settings.css
+lib
+object
+others
+package-lock.json
+package.json
+page.php
+screenshot.png
+scss
+search.php
+searchform.php
+sidebar.php
+single.php
+style-footer.css
+style.css
+template-full-width.php
+template-thanks-page.php
+theme-update-checker.php
+vendor
+widget-admin.css
+-- dirs depth2 (file counts) --
+     4  editor
+     3  editor/build
+   179  include
+   162  include/customizer
+     8  include/head
+    80  lib
+     5  lib/font
+    56  lib/img
+    18  lib/js
+    22  object
+     5  object/main-visual
+     2  others
+    63  scss
+     4  scss/common
+     5  scss/core
+     2  scss/font
+     4  scss/layout
+    32  scss/object
+     8  scss/others
+   298  vendor
+    11  vendor/composer
+   286  vendor/stripe
+-- style.css header --
+@charset "UTF-8";
+/**
+Theme Name: テーマA
+Author: ベンダーA
+Author URI: https://vendor-a.example
+Version: 1.4.6
+Requires at least: 5.9.1
+Requires PHP: 7.0
+*/
+/* CSS Document */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+ol,
+ul,
+dl,
+-- theme.json? --
+NONE
+===== THEME テーマA-CHILD (/home/<account>/site-A.example/public_html/wp-content/themes/themeA-child) =====
+-- size --
+88K	/home/<account>/site-A.example/public_html/wp-content/themes/themeA-child
+-- total files --
+6
+-- ext counts --
+      2 css
+      1 scss
+      1 png
+      1 php
+-- root files --
+functions.php
+screenshot.png
+style.css
+style.min.css
+style.scss
+-- dirs depth2 (file counts) --
+-- style.css header --
+/**
+Theme Name: テーマA child
+Template: themeA
+Author: ベンダーA
+Author URI: https://vendor-a.example
+Version: 1.00
+*/-- theme.json? --
+NONE
+===== THEME テーマB (/home/<account>/site-B.example/public_html/wp-content/themes/themeB) =====
+-- size --
+19M	/home/<account>/site-B.example/public_html/wp-content/themes/themeB
+-- total files --
+747
+-- ext counts --
+    331 php
+    137 css
+    100 js
+     67 json
+     35 scss
+     14 po
+     14 mo
+     12 svg
+      8 woff2
+      8 ttf
+      8 png
+      4 woff
+      4 eot
+      2 jpg
+      1 txt
+      1 pot
+-- root files --
+404.php
+archive-term.php
+archive.php
+assets
+attachment.php
+author.php
+build
+classes
+comments.php
+footer.php
+functions.php
+header.php
+home.php
+index.php
+languages
+lib
+licence
+page.php
+parts
+sass-builder.js
+screenshot.png
+search.php
+searchform.php
+sidebar.php
+single-lp.php
+single.php
+src
+style.css
+tmp
+-- dirs depth2 (file counts) --
+    59  assets
+    36  assets/font-awesome
+     5  assets/fonts
+    13  assets/img
+     5  assets/js
+   268  build
+    96  build/css
+   137  build/gutenberg
+    10  build/icons
+    23  build/js
+     2  build/menu
+    61  classes
+    10  classes/Customizer
+     1  classes/Data
+     8  classes/Legacy_Widget
+     1  classes/Menu
+    10  classes/THEMEB_THEME
+    11  classes/Style
+     6  classes/Utility
+     1  classes/plugins
+     3  languages
+   187  lib
+    34  lib/customizer
+    19  lib/gutenberg
+     5  lib/hooks
+     6  lib/load
+    12  lib/menu
+     3  lib/pluggable_parts
+     6  lib/polyfill
+     5  lib/post_meta
+     1  lib/rest_api
+    69  lib/update
+    54  parts
+     1  parts/archive
+     6  parts/footer
+     7  parts/header
+    16  parts/post_list
+    10  parts/single
+     7  parts/top
+    92  src
+    71  src/gutenberg
+    16  src/icons
+     5  src/menu
+     2  tmp

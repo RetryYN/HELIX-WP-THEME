@@ -1,0 +1,197 @@
+===== h2 ads function 4317-4523 =====
+//記事中の最初のh2タグの上に広告自動設置
+function themeA_h2_ads_concert($the_content)
+{
+	$post_ads_display_settings = get_post_meta(get_the_ID(), '_themeA_ads_display', true);
+	if ($post_ads_display_settings == '1') {
+		return $the_content;
+	}
+	// 投稿のみに適用
+	$post_type = get_post_type();
+	if (is_single()  && $post_type == 'post') {
+		$categories = get_the_category();
+		if (!$categories) {
+			return $the_content;
+		}
+		// カテゴリーが複数設定されている場合、カテゴリーIDの小さい方を読み込むようにする
+		$ids = array_column($categories, 'term_id');
+		array_multisort($ids, SORT_ASC, $categories);
+		$cat_current  = $categories[0];
+		$current_id   = $cat_current->cat_ID;
+
+		$themeA_h2_sponsor_text = get_option('themeA_h2_sponsor_text');
+		$themeA_h2_ads_code = get_option('themeA_h2_ads_code');
+		$themeA_h2_sp_display = get_option('themeA_h2_sp_display');
+
+		/**
+		 * 前回のカテゴリーIDを格納していく。
+		 * 条件1 : テーマA設定で設定しているカテゴリーに親がいるのかどうかを検証。
+		 * 親を持つ場合            → そのまま格納
+		 * 親を持たない場合         → 親を持たないカテゴリーを起点に他のカテゴリーをarray_diffで検証
+		 *
+		 * array_diffがtrueの場合 → 取得した値を使う
+		 * falseの場合            → 自分のカテゴリーをそのまま使う
+		 *
+		 * 注意点
+		 * 子カテゴリーの取得するだけではなく、自身のカテゴリーも追加した状態で配列を組む
+		 */
+		$cat_merge_ids = array();
+		for ($num = 1; $num <= 4; $num++) {
+			${'cat_array_id_0' . $num} = array();
+			${'themeA_ads_choice_category_0' . $num} = get_option('themeA_choise_category_' . $num . '');
+
+			// カテゴリーが未選択ならループを飛ばす
+			if (${'themeA_ads_choice_category_0' . $num} == '0') {
+				${"merge" . $num} = array('parent' => 'none', 'category_list' => array(0 => 0));
+				continue;
+			}
+			$cat_data = get_category(${'themeA_ads_choice_category_0' . $num});
+			if (isset($cat_data->category_parent)) {
+				if ($cat_data->category_parent) {
+					// 親カテゴリーがある場合
+					$child_categories = get_term_children(${'themeA_ads_choice_category_0' . $num}, 'category');
+					${'cat_array_id_0' . $num}['parent'] = 'exist';
+					array_unshift($child_categories, intval(${'themeA_ads_choice_category_0' . $num}));
+					if (!empty($child_categories)) {
+						${'cat_array_id_0' . $num}['category_list'] = $child_categories;
+					} else {
+						${'cat_array_id_0' . $num}['category_list'] = array(0 => 0);
+					}
+				} else {
+					// 親カテゴリーがない場合
+					$child_categories = get_term_children(${'themeA_ads_choice_category_0' . $num}, 'category');
+					${'cat_array_id_0' . $num}['parent'] = 'none';
+					array_unshift($child_categories, intval(${'themeA_ads_choice_category_0' . $num}));
+					${'cat_array_id_0' . $num}['category_list'] = $child_categories;
+				}
+			}
+			${"merge" . $num} = array_merge($cat_merge_ids, ${'cat_array_id_0' . $num});
+			${"ancestor_ids" . $num} = get_ancestors(get_option('themeA_choise_category_' . $num), 'category');
+		}
+		//エリア１専用
+		for ($m = 1; $m <= 4; $m++) {
+			${"exist1_" . $m} = "";
+			if (isset(${"ancestor_ids1"}) && isset(${"merge" . $m}['category_list'])) {
+				${"check1_" . $m} = array_intersect(${"ancestor_ids1"}, ${"merge" . $m}['category_list']);
+				if (!empty(${"check1_" . $m})) {
+					${"exist1_" . $m} = array(0);
+				} else {
+					${"exist1_" . $m} = ${"merge" . $m}['category_list'];
+				}
+			} else {
+				${"exist1_" . $m} = array(0);
+			}
+		}
+		if (!empty($merge1['category_list'])) {
+			}
+		}
+		if (!empty($merge4['category_list'])) {
+			if (!$merge4['category_list'][0] == 0 && is_array($merge4['category_list'])) {
+				$cat_array_ids4 = array_diff($merge4['category_list'], $exist4_1, $exist4_2, $exist4_3);
+			} else {
+				$cat_array_ids4 = array();
+			}
+		} else {
+			$cat_array_ids4 = array();
+		}
+
+		for ($i = 1; $i <= 4; $i++) {
+			${'themeA_ads_choice_category_0' . $i} = get_option('themeA_choise_category_' . $i . '');
+			if (is_array(${"cat_array_ids" . $i}) && !empty(${"cat_array_ids" . $i})) {
+				foreach (${"cat_array_ids" . $i} as $cat_array_id) {
+					if ($current_id == $cat_array_id) {
+						$themeA_h2_sponsor_text = get_option('themeA_h2_sponsor_text_' . $i . '');
+						$themeA_h2_ads_code = get_option('themeA_h2_ads_code_' . $i . '');
+						$themeA_h2_sp_display = get_option('themeA_h2_sp_display_' . $i . '');
+						continue;
+					}
+				}
+			}
+		}
+		if ($themeA_h2_sp_display == '1') {
+			$themeA_sp_display = '';
+		} else {
+			$themeA_sp_display = 'd--sp-nonedisplay';
+		}
+		$ad = '';
+		if (!$themeA_h2_ads_code == null) {
+			$ad .= '<div class="o--ads-area o--before-h2-ads">';
+			if (!$themeA_h2_sponsor_text == null) {
+				$ad .= '<div class="a--ads-sponser">' . $themeA_h2_sponsor_text . '</div>';
+			}
+			$ad .= '<section class="c--ads-area d--minwidth-100 ' . $themeA_sp_display . '"><div class="a--ads-rectangle">' . $themeA_h2_ads_code . '</div></section></div>';
+			$tag = '/<h2.*?>/i';
+			if (preg_match($tag, $the_content, $tags)) {
+				if (strpos($tags[0], 'a--h2rich-maincopy') !== false) {
+					$pattern = '/<section class="wp-block-themeA-blocks-designtitle/';
+					preg_match($pattern, $the_content, $matches, PREG_OFFSET_CAPTURE);
+					$the_content = preg_replace($pattern, $ad . $matches[0][0], $the_content, 1);
+				} else {
+					$the_content = preg_replace($tag, $ad . $tags[0], $the_content, 1);
+				}
+			}
+		}
+		return $the_content;
+	} else {
+		return $the_content;
+	}
+}
+add_filter('the_content', 'themeA_h2_ads_concert');
+===== blogcard render callback =====
+2041:function themeA_blog_card_dynamic_render_callback($block_attr, $content)
+function themeA_blog_card_dynamic_render_callback($block_attr, $content)
+{
+
+	$input_url      = !empty($block_attr['postUrl']) ? $block_attr['postUrl'] : '';
+	$postTitle      = !empty($block_attr['postTitle']) ? $block_attr['postTitle'] : '';
+	$thumbnailUrl   = !empty($block_attr['thumbnailUrl']) ? $block_attr['thumbnailUrl'] : '';
+	$toggleTab      = !empty($block_attr['toggleTab']) ? $block_attr['toggleTab'] : false;
+	$blogcardDesign = !empty($block_attr['blogcardDesign']) ? $block_attr['blogcardDesign'] : themeA__blogcard_design();
+	$blogcardTitle  = !empty($block_attr['blogcardTitle']) ? $block_attr['blogcardTitle'] : themeA__blogcard_title();
+	$blogcardLabel = !empty($block_attr['blogcardLabel']) ? $block_attr['blogcardLabel'] : themeA__blogcard_title();
+	$blogcardType  = !empty($block_attr['blogcardType']) ? $block_attr['blogcardType'] : 'd--blogcard-mysite';
+	$postTitleExternal = !empty($block_attr['postTitleExternal']) ? $block_attr['postTitleExternal'] : '';
+	$postUrlExternal = !empty($block_attr['postUrlExternal']) ? $block_attr['postUrlExternal'] : '';
+	$postImageExternal = !empty($block_attr['postImageExternal']) ? $block_attr['postImageExternal'] : themeA_noimage_url('small_size');
+
+	if (strpos($postImageExternal, 'wp-content/themes/themeA/lib/img/noimage.png') === false) {
+		$target_extension = ["/\.png\z/", "/\.jpg\z/", "/\.jpeg\z/", "/\.webp\z/"];
+		$suffix_small    = ["-320x180.png", "-320x180.jpg", "-320x180.jpeg", "-320x180.webp"];
+		$srcsmall = preg_replace($target_extension, $suffix_small, $postImageExternal);
+		$thumbnail_small_exisits = WP_CONTENT_DIR . '/' . mb_substr($srcsmall, mb_strrpos($srcsmall, 'uploads'), mb_strlen($srcsmall));
+		if (file_exists($thumbnail_small_exisits)) {
+			$postImageExternal = $srcsmall;
+		}
+	}
+	$site_domain = themeA_get_this_site_domain();
+
+	$topMarginPc      = !empty($block_attr['topMarginPcAttribute']) ? $block_attr['topMarginPcAttribute'] : 'auto';
+	$bottomMarginPc      = !empty($block_attr['bottomMarginPcAttribute']) ? $block_attr['bottomMarginPcAttribute'] : 'auto';
+	$topMarginSp      = !empty($block_attr['topMarginSpAttribute']) ? $block_attr['topMarginSpAttribute'] : 'auto';
+	$bottomMarginSp      = !empty($block_attr['bottomMarginSpAttribute']) ? $block_attr['bottomMarginSpAttribute'] : 'auto';
+	$displayDevice      = !empty($block_attr['displayDeviceAttribute']) ? $block_attr['displayDeviceAttribute'] : 'all';
+
+	//詳細設定のclass
+	$detail_setting = "";
+	$detail_setting .= $topMarginPc !== "auto" ? $topMarginPc . " " : "";
+	$detail_setting .= $bottomMarginPc !== "auto" ? $bottomMarginPc . " " : "";
+	$detail_setting .= $topMarginSp !== "auto" ? $topMarginSp . " " : "";
+	$detail_setting .= $bottomMarginSp !== "auto" ? $bottomMarginSp . " " : "";
+	$detail_setting .= $displayDevice !== "all" ? $displayDevice . " " : "";
+
+	$themeABlockClassName      = !empty($block_attr['className']) ? $block_attr['className'] : '';
+	$themeABlockCSSAttribute      = !empty($block_attr['themeABlocksCSSAttribute']) ? '<style jsx="true">' . $block_attr['themeABlocksCSSAttribute'] . '</style>' : '';
+
+	if ($blogcardType == 'd--blogcard-mysite') { //内部リンク
+
+		if ($input_url !== '') {
+
+			$request = new WP_REST_Request('GET', '/themeA/post_by_url');
+			$request->set_query_params(array('url' => $block_attr['postUrl']));
+			$response = rest_do_request($request);
+			$server   = rest_get_server();
+			$data     = $server->response_to_data($response, false);
+
+			$post_url        = $input_url;
+			$post_ID         = url_to_postid($post_url);
+			$thumbnail_url = !get_the_post_thumbnail_url($post_ID, 'small_size') == "" ? get_the_post_thumbnail_url($post_ID, 'small_size') : themeA_youtube_thumbnail_url($post_ID, 'small');

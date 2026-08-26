@@ -1,0 +1,376 @@
+===== functions.php 1-250 =====
+<?php
+
+/**
+ * テーマA functions and definitions
+ * @package テーマA
+ */
+/**
+ * テーマの情報を定義
+ */
+$themeA_theme_data = wp_get_theme();
+if (!defined('THEMEA_THEME_VERSION')) {
+	define('THEMEA_THEME_VERSION', $themeA_theme_data->get('Version'));
+}
+if (!defined('THEMEA_PHP_INCLUDE')) {
+	define('THEMEA_PHP_INCLUDE', trailingslashit(get_template_directory()) . 'include/');
+}
+if (!defined('THEMEA_CORE_DIR')) {
+	define('THEMEA_CORE_DIR', THEMEA_PHP_INCLUDE . 'core/');
+}
+/**
+ * jQueryをフッターで読み込み
+ */
+function themeA_jquery_enqueue()
+{
+	if (!is_admin()) {
+		global $wp_scripts;
+		$jquery     = $wp_scripts->registered['jquery-core'];
+		$jquery_ver = $jquery->ver;
+		$jquery_src = $jquery->src;
+
+		wp_deregister_script('jquery');
+		wp_deregister_script('jquery-core');
+
+		wp_register_script('jquery', false, array('jquery-core'), $jquery_ver, true);
+		wp_register_script('jquery-core', $jquery_src, array(), $jquery_ver, true);
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('jquery-core');
+	}
+}
+add_action('wp_enqueue_scripts', 'themeA_jquery_enqueue');
+
+
+/**
+ * jsの読み込み(js output)
+ */
+function themeA_enqueue_script()
+{
+	global $post;
+	wp_enqueue_script('themeA-youtube-script', get_template_directory_uri() . '/lib/js/youtube.js', array('jquery'), false, true);
+	if (empty($post)) {
+		wp_register_script('themeA-common-script', get_template_directory_uri() . '/lib/js/common.js', array('jquery'), false, true);
+		$common_data = array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'action'   => 'themeA_increment_views'
+		);
+		wp_localize_script('themeA-common-script', 'themeA_ajax_common', $common_data);
+		wp_enqueue_script('themeA-common-script');
+		wp_localize_script('themeA-common-script', 'headerTracking', array(
+			'tracking_info' => themeA__header_tracking(),
+		));
+	} else {
+		wp_register_script('themeA-common-script', get_template_directory_uri() . '/lib/js/common.js', array('jquery'), false, true);
+		$common_data = array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'post_id'  => $post->ID,
+			'action'   => 'themeA_increment_views'
+		);
+		wp_localize_script('themeA-common-script', 'themeA_ajax_common', $common_data);
+		wp_enqueue_script('themeA-common-script');
+		wp_localize_script('themeA-common-script', 'headerTracking', array(
+			'tracking_info' => themeA__header_tracking(),
+		));
+	}
+
+	// スライダーJSは記事スライドもしくは画像スライドのスライドインの時のみ読み込み
+	if (themeA__main_visual_type() == 'type01-post-slider') {
+		if (themeA__slider_design_select() == 'd--slider-design1') {
+			wp_enqueue_script('themeA-slider-script', get_template_directory_uri() . '/lib/js/slider.js', array('jquery'), false, true);
+		} else {
+			wp_enqueue_style('themeA-swiper-style', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css');
+			wp_enqueue_script('themeA-swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js', array(), false, false);
+			wp_enqueue_script('themeA-swiper-setting-script', get_template_directory_uri() . '/lib/js/slider-jin.js', array(), false, true);
+		}
+	} elseif (themeA__main_visual_type() == 'type02-image-slider'  && themeA__imageslider_animation_select() == 'd--imageslider-animation-slidein') {
+		wp_enqueue_script('themeA-slider-script', get_template_directory_uri() . '/lib/js/slider.js', array('jquery'), false, true);
+	}
+	if (themeA__add_class() !== false) {
+		wp_enqueue_script('add-themeA-class', get_template_directory_uri() . '/lib/js/add-themeA-class.js', array('jquery'), false, true);
+	}
+	wp_enqueue_script('themeA-tab-switch-script', get_template_directory_uri() . '/lib/js/tab_switch.js', array('jquery'), false, true);
+}
+add_action('wp_enqueue_scripts', 'themeA_enqueue_script');
+
+add_action('admin_enqueue_scripts', function () {
+	wp_register_script('themeA_page_reload', get_template_directory_uri() . '/lib/js/page-reload.js', array('jquery'), false, true);
+	wp_register_script('themeA_settings', get_template_directory_uri() . '/lib/js/themeA-settings.js', array('jquery'), false, true);
+	wp_enqueue_script('themeA_page_reload');
+	wp_enqueue_script('themeA_settings');
+});
+
+/**
+ * Gutenbergにjsを読み込み
+ */
+function themeA_gutenberg_script($hook)
+{
+	if ('post.php' === $hook || 'post-new.php' === $hook) {
+		wp_enqueue_script('themeA-mete-position-script', get_template_directory_uri() . '/lib/js/meta_position.js', array('jquery'), false, true);
+		wp_enqueue_script('themeA-tab-switch-script', get_template_directory_uri() . '/lib/js/tab_switch.js', array('jquery'), false, true);
+		wp_enqueue_script('themeA-title-count-script', get_template_directory_uri() . '/lib/js/title_count.js', array('jquery'), false, true);
+		wp_enqueue_script('themeA-pattern-script', get_template_directory_uri() . '/lib/js/pattern.js', array('jquery'), false, true);
+		wp_enqueue_script('themeA-youtube-time-script', 'https://www.youtube.com/iframe_api', array('jquery'), false, true);
+	}
+}
+add_action('admin_enqueue_scripts', 'themeA_gutenberg_script');
+
+
+/**
+ * headでcssの読み込み(css output)
+ */
+function themeA_enqueue_style()
+{
+	wp_enqueue_style('theme-style', get_stylesheet_uri());
+}
+add_action('wp_enqueue_scripts', 'themeA_enqueue_style');
+
+/**
+ * footerで読み込み(output in footer)
+ */
+function themeA_enqueue_style_footer()
+{
+	wp_enqueue_style('theme-style-footer', get_template_directory_uri() . '/style-footer.css');
+	if (themeA__external_reading_kaereba() == true) {
+		wp_enqueue_style('themeA-kaereba', get_template_directory_uri() . '/scss/others/kaereba.css');
+	}
+	if (themeA__external_reading_appreach() == true) {
+		wp_enqueue_style('themeA-appreach', get_template_directory_uri() . '/scss/others/appreach.css');
+	}
+};
+add_action('wp_footer', 'themeA_enqueue_style_footer');
+
+/**
+ * 管理画面でcssの読み込み(css output in admin screen)
+ */
+function themeA_admin_print_styles($hook)
+{
+	wp_enqueue_style('wp-color-picker');
+	wp_enqueue_style('widget', get_template_directory_uri() . '/widget-admin.css');
+}
+add_action('admin_print_styles', 'themeA_admin_print_styles');
+
+
+/**
+ * THEMEA設定でcssの読み込み(css output in admin screen)
+ */
+function themeA_settings_styles($hook)
+{
+	if (strpos($hook, 'themeA-setting') !== false) {
+		wp_enqueue_style('themeA-settings');
+		wp_enqueue_style('themeA-settings', get_template_directory_uri() . '/themeA-settings.css');
+	}
+}
+add_action('admin_enqueue_scripts', 'themeA_settings_styles');
+
+/**
+ * metaタグの削除
+ */
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+
+/**
+ * scaled画像の自動生成削除
+ */
+add_filter('big_image_size_threshold', '__return_false');
+
+/**
+ * カスタマイザー
+ */
+require_once THEMEA_PHP_INCLUDE . 'customizer.php';
+require_once THEMEA_PHP_INCLUDE . 'load-customizer-value.php';
+
+
+/**
+ * ウィジェット
+ */
+get_template_part('include/widgets');
+
+
+/**
+ * ショートコード
+ */
+get_template_part('include/shortcode');
+
+
+/**
+ * THEMEA設定
+ */
+get_template_part('include/themeA-setting');
+
+
+/**
+ * Title setting
+ */
+get_template_part('include/head/title');
+
+
+/**
+ * English font setting
+ */
+get_template_part('include/font-selection');
+
+
+/**
+ * json-ld
+ */
+if (themeA__reading_jsonld() !== true) {
+	get_template_part('include/json-ld');
+}
+
+
+/**
+ * Custom Functions
+ */
+get_template_part('include/custom-functions');
+
+
+/**
+ * Registers all block assets so that they can be enqueued through the block editor
+ * in the corresponding context.
+ *
+ * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
+ */
+function create_block_themeA_blocks_block_init()
+{
+	$dir               = dirname(__FILE__);
+	$script_asset_path = "$dir/editor/build/index.asset.php";
+	if (!file_exists($script_asset_path)) {
+		throw new Error(
+			'You need to run `npm start` or `npm run build` for the "create-block/themeA-blocks" block first.'
+		);
+	}
+	$index_js     = '/editor/build/index.js';
+	$script_asset = require $script_asset_path;
+	wp_register_script(
+		'themeA-blocks-script',
+		get_template_directory_uri() . $index_js,
+		$script_asset['dependencies'],
+		$script_asset['version']
+	);
+	$categories    = get_categories(
+===== load-customizer-value.php 1-120 =====
+<?php
+function themeA_customize_inline_style()
+{
+
+	$sp          = 'max-width: 551px';
+	$mini_tablet = 'min-width: 552px';
+	$tablet      = 'min-width: 782px';
+	$pc_view     = 'min-width: 961px';
+	$pc          = 'min-width: 1340px';
+
+	$bg_image                 = themeA__bg_image();
+	if (themeA__theme_color() == false) {
+		set_theme_mod('themeA__theme_color', '#407FED');
+	}
+	$theme_color              = themeA__theme_color();
+	$theme_color_rgba 		  = themeA_hex_to_rgb($theme_color);
+	$theme_color_hsl          = themeA_hex_to_hsl($theme_color);
+	$theme_color_hsl_huerotate1  = ($theme_color_hsl[0] + 30);
+	$theme_color_hsl_huerotate2  = ($theme_color_hsl[0] + 45);
+	$theme_color_hsl_blightrotate1  = ($theme_color_hsl[2] + 9);
+	$design_style 			  = themeA__design_style();
+	if (themeA__header_bg_color() == false) {
+		set_theme_mod('themeA__header_bg_color', '#407FED');
+	}
+	$header_bg_color          = themeA__header_bg_color();
+	$header_bg_color_hsl      = themeA_hex_to_hsl($header_bg_color);
+	$header_title_color       = themeA__header_title_color();
+	$header_menu_color        = themeA__header_menu_color();
+	if (themeA__header_menu_color() == false) {
+		set_theme_mod('themeA__header_menu_color', '#22327a');
+	}
+	$header_menu_color_rgba = themeA_hex_to_rgb($header_menu_color);
+	$link_hover_color         = themeA__link_hover_color();
+	$link_color               = themeA__link_color();
+	$text_color               = themeA__text_color();
+	if (themeA__text_color() == false) {
+		set_theme_mod('themeA__text_color', '#555555');
+	}
+	$text_color_rgba 		  = themeA_hex_to_rgb($text_color);
+	$bg_color                 = themeA__bg_color();
+	if (themeA__bg_color() == false) {
+		set_theme_mod('themeA__bg_color', '#f7faff');
+	}
+	$bg_color_rgba 		  = themeA_hex_to_rgb($bg_color);
+	$marker1_color       	  = themeA__marker1_color();
+	$marker2_color      	  = themeA__marker2_color();
+	$marker1_weight        	  = themeA__marker1_weight();
+	$marker2_weight       	  = themeA__marker2_weight();
+	$colortext1_color         = themeA__colortext1_color();
+	$colortext2_color      	  = themeA__colortext2_color();
+	$related_post_bg_color    = themeA__related_post_bgcolor();
+	$related_post_text_color  = themeA__related_post_color_type();
+	$footer_bg_color          = themeA__footer_bg_color();
+	$footer_text_color        = themeA__footer_text_color();
+
+	$stillimage_url = themeA__stillimage_url();
+	$stillimage_url_sp = themeA__stillimage_url_sp();
+	$stillimage_height_size = themeA__stillimage_height_size();
+	$stillimage_height_size_sp = themeA__stillimage_height_size_sp();
+	$stillimage_height_control = themeA__stillimage_height_size_control() . '%';
+	$stillimage_height_control_sp = themeA__stillimage_height_size_control_sp() . '%';
+	$stillimage_height_size_num = themeA__stillimage_height_size_number() . 'px';
+	$stillimage_height_size_num_sp = themeA__stillimage_height_size_number_sp() . 'px';
+	$stillimage_overlay_color               = themeA__stillimage_overlay_color();
+	$stillimage_overlay_transparent         = 100 - themeA__stillimage_overlay_transparent();
+	$stillimage_overlay_transparent_percent = 100 - themeA__stillimage_overlay_transparent() . '%';
+	$stillimage_maincopy_color              = themeA__stillimage_maincopy_color();
+	$stillimage_contents_position_vertical_pc = themeA__stillimage_contents_position_vertical_pc() . '%';
+	$stillimage_contents_position_horizon_pc = themeA__stillimage_contents_position_horizon_pc() . '%';
+	$stillimage_contents_position_vertical_sp = themeA__stillimage_contents_position_vertical_sp() . '%';
+	$stillimage_contents_position_horizon_sp = themeA__stillimage_contents_position_horizon_sp() . '%';
+	$stillimage_contents_align_pc = themeA__stillimage_contents_align_pc();
+	$stillimage_copy_size_num = themeA__stillimage_copy_size_number() + 50;
+
+	$movie_height_sp = themeA__movie_height_sp() . 'px';
+	$movie_maincopy_color              = themeA__movie_maincopy_color();
+	$movie_contents_position_vertical_pc = themeA__movie_contents_position_vertical_pc() . '%';
+	$movie_contents_position_horizon_pc = themeA__movie_contents_position_horizon_pc() . '%';
+	$movie_contents_position_vertical_sp = themeA__movie_contents_position_vertical_sp() . '%';
+	$movie_contents_position_horizon_sp = themeA__movie_contents_position_horizon_sp() . '%';
+	$movie_contents_align_pc = themeA__movie_contents_align_pc();
+	$movie_copy_size_num = themeA__movie_copy_size_number() + 50;
+
+	$header_logo_size       = themeA__header_logo_size() . '%';
+	$header_logo_size_sp    = themeA__header_logo_size_sp() . '%';
+	$header_logo_padding    = themeA__header_logo_padding() . 'px';
+	$header_logo_padding_sp = themeA__header_logo_padding_sp() . 'px';
+	$header_glonavi_size    = themeA__glonavi_font_size() . 'px';
+
+	$header_logo_size_px    = themeA__header_logo_size() . 'px';
+	$header_logo_size_sp_px = themeA__header_logo_size_sp() . 'px';
+	$header_bg_image          = themeA__header_bg_image();
+	$header_bg_image_repeat   = themeA__header_bg_image_repeat();
+	$header_bg_image_size   = themeA__header_bg_image_size() . '%';
+	$header_bg_image_size_sp   = themeA__header_bg_image_size_sp() . '%';
+	$header_bg_image_horizon_sp   = themeA__header_bg_position_horizon_sp() . '%';
+	$header_bg_image_vertical_sp   = themeA__header_bg_position_vertical_sp() . '%';
+	$header_bg_image_horizon   = themeA__header_bg_position_horizon() . '%';
+	$header_bg_image_vertical   = themeA__header_bg_position_vertical() . '%';
+
+	$cvbutton_all_color = themeA__spcv_all_color();
+	$cvbutton_all_textcolor = themeA__spcv_all_text_color();
+	$cvbutton_all_textcolor_rgba = themeA_hex_to_rgb($cvbutton_all_textcolor);
+	$cvbutton_category1_color = themeA__spcv_category1_color();
+	$cvbutton_category1_textcolor = themeA__spcv_category1_text_color();
+	$cvbutton_category1_textcolor_rgba = themeA_hex_to_rgb($cvbutton_category1_textcolor);
+	$cvbutton_category2_color = themeA__spcv_category2_color();
+	$cvbutton_category2_textcolor = themeA__spcv_category2_text_color();
+	$cvbutton_category2_textcolor_rgba = themeA_hex_to_rgb($cvbutton_category2_textcolor);
+	$cvbutton_category3_color = themeA__spcv_category3_color();
+	$cvbutton_category3_textcolor = themeA__spcv_category3_text_color();
+	$cvbutton_category3_textcolor_rgba = themeA_hex_to_rgb($cvbutton_category3_textcolor);
+
+	$infobar_textcolor = themeA__info_textcolor();
+
+	// グラデーション登録読み込み
+	$gradation1_color1 = themeA__gradation_color1_1();
+	$gradation1_color2 = themeA__gradation_color1_2();
+	$gradation1_deg    = themeA__gradation_color1_deg() . 'deg';
+	$gradation2_color1 = themeA__gradation_color2_1();
+===== load-customizer-value function list =====
+2:function themeA_customize_inline_style()
+2099:add_action('wp_head', 'themeA_customize_inline_style');
+2100:add_action('admin_head', 'themeA_customize_inline_style');
