@@ -1,0 +1,195 @@
+===== register_block impl =====
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/classes/Utility/Others.php:14:	public static function register_block( $block_name, $args = [] ) {
+===== dynamic block: post-link.php =====
+<?php
+namespace THEMEB_Theme\Block\Post_Link;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * 関連記事ブロック
+ */
+\THEMEB_Theme::register_block( 'post-link', [
+	'render_callback' => __NAMESPACE__ . '\cb',
+] );
+
+function cb( $attrs ) {
+	$className   = $attrs['className'];
+	$style       = $attrs['style'] ?? '';
+	$cardTitle   = $attrs['cardTitle'] ?? '';
+	$cardCaption = $attrs['cardCaption'];
+	$isNewTab    = $attrs['isNewTab'];
+	$rel         = $attrs['rel'];
+	$hideImage   = $attrs['hideImage'];
+	$hideExcerpt = $attrs['hideExcerpt'];
+	$isText      = $attrs['isText'];
+	$linkData    = $attrs['linkData'] ?? [];
+	$icon        = $attrs['icon'] ?? '';
+	$thumbUrl    = $attrs['thumbUrl'] ?? '';
+
+	//////////////
+	if ( ! empty( $linkData ) ) {
+		// v2以降は、linkDataを使う
+		$link_id = $linkData['id'] ?? 0;
+		$url     = $linkData['url'] ?? '';
+		$kind    = $linkData['kind'] ?? ''; // "taxonomy" or "post-type" (多分この２つだけ)
+		$type    = $linkData['type'] ?? ''; // 投稿タイプ or タクソノミー名
+	} else {
+		// v1
+		$link_id = $attrs['postId'] ?? 0;
+		$url     = $attrs['externalUrl'] ?? '';
+		$kind    = $link_id ? 'post-type' : '';
+		$type    = ''; // 投稿タイプは判断できない
+	}
+	//////////////
+
+	$card_style = $style ?: 'card';
+	if ( $isText ) {
+		$card_style = 'text';
+	}
+
+	// 上書き用データ
+	$card_args = [
+		'custom_title' => $cardTitle,
+		'caption'      => $cardCaption,
+		'is_blank'     => $isNewTab,
+		'rel'          => $rel,
+		'noimg'        => $hideImage,
+		'nodesc'       => $hideExcerpt,
+		'style'        => $card_style,
+		'icon'         => $icon,
+	];
+
+	if ( $thumbUrl ) {
+===== Theme_Data data_init =====
+<?php
+/**
+ * テーマ内で利用するデータを定義する
+ *
+ * @package themeB
+ */
+namespace THEMEB_Theme;
+
+/**
+ * テーマで使用するデータ
+ */
+class Theme_Data {
+
+	use \THEMEB_Theme\Data\Default_Settings;
+
+	// DB名
+	const DB_NAME_CUSTOMIZER = 'themeB_customizer';
+	const DB_NAME_OPTIONS    = 'themeB_options';
+	const DB_NAME_EDITORS    = 'themeB_editors';
+
+	// new
+	const DB_NAMES = [
+		'customize'  => 'themeB_customizer',
+		'options'    => 'themeB_options',
+		'editors'    => 'themeB_editors',
+		'others'     => 'themeB_others',
+	];
+
+	const MENU_SLUGS = [
+		'basic'  => 'themeB_settings',
+		'editor' => 'themeB_settings_editor',
+	];
+
+	// 独自テーブル
+	const DB_TABLES = [
+		'balloon'  => 'themeB_balloon',
+	];
+
+
+	// カスタマイザー＆管理画面マージ用
+	public static $setting = '';
+
+	// カスタマイザー用
+	public static $customize            = '';
+	protected static $default_customize = '';
+
+	// 設定画面用
+	public static $options            = '';
+	protected static $default_options = '';
+
+	// エディター設定
+	public static $editors            = '';
+	protected static $default_editors = '';
+
+	// version
+	public static $themeB_version = '';
+
+	// ユーザー認証
+	public static $licence_status = '';
+
+	// update json path
+	public static $update_dir_path = '';
+
+	// ユーザーエージェント
+	public static $user_agent = '';
+
+	// サイトデータ
+	public static $site_data = [];
+
+	// NO IMG
+	public static $noimg = [];
+
+	// NONCE
+	public static $nonce = [
+		'name'   => 'swl_nonce',
+		'action' => 'swl_nonce_action',
+	];
+
+	// リストレイアウト
+	public static $list_layouts = [];
+===== rewrite_html.php head =====
+<?php
+/**
+ * JS遅延読み込み
+ *
+ * @package themeB
+ */
+namespace THEMEB_Theme\Rewrite_Html;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+if ( ! is_admin() ) {
+	add_action( 'wp', function() {
+		if ( \THEMEB_Theme::is_use( 'delay_js' ) ) {
+			add_action( 'wp_print_footer_scripts', __NAMESPACE__ . '\scripts_inject' );
+			ob_start( __NAMESPACE__ . '\rewrite_lazyload_scripts' );
+		}
+	} );
+}
+
+function is_keyword_included( $content, $keywords ) {
+	foreach ( $keywords as $keyword ) {
+		if ( ! $keyword ) continue;
+		if ( strpos( $content, $keyword ) !== false ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function rewrite_lazyload_scripts( $html ) {
+	try {
+		// Process only GET requests
+		if ( ! isset( $_SERVER['REQUEST_METHOD'] ) || $_SERVER['REQUEST_METHOD'] !== 'GET' ) return false;
+
+		$html = trim( $html );
+
+		// Detect non-HTML
+		if ( ! isset( $html ) || $html === '' || strcasecmp( substr( $html, 0, 5 ), '<?xml' ) === 0 || $html[0] !== '<' ) {
+			return false;
+		}
+
+		// error_log( PHP_EOL . '---' . PHP_EOL, 3, ABSPATH . 'my.log' );
+
+		// Exclude on pages
+		$prevent_pages = \THEMEB_Theme::str_to_array( \THEMEB_Theme::get_option( 'delay_js_prevent_pages' ) );
+		$prevent_pages = apply_filters( 'themeB_delay_js_prevent_pages', $prevent_pages );
+		$current_url   = isset( $_SERVER['REQUEST_URI'] ) ? home_url( $_SERVER['REQUEST_URI'] ) : '';
+		if ( is_keyword_included( $current_url, $prevent_pages ) ) {
+			return false;
+		}
