@@ -3,7 +3,7 @@
 
 このファイルは Codex CLI 向けの project rules。Claude Code 側の project context は `CLAUDE.md`、Claude runtime / hook の詳細は `~/.claude/CLAUDE.md` を参照する。
 
-> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
+> **⚠️ このリポは HELIX-MARKETING-HARNESS（~/dev/HELIX-MARKETING-HARNESS）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
 
 ## Core Reads
@@ -38,11 +38,11 @@
 - **許可**: データ受信・表示・静的定義・テンプレートレンダリング・ブロック登録
 - **禁止**: AI 判定ロジック・variant 生成・統計判定・CV 監査・リスクスコア計算・モデル呼び出し
 
-### AI 判定は automation SEO 側（closed）が担う
+### AI 判定はオーケストレーター側（HELIX）が担う
 
-- variant 生成・統計判定・CV 監査・リスクスコア等の **AI 判定はすべて automation SEO 側** に実装する
+- variant 生成・統計判定・CV 監査・リスクスコア等の **AI 判定はすべてオーケストレーター（HELIX）側** に実装する
 - AGENT NEO テーマ・Core Plugin には AI ロジックを一切実装しない
-- テーマ/プラグインは automation SEO から受け取った結果を**表示するだけ**
+- テーマ/プラグインはオーケストレーターから受け取った結果を**表示するだけ**
 
 ### 違反チェック（コード変更前に確認）
 
@@ -52,9 +52,9 @@
 
 ## catalog-update 契約
 
-- 正本: automation SEO `D-PLUGIN-CONTRACT §17`
-- AGENT NEO 側はそのミラー実装。**仕様は automation SEO 側の契約書から読み込み、独自に定義しない**
-- 契約変更時は automation SEO 側で先に D-PLUGIN-CONTRACT を更新し、AGENT NEO 側はそれに追従する
+- 正本: 旧 automation SEO `D-PLUGIN-CONTRACT §17`（凍結ミラー）
+- AGENT NEO 側はそのミラー実装。**仕様は凍結ミラーから読み込み、独自に定義しない**
+- 次版の契約凍結は HELIX 側と合同 ADR で行い、AGENT NEO 側はそれに追従する（ADR-031）
 
 ## 参照スナップショットの状態
 

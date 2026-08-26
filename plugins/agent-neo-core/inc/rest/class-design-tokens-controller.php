@@ -582,7 +582,9 @@ final class Agent_Neo_Core_Design_Tokens_Controller extends Agent_Neo_Core_REST_
 		foreach ( array( 'color', 'font', 'spacing' ) as $group ) {
 			if ( isset( $payload[ $group ] ) && is_array( $payload[ $group ] ) ) {
 				$current        = isset( $after[ $group ] ) && is_array( $after[ $group ] ) ? $after[ $group ] : array();
-				$after[ $group ] = array_merge( $current, $payload[ $group ] );
+				// array_merge は数値キー（spacing の "10" 等）を 0 起点へ再割当てし
+				// slug が消えるため、キー保存の array_replace でマージする。
+				$after[ $group ] = array_replace( $current, $payload[ $group ] );
 			}
 		}
 
@@ -691,6 +693,9 @@ final class Agent_Neo_Core_Design_Tokens_Controller extends Agent_Neo_Core_REST_
 			}
 			$sanitized_spacing = array();
 			foreach ( $params['spacing'] as $slug => $value ) {
+				// JSON の数値文字列キー（"10" 等 — theme.json の spacing slug 既定値）は
+				// PHP の配列で int キーへ変換されるため、文字列へ戻してから検査する。
+				$slug = is_int( $slug ) ? (string) $slug : $slug;
 				if ( ! is_string( $slug ) || ! is_string( $value ) ) {
 					return Agent_Neo_Core_Auth::error(
 						'VALIDATION_ERROR',

@@ -6,8 +6,9 @@
 @~/ai-dev-kit-vscode/helix/HELIX_CORE.md
 @~/ai-dev-kit-vscode/helix/CODEX_TL_MODE.md
 
-> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
-> **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
+> **⚠️ このリポは HELIX-MARKETING-HARNESS（~/dev/HELIX-MARKETING-HARNESS）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
+> **cross-repo 編集・混同は絶対禁止。** HARNESS 配下のファイルを本リポから変更しない。逆も同様。
+> HELIX 側 poc 環境（~/dev/poc-wp → poc.solobiz-lab.com）は実機検証台として READ 連携のみ。
 
 ## 統合層規律の継承
 
@@ -19,9 +20,9 @@ PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作
 
 ## 概要
 
-AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
+AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。HELIX-MARKETING-HARNESS を一次オーケストレーターとする 1st party 配布テーマ（ADR-031。旧 automation SEO 前提は開発停止により置換）。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
 
-- **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
+- **配布モデル**: HELIX 経由運用サイト向け 1st party 配布（ADR-024 を ADR-031 で読み替え）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
 - **進捗正本**: `docs/design/L2-design.md` / `docs/reviews/G2-carry-register.md`
 
 ## 技術スタック
@@ -29,7 +30,7 @@ AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPre
 - **テーマ**: WordPress FSE（フルサイト編集）/ theme.json v3 / Block API / PHP >= 8.1
 - **プラグイン**: PHP >= 8.1（WordPress Coding Standards 準拠）
 - **テスト**: PHPUnit 9 + Brain Monkey + wp-phpunit（unit / security / integration）、Playwright（E2E）
-- **連携**: automation SEO backend（catalog-update push 等）
+- **連携**: HELIX-MARKETING-HARNESS（agent-neo/v1 を V1 WordPress 媒体アダプタの第一契約とする。catalog-update push の宛先は設定値）
 
 ## アーキテクチャ
 
@@ -51,8 +52,9 @@ plugins/agent-neo-embed/    AI 生成 HTML 差込ブロック
   ├── src/                  ブロック登録・JS
   └── assets/               ビルド成果物
 
-automation SEO（/opt/seo-tool）
-  └── AI 判定・生成は全てこちら。テーマ側は結果を表示するだけ（REQ-NF-025）
+HELIX-MARKETING-HARNESS（helix-worker）
+  └── AI 判定・生成・運用判断は全てこちら（一次オーケストレーター — ADR-031）。
+      テーマ側は結果を表示するだけ（REQ-NF-025）
 ```
 
 ## ⚠️ REQ-NF-025 — AI ロジック完全分離（絶対制約）
@@ -64,10 +66,10 @@ automation SEO（/opt/seo-tool）
 - **許可**: データ受信・表示・静的定義・テンプレートレンダリング・ブロック登録
 - **禁止**: AI 判定ロジック・variant 生成・統計判定・CV 監査・リスクスコア計算・モデル呼び出し
 
-### AI 判定は automation SEO 側（closed）が担う
+### AI 判定はオーケストレーター側（HELIX）が担う
 
-- variant 生成・統計判定・CV 監査・リスクスコア等の **AI 判定はすべて automation SEO 側**に実装する
-- テーマ / プラグインは automation SEO から受け取った結果を**表示するだけ**
+- variant 生成・統計判定・CV 監査・リスクスコア等の **AI 判定はすべてオーケストレーター（HELIX）側**に実装する
+- テーマ / プラグインはオーケストレーターから受け取った結果を**表示するだけ**
 
 ### 違反チェック（コード変更前に確認）
 
@@ -77,8 +79,7 @@ automation SEO（/opt/seo-tool）
 
 ## catalog-update 契約
 
-- **正本**: automation SEO `D-PLUGIN-CONTRACT §17` のミラー。独自定義しない
-- 契約変更時は automation SEO 側で先に D-PLUGIN-CONTRACT を更新し、AGENT NEO 側はそれに追従する
+- **正本**: 旧 automation SEO `D-PLUGIN-CONTRACT §17` を凍結ミラーとして保持。次版の契約凍結は HELIX 側と合同 ADR で行う（それまで独自変更しない）
 
 ## 参照スナップショットの状態
 

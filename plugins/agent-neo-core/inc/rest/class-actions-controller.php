@@ -479,6 +479,23 @@ final class Agent_Neo_Core_Actions_Controller extends Agent_Neo_Core_REST_Contro
 			return Agent_Neo_Core_Auth::error( 'VALIDATION_ERROR', __( 'changes must be a JSON Patch array.', 'agent-neo-core' ) );
 		}
 
+		// 連想配列（{"title": ...} 等）は is_array を通過して json_patch 層で 500 になるため、
+		// ここで「op / path を持つ操作オブジェクトのリスト」であることまで検証して 400 で落とす。
+		if ( $require_changes && isset( $params['changes'] ) ) {
+			if ( ! wp_is_numeric_array( $params['changes'] ) ) {
+				return Agent_Neo_Core_Auth::error( 'VALIDATION_ERROR', __( 'changes must be a list of JSON Patch operations.', 'agent-neo-core' ) );
+			}
+			foreach ( $params['changes'] as $index => $operation ) {
+				if ( ! is_array( $operation ) || ! isset( $operation['op'], $operation['path'] ) ) {
+					return Agent_Neo_Core_Auth::error(
+						'VALIDATION_ERROR',
+						__( 'Each change must be an object with op and path.', 'agent-neo-core' ),
+						array( 'index' => $index )
+					);
+				}
+			}
+		}
+
 		if ( in_array( $params['action'], array( 'patch_block', 'edit_section', 'swap_section' ), true ) && ( empty( $params['resource_sub_id'] ) || ! is_string( $params['resource_sub_id'] ) ) ) {
 			return Agent_Neo_Core_Auth::error( 'VALIDATION_ERROR', __( 'resource_sub_id is required for block or section actions.', 'agent-neo-core' ) );
 		}

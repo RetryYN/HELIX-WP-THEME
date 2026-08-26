@@ -57,13 +57,20 @@ final class Agent_Neo_Core_Auth {
 	 * @return true|WP_Error
 	 */
 	public function check_write_permission( WP_REST_Request $request, string $capability = 'edit_posts' ) {
-		$nonce = $request->get_header( 'X-WP-Nonce' );
+		// nonce は cookie 認証の CSRF 対策。Application Password 認証は資格情報を
+		// リクエストごとに明示送信するため CSRF が成立せず、WP core の REST 書込みと
+		// 同じく nonce を要求しない（外部エージェントの正規書込み経路 — HELIX 連携）。
+		$is_app_password = did_action( 'application_password_did_authenticate' ) > 0;
 
-		if ( '' === $nonce || ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
-			return self::error(
-				'UNAUTHORIZED',
-				__( 'REST nonce is missing or invalid.', 'agent-neo-core' )
-			);
+		if ( ! $is_app_password ) {
+			$nonce = (string) $request->get_header( 'X-WP-Nonce' );
+
+			if ( '' === $nonce || ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+				return self::error(
+					'UNAUTHORIZED',
+					__( 'REST nonce is missing or invalid.', 'agent-neo-core' )
+				);
+			}
 		}
 
 		if ( ! current_user_can( $capability ) ) {

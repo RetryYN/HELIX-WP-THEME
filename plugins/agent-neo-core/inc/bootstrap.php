@@ -24,6 +24,7 @@ require_once AGENT_NEO_CORE_DIR . 'inc/cpt/class-ad-tag-cpt.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/license/class-license-state.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/lifecycle/class-lifecycle.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/catalog/class-catalog-update-producer.php';
+require_once AGENT_NEO_CORE_DIR . 'inc/design/class-design-tokens-presenter.php';
 require_once AGENT_NEO_CORE_DIR . 'inc/class-container.php';
 
 $agent_neo_core_rest_controllers = glob( AGENT_NEO_CORE_DIR . 'inc/rest/*-controller.php' );

@@ -39,6 +39,21 @@ final class Agent_Neo_Theme_Setup {
 			array(),
 			wp_get_theme()->get( 'Version' )
 		);
+
+		// theme.json はフォント名を宣言するだけで @font-face を持たないため、
+		// 宣言済み Web フォント（Noto Sans JP / Noto Serif JP）を実ロードする。
+		wp_enqueue_style(
+			'agent-neo-webfonts',
+			'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap',
+			array(),
+			wp_get_theme()->get( 'Version' )
+		);
+
+		// 見出しの不自然な折返し対策（CJK でも有効な text-wrap: balance）。
+		wp_add_inline_style(
+			'agent-neo-style',
+			'h1, h2, h3, .wp-block-heading { text-wrap: balance; } body { -webkit-font-smoothing: antialiased; }'
+		);
 	}
 
 	/**
