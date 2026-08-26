@@ -8,7 +8,7 @@
 
 > **⚠️ このリポは HELIX-MARKETING-HARNESS（~/dev/HELIX-MARKETING-HARNESS）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
 > **cross-repo 編集・混同は絶対禁止。** HARNESS 配下のファイルを本リポから変更しない。逆も同様。
-> HELIX 側 poc 環境（~/dev/poc-wp → poc.solobiz-lab.com）は実機検証台として READ 連携のみ。
+> HELIX 側 poc 環境（~/dev/poc-wp → poc.site-B.example）は実機検証台として READ 連携のみ。
 
 ## 統合層規律の継承
 
