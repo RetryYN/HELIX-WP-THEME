@@ -3,6 +3,12 @@
 labels: investigation, seo, structured-data, priority:medium
 depends: なし
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-06-structured-data-gap.md`
+> JIN:R は**記事型（Article / BlogPosting）を出していない**。AGENT NEO に不足するのは
+> `CollectionPage`（高）と `SearchAction`（中）。**FAQPage / HowTo / ItemList は
+> 中間 JSON の意図ノードから自動生成できる**＝中間 JSON 方式の優位点。
+> **残**: 実ページ 4 種別の JSON-LD 採取（HTTP GET・PO 承認待ち）とプラグイン重複の確認。
+
 ## 背景（実測）
 | テーマ | 実装 | 出力 @type |
 |---|---|---|

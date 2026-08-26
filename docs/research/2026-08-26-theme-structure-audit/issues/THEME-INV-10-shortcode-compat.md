@@ -3,6 +3,11 @@
 labels: investigation, compat, priority:low
 depends: THEME-INV-01
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-10-shortcode-compat.md`
+> テーマ語彙は**意図ノードへ展開**、プラグイン語彙は**不透明ノードで原文保持**と確定。
+> 日本語別名の設計意図（非技術者が扱える語彙）は意図語彙の命名要求として拾う。
+> **残**: `[jinr_fukidashi]` 186 回の由来確定（`extract-jinr-attrs.sh` §5 で閉じる）。
+
 ## 背景（実測）
 - JIN:R: 6 種。**実使用あり** — `[jinr_fukidashi]` **186 回**・`[jinr_profile]` 1・`[jinr_heading_iconbox]` 1
 - SWELL: 20 種（日本語別名 `[ふきだし]` `[アイコン]` `[カスタムバナー]` `[ブログパーツ]` を含む）。**実使用 0**

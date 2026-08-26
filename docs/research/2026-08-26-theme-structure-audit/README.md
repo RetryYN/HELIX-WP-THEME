@@ -14,7 +14,10 @@
 | `10-reverse-jinr.md` | **JIN:R リバースエンジニアリング**（起動 / 設定 707 アクセサ / 2,098 行 CSS 生成 / 描画 / ブロック / h2 広告 / REST / データモデル） |
 | `11-reverse-swell.md` | **SWELL リバースエンジニアリング**（クラス構成 / 設定 4 グループ + 独自テーブル / Style アキュムレータ / 2 パス解析 / 本文パイプライン / ブロック契約） |
 | `12-mechanism-comparison.md` | **機構比較** — 同じ問題を 3 テーマがどう解いているか（8 観点） |
+| `20-reverse-engineering-synthesis.md` | **統合レポート（まずここを読む）** — 機構 / 所見 8 件 / 訂正 4 件 / Graphix NEO への設計判断 12 件 |
 | `issues/` | 個別詳細調査イシュー草案 16 本（THEME-INV-01〜16）。**未起票** |
+| `reports/` | **イシュー消化レポート**（証跡付き。1 イシュー = 1 ファイル） |
+| `PROGRESS.md` | 消化状況・承認待ち項目・ブロッカー |
 | `evidence/` | サーバー調査の生出力（raw） |
 
 閲覧用ページ: https://claude.ai/code/artifact/beae459c-4555-485d-88f1-cd23423660b6

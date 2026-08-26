@@ -3,6 +3,12 @@
 labels: investigation, architecture, priority:medium
 depends: THEME-INV-01, THEME-INV-07
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-15-swell-pipeline-transfer.md`
+> 4 機構のうち **2 つ転用可**（`Pre_Parse_Blocks` の走査 / プレースホルダ方式）、
+> 1 つは設計原則として採用（優先度→3 層への写像）、1 つは思想のみ採用（保存/表示の分離）。
+> **そのまま使えない 4 点**（収集対象・副作用混入・`render_block` 依存・ウィジェット走査の射程）を特定。
+> 抽出器の最小実装範囲を定義。**残**: 参照展開の表現は INV-04 で決着済み（参照 + 版記録）。
+
 ## 背景（`11-reverse-swell.md` §4・§6 / `12-mechanism-comparison.md` §4・§5）
 SWELL には、中間 JSON パイプラインと同型の機構が既に実装されている。
 

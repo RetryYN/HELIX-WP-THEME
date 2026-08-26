@@ -3,6 +3,12 @@
 labels: investigation, monetization, zones, priority:high
 depends: なし
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-03-ad-cv-zones.md`
+> ゾーンを意味で **23 種に正規化**。`ad-zone.schema.json` の差分 3 点を特定
+> （`category_override` はゾーンではなく上書き規則／20 ゾーンが語彙に無い／条件表示のモデルが無い）。
+> `creative_ref` を参照にし `overrides` を first-match-wins 配列にする改訂案を提示。
+> **残**: 本番の `sidebars_widgets` 読み取りによる実配置の確定。
+
 ## 背景（実測）
 | テーマ | ゾーン数 | 主なゾーン |
 |---|---|---|

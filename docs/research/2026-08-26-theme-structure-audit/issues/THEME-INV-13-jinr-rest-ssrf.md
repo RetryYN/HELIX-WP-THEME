@@ -3,6 +3,12 @@
 labels: security, investigation, priority:high, po-decision
 depends: なし（本番稼働サイトの話なので他に先行する）
 
+> **状態: 一次完了 / PO 承認待ち**（2026-08-26）／レポート: `../reports/INV-13-jinr-rest-endpoints.md`
+> ルート登録とコールバック本体を全文採取。**新事実**: `post_by_url` はブログカード（実使用 330）が
+> `rest_do_request()` で**内部ディスパッチ**しており、`rest_endpoints` での除去は描画を壊す。
+> **サーバ層で HTTP 経由のみ遮断すれば内部呼び出しは通る**。対処案 4 つを比較済み。
+> **残**: 到達性の実証（自サイトへの HTTP GET・**PO 承認が要る**）とベンダー報告の要否。
+
 ## 背景（コード実測 — `10-reverse-jinr.md` §7）
 `include/custom-functions.php` が `rest_api_init` で 2 本のルートを登録している。
 

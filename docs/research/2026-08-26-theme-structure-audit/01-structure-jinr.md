@@ -22,8 +22,11 @@
 `functions.php` 内で **PHP から一括 `register_block_type`**。全ブロックが単一の
 `editor_script = jinr-blocks-script`（`editor/build/index.js`）と単一 `editor_style`（`block.css`）を共有する。
 
-- **動的（`render_callback` 有り）**: postcard / postlist / paidpost / slider / button / blogcard / category ほか
-- **静的（save 出力）**: designtitle / syntax-hl / simplebox / richmenu / richmenuchild / designborder / fukidashi / iconbox / fullwidth / accordion(+child) / compare(+child) / timeline(+child) / tab(+child) / background / profile
+- **動的（`render_callback` 有り）7 種**: postcard / postlist / paidpost / slider / button / blogcard / category
+- **静的（save 出力）18 種**: designtitle / syntax-hl / simplebox / richmenu / richmenuchild / designborder / fukidashi / iconbox / fullwidth / accordion(+child) / compare(+child) / timeline(+child) / tab(+child) / background
+- 加えて `register_block_style('core/list', …)` で **コアブロックのスタイル 2 種**
+  （`jinr-checkmark` / `jinr-checkmark-square`）を登録
+  （初回調査の「register_block_style 0」は複数行記法による grep 漏れ。訂正）
 - ブロックへ渡す環境値は `wp_localize_script` の `JINR_VAR`（プロフィール・SNS URL・パーマリンク構造・記事カラム等）に集約 → **ブロックの描画がテーマ設定値に強結合**
 
 ### 2.2 ショートコード（6 種）

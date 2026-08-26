@@ -149,6 +149,12 @@ SWELL と違い**目次・遅延読み込み・ブログカード化のパイプ
 `create_block_jinr_blocks_block_init()`（functions.php:950 で init にフック）が
 **25 種を PHP から手書きで `register_block_type()`**。block.json は使わない。
 
+内訳は **動的（`render_callback` あり）7 種**（postcard / postlist / paidpost / slider /
+button / blogcard / category）と**静的 18 種**。同じ init 関数の末尾で
+`register_block_style('core/list', …)` により**コアブロックのスタイルを 2 種**
+（`jinr-checkmark` / `jinr-checkmark-square`）追加している。
+全文の証跡は `evidence/probe3-raw.txt`、分類は `reports/INV-02-dynamic-render-semantics.md`。
+
 全ブロックが**同一の editor script / editor style を共有**する:
 ```php
 'editor_script' => 'jinr-blocks-script',   // editor/build/index.js（単一バンドル）
@@ -218,6 +224,67 @@ REST から一覧・取得する経路が無い。
 - 実サイトの `jinr-child` は親 CSS を enqueue するだけの 6 ファイルで、実質カスタマイズしていない。
 
 → **外部エージェントから制御する経路は事実上「オプションを書き換える」しか無い。**
+
+## 9.5 その他の副作用・グローバル改変（証跡: `evidence/probe3-raw.txt` L254-L302）
+
+`functions.php` 末尾（ブロック登録の直後）に、サイト全体へ効く改変が固まっている。
+
+### 9.5.1 `redirect_canonical` を無条件で無効化
+
+```php
+add_filter('redirect_canonical', 'jinr_disable_redirect_canonical');
+function jinr_disable_redirect_canonical($redirect_url)
+{
+	$redirect_url = false;
+	return $redirect_url;
+}
+```
+
+コメントには「記事内ページネーションのリンク先を `/pages/2/` にするため」とあるが、
+実装は**引数を見ずに常に `false` を返す**。WordPress の正規化リダイレクトが
+**サイト全体で全面的に無効**になる。
+
+影響: 末尾スラッシュの有無・大文字小文字・`?p=ID` 形式など、
+本来 301 で正規 URL へ寄せられるアクセスがすべてそのまま応答する。
+**同一コンテンツが複数 URL で 200 を返す状態**になり、重複コンテンツと
+クロールバジェットの観点で不利。移植時に引き継いではいけない挙動。
+
+### 9.5.2 全ページで `session_start()` + `session_regenerate_id()`
+
+```php
+function jinr_init_session_start()
+{
+	if (session_status() !== PHP_SESSION_ACTIVE) {
+		session_start();
+		session_regenerate_id();
+	}
+}
+add_action('template_redirect', 'jinr_init_session_start');
+```
+
+- `template_redirect` は**フロントの全ページ描画で発火**する。有料記事を使っていないページでも走る。
+- `session_regenerate_id()` を**毎回**呼んでいる。通常は権限昇格時（ログイン直後）にだけ呼ぶもので、
+  毎リクエストで呼ぶとセッションの継続性が壊れ、ファイルベースのセッションストアに
+  ゴミが溜まり続ける。
+- `Set-Cookie: PHPSESSID` が全レスポンスに付くため、**ページキャッシュ・CDN と相性が悪い**
+  （XServer の X アクセラレータは既に「投稿 API 成功 ≠ 公開反映」の形で
+  キャッシュ挙動の問題が確認されている）。
+
+管理画面側でも `$_SESSION['settings_updated']` を使って保存通知を出している
+（`jinr_save_settings_callback` / `jinr_show_saved_message`）。
+
+### 9.5.3 テーマ更新チェッカが外部エンドポイントを叩く
+
+```php
+require 'theme-update-checker.php';
+$example_update_checker = new ThemeUpdateChecker(
+	'jinr',
+	'https://jinr-update.cps-wp-dev.com/jinr/update.json'
+);
+```
+
+ベンダー配布のため妥当だが、**外部ドメインへの定期通信が発生する**点は
+移管・複製時の確認事項（複製先でも同じエンドポイントを叩く）。
 
 ## 10. 総括（機構レベル）
 

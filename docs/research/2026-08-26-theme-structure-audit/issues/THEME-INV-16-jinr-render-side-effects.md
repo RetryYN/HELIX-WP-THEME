@@ -3,6 +3,13 @@
 labels: investigation, migration, risk, priority:medium
 depends: なし
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-16-jinr-render-side-effects.md`
+> `set_theme_mod()` **5 箇所を全列挙**（キー・既定値・証跡行番号）。
+> `theme_mod` の値だけでは「人が決めた設定」と「副作用で入った既定値」を判別できないが、
+> **該当 5 キーは全て「見た目」で移管必須集合に入らないため実害は限定的**（INV-09 §4.1）。
+> 移管手順に「作業前のスナップショット」を必須工程として追加。
+> **残**: 描画パスからの他の DB 書き込みの洗い出し（②）。
+
 ## 背景（`10-reverse-jinr.md` §3.1）
 `include/load-customizer-value.php` の `jinr_customize_inline_style()` は
 `wp_head` / `admin_head` にフックされる CSS 生成関数だが、その内部で

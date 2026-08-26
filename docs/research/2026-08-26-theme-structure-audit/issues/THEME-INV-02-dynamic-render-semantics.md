@@ -3,6 +3,12 @@
 labels: investigation, blocks, determinism, priority:high
 depends: THEME-INV-01
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-02-dynamic-render-semantics.md`
+> 動的ブロックは **7 種**（本文の「9 種以上」は誤り・訂正済み）。
+> **6 種は正規化で決定論レンダラに載る／`paidpost` のみ載らない**と判定。
+> `register_block_style('core/list')` 2 件を新規発見。
+> **残**: 残り 6 コールバックの精読（特に `button` 実使用 339）。
+
 ## 背景（実測）
 JIN:R の 25 ブロック中、少なくとも 9 種が `render_callback` を持つ SSR ブロック
 （postcard / postlist / paidpost / slider / button / blogcard / category ほか）。

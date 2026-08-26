@@ -3,6 +3,12 @@
 labels: investigation, migration, settings, priority:medium
 depends: THEME-INV-05
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-09-settings-authority.md`
+> 分類軸を **①サイト固有 / ②見た目 / ③内部状態 / ④副作用既定値**に確定。
+> アクセサ 707 の**約 75% が「見た目」**で、移管必須は 60〜80 キー（全体の 5〜7%）。
+> **判別不能問題は実害なし**（副作用の 5 キーは全て②で移管対象外）。移管手順 5 段を定義。
+> **残**: 実在キーの列挙と 4 分類（`wp option list --search='jinr_*'`）。
+
 ## 背景（実測）
 | テーマ | 保持方式 | 規模 |
 |---|---|---|

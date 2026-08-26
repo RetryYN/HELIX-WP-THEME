@@ -3,6 +3,11 @@
 labels: investigation, blocks, priority:high
 depends: なし（最初に着手すべき 1 本）
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-01-block-vocabulary-map.md`
+> 75 ブロックを意味 31 種へ正規化。両テーマに専用ブロックがある 11 組を意図語彙の第一候補と確定。
+> インライン書式は「テキストの装飾レンジ」として持つと判定。
+> **残**: 属性層の帰納（INV-14 の `extract-jinr-attrs.sh` 実行で閉じる）と意図語彙の命名確定。
+
 ## 背景（実測）
 - JIN:R: `jinr-blocks/` **25 種**（functions.php 一括登録・単一 editor バンドル・`JINR_VAR` 依存）
 - SWELL: `loos/` **50 種**（block.json + 自前ビルド。インライン書式・コア拡張を含む）

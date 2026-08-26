@@ -3,6 +3,12 @@
 labels: investigation, content-pipeline, priority:medium
 depends: THEME-INV-02
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-07-content-filter-and-toc.md`
+> 本文変換を全一覧化し **3 層（生成時 / レンダリング時 / 表示時）**へ割り当て。
+> **目次は中間 JSON の一級要素にしない** — 配置だけ意図ノードで持ち、実体はレンダラが導出。
+> 既定配置は最初の h2 の直前。冪等性の担保をレンダラの要件に。
+> **残**: JIN:R の 2 フィルタ本体の精読、RTOC 設定の棚卸し。
+
 ## 背景（実測）
 - JIN:R: **外部プラグイン依存**（`rich-table-of-content` が active。テーマ内に目次実装なし）
 - SWELL: **テーマ内蔵**。`swell_toc` ショートコード + `lib/content_filter.php` による本文への自動挿入。

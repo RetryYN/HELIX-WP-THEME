@@ -3,6 +3,12 @@
 labels: investigation, contracts, cpt, priority:high
 depends: THEME-INV-03
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-04-reusable-parts-mechanism.md`
+> **参照（ID）で持ち、解決に使った版と digest を記録する**と決定。循環参照・欠落・下書きの規約を定義。
+> `PartsAdapter` の最小インタフェースを定義し、Graphix NEO は SWELL 方式
+> （`public=false` + `show_in_rest=true` の CPT）を採ることを推奨。
+> **残**: JIN:R の番号スロット実装の所在特定。
+
 ## 背景（実測）
 - SWELL: CPT **`blog_parts`**（public=false / supports=title,editor / **show_in_rest=true**）+ CPT **`ad_tag`**。
   ブロック `loos/blog-parts` `loos/ad-tag` とショートコード `[blog_parts]` `[ad_tag]` から参照。

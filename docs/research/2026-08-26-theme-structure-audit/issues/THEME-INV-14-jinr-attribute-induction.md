@@ -3,6 +3,12 @@
 labels: investigation, blocks, priority:high
 depends: THEME-INV-01
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-14-jinr-attribute-induction.md`
+> `blogcard` の全属性を確定。**共通属性 7 種**を特定し、その値が
+> **数値ではなく CSS クラス名の文字列**であることを確認（中間 JSON へは逆変換が要る）。
+> 抽出スクリプト `../extract-jinr-attrs.sh` を用意（読み取り専用）。
+> **残**: スクリプトの実行。1 回で INV-01（属性層）/ 02 / 10 / 11 の未了も同時に閉じる。
+
 ## 背景（`10-reverse-jinr.md` §6 / `12-mechanism-comparison.md` §6）
 JIN:R は **block.json を持たない**。25 ブロックは `functions.php` から
 `register_block_type()` で登録され、属性定義はエディタ側の単一 minified バンドル

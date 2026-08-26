@@ -3,6 +3,13 @@
 labels: investigation, api, agent-interface, priority:medium
 depends: なし
 
+> **状態: 一次完了**（2026-08-26）／レポート: `../reports/INV-08-agent-interface-gap.md`
+> JIN:R 操作の現実解は **コア REST（記事）+ WP-CLI / ブラウザ（設定）**。
+> option 直接書き換えはスキーマが無いため非推奨。**名前空間はコアに相乗りしない**と決定。
+> AGENT NEO の 34 コントローラを A 群 16（契約付き移植）/ B 群 9（不採用）/
+> C 群 4（契約のみ + アダプタ）/ D 群 4（基盤）に仕分け。
+> **残**: SWELL 14 ルートの契約精読、`_jinr_*` の `register_meta` 有無の確認。
+
 ## 背景（実測）
 | テーマ | REST | 自前フック |
 |---|---|---|

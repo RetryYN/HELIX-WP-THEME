@@ -3,6 +3,12 @@
 labels: investigation, scope, po-decision, priority:low
 depends: THEME-INV-02
 
+> **状態: 一次完了 / PO 承認待ち**（2026-08-26）／レポート: `../reports/INV-11-scope-boundary.md`
+> **案 A（スコープ外 + プラグイン委譲）を推奨**。
+> **訂正**: `paidpost` の実使用は「本文中 16 回」ではなく**公開記事で 0 回**
+> （16 はテーマソース内の文字列出現数だった）。両サイトとも公開面で課金・会員機能は未使用。
+> **残**: 下書き記事での使用と Stripe 側の既存購読者の確認（PO 領域）。
+
 ## 背景（実測）
 - JIN:R: `vendor/stripe` **286 ファイル**を同梱し、`jinr-blocks/paidpost`（有料記事）+ `jinr_paidpost_secret_key`
   `jinr_paidpost_subscription_check` 等のオプションを持つ。**決済がテーマに内蔵されている**
