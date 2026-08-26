@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://agent-neo.com/schema/ad-zone.schema.json",
   "title": "AdZone",
-  "description": "広告ゾーン定義スキーマ。CARRY-A2-001: JIN:R の4ゾーン(h2前挿入/記事終/関連上/カテゴリ別上書き)に対応する静的管理。REQ-NF-025厳守。",
+  "description": "広告ゾーン定義スキーマ。CARRY-A2-001: テーマA の4ゾーン(h2前挿入/記事終/関連上/カテゴリ別上書き)に対応する静的管理。REQ-NF-025厳守。",
   "type": "object",
   "required": ["zone_id", "zone_name", "position"],
   "additionalProperties": false,

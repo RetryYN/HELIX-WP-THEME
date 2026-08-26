@@ -52,7 +52,7 @@
 
 #### 1.1.1 ページタイプ別性能予算（隠れ killer feature）
 
-**問題認識**: 既存 WP テーマは「機能を追加 → 全ページに影響 → 全体が重くなる」循環に陥る。SWELL/JIN:R も used_block_css で部分対応するが、**ページタイプ別の予算分離は提供していない**。
+**問題認識**: 既存 WP テーマは「機能を追加 → 全ページに影響 → 全体が重くなる」循環に陥る。ThemeB/テーマA も used_block_css で部分対応するが、**ページタイプ別の予算分離は提供していない**。
 
 **AGENT NEO の解決策**: ページ種別ごとに JS/CSS 予算を**構造的に分離**。`block.json` で page_type allowlist を宣言、フロント enqueue で `is_singular()` / `page_template()` / `is_archive()` を判定して条件付き読み込み。
 
@@ -92,7 +92,7 @@
 
 ##### 競合との差別化
 
-| 項目 | SWELL | JIN:R | AGENT NEO |
+| 項目 | ThemeB | テーマA | AGENT NEO |
 |---|---|---|---|
 | ブロック単位 CSS 分離 | ✓（used_block_css）| ✗ | ✓ |
 | **ページタイプ別 JS 予算分離** | ✗ | ✗ | **✓**（隠れ killer feature）|
@@ -229,7 +229,7 @@ AGENT NEO はこの自律ループの**実行基盤**を提供。実際の「最
 
 #### 競合との差別化
 
-| | SWELL / JIN:R / AFFINGER | AGENT NEO |
+| | ThemeB / テーマA / AFFINGER | AGENT NEO |
 |---|---|---|
 | AI で記事を書ける | △（外部プラグイン経由） | ✓（Automation SEO 連携） |
 | **block 単位の AI 編集** | ✗ | **✓** |
@@ -242,7 +242,7 @@ AGENT NEO はこの自律ループの**実行基盤**を提供。実際の「最
 
 ### 1.4 AI フリーフォーム HTML/CSS ブロック（固定パーツ拡充戦略からの脱却）
 
-JIN:R/AFFINGER 路線の「固定パーツをひたすら増やす」戦略は時代遅れ。AI が任意の HTML/CSS を生成できる現代では、**「テーマは安全な canvas を提供、AI が最適なパーツを毎回生成」** が正解。
+テーマA/AFFINGER 路線の「固定パーツをひたすら増やす」戦略は時代遅れ。AI が任意の HTML/CSS を生成できる現代では、**「テーマは安全な canvas を提供、AI が最適なパーツを毎回生成」** が正解。
 
 #### コンセプトの転換
 
@@ -323,7 +323,7 @@ LP Blueprint 例:
 
 #### 競合との根本的な差別化
 
-| 戦略 | SWELL | JIN:R | AFFINGER | AGENT NEO |
+| 戦略 | ThemeB | テーマA | AFFINGER | AGENT NEO |
 |---|---|---|---|---|
 | 固定パーツ拡充 | ✓（中） | ✓（多） | ✓（多） | ✗（最小限のみ） |
 | **AI フリーフォーム HTML/CSS** | ✗ | ✗ | ✗ | **✓** |
@@ -532,7 +532,7 @@ Automation SEO（外部システム）:
 
 #### 競合との差別化
 
-| 項目 | SWELL/JIN:R/AFFINGER | AGENT NEO |
+| 項目 | ThemeB/テーマA/AFFINGER | AGENT NEO |
 |---|---|---|
 | アフィリ系ブロック | ✓（基本セット） | ✓ + AI 自動配置 + heatmap |
 | LP セクション | ✓ または ✗ | ✓ + 12 標準 + Sticky + Multi-step + LINE |
@@ -593,7 +593,7 @@ Facebook / Pinterest / YouTube / TikTok — adapter 経由で拡張可能
 | **手動運用可能性** | 管理者が WP エディタで普通に記事更新・LP 編集できる経路を常に確保 |
 | **非 IT 系ユーザー向けチュートリアル** | 動画・スクリーンショット付きマニュアルを日本語で提供（販売パッケージに同梱）|
 
-差別化の柱: 競合テーマ（SWELL/JIN:R 含む）が「機能追加 → 設定肥大化 → JS/CSS 肥大化」の循環に陥っている中で、AGENT NEO は「**機能を絞る → 高速 → CV が上がる**」の循環を選択する。
+差別化の柱: 競合テーマ（ThemeB/テーマA 含む）が「機能追加 → 設定肥大化 → JS/CSS 肥大化」の循環に陥っている中で、AGENT NEO は「**機能を絞る → 高速 → CV が上がる**」の循環を選択する。
 
 ---
 
@@ -638,7 +638,7 @@ Automation SEO はテーマ価格に無制限同梱しない。AI原価・移行
 ## 4. 製品仕様（高レベル）
 
 ### 4.1 共通基盤
-- 独立した自作 **FSE（フルサイト編集 / ブロック）テーマ**。SWELL 等他社テーマには非依存
+- 独立した自作 **FSE（フルサイト編集 / ブロック）テーマ**。ThemeB 等他社テーマには非依存
 - WordPress 6.6+ / PHP 8.1+ / theme.json + block.json 中心
 - GPL 互換ライセンス・i18n（ja/en）対応・第三者依存最小
 - 機械可読フロント（section_id 規約 / JSON-LD / 安定セレクタ / WCAG 2.2 AA）
@@ -755,7 +755,7 @@ Automation SEO はテーマ価格に無制限同梱しない。AI原価・移行
 - Automation SEO のAI実行コストはテーマ本体価格とは分離する
 
 #### 検証ケース順序
-日本国内 WP テーマシェア順: SWELL → Cocoon → AFFINGER → JIN → Lightning
+日本国内 WP テーマシェア順: ThemeB → Cocoon → AFFINGER → JIN → Lightning
 
 ### 4.5 初回構築サービス S1
 プラン B の実行・検収・公開支援を提供するプロフェッショナルサービス。価格レンジ・契約形態は未決。
@@ -801,14 +801,14 @@ SITES → WORDPRESS_CONNECTIONS → WP_PAGES → WP_PAGE_SECTIONS → TRACKING_E
 - AGENT NEO の `agent-actions.schema.json` は既存 API スキーマと整合させる（ゼロから作らない）
 - AGENT NEO ブロックは安定した `section_id` を宣言、CTA は `variant_id` 切替対応、投稿は `article_id` を露出
 
-#### SWELL/JIN:RとのAutomation SEO連携評価
+#### ThemeB/テーマAとのAutomation SEO連携評価
 
 | テーマ | Automation SEO連携点数 | 良い点 | 弱い点 |
 |---|---:|---|---|
-| SWELL | 73 | 速度基盤、Entity Graph、LP/再利用パーツ、SEOプラグイン共存 | SEOメタ主導権が外部依存寄り、stable `section_id`/`cta_id`、safe apply契約がない |
-| JIN:R | 77 | SEO統合UX、SEO post meta REST公開、canonical/noindex/OGP/JSON-LD | 巨大CSS/jQuery/CDNリスク、classic template、stable `section_id`/`cta_id`契約がない |
+| ThemeB | 73 | 速度基盤、Entity Graph、LP/再利用パーツ、SEOプラグイン共存 | SEOメタ主導権が外部依存寄り、stable `section_id`/`cta_id`、safe apply契約がない |
+| テーマA | 77 | SEO統合UX、SEO post meta REST公開、canonical/noindex/OGP/JSON-LD | 巨大CSS/jQuery/CDNリスク、classic template、stable `section_id`/`cta_id`契約がない |
 
-結論として、SWELL/JIN:RはAutomation SEOの直接運用対象ではなく、**移行・診断・設計参考**として扱う。Automation SEO側はTheme Capability Scanner、Section ID Resolver、SEO Meta Normalizer、Context Contract v2を持ち、WPテーマ側はAGENT NEOでSection Registry、CTA Registry、Automation SEO Adapter、Safe Write APIを持つ。
+結論として、ThemeB/テーマAはAutomation SEOの直接運用対象ではなく、**移行・診断・設計参考**として扱う。Automation SEO側はTheme Capability Scanner、Section ID Resolver、SEO Meta Normalizer、Context Contract v2を持ち、WPテーマ側はAGENT NEOでSection Registry、CTA Registry、Automation SEO Adapter、Safe Write APIを持つ。
 
 #### Automation SEO Theme Bridge Plugin方針
 
@@ -1004,7 +1004,7 @@ Q-002 の判断は、単純な「両 SKU 同時リリース」ではなく、**�
 
 | 競合 | 差別化ポイント |
 |---|---|
-| SWELL / AFFINGER / JIN 等の汎用 WP テーマ | AI エージェント前提の API・section_id 規約・MCP 同梱 |
+| ThemeB / AFFINGER / JIN 等の汎用 WP テーマ | AI エージェント前提の API・section_id 規約・MCP 同梱 |
 | Headless WordPress（Faust.js 等） | WP エコシステムを保持しつつ AI 操作面のみ強化、移行コストが圧倒的に低い |
 | 海外 AI 系 WP プラグイン | Automation SEO 連携で記事生成〜公開〜計測まで日本語特化で完結 |
 | ブロックエディタのみのテーマ | Automation SEO + seo-tool-connector との連携でトラッキング・A/B が標準装備 |
@@ -1015,13 +1015,13 @@ Q-002 の判断は、単純な「両 SKU 同時リリース」ではなく、**�
 
 | テーマ | 総合点 | 市場ポジション | AGENT NEOの取り込み方 |
 |---|---:|---|---|
-| SWELL | 88 | 国産有料テーマの王道・総合型 | 速度設計、設定UX、買い切り安心感を抽象化して取り込む |
-| JIN:R | 82 | デザイン/SEO/ブログ収益化寄り | SEO統合UX、プリセット思想、ブロガー心理に刺さる販売導線を取り込む |
+| ThemeB | 88 | 国産有料テーマの王道・総合型 | 速度設計、設定UX、買い切り安心感を抽象化して取り込む |
+| テーマA | 82 | デザイン/SEO/ブログ収益化寄り | SEO統合UX、プリセット思想、ブロガー心理に刺さる販売導線を取り込む |
 | AFFINGER6 / ACTION PACK | 80 | アフィリエイト収益化特化 | 収益化ブロック、CTA/タグ/A-B/CTR、上位PACK戦略を取り込む |
 | Cocoon | 78 | 無料テーマの標準・導入口 | 無料移行プラグインのリード獲得モデルとして参考にする |
 | Lightning / Vektor | 76 | 法人/中小企業サイト・制作会社向け | 法人安心感、拡張/サブスク、パターン/学習コンテンツを参考にする |
 
-AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテーマ」の競争軸では戦わない。狙うカテゴリは **AI運用型WPテーマ基盤** とし、個人版は「SWELL/JIN:R級の使いやすさ + AFFINGER級の収益化 + AI記事投入/計測/LLMO」、法人版は「Lightning級の法人安心感 + LP改善/A/B/計測 + AI運用」を目標にする。
+AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテーマ」の競争軸では戦わない。狙うカテゴリは **AI運用型WPテーマ基盤** とし、個人版は「ThemeB/テーマA級の使いやすさ + AFFINGER級の収益化 + AI記事投入/計測/LLMO」、法人版は「Lightning級の法人安心感 + LP改善/A/B/計測 + AI運用」を目標にする。
 
 目標スコアは Core `92`、個人版 `90`、法人版 `94` とする。ただし達成条件は機能数ではなく、JSON契約、AI操作安全性、LP/CTA改善、SEO/LLMO、運用品質まで一貫して製品化できていること。
 
@@ -1087,18 +1087,18 @@ AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテー�
 
 | ドキュメント | 内容 |
 |---|---|
-| [Reverse 解析](../reverse/wp-theme-reference-analysis.md) | SWELL 親/子テーマ解析・採用パターン抽出・パッケージルーティング |
+| [Reverse 解析](../reverse/wp-theme-reference-analysis.md) | ThemeB 親/子テーマ解析・採用パターン抽出・パッケージルーティング |
 | [価格戦略と売れる理由](../../解析レポート/09-価格戦略と売れる理由.md) | 競合公式価格、売れている理由、AGENT NEO価格戦略 |
 | [深掘り解析実施計画](../../解析レポート/10-深掘り解析実施計画.md) | REST/CPT/block/settings/template/販売訴求の深掘り計画 |
 | [競合比較マトリクス](../../解析レポート/11-競合比較マトリクス.md) | 国内主要テーマとの比較と取り込み優先度 |
 | [企画書レビューと要件反映](../../解析レポート/12-企画書レビューと要件反映.md) | G0.5企画突合、L1/L2反映状況 |
-| [SEO設計比較](../../解析レポート/13-SEO設計比較-JINR優先分析.md) | JIN:R優先のSEO Core方針、SWELL JSON-LD設計の取り込み |
-| [JIN:R親テーマSEO実コード解析](../../解析レポート/14-JINR親テーマ実コードSEO解析.md) | JIN:R親テーマZIP展開後のtitle/description/canonical/noindex/OGP/JSON-LD解析 |
-| [ページスピード設計比較](../../解析レポート/15-ページスピード設計比較.md) | 速度設計はSWELL優先、SEOはJIN:R優先とする設計分担 |
+| [SEO設計比較](../../解析レポート/13-SEO設計比較-ThemeA優先分析.md) | テーマA優先のSEO Core方針、ThemeB JSON-LD設計の取り込み |
+| [テーマA親テーマSEO実コード解析](../../解析レポート/14-ThemeA親テーマ実コードSEO解析.md) | テーマA親テーマZIP展開後のtitle/description/canonical/noindex/OGP/JSON-LD解析 |
+| [ページスピード設計比較](../../解析レポート/15-ページスピード設計比較.md) | 速度設計はThemeB優先、SEOはテーマA優先とする設計分担 |
 | [LP/HP設計方針](../../解析レポート/16-LP-HP設計方針.md) | LPとHPを別ブループリント化し、法人LP/個人収益HP/計測導線へ落とす方針 |
 | [制約条件と設計ガード](../../解析レポート/17-制約条件と設計ガード.md) | ライセンス、plugin territory、プライバシー、AI操作、SEO/計測の制約と設計ガード |
-| [テーマコーディングルール逆引き設計](../../解析レポート/18-テーマコーディングルール逆引き設計.md) | SWELL/JIN:R実コードから逆引きしたTheme本体のコーディング規約と構成案 |
-| [デザインUI思想逆引き設計](../../解析レポート/19-デザインUI思想逆引き設計.md) | SWELL/JIN:Rから逆引きした失敗しにくいUI思想、プリセットUX、UI Audit |
+| [テーマコーディングルール逆引き設計](../../解析レポート/18-テーマコーディングルール逆引き設計.md) | ThemeB/テーマA実コードから逆引きしたTheme本体のコーディング規約と構成案 |
+| [デザインUI思想逆引き設計](../../解析レポート/19-デザインUI思想逆引き設計.md) | ThemeB/テーマAから逆引きした失敗しにくいUI思想、プリセットUX、UI Audit |
 | [運用セキュリティ可用性更新性分析](../../解析レポート/20-運用セキュリティ可用性更新性分析.md) | WPバージョン、更新、セキュリティ、可用性、プラグイン追加時の運用品質設計 |
 | [自動化CronAPI契約設計](../../解析レポート/21-自動化CronAPI契約設計.md) | WP-Cron、自動化job、REST/AJAX/API契約、OpenAPI/JSON Schema、外部API連携の設計 |
 | [AIエージェント運用性とクローラビリティ分析](../../解析レポート/22-AIエージェント運用性とクローラビリティ分析.md) | AIエージェント運用の不都合な真実、stable DOM、content snapshot、AIクローラ制御 |
@@ -1106,7 +1106,7 @@ AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテー�
 | [LLMO時代のテーマ設計重要観点](../../解析レポート/24-LLMO時代のテーマ設計重要観点.md) | AI検索/LLMO時代の引用されやすさ、権利制御、answer unit、AI経由CV計測の設計 |
 | [WPサイト運用とSEOの不都合な真実](../../解析レポート/25-WPサイト運用とSEOの不都合な真実.md) | SEO、WP運用、セキュリティ、AI運用の静かな失敗要因をrisk-ledger化する設計 |
 | [競合テーマ総合評価と市場ポジション](../../解析レポート/26-競合テーマ総合評価と市場ポジション.md) | 主要競合テーマの総合点、良い点/悪い点、AGENT NEOが狙う市場ポジション |
-| [Automation SEO連携観点のSWELL/JIN:R採点](../../解析レポート/27-AutomationSEO連携観点のSWELL-JINR採点.md) | Automation SEO連携観点のSWELL/JIN:R採点、Automation SEO側/WPテーマ側のカバー策 |
+| [Automation SEO連携観点のThemeB/テーマA採点](../../解析レポート/27-AutomationSEO連携観点のThemeB-ThemeA採点.md) | Automation SEO連携観点のThemeB/テーマA採点、Automation SEO側/WPテーマ側のカバー策 |
 | [共通強化プラグインとAutomation SEOプラグイン情報設計](../../解析レポート/28-共通強化プラグインとAutomationSEOプラグイン情報設計.md) | 既存テーマを横断強化するTheme Bridge Plugin、保持情報、不都合、AGENT NEOへの責務分離 |
 | [L1 要件定義](../requirements/L1-requirements.md) | 本企画書を構造化した要件定義（TL ドラフト中） |
 | [Automation SEO 設計書](file:///C:/Users/tenni/Desktop/seo-tool-v2-docs/Automation%20SEO/system_design_max/) | 連携先システムの設計書一式 |
@@ -1120,11 +1120,11 @@ AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテー�
 |---|---|---|---|
 | 0.1 | 2026-04-28 | 初版（PM Opus がチャットセッションから抽出） | PM |
 | 0.2 | 2026-04-28 | Automation SEO別課金方針、価格戦略レポート、L1/L2反映を追記 | Codex |
-| 0.3 | 2026-04-29 | ページスピード設計を追加。Core Web Vitals、SWELL型速度基盤、JIN:R型SEO UXの分担を反映 | Codex |
+| 0.3 | 2026-04-29 | ページスピード設計を追加。Core Web Vitals、ThemeB型速度基盤、テーマA型SEO UXの分担を反映 | Codex |
 | 0.4 | 2026-04-29 | LP/HP設計方針を追加。LP/HP別ブループリント、セクション計測、法人/個人導線を反映 | Codex |
 | 0.5 | 2026-04-29 | 制約条件を追加。Theme Core/Companion Plugin分離、PR表記、同意付き計測、データ移植性、プラグイン依存度を反映 | Codex |
 | 0.6 | 2026-04-29 | Theme本体のコーディングルール逆引きを追加。薄いbootstrap、block.json正本、WPCS、used block assetsを反映 | Codex |
-| 0.7 | 2026-04-29 | デザイン/UI思想逆引きを追加。SWELLの情報設計、JIN:RのプリセットUX、UI Auditを反映 | Codex |
+| 0.7 | 2026-04-29 | デザイン/UI思想逆引きを追加。ThemeBの情報設計、テーマAのプリセットUX、UI Auditを反映 | Codex |
 | 0.8 | 2026-04-29 | 運用品質を追加。WP/PHP互換、更新前後チェック、rollback、plugin衝突検出、可用性fallbackを反映 | Codex |
 | 0.9 | 2026-04-29 | 自動化/Cron/API契約を追加。OpenAPI、JSON Schema、job contract、WP-Cron/WP CLI/external cron fallbackを反映 | Codex |
 | 1.0 | 2026-04-29 | AI運用性/クローラビリティを追加。stable DOM anchor、content snapshot、crawler access matrix、AI crawler logを反映 | Codex |
@@ -1132,7 +1132,7 @@ AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテー�
 | 1.2 | 2026-04-29 | LLMO/AI検索観点を追加。answer unit、evidence graph、AI visibility policy、citation anchor、AI経由CV計測を反映 | Codex |
 | 1.3 | 2026-04-29 | SEO/WP運用/セキュリティ/AI運用の不都合な真実を追加。risk-ledger、seo-hazard、cron/cache/plugin/update/privacy/snapshot guardを反映 | Codex |
 | 1.4 | 2026-04-29 | 競合テーマ総合評価を追加。市場ポジションをAI運用型WPテーマ基盤として明文化 | Codex |
-| 1.5 | 2026-04-29 | Automation SEO連携観点のSWELL/JIN:R採点を追加。連携の不足をAutomation SEO側/WPテーマ側の契約でカバーする方針を反映 | Codex |
+| 1.5 | 2026-04-29 | Automation SEO連携観点のThemeB/テーマA採点を追加。連携の不足をAutomation SEO側/WPテーマ側の契約でカバーする方針を反映 | Codex |
 | 1.6 | 2026-04-29 | Automation SEO Theme Bridge Plugin方針を追加。既存テーマ横断の診断・正規化・移行入口とAGENT NEO safe apply責務を分離 | Codex |
 | 1.7 | 2026-05-01 | §6 にドッグフーディング型グロース戦略を追加（TL レビュー 4 回 pass、指摘 0 件） | Codex (research) + TL レビュー |
 | 1.8 | 2026-05-01 | Q-001（個人→法人アップグレード方式）を PO 判断で確定。Automation SEO 加入割引 + 非加入者差額方式 | PM (Opus) |

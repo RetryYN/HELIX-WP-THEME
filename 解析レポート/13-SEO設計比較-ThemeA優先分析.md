@@ -1,24 +1,24 @@
-# SEO設計比較 — JIN:R優先分析
+# SEO設計比較 — テーマA優先分析
 
 ## 1. 結論
 
-AGENT NEO のSEO設計は、SWELL型よりも **JIN:R型の統合SEO UX** を優先する。
+AGENT NEO のSEO設計は、ThemeB型よりも **テーマA型の統合SEO UX** を優先する。
 
 理由は、AGENT NEO の中核が「AIエージェントがJSONで完結操作できるWPテーマ」であり、title、description、robots、canonical、OGP、構造化データがテーマ外プラグインに分散すると、AI操作契約が不安定になるためである。
 
-ただし、SWELLの設計も捨てない。SWELLのJSON-LD実装は参考価値が高く、SEO SIMPLE PACKとの重複回避・既存SEOデータ参照というポータビリティ設計は、AGENT NEOでも採用すべきである。
+ただし、ThemeBの設計も捨てない。ThemeBのJSON-LD実装は参考価値が高く、SEO SIMPLE PACKとの重複回避・既存SEOデータ参照というポータビリティ設計は、AGENT NEOでも採用すべきである。
 
 ## 2. 解析状態
 
 | 項目 | 状態 |
 |---|---|
-| SWELL親テーマ | ローカルに存在。コードレベルで解析済み |
-| JIN:R親テーマ | `jinr-parent/jinr/jinr` に展開済み。コードレベルで解析済み |
-| JIN:R子テーマ | ローカルに存在。ただし親テーマCSS読込のみでSEO実装は含まれない |
+| ThemeB親テーマ | ローカルに存在。コードレベルで解析済み |
+| テーマA親テーマ | `themeA-parent/themeA/themeA` に展開済み。コードレベルで解析済み |
+| テーマA子テーマ | ローカルに存在。ただし親テーマCSS読込のみでSEO実装は含まれない |
 
-JIN:R親テーマの実コード解析は `14-JINR親テーマ実コードSEO解析.md` に分離して記録する。本レポートではSWELL/JIN:Rの比較とAGENT NEO設計判断を扱う。
+テーマA親テーマの実コード解析は `14-ThemeA親テーマ実コードSEO解析.md` に分離して記録する。本レポートではThemeB/テーマAの比較とAGENT NEO設計判断を扱う。
 
-## 3. SWELLのSEO設計
+## 3. ThemeBのSEO設計
 
 ### 3.1 強み
 
@@ -38,11 +38,11 @@ JIN:R親テーマの実コード解析は `14-JINR親テーマ実コードSEO解
 | 統合UX | SEO設定が構造化データ中心になり、記事別SEO管理は外部依存になりやすい | 記事/LP/商品/カテゴリ単位のSEO操作APIを提供 |
 | 法人LP | Product、Offer、Service、FAQ、Lead CTAのSEO/計測統合がテーマ中核ではない | 法人版でLP SEOとCTA計測を統合する |
 
-SWELLは「テーマは軽く、SEOメタは専用プラグインへ寄せる」設計として妥当だが、AGENT NEOのAI運用思想とは一部相性が悪い。
+ThemeBは「テーマは軽く、SEOメタは専用プラグインへ寄せる」設計として妥当だが、AGENT NEOのAI運用思想とは一部相性が悪い。
 
-## 4. JIN:RのSEO設計
+## 4. テーマAのSEO設計
 
-JIN:R公式情報と親テーマ実コードの両方から、テーマ側でSEO設定を持ち、プラグインなしでSEO管理できる方針を確認できた。主な確認内容は以下である。
+テーマA公式情報と親テーマ実コードの両方から、テーマ側でSEO設定を持ち、プラグインなしでSEO管理できる方針を確認できた。主な確認内容は以下である。
 
 | 観点 | 公式情報ベースの内容 | AGENT NEOへの示唆 |
 |---|---|---|
@@ -53,9 +53,9 @@ JIN:R公式情報と親テーマ実コードの両方から、テーマ側でSEO
 | OGP | トップページOGP画像をカスタマイザーで設定 | OGP/Twitter CardをSEO Coreに含める |
 | プラグイン方針 | SEO専用プラグインは重複出力の恐れがあり不要という方針 | AGENT NEOは重複検知と出力優先順位を持つ |
 
-JIN:RのSEO設計は、SEOをテーマの主要UXとして内包している点で、AGENT NEOのAI操作基盤に近い。
+テーマAのSEO設計は、SEOをテーマの主要UXとして内包している点で、AGENT NEOのAI操作基盤に近い。
 
-### 4.1 実コードで確認したJIN:RのSEO構成
+### 4.1 実コードで確認したテーマAのSEO構成
 
 | ファイル | 役割 |
 |---|---|
@@ -66,14 +66,14 @@ JIN:RのSEO設計は、SEOをテーマの主要UXとして内包している点�
 | `include/head/others.php` | WordPress標準canonicalを置き換え、独自canonicalとTwitter Cardを出力 |
 | `include/head/ogp.php` | OGP title/description/url/image/typeを出力 |
 | `include/json-ld.php` | Article、WebPage、WebSite、CollectionPage、BreadcrumbList、Person、Organizationを出力 |
-| `include/jinr-setting.php` | JINR設定にSEO/noindex/パンくず/title設定を登録 |
+| `include/themeA-setting.php` | ThemeA設定にSEO/noindex/パンくず/title設定を登録 |
 | `include/custom-functions.php` | SEO post metaを `show_in_rest: true` で登録 |
 
 ## 5. AGENT NEOの採用方針
 
 ### 5.1 基本方針
 
-AGENT NEOは **JIN:R型の統合SEO UX** を採用し、**SWELL型のJSON-LD品質とプラグイン共存性** を組み合わせる。
+AGENT NEOは **テーマA型の統合SEO UX** を採用し、**ThemeB型のJSON-LD品質とプラグイン共存性** を組み合わせる。
 
 | 方針 | 内容 |
 |---|---|
@@ -203,21 +203,21 @@ AGENT NEOは **JIN:R型の統合SEO UX** を採用し、**SWELL型のJSON-LD品�
 
 | ソース | 確認内容 |
 |---|---|
-| https://jinr.jp/feature/ | JIN:Rの構造化データ自動出力、著者/SNS紐付け |
-| https://jinr.jp/manual/seo-setting-3/ | JIN:RのSEO設定、noindex、SEOプラグイン重複注意 |
-| https://jinr.jp/manual/jin-to-jinr/ | 記事別SEO設定、canonical、noindex、OGP移行項目 |
-| https://jinr.jp/manual/description-2/ | JIN:Rのdescription設定 |
-| https://jinr.jp/manual/ogp/ | JIN:RのOGP設定 |
-| https://swell-theme.com/feature/ | SWELLのテーマ特徴 |
-| https://swell-theme.com/basic-setting/4688/ | SWELLの推奨/注意プラグイン方針 |
+| https://themeA.jp/feature/ | テーマAの構造化データ自動出力、著者/SNS紐付け |
+| https://themeA.jp/manual/seo-setting-3/ | テーマAのSEO設定、noindex、SEOプラグイン重複注意 |
+| https://themeA.jp/manual/jin-to-themeA/ | 記事別SEO設定、canonical、noindex、OGP移行項目 |
+| https://themeA.jp/manual/description-2/ | テーマAのdescription設定 |
+| https://themeA.jp/manual/ogp/ | テーマAのOGP設定 |
+| https://themeB-theme.com/feature/ | ThemeBのテーマ特徴 |
+| https://themeB-theme.com/basic-setting/4688/ | ThemeBの推奨/注意プラグイン方針 |
 | https://developers.google.com/search/blog/2023/08/howto-faq-changes | FAQ/HowToリッチリザルトの表示変更 |
 
 ## 11. Gate判定
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
-| RG0 | passed | SWELL親テーマとJIN:R親テーマを実コード解析済み |
+| RG0 | passed | ThemeB親テーマとテーマA親テーマを実コード解析済み |
 | RG1 | passed | SEO対象の契約候補をtitle/description/robots/canonical/OGP/schemaへ分解 |
-| RG2 | passed | JIN:R統合UX + SWELL JSON-LD/共存設計のハイブリッド方針を定義 |
-| RG3 | passed | ユーザー仮説「JIN:RのほうがSEO設計が良い」を実コードで支持 |
+| RG2 | passed | テーマA統合UX + ThemeB JSON-LD/共存設計のハイブリッド方針を定義 |
+| RG3 | passed | ユーザー仮説「テーマAのほうがSEO設計が良い」を実コードで支持 |
 | R4 | passed | L1/L2/package.matrix/analysis-summaryへSEO Coreとして接続 |

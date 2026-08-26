@@ -3,7 +3,7 @@
   "lastReviewed": "2026-04-30",
   "targetThemes": [
     {
-      "path": "swell-2.16.0/swell",
+      "path": "themeB-2.16.0/themeB",
       "role": "main_reference",
       "observations": [
         "thin_functions_php_bootstrap",
@@ -18,21 +18,21 @@
       ]
     },
     {
-      "path": "swell_child/swell_child",
+      "path": "themeB_child/themeB_child",
       "role": "child_theme_reference",
       "observations": [
         "minimal_child_theme_enqueue_style"
       ]
     },
     {
-      "path": "jinr-child/jinr-child",
+      "path": "themeA-child/themeA-child",
       "role": "child_theme_reference",
       "observations": [
         "minimal_child_theme_parent_style"
       ]
     },
     {
-      "path": "jinr-parent/jinr/jinr",
+      "path": "themeA-parent/themeA/themeA",
       "role": "seo_reference",
       "observations": [
         "integrated_theme_seo_head_output",
@@ -48,24 +48,24 @@
     }
   ],
   "seoStrategy": {
-    "preferredReference": "JIN:R",
+    "preferredReference": "テーマA",
     "localCodeAvailability": {
-      "jinr_parent_theme": "available",
-      "swell_parent_theme": "available"
+      "themeA_parent_theme": "available",
+      "themeB_parent_theme": "available"
     },
-    "decision": "adopt_jinr_integrated_seo_ux_with_swell_portability_guard",
+    "decision": "adopt_themeA_integrated_seo_ux_with_themeB_portability_guard",
     "codeEvidence": {
-      "jinr": [
+      "themeA": [
         "include/head/title.php",
         "include/head/description.php",
         "include/head/noindex.php",
         "include/head/others.php",
         "include/head/ogp.php",
         "include/json-ld.php",
-        "include/jinr-setting.php",
+        "include/themeA-setting.php",
         "include/custom-functions.php"
       ],
-      "swell": [
+      "themeB": [
         "classes/Json_Ld.php",
         "lib/menu/settings/structure_data.php",
         "lib/gutenberg/render_hook/faq.php",
@@ -95,7 +95,7 @@
       "faq_rich_results_are_limited_by_google",
       "avoid_duplicate_output_with_seo_plugins",
       "do_not_lock_seo_data_to_theme_only",
-      "jinr_reference_is_classic_php_template_not_fse",
+      "themeA_reference_is_classic_php_template_not_fse",
       "raw_tracking_tags_and_external_url_fetch_require_safer_agent_neo_design"
     ]
   },
@@ -106,62 +106,62 @@
     "scores": [
       {
         "category": "strategy",
-        "swell": 35,
-        "jinr": 40,
+        "themeB": 35,
+        "themeA": 40,
         "gap": "keyword_research_search_intent_competitor_gap_and_clustering_are_not_theme_contracts"
       },
       {
         "category": "on_page",
-        "swell": 65,
-        "jinr": 82,
-        "gap": "jinr_has_integrated_meta_rest_foundation_swell_needs_seo_meta_contract"
+        "themeB": 65,
+        "themeA": 82,
+        "gap": "themeA_has_integrated_meta_rest_foundation_themeB_needs_seo_meta_contract"
       },
       {
         "category": "technical",
-        "swell": 84,
-        "jinr": 68,
-        "gap": "swell_is_stronger_for_entity_graph_speed_and_wp_output_control_jinr_needs_schema_validation_and_performance_redesign"
+        "themeB": 84,
+        "themeA": 68,
+        "gap": "themeB_is_stronger_for_entity_graph_speed_and_wp_output_control_themeA_needs_schema_validation_and_performance_redesign"
       },
       {
         "category": "content",
-        "swell": 78,
-        "jinr": 70,
+        "themeB": 78,
+        "themeA": 70,
         "gap": "both_need_topic_cluster_content_blueprint_and_refresh_workflow"
       },
       {
         "category": "off_page",
-        "swell": 30,
-        "jinr": 32,
+        "themeB": 30,
+        "themeA": 32,
         "gap": "link_building_digital_pr_and_brand_mentions_are_outside_theme_scope"
       },
       {
         "category": "international",
-        "swell": 45,
-        "jinr": 25,
+        "themeB": 45,
+        "themeA": 25,
         "gap": "hreflang_locale_canonical_pairing_is_not_productized"
       },
       {
         "category": "analytics",
-        "swell": 75,
-        "jinr": 45,
-        "gap": "swell_has_local_pv_ctr_ab_foundation_jinr_has_raw_tags_but_no_kpi_contract"
+        "themeB": 75,
+        "themeA": 45,
+        "gap": "themeB_has_local_pv_ctr_ab_foundation_themeA_has_raw_tags_but_no_kpi_contract"
       },
       {
         "category": "ux",
-        "swell": 82,
-        "jinr": 72,
+        "themeB": 82,
+        "themeA": 72,
         "gap": "need_unified_cwv_cro_and_ui_risk_contract"
       },
       {
         "category": "ai_seo",
-        "swell": 55,
-        "jinr": 58,
+        "themeB": 55,
+        "themeA": 58,
         "gap": "answer_unit_evidence_graph_citation_anchor_and_ai_visibility_policy_are_absent"
       },
       {
         "category": "growth",
-        "swell": 65,
-        "jinr": 60,
+        "themeB": 65,
+        "themeA": 60,
         "gap": "seo_experiment_content_refresh_and_topic_authority_workflows_are_absent"
       }
     ],
@@ -223,8 +223,8 @@
     ]
   },
   "performanceStrategy": {
-    "preferredReference": "SWELL",
-    "decision": "adopt_swell_like_performance_architecture_with_jinr_seo_separated",
+    "preferredReference": "ThemeB",
+    "decision": "adopt_themeB_like_performance_architecture_with_themeA_seo_separated",
     "coreWebVitalsBudget": {
       "lcpMs": 2500,
       "inpMs": 200,
@@ -232,7 +232,7 @@
       "source": "https://web.dev/articles/vitals"
     },
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "lib/load/front.php",
         "lib/load/separate.php",
         "classes/Pre_Parse_Blocks.php",
@@ -241,7 +241,7 @@
         "classes/Utility/Get.php",
         "lib/output.php"
       ],
-      "jinr": [
+      "themeA": [
         "functions.php",
         "include/head/preload.php",
         "include/custom-functions.php",
@@ -268,7 +268,7 @@
       "emoji_embed_cleanup"
     ],
     "warnings": [
-      "jinr_large_global_css_is_not_a_performance_model",
+      "themeA_large_global_css_is_not_a_performance_model",
       "do_not_copy_reference_theme_css_or_js",
       "external_cdn_script_injection_requires_policy_control",
       "lighthouse_lab_tests_do_not_replace_field_inp_measurement"
@@ -277,11 +277,11 @@
   "pageDesignStrategy": {
     "decision": "separate_lp_blueprint_and_home_blueprint",
     "preferredReference": {
-      "lp": "SWELL",
-      "home": "JIN:R"
+      "lp": "ThemeB",
+      "home": "テーマA"
     },
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "lib/post_type.php",
         "single-lp.php",
         "lib/post_meta/meta_lp.php",
@@ -289,14 +289,14 @@
         "lib/gutenberg/block/blog-parts.php",
         "parts/home_content.php"
       ],
-      "jinr": [
+      "themeA": [
         "home.php",
         "page.php",
         "object/main-visual/stillimage.php",
         "object/main-visual/post-slider.php",
         "include/customizer/ui/main-visual-setting.php",
         "include/customizer/ui/site-design-setting.php",
-        "include/customizer/controls/core/class-jinr-demo-import-control.php"
+        "include/customizer/controls/core/class-themeA-demo-import-control.php"
       ]
     },
     "requiredContracts": [
@@ -486,14 +486,14 @@
     ]
   },
   "themeCodingReverseStrategy": {
-    "decision": "adopt_swell_modular_bootstrap_and_block_json_with_jinr_seo_ux_rebuilt_for_fse",
+    "decision": "adopt_themeB_modular_bootstrap_and_block_json_with_themeA_seo_ux_rebuilt_for_fse",
     "officialStandards": [
       "https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/",
       "https://developer.wordpress.org/plugins/plugin-basics/best-practices/",
       "https://developer.wordpress.org/plugins/security/"
     ],
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "functions.php",
         "lib/load_files.php",
         "lib/autoloader.php",
@@ -504,7 +504,7 @@
         "classes/Data/Default_Settings.php",
         "classes/Json_Ld.php"
       ],
-      "jinr": [
+      "themeA": [
         "functions.php",
         "include/head/title.php",
         "include/json-ld.php",
@@ -567,18 +567,18 @@
   "designUiReverseStrategy": {
     "decision": "extract_failure_resistant_ui_patterns_not_visual_copy",
     "preferredReferences": {
-      "informationArchitecture": "SWELL",
-      "firstImpressionAndPresetUx": "JIN:R"
+      "informationArchitecture": "ThemeB",
+      "firstImpressionAndPresetUx": "テーマA"
     },
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "parts/home_content.php",
         "parts/top/main_visual.php",
         "lib/customizer/top/main_visual.php",
         "lib/gutenberg/block_pattern/page.php",
         "src/gutenberg/blocks/*/block.json"
       ],
-      "jinr": [
+      "themeA": [
         "include/customizer/ui/site-design-setting.php",
         "include/customizer/ui/main-visual-setting.php",
         "object/main-visual/stillimage.php",
@@ -637,7 +637,7 @@
   },
   "operationQualityStrategy": {
     "decision": "productize_operations_security_availability_updateability_as_json_contracts",
-    "preferredReference": "SWELL_for_update_and_compatibility_patterns",
+    "preferredReference": "ThemeB_for_update_and_compatibility_patterns",
     "officialSources": {
       "wordpressRequirements": "https://wordpress.org/about/requirements/",
       "wordpressSecurityRelease692": "https://wordpress.org/news/2026/03/wordpress-6-9-2-release/",
@@ -647,7 +647,7 @@
       "escaping": "https://developer.wordpress.org/apis/security/escaping/"
     },
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "style.css",
         "lib/check_environment.php",
         "functions.php",
@@ -656,7 +656,7 @@
         "lib/activate.php",
         "classes/Utility/Status.php"
       ],
-      "jinr": [
+      "themeA": [
         "style.css",
         "functions.php",
         "theme-update-checker.php"
@@ -743,7 +743,7 @@
   },
   "automationApiContractStrategy": {
     "decision": "contract_first_api_and_job_automation_in_core_plugin",
-    "preferredReference": "swell_rest_and_update_scheduler_patterns_with_stricter_contracts",
+    "preferredReference": "themeB_rest_and_update_scheduler_patterns_with_stricter_contracts",
     "officialSources": {
       "wpCron": "https://developer.wordpress.org/plugins/cron/",
       "registerRestRoute": "https://developer.wordpress.org/reference/functions/register_rest_route/",
@@ -751,7 +751,7 @@
       "httpApi": "https://developer.wordpress.org/plugins/http-api/"
     },
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "lib/rest_api.php",
         "lib/rest_api/balloon_api.php",
         "lib/update/Puc/v4p5/Scheduler.php",
@@ -759,7 +759,7 @@
         "classes/Utility/Others.php",
         "lib/gutenberg/block/rss.php"
       ],
-      "jinr": [
+      "themeA": [
         "include/custom-functions.php",
         "theme-update-checker.php"
       ]
@@ -824,7 +824,7 @@
       "googleTechnicalRequirements": "https://developers.google.com/search/docs/essentials/technical"
     },
     "codeEvidence": {
-      "swell": [
+      "themeB": [
         "classes/Json_Ld.php",
         "lib/content_filter.php",
         "lib/load/front.php",
@@ -833,12 +833,12 @@
         "src/gutenberg/blocks/*/block.json",
         "src/gutenberg/blocks/*/*.scss"
       ],
-      "jinr": [
+      "themeA": [
         "include/head/noindex.php",
         "include/head/others.php",
         "include/json-ld.php",
         "include/custom-functions.php",
-        "include/jinr-setting.php",
+        "include/themeA-setting.php",
         "functions.php"
       ]
     },
@@ -1147,7 +1147,7 @@
     ],
     "scores": [
       {
-        "theme": "SWELL",
+        "theme": "ThemeB",
         "score": 88,
         "position": "premium_all_rounder",
         "good": [
@@ -1169,7 +1169,7 @@
         ]
       },
       {
-        "theme": "JIN:R",
+        "theme": "テーマA",
         "score": 82,
         "position": "design_seo_blog_monetization_premium",
         "good": [
@@ -1179,7 +1179,7 @@
           "community_benefit"
         ],
         "bad": [
-          "performance_architecture_weaker_than_swell",
+          "performance_architecture_weaker_than_themeB",
           "human_gui_first_seo_operation",
           "enterprise_ops_audit_fallback_not_core"
         ],
@@ -1261,7 +1261,7 @@
       "personalScoreTarget": 90,
       "corporateScoreTarget": 94,
       "coreScoreTarget": 92,
-      "personalPositioning": "swell_jinr_usability_plus_affinger_monetization_plus_ai_article_tracking_llmo",
+      "personalPositioning": "themeB_themeA_usability_plus_affinger_monetization_plus_ai_article_tracking_llmo",
       "corporatePositioning": "lightning_business_trust_plus_lp_ab_tracking_plus_ai_operations",
       "avoid": [
         "compete_only_on_beautiful_design",
@@ -1274,7 +1274,7 @@
     }
   },
   "automationSeoThemeFitStrategy": {
-    "decision": "use_swell_and_jinr_as_migration_references_but_make_agent_neo_the_contract_target",
+    "decision": "use_themeB_and_themeA_as_migration_references_but_make_agent_neo_the_contract_target",
     "reviewDate": "2026-04-29",
     "scoreBasis": [
       "seo_meta_entity_sync",
@@ -1287,7 +1287,7 @@
     ],
     "scores": [
       {
-        "theme": "SWELL",
+        "theme": "ThemeB",
         "score": 73,
         "fit": "strong_for_performance_parts_json_ld_weak_for_seo_meta_control",
         "good": [
@@ -1305,7 +1305,7 @@
         ]
       },
       {
-        "theme": "JIN:R",
+        "theme": "テーマA",
         "score": 77,
         "fit": "strong_for_integrated_seo_meta_weak_for_performance_and_stable_contract",
         "good": [
@@ -1362,7 +1362,7 @@
       "screen": "S-014"
     },
     "warnings": [
-      "do_not_build_deep_theme_specific_adapters_for_swell_jinr",
+      "do_not_build_deep_theme_specific_adapters_for_themeB_themeA",
       "do_not_apply_ai_recommendations_to_unstable_nth_of_type_selectors",
       "do_not_copy_theme_css_classes_or_visual_assets",
       "do_not_make_automation_seo_required_for_basic_theme_runtime"
@@ -1429,8 +1429,8 @@
   "marketResearch": {
     "verifiedSources": [
       {
-        "name": "SWELL",
-        "url": "https://swell-theme.com/download/",
+        "name": "ThemeB",
+        "url": "https://themeB-theme.com/download/",
         "price": "17600 JPY",
         "model": "one_time",
         "notes": [
@@ -1440,8 +1440,8 @@
         ]
       },
       {
-        "name": "JIN:R",
-        "url": "https://jinr.jp/download/",
+        "name": "テーマA",
+        "url": "https://themeA.jp/download/",
         "price": "19800 JPY",
         "model": "one_time",
         "notes": [
@@ -1759,8 +1759,8 @@
       "10-深掘り解析実施計画.md",
       "11-競合比較マトリクス.md",
       "12-企画書レビューと要件反映.md",
-      "13-SEO設計比較-JINR優先分析.md",
-      "14-JINR親テーマ実コードSEO解析.md",
+      "13-SEO設計比較-ThemeA優先分析.md",
+      "14-ThemeA親テーマ実コードSEO解析.md",
       "15-ページスピード設計比較.md",
       "16-LP-HP設計方針.md",
       "17-制約条件と設計ガード.md",
@@ -1773,7 +1773,7 @@
       "24-LLMO時代のテーマ設計重要観点.md",
       "25-WPサイト運用とSEOの不都合な真実.md",
       "26-競合テーマ総合評価と市場ポジション.md",
-      "27-AutomationSEO連携観点のSWELL-JINR採点.md",
+      "27-AutomationSEO連携観点のThemeB-ThemeA採点.md",
       "28-共通強化プラグインとAutomationSEOプラグイン情報設計.md",
       "29-ドキュメントテーマ群抜け漏れレビュー.md",
       "30-SEOスキルマップ観点テーマ調査.md"
@@ -1839,12 +1839,12 @@
     ],
     "mediumGaps": [
       "docs/requirements/L1-requirements.md_traceability_for_REQ-NF-001_to_REQ-NF-007_is_not_explicit",
-      "only_swell_and_jinr_are_locally_code_analyzed_affinger_cocoon_lightning_are_market_comparison_only",
+      "only_themeB_and_themeA_are_locally_code_analyzed_affinger_cocoon_lightning_are_market_comparison_only",
       "themes_and_plugins_directories_do_not_yet_contain_agent_neo_scaffold"
     ],
     "fixedInReview": [
       "docs/design/L2-design.md_added_ADR-016_F-022_A-022_S-013_to_top_level_tables_and_ia",
-      "docs/reverse/wp-theme-reference-analysis.md_added_jinr_parent_as_analysis_target",
+      "docs/reverse/wp-theme-reference-analysis.md_added_themeA_parent_as_analysis_target",
       "解析レポート/README.md_added_report_29"
     ],
     "recommendedNextActions": [
@@ -1916,10 +1916,10 @@
       "logArtifacts": "解析レポート/35-実機検証ログ/"
     },
     "measuredThemes": [
-      "jinr",
-      "jinr-child",
-      "swell",
-      "swell_child"
+      "themeA",
+      "themeA-child",
+      "themeB",
+      "themeB_child"
     ],
     "validPages": [
       "/",
@@ -1932,22 +1932,22 @@
       }
     ],
     "headlineMetrics": {
-      "jinrHomeAvgTtfbSec": 0.2679,
-      "swellHomeAvgTtfbSec": 0.5138,
-      "jinrHomeHtmlBytes": 57221,
-      "swellHomeHtmlBytes": 40169,
-      "seoToolConnectorJinrHomeTtfbDeltaSec": 0.0112,
-      "seoToolConnectorJinrHomeScriptDelta": 3
+      "themeAHomeAvgTtfbSec": 0.2679,
+      "themeBHomeAvgTtfbSec": 0.5138,
+      "themeAHomeHtmlBytes": 57221,
+      "themeBHomeHtmlBytes": 40169,
+      "seoToolConnectorThemeAHomeTtfbDeltaSec": 0.0112,
+      "seoToolConnectorThemeAHomeScriptDelta": 3
     },
     "seoFindings": [
-      "jinr_outputs_canonical_ogp_and_two_json_ld_blocks_in_initial_environment",
-      "swell_home_does_not_output_canonical_or_ogp_in_initial_environment",
+      "themeA_outputs_canonical_ogp_and_two_json_ld_blocks_in_initial_environment",
+      "themeB_home_does_not_output_canonical_or_ogp_in_initial_environment",
       "both_need_entity_graph_contract_and_seo_plugin_duplicate_guard"
     ],
     "criticalFindings": [
       "permalink_structure_corrupted_to_/C:/Program%20Files/Git/%postname%/",
-      "jinr_parent_mount_was_empty_and_restored_from_backup_before_measurement",
-      "jinr_1_0_5_emits_many_php_8_2_null_array_offset_warnings",
+      "themeA_parent_mount_was_empty_and_restored_from_backup_before_measurement",
+      "themeA_1_0_5_emits_many_php_8_2_null_array_offset_warnings",
       "lighthouse_core_web_vitals_not_measured_because_browser_tooling_is_missing"
     ],
     "agentNeoImplications": [
@@ -1968,34 +1968,34 @@
     "report": "32-WPテーマ更新ログ.md",
     "reviewDate": "2026-04-30",
     "sources": {
-      "swell": "https://swell-theme.com/",
-      "jinr": "https://jinr.jp/update/"
+      "themeB": "https://themeB-theme.com/",
+      "themeA": "https://themeA.jp/update/"
     },
     "updates": [
       {
-        "theme": "jinr",
+        "theme": "themeA",
         "from": "1.0.5",
         "to": "1.4.6",
         "status": "updated_via_manual_zip_replace_due_to_docker_bind_mount"
       },
       {
-        "theme": "swell",
+        "theme": "themeB",
         "from": "2.16.0",
         "to": "2.16.0",
         "status": "already_latest"
       }
     ],
-    "backup": "jinr-parent.backup-before-update-20260430-030625",
+    "backup": "themeA-parent.backup-before-update-20260430-030625",
     "verification": [
-      "wp_theme_list_reports_jinr_active_1_4_6_update_none",
+      "wp_theme_list_reports_themeA_active_1_4_6_update_none",
       "home_http_200_length_64218",
       "style_css_reports_version_1_4_6"
     ],
     "remainingRisks": [
-      "jinr_1_4_6_still_emits_php_8_2_null_array_offset_warnings",
+      "themeA_1_4_6_still_emits_php_8_2_null_array_offset_warnings",
       "permalink_structure_is_still_corrupted_to_windows_path",
       "wp_cli_standard_theme_update_fails_when_theme_directory_is_bind_mount_root",
-      "runtime_measurement_report_31_is_for_jinr_1_0_5_and_should_be_rerun"
+      "runtime_measurement_report_31_is_for_themeA_1_0_5_and_should_be_rerun"
     ],
     "gateResult": {
       "L7.1": "passed",
@@ -2052,9 +2052,9 @@
       "compose_config_ok"
     ],
     "remainingRisks": [
-      "jinr_1_4_6_still_emits_php_8_3_null_array_offset_warnings_in_wp_cli",
+      "themeA_1_4_6_still_emits_php_8_3_null_array_offset_warnings_in_wp_cli",
       "apache_servername_warning_remains",
-      "report_31_measurements_should_be_rerun_after_wp_php_jinr_updates"
+      "report_31_measurements_should_be_rerun_after_wp_php_themeA_updates"
     ],
     "gateResult": {
       "L7.1": "passed",
@@ -2068,12 +2068,12 @@
     "scope": "public_http_get_only_no_login_attempts",
     "targets": [
       {
-        "name": "jinr_real_operation",
-        "adminUrl": "https://it-shukatu-college.com/wp-admin/",
-        "publicUrl": "https://it-shukatu-college.com/",
-        "expectedTheme": "JIN:R",
+        "name": "themeA_real_operation",
+        "adminUrl": "https://site-A.example/wp-admin/",
+        "publicUrl": "https://site-A.example/",
+        "expectedTheme": "テーマA",
         "observedThemeHints": [
-          "jinr"
+          "themeA"
         ],
         "home": {
           "status": 200,
@@ -2088,7 +2088,7 @@
         },
         "restNamespaces": [
           "aseo/v1",
-          "jinr",
+          "themeA",
           "google-site-kit/v1",
           "contact-form-7/v1",
           "wp/v2"
@@ -2102,12 +2102,12 @@
         ]
       },
       {
-        "name": "swell_real_operation",
-        "adminUrl": "https://solobiz-lab.com/wp-admin/",
-        "publicUrl": "https://solobiz-lab.com/",
-        "expectedTheme": "SWELL",
+        "name": "themeB_real_operation",
+        "adminUrl": "https://site-B.example/wp-admin/",
+        "publicUrl": "https://site-B.example/",
+        "expectedTheme": "ThemeB",
         "observedThemeHints": [
-          "swell"
+          "themeB"
         ],
         "home": {
           "status": 200,
@@ -2137,8 +2137,8 @@
       "both_real_sites_expose_wp_admin_login_form_publicly",
       "both_real_sites_expose_aseo_v1_namespace_in_public_rest_index",
       "automation_seo_routes_include_ai_write_media_upload_and_update_apply_names_in_public_index",
-      "jinr_real_site_has_much_larger_home_html_images_and_script_count_than_swell_real_site",
-      "swell_real_site_outputs_json_ld_graph_on_home_but_jinr_real_site_home_json_ld_was_not_detected"
+      "themeA_real_site_has_much_larger_home_html_images_and_script_count_than_themeB_real_site",
+      "themeB_real_site_outputs_json_ld_graph_on_home_but_themeA_real_site_home_json_ld_was_not_detected"
     ],
     "agentNeoImplications": [
       "evaluate_initial_theme_state_and_real_operation_state_separately",
@@ -2178,10 +2178,10 @@
   },
   "runtimeDeepVerification": {
     "generatedAt": "2026-04-30",
-    "purpose": "Runtime/code/public-GET verification for SWELL, JIN:R, and Automation SEO. Split facts into code-confirmed, runtime-confirmed, both-confirmed, hypothesis-only, and AGENT NEO design reflection.",
+    "purpose": "Runtime/code/public-GET verification for ThemeB, テーマA, and Automation SEO. Split facts into code-confirmed, runtime-confirmed, both-confirmed, hypothesis-only, and AGENT NEO design reflection.",
     "scope": {
       "local": "Docker WordPress 6.9.4 / PHP 8.3 / MariaDB 10.11. Theme switching, plugin active/inactive checks, HTTP, Lighthouse, Playwright, WP-CLI.",
-      "publicSites": "Public GET-only observation for production JIN:R and SWELL sites. No authentication, no POST, no setting changes, no write operations.",
+      "publicSites": "Public GET-only observation for production テーマA and ThemeB sites. No authentication, no POST, no setting changes, no write operations.",
       "rawArtifacts": "tmp/runtime-verification/20260430-helix-reverse/"
     },
     "deliverables": [
@@ -2198,17 +2198,17 @@
       "php": "8.3",
       "database": "MariaDB 10.11",
       "localRestoredState": {
-        "activeTheme": "jinr 1.4.6",
+        "activeTheme": "themeA 1.4.6",
         "activePlugin": "seo-tool-connector 1.0.0"
       },
       "comparedThemes": {
-        "jinr": "1.4.6 local plus production observation",
-        "swell": "2.16.0 local plus production observation"
+        "themeA": "1.4.6 local plus production observation",
+        "themeB": "2.16.0 local plus production observation"
       }
     },
     "codeFacts": {
       "fileInventory": {
-        "swell": {
+        "themeB": {
           "files": 747,
           "php": 331,
           "js": 100,
@@ -2217,7 +2217,7 @@
           "blockJson": 64,
           "bytes": 17549963
         },
-        "jinr": {
+        "themeA": {
           "files": 644,
           "php": 374,
           "js": 22,
@@ -2237,7 +2237,7 @@
         }
       },
       "patternCounts": {
-        "swell": {
+        "themeB": {
           "matchedLines": 281,
           "rest": 15,
           "cpt": 4,
@@ -2247,7 +2247,7 @@
           "nonce": 57,
           "capability": 25
         },
-        "jinr": {
+        "themeA": {
           "matchedLines": 198,
           "rest": 2,
           "cpt": 0,
@@ -2268,28 +2268,28 @@
     },
     "measurements": {
       "lighthouse": {
-        "localJinrMobile": {
+        "localThemeAMobile": {
           "performance": 60,
           "seo": 92,
           "lcpMs": 7695,
           "bytes": 833740,
           "requests": 33
         },
-        "localSwellMobile": {
+        "localThemeBMobile": {
           "performance": 83,
           "seo": 92,
           "lcpMs": 4048,
           "bytes": 187757,
           "requests": 28
         },
-        "realJinrMobile": {
+        "realThemeAMobile": {
           "performance": 62,
           "seo": 92,
           "lcpMs": 12485,
           "bytes": 3480116,
           "requests": 120
         },
-        "realSwellMobile": {
+        "realThemeBMobile": {
           "performance": 95,
           "seo": 100,
           "lcpMs": 2877,
@@ -2298,7 +2298,7 @@
         }
       },
       "playwright": {
-        "realJinr": {
+        "realThemeA": {
           "requests": 78,
           "scripts": 34,
           "stylesheets": 11,
@@ -2307,7 +2307,7 @@
           "h1": 0,
           "consoleErrors": 4
         },
-        "realSwell": {
+        "realThemeB": {
           "requests": 38,
           "scripts": 10,
           "stylesheets": 16,
@@ -2320,10 +2320,10 @@
       "publicGetOnly": true
     },
     "findings": [
-      "SWELL has 64 block.json files and is stronger for block-level AI operation.",
-      "JIN:R has integrated SEO head/JSON-LD design but needs an adapter layer because it has no block.json and relies more on AJAX/customizer patterns.",
-      "JIN:R 1.4.6 emits PHP 8.3 warnings around customizer settings during WP-CLI execution.",
-      "The production JIN:R site shows heavier plugin/image/DOM load and weaker runtime output than the production SWELL site.",
+      "ThemeB has 64 block.json files and is stronger for block-level AI operation.",
+      "テーマA has integrated SEO head/JSON-LD design but needs an adapter layer because it has no block.json and relies more on AJAX/customizer patterns.",
+      "テーマA 1.4.6 emits PHP 8.3 warnings around customizer settings during WP-CLI execution.",
+      "The production テーマA site shows heavier plugin/image/DOM load and weaker runtime output than the production ThemeB site.",
       "Automation SEO is REST-centric and AI-friendly, but namespace discovery is required because local uses seo-tool/v1 while production exposes aseo/v1.",
       "AGENT NEO should standardize section_id, cta_id, content_role, schema_role, and measurement_id as first-class theme contracts."
     ],
@@ -2336,15 +2336,15 @@
       ],
       "automationSeoSide": [
         "Add REST namespace discovery and route capability matrix.",
-        "Add theme adapters for SWELL-like block.json themes and JIN:R-like HTML/AJAX/customizer themes.",
+        "Add theme adapters for ThemeB-like block.json themes and テーマA-like HTML/AJAX/customizer themes.",
         "Run weekly Lighthouse, Playwright, REST, HTML, sitemap, and robots observations and store diffs.",
         "Treat public production checks as GET-only unless the owner explicitly authorizes authenticated write validation."
       ]
     },
     "classification": {
       "confirmedByCode": [
-        "SWELL REST/CPT/block.json/asset enqueue/JSON-LD registration",
-        "JIN:R SEO head/JSON-LD/customizer/AJAX/REST registration",
+        "ThemeB REST/CPT/block.json/asset enqueue/JSON-LD registration",
+        "テーマA SEO head/JSON-LD/customizer/AJAX/REST registration",
         "Automation SEO connector REST route and cron registration"
       ],
       "confirmedByRuntime": [
@@ -2352,8 +2352,8 @@
         "public GET HTML/REST/robots/sitemap/wp-admin-login-page response observations"
       ],
       "confirmedByBoth": [
-        "SWELL REST route exposure and block-oriented design",
-        "JIN:R SEO integrated output and PHP 8.3 warning risk",
+        "ThemeB REST route exposure and block-oriented design",
+        "テーマA SEO integrated output and PHP 8.3 warning risk",
         "Automation SEO REST-centric operation model"
       ],
       "hypothesisOnly": [
@@ -2382,7 +2382,7 @@
       "mainRisk": "real-time collaboration architecture and compatibility feedback"
     },
     "themeCompatibility": {
-      "swell": {
+      "themeB": {
         "localVersion": "2.16.0",
         "headerRequiresWp": "5.6",
         "headerRequiresPhp": "7.3.0",
@@ -2399,7 +2399,7 @@
           "requires PHP header should be updated for WP7 marketing/support"
         ]
       },
-      "jinr": {
+      "themeA": {
         "localVersion": "1.4.6",
         "headerRequiresWp": "5.9.1",
         "headerRequiresPhp": "7.0",

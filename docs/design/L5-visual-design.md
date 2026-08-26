@@ -6,7 +6,7 @@
 
 **AIが改善できる、失敗しにくい営業/収益導線。**
 
-AGENT NEOは、装飾の自由度で売るテーマではなく、個人アフィリエイトと法人LP/HPで成果が崩れにくい情報設計を提供するテーマである。SWELLからは読みやすい記事/カード/CTA/トップ導線、JIN:Rからは第一印象を作るメインビジュアルとプリセットUXを抽象化し、見た目ではなく設計思想を `design-preset`、`visual-composition`、`section-pattern`、`trust-layer`、`ui-risk` として契約化する。
+AGENT NEOは、装飾の自由度で売るテーマではなく、個人アフィリエイトと法人LP/HPで成果が崩れにくい情報設計を提供するテーマである。ThemeBからは読みやすい記事/カード/CTA/トップ導線、テーマAからは第一印象を作るメインビジュアルとプリセットUXを抽象化し、見た目ではなく設計思想を `design-preset`、`visual-composition`、`section-pattern`、`trust-layer`、`ui-risk` として契約化する。
 
 ### 0.2 デザイン原則
 

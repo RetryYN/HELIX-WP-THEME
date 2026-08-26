@@ -1,7 +1,7 @@
 # L3-A3 SEO 実装ギャップ設計 Addendum
 
 > **ドキュメント種別**: L3 設計 Addendum（GAP-RT 補完）
-> **担当領域**: SEO 実装 — JIN:R 核 / E-E-A-T
+> **担当領域**: SEO 実装 — テーマA 核 / E-E-A-T
 > **参照 GAP-RT**: GAP-RT-015 / GAP-RT-017 / GAP-RT-018 / GAP-RT-019 / GAP-RT-020
 > **ベース設計**: L2-design.md §8.2 / L3-detailed-design.md §0.1 / ADR-005
 > **作成日**: 2026-06-18
@@ -22,10 +22,10 @@
 | SEO **判断ロジック**（最適 meta 生成 / Entity 提案 / SEO スコア算出） | ❌ 禁止（REQ-NF-025） | ✅ Owner |
 | **AI による meta 自動生成** | ❌ 禁止（REQ-NF-025） | ✅ Owner |
 
-### 0.2 JIN:R 実コードとの対応
+### 0.2 テーマA 実コードとの対応
 
-解析レポート `14-JINR親テーマ実コードSEO解析.md` / `13-SEO設計比較-JINR優先分析.md` / `31-JINR-seo-hero-deep-extract.md` が根拠。
-JIN:R は `include/head/tags.php`（任意タグ）・`include/json-ld.php`（Person/Organization/Article 等）・`include/custom-functions.php`（SEO post meta REST 公開）を中核とするが、raw echo / sanitize_callback 欠落 / ` @graph` 未採用など複数の改良点が必要。AGENT NEO はこれを FSE / block.json / REST / JSON 契約で再設計する。
+解析レポート `14-ThemeA親テーマ実コードSEO解析.md` / `13-SEO設計比較-ThemeA優先分析.md` / `31-ThemeA-seo-hero-deep-extract.md` が根拠。
+テーマA は `include/head/tags.php`（任意タグ）・`include/json-ld.php`（Person/Organization/Article 等）・`include/custom-functions.php`（SEO post meta REST 公開）を中核とするが、raw echo / sanitize_callback 欠落 / ` @graph` 未採用など複数の改良点が必要。AGENT NEO はこれを FSE / block.json / REST / JSON 契約で再設計する。
 
 ---
 
@@ -100,7 +100,7 @@ L2-design.md §8.2 ではスキーマ名が列挙されているのみで内容�
     },
     "indexabilityPolicy": {
       "type": "object",
-      "description": "ページ種別ごとのデフォルト robots 設定（JIN:R noindex 設計を FSE 契約化）",
+      "description": "ページ種別ごとのデフォルト robots 設定（テーマA noindex 設計を FSE 契約化）",
       "properties": {
         "post":         { "$ref": "#/$defs/robotsDirective" },
         "page":         { "$ref": "#/$defs/robotsDirective" },
@@ -155,7 +155,7 @@ L2-design.md §8.2 ではスキーマ名が列挙されているのみで内容�
 
 #### (B) `seo-meta.schema.json` — 投稿 / LP / 分類ごとの SEO メタ契約
 
-**用途**: ページ単位の SEO メタデータ。JIN:R の `_jinr_seotitle_display` 等を標準化した AGENT NEO 版。`SeoMetaRepository` が担当。
+**用途**: ページ単位の SEO メタデータ。テーマA の `_themeA_seotitle_display` 等を標準化した AGENT NEO 版。`SeoMetaRepository` が担当。
 
 ```jsonc
 {
@@ -227,7 +227,7 @@ L2-design.md §8.2 ではスキーマ名が列挙されているのみで内容�
 
 #### (C) `entity-graph.schema.json` — JSON-LD @graph Entity 契約
 
-**用途**: `EntityGraphBuilder` が組み立てる JSON-LD `@graph` の Node 仕様。SWELL 寄りの `@graph` 統合方式（解析レポート §14-9 改良案）を採用。
+**用途**: `EntityGraphBuilder` が組み立てる JSON-LD `@graph` の Node 仕様。ThemeB 寄りの `@graph` 統合方式（解析レポート §14-9 改良案）を採用。
 
 ```jsonc
 {
@@ -511,7 +511,7 @@ L2-design.md §8.2 ではスキーマ名が列挙されているのみで内容�
 
 ### 2.1 背景
 
-Google E-E-A-T（経験 / 専門性 / 権威性 / 信頼性）において著者情報の構造化が最重要施策。JIN:R は `include/json-ld.php` で Person schema + sameAs を出力するが、FSE / block.json / WP user_meta への対応が必要。
+Google E-E-A-T（経験 / 専門性 / 権威性 / 信頼性）において著者情報の構造化が最重要施策。テーマA は `include/json-ld.php` で Person schema + sameAs を出力するが、FSE / block.json / WP user_meta への対応が必要。
 
 ### 2.2 WP User Meta スキーマ設計
 
@@ -593,7 +593,7 @@ wp_footer フックで @graph 統合出力（wp_json_encode / <script type="appl
 
 ### 3.1 設計方針
 
-JIN:R の `include/head/tags.php` は任意 HTML を raw echo するが、AGENT NEO では **adapter + capability + allowlist + consent guard + 監査ログ**の 5 層を必須とする（解析レポート §14-12/13 の改良指摘に基づく）。
+テーマA の `include/head/tags.php` は任意 HTML を raw echo するが、AGENT NEO では **adapter + capability + allowlist + consent guard + 監査ログ**の 5 層を必須とする（解析レポート §14-12/13 の改良指摘に基づく）。
 
 **AI 自動操作の扱い**: 任意タグ挿入は **手動操作専用**（管理者のみ）。Automation SEO や AI エージェントからの自動書き込みは**禁止**。
 
@@ -758,7 +758,7 @@ DELETE /agent-neo/v1/settings/custom-tags/{slot} # slot のタグ削除（manage
 
 **Visible Content Sync 原則**: FAQPage JSON-LD は FAQ ブロックの表示内容（question / answer テキスト）から render 時に同期生成する。表示と schema が非同期になる実装は禁止。
 
-SWELL の `lib/gutenberg/render_hook/faq.php` が同原則で実装されており（解析レポート §13-3.1）、AGENT NEO はこれを FSE / block.json で再設計する。
+ThemeB の `lib/gutenberg/render_hook/faq.php` が同原則で実装されており（解析レポート §13-3.1）、AGENT NEO はこれを FSE / block.json で再設計する。
 
 ### 4.2 FAQ ブロック構造（正本: L3-A1 §7 を参照）
 
@@ -829,7 +829,7 @@ JSON-LD コレクタは **`agent-neo/faq-item` inner-block から question / ans
 
 ### 5.1 背景
 
-JIN:R の `_jinr_hastag_display` post meta（`include/custom-functions.php` で `show_in_rest: true` 登録）を AGENT NEO 標準に移植。SNS シェア時のハッシュタグ付与と、X（Twitter）Card / シェア URL への反映が目的。
+テーマA の `_themeA_hastag_display` post meta（`include/custom-functions.php` で `show_in_rest: true` 登録）を AGENT NEO 標準に移植。SNS シェア時のハッシュタグ付与と、X（Twitter）Card / シェア URL への反映が目的。
 
 ### 5.2 Post Meta 仕様
 
@@ -912,7 +912,7 @@ inc/seo/
 
 ### 6.3 SEO 出力順序
 
-`AgentNeoSeoHead` が `wp_head` hook で以下の順序で出力（JIN:R の head 出力順序を FSE に移植 / 解析レポート §14-3）。
+`AgentNeoSeoHead` が `wp_head` hook で以下の順序で出力（テーマA の head 出力順序を FSE に移植 / 解析レポート §14-3）。
 
 ```
 priority 1:  head_start 任意タグ（Search Console verification 等）

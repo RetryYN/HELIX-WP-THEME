@@ -1,18 +1,18 @@
-# JIN:R親テーマ実コードSEO解析
+# テーマA親テーマ実コードSEO解析
 
 ## 1. 解析対象
 
 | 項目 | 内容 |
 |---|---|
-| ZIP | `jinr-20260428T161343Z-3-001.zip` |
-| 展開先 | `jinr-parent/jinr/jinr` |
+| ZIP | `themeA-20260428T161343Z-3-001.zip` |
+| 展開先 | `themeA-parent/themeA/themeA` |
 | ファイル規模 | 305 files / 約10MB |
 | PHP | 77 files |
-| 主要SEOファイル | `include/head/*`, `include/json-ld.php`, `include/jinr-setting.php`, `include/custom-functions.php` |
+| 主要SEOファイル | `include/head/*`, `include/json-ld.php`, `include/themeA-setting.php`, `include/custom-functions.php` |
 
 ## 2. 結論
 
-JIN:Rは、SEOをテーマ中核に内包している。SWELLのようにSEO SIMPLE PACK前提で分離する思想ではなく、テーマ自身が以下を直接出力・管理する。
+テーマAは、SEOをテーマ中核に内包している。ThemeBのようにSEO SIMPLE PACK前提で分離する思想ではなく、テーマ自身が以下を直接出力・管理する。
 
 - title
 - description
@@ -27,7 +27,7 @@ JIN:Rは、SEOをテーマ中核に内包している。SWELLのようにSEO SIM
 - SEO設定管理画面
 - 記事別SEOメタのREST公開
 
-AGENT NEOのSEO Coreは、JIN:Rの「統合SEO UX」を採用する判断でよい。ただしJIN:RはクラシックPHPテンプレート型なので、AGENT NEOではFSE/theme.json/block.json/REST/MCP/WP CLIに合わせて再設計する。
+AGENT NEOのSEO Coreは、テーマAの「統合SEO UX」を採用する判断でよい。ただしテーマAはクラシックPHPテンプレート型なので、AGENT NEOではFSE/theme.json/block.json/REST/MCP/WP CLIに合わせて再設計する。
 
 ## 3. head出力構造
 
@@ -53,8 +53,8 @@ AGENT NEOのSEO Coreは、JIN:Rの「統合SEO UX」を採用する判断でよ�
 | 条件 | titleの決定 |
 |---|---|
 | home | site name + separator + site description |
-| front page | `_jinr_seotitle_display` があれば優先 |
-| single/page | `_jinr_seotitle_display` があれば優先。なければ post title + separator + site name |
+| front page | `_themeA_seotitle_display` があれば優先 |
+| single/page | `_themeA_seotitle_display` があれば優先。なければ post title + separator + site name |
 | category | 対応固定ページで作り込み済みなら、その固定ページのSEO titleを使う |
 | tag/date/search/404 | テーマ側で生成 |
 
@@ -69,12 +69,12 @@ AGENT NEOへの取り込み:
 
 優先順位:
 
-1. `_jinr_description_display`
+1. `_themeA_description_display`
 2. 抜粋
-3. `jinr_auto_desc_func()` による本文先頭120文字
-4. トップページでは `jinr__desc_text`
+3. `themeA_auto_desc_func()` による本文先頭120文字
+4. トップページでは `themeA__desc_text`
 
-`jinr_auto_desc_func()` はショートコードを除去し、HTMLタグを落として120文字に丸める。
+`themeA_auto_desc_func()` はショートコードを除去し、HTMLタグを落として120文字に丸める。
 
 AGENT NEOへの取り込み:
 
@@ -83,14 +83,14 @@ AGENT NEOへの取り込み:
 
 ## 6. canonical設計
 
-JIN:Rは `include/custom-functions.php` でWordPress標準の `rel_canonical` を削除し、`include/head/others.php` で独自canonicalを出力する。
+テーマAは `include/custom-functions.php` でWordPress標準の `rel_canonical` を削除し、`include/head/others.php` で独自canonicalを出力する。
 
 | 条件 | canonical |
 |---|---|
 | home | site URL |
 | category | category link |
 | page/singular | permalink |
-| page/singularで `_jinr_canonical_display` あり | カスタムcanonical優先 |
+| page/singularで `_themeA_canonical_display` あり | カスタムcanonical優先 |
 | 404 | `/404` |
 | その他 | site URL |
 
@@ -106,17 +106,17 @@ AGENT NEOへの取り込み:
 
 | 対象 | 制御元 |
 |---|---|
-| single/page | `_jinr_noindex_display` |
-| category | `jinr_category_noindex`、除外ID、ページネーション |
-| tag | `jinr_tag_noindex`、除外ID、ページネーション |
-| home pagination | `jinr_top_next_noindex` |
-| date archive | `jinr_date_archive_noindex` |
-| search | `jinr_search_page_noindex` |
-| attachment | `jinr_image_page_noindex` |
-| author | `jinr_author_noindex` |
+| single/page | `_themeA_noindex_display` |
+| category | `themeA_category_noindex`、除外ID、ページネーション |
+| tag | `themeA_tag_noindex`、除外ID、ページネーション |
+| home pagination | `themeA_top_next_noindex` |
+| date archive | `themeA_date_archive_noindex` |
+| search | `themeA_search_page_noindex` |
+| attachment | `themeA_image_page_noindex` |
+| author | `themeA_author_noindex` |
 | 404 | 常にnoindex |
 
-JIN:Rの強みは、低品質・重複・薄いページになりやすいWP標準アーカイブをテーマ管理画面から制御できる点。
+テーマAの強みは、低品質・重複・薄いページになりやすいWP標準アーカイブをテーマ管理画面から制御できる点。
 
 AGENT NEOへの取り込み:
 
@@ -145,7 +145,7 @@ AGENT NEOへの取り込み:
 
 ## 9. JSON-LD設計
 
-`include/json-ld.php` は `wp_footer` でJSON-LDを出力する。カスタマイザーの `jinr__reading_jsonld` がfalseの場合に読み込まれる。
+`include/json-ld.php` は `wp_footer` でJSON-LDを出力する。カスタマイザーの `themeA__reading_jsonld` がfalseの場合に読み込まれる。
 
 | 対象 | schema type |
 |---|---|
@@ -168,12 +168,12 @@ AGENT NEOへの取り込み:
 
 AGENT NEOへの取り込み:
 
-- JIN:Rの「テーマ標準JSON-LD」思想は採用する。
-- 実装はSWELL寄りの `@graph` 方式にして、ページEntity、Breadcrumb、Organization、Person、Product、Offer、Review、FAQを一つのEntity Graphとして構築する。
+- テーマAの「テーマ標準JSON-LD」思想は採用する。
+- 実装はThemeB寄りの `@graph` 方式にして、ページEntity、Breadcrumb、Organization、Person、Product、Offer、Review、FAQを一つのEntity Graphとして構築する。
 
 ## 10. 設定管理
 
-`include/jinr-setting.php` は `JINR設定` 管理画面を追加し、SEO設定、広告、計測タグを同一管理画面で扱う。
+`include/themeA-setting.php` は `ThemeA設定` 管理画面を追加し、SEO設定、広告、計測タグを同一管理画面で扱う。
 
 SEO設定として確認できる主な項目:
 
@@ -206,14 +206,14 @@ AGENT NEOへの取り込み:
 
 | meta key | 型 | 用途 |
 |---|---|---|
-| `_jinr_seotitle_display` | string | 記事別SEO title |
-| `_jinr_description_display` | string | 記事別description |
-| `_jinr_keyword_display` | string | keywords |
-| `_jinr_hastag_display` | string | SNSハッシュタグ |
-| `_jinr_canonical_display` | string | canonical |
-| `_jinr_noindex_display` | boolean | noindex |
+| `_themeA_seotitle_display` | string | 記事別SEO title |
+| `_themeA_description_display` | string | 記事別description |
+| `_themeA_keyword_display` | string | keywords |
+| `_themeA_hastag_display` | string | SNSハッシュタグ |
+| `_themeA_canonical_display` | string | canonical |
+| `_themeA_noindex_display` | boolean | noindex |
 
-これはAGENT NEOにとって重要。JIN:Rは人間GUIだけでなく、WP REST API経由でSEOメタを編集できる土台を持っている。
+これはAGENT NEOにとって重要。テーマAは人間GUIだけでなく、WP REST API経由でSEOメタを編集できる土台を持っている。
 
 AGENT NEOでは、これをさらに進めて `seo-meta.schema.json` と `POST /wp-json/agent-neo/v1/seo/meta` に統合する。
 
@@ -226,7 +226,7 @@ AGENT NEOでは、これをさらに進めて `seo-meta.schema.json` と `POST /
 - Search Console tag
 - 任意head tag
 
-body開始直後には `jinr_body_start_tag`、body終了側にも任意タグがある。
+body開始直後には `themeA_body_start_tag`、body終了側にも任意タグがある。
 
 AGENT NEOへの取り込み:
 
@@ -235,11 +235,11 @@ AGENT NEOへの取り込み:
 
 ## 13. セキュリティ/品質上の注意
 
-JIN:Rの実装は参考にできるが、AGENT NEOではそのまま踏襲してはいけない点がある。
+テーマAの実装は参考にできるが、AGENT NEOではそのまま踏襲してはいけない点がある。
 
 | 観点 | 観測 | AGENT NEOでの対策 |
 |---|---|---|
-| 外部URL取得 | `jinr/external_url` が公開RESTで `file_get_contents($post_url)` を実行 | SSRF対策、URL allowlist、timeout、HTTP API利用、rate limit |
+| 外部URL取得 | `themeA/external_url` が公開RESTで `file_get_contents($post_url)` を実行 | SSRF対策、URL allowlist、timeout、HTTP API利用、rate limit |
 | 任意タグ出力 | head/bodyタグ、広告タグを raw echo | role/capability、sanitize/allowlist、監査ログ、危険操作警告 |
 | SEOメタ出力 | `get_post_meta` や `get_option` を直接echoする箇所が多い | esc_attr/esc_url/wp_ksesを徹底 |
 | JSON-LD | json_encodeのみでscript出力 | wp_json_encode、schema validation、型別必須項目検証 |
@@ -264,9 +264,9 @@ JIN:Rの実装は参考にできるが、AGENT NEOではそのまま踏襲して
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
-| RG0 | passed | JIN:R親テーマZIPを展開し、SEO関連ファイルを確認 |
+| RG0 | passed | テーマA親テーマZIPを展開し、SEO関連ファイルを確認 |
 | RG1 | passed | head出力、post meta、settings、REST公開メタを抽出 |
-| RG2 | passed | JIN:R統合SEO UXのAs-Is設計を復元 |
-| RG3 | passed | ユーザー仮説「JIN:RのほうがSEO設計が良い」を実コードで支持 |
+| RG2 | passed | テーマA統合SEO UXのAs-Is設計を復元 |
+| RG3 | passed | ユーザー仮説「テーマAのほうがSEO設計が良い」を実コードで支持 |
 | R4 | passed | AGENT NEOのSEO Core方針へ反映可能な採用/改良/不採用を分類 |
 

@@ -1,8 +1,8 @@
-# Automation SEO連携観点のSWELL/JIN:R採点
+# Automation SEO連携観点のThemeB/テーマA採点
 
 ## 結論
 
-Automation SEO連携だけで見ると、**JIN:RはSEOメタ/構造化データの操作対象として強く、SWELLは速度・部品構造・LP/再利用パーツの土台として強い**。
+Automation SEO連携だけで見ると、**テーマAはSEOメタ/構造化データの操作対象として強く、ThemeBは速度・部品構造・LP/再利用パーツの土台として強い**。
 
 ただし両テーマとも、Automation SEOが本当に必要とする `section_id`、`cta_id`、`variant_id`、`content_hash`、dryRun/apply、rollback、差分同期、双方向マッピングをテーマ標準契約としては持っていない。したがって、AGENT NEOでは両テーマを直接上書き運用するのではなく、移行・診断・設計参考に限定し、運用ターゲットはAGENT NEO Theme + Core Pluginの契約に集約する。
 
@@ -22,10 +22,10 @@ Automation SEO連携だけで見ると、**JIN:RはSEOメタ/構造化データ�
 
 | テーマ | 点数 | 判定 |
 |---|---:|---|
-| SWELL | 73 | Automation SEOの運用基盤としては速度・部品・JSON-LDが強いが、SEOメタが外部プラグイン寄りでAI一括制御が弱い |
-| JIN:R | 77 | SEOメタ/OGP/canonical/noindex/JSON-LDの一体感はAutomation SEO向き。ただし速度、セクション安定性、FSE/API契約が弱い |
+| ThemeB | 73 | Automation SEOの運用基盤としては速度・部品・JSON-LDが強いが、SEOメタが外部プラグイン寄りでAI一括制御が弱い |
+| テーマA | 77 | SEOメタ/OGP/canonical/noindex/JSON-LDの一体感はAutomation SEO向き。ただし速度、セクション安定性、FSE/API契約が弱い |
 
-JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案」とは相性が良い。SWELLはAutomation SEOの「LP/記事を高速に配信し、部品と計測を壊さない受け皿」として参考価値が高い。
+テーマAのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案」とは相性が良い。ThemeBはAutomation SEOの「LP/記事を高速に配信し、部品と計測を壊さない受け皿」として参考価値が高い。
 
 ## Automation SEO側の既存連携資産
 
@@ -52,7 +52,7 @@ JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案�
 | `wp_pages` は投稿/固定ページ同期中心 | LP CPT、再利用パーツ、FSE template part、pattern、CTA registryまでの正規同期が不足 |
 | 改善提案の適用先がHTML/selector寄りになりやすい | AIが「このsectionを安全に置換する」ためのdryRun/apply/rollbackが不足 |
 
-## SWELL: 73点
+## ThemeB: 73点
 
 ### 良い部分
 
@@ -78,14 +78,14 @@ JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案�
 
 | 対応側 | 対策 |
 |---|---|
-| Automation SEO側 | SWELL専用の深いアダプタを作りすぎない。移行時はREST/HTML解析で `wp_post_id`、見出し、Blog Parts、LP CPT、広告/CTA候補を抽出し、AGENT NEO標準blueprintへ変換する |
+| Automation SEO側 | ThemeB専用の深いアダプタを作りすぎない。移行時はREST/HTML解析で `wp_post_id`、見出し、Blog Parts、LP CPT、広告/CTA候補を抽出し、AGENT NEO標準blueprintへ変換する |
 | Automation SEO側 | SEO SIMPLE PACK等の既存メタを検出して `seo-meta.schema.json` に正規化する。出力元の優先順位と重複警告を持つ |
 | Automation SEO側 | `content_hash` と `selector_confidence` を持ち、`nth-of-type` 依存の低信頼selectorはAI適用対象にしない |
 | WPテーマ側 | AGENT NEOでは全セクションに `data-agent-section-id`、CTAに `data-cta-id`、商品/資料DLに `data-offer-id` を出す |
-| WPテーマ側 | SWELL型の条件付きアセットだけを取り込み、tracking/A-B/CTAはCore Pluginのevent contractへ寄せる |
+| WPテーマ側 | ThemeB型の条件付きアセットだけを取り込み、tracking/A-B/CTAはCore Pluginのevent contractへ寄せる |
 | WPテーマ側 | LP/Blog Parts相当を `reusable-section` としてJSON export/importできるようにする |
 
-## JIN:R: 77点
+## テーマA: 77点
 
 ### 良い部分
 
@@ -105,17 +105,17 @@ JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案�
 | セクション安定ID | SEOは強いが、LP/記事の各sectionをAutomation SEOが恒久IDで改善する契約はない |
 | クラシック構造 | FSE/theme.json/block.json正本ではないため、AIがブロック/テンプレート単位で安全に編集しにくい |
 | 外部URL/公開REST | URL解決系のpublic REST/AJAXはSSRF/rate limit/schema観点でそのまま参考にできない |
-| SEOロックイン | SEOをテーマが持つ強みはあるが、移行時にはJIN:R独自メタを標準SEO契約へ変換する必要がある |
+| SEOロックイン | SEOをテーマが持つ強みはあるが、移行時にはテーマA独自メタを標準SEO契約へ変換する必要がある |
 
 ### カバー方法
 
 | 対応側 | 対策 |
 |---|---|
-| Automation SEO側 | JIN:RのSEOメタを最優先で抽出し、title/description/canonical/noindex/OGP/JSON-LDを `seo-meta.schema.json` と `entity-graph.schema.json` へ正規化する |
-| Automation SEO側 | JIN:Rページを再構築する場合、見た目ではなくmain visual/rich menu/heading/CTA/FAQなどの構造だけをblueprint化する |
+| Automation SEO側 | テーマAのSEOメタを最優先で抽出し、title/description/canonical/noindex/OGP/JSON-LDを `seo-meta.schema.json` と `entity-graph.schema.json` へ正規化する |
+| Automation SEO側 | テーマAページを再構築する場合、見た目ではなくmain visual/rich menu/heading/CTA/FAQなどの構造だけをblueprint化する |
 | Automation SEO側 | グローバルCSSやテーマ固有classを再利用せず、AGENT NEO design presetへマッピングする |
-| WPテーマ側 | AGENT NEOではJIN:R型SEO統合UXを採用しつつ、SEO保存・出力・重複検知をCore Pluginの契約に分離する |
-| WPテーマ側 | 速度はSWELL型に寄せ、JIN:R型の巨大CSS/jQuery/CDN直書きを避ける |
+| WPテーマ側 | AGENT NEOではテーマA型SEO統合UXを採用しつつ、SEO保存・出力・重複検知をCore Pluginの契約に分離する |
+| WPテーマ側 | 速度はThemeB型に寄せ、テーマA型の巨大CSS/jQuery/CDN直書きを避ける |
 | WPテーマ側 | SEO変更は `dryRun -> diff -> risk score -> apply -> rollback point` を必須にする |
 
 ## 両テーマに共通する欠損
@@ -135,14 +135,14 @@ JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案�
 
 | 優先度 | 実装 | 内容 |
 |---|---|---|
-| P0 | Theme Capability Scanner | 現在テーマがSWELL/JIN:R/AGENT NEOかを判定し、SEOメタ、section、CTA、LP、速度リスク、プラグイン衝突を診断する |
+| P0 | Theme Capability Scanner | 現在テーマがThemeB/テーマA/AGENT NEOかを判定し、SEOメタ、section、CTA、LP、速度リスク、プラグイン衝突を診断する |
 | P0 | Section ID Resolver | `data-agent-section-id` > `id` > block anchor > heading hash > nth-of-type の順でID信頼度を付ける |
 | P0 | Context Contract v2 | `/tracking/context` に `contract_version`、`page_type`、`section_type`、`cta_ids`、`offer_ids`、`selector_confidence`、`schema_hash` を追加する |
 | P0 | Safe Recommendation Apply | 推奨反映を直接HTML更新ではなく、AGENT NEOのdryRun/apply APIに送る。非対応テーマは提案止まりにする |
-| P0 | SEO Meta Normalizer | SWELL系SEOプラグイン、JIN:Rメタ、WP標準metaを共通 `seo-meta` に変換する |
+| P0 | SEO Meta Normalizer | ThemeB系SEOプラグイン、テーマAメタ、WP標準metaを共通 `seo-meta` に変換する |
 | P1 | CTA/Offer Mapper | `.seo-tool-element` だけでなく、テーマ標準CTA/ASPリンク/資料DL/外部フォームを `cta_id` へ正規化する |
 | P1 | Performance Impact Collector | Web Vitals、third-party tag、A/B script影響をsection/CTAと紐づける |
-| P1 | Blueprint Exporter | 既存SWELL/JIN:RサイトをAGENT NEOのLP/HP/article blueprintへ変換する |
+| P1 | Blueprint Exporter | 既存ThemeB/テーマAサイトをAGENT NEOのLP/HP/article blueprintへ変換する |
 
 ## WPテーマ側で実装すべきこと
 
@@ -155,17 +155,17 @@ JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案�
 | P0 | Safe Write API | `actions/dry-run` と `actions/apply` を分離し、diff、risk、rollback、audit logを返す |
 | P0 | Theme/Plugin Boundary | テーマは表示層、Core PluginがAPI/CPT/SEO/計測/A-B/blueprintを所有する |
 | P1 | Web Vitals RUM | section/CTA/variant単位でLCP/INP/CLS影響をAutomation SEOへ渡す |
-| P1 | Migration Preview | SWELL/JIN:Rから抽出した構造をAGENT NEO blueprintへ変換し、差分プレビューする |
+| P1 | Migration Preview | ThemeB/テーマAから抽出した構造をAGENT NEO blueprintへ変換し、差分プレビューする |
 
 ## AGENT NEOの設計判断
 
 | 判断 | 内容 |
 |---|---|
-| SEO | JIN:R型を採用。ただしテーマロックインではなくCore PluginのSEO契約へ移す |
-| 速度 | SWELL型を採用。計測/A-B/第三者タグ込みで速度予算を管理する |
-| LP/HP | SWELLのLP/再利用パーツ、JIN:RのHP/プリセットUXをblueprintへ抽象化する |
+| SEO | テーマA型を採用。ただしテーマロックインではなくCore PluginのSEO契約へ移す |
+| 速度 | ThemeB型を採用。計測/A-B/第三者タグ込みで速度予算を管理する |
+| LP/HP | ThemeBのLP/再利用パーツ、テーマAのHP/プリセットUXをblueprintへ抽象化する |
 | Automation SEO | 既存APIを正本にしつつ、Context Contract v2とSafe Applyを追加する |
-| 移行 | SWELL/JIN:Rは運用対象ではなく移行/診断/設計参考。AGENT NEOを正規運用ターゲットにする |
+| 移行 | ThemeB/テーマAは運用対象ではなく移行/診断/設計参考。AGENT NEOを正規運用ターゲットにする |
 
 ## 参照したローカル証拠
 
@@ -179,15 +179,15 @@ JIN:RのほうがAutomation SEOの「SEO再生成・メタ更新・Entity提案�
 | `C:/Users/tenni/Desktop/seo-tool-v2-docs/Automation SEO/backend/app/models/wp_pages.py` | `wp_pages`、`wp_page_sections` |
 | `C:/Users/tenni/Desktop/seo-tool-v2-docs/Automation SEO/backend/app/services/tracking/section_aggregation.py` | section engagementの日次集約 |
 | `C:/Users/tenni/Desktop/seo-tool-v2-docs/Automation SEO/backend/app/services/wordpress/wp_integration.py` | WordPress投稿/固定ページ同期 |
-| `解析レポート/13-SEO設計比較-JINR優先分析.md` | JIN:R SEO優先、SWELL JSON-LD/共存設計 |
-| `解析レポート/15-ページスピード設計比較.md` | 速度はSWELL優先 |
+| `解析レポート/13-SEO設計比較-ThemeA優先分析.md` | テーマA SEO優先、ThemeB JSON-LD/共存設計 |
+| `解析レポート/15-ページスピード設計比較.md` | 速度はThemeB優先 |
 | `解析レポート/21-自動化CronAPI契約設計.md` | API/Cron/外部連携契約 |
 
 ## Gate
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
-| RG0 | passed | Automation SEO/seo-tool-connector、SWELL/JIN:R既存解析レポートを確認 |
+| RG0 | passed | Automation SEO/seo-tool-connector、ThemeB/テーマA既存解析レポートを確認 |
 | RG1 | passed | 連携契約をSEO、section、CTA、tracking、sync、safe applyへ分解 |
-| RG2 | passed_with_caution | JIN:RはSEO連携、SWELLは速度/部品連携で優位。ただし両方ともstable contract不足 |
+| RG2 | passed_with_caution | テーマAはSEO連携、ThemeBは速度/部品連携で優位。ただし両方ともstable contract不足 |
 | R4 | passed | AGENT NEO側とAutomation SEO側の実装分担へrouting済み |

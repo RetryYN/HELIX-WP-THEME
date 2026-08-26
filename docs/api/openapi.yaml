@@ -1991,7 +1991,7 @@ components:
       additionalProperties: false
       description: |
         Theme Bridge Plugin 互換プロファイル（StandardResponse.data の形状）。ADR-019 準拠:
-        既存テーマ（SWELL/JIN:R 等）は preview-only 固定。
+        既存テーマ（ThemeB/テーマA 等）は preview-only 固定。
         write-ready は AGENT NEO 専用テーマ環境でのみ設定される。
         GET /automation-seo/bridge-profile の 200 レスポンスは StandardResponse エンベロープに
         ラップされ、data フィールドにこのスキーマのオブジェクトが格納される。
@@ -2011,7 +2011,7 @@ components:
             - preview-only
             - write-ready
           description: |
-            preview-only: 既存テーマ環境（SWELL/JIN:R 等）。block 書き込み API は無効。
+            preview-only: 既存テーマ環境（ThemeB/テーマA 等）。block 書き込み API は無効。
             write-ready: AGENT NEO 専用テーマ環境。block 書き込み全機能有効。
         confidence:
           type: string

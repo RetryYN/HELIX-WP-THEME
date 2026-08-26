@@ -13,7 +13,7 @@
 |--------------|------|------|
 | `agent-neo-core` | プラグイン | ライセンス管理・API 基盤・設定管理 |
 | `agent-neo-embed` | プラグイン | AI 生成 HTML 埋め込みブロック（Shadow DOM / sandbox iframe） |
-| `agent-neo-theme` | テーマ | SWELL 主軸 × JIN:R ハイブリッド FSE テーマ本体 |
+| `agent-neo-theme` | テーマ | ThemeB 主軸 × テーマA ハイブリッド FSE テーマ本体 |
 
 ### 配布モデル
 

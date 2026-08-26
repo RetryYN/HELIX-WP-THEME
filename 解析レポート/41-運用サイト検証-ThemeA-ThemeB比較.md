@@ -1,4 +1,4 @@
-# 運用サイト検証レポート - JIN:R / SWELL 比較
+# 運用サイト検証レポート - テーマA / ThemeB 比較
 
 ## 1. 概要
 
@@ -10,35 +10,35 @@
 |---|---|
 | 実施日 | 2026-05-01 JST |
 | 検証種別 | 公開サイト非破壊検証 |
-| 対象 1 | https://it-shukatu-college.com/ |
-| 対象 1 テーマ | JIN:R |
-| 対象 2 | https://solobiz-lab.com/ |
-| 対象 2 テーマ | SWELL |
+| 対象 1 | https://site-A.example/ |
+| 対象 1 テーマ | テーマA |
+| 対象 2 | https://site-B.example/ |
+| 対象 2 テーマ | ThemeB |
 | 主な検証手段 | curl / sitemap sampling / Playwright |
 
 ## 2. 結論
 
-両サイトともトップページ、robots.txt、sitemap.xml、サイトマップ内サンプル URL は 200 OK で到達できる。テーマ判定も想定どおりで、JIN:R 側は `/wp-content/themes/jinr/`、SWELL 側は `/wp-content/themes/swell/` を確認した。
+両サイトともトップページ、robots.txt、sitemap.xml、サイトマップ内サンプル URL は 200 OK で到達できる。テーマ判定も想定どおりで、テーマA 側は `/wp-content/themes/themeA/`、ThemeB 側は `/wp-content/themes/themeB/` を確認した。
 
-一方で、計測系の実装には本番上の問題がある。JIN:R 側は公開 HTML に `http://localhost:8000` 参照が残っており、一般ユーザー環境では計測 JS / API が成立しない。SWELL 側は本番計測ドメイン `automation-seo.solobiz-lab.com` が 502 Bad Gateway を返しており、こちらも計測が成立していない。
+一方で、計測系の実装には本番上の問題がある。テーマA 側は公開 HTML に `http://localhost:8000` 参照が残っており、一般ユーザー環境では計測 JS / API が成立しない。ThemeB 側は本番計測ドメイン `automation-seo.site-B.example` が 502 Bad Gateway を返しており、こちらも計測が成立していない。
 
 優先対応は以下の順とする。
 
-1. JIN:R の `localhost:8000` 参照を本番用エンドポイントへ差し替える、または計測スクリプトを一時停止する。
-2. `automation-seo.solobiz-lab.com` の 502 を復旧し、`/static/st.js` と `/api/v1/tracking/event` が正しい Content-Type / CORS で返ることを確認する。
-3. JIN:R の canonical / www 正規化、Cookie / Cache-Control、sitemap の noindex URL 混入を修正する。
-4. SWELL の HTTP から HTTPS への強制リダイレクトを設定する。
+1. テーマA の `localhost:8000` 参照を本番用エンドポイントへ差し替える、または計測スクリプトを一時停止する。
+2. `automation-seo.site-B.example` の 502 を復旧し、`/static/st.js` と `/api/v1/tracking/event` が正しい Content-Type / CORS で返ることを確認する。
+3. テーマA の canonical / www 正規化、Cookie / Cache-Control、sitemap の noindex URL 混入を修正する。
+4. ThemeB の HTTP から HTTPS への強制リダイレクトを設定する。
 
 ## 3. 検証対象
 
 | サイト | URL | 判定テーマ | 根拠 |
 |---|---|---|---|
-| IT就活大学 | https://it-shukatu-college.com/ | JIN:R | `/wp-content/themes/jinr/` を HTML 内で確認 |
-| 大人のひとりビジネスラボ | https://solobiz-lab.com/ | SWELL | `/wp-content/themes/swell/` を HTML 内で確認 |
+| IT就活大学 | https://site-A.example/ | テーマA | `/wp-content/themes/themeA/` を HTML 内で確認 |
+| 大人のひとりビジネスラボ | https://site-B.example/ | ThemeB | `/wp-content/themes/themeB/` を HTML 内で確認 |
 
 ## 4. 実測サマリー
 
-| 項目 | JIN:R | SWELL |
+| 項目 | テーマA | ThemeB |
 |---|---:|---:|
 | トップページ HTTP | 200 OK | 200 OK |
 | curl 取得時間 | 約 0.69 秒 | 約 0.20 秒 |
@@ -52,13 +52,13 @@
 | sitemap.xml | 200 OK | 200 OK |
 | post sitemap URL 数 | 59 | 7 |
 
-初回観測では、SWELL 側の HTML は JIN:R 側の約 35% 程度のサイズで、トップページ応答も軽い。JIN:R 側は画像数、script 数、HTML サイズが大きく、運用プラグインやトップページ構成の影響が大きい。
+初回観測では、ThemeB 側の HTML は テーマA 側の約 35% 程度のサイズで、トップページ応答も軽い。テーマA 側は画像数、script 数、HTML サイズが大きく、運用プラグインやトップページ構成の影響が大きい。
 
 ## 5. 重要 findings
 
-### High-1: JIN:R の公開 HTML に localhost 参照が残っている
+### High-1: テーマA の公開 HTML に localhost 参照が残っている
 
-JIN:R 側トップページ HTML に以下の参照を確認した。
+テーマA 側トップページ HTML に以下の参照を確認した。
 
 ```html
 http://localhost:8000/st.js
@@ -79,13 +79,13 @@ Playwright でトップページを表示した結果、`http://localhost:8000/s
 - 開発 URL が未設定の場合はスクリプトを出力しない。
 - `localhost`、`127.0.0.1`、`http://` を本番 HTML に出さない CI / smoke test を追加する。
 
-### High-2: SWELL 側の計測ドメインが 502
+### High-2: ThemeB 側の計測ドメインが 502
 
-SWELL 側トップページは以下の計測先を参照している。
+ThemeB 側トップページは以下の計測先を参照している。
 
 ```text
-https://automation-seo.solobiz-lab.com/static/st.js
-https://automation-seo.solobiz-lab.com/api/v1/tracking/event
+https://automation-seo.site-B.example/static/st.js
+https://automation-seo.site-B.example/api/v1/tracking/event
 ```
 
 しかし、実測では両方とも `502 Bad Gateway` を返した。`/static/st.js` は `Content-Type: text/html` の 502 レスポンスとなり、Playwright では `ERR_BLOCKED_BY_ORB` が発生した。
@@ -98,13 +98,13 @@ https://automation-seo.solobiz-lab.com/api/v1/tracking/event
 
 推奨対応:
 
-- `automation-seo.solobiz-lab.com` の upstream / backend process / reverse proxy を復旧する。
+- `automation-seo.site-B.example` の upstream / backend process / reverse proxy を復旧する。
 - `/static/st.js` が `200 OK` かつ `Content-Type: application/javascript` で返ることを確認する。
 - `/api/v1/tracking/event` は OPTIONS / POST の両方を検証する。
 
-### Medium-1: JIN:R の www 正規化が不完全
+### Medium-1: テーマA の www 正規化が不完全
 
-`https://www.it-shukatu-college.com/` が 200 OK を返し、非 www へリダイレクトされなかった。一方、canonical は `https://it-shukatu-college.com/` である。
+`https://www.site-A.example/` が 200 OK を返し、非 www へリダイレクトされなかった。一方、canonical は `https://site-A.example/` である。
 
 影響:
 
@@ -113,12 +113,12 @@ https://automation-seo.solobiz-lab.com/api/v1/tracking/event
 
 推奨対応:
 
-- `www.it-shukatu-college.com` から `it-shukatu-college.com` へ 301 リダイレクトする。
+- `www.site-A.example` から `site-A.example` へ 301 リダイレクトする。
 - WordPress のサイト URL、サーバー設定、CDN 設定を同じ正規 URL に揃える。
 
-### Medium-2: SWELL の HTTP が HTTPS に強制されていない
+### Medium-2: ThemeB の HTTP が HTTPS に強制されていない
 
-`http://solobiz-lab.com/` が `200 OK` を返し、HTTPS へリダイレクトされなかった。
+`http://site-B.example/` が `200 OK` を返し、HTTPS へリダイレクトされなかった。
 
 影響:
 
@@ -127,12 +127,12 @@ https://automation-seo.solobiz-lab.com/api/v1/tracking/event
 
 推奨対応:
 
-- `http://solobiz-lab.com/` から `https://solobiz-lab.com/` へ 301 リダイレクトする。
+- `http://site-B.example/` から `https://site-B.example/` へ 301 リダイレクトする。
 - HSTS の導入も検討する。
 
-### Medium-3: JIN:R のトップページで PHPSESSID が発行されている
+### Medium-3: テーマA のトップページで PHPSESSID が発行されている
 
-JIN:R 側トップページのレスポンスに `Set-Cookie: PHPSESSID=...; path=/` を確認した。トップページ閲覧だけでセッション Cookie が発行され、`Secure`、`HttpOnly`、`SameSite` 属性も確認できなかった。
+テーマA 側トップページのレスポンスに `Set-Cookie: PHPSESSID=...; path=/` を確認した。トップページ閲覧だけでセッション Cookie が発行され、`Secure`、`HttpOnly`、`SameSite` 属性も確認できなかった。
 
 影響:
 
@@ -146,9 +146,9 @@ JIN:R 側トップページのレスポンスに `Set-Cookie: PHPSESSID=...; pat
 - 必要な Cookie であれば `Secure; HttpOnly; SameSite=Lax` などを付与する。
 - 公開ページとログイン / 決済 / フォーム処理ページでキャッシュ方針を分離する。
 
-### Medium-4: JIN:R の sitemap に noindex ページが含まれている
+### Medium-4: テーマA の sitemap に noindex ページが含まれている
 
-`https://it-shukatu-college.com/thanks-page-template/` は `meta name="robots" content="noindex"` を返すが、sitemap サンプルに含まれていた。
+`https://site-A.example/thanks-page-template/` は `meta name="robots" content="noindex"` を返すが、sitemap サンプルに含まれていた。
 
 影響:
 
@@ -162,7 +162,7 @@ JIN:R 側トップページのレスポンスに `Set-Cookie: PHPSESSID=...; pat
 
 ## 6. 正常確認できた項目
 
-| 項目 | JIN:R | SWELL |
+| 項目 | テーマA | ThemeB |
 |---|---|---|
 | トップページ到達 | passed | passed |
 | robots.txt | passed | passed |
@@ -177,7 +177,7 @@ JIN:R 側トップページのレスポンスに `Set-Cookie: PHPSESSID=...; pat
 
 ## 7. サイトマップ検証
 
-### JIN:R
+### テーマA
 
 | sitemap | URL 数 | ステータス |
 |---|---:|---|
@@ -188,17 +188,17 @@ JIN:R 側トップページのレスポンスに `Set-Cookie: PHPSESSID=...; pat
 サンプル確認した URL はすべて 200 OK。
 
 ```text
-https://it-shukatu-college.com/
-https://it-shukatu-college.com/sitemap.html
-https://it-shukatu-college.com/job-hunting-measures/shukatu-cards/
-https://it-shukatu-college.com/it-shukatu/what-i-want-to-do/
-https://it-shukatu-college.com/it-shukatu/humanities-dangerous/
-https://it-shukatu-college.com/owner/
-https://it-shukatu-college.com/privacy/
-https://it-shukatu-college.com/thanks-page-template/
+https://site-A.example/
+https://site-A.example/sitemap.html
+https://site-A.example/job-hunting-measures/site-A-cards/
+https://site-A.example/it-site-A/what-i-want-to-do/
+https://site-A.example/it-site-A/humanities-dangerous/
+https://site-A.example/owner/
+https://site-A.example/privacy/
+https://site-A.example/thanks-page-template/
 ```
 
-### SWELL
+### ThemeB
 
 | sitemap | URL 数 | ステータス |
 |---|---:|---|
@@ -210,14 +210,14 @@ https://it-shukatu-college.com/thanks-page-template/
 サンプル確認した URL はすべて 200 OK。
 
 ```text
-https://solobiz-lab.com/
-https://solobiz-lab.com/sitemap.html
-https://solobiz-lab.com/category/client-work/web-writer/
-https://solobiz-lab.com/category/client-work/
-https://solobiz-lab.com/category/client-work/video-editor/
-https://solobiz-lab.com/client-work/28/
-https://solobiz-lab.com/client-work/39/
-https://solobiz-lab.com/client-work/44/
+https://site-B.example/
+https://site-B.example/sitemap.html
+https://site-B.example/category/client-work/web-writer/
+https://site-B.example/category/client-work/
+https://site-B.example/category/client-work/video-editor/
+https://site-B.example/client-work/28/
+https://site-B.example/client-work/39/
+https://site-B.example/client-work/44/
 ```
 
 ## 8. セキュリティヘッダ観測
@@ -243,7 +243,7 @@ WordPress REST root では `X-Content-Type-Options: nosniff` を確認したが�
 
 ## 9. Playwright 観測
 
-### JIN:R
+### テーマA
 
 | 項目 | 結果 |
 |---|---|
@@ -255,14 +255,14 @@ WordPress REST root では `X-Content-Type-Options: nosniff` を確認したが�
 
 補足として、Google Analytics の collect リクエストに `net::ERR_ABORTED` が出ているが、これは headless ブラウザや外部通信条件の影響を受けやすいため、今回の主指摘からは外す。
 
-### SWELL
+### ThemeB
 
 | 項目 | 結果 |
 |---|---|
 | HTTP status | 200 |
 | page title | 大人のひとりビジネスラボ | 賢い大人がはじめる20代からのソロビジネスで人生を攻略するためのWebサイト |
 | first h1 | 大人のひとりビジネスラボ |
-| failed request | `https://automation-seo.solobiz-lab.com/static/st.js` |
+| failed request | `https://automation-seo.site-B.example/static/st.js` |
 | browser error | `net::ERR_BLOCKED_BY_ORB` |
 
 `ERR_BLOCKED_BY_ORB` の直接原因は、JS として読み込むべき URL が 502 の HTML を返していることと見られる。
@@ -271,31 +271,31 @@ WordPress REST root では `X-Content-Type-Options: nosniff` を確認したが�
 
 | 優先度 | 対象 | タスク | 完了条件 |
 |---|---|---|---|
-| P0 | JIN:R | `localhost:8000` 参照を除去 | 公開 HTML に `localhost` / `127.0.0.1` / `http://` の計測 URL が出ない |
-| P0 | SWELL / 計測基盤 | `automation-seo.solobiz-lab.com` の 502 復旧 | `/static/st.js` が 200 `application/javascript`、API が OPTIONS / POST で正常 |
-| P1 | JIN:R | www から non-www へ 301 | `https://www.it-shukatu-college.com/` が `https://it-shukatu-college.com/` へ 301 |
-| P1 | SWELL | HTTP から HTTPS へ 301 | `http://solobiz-lab.com/` が `https://solobiz-lab.com/` へ 301 |
-| P1 | JIN:R | トップページの不要 Cookie を停止 | トップ GET で `PHPSESSID` が出ない、または必要属性が付く |
-| P2 | JIN:R | noindex URL を sitemap から除外 | `thanks-page-template` が sitemap に含まれない |
+| P0 | テーマA | `localhost:8000` 参照を除去 | 公開 HTML に `localhost` / `127.0.0.1` / `http://` の計測 URL が出ない |
+| P0 | ThemeB / 計測基盤 | `automation-seo.site-B.example` の 502 復旧 | `/static/st.js` が 200 `application/javascript`、API が OPTIONS / POST で正常 |
+| P1 | テーマA | www から non-www へ 301 | `https://www.site-A.example/` が `https://site-A.example/` へ 301 |
+| P1 | ThemeB | HTTP から HTTPS へ 301 | `http://site-B.example/` が `https://site-B.example/` へ 301 |
+| P1 | テーマA | トップページの不要 Cookie を停止 | トップ GET で `PHPSESSID` が出ない、または必要属性が付く |
+| P2 | テーマA | noindex URL を sitemap から除外 | `thanks-page-template` が sitemap に含まれない |
 | P2 | 両サイト | 基本セキュリティヘッダ導入 | HSTS / Referrer-Policy / frame 対策の段階導入 |
 | P2 | 両サイト | smoke test 自動化 | 公開 HTML、計測 JS、sitemap、canonical、redirect を定期検証 |
 
 ## 11. 再検証コマンド例
 
 ```powershell
-curl.exe -I -L https://it-shukatu-college.com/
-curl.exe -I -L https://www.it-shukatu-college.com/
-curl.exe -L https://it-shukatu-college.com/ | Select-String -Pattern 'localhost:8000|http://localhost|127.0.0.1'
-curl.exe -I -L https://it-shukatu-college.com/sitemap.xml
-curl.exe -sS -L https://it-shukatu-college.com/thanks-page-template/ | Select-String -Pattern 'noindex|canonical'
+curl.exe -I -L https://site-A.example/
+curl.exe -I -L https://www.site-A.example/
+curl.exe -L https://site-A.example/ | Select-String -Pattern 'localhost:8000|http://localhost|127.0.0.1'
+curl.exe -I -L https://site-A.example/sitemap.xml
+curl.exe -sS -L https://site-A.example/thanks-page-template/ | Select-String -Pattern 'noindex|canonical'
 ```
 
 ```powershell
-curl.exe -I -L https://solobiz-lab.com/
-curl.exe -I -L http://solobiz-lab.com/
-curl.exe -I -L https://automation-seo.solobiz-lab.com/static/st.js
-curl.exe -I -L https://automation-seo.solobiz-lab.com/api/v1/tracking/event
-curl.exe -I -L https://solobiz-lab.com/sitemap.xml
+curl.exe -I -L https://site-B.example/
+curl.exe -I -L http://site-B.example/
+curl.exe -I -L https://automation-seo.site-B.example/static/st.js
+curl.exe -I -L https://automation-seo.site-B.example/api/v1/tracking/event
+curl.exe -I -L https://site-B.example/sitemap.xml
 ```
 
 ## 12. HELIX 適用結果
@@ -372,39 +372,39 @@ WordPress では珍しくないが、ハードニング観点では不要な標�
 - Jetpack、外部投稿アプリ、XML-RPC 依存連携がなければ無効化する。
 - 依存がある場合はWAF / rate limit / IP制限を検討する。
 
-#### Medium-8: JIN:R はサンプルページ全体で JSON-LD が出ていない
+#### Medium-8: テーマA はサンプルページ全体で JSON-LD が出ていない
 
-JIN:R 側の確認サンプルでは、トップ、記事、固定ページのすべてで `application/ld+json` が 0 件だった。
+テーマA 側の確認サンプルでは、トップ、記事、固定ページのすべてで `application/ld+json` が 0 件だった。
 
 確認サンプル:
 
 ```text
 /
-/job-hunting-measures/shukatu-cards/
-/it-shukatu/what-i-want-to-do/
+/job-hunting-measures/site-A-cards/
+/it-site-A/what-i-want-to-do/
 /owner/
 /privacy/
 ```
 
-SWELL 側はトップ、カテゴリ、記事で 1-2 件の JSON-LD を確認した。
+ThemeB 側はトップ、カテゴリ、記事で 1-2 件の JSON-LD を確認した。
 
 推奨対応:
 
-- JIN:R 側で WebSite / Organization / BreadcrumbList / Article の出力状態を確認する。
+- テーマA 側で WebSite / Organization / BreadcrumbList / Article の出力状態を確認する。
 - SEOプラグインまたはテーマ設定で JSON-LD が無効化されていないか確認する。
 
-#### Medium-9: JIN:R トップページに H1 がない
+#### Medium-9: テーマA トップページに H1 がない
 
-Playwright / HTML parsing の双方で、JIN:R トップページの H1 は 0 件だった。記事・固定ページでは H1 が確認できるため、トップページ固有の構成問題と見られる。
+Playwright / HTML parsing の双方で、テーマA トップページの H1 は 0 件だった。記事・固定ページでは H1 が確認できるため、トップページ固有の構成問題と見られる。
 
 推奨対応:
 
 - トップページにサイト主題を表す H1 を1つ追加する。
 - 視覚デザイン上不要な場合でも、アクセシビリティとSEOのために構造上の H1 を持たせる。
 
-#### Low-1: SWELL のカテゴリページで meta description が空
+#### Low-1: ThemeB のカテゴリページで meta description が空
 
-SWELL 側カテゴリページでは `description` が空だった。
+ThemeB 側カテゴリページでは `description` が空だった。
 
 確認サンプル:
 
@@ -424,18 +424,18 @@ SWELL 側カテゴリページでは `description` が空だった。
 
 | サイト | ページ例 | img | alt 空 |
 |---|---:|---:|---:|
-| JIN:R | top | 93 | 25 |
-| JIN:R | `/job-hunting-measures/shukatu-cards/` | 98 | 38 |
-| JIN:R | `/it-shukatu/what-i-want-to-do/` | 92 | 26 |
-| SWELL | top | 40 | 19 |
-| SWELL | `/category/client-work/` | 28 | 14 |
-| SWELL | 記事ページサンプル | 1 | 0 |
+| テーマA | top | 93 | 25 |
+| テーマA | `/job-hunting-measures/site-A-cards/` | 98 | 38 |
+| テーマA | `/it-site-A/what-i-want-to-do/` | 92 | 26 |
+| ThemeB | top | 40 | 19 |
+| ThemeB | `/category/client-work/` | 28 | 14 |
+| ThemeB | 記事ページサンプル | 1 | 0 |
 
 装飾画像であれば空 alt は許容されるが、記事カード、サムネイル、説明画像で空の場合は改善対象。
 
 ### 14.2 REST / API 観測
 
-| 項目 | JIN:R | SWELL |
+| 項目 | テーマA | ThemeB |
 |---|---:|---:|
 | REST namespace 数 | 11 | 9 |
 | REST route 数 | 228 | 251 |
@@ -471,7 +471,7 @@ SWELL 側カテゴリページでは `description` が空だった。
 
 ### 14.3 公開ファイル / エンドポイント
 
-| パス | JIN:R | SWELL | 評価 |
+| パス | テーマA | ThemeB | 評価 |
 |---|---:|---:|---|
 | `/wp-login.php` | 200 | 200 | 通常。ただしログイン保護は別途必要 |
 | `/xmlrpc.php` | 405 | 405 | エンドポイント有効。不要なら無効化 |
@@ -487,16 +487,16 @@ SWELL 側カテゴリページでは `description` が空だった。
 
 | 対象 | Content-Encoding | Cache-Control |
 |---|---|---|
-| JIN:R top | br | `no-store, no-cache, must-revalidate` + `s-maxage=10` |
-| SWELL top | br | 明示的な cache-control なし |
-| JIN:R theme CSS | br | `max-age=604800` |
-| SWELL main CSS | br | `max-age=604800` |
+| テーマA top | br | `no-store, no-cache, must-revalidate` + `s-maxage=10` |
+| ThemeB top | br | 明示的な cache-control なし |
+| テーマA theme CSS | br | `max-age=604800` |
+| ThemeB main CSS | br | `max-age=604800` |
 
 評価:
 
 - 静的アセットは概ね正常。
-- JIN:R のトップページは Cookie / no-store と組み合わさってキャッシュ効率が悪い。
-- SWELL はトップページに `Vary: User-Agent` があるため、キャッシュキー分散には注意が必要。
+- テーマA のトップページは Cookie / no-store と組み合わさってキャッシュ効率が悪い。
+- ThemeB はトップページに `Vary: User-Agent` があるため、キャッシュキー分散には注意が必要。
 
 ### 14.5 追加推奨タスク
 
@@ -506,7 +506,7 @@ SWELL 側カテゴリページでは `description` が空だった。
 | P1 | 両サイト | author slug を匿名化 | メール由来・ログインID由来の slug が公開URL/RESTに出ない |
 | P1 | 両サイト | XML-RPC 無効化または制限 | 依存がなければ `/xmlrpc.php` を 403/404 |
 | P2 | 両サイト | `readme.html` / `license.txt` 非公開化 | 不要な標準ファイルが 404/403 |
-| P2 | JIN:R | JSON-LD 出力を復旧 | トップ/記事で WebSite / Article / BreadcrumbList 等を確認 |
-| P2 | JIN:R | トップ H1 を追加 | トップページ H1 が1件 |
-| P3 | SWELL | カテゴリ description 設定 | 主要カテゴリで description が空でない |
+| P2 | テーマA | JSON-LD 出力を復旧 | トップ/記事で WebSite / Article / BreadcrumbList 等を確認 |
+| P2 | テーマA | トップ H1 を追加 | トップページ H1 が1件 |
+| P3 | ThemeB | カテゴリ description 設定 | 主要カテゴリで description が空でない |
 | P3 | 両サイト | 画像 alt 棚卸し | 重要画像の alt 空を解消 |

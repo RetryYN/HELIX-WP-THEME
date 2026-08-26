@@ -14,7 +14,7 @@
 - `e9e17c4` chore(planning/drafts): L0 3 軸統合検証ドラフト + Q-002 タスクファイル
 - `effc6bd` docs(reviews): L0 3 軸統合 + Q-002 確定の TL レビュー証跡
 - `047e960` feat(L1): Q-002 PO 判断確定（同時ローンチ + 3 軸統合モデル）
-- `19e3027` docs(analysis): 運用サイト検証レポート - JIN:R / SWELL 比較
+- `19e3027` docs(analysis): 運用サイト検証レポート - テーマA / ThemeB 比較
 
 ## 3. 主要決定事項（2026-05-03 確定）
 - **Q-001 確定**: 個人 → 法人アップグレードは Automation SEO 加入者割引を適用、非加入者は差額課金 78,200 円。
@@ -108,8 +108,8 @@
 - 公式リポジトリ: `git@github.com:RetryYN/Automation-SEO.git`
 - ローカル: `C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO-v2`
 - 本番運用 URL:
-  - `https://it-shukatu-college.com/wp-json/aseo/v1`（JIN:R）
-  - `https://solobiz-lab.com/wp-json/aseo/v1`（SWELL）
+  - `https://site-A.example/wp-json/aseo/v1`（テーマA）
+  - `https://site-B.example/wp-json/aseo/v1`（ThemeB）
 
 ## 12. リンク整合チェック結果（この handoff 更新時）
 | 種別 | 結果 |

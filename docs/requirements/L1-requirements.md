@@ -50,7 +50,7 @@ AGENT NEO は、AIエージェントが第一級ユーザーとして操作で�
 
 ### 1.4 市場ポジション
 
-AGENT NEOは、SWELL/JIN:R/AFFINGER/Cocoon/Lightningと同じ「汎用WPテーマ」カテゴリで価格・デザイン・SEOだけを競わない。狙う市場カテゴリは **AI運用型WPテーマ基盤** とし、個人版はアフィリエイト収益化とAI記事投入/計測、法人版はLP改善/A-B/CTA計測/LLMO/運用品質を中核価値にする。
+AGENT NEOは、ThemeB/テーマA/AFFINGER/Cocoon/Lightningと同じ「汎用WPテーマ」カテゴリで価格・デザイン・SEOだけを競わない。狙う市場カテゴリは **AI運用型WPテーマ基盤** とし、個人版はアフィリエイト収益化とAI記事投入/計測、法人版はLP改善/A-B/CTA計測/LLMO/運用品質を中核価値にする。
 
 ### 1.5 製品哲学（第一原理）
 
@@ -61,7 +61,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 3. **結果（CV）を届けるテーマ**: 個人版=アフィリクリック / 法人版=リード獲得 を最大化する設計を最上位指標 (REQ-NF-001c)
 4. **非 AI ユーザーも単独で使える**（AI-first だが AI-only ではない）: AI 連携 OFF でも全 P0 機能が動作 / WP 標準エディタ完全互換 / オプトイン方式 / 日本語 UI / 段階的開示 / AI 判断ロジックのテーマ内不在 (REQ-NF-021/022/023/025)
 
-この 4 原理は SWELL/JIN:R/AFFINGER 等が陥っている「機能追加 → 設定肥大化 → JS/CSS 肥大化」の循環を意図的に拒否し、「機能を絞る → 高速 → CV 上昇」の逆循環を選択する設計判断。第一原理 4 は「AI 全振り」の罠を回避し、非 AI ユーザー（IT に詳しくない個人ブロガー / Automation SEO サブスクなしユーザー / 手動運用に戻したい法人）にも単独で価値を提供することで、製品の市場リーチを最大化する。
+この 4 原理は ThemeB/テーマA/AFFINGER 等が陥っている「機能追加 → 設定肥大化 → JS/CSS 肥大化」の循環を意図的に拒否し、「機能を絞る → 高速 → CV 上昇」の逆循環を選択する設計判断。第一原理 4 は「AI 全振り」の罠を回避し、非 AI ユーザー（IT に詳しくない個人ブロガー / Automation SEO サブスクなしユーザー / 手動運用に戻したい法人）にも単独で価値を提供することで、製品の市場リーチを最大化する。
 
 ## 2. 機能要件 (D-REQ-F)
 
@@ -142,7 +142,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-001/REQ-F-002/REQ-F-011/REQ-F-012 | REQ-NF-016 | 商用テーマとしての配布、アクセシビリティ、国際化、検索公開、Privacy、Release、Support品質を担保する |
 | REQ-F-006/REQ-F-007/REQ-F-011/REQ-F-012 | REQ-NF-017 | LLMO時代のAI検索可視性、引用、根拠、AI経由CV計測を担保する |
 | REQ-F-001/REQ-F-002/REQ-F-006/REQ-F-007/REQ-F-011/REQ-F-012 | REQ-NF-018 | SEO、WP運用、セキュリティ、AI運用で静かに発生する障害をrisk-ledgerとして検出、警告、復旧できる |
-| REQ-F-006/REQ-F-007/REQ-F-011/REQ-F-012 | REQ-NF-019 | Automation SEO連携ではSWELL/JIN:Rを移行・診断対象に限定し、AGENT NEOの安定section/CTA/SEO契約を正規運用ターゲットにする |
+| REQ-F-006/REQ-F-007/REQ-F-011/REQ-F-012 | REQ-NF-019 | Automation SEO連携ではThemeB/テーマAを移行・診断対象に限定し、AGENT NEOの安定section/CTA/SEO契約を正規運用ターゲットにする |
 | REQ-F-007/REQ-F-008/REQ-F-011/REQ-F-012 | REQ-NF-020 | Automation SEO Theme Bridge Pluginは既存テーマを診断・正規化・移行入口に限定し、AGENT NEO Core Pluginをsafe applyの正規書き込み先にする |
 
 ## 3. 非機能要件 (D-REQ-NF)
@@ -171,7 +171,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-NF-009 | 法令/表示ガード | アフィリエイトPR表記、外部送信同意、第三者依存ライセンス、SEO保証表現禁止を製品仕様に組み込む | P0 |
 | REQ-NF-010 | プラグイン依存度管理 | 必須依存をAGENT NEO Theme + Core Pluginに限定し、SEO/フォーム/キャッシュ/計測系の外部プラグインは任意adapterとして扱う | P0 |
 | REQ-NF-011 | テーマコーディング規約 | WordPress Coding Standards、薄いbootstrap、block.json正本、context escape、schema sanitize、used block assetを必須規約にする | P0 |
-| REQ-NF-012 | デザイン/UI思想 | SWELL/JIN:Rから逆引きした情報設計/プリセットUXをコピーせず契約化し、CTA過多・証拠不足・PR不足をUI Auditで検出する | P0 |
+| REQ-NF-012 | デザイン/UI思想 | ThemeB/テーマAから逆引きした情報設計/プリセットUXをコピーせず契約化し、CTA過多・証拠不足・PR不足をUI Auditで検出する | P0 |
 | REQ-NF-013 | 運用品質 | WP/PHP互換、更新前後チェック、rollback、plugin衝突検出、可用性fallback、SLO/health checkを契約化する | P0 |
 | REQ-NF-014 | API/自動化契約 | REST/MCP/WP CLI/ジョブ/イベント/Cron/WebhookをOpenAPI/JSON Schemaで契約化し、破壊的変更検出、idempotency、retry/DLQ、SSRF/rate limitを必須化する | P0 |
 | REQ-NF-015 | AI運用性/クローラビリティ | AIエージェントが安全に触れるための安定DOM anchor、公開content snapshot、crawler access matrix、AI crawler log、SEO risk diffを契約化する | P0 |
@@ -278,7 +278,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | ACC-NF-010 | REQ-NF-016 | テーマ品質/配布準備を検証 | Theme Review checklist、a11y audit、i18n/RTL、release/SBOM、hosting compatibility、privacy retention、SEO indexing、support docs、QA matrixが通る | quality gate |
 | ACC-NF-011 | REQ-NF-017 | LLMO/AI検索最適化を検証 | 主要ページにanswer unit、evidence graph、content origin、citation anchor、AI visibility policy、AI crawler policy、LLMO visibility events、claim risk判定が揃う | LLMO contract test |
 | ACC-NF-012 | REQ-NF-018 | SEO/WP運用ハザードを検証 | canonical/noindex/robots/sitemap/cache/cron/plugin/update/privacy/AI snapshotの危険変更が検出され、risk-ledgerにseverity、検出手段、対策、残リスクが残る | hazard contract test |
-| ACC-NF-013 | REQ-NF-019 | Automation SEO連携適合性を検証 | SWELL/JIN:R/AGENT NEOのtheme capability scan、section ID confidence、Context Contract v2、SEO meta normalization、CTA/Offer mapping、safe apply fallbackが検証される | integration contract test |
+| ACC-NF-013 | REQ-NF-019 | Automation SEO連携適合性を検証 | ThemeB/テーマA/AGENT NEOのtheme capability scan、section ID confidence、Context Contract v2、SEO meta normalization、CTA/Offer mapping、safe apply fallbackが検証される | integration contract test |
 | ACC-NF-014 | REQ-NF-020 | Theme Bridge Plugin情報設計を検証 | site/theme/plugin/page/section/CTA/offer/SEO/tracking/privacy/health/safe apply/migration blueprintがsource/confidence付きで出力され、既存テーマはpreview-only、AGENT NEOはdryRun/apply/rollback対象として判定される | integration contract test |
 | ACC-NF-015 | REQ-NF-025 | AGENT NEO テーマソースを完全静的解析（AST + grep + 許可 API 層リスト照合） | (1) AST 解析: PHP/JS の関数定義に variant 生成・統計判定・CV 監査・バイアス適用ロジックが存在しない (2) grep 検出: 'variant_generate', 'statistical_significance', 'cv_audit', 'bias_pattern_apply' 等の禁止関数名・キーワードゼロヒット (3) 許可 API 層リスト照合: 外部 HTTP 呼び出しが aseo/v1 / agent-neo/v1 / 標準 WP API のみで、独自の AI ロジック層を含まない | ロジック分離静的検査スイート（CI 必須） |
 | ACC-SEC-001 | REQ-NF-002 | 未認証で書き込みAPIを実行 | 拒否され、監査ログに残る | セキュリティテスト |

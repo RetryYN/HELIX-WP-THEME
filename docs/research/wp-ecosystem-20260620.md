@@ -128,7 +128,7 @@ AGENT-NEO の対応方針は ADR-025 参照。
 | 項目 | 内容 |
 |---|---|
 | AI-first テーマ（12 個調査） | 実態はほぼマーケ fiction。AI 実装 0 |
-| 日本市場 | SWELL 〜33% / JIN:R niche / Cocoon・Lightning 無料（概ね classic 寄り） |
+| 日本市場 | ThemeB 〜33% / テーマA niche / Cocoon・Lightning 無料（概ね classic 寄り） |
 | AGENT-NEO の差別化 | 「真の AI-native + FSE + 外部脳分離」は差別化成立 |
 
 ---

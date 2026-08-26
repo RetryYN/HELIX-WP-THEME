@@ -18,40 +18,40 @@
 | `08-上位モデル化戦略.md` | 参照テーマの長所を抽象化し、欠点を改良して上位互換にする戦略 |
 | `09-価格戦略と売れる理由.md` | 国内主要テーマの価格、売れている理由、AGENT NEOの価格戦略 |
 | `10-深掘り解析実施計画.md` | REST、CPT、block.json、設定、管理画面、販売訴求を深掘りする実施計画 |
-| `11-競合比較マトリクス.md` | SWELL/JIN:R/AFFINGER/Cocoon/Lightningとの比較と取り込み優先度 |
+| `11-競合比較マトリクス.md` | ThemeB/テーマA/AFFINGER/Cocoon/Lightningとの比較と取り込み優先度 |
 | `12-企画書レビューと要件反映.md` | L0企画書レビュー、L1/L2反映、G0.5ゲート判定 |
-| `13-SEO設計比較-JINR優先分析.md` | JIN:RとSWELLのSEO思想比較、AGENT NEOのSEO Core方針 |
-| `14-JINR親テーマ実コードSEO解析.md` | JIN:R親テーマZIP展開後のSEO実装解析、採用/改良/不採用分類 |
-| `15-ページスピード設計比較.md` | SWELL/JIN:Rの速度設計比較、Core Web Vitals予算、AGENT NEOの速度方針 |
+| `13-SEO設計比較-ThemeA優先分析.md` | テーマAとThemeBのSEO思想比較、AGENT NEOのSEO Core方針 |
+| `14-ThemeA親テーマ実コードSEO解析.md` | テーマA親テーマZIP展開後のSEO実装解析、採用/改良/不採用分類 |
+| `15-ページスピード設計比較.md` | ThemeB/テーマAの速度設計比較、Core Web Vitals予算、AGENT NEOの速度方針 |
 | `16-LP-HP設計方針.md` | LP/HPを別ブループリントとして設計し、法人LP・個人収益HP・計測導線へ落とす方針 |
 | `17-制約条件と設計ガード.md` | ライセンス、plugin territory、プライバシー、AI操作、SEO/計測の制約と設計ガード |
-| `18-テーマコーディングルール逆引き設計.md` | SWELL/JIN:R実コードから逆引きしたテーマ本体のコーディング規約とAGENT NEO Theme設計 |
-| `19-デザインUI思想逆引き設計.md` | SWELL/JIN:Rから逆引きした失敗しにくいUI思想、デザイン原則、プリセット、UI監査 |
+| `18-テーマコーディングルール逆引き設計.md` | ThemeB/テーマA実コードから逆引きしたテーマ本体のコーディング規約とAGENT NEO Theme設計 |
+| `19-デザインUI思想逆引き設計.md` | ThemeB/テーマAから逆引きした失敗しにくいUI思想、デザイン原則、プリセット、UI監査 |
 | `20-運用セキュリティ可用性更新性分析.md` | WPバージョン、更新、セキュリティ、可用性、プラグイン追加時の運用品質設計 |
 | `21-自動化CronAPI契約設計.md` | WP-Cron、自動化ジョブ、REST/AJAX/API契約、OpenAPI/JSON Schema、外部API連携の設計 |
 | `22-AIエージェント運用性とクローラビリティ分析.md` | AIエージェント運用の不都合な真実、扱いやすいポイント、AIクローラ/検索AI対応 |
 | `23-テーマ構築観点総合レビュー.md` | Web公式情報から逆算したテーマ構築の見落とし観点、品質ゲート、L1/L2反映案 |
 | `24-LLMO時代のテーマ設計重要観点.md` | AI検索/LLMO時代の引用されやすさ、権利制御、answer unit、AI経由CV計測の設計 |
 | `25-WPサイト運用とSEOの不都合な真実.md` | SEO、WP運用、セキュリティ、可用性、AI運用、LLMOにおける静かな失敗要因をrisk-ledger化する総合レビュー |
-| `26-競合テーマ総合評価と市場ポジション.md` | SWELL/JIN:R/AFFINGER/Cocoon/Lightningを点数化し、AGENT NEOが狙うAI運用型WPテーマ基盤の市場ポジションを整理 |
-| `27-AutomationSEO連携観点のSWELL-JINR採点.md` | Automation SEO/seo-tool-connector連携観点でSWELL/JIN:Rを採点し、Automation SEO側とWPテーマ側のカバー策を整理 |
+| `26-競合テーマ総合評価と市場ポジション.md` | ThemeB/テーマA/AFFINGER/Cocoon/Lightningを点数化し、AGENT NEOが狙うAI運用型WPテーマ基盤の市場ポジションを整理 |
+| `27-AutomationSEO連携観点のThemeB-ThemeA採点.md` | Automation SEO/seo-tool-connector連携観点でThemeB/テーマAを採点し、Automation SEO側とWPテーマ側のカバー策を整理 |
 | `28-共通強化プラグインとAutomationSEOプラグイン情報設計.md` | 各テーマを横断強化するAutomation SEO Theme Bridge Pluginの共通機能、不都合、保持情報、AGENT NEOへの責務分離を整理 |
-| `29-ドキュメントテーマ群抜け漏れレビュー.md` | L0/L1/L2/L3/L5と解析レポート、SWELL/JIN:Rテーマ群を突合し、実装前の抜け漏れ、未凍結領域、次アクションを整理 |
-| `30-SEOスキルマップ観点テーマ調査.md` | `SEO skill/references/seo-skill-map.md` の10カテゴリでSWELL/JIN:Rを再調査し、テーマで足りるSEO、Automation SEOへ逃がすSEO、AGENT NEOに追加すべき契約を整理 |
-| `31-WPテーマ実測解析.md` | Docker WP環境でSWELL/JIN:R/子テーマを切り替えてHTTP速度、HTML/SEO出力、JSON-LD、Automation SEO連携影響、環境不整合を実測整理 |
-| `32-WPテーマ更新ログ.md` | Docker WP環境でJIN:Rを1.0.5から1.4.6へ更新し、SWELL/標準テーマの更新なし、bind mount更新制約、残課題を整理 |
+| `29-ドキュメントテーマ群抜け漏れレビュー.md` | L0/L1/L2/L3/L5と解析レポート、ThemeB/テーマAテーマ群を突合し、実装前の抜け漏れ、未凍結領域、次アクションを整理 |
+| `30-SEOスキルマップ観点テーマ調査.md` | `SEO skill/references/seo-skill-map.md` の10カテゴリでThemeB/テーマAを再調査し、テーマで足りるSEO、Automation SEOへ逃がすSEO、AGENT NEOに追加すべき契約を整理 |
+| `31-WPテーマ実測解析.md` | Docker WP環境でThemeB/テーマA/子テーマを切り替えてHTTP速度、HTML/SEO出力、JSON-LD、Automation SEO連携影響、環境不整合を実測整理 |
+| `32-WPテーマ更新ログ.md` | Docker WP環境でテーマAを1.0.5から1.4.6へ更新し、ThemeB/標準テーマの更新なし、bind mount更新制約、残課題を整理 |
 | `33-WP運用環境更新ログ.md` | WordPress Coreを6.6.2から6.9.4へ更新し、DB、Docker PHP 8.3環境、パーマリンク、Akismet、HTTP/REST/DB検証を整理 |
-| `34-実運用サイト観測対象と初回観測.md` | JIN:R/SWELLの実運用サイトを公開範囲で観測し、テーマ痕跡、SEOタグ、REST API露出、ログイン面、Automation SEO連携を整理 |
+| `34-実運用サイト観測対象と初回観測.md` | テーマA/ThemeBの実運用サイトを公開範囲で観測し、テーマ痕跡、SEOタグ、REST API露出、ログイン面、Automation SEO連携を整理 |
 | `analysis-summary.json` | AIエージェント参照用の要約データ |
 
 ## 解析対象
 
 | 対象 | 用途 |
 |---|---|
-| `swell-2.16.0/swell` | 親テーマ。主解析対象 |
-| `swell_child/swell_child` | 子テーマ。親テーマCSSの読み込みサンプル |
-| `jinr-child/jinr-child` | 子テーマ。最小子テーマ構成の参考 |
-| `jinr-parent/jinr/jinr` | 親テーマ。SEO統合設計の解析対象 |
+| `themeB-2.16.0/themeB` | 親テーマ。主解析対象 |
+| `themeB_child/themeB_child` | 子テーマ。親テーマCSSの読み込みサンプル |
+| `themeA-child/themeA-child` | 子テーマ。最小子テーマ構成の参考 |
+| `themeA-parent/themeA/themeA` | 親テーマ。SEO統合設計の解析対象 |
 
 ## 判断方針
 
@@ -82,7 +82,7 @@
 | ファイル | 内容 |
 |---|---|
 | `36-実環境検証レポート.md` | Docker実測、公開GET観測、Lighthouse、Playwright、REST/API、SEO出力、運用・セキュリティ・可観測性の突合レポート |
-| `37-ファイル解析確定事項と新発見.md` | SWELL/JIN:R/Automation SEOのコード根拠、実測根拠、新発見、AI運用上の不都合、AGENT NEOへの設計反映事項 |
-| `38-WP7事前情報とテーマ対応検証.md` | WordPress 7.0公式事前情報、SWELL/JIN:Rのバージョン対応、WP7検証漏れ、AGENT NEOへの先回り要件 |
+| `37-ファイル解析確定事項と新発見.md` | ThemeB/テーマA/Automation SEOのコード根拠、実測根拠、新発見、AI運用上の不都合、AGENT NEOへの設計反映事項 |
+| `38-WP7事前情報とテーマ対応検証.md` | WordPress 7.0公式事前情報、ThemeB/テーマAのバージョン対応、WP7検証漏れ、AGENT NEOへの先回り要件 |
 | `39-実測漏れ徹底調査.md` | 既存rawログ・実測・公開GET観測・コード解析の棚卸しと、未実施領域の優先度整理 |
 | `40-OSSライブラリ技術転用候補.md` | AGENT NEOテーマ/Core Plugin/Automation SEO/CIへ転用するOSS・公式ツール候補の選定 |
