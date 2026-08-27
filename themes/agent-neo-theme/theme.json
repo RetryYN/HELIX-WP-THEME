@@ -74,6 +74,7 @@
           "name": "Monospace"
         }
       ],
+      "defaultFontSizes": false,
       "fontSizes": [
         {
           "slug": "small",
@@ -112,13 +113,7 @@
       "letterSpacing": true
     },
     "spacing": {
-      "spacingScale": {
-        "operator": "*",
-        "increment": 1.5,
-        "steps": 7,
-        "mediumStep": 1.5,
-        "unit": "rem"
-      },
+      "defaultSpacingSizes": false,
       "spacingSizes": [
         {
           "slug": "10",
