@@ -50,7 +50,33 @@
           "name": "Muted"
         }
       ],
-      "gradients": [],
+      "gradients": [
+        {
+          "slug": "accent-to-primary",
+          "gradient": "linear-gradient(135deg, var(--wp--preset--color--accent) 0%, var(--wp--preset--color--primary) 100%)",
+          "name": "Accent → Primary"
+        },
+        {
+          "slug": "primary-to-footer",
+          "gradient": "linear-gradient(180deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--footer-bg) 100%)",
+          "name": "Primary → Footer"
+        },
+        {
+          "slug": "secondary-fade",
+          "gradient": "linear-gradient(180deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--background) 100%)",
+          "name": "Secondary fade"
+        },
+        {
+          "slug": "accent-glow",
+          "gradient": "radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--wp--preset--color--accent) 35%, transparent) 0%, transparent 60%)",
+          "name": "Accent glow"
+        },
+        {
+          "slug": "overlay-dark",
+          "gradient": "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%)",
+          "name": "Overlay dark"
+        }
+      ],
       "custom": true,
       "customGradient": false,
       "defaultPalette": false,
@@ -155,7 +181,13 @@
       "margin": true,
       "blockGap": true,
       "customSpacingSize": true,
-      "units": ["px", "em", "rem", "%", "vw"]
+      "units": [
+        "px",
+        "em",
+        "rem",
+        "%",
+        "vw"
+      ]
     },
     "blocks": {},
     "border": {
@@ -305,17 +337,24 @@
     {
       "name": "blank",
       "title": "Blank",
-      "postTypes": ["page", "post"]
+      "postTypes": [
+        "page",
+        "post"
+      ]
     },
     {
       "name": "no-header",
       "title": "No Header",
-      "postTypes": ["page"]
+      "postTypes": [
+        "page"
+      ]
     },
     {
       "name": "page-lp-sample",
       "title": "LP サンプル（5セクション）",
-      "postTypes": ["page"]
+      "postTypes": [
+        "page"
+      ]
     }
   ],
   "patterns": []
