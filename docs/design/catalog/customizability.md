@@ -6,7 +6,7 @@ PoC 検証台 3 面から WP-CLI（theme.json merged data・登録情報・テ�
 
 | 項目 | 本テーマ | テーマA | テーマB |
 |---|---|---|---|
-| appearanceTools（罫線・影・余白の一括解放） | – | – | – |
+| appearanceTools（罫線・影・余白の一括解放） | ✓（theme.json で true。merged では個別設定に展開されるため値は false に見える） | – | – |
 | 色: パレット数 / 任意色 / グラデ数 / 任意グラデ | 8 / ✓ / 0 / – | 1 / ✓ / 1 / ✓ | 13 / ✓ / 1 / ✓ |
 | リンク色 / 背景画像 / duotone / 影プリセット | ✓ / ✓ / 1 / 1 | – / ✓ / 1 / 1 | – / ✓ / 1 / 1 |
 | フォント: family 数 / サイズ段階 / 任意サイズ / 行間 / 字間 / ドロップキャップ | 3 / 2 / ✓ / ✓ / ✓ / ✓ | 0 / 1 / ✓ / – / ✓ / ✓ | 0 / 5 / ✓ / ✓ / ✓ / ✓ |
@@ -74,14 +74,14 @@ PoC 検証台 3 面から WP-CLI（theme.json merged data・登録情報・テ�
 ## 所見（本テーマのカスタマイズ性について確定したこと）
 
 1. **構造の編集は本テーマが唯一 GUI で可能**（サイトエディタ: テンプレ 10・パーツ 4・スタイル・ナビ・パターン）。A/B は classic でテンプレは PHP。
-2. **しかし theme.json の"解放"が狭い**: appearanceTools オフ、グラデ 0（任意グラデ不可）、影 1、余白段階 1、**幅広配置（alignWide）オフ**、**子テーマ helix-neo がフォントサイズ段階を 6 → 2 に絞っている**。エディタ上で編集者が触れるダイヤルは A/B より少ない。
+2. **しかし theme.json の"解放"が狭い**: グラデ 0（任意グラデ不可）、影 1、余白段階 1、**幅広配置（alignWide）オフ**、**子テーマ helix-neo がフォントサイズ段階を 6 → 2 に絞っている**。エディタ上で編集者が触れるダイヤルは A/B より少ない。
 3. **設定画面・投稿単位の切替が無い**: カスタマイザー 22（WP 標準）、独自設定 0、投稿メタ 1（footnotes）。A は 1,045 + 174 + メタ 22、B は 520 + 157 + メタボックス 2。サイドバー有無・目次・シェア・PR を記事単位で変える手段が無い。
 4. **領域・位置の概念が無い**: ウィジェット領域 0・メニュー位置 0・ショートコード 0。すべて template part 固定（header nav はハードコード）。
 5. **開発者フックがほぼ無い**: do_action 0 / apply_filters 4（A 45 / 5、B 15 / 112）。プラグインや HELIX 側から表示を差し替える公式の穴が無い。
 6. 強み: style variation 2（A/B は 0）、パターン 24、custom トークン 2、罫線 4 種、リンク色・背景画像は解放済み、child theme 運用が成立している。
 
 ## 本テーマで"カスタマイズ性"を上げる最小手（優先順）
-1. theme.json: appearanceTools を true、alignWide、fontSizes を子テーマで潰さない（親 6 段を継承）、spacingSizes 5 段、gradients 3、shadow 2。
+1. theme.json: alignWide、fontSizes を子テーマで潰さない（親 6 段を継承）、spacingSizes 5 段、gradients 3、shadow 2。
 2. 投稿単位の切替: 投稿メタ（sidebar / toc / share / pr）4 キー + テンプレ側で条件描画（THEME-JSON-03 の差し替え規約と同じ機構）。
 3. slot 化: header nav を wp_navigation ref に、共有 slot 6 つ（THEME-CAT-01）。
 4. hook: 主要パーツ前後に do_action（agent_neo/before_{part} 系）を 10 箇所、出力に apply_filters を 10 箇所。
