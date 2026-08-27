@@ -53,7 +53,7 @@
 			"button": {
 				"border": { "radius": "2px" },
 				"typography": { "fontWeight": "600", "fontSize": "var(--wp--preset--font-size--small)" },
-				"spacing": { "padding": { "top": "0.625rem", "bottom": "0.625rem", "left": "1.25rem", "right": "1.25rem" } },
+				"spacing": { "padding": { "top": "var(--wp--preset--spacing--10)", "bottom": "var(--wp--preset--spacing--10)", "left": "var(--wp--preset--spacing--30)", "right": "var(--wp--preset--spacing--30)" } },
 				"color": { "background": "var(--wp--preset--color--accent-aa)", "text": "#ffffff" }
 			},
 			"link": { "color": { "text": "var(--wp--preset--color--accent-aa)" }, "typography": { "textDecoration": "none" }, ":hover": { "typography": { "textDecoration": "underline" } } }
