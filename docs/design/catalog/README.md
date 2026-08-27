@@ -19,6 +19,8 @@
 | search | - | header + footer | 0 | 検索結果。検索フォーム＋カード。 |
 | single | - | header + post-header + post-footer + footer | 0 | 投稿。post-header（パンくず・メタ）＋本文＋post-footer（シェア・CTA・著者）＋関連・前後ナビ・コメント。 |
 
+> 注: PoC の投稿ページは子テーマ helix-neo の `templates/single.html`（2 カラム + サイドバー）で描画されている。本カタログの single 画像もその子版。親テーマ単体の single は 1 カラム。
+
 ## パーツ（template parts 4）
 
 | part | area | patterns | 内容 |
