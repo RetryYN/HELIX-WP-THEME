@@ -18,24 +18,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<!-- wp:group {"className":"an-site-header-inner an-header--minimal","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group an-site-header-inner an-header--minimal" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:group {"className":"an-site-header-inner an-header\u002d\u002dminimal","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group an-site-header-inner an-header--minimal" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)"><!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"foreground","fontSize":"medium"} /-->
 
-	<!-- wp:site-title {"level":0,"isLink":true,"fontSize":"medium","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"foreground"} /-->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontWeight":"600"}},"fontSize":"small"} -->
+<p class="has-small-font-size" style="font-weight:600"><a href="/contact/"><?php esc_html_e( '相談する →', 'agent-neo' ); ?></a></p>
+<!-- /wp:paragraph -->
 
-	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
-	<div class="wp-block-group" style="gap:var(--wp--preset--spacing--30)">
-		<!-- wp:paragraph {"fontSize":"small","style":{"typography":{"fontWeight":"600"}}} -->
-		<p class="has-small-font-size" style="font-weight:600"><a href="/contact/"><?php esc_html_e( '相談する →', 'agent-neo' ); ?></a></p>
-		<!-- /wp:paragraph -->
-		<!-- wp:navigation {"ariaLabel":"メニュー","overlayMenu":"always","icon":"menu","hasIcon":true,"layout":{"type":"flex","justifyContent":"right"},"textColor":"foreground","overlayBackgroundColor":"primary","overlayTextColor":"background","fontSize":"x-large","style":{"typography":{"fontWeight":"700"}}} -->
-			<!-- wp:navigation-link {"label":"ホーム","url":"/","kind":"custom","isTopLevelLink":true} /-->
-			<!-- wp:navigation-link {"label":"サービス","url":"/lp/","kind":"custom","isTopLevelLink":true} /-->
-			<!-- wp:navigation-link {"label":"記事","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
-			<!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
-		<!-- /wp:navigation -->
-	</div>
-	<!-- /wp:group -->
+<!-- wp:navigation {"textColor":"foreground","overlayMenu":"always","icon":"menu","overlayBackgroundColor":"primary","overlayTextColor":"background","style":{"typography":{"fontWeight":"700"}},"fontSize":"x-large","layout":{"type":"flex","justifyContent":"right"},"ariaLabel":"メニュー"} -->
+<!-- wp:navigation-link {"label":"ホーム","url":"/","kind":"custom","isTopLevelLink":true} /-->
 
-</div>
+<!-- wp:navigation-link {"label":"サービス","url":"/lp/","kind":"custom","isTopLevelLink":true} /-->
+
+<!-- wp:navigation-link {"label":"記事","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
+
+<!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
+<!-- /wp:navigation --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
