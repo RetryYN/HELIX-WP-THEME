@@ -5,6 +5,8 @@ on:
     paths:
       - 'plugins/**'
       - 'themes/**'
+      - 'bin/**'
+      - 'tools/design/**'
       - 'tests/**'
       - 'composer.json'
       - 'composer.lock'
@@ -14,6 +16,9 @@ on:
     paths:
       - 'plugins/**'
       - 'themes/**'
+      - 'bin/**'
+      - 'tools/design/**'
+      - '.github/workflows/test.yml'
       - 'tests/**'
       - 'composer.json'
       - 'phpunit.xml.dist'
@@ -99,6 +104,11 @@ jobs:
           extensions: json, mbstring
           tools: composer:v2
 
+      - name: Setup Node.js 20 (figma structure generator)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
@@ -125,8 +135,34 @@ jobs:
         # 根拠: docs/design/consistency-responsibilities.md §3
         run: bash bin/check-design-consistency.sh
 
-      - name: Figma token intake script syntax (figma-tokens-to-theme-json.php)
-        run: php -l tools/design/figma-tokens-to-theme-json.php && php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/tokens-export.sample.json && php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/figma-plugin-export.sample.json
+      - name: Figma token intake — accept fixtures (dry-run)
+        run: |
+          php -l tools/design/figma-tokens-to-theme-json.php
+          php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/tokens-export.sample.json
+          php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/figma-plugin-export.sample.json
+
+      - name: Figma token intake — reject fixtures must exit 1
+        # 存在意義は「拒否できること」。未知スラッグ / 値キー欠落 / 型違い / 正規化後の重複スラッグを拒否する。
+        run: |
+          set -e
+          for f in tokens-export.reject.sample.json tokens-export.reject-missing-value.sample.json tokens-export.reject-wrong-type.sample.json tokens-export.reject-duplicate-slug.sample.json; do
+            if php tools/design/figma-tokens-to-theme-json.php "tools/design/fixtures/$f" >/dev/null 2>&1; then echo "FAIL: $f が拒否されない"; exit 1; fi
+            echo "reject OK: $f"
+          done
+
+      - name: Figma token intake — --write keeps empty objects ({} must not become [])
+        run: |
+          cp themes/agent-neo-theme/theme.json /tmp/theme.json.orig
+          php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/tokens-export.sample.json --write >/dev/null
+          php -r '$j=file_get_contents("themes/agent-neo-theme/theme.json"); foreach (["settings","blocks"] as $k) {} $d=json_decode($j); if (!is_object($d->settings->blocks ?? new stdClass) || !is_object($d->styles->blocks->{"core/template-part"} ?? new stdClass)) { fwrite(STDERR, "empty object collapsed to array\n"); exit(1);} echo "empty objects preserved\n";'
+          cp /tmp/theme.json.orig themes/agent-neo-theme/theme.json
+
+      - name: Figma structure generator — fixture run (syntax + no raw values)
+        run: |
+          node --check tools/design/figma-structure-to-patterns.mjs
+          node tools/design/figma-structure-to-patterns.mjs --json tools/design/fixtures/figma-file.sample.json --out /tmp/figma-out
+          php -l /tmp/figma-out/*.php
+          php -r '$r=json_decode(file_get_contents("/tmp/figma-out/_report.json"),true); foreach ($r["patterns"] as $p) { if ($p["rawValues"]>0) { fwrite(STDERR, "raw values in ".$p["slug"]."\n"); exit(1);} } echo "generator OK\n";'
 
       - name: TC-016/017a/018 theme quality static gates (check-theme-quality.sh)
         # a11y ゲートは WP 起動が必要なため job 3 に委ねる。

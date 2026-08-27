@@ -66,6 +66,16 @@ $merge_presets = function (array $current, array $incoming, string $value_key, s
 		if ($slug !== $item['slug'] && ! isset($cur_by_slug[$slug]) && isset($cur_by_slug[$item['slug']])) { $slug = $item['slug']; }
 		$item['slug'] = $slug;
 		if (isset($item['name'])) { $item['name'] = preg_replace('/^(Color|Space|Spacing|Font Size|Size|Shadow|Elevation) /', '', $item['name']); }
+		// 必須値の欠落・型違い・正規化後の重複は黙って通さない（後勝ち上書きや null 代入を防ぐ）。
+		if (! array_key_exists($value_key, $item) || $item[$value_key] === null || $item[$value_key] === '') {
+			$errors[] = sprintf('%s %s: 値キー "%s" が無い', $label, $slug, $value_key); continue;
+		}
+		if (! is_string($item[$value_key]) && ! is_numeric($item[$value_key])) {
+			$errors[] = sprintf('%s %s: 値キー "%s" の型が不正（%s）', $label, $slug, $value_key, gettype($item[$value_key])); continue;
+		}
+		if (isset($in_by_slug[$slug])) {
+			$errors[] = sprintf('%s: 正規化後にスラッグが重複（%s ← %s）', $label, $slug, $item['slug']); continue;
+		}
 		$in_by_slug[$slug] = $item;
 	}
 
@@ -136,7 +146,23 @@ if (! $changes) {
 }
 echo ($write ? "書き込み:\n" : "dry-run（--write で反映）:\n") . '  - ' . implode("\n  - ", $changes) . "\n";
 if ($write) {
-	$json = json_encode($theme, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+	// json_decode(assoc) → json_encode の往復で {} が [] に化けるのを防ぐ:
+	// 元ファイルをオブジェクトとして読み直し、差し替え対象のパスだけを配列版から書き戻す。
+	$obj = json_decode(file_get_contents($theme_json_path));
+	$set = function (&$node, array $path, $value) use (&$set) {
+		$k = array_shift($path);
+		if (! $path) { $node->$k = $value; return; }
+		if (! isset($node->$k) || ! is_object($node->$k)) { $node->$k = new stdClass(); }
+		$set($node->$k, $path, $value);
+	};
+	foreach ([['settings','color','palette'], ['settings','typography','fontSizes'], ['settings','typography','fontFamilies'], ['settings','spacing','spacingSizes'], ['settings','shadow','presets'], ['settings','layout','contentSize'], ['settings','layout','wideSize']] as $path) {
+		$v = $theme; foreach ($path as $k) { if (! is_array($v) || ! array_key_exists($k, $v)) { $v = null; break; } $v = $v[$k]; }
+		if ($v !== null) { $set($obj, $path, $v); }
+	}
+	$set($obj, ['settings','typography','defaultFontSizes'], false);
+	$set($obj, ['settings','spacing','defaultSpacingSizes'], false);
+	if (isset($obj->settings->spacing->spacingScale)) { unset($obj->settings->spacing->spacingScale); }
+	$json = json_encode($obj, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 	// 既存ファイルは 2 スペースインデントのため合わせる。
 	$json = preg_replace_callback('/^( {4})+/m', fn($m) => str_repeat('  ', strlen($m[0]) / 4), (string) $json);
 	file_put_contents($theme_json_path, $json . "\n");

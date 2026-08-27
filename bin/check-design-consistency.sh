@@ -78,12 +78,15 @@ title "G-T2 生値禁止（patterns / parts / templates）"
 # 許容: 0、1px（罫線）、% 、var(...) 参照
 RAW_RE='"(fontSize|padding|margin|width|height|minHeight|gap|blockGap|radius|top|bottom|left|right)":"([0-9]*\.?[0-9]+)(px|rem|em)"'
 STYLE_RE='style="[^"]*[^-a-z0-9(]([2-9]|[1-9][0-9]+|[0-9]*\.[0-9]+)(px|rem|em)'
+# 許容は 0（単位不問）と 1px（罫線）のみ。1rem / 1em は余白尺度の値そのものなので生値として数える。
+# style 属性は属性ごとに切り出してから属性内の全件を数える（1 属性 1 件の過小計上を防ぐ）。
+STYLE_VAL_RE='[^-a-z0-9(]([2-9]|[1-9][0-9]+|[0-9]*\.[0-9]+|1)(px|rem|em)'
 count_raw() {
   local dir="$1"; local n=0
   [[ -d "$dir" ]] || { echo 0; return; }
-  n=$(grep -rhoE "$RAW_RE" "$dir" 2>/dev/null | grep -vE '":"(0|1)(px|rem|em)"' | wc -l)
+  n=$(grep -rhoE "$RAW_RE" "$dir" 2>/dev/null | grep -vE '":"(0(px|rem|em)|1px)"' | wc -l)
   local m
-  m=$(grep -rhoE "$STYLE_RE" "$dir" 2>/dev/null | wc -l)
+  m=$(grep -rhoE 'style="[^"]*"' "$dir" 2>/dev/null | grep -oE "$STYLE_VAL_RE" | grep -vE '(^|[^0-9.])1px$' | wc -l)
   echo $((n + m))
 }
 RAW_PAT=$(count_raw "${THEME_DIR}/patterns"); RAW_PART=$(count_raw "${THEME_DIR}/parts"); RAW_TPL=$(count_raw "${THEME_DIR}/templates")
@@ -101,6 +104,34 @@ if [[ -f "$BASELINE" ]]; then
 else
   warn "baseline 未作成（bin/check-design-consistency.sh --update-baseline で作成）。現状 ${RAW_TOTAL} 件"
 fi
+
+# ---------------------------------------------------------------------------
+# G-T1b スタイルバリエーションは層 1 の尺度を所有しない（styles/*.json）
+#   - fontSizes / spacingSizes / palette / shadow.presets を定義する場合、スラッグ集合は親と同一（値の差し替えのみ）
+#   - styles.* に生の px/rem/em を持ち込まない（G-T2 と同じ規則。1px の罫線は許容）
+# ---------------------------------------------------------------------------
+title "G-T1b スタイルバリエーション（styles/*.json）"
+for v in "${THEME_DIR}"/styles/*.json; do
+  [[ -f "$v" ]] || continue
+  vb=$(basename "$v")
+  out=$(php -r '
+    $parent = json_decode(file_get_contents($argv[1]), true); $var = json_decode(file_get_contents($argv[2]), true);
+    if (!is_array($var)) { echo "invalid-json\n"; exit; }
+    $sets = [["settings","typography","fontSizes"],["settings","spacing","spacingSizes"],["settings","color","palette"],["settings","shadow","presets"]];
+    foreach ($sets as $path) {
+      $p = $parent; $q = $var; foreach ($path as $k) { $p = $p[$k] ?? null; $q = $q[$k] ?? null; }
+      if ($q === null) continue;
+      $ps = array_column((array)$p, "slug"); $qs = array_column((array)$q, "slug"); sort($ps); sort($qs);
+      if ($ps !== $qs) echo "scale-mismatch " . implode(".", $path) . " parent=" . implode(",", $ps) . " variation=" . implode(",", $qs) . "\n";
+    }
+    $raw = 0; $it = new RecursiveIteratorIterator(new RecursiveArrayIterator($var["styles"] ?? []));
+    foreach ($it as $k => $val) { if (is_string($val) && preg_match("/^-?[0-9]*\\.?[0-9]+(px|rem|em)$/", $val) && !preg_match("/^(0(px|rem|em)|1px)$/", $val) && !in_array($k, ["radius","letterSpacing","width"], true)) $raw++; }
+    if ($raw) echo "raw-values $raw\n";
+  ' "${THEME_DIR}/theme.json" "$v")
+  if [[ -z "$out" ]]; then pass "$vb: スラッグ集合は親と同一・styles に生値なし"; else
+    while IFS= read -r line; do fail "$vb: $line"; done <<< "$out"
+  fi
+done
 
 # ---------------------------------------------------------------------------
 # G-T3 階層（見出しプリセットの単調性）
@@ -135,10 +166,10 @@ done
 # ---------------------------------------------------------------------------
 # G-S2 参照整合（template-part / pattern の存在）
 # ---------------------------------------------------------------------------
-title "G-S2 参照整合（templates / parts → parts / patterns）"
+title "G-S2 参照整合（templates / parts / patterns → parts / patterns）"
 S2_FAIL=0
 PATTERN_SLUGS=$(grep -rhoE '^\s*\*\s*Slug:\s*agent-neo/[a-z0-9-]+' "${THEME_DIR}/patterns" 2>/dev/null | sed -E 's/.*Slug:\s*//' | sort -u)
-for f in "${THEME_DIR}"/templates/*.html "${THEME_DIR}"/parts/*.html; do
+for f in "${THEME_DIR}"/templates/*.html "${THEME_DIR}"/parts/*.html "${THEME_DIR}"/patterns/*.php; do
   [[ -f "$f" ]] || continue
   for ref in $(grep -oE 'wp:template-part \{"slug":"[a-z0-9-]+"' "$f" | sed -E 's/.*"slug":"//; s/"$//' | sort -u); do
     [[ -f "${THEME_DIR}/parts/${ref}.html" ]] || { fail "$(basename "$f") が存在しない template-part を参照: $ref"; S2_FAIL=1; }

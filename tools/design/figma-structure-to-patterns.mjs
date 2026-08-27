@@ -55,18 +55,27 @@ const preset = (kind, slug) => ({ size: `var:preset|font-size|${slug}`, space: `
 function elementMarkup(node) {
 	const m = node.name.match(RE.element); if (!m) return '';
 	const r = refs(node.name); const tag = m[1];
-	const text = (node.characters || `【${tag}】`).replace(/'/g, "\\'");
+	const text = (node.characters || `【${tag}】`).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+	// save 側の直列化（class / style）をブロック属性と一致させる。fontSize はプリセット属性、色はスラッグ。
 	const attrs = {};
-	if (r.size) attrs.style = { typography: { fontSize: preset('size', r.size) } };
+	if (r.size) attrs.fontSize = r.size;
 	if (r.color) attrs.textColor = r.color;
+	const cls = [];
+	if (r.color) cls.push(`has-${r.color}-color`, 'has-text-color');
+	if (r.size) cls.push(`has-${r.size}-font-size`);
 	const a = Object.keys(attrs).length ? ' ' + JSON.stringify(attrs) : '';
+	const c = (base) => `class="${[base, ...cls].filter(Boolean).join(' ')}"`;
 	switch (tag) {
 		case 'h1': case 'h2': case 'h3': case 'h4': {
 			const lv = tag.slice(1);
-			return `<!-- wp:heading {"level":${lv}${a ? ',' + a.slice(2, -1) : ''}} --><${tag} class="wp-block-heading"><?php esc_html_e( '${text}', 'agent-neo' ); ?></${tag}><!-- /wp:heading -->`;
+			const ha = JSON.stringify({ level: Number(lv), ...attrs });
+			return `<!-- wp:heading ${ha} --><${tag} ${c('wp-block-heading')}><?php esc_html_e( '${text}', 'agent-neo' ); ?></${tag}><!-- /wp:heading -->`;
 		}
-		case 'p': return `<!-- wp:paragraph${a} --><p><?php esc_html_e( '${text}', 'agent-neo' ); ?></p><!-- /wp:paragraph -->`;
-		case 'btn': return `<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button${a} --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( '${text}', 'agent-neo' ); ?></a></div><!-- /wp:button --></div><!-- /wp:buttons -->`;
+		case 'p': return `<!-- wp:paragraph${a} --><p${cls.length ? ' ' + c('') .replace('class=" ', 'class="') : ''}><?php esc_html_e( '${text}', 'agent-neo' ); ?></p><!-- /wp:paragraph -->`;
+		case 'btn': {
+			const bcls = ['wp-block-button__link', ...(r.color ? [`has-${r.color}-color`, 'has-text-color'] : []), ...(r.size ? [`has-${r.size}-font-size`, 'has-custom-font-size'] : []), 'wp-element-button'].join(' ');
+			return `<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button${a} --><div class="wp-block-button"><a class="${bcls}" href="#"><?php esc_html_e( '${text}', 'agent-neo' ); ?></a></div><!-- /wp:button --></div><!-- /wp:buttons -->`;
+		}
 		case 'img': return `<!-- wp:image --><figure class="wp-block-image"><img src="" alt=""/></figure><!-- /wp:image -->`;
 		case 'list': return `<!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li><?php esc_html_e( '${text}', 'agent-neo' ); ?></li><!-- /wp:list-item --></ul><!-- /wp:list -->`;
 		case 'quote': return `<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph --><p><?php esc_html_e( '${text}', 'agent-neo' ); ?></p><!-- /wp:paragraph --></blockquote><!-- /wp:quote -->`;
@@ -85,7 +94,9 @@ function walk(node, depth = 0) {
 		const attrs = { className: `an-section an-section--${name}`, layout: { type: 'constrained' } };
 		if (r.space) attrs.style = { spacing: { padding: { top: preset('space', r.space), bottom: preset('space', r.space) } } };
 		if (r.color) attrs.backgroundColor = r.color;
-		return `<!-- wp:group ${JSON.stringify(attrs)} --><div class="wp-block-group an-section an-section--${name}">\n${children.map(c => walk(c, depth + 1)).filter(Boolean).join('\n')}\n</div><!-- /wp:group -->`;
+		const cls = ['wp-block-group', `an-section an-section--${name}`, ...(r.color ? [`has-${r.color}-background-color`, 'has-background'] : [])].join(' ');
+		const st = r.space ? ` style="padding-top:var(--wp--preset--spacing--${r.space});padding-bottom:var(--wp--preset--spacing--${r.space})"` : '';
+		return `<!-- wp:group ${JSON.stringify(attrs)} --><div class="${cls}"${st}>\n${children.map(c => walk(c, depth + 1)).filter(Boolean).join('\n')}\n</div><!-- /wp:group -->`;
 	}
 	const el = elementMarkup(node); if (el) return el;
 	return children.map(c => walk(c, depth + 1)).filter(Boolean).join('\n');
@@ -107,7 +118,7 @@ for (const p of patterns) {
 	const raw = (body.match(/"[0-9.]+(px|rem|em)"/g) || []).length;
 	const php = `<?php\n/**\n * Title: ${slug}\n * Slug: agent-neo/${slug}\n * Categories: agent-neo\n * Description: Figma フレーム "${p.name}" から生成した骨格。文言・画像は要編集。\n * Block Types: core/group\n * Post Types: page, wp_template\n * Inserter: true\n *\n * @package AgentNeo\n */\n\nif ( ! defined( 'ABSPATH' ) ) {\n\texit;\n}\n?>\n\n${body}\n`;
 	fs.writeFileSync(path.join(outDir, `${slug}.php`), php);
-	report.push({ slug, frame: p.name, sections: (body.match(/an-section--/g) || []).length, rawValues: raw });
+	report.push({ slug, frame: p.name, sections: (body.match(/<!-- wp:group \{[^\n]*an-section an-section--/g) || []).length, rawValues: raw });
 }
 fs.writeFileSync(path.join(outDir, '_report.json'), JSON.stringify({ file: fileKey || jsonPath, patterns: report }, null, 2));
 console.log(`patterns: ${report.length} → ${outDir}`);
