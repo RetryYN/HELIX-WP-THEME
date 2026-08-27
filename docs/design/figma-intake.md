@@ -67,6 +67,14 @@ Figma の Variables「インポート」は DTCG 形式 JSON を受ける。実�
    （トークンは環境変数のみ。`.env` やログに残さない。オフラインなら保存済み JSON を `--json` で）
 3. 出力された `*.php` は **骨格**。文言・画像を入れ、`patterns/` へ移す前に `bin/check-design-consistency.sh`（G-T2 の生値 0 を確認）と、PoC でのエディタ挿入（Block validation 0）を通す。
 
+実測メモ（2026-08-28、無料プラン）:
+- `GET /v1/files/:key` は個人アクセストークンで読めたが、**数回の連続呼び出しで 429（Rate limit exceeded）** になり 5 分以上回復しなかった。
+  無料プランの REST 枠は極小と見て、取得 JSON は `--json` 用に必ず保存し、再実行はローカル JSON で行う。
+- フレームは **親の内側に描けば自動で入れ子**になるが、最外の `pat/` の直後に描いた `sec/` は兄弟になった事例がある。
+  入れ子は REST 取得後のツリー（type/name の階層）で必ず確認する。GUI では選択 → Ctrl+Alt+G（選択範囲をフレーム化）→ 改名で修正できる。
+- PoC 証跡: `pat/hero-cta > sec/hero @space:40 @color:secondary > (h2 @size:x-large, p, col/3) + btn` から
+  `sections=2 rawValues=0` の骨格を生成し、PoC の `patterns/` に置いて `agent-neo/hero-cta` として登録・描画されることを確認。
+
 ## 4. フレーム命名規約（構造 → ブロックの写像）
 
 | フレーム名 | 変換先 |
