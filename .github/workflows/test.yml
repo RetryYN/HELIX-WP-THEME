@@ -120,6 +120,14 @@ jobs:
             echo "WARN: sbom.cdx.json が見つかりません。generate-sbom.php を先に実行してください。"
           fi
 
+      - name: G-T1/T2/T3/S1/S2 design consistency gates (check-design-consistency.sh)
+        # 層 1 トークンの形状・生値禁止（baseline 超過のみ FAIL）・見出し階層・子テーマ境界・参照整合。
+        # 根拠: docs/design/consistency-responsibilities.md §3
+        run: bash bin/check-design-consistency.sh
+
+      - name: Figma token intake script syntax (figma-tokens-to-theme-json.php)
+        run: php -l tools/design/figma-tokens-to-theme-json.php && php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/tokens-export.sample.json
+
       - name: TC-016/017a/018 theme quality static gates (check-theme-quality.sh)
         # a11y ゲートは WP 起動が必要なため job 3 に委ねる。
         # 静的チェック（i18n / RTL / perf-static）のみここで実行。

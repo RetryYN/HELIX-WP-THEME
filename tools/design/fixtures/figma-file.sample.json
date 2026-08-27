@@ -1,0 +1,9 @@
+{ "name": "AGENT NEO / Layouts (sample)", "document": { "name": "Document", "children": [ { "name": "Page 1", "children": [
+  { "name": "pat/lp-benefit-alt", "type": "FRAME", "children": [
+    { "name": "sec/benefit @space:50 @color:secondary", "type": "FRAME", "children": [
+      { "name": "h2 @size:x-large", "type": "TEXT", "characters": "選ばれる理由" },
+      { "name": "col/3", "type": "FRAME", "children": [
+        { "name": "c1", "children": [ { "name": "h3 @size:large", "type": "TEXT", "characters": "完全自動" }, { "name": "p", "type": "TEXT", "characters": "初期設定だけで動き続ける。" } ] },
+        { "name": "c2", "children": [ { "name": "h3 @size:large", "type": "TEXT", "characters": "品質と量" }, { "name": "p", "type": "TEXT", "characters": "検証ゲートを通す。" } ] },
+        { "name": "c3", "children": [ { "name": "h3 @size:large", "type": "TEXT", "characters": "既存 WP のまま" }, { "name": "p", "type": "TEXT", "characters": "テーマ追加のみ。" } ] } ] },
+      { "name": "btn @color:accent", "type": "TEXT", "characters": "導入をはじめる" } ] } ] } ] } ] } }
