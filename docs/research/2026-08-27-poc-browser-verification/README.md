@@ -41,3 +41,13 @@
 ## 生データ
 
 `crawl-summary.md`（36 行の採取表）。スクリーンショットと JSON はリポジトリ外に保持。
+
+## 追記（2026-08-27）: 管理画面操作による実動確認
+
+- HEAD のテーマ・plugin を PoC 検証台へ再配備し、親→子テーマの順で再有効化（WP-CLI）。
+- ブラウザで wp-admin にログインし、テーマ画面（有効: HELIX Neo）、サイトエディタ起動、テンプレート一覧
+  （フロントページ / 個別投稿 / 固定ページ / 404 / 検索結果 / アーカイブ / LP）表示を確認。
+- 新規投稿にパターン（hero, article-cta）を挿入して公開、フロントで両パターンの描画と PHP Warning 0 を確認。
+- 全 24 パターンをブロックエディタで読み込み、Block validation を採取:
+  **`agent-neo/article-cta` のみ core/group（padding shorthand）と core/button（`has-custom-font-size` 欠落）が invalid**。
+  他 23 パターンは invalid=0。修正は `hotfix/article-cta-block-validation`（Draft PR）。修正後 invalid=0 を再確認。
