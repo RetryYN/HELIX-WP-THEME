@@ -146,7 +146,10 @@ Web サーバ層での URL 遮断）を選べば、**ブログカードの描画
 
 `themeA/external_url` の呼び出し元は、外部リンクのブログカード作成時に
 **エディタ側（`editor/build/index.js`）から fetch される**と推定される。
-ソースが minified のため未確定 — 要確認（§6 の未了項目）。
+ソースが minified のため呼び出し箇所は未特定 — 追試は本番の `editor/build/index.js` 取得＋
+grep 1 本のみ（§6）。ただし REST ルート 2 本（`/themeA/post_by_url` `/themeA/external_url`）の
+**登録・未認証到達性・情報開示は re-themeA-rest.txt / INV-13-F1(#21) で実測確定済**であり、
+呼び出し元の特定は防御方針（認証・権限 callback 付与）に影響しない。**非ブロッキング**。
 
 ## 4. 現状の防御層
 

@@ -44,7 +44,7 @@
 | **A. 意味的トークン** | **0** | — |
 | **B. 部品固有スタイル** | 40 | `--ads-contents` `--ads-tabs` `--ads-text` `--aff-tabs` `--blogcard-external` `--blogcard-mysite` `--blogcard-style1/2` `--compare-*`（13 件）`--cv-button` `--cv-button-icon` `--cv-button-image` `--fukidashi-chat` `--fukidashi-img` `--fukidashi-innervoice` `--fukidashi-interview` `--heading-box5` `--heading-box6` `--h2rich-center` `--ham-follow-label` `--archive-subtitle` `--customizer-icontitle` ほか |
 | **C. 状態・分岐フラグ** | 8 | `--header-style-default` `--header-style-slope` `--header-style-triangle` `--header-style-border` `--header-layout1` `--header-layout2` `--header-tracking-on` `--flat-design` `--display-none-title` `--check-using-article` `--compare-button-display` `--compare-button-disappear` |
-| 判定保留 | 2 | `--bottom-margin-s-pc` `--bottom-margin-xs-pc`（余白だが**部品前提の命名**。A か B か要確認） |
+| A. 余白・レイアウト | +2 | `--bottom-margin-s-pc` `--bottom-margin-xs-pc` — **確定（probe6-raw.txt）**: 変数一覧上でレイアウト系（`--article-style*` `--header-layout*`）と同帯に並ぶ汎用の下余白（S/XS ブレークポイント×PC）。特定部品専用ではなく**カテゴリ A（余白）**に確定。|
 
 **先頭 50 件に意味的トークンが 1 つも無い**。アルファベット順の a〜h の範囲であり、
 色（`--text-color` 等）が後半にある可能性はあるが、
@@ -100,7 +100,7 @@
 - [ ] **テーマB 155 件の全量取得**（現在 PHP 由来 29 件）— `*.css` / `*.scss` を含めた全出力
 - [ ] AGENT NEO の `styles/light.json` / `dark.json` の中身確認（トークンの上書き範囲）
 - [ ] 「JSON デザイントークン → theme.json 投影」の既存実証（HELIX Neo）との接続点の確認
-- [ ] 判定保留 2 件（`--bottom-margin-s-pc` / `--bottom-margin-xs-pc`）の用途確認
+- [x] 判定保留 2 件（`--bottom-margin-s-pc` / `--bottom-margin-xs-pc`）→ カテゴリ A（余白）に確定（probe6-raw.txt）
 
 ## 6. 現時点の結論
 

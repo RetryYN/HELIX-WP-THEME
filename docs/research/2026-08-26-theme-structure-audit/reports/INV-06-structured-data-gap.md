@@ -73,9 +73,11 @@
 | `seo-simple-pack` | — | ○ | **メタタグ + JSON-LD を出す可能性あり** |
 | `google-site-kit` | ○ | ○ | 計測タグのみ |
 
-**未確定**: テーマA サイトで記事型の JSON-LD を誰が出しているか。
-候補は `automation-seo`（両サイトで active。開発停止済みの自作プラグイン）か、出していないか。
-→ §6 の未了項目。
+**確定（実測 http-audit-raw.txt）**: テーマA サイトでは記事・カテゴリ・検索の全ページ種別で
+`ld+json` ブロック数 = 0。すなわち**現状 JSON-LD は誰も出していない**（`seo-simple-pack` は
+テーマB サイトにのみ導入、テーマA サイトでは記事型 JSON-LD 未出力）。`og:type=article` の
+OGP メタのみ存在。→ 二重出力の懸念は現時点で無く、AGENT NEO 側が唯一の出力元になれる
+（空き地に新設できる）。
 
 **方針**: AGENT NEO 側は `inc/seo/class-structured-data.php` が単一の出力元であるべきで、
 プラグインが同種の JSON-LD を出す場合は**どちらかを止める**。二重出力は
