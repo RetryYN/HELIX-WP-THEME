@@ -90,7 +90,7 @@ FAQ を意図ノードとして持てば `FAQPage` 構造化データを自動�
 | 意味 | テーマA | テーマB | 差 |
 |---|---|---|---|
 | アコーディオン | `accordion` / `accordionchild` | `accordion` / `accordion-item` | **命名のみ**（child vs item） |
-| タブ | `tab` / `tabchild` | `tab` / `tab-body` | 子の意味が違う（`tabchild` = タブ 1 枚、`tab-body` = 本文領域）。**要確認** |
+| タブ | `tab` / `tabchild` | `tab` / `tab-body` | **確定（re-themeB-blocks.txt L60-62）**: テーマB のブロック登録配列に子は `tab-body`（本文領域）のみで「タブ 1 枚」に相当する子名が無い。テーマA は `tabchild`=タブ 1 枚。**構造が非対称** — 中間 JSON では「タブ集合 → 各タブ（見出し＋本文）」に正規化し、両テーマへ投影時に子名を割り当てる。|
 | 手順 | `timeline` / `timelinechild` | `step` / `step-item` | テーマA は「時系列」、テーマB は「手順」。**意味が微妙に違う** |
 | リッチメニュー | `richmenu` / `richmenuchild` | `box-menu` / `box-menu-item` | 命名のみ |
 | 定義リスト | — | `dl` / `dt` / `dd` + `dl-dt` / `dl-dd` | テーマB 側に**重複した 2 系統**がある（旧実装の残存と推定） |
