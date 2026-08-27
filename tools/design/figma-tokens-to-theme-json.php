@@ -58,7 +58,16 @@ $merge_presets = function (array $current, array $incoming, string $value_key, s
 	$cur_by_slug = [];
 	foreach ($current as $i => $item) { $cur_by_slug[$item['slug']] = $i; }
 	$in_by_slug = [];
-	foreach ($incoming as $item) { if (isset($item['slug'])) { $in_by_slug[$item['slug']] = $item; } }
+	foreach ($incoming as $item) {
+		if (! isset($item['slug'])) { continue; }
+		// Figma 側書き出し器はグループ名を接頭辞として付ける（color-primary / space-10 / font-size-small）。
+		// 親 theme.json のスラッグは接頭辞なしなので、既知接頭辞は剥がして照合する（接頭辞なしはそのまま）。
+		$slug = preg_replace('/^(color|space|spacing|font-size|size|shadow|elevation)-/', '', $item['slug']);
+		if ($slug !== $item['slug'] && ! isset($cur_by_slug[$slug]) && isset($cur_by_slug[$item['slug']])) { $slug = $item['slug']; }
+		$item['slug'] = $slug;
+		if (isset($item['name'])) { $item['name'] = preg_replace('/^(Color|Space|Spacing|Font Size|Size|Shadow|Elevation) /', '', $item['name']); }
+		$in_by_slug[$slug] = $item;
+	}
 
 	// 書き出し側に無いスラッグは「触らない」（部分更新を許す）。書き出し側にしか無いスラッグは段の追加なので拒否。
 	$added = array_diff(array_keys($in_by_slug), array_keys($cur_by_slug));
@@ -74,7 +83,14 @@ $merge_presets = function (array $current, array $incoming, string $value_key, s
 			continue;
 		}
 		$i = $cur_by_slug[$slug];
-		if (($current[$i][$value_key] ?? null) !== ($item[$value_key] ?? null)) {
+		// 単位表現は親 theme.json の慣習に合わせる（親が rem・書き出しが px なら 16px=1rem で換算）。
+		$cur_v = $current[$i][$value_key] ?? null;
+		$new_v = $item[$value_key] ?? null;
+		if (is_string($cur_v) && is_string($new_v) && preg_match('/^-?[0-9.]+rem$/', $cur_v) && preg_match('/^(-?[0-9.]+)px$/', $new_v, $m)) {
+			$new_v = rtrim(rtrim(sprintf('%.4F', (float) $m[1] / 16), '0'), '.') . 'rem';
+			$item[$value_key] = $new_v;
+		}
+		if ($cur_v !== $new_v) {
 			$changes[] = sprintf('%s %s: %s → %s', $label, $slug, $current[$i][$value_key] ?? '-', $item[$value_key] ?? '-');
 			$current[$i][$value_key] = $item[$value_key];
 		}
