@@ -126,7 +126,7 @@ jobs:
         run: bash bin/check-design-consistency.sh
 
       - name: Figma token intake script syntax (figma-tokens-to-theme-json.php)
-        run: php -l tools/design/figma-tokens-to-theme-json.php && php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/tokens-export.sample.json
+        run: php -l tools/design/figma-tokens-to-theme-json.php && php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/tokens-export.sample.json && php tools/design/figma-tokens-to-theme-json.php tools/design/fixtures/figma-plugin-export.sample.json
 
       - name: TC-016/017a/018 theme quality static gates (check-theme-quality.sh)
         # a11y ゲートは WP 起動が必要なため job 3 に委ねる。
