@@ -1,0 +1,19 @@
+{
+ "site": {"title":"HELIX PoC (disposable)","tagline":"AI が運用しつづける WordPress の検証台","cats":["ai-ops:AI運用","seo:SEO","case:導入事例"],"tags":["wordpress","自動化","比較"]},
+ "menu": [["ホーム","/"],["AI運用","/category/ai-ops/"],["導入事例","/category/case/"],["サービス LP","/lp/"],["このサイトについて","/about/"],["お問い合わせ","/contact/"]],
+ "patterns": [
+  {"id":"P01","name":"トップ","path":"/","must":["header","nav","hero","latest-posts","category-nav","cta","footer"],"nice":["pickup","slider","infobar"]},
+  {"id":"P02","name":"記事（全部盛り）","path":"/ai-ops-full-guide/","must":["header","breadcrumb","title","meta","eyecatch","toc","body-core","body-theme-blocks","share","cta","author","related","prevnext","comments","sidebar","footer"],"nice":["pr-notation","fixed-share","pagetop"]},
+  {"id":"P03","name":"記事（通常）","path":"/seo-checklist/","must":["header","breadcrumb","title","meta","body-core","share","author","related","footer"]},
+  {"id":"P04","name":"固定ページ（About）","path":"/about/","must":["header","breadcrumb","title","body-core","footer"]},
+  {"id":"P05","name":"固定ページ（Contact）","path":"/contact/","must":["header","title","form-placeholder","footer"]},
+  {"id":"P06","name":"LP","path":"/lp/","must":["lp-hero","problem","solution","feature","proof","pricing","faq","final-cta"],"nice":["no-header","no-sidebar"]},
+  {"id":"P07","name":"カテゴリ一覧","path":"/category/ai-ops/","must":["header","breadcrumb","archive-title","card-list","pagination","footer"]},
+  {"id":"P08","name":"タグ一覧","path":"/tag/wordpress/","must":["header","archive-title","card-list","footer"]},
+  {"id":"P09","name":"著者一覧","path":"/author/helixpoc/","must":["header","archive-title","author-profile","card-list","footer"]},
+  {"id":"P10","name":"検索結果","path":"/?s=AI","must":["header","search-form","archive-title","card-list","footer"]},
+  {"id":"P11","name":"404","path":"/no-such-page/","must":["header","404-message","search-form","home-link","footer"]},
+  {"id":"P12","name":"プライバシーポリシー","path":"/privacy-policy/","must":["header","title","body-core","footer"]}
+ ],
+ "body_core_sections": ["見出し h2/h3","段落・強調・リンク","リスト（箇条書き／番号）","画像＋キャプション","引用","表","コード","ボタン","区切り","埋め込み（動画）"]
+}
