@@ -1,7 +1,7 @@
 # THEME-INV-13 レポート — テーマA の未認証 REST エンドポイント
 
 - 対象イシュー: `issues/THEME-INV-13-themeA-rest-ssrf.md`
-- 状態: **コード解析パート完了 / 到達性検証は未実施（PO 承認待ち）**
+- 状態: **コード解析パート完了 / 到達性・情報開示は使い捨て PoC（poc-themeA）で HTTP 実証済み（2026-08-27）**。本番への write（対処適用）は PO 判断が残る。
 - 調査日: 2026-08-26
 - 手段: XServer SSH 読み取り専用（`sed -n` によるソース読み出しのみ）
 - 対象サイト: site-A.example（テーマA 1.4.6・WP 7.0.2）
@@ -14,6 +14,13 @@
 > 独立裏取りがあるのは `post_by_url` の内部ディスパッチ（`evidence/re-themeA-ads.txt` の
 > `new WP_REST_Request('GET','/themeA/post_by_url')` → `rest_do_request`）**のみ**。
 > `external_url` の存在・両者の permission_callback・SSRF 構造は現状**未採取**。
+>
+> **【2026-08-27 追記】使い捨て PoC（poc-themeA、本番非該当）で HTTP 到達性を実証済み**：
+> 両ルートとも未認証で応答（`post_by_url` は 200、`external_url` は 500）。`external_url` は
+> `url` パラメータの値を検証せず `file_get_contents()` へ渡す挙動を確認（**未認証 SSRF 面**）。
+> いずれも `display_errors` 有効時にテーマ絶対パス・行番号・スタックトレースを開示（→ F1 / #21）。
+> 生キャプチャは第三者テーマの攻略手順に相当するため**公開リポには載せず**、
+> ローカル（リポ外）に保持。ここには事実のみ記す。
 > **是正**: Bash/SSH 復旧後に PROGRESS.md 手順 3（`re-themeA-rest.txt` の生採取。読み取り専用）を
 > 最優先で実行し、本文の引用が実ソースと一致することを確定させる。到達性の HTTP 実証は別途 PO 承認。
 
