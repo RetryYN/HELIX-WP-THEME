@@ -18,33 +18,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // 属性を安全に取得する。
-$payment_url = isset( $attributes['paymentUrl'] ) ? (string) $attributes['paymentUrl'] : '';
-$label       = isset( $attributes['label'] )      ? (string) $attributes['label']      : '購入する';
-$note        = isset( $attributes['note'] )        ? (string) $attributes['note']        : '';
+$agent_neo_payment_url = isset( $attributes['paymentUrl'] ) ? (string) $attributes['paymentUrl'] : '';
+$agent_neo_label       = isset( $attributes['label'] )      ? (string) $attributes['label']      : '購入する';
+$agent_neo_note        = isset( $attributes['note'] )        ? (string) $attributes['note']        : '';
 
 // URL が Stripe 許可ドメインでなければ何も出力しない（AC3 / REQ-NF-027）。
-if ( ! agent_neo_core_is_stripe_payment_url( $payment_url ) ) {
+if ( ! agent_neo_core_is_stripe_payment_url( $agent_neo_payment_url ) ) {
 	return;
 }
 
 // label が空の場合は既定文言を使う。
-if ( '' === $label ) {
-	$label = '購入する';
+if ( '' === $agent_neo_label ) {
+	$agent_neo_label = '購入する';
 }
 
 // get_block_wrapper_attributes() で block supports（customClassName 等）を統合する。
-$wrapper_attributes = get_block_wrapper_attributes(
+$agent_neo_wrapper_attributes = get_block_wrapper_attributes(
 	array( 'class' => 'agent-neo-payment' )
 );
 
 ?>
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — get_block_wrapper_attributes() が返す属性文字列。 ?>>
+<div <?php echo $agent_neo_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() が返す属性文字列。 ?>>
 	<a
 		class="agent-neo-payment__button"
-		href="<?php echo esc_url( $payment_url ); ?>"
+		href="<?php echo esc_url( $agent_neo_payment_url ); ?>"
 		rel="noopener nofollow"
-	><?php echo esc_html( $label ); ?></a>
-	<?php if ( '' !== $note ) : ?>
-		<p class="agent-neo-payment__note"><?php echo esc_html( sanitize_text_field( $note ) ); ?></p>
+	><?php echo esc_html( $agent_neo_label ); ?></a>
+	<?php if ( '' !== $agent_neo_note ) : ?>
+		<p class="agent-neo-payment__note"><?php echo esc_html( sanitize_text_field( $agent_neo_note ) ); ?></p>
 	<?php endif; ?>
 </div>
