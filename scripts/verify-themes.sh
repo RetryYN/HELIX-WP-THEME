@@ -75,7 +75,7 @@ echo "==> 3.1 テーマA を有効化"
 wp theme activate "$THEME_A_SLUG" || echo "(失敗してもスキップ)"
 run_and_log "アクティブテーマ" wp theme list --status=active --format=table
 run_and_log "テーマA CPT 一覧 (差分確認)" wp post-type list --format=table
-run_and_log "テーマA post_meta keys (テーマA meta-key pattern)" wp eval '$keys = $GLOBALS["wpdb"]->get_col("SELECT DISTINCT meta_key FROM {$GLOBALS[\"wpdb\"]->postmeta} WHERE meta_key LIKE \"".getenv("THEME_A_META_PREFIX")."%\" LIMIT 50"); print_r($keys);'
+run_and_log "テーマA post_meta keys (テーマA meta-key pattern)" wp eval '$keys = $GLOBALS["wpdb"]->get_col("SELECT DISTINCT meta_key FROM " . $GLOBALS["wpdb"]->postmeta . " WHERE meta_key LIKE \"".getenv("THEME_A_META_PREFIX")."%\" LIMIT 50"); print_r($keys);'
 run_and_log "テーマA オプション (テーマA option pattern)" wp option list --search="${THEME_A_OPTION_PREFIX}*" --format=table
 run_and_log "テーマA theme_mod 設定 数" wp eval '$mods = get_theme_mods(); echo "theme_mods count: " . count($mods) . "\n"; foreach (array_slice(array_keys($mods),0,30) as $k) echo $k . "\n";'
 run_and_log "/?p=1 のレスポンスヘッダ + 一部本文 (テーマA)" curl -sI http://localhost:8086/?p=1
