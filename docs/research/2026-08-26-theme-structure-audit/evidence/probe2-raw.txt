@@ -1,0 +1,88 @@
+===== THEMEA BLOCK NAMESPACE =====
+    308 themeA-blocks/comparechild
+    232 themeA-blocks/designtitle
+    174 themeA-blocks/background
+    154 themeA-blocks/richmenuchild
+     76 themeA-blocks/fullwidth
+     73 themeA-blocks/timeline
+     66 themeA-blocks/timelinechild
+     53 themeA-blocks/postlist
+     52 themeA-blocks/button
+     43 themeA-blocks/richmenu
+     30 themeA-blocks/simplebox
+     24 themeA-blocks/profile
+     22 themeA-blocks/designborder
+     21 themeA-blocks/category
+     20 themeA-blocks/accordionchild
+     19 themeA-blocks/accordion
+     16 themeA-blocks/paidpost
+     13 themeA-blocks/fukidashi
+     12 themeA-blocks/iconbox
+     10 themeA-blocks/compare
+      9 themeA-blocks/tabchild
+      6 themeA-blocks/syntax-hl
+      6 themeA-blocks/blogcard
+      3 themeA-blocks/tab
+      1 themeA-blocks/syntaxhl
+      1 themeA-blocks/slider
+      1 themeA-blocks/postcard
+      1 themeA-blocks/box
+-- where registered --
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/editor/build/index.js
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/customizer/controls/core/class-themeA-demo-import-control.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/include/custom-functions.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/lib/js/tab_switch.js
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/scss/common/_editor.scss
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/scss/object/_fullwidth.scss
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/scss/object/_accordion.scss
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/scss/others/_block-detail-settings.scss
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/scss/block.scss
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/style.css
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/block.css
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/style-footer.css
+-- editor dir --
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/editor/build/index.asset.php
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/editor/build/index.js
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/editor/build/style-index.css
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/editor/.DS_Store
+-- register_block_type any form --
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:731:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:739:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:747:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:755:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:763:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:772:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:781:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:789:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:797:	register_block_type(
+/home/<account>/site-A.example/public_html/wp-content/themes/themeA/functions.php:804:	register_block_type(
+-- registerBlockType in built js --
+===== THEMEA CPT/other forms =====
+===== テーマB namespaces =====
+"themeB/ab-test" "themeB/ab-test-a" "themeB/ab-test-b" "themeB/accordion" "themeB/accordion-item" "themeB/ad-tag" "themeB/balloon" "themeB/banner-link" "themeB/bg-color" "themeB/blog-parts" "themeB/box-menu" "themeB/box-menu-item" "themeB/button" "themeB/cap-block" "themeB/cell-bg" "themeB/clear" "themeB/code-dir" "themeB/code-file" "themeB/column" "themeB/columns" "themeB/dd" "themeB/dl" "themeB/dl-dd" "themeB/dl-dt" "themeB/dt" "themeB/faq" "themeB/faq-item" "themeB/font-size" "themeB/full-wide" "themeB/inline-btn" "themeB/inline-icon" "themeB/inline-tools" "themeB/link-list" "themeB/link-list-item" "themeB/list" "themeB/marker" "themeB/mini-note" "themeB/nowrap" "themeB/post-link" "themeB/post-list" "themeB/restricted-area" "themeB/review" "themeB/rss" "themeB/step" "themeB/step-item" "themeB/style-block" "themeB/tab" "themeB/tab-body" "themeB/text-centered" "themeB/text-color"
+-- テーマB CPT any form --
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/post_type.php:20:		register_post_type(
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/post_type.php:49:		register_post_type(
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/post_type.php:77:		register_post_type(
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/post_type.php:104:		// register_post_type(
+-- blog_parts / lp refs --
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/classes/Data/Default_Settings.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/classes/THEMEB_THEME/Parts/Setting_Field.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/classes/Utility/Get.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/classes/Utility/Parts.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/classes/Meta_User.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block/blog-parts.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block_patterns.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/hooks/admin_display.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/load/check_code.php
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/load/block_assets.php
+     14 'blog_parts'
+     10 'lp'
+-- テーマB patterns --
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block_pattern/page.php:9:register_block_pattern_category(
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block_pattern/page.php:37:register_block_pattern( 'themeB-pattern/media-text-double-card', [
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block_pattern/page.php:60:register_block_pattern(
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block_pattern/page.php:76:// register_block_pattern(
+/home/<account>/site-B.example/public_html/wp-content/themes/themeB/lib/gutenberg/block_pattern/common.php:8:register_block_pattern_category(
+-- THEMEA patterns --

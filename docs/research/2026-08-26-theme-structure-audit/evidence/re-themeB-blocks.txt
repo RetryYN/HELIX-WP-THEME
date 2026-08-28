@@ -1,0 +1,473 @@
+===== gutenberg/register_blocks.php =====
+<?php
+namespace THEMEB_Theme\Gutenberg;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * ブロックカテゴリー追加
+ * // ver5.8.0~: block_categories_all
+ */
+$hookname = \THEMEB_Theme::wpver_is_above( '5.8' ) ? 'block_categories_all' : 'block_categories';
+add_filter( $hookname, __NAMESPACE__ . '\register_themeB_categories', 5 );
+function register_themeB_categories( $categories ) {
+	$my_category = [
+		'slug'  => 'themeB-blocks',  // ブロックカテゴリーのスラッグ
+		'title' => __( 'テーマBブロック', 'themeB' ),   // ブロックカテゴリーの表示名
+		'icon'  => null,
+	];
+	// array_splice( $categories, 3, 0, [ $my_category ] );
+	array_unshift( $categories, $my_category );
+	return $categories;
+}
+
+
+/**
+ * ダイナミックブロックを登録
+ */
+add_action( 'init', __NAMESPACE__ . '\register_themeB_blocks' );
+function register_themeB_blocks() {
+	register_normal_blocks();
+	register_dynamic_blocks();
+}
+
+
+/**
+ * 普通のカスタムブロックの登録
+ */
+function register_normal_blocks() {
+
+	$blocks = [
+		'accordion',
+		'accordion-item',
+		'ab-test-a',
+		'ab-test-b',
+		'banner-link',
+		'box-menu',
+		'box-menu-item',
+		'button',
+		'cap-block',
+		'columns',
+		'column',
+		'dl',
+		'dl-dt',
+		'dl-dd',
+		'faq',
+		'faq-item',
+		'full-wide',
+		'link-list-item',
+		'step',
+		'step-item',
+		'tab',
+		'tab-body',
+	];
+	foreach ( $blocks as $block_name ) {
+		\THEMEB_Theme::register_block( $block_name );
+	}
+
+}
+
+
+/**
+ * ダイナミックブロックの登録
+ */
+function register_dynamic_blocks() {
+	$dynamic_blocks = [
+		'ab-test',
+		'ad-tag',
+		'balloon',
+		'blog-parts',
+		'link-list',
+		'post-list',
+		'post-link',
+		'restricted-area',
+		'review',
+		'rss',
+	];
+	foreach ( $dynamic_blocks as $block_name ) {
+		require_once __DIR__ . "/block/{$block_name}.php";
+	}
+}
+===== Pre_Parse_Blocks.php =====
+<?php
+namespace THEMEB_Theme;
+
+use \THEMEB_Theme as テーマB;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class Pre_Parse_Blocks {
+
+	public static $sidebar_blocks = [];
+	public static $dump           = [];
+
+	/**
+	 * check blocks
+	 */
+	public static function init() {
+
+		// if ( ! ( is_singular( 'post' ) || is_page() ) ) return;
+
+		// ブロックチェック用フィルター追加
+		add_filter( 'render_block', [ __CLASS__, 'render_check' ], 10, 2 );
+
+		// メインコンテンツをパースしてチェック
+		if ( is_single() || is_page() || ( is_home() && ! is_front_page() ) ) {
+			$post = get_post( get_queried_object_id() );
+			if ( $post ) {
+				self::parse_content( $post->post_content );
+			}
+		} elseif ( \THEMEB_Theme::is_term() ) {
+			$parts_id = get_term_meta( get_queried_object_id(), 'themeB_term_meta_display_parts', 1 );
+			$parts    = $parts_id ? get_post( $parts_id ) : '';
+			if ( $parts ) {
+				self::parse_content( $parts->post_content );
+			}
+		}
+
+		// ウィジェットのチェック
+		self::parse_widgets();
+
+		// ブロックチェック用フィルター削除
+		remove_filter( 'render_block', [ __CLASS__, 'render_check' ], 10 );
+
+		// その他ページ種別等によってセットするもの
+		if ( \THEMEB_Theme::is_show_pickup_banner() ) {
+			\THEMEB_Theme::$used_blocks['themeB/banner-link'] = true;
+		}
+		if ( is_home() || is_archive() ) {
+			\THEMEB_Theme::$used_blocks['themeB/tab'] = true;
+			// \THEMEB_Theme::$used_blocks['themeB/post-list'] = true;
+		}
+	}
+
+	/**
+	 * check parse_content
+	 */
+	public static function parse_content( $content ) {
+
+		// $start = microtime( true );
+
+		// do_shortcodeでブログパーツなどを展開させ、'rende_block' フックでチェック。
+		foreach ( parse_blocks( do_shortcode( $content ) ) as $block ) {
+			self::check_parsed_block( $block );
+		}
+
+		// $end = microtime( true );
+		// var_dump( $end - $start );
+
+		// コンテンツの文字列を直接チェック
+		self::check_content_str( $content );
+	}
+
+	/**
+	 * render_checkフック時にブロックを記録する
+	 */
+	public static function render_check( $block_content, $block ) {
+		$block_name = $block['blockName'] ?? '';
+		if ( ! $block_name ) return $block_content;
+
+		self::push_used_blocks( $block_name, \THEMEB_Theme::$used_blocks );
+		return $block_content;
+	}
+
+
+	/**
+	 * サイドバー内のrender_checkフック時にブロックを記録する
+	 * memo: キャッシュもできるように別処理にしている
+	 */
+	public static function siderbar_render_check( $block_content, $block ) {
+		$block_name = $block['blockName'] ?? '';
+		if ( ! $block_name ) return $block_content;
+
+		self::push_used_blocks( $block_name, self::$sidebar_blocks );
+		return $block_content;
+	}
+
+
+	/**
+	 * 使用されたブロックをリストに追加
+	 */
+	public static function check_parsed_block( $block ) {
+		$block_name = $block['blockName'] ?? '';
+		if ( ! $block_name ) return;
+
+		self::push_used_blocks( $block_name, \THEMEB_Theme::$used_blocks );
+
+		// インナーブロックにも同じ処理を。
+		if ( ! empty( $block['innerBlocks'] ) ) {
+			foreach ( $block['innerBlocks'] as $innerBlock ) {
+				self::check_parsed_block( $innerBlock );
+			}
+		}
+
+		// ブログパーツ・同期パターンは展開して中身チェック
+		$parts_id = 0;
+		if ( 'themeB/blog-parts' === $block_name ) {
+			$parts_id = $block['attrs']['partsID'] ?? 0;
+		} elseif ( 'core/block' === $block_name ) {
+			$parts_id = $block['attrs']['ref'] ?? 0;
+		}
+
+		$parts = $parts_id ? get_post( $parts_id ) : '';
+		if ( $parts ) {
+			self::parse_content( $parts->post_content );
+		}
+	}
+
+
+
+	/**
+	 * 使用されたブロックをリストに追加
+	 */
+	public static function push_used_blocks( $block_name, &$list ) {
+
+		// すでにリストに追加されていればreturn
+		if ( isset( $list[ $block_name ] ) ) return;
+
+		$list[ $block_name ] = true;
+
+		// parse_blocks() だけだと separate なコアCSSはフッターで読み込まれてしまうのでここでキューに追加
+		if ( false !== strpos( $block_name, 'core/' ) ) {
+			$core_name = str_replace( 'core/', '', $block_name );
+			wp_enqueue_style( "wp-block-{$core_name}" );
+			// wp_deregister_style で特定のコアブロックCSSの読み込み解除も可
+
+			// その他、共通パーツ等
+			if ( 'categories' !== $core_name || 'archives' !== $core_name ) {
+				$list['widget/dropdown'] = true;
+				$list['widget/list']     = true;
+			}
+		}
+	}
+
+
+	/**
+	 * ウィジェットのチェック
+	 */
+	public static function parse_widgets() {
+		// ウィジェットごと
+		add_action( 'dynamic_sidebar', [ __CLASS__, 'check_dynamic_sidebar' ] );
+
+		// add_filter( 'pre_do_shortcode_tag', [ __CLASS__, 'pre_check_do_shortcode' ], 10, 2 );
+		add_filter( 'widget_text', [ __CLASS__, 'check_widget_content_str' ], 1 );
+		add_filter( 'widget_text_content', [ __CLASS__, 'check_widget_content_str' ], 1 );
+
+		// サイドバーのチェック
+		if ( \THEMEB_Theme::is_show_sidebar() ) {
+			self::parse_sidebar();
+		}
+
+		// ページ種別ごとのウィジェットチェック
+		if ( \THEMEB_Theme::is_top() ) {
+			self::parse_front_widget();
+		} elseif ( is_page() || is_home() ) {
+			self::parse_page_widget();
+		} elseif ( is_single() ) {
+			self::parse_single_widget();
+		}
+
+		// その他のウィジェットチェック
+		self::parse_other_area();
+
+		// remove_filter( 'pre_do_shortcode_tag', [ __CLASS__, 'pre_check_do_shortcode' ], 10, 2 );
+		remove_filter( 'widget_text', [ __CLASS__, 'check_widget_content_str' ], 1 );
+		remove_filter( 'widget_text_content', [ __CLASS__, 'check_widget_content_str' ], 1 );
+	}
+
+
+	/**
+	 * サイドバーのチェック
+	 */
+	public static function parse_sidebar() {
+
+		// キャッシュ
+		// $chached_data = '';
+		// if ( $chached_data && is_array( $chached_data ) ) {
+		// 	\THEMEB_Theme::$used_blocks = array_merge( \THEMEB_Theme::$used_blocks, $chached_data );
+		// 	return;
+		// }
+
+		// 共通のチェック処理とは別に登録
+		remove_filter( 'render_block', [ __CLASS__, 'render_check' ], 10 );
+		add_filter( 'render_block', [ __CLASS__, 'siderbar_render_check' ], 10, 2 );
+
+		ob_start();
+		if ( \THEMEB_Theme::is_show_sidebar() ) {
+			\THEMEB_Theme::get_parts( 'parts/sidebar_content' );
+		}
+		ob_clean();
+		// $sidebar = ob_get_clean();
+
+		// 共通のチェック処理を再登録
+		remove_filter( 'render_block', [ __CLASS__, 'siderbar_render_check' ], 10, 2 );
+		add_filter( 'render_block', [ __CLASS__, 'render_check' ], 10, 2 );
+
+		// echo '<pre style="background:#e8f3ea;margin:20px;padding:20px;">';
+		// var_dump( self::$sidebar_blocks );
+		// echo '</pre>';
+
+		// マージ
+		\THEMEB_Theme::$used_blocks = array_merge( \THEMEB_Theme::$used_blocks, self::$sidebar_blocks );
+	}
+
+
+	/**
+	 *  フロントページ専用ウィジェットのブロックチェック
+	 */
+	public static function parse_front_widget() {
+		ob_start();
+		\THEMEB_Theme::outuput_widgets( 'front_top' );
+		\THEMEB_Theme::outuput_widgets( 'front_bottom' );
+		ob_clean();
+	}
+
+
+	/**
+	 * 投稿ページ専用ウィジェットのブロックチェック
+	 */
+	public static function parse_single_widget() {
+		ob_start();
+		\THEMEB_Theme::outuput_cta();
+		\THEMEB_Theme::outuput_content_widget( 'single', 'top' );
+		\THEMEB_Theme::outuput_content_widget( 'single', 'bottom' );
+		\THEMEB_Theme::outuput_widgets( 'before_related' );
+		\THEMEB_Theme::outuput_widgets( 'after_related' );
+		ob_clean();
+	}
+
+
+	/**
+	 * 固定ページ専用ウィジェットのブロックチェック
+	 */
+	public static function parse_page_widget() {
+		ob_start();
+		\THEMEB_Theme::outuput_content_widget( 'page', 'top' );
+		\THEMEB_Theme::outuput_content_widget( 'page', 'bottom' );
+		ob_clean();
+	}
+
+	/**
+	 * その他のウィジェットのチェック
+	 */
+	public static function parse_other_area() {
+		ob_start();
+		\THEMEB_Theme::outuput_widgets( 'footer_sp' );
+		\THEMEB_Theme::outuput_widgets( 'footer_box1' );
+		\THEMEB_Theme::outuput_widgets( 'footer_box2' );
+		\THEMEB_Theme::outuput_widgets( 'footer_box3' );
+		\THEMEB_Theme::outuput_widgets( 'before_footer' );
+		\THEMEB_Theme::outuput_widgets( 'sp_menu_bottom' );
+		\THEMEB_Theme::outuput_widgets( 'head_box' );
+		ob_clean();
+	}
+
+
+	/**
+	 * ショートコードのチェック
+	 */
+	// public static function pre_check_do_shortcode( $return, $tag ) {
+	// 	if ( 'ふきだし' === $tag || 'speech_balloon' === $tag ) {
+	// 		\THEMEB_Theme::$used_blocks['themeB/balloon'] = true;
+	// 	}
+	// 	return $return;
+	// }
+
+
+	/**
+	 * 文字列チェック
+	 */
+	public static function check_content_str( $content ) {
+
+		if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/ad-tag'] ) ) {
+			if ( false !== strpos( $content, '[ad_tag' ) ) {
+				\THEMEB_Theme::$used_blocks['themeB/ad-tag'] = true;
+			}
+		}
+
+		if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/balloon'] ) ) {
+			if ( false !== strpos( $content, '[ふきだし' ) || false !== strpos( $content, '[speech_balloon' ) ) {
+				\THEMEB_Theme::$used_blocks['themeB/balloon'] = true;
+			}
+		}
+		if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/cap-block'] ) ) {
+			if ( false !== strpos( $content, 'cap_box' ) ) {
+				\THEMEB_Theme::$used_blocks['themeB/cap-block'] = true;
+			}
+		}
+		if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/full-wide'] ) ) {
+			if ( false !== strpos( $content, '[full_wide_content' ) ) {
+				\THEMEB_Theme::$used_blocks['themeB/full-wide'] = true;
+			}
+		}
+		if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/banner-link'] ) ) {
+			if ( false !== strpos( $content, '[カスタムバナー' ) || false !== strpos( $content, '[custom_banner' ) ) {
+				\THEMEB_Theme::$used_blocks['themeB/banner-link'] = true;
+			}
+		}
+		// if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/post-list'] ) ) {
+		// 	if ( false !== strpos( $content, '[post_list' ) ) {
+		// 		\THEMEB_Theme::$used_blocks['themeB/post-list'] = true;
+		// 	}
+		// }
+		if ( ! isset( \THEMEB_Theme::$used_blocks['themeB/table'] ) ) {
+			if ( false !== strpos( $content, '<table' ) ) {
+				\THEMEB_Theme::$used_blocks['core/table'] = true;
+			}
+		}
+
+	}
+
+
+	/**
+	 * 文字列チェック
+	 */
+	public static function check_widget_content_str( $content ) {
+		self::check_content_str( $content );
+		return $content;
+	}
+
+
+	/**
+	 * check_dynamic_sidebar
+	 */
+	public static function check_dynamic_sidebar( $widget ) {
+		$classname = $widget['classname'] ?? '';
+		// var_dump( $classname );
+		// widget_categories / widget_archive
+
+		if ( 'widget_calendar' === $classname ) {
+			\THEMEB_Theme::$used_blocks['core/calendar'] = true;
+		} elseif ( 'widget_tag_cloud' === $classname ) {
+			\THEMEB_Theme::$used_blocks['core/tag-cloud'] = true;
+		} elseif ( 'widget_recent_entries' === $classname ) {
+			\THEMEB_Theme::$used_blocks['core/latest-posts'] = true;
+		} elseif ( 'widget_categories' === $classname ) {
+			\THEMEB_Theme::$used_blocks['core/categories'] = true;
+			\THEMEB_Theme::$used_blocks['widget/dropdown'] = true;
+			\THEMEB_Theme::$used_blocks['widget/list']     = true;
+		} elseif ( 'widget_archive' === $classname ) {
+			\THEMEB_Theme::$used_blocks['core/archives']   = true;
+			\THEMEB_Theme::$used_blocks['widget/dropdown'] = true;
+			\THEMEB_Theme::$used_blocks['widget/list']     = true;
+		} elseif ( 'widget_rss' === $classname ) {
+			\THEMEB_Theme::$used_blocks['widget/list'] = true;
+			\THEMEB_Theme::$used_blocks['widget/rss']  = true;
+		} elseif ( 'widget_pages' === $classname || 'widget_nav_menu' === $classname ) {
+			\THEMEB_Theme::$used_blocks['widget/list'] = true;
+		} elseif ( 'widget_themeB_prof_widget' === $classname ) {
+			\THEMEB_Theme::$used_blocks['widget/profile-box'] = true;
+		}
+
+		// elseif ( 'widget_themeB_new_posts' === $classname || 'widget_themeB_popular_posts' === $classname ) {
+		// 	\THEMEB_Theme::$used_blocks['themeB/post-list'] = true;
+		// }
+
+		// elseif ( 'widget_search' === $classname ) {
+		// 	\THEMEB_Theme::$used_blocks['widget/search'] = true;
+		// }
+		// widget_meta
+	}
+
+
+}

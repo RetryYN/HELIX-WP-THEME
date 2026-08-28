@@ -1,0 +1,302 @@
+===== THEMEA register_block_type block (functions.php 720-1000) =====
+		'profile_image'       => themeA__profile_image_url(),
+		'profile_name'       => themeA__profile_name(),
+		'profile_job'       => themeA__profile_job(),
+		'profile_introduction'       => themeA__profile_introduction(),
+		'profile_button_link'       => themeA__profile_button_link(),
+		'profile_label_text'       => themeA__profile_label_text(),
+		'profile_button_sns_display'       => themeA__sns_follow_display_proile(),
+		'profile_sns_color'       => themeA__profile_sns_color(),
+		'sns_follow_twitter'       => themeA__tw_url(),
+		'sns_follow_facebook'       => themeA__fb_url(),
+		'sns_follow_youtube'       => themeA__youtube_url(),
+		'sns_follow_instagram'       => themeA__insta_url(),
+		'sns_follow_line'       => themeA__line_url(),
+		'contact_url'       => themeA__contact_url(),
+		'fukidashi_panel_link' => $fukidashi_panel_link,
+		'iconbox_panel_link' => $iconbox_panel_link,
+		'articleColumn' => themeA__post_column_style(),
+		'thumbnailOriginalUsed' => themeA__thumbnail_original_used(),
+		'permalink_structure' => $permalink_structure,
+		'page_thanks_id' => $page_thanks_id,
+		'max_pages_array' => $max_pages_array,
+	);
+	wp_localize_script('themeA-blocks-script', 'THEMEA_VAR', $themeA_var);
+	$style_css = '/block.css';
+	wp_register_style(
+		'themeA-blocks-editor-style',
+		get_template_directory_uri() . $style_css,
+		array(),
+		filemtime("$dir/$style_css")
+	);
+
+	register_block_type(
+		'themeA-blocks/postcard',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_post_card_dynamic_render_callback',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/postlist',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_post_list_dynamic_render_callback',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/paidpost',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_paidpost_dynamic_render_callback',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/designtitle',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/slider',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_slider_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/button',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_button_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/syntax-hl',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/simplebox',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/richmenu',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/richmenuchild',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/designborder',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/fukidashi',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/iconbox',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/fullwidth',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/blogcard',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_blog_card_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/category',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+			'render_callback' => 'themeA_category_dynamic_render_callback',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/accordion',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/accordionchild',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/compare',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/comparechild',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/tab',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+	register_block_type(
+		'themeA-blocks/tabchild',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/timeline',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/timelinechild',
+		array(
+			'editor_script'   => 'themeA-blocks-script',
+			'editor_style'    => 'themeA-blocks-editor-style',
+		)
+	);
+
+	register_block_type(
+		'themeA-blocks/background',
+		array(
+			'editor_script' => 'themeA-blocks-script',
+			'editor_style'  => 'themeA-blocks-editor-style',
+		)
+	);
+
+
+	register_block_style(
+		'core/list',
+		array(
+			'name' => 'themeA-checkmark',
+			'label' => __('チェック１'),
+			'style_handle' => 'themeA-checkmark',
+		)
+	);
+
+	register_block_style(
+		'core/list',
+		array(
+			'name' => 'themeA-checkmark-square',
+			'label' => __('チェック２'),
+			'style_handle' => 'themeA-checkmark-square',
+		)
+	);
+}
+add_action('init', 'create_block_themeA_blocks_block_init');
+
+//管理画面でoption値保存時にtipsを表示させる
+function themeA_save_settings_callback()
+{
+	if (isset($_GET['settings-updated']) && $_GET['settings-updated']) {
+		$_SESSION['settings_updated'] = true;
+		themeA_show_saved_message();
+	} elseif (isset($_SESSION['settings_updated'])) {
+		unset($_SESSION['settings_updated']);
+	}
+}
+
+function themeA_show_saved_message()
+{
+	if (isset($_SESSION['settings_updated']) && $_SESSION['settings_updated']) {
+?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php _e('設定を保存しました。', 'my-text-domain'); ?></p>
+		</div>
+<?php
+	}
+}
+
+/**
+ * 記事内でページネーションを表示する際、通常ではページネーションのリンク先がページのURLになるが、
+ * /pages/2/などのURLになるようにする
+ */
+add_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
+function themeA_disable_redirect_canonical($redirect_url)
+{
+	$redirect_url = false;
+	return $redirect_url;
+}
+
+function themeA_init_session_start()
+{
+	if (session_status() !== PHP_SESSION_ACTIVE) {
+		session_start();
+		session_regenerate_id();
+	}
+}
+add_action('template_redirect', 'themeA_init_session_start');
+
+//テーマアップデート
+require 'theme-update-checker.php';
+$example_update_checker = new ThemeUpdateChecker(
+	'themeA',
+	'https://themeA-update.vendor-a.example/themeA/update.json'
+);
+===== テーマB post_type.php =====
