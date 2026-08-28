@@ -23,7 +23,7 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 <div class="wp-block-group alignfull an-section an-section--split" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0","top":"0"}}}} -->
 <div class="wp-block-columns alignfull"><!-- wp:column {"width":"41.66%"} -->
 <div class="wp-block-column" style="flex-basis:41.66%"><!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":0,"minHeight":60,"minHeightUnit":"vh","className":"an-split-image","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
-<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"placeholder":"タイトルを入力…","style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
+<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
 <p class="has-text-align-center has-large-font-size"></p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:cover --></div>
@@ -69,7 +69,7 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 
 <!-- wp:column {"width":"41.66%"} -->
 <div class="wp-block-column" style="flex-basis:41.66%"><!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":30,"overlayColor":"accent","isUserOverlayColor":true,"minHeight":60,"minHeightUnit":"vh","className":"an-split-image","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
-<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-accent-background-color has-background-dim-30 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"placeholder":"タイトルを入力…","style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
+<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-accent-background-color has-background-dim-30 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
 <p class="has-text-align-center has-large-font-size"></p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:cover --></div>
