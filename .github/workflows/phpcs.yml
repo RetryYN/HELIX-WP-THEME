@@ -13,7 +13,6 @@ name: PHPCS / WPCS lint
 # 違反が 1 件でも存在する場合 exit 1 → CI ブロック。
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '0 3 * * 1'
   push:
