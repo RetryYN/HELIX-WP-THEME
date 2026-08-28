@@ -29,5 +29,5 @@
 
 1. PO が §2 の選択肢を決める（G0.5）。
 2. 決定に従い L1 を改定（REQ-F-016/037 の改定、共有パーツ・破壊域停止の要求 ID 新設、ACC 書き換え）。
-3. L4 `ui-standard` / L5 `L5-visual-design.md` §0.3 プリセット・§2.3 レイアウトパターンに設計として書く（現在 §2.3 は空欄）。
-4. PoC 成果（PR #38/#39）は証跡であり実装ではない。棚卸しは `docs/design/addenda/L3-A5-poc-pattern-disposition.md`。
+3. L2 画面設計 → L3 要件（FR/AC）→ L4 → L5 の順に、各層のレビュー通過後に次へ進む。
+4. PoC 成果（PR #38/#39）は証跡であり実装ではない。分類は `docs/design/addenda/L3-A5-poc-pattern-disposition.md`（§5 の工程を一層ずつ通す。棚卸しから設計へ直接進まない）。
