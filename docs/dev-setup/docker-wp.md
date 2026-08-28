@@ -2,6 +2,10 @@
 
 AGENT NEO テーマ・移行プラグイン・WP CLI 拡張を検証する Docker 環境。
 
+## 第三者テーマの mount と検証スクリプトの設定
+
+`docker-compose.yml` の第三者テーマ mount と `scripts/verify-themes.sh` は実スラッグ・実パスを持たない。`.env.example` を `.env` にコピーし、`THEME_A_SLUG` / `THEME_B_SLUG` / `*_DIR` を自分の環境の値にする（`.env` は gitignore）。`verify-themes.sh` は `THEME_A_SLUG` `THEME_B_SLUG` 未設定なら停止する。
+
 ## 構成
 
 | コンポーネント | バージョン | ポート | 用途 |
@@ -25,7 +29,7 @@ seo-tool-connector は隣接ディレクトリから読み取り専用でマウ�
 
 ## Linux 環境での mount path 修正 (2026-05-20 追記)
 
-`docker-compose.yml` の mount path は Windows ローカル開発想定 (`C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO-v2\wordpress-plugin\seo-tool-connector`) で記述されている。Linux 環境 (= VPS / Docker Linux host) で起動する場合、以下の path 調整が必要。
+`docker-compose.yml` の mount path は Windows ローカル開発想定 (`<local-path>\seo-tool-v2-docs\Automation SEO-v2\wordpress-plugin\seo-tool-connector`) で記述されている。Linux 環境 (= VPS / Docker Linux host) で起動する場合、以下の path 調整が必要。
 
 ### 想定 vs Linux 実環境
 
