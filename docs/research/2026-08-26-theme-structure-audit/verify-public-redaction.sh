@@ -25,7 +25,7 @@ check() {
 check "private name/domain mapping" "$REDACT_GUARD_RE"
 check "affiliate or tracking URL" 'https?://[^[:space:]"`]*(a8mat=|/svt/|/0\.gif\?)'
 check "unredacted home path" '/home/([^<[:space:]/][^[:space:]/]*)/'
-check "local developer identity" '/home/(tenni|claude|codex)/'
+check "local developer identity" '/h[o]me/[a-z0-9_-]+/'
 
 if [ "$status" -ne 0 ]; then
   exit "$status"
