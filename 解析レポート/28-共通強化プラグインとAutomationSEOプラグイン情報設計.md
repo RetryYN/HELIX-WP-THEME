@@ -2,7 +2,7 @@
 
 ## 結論
 
-ThemeB/テーマA/AFFINGER/Cocoon/Lightningを横断して強化するなら、作るべきものは「各テーマを直接改造する専用アダプタ群」ではなく、**Automation SEO Theme Bridge Plugin**である。
+ThemeB/テーマA/テーマC/テーマD/テーマEを横断して強化するなら、作るべきものは「各テーマを直接改造する専用アダプタ群」ではなく、**Automation SEO Theme Bridge Plugin**である。
 
 このプラグインの役割は、テーマの見た目を置き換えることではない。既存テーマのDOM、SEOメタ、CTA、LP/記事構造、計測状態、外部プラグイン依存を読み取り、Automation SEOが安全に診断・提案・移行判断できる**機械可読な契約層**を作ることにある。
 
@@ -14,7 +14,7 @@ AGENT NEOではさらに一歩進めて、Theme Bridgeが発見する情報を�
 |---|---|---|
 | Theme Capability Scanner | 現在テーマ、親/子テーマ、FSE対応、SEO出力元、LP/CTA/計測対応、速度リスクを診断 | 全テーマ |
 | Section/CTA ID Layer | 見出しやCSS selector依存を補い、AIと計測が使える `section_id` / `cta_id` を付与 | 全テーマ |
-| SEO Meta Normalizer | テーマ固有メタ、Yoast/Rank Math等、テーマA型テーマ内SEOを共通形式へ正規化 | ThemeB/テーマA/AFFINGER/Cocoon |
+| SEO Meta Normalizer | テーマ固有メタ、Yoast/Rank Math等、テーマA型テーマ内SEOを共通形式へ正規化 | ThemeB/テーマA/テーマC/テーマD |
 | CTA/Offer Registry | ASPリンク、資料DL、外部フォーム、問い合わせCTAを `offer_id` と紐付ける | 個人/法人両方 |
 | Tracking Context v2 | `page_type`、`section_type`、`cta_ids`、`offer_ids`、`selector_confidence` をAutomation SEOへ送る | 全テーマ |
 | Plugin Conflict Detector | SEO重複、schema重複、cache/minify破壊、GA/GTM二重計測を検出 | 全テーマ |
@@ -76,9 +76,9 @@ AGENT NEOではさらに一歩進めて、Theme Bridgeが発見する情報を�
 |---|---|---|
 | ThemeB | 速度基盤を崩さず、LP/再利用パーツ/広告/Entity GraphをAutomation SEOの診断対象にできる | SEOメタ主導権が外部SEOプラグイン寄りになりやすく、書き込みは慎重にすべき |
 | テーマA | テーマ内SEOメタを正規化し、canonical/noindex/OGP/JSON-LDをAutomation SEOへ渡しやすい | classic template、global CSS、jQuery、CDN前提は速度・AI編集の制約になる |
-| AFFINGER | 収益化/CTA/タグ/A-B系の価値を共通CTA/Offer Registryに吸収できる | 設定が複雑で、AIが安全に触るにはcapability mapが必須 |
-| Cocoon | 無料導入口としてSEO/広告/ランキング/高速化状態を診断し、AGENT NEO移行提案に使える | 高額課金への転換には診断結果と改善差分の見せ方が必要 |
-| Lightning | 法人HP/LPのCTA、フォーム、事例、価格、資料DLをlead trackingに接続しやすい | LP改善/A-B/AI運用の訴求は標準では弱い |
+| テーマC | 収益化/CTA/タグ/A-B系の価値を共通CTA/Offer Registryに吸収できる | 設定が複雑で、AIが安全に触るにはcapability mapが必須 |
+| テーマD | 無料導入口としてSEO/広告/ランキング/高速化状態を診断し、AGENT NEO移行提案に使える | 高額課金への転換には診断結果と改善差分の見せ方が必要 |
+| テーマE | 法人HP/LPのCTA、フォーム、事例、価格、資料DLをlead trackingに接続しやすい | LP改善/A-B/AI運用の訴求は標準では弱い |
 
 ## 6. Automation SEO側とAGENT NEO側の責務分離
 

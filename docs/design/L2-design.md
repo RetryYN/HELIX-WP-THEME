@@ -820,7 +820,7 @@ AGENT NEOは、ThemeB/テーマAを直接AI運用するための深い個別ア�
 
 > **注記（ADR-024 / 2026-06-18 確定）**: **REQ-F-043 Open Editor Bridge Plugin（外部AI write受口）は廃止**。AI 操作経路は Automation SEO（aseo/v1）とテーマ自身（agent-neo/v1）のみとする。本節が扱う「Automation SEO Theme Bridge Plugin」（ADR-019）は既存テーマの診断・正規化・移行入口に限定する別概念であり、ADR-019 は存続する。
 
-既存テーマを横断的に強化するAutomation SEO側プラグインは、テーマを直接改造するものではなく、診断・正規化・計測・移行入口の契約層として扱う。ThemeB/テーマA/AFFINGER/Cocoon/Lightningでは原則preview-only、AGENT NEOではCore PluginがdryRun/apply/rollbackを持つ正規write targetになる。
+既存テーマを横断的に強化するAutomation SEO側プラグインは、テーマを直接改造するものではなく、診断・正規化・計測・移行入口の契約層として扱う。ThemeB/テーマA/テーマC/テーマD/テーマEでは原則preview-only、AGENT NEOではCore PluginがdryRun/apply/rollbackを持つ正規write targetになる。
 
 | 追加ID | 種別 | 内容 |
 |---|---|---|

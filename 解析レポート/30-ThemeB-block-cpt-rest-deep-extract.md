@@ -1,6 +1,6 @@
 ﻿# ThemeB 親テーマ 完全解析レポート
 
-**解析対象**: c:\Users\tenni\Desktop\AGENT NEO\themeB-2.16.0\themeB\
+**解析対象**: <local-path>\Desktop\AGENT NEO\themeB-2.16.0\themeB\
 **生成日**: 2026-04-30
 **バージョン**: ThemeB 2.16.0
 

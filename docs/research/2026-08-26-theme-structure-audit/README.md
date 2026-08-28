@@ -20,7 +20,6 @@
 | `PROGRESS.md` | 消化状況・承認待ち項目・ブロッカー |
 | `evidence/` | サーバー調査の生出力（raw） |
 
-閲覧用ページ: https://claude.ai/code/artifact/beae459c-4555-485d-88f1-cd23423660b6
 
 ## 前提と制約
 

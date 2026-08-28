@@ -2,7 +2,7 @@
 
 ## 概要
 
-`migration-plugin` は既存 WordPress サイト（ThemeB / Cocoon / AFFINGER / JIN / Lightning を主要対象）から AGENT NEO の標準構造へコンテンツを移行するプラグインの機能要件を定義する。Plan A（REST 機械変換）と Plan B（AI フル再構築）の2プランを提供し、プレビュー・確認・適用・ロールバックの4ステップを強制する。
+`migration-plugin` は既存 WordPress サイト（ThemeB / テーマD / テーマC / テーマA旧版 / テーマE を主要対象）から AGENT NEO の標準構造へコンテンツを移行するプラグインの機能要件を定義する。Plan A（REST 機械変換）と Plan B（AI フル再構築）の2プランを提供し、プレビュー・確認・適用・ロールバックの4ステップを強制する。
 
 Automation SEO の LLMRouter と連携し、Plan B では AI によるセクション再設計と blueprint 生成を行う。移行プラグイン単体では診断・プレビューのみを提供し、apply 操作は AGENT NEO Companion Plugin を必要とする。
 
@@ -17,10 +17,10 @@ Automation SEO の LLMRouter と連携し、Plan B では AI によるセクシ�
 | テーマ | 主な移行難易度 | 特記事項 |
 |---|---|---|
 | ThemeB | 中 | `lp` CPT・ブログパーツ・再利用パーツの変換が必要。REST あり |
-| Cocoon | 低〜中 | 無料テーマのため構造がシンプル。section_id 付与が主作業 |
-| AFFINGER | 中〜高 | 設定が複雑で capability map が必要。CTA/shortcode 変換が多い |
-| JIN / テーマA | 中 | テーマ内 SEO メタの正規化が必要。classic template 前提 |
-| Lightning | 中 | 法人 HP/LP・フォーム・事例ページの CTA/section 変換が必要 |
+| テーマD | 低〜中 | 無料テーマのため構造がシンプル。section_id 付与が主作業 |
+| テーマC | 中〜高 | 設定が複雑で capability map が必要。CTA/shortcode 変換が多い |
+| テーマA旧版 / テーマA | 中 | テーマ内 SEO メタの正規化が必要。classic template 前提 |
+| テーマE | 中 | 法人 HP/LP・フォーム・事例ページの CTA/section 変換が必要 |
 
 ## 詳細要件
 
@@ -34,7 +34,7 @@ Automation SEO の LLMRouter と連携し、Plan B では AI によるセクシ�
 | MF-006 | apply 実行 | プレビュー確認後に「適用する」ボタンで AGENT NEO Companion Plugin の `POST /jobs` を呼び、移行ジョブを非同期実行する。apply は AGENT NEO がある場合のみ有効 | P1 | REQ-F-008 |
 | MF-007 | ロールバック | apply 前の状態を rollback point として保存し、`POST /rollback/{id}` で元のコンテンツ構造に戻せる。ロールバック対象範囲（全体/ページ別）を選択できる | P1 | REQ-F-008 |
 | MF-008 | 進捗表示 | 移行ジョブの進捗（extract/transform/preview/apply の各ステップ）・処理済み件数・エラー件数をリアルタイムで表示する | P1 | REQ-F-008 |
-| MF-009 | 検証ケース順序 | ThemeB → Cocoon → AFFINGER → JIN → Lightning の順序で移行シナリオを検証し、テーマ別の変換品質マトリクスを作成する | P1 | REQ-F-008 |
+| MF-009 | 検証ケース順序 | ThemeB → テーマD → テーマC → テーマA旧版 → テーマE の順序で移行シナリオを検証し、テーマ別の変換品質マトリクスを作成する | P1 | REQ-F-008 |
 | MF-010 | SEO メタ正規化 | 移行元テーマの SEO メタ（Yoast/Rank Math/テーマ内 SEO）を SEO Meta Normalizer で正規化し、AGENT NEO SEO Core 形式に変換する | P1 | REQ-F-007, REQ-F-008 |
 | MF-011 | CTA/Offer 推定 | 移行元ページのリンク・ボタン・shortcode から CTA を推定し、`cta_id` と `offer_id` を付与する。confidence スコアを表示し、低スコアは manual review をマークする | P1 | REQ-F-008 |
 | MF-012 | 単体動作モード | AGENT NEO Theme/Companion Plugin がない環境でも診断・抽出・プレビューが実行できる。apply ボタンは「AGENT NEO が必要」と表示する | P1 | REQ-F-008 |
@@ -43,7 +43,7 @@ Automation SEO の LLMRouter と連携し、Plan B では AI によるセクシ�
 
 ## 補足・設計指針
 
-**ThemeB → Cocoon → AFFINGER → JIN → Lightning の検証順序の意味**: ThemeB は REST API と CPT を持つため変換候補が豊富で最初に検証しやすい。Cocoon は構造がシンプルでベースラインの確立に適している。AFFINGER/JIN は設定の複雑さの検証。Lightning は法人 LP 構造の変換検証に使う。
+**ThemeB → テーマD → テーマC → テーマA旧版 → テーマE の検証順序の意味**: ThemeB は REST API と CPT を持つため変換候補が豊富で最初に検証しやすい。テーマD は構造がシンプルでベースラインの確立に適している。テーマC/テーマA旧版 は設定の複雑さの検証。テーマE は法人 LP 構造の変換検証に使う。
 
 **Plan A と Plan B の判断基準**: ページの目的・元構造の整理度・予算・スピードによって選択する。Plan A は変換率が高く高速。Plan B は AI 再設計が入るため時間とコストがかかるが、AGENT NEO の LP/HP 標準構造に最適化される。
 

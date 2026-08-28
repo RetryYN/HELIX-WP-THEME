@@ -229,7 +229,7 @@ AGENT NEO はこの自律ループの**実行基盤**を提供。実際の「最
 
 #### 競合との差別化
 
-| | ThemeB / テーマA / AFFINGER | AGENT NEO |
+| | ThemeB / テーマA / テーマC | AGENT NEO |
 |---|---|---|
 | AI で記事を書ける | △（外部プラグイン経由） | ✓（Automation SEO 連携） |
 | **block 単位の AI 編集** | ✗ | **✓** |
@@ -242,7 +242,7 @@ AGENT NEO はこの自律ループの**実行基盤**を提供。実際の「最
 
 ### 1.4 AI フリーフォーム HTML/CSS ブロック（固定パーツ拡充戦略からの脱却）
 
-テーマA/AFFINGER 路線の「固定パーツをひたすら増やす」戦略は時代遅れ。AI が任意の HTML/CSS を生成できる現代では、**「テーマは安全な canvas を提供、AI が最適なパーツを毎回生成」** が正解。
+テーマA/テーマC 路線の「固定パーツをひたすら増やす」戦略は時代遅れ。AI が任意の HTML/CSS を生成できる現代では、**「テーマは安全な canvas を提供、AI が最適なパーツを毎回生成」** が正解。
 
 #### コンセプトの転換
 
@@ -323,7 +323,7 @@ LP Blueprint 例:
 
 #### 競合との根本的な差別化
 
-| 戦略 | ThemeB | テーマA | AFFINGER | AGENT NEO |
+| 戦略 | ThemeB | テーマA | テーマC | AGENT NEO |
 |---|---|---|---|---|
 | 固定パーツ拡充 | ✓（中） | ✓（多） | ✓（多） | ✗（最小限のみ） |
 | **AI フリーフォーム HTML/CSS** | ✗ | ✗ | ✗ | **✓** |
@@ -532,7 +532,7 @@ Automation SEO（外部システム）:
 
 #### 競合との差別化
 
-| 項目 | ThemeB/テーマA/AFFINGER | AGENT NEO |
+| 項目 | ThemeB/テーマA/テーマC | AGENT NEO |
 |---|---|---|
 | アフィリ系ブロック | ✓（基本セット） | ✓ + AI 自動配置 + heatmap |
 | LP セクション | ✓ または ✗ | ✓ + 12 標準 + Sticky + Multi-step + LINE |
@@ -755,7 +755,7 @@ Automation SEO はテーマ価格に無制限同梱しない。AI原価・移行
 - Automation SEO のAI実行コストはテーマ本体価格とは分離する
 
 #### 検証ケース順序
-日本国内 WP テーマシェア順: ThemeB → Cocoon → AFFINGER → JIN → Lightning
+日本国内 WP テーマシェア順: ThemeB → テーマD → テーマC → テーマA旧版 → テーマE
 
 ### 4.5 初回構築サービス S1
 プラン B の実行・検収・公開支援を提供するプロフェッショナルサービス。価格レンジ・契約形態は未決。
@@ -766,7 +766,7 @@ Automation SEO はテーマ価格に無制限同梱しない。AI原価・移行
 
 ### Automation SEO（既存・成熟）
 - リポジトリ: `git@github.com:RetryYN/Automation-SEO.git`
-- ローカル: `C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO\`
+- ローカル: `<local-path>\Desktop\seo-tool-v2-docs\Automation SEO\`
 - 別名: SEO Tool v2 / seo-tool-connector
 - 状態: Phase 9（テスト実行）/ ~255,000 LOC / API 571+ / 開発期間 30 日
 
@@ -1004,7 +1004,7 @@ Q-002 の判断は、単純な「両 SKU 同時リリース」ではなく、**�
 
 | 競合 | 差別化ポイント |
 |---|---|
-| ThemeB / AFFINGER / JIN 等の汎用 WP テーマ | AI エージェント前提の API・section_id 規約・MCP 同梱 |
+| ThemeB / テーマC / テーマA旧版 等の汎用 WP テーマ | AI エージェント前提の API・section_id 規約・MCP 同梱 |
 | Headless WordPress（Faust.js 等） | WP エコシステムを保持しつつ AI 操作面のみ強化、移行コストが圧倒的に低い |
 | 海外 AI 系 WP プラグイン | Automation SEO 連携で記事生成〜公開〜計測まで日本語特化で完結 |
 | ブロックエディタのみのテーマ | Automation SEO + seo-tool-connector との連携でトラッキング・A/B が標準装備 |
@@ -1017,11 +1017,11 @@ Q-002 の判断は、単純な「両 SKU 同時リリース」ではなく、**�
 |---|---:|---|---|
 | ThemeB | 88 | 国産有料テーマの王道・総合型 | 速度設計、設定UX、買い切り安心感を抽象化して取り込む |
 | テーマA | 82 | デザイン/SEO/ブログ収益化寄り | SEO統合UX、プリセット思想、ブロガー心理に刺さる販売導線を取り込む |
-| AFFINGER6 / ACTION PACK | 80 | アフィリエイト収益化特化 | 収益化ブロック、CTA/タグ/A-B/CTR、上位PACK戦略を取り込む |
-| Cocoon | 78 | 無料テーマの標準・導入口 | 無料移行プラグインのリード獲得モデルとして参考にする |
-| Lightning / Vektor | 76 | 法人/中小企業サイト・制作会社向け | 法人安心感、拡張/サブスク、パターン/学習コンテンツを参考にする |
+| テーマC6 / ACTION PACK | 80 | アフィリエイト収益化特化 | 収益化ブロック、CTA/タグ/A-B/CTR、上位PACK戦略を取り込む |
+| テーマD | 78 | 無料テーマの標準・導入口 | 無料移行プラグインのリード獲得モデルとして参考にする |
+| テーマE / <テーマE ベンダー> | 76 | 法人/中小企業サイト・制作会社向け | 法人安心感、拡張/サブスク、パターン/学習コンテンツを参考にする |
 
-AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテーマ」の競争軸では戦わない。狙うカテゴリは **AI運用型WPテーマ基盤** とし、個人版は「ThemeB/テーマA級の使いやすさ + AFFINGER級の収益化 + AI記事投入/計測/LLMO」、法人版は「Lightning級の法人安心感 + LP改善/A/B/計測 + AI運用」を目標にする。
+AGENT NEOは「美しいテーマ」「SEOに強いテーマ」「安いテーマ」の競争軸では戦わない。狙うカテゴリは **AI運用型WPテーマ基盤** とし、個人版は「ThemeB/テーマA級の使いやすさ + テーマC級の収益化 + AI記事投入/計測/LLMO」、法人版は「テーマE級の法人安心感 + LP改善/A/B/計測 + AI運用」を目標にする。
 
 目標スコアは Core `92`、個人版 `90`、法人版 `94` とする。ただし達成条件は機能数ではなく、JSON契約、AI操作安全性、LP/CTA改善、SEO/LLMO、運用品質まで一貫して製品化できていること。
 

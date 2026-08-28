@@ -147,7 +147,7 @@
 ## NEG-013: Automation SEO Theme Bridge Plugin は既存テーマへの深い自動書き込みをしない
 
 ```
-対象: ThemeB / テーマA / AFFINGER 等の既存テーマへの構造的書き換え・safe apply 実行
+対象: ThemeB / テーマA / テーマC 等の既存テーマへの構造的書き換え・safe apply 実行
 理由: 既存テーマの DOM / CSS / SEO メタは安定 API ではない。診断・正規化・移行入口として preview-only に限定（REQ-NF-020）
 関連 REQ-F: REQ-NF-020
 根拠: L2 ADR-019「既存テーマでは原則 preview-only、AGENT NEO Core Plugin だけを safe apply の第一級書き込み先にする」

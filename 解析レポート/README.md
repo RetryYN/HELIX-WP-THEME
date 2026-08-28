@@ -18,7 +18,7 @@
 | `08-上位モデル化戦略.md` | 参照テーマの長所を抽象化し、欠点を改良して上位互換にする戦略 |
 | `09-価格戦略と売れる理由.md` | 国内主要テーマの価格、売れている理由、AGENT NEOの価格戦略 |
 | `10-深掘り解析実施計画.md` | REST、CPT、block.json、設定、管理画面、販売訴求を深掘りする実施計画 |
-| `11-競合比較マトリクス.md` | ThemeB/テーマA/AFFINGER/Cocoon/Lightningとの比較と取り込み優先度 |
+| `11-競合比較マトリクス.md` | ThemeB/テーマA/テーマC/テーマD/テーマEとの比較と取り込み優先度 |
 | `12-企画書レビューと要件反映.md` | L0企画書レビュー、L1/L2反映、G0.5ゲート判定 |
 | `13-SEO設計比較-ThemeA優先分析.md` | テーマAとThemeBのSEO思想比較、AGENT NEOのSEO Core方針 |
 | `14-ThemeA親テーマ実コードSEO解析.md` | テーマA親テーマZIP展開後のSEO実装解析、採用/改良/不採用分類 |
@@ -33,7 +33,7 @@
 | `23-テーマ構築観点総合レビュー.md` | Web公式情報から逆算したテーマ構築の見落とし観点、品質ゲート、L1/L2反映案 |
 | `24-LLMO時代のテーマ設計重要観点.md` | AI検索/LLMO時代の引用されやすさ、権利制御、answer unit、AI経由CV計測の設計 |
 | `25-WPサイト運用とSEOの不都合な真実.md` | SEO、WP運用、セキュリティ、可用性、AI運用、LLMOにおける静かな失敗要因をrisk-ledger化する総合レビュー |
-| `26-競合テーマ総合評価と市場ポジション.md` | ThemeB/テーマA/AFFINGER/Cocoon/Lightningを点数化し、AGENT NEOが狙うAI運用型WPテーマ基盤の市場ポジションを整理 |
+| `26-競合テーマ総合評価と市場ポジション.md` | ThemeB/テーマA/テーマC/テーマD/テーマEを点数化し、AGENT NEOが狙うAI運用型WPテーマ基盤の市場ポジションを整理 |
 | `27-AutomationSEO連携観点のThemeB-ThemeA採点.md` | Automation SEO/seo-tool-connector連携観点でThemeB/テーマAを採点し、Automation SEO側とWPテーマ側のカバー策を整理 |
 | `28-共通強化プラグインとAutomationSEOプラグイン情報設計.md` | 各テーマを横断強化するAutomation SEO Theme Bridge Pluginの共通機能、不都合、保持情報、AGENT NEOへの責務分離を整理 |
 | `29-ドキュメントテーマ群抜け漏れレビュー.md` | L0/L1/L2/L3/L5と解析レポート、ThemeB/テーマAテーマ群を突合し、実装前の抜け漏れ、未凍結領域、次アクションを整理 |

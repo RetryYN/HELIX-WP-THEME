@@ -33,8 +33,8 @@
 
 | サイト | URL | 判定テーマ | 根拠 |
 |---|---|---|---|
-| IT就活大学 | https://site-A.example/ | テーマA | `/wp-content/themes/themeA/` を HTML 内で確認 |
-| 大人のひとりビジネスラボ | https://site-B.example/ | ThemeB | `/wp-content/themes/themeB/` を HTML 内で確認 |
+| site-A | https://site-A.example/ | テーマA | `/wp-content/themes/themeA/` を HTML 内で確認 |
+| site-B | https://site-B.example/ | ThemeB | `/wp-content/themes/themeB/` を HTML 内で確認 |
 
 ## 4. 実測サマリー
 
@@ -248,7 +248,7 @@ WordPress REST root では `X-Content-Type-Options: nosniff` を確認したが�
 | 項目 | 結果 |
 |---|---|
 | HTTP status | 200 |
-| page title | IT就活大学 |
+| page title | site-A |
 | first h1 | 空 |
 | failed request | `http://localhost:8000/st.js` |
 | browser error | `net::ERR_CONNECTION_REFUSED` |
@@ -260,8 +260,8 @@ WordPress REST root では `X-Content-Type-Options: nosniff` を確認したが�
 | 項目 | 結果 |
 |---|---|
 | HTTP status | 200 |
-| page title | 大人のひとりビジネスラボ | 賢い大人がはじめる20代からのソロビジネスで人生を攻略するためのWebサイト |
-| first h1 | 大人のひとりビジネスラボ |
+| page title | site-B | 賢い大人がはじめる20代からのソロビジネスで人生を攻略するためのWebサイト |
+| first h1 | site-B |
 | failed request | `https://automation-seo.site-B.example/static/st.js` |
 | browser error | `net::ERR_BLOCKED_BY_ORB` |
 

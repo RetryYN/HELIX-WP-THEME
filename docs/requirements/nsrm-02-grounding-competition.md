@@ -29,23 +29,23 @@
 
 ## メインマトリクス
 
-| REQ-F ID | 要件名 | 実コード根拠 | 根拠判定 | ThemeB | テーマA | AFFINGER | 差別化レベル |
+| REQ-F ID | 要件名 | 実コード根拠 | 根拠判定 | ThemeB | テーマA | テーマC | 差別化レベル |
 |---|---|---|---|---|---|---|---|
 | REQ-F-001 | FSEテーマ基盤 | 35-§確認事実1: ThemeB 実機 31 ブロック登録確認、30-§領域A: block.json 全カタログ、32-§領域A: wp_head Pri:0 ブロック検知機構実確認 | 根拠あり | ✓ | △（旧来PHP型、FSE非採用）| △（カスタマイザー型、FSE移行中）| 標準（差別化なし） |
 | REQ-F-002 | JSON操作API | 36-§2.1: テーマA REST は 3 routes のみ、ThemeB も同程度（36-§5表）。34-§3: AGENT NEO 30+ routes 設計根拠確立。35-§6: `/themeB/v1` は実機で 404（REST 公開が実質なし）| 根拠あり | ✗（API なし）| ✗（3 routes のみ）| ✗（API なし）| **killer** |
 | REQ-F-003 | 4操作面（REST/MCP/WP CLI/管理画面）| 36-§2.1: テーマ自体の REST 公開は両競合とも最小限。34-§3: AGENT NEO API ツリー設計。11-競合比較: AI 操作は「競合に明確な空白」と判定 | 根拠あり | ✗ | ✗ | ✗ | **killer** |
-| REQ-F-004 | 個人版収益化ブロック | 30-§領域B CPT: `ad_tag` CPT（5タイプ: normal/text/affiliate/amazon/ranking）、`themeB/review` block.json 実確認。34-§6: ad_tag show_in_rest=false（AI 不可）を改善。26-AFFINGER の収益化訴求強いと分析 | 根拠あり | △（ad_tag あるが REST 非公開）| △（YYI Rinker 連携、本番観測）| ✓（収益化最強）| 部分差別化（AI 操作 + PR 表記自動 + ASP 別 CTR が差別化軸）|
+| REQ-F-004 | 個人版収益化ブロック | 30-§領域B CPT: `ad_tag` CPT（5タイプ: normal/text/affiliate/amazon/ranking）、`themeB/review` block.json 実確認。34-§6: ad_tag show_in_rest=false（AI 不可）を改善。26-テーマC の収益化訴求強いと分析 | 根拠あり | △（ad_tag あるが REST 非公開）| △（YYI Rinker 連携、本番観測）| ✓（収益化最強）| 部分差別化（AI 操作 + PR 表記自動 + ASP 別 CTR が差別化軸）|
 | REQ-F-005 | 法人HP/LP/BLP三位一体 | 36-§2.5: テーマA 本番が固定ページ + template-full-width で HP 実装（重要発見）。30-§領域B: ThemeB は `lp` CPT（public=true, show_in_rest=true）実確認。16-LP-HP設計方針。34-§2: `agent-neo/lp` CPT 設計根拠 | 根拠あり | △（lp CPT のみ、BLP/三位一体なし）| △（固定ページ活用確認済みだが BLP 概念なし）| △（LP 機能あるが JSON 契約なし）| **差別化**（三位一体 + section_id 標準契約）|
 | REQ-F-006 | 計測/A-B/CTA | 30-§領域A: `themeB/ab-test/ab-test-a/ab-test-b` ブロック実確認、`themeB_btn_cv_data` post meta（JSON形式）確認。35-§1: seo_tool_ab_test CPT が実機登録確認。27-§連携弱点: variant_id/section_id 標準契約なし | 根拠あり | △（A/B ブロックあるが variant_id 契約なし）| △（計測は外部プラグイン依存）| ✓（CTR 計測が強み）| 部分差別化（section_id/cta_id/variant_id の標準契約が差別化）|
 | REQ-F-007 | Automation SEO連携 | 36-§4: 両本番サイトで aseo/v1 稼働確認（30 routes）。27-§現状不都合: ThemeB/テーマA とも section_id/cta_id 標準契約なし確認。36-§6: agent-neo/v1 連携指針確定 | 根拠あり | ✗（標準連携なし）| ✗（標準連携なし）| ✗（標準連携なし）| **killer** |
-| REQ-F-008 | 移行プラグイン | 11-競合比較: 競合は主に手動移行。26-Cocoon: 無料リード獲得モデル参考。34-§2: ThemeB の CPT 構造が移行対象として分析済み | 推論あり（競合調査根拠） | ✗（公式移行ツールなし）| ✗ | ✗ | **差別化** |
+| REQ-F-008 | 移行プラグイン | 11-競合比較: 競合は主に手動移行。26-テーマD: 無料リード獲得モデル参考。34-§2: ThemeB の CPT 構造が移行対象として分析済み | 推論あり（競合調査根拠） | ✗（公式移行ツールなし）| ✗ | ✗ | **差別化** |
 | REQ-F-009 | 設定エクスポート/インポート | 35-§3: ThemeB カスタマイザー 506 設定実確認。32-§領域B: CSS 変数生成パイプライン + transient キャッシュ詳細。34-§4: design-tokens.json 40 トークン以下目標の具体値確定 | 根拠あり | △（カスタマイザーエクスポートのみ、JSON 標準契約なし）| △（同様）| △（同様）| 部分差別化（JSON Patch / RFC 6902 標準が差別化）|
 | REQ-F-010 | ライセンス/パッケージ制御 | 30-§領域B: ThemeB のロール権限マッピング詳細（Administrator/Editor/Author別）実確認。34-§3: 個人版/法人版でルート公開範囲切替設計 | 根拠あり | △（ライセンス制御なし、全機能解放）| △（同様）| △（PACK 別機能あるが JSON 契約なし）| 部分差別化 |
 | REQ-F-011 | SEO Core | 31-§領域A: テーマA `_themeA_*` SEO post meta 10個完全抽出（seotitle/description/canonical/noindex/OGP）。36-§2.2/3.1: 両本番サイトの実 OGP/SEO meta 出力確認。35-§4: ThemeB の @graph JSON-LD 実機出力確認 | 根拠あり | ✓（SEO 機能強）| ✓（SEO 統合 UX が強み）| △（外部プラグイン依存が多い）| 部分差別化（AI 操作可能 + diff/rollback が差別化）|
 | REQ-F-012 | LP/HP/BLPブループリント | 30-§領域B CPT: ThemeB `lp` CPT（offer_id/service_id なし）。36-§2.5: テーマA 固定ページ Blueprint 使用確認。34-§2: AGENT NEO `agent-neo/blueprint` CPT（新設）設計根拠 | 根拠あり | △（lp CPT のみ、blueprint JSON 契約なし）| △（固定ページ活用のみ）| △（LP 機能あるが JSON 契約なし）| **差別化** |
-| REQ-F-013 | 法人版リード獲得 | 36-§1: 両本番で contact-form-7 プラグイン稼働確認。26-Lightning: 法人安心感があるが LP 改善/計測は弱いと分析 | 推論あり（CF7 観測 + 競合分析）| △（外部フォームプラグイン前提）| △（同様）| △（同様）| 部分差別化（cta_id/offer_id 標準計測が差別化）|
+| REQ-F-013 | 法人版リード獲得 | 36-§1: 両本番で contact-form-7 プラグイン稼働確認。26-テーマE: 法人安心感があるが LP 改善/計測は弱いと分析 | 推論あり（CF7 観測 + 競合分析）| △（外部フォームプラグイン前提）| △（同様）| △（同様）| 部分差別化（cta_id/offer_id 標準計測が差別化）|
 | REQ-F-014 | 法人版顧客行動管理 | 27-§連携: seo-tool-connector に section_metrics_daily / SECTION_METRICS_DAILY テーブル実確認。36-§4: aseo/v1 の tracking/context/section-engagement routes 実観測 | 根拠あり（aseo 側根拠）| ✗ | ✗ | ✗ | **差別化** |
-| REQ-F-015 | CRM/MA連携アドオン | 36-§4: aseo/v1 に Webhook 送信 routes 確認。26-Lightning: 法人エコシステムが強いが CRM 連携なし | 推論あり（外部連携設計は Codex 解析ベース）| △（Zapier アドオン等）| △（同様）| ✗ | 部分差別化 |
+| REQ-F-015 | CRM/MA連携アドオン | 36-§4: aseo/v1 に Webhook 送信 routes 確認。26-テーマE: 法人エコシステムが強いが CRM 連携なし | 推論あり（外部連携設計は Codex 解析ベース）| △（Zapier アドオン等）| △（同様）| ✗ | 部分差別化 |
 | REQ-F-016 | 個人版テンプレ固定構成 | 36-§2.5/3.5: テーマA が固定ページ Template、ThemeB が動的 blog を採用という実観測から逆引き設計。34-§7: パターン/テンプレ設計根拠 | 根拠あり（逆引き設計根拠）| ✗（個人版制限機能なし）| ✗ | ✗ | **差別化** |
 | REQ-F-017 | 画像変換パイプライン | 35-§確認事実: ThemeB/テーマA の画像処理は Codex レベル確認のみ（`loading='lazy'`, srcset 実装）。36-§観測: WebP 自動変換の本番実装は確認できず。15-§テーマA: `loading=lazy` 付与確認 | 推論あり（WebP 自動変換は競合比較から追加）| △（手動/プラグイン依存）| △（同様）| △（同様）| **差別化** |
 | REQ-F-018 | SNS連携基盤 | 36-§2.2: テーマA 本番で twitter:card/og:site_name 実出力確認。36-§1: 両サイトで CF7 実稼働確認。テーマA の自動投稿機能は解析レポートに根拠なし | 推論あり（SNS 自動投稿は Codex 解析 02 ベース）| △（oEmbed のみ、自動投稿なし）| △（OGP 出力のみ）| △（限定的）| **差別化**（自動投稿 + lazy embed + SNS 計測統合）|
@@ -61,9 +61,9 @@
 | REQ-F-028 | 拡張性保証（schema versioning + adapter）| 34-§8: 3 ティアプラグイン互換戦略確定（seo-tool-connector / Yoast adapter / プレーン WP）。33-§領域A: ThemeB は SSP のみ深い統合、テーマA は独立志向という対照的な実装確認 | 根拠あり（競合比較根拠）| △（バージョニングなし）| △（同様）| △（同様）| **差別化** |
 | REQ-F-029 | ページタイプ別アセット振り分け機構 | 32-§領域A: ThemeB Pre_Parse_Blocks の `$hook_suffix`, `$post_type === 'ad_tag'`, `is_separate_css()` 判定ロジック詳細実確認。32-§キャッシュ: transient 30日 + カスタマイザー変更時 invalidate 実確認。36-§6: `core_blocks_first` 確定事項 | 根拠あり | △（ThemeB は用ブロック CSS 分割あるが page_type budget JSON なし）| ✗（グローバル CSS 大、496KB 実測）| ✗ | 部分差別化（asset-policy.schema.json + CI budget 検証が差別化）|
 | REQ-F-030 | 個人版販売寄与モジュール強化 | 30-§領域A: ThemeB `themeB/review`, `themeB/banner-link` ブロック実確認。32-§領域C: ad_tag の imp_count/pv_count/btn_clicked_ct 計測メタ実確認。36-§2.7: テーマA 本番で YYI Rinker クリック計測 JS preload 実観測 | 根拠あり | △（Sticky CTA なし、Exit-intent なし）| △（YYI Rinker で一部対応）| ✓（収益化ブロック強）| 部分差別化（AI suggested CTA + cta_id 標準計測 + A/B 連携が差別化）|
-| REQ-F-031 | 法人版販売寄与モジュール強化 | 36-§1: CF7 本番稼働確認（問い合わせフォーム）。36-§2.1: テーマA の REST は 3 routes のみ（LINE 連携なし）。26-Lightning: LP 改善は弱点として確認 | 推論あり（LINE 連携等は競合調査のみ）| ✗（LINE 友だち追加ブロックなし）| ✗ | ✗ | **差別化** |
+| REQ-F-031 | 法人版販売寄与モジュール強化 | 36-§1: CF7 本番稼働確認（問い合わせフォーム）。36-§2.1: テーマA の REST は 3 routes のみ（LINE 連携なし）。26-テーマE: LP 改善は弱点として確認 | 推論あり（LINE 連携等は競合調査のみ）| ✗（LINE 友だち追加ブロックなし）| ✗ | ✗ | **差別化** |
 | REQ-F-032 | AI主導CV最適化 | 22-§不都合な真実2: DOM class は意味契約ではなく CV 意図を示さない実確認。34-§6: AI が ad_tag を操作できない欠陥確認。36-§5: `data-agent-*` 属性が両競合で観測されず | 根拠あり（競合の不在根拠）| ✗ | ✗ | ✗ | **killer** |
-| REQ-F-033 | CV設計監査機能 | 19-デザインUI思想逆引き: CTA 過多・証拠不足・PR 不足を ThemeB/テーマA から逆引き。26-§AFFINGER弱点: UI 複雑性と認知負荷が問題と分析 | 推論あり（デザイン逆引き根拠）| ✗（UI 監査機能なし）| ✗ | ✗ | **差別化** |
+| REQ-F-033 | CV設計監査機能 | 19-デザインUI思想逆引き: CTA 過多・証拠不足・PR 不足を ThemeB/テーマA から逆引き。26-§テーマC弱点: UI 複雑性と認知負荷が問題と分析 | 推論あり（デザイン逆引き根拠）| ✗（UI 監査機能なし）| ✗ | ✗ | **差別化** |
 | REQ-F-034 | 認知バイアスパターンライブラリ | 33-§領域C: ThemeB `blog_parts` CPT → block_pattern 自動登録の革新的実装確認。34-§7: `agent-neo/reusable-part` CPT + service_id 分類設計根拠 | 根拠あり（パターン機能の競合根拠）| △（blog_parts CPT あるが bias pattern 分類なし）| ✗（Pattern 機能なし実確認）| ✗ | 部分差別化 |
 | REQ-F-035 | AIフリーフォームHTML/CSSブロック | 30-§領域A: `themeB/restricted-area` ブロック（条件付き表示）実確認。22-§不都合な真実4: REST があっても契約ないと AI が壊す問題確認 | 推論あり（フリーフォーム自体は競合未観測）| ✗ | ✗ | ✗ | **差別化** |
 | REQ-F-036 | AI HTML/CSS検証パイプライン | 32-§領域C: ThemeB `ad_img` フィールドが HTML をそのまま出力する設計（サニタイズ最小）確認。33-§主要発見1: プラグイン互換はフォールバック戦略が妥当と確認。36-§6: CSS scope 化必要性根拠 | 根拠あり（競合のサニタイズ不備根拠）| ✗（CSS scope なし）| ✗ | ✗ | **killer** |
@@ -181,10 +181,10 @@
 ### 訴求の優先順位
 
 AGENT NEO の最大の差別化軸は **AI 操作・自律化（killer 11件）** に集中している。
-競合（ThemeB/テーマA/AFFINGER）はいずれも「人間が UI で操作する」前提設計であり、この軸への追従は構造的に困難（UI を捨てなければ JSON 契約に移行できない）。
+競合（ThemeB/テーマA/テーマC）はいずれも「人間が UI で操作する」前提設計であり、この軸への追従は構造的に困難（UI を捨てなければ JSON 契約に移行できない）。
 
 最も強力なマーケティングメッセージは:
-> 「ThemeB がクリーンで使いやすい理由と、AFFINGER が収益化で強い理由、その両方を持ちながら、AI が JSON 契約で安全に操作できる唯一のテーマ」
+> 「ThemeB がクリーンで使いやすい理由と、テーマC が収益化で強い理由、その両方を持ちながら、AI が JSON 契約で安全に操作できる唯一のテーマ」
 
 ### 根拠強化が必要な REQ-F
 

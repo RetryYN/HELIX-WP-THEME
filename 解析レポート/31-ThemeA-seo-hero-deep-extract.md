@@ -1,7 +1,7 @@
 ﻿# テーマA 親テーマ SEO & Hero Deep Extract レポート
 
 **生成日**: 2026-04-30
-**対象**: c:\Users\tenni\Desktop\AGENT NEO\themeA-parent\themeA\themeA\
+**対象**: <local-path>\Desktop\AGENT NEO\themeA-parent\themeA\themeA\
 **作成範囲**: SEO meta、Hero variant、Customizer 構造
 
 ---
@@ -330,4 +330,4 @@ Choices:
 
 ---
 
-**ファイル完成**: c:\Users\tenni\Desktop\AGENT NEO\解析レポート\31-ThemeA-seo-hero-deep-extract.md
+**ファイル完成**: <local-path>\Desktop\AGENT NEO\解析レポート\31-ThemeA-seo-hero-deep-extract.md

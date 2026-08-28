@@ -106,7 +106,7 @@
 
 ## 11. Automation SEO 連携情報
 - 公式リポジトリ: `git@github.com:RetryYN/Automation-SEO.git`
-- ローカル: `C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO-v2`
+- ローカル: `<local-path>\Desktop\seo-tool-v2-docs\Automation SEO-v2`
 - 本番運用 URL:
   - `https://site-A.example/wp-json/aseo/v1`（テーマA）
   - `https://site-B.example/wp-json/aseo/v1`（ThemeB）

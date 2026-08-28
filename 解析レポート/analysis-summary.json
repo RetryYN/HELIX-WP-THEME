@@ -1191,7 +1191,7 @@
         ]
       },
       {
-        "theme": "AFFINGER6_ACTION_PACK",
+        "theme": "テーマC6_ACTION_PACK",
         "score": 80,
         "position": "affiliate_monetization_specialist",
         "good": [
@@ -1214,7 +1214,7 @@
         ]
       },
       {
-        "theme": "Cocoon",
+        "theme": "テーマD",
         "score": 78,
         "position": "free_standard_entry_theme",
         "good": [
@@ -1235,7 +1235,7 @@
         ]
       },
       {
-        "theme": "Lightning_Vektor",
+        "theme": "テーマE_<テーマE ベンダー>",
         "score": 76,
         "position": "sme_business_site_ecosystem",
         "good": [
@@ -1261,8 +1261,8 @@
       "personalScoreTarget": 90,
       "corporateScoreTarget": 94,
       "coreScoreTarget": 92,
-      "personalPositioning": "themeB_themeA_usability_plus_affinger_monetization_plus_ai_article_tracking_llmo",
-      "corporatePositioning": "lightning_business_trust_plus_lp_ab_tracking_plus_ai_operations",
+      "personalPositioning": "themeB_themeA_usability_plus_テーマC_monetization_plus_ai_article_tracking_llmo",
+      "corporatePositioning": "テーマE_business_trust_plus_lp_ab_tracking_plus_ai_operations",
       "avoid": [
         "compete_only_on_beautiful_design",
         "compete_only_on_low_price",
@@ -1451,8 +1451,8 @@
         ]
       },
       {
-        "name": "AFFINGER6",
-        "url": "https://on-store.net/affinger6/",
+        "name": "テーマC6",
+        "url": "<theme-C-vendor-url>
         "price": "14800 JPY",
         "model": "one_time",
         "notes": [
@@ -1462,20 +1462,20 @@
         ]
       },
       {
-        "name": "AFFINGER ACTION PACK3",
-        "url": "https://on-store.net/affinger_puck3_wing/",
+        "name": "テーマC ACTION PACK3",
+        "url": "<theme-C-vendor-url>
         "price": "39800 JPY",
         "model": "one_time",
         "notes": [
-          "AFFINGER6_EX",
+          "テーマC6_EX",
           "tag_manager",
           "ab_testing",
           "ctr_tracking"
         ]
       },
       {
-        "name": "Cocoon",
-        "url": "https://wp-cocoon.com/",
+        "name": "テーマD",
+        "url": "<theme-D-vendor-url>",
         "price": "0 JPY",
         "model": "free",
         "notes": [
@@ -1486,8 +1486,8 @@
         ]
       },
       {
-        "name": "Lightning / Vektor Passport",
-        "url": "https://lightning.vektor-inc.co.jp/lightning-g3-pro-unit/",
+        "name": "テーマE / <テーマE 有償版>",
+        "url": "<theme-E-vendor-url>
         "price": "11000 JPY per year / 29700 JPY for 3 years / 44000 JPY for 5 years",
         "model": "subscription",
         "notes": [
@@ -1839,7 +1839,7 @@
     ],
     "mediumGaps": [
       "docs/requirements/L1-requirements.md_traceability_for_REQ-NF-001_to_REQ-NF-007_is_not_explicit",
-      "only_themeB_and_themeA_are_locally_code_analyzed_affinger_cocoon_lightning_are_market_comparison_only",
+      "only_themeB_and_themeA_are_locally_code_analyzed_テーマC_テーマD_テーマE_are_market_comparison_only",
       "themes_and_plugins_directories_do_not_yet_contain_agent_neo_scaffold"
     ],
     "fixedInReview": [
@@ -1852,7 +1852,7 @@
       "freeze_L5_tokens_wireframes_component_states_and_accessibility_rules",
       "complete_L1_traceability_for_early_nonfunctional_requirements",
       "create_agent_neo_theme_core_and_migration_scaffolds",
-      "decide_whether_to_obtain_affinger_cocoon_lightning_code_for_local_reverse_analysis"
+      "decide_whether_to_obtain_テーマC_テーマD_テーマE_code_for_local_reverse_analysis"
     ],
     "gateResult": {
       "RG0": "passed",

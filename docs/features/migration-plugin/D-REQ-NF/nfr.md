@@ -18,7 +18,7 @@
 | MNF-008 | メディアファイル移行 | 性能 | 画像・PDFは移行元 URL から直接取得せず、サーバー側での遅延インポートをデフォルトとする。一括取得オプションはタイムアウトガードを適用する | P1 | REQ-NF-001 |
 | MNF-009 | WP 6.6+ 互換 | 互換性 | WP 6.6 以上で動作確認する。WP REST API v2 仕様に依存し、カスタム WP REST ルートには依存しない | P0 | REQ-F-001 |
 | MNF-010 | PHP 8.1+ 互換 | 互換性 | PHP 8.1〜8.3 で CI を実行する | P0 | REQ-F-001 |
-| MNF-011 | 移行元テーマ非依存 | 互換性 | ThemeB/Cocoon/AFFINGER/JIN/Lightning のテーマファイルに直接依存しない。WP REST API と HTML 解析のみで変換する | P0 | REQ-NF-010 |
+| MNF-011 | 移行元テーマ非依存 | 互換性 | ThemeB/テーマD/テーマC/テーマA旧版/テーマE のテーマファイルに直接依存しない。WP REST API と HTML 解析のみで変換する | P0 | REQ-NF-010 |
 | MNF-012 | wp.org 申請品質 | 配布品質 | Theme Check・PHPCS/WPCS・Plugin Review Guidelines を通過する品質を維持する。未エスケープ出力・直接 DB アクセス・hardcoded credentials を排除する | P0 | REQ-NF-016 |
 | MNF-013 | uninstall cleanup | 配布品質 | プラグインアンインストール時に移行ジョブ記録・rollback snapshots・設定 Options を削除する | P0 | REQ-NF-016 |
 | MNF-014 | 変換品質レポート | 運用 | 移行完了後に変換率・未変換要素数・manual review 必要件数・SEO メタ変換率をレポートとして管理画面に表示する | P1 | REQ-NF-007 |
@@ -45,7 +45,7 @@
 
 **confidence 低下時の UX**: `0.4` 未満の low confidence 項目はプレビュー画面でハイライト表示し、ユーザーに手動編集を促す。`0.4〜0.69` は medium として注意アイコン付きで表示。`0.7` 以上は auto-approved として適用可能とする。この閾値は管理画面の Settings から変更できる。
 
-**テーマ別特殊処理の設計**: テーマ固有の変換ロジック（ThemeB の `lp` CPT 処理・JIN の SEO メタ読み取り等）は `ThemeAdapter` インターフェースを実装した各 Adapter クラスに閉じ込め、テーマ固有コードがコアロジックに混入しない設計にする。各 Adapter は WP REST API と HTML 解析のみを使い、テーマ PHP コードには依存しない。
+**テーマ別特殊処理の設計**: テーマ固有の変換ロジック（ThemeB の `lp` CPT 処理・テーマA旧版 の SEO メタ読み取り等）は `ThemeAdapter` インターフェースを実装した各 Adapter クラスに閉じ込め、テーマ固有コードがコアロジックに混入しない設計にする。各 Adapter は WP REST API と HTML 解析のみを使い、テーマ PHP コードには依存しない。
 
 **rollback snapshot のストレージ**: rollback snapshot は WP uploads ディレクトリに JSON で保存し、デフォルト保持期間は30日とする。WP CLI で `wp agent-neo migrate rollback --job_id=<id>` を実行した場合と管理画面からの実行で同一のロジックを使う。
 
@@ -65,10 +65,10 @@
 | テーマ | 主な Adapter 処理 | 非依存項目 |
 |---|---|---|
 | ThemeB | `lp` CPT 抽出、ブログパーツ変換、REST 経由 settings 読み取り | ThemeB PHP クラス直接参照 |
-| Cocoon | 通常投稿/ウィジェット抽出、shortcode テキスト変換 | Cocoon PHP 関数 |
-| AFFINGER | 設定 Options 読み取り（WP REST 経由）、shortcode カタログマッチ | AFFINGER PHP |
-| JIN / テーマA | テーマ内 SEO meta post_meta 読み取り、classic template HTML 解析 | JIN PHP クラス |
-| Lightning | フォームプラグイン (VK Blocks) 依存 CTA の URL 推定 | Lightning PHP |
+| テーマD | 通常投稿/ウィジェット抽出、shortcode テキスト変換 | テーマD PHP 関数 |
+| テーマC | 設定 Options 読み取り（WP REST 経由）、shortcode カタログマッチ | テーマC PHP |
+| テーマA旧版 / テーマA | テーマ内 SEO meta post_meta 読み取り、classic template HTML 解析 | テーマA旧版 PHP クラス |
+| テーマE | フォームプラグイン (VK Blocks) 依存 CTA の URL 推定 | テーマE PHP |
 
 ## 参照
 
