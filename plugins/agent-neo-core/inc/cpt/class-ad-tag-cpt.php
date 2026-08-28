@@ -2,7 +2,7 @@
 /**
  * ad_tag CPT 登録。
  *
- * CARRY-A2-002: SWELL の inc/cpt/ad_tag/ を参考に広告タグ管理 CPT を登録する。
+ * CARRY-A2-002: テーマB の inc/cpt/ad_tag/ を参考に広告タグ管理 CPT を登録する。
  * 5分岐（amazon / affiliate / ranking / normal / text）+ meta スキーマを定義する。
  * REQ-NF-025 厳守: AIロジック・モデル呼び出し・統計判定を一切含まない。
  *

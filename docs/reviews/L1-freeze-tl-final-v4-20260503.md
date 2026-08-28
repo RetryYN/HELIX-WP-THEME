@@ -21,7 +21,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-nsrm = yaml.safe_load(Path(r'C:\Users\tenni\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
+nsrm = yaml.safe_load(Path(r'<local-path>\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
 print('sufficiency_chains' in nsrm, type(nsrm.get('sufficiency_chains')).__name__)
 print('sufficiency_chains' in nsrm.get('necessity_proofs', {}))
 '@ | python -
@@ -48,7 +48,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-nsrm = yaml.safe_load(Path(r'C:\Users\tenni\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
+nsrm = yaml.safe_load(Path(r'<local-path>\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
 neg = nsrm['negation_boundaries']
 meta = nsrm['negation_boundaries_meta']
 print(type(neg).__name__, len(neg), meta.get('count'), sorted(meta.keys()))
@@ -78,7 +78,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-nsrm = yaml.safe_load(Path(r'C:\Users\tenni\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
+nsrm = yaml.safe_load(Path(r'<local-path>\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
 m = nsrm['metrics']
 np = nsrm['necessity_proofs']
 print('required_count', np['required_count'])
@@ -117,7 +117,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-nsrm = yaml.safe_load(Path(r'C:\Users\tenni\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
+nsrm = yaml.safe_load(Path(r'<local-path>\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
 phase1 = nsrm['phase_assignments']['phase_1_mvp']
 print('REQ-NF-025' in phase1, len(phase1))
 '@ | python -
@@ -144,7 +144,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-nsrm = yaml.safe_load(Path(r'C:\Users\tenni\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
+nsrm = yaml.safe_load(Path(r'<local-path>\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
 p4 = [x for x in nsrm['first_principles'] if x['id'] == 'P-004'][0]
 print(p4['enforced_by'])
 '@ | python -
@@ -171,7 +171,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-root = Path(r'C:\Users\tenni\Desktop\AGENT NEO')
+root = Path(r'<local-path>\Desktop\AGENT NEO')
 nsrm = yaml.safe_load((root / '.helix/nsrm.yaml').read_text(encoding='utf-8'))
 checks = [
     ('goals_len == 20', len(nsrm['goals']) == 20),
@@ -233,7 +233,7 @@ python 検証コマンド:
 @'
 from pathlib import Path
 import yaml
-nsrm = yaml.safe_load(Path(r'C:\Users\tenni\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
+nsrm = yaml.safe_load(Path(r'<local-path>\Desktop\AGENT NEO\.helix\nsrm.yaml').read_text(encoding='utf-8'))
 print('required_count', nsrm['necessity_proofs']['required_count'])
 print('phase_1_count', nsrm['metrics']['phase_1_count'])
 print('blocking_l1', nsrm['open_questions']['blocking_l1'])

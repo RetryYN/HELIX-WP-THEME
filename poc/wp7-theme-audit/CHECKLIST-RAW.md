@@ -41,10 +41,10 @@
   ```css
   /*!
    * Theme Name: Agent Neo
-   * Theme URI: https://automation-seo.solobiz-lab.com
+   * Theme URI: https://automation-seo.site-B.example
    * Description: WP7.0 FSE Theme for AI Agent Platform
    * Author: Automation SEO Team
-   * Author URI: https://automation-seo.solobiz-lab.com
+   * Author URI: https://automation-seo.site-B.example
    * License: GPL v2 or later
    * License URI: https://www.gnu.org/licenses/gpl-2.0.html
    * Text Domain: agent-neo

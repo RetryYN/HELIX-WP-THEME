@@ -14,11 +14,11 @@ AGENT NEOでは、LPとHPを同じ「固定ページデザイン」として扱�
 
 | 領域 | 優先参考 | 理由 |
 |---|---|---|
-| LP構造 | SWELL | `lp` CPT、専用テンプレート、ヘッダー/フッター切替、コンテンツ幅、ブログパーツ再利用がある |
-| HP/トップ演出 | JIN:R | メインビジュアル、トップページ1/2カラム、リッチメニュー、デモプリセットの訴求力がある |
+| LP構造 | ThemeB | `lp` CPT、専用テンプレート、ヘッダー/フッター切替、コンテンツ幅、ブログパーツ再利用がある |
+| HP/トップ演出 | テーマA | メインビジュアル、トップページ1/2カラム、リッチメニュー、デモプリセットの訴求力がある |
 | AGENT NEO | 独自 | LP/HPをAIがJSONで生成・差分更新・計測改善できる契約にする |
 
-## SWELLから見るLP設計
+## ThemeBから見るLP設計
 
 ### 実コード根拠
 
@@ -26,7 +26,7 @@ AGENT NEOでは、LPとHPを同じ「固定ページデザイン」として扱�
 |---|---|---|
 | `lib/post_type.php` | `lp` CPTを登録。REST対応、thumbnail、revisions、custom-fields対応 | LPは通常固定ページと分けたほうが運用・権限・計測が整理しやすい |
 | `single-lp.php` | LP専用テンプレート。子テーマの `lp/{slug}.php/html` を優先表示 | 高度なLPだけ個別テンプレート上書きを許可できる |
-| `lib/post_meta/meta_lp.php` | content width、囲み枠、アイキャッチ、タイトル、SWELLスタイル適用、ヘッダー/フッター使用を制御 | LPごとの表示制御はJSON化すべき |
+| `lib/post_meta/meta_lp.php` | content width、囲み枠、アイキャッチ、タイトル、ThemeBスタイル適用、ヘッダー/フッター使用を制御 | LPごとの表示制御はJSON化すべき |
 | `lib/gutenberg/block_pattern/page.php` | ページ用パターンを登録 | LP/HPセクションをpatternとして管理できる |
 | `lib/shortcode.php`, `lib/gutenberg/block/blog-parts.php` | ブログパーツを再利用可能部品として挿入 | AGENT NEOではReusable Section/Global Partとして再設計する |
 | `parts/single/after_article.php` | 記事下CTA、著者、関連記事などの導線 | LPだけでなく記事/レビューからLPへ送る導線に使える |
@@ -39,7 +39,7 @@ AGENT NEOでは、LPとHPを同じ「固定ページデザイン」として扱�
 - 子テーマ上書きのような自由度は、`custom-template-slot` として安全に制御する。
 - ブログパーツ思想は、`global-section`、`reusable-part`、`cta-part` として再設計する。
 
-## JIN:Rから見るHP設計
+## テーマAから見るHP設計
 
 ### 実コード根拠
 
@@ -51,13 +51,13 @@ AGENT NEOでは、LPとHPを同じ「固定ページデザイン」として扱�
 | `object/main-visual/post-slider.php` | 記事URL指定、サムネイル、タイトル、Read more | メディア/アフィリエイトHPのpickup導線に有効 |
 | `include/customizer/ui/main-visual-setting.php` | post slider、image slider、still image、movieを選択 | Hero variantを契約化できる |
 | `include/customizer/ui/site-design-setting.php` | トップページ1カラム/2カラム、ページフレーム | HPの情報密度をペルソナ別に変える設計に使える |
-| `class-jinr-demo-import-control.php` | richmenu、デモページ、ブロックパターンを大量に持つ | デモプリセット/業種別スターターの販売価値が高い |
+| `class-themeA-demo-import-control.php` | richmenu、デモページ、ブロックパターンを大量に持つ | デモプリセット/業種別スターターの販売価値が高い |
 
 ### 採用する設計
 
 - HPは `home_blueprint` として、ブランド入口と回遊導線を管理する。
 - Heroは `still`, `article_slider`, `image_slider`, `movie`, `product_focus`, `lead_gen` のvariantを用意する。
-- JIN:Rのリッチメニュー思想は、`gateway-grid` として採用する。
+- テーマAのリッチメニュー思想は、`gateway-grid` として採用する。
 - デモインポート思想は、業種別/目的別スターターとして商品価値にする。
 - ただし巨大CSS、外部画像、直書きHTMLは採用しない。FSE pattern + JSON契約で再設計する。
 
@@ -222,14 +222,14 @@ Automation SEOへ渡す改善材料は、ページ単位ではなくセクショ
 
 | 参照元 | 採用 | 改良して採用 | 不採用 |
 |---|---|---|---|
-| SWELL | LP CPT、LP個別設定、再利用パーツ、ページパターン | LPメタ設定をJSON契約化、Reusable Section化 | PHP/HTML上書き前提の自由実装をそのまま採用 |
-| JIN:R | Hero variant、rich menu、デモプリセット、トップページカラム | FSE pattern + JSON blueprint + section_id化 | 巨大CSS、直書きHTML、外部画像依存、クラシックテンプレート固定 |
+| ThemeB | LP CPT、LP個別設定、再利用パーツ、ページパターン | LPメタ設定をJSON契約化、Reusable Section化 | PHP/HTML上書き前提の自由実装をそのまま採用 |
+| テーマA | Hero variant、rich menu、デモプリセット、トップページカラム | FSE pattern + JSON blueprint + section_id化 | 巨大CSS、直書きHTML、外部画像依存、クラシックテンプレート固定 |
 
 ## Gate
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
-| RG0 | passed | SWELL/JIN:RのLP/HP関連コードと設定を確認 |
+| RG0 | passed | ThemeB/テーマAのLP/HP関連コードと設定を確認 |
 | RG1 | passed | LP、HP、収益ページの観測契約を抽出 |
 | RG2 | passed | LPとHPを別ブループリントに分離する設計を定義 |
 | RG3 | passed | 法人/個人パッケージごとの標準構成と計測IDを定義 |

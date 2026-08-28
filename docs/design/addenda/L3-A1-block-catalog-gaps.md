@@ -13,12 +13,12 @@
 
 ### 0.1 FSE テーマとしての再設計方針
 
-SWELL / JIN:R はクラシックテーマ（widgets + functions.php + customizer 中心）であり、AGENT NEO FSE テーマへの「直接移植」は行わない。以下の変換原則に従い再設計する。
+ThemeB / テーマA はクラシックテーマ（widgets + functions.php + customizer 中心）であり、AGENT NEO FSE テーマへの「直接移植」は行わない。以下の変換原則に従い再設計する。
 
 | クラシックテーマ側機能 | AGENT NEO FSE 代替設計 |
 |---|---|
 | PHP shortcode（例: `[fukidashi]`） | block.json 正本の Gutenberg ブロック |
-| 専用 DB テーブル（例: `swell_balloons`） | reusable-part CPT / block.json attributes / WP post_meta JSON |
+| 専用 DB テーブル（例: `themeB_balloons`） | reusable-part CPT / block.json attributes / WP post_meta JSON |
 | customizer 設定 | theme.json + block.json `supports` 節 |
 | PHP render（動的） | 静的 Save 関数（原則）または render_callback（動的必須時のみ） |
 | REST CRUD API（例: balloon 5本） | AGENT NEO Core Plugin の AI 操作契約（agent-neo/v1 名前空間） |
@@ -145,7 +145,7 @@ render: inc/blocks/blog-card/render.php
 
 ### 2.2 SSRF 対策契約（必須 / REQ-NF-002 enforced_by）
 
-JIN:R 実装（`file_get_contents($url)` 直叩き）は **絶対禁止**。以下をすべて実装する。
+テーマA 実装（`file_get_contents($url)` 直叩き）は **絶対禁止**。以下をすべて実装する。
 
 | 対策 | 仕様 |
 |---|---|
@@ -208,7 +208,7 @@ JIN:R 実装（`file_get_contents($url)` 直叩き）は **絶対禁止**。以�
 
 ### 3.2 データ保持方式の比較と推奨
 
-SWELL は `swell_balloons` 専用 DB テーブル + 5 本 REST CRUD を持つ。JIN:R は `[fukidashi]` shortcode ベース。AGENT NEO FSE テーマとして以下 2 案を比較する。
+ThemeB は `themeB_balloons` 専用 DB テーブル + 5 本 REST CRUD を持つ。テーマA は `[fukidashi]` shortcode ベース。AGENT NEO FSE テーマとして以下 2 案を比較する。
 
 | 案 | 方式 | メリット | デメリット |
 |---|---|---|---|
@@ -256,9 +256,9 @@ REST: GET /agent-neo/v1/balloon-characters（一覧）
       PATCH /agent-neo/v1/balloon-characters/{id}（更新）
 ```
 
-### 3.5 JIN:R shortcode 互換（GAP-RT-004）
+### 3.5 テーマA shortcode 互換（GAP-RT-004）
 
-JIN:R の `[fukidashi]` shortcode はクラシックテーマ構造であり AGENT NEO では FSE ブロックに統合する。
+テーマA の `[fukidashi]` shortcode はクラシックテーマ構造であり AGENT NEO では FSE ブロックに統合する。
 
 - **移行プラグイン対応**: `[fukidashi]` shortcode を含む記事を AGENT NEO に移行する際、移行プラグイン（REQ-F-008）が shortcode を `agent-neo/balloon` ブロックに変換する変換ルールを提供する
 - **shortcode レイヤー禁止**: AGENT NEO テーマ内に `add_shortcode( 'fukidashi', ... )` を追加しない（ADR-008 / CR-002 違反）
@@ -767,8 +767,8 @@ AI 操作例（banner swap）: `{"element_type":"banner","block_id":"uuid","targ
 |---|---|---|---|
 | GAP-RT-001 | Blog Card（内部） | **L3-resolved** | §1 で仕様確定 |
 | GAP-RT-002 | 外部 Blog Card + SSRF 対策 | **L3-resolved**（SSRF 対策契約）+ **L4-carry（C-A1-001）** | §2 で契約定義。実装詳細（IP ブロック実装 / Action Scheduler OGP ジョブ）は L4 |
-| GAP-RT-003 | balloon（SWELL 専用 DB → FSE 再設計） | **L3-resolved** | §3 で CPT 方式確定 |
-| GAP-RT-004 | balloon（JIN:R shortcode 互換） | **L4-carry（C-A1-002）** | 移行プラグイン変換ルールとして L4 実装。ADR への明記は Wave5 統合時 |
+| GAP-RT-003 | balloon（ThemeB 専用 DB → FSE 再設計） | **L3-resolved** | §3 で CPT 方式確定 |
+| GAP-RT-004 | balloon（テーマA shortcode 互換） | **L4-carry（C-A1-002）** | 移行プラグイン変換ルールとして L4 実装。ADR への明記は Wave5 統合時 |
 | GAP-RT-005 | Restricted Area | **L3-resolved** | §4 で条件スキーマ確定 |
 | GAP-RT-006 | Related Post / Post List（AJAX loadmore） | **L3-resolved**（契約）+ **L4-carry（C-A1-003）** | §5 で仕様確定。PV カウント実装は L4 |
 | GAP-RT-007 | TOC（目次）| **L3-resolved** | §6 で確定 |
@@ -790,12 +790,12 @@ AI 操作例（banner swap）: `{"element_type":"banner","block_id":"uuid","targ
 | **T-ID 着地案** | T-EBC-IMPL-001 |
 | **重大度** | 高（SSRF は P0 セキュリティリスク）|
 
-### C-A1-002: balloon ブロック — JIN:R shortcode 互換変換ルール
+### C-A1-002: balloon ブロック — テーマA shortcode 互換変換ルール
 
 | 項目 | 内容 |
 |---|---|
 | **id** | C-A1-002 |
-| **原則** | JIN:R の `[fukidashi]` shortcode を AGENT NEO に移行する際の変換ルールは移行プラグイン（REQ-F-008）の実装スコープ。ADR への明記（「shortcode 互換は移行プラグイン変換ルールで提供し、テーマ側 add_shortcode 禁止」）は Wave5 carry-register 統合時に追記する |
+| **原則** | テーマA の `[fukidashi]` shortcode を AGENT NEO に移行する際の変換ルールは移行プラグイン（REQ-F-008）の実装スコープ。ADR への明記（「shortcode 互換は移行プラグイン変換ルールで提供し、テーマ側 add_shortcode 禁止」）は Wave5 carry-register 統合時に追記する |
 | **受入条件** | (1) 移行プラグインが `[fukidashi]` shortcode を含む記事を AGENT NEO に移行した際、`agent-neo/balloon` ブロックとして正常変換される (2) `add_shortcode( 'fukidashi', ... )` がテーマ側コードに存在しないことを grep で検証 |
 | **sprint 着地案** | L4 Sprint S3（移行プラグイン Sprint）|
 | **T-ID 着地案** | T-BL-COMPAT-001 |

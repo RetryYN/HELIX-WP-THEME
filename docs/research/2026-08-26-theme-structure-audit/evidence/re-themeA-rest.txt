@@ -1,0 +1,20 @@
+# 監査目的: 自社所有サイトの防御レビュー（read-only・PO 承認済み 2026-08-27）。
+# 本ファイルは第三者テーマのソース複製を避け、INV-13 の主張を裏づける最小の grep 位置だけを記録する。
+# 実装コード全文は監査境界（実装コードの複製をしない）に従い転記しない。
+
+===== themeA/include/custom-functions.php の該当位置（行番号のみ） =====
+3675  register_rest_route(  … ルート1 登録開始
+3680      'permission_callback' => '__return_true'   ← ルート1 は無認証
+3685  add_action('rest_api_init', 'get_post_from_url_endpoint')  … /themeA/post_by_url
+3691      url_to_postid(untrailingslashit($param))  … 入力 URL をそのまま解決
+3726      （null 検査なしで $post のプロパティを参照 → #21 のパス開示の原因箇所）
+3780  register_rest_route(  … ルート2 登録開始
+3785      'permission_callback' => '__return_true'   ← ルート2 も無認証
+3790  add_action('rest_api_init', 'get_ogp_from_url_endpoint')  … /themeA/external_url
+3796      file_get_contents($post_url)   ← 未検証の外部 URL を取得（SSRF の核）
+
+===== 確定した事実（INV-13） =====
+- 独自 REST ルートは 2 本。両方とも permission_callback が __return_true（無認証で到達可能）。
+- ルート2 は入力 URL を検証せず file_get_contents で取得する構造（SSRF）。
+- ルート1 の post_by_url はブログカード（実使用 330）が rest_do_request で内部呼び出しする（ルート除去型の対処は描画を壊す）。
+- 到達性の実測結果は http-audit-raw.txt を参照。

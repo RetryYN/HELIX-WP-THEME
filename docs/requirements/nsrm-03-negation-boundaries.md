@@ -48,7 +48,7 @@
 関連 OPEN QUESTIONS: なし
 ```
 
-## NEG-005: 参照テーマ（SWELL / JIN:R 等）のコード・画像・CSS・固有文言をコピーしない
+## NEG-005: 参照テーマ（ThemeB / テーマA 等）のコード・画像・CSS・固有文言をコピーしない
 
 ```
 対象: 既存 WP テーマの実装コード・スタイルシート・画像・固有 UI 文言の流用
@@ -147,7 +147,7 @@
 ## NEG-013: Automation SEO Theme Bridge Plugin は既存テーマへの深い自動書き込みをしない
 
 ```
-対象: SWELL / JIN:R / AFFINGER 等の既存テーマへの構造的書き換え・safe apply 実行
+対象: ThemeB / テーマA / テーマC 等の既存テーマへの構造的書き換え・safe apply 実行
 理由: 既存テーマの DOM / CSS / SEO メタは安定 API ではない。診断・正規化・移行入口として preview-only に限定（REQ-NF-020）
 関連 REQ-F: REQ-NF-020
 根拠: L2 ADR-019「既存テーマでは原則 preview-only、AGENT NEO Core Plugin だけを safe apply の第一級書き込み先にする」

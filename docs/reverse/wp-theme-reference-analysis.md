@@ -8,14 +8,14 @@
 
 | 対象 | 種別 | 状態 |
 |---|---|---|
-| `swell-2.16.0/swell` | 親テーマ | 主解析対象 |
-| `swell_child/swell_child` | 子テーマ | 差分小。CSS読み込みテンプレート相当 |
-| `jinr-child/jinr-child` | 子テーマ | 差分小。親CSS enqueueのみ |
-| `jinr-parent/jinr/jinr` | 親テーマ | SEO統合設計、プリセットUX、classic template制約の解析対象 |
+| `themeB-2.16.0/themeB` | 親テーマ | 主解析対象 |
+| `themeB_child/themeB_child` | 子テーマ | 差分小。CSS読み込みテンプレート相当 |
+| `themeA-child/themeA-child` | 子テーマ | 差分小。親CSS enqueueのみ |
+| `themeA-parent/themeA/themeA` | 親テーマ | SEO統合設計、プリセットUX、classic template制約の解析対象 |
 
 ## R0 Evidence
 
-`swell` は `functions.php` を薄い起動層にして、実体を `lib/`、`classes/`、`parts/`、`src/gutenberg/blocks/`、`build/` に分割している。
+`themeB` は `functions.php` を薄い起動層にして、実体を `lib/`、`classes/`、`parts/`、`src/gutenberg/blocks/`、`build/` に分割している。
 
 | 領域 | 観測 |
 |---|---|

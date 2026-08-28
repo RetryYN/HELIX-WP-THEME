@@ -12,15 +12,14 @@ credentials.json
 tests/wp-tests-config.php
 
 ## リファレンステーマ（解析対象。ライセンス上自社リポでは再配布しない）
-swell-2.16.0/
-swell_child/
-jinr-parent/
-jinr-child/
-jinr-parent.backup-*/
+vendor-themes/
+/*-parent/
+/*-child/
+/*_child/
+/*-[0-9]*.[0-9]*/
+/*.backup-*/
 seo-tool-v2-docs/
 ## 展開元 ZIP も配布禁止（ライセンス違反防止）
-swell-2.16.0.zip
-jinr-*.zip
 *.zip
 
 ## Docker / 一時

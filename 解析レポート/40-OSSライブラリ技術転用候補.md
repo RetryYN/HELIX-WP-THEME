@@ -1,7 +1,7 @@
 # 40-OSSライブラリ技術転用候補
 
 ## 目的
-SWELL/JIN:R/Automation SEOの解析で見えた課題を、AGENT NEOのテーマ本体、Core Plugin、Automation SEO連携、CI/運用品質ゲートに転用できるOSS・公式ツールへ落とす。
+ThemeB/テーマA/Automation SEOの解析で見えた課題を、AGENT NEOのテーマ本体、Core Plugin、Automation SEO連携、CI/運用品質ゲートに転用できるOSS・公式ツールへ落とす。
 
 評価軸は、WordPress適合性、商用配布時の扱いやすさ、保守性、AIエージェント操作への寄与、導入コスト、検証自動化への寄与とする。
 
@@ -64,7 +64,7 @@ SWELL/JIN:R/Automation SEOの解析で見えた課題を、AGENT NEOのテーマ
 | WP-CLI | CI、移行、更新、差分監査をCLIから再現できる |
 | audit log | AI/人間の変更履歴を追える |
 | dry-run/diff/rollback | 更新系操作を即時反映せず、確認可能にする |
-| adapter | SWELL型block.jsonテーマ、JIN:R型classic/customizerテーマの両方を読める |
+| adapter | ThemeB型block.jsonテーマ、テーマA型classic/customizerテーマの両方を読める |
 | conflict detector | SEOプラグイン、キャッシュ、フォーム、計測タグとの重複を検出する |
 
 ## Automation SEO側に寄せるべきもの
@@ -104,7 +104,7 @@ SWELL/JIN:R/Automation SEOの解析で見えた課題を、AGENT NEOのテーマ
 2. Core Pluginに `GET /agent-neo/v1/manifest`、`GET /sections`、`GET /seo/profile`、`POST /audit/page` の読み取り系を先に作る。
 3. 更新系は最初から `dry_run=true`、diff、rollback token、audit logを必須にする。
 4. CIに Theme Check、WPCS、PHPCompatibilityWP、PHPStan、Playwright、Lighthouse CIを入れる。
-5. プラグイン寄与分解の測定ジョブを作り、SWELL/JIN:R運用差分を再現できるようにする。
+5. プラグイン寄与分解の測定ジョブを作り、ThemeB/テーマA運用差分を再現できるようにする。
 6. WP7 RC/final用の別composeを作り、現行環境を壊さずに行列検証する。
 
 ## 参照ソース

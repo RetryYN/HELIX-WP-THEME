@@ -26,7 +26,7 @@
     "decision": "既存テーマのデザイン/SEO/収益化競争に正面衝突せず、AI操作、計測、LP改善、LLMO、運用品質を中核価値にする",
     "competitorScores": [
       {
-        "theme": "SWELL",
+        "theme": "ThemeB",
         "score": 88,
         "position": "国産有料テーマの王道・総合型",
         "take": [
@@ -41,7 +41,7 @@
         ]
       },
       {
-        "theme": "JIN:R",
+        "theme": "テーマA",
         "score": 82,
         "position": "デザイン/SEO/ブログ収益化寄りのプレミアム型",
         "take": [
@@ -55,7 +55,7 @@
         ]
       },
       {
-        "theme": "AFFINGER6 / ACTION PACK",
+        "theme": "テーマC6 / ACTION PACK",
         "score": 80,
         "position": "アフィリエイト収益化特化型",
         "take": [
@@ -69,7 +69,7 @@
         ]
       },
       {
-        "theme": "Cocoon",
+        "theme": "テーマD",
         "score": 78,
         "position": "無料テーマの標準・導入口",
         "take": [
@@ -83,7 +83,7 @@
         ]
       },
       {
-        "theme": "Lightning / Vektor",
+        "theme": "テーマE / <テーマE ベンダー>",
         "score": 76,
         "position": "法人/中小企業サイト・制作会社向け",
         "take": [
@@ -103,16 +103,16 @@
       "corporate_lp": 94
     },
     "goToMarket": {
-      "personal_affiliate": "SWELL/JIN:R級の使いやすさに、AFFINGER級の収益化とAI記事投入/計測/LLMOを足す",
-      "corporate_lp": "Lightning級の法人安心感に、LP改善/A-B/計測/AI運用/API契約を足す",
-      "migration_plugin": "Cocoon層を含む既存WPユーザーの無料入口として使い、S1/テーマ購入へ誘導する"
+      "personal_affiliate": "ThemeB/テーマA級の使いやすさに、テーマC級の収益化とAI記事投入/計測/LLMOを足す",
+      "corporate_lp": "テーマE級の法人安心感に、LP改善/A-B/計測/AI運用/API契約を足す",
+      "migration_plugin": "テーマD層を含む既存WPユーザーの無料入口として使い、S1/テーマ購入へ誘導する"
     }
   },
   "automationSeoIntegrationStrategy": {
-    "decision": "SWELL/JIN:Rは移行・診断・設計参考に限定し、運用時の正規ターゲットはAGENT NEOの安定JSON契約にする",
+    "decision": "ThemeB/テーマAは移行・診断・設計参考に限定し、運用時の正規ターゲットはAGENT NEOの安定JSON契約にする",
     "themeFitScores": [
       {
-        "theme": "SWELL",
+        "theme": "ThemeB",
         "score": 73,
         "good": [
           "速度基盤",
@@ -127,7 +127,7 @@
         ]
       },
       {
-        "theme": "JIN:R",
+        "theme": "テーマA",
         "score": 77,
         "good": [
           "SEO統合UX",
@@ -499,19 +499,19 @@
   },
   "competitorPositioning": {
     "personal_price_band": [
-      "SWELL 17600 JPY",
-      "JIN:R 19800 JPY",
-      "AFFINGER6 14800 JPY"
+      "ThemeB 17600 JPY",
+      "テーマA 19800 JPY",
+      "テーマC6 14800 JPY"
     ],
     "upper_monetization_band": [
-      "AFFINGER ACTION PACK3 39800 JPY"
+      "テーマC ACTION PACK3 39800 JPY"
     ],
     "free_lead_magnet_band": [
-      "Cocoon 0 JPY",
-      "Lightning 0 JPY"
+      "テーマD 0 JPY",
+      "テーマE 0 JPY"
     ],
     "subscription_reference": [
-      "Vektor Passport 11000 JPY/year"
+      "<テーマE 有償版> 11000 JPY/year"
     ]
   },
     "agentRules": {

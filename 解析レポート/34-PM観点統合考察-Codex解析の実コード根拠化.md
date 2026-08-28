@@ -17,63 +17,63 @@ Codex は 29 本の解析レポート + 1,792 行の `analysis-summary.json` で
 
 ---
 
-## 1. SWELL ブロック総括（32 ブロック）→ AGENT NEO への取捨選択
+## 1. ThemeB ブロック総括（32 ブロック）→ AGENT NEO への取捨選択
 
 ### 採用（個人版コア）
 
-| SWELL ブロック | 採用判断 | AGENT NEO 名前空間案 | 用途 |
+| ThemeB ブロック | 採用判断 | AGENT NEO 名前空間案 | 用途 |
 |---|---|---|---|
-| `loos/faq` | ✅ 採用 | `agent-neo/faq` | FAQ + JSON-LD（個人/法人共通） |
-| `loos/step` | ✅ 採用 | `agent-neo/step` | 手順説明 |
-| `loos/button` | ✅ 採用 | `agent-neo/button` | CTA（cta_id 必須化） |
-| `loos/banner-link` | ✅ 採用 | `agent-neo/banner` | バナー導線 |
-| `loos/box-menu` | ✅ 採用 | `agent-neo/gateway-grid` | HP の入口（gateway_id 必須化） |
-| `loos/full-wide` | ✅ 採用 | `agent-neo/section` | フルワイドセクション（section_id 必須化） |
-| `loos/post-list` | ✅ 採用 | `agent-neo/post-list` | 関連記事・回遊 |
-| `loos/balloon` | ✅ 採用 | `agent-neo/speech-balloon` | ブログ的演出（個人版優先） |
-| `loos/cap-block` | ✅ 採用 | `agent-neo/note-box` | 補足ボックス |
-| `loos/dl/dt/dd` | ✅ 採用 | `agent-neo/definition-list` | 構造化用語リスト |
+| `themeB/faq` | ✅ 採用 | `agent-neo/faq` | FAQ + JSON-LD（個人/法人共通） |
+| `themeB/step` | ✅ 採用 | `agent-neo/step` | 手順説明 |
+| `themeB/button` | ✅ 採用 | `agent-neo/button` | CTA（cta_id 必須化） |
+| `themeB/banner-link` | ✅ 採用 | `agent-neo/banner` | バナー導線 |
+| `themeB/box-menu` | ✅ 採用 | `agent-neo/gateway-grid` | HP の入口（gateway_id 必須化） |
+| `themeB/full-wide` | ✅ 採用 | `agent-neo/section` | フルワイドセクション（section_id 必須化） |
+| `themeB/post-list` | ✅ 採用 | `agent-neo/post-list` | 関連記事・回遊 |
+| `themeB/balloon` | ✅ 採用 | `agent-neo/speech-balloon` | ブログ的演出（個人版優先） |
+| `themeB/cap-block` | ✅ 採用 | `agent-neo/note-box` | 補足ボックス |
+| `themeB/dl/dt/dd` | ✅ 採用 | `agent-neo/definition-list` | 構造化用語リスト |
 
 ### 採用（個人版アフィリ拡張）
 
-| SWELL ブロック | 採用判断 | AGENT NEO 強化 |
+| ThemeB ブロック | 採用判断 | AGENT NEO 強化 |
 |---|---|---|
-| `loos/review` | ✅ 採用 | `agent-neo/review`（Review schema.org 強化、PR 表記必須化、Amazon API メタ連携） |
-| `loos/ad-tag` | ✅ 採用 | `agent-neo/ad-tag`（cta_id / tracking_id / pr_disclosure / placement_rules メタ追加。**REST 公開**で AI 操作可能に） |
+| `themeB/review` | ✅ 採用 | `agent-neo/review`（Review schema.org 強化、PR 表記必須化、Amazon API メタ連携） |
+| `themeB/ad-tag` | ✅ 採用 | `agent-neo/ad-tag`（cta_id / tracking_id / pr_disclosure / placement_rules メタ追加。**REST 公開**で AI 操作可能に） |
 
 ### 採用（法人版拡張）
 
-| SWELL ブロック | AGENT NEO 強化 |
+| ThemeB ブロック | AGENT NEO 強化 |
 |---|---|
-| `loos/blog-parts` | `agent-neo/reusable-part`（service_id でサービス別フィルタ、parts_use taxonomy で拡張） |
-| `loos/restricted-area` | `agent-neo/restricted-area`（権限分離 4 ロール対応） |
-| `loos/ab-test` / `ab-test-a` / `ab-test-b` | `agent-neo/variant` / `variant-a` / `variant-b`（variant_id を seo-tool-connector スキーマに準拠） |
+| `themeB/blog-parts` | `agent-neo/reusable-part`（service_id でサービス別フィルタ、parts_use taxonomy で拡張） |
+| `themeB/restricted-area` | `agent-neo/restricted-area`（権限分離 4 ロール対応） |
+| `themeB/ab-test` / `ab-test-a` / `ab-test-b` | `agent-neo/variant` / `variant-a` / `variant-b`（variant_id を seo-tool-connector スキーマに準拠） |
 
 ### 再設計
 
-| SWELL ブロック | 改善点 |
+| ThemeB ブロック | 改善点 |
 |---|---|
-| `loos/columns` / `column` | FSE の `core/columns` を活用、独自 columns は不要 |
-| `loos/tab` / `tab-body` | アクセシビリティ強化（`role="tablist"`, `aria-controls` 必須） |
-| `loos/accordion` / `accordion-item` | `<details>/<summary>` ベースに刷新（a11y + AI 機械読みやすさ） |
-| `loos/link-list` | `core/list` + Pattern で代替検討 |
+| `themeB/columns` / `column` | FSE の `core/columns` を活用、独自 columns は不要 |
+| `themeB/tab` / `tab-body` | アクセシビリティ強化（`role="tablist"`, `aria-controls` 必須） |
+| `themeB/accordion` / `accordion-item` | `<details>/<summary>` ベースに刷新（a11y + AI 機械読みやすさ） |
+| `themeB/link-list` | `core/list` + Pattern で代替検討 |
 
 ### 見送り
 
-| SWELL ブロック | 理由 |
+| ThemeB ブロック | 理由 |
 |---|---|
 | 各種ショートコード | block.json 単一ソース原則のため shortcode 後方互換は持たない |
 | balloon の旧 CPT (speech_balloon) | カスタムテーブル直書きは AI 操作面で逆効果 |
 
 ### 重要な設計差分
 
-**SWELL は `block.json` に `styles` フィールドを持たず、属性で variant 制御している**。AGENT NEO は **AI 機械可読性重視**で標準的な `styles` フィールド + `register_block_style()` パターンを採用する。AI が JSON 1 行で variation を切り替えられるように。
+**ThemeB は `block.json` に `styles` フィールドを持たず、属性で variant 制御している**。AGENT NEO は **AI 機械可読性重視**で標準的な `styles` フィールド + `register_block_style()` パターンを採用する。AI が JSON 1 行で variation を切り替えられるように。
 
 ---
 
-## 2. SWELL CPT 構造 → AGENT NEO の CPT 設計
+## 2. ThemeB CPT 構造 → AGENT NEO の CPT 設計
 
-### SWELL の CPT（lib/post_type.php）
+### ThemeB の CPT（lib/post_type.php）
 
 | CPT | public | show_in_rest | 用途 |
 |---|---|---|---|
@@ -87,16 +87,16 @@ Codex は 29 本の解析レポート + 1,792 行の `analysis-summary.json` で
 |---|---|---|---|
 | `agent-neo/lp` | true | true | offer_id / service_id 必須メタ追加。法人版限定 |
 | `agent-neo/reusable-part` | false | true | service_id でサービス別フィルタ、parts_use 強化 |
-| `agent-neo/ad-tag` | false | **true**（SWELL から改善） | tracking_id / cta_id / placement_rules / pr_disclosure メタ。AI 操作可能に |
+| `agent-neo/ad-tag` | false | **true**（ThemeB から改善） | tracking_id / cta_id / placement_rules / pr_disclosure メタ。AI 操作可能に |
 | `agent-neo/blueprint`（新設）| false | true | 法人版の HP/LP/BLP の JSON 契約を保管。version 管理付き |
 
-`agent-neo/ad-tag` の REST 公開が **個人版 AI 自動運用の鍵**。SWELL は管理画面 UI 専用に閉じていたため AI 操作できなかった点を改善する。
+`agent-neo/ad-tag` の REST 公開が **個人版 AI 自動運用の鍵**。ThemeB は管理画面 UI 専用に閉じていたため AI 操作できなかった点を改善する。
 
 ---
 
-## 3. SWELL REST エンドポイント（14 route, 16 method）→ AGENT NEO API への含意
+## 3. ThemeB REST エンドポイント（14 route, 16 method）→ AGENT NEO API への含意
 
-### SWELL の REST 構造（観察）
+### ThemeB の REST 構造（観察）
 
 | カテゴリ | route 数 | 備考 |
 |---|---|---|
@@ -115,7 +115,7 @@ agent-neo/v1
 ├─ posts/                  # 記事 CRUD（個人/法人共通）
 ├─ media/                  # メディア CRUD（共通）
 ├─ taxonomies/             # タクソノミー（共通）
-├─ ad-tags/                # 広告タグ CRUD（個人版・SWELL の改善）
+├─ ad-tags/                # 広告タグ CRUD（個人版・ThemeB の改善）
 ├─ blueprints/             # HP/LP/BLP ブループリント（法人版限定）
 ├─ design-tokens/          # design-tokens.json 操作（法人版限定）
 ├─ reusable-parts/         # 再利用パーツ（法人版限定）
@@ -132,29 +132,29 @@ agent-neo/v1
 ### 重要設計判断
 
 - **計測系は seo-tool-connector の API スキーマと整合**（POST /v1/tracking/event, /context, /section-engagement）。ゼロから作らない
-- **dryRun フラグ**を全書き込み API に必須化（SWELL は未実装、AGENT NEO の独自価値）
+- **dryRun フラグ**を全書き込み API に必須化（ThemeB は未実装、AGENT NEO の独自価値）
 - **idempotency-key ヘッダ**を全書き込み API でサポート（同上）
 - **個人版 / 法人版でルート公開範囲を切替**: `package-matrix` の feature flag で動的に `register_rest_route` を呼び分け
 
 ---
 
-## 4. JIN:R SEO 構造 → AGENT NEO seo-meta.schema.json の起点
+## 4. テーマA SEO 構造 → AGENT NEO seo-meta.schema.json の起点
 
-### JIN:R の Post Meta（`_jinr_*` 系 10 個）
+### テーマA の Post Meta（`_themeA_*` 系 10 個）
 
 | Post Meta Key | 型 | AGENT NEO への写像 |
 |---|---|---|
-| `_jinr_seotitle_display` | string | `agent_neo_seo_title` |
-| `_jinr_description_display` | text | `agent_neo_seo_description` |
-| `_jinr_keyword_display` | string | （SEO 観点で削除：keyword は GG 評価対象外） |
-| `_jinr_canonical_display` | url | `agent_neo_seo_canonical` |
-| `_jinr_noindex_display` | bool | `agent_neo_seo_noindex` |
-| `_jinr_category` | int | （AGENT NEO は taxonomy に集約） |
-| `_jinr_thumb_youtube` | url | `agent_neo_hero_video_url` |
+| `_themeA_seotitle_display` | string | `agent_neo_seo_title` |
+| `_themeA_description_display` | text | `agent_neo_seo_description` |
+| `_themeA_keyword_display` | string | （SEO 観点で削除：keyword は GG 評価対象外） |
+| `_themeA_canonical_display` | url | `agent_neo_seo_canonical` |
+| `_themeA_noindex_display` | bool | `agent_neo_seo_noindex` |
+| `_themeA_category` | int | （AGENT NEO は taxonomy に集約） |
+| `_themeA_thumb_youtube` | url | `agent_neo_hero_video_url` |
 
-### JIN:R の Customizer（500+ settings）→ AGENT NEO design-tokens
+### テーマA の Customizer（500+ settings）→ AGENT NEO design-tokens
 
-JIN:R が 14 セクションで 500+ settings を管理しているのは過多。AGENT NEO は **40 トークン以下** を目標に絞り込む:
+テーマA が 14 セクションで 500+ settings を管理しているのは過多。AGENT NEO は **40 トークン以下** を目標に絞り込む:
 
 ```json
 {
@@ -179,13 +179,13 @@ JIN:R が 14 セクションで 500+ settings を管理しているのは過多�
 
 ### JSON-LD 出力タイプ
 
-JIN:R が 7 タイプ（Article, WebPage, WebSite, CollectionPage, BreadcrumbList, Person, Organization）を出力している。AGENT NEO は + 3 タイプ（Review, FAQPage, Offer）を追加して 10 タイプ対応。
+テーマA が 7 タイプ（Article, WebPage, WebSite, CollectionPage, BreadcrumbList, Person, Organization）を出力している。AGENT NEO は + 3 タイプ（Review, FAQPage, Offer）を追加して 10 タイプ対応。
 
 ---
 
-## 5. SWELL アセット読み込みパイプライン → AGENT NEO への直接転用
+## 5. ThemeB アセット読み込みパイプライン → AGENT NEO への直接転用
 
-SWELL の 2 層判定が秀逸:
+ThemeB の 2 層判定が秀逸:
 - **第 1 層**: hook 基準（`is_admin`, `is_customize_preview`, `$post_type === 'ad_tag'`）
 - **第 2 層**: ブロック検知基準（`Pre_Parse_Blocks::init()` で `wp_head` Pri:0 で発火 → 全ブロック検出 → CSS separate）
 
@@ -214,13 +214,13 @@ AGENT NEO の `asset-policy.schema.json`:
 }
 ```
 
-SWELL の `Pre_Parse_Blocks` は静的配列（`SWELL::$used_blocks`）に蓄積する単純設計。AGENT NEO もこれを採用。**ただしサイドバー separate のキャッシュは SWELL では未完成（草案コメントのみ）→ AGENT NEO は完成形で実装**。
+ThemeB の `Pre_Parse_Blocks` は静的配列（`ThemeB::$used_blocks`）に蓄積する単純設計。AGENT NEO もこれを採用。**ただしサイドバー separate のキャッシュは ThemeB では未完成（草案コメントのみ）→ AGENT NEO は完成形で実装**。
 
 ---
 
 ## 6. ad_tag CPT — 個人版アフィリエイト機能の核心
 
-### SWELL の ad_tag が持つ 5 タイプ
+### ThemeB の ad_tag が持つ 5 タイプ
 - normal（バナー画像）
 - text（テキスト広告）
 - affiliate（商品レビュー型）
@@ -236,7 +236,7 @@ SWELL の `Pre_Parse_Blocks` は静的配列（`SWELL::$used_blocks`）に蓄積
 | `adsense_auto` | AdSense 自動広告 | enabled flag のみ |
 | `affiliate_with_amazon_api` | Amazon API 連携 | amazon_asin, auto_refresh_interval, fallback_image |
 
-### 必須メタ追加（SWELL からの改善）
+### 必須メタ追加（ThemeB からの改善）
 
 | メタキー | 目的 |
 |---|---|
@@ -250,7 +250,7 @@ SWELL の `Pre_Parse_Blocks` は静的配列（`SWELL::$used_blocks`）に蓄積
 
 ### REST 公開（最重要）
 
-SWELL の ad_tag は `show_in_rest: false` で AI から触れない。AGENT NEO は **必ず `show_in_rest: true`** にして agent-api 経由で:
+ThemeB の ad_tag は `show_in_rest: false` で AI から触れない。AGENT NEO は **必ず `show_in_rest: true`** にして agent-api 経由で:
 - AI が新商品の ad_tag を作成
 - AI が CTR の悪い ad_tag を非アクティブ化
 - AI が記事に最適な ad_tag を自動配置
@@ -261,7 +261,7 @@ SWELL の ad_tag は `show_in_rest: false` で AI から触れない。AGENT NEO
 
 ## 7. ブロックパターン → AGENT NEO のパターンライブラリ戦略
 
-### SWELL の革新的設計
+### ThemeB の革新的設計
 
 `blog_parts` CPT で保存したコンテンツが **自動的に block_pattern として登録される**（lib/gutenberg/block_patterns.php L31-64）。
 
@@ -280,7 +280,7 @@ agent-neo/reusable-part (CPT, show_in_rest=true)
 
 ## 8. プラグイン互換戦略の確定案
 
-SWELL（SSP に深い統合）と JIN:R（独立志向）の両方の弱点を回避する **3 ティア戦略**:
+ThemeB（SSP に深い統合）と テーマA（独立志向）の両方の弱点を回避する **3 ティア戦略**:
 
 | Tier | 対象 | AGENT NEO の振る舞い |
 |---|---|---|
@@ -296,10 +296,10 @@ SWELL（SSP に深い統合）と JIN:R（独立志向）の両方の弱点を�
 
 ### 高優先（L2 凍結時に必須）
 
-1. ✅ `block-registry.json` v0.1: 32 SWELL ブロックの取捨選択をベースに 25-30 ブロックの初版を凍結
-2. ✅ `seo-meta.schema.json` v0.1: JIN:R の 10 post_meta + 7 JSON-LD タイプ + 3 追加タイプで凍結
+1. ✅ `block-registry.json` v0.1: 32 ThemeB ブロックの取捨選択をベースに 25-30 ブロックの初版を凍結
+2. ✅ `seo-meta.schema.json` v0.1: テーマA の 10 post_meta + 7 JSON-LD タイプ + 3 追加タイプで凍結
 3. ✅ `design-tokens.json` v0.1: 40 トークン以下に絞った初版を凍結。theme.json 変換ビルダー設計
-4. ✅ `asset-policy.schema.json` v0.1: SWELL の 2 層判定をモデルに凍結
+4. ✅ `asset-policy.schema.json` v0.1: ThemeB の 2 層判定をモデルに凍結
 5. ✅ `package-matrix.json` v0.1: 個人版（記事 CRUD のみ）/ 法人版（構造変更込み）の operation 許可リスト
 
 ### 中優先（L3 開始前に確定）
@@ -320,8 +320,8 @@ SWELL（SSP に深い統合）と JIN:R（独立志向）の両方の弱点を�
 Codex 解析の戦略・思想は十分に深い。本レポートで実コード根拠を接続したことで、L2 全体設計が **「実装可能な JSON 契約」** レベルで凍結できる状態になった。
 
 特に重要な認識:
-- **SWELL は性能・ブロック・パターン設計の参照源**として優秀（採用 60% / 改善 30% / 見送り 10%）
-- **JIN:R は SEO 統合・Hero variant 設計の参照源**として優秀（採用 40% / 改善 50% / 見送り 10%）
+- **ThemeB は性能・ブロック・パターン設計の参照源**として優秀（採用 60% / 改善 30% / 見送り 10%）
+- **テーマA は SEO 統合・Hero variant 設計の参照源**として優秀（採用 40% / 改善 50% / 見送り 10%）
 - **両テーマの欠点（AI 操作前提なし、計測ID 不在、ad_tag REST 非公開、独自 CSS 重め）を AGENT NEO で改善**
 - AGENT NEO の独自価値は **「AI 第一級ユーザー前提」+「dryRun/diff/rollback 必須」+「seo-tool-connector ネイティブ統合」** の 3 点に集中
 

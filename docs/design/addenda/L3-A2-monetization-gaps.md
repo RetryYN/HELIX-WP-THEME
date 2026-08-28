@@ -24,11 +24,11 @@
 
 **関連 REQ-F**: REQ-F-004, REQ-F-006  
 **関連 REQ-NF**: REQ-NF-008, REQ-NF-025  
-**実コード根拠**: JIN:R `template-parts/ad-finish.php`, `ad-related.php`, `functions.php`（category override filter）/ 解析レポート `07-計測と連携性分析.md`
+**実コード根拠**: テーマA `template-parts/ad-finish.php`, `ad-related.php`, `functions.php`（category override filter）/ 解析レポート `07-計測と連携性分析.md`
 
 ### 1.1 設計方針
 
-JIN:R は PHP フィルターでH2前・記事終・関連上・ユニット等の広告挿入点を実装している。AGENT-NEO（FSE / Block Theme）ではこれを PHP フィルターで直接移植せず、以下の方針で再設計する。
+テーマA は PHP フィルターでH2前・記事終・関連上・ユニット等の広告挿入点を実装している。AGENT-NEO（FSE / Block Theme）ではこれを PHP フィルターで直接移植せず、以下の方針で再設計する。
 
 - **テーマ側の役割**: 宣言的な広告スロット（`ad_zone_id`）を named slot として定義し、計測 ID（`zone_id`）を DOM 属性として発火する。
 - **Automation SEO 側の役割**: どのゾーンに何の広告タグを割り当てるか（= 配置最適化）の判断をすべて担う（REQ-NF-025）。
@@ -173,11 +173,11 @@ JIN:R は PHP フィルターでH2前・記事終・関連上・ユニット等�
 ## 2. GAP-RT-011 — ad_tag CPT 詳細スキーマ
 
 **関連 REQ-F**: REQ-F-004, REQ-NF-008  
-**実コード根拠**: SWELL `inc/cpt/ad_tag/`（`ad_type`, `ad_border`, `ad_rank`, `ad_name`, `ad_price`, `ad_desc`, `ad_star`, `ad_btn1_text/url`, `ad_btn2_text/url` のpost meta）/ REST 計測 `wp/v2/swell-ct-ad-data`（`adid`, `ct_name`）/ 解析レポート `30-SWELL-block-cpt-rest-deep-extract.md`
+**実コード根拠**: ThemeB `inc/cpt/ad_tag/`（`ad_type`, `ad_border`, `ad_rank`, `ad_name`, `ad_price`, `ad_desc`, `ad_star`, `ad_btn1_text/url`, `ad_btn2_text/url` のpost meta）/ REST 計測 `wp/v2/themeB-ct-ad-data`（`adid`, `ct_name`）/ 解析レポート `30-ThemeB-block-cpt-rest-deep-extract.md`
 
 ### 2.1 設計方針
 
-SWELL の ad_tag CPT は `public=false, show_in_rest=false`（管理画面のみ・REST 非対応）であったが、AGENT-NEO では Companion Plugin 側 CPT として REST 対応（read: `edit_posts`、write: `manage_options`）で再定義する。SWELL では単一 CPT に5種の ad_type を post meta で表現していたが、AGENT-NEO では JSON 統一データモデル（REQ-F-025）に従い CPT post_meta の `_agent_neo_ad_tag_data` に型付き JSON として保持する。
+ThemeB の ad_tag CPT は `public=false, show_in_rest=false`（管理画面のみ・REST 非対応）であったが、AGENT-NEO では Companion Plugin 側 CPT として REST 対応（read: `edit_posts`、write: `manage_options`）で再定義する。ThemeB では単一 CPT に5種の ad_type を post meta で表現していたが、AGENT-NEO では JSON 統一データモデル（REQ-F-025）に従い CPT post_meta の `_agent_neo_ad_tag_data` に型付き JSON として保持する。
 
 ### 2.2 CPT 定義
 
@@ -323,7 +323,7 @@ Google AdSense 等の広告タグ・バナー広告（HTML 埋め込み）。
 | POST | `/agent-neo/v1/ad-tags/{id}/impression` | 公開（署名+rate limit） | impression 計測 |
 | POST | `/agent-neo/v1/ad-tags/{id}/click` | 公開（署名+rate limit） | click 計測 |
 
-> **SWELL との差異**: SWELL の `wp/v2/swell-ct-ad-data` は `__return_true`（認証なし）で計測を受け付けていた。AGENT-NEO では site_token + HMAC 署名 + nonce の3点検証（A-007 tracking endpoint と同方式）を採用してなりすましを防ぐ。
+> **ThemeB との差異**: ThemeB の `wp/v2/themeB-ct-ad-data` は `__return_true`（認証なし）で計測を受け付けていた。AGENT-NEO では site_token + HMAC 署名 + nonce の3点検証（A-007 tracking endpoint と同方式）を採用してなりすましを防ぐ。
 
 ### 2.6 受入条件（TC 候補）
 
@@ -343,11 +343,11 @@ Google AdSense 等の広告タグ・バナー広告（HTML 埋め込み）。
 
 **関連 REQ-F**: REQ-F-006, REQ-F-004  
 **関連 REQ-NF**: REQ-NF-004, REQ-NF-014  
-**実コード根拠**: SWELL `rest-api/tracking.php` / JS `tracking.js`（scroll_depth 25/50/75/100% threshold, view_time 秒計測）/ 解析レポート `07-計測と連携性分析.md`
+**実コード根拠**: ThemeB `rest-api/tracking.php` / JS `tracking.js`（scroll_depth 25/50/75/100% threshold, view_time 秒計測）/ 解析レポート `07-計測と連携性分析.md`
 
 ### 3.1 現状の問題
 
-`L3-detailed-design.md §A-007` では `event_type` の enum が `impression` / `click` / `conversion` の3値のみ。SWELL 実装および解析レポート07の設計では `ad_impression` / `affiliate_click` / `scroll_depth` / `view_time` 等が個別計測されており、設計と実態に乖離がある。
+`L3-detailed-design.md §A-007` では `event_type` の enum が `impression` / `click` / `conversion` の3値のみ。ThemeB 実装および解析レポート07の設計では `ad_impression` / `affiliate_click` / `scroll_depth` / `view_time` 等が個別計測されており、設計と実態に乖離がある。
 
 ### 3.2 event_type 拡張 enum 定義案
 
@@ -472,11 +472,11 @@ window.AgentNeo.tracking.emit({
 
 **関連 REQ-F**: REQ-F-004, REQ-NF-010  
 **関連 REQ-NF**: REQ-NF-001a（JS/CSS予算）, REQ-NF-011  
-**実コード根拠**: JIN:R `assets/css/others/appreach.css` / `amazon.css` 等 / 解析レポート `33-plugin-compat-style-variations-deep-extract.md`
+**実コード根拠**: テーマA `assets/css/others/appreach.css` / `amazon.css` 等 / 解析レポート `33-plugin-compat-style-variations-deep-extract.md`
 
 ### 4.1 設計方針
 
-JIN:R は外部アフィリエイトプラグイン（かえるべあ / appreach / Amazon アソシエイト等）が出力するHTMLのスタイリングを `assets/css/others/` 配下の個別 CSS ファイルで対応していた。AGENT-NEO ではこれを以下の方針で再設計する。
+テーマA は外部アフィリエイトプラグイン（かえるべあ / appreach / Amazon アソシエイト等）が出力するHTMLのスタイリングを `assets/css/others/` 配下の個別 CSS ファイルで対応していた。AGENT-NEO ではこれを以下の方針で再設計する。
 
 - **FSE 原則**: `style.css` への全量バンドルは行わない。`block.json` の `editorStyle` / `style` フィールドで条件付きロードする。
 - **adapter 方式**: 各外部プラグインに対応する CSS adapter を独立した登録可能モジュールとして管理する。

@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Theme A preset 1 (PoC)",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"color": "#fda6a6",
+					"name": "Primary"
+				},
+				{
+					"slug": "secondary",
+					"color": "#fff0f0",
+					"name": "Secondary"
+				},
+				{
+					"slug": "accent",
+					"color": "#99dbcc",
+					"name": "Accent"
+				},
+				{
+					"slug": "accent-aa",
+					"color": "#7ddbc5",
+					"name": "Accent Aa"
+				},
+				{
+					"slug": "background",
+					"color": "#fff0f0",
+					"name": "Background"
+				},
+				{
+					"slug": "foreground",
+					"color": "#6d4655",
+					"name": "Foreground"
+				},
+				{
+					"slug": "footer-bg",
+					"color": "#fda6a6",
+					"name": "Footer Bg"
+				},
+				{
+					"slug": "muted",
+					"color": "#84565d",
+					"name": "Muted"
+				}
+			]
+		}
+	}
+}

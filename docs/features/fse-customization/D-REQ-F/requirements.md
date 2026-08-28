@@ -5,7 +5,7 @@
 `fse-customization` は AGENT NEO テーマの FSE（Full Site Editing）カスタマイズ余地を確立する feature である。スタイルバリエーション（Style Variations）による見た目の切り替え、記事専用テンプレートパーツ（post-header / post-footer）の切り出し、および Global Styles・パターン編集を阻害しないテーマ設計を通じて、制作・運営側が AI 生成物を安全に上書き・微調整できる骨格を提供する。
 
 **思想の二分（ADR-028 に準拠）**:
-- エンドユーザー向けの分厚い設定パネルは持たない（SWELL の Customizer 331設定の世界 = 戦略的不採用）。
+- エンドユーザー向けの分厚い設定パネルは持たない（ThemeB の Customizer 331設定の世界 = 戦略的不採用）。
 - 制作・運営側が AI 生成物を上書き・微調整する余地は残す（FSE 標準の拡張性を殺さない）。
 
 **AI 再生成との競合回避ルール**: 見た目調整は**テーマ層（Style Variations / Global Styles / 追加CSS）で行う** = 投稿再生成で消えない。ブロック単位インライン上書きは再生成で消えうるため非推奨。

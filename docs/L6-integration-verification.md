@@ -44,7 +44,7 @@ wp-phpunit が CI 非可搬のため、実 docker WP に対する再現可能 E2
 
 ## 4. 性能
 
-- 外部アセット **2 CSS + 3 JS**（競合 SWELL 10–20 / JIN:R 5–15 本より最小）。HTML 119–151KB。PHP 独自クエリ 1 箇所。CWV 静的推定良好（LCP=テキスト見出し / CLS 対策済 / システムフォント）。
+- 外部アセット **2 CSS + 3 JS**（競合 ThemeB 10–20 / テーマA 5–15 本より最小）。HTML 119–151KB。PHP 独自クエリ 1 箇所。CWV 静的推定良好（LCP=テキスト見出し / CLS 対策済 / システムフォント）。
 - `SCRIPT_DEBUG=true` による interactivity/debug.js（101KB）は **dev 用 docker-compose.yml 限定**。AGENT-NEO はテーマ+plugin 配布物であり本番顧客 WP は SCRIPT_DEBUG off → WP コアが minified 版をロード。**製品影響なし**。
 - carry（本番運用最適化・テーマ責務外）: consent.js の render-block 改善 / 本番 nginx ページキャッシュ / ad-tracking.js の defer。
 

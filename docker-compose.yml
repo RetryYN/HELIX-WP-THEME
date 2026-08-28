@@ -43,10 +43,11 @@ services:
       - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
       - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
       - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
-      - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
-      - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
-      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr
-      - ./jinr-child/jinr-child:/var/www/html/wp-content/themes/jinr-child:ro
+      # 第三者テーマ（解析対象）の mount 先は .env で与える（.env.example 参照）
+      - ${THEME_B_PARENT_DIR:-./vendor-themes/theme-b}:/var/www/html/wp-content/themes/${THEME_B_SLUG:-theme-b}:ro
+      - ${THEME_B_CHILD_DIR:-./vendor-themes/theme-b-child}:/var/www/html/wp-content/themes/${THEME_B_SLUG:-theme-b}_child:ro
+      - ${THEME_A_PARENT_DIR:-./vendor-themes/theme-a}:/var/www/html/wp-content/themes/${THEME_A_SLUG:-theme-a}
+      - ${THEME_A_CHILD_DIR:-./vendor-themes/theme-a-child}:/var/www/html/wp-content/themes/${THEME_A_SLUG:-theme-a}-child:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -66,10 +67,11 @@ services:
       - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
       - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
       - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
-      - ./swell-2.16.0/swell:/var/www/html/wp-content/themes/swell:ro
-      - ./swell_child/swell_child:/var/www/html/wp-content/themes/swell_child:ro
-      - ./jinr-parent/jinr/jinr:/var/www/html/wp-content/themes/jinr
-      - ./jinr-child/jinr-child:/var/www/html/wp-content/themes/jinr-child:ro
+      # 第三者テーマ（解析対象）の mount 先は .env で与える（.env.example 参照）
+      - ${THEME_B_PARENT_DIR:-./vendor-themes/theme-b}:/var/www/html/wp-content/themes/${THEME_B_SLUG:-theme-b}:ro
+      - ${THEME_B_CHILD_DIR:-./vendor-themes/theme-b-child}:/var/www/html/wp-content/themes/${THEME_B_SLUG:-theme-b}_child:ro
+      - ${THEME_A_PARENT_DIR:-./vendor-themes/theme-a}:/var/www/html/wp-content/themes/${THEME_A_SLUG:-theme-a}
+      - ${THEME_A_CHILD_DIR:-./vendor-themes/theme-a-child}:/var/www/html/wp-content/themes/${THEME_A_SLUG:-theme-a}-child:ro
       - ./tmp:/tmp/host
     user: "33:33"
     entrypoint: ["wp"]

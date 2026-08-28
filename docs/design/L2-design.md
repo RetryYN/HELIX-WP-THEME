@@ -67,12 +67,12 @@ graph TD
 | ADR-002 | 4操作面を同一JSON契約に集約 | REST/MCP/WP CLI/UIの実装重複を防ぐ。`catalog-update` の外部push契約は ADR-012 + §2.4 の範囲で扱う |
 | ADR-003 | Automation SEO専用配布・課金は Automation SEO 契約のみ | テーマ単体販売・買い切りは廃止。AI原価を含む全機能の課金は Automation SEO プラン階層で管理する（ADR-024 / 2026-06-18 確定） |
 | ADR-004 | 参照テーマは設計抽象のみ取り込む | ライセンス/著作権リスクを避ける |
-| ADR-005 | SEOはJIN:R型の統合UXを採用 | AIがSEOメタ/OGP/canonical/noindex/schemaを一括操作できるようにする |
-| ADR-006 | 速度設計はSWELL型の条件付きアセット戦略を採用 | JIN:RはSEO統合に強いが、速度基盤はSWELLのCSS分割/遅延読み込み/不要機能抑制を優先する |
+| ADR-005 | SEOはテーマA型の統合UXを採用 | AIがSEOメタ/OGP/canonical/noindex/schemaを一括操作できるようにする |
+| ADR-006 | 速度設計はThemeB型の条件付きアセット戦略を採用 | テーマAはSEO統合に強いが、速度基盤はThemeBのCSS分割/遅延読み込み/不要機能抑制を優先する |
 | ADR-007 | LPとHPは別ブループリントとして設計 | LPはCV獲得、HPはブランド/回遊ハブで成功指標が違うため |
 | ADR-008 | Theme CoreとCompanion Pluginを分離 | WordPress.orgのplugin territory、データ移植性、審査リスク、保守性を守るため |
-| ADR-009 | Theme本体はSWELL型の薄いbootstrapとmodule分割を採用 | `functions.php`肥大化を避け、FSE/theme.json/block.json/条件付きassetを正本にするため |
-| ADR-010 | デザインは見た目コピーではなく失敗しにくいUI思想を契約化 | SWELLの情報設計とJIN:RのプリセットUXをAI改善可能なdesign contractに変換するため |
+| ADR-009 | Theme本体はThemeB型の薄いbootstrapとmodule分割を採用 | `functions.php`肥大化を避け、FSE/theme.json/block.json/条件付きassetを正本にするため |
+| ADR-010 | デザインは見た目コピーではなく失敗しにくいUI思想を契約化 | ThemeBの情報設計とテーマAのプリセットUXをAI改善可能なdesign contractに変換するため |
 | ADR-011 | 運用品質をJSON契約化 | WP更新、プラグイン追加、外部連携障害、セキュリティ設定をHealth/Update/Conflict/Fallbackで診断可能にするため |
 | ADR-012 | API/自動化は契約ファーストでCore Pluginが所有 | Theme本体にCron/API状態を持たせず、OpenAPI/JSON Schema/Job ContractでREST/MCP/WP CLI/Cronを同一仕様にするため |
 | ADR-013 | AI運用性とクローラビリティを製品契約にする | 既存テーマは人間GUI前提で、AIが安全に読む/触る/公開可否を判断する機械契約が不足しているため |
@@ -80,12 +80,12 @@ graph TD
 | ADR-015 | LLMOをSEO Coreの拡張ではなく独立契約にする | AI検索ではindexだけでなく、引用、根拠、学習可否、AI入力可否、AI経由CV計測が必要で、通常SEOメタだけでは表現できないため |
 | ADR-016 | SEO/WP運用の不都合な真実をrisk-ledgerとして製品化する | canonical/noindex、WP-Cron、cache、plugin conflict、update/rollback、privacy、AI snapshotの静かな事故を検出・復旧対象にするため |
 | ADR-017 | 市場カテゴリをAI運用型WPテーマ基盤として定義する | 既存テーマのデザイン/SEO/価格競争に正面衝突せず、AI操作、LP改善、計測、LLMO、運用品質を中核価値にするため |
-| ADR-018 | Automation SEO連携はAGENT NEO契約を正規ターゲットにする | SWELL/JIN:Rは移行・診断・設計参考に限定し、運用時はstable section/CTA/SEO契約とsafe applyを持つAGENT NEOへ集約するため |
+| ADR-018 | Automation SEO連携はAGENT NEO契約を正規ターゲットにする | ThemeB/テーマAは移行・診断・設計参考に限定し、運用時はstable section/CTA/SEO契約とsafe applyを持つAGENT NEOへ集約するため |
 | ADR-019 | Automation SEO Theme Bridge Pluginは診断・正規化・移行入口に限定する | 既存テーマのDOM/CSS/SEOメタは安定APIではないため、深い自動書き換えではなくsource/confidence付き情報契約として扱う |
 | ADR-020 | WordPress 7.0 先回り対応（Abilities API/共同編集/PHP互換/Theme Check CI）(Accepted) | WP7.0 GA を待たず互換 CI と Abilities API 公開方針を確定。CARRY-WP7-001 VERIFIED(2026-06-21) |
 | ADR-021 | OSS/CIツールチェーン確定（PHPCompatibilityWP/PHPStan/opis/Ajv/composer audit） | テーマ品質ゲートを CI で機械化するため |
 | ADR-022 | SEO出力責務境界の確定（OGP/meta/JSON-LD の内蔵 vs 外部プラグイン委譲） | GAP-RT-016 解消。重複meta/schema を検出・抑制 |
-| ADR-023 | FSE 再設計コスト方針（classic→Block Theme 移植不可領域の代替実装） | SWELL/JIN:R のcustomizer/widget/PHPフィルターを Pattern/theme.json/Block Binding で再設計 |
+| ADR-023 | FSE 再設計コスト方針（classic→Block Theme 移植不可領域の代替実装） | ThemeB/テーマA のcustomizer/widget/PHPフィルターを Pattern/theme.json/Block Binding で再設計 |
 | ADR-024 | Automation SEO 専用配布に一本化・課金は Automation SEO 契約のみ（テーマ単体販売廃止 / REQ-F-043 廃止） | GPL露出とAIロジック保護の両立。外部AI write 受口を恒久閉鎖 |
 | ADR-025 | AI生成コンテンツ開示法規制（EU AI Act/SB942/C2PA）を Automation SEO 登録時同意に集約 | マーキングは Automation SEO 側。テーマは disclosure レンダリングフックのみ |
 | ADR-026 | AI生成HTML埋め込みブロック `agent-neo/embed`（CSS隔離 dual-mode）(Accepted) | static=Shadow DOM+DSD / interactive=別オリジン sandbox iframe。embed隔離PoC+実WP検証 PASS |
@@ -417,7 +417,7 @@ AGENT NEO Admin
 
 ### 8.2 SEO設計
 
-AGENT NEOはJIN:R型の統合SEO UXを採用し、SWELL型のJSON-LD品質とSEOプラグイン共存性を組み合わせる。
+AGENT NEOはテーマA型の統合SEO UXを採用し、ThemeB型のJSON-LD品質とSEOプラグイン共存性を組み合わせる。
 
 | コンポーネント | 責務 |
 |---|---|
@@ -451,7 +451,7 @@ AGENT NEOは、LPを「1オファーのCV獲得ページ」、HPを「ブラン�
 
 ### 8.4 デザイン/UI設計
 
-AGENT NEOのデザインは、参照テーマの見た目ではなく「失敗しにくい情報設計」を取り込む。SWELLからはトップ導線、カード/タブ/CTA、記事とLPの読みやすい構造を抽象化し、JIN:Rからはファーストビュー、デザインプリセット、丸み/余白/見出しの選択UXを抽象化する。
+AGENT NEOのデザインは、参照テーマの見た目ではなく「失敗しにくい情報設計」を取り込む。ThemeBからはトップ導線、カード/タブ/CTA、記事とLPの読みやすい構造を抽象化し、テーマAからはファーストビュー、デザインプリセット、丸み/余白/見出しの選択UXを抽象化する。
 
 | 契約 | 責務 |
 |---|---|
@@ -482,7 +482,7 @@ AGENT NEOのデザインは、参照テーマの見た目ではなく「失敗�
 
 ### 8.6 運用・更新・可用性設計
 
-AGENT NEOは、WPコア更新、PHP/DB更新、プラグイン追加、外部連携障害で壊れにくいことを製品機能として扱う。SWELL型の環境チェック、更新後処理、WPバージョン分岐を抽象化し、AGENT NEOでは更新前後チェック、ロールバック、衝突検出、fallbackまで契約化する。
+AGENT NEOは、WPコア更新、PHP/DB更新、プラグイン追加、外部連携障害で壊れにくいことを製品機能として扱う。ThemeB型の環境チェック、更新後処理、WPバージョン分岐を抽象化し、AGENT NEOでは更新前後チェック、ロールバック、衝突検出、fallbackまで契約化する。
 
 | 契約 | 責務 |
 |---|---|
@@ -787,7 +787,7 @@ AGENT NEOは、SEOやWP運用で静かに壊れる要素を注意書きではな
 
 ## 8.12 Automation SEO連携適合性設計
 
-AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプタを増やさない。SWELL/JIN:Rは移行・診断・設計参考として扱い、Automation SEOの正規運用ターゲットはAGENT NEOの安定JSON契約にする。
+AGENT NEOは、ThemeB/テーマAを直接AI運用するための深い個別アダプタを増やさない。ThemeB/テーマAは移行・診断・設計参考として扱い、Automation SEOの正規運用ターゲットはAGENT NEOの安定JSON契約にする。
 
 | 追加ID | 種別 | 内容 |
 |---|---|---|
@@ -801,13 +801,13 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 | `theme-capability.schema.json` | 現在テーマ、SEOメタ取得元、LP/CTA/section/速度/REST対応を診断 |
 | `section-id-resolver.schema.json` | `data-agent-section-id`、block anchor、heading hash、selectorの優先順位とconfidenceを定義 |
 | `tracking-context-v2.schema.json` | `contract_version`、`page_type`、`section_type`、`cta_ids`、`offer_ids`、`selector_confidence`、`selector_contract`、`schema_hash`、`tracking_source`をAutomation SEOへ渡す |
-| `seo-meta-normalizer.schema.json` | SWELL系SEOプラグイン、JIN:Rメタ、AGENT NEO SEO Coreを共通SEOメタへ変換 |
+| `seo-meta-normalizer.schema.json` | ThemeB系SEOプラグイン、テーマAメタ、AGENT NEO SEO Coreを共通SEOメタへ変換 |
 | `cta-offer-mapper.schema.json` | CTA、ASPリンク、資料DL、外部フォームを `cta_id` / `offer_id` に正規化 |
 | `safe-recommendation-apply.schema.json` | Automation SEO提案をdryRun、diff hash、risk、apply、rollbackに変換 |
 
 | 実装責務 | Automation SEO側 | WPテーマ/Core Plugin側 |
 |---|---|---|
-| テーマ判定 | Theme Capability ScannerでSWELL/JIN:R/AGENT NEOを判定 | capability endpointとmanifestを返す |
+| テーマ判定 | Theme Capability ScannerでThemeB/テーマA/AGENT NEOを判定 | capability endpointとmanifestを返す |
 | セクションID | selector confidenceを計算し、低信頼selectorは提案止まり | `data-agent-section-id` とsection registryを出力 |
 | AI判断 | `catalog-apply` 等の最終判断・改善提案は Automation SEO 側で行い、AGENT NEO は AGENT_NEO側で新規判断ロジックを実装しない（REQ-F-007 / REQ-NF-025） |
 | 公開API | `tracking-context-v2.schema.json` を公開APIとして返却し、`tracking_source` を `page_type` / `section_type` 文脈付きで公開 |
@@ -820,7 +820,7 @@ AGENT NEOは、SWELL/JIN:Rを直接AI運用するための深い個別アダプ�
 
 > **注記（ADR-024 / 2026-06-18 確定）**: **REQ-F-043 Open Editor Bridge Plugin（外部AI write受口）は廃止**。AI 操作経路は Automation SEO（aseo/v1）とテーマ自身（agent-neo/v1）のみとする。本節が扱う「Automation SEO Theme Bridge Plugin」（ADR-019）は既存テーマの診断・正規化・移行入口に限定する別概念であり、ADR-019 は存続する。
 
-既存テーマを横断的に強化するAutomation SEO側プラグインは、テーマを直接改造するものではなく、診断・正規化・計測・移行入口の契約層として扱う。SWELL/JIN:R/AFFINGER/Cocoon/Lightningでは原則preview-only、AGENT NEOではCore PluginがdryRun/apply/rollbackを持つ正規write targetになる。
+既存テーマを横断的に強化するAutomation SEO側プラグインは、テーマを直接改造するものではなく、診断・正規化・計測・移行入口の契約層として扱う。ThemeB/テーマA/テーマC/テーマD/テーマEでは原則preview-only、AGENT NEOではCore PluginがdryRun/apply/rollbackを持つ正規write targetになる。
 
 | 追加ID | 種別 | 内容 |
 |---|---|---|

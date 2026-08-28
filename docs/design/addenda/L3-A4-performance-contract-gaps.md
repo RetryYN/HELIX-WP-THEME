@@ -104,7 +104,7 @@
           "properties": {
             "transientDays": {
               "type": "integer",
-              "description": "transient キャッシュ保持日数。SWELL は 30 日",
+              "description": "transient キャッシュ保持日数。ThemeB は 30 日",
               "default": 30
             },
             "invalidateOnCustomizerPreview": {
@@ -127,7 +127,7 @@
 | インライン化 | `inc/assets/critical-css.php` | `wp_head` アクションで page_type を判定し、`<style id="agent-neo-critical">` としてインライン出力 |
 | サイズ検証 | CI（`wp agent-neo perf:critical-css-size`） | ビルド時に各 page_type のインライン CSS を gzip 計測し、`inlineSizeKbGzip` 超過時に CI 失敗 |
 | キャッシュ | `wp_options.agent_neo_critical_css_{page_type}` | transient 保存、`design_token_update` フック受信時に flush |
-| 非同期残余 CSS | `media="print" onload` + `noscript` フォールバック | SWELL `load_style_async` パターンを参照した実装（ADR-006） |
+| 非同期残余 CSS | `media="print" onload` + `noscript` フォールバック | ThemeB `load_style_async` パターンを参照した実装（ADR-006） |
 
 ### 計測・送信フロー
 
@@ -311,7 +311,7 @@ L2 §8.1 は `render blocking third-party: 0` を速度予算として宣言し�
 
 ### 背景
 
-L2 §8.1 は「フォント: 2 family / 3 weights 以内」と速度予算を宣言しているが、スキーマ化されていない。SWELL は `inc/customizer/font/` + Fonts API でフォント管理を実装しており（解析レポート 32 参照）、JIN:R は `include/font-selection.php` で preconnect を出力している。AGENT NEO では Google Fonts 選択（日本語/英語）の JSON 定義 + REST 操作を含む完全な契約が必要である。また FOIT/FOUT 制御と CLS 抑制は LCP 予算・CLS 予算に直接影響する。
+L2 §8.1 は「フォント: 2 family / 3 weights 以内」と速度予算を宣言しているが、スキーマ化されていない。ThemeB は `inc/customizer/font/` + Fonts API でフォント管理を実装しており（解析レポート 32 参照）、テーマA は `include/font-selection.php` で preconnect を出力している。AGENT NEO では Google Fonts 選択（日本語/英語）の JSON 定義 + REST 操作を含む完全な契約が必要である。また FOIT/FOUT 制御と CLS 抑制は LCP 予算・CLS 予算に直接影響する。
 
 ### スキーマ定義案: `font-policy.schema.json`
 
@@ -687,7 +687,7 @@ LCP 要素の `closest('[data-agent-section-id]')` で section_id を取得し�
 
 ### 背景
 
-SWELL は `rest-api/lazyload.php` で after_article / footer エリアのコンテンツを遅延取得している（解析レポート 15 参照）。AGENT NEO は FSE（Block Theme）であるため、SWELL のような PHP テンプレートベースの遅延ロードは直接移植できない。FSE で同等の「必要箇所のみ遅延取得」を実現するための REST エンドポイントとブロック識別フラグの設計が必要である。
+ThemeB は `rest-api/lazyload.php` で after_article / footer エリアのコンテンツを遅延取得している（解析レポート 15 参照）。AGENT NEO は FSE（Block Theme）であるため、ThemeB のような PHP テンプレートベースの遅延ロードは直接移植できない。FSE で同等の「必要箇所のみ遅延取得」を実現するための REST エンドポイントとブロック識別フラグの設計が必要である。
 
 ### 設計方針
 
@@ -765,7 +765,7 @@ FSE での遅延取得は「クライアントサイド JS が REST で遅延コ
 | ブロック | 理由 |
 |---|---|
 | `agent-neo/related-posts` | 記事下 / 初期表示外 |
-| `agent-neo/after-article-ad` | after_article 広告（SWELL パターン相当） |
+| `agent-neo/after-article-ad` | after_article 広告（ThemeB パターン相当） |
 | `agent-neo/sns-feed-widget` | 外部 API 依存。初期描画をブロックしない |
 | `agent-neo/comment-list` | コメント数が多いサイトで有効 |
 
@@ -803,7 +803,7 @@ FSE での遅延取得は「クライアントサイド JS が REST で遅延コ
 
 ### 背景
 
-解析レポート 32（SWELL アセットパイプライン）は、SWELL が `add_image_size` で追加した固有サイズを block.json / media エンドポイントで活用していることを示している。AGENT NEO が `block.json` / `POST /media/upload`（REQ-F-017）で一貫した画像サイズを使用するには、テーマ固有サイズの定義が L3 で必要である。
+解析レポート 32（ThemeB アセットパイプライン）は、ThemeB が `add_image_size` で追加した固有サイズを block.json / media エンドポイントで活用していることを示している。AGENT NEO が `block.json` / `POST /media/upload`（REQ-F-017）で一貫した画像サイズを使用するには、テーマ固有サイズの定義が L3 で必要である。
 
 ### 標準画像サイズ定義
 

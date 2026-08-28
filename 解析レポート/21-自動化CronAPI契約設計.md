@@ -18,16 +18,16 @@
 
 | テーマ | ファイル | 観測内容 | AGENT NEO判断 |
 |---|---|---|---|
-| SWELL | `lib/rest_api.php` | settings、tracking、lazyload、cache reset、settings reset、term listのREST route | 機能分類は参考。`wp/v2`独自route、混在response、公開trackingの弱さは改善 |
-| SWELL | `lib/rest_api/balloon_api.php` | balloon CRUD、copy、sort、recoverのREST route | UI部品管理APIの参考。Core Plugin側で契約化 |
-| SWELL | `lib/update/Puc/v4p5/Scheduler.php` | `wp_schedule_event`、custom schedule、admin hook fallbackで更新チェック | WP-Cron + 管理画面fallbackの発想は採用 |
-| SWELL | `classes/License.php` | license serverへ `wp_remote_post`、transient cache | license refresh設計の参考。ただし `sslverify=false` は不採用 |
-| SWELL | `classes/Utility/Others.php` | nonce helper、外部URL取得 | nonce集中化は参考。URL fetchはSSRF guard必須 |
-| SWELL | `lib/gutenberg/block/rss.php` | RSS取得で `wp_remote_get` | 外部取得jobのtimeout/cache/size制限設計に反映 |
-| JIN:R | `include/custom-functions.php` | `wp_ajax_loadmore` / `wp_ajax_nopriv_loadmore`、post list loadmore | AJAXよりRESTへ寄せる。公開受付はnonce/schema/rate limit必須 |
-| JIN:R | `include/custom-functions.php` | `wp_schedule_event(1451574000, '1hours', 'set_hours_event')` | 固定timestamp、未確認custom scheduleは不採用 |
-| JIN:R | `include/custom-functions.php` | `/jinr/post_by_url`、`/jinr/external_url` public REST | 内部URL解決のUXは参考。外部URL取得はSSRF対策なしでは禁止 |
-| JIN:R | `theme-update-checker.php` | update metadata取得 | update checkの責務は参考。契約とhealth checkへ昇格 |
+| ThemeB | `lib/rest_api.php` | settings、tracking、lazyload、cache reset、settings reset、term listのREST route | 機能分類は参考。`wp/v2`独自route、混在response、公開trackingの弱さは改善 |
+| ThemeB | `lib/rest_api/balloon_api.php` | balloon CRUD、copy、sort、recoverのREST route | UI部品管理APIの参考。Core Plugin側で契約化 |
+| ThemeB | `lib/update/Puc/v4p5/Scheduler.php` | `wp_schedule_event`、custom schedule、admin hook fallbackで更新チェック | WP-Cron + 管理画面fallbackの発想は採用 |
+| ThemeB | `classes/License.php` | license serverへ `wp_remote_post`、transient cache | license refresh設計の参考。ただし `sslverify=false` は不採用 |
+| ThemeB | `classes/Utility/Others.php` | nonce helper、外部URL取得 | nonce集中化は参考。URL fetchはSSRF guard必須 |
+| ThemeB | `lib/gutenberg/block/rss.php` | RSS取得で `wp_remote_get` | 外部取得jobのtimeout/cache/size制限設計に反映 |
+| テーマA | `include/custom-functions.php` | `wp_ajax_loadmore` / `wp_ajax_nopriv_loadmore`、post list loadmore | AJAXよりRESTへ寄せる。公開受付はnonce/schema/rate limit必須 |
+| テーマA | `include/custom-functions.php` | `wp_schedule_event(1451574000, '1hours', 'set_hours_event')` | 固定timestamp、未確認custom scheduleは不採用 |
+| テーマA | `include/custom-functions.php` | `/themeA/post_by_url`、`/themeA/external_url` public REST | 内部URL解決のUXは参考。外部URL取得はSSRF対策なしでは禁止 |
+| テーマA | `theme-update-checker.php` | update metadata取得 | update checkの責務は参考。契約とhealth checkへ昇格 |
 
 ## R1: 観測契約
 
@@ -45,7 +45,7 @@
 
 ### AJAX
 
-JIN:Rは公開AJAXで記事追加読み込みを実装している。AGENT NEOでは、公開AJAXは原則使わず、REST route + schema + cacheable responseへ寄せる。WordPress admin UI内部でAJAXが必要な場合も、`check_ajax_referer`、capability、schema validation、標準エラーを必須にする。
+テーマAは公開AJAXで記事追加読み込みを実装している。AGENT NEOでは、公開AJAXは原則使わず、REST route + schema + cacheable responseへ寄せる。WordPress admin UI内部でAJAXが必要な場合も、`check_ajax_referer`、capability、schema validation、標準エラーを必須にする。
 
 ### Cron/Automation
 
@@ -242,7 +242,7 @@ queued/running -> cancelled
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
-| RG0 | passed | SWELL/JIN:RのREST/AJAX/Cron/HTTP evidenceを収集 |
+| RG0 | passed | ThemeB/テーマAのREST/AJAX/Cron/HTTP evidenceを収集 |
 | RG1 | passed | 観測API、AJAX、Cron、外部HTTP契約を分類 |
 | RG2 | passed_with_caution | 参照実装の有効パターンと危険パターンを分離 |
 | R4 | passed | AGENT NEOのL1/L2/L3契約化対象へrouting |

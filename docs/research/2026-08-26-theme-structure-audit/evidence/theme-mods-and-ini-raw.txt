@@ -1,0 +1,50 @@
+===== INV-16: set_theme_mod 副作用 5 キーの現在値 vs ハードコード既定値 =====
+既定値(コード): themeA__theme_color=#407FED / themeA__header_bg_color=#407FED / themeA__header_menu_color=#22327a / themeA__text_color=#555555 / themeA__bg_color=#f7faff
+key	present	equals_default	verdict
+themeA__theme_color	yes	False	人が決めた設定（既定値と異なる）
+themeA__header_bg_color	yes	False	人が決めた設定（既定値と異なる）
+themeA__header_menu_color	yes	False	人が決めた設定（既定値と異なる）
+themeA__text_color	yes	False	人が決めた設定（既定値と異なる）
+themeA__bg_color	yes	False	人が決めた設定（既定値と異なる）
+
+total_keys 235
+value_types {'bool': 23, 'dict': 1, 'int': 1, 'str': 210}
+
+===== #21: display_errors / WP_DEBUG =====
+--- php ini (web と同じ 8.3):
+display_errors=
+error_reporting=32767
+log_errors=1
+--- wp-config 定数:
+82:define( 'WP_DEBUG', false );
+--- .user.ini / php.ini in docroot:
+ls: $HOME/site-A.example/public_html/php.ini にアクセスできません: そのようなファイルやディレクトリはありません
+-rw-r--r-- 1 <account> members 3991  9月 10  2024 $HOME/site-A.example/public_html/.user.ini
+display_errors = On
+
+===== INV-09: option 名の先頭語ヒストグラム（分類の下ごしらえ） =====
+     25 related
+     25 finish
+     15 unit
+     15 h2
+      5 display
+      4 choise
+      3 tag
+      3 paidpost
+      3 google
+      3 category
+      2 top
+      2 breadcrumb
+      2 body
+      2 apparently
+      2 aff9
+      2 aff8
+      2 aff7
+      2 aff6
+      2 aff5
+      2 aff4
+      2 aff30
+      2 aff3
+      2 aff29
+      2 aff28
+      2 aff27

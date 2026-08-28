@@ -2,6 +2,10 @@
 
 AGENT NEO テーマ・移行プラグイン・WP CLI 拡張を検証する Docker 環境。
 
+## 第三者テーマの mount と検証スクリプトの設定
+
+`docker-compose.yml` の第三者テーマ mount と `scripts/verify-themes.sh` は実スラッグ・実パスを持たない。`.env.example` を `.env` にコピーし、`THEME_A_SLUG` / `THEME_B_SLUG` / `*_DIR` を自分の環境の値にする（`.env` は gitignore）。`verify-themes.sh` は `THEME_A_SLUG` `THEME_B_SLUG` 未設定なら停止する。
+
 ## 構成
 
 | コンポーネント | バージョン | ポート | 用途 |
@@ -25,17 +29,17 @@ seo-tool-connector は隣接ディレクトリから読み取り専用でマウ�
 
 ## Linux 環境での mount path 修正 (2026-05-20 追記)
 
-`docker-compose.yml` の mount path は Windows ローカル開発想定 (`C:\Users\tenni\Desktop\seo-tool-v2-docs\Automation SEO-v2\wordpress-plugin\seo-tool-connector`) で記述されている。Linux 環境 (= VPS / Docker Linux host) で起動する場合、以下の path 調整が必要。
+`docker-compose.yml` の mount path は Windows ローカル開発想定 (`<local-path>\seo-tool-v2-docs\Automation SEO-v2\wordpress-plugin\seo-tool-connector`) で記述されている。Linux 環境 (= VPS / Docker Linux host) で起動する場合、以下の path 調整が必要。
 
 ### 想定 vs Linux 実環境
 
 | mount 対象 | docker-compose.yml 記載 (Windows 想定) | Linux 環境での実 path |
 |---|---|---|
 | seo-tool-connector | `../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector` | `../seo-tool/v2/plugin` (= /opt/seo-tool/v2/plugin の隣接想定) |
-| swell theme | `./swell-2.16.0/swell` | 開発環境内で別途配置 (= AGENT-NEO repo 外部) |
-| swell_child | `./swell_child/swell_child` | 同上 |
-| jinr-parent | `./jinr-parent/jinr/jinr` | 同上 |
-| jinr-child | `./jinr-child/jinr-child` | 同上 |
+| themeB theme | `./themeB-2.16.0/themeB` | 開発環境内で別途配置 (= AGENT-NEO repo 外部) |
+| themeB_child | `./themeB_child/themeB_child` | 同上 |
+| themeA-parent | `./themeA-parent/themeA/themeA` | 同上 |
+| themeA-child | `./themeA-child/themeA-child` | 同上 |
 
 ### 修正方法
 
@@ -48,7 +52,7 @@ services:
   wordpress:
     volumes:
       - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
-      # swell / jinr 系は実環境で配置できれば追加、できない場合は省略可
+      # themeB / themeA 系は実環境で配置できれば追加、できない場合は省略可
   wpcli:
     volumes:
       - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
@@ -67,7 +71,7 @@ ln -s /opt/seo-tool/v2/plugin ../seo-tool-v2-docs/"Automation SEO"/wordpress-plu
 #### 推奨: 方法 A (= override file 方式)
 - docker-compose.yml 本体を変更しないので git diff が出ない
 - 各環境で個別調整可能
-- swell / jinr 系も同様に対応可能
+- themeB / themeA 系も同様に対応可能
 
 ### automation SEO 側 (= /opt/seo-tool) の関係
 

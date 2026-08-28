@@ -2,7 +2,7 @@
 
 ## 結論
 
-`SEO skill/references/seo-skill-map.md` の10カテゴリでSWELL/JIN:Rを見直すと、既存レポートの「JIN:RはSEO統合UX、SWELLは構造化データ/速度/収益化/計測が強い」という判断は維持できる。
+`SEO skill/references/seo-skill-map.md` の10カテゴリでThemeB/テーマAを見直すと、既存レポートの「テーマAはSEO統合UX、ThemeBは構造化データ/速度/収益化/計測が強い」という判断は維持できる。
 
 ただし、SEO業務全体のスキルマップで見ると、両テーマとも **オンページSEOとテクニカルSEOに寄っており、戦略、キーワードクラスタ、Search Console分析、国際SEO、オフページ、AI SEO/LLMO、成長実験はテーマ契約として未成熟** である。AGENT NEOはここを「テーマ機能」ではなく、Automation SEOとCore Pluginが扱うSEO運用基盤として製品化すべきである。
 
@@ -11,46 +11,46 @@
 | 対象 | 状態 | 主な確認ファイル |
 |---|---|---|
 | `SEO skill/references/seo-skill-map.md` | 10カテゴリ/SEO業務観点の入力 | `SEO skill/references/seo-skill-map.md` |
-| SWELL | 実コード解析 | `classes/Json_Ld.php`, `lib/gutenberg/block/review.php`, `lib/gutenberg/render_hook/faq.php`, `lib/menu/settings/speed.php`, `lib/post_meta/meta_button.php`, `lib/hooks/admin_display.php`, `lib/hooks/remove.php` |
-| JIN:R | 実コード解析 | `header.php`, `include/head/*`, `include/json-ld.php`, `include/custom-functions.php`, `include/jinr-setting.php`, `functions.php` |
+| ThemeB | 実コード解析 | `classes/Json_Ld.php`, `lib/gutenberg/block/review.php`, `lib/gutenberg/render_hook/faq.php`, `lib/menu/settings/speed.php`, `lib/post_meta/meta_button.php`, `lib/hooks/admin_display.php`, `lib/hooks/remove.php` |
+| テーマA | 実コード解析 | `header.php`, `include/head/*`, `include/json-ld.php`, `include/custom-functions.php`, `include/themeA-setting.php`, `functions.php` |
 
 ## SEOスキルマップ別評価
 
-| カテゴリ | SWELL | JIN:R | 観測結果 | AGENT NEOでの設計方針 |
+| カテゴリ | ThemeB | テーマA | 観測結果 | AGENT NEOでの設計方針 |
 |---|---:|---:|---|---|
-| 1. 戦略 | 35 | 40 | キーワードリサーチ、検索意図、競合分析、クラスタリングはテーマ本体には存在しない。JIN:Rはカテゴリ作り込み導線があり、IAに少し寄与する | Automation SEO側で `keyword_cluster`, `search_intent`, `competitor_gap` を持ち、テーマは受け皿に徹する |
-| 2. オンページSEO | 65 | 82 | JIN:Rはtitle/description/canonical/noindex/OGPをテーマ内で管理し、post metaをREST公開する。SWELLはFAQ/Review/内部リンク部品が強いがSEOメタは外部プラグイン寄り | JIN:R型SEO UX + SWELL型ブロック/構造化データを統合する |
-| 3. テクニカルSEO | 84 | 68 | SWELLは`@graph` JSON-LD、FAQ/Product/Review schema、速度設定、不要WP出力抑制が強い。JIN:Rはnoindex/canonicalは強いが、JSON-LDが分割scriptで、jQuery依存も強い | `indexability_policy`, `entity_graph`, `performance_budget`, `crawlability_profile` を契約化する |
-| 4. コンテンツSEO | 78 | 70 | SWELLは投稿リスト、関連記事、FAQ、レビュー、AB、広告タグ、PV表示が強い。JIN:Rはプロフィール、関連記事、カテゴリ固定ページ化、デモ/プリセットUXが強い | 記事/LP/BLPを `content_blueprint` として扱い、topic clusterと内部リンクを機械可読にする |
+| 1. 戦略 | 35 | 40 | キーワードリサーチ、検索意図、競合分析、クラスタリングはテーマ本体には存在しない。テーマAはカテゴリ作り込み導線があり、IAに少し寄与する | Automation SEO側で `keyword_cluster`, `search_intent`, `competitor_gap` を持ち、テーマは受け皿に徹する |
+| 2. オンページSEO | 65 | 82 | テーマAはtitle/description/canonical/noindex/OGPをテーマ内で管理し、post metaをREST公開する。ThemeBはFAQ/Review/内部リンク部品が強いがSEOメタは外部プラグイン寄り | テーマA型SEO UX + ThemeB型ブロック/構造化データを統合する |
+| 3. テクニカルSEO | 84 | 68 | ThemeBは`@graph` JSON-LD、FAQ/Product/Review schema、速度設定、不要WP出力抑制が強い。テーマAはnoindex/canonicalは強いが、JSON-LDが分割scriptで、jQuery依存も強い | `indexability_policy`, `entity_graph`, `performance_budget`, `crawlability_profile` を契約化する |
+| 4. コンテンツSEO | 78 | 70 | ThemeBは投稿リスト、関連記事、FAQ、レビュー、AB、広告タグ、PV表示が強い。テーマAはプロフィール、関連記事、カテゴリ固定ページ化、デモ/プリセットUXが強い | 記事/LP/BLPを `content_blueprint` として扱い、topic clusterと内部リンクを機械可読にする |
 | 5. オフページSEO | 30 | 32 | SNS/sameAs/profile/shareはあるが、リンク獲得、PR、ブランド言及、アウトリーチ管理はテーマ領域外 | Themeには `brand_entity` と `citation_source` だけ持たせ、PR/被リンクは外部運用・Automation SEOへ逃がす |
-| 6. 国際SEO | 45 | 25 | SWELLは翻訳ファイル/i18n配慮が見える。JIN:Rは`html lang="ja"`固定で多言語/hreflang設計は弱い | 初版日本語/英語でも `hreflang_map`, `locale_content_policy`, `canonical_locale_pair` を先に定義する |
-| 7. アナリティクス | 75 | 45 | SWELLはPV、広告CTR、ボタン計測、ABブロックがある。JIN:RはAnalytics/Search Console/AdSenseタグをraw出力できるがKPI統合は弱い | GA4/GSC/Automation SEO/ローカル計測を `seo_kpi_profile` へ集約する |
-| 8. UX | 82 | 72 | SWELLは速度、TOC、条件付きasset、ブロックUXが強い。JIN:Rはプリセット、メインビジュアル、著者/信頼感演出が強い | CWVとCVを同じ画面で扱い、LP/記事ごとにUX riskを出す |
-| 9. AI SEO | 55 | 58 | 両方ともschemaや著者情報はあるが、answer unit、evidence graph、AI crawler policy、citation anchorはない。JIN:RはSEO meta REST公開がAI操作の土台になる | `llmo_profile`, `answer_unit`, `evidence_graph`, `content_origin`, `ai_visibility_policy` をP0にする |
-| 10. 成長 | 65 | 60 | SWELLはAB/CTR/PV/人気順で改善サイクルに近い。JIN:Rはデモ/プリセットによる初速が強い。どちらもSEO実験管理やコンテンツ刷新ワークフローはない | `seo_experiment`, `content_refresh_queue`, `topic_authority_score` をCore Plugin/Automation SEOで扱う |
+| 6. 国際SEO | 45 | 25 | ThemeBは翻訳ファイル/i18n配慮が見える。テーマAは`html lang="ja"`固定で多言語/hreflang設計は弱い | 初版日本語/英語でも `hreflang_map`, `locale_content_policy`, `canonical_locale_pair` を先に定義する |
+| 7. アナリティクス | 75 | 45 | ThemeBはPV、広告CTR、ボタン計測、ABブロックがある。テーマAはAnalytics/Search Console/AdSenseタグをraw出力できるがKPI統合は弱い | GA4/GSC/Automation SEO/ローカル計測を `seo_kpi_profile` へ集約する |
+| 8. UX | 82 | 72 | ThemeBは速度、TOC、条件付きasset、ブロックUXが強い。テーマAはプリセット、メインビジュアル、著者/信頼感演出が強い | CWVとCVを同じ画面で扱い、LP/記事ごとにUX riskを出す |
+| 9. AI SEO | 55 | 58 | 両方ともschemaや著者情報はあるが、answer unit、evidence graph、AI crawler policy、citation anchorはない。テーマAはSEO meta REST公開がAI操作の土台になる | `llmo_profile`, `answer_unit`, `evidence_graph`, `content_origin`, `ai_visibility_policy` をP0にする |
+| 10. 成長 | 65 | 60 | ThemeBはAB/CTR/PV/人気順で改善サイクルに近い。テーマAはデモ/プリセットによる初速が強い。どちらもSEO実験管理やコンテンツ刷新ワークフローはない | `seo_experiment`, `content_refresh_queue`, `topic_authority_score` をCore Plugin/Automation SEOで扱う |
 
 ## 主要な発見
 
-### JIN:Rの良い点
+### テーマAの良い点
 
 | 観点 | 証拠 | 評価 |
 |---|---|---|
 | SEO head統合 | `header.php` がOGP、description、noindex、keywords、canonical、任意タグを `wp_head()` 前に読み込む | 人間UXとしては分かりやすく、AI操作対象も見つけやすい |
-| REST操作性 | `_jinr_seotitle_display`, `_jinr_description_display`, `_jinr_canonical_display`, `_jinr_noindex_display` が `show_in_rest: true` | SEOメタを外部から操作する土台がある |
+| REST操作性 | `_themeA_seotitle_display`, `_themeA_description_display`, `_themeA_canonical_display`, `_themeA_noindex_display` が `show_in_rest: true` | SEOメタを外部から操作する土台がある |
 | index制御 | `include/head/noindex.php` が投稿/固定/カテゴリ/タグ/検索/著者/添付/404を制御 | WPの薄い/重複ページ対策として実用的 |
 | 著者/Entity | `include/json-ld.php` がPerson/Organization/SameAsを出す | E-E-A-T/AI SEOの基礎情報として参考になる |
 
-### JIN:Rの弱い点
+### テーマAの弱い点
 
 | 観点 | 証拠 | リスク |
 |---|---|---|
 | rawタグ出力 | `include/head/tags.php` がAnalytics/Search Console/headタグをraw echo | セキュリティ、重複、外部送信同意、監査ログが弱い |
 | canonicalの安全性 | `include/head/others.php` が独自canonicalを直接出力 | SEOプラグインやWP標準canonicalとの重複検知が別途必要 |
 | JSON-LD品質 | `include/json-ld.php` は`json_encode`で分割script出力 | `@graph`統合、schema validation、Product/Review/FAQ拡張が不足 |
-| 速度/保守性 | `functions.php` がフロントjQueryを常時寄せ、複数JSがjQuery依存 | Core Web Vitals/AIクローラ向け静的性ではSWELLに劣る |
+| 速度/保守性 | `functions.php` がフロントjQueryを常時寄せ、複数JSがjQuery依存 | Core Web Vitals/AIクローラ向け静的性ではThemeBに劣る |
 | 国際SEO | `html lang="ja"`固定 | hreflang/多言語展開の拡張余地が弱い |
 
-### SWELLの良い点
+### ThemeBの良い点
 
 | 観点 | 証拠 | 評価 |
 |---|---|---|
@@ -60,7 +60,7 @@
 | 速度設計 | `lib/menu/settings/speed.php` がCSS分割、lazyload、delay JS、prefetch/pjaxを管理 | テクニカルSEO/CWVの設計参考として強い |
 | 計測 | `meta_button.php`, `admin_display.php`, `check_code.php` がボタン/広告/PV/CTRを扱う | SEO流入後のCV改善まで繋げやすい |
 
-### SWELLの弱い点
+### ThemeBの弱い点
 
 | 観点 | 証拠 | リスク |
 |---|---|---|
@@ -113,7 +113,7 @@ SEOを単なるメタタグ管理ではなく、以下の機械可読契約に�
 | 項目 | 内容 | 対策 |
 |---|---|---|
 | テーマだけではSEO戦略は作れない | キーワード、競合、検索意図、被リンク、GSC実績はテーマ外データ | Automation SEO連携を前提にする |
-| SEOメタ統合は移行性と衝突する | JIN:R型はAI操作しやすいが、SEOプラグイン併用時に重複しやすい | `seo_conflict_rules` とexport/import必須 |
+| SEOメタ統合は移行性と衝突する | テーマA型はAI操作しやすいが、SEOプラグイン併用時に重複しやすい | `seo_conflict_rules` とexport/import必須 |
 | 速度機能はSEOを壊すことがある | lazyload/delay JS/pjax/prefetchは重要コンテンツや計測を隠す可能性 | `crawlability_profile` と公開snapshotで検証 |
 | FAQ/Review schemaは乱用できない | schemaは表示内容、品質、ポリシーに依存し、表示保証ではない | visible content syncとclaim risk監査 |
 | Rawタグ挿入は売れるが危険 | Analytics/GSC/AdSense/head任意タグは便利だがXSS/重複/同意漏れを生む | adapter/allowlist/consent/audit log化 |
@@ -125,13 +125,13 @@ SEOを単なるメタタグ管理ではなく、以下の機械可読契約に�
 2. L3詳細設計で `keyword-cluster`, `content-blueprint`, `indexability-policy`, `internal-link-graph`, `seo-kpi-profile`, `seo-experiment`, `llmo-answer-unit` のschemaを切る。
 3. 法人版は `service_id` と `keyword_cluster` を接続し、HP/LP/BLPが検索意図とサービス導線を共有する設計にする。
 4. 個人版は `review/product/comparison/internal-link/refresh` を中心にし、構造変更ではなく記事改善と出口クリック最適化へ寄せる。
-5. Theme Bridge PluginはSWELL/JIN:RからSEOメタ、schema、CTA、計測、内部リンクをsource/confidence付きで抽出し、AGENT NEO移行blueprintへ変換する。
+5. Theme Bridge PluginはThemeB/テーマAからSEOメタ、schema、CTA、計測、内部リンクをsource/confidence付きで抽出し、AGENT NEO移行blueprintへ変換する。
 
 ## Gate判定
 
 | Gate | 判定 | 根拠 |
 |---|---|---|
-| RG0 | passed | `SEO skill/references/seo-skill-map.md`、SWELL/JIN:R主要SEOファイル、既存SEOレポートを確認 |
+| RG0 | passed | `SEO skill/references/seo-skill-map.md`、ThemeB/テーマA主要SEOファイル、既存SEOレポートを確認 |
 | RG1 | passed_with_gaps | オンページ/テクニカル/計測は高信頼で抽出。戦略/国際/オフページ/AI SEOはテーマ実装上の欠落として記録 |
-| RG2 | passed | JIN:R統合SEO UX + SWELL構造化データ/速度/計測 + Automation SEO戦略層という設計へ整理 |
+| RG2 | passed | テーマA統合SEO UX + ThemeB構造化データ/速度/計測 + Automation SEO戦略層という設計へ整理 |
 | R4 | passed | AGENT NEOの追加契約、API候補、パッケージ別優先度へ接続 |
