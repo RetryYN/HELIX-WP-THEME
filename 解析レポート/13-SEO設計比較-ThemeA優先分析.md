@@ -205,7 +205,7 @@ AGENT NEOは **テーマA型の統合SEO UX** を採用し、**ThemeB型のJSON-
 |---|---|
 | https://themeA.jp/feature/ | テーマAの構造化データ自動出力、著者/SNS紐付け |
 | https://themeA.jp/manual/seo-setting-3/ | テーマAのSEO設定、noindex、SEOプラグイン重複注意 |
-| https://themeA.jp/manual/jin-to-themeA/ | 記事別SEO設定、canonical、noindex、OGP移行項目 |
+| https://themeA.jp/manual/themeA-to-themeA/ | 記事別SEO設定、canonical、noindex、OGP移行項目 |
 | https://themeA.jp/manual/description-2/ | テーマAのdescription設定 |
 | https://themeA.jp/manual/ogp/ | テーマAのOGP設定 |
 | https://themeB-theme.com/feature/ | ThemeBのテーマ特徴 |

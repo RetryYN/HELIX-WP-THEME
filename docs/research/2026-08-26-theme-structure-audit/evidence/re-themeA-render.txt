@@ -49,7 +49,7 @@ $themeA_thumbnail_display = get_post_meta($post->ID, '_themeA_thumbnail_display'
 							<div id="themeAPostMeta">
 								<?php get_template_part('object/time'); ?>
 								<?php if (get_the_category() != false) : ?>
-									<div class="a--post-cat category-<?php echo $cat_slug; ?>"><a href="<?php echo $cat_link ?>"><span class="jif jin-ifont-archive" aria-hidden="true"></span><?php echo $cat_name; ?></a></div>
+									<div class="a--post-cat category-<?php echo $cat_slug; ?>"><a href="<?php echo $cat_link ?>"><span class="jif themeA-ifont-archive" aria-hidden="true"></span><?php echo $cat_name; ?></a></div>
 								<?php endif; ?>
 								<?php
 								if (get_post_meta($post->ID, '_themeA_representations_display', true) === '') : ?>

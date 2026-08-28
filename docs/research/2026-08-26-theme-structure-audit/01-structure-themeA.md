@@ -41,7 +41,7 @@
 
 ### 2.5 表示部品（`object/` 22 ファイル）
 breadcrumb / cvbutton / hamburger / header-layout-left / header-parts / informationbar / logo /
-main-visual（stillimage・image-slider・movie・post-slider・post-slider-jin）/ new-post-list /
+main-visual（stillimage・image-slider・movie・post-slider・post-slider-themeA）/ new-post-list /
 nextpage / paidpost-popup / related-post / sidepr / sns-share(+selected) / spmenu / time
 
 ## 3. 設定・データの持ち方
