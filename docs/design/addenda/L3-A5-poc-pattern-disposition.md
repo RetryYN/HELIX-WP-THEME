@@ -61,7 +61,7 @@
 |---|---|---|---|
 | `bin/check-design-consistency.sh`（G-T1/T1b/T2/T3/S1/S2） | REQ-NF-008 / L5 §1.2 | 採用候補 | 設計に「4 層一貫性」の規約が無い。L4 `ui-standard` に規約を書き、その検査としてゲートを位置づける |
 | baseline 438（生値）| — | 要 PO | 「増やさない」方式は L0 改定案の値方針に依存 |
-| Figma tokens → theme.json / structure → patterns | REQ-F-009（設定 I/O）に近い | 不採用（当面） | 無料枠 REST 制限で運用に乗らない。知見のみ `docs/design/figma-intake.md` |
+| Figma tokens → theme.json / structure → patterns | REQ-F-009（設定 I/O）に近い | 不採用（当面） | 無料枠 REST 制限で運用に乗らない。知見のみ `docs/design/figma-intake.md`（PR #36 の枝のみ・未 merge の PoC） |
 
 ## 4. まとめ
 
@@ -75,7 +75,7 @@
 | 順 | 層 | 内容 | 通過条件 |
 |---|---|---|---|
 | 1 | L0 | 改定ドラフトの PO 判断（`drafts/L0-ai-editing-freedom-draft.md` §2） | G0.5 企画↔L1 突合 |
-| 2 | L1 | REQ-F-016/037 改定、共有パーツ切替・破壊域停止の要求 ID 新設、ACC 書き換え | L1 TL レビュー・freeze（`docs/reviews/L1-*` 様式） |
+| 2 | L1 | REQ-F-016/037 改定、共有パーツ切替・破壊域停止の要求 ID 新設、ACC 書き換え | L1 TL レビュー・freeze（`docs/reviews/L1-freeze-tl-final-*.md` 様式） |
 | 3 | L2 | 画面一覧・遷移・WF に切替 UI／警告 UI を追加 | L2 レビュー |
 | 4 | L3 | FR/AC を BDD で確定。本表の「採用候補」の条件（cta_id・WebP・canonical 出力）は FR/AC としてここで書く | L3 close check（`L3-CLOSE-CHECK.md` 様式）・carry register 反映 |
 | 5 | L4 | `ui-standard`（4 層一貫性規約）・ADR（値制御方式） | L4 レビュー |
