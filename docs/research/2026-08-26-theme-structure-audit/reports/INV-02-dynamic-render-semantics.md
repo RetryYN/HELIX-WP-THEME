@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-02-dynamic-render-semantics.md`
 - 状態: **①（依存の分類）テーマA 完了・テーマB は一覧まで / ②③ 一次判定 / ④ PO 上申の材料を作成**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/probe3-raw.txt`（テーマA の `register_block_type` 全 25 件・全文）・
   `evidence/re-themeA-ads.txt`（`themeA_blog_card_dynamic_render_callback` 本体）・
   `evidence/re-themeB-blocks.txt`（テーマB の normal/dynamic 分類）・

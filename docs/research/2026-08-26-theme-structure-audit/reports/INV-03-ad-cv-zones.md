@@ -4,7 +4,7 @@
 - 状態: **①（正規化）完了 / ②（スキーマ差分の提案）完了 / ③（条件表示の実装確認）一部 /
   ④（本番のウィジェット実配置）は未了**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/theme-features-raw.txt`（両テーマの `register_sidebar` / sidebar id）・
   `evidence/re-themeA-render.txt`（`single.php` のウィジェット呼び出し位置）・
   `evidence/re-themeA-ads.txt`（`themeA_h2_ads_concert` 本体）・

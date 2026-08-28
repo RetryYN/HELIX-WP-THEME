@@ -4,7 +4,7 @@
 - 状態: **仕分け方法を確定 / 採取済みの部分集合（テーマA 50 of 151・テーマB 29 of 155）に適用。
   全量の仕分けは追加採取が要る**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/probe6-raw.txt`（CSS カスタムプロパティ抽出・総数と先頭 50/29 件）・
   `evidence/re-themeB-pipeline.txt`（`Style` クラス）・`evidence/re-themeA-boot.txt`（CSS 生成関数）
 

@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-17-themeA-global-side-effects.md`
 - 状態: **コード解析・HTTP実挙動確認完了 / GSC・サーバー側影響・対処判断は未了**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/probe3-raw.txt` L276-L302（該当コード全文）・
   `evidence/re-themeA-boot.txt`（`functions.php` のフック一覧）
 
@@ -91,7 +91,7 @@ add_action('template_redirect', 'themeA_init_session_start');
 | セッションの継続性 | ID が毎回変わる。旧セッションファイルは（既定では）削除されず残る |
 | ディスク | `session.save_path` にセッションファイルが**リクエスト数だけ蓄積**する。GC 頼み |
 | Cookie | 全レスポンスに `Set-Cookie: PHPSESSID=…` が付く |
-| キャッシュ | **`Set-Cookie` を持つレスポンスはキャッシュ対象外**にするのが一般的。XServer の X アクセラレータや CDN がバイパスする可能性 |
+| キャッシュ | **`Set-Cookie` を持つレスポンスはキャッシュ対象外**にするのが一般的。ホスティング の X アクセラレータや CDN がバイパスする可能性 |
 | 有料記事機能 | セッションに依存している以上、ID が毎回変わると**状態が保てない**はず。実装の整合性に疑問 |
 
 ### 3.3 有料記事との関係（INV-11 と連動）

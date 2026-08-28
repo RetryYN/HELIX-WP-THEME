@@ -1,7 +1,7 @@
 # リバースエンジニアリング統合レポート — テーマA / テーマB の機構と Graphix NEO への含意
 
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用（サーバーへの書き込みなし）
+- 手段: ホスティング SSH 読み取り専用（サーバーへの書き込みなし）
 - 対象: `themes/themeA`（PHP 33,931 行）/ `themes/themeB`（PHP 45,622 行）/
   本リポの `agent-neo-theme` + `agent-neo-core` / `agent-neo-embed`
 - 位置づけ: 個別調査 17 本（`reports/`）と機構解析 3 本（`10` `11` `12`）の**統合**。

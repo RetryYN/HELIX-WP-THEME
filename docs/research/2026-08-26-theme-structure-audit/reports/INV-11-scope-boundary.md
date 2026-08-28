@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-11-scope-boundary.md`
 - 状態: **③（上申材料の作成）完了 / ①②（実運用有無の確定）は未了**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/probe3-raw.txt`（`paidpost` 登録・セッション開始）・
   `evidence/theme-structure-raw.txt`（vendor/stripe のファイル数）・
   `evidence/usage-raw.txt`（実使用回数）・`evidence/probe4-raw.txt`（テーマB CPT 定義）

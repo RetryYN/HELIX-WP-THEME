@@ -7,13 +7,13 @@
 set -uo pipefail
 
 # 接続情報は環境変数から取る（公開リポのため直書きしない）:
-#   XSRV_SSH_HOST=user@host  XSRV_SSH_PORT=10022  XSRV_SSH_KEY=~/.ssh/<key>  XSRV_WP_PATH='$HOME/<site>/public_html'
-: "${XSRV_SSH_HOST:?XSRV_SSH_HOST を設定してください}"
-: "${XSRV_WP_PATH:?XSRV_WP_PATH を設定してください}"
-SSH_HOST="$XSRV_SSH_HOST"
-SSH_PORT="${XSRV_SSH_PORT:-10022}"
-SSH_KEY="${XSRV_SSH_KEY:-$HOME/.ssh/id_ed25519}"
-WP_PATH="$XSRV_WP_PATH"
+#   AUDIT_SSH_HOST=user@host  AUDIT_SSH_PORT=10022  AUDIT_SSH_KEY=~/.ssh/<key>  AUDIT_WP_PATH='$HOME/<site>/public_html'
+: "${AUDIT_SSH_HOST:?AUDIT_SSH_HOST を設定してください}"
+: "${AUDIT_WP_PATH:?AUDIT_WP_PATH を設定してください}"
+SSH_HOST="$AUDIT_SSH_HOST"
+SSH_PORT="${AUDIT_SSH_PORT:-10022}"
+SSH_KEY="${AUDIT_SSH_KEY:-$HOME/.ssh/id_ed25519}"
+WP_PATH="$AUDIT_WP_PATH"
 PHP='/opt/php-8.3/bin/php -d error_reporting=0 -d display_errors=0 $HOME/wp-cli.phar'
 
 ssh -o BatchMode=yes -i "$SSH_KEY" -p "$SSH_PORT" "$SSH_HOST" "

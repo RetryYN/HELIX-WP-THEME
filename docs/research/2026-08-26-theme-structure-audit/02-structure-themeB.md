@@ -1,6 +1,6 @@
 # 構造調査 B — テーマB（site-B.example）
 
-- 調査日: 2026-08-26 / 手段: XServer SSH 読み取り専用 + WP-CLI 読み取りクエリ
+- 調査日: 2026-08-26 / 手段: ホスティング SSH 読み取り専用 + WP-CLI 読み取りクエリ
 - 対象: `~/site-B.example/public_html/wp-content/themes/themeB`
 - テーマ: テーマB / 子テーマ **無し**（親を直接運用）
 - 書き込み: なし

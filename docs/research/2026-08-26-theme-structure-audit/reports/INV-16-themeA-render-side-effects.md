@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-16-themeA-render-side-effects.md`
 - 状態: **①・⑤完了 / ②横断走査は未了 / ④手順化済み**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/re-themeA-boot.txt`（L255-L376）・`evidence/re-themeA-accessors.txt`
 
 ## 1. 結論（確定した事実）

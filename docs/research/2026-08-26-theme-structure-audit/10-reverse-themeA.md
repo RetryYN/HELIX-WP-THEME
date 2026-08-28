@@ -1,6 +1,6 @@
 # リバースエンジニアリング A — テーマA 1.4.6
 
-調査日 2026-08-26 / XServer SSH 読み取り専用 / 対象 `themes/themeA`（PHP 33,931 行・vendor 除く）
+調査日 2026-08-26 / ホスティング SSH 読み取り専用 / 対象 `themes/themeA`（PHP 33,931 行・vendor 除く）
 
 ## 1. 起動シーケンス
 
@@ -267,7 +267,7 @@ add_action('template_redirect', 'themeA_init_session_start');
   毎リクエストで呼ぶとセッションの継続性が壊れ、ファイルベースのセッションストアに
   ゴミが溜まり続ける。
 - `Set-Cookie: PHPSESSID` が全レスポンスに付くため、**ページキャッシュ・CDN と相性が悪い**
-  （XServer の X アクセラレータは既に「投稿 API 成功 ≠ 公開反映」の形で
+  （ホスティング の X アクセラレータは既に「投稿 API 成功 ≠ 公開反映」の形で
   キャッシュ挙動の問題が確認されている）。
 
 管理画面側でも `$_SESSION['settings_updated']` を使って保存通知を出している

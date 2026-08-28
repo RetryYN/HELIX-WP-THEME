@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-07-toc-and-content-filter.md`
 - 状態: **①〜④ 一次完了**（本文変換の全一覧・レイヤ割り当て・目次の方式決定まで）
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/re-themeB-pipeline.txt`（`content_filter.php` 全文）・
   `evidence/re-themeA-render.txt`（`single.php` 全文 + `the_content` フィルタ一覧 + 広告挿入 grep）・
   `evidence/re-themeA-ads.txt`（`themeA_h2_ads_concert` 本体）・`evidence/re-themeB-boot.txt`

@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-08-agent-interface-gap.md`
 - 状態: **②③④ 完了 / ①（テーマB 14 ルートの入出力契約）は route 名まで。本体の精読は未了**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/theme-features-raw.txt`（両テーマの `register_rest_route` 抽出・filter 本数）・
   `evidence/re-themeB-detail.txt`・`evidence/re-themeA-ads.txt`・`reports/INV-13-themeA-rest-endpoints.md`
 

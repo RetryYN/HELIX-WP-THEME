@@ -1,6 +1,6 @@
 # 構造調査 A — テーマA（site-A.example）
 
-- 調査日: 2026-08-26 / 手段: XServer SSH 読み取り専用（`ssh -p 10022 <account>@<account>.xsrv.jp`）+ WP-CLI 読み取りクエリ
+- 調査日: 2026-08-26 / 手段: ホスティング SSH 読み取り専用（`ssh -p 10022 <account>@<hosting-host>`）+ WP-CLI 読み取りクエリ
 - 対象: `~/site-A.example/public_html/wp-content/themes/themeA`（親）/ `themeA-child`（子）
 - テーマ: テーマA 1.4.6 / ベンダーA / Requires PHP 7.0 / WP core 7.0.2
 - 書き込み: なし（find・grep・cat・ls・SELECT のみ）

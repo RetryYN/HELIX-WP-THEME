@@ -4,7 +4,7 @@
 - 状態: **分類軸・移管手順・判別可否の結論まで確定 /
   ①②（1,225 + 540 キーの全量分類）は全量取得が要る**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/re-themeA-accessors.txt`（アクセサのファイル別本数・`set_theme_mod` 出現）・
   `evidence/theme-features-raw.txt`（`get_option` キーの出現頻度）・
   `evidence/re-themeB-detail.txt`（`Theme_Data` の DB 定義）・`evidence/re-themeA-boot.txt`

@@ -4,7 +4,7 @@
 - 状態: **③（フォールバック対応）を 1 ブロック分確定 / 共通属性パターンを特定 /
   ①（全量の帰納）は抽出スクリプトを用意して未実行**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/re-themeA-ads.txt`（`themeA_blog_card_dynamic_render_callback` 全文）・
   `evidence/probe3-raw.txt`（登録 25 種）・`evidence/usage-raw.txt`（実使用）
 

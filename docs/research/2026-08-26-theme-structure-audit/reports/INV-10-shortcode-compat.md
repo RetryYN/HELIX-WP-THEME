@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-10-shortcode-compat.md`
 - 状態: **②③④ 判定完了 / ①（`[themeA_fukidashi]` 186 回の由来）は仮説まで。検証手順を定義**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/theme-features-raw.txt`（両テーマの `add_shortcode` 抽出）・
   `evidence/usage-raw.txt`（本文中のショートコード実使用）・`evidence/probe3-raw.txt`（ブロック登録）
 

@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-04-reusable-parts-mechanism.md`
 - 状態: **① テーマB 側完了 / テーマA 側は所在未特定 / ③④ 判定完了**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/probe4-raw.txt`（`lib/post_type.php` 全文）・
   `evidence/re-themeB-blocks.txt`（`Pre_Parse_Blocks` の参照解決）・
   `evidence/re-themeB-detail.txt`（`Theme_Data` の DB 定義）・`evidence/probe2-raw.txt`

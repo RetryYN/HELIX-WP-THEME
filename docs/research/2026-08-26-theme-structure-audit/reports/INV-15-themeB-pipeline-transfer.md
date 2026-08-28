@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-15-themeB-pipeline-transfer.md`
 - 状態: **①〜④ 判定完了 / ⑤（参照展開の中間 JSON 表現）は INV-04 と合流のうえ結論**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用（ソース全文読み出し）
+- 手段: ホスティング SSH 読み取り専用（ソース全文読み出し）
 - 一次証跡: `evidence/re-themeB-blocks.txt`（`Pre_Parse_Blocks` 全文）・
   `evidence/re-themeB-pipeline.txt`（`content_filter.php` 全文 + `Style.php` + `block_assets.php`）・
   `evidence/re-themeB-boot.txt`（`separate.php` / `gutenberg.php` / autoloader）

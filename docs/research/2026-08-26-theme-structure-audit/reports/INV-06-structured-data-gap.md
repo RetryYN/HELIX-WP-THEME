@@ -3,7 +3,7 @@
 - 対象イシュー: `issues/THEME-INV-06-structured-data-gap.md`
 - 状態: **コード解析パート完了 / ②〜④（実ページ出力の採取と重複判定）は未了**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用（ソースからの `@type` 抽出）
+- 手段: ホスティング SSH 読み取り専用（ソースからの `@type` 抽出）
 - 一次証跡: `evidence/probe6-raw.txt`（テーマA / テーマB の JSON-LD `@type` 抽出結果）・
   `~/dev/HELIX-WP-THEME/themes/agent-neo-theme/inc/seo/class-structured-data.php`
 

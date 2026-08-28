@@ -4,7 +4,7 @@
 - 状態: **②（意味の突き合わせ）完了 / ④（インライン書式）判定完了 /
   ①（属性・出力マークアップの採取）と ③（意図語彙への写像の確定）は追加読み取りが要る**
 - 調査日: 2026-08-26
-- 手段: XServer SSH 読み取り専用
+- 手段: ホスティング SSH 読み取り専用
 - 一次証跡: `evidence/probe2-raw.txt`（テーマA 名前空間・テーマB `themeB/*` 全 50 名）・
   `evidence/probe3-raw.txt`（テーマA 登録全 25 種）・`evidence/theme-features-raw.txt`（block.json 名・
   ショートコード）・`evidence/usage-raw.txt`（実使用）・`evidence/re-themeB-blocks.txt`（normal/dynamic 分類）
