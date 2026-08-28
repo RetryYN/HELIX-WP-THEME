@@ -1,12 +1,12 @@
 # 要求入力台帳 — テーマ構造監査・PoC から L1 改定へ渡す項目（2026-08-28 確定）
 
 位置づけ: 監査 Issue（THEME-CAT / THEME-JSON / THEME-GATE）の**出力**。各 Issue はここに「証跡・確定した方針・L1 改定時に決める論点」を収録した時点で閉じる。要求 ID（WP-* stable ID）の発行は L1 改定（G0.5 通過後）で行い、ここでは発行しない。
-上流: `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（L0 改定案・G0.5 突合）/ 分類: `docs/design/addenda/L3-A5-poc-pattern-disposition.md`。
+上流: `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（PR #48。本 PR より先に merge）（L0 改定案・G0.5 突合）/ 分類: `docs/design/addenda/L3-A5-poc-pattern-disposition.md`（PR #48。本 PR より先に merge）。
 
 | # | 項目（Issue） | 証跡 | 確定した方針（本台帳で閉じる） | L1 改定時に決める論点 |
 |---|---|---|---|---|
-| RI-01 | 全体共有系の受け皿 6 つ（#26 THEME-CAT-01） | `shared-parts.md`、PR #39 の sidebar 5 案 + `parts/sidebar.html`、`2026-08-28-poc-conversion-and-variations/`（変換 6 領域 invalid=0） | 受け皿ごとに `theme.json.templateParts` の name/title/area を定義する。slot 系 3 つ（本文前・固定ページ上下・関連記事前後）は template part ではなく **テンプレ内のパターン挿入位置（空 group）** とし、空なら描画しない。header のナビは `wp_navigation` 参照（ref）にする | single-2col / single-1col のテンプレ変種を持つか（REQ-F-016 の扱いと連動） |
-| RI-02 | フッターの領域化（#27 THEME-CAT-02） | PR #39 footer 5 案（`parts/footer.html` を触らずパターン差し替えで成立） | 「用途別に選べる」方式（同一 Block Types のパターン群）を第一形とし、既存 footer.html は残す（後方互換）。footer-credit は維持 | カラム数を GUI で可変にする要求を別に持つか |
+| RI-01 | 全体共有系の受け皿 6 つ（#26 THEME-CAT-01） | `shared-parts.md`、PR #39 の sidebar 5 案 + `themes/agent-neo-theme/parts/sidebar.html`（PR #39 の枝のみ・未 merge の PoC）、`2026-08-28-poc-conversion-and-variations/`（変換 6 領域 invalid=0） | 受け皿ごとに `theme.json.templateParts` の name/title/area を定義する。slot 系 3 つ（本文前・固定ページ上下・関連記事前後）は template part ではなく **テンプレ内のパターン挿入位置（空 group）** とし、空なら描画しない。header のナビは `wp_navigation` 参照（ref）にする | single-2col / single-1col のテンプレ変種を持つか（REQ-F-016 の扱いと連動） |
+| RI-02 | フッターの領域化（#27 THEME-CAT-02） | PR #39 footer 5 案（`themes/agent-neo-theme/parts/footer.html` を触らずパターン差し替えで成立） | 「用途別に選べる」方式（同一 Block Types のパターン群）を第一形とし、既存 footer.html は残す（後方互換）。footer-credit は維持 | カラム数を GUI で可変にする要求を別に持つか |
 | RI-03 | お知らせバー slot（#43 THEME-CAT-07） | `shared-parts.md`（B 14 control） | ヘッダー part 直下の空 group（パターン挿入位置）。文言・リンク・期間の状態は **投稿型**（option は使わない: RI-09） | 閉じる操作（cookie / localStorage）の要否 |
 | RI-04 | SP 下部領域の規約（#44 THEME-CAT-08） | `shared-parts.md`（B 下部固定メニュー 18 control）、#29 追従シェア | template part `mobile-bottom` を新設しパターン差し替えで種類を選ぶ。積層順の既定: 同意バー > メニュー > シェア。本文最下部 CTA と重ねない | 1 つに限定するか積層を許すか |
 | RI-05 | A/B 独自ブロックの受け皿（#28 THEME-CAT-03） | `catalog/themeA-blocks.md` `themeB-blocks.md`、`design-comparison.md` | core ブロック + block style を優先、新規ブロックは吹き出し / タブ / レビューの 3 つに限定。FAQ / アコーディオンは同じ `core/details` を受け皿にし差は block style。FAQPage JSON-LD は agent-neo-core の責務（REQ-NF-025）。ブログカードは **REST を経由しない実装**（`url_to_postid()` 直呼び。#15 の恒久解）。目次は core/table-of-contents 相当を新設 | 新規ブロック 3 つの要求 ID と優先度 |

@@ -48,7 +48,7 @@
 分類の生データ: `themeA-preset-1.classification.json`。
 
 - 色 8 件を本テーマの palette スラッグへ差し替えた variation `themeA-preset-1.variation.json` を作成（primary←theme_color / secondary←sub_color / accent←link_color / accent-aa←link_hover_color / background←bg_color / foreground←text_color / footer-bg←footer_bg_color / muted←footer_text_color。**accent-aa は近似**: テーマ A に AA コントラスト用の色は無い）。
-- 一貫性ゲート（#36 の `bin/check-design-consistency.sh`）を PoC ホスト上で実行 → **G-T1b PASS（スラッグ集合は親と同一・生値なし）**。
+- 一貫性ゲート（#36 の `bin/check-design-consistency.sh`（PR #36 の枝のみ・未 merge の PoC））を PoC ホスト上で実行 → **G-T1b PASS（スラッグ集合は親と同一・生値なし）**。
 
 ### 2.2 結論（要求入力）
 - 「プリセット 1 個 → styles/*.json 1 本」は色の層で成立。部品別の色・見た目 107 件は `styles.blocks.*` + block style の設計（THEME-CAT-03）に依存。
