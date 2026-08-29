@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "奥行き",
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "primary", "color": "#0f172a", "name": "Primary" },
+				{ "slug": "secondary", "color": "#ffffff", "name": "Secondary" },
+				{ "slug": "accent", "color": "#f26b1d", "name": "Accent" },
+				{ "slug": "accent-aa", "color": "#c4530f", "name": "Accent AA (白文字対応)" },
+				{ "slug": "background", "color": "#eef1f5", "name": "Background" },
+				{ "slug": "foreground", "color": "#1e293b", "name": "Foreground" },
+				{ "slug": "footer-bg", "color": "#0b1220", "name": "Footer Background" },
+				{ "slug": "muted", "color": "#64748b", "name": "Muted" }
+			]
+		},
+		"shadow": {
+			"presets": [
+				{ "slug": "0", "shadow": "none", "name": "Elevation 0" },
+				{ "slug": "1", "shadow": "0 1px 2px rgba(15,23,42,.06), 0 1px 1px rgba(15,23,42,.04)", "name": "Elevation 1" },
+				{ "slug": "2", "shadow": "0 2px 6px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.06)", "name": "Elevation 2" },
+				{ "slug": "3", "shadow": "0 8px 20px rgba(15,23,42,.12), 0 2px 6px rgba(15,23,42,.08)", "name": "Elevation 3" },
+				{ "slug": "4", "shadow": "0 18px 40px rgba(15,23,42,.18), 0 6px 14px rgba(15,23,42,.10)", "name": "Elevation 4" }
+			]
+		}
+	},
+	"styles": {
+		"typography": { "lineHeight": "1.7" },
+		"elements": {
+			"heading": {
+				"typography": { "fontFamily": "var(--wp--preset--font-family--body)", "fontWeight": "800", "lineHeight": "1.2", "letterSpacing": "-0.01em" }
+			},
+			"button": {
+				"border": { "radius": "10px" },
+				"shadow": "var(--wp--preset--shadow--2)",
+				"color": { "background": "var(--wp--preset--color--accent-aa)", "text": "#ffffff" },
+				":hover": { "color": { "background": "var(--wp--preset--color--primary)" }, "shadow": "var(--wp--preset--shadow--3)" }
+			},
+			"link": { "color": { "text": "var(--wp--preset--color--accent-aa)" } }
+		},
+		"blocks": {
+			"core/post-content": { "typography": { "lineHeight": "1.8" } },
+			"core/site-title": { "typography": { "fontWeight": "800" } },
+			"core/quote": {
+				"color": { "background": "var(--wp--preset--color--secondary)" },
+				"border": { "left": { "width": "4px", "color": "var(--wp--preset--color--accent)", "style": "solid" }, "radius": "8px" },
+				"shadow": "var(--wp--preset--shadow--1)",
+				"spacing": { "padding": { "top": "var(--wp--preset--spacing--30)", "bottom": "var(--wp--preset--spacing--30)", "left": "var(--wp--preset--spacing--30)", "right": "var(--wp--preset--spacing--30)" } }
+			},
+			"core/table": { "color": { "background": "var(--wp--preset--color--secondary)" }, "shadow": "var(--wp--preset--shadow--1)", "border": { "radius": "8px" } },
+			"core/post-featured-image": { "shadow": "var(--wp--preset--shadow--2)", "border": { "radius": "12px" } },
+			"core/image": { "shadow": "var(--wp--preset--shadow--2)", "border": { "radius": "12px" } },
+			"core/columns": { "spacing": { "blockGap": "var(--wp--preset--spacing--30)" } }
+		},
+		"css": ".an-section--hero{background:linear-gradient(180deg,var(--wp--preset--color--secondary) 0%,var(--wp--preset--color--background) 100%);box-shadow:inset 0 -1px 0 rgba(15,23,42,.06)} .an-section:not(.an-section--hero){background:transparent} .wp-block-column,.wp-block-group.is-style-an-card,.wp-block-post-template > li{background:var(--wp--preset--color--secondary);border-radius:12px;box-shadow:var(--wp--preset--shadow--2);padding:var(--wp--preset--spacing--30)} .wp-block-column > .wp-block-group,.wp-block-post-template > li > .wp-block-group{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important} .wp-block-column:hover,.wp-block-post-template > li:hover{box-shadow:var(--wp--preset--shadow--3);transform:translateY(-2px);transition:box-shadow .2s,transform .2s} header.wp-block-template-part,.wp-site-blocks > header{background:var(--wp--preset--color--secondary);box-shadow:var(--wp--preset--shadow--1);position:sticky;top:0;z-index:20} .wp-block-post-content pre,.wp-block-code{background:var(--wp--preset--color--primary);color:#e2e8f0;border-radius:8px;box-shadow:var(--wp--preset--shadow--2)} footer.wp-block-template-part{box-shadow:0 -8px 24px rgba(15,23,42,.10)}"
+	}
+}
