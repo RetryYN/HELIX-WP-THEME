@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "ウォーム",
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "primary", "color": "#4a1f1b", "name": "Primary" },
+        { "slug": "secondary", "color": "#fff2e6", "name": "Secondary" },
+        { "slug": "accent", "color": "#d9784a", "name": "Accent" },
+        { "slug": "accent-aa", "color": "#9f4e2d", "name": "Accent AA (白文字対応)" },
+        { "slug": "background", "color": "#fffaf5", "name": "Background" },
+        { "slug": "foreground", "color": "#2f1e1a", "name": "Foreground" },
+        { "slug": "footer-bg", "color": "#30151a", "name": "Footer Background" },
+        { "slug": "muted", "color": "#73584e", "name": "Muted" }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--background)",
+      "text": "var(--wp--preset--color--foreground)"
+    },
+    "typography": {
+      "lineHeight": "1.7"
+    },
+    "spacing": {
+      "blockGap": "var(--wp--preset--spacing--30)"
+    },
+    "elements": {
+      "heading": {
+        "color": { "text": "var(--wp--preset--color--primary)" },
+        "typography": { "fontWeight": "700", "lineHeight": "1.2" }
+      },
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--accent-aa)",
+          "text": "var(--wp--preset--color--background)"
+        },
+        "border": { "radius": "var(--wp--preset--spacing--20)" }
+      },
+      "link": {
+        "color": { "text": "var(--wp--preset--color--accent-aa)" }
+      }
+    }
+  }
+}
