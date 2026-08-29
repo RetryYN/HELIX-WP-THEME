@@ -34,13 +34,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","className":"an-cta an-cta--home_hero_primary","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
 		<div class="wp-block-button an-cta an-cta--home_hero_primary">
-			<a class="wp-block-button__link has-accent-aa-background-color has-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '導入をはじめる →', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background has-custom-font-size wp-element-button" href="#" style="border-radius:6px;font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '導入をはじめる →', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 
 		<!-- wp:button {"className":"an-cta an-cta--home_hero_secondary is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--accent-aa)","width":"2px"},"color":{"text":"var(--wp--preset--color--foreground)"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
 		<div class="wp-block-button is-style-outline an-cta an-cta--home_hero_secondary">
-			<a class="wp-block-button__link wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--accent-aa);color:var(--wp--preset--color--foreground);font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '機能を見る', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link has-text-color has-border-color has-custom-font-size wp-element-button" href="#" style="border-color:var(--wp--preset--color--accent-aa);border-width:2px;border-radius:6px;color:var(--wp--preset--color--foreground);font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '機能を見る', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 

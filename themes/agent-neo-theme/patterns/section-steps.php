@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-accent-aa-color has-text-color has-xxx-large-font-size" style="font-weight:800;line-height:1">01</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
+<!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
 <h3 class="wp-block-heading has-large-font-size" style="font-weight:700"><?php esc_html_e( '聞く', 'agent-neo' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-accent-aa-color has-text-color has-xxx-large-font-size" style="font-weight:800;line-height:1">02</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
+<!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
 <h3 class="wp-block-heading has-large-font-size" style="font-weight:700"><?php esc_html_e( '整える', 'agent-neo' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-accent-aa-color has-text-color has-xxx-large-font-size" style="font-weight:800;line-height:1">03</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
+<!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
 <h3 class="wp-block-heading has-large-font-size" style="font-weight:700"><?php esc_html_e( '続ける', 'agent-neo' ); ?></h3>
 <!-- /wp:heading -->
 

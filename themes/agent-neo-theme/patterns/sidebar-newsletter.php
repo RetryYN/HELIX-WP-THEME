@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph -->
 
 <!-- wp:button {"backgroundColor":"accent","textColor":"primary","width":100,"style":{"typography":{"fontWeight":"700"}},"fontSize":"small"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-primary-color has-accent-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button" href="/subscribe/"><?php esc_html_e( '登録ページへ', 'agent-neo' ); ?></a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-primary-color has-accent-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button" href="/subscribe/" style="font-weight:700"><?php esc_html_e( '登録ページへ', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:group -->
 

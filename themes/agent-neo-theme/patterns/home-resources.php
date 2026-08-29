@@ -31,18 +31,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
 
 			<!-- wp:group {"className":"an-card","style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group an-card has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);overflow:hidden;background-color:var(--wp--preset--color--background)">
+			<div class="wp-block-group an-card has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
 
-				<!-- wp:group {"className":"an-card-image-wrap","style":{"dimensions":{"aspectRatio":"16/9"},"color":{"background":"var(--wp--preset--color--secondary)"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} -->
-				<div class="wp-block-group an-card-image-wrap has-background" style="aspect-ratio:16/9;background-color:var(--wp--preset--color--secondary);overflow:hidden;display:flex;align-items:center;justify-content:center">
-
-					<!-- wp:post-featured-image {"isLink":true,"width":"100%","height":"100%","style":{"layout":{"selfStretch":"fill"}}} /-->
-
-				</div>
-				<!-- /wp:group -->
+				<!-- wp:group {"className":"an-card-image-wrap","style":{"dimensions":{"aspectRatio":"16/9"},"color":{"background":"var(--wp--preset--color--secondary)"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"default"}} --><div class="wp-block-group an-card-image-wrap has-background" style="background-color:var(--wp--preset--color--secondary);padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:post-featured-image {"isLink":true,"width":"100%","height":"100%","style":{"layout":{"selfStretch":"fill"}}} /--></div><!-- /wp:group -->
 
 				<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
-				<div class="wp-block-group" style="padding:var(--wp--preset--spacing--30);gap:var(--wp--preset--spacing--10)">
+				<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 					<!-- wp:post-terms {"term":"category","fontSize":"small","style":{"elements":{"link":{"color":{"text":"var(--wp--preset--color--background)"},"typography":{"fontWeight":"700"}}},"color":{"background":"var(--wp--preset--color--accent-aa)","text":"var(--wp--preset--color--background)"},"spacing":{"padding":{"top":"2px","bottom":"2px","left":"8px","right":"8px"}},"border":{"radius":"12px"}},"className":"an-card-category"} /-->
 
@@ -72,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<!-- wp:button {"className":"an-cta an-cta--resources_all is-style-outline","style":{"border":{"radius":"6px","color":"var(--wp--preset--color--accent-aa)","width":"2px"},"color":{"text":"var(--wp--preset--color--foreground)"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem","left":"2rem","right":"2rem"}}}} -->
 		<div class="wp-block-button is-style-outline an-cta an-cta--resources_all">
-			<a class="wp-block-button__link wp-element-button" href="/" style="border-radius:6px;border:2px solid var(--wp--preset--color--accent-aa);color:var(--wp--preset--color--foreground);font-weight:700;font-size:1.0625rem;padding-top:0.875rem;padding-bottom:0.875rem;padding-left:2rem;padding-right:2rem"><?php esc_html_e( '記事一覧へ →', 'agent-neo' ); ?></a>
+			<a class="wp-block-button__link has-text-color has-border-color has-custom-font-size wp-element-button" href="/" style="border-color:var(--wp--preset--color--accent-aa);border-width:2px;border-radius:6px;color:var(--wp--preset--color--foreground);font-weight:700;font-size:1.0625rem;padding-top:0.875rem;padding-bottom:0.875rem;padding-left:2rem;padding-right:2rem"><?php esc_html_e( '記事一覧へ →', 'agent-neo' ); ?></a>
 		</div>
 		<!-- /wp:button -->
 

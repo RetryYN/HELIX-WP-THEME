@@ -30,10 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- /wp:paragraph -->
 
 	<!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|30","left":"var:preset|spacing|30"}}}} -->
-	<div class="wp-block-columns is-not-stacked-on-mobile" style="gap:var(--wp--preset--spacing--30)">
+	<div class="wp-block-columns">
 
 		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}}} -->
-		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background)">
+		<div class="wp-block-column has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '記事更新が追いつかない', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- /wp:column -->
 
 		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}}} -->
-		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background)">
+		<div class="wp-block-column has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'SEO 対策が属人的になっている', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- /wp:column -->
 
 		<!-- wp:column {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--background)"}}} -->
-		<div class="wp-block-column" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);padding:var(--wp--preset--spacing--40);background-color:var(--wp--preset--color--background)">
+		<div class="wp-block-column has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 			<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"color":{"text":"var(--wp--preset--color--accent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 			<p style="font-weight:700;font-size:var(--wp--preset--font-size--large);color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '成果が数値で把握できない', 'agent-neo' ); ?></p>
 			<!-- /wp:paragraph -->

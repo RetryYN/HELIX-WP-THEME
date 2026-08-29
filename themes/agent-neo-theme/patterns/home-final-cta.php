@@ -32,17 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 	<div class="wp-block-buttons">
 
-		<!-- wp:button {"textColor":"accent-aa","className":"an-cta an-cta--final_primary","style":{"border":{"radius":"6px"},"color":{"background":"var(--wp--preset--color--background)"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
-		<div class="wp-block-button an-cta an-cta--final_primary">
-			<a class="wp-block-button__link has-accent-aa-color has-text-color wp-element-button" href="#" style="border-radius:6px;background-color:var(--wp--preset--color--background);color:var(--wp--preset--color--accent-aa);font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '導入をはじめる →', 'agent-neo' ); ?></a>
-		</div>
-		<!-- /wp:button -->
+		<!-- wp:button {"textColor":"accent-aa","className":"an-cta an-cta--final_primary","style":{"border":{"radius":"6px"},"color":{"background":"var(--wp--preset--color--background)"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} --><div class="wp-block-button an-cta an-cta--final_primary"><a class="wp-block-button__link has-accent-aa-color has-text-color has-background has-custom-font-size wp-element-button" href="#" style="border-radius:6px;background-color:var(--wp--preset--color--background);padding-top:1rem;padding-right:2.5rem;padding-bottom:1rem;padding-left:2.5rem;font-size:1.0625rem;font-weight:700"><?php esc_html_e( '導入をはじめる →', 'agent-neo' ); ?></a></div><!-- /wp:button -->
 
-		<!-- wp:button {"textColor":"background","className":"an-cta an-cta--final_pricing is-style-outline","style":{"border":{"radius":"6px","color":"var:preset|color|background","width":"2px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} -->
-		<div class="wp-block-button is-style-outline an-cta an-cta--final_pricing">
-			<a class="wp-block-button__link has-background-color has-text-color wp-element-button" href="#" style="border-radius:6px;border:2px solid var(--wp--preset--color--background);color:var(--wp--preset--color--background);font-weight:700;font-size:1.0625rem;padding-top:1rem;padding-bottom:1rem;padding-left:2.5rem;padding-right:2.5rem"><?php esc_html_e( '料金を見る', 'agent-neo' ); ?></a>
-		</div>
-		<!-- /wp:button -->
+		<!-- wp:button {"textColor":"background","className":"an-cta an-cta--final_pricing is-style-outline","style":{"border":{"radius":"6px","color":"var:preset|color|background","width":"2px"},"typography":{"fontWeight":"700","fontSize":"1.0625rem"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"2.5rem","right":"2.5rem"}}}} --><div class="wp-block-button is-style-outline an-cta an-cta--final_pricing"><a class="wp-block-button__link has-background-color has-text-color has-border-color has-custom-font-size wp-element-button" href="#" style="border-color:var(--wp--preset--color--background);border-width:2px;border-radius:6px;padding-top:1rem;padding-right:2.5rem;padding-bottom:1rem;padding-left:2.5rem;font-size:1.0625rem;font-weight:700"><?php esc_html_e( '料金を見る', 'agent-neo' ); ?></a></div><!-- /wp:button -->
 
 	</div>
 	<!-- /wp:buttons -->

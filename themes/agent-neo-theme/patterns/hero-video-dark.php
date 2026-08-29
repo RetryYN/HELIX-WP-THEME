@@ -36,7 +36,7 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"accent","textColor":"primary","className":"an-video-play-button","style":{"typography":{"fontWeight":"700"}}} -->
-<div class="wp-block-button an-video-play-button"><a class="wp-block-button__link has-primary-color has-accent-background-color has-text-color has-background wp-element-button" href="/video/"><?php esc_html_e( '▶ 再生イメージを見る', 'agent-neo' ); ?></a></div>
+<div class="wp-block-button an-video-play-button"><a class="wp-block-button__link has-primary-color has-accent-background-color has-text-color has-background wp-element-button" href="/video/" style="font-weight:700"><?php esc_html_e( '▶ 再生イメージを見る', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div></div>

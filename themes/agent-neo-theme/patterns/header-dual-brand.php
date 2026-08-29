@@ -32,11 +32,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"right"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline","textColor":"accent-aa","style":{"typography":{"fontWeight":"700"}},"fontSize":"small"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-accent-aa-color has-text-color has-small-font-size has-custom-font-size wp-element-button" href="/download/"><?php esc_html_e( '資料を見る', 'agent-neo' ); ?></a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-accent-aa-color has-text-color has-small-font-size has-custom-font-size wp-element-button" href="/download/" style="font-weight:700"><?php esc_html_e( '資料を見る', 'agent-neo' ); ?></a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","style":{"typography":{"fontWeight":"700"}},"fontSize":"small"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button" href="/contact/"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button" href="/contact/" style="font-weight:700"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
