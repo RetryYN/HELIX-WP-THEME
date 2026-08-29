@@ -4,7 +4,7 @@
 入力とした **監査 → PoC 証跡** 段階であり、要求 freeze・設計・実装には進んでいない。
 
 ## 1. 現在サマリ
-- テーマ main = `587b01d`（#60 merge 後）。統合層 `HELIX-MARKETING-HARNESS` の pin は同日更新（ずれていれば pin 更新待ち）。
+- テーマ main = `7df6108`（#61 merge 後）。統合層 `HELIX-MARKETING-HARNESS` の pin は同日更新（ずれていれば pin 更新待ち）。
 - テーマ構造監査（root #2 と INV/CAT/JSON/GATE 全 task・finding #21）は Issue 上すべて close 済み。
   証跡は `docs/research/2026-08-26-theme-structure-audit/`（PR #50）、伏せ字ガードは PR #51。
 - L0 改定ドラフト「構造自由・破壊域停止」+ L3-A5 PoC 棚卸しは PR #48 で main 収録済み（ドラフト扱い）。
@@ -30,7 +30,7 @@
 ## 4. PO 判断待ち（merge ブロッカーなし・Issue は close 済みで運用判断のみ未了）
 - サーバ層対処: `.user.ini` の display_errors=Off（#21）、未認証 REST の遮断（#15）、ベンダー報告要否。
 - `theme_mods` 235 キーの分類（値の読み取りを伴う）。
-- `reports/INV-*.md` 8 本への 2026-08-27 実測の反映（現状は PROGRESS と Issue コメントのみ）。
+- `reports/INV-*.md` 8 本への 2026-08-27 実測の反映は #61 で反映済み。
 - G-E1 は全 71 パターン invalid=0（2026-08-30、ローカル docker WP 7.1）。リモート PoC サイトには #58 時点の枝が配備されたままなので、次回 main で再配備する。
 - #60 の font-size プリセット化で lp-proof 3.5→3rem、lp-pricing 2.5→3rem / 2→2.25rem に変わった（意図した割り切り）。
 
