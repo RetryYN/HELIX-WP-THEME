@@ -59,6 +59,10 @@ final class Agent_Neo_Theme_Setup {
 				'agent-neo',
 				array( 'label' => __( 'AGENT NEO LP', 'agent-neo' ) )
 			);
+			register_block_pattern_category(
+				'agent-neo-shared',
+				array( 'label' => __( 'AGENT NEO 共有パーツ', 'agent-neo' ) )
+			);
 		}
 	}
 
