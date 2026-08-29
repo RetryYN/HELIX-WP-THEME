@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:button {"backgroundColor":"background","textColor":"accent-aa","style":{"typography":{"fontWeight":"700"}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-accent-aa-color has-background-background-color has-text-color has-background wp-element-button" href="/contact/"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-accent-aa-color has-background-background-color has-text-color has-background wp-element-button" href="/contact/" style="font-weight:700"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

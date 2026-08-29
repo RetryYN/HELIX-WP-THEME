@@ -38,7 +38,7 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 <!-- /wp:navigation -->
 
 <!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","style":{"typography":{"fontWeight":"700"}},"fontSize":"small"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button" href="/contact/"><?php esc_html_e( '相談する', 'agent-neo' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button" href="/contact/" style="font-weight:700"><?php esc_html_e( '相談する', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div></div>

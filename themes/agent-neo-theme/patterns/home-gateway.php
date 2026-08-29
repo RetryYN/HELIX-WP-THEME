@@ -26,12 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- /wp:heading -->
 
 	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
-	<div class="wp-block-columns alignwide" style="gap:var(--wp--preset--spacing--30)">
+	<div class="wp-block-columns alignwide">
 
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"className":"an-gateway-card","style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group an-gateway-card has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);background-color:var(--wp--preset--color--background);padding:var(--wp--preset--spacing--30)">
+			<div class="wp-block-group an-gateway-card has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 				<!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 				<h3 class="wp-block-heading" style="font-weight:700;font-size:var(--wp--preset--font-size--large);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'アフィリエイト記事', 'agent-neo' ); ?></h3>
@@ -53,7 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"className":"an-gateway-card","style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group an-gateway-card has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);background-color:var(--wp--preset--color--background);padding:var(--wp--preset--spacing--30)">
+			<div class="wp-block-group an-gateway-card has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 				<!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 				<h3 class="wp-block-heading" style="font-weight:700;font-size:var(--wp--preset--font-size--large);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( '法人LP・HP', 'agent-neo' ); ?></h3>
@@ -75,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"className":"an-gateway-card","style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group an-gateway-card has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);background-color:var(--wp--preset--color--background);padding:var(--wp--preset--spacing--30)">
+			<div class="wp-block-group an-gateway-card has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 				<!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--large)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 				<h3 class="wp-block-heading" style="font-weight:700;font-size:var(--wp--preset--font-size--large);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'SEO自動運用', 'agent-neo' ); ?></h3>

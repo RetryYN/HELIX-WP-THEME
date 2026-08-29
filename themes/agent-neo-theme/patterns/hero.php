@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)">
 		<!-- wp:button {"backgroundColor":"accent","textColor":"background","fontSize":"medium","style":{"border":{"radius":"4px"},"typography":{"fontWeight":"700"}}} -->
 		<div class="wp-block-button">
-			<a class="wp-block-button__link has-accent-background-color has-background-color has-text-color has-background has-medium-font-size wp-element-button" href="#" style="border-radius:4px;font-weight:700">
+			<a class="wp-block-button__link has-background-color has-accent-background-color has-text-color has-background has-medium-font-size has-custom-font-size wp-element-button" href="#" style="border-radius:4px;font-weight:700">
 				<?php esc_html_e( 'はじめる', 'agent-neo' ); ?>
 			</a>
 		</div>

@@ -30,12 +30,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- /wp:paragraph -->
 
 	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
-	<div class="wp-block-columns alignwide" style="gap:var(--wp--preset--spacing--30)">
+	<div class="wp-block-columns alignwide">
 
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);background-color:var(--wp--preset--color--background);padding:var(--wp--preset--spacing--30)">
+			<div class="wp-block-group has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 				<!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"var(--wp--preset--color--muted)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
 				<p class="has-small-font-size" style="color:var(--wp--preset--color--muted);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'アフィリエイトメディア', 'agent-neo' ); ?></p>
@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);background-color:var(--wp--preset--color--background);padding:var(--wp--preset--spacing--30)">
+			<div class="wp-block-group has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 				<!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"var(--wp--preset--color--muted)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
 				<p class="has-small-font-size" style="color:var(--wp--preset--color--muted);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( '士業コーポレート', 'agent-neo' ); ?></p>
@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"style":{"border":{"radius":"8px","color":"var(--wp--preset--color--secondary)","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}},"color":{"background":"var(--wp--preset--color--background)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
-			<div class="wp-block-group has-background" style="border-radius:8px;border:1px solid var(--wp--preset--color--secondary);background-color:var(--wp--preset--color--background);padding:var(--wp--preset--spacing--30)">
+			<div class="wp-block-group has-border-color has-background" style="border-radius:8px;border-color:var(--wp--preset--color--secondary);border-width:1px;background-color:var(--wp--preset--color--background);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 				<!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"var(--wp--preset--color--muted)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
 				<p class="has-small-font-size" style="color:var(--wp--preset--color--muted);margin-bottom:var(--wp--preset--spacing--10)"><?php esc_html_e( 'ECメディア', 'agent-neo' ); ?></p>
