@@ -19,15 +19,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <!-- wp:group {"className":"an-site-header-inner an-header\u002d\u002dmenu-focus","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group an-site-header-inner an-header--menu-focus" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group alignwide"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group"><!-- wp:site-logo /-->
+<div class="wp-block-group an-site-header-inner an-header--menu-focus" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group alignwide">
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:site-logo /-->
 
-<!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"800"}},"fontSize":"large"} /--></div>
+<!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"800"}},"fontSize":"large"} /-->
+</div>
 <!-- /wp:group -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
+<div class="wp-block-group">
+<!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
 <p class="has-muted-color has-text-color has-small-font-size"><?php esc_html_e( 'ページを選ぶ', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -39,7 +44,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:navigation-link {"label":"<?php echo esc_attr__( '記事', 'agent-neo' ); ?>","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
 
 <!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'お問い合わせ', 'agent-neo' ); ?>","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
-<!-- /wp:navigation --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group --></div>
+<!-- /wp:navigation -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+</div>
 <!-- /wp:group -->

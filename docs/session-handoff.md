@@ -4,7 +4,7 @@
 入力とした **監査 → PoC 証跡** 段階であり、要求 freeze・設計・実装には進んでいない。
 
 ## 1. 現在サマリ
-- テーマ main = `110b44d`（#55 merge 後）。統合層 `HELIX-MARKETING-HARNESS` の pin は同日更新（ずれていれば pin 更新待ち）。
+- テーマ main = `7df6108`（#61 merge 後）。統合層 `HELIX-MARKETING-HARNESS` の pin は同日更新（ずれていれば pin 更新待ち）。
 - テーマ構造監査（root #2 と INV/CAT/JSON/GATE 全 task・finding #21）は Issue 上すべて close 済み。
   証跡は `docs/research/2026-08-26-theme-structure-audit/`（PR #50）、伏せ字ガードは PR #51。
 - L0 改定ドラフト「構造自由・破壊域停止」+ L3-A5 PoC 棚卸しは PR #48 で main 収録済み（ドラフト扱い）。
@@ -14,7 +14,8 @@
 #23 伏せ字化 / #24 article-cta validation / #33 theme.json 既定プリセット / #48 L0 改定ドラフト /
 #49 PHPCS 19 件 / #50 監査証跡 / #51 伏せ字ガード /
 #53 一貫性ゲート G-T1/T1b/T2/T3/S1/S2 + トークン構造規約（外部デザインツールの取り込み経路は持たない）+ 共有パーツ 20 本 /
-#54 スタイルバリエーション 3 案（編集誌・奥行き・業務）/ #55 パターン 27 本・スタイル 4 本の多様性拡充 + `docs/design/parts-catalog.md`。
+#54 スタイルバリエーション 3 案（編集誌・奥行き・業務）/ #55 パターン 27 本・スタイル 4 本の多様性拡充 + `docs/design/parts-catalog.md` /
+#58 既存 14 本の CSS 変数エスケープ・cover 形式（#56 #57）/ #60 G-E1 Block validation 33 パターン修正（#59、ローカル docker WP 7.1 の証跡は `docs/research/2026-08-29-ge1-local/`）。
 
 ## 3. PO 判断（2026-08-29）と PoC 枝の帰結
 | 元 PR | 判断 | 帰結 |
@@ -29,9 +30,9 @@
 ## 4. PO 判断待ち（merge ブロッカーなし・Issue は close 済みで運用判断のみ未了）
 - サーバ層対処: `.user.ini` の display_errors=Off（#21）、未認証 REST の遮断（#15）、ベンダー報告要否。
 - `theme_mods` 235 キーの分類（値の読み取りを伴う）。
-- `reports/INV-*.md` 8 本への 2026-08-27 実測の反映（現状は PROGRESS と Issue コメントのみ）。
-- 既知バグ: #56（既存パターン 14 本の border 色 CSS 変数エスケープ欠落・medium）、#57（cover の img/div 形式混在・low）。
-- #55 の新規パターンは静的検査のみ。PoC 実機ゲート G-E1（エディタ invalid=0）は未実施。
+- `reports/INV-*.md` 8 本への 2026-08-27 実測の反映は #61 で反映済み。
+- G-E1 は全 71 パターン invalid=0（2026-08-30、ローカル docker WP 7.1）。リモート PoC サイトには #58 時点の枝が配備されたままなので、次回 main で再配備する。
+- #60 の font-size プリセット化で lp-proof 3.5→3rem、lp-pricing 2.5→3rem / 2→2.25rem に変わった（意図した割り切り）。
 
 ## 5. 規律メモ
 - 公開リポ。第三者製品名・サイト特定情報は伏せ字（対応表はリポ外）。commit 前に

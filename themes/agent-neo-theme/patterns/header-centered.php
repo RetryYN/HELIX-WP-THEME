@@ -19,10 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <!-- wp:group {"className":"an-site-header-inner an-header\u002d\u002dcentered","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"0","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|20"},"border":{"bottom":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary)","width":"1px","style":"solid"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group an-site-header-inner an-header--centered" style="border-bottom-color:var(--wp--preset--color--secondary);border-bottom-style:solid;border-bottom-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:0;padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"className":"an-site-branding","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"center"}} -->
-<div class="wp-block-group an-site-branding"><!-- wp:site-logo {"width":36} /-->
+<div class="wp-block-group an-site-header-inner an-header--centered" style="border-bottom-color:var(--wp--preset--color--secondary);border-bottom-style:solid;border-bottom-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:0;padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:group {"className":"an-site-branding","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"center"}} -->
+<div class="wp-block-group an-site-branding">
+<!-- wp:site-logo {"width":36} /-->
 
-<!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"700"}},"textColor":"foreground","fontSize":"x-large"} /--></div>
+<!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"700"}},"textColor":"foreground","fontSize":"x-large"} /-->
+</div>
 <!-- /wp:group -->
 
 <!-- wp:site-tagline {"style":{"typography":{"textAlign":"center"}},"textColor":"muted","fontSize":"small"} /-->
@@ -35,5 +38,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:navigation-link {"label":"導入事例","url":"/category/case/","kind":"custom","isTopLevelLink":true} /-->
 
 <!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
-<!-- /wp:navigation --></div>
+<!-- /wp:navigation -->
+</div>
 <!-- /wp:group -->

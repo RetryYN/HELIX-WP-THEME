@@ -19,13 +19,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <!-- wp:group {"className":"an-article-box an-article-box\u002d\u002drelated","style":{"spacing":{"margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group an-article-box an-article-box--related" style="margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--40)"><!-- wp:heading {"style":{"typography":{"fontWeight":"800"}},"fontSize":"x-large"} -->
+<div class="wp-block-group an-article-box an-article-box--related" style="margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--40)">
+<!-- wp:heading {"style":{"typography":{"fontWeight":"800"}},"fontSize":"x-large"} -->
 <h2 class="wp-block-heading has-x-large-font-size" style="font-weight:800"><?php esc_html_e( 'こちらの記事もおすすめ', 'agent-neo' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:columns {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"},"blockGap":{"left":"var:preset|spacing|20","top":"var:preset|spacing|20"}}}} -->
-<div class="wp-block-columns" style="margin-top:var(--wp--preset--spacing--30)"><!-- wp:column {"style":{"border":{"color":"var(--wp--preset--color--muted)","width":"1px","style":"solid","radius":"var:preset|spacing|20"},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}}} -->
-<div class="wp-block-column has-border-color" style="border-color:var(--wp--preset--color--muted);border-style:solid;border-width:1px;border-radius:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
+<div class="wp-block-columns" style="margin-top:var(--wp--preset--spacing--30)">
+<!-- wp:column {"style":{"border":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)","width":"1px","style":"solid","radius":"var:preset|spacing|20"},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}}} -->
+<div class="wp-block-column has-border-color" style="border-color:var(--wp--preset--color--muted);border-style:solid;border-width:1px;border-radius:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+<!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
 <p class="has-accent-aa-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase"><?php esc_html_e( '読みもの 01', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -35,11 +38,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
 <p class="has-muted-color has-text-color has-small-font-size"><?php esc_html_e( '迷いを減らすための土台を確認します。', 'agent-neo' ); ?></p>
-<!-- /wp:paragraph --></div>
+<!-- /wp:paragraph -->
+</div>
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"border":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)","width":"1px","style":"solid","radius":"var:preset|spacing|20"},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}}} -->
-<div class="wp-block-column has-border-color" style="border-color:var(--wp--preset--color--muted);border-style:solid;border-width:1px;border-radius:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
+<div class="wp-block-column has-border-color" style="border-color:var(--wp--preset--color--muted);border-style:solid;border-width:1px;border-radius:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+<!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
 <p class="has-accent-aa-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase"><?php esc_html_e( '読みもの 02', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -49,11 +54,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
 <p class="has-muted-color has-text-color has-small-font-size"><?php esc_html_e( '更新のリズムをつくる考え方を紹介します。', 'agent-neo' ); ?></p>
-<!-- /wp:paragraph --></div>
+<!-- /wp:paragraph -->
+</div>
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"border":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)","width":"1px","style":"solid","radius":"var:preset|spacing|20"},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}}} -->
-<div class="wp-block-column has-border-color" style="border-color:var(--wp--preset--color--muted);border-style:solid;border-width:1px;border-radius:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
+<div class="wp-block-column has-border-color" style="border-color:var(--wp--preset--color--muted);border-style:solid;border-width:1px;border-radius:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+<!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
 <p class="has-accent-aa-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase"><?php esc_html_e( '読みもの 03', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -63,7 +70,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
 <p class="has-muted-color has-text-color has-small-font-size"><?php esc_html_e( '最後の確認を短いリストにまとめました。', 'agent-neo' ); ?></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></div>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+</div>
 <!-- /wp:group -->
