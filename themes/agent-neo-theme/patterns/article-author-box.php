@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<!-- wp:group {"className":"an-article-box an-article-box\u002d\u002dauthor","style":{"border":{"top":{"color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dmuted)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group an-article-box an-article-box--author" style="border-top-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dmuted);border-top-style:solid;border-top-width:1px;margin-top:var(--wp--preset--spacing--50);padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
+<!-- wp:group {"className":"an-article-box an-article-box\u002d\u002dauthor","style":{"border":{"top":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group an-article-box an-article-box--author" style="border-top-color:var(--wp--preset--color--muted);border-top-style:solid;border-top-width:1px;margin-top:var(--wp--preset--spacing--50);padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent-aa","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
 <p class="has-accent-aa-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase"><?php esc_html_e( 'この記事を書いた人', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 

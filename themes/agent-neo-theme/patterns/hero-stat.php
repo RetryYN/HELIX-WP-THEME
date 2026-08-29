@@ -33,8 +33,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"},"blockGap":{"left":"var:preset|spacing|30","top":"var:preset|spacing|30"}}}} -->
-<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--50)"><!-- wp:column {"style":{"border":{"top":{"color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002daccent)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}}} -->
-<div class="wp-block-column" style="border-top-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002daccent);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent","style":{"typography":{"fontWeight":"800","lineHeight":"1"}},"fontSize":"xxx-large"} -->
+<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--50)"><!-- wp:column {"style":{"border":{"top":{"color":"var(--wp--preset--color--accent)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}}} -->
+<div class="wp-block-column" style="border-top-color:var(--wp--preset--color--accent);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent","style":{"typography":{"fontWeight":"800","lineHeight":"1"}},"fontSize":"xxx-large"} -->
 <p class="has-accent-color has-text-color has-xxx-large-font-size" style="font-weight:800;line-height:1">01</p>
 <!-- /wp:paragraph -->
 
@@ -43,8 +43,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"style":{"border":{"top":{"color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002daccent)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}}} -->
-<div class="wp-block-column" style="border-top-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002daccent);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent","style":{"typography":{"fontWeight":"800","lineHeight":"1"}},"fontSize":"xxx-large"} -->
+<!-- wp:column {"style":{"border":{"top":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002daccent)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}}} -->
+<div class="wp-block-column" style="border-top-color:var(--wp--preset--color--accent);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent","style":{"typography":{"fontWeight":"800","lineHeight":"1"}},"fontSize":"xxx-large"} -->
 <p class="has-accent-color has-text-color has-xxx-large-font-size" style="font-weight:800;line-height:1">02</p>
 <!-- /wp:paragraph -->
 
@@ -53,8 +53,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"style":{"border":{"top":{"color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002daccent)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}}} -->
-<div class="wp-block-column" style="border-top-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002daccent);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent","style":{"typography":{"fontWeight":"800","lineHeight":"1"}},"fontSize":"xxx-large"} -->
+<!-- wp:column {"style":{"border":{"top":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002daccent)","width":"1px","style":"solid"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}}} -->
+<div class="wp-block-column" style="border-top-color:var(--wp--preset--color--accent);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"textColor":"accent","style":{"typography":{"fontWeight":"800","lineHeight":"1"}},"fontSize":"xxx-large"} -->
 <p class="has-accent-color has-text-color has-xxx-large-font-size" style="font-weight:800;line-height:1">03</p>
 <!-- /wp:paragraph -->
 
