@@ -18,10 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<!-- wp:group {"className":"an-article-cta","style":{"border":{"radius":"10px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(--wp--preset--color--secondary)"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"className":"an-article-cta","style":{"border":{"radius":"10px"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}},"color":{"background":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary)"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group an-article-cta has-background" style="border-radius:10px;background-color:var(--wp--preset--color--secondary);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 
-	<!-- wp:heading {"level":2,"textAlign":"center","style":{"typography":{"fontWeight":"700","fontSize":"var(--wp--preset--font-size--x-large)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
+	<!-- wp:heading {"level":2,"textAlign":"center","style":{"typography":{"fontWeight":"700","fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dx-large)"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 	<h2 class="wp-block-heading has-text-align-center" style="font-weight:700;font-size:var(--wp--preset--font-size--x-large);margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'AGENT NEO で、記事を自動で生み出す。', 'agent-neo' ); ?></h2>
 	<!-- /wp:heading -->
 

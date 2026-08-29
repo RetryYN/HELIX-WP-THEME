@@ -19,7 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <!-- wp:group {"className":"an-site-footer-inner an-footer\u002d\u002dminimal","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|20"},"border":{"top":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary)","width":"1px","style":"solid"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group an-site-footer-inner an-footer--minimal" style="border-top-color:var(--wp--preset--color--secondary);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"700"}},"textColor":"foreground","fontSize":"medium"} /-->
+<div class="wp-block-group an-site-footer-inner an-footer--minimal" style="border-top-color:var(--wp--preset--color--secondary);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:site-title {"level":0,"style":{"typography":{"fontWeight":"700"}},"textColor":"foreground","fontSize":"medium"} /-->
 
 <!-- wp:navigation {"textColor":"muted","overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"fontSize":"small","layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"},"ariaLabel":"フッターナビゲーション"} -->
 <!-- wp:navigation-link {"label":"記事","url":"/blog/","kind":"custom","isTopLevelLink":true} /-->
@@ -31,5 +32,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:navigation-link {"label":"お問い合わせ","url":"/contact/","kind":"custom","isTopLevelLink":true} /-->
 <!-- /wp:navigation -->
 
-<!-- wp:pattern {"slug":"agent-neo/footer-credit"} /--></div>
+<!-- wp:pattern {"slug":"agent-neo/footer-credit"} /-->
+</div>
 <!-- /wp:group -->

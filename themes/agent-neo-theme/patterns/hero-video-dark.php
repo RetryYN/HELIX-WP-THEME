@@ -21,8 +21,10 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 ?>
 
 <!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":80,"overlayColor":"footer-bg","isUserOverlayColor":true,"minHeight":64,"minHeightUnit":"vh","align":"full","className":"an-section an-section\u002d\u002dhero an-hero\u002d\u002dvideo-dark","layout":{"type":"constrained"}} -->
-<div class="wp-block-cover alignfull an-section an-section--hero an-hero--video-dark" style="min-height:64vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-footer-bg-background-color has-background-dim-80 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained","justifyContent":"center"}} -->
-<div class="wp-block-group alignwide"><!-- wp:paragraph {"align":"center","textColor":"accent","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
+<div class="wp-block-cover alignfull an-section an-section--hero an-hero--video-dark" style="min-height:64vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-footer-bg-background-color has-background-dim-80 has-background-dim"></span><div class="wp-block-cover__inner-container">
+<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained","justifyContent":"center"}} -->
+<div class="wp-block-group alignwide">
+<!-- wp:paragraph {"align":"center","textColor":"accent","style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"fontSize":"small"} -->
 <p class="has-text-align-center has-accent-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase"><?php esc_html_e( '見ることでわかる', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -35,9 +37,13 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"accent","textColor":"primary","className":"an-video-play-button","style":{"typography":{"fontWeight":"700"}}} -->
+<div class="wp-block-buttons">
+<!-- wp:button {"backgroundColor":"accent","textColor":"primary","className":"an-video-play-button","style":{"typography":{"fontWeight":"700"}}} -->
 <div class="wp-block-button an-video-play-button"><a class="wp-block-button__link has-primary-color has-accent-background-color has-text-color has-background wp-element-button" href="/video/" style="font-weight:700"><?php esc_html_e( '▶ 再生イメージを見る', 'agent-neo' ); ?></a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
-<!-- /wp:group --></div></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+</div></div>
 <!-- /wp:cover -->

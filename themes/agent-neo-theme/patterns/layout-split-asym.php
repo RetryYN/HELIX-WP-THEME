@@ -20,18 +20,26 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 ?>
 
 <!-- wp:group {"align":"full","className":"an-section an-section\u002d\u002dsplit","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"}},"layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull an-section an-section--split" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0","top":"0"}}}} -->
-<div class="wp-block-columns alignfull"><!-- wp:column {"width":"41.66%"} -->
-<div class="wp-block-column" style="flex-basis:41.66%"><!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":0,"minHeight":60,"minHeightUnit":"vh","className":"an-split-image","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
-<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
+<div class="wp-block-group alignfull an-section an-section--split" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+<!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0","top":"0"}}}} -->
+<div class="wp-block-columns alignfull">
+<!-- wp:column {"width":"41.66%"} -->
+<div class="wp-block-column" style="flex-basis:41.66%">
+<!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":0,"minHeight":60,"minHeightUnit":"vh","className":"an-split-image","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
+<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container">
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
 <p class="has-text-align-center has-large-font-size"></p>
-<!-- /wp:paragraph --></div></div>
-<!-- /wp:cover --></div>
+<!-- /wp:paragraph -->
+</div></div>
+<!-- /wp:cover -->
+</div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","width":"58.33%","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|60","right":"var:preset|spacing|50"}}},"backgroundColor":"secondary"} -->
-<div class="wp-block-column is-vertically-aligned-center has-secondary-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--60);flex-basis:58.33%"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","justifyContent":"left","contentSize":"520px"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"accent-aa","fontSize":"small"} -->
+<div class="wp-block-column is-vertically-aligned-center has-secondary-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--60);flex-basis:58.33%">
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","justifyContent":"left","contentSize":"520px"}} -->
+<div class="wp-block-group">
+<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"accent-aa","fontSize":"small"} -->
 <p class="has-accent-aa-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase">01 — <?php esc_html_e( '設計', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -45,15 +53,21 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 
 <!-- wp:paragraph {"style":{"typography":{"fontWeight":"700"}},"fontSize":"small"} -->
 <p class="has-small-font-size" style="font-weight:700"><a href="/lp/"><?php esc_html_e( '設計プロセスを見る →', 'agent-neo' ); ?></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:column --></div>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:column -->
+</div>
 <!-- /wp:columns -->
 
 <!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":{"left":"0","top":"0"}}}} -->
-<div class="wp-block-columns alignfull"><!-- wp:column {"verticalAlignment":"center","width":"58.33%","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|50","right":"var:preset|spacing|60"}}}} -->
-<div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--50);flex-basis:58.33%"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","justifyContent":"right","contentSize":"520px"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"accent-aa","fontSize":"small"} -->
+<div class="wp-block-columns alignfull">
+<!-- wp:column {"verticalAlignment":"center","width":"58.33%","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|50","right":"var:preset|spacing|60"}}}} -->
+<div class="wp-block-column is-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--50);flex-basis:58.33%">
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","justifyContent":"right","contentSize":"520px"}} -->
+<div class="wp-block-group">
+<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"accent-aa","fontSize":"small"} -->
 <p class="has-accent-aa-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase">02 — <?php esc_html_e( '運用', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
@@ -63,16 +77,24 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 
 <!-- wp:paragraph {"fontSize":"medium"} -->
 <p class="has-medium-font-size"><?php esc_html_e( '順位・流入・CV を見て、伸びる記事に追記し、古い記事を畳む。人は月 1 回の確認だけ。', 'agent-neo' ); ?></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</div>
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"41.66%"} -->
-<div class="wp-block-column" style="flex-basis:41.66%"><!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":30,"overlayColor":"accent","isUserOverlayColor":true,"minHeight":60,"minHeightUnit":"vh","className":"an-split-image","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
-<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-accent-background-color has-background-dim-30 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
+<div class="wp-block-column" style="flex-basis:41.66%">
+<!-- wp:cover {"url":"<?php echo $an_cover; ?>","dimRatio":30,"overlayColor":"accent","isUserOverlayColor":true,"minHeight":60,"minHeightUnit":"vh","className":"an-split-image","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}}} -->
+<div class="wp-block-cover an-split-image" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:60vh"><img class="wp-block-cover__image-background" alt="" src="<?php echo $an_cover; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-accent-background-color has-background-dim-30 has-background-dim"></span><div class="wp-block-cover__inner-container">
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}},"fontSize":"large"} -->
 <p class="has-text-align-center has-large-font-size"></p>
-<!-- /wp:paragraph --></div></div>
-<!-- /wp:cover --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></div>
+<!-- /wp:paragraph -->
+</div></div>
+<!-- /wp:cover -->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+</div>
 <!-- /wp:group -->

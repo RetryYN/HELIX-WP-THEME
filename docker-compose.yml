@@ -20,7 +20,7 @@ services:
       retries: 5
 
   wordpress:
-    image: wordpress:6.9.4-php8.3-apache
+    image: wordpress:7.1-php8.3-apache
     container_name: agent-neo-wp
     depends_on:
       db:
