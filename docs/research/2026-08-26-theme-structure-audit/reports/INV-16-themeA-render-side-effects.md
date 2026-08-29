@@ -123,3 +123,10 @@ wp option get theme_mods_themeA --format=json --path=~/site-A.example/public_htm
 | `themeA_customize_inline_style()` 冒頭と 5 箇所の `set_theme_mod` | `evidence/re-themeA-boot.txt` L255-L376 |
 | フック登録行（2099・2100） | 同上（関数リスト部） |
 | `set_theme_mod` 出現ファイル一覧 | `evidence/re-themeA-accessors.txt` |
+
+## 2026-08-27 実測の反映
+
+実測結果は §5（本番サイトの実測・read-only）に収録済み。要点: 副作用対象 5 キーは既定値とすべて相違し、
+本サイトでは §3 の「値だけでは判別不能」問題は発生しない。既定値と一致するサイトでは判別不能なので
+移管前スナップショットは維持する。`theme_mods_themeA` 235 キーの値の型は str 210 / bool 23 / int 1 / dict 1。
+235 キー全体の同種分類と、描画副作用への対処採用は PO 判断に残る。

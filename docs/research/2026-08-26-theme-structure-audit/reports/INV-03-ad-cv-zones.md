@@ -217,3 +217,20 @@ wp option get themeA_h2_ads_code --path=~/site-A.example/public_html | wc -c
 | テーマB のウィジェットエリア総当たり（`Pre_Parse_Blocks`） | `evidence/re-themeB-blocks.txt` |
 | テーマB `parts/` 54 ファイルの構成 | `evidence/probe5-raw.txt` |
 | `ad-zone.schema.json` の現行記述 | `03-structure-agent-neo.md` §3 |
+
+## 2026-08-27 実測の反映
+
+`evidence/option-and-sidebars-raw.txt` で本番の `sidebars_widgets` を read-only 実測した。
+
+| 項目 | 実測結果 |
+|---|---|
+| 登録サイドバー | 12 |
+| 実配置の領域 | 5 領域 |
+| 実配置の内訳 | `toppage` 1 / `post-top` 1 / `post-end` 3 / `sidebar` 11 / `sidebar-tracking` 1 |
+| 空の領域 | 6 領域 |
+
+よって §4 ④ の「本番実配置は保留中」という採取前の状態は解消され、
+正しい結論は **5 領域・sidebar 11・sidebar-tracking 1** である。
+ウィジェット総数の 3 分の 2 が `sidebar` に集中しており、sidebar 系は第一級ゾーンから外せない。
+これは 08-27 要約で一時的に「4 領域、sidebar 3+」とされた内容の訂正でもある。
+広告ゾーン語彙・条件表示のスキーマ改訂案を採用するかどうかは PO 判断に残る。
