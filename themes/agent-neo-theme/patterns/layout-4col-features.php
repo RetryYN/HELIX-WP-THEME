@@ -35,10 +35,10 @@ $an_items = array(
 	<!-- /wp:group -->
 
 	<!-- wp:columns {"align":"wide","isStackedOnMobile":true,"className":"an-features4","style":{"spacing":{"blockGap":{"left":"0","top":"var:preset|spacing|30"}},"border":{"top":{"color":"var(--wp--preset--color--primary)","width":"1px","style":"solid"}}}} -->
-	<div class="wp-block-columns alignwide an-features4" style="border-top-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dprimary);border-top-style:solid;border-top-width:1px">
+	<div class="wp-block-columns alignwide an-features4" style="border-top-color:var(--wp--preset--color--primary);border-top-style:solid;border-top-width:1px">
 	<?php foreach ( $an_items as $i => $it ) : ?>
 		<!-- wp:column {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"}<?php echo $i > 0 ? ',"border":{"left":{"color":"var(--wp--preset--color--secondary)","width":"1px","style":"solid"}}' : ''; ?>}} -->
-		<div class="wp-block-column" style="<?php echo $i > 0 ? 'border-left-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary);border-left-style:solid;border-left-width:1px;' : ''; ?>padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
+		<div class="wp-block-column" style="<?php echo $i > 0 ? 'border-left-color:var(--wp--preset--color--secondary);border-left-style:solid;border-left-width:1px;' : ''; ?>padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 			<!-- wp:paragraph {"fontSize":"xx-large","textColor":"accent-aa","style":{"typography":{"fontWeight":"800","lineHeight":"1"}}} --><p class="has-accent-aa-color has-text-color has-xx-large-font-size" style="font-weight:800;line-height:1"><?php echo esc_html( $it[0] ); ?></p><!-- /wp:paragraph -->
 			<!-- wp:heading {"level":3,"fontSize":"large","style":{"typography":{"fontWeight":"700"}}} --><h3 class="wp-block-heading has-large-font-size" style="font-weight:700"><?php echo esc_html( $it[1] ); ?></h3><!-- /wp:heading -->
 			<!-- wp:paragraph {"fontSize":"small","textColor":"muted"} --><p class="has-muted-color has-text-color has-small-font-size"><?php echo esc_html( $it[2] ); ?></p><!-- /wp:paragraph -->
