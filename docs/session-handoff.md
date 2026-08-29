@@ -26,7 +26,7 @@
 
 各 merge は Sol 最終レビュー PASS を条件に PO が許可。
 
-## 4. PO 判断待ち（技術ブロッカーなし）
+## 4. PO 判断待ち（merge ブロッカーなし・Issue は close 済みで運用判断のみ未了）
 - サーバ層対処: `.user.ini` の display_errors=Off（#21）、未認証 REST の遮断（#15）、ベンダー報告要否。
 - `theme_mods` 235 キーの分類（値の読み取りを伴う）。
 - `reports/INV-*.md` 8 本への 2026-08-27 実測の反映（現状は PROGRESS と Issue コメントのみ）。
