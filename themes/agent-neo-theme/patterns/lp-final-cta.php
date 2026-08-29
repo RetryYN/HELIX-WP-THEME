@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dlarge)","lineHeight":"1.7"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}},"color":{"text":"rgba(255,255,255,0.80)"}}} -->
-<p class="has-text-color" style="color:rgba(255,255,255,0.80);margin-bottom:var(--wp--preset--spacing--50);font-size:var(--wp--preset--font-size--large);line-height:1.7"><?php esc_html_e( '初期設定は最短1日。インストールだけで、あとはシステムが自動で動き始めます。', 'agent-neo' ); ?><br><?php esc_html_e( 'まずは無料トライアルでその効果を体感してください。', 'agent-neo' ); ?></p>
+<p class="has-text-align-center has-text-color" style="color:rgba(255,255,255,0.80);margin-bottom:var(--wp--preset--spacing--50);font-size:var(--wp--preset--font-size--large);line-height:1.7"><?php esc_html_e( '初期設定は最短1日。インストールだけで、あとはシステムが自動で動き始めます。', 'agent-neo' ); ?><br><?php esc_html_e( 'まずは無料トライアルでその効果を体感してください。', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","justifyContent":"center"}} -->
@@ -33,5 +33,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dsmall)"},"spacing":{"margin":{"top":"var:preset|spacing|30"}},"color":{"text":"rgba(255,255,255,0.50)"}}} -->
-<p class="has-text-color" style="color:rgba(255,255,255,0.50);margin-top:var(--wp--preset--spacing--30);font-size:var(--wp--preset--font-size--small)"><?php esc_html_e( 'クレジットカード不要・いつでも解約可能・導入サポートあり', 'agent-neo' ); ?></p>
+<p class="has-text-align-center has-text-color" style="color:rgba(255,255,255,0.50);margin-top:var(--wp--preset--spacing--30);font-size:var(--wp--preset--font-size--small)"><?php esc_html_e( 'クレジットカード不要・いつでも解約可能・導入サポートあり', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph --></div><!-- /wp:group -->

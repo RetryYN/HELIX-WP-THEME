@@ -38,8 +38,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-text-color" style="color:var(--wp--preset--color--muted);margin-bottom:var(--wp--preset--spacing--30);font-size:var(--wp--preset--font-size--small)"><?php esc_html_e( '小規模サイト・個人メディア向け', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-<p class="has-text-color" style="color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10);font-weight:800;line-height:1.0">¥29,800<span style="font-size:1rem;font-weight:400"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
+<!-- wp:paragraph {"fontSize":"xxx-large","style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<p class="has-xxx-large-font-size has-text-color" style="color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10);font-weight:800;line-height:1.0">¥29,800<span style="font-size:1rem;font-weight:400"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dsmall)"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
@@ -73,8 +73,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline an-cta an-cta\u002d\u002dlp_pricing_starter","style":{"border":{"radius":"6px","color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"},"dimensions":{"width":"100%"}}} -->
-<div class="wp-block-button is-style-outline an-cta an-cta--lp_pricing_starter"><a class="wp-block-button__link has-text-color has-border-color wp-element-button" href="#" style="border-color:var(--wp--preset--color--primary);border-width:2px;border-radius:6px;color:var(--wp--preset--color--primary);padding-top:0.875rem;padding-bottom:0.875rem;font-weight:600"><?php esc_html_e( '無料で試す', 'agent-neo' ); ?></a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline an-cta an-cta\u002d\u002dlp_pricing_starter","style":{"border":{"radius":"6px","color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"}}} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline an-cta an-cta--lp_pricing_starter"><a class="wp-block-button__link has-text-color has-border-color wp-element-button" href="#" style="border-color:var(--wp--preset--color--primary);border-width:2px;border-radius:6px;color:var(--wp--preset--color--primary);padding-top:0.875rem;padding-bottom:0.875rem;font-weight:600"><?php esc_html_e( '無料で試す', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -94,8 +94,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-text-color" style="color:var(--wp--preset--color--muted);margin-bottom:var(--wp--preset--spacing--30);font-size:var(--wp--preset--font-size--small)"><?php esc_html_e( '成長フェーズの企業・メディア向け', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002daccent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-<p class="has-text-color" style="color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--10);font-weight:800;line-height:1.0">¥89,800<span style="font-size:1rem;font-weight:400;color:var(--wp--preset--color--foreground)"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
+<!-- wp:paragraph {"fontSize":"xxx-large","style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002daccent-aa)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<p class="has-xxx-large-font-size has-text-color" style="color:var(--wp--preset--color--accent-aa);margin-bottom:var(--wp--preset--spacing--10);font-weight:800;line-height:1.0">¥89,800<span style="font-size:1rem;font-weight:400;color:var(--wp--preset--color--foreground)"><?php esc_html_e( '/月', 'agent-neo' ); ?></span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dsmall)"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
@@ -129,8 +129,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"accent-aa","textColor":"background","className":"an-cta an-cta\u002d\u002dlp_pricing_pro","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"dimensions":{"width":"100%"}}} -->
-<div class="wp-block-button an-cta an-cta--lp_pricing_pro"><a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;padding-top:0.875rem;padding-bottom:0.875rem;font-weight:700"><?php esc_html_e( '無料で試す →', 'agent-neo' ); ?></a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"backgroundColor":"accent-aa","textColor":"background","className":"an-cta an-cta\u002d\u002dlp_pricing_pro","style":{"border":{"radius":"6px"},"typography":{"fontWeight":"700"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}}}} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 an-cta an-cta--lp_pricing_pro"><a class="wp-block-button__link has-background-color has-accent-aa-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:6px;padding-top:0.875rem;padding-bottom:0.875rem;font-weight:700"><?php esc_html_e( '無料で試す →', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
@@ -144,8 +144,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p class="has-text-color" style="color:var(--wp--preset--color--muted);margin-bottom:var(--wp--preset--spacing--30);font-size:var(--wp--preset--font-size--small)"><?php esc_html_e( '大規模メディア・複数ブランド運営向け', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
-<p class="has-text-color" style="color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10);font-weight:800;line-height:1.0"><?php esc_html_e( '要お問い合わせ', 'agent-neo' ); ?></p>
+<!-- wp:paragraph {"fontSize":"xx-large","style":{"typography":{"fontWeight":"800","lineHeight":"1.0"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"},"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}}} -->
+<p class="has-xx-large-font-size has-text-color" style="color:var(--wp--preset--color--primary);margin-bottom:var(--wp--preset--spacing--10);font-weight:800;line-height:1.0"><?php esc_html_e( '要お問い合わせ', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dsmall)"},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dmuted)"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
@@ -179,8 +179,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- /wp:group -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline an-cta an-cta\u002d\u002dlp_pricing_business","style":{"border":{"radius":"6px","color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"},"dimensions":{"width":"100%"}}} -->
-<div class="wp-block-button is-style-outline an-cta an-cta--lp_pricing_business"><a class="wp-block-button__link has-text-color has-border-color wp-element-button" href="#" style="border-color:var(--wp--preset--color--primary);border-width:2px;border-radius:6px;color:var(--wp--preset--color--primary);padding-top:0.875rem;padding-bottom:0.875rem;font-weight:600"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a></div>
+<div class="wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline an-cta an-cta\u002d\u002dlp_pricing_business","style":{"border":{"radius":"6px","color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)","width":"2px"},"typography":{"fontWeight":"600"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem"}},"color":{"text":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dprimary)"}}} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline an-cta an-cta--lp_pricing_business"><a class="wp-block-button__link has-text-color has-border-color wp-element-button" href="#" style="border-color:var(--wp--preset--color--primary);border-width:2px;border-radius:6px;color:var(--wp--preset--color--primary);padding-top:0.875rem;padding-bottom:0.875rem;font-weight:600"><?php esc_html_e( 'お問い合わせ', 'agent-neo' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div><!-- /wp:columns -->

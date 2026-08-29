@@ -64,11 +64,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"style":{"border":{"radius":"12px"},"dimensions":{"minHeight":"360px"},"color":{"background":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dfooter-bg)"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
 <div class="wp-block-group has-background" style="border-radius:12px;background-color:var(--wp--preset--color--footer-bg);min-height:360px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:paragraph {"align":"center","style":{"typography":{"fontWeight":"700","fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dxx-large)","lineHeight":"1.2"},"color":{"text":"#ffffff"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-<p class="has-text-color" style="color:#ffffff;margin-bottom:var(--wp--preset--spacing--20);font-size:var(--wp--preset--font-size--xx-large);font-weight:700;line-height:1.2">AGENT NEO</p>
+<p class="has-text-align-center has-text-color" style="color:#ffffff;margin-bottom:var(--wp--preset--spacing--20);font-size:var(--wp--preset--font-size--xx-large);font-weight:700;line-height:1.2">AGENT NEO</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dfont-size\u002d\u002dmedium)","lineHeight":"1.6"},"color":{"text":"rgba(255,255,255,0.75)"}}} -->
-<p class="has-text-color" style="color:rgba(255,255,255,0.75);font-size:var(--wp--preset--font-size--medium);line-height:1.6">Dashboard Preview<br><?php esc_html_e( '（スクリーンショットをここに挿入）', 'agent-neo' ); ?></p>
+<p class="has-text-align-center has-text-color" style="color:rgba(255,255,255,0.75);font-size:var(--wp--preset--font-size--medium);line-height:1.6">Dashboard Preview<br><?php esc_html_e( '（スクリーンショットをここに挿入）', 'agent-neo' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column --></div><!-- /wp:columns -->
