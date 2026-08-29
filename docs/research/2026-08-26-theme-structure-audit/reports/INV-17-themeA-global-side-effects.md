@@ -180,3 +180,18 @@ remove_action('template_redirect', 'themeA_init_session_start');
 | `functions.php` のフック登録一覧 | `evidence/re-themeA-boot.txt` |
 | `paidpost` の実使用 0 の確認 | `evidence/usage-raw.txt` / `reports/INV-11-scope-boundary.md` |
 | post meta `_themeA_canonical_display` の存在 | `reports/INV-08-agent-interface-gap.md` §3 |
+
+## 2026-08-27 実測の反映
+
+`evidence/http-audit-raw.txt` の自サイト read-only GET で、コード解析の両結論を実挙動で再確認した。
+
+| 確認項目 | 実測結果 |
+|---|---|
+| 末尾スラッシュ有無 | いずれも HTTP 200、`Location` なし、redirects=0 |
+| セッション Cookie | front / category / search の 3 ページすべてで `Set-Cookie: PHPSESSID` |
+| 有料記事 | 公開記事での実使用 0 と整合 |
+
+よって正規化リダイレクト停止と全ページのセッション開始は、実測でも確定した。
+重複 URL が双方 200 となること、セッション処理が有料記事未使用時の純粋なオーバーヘッドであることを確認する。
+検索インデックス状況、セッションファイル数、canonical の出力主体の確認は未了のままで、
+redirect_canonical とセッション処理をどう是正するかの採用は PO 判断に残る。

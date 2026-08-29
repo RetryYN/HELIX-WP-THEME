@@ -183,3 +183,23 @@ INV-11 で「公開記事での実使用か、設定由来の参照か」を確�
 | テーマB の normal(22) / dynamic(10) 分類 | `evidence/re-themeB-blocks.txt` |
 | テーマB `post-link.php` 全文（v1/v2 移行） | `evidence/re-themeB-detail.txt` |
 | ブロック実使用回数 | `evidence/usage-raw.txt` |
+
+## 2026-08-27 実測の反映
+
+`evidence/usage-raw.txt` の公開コンテンツ実測で、動的 7 種の使用内訳を再確認した。
+
+| 動的ブロック | 実使用数 |
+|---|---:|
+| `button` | 339 |
+| `blogcard` | 330 |
+| `postlist` | 38 |
+| **計** | **707** |
+
+未使用は `postcard` / `slider` / `category` / `paidpost` の 4 種。
+したがって決定論レンダラの優先順位は `button` と `blogcard` が最上位である。
+`blogcard` は内部で `post_by_url` を `rest_do_request()` するため、
+ルート遮断の判断は 330 インスタンスの描画可否に直結する。
+なお、08-27 の要約に一時記載された「postlist 38 のみ」は誤りであり、
+本レポート §2.1 の既存表（button 339 / blogcard 330 / postlist 38）が正しい。
+本追記は、その正しい表を実測で再確認したものである。
+ルート遮断を含む対処の採用は、引き続き PO 判断とする。

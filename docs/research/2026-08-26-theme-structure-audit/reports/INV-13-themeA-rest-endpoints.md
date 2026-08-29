@@ -198,3 +198,21 @@ grep 1 本のみ（§6）。ただし REST ルート 2 本（`/themeA/post_by_ur
 
 > 注: §2 のソースは調査セッション中に SSH 経由で読み出したものを転記した。
 > 生キャプチャファイルとしての再取得は未実施（`evidence/re-themeA-rest.txt` として別途採取する）。
+
+## 2026-08-27 実測の反映
+
+生ソースの証跡ギャップは `evidence/re-themeA-rest.txt` の採取で解消した。
+
+| 確認項目 | 実測結果 |
+|---|---|
+| route 登録 | `register_rest_route` 2 本（custom-functions.php 3675 / 3780） |
+| 権限 | `permission_callback => '__return_true'`（3680 / 3785） |
+| サーバー側取得 | `file_get_contents($post_url)`（3796） |
+| HTTP 到達性 | namespace 露出、`post_by_url` / `external_url` とも未認証 HTTP 200 |
+| `external_url` | 指定 URL をサーバー側で取得し、og: メタを返却 |
+| 新規の情報開示 | 不正入力時の Warning にテーマファイルの絶対パスと 3726 行を含む |
+
+以上により、未認証到達性と SSRF の主張はコード解析だけでなく自サイト GET で確定した。
+既存本文の使い捨て PoC と今回の GET は入力条件が同一ではないが、結論は矛盾しない。
+パス開示は `WP_DEBUG=false` でも発生し、`.user.ini` の `display_errors = On` が原因である。
+サーバー層で Off にする対処、REST 遮断、ベンダー報告の要否はいずれも PO 判断に残る。

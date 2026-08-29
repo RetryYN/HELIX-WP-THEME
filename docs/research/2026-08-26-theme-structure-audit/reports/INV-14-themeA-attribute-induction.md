@@ -131,3 +131,20 @@ bash docs/research/2026-08-26-theme-structure-audit/extract-themeA-attrs.sh > ev
 | 登録 25 種と静的 / 動的の別 | `evidence/probe3-raw.txt` |
 | ブロック実使用回数・未登録 `profile` の出現 | `evidence/usage-raw.txt` |
 | 余白系 CSS 変数 | `evidence/probe6-raw.txt` |
+
+## 2026-08-27 実測の反映
+
+`evidence/themeA-attrs-raw.txt` の公開コンテンツ実測で、ブロック 20 種と属性使用状況を確認した。
+
+| 対象 | 実測結果 |
+|---|---|
+| 共通属性 | 7 種 |
+| `className` | 299 |
+| それ以外の 6 種（余白 4 / `displayDeviceAttribute` / `themeABlocksCSSAttribute`） | 0 |
+| `blogcard` | 330 インスタンス。`postUrl` / `postTitle` / `thumbnailUrl` は 330、`blogcardLabel` は 15 |
+
+したがって、本サイトの現行コンテンツを移行する限り、クラス名から意味への逆変換は不要である。
+一方、テーマ側の属性定義は `evidence/re-themeA-ads.txt` に存在するため、
+他サイトや将来の入力に備えた変換規則そのものは実装対象に残す。
+§2.2 の一般論はこの現行サイト限定の結論で限定して読む。規則の適用時期は PO 判断に残る。
+PROGRESS 08-27 の要約側で「逆変換不要」と一般化した記載は誤りであり、本サイト限定の結論へ訂正する。

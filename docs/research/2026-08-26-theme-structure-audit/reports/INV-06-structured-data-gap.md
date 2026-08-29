@@ -114,3 +114,19 @@ Google のリッチリザルトテストで警告になり、`@id` の不整合�
 | テーマA の `json-ld.php` 読み込み条件 | `evidence/re-themeA-boot.txt`（require 一覧 L217） |
 | 両サイトの active プラグイン一覧 | `<local-poc-evidence>/audit-topic-A.json` |
 | AGENT NEO の出力型 | `themes/agent-neo-theme/inc/seo/class-structured-data.php` |
+
+## 2026-08-27 実測の反映
+
+`evidence/http-audit-raw.txt` の自サイト read-only GET で、
+front / single / category / search の 4 種別すべてに `ld+json` が **0 本**だった。
+
+| 実測項目 | 結果 |
+|---|---|
+| JSON-LD | 4 種別すべて 0 本 |
+| `og:type` | category・search でも `article` |
+
+したがって §2 の「テーマAは記事型を出していない」という結論は、
+実際には Article だけでなく JSON-LD 機構そのものが不在という、より強い結論で裏付けられた。
+現状は二重出力ではなく、`Article` を含む構造化データを新設できる空き地である。
+`CollectionPage` / `SearchAction` は Article の後に検討する順序とする。
+実装着手と最終的な単一出力元の採用は PO 判断に残る。

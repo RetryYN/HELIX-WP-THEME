@@ -160,3 +160,21 @@
 | `Theme_Data` の DB 定義（4 グループ + 独自テーブル） | `evidence/re-themeB-detail.txt` |
 | `set_theme_mod` の 5 箇所 | `evidence/re-themeA-boot.txt` L264-295 |
 | post meta `_themeA_*` 27 種 | `reports/INV-08-agent-interface-gap.md` §3 |
+
+## 2026-08-27 実測の反映
+
+`evidence/option-key-classification.tsv` により、実在する `themeA*` option を 179 件確認し、
+値を記録せずに 5 軸で全件分類した。
+
+| 軸 | 件数 | 比率 | 扱い |
+|---|---:|---:|---|
+| A サイト固有の意味 | 152 | 84% | 移管必須 |
+| B 見た目の選択 | 23 | 12% | 任意移管 |
+| C テーマ内部状態 | 2 | 1% | 移管しない |
+| X credential | 2 | 1% | 値を読まず、移管せず、ログに出さない |
+| D 保留 | 0 | 0% | なし |
+
+したがって §3 の「移管必須 60〜80 キー」は option 側の実測には適用せず、
+152 件を現時点の確定値とする。`theme_mods_themeA` は 235 キーで、
+型は str 210 / bool 23 / int 1 / dict 1 だった。
+同 235 キーの同種分類は値の読み取りを伴うため、未了の PO 判断として残す。

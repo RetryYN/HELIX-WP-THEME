@@ -123,3 +123,18 @@ wp option get theme_mods_themeA --format=json --path=~/site-A.example/public_htm
 | `themeA_customize_inline_style()` 冒頭と 5 箇所の `set_theme_mod` | `evidence/re-themeA-boot.txt` L255-L376 |
 | フック登録行（2099・2100） | 同上（関数リスト部） |
 | `set_theme_mod` 出現ファイル一覧 | `evidence/re-themeA-accessors.txt` |
+
+## 2026-08-27 実測の反映
+
+`evidence/theme-mods-and-ini-raw.txt` で `theme_mods_themeA` の 235 キーを確認し、
+描画時副作用の対象 5 キーをコード既定値と照合した。
+
+| 実測項目 | 結果 |
+|---|---|
+| 副作用対象 5 キーの現在値と既定値 | 5 キーすべて異なる |
+| 判定 | 本サイトではすべて人が決めた設定 |
+| `theme_mods_themeA` の値の型 | str 210 / bool 23 / int 1 / dict 1 |
+
+よって本サイトでは、§4.1 の一般的な「値だけでは判別不能」という問題は発生しない。
+ただし既定値と一致するサイトではなお判別不能なので、移管前スナップショットは維持する。
+235 キー全体の同種分類と、描画副作用への対処採用は PO 判断に残る。
