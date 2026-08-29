@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<!-- wp:group {"className":"an-sidebar an-sidebar\u002d\u002dindex","style":{"spacing":{"padding":{"left":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"},"border":{"left":{"color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary)","width":"1px","style":"solid"}}},"layout":{"type":"default"}} -->
-<div class="wp-block-group an-sidebar an-sidebar--index" style="border-left-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary);border-left-style:solid;border-left-width:1px;padding-left:var(--wp--preset--spacing--30)"><!-- wp:search {"label":"検索","showLabel":false,"placeholder":"ドキュメントを検索","buttonText":"検索","buttonPosition":"button-inside","buttonUseIcon":true,"fontSize":"small"} /-->
+<!-- wp:group {"className":"an-sidebar an-sidebar\u002d\u002dindex","style":{"spacing":{"padding":{"left":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|30"},"border":{"left":{"color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary)","width":"1px","style":"solid"}}},"layout":{"type":"default"}} -->
+<div class="wp-block-group an-sidebar an-sidebar--index" style="border-left-color:var(--wp--preset--color--secondary);border-left-style:solid;border-left-width:1px;padding-left:var(--wp--preset--spacing--30)"><!-- wp:search {"label":"検索","showLabel":false,"placeholder":"ドキュメントを検索","buttonText":"検索","buttonPosition":"button-inside","buttonUseIcon":true,"fontSize":"small"} /-->
 
 <!-- wp:group {"className":"an-sidebar-widget","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group an-sidebar-widget"><!-- wp:heading {"style":{"typography":{"fontWeight":"700"}},"textColor":"muted","fontSize":"small"} -->

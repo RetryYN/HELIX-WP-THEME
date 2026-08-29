@@ -19,8 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <!-- wp:group {"className":"an-sidebar an-sidebar\u002d\u002dsticky","style":{"position":{"type":"sticky","top":"0px"},"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|30"}}},"layout":{"type":"default"}} -->
-<div class="wp-block-group an-sidebar an-sidebar--sticky" style="padding-top:var(--wp--preset--spacing--30)"><!-- wp:group {"className":"an-sidebar-widget an-sidebar-toc","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"left":"var:preset|spacing|20"}},"border":{"left":{"color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary)","width":"1px","style":"solid"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group an-sidebar-widget an-sidebar-toc" style="border-left-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary);border-left-style:solid;border-left-width:1px;padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"muted","fontSize":"small"} -->
+<div class="wp-block-group an-sidebar an-sidebar--sticky" style="padding-top:var(--wp--preset--spacing--30)"><!-- wp:group {"className":"an-sidebar-widget an-sidebar-toc","style":{"spacing":{"blockGap":"var:preset|spacing|10","padding":{"left":"var:preset|spacing|20"}},"border":{"left":{"color":"var(--wp--preset--color--secondary)","width":"1px","style":"solid"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group an-sidebar-widget an-sidebar-toc" style="border-left-color:var(--wp--preset--color--secondary);border-left-style:solid;border-left-width:1px;padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"style":{"typography":{"fontWeight":"700","textTransform":"uppercase"}},"textColor":"muted","fontSize":"small"} -->
 <h2 class="wp-block-heading has-muted-color has-text-color has-small-font-size" style="font-weight:700;text-transform:uppercase"><?php esc_html_e( 'この記事の内容', 'agent-neo' ); ?></h2>
 <!-- /wp:heading -->
 

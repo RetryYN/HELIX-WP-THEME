@@ -55,8 +55,8 @@ $an_cover = esc_url( get_theme_file_uri( 'assets/images/placeholder-cover.jpg' )
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"an-bento-cell","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|10"},"border":{"width":"1px","color":"var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary)","style":"solid"}},"gradient":"secondary-fade","layout":{"type":"constrained"}} -->
-<div class="wp-block-group an-bento-cell has-border-color has-secondary-fade-gradient-background has-background" style="border-color:var(u002du002dwpu002du002dpresetu002du002dcoloru002du002dsecondary);border-style:solid;border-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
+<!-- wp:group {"className":"an-bento-cell","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|10"},"border":{"width":"1px","color":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dcolor\u002d\u002dsecondary)","style":"solid"}},"gradient":"secondary-fade","layout":{"type":"constrained"}} -->
+<div class="wp-block-group an-bento-cell has-border-color has-secondary-fade-gradient-background has-background" style="border-color:var(--wp--preset--color--secondary);border-style:solid;border-width:1px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"level":3,"style":{"typography":{"fontWeight":"700"}},"fontSize":"large"} -->
 <h3 class="wp-block-heading has-large-font-size" style="font-weight:700"><?php esc_html_e( '配信', 'agent-neo' ); ?></h3>
 <!-- /wp:heading -->
 
