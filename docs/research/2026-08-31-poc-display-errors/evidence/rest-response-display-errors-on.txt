@@ -1,0 +1,5 @@
+
+Warning: file_get_contents(http://): Failed to open stream: operation failed in /var/www/html/wp-content/mu-plugins/poc-display-errors.php on line 4
+
+Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/mu-plugins/poc-display-errors.php:4) in /var/www/html/wp-includes/rest-api/class-wp-rest-server.php on line 1930
+{"len":0}
