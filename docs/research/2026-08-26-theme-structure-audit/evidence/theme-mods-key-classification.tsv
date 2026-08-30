@@ -157,23 +157,23 @@ themeA__ogp_image_url	str	A	サイト固有: 表示文言・URL・SNS
 themeA__post_column_style	str	B	見た目: 選択（任意移管）
 themeA__postlist_hover_style	str	B	見た目: 選択（任意移管）
 themeA__postlist_pagenation_style	str	B	見た目: 選択（任意移管）
-themeA__postlist_related_num	str	A	サイト固有: どの分類/記事を出すかの選択
+themeA__postlist_related_num	str	B	見た目: 選択（任意移管）
 themeA__profile_image_url	str	A	サイト固有: 表示文言・URL・SNS
 themeA__profile_introduction	str	A	サイト固有: 表示文言・URL・SNS
 themeA__profile_job	str	A	サイト固有: 表示文言・URL・SNS
 themeA__profile_name	str	A	サイト固有: 表示文言・URL・SNS
 themeA__profile_sns_color	str	B	見た目: 選択（任意移管）
 themeA__pub_mod_setting	str	D	保留: キー名から判別できず（アクセサ要確認）
-themeA__reading_jsonld	bool	B	見た目: 表示 ON/OFF（任意移管）
-themeA__reading_wpemoji	bool	B	見た目: 表示 ON/OFF（任意移管）
+themeA__reading_jsonld	bool	B	機能 ON/OFF（任意移管）
+themeA__reading_wpemoji	bool	B	機能 ON/OFF（任意移管）
 themeA__related_post_bgcolor	str	B	見た目: 選択（任意移管）
 themeA__related_post_bgcolor_type	str	B	見た目: 選択（任意移管）
 themeA__related_post_color_type	str	B	見た目: 選択（任意移管）
 themeA__related_post_remove	bool	B	見た目: 表示 ON/OFF（任意移管）
 themeA__representation_design_type	str	B	見た目: 選択（任意移管）
-themeA__representation_display_category_side	bool	A	サイト固有: 表示文言・URL・SNS
-themeA__representation_display_custom_category	bool	A	サイト固有: 表示文言・URL・SNS
-themeA__representation_display_post	bool	A	サイト固有: 表示文言・URL・SNS
+themeA__representation_display_category_side	bool	A	サイト固有: どの分類/記事を出すかの選択
+themeA__representation_display_custom_category	bool	A	サイト固有: どの分類/記事を出すかの選択
+themeA__representation_display_post	bool	A	サイト固有: どの分類/記事を出すかの選択
 themeA__round_style	str	B	見た目: 選択（任意移管）
 themeA__slider_animation_speed	str	B	見た目: 選択（任意移管）
 themeA__slider_design_select	str	B	見た目: 選択（任意移管）
