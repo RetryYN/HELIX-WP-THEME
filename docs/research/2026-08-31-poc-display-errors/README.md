@@ -4,9 +4,9 @@
 （PO 判断 2026-08-31: 運用段階に入るまで実サイトのサーバ層は変更せず、検証は PoC 環境で行う）。
 
 ## 条件（site-A の観測条件に合わせた）
-- `WP_DEBUG=false`（site-A と同じ。`wp_debug_mode()` が display_errors を上書きしない）
-- 未認証 `permission_callback => '__return_true'` の REST route で、不正入力に対し `file_get_contents()` が Warning を出す
-  最小の mu-plugin（テーマA の該当 route と同型。テーマA 本体は使っていない）
+- `WP_DEBUG=false`（site-A と同じ）。`wp_debug_mode()` は WP_DEBUG=false 分岐では error_reporting のみ設定し、
+  今回の要求ヘッダー（`Accept: */*`、REST_REQUEST 未定義の時点）では display_errors を上書きしなかった
+- 不正入力で PHP Warning を発生させる最小の mu-plugin（REST 経由。テーマA 本体は使っていない）
 - display_errors の切替は `.htaccess` の `php_flag`（ローカルは mod_php のため。site-A は FastCGI で `.user.ini`）
 
 ## 結果
@@ -18,5 +18,6 @@
 ## 結論
 - #21 の開示は WP の設定（`WP_DEBUG`）ではなく PHP 実行環境の `display_errors` に起因し、サーバ層で Off にすれば止まる。
 - 補足: ローカル既定の `WORDPRESS_DEBUG=1`（`WP_DEBUG_DISPLAY=false`）では WP が display_errors を 0 に上書きするため再現しない。
-  再現には `WP_DEBUG=false` が必要（実施後に wp-config / .htaccess / mu-plugin は復元済み）。
+  再現には WP が display_errors を 0 にしない条件（`WP_DEBUG=false`、または `WP_DEBUG_DISPLAY=true`、かつ JSON を要求しない Accept ヘッダー）が要る。
+  実施後に wp-config / .htaccess / mu-plugin は復元済み。
 - 実サイトへの適用（`.user.ini` 1 行）は運用段階に入ってからの PO 判断。REST 遮断・ベンダー報告要否も同様に未決。
