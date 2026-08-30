@@ -259,7 +259,7 @@ ld+json が 4 種別すべて 0、末尾スラッシュ有無が両方 200・`PH
 
 ### 未了（すべて PO 判断・技術ブロッカーなし）
 - 対処案の採用: `.user.ini` の display_errors=Off（#21・サーバ層1行）、REST 遮断（#15）、ベンダー報告要否 → **PO 判断（2026-08-31）: 実運用サイトは運用段階に入るまで触らず、対処の検証は PoC 環境で行う**。
-- `theme_mods` 235 キーの分類 → **2026-08-31 実施**（A 56 / B 163 / D 16、`evidence/theme-mods-key-classification.tsv`、INV-09 反映済み）。
+- `theme_mods` 235 キーの分類 → **2026-08-31 実施**（A 51 / B 176 / C 1 / D 6、`evidence/theme-mods-key-classification.tsv`、INV-09 反映済み）。
 - レポート本体 8 本への 2026-08-27 実測の反映 → 反映済み（INV-02/03/06/09/13/14/16/17、本ブランチ docs/inv-reports-0827-reflection）。
 - origin/main 側に残る第三者名（テーマA 31 / テーマB 80 ファイル）の伏せ字化は別 PR。
 
