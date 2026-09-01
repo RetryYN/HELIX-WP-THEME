@@ -149,7 +149,7 @@ Agent({
 
 - `sonnet` = 設計 / 実装 / レビュー / adversarial / 監査
 - `haiku` = リサーチ / grep / Web 検索集約
-- 旧 kit 由来の fe-design / fe-component / fe-style / fe-a11y / fe-test は現行 agent-guard の allowlist 外で BLOCK される（処遇は #69 で決定）。FE 委譲は HELIX の fe-lead / fe-ui を使う
+- 旧 kit 由来の fe-design / fe-component / fe-style / fe-a11y / fe-test は現行 agent-guard の allowlist 外で BLOCK される。FE 委譲先は #69 で決定するまで未定（HELIX の fe-lead / fe-ui は本リポに未投影のため現状は呼べない）
 
 ## 禁止事項
 
