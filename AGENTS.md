@@ -10,10 +10,9 @@
 タスク受領時は必ず以下を Read してフローに従う。
 
 - `CLAUDE.md` — プロジェクト固有の概要・アーキテクチャ・進捗
-- `docs/design/L2-design.md` — L2 全体設計（G2 passed 2026-06-14）
+- `docs/design/L2-design.md` — L2 全体設計（設計資産として参照。旧 gate 表示は拘束ではない）
 - `docs/requirements/L1-requirements.md` — L1 要件定義
 - `docs/security/threat-model.md` — 脅威モデル
-- `docs/reviews/G2-carry-register.md` — G2 carry 28件の追跡台帳
 
 ## Session Start
 
@@ -47,20 +46,20 @@
 - AGENT NEO 側はそのミラー実装。**仕様は automation SEO 側の契約書から読み込み、独自に定義しない**
 - 契約変更時は automation SEO 側で先に D-PLUGIN-CONTRACT を更新し、AGENT NEO 側はそれに追従する
 
-## 参照スナップショットの状態
+## 旧 AGENT NEO kit の扱い（PO 前提 2026-09-02）
 
 > 本リポは HELIX-MARKETING-HARNESS の `base/wp-theme/` に置かれた開発ベースであり、
-> `media/wp/` の現行プロジェクト進捗ではない。下表の旧フェーズ表示は廃止し、
-> formal state は `.helix/phase.yaml`、後続の検証実績は
-> `docs/L6-integration-verification.md` をそれぞれ参照する。両者に差がある場合は差を明示し、
-> コミットメッセージだけで gate を更新済みと判断しない。
+> `media/wp/` の現行プロジェクト進捗ではない。
+> 旧 AGENT NEO kit 由来の工程物（G0.5〜G7 gate、G2 carry register、`.helix/phase.yaml` 等の旧 state、
+> 旧 L1〜L7 文書の「進捗」「passed」表示、`.helix/handover`）は**破棄前提**で、現行の拘束・formal state ではない。
+> 参照してよいのは実装（`themes/` `plugins/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
+> 要求は現行 HELIX の L1→L2→L3 で整理しなおす（入力: `docs/research/` の監査証跡、L0 改定ドラフト）。
 
 | 項目 | 状態 |
 |------|------|
 | 用途 | 開発ベース / read-only 参照を既定とする |
-| formal state | `.helix/phase.yaml` |
-| 後続検証記録 | `docs/L6-integration-verification.md` |
-| carry | `docs/reviews/G2-carry-register.md` |
+| 現行 state | HELIX consumer（末尾 managed block の `helix status` / `helix doctor --profile consumer`） |
+| 旧 kit 由来ファイルの削除 | 破壊的操作のため PO の明示判断を得てから別 Issue で扱う |
 
 ## TL Driven Mode
 
@@ -140,7 +139,7 @@ Codex と Claude Code は API 直叩きではなく、契約プラン + ロー�
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に必ず以下 4 点を整合性チェック:
   1. **(a) 要件**: `docs/requirements/L1-requirements.md` + `docs/design/L2-design.md`
   2. **(b) 既存実装**: `theme/` / `plugin/` / `src/` 配下の関連ファイル
-  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/reviews/G2-carry-register.md`
+  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/adr/`（旧 carry register は参照のみ）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（同概念 OSS FSE テーマ）+ テックブログ
 - **REQ-NF-025 遵守**: テーマ・プラグインに AI ロジックを持ち込まない（上記参照）。
 - **デッドコード掃除**: フェーズ移行時は移行先実装着手前に旧スタブ・未登録ブロック定義を削除。

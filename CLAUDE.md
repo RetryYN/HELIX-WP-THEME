@@ -16,7 +16,7 @@ PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作
 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
 
 - **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
-- **進捗正本**: `docs/design/L2-design.md` / `docs/reviews/G2-carry-register.md`
+- **設計資産（参照のみ）**: `docs/design/L2-design.md`、`docs/adr/`。旧 kit の進捗・carry 表示は拘束ではない
 
 ## 技術スタック
 
@@ -74,19 +74,20 @@ automation SEO（/opt/seo-tool）
 - **正本**: automation SEO `D-PLUGIN-CONTRACT §17` のミラー。独自定義しない
 - 契約変更時は automation SEO 側で先に D-PLUGIN-CONTRACT を更新し、AGENT NEO 側はそれに追従する
 
-## 参照スナップショットの状態
+## 旧 AGENT NEO kit の扱い（PO 前提 2026-09-02）
 
 > 本リポは HELIX-MARKETING-HARNESS の `base/wp-theme/` に置かれた開発ベースであり、
-> `media/wp/` の現行プロジェクト進捗ではない。formal state は `.helix/phase.yaml`、
-> 後続の検証実績は `docs/L6-integration-verification.md` を参照する。
-> 両者に差がある場合は差を明示し、コミットメッセージだけで gate を更新済みと判断しない。
+> `media/wp/` の現行プロジェクト進捗ではない。
+> 旧 AGENT NEO kit 由来の工程物（G0.5〜G7 gate、G2 carry register、`.helix/phase.yaml` 等の旧 state、
+> 旧 L1〜L7 文書の「進捗」「passed」表示、`.helix/handover`）は**破棄前提**で、現行の拘束・formal state ではない。
+> 参照してよいのは実装（`themes/` `plugins/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
+> 要求は現行 HELIX の L1→L2→L3 で整理しなおす（入力: `docs/research/` の監査証跡、L0 改定ドラフト）。
 
 | 項目 | 状態 |
 |------|------|
 | 用途 | 開発ベース / read-only 参照を既定とする |
-| formal state | `.helix/phase.yaml` |
-| 後続検証記録 | `docs/L6-integration-verification.md` |
-| carry | `docs/reviews/` の gap-register / carry-register |
+| 現行 state | HELIX consumer（末尾 managed block の `helix status` / `helix doctor --profile consumer`） |
+| 旧 kit 由来ファイルの削除 | 破壊的操作のため PO の明示判断を得てから別 Issue で扱う |
 
 ## コーディング規約
 
@@ -122,7 +123,7 @@ npx playwright test
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に以下 4 点を整合性チェック:
   1. **(a) 要件**: `docs/requirements/L1-requirements.md` + `docs/design/L2-design.md`
   2. **(b) 既存実装**: `themes/` / `plugins/` 配下の関連ファイル
-  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/reviews/G2-carry-register.md`
+  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/adr/`（旧 carry register は参照のみ）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（FSE テーマ OSS）+ テックブログ
 - **デッドコード掃除**: フェーズ移行時は旧スタブ・未登録ブロック定義を削除
 
