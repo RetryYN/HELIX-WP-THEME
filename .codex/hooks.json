@@ -1,21 +1,21 @@
 {
-  "autoMemoryEnabled": false,
+  "description": "Codex adapter hooks for HELIX (top-level は description|hooks のみ許容; $comment は Codex 0.144 で parse error)。Hosted/API tool surfaces still require explicit `helix guard preflight` before edits because repo-local Codex hooks do not execute there. The CLI name is intentionally unchanged until PLAN-M-02.",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Agent|Task",
+        "matcher": "spawn_agent|spawn_agents_on_csv|Agent",
         "hooks": [
           {
             "type": "command",
             "command": "helix hook agent-guard",
             "timeout": 5,
             "blockOnFailure": true,
-            "statusMessage": "agent-guard: subagent allowlist/model enforcement"
+            "statusMessage": "agent-guard: Codex sub-agent role/model guard"
           }
         ]
       },
       {
-        "matcher": "Edit|Write|MultiEdit",
+        "matcher": "apply_patch|Write|Edit",
         "hooks": [
           {
             "type": "command",
@@ -45,7 +45,7 @@
           {
             "type": "command",
             "command": "helix session start",
-            "timeout": 15,
+            "timeout": 90,
             "statusMessage": "session-log: session start (fail-open)"
           }
         ]
@@ -53,7 +53,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write|MultiEdit|Bash",
+        "matcher": "apply_patch|Write|Edit|Bash",
         "hooks": [
           {
             "type": "command",
@@ -64,38 +64,26 @@
         ]
       }
     ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "helix session summary",
-            "timeout": 5,
-            "statusMessage": "session-log: PLAN digest summary (fail-open)"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "helix hook claude-memory-wake",
-            "timeout": 7230,
-            "asyncRewake": true,
-            "statusMessage": "harness-memory: Claude宛て通知を待機"
-          }
-        ]
-      }
-    ]
-    ,
     "SubagentStop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "helix hook subagent-stop",
+            "command": "helix hook subagent-stop --quiet",
             "timeout": 5,
-            "statusMessage": "agent-slots: release oldest guard slot (fail-open)"
+            "statusMessage": "agent-slots: release subagent slot (fail-open)"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "helix session summary --quiet",
+            "timeout": 60,
+            "statusMessage": "session-log: PLAN digest summary (fail-open)"
           }
         ]
       }

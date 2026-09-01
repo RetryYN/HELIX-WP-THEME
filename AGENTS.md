@@ -1,4 +1,3 @@
-<!-- HELIX-MANAGED-START -->
 # Codex CLI — AGENT NEO
 
 このファイルは Codex CLI 向けの project rules。Claude Code 側の project context は `CLAUDE.md`、Claude runtime / hook の詳細は `~/.claude/CLAUDE.md` を参照する。
@@ -10,9 +9,6 @@
 
 タスク受領時は必ず以下を Read してフローに従う。
 
-- `~/ai-dev-kit-vscode/helix/HELIX_CORE.md` — 共通ガイダンス
-- `~/ai-dev-kit-vscode/skills/SKILL_MAP.md` — フロー・ゲート・スキル一覧
-- `~/ai-dev-kit-vscode/helix/CODEX_TL_MODE.md` — Codex CLI の TL 主導読み替えルール
 - `CLAUDE.md` — プロジェクト固有の概要・アーキテクチャ・進捗
 - `docs/design/L2-design.md` — L2 全体設計（G2 passed 2026-06-14）
 - `docs/requirements/L1-requirements.md` — L1 要件定義
@@ -21,13 +17,8 @@
 
 ## Session Start
 
-1. `~/ai-dev-kit-vscode/helix/HELIX_CORE.md` が存在するか確認する。
-2. `~/ai-dev-kit-vscode/skills/SKILL_MAP.md` が存在するか確認する。
-3. `~/ai-dev-kit-vscode/helix/CODEX_TL_MODE.md` が存在するか確認する。
-4. `.helix/handover/CURRENT.json` が存在する場合は `helix handover status --json` を実行する。
-5. handover が stale なら作業を止め、stale reason をユーザーに伝える。
-6. stale でなければ `helix handover update --owner codex` で所有権を移し、`.helix/handover/CURRENT.md` の Next Action に従う。
-7. handover がなければ通常開始し、「OK: セッション初期化完了」と宣言する。
+1. `helix status` で継続状態を確認する（末尾の HELIX managed block を参照）。
+2. 継続状態がなければ通常開始し、「OK: セッション初期化完了」と宣言する。
 
 ## ⚠️ REQ-NF-025 — AIロジック完全分離（絶対制約）
 
@@ -76,17 +67,13 @@
 Codex CLI 単体利用時は TL（テックリード）として自律動作する。
 
 - 設計、技術的難易度評価、実装、レビュー、テスト、検証を一気通貫で進める。
-- 適用ゲートは `skills/SKILL_MAP.md` のタスクサイズとフェーズスキップ決定木に従う。
+- 適用ゲートは HELIX managed block の手順に従う。
 - ゲート判定は順番固定で行い、結果を final で簡潔に示す。
 - 不明点、本番影響、認証、認可、決済、PII、ライセンス、外部 API / infrastructure / env 変更は人間に確認する。
 
 ## HELIX Workflow
 
-- Forward: `size` → `plan` → `matrix` → `gate` → `sprint` → `test`
-- Reverse: `reverse <type> R0` → `R1` → `R2` → `R3` → `R4` → `rgc`
-- Scrum: `scrum init` → `backlog` → `plan` → `poc` → `verify` → `decide`
-- Interrupt: 実装中の設計ギャップや要件変更は `helix interrupt` で IIP / CC として扱う。
-- Handover: セッションや担当をまたぐ場合は `.helix/handover/` を正本にする。
+現行の workflow と CLI は末尾の HELIX managed block を正本とする。旧 `size / gate / sprint / interrupt / handover` は廃止。
 
 ## Codex / Claude Code Harness
 
@@ -96,7 +83,6 @@ Codex と Claude Code は API 直叩きではなく、契約プラン + ロー�
 - Claude Code prompt 生成: `helix claude --role <role> --task "..." --dry-run`
 - 複数 role 委譲: `helix team run --definition .helix/teams/<team>.yaml`
 - 差分レビュー: `helix review --uncommitted`
-- 引継ぎ: `helix handover status --json`
 
 外部 provider SDK や認証情報を前提にした fallback を通常導線として追加しない。外部通信で保留するのは recipe remote hub など HELIX 外の配布・取得だけに限定する。
 
@@ -162,4 +148,24 @@ Codex と Claude Code は API 直叩きではなく、契約プラン + ロー�
 ## Local Overrides
 
 個人差分は `AGENTS.override.md` に書く。`AGENTS.override.md` は Git 追跡しない。
-<!-- HELIX-MANAGED-END -->
+
+<!-- HELIX:managed:start -->
+# HELIX アダプター
+
+この project は HELIX lifecycle を現行 `helix` command で扱う。PLAN-M-02 で atomic identifier migration が行われるまでは、CLI 名は `helix` のまま扱う。
+
+PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
+
+- 状態確認: `helix status`
+- 完了判定 packet 確認: `helix completion decision-packet --json`
+- 完了 review bundle 確認: `helix completion review-bundle --json` (exact digest と semantic digest を確認)
+- Version-up dry-run: `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`
+- 診断: `helix doctor --profile consumer`
+- rename packet 確認: `helix rename plan --json`
+- 継続状態: `helix status`（`harness.db` continuation projection）
+- Codex 委譲: `helix codex --role <role> --task "..."`
+- Claude 委譲: `helix claude --role <role> --task "..."`
+- チーム dry-run: `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json`
+
+この managed block の外側にある project-owned instruction は consumer 側の所有物として扱い、勝手に上書きしない。
+<!-- HELIX:managed:end -->

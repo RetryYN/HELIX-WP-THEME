@@ -1,10 +1,4 @@
-<!-- helix_template_version: 5 -->
-<!-- HELIX-MANAGED-START -->
 # AGENT NEO
-
-@~/ai-dev-kit-vscode/skills/SKILL_MAP.md
-@~/ai-dev-kit-vscode/helix/HELIX_CORE.md
-@~/ai-dev-kit-vscode/helix/CODEX_TL_MODE.md
 
 > **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
@@ -161,32 +155,33 @@ Agent({
 - cross-repo 編集（/opt/seo-tool を本リポから変更しない）
 - `.helix/` runtime state・`.claude/settings.local.json` をドキュメント目的で追跡しない
 
-## コマンド
+## HELIX
 
-```bash
-helix init                                     # 初期化
-helix status                                   # 状態確認
-helix size --files <N> --lines <N> --drive agent
-helix plan draft --title "..."
-helix gate <G0.5|G2|G3|G4|G5|G6|G7>
-helix sprint status
-helix test
-helix codex --role <role> --task "..."
-helix claude --role <role> --task "..." --dry-run
-helix review --uncommitted
-helix skill search "<task>" -n 5
-```
-
-## HELIX ワークフロー
-
-- Forward: `size` → `plan` → `matrix` → `gate` → `sprint` → `test`
-- Reverse: `reverse <type> R0` → `R1` → `R2` → `R3` → `R4` → `rgc`
-- Interrupt: 設計ギャップ・要件変更は `helix interrupt` で IIP / CC として扱う
-- Handover: `.helix/handover/CURRENT.json` がある場合は `helix handover status --json` を確認し、stale でなければ `CURRENT.md` の Next Action に従う
+現行の `helix` CLI と手順は本ファイル末尾の HELIX managed block を正本とする。
+旧 AGENT NEO 時代の `helix init / size / gate / sprint / interrupt / handover` は現行 CLI に存在せず廃止。
 
 ## 指示ファイル
 
 - Claude Code project context: `CLAUDE.md`（本ファイル）
 - Codex CLI project rules: `AGENTS.md`
 - 個人差分: `CLAUDE.local.md` / `AGENTS.override.md`（gitignore）
-<!-- HELIX-MANAGED-END -->
+
+<!-- HELIX:managed:start -->
+# HELIX 共有コンテキスト
+
+harness state と delegation には repository-local の現行 `helix` command を使う。PLAN-M-02 までは command 名を `helix` とする。
+
+PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
+
+- `helix status` は local runtime mode を報告する。
+- `helix completion decision-packet --json` は completionClaimAllowed=false と未完了 blocker queue を確認する。
+- `helix completion review-bundle --json` は S4 / version-up / rename / action-binding の scoped review packet、exact digest、semantic digest を確認する。
+- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json` は distribution tag 更新を plan-only / no-write 証跡として確認する。
+- `helix doctor --profile consumer` は consumer repo 向け health check を実行する。
+- `helix rename plan --json` は PLAN-M-02 承認前の blocked packet を確認する。
+- `helix status` は DB-backed cross-runtime continuation state を報告する。
+- `helix codex --role <role> --task "..."` は Codex へ委譲する。
+- `helix claude --role <role> --task "..."` は Claude へ委譲する。
+
+adapter doc に secret、token、machine-local absolute path を書かない。
+<!-- HELIX:managed:end -->
