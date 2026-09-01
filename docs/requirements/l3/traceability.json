@@ -7,11 +7,13 @@
       "l2": "WT-CAND-STRUCT",
       "l3": [
         "WT-FR-STRUCT-01",
-        "WT-FR-STRUCT-02"
+        "WT-FR-STRUCT-02",
+        "WT-FR-STRUCT-03"
       ],
       "tests": [
         "WT-AT-STRUCT-01",
-        "WT-AT-STRUCT-02"
+        "WT-AT-STRUCT-02",
+        "WT-AT-STRUCT-03"
       ]
     },
     {
@@ -42,6 +44,16 @@
       ],
       "tests": [
         "WT-AT-STRUCT-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-STRUCT",
+      "l3": [
+        "WT-FR-STRUCT-03"
+      ],
+      "tests": [
+        "WT-AT-STRUCT-03"
       ]
     },
     {
@@ -110,10 +122,12 @@
       "l1": "WT-FRL1-04",
       "l2": "WT-CAND-PARTS",
       "l3": [
-        "WT-FR-PARTS-01"
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02"
       ],
       "tests": [
-        "WT-AT-PARTS-01"
+        "WT-AT-PARTS-01",
+        "WT-AT-PARTS-02"
       ]
     },
     {
@@ -127,25 +141,39 @@
       ]
     },
     {
+      "l1": "WT-TRL1-02",
+      "l2": "WT-CAND-PARTS",
+      "l3": [
+        "WT-FR-PARTS-02"
+      ],
+      "tests": [
+        "WT-AT-PARTS-02"
+      ]
+    },
+    {
       "l1": "WT-FRL1-06",
       "l2": "WT-CAND-ZONE",
       "l3": [
         "WT-FR-ZONE-01",
-        "WT-FR-ZONE-02"
+        "WT-FR-ZONE-02",
+        "WT-FR-ZONE-03"
       ],
       "tests": [
         "WT-AT-ZONE-01",
-        "WT-AT-ZONE-02"
+        "WT-AT-ZONE-02",
+        "WT-AT-ZONE-03"
       ]
     },
     {
       "l1": "WT-SCR-05",
       "l2": "WT-CAND-ZONE",
       "l3": [
-        "WT-FR-ZONE-01"
+        "WT-FR-ZONE-01",
+        "WT-FR-ZONE-03"
       ],
       "tests": [
-        "WT-AT-ZONE-01"
+        "WT-AT-ZONE-01",
+        "WT-AT-ZONE-03"
       ]
     },
     {

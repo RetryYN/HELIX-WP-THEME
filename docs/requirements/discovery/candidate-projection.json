@@ -17,7 +17,8 @@
       ],
       "requirement_ids": [
         "WT-FR-STRUCT-01",
-        "WT-FR-STRUCT-02"
+        "WT-FR-STRUCT-02",
+        "WT-FR-STRUCT-03"
       ]
     },
     {
@@ -59,7 +60,8 @@
         "WT-EVT-0018"
       ],
       "requirement_ids": [
-        "WT-FR-PARTS-01"
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02"
       ]
     },
     {
@@ -72,7 +74,8 @@
       ],
       "requirement_ids": [
         "WT-FR-ZONE-01",
-        "WT-FR-ZONE-02"
+        "WT-FR-ZONE-02",
+        "WT-FR-ZONE-03"
       ]
     },
     {
@@ -170,6 +173,7 @@
     "WT-Q-STRUCT-01",
     "WT-Q-STRUCT-02",
     "WT-Q-VALUE-01",
+    "WT-Q-STRUCT-03",
     "WT-Q-PARTS-01",
     "WT-Q-GATE-01",
     "WT-Q-GATE-02",
@@ -205,6 +209,12 @@
       "owner": "PO/TL",
       "question": "破壊域の境界値（尺度超過幅・AA 判定・幅 100% 超・負余白・vh/vw 上限・!important・固定+全画面）を PoC で実物を崩して確定する",
       "reentry": "PoC 証跡を prototype_reaction_recorded として追記"
+    },
+    {
+      "id": "WT-Q-STRUCT-03",
+      "owner": "PO",
+      "question": "LP を CPT（テーマB 方式）にするか、page template + lp パターン（現行 agent-neo 方式）のままにするか。移行時の CPT 差をどう吸収するか",
+      "reentry": "採否を追記"
     },
     {
       "id": "WT-Q-PARTS-01",

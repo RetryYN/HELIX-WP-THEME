@@ -5,7 +5,7 @@
 - 版: G2版（脅威モデル完全記述）
 - 参照資料:
   - `docs/design/L2-design.md`（§2.1, §8.6, §8.7, §8.8, §8.11, §9）
-  - `docs/requirements/L1-requirements.md`（REQ-F-003, REQ-F-010, REQ-F-020, REQ-F-042, REQ-NF-004, REQ-NF-025）
+  - `docs/requirements/legacy/L1-requirements.md`（REQ-F-003, REQ-F-010, REQ-F-020, REQ-F-042, REQ-NF-004, REQ-NF-025）
   - `docs/design/data-model-ids.md`
 
 ## 1. 目的

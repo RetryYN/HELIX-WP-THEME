@@ -84,6 +84,35 @@
       ]
     },
     {
+      "id": "WT-FR-STRUCT-03",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-01",
+        "WT-SCR-06",
+        "WT-CAND-STRUCT"
+      ],
+      "statement": "LP 機構（D-03）は page template + lp パターン 12 本で提供し、CPT 方式との差は移行要求として記録する",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "MIGRATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-STRUCT-03A",
+        "WT-AC-STRUCT-03B"
+      ],
+      "test_ids": [
+        "WT-AT-STRUCT-03"
+      ],
+      "pending_resolution": [
+        "WT-Q-STRUCT-03"
+      ]
+    },
+    {
       "id": "WT-FR-VALUE-01",
       "kind": "functional",
       "status": "human_decision_required",
@@ -197,6 +226,32 @@
       ]
     },
     {
+      "id": "WT-FR-PARTS-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-04",
+        "WT-TRL1-02",
+        "WT-CAND-PARTS"
+      ],
+      "statement": "記事内の再利用パーツ（D-02: テーマB の blog_parts 相当）を一元管理し、参照 ID・版・digest で記事から参照する",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-03"
+      ],
+      "acceptance_ids": [
+        "WT-AC-PARTS-02A",
+        "WT-AC-PARTS-02B"
+      ],
+      "test_ids": [
+        "WT-AT-PARTS-02"
+      ]
+    },
+    {
       "id": "WT-FR-ZONE-01",
       "kind": "functional",
       "status": "human_decision_required",
@@ -206,7 +261,7 @@
         "WT-SCR-06",
         "WT-CAND-ZONE"
       ],
-      "statement": "記事内広告・CV・追尾サイドバー・メニュー・お知らせバー・SP 下部固定（欠落面 D-01〜D-07）の受け皿をパーツまたはパターンとして持つ",
+      "statement": "記事内広告 / CV ゾーン（D-01）、追尾サイドバー / 固定ボトム（D-05）、ナビゲーション（D-07）、お知らせバーの受け皿をパーツまたはパターンとして持つ",
       "priority": "P0",
       "actor_ids": [
         "OPERATOR",
@@ -253,6 +308,32 @@
       ],
       "pending_resolution": [
         "WT-Q-ZONE-01"
+      ]
+    },
+    {
+      "id": "WT-FR-ZONE-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-06",
+        "WT-SCR-05",
+        "WT-CAND-ZONE"
+      ],
+      "statement": "目次（D-06）は配置意図ノード（既定は最初の h2 直前）として持ち、目次本体を中間 JSON の一級要素にしない",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ZONE-03A",
+        "WT-AC-ZONE-03B"
+      ],
+      "test_ids": [
+        "WT-AT-ZONE-03"
       ]
     },
     {
@@ -373,7 +454,7 @@
         "WT-TRL1-05",
         "WT-CAND-AGENT"
       ],
-      "statement": "テーマ語彙（吹き出し・比較表・FAQ 等）は意図ノードへ展開し、プラグイン語彙のショートコードは不透明ノードで原文を保持する",
+      "statement": "装飾ブロック語彙（D-04: 囲み・ボタン・ブログカード・吹き出し・定義リスト・FAQ・ステップ等、意味 31 種）は意図ノードへ展開して既存記事を描画でき、プラグイン語彙のショートコードは不透明ノードで原文を保持する",
       "priority": "P1",
       "actor_ids": [
         "AI_AGENT"

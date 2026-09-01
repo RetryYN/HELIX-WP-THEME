@@ -26,6 +26,18 @@
       "oracle": "Blueprint 外の領域を AI 経路が書き換えたら拒否される"
     },
     {
+      "id": "WT-AC-STRUCT-03A",
+      "requirement_id": "WT-FR-STRUCT-03",
+      "polarity": "positive",
+      "oracle": "lp パターンだけで LP ページが組め、ヘッダーなしテンプレートで描画される"
+    },
+    {
+      "id": "WT-AC-STRUCT-03B",
+      "requirement_id": "WT-FR-STRUCT-03",
+      "polarity": "negative",
+      "oracle": "CPT 方式の LP を移行する際に URL 構造の差が台帳へ記録されずに失われれば FAIL"
+    },
+    {
       "id": "WT-AC-VALUE-01A",
       "requirement_id": "WT-FR-VALUE-01",
       "polarity": "positive",
@@ -74,10 +86,22 @@
       "oracle": "存在しないパーツを参照するテンプレートは G-S2 が FAIL"
     },
     {
+      "id": "WT-AC-PARTS-02A",
+      "requirement_id": "WT-FR-PARTS-02",
+      "polarity": "positive",
+      "oracle": "1 つの再利用パーツを更新すると参照する全記事の描画が変わり、参照は ID と版で解決される"
+    },
+    {
+      "id": "WT-AC-PARTS-02B",
+      "requirement_id": "WT-FR-PARTS-02",
+      "polarity": "negative",
+      "oracle": "存在しないパーツ ID の参照は保存時に拒否される"
+    },
+    {
       "id": "WT-AC-ZONE-01A",
       "requirement_id": "WT-FR-ZONE-01",
       "polarity": "positive",
-      "oracle": "D-01〜D-07 の各面に対応するパーツ / パターンが存在し、記事と LP で描画される"
+      "oracle": "D-01 / D-05 / D-07 の各面に対応するパーツ / パターンが存在し、記事と LP で描画される"
     },
     {
       "id": "WT-AC-ZONE-01B",
@@ -96,6 +120,18 @@
       "requirement_id": "WT-FR-ZONE-02",
       "polarity": "negative",
       "oracle": "語彙外のゾーン ID は schema 検証で拒否される"
+    },
+    {
+      "id": "WT-AC-ZONE-03A",
+      "requirement_id": "WT-FR-ZONE-03",
+      "polarity": "positive",
+      "oracle": "h2 を持つ記事で目次が既定位置に描画され、配置意図を変えると位置が変わる"
+    },
+    {
+      "id": "WT-AC-ZONE-03B",
+      "requirement_id": "WT-FR-ZONE-03",
+      "polarity": "negative",
+      "oracle": "中間 JSON に目次本体（見出しの複製）が含まれれば adapter が拒否する"
     },
     {
       "id": "WT-AC-GATE-01A",

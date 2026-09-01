@@ -13,9 +13,9 @@ authority: docs/requirements/authority.md
 | WT-FRL1-01 | 編集者はパターン差し替え・ブロック編集・テンプレート変種で構造を変えられる | STRUCT |
 | WT-FRL1-02 | 編集者は安全域の値を自由に選べ、生値は警告され、破壊域は止められる | VALUE |
 | WT-FRL1-03 | 編集者はスタイルバリエーションを切り替えでき、意匠は尺度を所有しない | STYLE |
-| WT-FRL1-04 | 編集者は共有パーツ（header / footer / sidebar / post-header / post-footer）を差し替えられる | PARTS |
+| WT-FRL1-04 | 編集者は共有パーツ（header / footer / sidebar / post-header / post-footer）を差し替えられ、記事内の再利用パーツを一元管理できる | PARTS |
 | WT-FRL1-05 | AI エージェントは記事・ページ・パーツを中間 JSON と REST で決定論的に投入できる | AGENT |
-| WT-FRL1-06 | 運用者は収益と回遊の置き場所（記事内広告・CV・追尾サイドバー・メニュー・お知らせバー・SP 下部固定）を持てる | ZONE |
+| WT-FRL1-06 | 運用者は収益と回遊の置き場所（記事内広告 / CV ゾーン、追尾サイドバー / 固定ボトム、ナビゲーション、お知らせバー、目次）を持てる | ZONE |
 | WT-FRL1-07 | 運用者は 4 層の一貫性ゲートと実機ゲートを実行し、結果を確認できる | GATE |
 | WT-FRL1-08 | 運用者は実証済みパターンを取り込み台帳へ記録できる | INTAKE |
 | WT-FRL1-09 | 移行者は既存サイトの設定とコンテンツを写像し、写像不能を台帳化できる | MIGRATE |

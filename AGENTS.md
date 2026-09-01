@@ -11,7 +11,7 @@
 
 - `CLAUDE.md` — プロジェクト固有の概要・アーキテクチャ・進捗
 - `docs/design/L2-design.md` — L2 全体設計（設計資産として参照。旧 gate 表示は拘束ではない）
-- `docs/requirements/L1-requirements.md` — L1 要件定義
+- `docs/requirements/legacy/L1-requirements.md` — L1 要件定義
 - `docs/security/threat-model.md` — 脅威モデル
 
 ## Session Start
@@ -137,7 +137,7 @@ Codex と Claude Code は API 直叩きではなく、契約プラン + ロー�
 - **検証駆動開発（VDD）**: 検証完了 = 機能確定。未検証は「実装済み」と見なさない。
 - **事前調査強化**: 実装前に Web 検索・先行事例・公式ドキュメント調査を必ず実施。
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に必ず以下 4 点を整合性チェック:
-  1. **(a) 要件**: `docs/requirements/L1-requirements.md` + `docs/design/L2-design.md`
+  1. **(a) 要件**: `docs/requirements/legacy/L1-requirements.md` + `docs/design/L2-design.md`
   2. **(b) 既存実装**: `theme/` / `plugin/` / `src/` 配下の関連ファイル
   3. **(c) 設計ドキュメント**: `docs/design/` + `docs/adr/`（旧 carry register は参照のみ）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（同概念 OSS FSE テーマ）+ テックブログ
