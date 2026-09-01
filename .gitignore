@@ -30,7 +30,9 @@ tmp/
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/settings.json
 *.swp
 
 ## ビルド成果物

@@ -1,10 +1,4 @@
-<!-- helix_template_version: 5 -->
-<!-- HELIX-MANAGED-START -->
 # AGENT NEO
-
-@~/ai-dev-kit-vscode/skills/SKILL_MAP.md
-@~/ai-dev-kit-vscode/helix/HELIX_CORE.md
-@~/ai-dev-kit-vscode/helix/CODEX_TL_MODE.md
 
 > **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
@@ -22,7 +16,7 @@ PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作
 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
 
 - **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
-- **進捗正本**: `docs/design/L2-design.md` / `docs/reviews/G2-carry-register.md`
+- **設計資産（参照のみ）**: `docs/design/L2-design.md`、`docs/adr/`。旧 kit の進捗・carry 表示は拘束ではない
 
 ## 技術スタック
 
@@ -80,19 +74,20 @@ automation SEO（/opt/seo-tool）
 - **正本**: automation SEO `D-PLUGIN-CONTRACT §17` のミラー。独自定義しない
 - 契約変更時は automation SEO 側で先に D-PLUGIN-CONTRACT を更新し、AGENT NEO 側はそれに追従する
 
-## 参照スナップショットの状態
+## 旧 AGENT NEO kit の扱い（PO 前提 2026-09-02）
 
 > 本リポは HELIX-MARKETING-HARNESS の `base/wp-theme/` に置かれた開発ベースであり、
-> `media/wp/` の現行プロジェクト進捗ではない。formal state は `.helix/phase.yaml`、
-> 後続の検証実績は `docs/L6-integration-verification.md` を参照する。
-> 両者に差がある場合は差を明示し、コミットメッセージだけで gate を更新済みと判断しない。
+> `media/wp/` の現行プロジェクト進捗ではない。
+> 旧 AGENT NEO kit 由来の工程物（G0.5〜G7 gate、G2 carry register、`.helix/phase.yaml` 等の旧 state、
+> 旧 L1〜L7 文書の「進捗」「passed」表示、`.helix/handover`）は**破棄前提**で、現行の拘束・formal state ではない。
+> 参照してよいのは実装（`themes/` `plugins/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
+> 要求は現行 HELIX の L1→L2→L3 で整理しなおす（入力: `docs/research/` の監査証跡、L0 改定ドラフト）。
 
 | 項目 | 状態 |
 |------|------|
 | 用途 | 開発ベース / read-only 参照を既定とする |
-| formal state | `.helix/phase.yaml` |
-| 後続検証記録 | `docs/L6-integration-verification.md` |
-| carry | `docs/reviews/` の gap-register / carry-register |
+| 現行 state | HELIX consumer（末尾 managed block の `helix status` / `helix doctor --profile consumer`） |
+| 旧 kit 由来ファイルの削除 | 破壊的操作のため PO の明示判断を得てから別 Issue で扱う |
 
 ## コーディング規約
 
@@ -118,6 +113,8 @@ composer test:integration
 npx playwright test
 ```
 
+- `npm test` は HELIX consumer の health check（`helix doctor --profile consumer`）であり、テーマのテストではない。テーマのテストは上記コマンドを直接実行する
+
 - 統合テストは `wordpress_test` 分離 DB を使用。ライブ `agent_neo` DB を汚染しない
 - PHPUnit 統合テストは並行実行禁止
 
@@ -128,7 +125,7 @@ npx playwright test
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に以下 4 点を整合性チェック:
   1. **(a) 要件**: `docs/requirements/L1-requirements.md` + `docs/design/L2-design.md`
   2. **(b) 既存実装**: `themes/` / `plugins/` 配下の関連ファイル
-  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/reviews/G2-carry-register.md`
+  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/adr/`（旧 carry register は参照のみ）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（FSE テーマ OSS）+ テックブログ
 - **デッドコード掃除**: フェーズ移行時は旧スタブ・未登録ブロック定義を削除
 
@@ -152,7 +149,7 @@ Agent({
 
 - `sonnet` = 設計 / 実装 / レビュー / adversarial / 監査
 - `haiku` = リサーチ / grep / Web 検索集約
-- FE サブエージェント: @fe-design / @fe-component / @fe-style / @fe-a11y / @fe-test
+- 旧 kit 由来の fe-design / fe-component / fe-style / fe-a11y / fe-test は現行 agent-guard の allowlist 外で BLOCK される。FE 委譲先は #69 で決定するまで未定（HELIX の fe-lead / fe-ui は本リポに未投影のため現状は呼べない）
 
 ## 禁止事項
 
@@ -161,32 +158,33 @@ Agent({
 - cross-repo 編集（/opt/seo-tool を本リポから変更しない）
 - `.helix/` runtime state・`.claude/settings.local.json` をドキュメント目的で追跡しない
 
-## コマンド
+## HELIX
 
-```bash
-helix init                                     # 初期化
-helix status                                   # 状態確認
-helix size --files <N> --lines <N> --drive agent
-helix plan draft --title "..."
-helix gate <G0.5|G2|G3|G4|G5|G6|G7>
-helix sprint status
-helix test
-helix codex --role <role> --task "..."
-helix claude --role <role> --task "..." --dry-run
-helix review --uncommitted
-helix skill search "<task>" -n 5
-```
-
-## HELIX ワークフロー
-
-- Forward: `size` → `plan` → `matrix` → `gate` → `sprint` → `test`
-- Reverse: `reverse <type> R0` → `R1` → `R2` → `R3` → `R4` → `rgc`
-- Interrupt: 設計ギャップ・要件変更は `helix interrupt` で IIP / CC として扱う
-- Handover: `.helix/handover/CURRENT.json` がある場合は `helix handover status --json` を確認し、stale でなければ `CURRENT.md` の Next Action に従う
+現行の `helix` CLI と手順は本ファイル末尾の HELIX managed block を正本とする。
+旧 AGENT NEO 時代の `helix init / size / gate / sprint / interrupt / handover` は現行 CLI に存在せず廃止。
 
 ## 指示ファイル
 
 - Claude Code project context: `CLAUDE.md`（本ファイル）
 - Codex CLI project rules: `AGENTS.md`
 - 個人差分: `CLAUDE.local.md` / `AGENTS.override.md`（gitignore）
-<!-- HELIX-MANAGED-END -->
+
+<!-- HELIX:managed:start -->
+# HELIX 共有コンテキスト
+
+harness state と delegation には repository-local の現行 `helix` command を使う。PLAN-M-02 までは command 名を `helix` とする。
+
+PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
+
+- `helix status` は local runtime mode を報告する。
+- `helix completion decision-packet --json` は completionClaimAllowed=false と未完了 blocker queue を確認する。
+- `helix completion review-bundle --json` は S4 / version-up / rename / action-binding の scoped review packet、exact digest、semantic digest を確認する。
+- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json` は distribution tag 更新を plan-only / no-write 証跡として確認する。
+- `helix doctor --profile consumer` は consumer repo 向け health check を実行する。
+- `helix rename plan --json` は PLAN-M-02 承認前の blocked packet を確認する。
+- `helix status` は DB-backed cross-runtime continuation state を報告する。
+- `helix codex --role <role> --task "..."` は Codex へ委譲する。
+- `helix claude --role <role> --task "..."` は Claude へ委譲する。
+
+adapter doc に secret、token、machine-local absolute path を書かない。
+<!-- HELIX:managed:end -->
