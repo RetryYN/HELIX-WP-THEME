@@ -1,4 +1,18 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(composer *)",
+      "Bash(wp *)",
+      "Bash(php *)",
+      "Bash(./vendor/bin/phpunit *)",
+      "Bash(docker compose *)",
+      "Bash(docker logs *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  },
   "autoMemoryEnabled": false,
   "hooks": {
     "PreToolUse": [
@@ -86,8 +100,7 @@
           }
         ]
       }
-    ]
-    ,
+    ],
     "SubagentStop": [
       {
         "hooks": [

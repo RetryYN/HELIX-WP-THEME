@@ -113,6 +113,8 @@ composer test:integration
 npx playwright test
 ```
 
+- `npm test` は HELIX consumer の health check（`helix doctor --profile consumer`）であり、テーマのテストではない。テーマのテストは上記コマンドを直接実行する
+
 - 統合テストは `wordpress_test` 分離 DB を使用。ライブ `agent_neo` DB を汚染しない
 - PHPUnit 統合テストは並行実行禁止
 
@@ -147,7 +149,7 @@ Agent({
 
 - `sonnet` = 設計 / 実装 / レビュー / adversarial / 監査
 - `haiku` = リサーチ / grep / Web 検索集約
-- FE サブエージェント: @fe-design / @fe-component / @fe-style / @fe-a11y / @fe-test
+- 旧 kit 由来の fe-design / fe-component / fe-style / fe-a11y / fe-test は現行 agent-guard の allowlist 外で BLOCK される（処遇は #69 で決定）。FE 委譲は HELIX の fe-lead / fe-ui を使う
 
 ## 禁止事項
 
