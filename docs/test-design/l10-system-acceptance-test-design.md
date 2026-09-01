@@ -7,12 +7,12 @@
 | --- | --- | --- | --- | --- |
 | WT-AT-STRUCT-01 | WT-FR-STRUCT-01 | 既定パターンを別パターンへ差し替えて保存すると描画され、権限エラー・ロック警告が出ない | 構造変更を権限エラーにする旧 ACC-016 / 017 の挙動が残っていれば FAIL | Playwright / site editor |
 | WT-AT-STRUCT-02 | WT-FR-STRUCT-02 | AI 経路の投入は Blueprint で宣言した領域だけを書き換える | Blueprint 外の領域を AI 経路が書き換えたら拒否される | REST receipt |
-| WT-AT-STRUCT-03 | WT-FR-STRUCT-03 | lp パターンだけで LP ページが組め、ヘッダーなしテンプレートで描画される | CPT 方式の LP を移行する際に URL 構造の差が台帳へ記録されずに失われれば FAIL | Playwright + migration ledger |
+| WT-AT-STRUCT-03 | WT-FR-STRUCT-03 | 決定した方式で LP ページが組め、ヘッダーなしで描画される | 方式の差（URL 構造・CPT 有無）が移行台帳へ記録されずに失われれば FAIL | Playwright + migration ledger |
 | WT-AT-VALUE-01 | WT-FR-VALUE-01 | 尺度内のプリセット選択は警告なしで保存できる | 破壊域の値（尺度最大超の余白、AA 未満のコントラスト）は保存が止まり、権限で迂回できない | editor + gate JSON |
 | WT-AT-VALUE-02 | WT-FR-VALUE-02 | 規則ごとに境界値の内側の値が pass、外側の値が FAIL になる | 境界値未確定の規則は『未確定』として報告し、pass を出さない | gate JSON |
 | WT-AT-STYLE-01 | WT-FR-STYLE-01 | 全バリエーションで G-T1b が PASS し、切替後も見出し尺度が単調非増加 | styles/*.json に生 px / rem / em が含まれれば G-T1b が FAIL | G-T1b / G-T3 JSON |
 | WT-AT-PARTS-01 | WT-FR-PARTS-01 | 任意のパーツ案へ差し替えても全テンプレートが描画され、G-S2 が PASS | 存在しないパーツを参照するテンプレートは G-S2 が FAIL | G-S2 JSON + Playwright |
-| WT-AT-PARTS-02 | WT-FR-PARTS-02 | 1 つの再利用パーツを更新すると参照する全記事の描画が変わり、参照は ID と版で解決される | 存在しないパーツ ID の参照は保存時に拒否される | parts reference test |
+| WT-AT-PARTS-02 | WT-FR-PARTS-02 | 1 つの再利用パーツを更新すると参照する全記事の描画が変わり、参照は ID と版で解決される | 参照先が消えたパーツは state: missing として注記付きで描画を続行し、黙って空にならない | parts reference test |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | D-01 / D-05 / D-07 の各面に対応するパーツ / パターンが存在し、記事と LP で描画される | SP 下部固定領域の積層規約に反する組合せは警告される | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | 語彙にあるゾーン ID を指定した広告が条件に一致するページだけに出る | 語彙外のゾーン ID は schema 検証で拒否される | schema test |
 | WT-AT-ZONE-03 | WT-FR-ZONE-03 | h2 を持つ記事で目次が既定位置に描画され、配置意図を変えると位置が変わる | 中間 JSON に目次本体（見出しの複製）が含まれれば adapter が拒否する | adapter fixture |

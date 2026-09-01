@@ -29,13 +29,13 @@
       "id": "WT-AC-STRUCT-03A",
       "requirement_id": "WT-FR-STRUCT-03",
       "polarity": "positive",
-      "oracle": "lp パターンだけで LP ページが組め、ヘッダーなしテンプレートで描画される"
+      "oracle": "決定した方式で LP ページが組め、ヘッダーなしで描画される"
     },
     {
       "id": "WT-AC-STRUCT-03B",
       "requirement_id": "WT-FR-STRUCT-03",
       "polarity": "negative",
-      "oracle": "CPT 方式の LP を移行する際に URL 構造の差が台帳へ記録されずに失われれば FAIL"
+      "oracle": "方式の差（URL 構造・CPT 有無）が移行台帳へ記録されずに失われれば FAIL"
     },
     {
       "id": "WT-AC-VALUE-01A",
@@ -95,7 +95,7 @@
       "id": "WT-AC-PARTS-02B",
       "requirement_id": "WT-FR-PARTS-02",
       "polarity": "negative",
-      "oracle": "存在しないパーツ ID の参照は保存時に拒否される"
+      "oracle": "参照先が消えたパーツは state: missing として注記付きで描画を続行し、黙って空にならない"
     },
     {
       "id": "WT-AC-ZONE-01A",
