@@ -59,7 +59,7 @@
 |------|------|
 | 用途 | 開発ベース / read-only 参照を既定とする |
 | 現行 state | HELIX consumer（末尾 managed block の `helix status` / `helix doctor --profile consumer`） |
-| 旧 kit 由来ファイルの削除 | 破壊的操作のため PO の明示判断を得てから別 Issue で扱う |
+| 旧 kit 由来ファイル | PO 判断（2026-09-02）により削除済み（#69）。残る旧設計 doc 内の参照は歴史的記述として扱う |
 
 ## TL Driven Mode
 
