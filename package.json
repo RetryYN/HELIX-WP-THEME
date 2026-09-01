@@ -6,7 +6,10 @@
     "test:e2e": "npx playwright test",
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",
-    "test": "npm run helix -- doctor --profile consumer"
+    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run helix -- doctor --profile consumer",
+    "requirements:validate": "node scripts/validate-requirements.mjs",
+    "requirements:helix-l1-l2": "node scripts/validate-helix-l1-l2.mjs",
+    "requirements:helix-vmodel": "npm run helix -- vmodel lint"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
