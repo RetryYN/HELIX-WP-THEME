@@ -87,7 +87,7 @@ automation SEO（/opt/seo-tool）
 |------|------|
 | 用途 | 開発ベース / read-only 参照を既定とする |
 | 現行 state | HELIX consumer（末尾 managed block の `helix status` / `helix doctor --profile consumer`） |
-| 旧 kit 由来ファイルの削除 | 破壊的操作のため PO の明示判断を得てから別 Issue で扱う |
+| 旧 kit 由来ファイル | PO 判断（2026-09-02）により削除済み（#69）。残る旧設計 doc 内の参照は歴史的記述として扱う |
 
 ## コーディング規約
 
@@ -149,7 +149,7 @@ Agent({
 
 - `sonnet` = 設計 / 実装 / レビュー / adversarial / 監査
 - `haiku` = リサーチ / grep / Web 検索集約
-- 旧 kit 由来の fe-design / fe-component / fe-style / fe-a11y / fe-test は現行 agent-guard の allowlist 外で BLOCK される。FE 委譲先は #69 で決定するまで未定（HELIX の fe-lead / fe-ui は本リポに未投影のため現状は呼べない）
+- 旧 kit 由来の fe-* agents は削除済み（#69）。FE 委譲先は HELIX consumer 投影の agents に揃える（#70 で model frontmatter 付与後に利用可）
 
 ## 禁止事項
 
