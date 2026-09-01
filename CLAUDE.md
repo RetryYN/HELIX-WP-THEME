@@ -123,7 +123,7 @@ npx playwright test
 - **検証駆動開発（VDD）**: 検証完了 = 機能確定。未検証は「実装済み」と見なさない
 - **事前調査強化**: 実装前に Web 検索・公式ドキュメント調査を必ず実施
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に以下 4 点を整合性チェック:
-  1. **(a) 要件**: `docs/requirements/L1-requirements.md` + `docs/design/L2-design.md`
+  1. **(a) 要件**: `docs/requirements/legacy/L1-requirements.md` + `docs/design/L2-design.md`
   2. **(b) 既存実装**: `themes/` / `plugins/` 配下の関連ファイル
   3. **(c) 設計ドキュメント**: `docs/design/` + `docs/adr/`（旧 carry register は参照のみ）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（FSE テーマ OSS）+ テックブログ
