@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0026",
-  "event_count": 26,
+  "event_head": "WT-EVT-0027",
+  "event_count": 27,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -102,14 +102,16 @@
     },
     {
       "candidate_id": "WT-CAND-LP",
-      "state": "elicited",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0009",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0027"
       ],
       "requirement_ids": [
-        "WT-FR-LP-01"
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
       ]
     },
     {
@@ -235,7 +237,8 @@
     "WT-Q-VOCAB-03",
     "WT-Q-LOOK-01",
     "WT-Q-LOOK-02",
-    "WT-Q-META-01"
+    "WT-Q-META-01",
+    "WT-Q-LP-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -244,16 +247,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-LP-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "LP を投稿型（CPT）として持ち、一覧・REST・テンプレ割当を固定ページから分離できる（テーマB 方式。現行は page template + lp パターン 12 本）。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-LP"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-MIGRATE-01",
       "owner": "PO",

@@ -197,13 +197,13 @@
       "id": "WT-AC-LP-01A",
       "requirement_id": "WT-FR-LP-01",
       "polarity": "positive",
-      "oracle": "決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される"
+      "oracle": "LP が CPT として作成でき、ディレクトリに依存しない URL で公開され、種別（通常 / イベント / 比較特設）が REST と manifest から列挙できる。固定ページは階層 URL のまま"
     },
     {
       "id": "WT-AC-LP-01B",
       "requirement_id": "WT-FR-LP-01",
       "polarity": "negative",
-      "oracle": "方式差が台帳に無いまま移行されれば FAIL"
+      "oracle": "LP が固定ページ階層の配下 URL になる、または種別が JSON で列挙できなければ FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-01A",
@@ -528,6 +528,18 @@
       "requirement_id": "WT-FR-LOOK-03",
       "polarity": "negative",
       "oracle": "調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL"
+    },
+    {
+      "id": "WT-AC-LP-02A",
+      "requirement_id": "WT-FR-LP-02",
+      "polarity": "positive",
+      "oracle": "LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる"
+    },
+    {
+      "id": "WT-AC-LP-02B",
+      "requirement_id": "WT-FR-LP-02",
+      "polarity": "negative",
+      "oracle": "計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL"
     }
   ]
 }

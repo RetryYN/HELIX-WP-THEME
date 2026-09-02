@@ -483,14 +483,14 @@
     {
       "id": "WT-FR-LP-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-02",
         "WT-SCR-06",
         "WT-CAND-LP"
       ],
-      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離できる。採用しない場合は page template + lp パターン 12 本を維持する",
-      "priority": "P2",
+      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページがディレクトリ階層の配下に置かれるのに対し、LP はディレクトリに依存しない構造（階層を持たないスラッグ）とする。LP の種別として通常 LP に加えイベントページ・比較用の特設ページを想定し、種別は JSON で列挙できる。既存の page template + lp パターン 12 本は LP 種別の初期パターン群として引き継ぐ",
+      "priority": "P0",
       "actor_ids": [
         "EDITOR",
         "MIGRATOR"
@@ -504,9 +504,35 @@
       ],
       "test_ids": [
         "WT-AT-LP-01"
+      ]
+    },
+    {
+      "id": "WT-FR-LP-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-BR-03",
+        "WT-SCR-06",
+        "WT-CAND-LP"
       ],
-      "pending_resolution": [
-        "WT-Q-LP-01"
+      "statement": "LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを tracking 経路へ送る）を持つ。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LP-02A",
+        "WT-AC-LP-02B"
+      ],
+      "test_ids": [
+        "WT-AT-LP-02"
       ]
     },
     {

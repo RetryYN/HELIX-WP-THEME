@@ -368,20 +368,24 @@
       "l1": "WT-FRL1-02",
       "l2": "WT-CAND-LP",
       "l3": [
-        "WT-FR-LP-01"
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
       ],
       "tests": [
-        "WT-AT-LP-01"
+        "WT-AT-LP-01",
+        "WT-AT-LP-02"
       ]
     },
     {
       "l1": "WT-SCR-06",
       "l2": "WT-CAND-LP",
       "l3": [
-        "WT-FR-LP-01"
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
       ],
       "tests": [
-        "WT-AT-LP-01"
+        "WT-AT-LP-01",
+        "WT-AT-LP-02"
       ]
     },
     {
@@ -836,6 +840,16 @@
       ],
       "tests": [
         "WT-AT-PERF-01"
+      ]
+    },
+    {
+      "l1": "WT-BR-03",
+      "l2": "WT-CAND-LP",
+      "l3": [
+        "WT-FR-LP-02"
+      ],
+      "tests": [
+        "WT-AT-LP-02"
       ]
     }
   ]
