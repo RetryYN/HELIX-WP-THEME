@@ -3,7 +3,7 @@ layer: L1
 sub_doc: screen-requirements
 status: candidate_projection
 source_authority: docs/requirements/l1/screen.md
-source_sha256: 5102d09dc92fee777bffc263bcb58a6d0a044d95d08aa086ed6ef5cc1e0e58df
+source_sha256: 1e8277512b736c2fd103cc77a2b16b943af7ae6351ad71eafb2c977fb3aa8d84
 pair_artifact: docs/test-design/harness/L12-operational-test-design.md
 ---
 
@@ -23,3 +23,4 @@ pair_artifact: docs/test-design/harness/L12-operational-test-design.md
 | **PM-07** | WT-SCR-07 | WT-UI-07 | `docs/requirements/l1/screen.md` |
 | **PM-08** | WT-SCR-08 | WT-UI-08 | `docs/requirements/l1/screen.md` |
 | **PM-09** | WT-SCR-09 | WT-UI-09 | `docs/requirements/l1/screen.md` |
+| **PM-10** | WT-SCR-10 | WT-UI-10 | `docs/requirements/l1/screen.md` |

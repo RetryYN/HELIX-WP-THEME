@@ -20,6 +20,7 @@ authority: docs/requirements/authority.md
 | WT-FRL1-08 | 値は 3 域で制御される: 安全域は自由、生値は警告、破壊域は停止する。境界値は PoC で決める | VALUE |
 | WT-FRL1-09 | 構造化データと AI 向け出力が単一出力元から出る: CollectionPage / SearchAction を加え、FAQ / HowTo / ItemList は語彙から自動生成する | SEO |
 | WT-FRL1-10 | 実証済みパターンを証跡付きの記録台帳に残せる（他プロダクトは記録を読んで採否を自分で決める。依存なし） | INTAKE |
+| WT-FRL1-11 | 管理画面から普通に設定できる: サイト全体の既定（目次・PR 表記・slot / ゾーン・SP 下部・LP 種別・MCP パック）を AI を介さずテーマ設定画面で設定でき、正本は schema 付き設定 JSON 1 本で AI と共有する | ADMIN |
 
 L1 の ID はユーザー要求であり、L3 の system requirement ID とは区別する。
 各行はテーマA / B との PoC 比較で本テーマに不足すると分かった面・語彙・引き出しを、機械可読性を保つ形で取り込む提案である

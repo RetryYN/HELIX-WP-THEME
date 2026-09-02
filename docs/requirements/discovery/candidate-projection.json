@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0033",
-  "event_count": 33,
+  "event_head": "WT-EVT-0036",
+  "event_count": 36,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -217,6 +217,18 @@
         "WT-NFR-CRED-01",
         "WT-NFR-PERF-01"
       ]
+    },
+    {
+      "candidate_id": "WT-CAND-ADMIN",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0034",
+        "WT-EVT-0035",
+        "WT-EVT-0036"
+      ],
+      "requirement_ids": [
+        "WT-FR-ADMIN-01"
+      ]
     }
   ],
   "question_ids": [
@@ -234,7 +246,8 @@
     "WT-Q-AGENT-02",
     "WT-Q-VALUE-01",
     "WT-Q-SEO-01",
-    "WT-Q-INTAKE-01"
+    "WT-Q-INTAKE-01",
+    "WT-Q-ADMIN-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -251,7 +264,8 @@
     "WT-Q-AGENT-02",
     "WT-Q-VALUE-01",
     "WT-Q-SEO-01",
-    "WT-Q-INTAKE-01"
+    "WT-Q-INTAKE-01",
+    "WT-Q-ADMIN-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"

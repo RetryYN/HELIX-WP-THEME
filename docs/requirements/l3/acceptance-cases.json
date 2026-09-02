@@ -552,6 +552,18 @@
       "requirement_id": "WT-FR-AGENT-06",
       "polarity": "negative",
       "oracle": "生値を含むパーツが昇格する、または台帳なしでテーマに入れば FAIL"
+    },
+    {
+      "id": "WT-AC-ADMIN-01A",
+      "requirement_id": "WT-FR-ADMIN-01",
+      "polarity": "positive",
+      "oracle": "管理画面だけで各既定を変更・保存でき、保存値が schema 検証を通り、manifest と MCP パックから同じ値が読め、export → import で同一 digest に戻る"
+    },
+    {
+      "id": "WT-AC-ADMIN-01B",
+      "requirement_id": "WT-FR-ADMIN-01",
+      "polarity": "negative",
+      "oracle": "schema 外の値が保存できる、設定画面と manifest の値が食い違う、または設定 JSON 以外の option に状態が散れば FAIL"
     }
   ]
 }

@@ -481,6 +481,35 @@
       ]
     },
     {
+      "id": "WT-FR-ADMIN-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-11",
+        "WT-SCR-10",
+        "WT-BR-01",
+        "WT-CAND-ADMIN"
+      ],
+      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-10",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ADMIN-01A",
+        "WT-AC-ADMIN-01B"
+      ],
+      "test_ids": [
+        "WT-AT-ADMIN-01"
+      ]
+    },
+    {
       "id": "WT-FR-LP-01",
       "kind": "functional",
       "status": "candidate_inventory",

@@ -3,7 +3,7 @@ layer: L2
 sub_doc: ui-element
 status: candidate_projection
 source_authority: docs/requirements/l2/ui-element.md
-source_sha256: b7757e5d95a9b37817c1d1b2daa68aefe5023fb157e622890f5106f9f1cf97d0
+source_sha256: 4d613d1cd400365908cca8d1462575d2cc11e3fb9e8a6761966da614ab648909
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 ---
 
@@ -22,3 +22,4 @@ pair_artifact: docs/design/harness/L2-screen/wireframe.md
 | **PM-07** | WT-UI-07 | GateReport / RawValueCounter |
 | **PM-08** | WT-UI-08 | CapabilityManifest / SelectionApply / DryRunDiff |
 | **PM-09** | WT-UI-09 | EvidenceLedger / EvidenceLink |
+| **PM-10** | WT-UI-10 | ThemeSettingsForm / SettingsExportImport |
