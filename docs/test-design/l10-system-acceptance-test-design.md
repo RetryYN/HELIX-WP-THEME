@@ -10,7 +10,7 @@
 | WT-AT-CORE-03 | WT-TR-CORE-03 | 静的検出で AI SDK import・判定ロジックが 0 | 検出 1 件で FAIL | static analysis |
 | WT-AT-GATE-01 | WT-NFR-GATE-01 | PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される | 静的 PASS のみで merge された変更が実機 invalid を生めば FAIL | gate JSON |
 | WT-AT-TR-PLUGIN-01 | WT-TR-PLUGIN-01 | AI 操作後にテーマファイル digest 不変、選択は WP コアの DB 保存先に入り Site Editor と一致、テーマ切替でデータ残存、プラグイン無効でも表示は崩れない | AI がテーマファイルを書く、独自保存先で Site Editor と食い違う、プラグインに表示 / 判定、テーマ切替でデータ消失なら FAIL | file digest + DB fixture + theme-switch fixture |
-| WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域それぞれで第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、移行機能は移行プラグイン無効で消える | いずれかの領域で同型出力 2 本、切替不可、または本体に移行コード・互換固有名なら FAIL | plugin matrix（7 領域）+ JSON-LD extract |
+| WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域それぞれで第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、本体に移行コードが無い | いずれかの領域で同型出力 2 本、切替不可、または本体に移行コード・移行プラグイン・互換固有名なら FAIL | plugin matrix（7 領域）+ static analysis |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない | 空 slot が空要素や領域見出しを出せば FAIL | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
 | WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
@@ -29,7 +29,7 @@
 | WT-AT-ADMIN-01 | WT-FR-ADMIN-01 | 管理画面だけで各既定を変更・保存でき、保存値が schema 検証を通り、manifest と MCP パックから同じ値が読め、export → import で同一 digest に戻る | schema 外の値が保存できる、設定画面と manifest の値が食い違う、または設定 JSON 以外の option に状態が散れば FAIL | Playwright + schema test + manifest parity |
 | WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
 | WT-AT-LP-02 | WT-FR-LP-02 | LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる | 計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL | tracking receipt + Playwright |
-| WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる | フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL | schema test + mapping receipt |
+| WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが schema 付きで公開され、ハーネスがそれだけを読んでサンプル control を 4 分類または理由付き写像不能に落とせる | テーマ側に変換器・移行 UI・移行プラグインがある、またはフォーマット外の写像が要れば FAIL | schema test + harness mapping receipt |
 | WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | 代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る | 変換で invalid が出る、または写像不能が黙って落ちれば FAIL | conversion receipt |
 | WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い | 見た目キーの機械移送や固有名の混入があれば FAIL | public-safety check |
 | WT-AT-AGENT-01 | WT-FR-AGENT-01 | 設定で定義した常用パックが MCP の ability として列挙され、1 回の呼び出しで manifest 上の作業単位が dry-run 差分付きで完結し、apply 結果が dry-run と一致する | manifest 外の指定が通る、apply が dry-run と異なる、または REST と MCP で語彙や結果が食い違えば FAIL | MCP receipt + REST parity |

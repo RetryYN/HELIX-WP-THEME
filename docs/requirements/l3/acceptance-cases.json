@@ -209,31 +209,31 @@
       "id": "WT-AC-MIGRATE-01A",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "positive",
-      "oracle": "取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる"
+      "oracle": "取得項目定義とマッピングフォーマットが JSON schema 付きでテーマ資産として公開され、ハーネスがそれだけを読んでサンプル control（A 400 / B 400）の各行を 4 分類または理由付き写像不能に落とせる"
     },
     {
       "id": "WT-AC-MIGRATE-01B",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "negative",
-      "oracle": "フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL"
+      "oracle": "テーマ側に変換器・移行 UI・移行プラグインがある、またはフォーマットに無い写像が要れば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-02A",
       "requirement_id": "WT-FR-MIGRATE-02",
       "polarity": "positive",
-      "oracle": "代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る"
+      "oracle": "フォーマットの写像規則で代表 6 領域の変換結果が invalid=0 になり、独自ウィジェット・写像不能候補が理由付きで列挙されている"
     },
     {
       "id": "WT-AC-MIGRATE-02B",
       "requirement_id": "WT-FR-MIGRATE-02",
       "polarity": "negative",
-      "oracle": "変換で invalid が出る、または写像不能が黙って落ちれば FAIL"
+      "oracle": "写像不能が黙って落ちる、または変換結果が invalid を出せば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-03A",
       "requirement_id": "WT-FR-MIGRATE-03",
       "polarity": "positive",
-      "oracle": "移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い"
+      "oracle": "フォーマットの移管推奨が意味キーだけで構成され、公開リポに第三者固有名が無い"
     },
     {
       "id": "WT-AC-MIGRATE-03B",
@@ -605,13 +605,13 @@
       "id": "WT-AC-TR-PLUGIN-02A",
       "requirement_id": "WT-TR-PLUGIN-02",
       "polarity": "positive",
-      "oracle": "重なる領域（JSON-LD・meta / OGP・目次・サイトマップ・llms.txt・キャッシュ・フォーム）それぞれで、第三者プラグイン有効時に出力が既定で 1 系統だけになり、設定画面で「本テーマが出す / 譲る」を切り替えられる。フォームは LP のフォーム制御と接続する。移行機能は移行プラグインを無効にすると消える"
+      "oracle": "重なる領域（JSON-LD・meta / OGP・目次・サイトマップ・llms.txt・キャッシュ・フォーム）それぞれで、第三者プラグイン有効時に出力が既定で 1 系統だけになり、設定画面で「本テーマが出す / 譲る」を切り替えられる。フォームは LP のフォーム制御と接続する。テーマ・プラグイン本体に移行コードが無い"
     },
     {
       "id": "WT-AC-TR-PLUGIN-02B",
       "requirement_id": "WT-TR-PLUGIN-02",
       "polarity": "negative",
-      "oracle": "いずれかの領域で同型の出力が 2 本出る、設定で切り替えられない、または本体に移行専用コード・互換固有名が入れば FAIL"
+      "oracle": "いずれかの領域で同型の出力が 2 本出る、設定で切り替えられない、または本体に移行コード・移行プラグイン・互換固有名が入れば FAIL"
     }
   ]
 }
