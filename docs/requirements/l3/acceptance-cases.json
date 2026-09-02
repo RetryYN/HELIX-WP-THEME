@@ -593,13 +593,13 @@
       "id": "WT-AC-TR-PLUGIN-01A",
       "requirement_id": "WT-TR-PLUGIN-01",
       "polarity": "positive",
-      "oracle": "テーマを既定テーマへ切り替えても設定 JSON・投稿メタ・section ID・再利用パーツ・API が残り、プラグインを無効にしても表示は崩れない（AI 経路のみ無効）"
+      "oracle": "運用中の AI 操作でテーマファイルの digest が変わらず、選択はすべて WP コアの DB 保存先（wp_template / wp_template_part / wp_global_styles / 投稿メタ / 設定 JSON）に入り、Site Editor で見ても同じ状態になる。テーマを既定テーマへ切り替えてもデータと API が残り、プラグイン無効でも表示は崩れない"
     },
     {
       "id": "WT-AC-TR-PLUGIN-01B",
       "requirement_id": "WT-TR-PLUGIN-01",
       "polarity": "negative",
-      "oracle": "テーマ切替でデータが消える、プラグインに表示や判定ロジックが入る、またはプラグイン無効で公開面が壊れれば FAIL"
+      "oracle": "AI 経路がテーマファイルを書く、プラグイン独自の保存先に選択が散って Site Editor と食い違う、プラグインに表示や判定ロジックが入る、またはテーマ切替でデータが消えれば FAIL"
     },
     {
       "id": "WT-AC-TR-PLUGIN-02A",

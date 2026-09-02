@@ -9,7 +9,7 @@
 | WT-AT-CORE-02 | WT-TR-CORE-02 | health の出力がテーマの登録内容と一致する | 登録内容と health の差分が 1 件でもあれば FAIL | health JSON |
 | WT-AT-CORE-03 | WT-TR-CORE-03 | 静的検出で AI SDK import・判定ロジックが 0 | 検出 1 件で FAIL | static analysis |
 | WT-AT-GATE-01 | WT-NFR-GATE-01 | PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される | 静的 PASS のみで merge された変更が実機 invalid を生めば FAIL | gate JSON |
-| WT-AT-TR-PLUGIN-01 | WT-TR-PLUGIN-01 | テーマ切替後もデータと API が残り、プラグイン無効でも表示は崩れない | テーマ切替でデータ消失、プラグインに表示 / 判定、プラグイン無効で公開面破損なら FAIL | theme-switch fixture + static analysis |
+| WT-AT-TR-PLUGIN-01 | WT-TR-PLUGIN-01 | AI 操作後にテーマファイル digest 不変、選択は WP コアの DB 保存先に入り Site Editor と一致、テーマ切替でデータ残存、プラグイン無効でも表示は崩れない | AI がテーマファイルを書く、独自保存先で Site Editor と食い違う、プラグインに表示 / 判定、テーマ切替でデータ消失なら FAIL | file digest + DB fixture + theme-switch fixture |
 | WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域それぞれで第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、移行機能は移行プラグイン無効で消える | いずれかの領域で同型出力 2 本、切替不可、または本体に移行コード・互換固有名なら FAIL | plugin matrix（7 領域）+ JSON-LD extract |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない | 空 slot が空要素や領域見出しを出せば FAIL | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
