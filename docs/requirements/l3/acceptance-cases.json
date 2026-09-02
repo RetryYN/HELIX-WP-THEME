@@ -516,6 +516,18 @@
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "negative",
       "oracle": "超過 1 件で FAIL"
+    },
+    {
+      "id": "WT-AC-LOOK-03A",
+      "requirement_id": "WT-FR-LOOK-03",
+      "polarity": "positive",
+      "oracle": "サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS"
+    },
+    {
+      "id": "WT-AC-LOOK-03B",
+      "requirement_id": "WT-FR-LOOK-03",
+      "polarity": "negative",
+      "oracle": "調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL"
     }
   ]
 }

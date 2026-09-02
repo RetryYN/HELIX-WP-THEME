@@ -20,6 +20,7 @@
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
 | WT-AT-LOOK-01 | WT-FR-LOOK-01 | 見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される | 生値や !important で実現された装飾があれば FAIL | G-T3 + style list |
 | WT-AT-LOOK-02 | WT-FR-LOOK-02 | 写像した variation がスラッグ集合を変えず G-T1b PASS | 段の増減や新スラッグを伴う variation があれば FAIL | G-T1b JSON |
+| WT-AT-LOOK-03 | WT-FR-LOOK-03 | サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS | 調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL | survey inventory + gate JSON |
 | WT-AT-META-01 | WT-FR-META-01 | メタを OFF にした記事だけで該当パーツが消え、REST から同じキーを読み書きできる | 未登録メタや option で表示が変わる経路があれば FAIL | REST + Playwright |
 | WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
 | WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | サンプル control（A 400 / B 400）の各行が 4 分類のどれかに落ち、写像先が存在する | 分類不能または option 不可視上書きに落ちる行があれば FAIL | mapping receipt |

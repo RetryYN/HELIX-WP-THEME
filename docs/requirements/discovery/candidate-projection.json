@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0024",
-  "event_count": 24,
+  "event_head": "WT-EVT-0025",
+  "event_count": 25,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -78,11 +78,13 @@
         "WT-EVT-0007",
         "WT-EVT-0016",
         "WT-EVT-0017",
-        "WT-EVT-0024"
+        "WT-EVT-0024",
+        "WT-EVT-0025"
       ],
       "requirement_ids": [
         "WT-FR-LOOK-01",
-        "WT-FR-LOOK-02"
+        "WT-FR-LOOK-02",
+        "WT-FR-LOOK-03"
       ]
     },
     {
@@ -116,7 +118,8 @@
         "WT-EVT-0002",
         "WT-EVT-0010",
         "WT-EVT-0016",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0025"
       ],
       "requirement_ids": [
         "WT-FR-MIGRATE-01",
@@ -229,7 +232,8 @@
     "WT-Q-VOCAB-01",
     "WT-Q-VOCAB-02",
     "WT-Q-VOCAB-03",
-    "WT-Q-LOOK-01"
+    "WT-Q-LOOK-01",
+    "WT-Q-LOOK-02"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -238,17 +242,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-LOOK-02",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "テーマA のデザインプリセット（15）を style variation 1 本 = プリセット 1 個として写像でき、部品別プリセットは block style で受けられる（PoC: 色 8 スラッグで G-T1b PASS）。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-LOOK",
-        "WT-CAND-MIGRATE"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-META-01",
       "owner": "PO",

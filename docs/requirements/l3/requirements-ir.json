@@ -401,14 +401,14 @@
     {
       "id": "WT-FR-LOOK-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-04",
         "WT-FRL1-06",
         "WT-SCR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける",
+      "statement": "デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける。写像の対象範囲は WT-FR-LOOK-03 のサイトパターン調査で広げる",
       "priority": "P2",
       "actor_ids": [
         "MIGRATOR",
@@ -423,9 +423,33 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-02"
+      ]
+    },
+    {
+      "id": "WT-FR-LOOK-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-04",
+        "WT-BR-02",
+        "WT-CAND-LOOK"
       ],
-      "pending_resolution": [
-        "WT-Q-LOOK-02"
+      "statement": "variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンは要求にしない",
+      "priority": "P1",
+      "actor_ids": [
+        "PO",
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-02"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B"
+      ],
+      "test_ids": [
+        "WT-AT-LOOK-03"
       ]
     },
     {
