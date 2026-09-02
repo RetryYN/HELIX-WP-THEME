@@ -377,13 +377,13 @@
       "id": "WT-AC-INTAKE-01A",
       "requirement_id": "WT-FR-INTAKE-01",
       "polarity": "positive",
-      "oracle": "台帳 1 行から証跡と commit へ辿れ、ゲート結果が同一 HEAD に束縛される"
+      "oracle": "台帳 1 行から証跡と参照元 commit へ辿れ、ゲート結果が同一 HEAD に束縛される。台帳は本リポ内のパスだけを参照する"
     },
     {
       "id": "WT-AC-INTAKE-01B",
       "requirement_id": "WT-FR-INTAKE-01",
       "polarity": "negative",
-      "oracle": "証跡なしの行、または逆方向の取り込み行があれば FAIL"
+      "oracle": "証跡なしの行、他リポの状態に依存する項目、または他プロダクトの成果物を本テーマへ取り込む行があれば FAIL"
     },
     {
       "id": "WT-AC-NFR-SEC-01A",

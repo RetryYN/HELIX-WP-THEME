@@ -745,13 +745,12 @@
         "WT-BR-04",
         "WT-CAND-AGENT"
       ],
-      "statement": "カスタムパーツの自己開発経路を持つ: 編集者または AI がブロックを組んで再利用パーツとして登録（参照 + 版 + digest、manifest に出る）→ 実機ゲート（invalid 0、生値なし、参照整合）を通してテーマのパターンへ昇格 → 取り込み台帳に載せる。パーツはトークンをスラッグ名でのみ参照し、同じトークン契約（4 層モデル・スラッグ固定）を持つテーマ間で可搬にする。生値を含むパーツは昇格させない",
+      "statement": "カスタムパーツの自己開発経路を持つ: 編集者または AI がブロックを組んで再利用パーツとして登録（参照 + 版 + digest、manifest に出る）→ 実機ゲート（invalid 0、生値なし、参照整合）を通してテーマのパターンへ昇格 → 実証記録台帳に載せる。パーツはトークンをスラッグ名でのみ参照し、トークン契約が同じであれば他テーマでも描画できる形にする（他プロダクトへの依存は作らない）。生値を含むパーツは昇格させない",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
         "AI_AGENT",
-        "GATE",
-        "GRAPHIX_NEO"
+        "GATE"
       ],
       "surface_ids": [
         "WT-UI-01",
@@ -929,7 +928,7 @@
     {
       "id": "WT-FR-INTAKE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-10",
         "WT-SCR-09",
@@ -937,11 +936,11 @@
         "WT-BR-04",
         "WT-CAND-INTAKE"
       ],
-      "statement": "取り込み台帳（パターン ID・参照元 commit・証跡パス・ゲート結果・取り込み先）を append-only で持ち、GRAPHIX-NEO への一方向取り込みを記録する",
+      "statement": "実証記録台帳を本テーマ内で完結する append-only の JSON Lines として持つ。1 行 = パターン ID・参照元 commit・証跡パス・ゲート結果（静的 6 種 + 実機 invalid 0 が同一 HEAD に束縛）。他プロダクト（GRAPHIX-NEO 等）はこの記録を読んで採否を自分で決めるだけで、台帳は取り込み先の識別子・状態・検証を持たず、他リポへの参照や書き込みを要求しない（依存を作らない）。本テーマ側から他プロダクトの成果物を取り込む行は持たない",
       "priority": "P2",
       "actor_ids": [
         "PO",
-        "GRAPHIX_NEO"
+        "OPERATOR"
       ],
       "surface_ids": [
         "WT-UI-09"
@@ -952,9 +951,6 @@
       ],
       "test_ids": [
         "WT-AT-INTAKE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-INTAKE-01"
       ]
     },
     {

@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0032",
-  "event_count": 32,
+  "event_head": "WT-EVT-0033",
+  "event_count": 33,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -184,11 +184,12 @@
     },
     {
       "candidate_id": "WT-CAND-INTAKE",
-      "state": "elicited",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0014",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0033"
       ],
       "requirement_ids": [
         "WT-FR-INTAKE-01"
@@ -249,7 +250,8 @@
     "WT-Q-AGENT-01",
     "WT-Q-AGENT-02",
     "WT-Q-VALUE-01",
-    "WT-Q-SEO-01"
+    "WT-Q-SEO-01",
+    "WT-Q-INTAKE-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -257,18 +259,7 @@
   "reaction_ids": [
     "WT-POC-REACTION-01"
   ],
-  "unresolved": [
-    {
-      "id": "WT-Q-INTAKE-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "取り込み台帳（パターン ID・参照元 commit・証跡パス・ゲート結果・取り込み先）で GRAPHIX-NEO への一方向取り込みを記録できる。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-INTAKE"
-      ],
-      "reentry": "同上"
-    }
-  ],
+  "unresolved": [],
   "agreement": null,
   "compile_status": "backflow_required",
   "coverage": {
