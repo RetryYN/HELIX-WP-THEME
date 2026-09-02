@@ -564,6 +564,30 @@
       "requirement_id": "WT-FR-ADMIN-01",
       "polarity": "negative",
       "oracle": "schema 外の値が保存できる、設定画面と manifest の値が食い違う、または設定 JSON 以外の option に状態が散れば FAIL"
+    },
+    {
+      "id": "WT-AC-SECTION-01A",
+      "requirement_id": "WT-FR-SECTION-01",
+      "polarity": "positive",
+      "oracle": "H2 / H3 が混在する記事で階層 section と親子 ID が中間 JSON に出て、見出し文言を変えても ID が変わらない"
+    },
+    {
+      "id": "WT-AC-SECTION-01B",
+      "requirement_id": "WT-FR-SECTION-01",
+      "polarity": "negative",
+      "oracle": "見出し変更で ID がずれる、H4 が区間になる、または H3 の無い H2 区間で境界が壊れれば FAIL"
+    },
+    {
+      "id": "WT-AC-SECTION-02A",
+      "requirement_id": "WT-FR-SECTION-02",
+      "polarity": "positive",
+      "oracle": "H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。「2 番目の H2 の後」規則で面が全記事に入り、投稿単位で上書きできる。区間の到達イベントが記録される"
+    },
+    {
+      "id": "WT-AC-SECTION-02B",
+      "requirement_id": "WT-FR-SECTION-02",
+      "polarity": "negative",
+      "oracle": "区間外が書き換わる、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL"
     }
   ]
 }

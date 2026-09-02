@@ -18,6 +18,8 @@
 | WT-AT-VOCAB-02 | WT-FR-VOCAB-02 | h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する | 目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL | render fixture + Playwright |
 | WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL | Playwright + fixture |
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
+| WT-AT-SECTION-01 | WT-FR-SECTION-01 | H2 / H3 が混在する記事で階層 section と親子 ID が中間 JSON に出て、見出し文言を変えても ID が変わらない | 見出し変更で ID がずれる、H4 が区間になる、または H3 の無い H2 区間で境界が壊れれば FAIL | extractor fixture |
+| WT-AT-SECTION-02 | WT-FR-SECTION-02 | H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。「2 番目の H2 の後」規則で面が全記事に入り、投稿単位で上書きできる。区間の到達イベントが記録される | 区間外が書き換わる、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL | REST receipt + Playwright + tracking receipt |
 | WT-AT-LOOK-01 | WT-FR-LOOK-01 | 見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される | 生値や !important で実現された装飾があれば FAIL | G-T3 + style list |
 | WT-AT-LOOK-02 | WT-FR-LOOK-02 | 写像した variation がスラッグ集合を変えず G-T1b PASS | 段の増減や新スラッグを伴う variation があれば FAIL | G-T1b JSON |
 | WT-AT-LOOK-03 | WT-FR-LOOK-03 | サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS | 調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL | survey inventory + gate JSON |

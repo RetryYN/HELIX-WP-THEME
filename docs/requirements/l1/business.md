@@ -25,5 +25,5 @@ authority: docs/requirements/authority.md
 
 ## PO への問い
 
-WT-Q-* は総数 16 件（採用済み 16: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01, WT-Q-ADMIN-01。未決 0 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。いずれも「X ができる（証跡あり）。採用するか」の形で、
+WT-Q-* は総数 17 件（採用済み 17: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01, WT-Q-ADMIN-01, WT-Q-SECTION-01。未決 0 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。いずれも「X ができる（証跡あり）。採用するか」の形で、
 方式・配置先・境界値の詳細は問わない（PoC 証跡で決める）。

@@ -371,6 +371,65 @@
       "non_ui_na": true
     },
     {
+      "id": "WT-FR-SECTION-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-12",
+        "WT-SCR-03",
+        "WT-BR-03",
+        "WT-CAND-SECTION"
+      ],
+      "statement": "見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3 区間を持つ階層とする（H4 以下は区間にしない、PO 2026-09-02）。ID は親子で安定させ（h2-id/h3-id）、見出し文言の変更でずれない。中間 JSON に section 境界と ID が出て、既存の sections API / section-registry をこの規約に合わせる",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-03",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SECTION-01A",
+        "WT-AC-SECTION-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SECTION-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SECTION-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-12",
+        "WT-FRL1-01",
+        "WT-SCR-03",
+        "WT-CAND-SECTION"
+      ],
+      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を tracking 経路へ）。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-03",
+        "WT-UI-05",
+        "WT-UI-10",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SECTION-02A",
+        "WT-AC-SECTION-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
       "id": "WT-FR-LOOK-01",
       "kind": "functional",
       "status": "candidate_inventory",

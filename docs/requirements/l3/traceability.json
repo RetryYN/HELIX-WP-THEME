@@ -903,6 +903,50 @@
       "tests": [
         "WT-AT-ADMIN-01"
       ]
+    },
+    {
+      "l1": "WT-FRL1-12",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "tests": [
+        "WT-AT-SECTION-01",
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-03",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "tests": [
+        "WT-AT-SECTION-01",
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
+      "l1": "WT-BR-03",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-01"
+      ],
+      "tests": [
+        "WT-AT-SECTION-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-01",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-02"
+      ],
+      "tests": [
+        "WT-AT-SECTION-02"
+      ]
     }
   ]
 }

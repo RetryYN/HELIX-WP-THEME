@@ -9,6 +9,7 @@
 | DestructiveStop | 破壊域の値の保存を止め、触れた規則・値・境界を示す。解除手段を持たない |
 | PerPostToggles | sidebar / toc / share / pr の投稿メタ 4 キーを切り替える |
 | ZoneSlot | 共有 slot 6 種とゾーン語彙 23 種の置き場所。空なら描画しない |
+| SectionOutline / SectionTools | H2 / H3 の階層 section 境界と安定 ID をエディタに表示し、区間単位の差し替え・リライト（diff → apply / rollback）・順序入れ替え・面の挿入・表示制御を AI を介さず操作する |
 | VocabBlocks | 記事内語彙 14 種の受け皿（core + block style / 新規ブロック 3） |
 | TocAnchor | 目次の配置意図（埋め込み / フロート追従 / 開閉ボタン、既定は最初の h2 直前）とページ種別ごとの表示条件・block style。目次本体は機械導出で一級要素にしない |
 | PrNotice | PR 表記。広告パーツ / アフィリエイトリンクの有無から機械判定し該当ページだけに控えめに自動出力。選べるのは表示デザインと表示ページ制御。編集者が消せない |
