@@ -12,6 +12,11 @@
 │ 目次 [配置▼][種別別表示☑]  PR表記 [デザイン▼][表示制御]  │
 │ slot/ゾーン割当  SP下部積層  LP種別既定  MCPパック構成    │
 │ [export] [import]  正本 = 設定 JSON（schema 検証）        │
+│ ProductCatalogTable: 商品一覧 [追加][更新][記事へ差し込み] │
+├─ 管理画面: クローラー計測（WT-UI-11）───────────────────┤
+│ CrawlDashboard: bot 別推移 | 古い URL | 404 / 5xx        │
+│ 初回捕捉時間 | llms.txt / crawl-map AI 来訪             │
+│ RobotsAiCrawlerToggle: robots.txt / AI 許可・拒否 [保存] │
 ├─ REST / MCP: 制御面 ────────────────────────────────────┤
 │ GET capabilities → {slots, patterns, parts, variations, │
 │   template_variants, scales, hooks}                     │
@@ -30,5 +35,7 @@ prototype status: `prototyped`（WT-PROT-UI-01-r1、text low-fi）。PO reaction
 - 値の入力時に安全域 / 生値 / 破壊域の区別が色以外でも分かるか
 - 破壊域で止まった理由と、どの値なら通るかが分かるか
 - manifest だけを見てエージェントが構造・スタイル・値を選べるか
+- 商品正本から商品表示・CTA クリック計測へ同じ値が流れるか、購入完了をテーマ外に保てるか
+- クローラー判定外の人の閲覧が記録されず、WP 応答分だけをダッシュボードで確認できるか
 - ゲート FAIL から対象ファイルと原因へ 1 手で辿れるか
 - 台帳の 1 行から証跡と参照元 commit へ辿れるか

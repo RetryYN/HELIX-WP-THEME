@@ -23,9 +23,12 @@ authority: docs/requirements/authority.md
 | WT-NFRL1-11 | プライバシー: 計測・広告タグの正本はテーマ外（HELIX / プラグイン側） | テーマ内の計測 ID 0 |
 | WT-NFRL1-12 | 権限で破壊域停止を迂回できない | 迂回経路 0 |
 | WT-NFRL1-13 | コスト: ゲートと PoC はローカル docker で完結し、有料・無料枠制限のある外部 API に依存しない | 外部 API 依存のゲート 0 |
+| WT-NFRL1-14 | SEO 準拠検査は test lane で走り、Google 公式ドキュメントの出典 URL と参照日を改定時に更新する | SEO 準拠検査の未実施 0。出典 URL / 参照日未更新 0 |
+| WT-NFRL1-15 | クロールログは既定 90 日で保持・間引きし、bot 判定外の個人閲覧を記録しない。WP が応答したリクエストだけを対象とし、キャッシュ / CDN 応答は見えない限界を明記する | 保持期間・間引きの逸脱 0。bot 判定外の個人閲覧の記録 0。対象・限界の未明記 0 |
 
 ## 出典
 
 - `WT-NFRL1-01` / `02`: `docs/design/consistency-responsibilities.md`、`docs/research/2026-08-29-ge1-local/README.md`（静的検査で通っても実機で壊れる事例）
 - `WT-NFRL1-03` / `04`: 第三者テーマ監査で観測した欠陥（描画時 DB write、未認証 REST / SSRF、グローバル改変）を本テーマで再発させない教訓（`docs/research/2026-08-26-theme-structure-audit/20-reverse-engineering-synthesis.md` 第 2 部）。第三者テーマ自体の是正は本リポの要求ではない
 - 数値（invalid=0、baseline 438）は 2026-08-29 時点の実測
+- `WT-NFRL1-14` の SEO 準拠先: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-02）。構造化データの一般指針: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）

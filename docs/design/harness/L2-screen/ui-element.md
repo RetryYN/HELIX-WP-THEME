@@ -3,7 +3,7 @@ layer: L2
 sub_doc: ui-element
 status: candidate_projection
 source_authority: docs/requirements/l2/ui-element.md
-source_sha256: 6a91d11e496be17617e4c9ebb4d7bb4b9125aaca4707cbda6095e94d62afa521
+source_sha256: a4e9de65a58f69a990afe8f129fa70d6cf50483e9997f7ccc196135e7d36fadd
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 ---
 
@@ -22,4 +22,5 @@ pair_artifact: docs/design/harness/L2-screen/wireframe.md
 | **PM-07** | WT-UI-07 | GateReport / RawValueCounter |
 | **PM-08** | WT-UI-08 | CapabilityManifest / SelectionApply / DryRunDiff |
 | **PM-09** | WT-UI-09 | EvidenceLedger / EvidenceLink |
-| **PM-10** | WT-UI-10 | ThemeSettingsForm / SettingsExportImport |
+| **PM-10** | WT-UI-10 | ThemeSettingsForm / SettingsExportImport / ProductCatalogTable |
+| **PM-11** | WT-UI-11 | CrawlDashboard / RobotsAiCrawlerToggle |

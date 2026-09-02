@@ -16,9 +16,9 @@
 | WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
 | WT-AT-PARTS-01 | WT-FR-PARTS-01 | 差し替え後の骨格差分（テンプレ・パーツ参照）が表示され、保存後に公開面へ反映される | 差し替えで参照欠落（G-S2）や invalid が出れば FAIL | Playwright + G-S2 |
 | WT-AT-PARTS-02 | WT-FR-PARTS-02 | wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない | header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL | parts reference test |
-| WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種が描画される | 受け皿のない語彙、または 4 つ目の新規ブロックがあれば FAIL | vocab fixture |
+| WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画される。新規ブロックは 7 つに限定される | 受け皿のない語彙、または 8 つ目の新規ブロックがあれば FAIL | vocab fixture |
 | WT-AT-VOCAB-02 | WT-FR-VOCAB-02 | h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する | 目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL | render fixture + Playwright |
-| WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL | Playwright + fixture |
+| WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL | Playwright + fixture |
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
 | WT-AT-SECTION-01 | WT-FR-SECTION-01 | H2 / H3 が混在する記事で階層 section と親子 ID が中間 JSON に出て、見出し文言を変えても ID が変わらない | 見出し変更で ID がずれる、H4 が区間になる、または H3 の無い H2 区間で境界が壊れれば FAIL | extractor fixture |
 | WT-AT-SECTION-02 | WT-FR-SECTION-02 | H3 区間だけのリライトで diff が区間に閉じ rollback で戻る。順序入れ替え・折りたたみ・非表示・目次出し分けがエディタと MCP で同結果。区間規則が全記事に入り投稿単位で上書き可。区間の到達・滞在イベントが記録される | 区間外が書き換わる、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL | REST receipt + Playwright + tracking receipt |
@@ -41,9 +41,19 @@
 | WT-AT-VALUE-01 | WT-FR-VALUE-01 | 破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、権限による解除手段が無い | 破壊域が保存できる、または安全域が誤って止まれば FAIL | editor + gate JSON |
 | WT-AT-VALUE-02 | WT-FR-VALUE-02 | 許容リスト外の生値が G-T2 で FAIL になり、件数が baseline から単調減少する | 許容リストに実値を足して通す変更があれば FAIL | gate JSON |
 | WT-AT-VALUE-03 | WT-NFR-VALUE-03 | 段を増減する投影が拒否され、親の 6 段が維持される | 投影で 60 が落ちてコア既定が入る（PoC 実測）状態が再現すれば FAIL | projection fixture |
-| WT-AT-SEO-01 | WT-FR-SEO-01 | 一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出る | 同型の二重出力や @type 空のスクリプトがあれば FAIL | JSON-LD extract |
-| WT-AT-SEO-02 | WT-FR-SEO-02 | FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致する | 本文に無い項目が JSON-LD に出れば FAIL | JSON-LD extract |
-| WT-AT-SEO-03 | WT-FR-SEO-03 | 12 種別すべてで canonical・description・OGP が出て、AI 向け出力の digest が HTML と整合する | front / archive / search で欠落すれば FAIL | crawl JSON |
+| WT-AT-SEO-01 | WT-FR-SEO-01 | 一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出て、型ごとの必須プロパティが揃い、Google 検索セントラルの出典 URL と参照日が記録される | 同型の二重出力、@type 空のスクリプト、必須プロパティ欠落、または対象外になった型の出力があれば FAIL | JSON-LD extract + source receipt |
+| WT-AT-SEO-02 | WT-FR-SEO-02 | FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致し、型の必須プロパティが揃い、非推奨型を出さない | 本文に無い項目、必須プロパティ欠落、または非推奨型が JSON-LD に出れば FAIL | JSON-LD extract + source receipt |
+| WT-AT-SEO-03 | WT-FR-SEO-03 | 12 種別すべてで title / meta description / canonical / robots / sitemap / hreflang・OGP が出て、Core Web Vitals とモバイルの確認対象を含み、AI 向け出力の digest が HTML と整合する | front / archive / search で欠落、必須プロパティ不備、または非推奨型が出れば FAIL | crawl JSON + source receipt |
+| WT-AT-SELL-01 | WT-FR-SELL-01 | 商品の名前・価格・特徴・評価・画像・アフィリエイト / 外部ストア / 自社 EC URL が 1 つの商品正本に保存され、複数記事から同じ値を参照できる | 記事ごとの手入力が正本になった、リンク先が商品正本外に散った、または決済・カート・会員をテーマが持てば FAIL | product catalog fixture |
+| WT-AT-SELL-02 | WT-FR-SELL-02 | 同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、Product / Offer / AggregateRating / ItemList を出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化する | 4 つの販売系語彙のいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、または構造化データが表示値と不一致なら FAIL | render fixture + JSON-LD extract |
+| WT-AT-SELL-03 | WT-FR-SELL-03 | 管理画面の ProductCatalogTable で AI を介さず価格・リンクを編集でき、MCP 常用パックから追加・更新・記事への差し込みができ、商品 CTA のクリックが WT-FR-LP-02 の計測経路へ流れる | 商品の編集に AI が必須、MCP / 管理画面 / 公開面で正本が不一致、クリック計測が別経路、または購入完了をテーマが計測すれば FAIL | admin + MCP receipt + tracking receipt |
+| WT-AT-SEO-04 | WT-FR-SEO-04 | 各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-02 の参照日が紐づき、構造化データの必須プロパティ・検索の基本・ページエクスペリエンス・rel 属性の準拠項目が列挙される | 出典 URL / 参照日がない、公式仕様と要求の対応が追えない、または対象外になった型を要求する記述が残れば FAIL | source registry |
+| WT-AT-SEO-NFR-01 | WT-NFR-SEO-01 | schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane が走り、違反を赤にして、公式改定時に出典と参照日を更新できる | test lane がない、違反を WARN のまま通す、必須プロパティ欠落を見逃す、または改定後の出典が古いままなら FAIL | test-lane receipt |
+| WT-AT-SEO-05 | WT-FR-SEO-05 | アフィリエイトリンクと商品 CTA のリンクへ rel="sponsored" が機械付与され、他のリンク属性と併存できる | 対象リンクに rel="sponsored" がない、または対象外の通常リンクへ一律付与されれば FAIL | rendered-link audit |
+| WT-AT-CRAWL-01 | WT-FR-CRAWL-01 | UA と逆引き / 公開 IP レンジ照合で検索エンジン系・AI 系クローラーを識別し、WP が応答した URL・時刻・ステータス・応答時間・ページ種別だけを専用ログへ保存する。bot 判定外の人の閲覧は保存しない | bot 判定根拠のない記録、人の閲覧の記録、またはキャッシュ / CDN 応答を WP 応答として記録すれば FAIL | crawl log fixture |
+| WT-AT-CRAWL-02 | WT-FR-CRAWL-02 | クローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無が WT-UI-11 に表示される | 指標のいずれかが表示されない、URL・時刻・ステータス・応答時間・ページ種別で絞れない、または人の閲覧を混ぜれば FAIL | dashboard fixture |
+| WT-AT-CRAWL-03 | WT-FR-CRAWL-03 | WT-UI-11 から robots.txt と AI クローラーの許可 / 拒否を設定し、設定 JSON に保存した同じ値を MCP 常用パックと REST から取得できる | 画面と設定 JSON / MCP / REST の値が不一致、判定・順位計測・Search Console 突合をテーマ側で実行、または許可 / 拒否が保存されなければ FAIL | settings + MCP / REST parity |
+| WT-AT-CRAWL-NFR-01 | WT-NFR-CRAWL-01 | クロールログが既定 90 日で保持・間引きされ、bot 判定外の人の閲覧を記録せず、WP 応答分だけを対象とし、キャッシュ / CDN 応答が見えない限界を表示する | 90 日を超えて無制限保持、個人閲覧の記録、WP が応答していないリクエストの記録、またはキャッシュ / CDN の観測を保証すれば FAIL | retention + boundary receipt |
 | WT-AT-INTAKE-01 | WT-FR-INTAKE-01 | 台帳 1 行から証跡と参照元 commit へ辿れ、ゲート結果が同一 HEAD に束縛される。台帳は本リポ内のパスだけを参照する | 証跡なしの行、他リポの状態に依存する項目、または他プロダクトの成果物を本テーマへ取り込む行があれば FAIL | ledger validation |
 | WT-AT-SEC-01 | WT-NFR-SEC-01 | REST 監査で未認証ルート 0、SSRF 形 0、公開面 Warning 0 | 1 件でもあれば FAIL | REST audit |
 | WT-AT-REL-01 | WT-NFR-REL-01 | 閲覧・クロール前後で option / theme_mod の diff が 0。正規化リダイレクトが動く | 描画時 write または正規化停止があれば FAIL | option diff |

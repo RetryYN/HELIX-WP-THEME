@@ -328,7 +328,7 @@
         "WT-BR-02",
         "WT-CAND-VOCAB"
       ],
-      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビューの 3 つに限定する",
+      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 7 つに限定する。比較専用テーブルは本文中の手組み比較表とは別語彙とする",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -381,7 +381,7 @@
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "PR 表記は表示義務を満たす最小限（「PR が含まれます」程度）とし、大々的に出さない。表示の要否は記事内の広告パーツ・アフィリエイトリンク（affiliation ブロック / 広告ゾーンの creative 参照）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない",
+      "statement": "PR 表記は表示義務を満たす最小限（「PR が含まれます」程度）とし、大々的に出さない。表示の要否は記事内の広告パーツ・アフィリエイトリンク・商品リンク（affiliation ブロック / 広告ゾーンの creative 参照を含む）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -995,7 +995,7 @@
         "WT-SCR-06",
         "WT-CAND-SEO"
       ],
-      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）と SearchAction（WebSite.potentialAction）を追加する",
+      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）と SearchAction（WebSite.potentialAction）を追加する。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1021,7 +1021,7 @@
         "WT-FRL1-03",
         "WT-CAND-SEO"
       ],
-      "statement": "FAQPage / HowTo / ItemList を記事内語彙（FAQ・手順・比較表）から自動生成し、本文と一致させる",
+      "statement": "FAQPage / HowTo / ItemList を記事内語彙（FAQ・手順・比較表）から自動生成し、本文と一致させる。Google 検索セントラルの構造化データ一般ガイドラインに従い、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）",
       "priority": "P2",
       "actor_ids": [
         "OPERATOR",
@@ -1047,7 +1047,7 @@
         "WT-NFRL1-07",
         "WT-CAND-SEO"
       ],
-      "statement": "canonical / meta description / OGP を全ページ種別で出し、llms.txt・crawl-map・LLMO summary の AI 向け出力を同一正本から維持する",
+      "statement": "title / meta description / canonical / robots / sitemap / hreflang / OGP を全ページ種別で出し、Core Web Vitals とモバイルの確認対象を維持し、llms.txt・crawl-map・LLMO summary の AI 向け出力を同一正本から維持する。Google 検索セントラルの検索の基本と canonical 化に準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls（参照日: 2026-09-02）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
@@ -1356,6 +1356,284 @@
         "WT-AT-PERF-01"
       ],
       "non_ui_na": true
+    },
+    {
+      "id": "WT-FR-SELL-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-13",
+        "WT-TRL1-07",
+        "WT-SCR-05",
+        "WT-SCR-10",
+        "WT-CAND-SELL"
+      ],
+      "statement": "商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア / 自社 EC URL）を保持する。複数記事から同じ正本を参照して一括反映し、商品表示と構造化データの入力を分散させない。決済・カート・会員はテーマ外とする",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SELL-01A",
+        "WT-AC-SELL-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SELL-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SELL-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-03",
+        "WT-FRL1-13",
+        "WT-SCR-05",
+        "WT-CAND-SELL"
+      ],
+      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出し、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。本文中の手組み比較表とは別語彙とする",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SELL-02A",
+        "WT-AC-SELL-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SELL-02"
+      ]
+    },
+    {
+      "id": "WT-FR-SELL-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-13",
+        "WT-TRL1-07",
+        "WT-SCR-08",
+        "WT-SCR-10",
+        "WT-CAND-SELL"
+      ],
+      "statement": "管理画面（WT-UI-10）に商品一覧・編集を置き、AI を介さず価格・リンクを直せる。MCP 常用パックに商品の追加・更新・記事への差し込みを載せ、商品リンクのクリック計測を WT-FR-LP-02 の計測経路へ流す。購入完了の計測は外部側責務とする",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SELL-03A",
+        "WT-AC-SELL-03B"
+      ],
+      "test_ids": [
+        "WT-AT-SELL-03"
+      ]
+    },
+    {
+      "id": "WT-FR-SEO-04",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-09",
+        "WT-SCR-05",
+        "WT-SCR-06",
+        "WT-SCR-07",
+        "WT-CAND-SEO"
+      ],
+      "statement": "SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティと対象外になった型を出さないこと）、検索の基本（title / meta / canonical / robots / sitemap / hreflang）、ページエクスペリエンス（Core Web Vitals、モバイル）、リンク rel 属性を準拠項目として機械検査できる。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-02）",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SEO-04A",
+        "WT-AC-SEO-04B"
+      ],
+      "test_ids": [
+        "WT-AT-SEO-04"
+      ]
+    },
+    {
+      "id": "WT-NFR-SEO-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-14",
+        "WT-SCR-07",
+        "WT-CAND-SEO"
+      ],
+      "statement": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane を持ち、必須プロパティ欠落と非推奨型を赤として扱う。Google 公式ドキュメントの改定時は出典 URL と参照日を更新して差分を追う。出典: https://search.google.com/test/rich-results（参照日: 2026-09-02）",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-SEO-01A",
+        "WT-AC-NFR-SEO-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SEO-NFR-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SEO-05",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-09",
+        "WT-FRL1-03",
+        "WT-SCR-05",
+        "WT-CAND-SEO"
+      ],
+      "statement": "アフィリエイトリンクと商品 CTA へ rel=\"sponsored\" を機械付与し、リンクの種類に応じた rel 属性を同じ出力経路で保つ。出典: https://developers.google.com/search/docs/crawling-indexing/links-crawlable（参照日: 2026-09-02）",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SEO-05A",
+        "WT-AC-SEO-05B"
+      ],
+      "test_ids": [
+        "WT-AT-SEO-05"
+      ]
+    },
+    {
+      "id": "WT-FR-CRAWL-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-14",
+        "WT-TRL1-07",
+        "WT-SCR-11",
+        "WT-CAND-CRAWL"
+      ],
+      "statement": "プラグイン側で UA と逆引き / 公開 IP レンジ照合により検索エンジン系・AI 系クローラーを識別し、URL・時刻・ステータス・応答時間・ページ種別を専用テーブルへ記録する。bot 判定外（人の閲覧）は記録せず捨てる。取れるのは WP が応答したリクエストだけである",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-11"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CRAWL-01A",
+        "WT-AC-CRAWL-01B"
+      ],
+      "test_ids": [
+        "WT-AT-CRAWL-01"
+      ]
+    },
+    {
+      "id": "WT-FR-CRAWL-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-14",
+        "WT-SCR-11",
+        "WT-CAND-CRAWL"
+      ],
+      "statement": "管理画面 WT-UI-11 にクローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無を表示する",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-11"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CRAWL-02A",
+        "WT-AC-CRAWL-02B"
+      ],
+      "test_ids": [
+        "WT-AT-CRAWL-02"
+      ]
+    },
+    {
+      "id": "WT-FR-CRAWL-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-14",
+        "WT-TRL1-07",
+        "WT-SCR-08",
+        "WT-SCR-11",
+        "WT-CAND-CRAWL"
+      ],
+      "statement": "robots.txt と AI クローラーの許可 / 拒否を WT-UI-11 から設定し、設定 JSON へ保存する。同じデータを MCP 常用パックと REST から取得できる。判定・順位計測・Search Console 連携は HELIX 側（テーマ外）とする",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-11"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CRAWL-03A",
+        "WT-AC-CRAWL-03B"
+      ],
+      "test_ids": [
+        "WT-AT-CRAWL-03"
+      ]
+    },
+    {
+      "id": "WT-NFR-CRAWL-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-15",
+        "WT-TRL1-07",
+        "WT-SCR-11",
+        "WT-CAND-CRAWL"
+      ],
+      "statement": "クロールログの保持期間と間引きは既定 90 日とし、bot 判定外の個人閲覧を記録しない。対象は WP が応答したリクエストだけで、キャッシュ / CDN 応答は見えない限界をダッシュボードと運用文書に明記する。Search Console 突合と順位計測はテーマ外とする",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-11"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-CRAWL-01A",
+        "WT-AC-NFR-CRAWL-01B"
+      ],
+      "test_ids": [
+        "WT-AT-CRAWL-NFR-01"
+      ]
     }
   ]
 }

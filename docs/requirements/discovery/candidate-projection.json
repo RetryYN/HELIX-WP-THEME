@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0045",
-  "event_count": 45,
+  "event_head": "WT-EVT-0054",
+  "event_count": 54,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -175,12 +175,47 @@
         "WT-EVT-0013",
         "WT-EVT-0016",
         "WT-EVT-0017",
-        "WT-EVT-0032"
+        "WT-EVT-0032",
+        "WT-EVT-0049",
+        "WT-EVT-0050",
+        "WT-EVT-0051"
       ],
       "requirement_ids": [
         "WT-FR-SEO-01",
         "WT-FR-SEO-02",
-        "WT-FR-SEO-03"
+        "WT-FR-SEO-03",
+        "WT-FR-SEO-04",
+        "WT-NFR-SEO-01",
+        "WT-FR-SEO-05"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-SELL",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0046",
+        "WT-EVT-0047",
+        "WT-EVT-0048"
+      ],
+      "requirement_ids": [
+        "WT-FR-SELL-01",
+        "WT-FR-SELL-02",
+        "WT-FR-SELL-03"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-CRAWL",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0052",
+        "WT-EVT-0053",
+        "WT-EVT-0054"
+      ],
+      "requirement_ids": [
+        "WT-FR-CRAWL-01",
+        "WT-FR-CRAWL-02",
+        "WT-FR-CRAWL-03",
+        "WT-NFR-CRAWL-01"
       ]
     },
     {
@@ -279,7 +314,10 @@
     "WT-Q-INTAKE-01",
     "WT-Q-ADMIN-01",
     "WT-Q-SECTION-01",
-    "WT-Q-PLUGIN-01"
+    "WT-Q-PLUGIN-01",
+    "WT-Q-SELL-01",
+    "WT-Q-SEO-04",
+    "WT-Q-CRAWL-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -299,7 +337,10 @@
     "WT-Q-INTAKE-01",
     "WT-Q-ADMIN-01",
     "WT-Q-SECTION-01",
-    "WT-Q-PLUGIN-01"
+    "WT-Q-PLUGIN-01",
+    "WT-Q-SELL-01",
+    "WT-Q-SEO-04",
+    "WT-Q-CRAWL-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"

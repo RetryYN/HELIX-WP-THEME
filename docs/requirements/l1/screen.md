@@ -20,6 +20,7 @@ authority: docs/requirements/authority.md
 | WT-SCR-08 | エージェント制御面（REST / MCP manifest） | 面・部品・値・変種を JSON だけで列挙・選択・適用できるか | manifest 取得 / dry-run / apply / rollback |
 | WT-SCR-09 | 実証記録台帳 | 1 行から証跡と参照元 commit へ辿れるか | 台帳追記 / 検証 |
 | WT-SCR-10 | テーマ設定画面（WP 管理画面）| サイト全体の既定を AI を介さず管理画面から設定でき、同じ正本を AI も読めるか | 設定 JSON の編集 / export / import |
+| WT-SCR-11 | クローラーダッシュボード（WP 管理画面） | クローラー別の来訪推移・古い URL・404 / 5xx・新規記事の初回捕捉時間・AI クローラーの llms.txt / crawl-map 来訪を確認し、robots.txt と AI クローラーの許可 / 拒否を設定できるか | ダッシュボード確認 / robots.txt・AI クローラー設定 |
 
 編集面は WP Site Editor / Block Editor の既存 UI を面として扱う。サイト全体の既定はテーマ設定画面（WT-SCR-10）で人が直接設定でき、正本は schema 付きの設定 JSON 1 本で AI と共有する（PO 2026-09-02）。
 ゲートレポート・エージェント制御面・実証記録台帳は画面ではなく CLI / REST / JSON 文書だが、運用者と AI の判断面として screen 要求に含める。

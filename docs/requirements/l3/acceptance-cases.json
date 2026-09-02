@@ -113,13 +113,13 @@
       "id": "WT-AC-VOCAB-01A",
       "requirement_id": "WT-FR-VOCAB-01",
       "polarity": "positive",
-      "oracle": "14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種が描画される"
+      "oracle": "14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画され、新規ブロックは 7 つに限定される"
     },
     {
       "id": "WT-AC-VOCAB-01B",
       "requirement_id": "WT-FR-VOCAB-01",
       "polarity": "negative",
-      "oracle": "受け皿のない語彙、または 4 つ目の新規ブロックがあれば FAIL"
+      "oracle": "受け皿のない語彙、比較専用テーブルを本文中の手組み比較表と同じ語彙で扱うこと、または 8 つ目の新規ブロックがあれば FAIL"
     },
     {
       "id": "WT-AC-VOCAB-02A",
@@ -137,7 +137,7 @@
       "id": "WT-AC-VOCAB-03A",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "positive",
-      "oracle": "広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる"
+      "oracle": "広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる"
     },
     {
       "id": "WT-AC-VOCAB-03B",
@@ -341,37 +341,37 @@
       "id": "WT-AC-SEO-01A",
       "requirement_id": "WT-FR-SEO-01",
       "polarity": "positive",
-      "oracle": "一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出る"
+      "oracle": "一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出て、型ごとの必須プロパティが揃い、Google 検索セントラルの出典 URL と参照日が記録される"
     },
     {
       "id": "WT-AC-SEO-01B",
       "requirement_id": "WT-FR-SEO-01",
       "polarity": "negative",
-      "oracle": "同型の二重出力や @type 空のスクリプトがあれば FAIL"
+      "oracle": "同型の二重出力、@type 空のスクリプト、必須プロパティ欠落、または対象外になった型・非推奨型の出力があれば FAIL"
     },
     {
       "id": "WT-AC-SEO-02A",
       "requirement_id": "WT-FR-SEO-02",
       "polarity": "positive",
-      "oracle": "FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致する"
+      "oracle": "FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致し、型の必須プロパティが揃い、非推奨型を出さない"
     },
     {
       "id": "WT-AC-SEO-02B",
       "requirement_id": "WT-FR-SEO-02",
       "polarity": "negative",
-      "oracle": "本文に無い項目が JSON-LD に出れば FAIL"
+      "oracle": "本文に無い項目、必須プロパティ欠落、または非推奨型が JSON-LD に出れば FAIL"
     },
     {
       "id": "WT-AC-SEO-03A",
       "requirement_id": "WT-FR-SEO-03",
       "polarity": "positive",
-      "oracle": "12 種別すべてで canonical・description・OGP が出て、AI 向け出力の digest が HTML と整合する"
+      "oracle": "12 種別すべてで title / meta description / canonical / robots / sitemap / hreflang・OGP が出て、Core Web Vitals とモバイルの確認対象を含み、AI 向け出力の digest が HTML と整合する"
     },
     {
       "id": "WT-AC-SEO-03B",
       "requirement_id": "WT-FR-SEO-03",
       "polarity": "negative",
-      "oracle": "front / archive / search で欠落すれば FAIL"
+      "oracle": "front / archive / search で欠落、必須プロパティ不備、または非推奨型が出れば FAIL"
     },
     {
       "id": "WT-AC-INTAKE-01A",
@@ -612,6 +612,126 @@
       "requirement_id": "WT-TR-PLUGIN-02",
       "polarity": "negative",
       "oracle": "いずれかの領域で同型の出力が 2 本出る、設定で切り替えられない、または本体に移行コード・移行プラグイン・互換固有名が入れば FAIL"
+    },
+    {
+      "id": "WT-AC-SELL-01A",
+      "requirement_id": "WT-FR-SELL-01",
+      "polarity": "positive",
+      "oracle": "商品名・価格・特徴・評価・画像・アフィリエイト / 外部ストア / 自社 EC URL が 1 つの商品正本に保存され、複数記事から同じ値を参照して一括反映できる"
+    },
+    {
+      "id": "WT-AC-SELL-01B",
+      "requirement_id": "WT-FR-SELL-01",
+      "polarity": "negative",
+      "oracle": "記事ごとの手入力が正本になった、商品リンク先が正本外に散った、または決済・カート・会員をテーマが持てば FAIL"
+    },
+    {
+      "id": "WT-AC-SELL-02A",
+      "requirement_id": "WT-FR-SELL-02",
+      "polarity": "positive",
+      "oracle": "同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、Product / Offer / AggregateRating / ItemList 構造化データを出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化する"
+    },
+    {
+      "id": "WT-AC-SELL-02B",
+      "requirement_id": "WT-FR-SELL-02",
+      "polarity": "negative",
+      "oracle": "販売系 4 つのいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、または表示値と構造化データが不一致なら FAIL"
+    },
+    {
+      "id": "WT-AC-SELL-03A",
+      "requirement_id": "WT-FR-SELL-03",
+      "polarity": "positive",
+      "oracle": "管理画面の ProductCatalogTable で AI を介さず価格・リンクを編集でき、MCP 常用パックから商品を追加・更新・記事へ差し込みでき、商品 CTA クリックが WT-FR-LP-02 の計測経路へ流れる"
+    },
+    {
+      "id": "WT-AC-SELL-03B",
+      "requirement_id": "WT-FR-SELL-03",
+      "polarity": "negative",
+      "oracle": "商品編集に AI が必須、管理画面・MCP・公開面で商品正本が不一致、クリック計測が別経路、または購入完了をテーマが計測すれば FAIL"
+    },
+    {
+      "id": "WT-AC-SEO-04A",
+      "requirement_id": "WT-FR-SEO-04",
+      "polarity": "positive",
+      "oracle": "各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-02 の参照日が紐づき、構造化データの必須プロパティ・検索の基本・ページエクスペリエンス・rel 属性の準拠項目が列挙される"
+    },
+    {
+      "id": "WT-AC-SEO-04B",
+      "requirement_id": "WT-FR-SEO-04",
+      "polarity": "negative",
+      "oracle": "出典 URL / 参照日がない、公式仕様と要求の対応が追えない、または対象外になった型・非推奨型を要求する記述が残れば FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-SEO-01A",
+      "requirement_id": "WT-NFR-SEO-01",
+      "polarity": "positive",
+      "oracle": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane が走り、違反を赤にして、公式改定時に出典と参照日を更新できる"
+    },
+    {
+      "id": "WT-AC-NFR-SEO-01B",
+      "requirement_id": "WT-NFR-SEO-01",
+      "polarity": "negative",
+      "oracle": "test lane がない、違反を WARN のまま通す、必須プロパティ欠落を見逃す、または改定後の出典が古いままなら FAIL"
+    },
+    {
+      "id": "WT-AC-SEO-05A",
+      "requirement_id": "WT-FR-SEO-05",
+      "polarity": "positive",
+      "oracle": "アフィリエイトリンクと商品 CTA のリンクへ rel=\"sponsored\" が機械付与され、他のリンク属性と併存する"
+    },
+    {
+      "id": "WT-AC-SEO-05B",
+      "requirement_id": "WT-FR-SEO-05",
+      "polarity": "negative",
+      "oracle": "対象リンクに rel=\"sponsored\" がない、または対象外の通常リンクへ一律付与されれば FAIL"
+    },
+    {
+      "id": "WT-AC-CRAWL-01A",
+      "requirement_id": "WT-FR-CRAWL-01",
+      "polarity": "positive",
+      "oracle": "UA と逆引き / 公開 IP レンジ照合で検索エンジン系・AI 系クローラーを識別し、WP が応答した URL・時刻・ステータス・応答時間・ページ種別だけを専用ログへ保存する。bot 判定外の人の閲覧は保存しない"
+    },
+    {
+      "id": "WT-AC-CRAWL-01B",
+      "requirement_id": "WT-FR-CRAWL-01",
+      "polarity": "negative",
+      "oracle": "bot 判定根拠のない記録、人の閲覧の記録、またはキャッシュ / CDN 応答を WP 応答として記録すれば FAIL"
+    },
+    {
+      "id": "WT-AC-CRAWL-02A",
+      "requirement_id": "WT-FR-CRAWL-02",
+      "polarity": "positive",
+      "oracle": "クローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無が WT-UI-11 に表示される"
+    },
+    {
+      "id": "WT-AC-CRAWL-02B",
+      "requirement_id": "WT-FR-CRAWL-02",
+      "polarity": "negative",
+      "oracle": "指標のいずれかが表示されない、URL・時刻・ステータス・応答時間・ページ種別で確認できない、または人の閲覧を混ぜれば FAIL"
+    },
+    {
+      "id": "WT-AC-CRAWL-03A",
+      "requirement_id": "WT-FR-CRAWL-03",
+      "polarity": "positive",
+      "oracle": "WT-UI-11 から robots.txt と AI クローラーの許可 / 拒否を設定し、設定 JSON に保存した同じ値を MCP 常用パックと REST から取得できる"
+    },
+    {
+      "id": "WT-AC-CRAWL-03B",
+      "requirement_id": "WT-FR-CRAWL-03",
+      "polarity": "negative",
+      "oracle": "画面と設定 JSON / MCP / REST の値が不一致、判定・順位計測・Search Console 突合をテーマ側で実行、または許可 / 拒否が保存されなければ FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-CRAWL-01A",
+      "requirement_id": "WT-NFR-CRAWL-01",
+      "polarity": "positive",
+      "oracle": "クロールログが既定 90 日で保持・間引きされ、bot 判定外の人の閲覧を記録せず、WP 応答分だけを対象とし、キャッシュ / CDN 応答が見えない限界を表示する"
+    },
+    {
+      "id": "WT-AC-NFR-CRAWL-01B",
+      "requirement_id": "WT-NFR-CRAWL-01",
+      "polarity": "negative",
+      "oracle": "90 日を超えて無制限保持、個人閲覧の記録、WP が応答していないリクエストの記録、またはキャッシュ / CDN の観測を保証すれば FAIL"
     }
   ]
 }
