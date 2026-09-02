@@ -24,3 +24,4 @@ HELIX V-model reader へ L1 screen projection の pair を接続する非正本 
 | PM-07 | WT-UI-07 | 静的 FAIL=0 と実機 invalid=0 の同一 HEAD 束縛率を WT-OT-05 の前提として記録する |
 | PM-08 | WT-UI-08 | manifest 列挙率と manifest 外指定の拒否率を WT-OT-01 / 03 へ接続する |
 | PM-09 | WT-UI-09 | 実証記録の証跡付き率と他リポ参照 0 を WT-OT-04 へ接続する |
+| PM-10 | WT-UI-10 | 設定 JSON の schema 検証違反件数と manifest との不一致 0 を WT-OT-01 へ接続する |

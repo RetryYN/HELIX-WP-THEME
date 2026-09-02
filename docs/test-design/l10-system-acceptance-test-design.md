@@ -9,6 +9,8 @@
 | WT-AT-CORE-02 | WT-TR-CORE-02 | health の出力がテーマの登録内容と一致する | 登録内容と health の差分が 1 件でもあれば FAIL | health JSON |
 | WT-AT-CORE-03 | WT-TR-CORE-03 | 静的検出で AI SDK import・判定ロジックが 0 | 検出 1 件で FAIL | static analysis |
 | WT-AT-GATE-01 | WT-NFR-GATE-01 | PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される | 静的 PASS のみで merge された変更が実機 invalid を生めば FAIL | gate JSON |
+| WT-AT-TR-PLUGIN-01 | WT-TR-PLUGIN-01 | テーマ切替後もデータと API が残り、プラグイン無効でも表示は崩れない | テーマ切替でデータ消失、プラグインに表示 / 判定、プラグイン無効で公開面破損なら FAIL | theme-switch fixture + static analysis |
+| WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域それぞれで第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、移行機能は移行プラグイン無効で消える | いずれかの領域で同型出力 2 本、切替不可、または本体に移行コード・互換固有名なら FAIL | plugin matrix（7 領域）+ JSON-LD extract |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない | 空 slot が空要素や領域見出しを出せば FAIL | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
 | WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
@@ -18,10 +20,13 @@
 | WT-AT-VOCAB-02 | WT-FR-VOCAB-02 | h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する | 目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL | render fixture + Playwright |
 | WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL | Playwright + fixture |
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
+| WT-AT-SECTION-01 | WT-FR-SECTION-01 | H2 / H3 が混在する記事で階層 section と親子 ID が中間 JSON に出て、見出し文言を変えても ID が変わらない | 見出し変更で ID がずれる、H4 が区間になる、または H3 の無い H2 区間で境界が壊れれば FAIL | extractor fixture |
+| WT-AT-SECTION-02 | WT-FR-SECTION-02 | H3 区間だけのリライトで diff が区間に閉じ rollback で戻る。順序入れ替え・折りたたみ・非表示・目次出し分けがエディタと MCP で同結果。区間規則が全記事に入り投稿単位で上書き可。区間の到達・滞在イベントが記録される | 区間外が書き換わる、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL | REST receipt + Playwright + tracking receipt |
 | WT-AT-LOOK-01 | WT-FR-LOOK-01 | 見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される | 生値や !important で実現された装飾があれば FAIL | G-T3 + style list |
 | WT-AT-LOOK-02 | WT-FR-LOOK-02 | 写像した variation がスラッグ集合を変えず G-T1b PASS | 段の増減や新スラッグを伴う variation があれば FAIL | G-T1b JSON |
 | WT-AT-LOOK-03 | WT-FR-LOOK-03 | サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS | 調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL | survey inventory + gate JSON |
 | WT-AT-META-01 | WT-FR-META-01 | メタを OFF にした記事だけで該当パーツが消え、REST から同じキーを読み書きできる | 未登録メタや option で表示が変わる経路があれば FAIL | REST + Playwright |
+| WT-AT-ADMIN-01 | WT-FR-ADMIN-01 | 管理画面だけで各既定を変更・保存でき、保存値が schema 検証を通り、manifest と MCP パックから同じ値が読め、export → import で同一 digest に戻る | schema 外の値が保存できる、設定画面と manifest の値が食い違う、または設定 JSON 以外の option に状態が散れば FAIL | Playwright + schema test + manifest parity |
 | WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
 | WT-AT-LP-02 | WT-FR-LP-02 | LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる | 計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL | tracking receipt + Playwright |
 | WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる | フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL | schema test + mapping receipt |

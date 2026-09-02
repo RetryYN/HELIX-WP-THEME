@@ -11,5 +11,6 @@
 | WT-UAT-07 | WT-UI-07 | ゲート FAIL から原因ファイルへ 1 手で辿れる | candidate |
 | WT-UAT-08 | WT-UI-08 | manifest だけでエージェントが構造・スタイル・値を選べる | WT-Q-AGENT-01 / 02 採否後 |
 | WT-UAT-09 | WT-UI-09 | 台帳 1 行から証跡と参照元 commit へ辿れる | candidate |
+| WT-UAT-10 | WT-UI-10 | 管理画面だけでサイト全体の既定を設定でき、AI が同じ値を読む | candidate |
 
 スクリーンショットだけを合意とみなさず、PO の reaction、accepted / rejected、対象 revision、日時を discovery event へ追記する。

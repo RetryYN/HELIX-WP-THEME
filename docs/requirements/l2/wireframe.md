@@ -8,6 +8,10 @@
 │ 余白 [preset ▼]  ValueZoneBadge: 安全域 / 生値 / 破壊域  │
 │ 破壊域: DestructiveStop（規則・値・境界）  [保存 不可]   │
 │ PerPostToggles: sidebar ☑ toc ☑ share ☑ pr ☑            │
+├─ 管理画面: テーマ設定 ────────────────────────────────┤
+│ 目次 [配置▼][種別別表示☑]  PR表記 [デザイン▼][表示制御]  │
+│ slot/ゾーン割当  SP下部積層  LP種別既定  MCPパック構成    │
+│ [export] [import]  正本 = 設定 JSON（schema 検証）        │
 ├─ REST / MCP: 制御面 ────────────────────────────────────┤
 │ GET capabilities → {slots, patterns, parts, variations, │
 │   template_variants, scales, hooks}                     │

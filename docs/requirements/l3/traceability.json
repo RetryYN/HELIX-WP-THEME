@@ -873,6 +873,112 @@
       "tests": [
         "WT-AT-AGENT-06"
       ]
+    },
+    {
+      "l1": "WT-FRL1-11",
+      "l2": "WT-CAND-ADMIN",
+      "l3": [
+        "WT-FR-ADMIN-01"
+      ],
+      "tests": [
+        "WT-AT-ADMIN-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-ADMIN",
+      "l3": [
+        "WT-FR-ADMIN-01"
+      ],
+      "tests": [
+        "WT-AT-ADMIN-01"
+      ]
+    },
+    {
+      "l1": "WT-BR-01",
+      "l2": "WT-CAND-ADMIN",
+      "l3": [
+        "WT-FR-ADMIN-01"
+      ],
+      "tests": [
+        "WT-AT-ADMIN-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-12",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "tests": [
+        "WT-AT-SECTION-01",
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-03",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "tests": [
+        "WT-AT-SECTION-01",
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
+      "l1": "WT-BR-03",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-01"
+      ],
+      "tests": [
+        "WT-AT-SECTION-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-01",
+      "l2": "WT-CAND-SECTION",
+      "l3": [
+        "WT-FR-SECTION-02"
+      ],
+      "tests": [
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
+      "l1": "WT-TRL1-07",
+      "l2": "WT-CAND-PLUGIN",
+      "l3": [
+        "WT-TR-PLUGIN-01",
+        "WT-TR-PLUGIN-02"
+      ],
+      "tests": [
+        "WT-AT-TR-PLUGIN-01",
+        "WT-AT-TR-PLUGIN-02"
+      ]
+    },
+    {
+      "l1": "WT-BR-01",
+      "l2": "WT-CAND-PLUGIN",
+      "l3": [
+        "WT-TR-PLUGIN-01"
+      ],
+      "tests": [
+        "WT-AT-TR-PLUGIN-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-PLUGIN",
+      "l3": [
+        "WT-TR-PLUGIN-02"
+      ],
+      "tests": [
+        "WT-AT-TR-PLUGIN-02"
+      ]
     }
   ]
 }

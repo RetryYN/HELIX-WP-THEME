@@ -132,6 +132,58 @@
       ]
     },
     {
+      "id": "WT-TR-PLUGIN-01",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-07",
+        "WT-BR-01",
+        "WT-CAND-PLUGIN"
+      ],
+      "statement": "【「薄い」の具体化は Claude 提案、PO 確認待ち】責務分担: テーマ = 表示（テンプレ・パターン・トークン・block style。テーマを替えると消えてよいもの）。Core プラグイン = 薄いデータ層（設定 JSON・投稿メタ・section ID・ゾーン定義・再利用パーツ・REST / MCP / CLI・tracking・実証記録。テーマを替えても残すべきもの）で、表示も判定も持たない。Embed プラグイン = 新規ブロック 3 種 + 埋め込み。判定は HELIX 側。判定基準は「テーマを切り替えたときにデータが残るべきか」。プラグインだけ有効でもデータと API は壊れず、テーマだけ有効なら素の表示になり AI 経路が無効になる",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [],
+      "acceptance_ids": [
+        "WT-AC-TR-PLUGIN-01A",
+        "WT-AC-TR-PLUGIN-01B"
+      ],
+      "test_ids": [
+        "WT-AT-TR-PLUGIN-01"
+      ],
+      "non_ui_na": true
+    },
+    {
+      "id": "WT-TR-PLUGIN-02",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-07",
+        "WT-SCR-10",
+        "WT-CAND-PLUGIN"
+      ],
+      "statement": "第三者プラグインとの共存規約: 出力が重なる領域（JSON-LD、meta / OGP、目次、サイトマップ、llms.txt、キャッシュ、フォーム）ごとに「本テーマが出す / 検出して譲る / 設定で選ぶ」を決め、テーマ設定画面で切り替えられる。既定は二重出力を起こさない側。互換の第一対象は実運用 2 サイトで稼働する種類（SEO・サイトマップ・llms.txt・フォーム・画像最適化・キャッシュ・目次）で、全プラグイン互換は非対象。フォームは LP のフォーム制御と接続する。テーマA / B からの写像（MIGRATE）と互換 meta キー注入は移行専用プラグインに分離し本体に入れない",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "MIGRATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TR-PLUGIN-02A",
+        "WT-AC-TR-PLUGIN-02B"
+      ],
+      "test_ids": [
+        "WT-AT-TR-PLUGIN-02"
+      ]
+    },
+    {
       "id": "WT-FR-ZONE-01",
       "kind": "functional",
       "status": "candidate_inventory",
@@ -371,6 +423,65 @@
       "non_ui_na": true
     },
     {
+      "id": "WT-FR-SECTION-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-12",
+        "WT-SCR-03",
+        "WT-BR-03",
+        "WT-CAND-SECTION"
+      ],
+      "statement": "見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3 区間を持つ階層とする（H4 以下は区間にしない、PO 2026-09-02）。ID は親子で安定させ（h2-id/h3-id）、見出し文言の変更でずれない。中間 JSON に section 境界と ID が出て、既存の sections API / section-registry をこの規約に合わせる",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-03",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SECTION-01A",
+        "WT-AC-SECTION-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SECTION-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SECTION-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-12",
+        "WT-FRL1-01",
+        "WT-SCR-03",
+        "WT-CAND-SECTION"
+      ],
+      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を tracking 経路へ）。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-03",
+        "WT-UI-05",
+        "WT-UI-10",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SECTION-02A",
+        "WT-AC-SECTION-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SECTION-02"
+      ]
+    },
+    {
       "id": "WT-FR-LOOK-01",
       "kind": "functional",
       "status": "candidate_inventory",
@@ -478,6 +589,35 @@
       ],
       "test_ids": [
         "WT-AT-META-01"
+      ]
+    },
+    {
+      "id": "WT-FR-ADMIN-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-11",
+        "WT-SCR-10",
+        "WT-BR-01",
+        "WT-CAND-ADMIN"
+      ],
+      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-10",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ADMIN-01A",
+        "WT-AC-ADMIN-01B"
+      ],
+      "test_ids": [
+        "WT-AT-ADMIN-01"
       ]
     },
     {
