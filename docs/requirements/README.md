@@ -1,7 +1,7 @@
 # 要求
 
 正本入口は [`authority.md`](./authority.md)。L1 の 5 sub-doc、L2 discovery / prototype、L3 precompile inventory、
-L10〜L12 test design を分離している。旧 AGENT NEO 時代の要求は [`docs/legacy/`](../legacy/) に情報源として残すが、単独で freeze を表さない。
+L10〜L12 test design を分離している。旧 AGENT NEO 時代の要求・設計書は PO 判断（2026-09-02）で削除済み（git 履歴 2904aea 以前）。継承した点は `l1/functional.md` 末尾と `authority.md` に記す。
 
 ```bash
 npm run requirements:validate        # 正本の不変条件

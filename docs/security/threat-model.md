@@ -4,9 +4,9 @@
 - 作成日: 2026-06-14
 - 版: G2版（脅威モデル完全記述）
 - 参照資料:
-  - `docs/legacy/design/L2-design.md`（§2.1, §8.6, §8.7, §8.8, §8.11, §9）
-  - `docs/legacy/requirements/L1-requirements.md`（REQ-F-003, REQ-F-010, REQ-F-020, REQ-F-042, REQ-NF-004, REQ-NF-025）
-  - `docs/legacy/design/data-model-ids.md`
+  - 旧 L2-design.md（削除済み）（§2.1, §8.6, §8.7, §8.8, §8.11, §9）
+  - 旧 L1-requirements.md（削除済み。現行は `docs/requirements/authority.md`）（REQ-F-003, REQ-F-010, REQ-F-020, REQ-F-042, REQ-NF-004, REQ-NF-025）
+  - 旧 data-model-ids.md（削除済み）
 
 ## 1. 目的
 

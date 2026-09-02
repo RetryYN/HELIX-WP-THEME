@@ -1,7 +1,7 @@
 /**
  * TC-067: iframe sandbox 隔離 / XSS 封じ込め
  *
- * テスト設計SSOT: docs/legacy/test-plan/L3-test-plan.md TC-067 (P0)
+ * テスト設計SSOT: 旧 L3-test-plan.md（削除済み、TC 番号は履歴 ID） TC-067 (P0)
  * 実装根拠:      plugins/agent-neo-embed/src/embed/render.php (mode=interactive)
  *                → sandbox="allow-scripts" のみを出力（allow-same-origin / top-navigation* なし）
  * PoC実測済:     poc/embed-isolation/RESULTS.md (VERDICT: PASS / 2026-06-20)

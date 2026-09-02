@@ -136,9 +136,9 @@ Codex と Claude Code は API 直叩きではなく、契約プラン + ロー�
 - **検証駆動開発（VDD）**: 検証完了 = 機能確定。未検証は「実装済み」と見なさない。
 - **事前調査強化**: 実装前に Web 検索・先行事例・公式ドキュメント調査を必ず実施。
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に必ず以下 4 点を整合性チェック:
-  1. **(a) 要求**: `docs/requirements/authority.md`（L1 5 sub-doc → L2 discovery → L3 IR。旧 L1 / L2 設計は `docs/legacy/` で参照のみ）
+  1. **(a) 要求**: `docs/requirements/authority.md`（L1 5 sub-doc → L2 discovery → L3 IR。旧 L1 / L2 設計は削除済み）
   2. **(b) 既存実装**: `theme/` / `plugin/` / `src/` 配下の関連ファイル
-  3. **(c) 設計ドキュメント**: `docs/design/consistency-responsibilities.md` / `token-structure.md` / `parts-catalog.md` + `docs/adr/`（旧 L2〜L5 設計は `docs/legacy/design/` で参照のみ）
+  3. **(c) 設計ドキュメント**: `docs/design/consistency-responsibilities.md` / `token-structure.md` / `parts-catalog.md` + `docs/adr/`（旧 L2〜L5 設計は削除済み）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（同概念 OSS FSE テーマ）+ テックブログ
 - **REQ-NF-025 遵守**: テーマ・プラグインに AI ロジックを持ち込まない（上記参照）。
 - **デッドコード掃除**: フェーズ移行時は移行先実装着手前に旧スタブ・未登録ブロック定義を削除。

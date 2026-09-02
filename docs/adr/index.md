@@ -1,5 +1,8 @@
 # ADR Index
 
+> **ADR の現行拘束（2026-09-02）**: ADR-001〜030 は旧 AGENT NEO 時代の判断記録。現行の拘束は `docs/requirements/authority.md` 経由で継承したものに限る
+> （継承: ADR-024 単体販売廃止・外部 AI write 不可。再検討: ADR-028、WT-Q-ADR-01）。旧 L0〜L5 文書・test-plan・features は削除済み（git 履歴のみ）。
+
 | # | Title | Status | Date |
 |---|-------|--------|------|
 | ADR-001 | ADR-001: FSEテーマとして実装 | — | 2026-06-14 |
