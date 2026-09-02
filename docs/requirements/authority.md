@@ -14,7 +14,7 @@
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
 | L1 | `docs/requirements/l1/` の 5 sub-doc | confirmed input（PO 指示 2026-09-02 による再整理） | G0.5 判断（WT-Q-STRUCT-01/02、WT-Q-VALUE-01）と G1 content/pair/trace の PO 承認 |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 未決 12 件の解消、prototype reaction、PO agreement |
+| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 未決 14 件（WT-Q-*、`candidate-projection.json` の `unresolved` と同数）の解消、prototype reaction、PO agreement |
 | L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory | L2 agreement 後の compile、L10 oracle との pair、G3 PO/TL 承認 |
 
 ## 入力資産と扱い
