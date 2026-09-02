@@ -30,7 +30,7 @@
 | WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
 | WT-AT-LP-02 | WT-FR-LP-02 | LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる | 計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL | tracking receipt + Playwright |
 | WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが schema 付きで公開され、ハーネスがそれだけを読んでサンプル control を 4 分類または理由付き写像不能に落とせる | テーマ側に変換器・移行 UI・移行プラグインがある、またはフォーマット外の写像が要れば FAIL | schema test + harness mapping receipt |
-| WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | 代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る | 変換で invalid が出る、または写像不能が黙って落ちれば FAIL | conversion receipt |
+| WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | フォーマットの写像規則で代表 6 領域の変換結果が invalid=0 になり、独自ウィジェット・写像不能候補が理由付きで列挙されている | 写像不能が黙って落ちる、または変換結果が invalid を出せば FAIL | conversion receipt（ハーネス側）+ format schema test |
 | WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い | 見た目キーの機械移送や固有名の混入があれば FAIL | public-safety check |
 | WT-AT-AGENT-01 | WT-FR-AGENT-01 | 設定で定義した常用パックが MCP の ability として列挙され、1 回の呼び出しで manifest 上の作業単位が dry-run 差分付きで完結し、apply 結果が dry-run と一致する | manifest 外の指定が通る、apply が dry-run と異なる、または REST と MCP で語彙や結果が食い違えば FAIL | MCP receipt + REST parity |
 | WT-AT-AGENT-02 | WT-FR-AGENT-02 | 同じ本文から同じ JSON が出て、循環参照で停止する | enqueue 等の副作用や無限ループがあれば FAIL | extractor fixture |
