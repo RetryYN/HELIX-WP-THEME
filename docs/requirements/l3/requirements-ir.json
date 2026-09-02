@@ -1,8 +1,9 @@
 {
   "schema_version": "wt-requirement-ir.v1",
-  "initiative_id": "WT-STRUCTURE-FREEDOM",
+  "initiative_id": "WT-AGENT-VARIETY",
   "authority": "non_canonical_precompile_inventory",
   "source_authority": {
+    "l0": "docs/planning/L0-agent-controlled-variety.md",
     "l1": "docs/requirements/l1/",
     "l2_events": "docs/requirements/discovery/events.jsonl",
     "l2_projection": "docs/requirements/discovery/candidate-projection.json",
@@ -25,230 +26,109 @@
   ],
   "requirements": [
     {
-      "id": "WT-FR-STRUCT-01",
-      "kind": "functional",
-      "status": "human_decision_required",
-      "source_ids": [
-        "WT-FRL1-01",
-        "WT-SCR-01",
-        "WT-SCR-03",
-        "WT-CAND-STRUCT"
-      ],
-      "statement": "編集者はパターン差し替え・ブロック編集・テンプレート変種で構造を変更でき、既定構成は固定ではなく初期値として提供される",
-      "priority": "P0",
-      "actor_ids": [
-        "EDITOR",
-        "AI_AGENT"
-      ],
-      "surface_ids": [
-        "WT-UI-01",
-        "WT-UI-03"
-      ],
-      "acceptance_ids": [
-        "WT-AC-STRUCT-01A",
-        "WT-AC-STRUCT-01B"
-      ],
-      "test_ids": [
-        "WT-AT-STRUCT-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-STRUCT-01"
-      ]
-    },
-    {
-      "id": "WT-FR-STRUCT-02",
-      "kind": "functional",
-      "status": "human_decision_required",
-      "source_ids": [
-        "WT-FRL1-01",
-        "WT-FRL1-05",
-        "WT-CAND-STRUCT"
-      ],
-      "statement": "AI 経路の Slot Blueprint（編集領域の宣言）は維持し、人の GUI 編集への適用範囲は決定に従う",
-      "priority": "P1",
-      "actor_ids": [
-        "AI_AGENT",
-        "EDITOR"
-      ],
-      "surface_ids": [],
-      "acceptance_ids": [
-        "WT-AC-STRUCT-02A",
-        "WT-AC-STRUCT-02B"
-      ],
-      "test_ids": [
-        "WT-AT-STRUCT-02"
-      ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-STRUCT-02"
-      ]
-    },
-    {
-      "id": "WT-FR-STRUCT-03",
-      "kind": "functional",
-      "status": "human_decision_required",
-      "source_ids": [
-        "WT-FRL1-01",
-        "WT-SCR-06",
-        "WT-CAND-STRUCT"
-      ],
-      "statement": "LP 機構（D-03）を持つ。方式（CPT / page template + lp パターン）は WT-Q-STRUCT-03 で PO が決め、現状は page template + lp パターン 12 本で代替している事実だけを記録する",
-      "priority": "P1",
-      "actor_ids": [
-        "EDITOR",
-        "MIGRATOR"
-      ],
-      "surface_ids": [
-        "WT-UI-06"
-      ],
-      "acceptance_ids": [
-        "WT-AC-STRUCT-03A",
-        "WT-AC-STRUCT-03B"
-      ],
-      "test_ids": [
-        "WT-AT-STRUCT-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-STRUCT-03"
-      ]
-    },
-    {
-      "id": "WT-FR-VALUE-01",
-      "kind": "functional",
-      "status": "human_decision_required",
-      "source_ids": [
-        "WT-FRL1-02",
-        "WT-SCR-04",
-        "WT-CAND-VALUE"
-      ],
-      "statement": "値の変更は安全域（プリセット・尺度内）は自由、生値は警告、破壊域は保存前に停止の 3 段で判定される",
-      "priority": "P0",
-      "actor_ids": [
-        "EDITOR",
-        "AI_AGENT",
-        "GATE"
-      ],
-      "surface_ids": [
-        "WT-UI-04"
-      ],
-      "acceptance_ids": [
-        "WT-AC-VALUE-01A",
-        "WT-AC-VALUE-01B"
-      ],
-      "test_ids": [
-        "WT-AT-VALUE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-VALUE-01"
-      ]
-    },
-    {
-      "id": "WT-FR-VALUE-02",
-      "kind": "functional",
-      "status": "human_decision_required",
-      "source_ids": [
-        "WT-FRL1-02",
-        "WT-NFRL1-02",
-        "WT-CAND-VALUE"
-      ],
-      "statement": "破壊域は尺度超過・コントラスト AA 未満・幅 100% 超・負の余白・vh/vw 過大・!important・位置固定+全画面高さの機械判定可能な規則として定義される",
-      "priority": "P0",
-      "actor_ids": [
-        "GATE"
-      ],
-      "surface_ids": [],
-      "acceptance_ids": [
-        "WT-AC-VALUE-02A",
-        "WT-AC-VALUE-02B"
-      ],
-      "test_ids": [
-        "WT-AT-VALUE-02"
-      ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-VALUE-01"
-      ]
-    },
-    {
-      "id": "WT-FR-STYLE-01",
-      "kind": "functional",
+      "id": "WT-TR-CORE-01",
+      "kind": "technical",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-FRL1-03",
-        "WT-SCR-02",
-        "WT-TRL1-01",
-        "WT-CAND-STYLE"
-      ],
-      "statement": "スタイルバリエーションは palette slug と尺度プリセットの参照で派生し、層 1 の尺度（フォント・余白・幅）を所有しない",
-      "priority": "P0",
-      "actor_ids": [
-        "EDITOR",
-        "GATE"
-      ],
-      "surface_ids": [
-        "WT-UI-02"
-      ],
-      "acceptance_ids": [
-        "WT-AC-STYLE-01A",
-        "WT-AC-STYLE-01B"
-      ],
-      "test_ids": [
-        "WT-AT-STYLE-01"
-      ]
-    },
-    {
-      "id": "WT-FR-PARTS-01",
-      "kind": "functional",
-      "status": "human_decision_required",
-      "source_ids": [
-        "WT-FRL1-04",
-        "WT-SCR-03",
-        "WT-CAND-PARTS"
-      ],
-      "statement": "共有パーツ（header 10 案・footer 9 案・sidebar 8 案・post-header・post-footer）は差し替え可能で、参照整合ゲート G-S2 で存在が保証される",
-      "priority": "P0",
-      "actor_ids": [
-        "EDITOR",
-        "AI_AGENT"
-      ],
-      "surface_ids": [
-        "WT-UI-03"
-      ],
-      "acceptance_ids": [
-        "WT-AC-PARTS-01A",
-        "WT-AC-PARTS-01B"
-      ],
-      "test_ids": [
-        "WT-AT-PARTS-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-PARTS-01"
-      ]
-    },
-    {
-      "id": "WT-FR-PARTS-02",
-      "kind": "functional",
-      "status": "candidate_inventory",
-      "source_ids": [
-        "WT-FRL1-04",
+        "WT-BR-01",
         "WT-TRL1-02",
-        "WT-CAND-PARTS"
+        "WT-SCR-08",
+        "WT-CAND-CORE"
       ],
-      "statement": "記事内の再利用パーツ（D-02: テーマB の blog_parts 相当）を一元管理し、参照 ID・版・digest で記事から参照する",
-      "priority": "P1",
+      "statement": "面・部品・変種・値の尺度は theme.json / config / schema / openapi の JSON 宣言から列挙でき、PHP にしか存在する面を作らない",
+      "priority": "P0",
       "actor_ids": [
-        "EDITOR",
-        "AI_AGENT"
+        "AI_AGENT",
+        "OPERATOR"
       ],
       "surface_ids": [
-        "WT-UI-03"
+        "WT-UI-08"
       ],
       "acceptance_ids": [
-        "WT-AC-PARTS-02A",
-        "WT-AC-PARTS-02B"
+        "WT-AC-TR-CORE-01A",
+        "WT-AC-TR-CORE-01B"
       ],
       "test_ids": [
-        "WT-AT-PARTS-02"
+        "WT-AT-CORE-01"
+      ]
+    },
+    {
+      "id": "WT-TR-CORE-02",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-BR-01",
+        "WT-TRL1-02",
+        "WT-NFRL1-07",
+        "WT-CAND-CORE"
+      ],
+      "statement": "health() は起動 step と module に加え、登録済みの slot・パターン・パーツ・variation・テンプレ変種・hook を自己申告する",
+      "priority": "P0",
+      "actor_ids": [
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TR-CORE-02A",
+        "WT-AC-TR-CORE-02B"
+      ],
+      "test_ids": [
+        "WT-AT-CORE-02"
+      ]
+    },
+    {
+      "id": "WT-TR-CORE-03",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-BR-05",
+        "WT-TRL1-04",
+        "WT-CAND-CORE"
+      ],
+      "statement": "AI 判定ロジック（variant 生成・統計判定・リスクスコア・モデル呼び出し）をテーマ・プラグインに持ち込まず、boundary guard を維持する",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE"
+      ],
+      "surface_ids": [],
+      "acceptance_ids": [
+        "WT-AC-TR-CORE-03A",
+        "WT-AC-TR-CORE-03B"
+      ],
+      "test_ids": [
+        "WT-AT-CORE-03"
+      ],
+      "non_ui_na": true
+    },
+    {
+      "id": "WT-NFR-GATE-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-01",
+        "WT-NFRL1-02",
+        "WT-SCR-07",
+        "WT-TRL1-05",
+        "WT-CAND-CORE"
+      ],
+      "statement": "静的 6 ゲート（G-T1 / T1b / T2 / T3 / S1 / S2）と実機 G-E1（invalid=0）を、パターン・パーツ・テンプレ・styles を触る PR の完了条件にする",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-GATE-01A",
+        "WT-AC-NFR-GATE-01B"
+      ],
+      "test_ids": [
+        "WT-AT-GATE-01"
       ]
     },
     {
@@ -256,16 +136,17 @@
       "kind": "functional",
       "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-06",
+        "WT-FRL1-01",
         "WT-SCR-05",
         "WT-SCR-06",
+        "WT-BR-02",
         "WT-CAND-ZONE"
       ],
-      "statement": "記事内広告 / CV ゾーン（D-01）、追尾サイドバー / 固定ボトム（D-05）、ナビゲーション（D-07）、お知らせバーの受け皿をパーツまたはパターンとして持つ",
+      "statement": "共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持ち、空なら描画しない",
       "priority": "P0",
       "actor_ids": [
-        "OPERATOR",
-        "EDITOR"
+        "EDITOR",
+        "AI_AGENT"
       ],
       "surface_ids": [
         "WT-UI-05",
@@ -287,17 +168,19 @@
       "kind": "functional",
       "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-06",
+        "WT-FRL1-01",
+        "WT-TRL1-02",
+        "WT-BR-01",
         "WT-CAND-ZONE"
       ],
-      "statement": "広告ゾーンは意味 23 種の語彙で識別され、条件表示（カテゴリ・記事型・端末）の規則を JSON schema で持つ",
+      "statement": "ゾーン語彙 23 種を JSON schema で宣言し、creative は参照（ID）、overrides は first-match-wins の配列で持つ",
       "priority": "P1",
       "actor_ids": [
-        "OPERATOR",
-        "AI_AGENT"
+        "AI_AGENT",
+        "OPERATOR"
       ],
       "surface_ids": [
-        "WT-UI-05"
+        "WT-UI-08"
       ],
       "acceptance_ids": [
         "WT-AC-ZONE-02A",
@@ -313,13 +196,131 @@
     {
       "id": "WT-FR-ZONE-03",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-06",
-        "WT-SCR-05",
+        "WT-FRL1-01",
+        "WT-SCR-06",
         "WT-CAND-ZONE"
       ],
-      "statement": "目次（D-06）は配置意図ノード（既定は最初の h2 直前）として持ち、目次本体を中間 JSON の一級要素にしない",
+      "statement": "SP 下部固定領域の積層は 同意バー > メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページトップは footer 内",
+      "priority": "P2",
+      "actor_ids": [
+        "EDITOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ZONE-03A",
+        "WT-AC-ZONE-03B"
+      ],
+      "test_ids": [
+        "WT-AT-ZONE-03"
+      ],
+      "pending_resolution": [
+        "WT-Q-ZONE-01"
+      ]
+    },
+    {
+      "id": "WT-FR-PARTS-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-01",
+        "WT-BR-03",
+        "WT-CAND-PARTS"
+      ],
+      "statement": "header / footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、Site Editor と AI 経路の双方から差し替えられる",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-01",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-PARTS-01A",
+        "WT-AC-PARTS-01B"
+      ],
+      "test_ids": [
+        "WT-AT-PARTS-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-PARTS-01"
+      ]
+    },
+    {
+      "id": "WT-FR-PARTS-02",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-01",
+        "WT-NFRL1-01",
+        "WT-CAND-PARTS"
+      ],
+      "statement": "テンプレ変種（single-2col / single-1col）と footer のカラム可変を「テンプレ名」で表し、属性で幅や余白を変えない。ナビは wp_navigation を ref で参照する",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR"
+      ],
+      "surface_ids": [
+        "WT-UI-01"
+      ],
+      "acceptance_ids": [
+        "WT-AC-PARTS-02A",
+        "WT-AC-PARTS-02B"
+      ],
+      "test_ids": [
+        "WT-AT-PARTS-02"
+      ],
+      "pending_resolution": [
+        "WT-Q-PARTS-01"
+      ]
+    },
+    {
+      "id": "WT-FR-VOCAB-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-03",
+        "WT-SCR-05",
+        "WT-BR-02",
+        "WT-CAND-VOCAB"
+      ],
+      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビューの 3 つに限定する",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05"
+      ],
+      "acceptance_ids": [
+        "WT-AC-VOCAB-01A",
+        "WT-AC-VOCAB-01B"
+      ],
+      "test_ids": [
+        "WT-AT-VOCAB-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-VOCAB-01"
+      ]
+    },
+    {
+      "id": "WT-FR-VOCAB-02",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-03",
+        "WT-SCR-05",
+        "WT-CAND-VOCAB"
+      ],
+      "statement": "目次は中間 JSON の一級要素にせず、配置だけを意図ノードで持ち、実体はレンダラが h2 から導出する。既定は最初の h2 直前",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -329,179 +330,204 @@
         "WT-UI-05"
       ],
       "acceptance_ids": [
-        "WT-AC-ZONE-03A",
-        "WT-AC-ZONE-03B"
+        "WT-AC-VOCAB-02A",
+        "WT-AC-VOCAB-02B"
       ],
       "test_ids": [
-        "WT-AT-ZONE-03"
-      ]
-    },
-    {
-      "id": "WT-FR-GATE-01",
-      "kind": "functional",
-      "status": "candidate_inventory",
-      "source_ids": [
-        "WT-FRL1-07",
-        "WT-SCR-07",
-        "WT-NFRL1-04",
-        "WT-TRL1-03",
-        "WT-CAND-GATE"
-      ],
-      "statement": "静的一貫性ゲート G-T1 / T1b / T2 / T3 / S1 / S2 を 1 コマンドで実行し、FAIL / WARN と原因をレポートする",
-      "priority": "P0",
-      "actor_ids": [
-        "OPERATOR",
-        "GATE"
-      ],
-      "surface_ids": [
-        "WT-UI-07"
-      ],
-      "acceptance_ids": [
-        "WT-AC-GATE-01A",
-        "WT-AC-GATE-01B"
-      ],
-      "test_ids": [
-        "WT-AT-GATE-01"
+        "WT-AT-VOCAB-02"
       ],
       "pending_resolution": [
-        "WT-Q-GATE-01"
+        "WT-Q-VOCAB-02"
       ]
     },
     {
-      "id": "WT-FR-GATE-02",
+      "id": "WT-FR-VOCAB-03",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-07",
-        "WT-SCR-07",
-        "WT-NFRL1-03",
-        "WT-CAND-GATE"
-      ],
-      "statement": "実機ゲート G-E1（docker WP での Block validation）と G-S3（option 上書き検出）を持ち、静的検査で通っても実機で壊れる変更を止める",
-      "priority": "P0",
-      "actor_ids": [
-        "OPERATOR",
-        "GATE"
-      ],
-      "surface_ids": [
-        "WT-UI-07"
-      ],
-      "acceptance_ids": [
-        "WT-AC-GATE-02A",
-        "WT-AC-GATE-02B"
-      ],
-      "test_ids": [
-        "WT-AT-GATE-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-GATE-02"
-      ]
-    },
-    {
-      "id": "WT-NFR-GATE-01",
-      "kind": "non_functional",
-      "status": "candidate_inventory",
-      "source_ids": [
+        "WT-FRL1-03",
         "WT-NFRL1-10",
-        "WT-TRL1-03",
-        "WT-CAND-GATE"
+        "WT-SCR-05",
+        "WT-CAND-VOCAB"
       ],
-      "statement": "ゲート・写像・生成は同一入力・同一版で同一結果を返し、AI 出力を判定正本にしない",
+      "statement": "PR 表記は投稿メタの提携種別を正本にカテゴリ条件を既定として、post-header 側でタイトル直下に自動出力し、編集者が本文から消せない",
       "priority": "P0",
       "actor_ids": [
-        "GATE"
+        "EDITOR",
+        "PO"
       ],
-      "surface_ids": [],
+      "surface_ids": [
+        "WT-UI-05"
+      ],
       "acceptance_ids": [
-        "WT-AC-NFR-GATE-01A",
-        "WT-AC-NFR-GATE-01B"
+        "WT-AC-VOCAB-03A",
+        "WT-AC-VOCAB-03B"
       ],
       "test_ids": [
-        "WT-AT-NFR-GATE-01"
+        "WT-AT-VOCAB-03"
       ],
-      "non_ui_na": true
+      "pending_resolution": [
+        "WT-Q-VOCAB-03"
+      ]
     },
     {
-      "id": "WT-FR-AGENT-01",
+      "id": "WT-FR-VOCAB-04",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-05",
-        "WT-TRL1-02",
-        "WT-CAND-AGENT"
+        "WT-FRL1-03",
+        "WT-NFRL1-04",
+        "WT-CAND-VOCAB"
       ],
-      "statement": "AI エージェントは参照 ID・版・digest を持つ中間 JSON を投入し、テーマ adapter が決定論的に markup を生成する",
-      "priority": "P0",
-      "actor_ids": [
-        "AI_AGENT"
-      ],
-      "surface_ids": [],
-      "acceptance_ids": [
-        "WT-AC-AGENT-01A",
-        "WT-AC-AGENT-01B"
-      ],
-      "test_ids": [
-        "WT-AT-AGENT-01"
-      ],
-      "non_ui_na": true
-    },
-    {
-      "id": "WT-FR-AGENT-02",
-      "kind": "functional",
-      "status": "candidate_inventory",
-      "source_ids": [
-        "WT-FRL1-05",
-        "WT-TRL1-05",
-        "WT-CAND-AGENT"
-      ],
-      "statement": "装飾ブロック語彙（D-04: 囲み・ボタン・ブログカード・吹き出し・定義リスト・FAQ・ステップ等、意味 31 種）は意図ノードへ展開して既存記事を描画でき、プラグイン語彙のショートコードは不透明ノードで原文を保持する",
+      "statement": "ブログカード（内部リンク）は REST を経由せず url_to_postid() 直呼びで解決し、外部 URL は検証付き HTTP のみ",
       "priority": "P1",
       "actor_ids": [
-        "AI_AGENT"
+        "EDITOR"
       ],
       "surface_ids": [],
       "acceptance_ids": [
-        "WT-AC-AGENT-02A",
-        "WT-AC-AGENT-02B"
+        "WT-AC-VOCAB-04A",
+        "WT-AC-VOCAB-04B"
       ],
       "test_ids": [
-        "WT-AT-AGENT-02"
+        "WT-AT-VOCAB-04"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "pending_resolution": [
+        "WT-Q-VOCAB-01"
+      ]
     },
     {
-      "id": "WT-TR-AGENT-01",
-      "kind": "technical",
-      "status": "candidate_inventory",
+      "id": "WT-FR-LOOK-01",
+      "kind": "functional",
+      "status": "human_decision_required",
       "source_ids": [
-        "WT-TRL1-04",
-        "WT-CAND-AGENT"
+        "WT-FRL1-04",
+        "WT-SCR-02",
+        "WT-SCR-05",
+        "WT-BR-02",
+        "WT-CAND-LOOK"
       ],
-      "statement": "REST は独自名前空間で A 群 16 本を契約付きで提供し、B 群 9 本は持たず、外部 AI からの write を受け付けない",
-      "priority": "P0",
+      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持つ",
+      "priority": "P1",
       "actor_ids": [
-        "AI_AGENT"
+        "EDITOR"
       ],
-      "surface_ids": [],
+      "surface_ids": [
+        "WT-UI-02",
+        "WT-UI-05"
+      ],
       "acceptance_ids": [
-        "WT-AC-TR-AGENT-01A",
-        "WT-AC-TR-AGENT-01B"
+        "WT-AC-LOOK-01A",
+        "WT-AC-LOOK-01B"
       ],
       "test_ids": [
-        "WT-AT-TR-AGENT-01"
+        "WT-AT-LOOK-01"
       ],
-      "non_ui_na": true
+      "pending_resolution": [
+        "WT-Q-LOOK-01"
+      ]
+    },
+    {
+      "id": "WT-FR-LOOK-02",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-04",
+        "WT-FRL1-06",
+        "WT-SCR-02",
+        "WT-CAND-LOOK"
+      ],
+      "statement": "デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける",
+      "priority": "P2",
+      "actor_ids": [
+        "MIGRATOR",
+        "EDITOR"
+      ],
+      "surface_ids": [
+        "WT-UI-02"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LOOK-02A",
+        "WT-AC-LOOK-02B"
+      ],
+      "test_ids": [
+        "WT-AT-LOOK-02"
+      ],
+      "pending_resolution": [
+        "WT-Q-LOOK-02"
+      ]
+    },
+    {
+      "id": "WT-FR-META-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-05",
+        "WT-SCR-04",
+        "WT-SCR-05",
+        "WT-CAND-META"
+      ],
+      "statement": "投稿メタ 4 キー（sidebar / toc / share / pr）を登録し、テンプレ側の条件描画で記事単位の表示切替を持つ。option による不可視上書きは使わない",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-04",
+        "WT-UI-05"
+      ],
+      "acceptance_ids": [
+        "WT-AC-META-01A",
+        "WT-AC-META-01B"
+      ],
+      "test_ids": [
+        "WT-AT-META-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-META-01"
+      ]
+    },
+    {
+      "id": "WT-FR-LP-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-06",
+        "WT-CAND-LP"
+      ],
+      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離できる。採用しない場合は page template + lp パターン 12 本を維持する",
+      "priority": "P2",
+      "actor_ids": [
+        "EDITOR",
+        "MIGRATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LP-01A",
+        "WT-AC-LP-01B"
+      ],
+      "test_ids": [
+        "WT-AT-LP-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-LP-01"
+      ]
     },
     {
       "id": "WT-FR-MIGRATE-01",
       "kind": "functional",
       "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-09",
-        "WT-NFRL1-12",
+        "WT-FRL1-06",
+        "WT-BR-02",
         "WT-CAND-MIGRATE"
       ],
-      "statement": "既存サイトの設定を見た目 / 移管必須で分類し、移管必須 60〜80 キーだけを写像し、写像前にスナップショットを必須とする",
+      "statement": "設定の写像先を 4 分類（有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群）で決め、状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とする",
       "priority": "P1",
       "actor_ids": [
         "MIGRATOR"
@@ -516,19 +542,19 @@
       ],
       "non_ui_na": true,
       "pending_resolution": [
-        "WT-Q-MIGRATE-01",
-        "WT-Q-SCOPE-01"
+        "WT-Q-MIGRATE-01"
       ]
     },
     {
       "id": "WT-FR-MIGRATE-02",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-09",
+        "WT-FRL1-06",
+        "WT-NFRL1-02",
         "WT-CAND-MIGRATE"
       ],
-      "statement": "ウィジェット領域は template part へ、色プリセットは style variation へ写像し、写像不能候補は台帳へ記録する",
+      "statement": "ウィジェット領域 → group で包んで template part / slot へ、コアウィジェット → コアブロック、独自ブロック → 受け皿対応表、写像不能候補は台帳へ記録する",
       "priority": "P1",
       "actor_ids": [
         "MIGRATOR"
@@ -543,22 +569,23 @@
       ],
       "non_ui_na": true,
       "pending_resolution": [
-        "WT-Q-MIGRATE-02"
+        "WT-Q-MIGRATE-01"
       ]
     },
     {
       "id": "WT-FR-MIGRATE-03",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-09",
+        "WT-FRL1-06",
         "WT-NFRL1-08",
         "WT-CAND-MIGRATE"
       ],
-      "statement": "第三者テーマ互換の meta キー読み取りは公開本体に固有名で置かず、フィルタ / 非公開設定から注入し既定は空とする",
-      "priority": "P1",
+      "statement": "移管対象はサイト固有（意味に属する 60〜80 キー）に絞り、見た目は本テーマで作り直す。互換 meta キーは公開本体に固有名で置かず環境から注入する",
+      "priority": "P2",
       "actor_ids": [
-        "MIGRATOR"
+        "MIGRATOR",
+        "PO"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -568,6 +595,234 @@
       "test_ids": [
         "WT-AT-MIGRATE-03"
       ],
+      "non_ui_na": true,
+      "pending_resolution": [
+        "WT-Q-MIGRATE-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AGENT-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-07",
+        "WT-SCR-08",
+        "WT-BR-03",
+        "WT-CAND-AGENT"
+      ],
+      "statement": "capability manifest（slot・パターン・パーツ・variation・テンプレ変種・値の尺度）を返し、選択を dry-run → apply → rollback で反映する API を REST / MCP / CLI で提供する",
+      "priority": "P0",
+      "actor_ids": [
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AGENT-01A",
+        "WT-AC-AGENT-01B"
+      ],
+      "test_ids": [
+        "WT-AT-AGENT-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-AGENT-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AGENT-02",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-07",
+        "WT-NFRL1-03",
+        "WT-CAND-AGENT"
+      ],
+      "statement": "本文の中間 JSON 抽出器を純関数（副作用なし、render_block 非依存、参照解決に深さ上限と訪問済み集合）として持ち、CLI / REST から呼べる",
+      "priority": "P1",
+      "actor_ids": [
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AGENT-02A",
+        "WT-AC-AGENT-02B"
+      ],
+      "test_ids": [
+        "WT-AT-AGENT-02"
+      ],
+      "pending_resolution": [
+        "WT-Q-AGENT-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AGENT-03",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-07",
+        "WT-TRL1-02",
+        "WT-CAND-AGENT"
+      ],
+      "statement": "主要パーツ前後の do_action 10 箇所と出力の apply_filters 10 箇所を持ち、hook 一覧を manifest に含める",
+      "priority": "P2",
+      "actor_ids": [
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AGENT-03A",
+        "WT-AC-AGENT-03B"
+      ],
+      "test_ids": [
+        "WT-AT-AGENT-03"
+      ],
+      "pending_resolution": [
+        "WT-Q-AGENT-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AGENT-04",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-07",
+        "WT-NFRL1-07",
+        "WT-CAND-AGENT"
+      ],
+      "statement": "再利用パーツは参照（ID）で持ち、解決に使った版と digest を記録する。展開して保存しない",
+      "priority": "P2",
+      "actor_ids": [
+        "AI_AGENT",
+        "EDITOR"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AGENT-04A",
+        "WT-AC-AGENT-04B"
+      ],
+      "test_ids": [
+        "WT-AT-AGENT-04"
+      ],
+      "pending_resolution": [
+        "WT-Q-AGENT-02"
+      ]
+    },
+    {
+      "id": "WT-TR-AGENT-05",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-03",
+        "WT-FRL1-07",
+        "WT-CAND-AGENT"
+      ],
+      "statement": "REST は自前名前空間で WP コアに相乗りしない。本文変換は生成時 / レンダリング時 / 表示時の 3 層で、テーマ語彙のショートコードは意図ノードへ、プラグイン語彙は不透明ノードで原文保持、インライン書式は marks 配列で持つ",
+      "priority": "P1",
+      "actor_ids": [
+        "AI_AGENT"
+      ],
+      "surface_ids": [],
+      "acceptance_ids": [
+        "WT-AC-TR-AGENT-05A",
+        "WT-AC-TR-AGENT-05B"
+      ],
+      "test_ids": [
+        "WT-AT-AGENT-05"
+      ],
+      "non_ui_na": true
+    },
+    {
+      "id": "WT-FR-VALUE-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-08",
+        "WT-SCR-03",
+        "WT-NFRL1-12",
+        "WT-BR-03",
+        "WT-CAND-VALUE"
+      ],
+      "statement": "値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、破壊域は保存を止めて規則・値・境界を示す。境界値は PoC で実物を崩して確定する",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-03"
+      ],
+      "acceptance_ids": [
+        "WT-AC-VALUE-01A",
+        "WT-AC-VALUE-01B"
+      ],
+      "test_ids": [
+        "WT-AT-VALUE-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-VALUE-01"
+      ]
+    },
+    {
+      "id": "WT-FR-VALUE-02",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-08",
+        "WT-NFRL1-01",
+        "WT-SCR-07",
+        "WT-CAND-VALUE"
+      ],
+      "statement": "生値は許容リスト方式（尺度系はプリセット参照へ、意匠値は許容リスト）へ移し、baseline 438 を段階的に 0 にする",
+      "priority": "P1",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-VALUE-02A",
+        "WT-AC-VALUE-02B"
+      ],
+      "test_ids": [
+        "WT-AT-VALUE-02"
+      ],
+      "pending_resolution": [
+        "WT-Q-VALUE-01"
+      ]
+    },
+    {
+      "id": "WT-NFR-VALUE-03",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-01",
+        "WT-TRL1-01",
+        "WT-CAND-VALUE"
+      ],
+      "statement": "bridge 投影・子テーマ・user global styles は同スラッグへの値差し替えだけができ、段の増減・スラッグ変更・settings 上書きはスキーマ検査で拒否する",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE"
+      ],
+      "surface_ids": [],
+      "acceptance_ids": [
+        "WT-AC-NFR-VALUE-03A",
+        "WT-AC-NFR-VALUE-03B"
+      ],
+      "test_ids": [
+        "WT-AT-VALUE-03"
+      ],
       "non_ui_na": true
     },
     {
@@ -575,17 +830,19 @@
       "kind": "functional",
       "status": "human_decision_required",
       "source_ids": [
-        "WT-FRL1-10",
+        "WT-FRL1-09",
         "WT-SCR-05",
+        "WT-SCR-06",
         "WT-CAND-SEO"
       ],
-      "statement": "Article / BlogPosting・CollectionPage・FAQPage・SearchAction の JSON-LD と canonical を単一出力元から生成する",
+      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）と SearchAction（WebSite.potentialAction）を追加する",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
       ],
       "surface_ids": [
-        "WT-UI-05"
+        "WT-UI-05",
+        "WT-UI-06"
       ],
       "acceptance_ids": [
         "WT-AC-SEO-01A",
@@ -599,22 +856,80 @@
       ]
     },
     {
-      "id": "WT-FR-INTAKE-01",
+      "id": "WT-FR-SEO-02",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-09",
+        "WT-FRL1-03",
+        "WT-CAND-SEO"
+      ],
+      "statement": "FAQPage / HowTo / ItemList を記事内語彙（FAQ・手順・比較表）から自動生成し、本文と一致させる",
+      "priority": "P2",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SEO-02A",
+        "WT-AC-SEO-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SEO-02"
+      ],
+      "pending_resolution": [
+        "WT-Q-SEO-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SEO-03",
       "kind": "functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-FRL1-08",
-        "WT-SCR-08",
-        "WT-CAND-INTAKE"
+        "WT-FRL1-09",
+        "WT-NFRL1-07",
+        "WT-CAND-SEO"
       ],
-      "statement": "実証済みパターンは参照元 commit・PoC 証跡・ゲート結果を付けて取り込み台帳へ記録し、GRAPHIX-NEO へ一方向に渡す",
+      "statement": "canonical / meta description / OGP を全ページ種別で出し、llms.txt・crawl-map・LLMO summary の AI 向け出力を同一正本から維持する",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SEO-03A",
+        "WT-AC-SEO-03B"
+      ],
+      "test_ids": [
+        "WT-AT-SEO-03"
+      ]
+    },
+    {
+      "id": "WT-FR-INTAKE-01",
+      "kind": "functional",
+      "status": "human_decision_required",
+      "source_ids": [
+        "WT-FRL1-10",
+        "WT-SCR-09",
+        "WT-TRL1-06",
+        "WT-BR-04",
+        "WT-CAND-INTAKE"
+      ],
+      "statement": "取り込み台帳（パターン ID・参照元 commit・証跡パス・ゲート結果・取り込み先）を append-only で持ち、GRAPHIX-NEO への一方向取り込みを記録する",
+      "priority": "P2",
+      "actor_ids": [
+        "PO",
         "GRAPHIX_NEO"
       ],
       "surface_ids": [
-        "WT-UI-08"
+        "WT-UI-09"
       ],
       "acceptance_ids": [
         "WT-AC-INTAKE-01A",
@@ -622,87 +937,21 @@
       ],
       "test_ids": [
         "WT-AT-INTAKE-01"
+      ],
+      "pending_resolution": [
+        "WT-Q-INTAKE-01"
       ]
-    },
-    {
-      "id": "WT-TR-PLATFORM-01",
-      "kind": "technical",
-      "status": "candidate_inventory",
-      "source_ids": [
-        "WT-NFRL1-09",
-        "WT-TRL1-01",
-        "WT-CAND-QUALITY"
-      ],
-      "statement": "WP 6.6 以上（7.x で検証）・PHP 8.1 以上・theme.json v3・GPL 互換で動き、4 層モデルの尺度は theme.json だけが所有する",
-      "priority": "P0",
-      "actor_ids": [
-        "GATE"
-      ],
-      "surface_ids": [],
-      "acceptance_ids": [
-        "WT-AC-TR-PLATFORM-01A",
-        "WT-AC-TR-PLATFORM-01B"
-      ],
-      "test_ids": [
-        "WT-AT-TR-PLATFORM-01"
-      ],
-      "non_ui_na": true
-    },
-    {
-      "id": "WT-NFR-PERF-01",
-      "kind": "non_functional",
-      "status": "candidate_inventory",
-      "source_ids": [
-        "WT-NFRL1-01",
-        "WT-CAND-QUALITY"
-      ],
-      "statement": "ページ型別に JS / CSS 予算を分離し、記事 15KB・LP 50KB 等の予算を超えない",
-      "priority": "P1",
-      "actor_ids": [
-        "GATE"
-      ],
-      "surface_ids": [],
-      "acceptance_ids": [
-        "WT-AC-NFR-PERF-01A",
-        "WT-AC-NFR-PERF-01B"
-      ],
-      "test_ids": [
-        "WT-AT-NFR-PERF-01"
-      ],
-      "non_ui_na": true
-    },
-    {
-      "id": "WT-NFR-A11Y-01",
-      "kind": "non_functional",
-      "status": "candidate_inventory",
-      "source_ids": [
-        "WT-NFRL1-02",
-        "WT-CAND-QUALITY"
-      ],
-      "statement": "公開面と編集面は WCAG 2.2 AA を満たし、コントラスト AA 未満は破壊域として扱う",
-      "priority": "P0",
-      "actor_ids": [
-        "GATE"
-      ],
-      "surface_ids": [],
-      "acceptance_ids": [
-        "WT-AC-NFR-A11Y-01A",
-        "WT-AC-NFR-A11Y-01B"
-      ],
-      "test_ids": [
-        "WT-AT-NFR-A11Y-01"
-      ],
-      "non_ui_na": true
     },
     {
       "id": "WT-NFR-SEC-01",
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-05",
+        "WT-NFRL1-04",
+        "WT-BR-01",
         "WT-CAND-QUALITY"
       ],
-      "statement": "未認証 REST を生やさず、permission_callback を必須にし、PHP Warning を応答本文へ漏らさず、外部 URL を未検証で取得しない",
+      "statement": "未認証 REST（permission_callback __return_true）を持たず、外部 URL 取得は wp_safe_remote_get 等の検証付き経路のみ。公開面に PHP Warning を出さない",
       "priority": "P0",
       "actor_ids": [
         "GATE"
@@ -713,7 +962,7 @@
         "WT-AC-NFR-SEC-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-SEC-01"
+        "WT-AT-SEC-01"
       ],
       "non_ui_na": true
     },
@@ -722,11 +971,11 @@
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-06",
-        "WT-NFRL1-07",
+        "WT-NFRL1-03",
+        "WT-TRL1-01",
         "WT-CAND-QUALITY"
       ],
-      "statement": "描画時に DB 書込を行わず、redirect_canonical・session などのグローバル挙動を改変しない",
+      "statement": "描画パスで set_theme_mod / update_option を呼ばない。redirect_canonical の全面停止や全ページ session_regenerate_id のようなグローバル改変を持ち込まない",
       "priority": "P0",
       "actor_ids": [
         "GATE"
@@ -737,7 +986,7 @@
         "WT-AC-NFR-REL-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-REL-01"
+        "WT-AT-REL-01"
       ],
       "non_ui_na": true
     },
@@ -746,13 +995,13 @@
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-13",
+        "WT-NFRL1-11",
         "WT-CAND-QUALITY"
       ],
-      "statement": "訪問者の個人データを保存せず、計測は cta_id 等の匿名イベントに限定する",
+      "statement": "計測・広告・外部コードの正本はテーマ外（HELIX / プラグイン側）。テーマ内に計測 ID・広告コードを持たない",
       "priority": "P1",
       "actor_ids": [
-        "GATE"
+        "OPERATOR"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -760,7 +1009,7 @@
         "WT-AC-NFR-PRIV-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-PRIV-01"
+        "WT-AT-PRIV-01"
       ],
       "non_ui_na": true
     },
@@ -769,13 +1018,15 @@
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-14",
+        "WT-NFRL1-12",
+        "WT-NFRL1-09",
         "WT-CAND-QUALITY"
       ],
-      "statement": "編集権限は WP capability に従い、破壊域停止は管理者権限でも迂回できない",
+      "statement": "破壊域停止は権限で解除できず、write 系 API は capability と dry-run receipt を要求する",
       "priority": "P0",
       "actor_ids": [
-        "GATE"
+        "GATE",
+        "AI_AGENT"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -783,7 +1034,7 @@
         "WT-AC-NFR-PERM-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-PERM-01"
+        "WT-AT-PERM-01"
       ],
       "non_ui_na": true
     },
@@ -792,14 +1043,14 @@
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-15",
-        "WT-TRL1-06",
+        "WT-NFRL1-13",
+        "WT-TRL1-05",
         "WT-CAND-QUALITY"
       ],
-      "statement": "有料外部サービス・外部デザインツール・外部 AI API への依存を持たない",
-      "priority": "P1",
+      "statement": "ゲート・PoC はローカル docker で完結し、無料枠制限や課金を伴う外部 API に依存しない",
+      "priority": "P2",
       "actor_ids": [
-        "GATE"
+        "OPERATOR"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -807,7 +1058,7 @@
         "WT-AC-NFR-COST-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-COST-01"
+        "WT-AT-COST-01"
       ],
       "non_ui_na": true
     },
@@ -816,13 +1067,13 @@
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-11",
+        "WT-NFRL1-10",
         "WT-CAND-QUALITY"
       ],
-      "statement": "AI 生成コンテンツの開示を可視バッジ・JSON-LD・メタタグの 3 層で表現でき、GPL 互換を維持する",
-      "priority": "P1",
+      "statement": "PR 表記の法令要件と GPL 配布要件（ライセンス表記・第三者資産の許諾）を満たす",
+      "priority": "P0",
       "actor_ids": [
-        "OPERATOR"
+        "PO"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -830,7 +1081,7 @@
         "WT-AC-NFR-LEGAL-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-LEGAL-01"
+        "WT-AT-LEGAL-01"
       ],
       "non_ui_na": true
     },
@@ -839,37 +1090,64 @@
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-16",
+        "WT-NFRL1-07",
+        "WT-SCR-07",
         "WT-CAND-QUALITY"
       ],
-      "statement": "ゲート結果と実機検証を JSON 証跡として保存し、CI と PR から同一 HEAD で参照できる",
-      "priority": "P0",
+      "statement": "health / gate / 台帳 / 抽出器の出力は JSON で、HEAD と digest に束縛される",
+      "priority": "P1",
       "actor_ids": [
-        "GATE"
+        "OPERATOR"
       ],
-      "surface_ids": [],
+      "surface_ids": [
+        "WT-UI-07"
+      ],
       "acceptance_ids": [
         "WT-AC-NFR-OBS-01A",
         "WT-AC-NFR-OBS-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-OBS-01"
+        "WT-AT-OBS-01"
+      ]
+    },
+    {
+      "id": "WT-NFR-A11Y-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-05",
+        "WT-SCR-03",
+        "WT-CAND-QUALITY"
       ],
-      "non_ui_na": true
+      "statement": "域の判定・状態表示は label と icon を伴い色だけに依存しない。img alt 欠落 0、AA コントラスト、横スクロール 0",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR"
+      ],
+      "surface_ids": [
+        "WT-UI-03"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-A11Y-01A",
+        "WT-AC-NFR-A11Y-01B"
+      ],
+      "test_ids": [
+        "WT-AT-A11Y-01"
+      ]
     },
     {
       "id": "WT-NFR-REC-01",
       "kind": "non_functional",
       "status": "candidate_inventory",
       "source_ids": [
-        "WT-NFRL1-17",
+        "WT-NFRL1-09",
         "WT-CAND-QUALITY"
       ],
-      "statement": "適用と移行は dry-run と rollback を持ち、適用前の状態へ戻せる",
-      "priority": "P1",
+      "statement": "構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の digest に戻る",
+      "priority": "P0",
       "actor_ids": [
-        "MIGRATOR",
-        "AI_AGENT"
+        "AI_AGENT",
+        "OPERATOR"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -877,7 +1155,7 @@
         "WT-AC-NFR-REC-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-REC-01"
+        "WT-AT-REC-01"
       ],
       "non_ui_na": true
     },
@@ -887,13 +1165,13 @@
       "status": "candidate_inventory",
       "source_ids": [
         "WT-NFRL1-08",
-        "WT-TRL1-07",
+        "WT-TRL1-05",
         "WT-CAND-QUALITY"
       ],
-      "statement": "credential・実運用サイト情報・第三者固有名・個人環境パスをリポジトリ・証跡・応答へ書かない",
+      "statement": "credential・実サイト固有名・第三者製品名を公開リポジトリへ書かない。接続情報は環境変数と gitignore 済み local 設定",
       "priority": "P0",
       "actor_ids": [
-        "GATE"
+        "OPERATOR"
       ],
       "surface_ids": [],
       "acceptance_ids": [
@@ -901,7 +1179,30 @@
         "WT-AC-NFR-CRED-01B"
       ],
       "test_ids": [
-        "WT-AT-NFR-CRED-01"
+        "WT-AT-CRED-01"
+      ],
+      "non_ui_na": true
+    },
+    {
+      "id": "WT-NFR-PERF-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-06",
+        "WT-CAND-QUALITY"
+      ],
+      "statement": "web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR"
+      ],
+      "surface_ids": [],
+      "acceptance_ids": [
+        "WT-AC-NFR-PERF-01A",
+        "WT-AC-NFR-PERF-01B"
+      ],
+      "test_ids": [
+        "WT-AT-PERF-01"
       ],
       "non_ui_na": true
     }

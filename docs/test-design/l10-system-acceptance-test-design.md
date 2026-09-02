@@ -5,37 +5,46 @@
 
 | Test ID | Requirement | positive oracle | negative/boundary oracle | evidence |
 | --- | --- | --- | --- | --- |
-| WT-AT-STRUCT-01 | WT-FR-STRUCT-01 | 既定パターンを別パターンへ差し替えて保存すると描画され、権限エラー・ロック警告が出ない | 構造変更を権限エラーにする旧 ACC-016 / 017 の挙動が残っていれば FAIL | Playwright / site editor |
-| WT-AT-STRUCT-02 | WT-FR-STRUCT-02 | AI 経路の投入は Blueprint で宣言した領域だけを書き換える | Blueprint 外の領域を AI 経路が書き換えたら拒否される | REST receipt |
-| WT-AT-STRUCT-03 | WT-FR-STRUCT-03 | 決定した方式で LP ページが組め、ヘッダーなしで描画される | 方式の差（URL 構造・CPT 有無）が移行台帳へ記録されずに失われれば FAIL | Playwright + migration ledger |
-| WT-AT-VALUE-01 | WT-FR-VALUE-01 | 尺度内のプリセット選択は警告なしで保存できる | 破壊域の値（尺度最大超の余白、AA 未満のコントラスト）は保存が止まり、権限で迂回できない | editor + gate JSON |
-| WT-AT-VALUE-02 | WT-FR-VALUE-02 | 規則ごとに境界値の内側の値が pass、外側の値が FAIL になる | 境界値未確定の規則は『未確定』として報告し、pass を出さない | gate JSON |
-| WT-AT-STYLE-01 | WT-FR-STYLE-01 | 全バリエーションで G-T1b が PASS し、切替後も見出し尺度が単調非増加 | styles/*.json に生 px / rem / em が含まれれば G-T1b が FAIL | G-T1b / G-T3 JSON |
-| WT-AT-PARTS-01 | WT-FR-PARTS-01 | 任意のパーツ案へ差し替えても全テンプレートが描画され、G-S2 が PASS | 存在しないパーツを参照するテンプレートは G-S2 が FAIL | G-S2 JSON + Playwright |
-| WT-AT-PARTS-02 | WT-FR-PARTS-02 | 1 つの再利用パーツを更新すると参照する全記事の描画が変わり、参照は ID と版で解決される | 参照先が消えたパーツは state: missing として注記付きで描画を続行し、黙って空にならない | parts reference test |
-| WT-AT-ZONE-01 | WT-FR-ZONE-01 | D-01 / D-05 / D-07 の各面に対応するパーツ / パターンが存在し、記事と LP で描画される | SP 下部固定領域の積層規約に反する組合せは警告される | Playwright |
-| WT-AT-ZONE-02 | WT-FR-ZONE-02 | 語彙にあるゾーン ID を指定した広告が条件に一致するページだけに出る | 語彙外のゾーン ID は schema 検証で拒否される | schema test |
-| WT-AT-ZONE-03 | WT-FR-ZONE-03 | h2 を持つ記事で目次が既定位置に描画され、配置意図を変えると位置が変わる | 中間 JSON に目次本体（見出しの複製）が含まれれば adapter が拒否する | adapter fixture |
-| WT-AT-GATE-01 | WT-FR-GATE-01 | main の全成果物で FAIL=0、生値は baseline 438 以下 | baseline を超える生値の追加は G-T2 が FAIL | gate JSON |
-| WT-AT-GATE-02 | WT-FR-GATE-02 | 全 71 パターンが実機で invalid=0 | 静的検査が通るが実機で invalid になるパターンを G-E1 が検出する | G-E1 JSON |
-| WT-AT-NFR-GATE-01 | WT-NFR-GATE-01 | 同一 HEAD で 2 回実行した結果の JSON が一致する | 乱数・時刻・外部 API に依存する判定が含まれれば FAIL | digest diff |
-| WT-AT-AGENT-01 | WT-FR-AGENT-01 | 同一中間 JSON から生成した markup の digest が一致し、エディタで invalid=0 | schema version 不一致の中間 JSON は write 前に拒否される | adapter fixture |
-| WT-AT-AGENT-02 | WT-FR-AGENT-02 | 意味 31 種の意図ノードが対応ブロックへ展開される | 未知のショートコードは破棄されず原文のまま保持される | adapter fixture |
-| WT-AT-TR-AGENT-01 | WT-TR-AGENT-01 | A 群の各ルートが OpenAPI 契約と一致する | B 群のルートや外部 AI write 用エンドポイントが存在すれば FAIL | OpenAPI diff |
-| WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | スナップショット取得後に移管必須キーだけが写像され、見た目キーは対象外として台帳に残る | スナップショットなしの写像は実行前に拒否される | migration receipt |
-| WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | 代表 6 領域と色 8 スラッグの写像が invalid=0 / G-T1b PASS で成立する | アニメーション・グラデーション角度・スライダーは写像せず台帳に残る | conversion receipt |
-| WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 互換キーが未注入なら読み取りは無効で、注入すると読み取れる | 公開本体に第三者固有名が含まれれば公開情報検査が FAIL | public-safety check |
-| WT-AT-SEO-01 | WT-FR-SEO-01 | 記事・一覧・FAQ 付き記事で対応する JSON-LD が 1 本ずつ出て、canonical が 404 以外で出る | 同型の JSON-LD が複数出力元から重複して出れば FAIL | JSON-LD extract |
-| WT-AT-INTAKE-01 | WT-FR-INTAKE-01 | 台帳の各行が commit・証跡パス・ゲート結果を持つ | 証跡のない行や GRAPHIX-NEO からの逆方向の行は台帳検証が拒否する | ledger validation |
-| WT-AT-TR-PLATFORM-01 | WT-TR-PLATFORM-01 | docker WP 7.1 / PHP 8.3 で全テンプレートが描画され G-T1 が PASS | 子テーマや styles が尺度を再定義すれば G-S1 / G-T1b が FAIL | docker matrix |
-| WT-AT-NFR-PERF-01 | WT-NFR-PERF-01 | ページ型ごとの転送量が予算内 | 予算超過のページ型があれば性能ゲートが FAIL | transfer size report |
-| WT-AT-NFR-A11Y-01 | WT-NFR-A11Y-01 | 全バリエーションでコントラスト AA を満たす | AA 未満の色組合せは破壊域停止の対象になる | axe / contrast |
-| WT-AT-NFR-SEC-01 | WT-NFR-SEC-01 | 全ルートが permission_callback を持ち、未認証 GET で Warning 混入が 0 | permission_callback が __return_true のルートや未検証 URL 取得があれば FAIL | REST audit |
-| WT-AT-NFR-REL-01 | WT-NFR-REL-01 | 描画前後で option / theme_mods の差分が 0、末尾スラッシュ有無で正規化リダイレクトが働く | 描画中の set_theme_mod / update_option 呼び出しがあれば FAIL | option diff |
-| WT-AT-NFR-PRIV-01 | WT-NFR-PRIV-01 | 計測イベントに個人識別子が含まれない | IP・UA 生値・cookie 値の保存があれば FAIL | event schema |
-| WT-AT-NFR-PERM-01 | WT-NFR-PERM-01 | capability のないユーザーはテンプレート編集に到達できない | 管理者が破壊域の値を保存できれば FAIL | capability test |
-| WT-AT-NFR-COST-01 | WT-NFR-COST-01 | テーマ / プラグインの依存に外部 API キーを要するものがない | 外部デザインツールの取り込み経路が復活すれば FAIL | dependency audit |
-| WT-AT-NFR-LEGAL-01 | WT-NFR-LEGAL-01 | 開示フラグ付き記事で 3 層の開示が出る | 開示フラグなしの記事に開示が出れば FAIL | render fixture |
-| WT-AT-NFR-OBS-01 | WT-NFR-OBS-01 | PR ごとにゲート JSON が HEAD に束縛されて残る | 証跡のない完了主張は受け付けない | CI artifact |
-| WT-AT-NFR-REC-01 | WT-NFR-REC-01 | dry-run が差分だけを返し、apply 後の rollback で digest が元に戻る | rollback 情報のない apply は拒否される | rollback receipt |
-| WT-AT-NFR-CRED-01 | WT-NFR-CRED-01 | 公開情報検査と伏せ字ガードが commit 前に PASS | 固有名・絶対パス・credential パターンが含まれれば検査が FAIL | public-safety check |
+| WT-AT-CORE-01 | WT-TR-CORE-01 | 新しい slot / パターン / variation を追加すると capability manifest に現れる | JSON 宣言なしに PHP で登録された面・部品が検出されたら FAIL | manifest diff |
+| WT-AT-CORE-02 | WT-TR-CORE-02 | health の出力がテーマの登録内容と一致する | 登録内容と health の差分が 1 件でもあれば FAIL | health JSON |
+| WT-AT-CORE-03 | WT-TR-CORE-03 | 静的検出で AI SDK import・判定ロジックが 0 | 検出 1 件で FAIL | static analysis |
+| WT-AT-GATE-01 | WT-NFR-GATE-01 | PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される | 静的 PASS のみで merge された変更が実機 invalid を生めば FAIL | gate JSON |
+| WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない | 空 slot が空要素や領域見出しを出せば FAIL | Playwright |
+| WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
+| WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
+| WT-AT-PARTS-01 | WT-FR-PARTS-01 | 差し替え後の骨格差分（テンプレ・パーツ参照）が表示され、保存後に公開面へ反映される | 差し替えで参照欠落（G-S2）や invalid が出れば FAIL | Playwright + G-S2 |
+| WT-AT-PARTS-02 | WT-FR-PARTS-02 | wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない | header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL | parts reference test |
+| WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種が描画される | 受け皿のない語彙、または 4 つ目の新規ブロックがあれば FAIL | vocab fixture |
+| WT-AT-VOCAB-02 | WT-FR-VOCAB-02 | h2 を持つ記事で目次が最初の h2 直前に出て、投稿メタで OFF にできる | 目次本文が保存 HTML に固定される（h2 変更で不整合）なら FAIL | render fixture |
+| WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 提携種別を持つ記事でファーストビュー内に表記が出る | 本文編集で表記を消せる、または対象記事で欠落すれば FAIL | Playwright |
+| WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
+| WT-AT-LOOK-01 | WT-FR-LOOK-01 | 見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される | 生値や !important で実現された装飾があれば FAIL | G-T3 + style list |
+| WT-AT-LOOK-02 | WT-FR-LOOK-02 | 写像した variation がスラッグ集合を変えず G-T1b PASS | 段の増減や新スラッグを伴う variation があれば FAIL | G-T1b JSON |
+| WT-AT-META-01 | WT-FR-META-01 | メタを OFF にした記事だけで該当パーツが消え、REST から同じキーを読み書きできる | 未登録メタや option で表示が変わる経路があれば FAIL | REST + Playwright |
+| WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
+| WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | サンプル control（A 400 / B 400）の各行が 4 分類のどれかに落ち、写像先が存在する | 分類不能または option 不可視上書きに落ちる行があれば FAIL | mapping receipt |
+| WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | 代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る | 変換で invalid が出る、または写像不能が黙って落ちれば FAIL | conversion receipt |
+| WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い | 見た目キーの機械移送や固有名の混入があれば FAIL | public-safety check |
+| WT-AT-AGENT-01 | WT-FR-AGENT-01 | manifest の項目だけを指定して構造・スタイル・値を変更でき、dry-run の差分と apply 結果が一致する | manifest 外の指定が通る、または apply が dry-run と異なれば FAIL | REST receipt |
+| WT-AT-AGENT-02 | WT-FR-AGENT-02 | 同じ本文から同じ JSON が出て、循環参照で停止する | enqueue 等の副作用や無限ループがあれば FAIL | extractor fixture |
+| WT-AT-AGENT-03 | WT-FR-AGENT-03 | hook 一覧が manifest と実装で一致する | manifest に無い hook、または manifest にあるが発火しない hook があれば FAIL | hook audit |
+| WT-AT-AGENT-04 | WT-FR-AGENT-04 | 参照先を更新すると利用側の digest 記録が差分として検出できる | 展開保存された複製があれば FAIL | digest diff |
+| WT-AT-AGENT-05 | WT-TR-AGENT-05 | OpenAPI の全 path が自前名前空間で、変換層ごとに「入力が同じなら出力が同じ」が成り立つ | wp/v2 配下の自前ルート、または層をまたぐ副作用があれば FAIL | OpenAPI diff |
+| WT-AT-VALUE-01 | WT-FR-VALUE-01 | 破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、権限による解除手段が無い | 破壊域が保存できる、または安全域が誤って止まれば FAIL | editor + gate JSON |
+| WT-AT-VALUE-02 | WT-FR-VALUE-02 | 許容リスト外の生値が G-T2 で FAIL になり、件数が baseline から単調減少する | 許容リストに実値を足して通す変更があれば FAIL | gate JSON |
+| WT-AT-VALUE-03 | WT-NFR-VALUE-03 | 段を増減する投影が拒否され、親の 6 段が維持される | 投影で 60 が落ちてコア既定が入る（PoC 実測）状態が再現すれば FAIL | projection fixture |
+| WT-AT-SEO-01 | WT-FR-SEO-01 | 一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出る | 同型の二重出力や @type 空のスクリプトがあれば FAIL | JSON-LD extract |
+| WT-AT-SEO-02 | WT-FR-SEO-02 | FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致する | 本文に無い項目が JSON-LD に出れば FAIL | JSON-LD extract |
+| WT-AT-SEO-03 | WT-FR-SEO-03 | 12 種別すべてで canonical・description・OGP が出て、AI 向け出力の digest が HTML と整合する | front / archive / search で欠落すれば FAIL | crawl JSON |
+| WT-AT-INTAKE-01 | WT-FR-INTAKE-01 | 台帳 1 行から証跡と commit へ辿れ、ゲート結果が同一 HEAD に束縛される | 証跡なしの行、または逆方向の取り込み行があれば FAIL | ledger validation |
+| WT-AT-SEC-01 | WT-NFR-SEC-01 | REST 監査で未認証ルート 0、SSRF 形 0、公開面 Warning 0 | 1 件でもあれば FAIL | REST audit |
+| WT-AT-REL-01 | WT-NFR-REL-01 | 閲覧・クロール前後で option / theme_mod の diff が 0。正規化リダイレクトが動く | 描画時 write または正規化停止があれば FAIL | option diff |
+| WT-AT-PRIV-01 | WT-NFR-PRIV-01 | テーマ・プラグインに計測 ID・広告 HTML の生値が 0 | 検出 1 件で FAIL | static grep |
+| WT-AT-PERM-01 | WT-NFR-PERM-01 | 管理者権限でも破壊域が保存できず、receipt なしの apply が拒否される | 迂回経路 1 件で FAIL | capability test |
+| WT-AT-COST-01 | WT-NFR-COST-01 | CI と実機ゲートが外部 API なしで green | 外部 API 呼び出しを含むゲートがあれば FAIL | dependency audit |
+| WT-AT-LEGAL-01 | WT-NFR-LEGAL-01 | 対象記事の表記欠落 0、同梱資産のライセンス台帳あり | 欠落 1 件で FAIL | Playwright + license ledger |
+| WT-AT-OBS-01 | WT-NFR-OBS-01 | 各出力に HEAD と digest があり再実行で一致する | 不一致 1 件で FAIL | CI artifact |
+| WT-AT-A11Y-01 | WT-NFR-A11Y-01 | axe gate 違反 0、mobile 横スクロール 0 | 違反 1 件で FAIL | axe / contrast |
+| WT-AT-REC-01 | WT-NFR-REC-01 | apply 後の rollback で変更前 digest と一致する | 不一致 1 件で FAIL | rollback receipt |
+| WT-AT-CRED-01 | WT-NFR-CRED-01 | public-safety check OK | 検出 1 件で FAIL | public-safety check |
+| WT-AT-PERF-01 | WT-NFR-PERF-01 | 予算超過 0、未使用ブロック CSS 0 | 超過 1 件で FAIL | transfer size report |

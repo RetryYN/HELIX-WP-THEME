@@ -8,19 +8,19 @@ authority: docs/requirements/authority.md
 
 # L1 Functional Requirements
 
-| ID | ユーザー視点の要求 | 下流family |
+| ID | ユーザー視点の要求（拡大の提案） | 下流 family |
 | --- | --- | --- |
-| WT-FRL1-01 | 編集者はパターン差し替え・ブロック編集・テンプレート変種で構造を変えられる | STRUCT |
-| WT-FRL1-02 | 編集者は安全域の値を自由に選べ、生値は警告され、破壊域は止められる | VALUE |
-| WT-FRL1-03 | 編集者はスタイルバリエーションを切り替えでき、意匠は尺度を所有しない | STYLE |
-| WT-FRL1-04 | 編集者は共有パーツ（header / footer / sidebar / post-header / post-footer）を差し替えられ、記事内の再利用パーツを一元管理できる | PARTS |
-| WT-FRL1-05 | AI エージェントは記事・ページ・パーツを中間 JSON と REST で決定論的に投入できる | AGENT |
-| WT-FRL1-06 | 運用者は収益と回遊の置き場所（記事内広告 / CV ゾーン、追尾サイドバー / 固定ボトム、ナビゲーション、お知らせバー、目次）を持てる | ZONE |
-| WT-FRL1-07 | 運用者は 4 層の一貫性ゲートと実機ゲートを実行し、結果を確認できる | GATE |
-| WT-FRL1-08 | 運用者は実証済みパターンを取り込み台帳へ記録できる | INTAKE |
-| WT-FRL1-09 | 移行者は既存サイトの設定とコンテンツを写像し、写像不能を台帳化できる | MIGRATE |
-| WT-FRL1-10 | 公開面は構造化データと canonical を単一出力元から出す | SEO |
+| WT-FRL1-01 | 置き場所（面）を選べる: 記事内広告・CV・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバーなど、テーマA/B にあって本テーマに無い面を slot として持つ | ZONE |
+| WT-FRL1-02 | 共有パーツと骨格を選べる: header / footer / sidebar / hero の複数案、テンプレ変種、LP の持ち方を GUI と AI の双方から差し替えられる | PARTS / LP |
+| WT-FRL1-03 | 記事内語彙で書ける: 囲み・ボタン・リンクカード・吹き出し・手順・比較表・定義リスト・FAQ・タブなど実使用上位の語彙で記事を組める。目次と PR 表記が自動で出る | VOCAB |
+| WT-FRL1-04 | 見た目の引き出しがある: 見出し階層・見出し / ボタンの block style・最小限の動き・レスポンシブ段・style variation でテーマA/B 並みの表現に届く | LOOK |
+| WT-FRL1-05 | 記事単位で切り替えられる: サイドバー・目次・シェア・PR を投稿ごとに ON/OFF できる | META |
+| WT-FRL1-06 | 既存サイトの設定を写せる: カスタマイザ・設定画面・ウィジェット・プリセット・独自ブロックを本テーマの JSON 資産へ写像できる | MIGRATE |
+| WT-FRL1-07 | エージェントが JSON で全部を操作できる: 面・部品・値・変種・テンプレの選択、中間 JSON の抽出、再利用パーツの参照が REST / MCP / CLI から行える | AGENT |
+| WT-FRL1-08 | 値は 3 域で制御される: 安全域は自由、生値は警告、破壊域は停止する。境界値は PoC で決める | VALUE |
+| WT-FRL1-09 | 構造化データと AI 向け出力が単一出力元から出る: CollectionPage / SearchAction を加え、FAQ / HowTo / ItemList は語彙から自動生成する | SEO |
+| WT-FRL1-10 | 実証済みパターンを台帳で GRAPHIX-NEO へ渡せる | INTAKE |
 
 L1 の ID はユーザー要求であり、L3 の system requirement ID とは区別する。
-旧 REQ-F-045（Style Variations）・REQ-F-046（記事用パーツ）・REQ-F-025（JSON 統一データモデル）は WT-FRL1-03 / 04 / 05 へ継承し、
-旧 REQ-F-016 / F-037 は WT-Q-STRUCT-01 / 02 の決定まで継承しない。
+各行はテーマA / B との PoC 比較で本テーマに不足すると分かった面・語彙・引き出しを、機械可読性を保つ形で取り込む提案である
+（出典: `docs/research/2026-08-26-theme-structure-audit/04-diff-register.md`、`docs/design/catalog/customizability.md`、`docs/research/2026-08-27-poc-browser-verification/theme-comparison.md`）。

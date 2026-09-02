@@ -1,7 +1,7 @@
 # PoC 証跡: スタイルバリエーション 3 案 / 共有パーツ・レイアウト 22 パターン / 一貫性ゲートと Figma 取り込み
 
 実施日: 2026-08-27〜28 / 場所: 使い捨て PoC サイト（本テーマ）/ 対応 PR: #38（styles）・#39（patterns）・#36（gates / tools）。
-位置づけ: **PoC 証跡**。3 本の PR はいずれも実装ではなく証跡であり、merge しない。採用可否の分類は `docs/design/addenda/L3-A5-poc-pattern-disposition.md`（PR #48。本 PR より先に merge）、要求への入力は `../2026-08-27-poc-browser-verification/requirements-input-register.md`。
+位置づけ: **PoC 証跡**。3 本の PR はいずれも実装ではなく証跡であり、merge しない。採用可否の分類は 旧 L3-A5 棚卸し（削除済み）、要求への入力は `../2026-08-27-poc-browser-verification/requirements-input-register.md`。
 
 ## 1. スタイルバリエーション 3 案（#38 / THEME-JSON-01 の材料）
 同一サイト 4 画面（トップ・記事・LP・一覧）× 4 案を 1366px で撮影して比較。

@@ -1,6 +1,6 @@
 # WT 要求 authority
 
-- initiative_id: `WT-STRUCTURE-FREEDOM`
+- initiative_id: `WT-AGENT-VARIETY`
 - canonical V-model: `L1-L12`
 - development style candidate: `V_DESIGN_SCRUM_IMPLEMENTATION`
 - case-driven model: `DISCOVERY_POC`（PoC 証跡は入力、S4 前に canonical 化しない）
@@ -9,32 +9,37 @@
 - authority owner: PO
 - updated: 2026-09-02
 
+## 起点
+
+`docs/planning/L0-agent-controlled-variety.md`（PO 指示 2026-09-02 の書き起こし）。本テーマの JSON 中間言語による機械可読性を維持したまま、
+テーマA / B が示す一般想定水準の面・語彙・引き出しを取り込み、エージェント制御下でバリエーションを最大化する。
+要求は拡大の提案として並べ、PO は「X ができる。採用するか」だけを判断する。旧要求との比較は持たない。
+
 ## 正本境界
 
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
-| L1 | `docs/requirements/l1/` の 5 sub-doc | confirmed input（PO 指示 2026-09-02 による再整理） | G0.5 判断（WT-Q-STRUCT-01/02、WT-Q-VALUE-01）と G1 content/pair/trace の PO 承認 |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 未決 14 件（WT-Q-*、`candidate-projection.json` の `unresolved` と同数）の解消、prototype reaction、PO agreement |
-| L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory | L2 agreement 後の compile、L10 oracle との pair、G3 PO/TL 承認 |
+| L1 | `docs/requirements/l1/` の 5 sub-doc | confirmed input（PO 指示 2026-09-02 による 0 からの作り直し） | G1 content / pair / trace の PO 承認 |
+| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 問い 15 件（`unresolved` と同数）の採否、prototype reaction、PO agreement |
+| L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory | L2 agreement 後の compile、L10 oracle との pair、G3 PO / TL 承認 |
 
 ## 入力資産と扱い
 
 | 資産 | 扱い |
 | --- | --- |
-| `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（L0 改定ドラフト、PR #48） | 新企画書。構造自由・破壊域停止・知見をためる場。G0.5 判断待ち |
+| `docs/planning/L0-agent-controlled-variety.md` | L0 企画。要求の起点 |
 | 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。取り込みは一方向 |
-| 旧 L0-planning.md（PO 判断 2026-09-02 で削除、git 履歴 2904aea 以前） | 4 原理・ページ型別予算は WT-NFRL1-01 等へ継承済み。価格・単体販売・成功指標は失効（ADR-024） |
-| 旧 L1-requirements.md・nsrm-*・L2〜L5 設計・features・test-plan・解析レポート（削除済み、同上） | 継承: REQ-F-045 / 046 / 025、ADR-024。衝突記録: REQ-F-016 / 037（WT-Q-STRUCT-01/02）。継承も棄却記録もない項目は WT-Q-CARRY-01 で PO 判断 |
-| `docs/research/2026-08-26-theme-structure-audit/` | 調査証跡（INV-01〜17、欠落面 D-01〜07）。要求候補と暗黙要件の入力 |
-| `docs/research/2026-08-2[789]-*`, `2026-08-31-*` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
-| `themes/` `plugins/` `bin/` | 旧実装。能力棚卸し（パターン 71、スタイル 9、parts 5、templates 10、ゲート 6+実機）の根拠 |
-| ADR-001〜030 | 旧時代の判断記録。現行拘束は本正本経由の継承のみ（ADR-024 継承、ADR-028 は WT-Q-ADR-01 で再検討） |
-| `docs/design/api-catalog.md` | REST 契約の現行参照（bin/check-impl-coverage.sh が読む）。文書内の旧 L3 凍結表示は拘束ではない |
+| `docs/research/2026-08-26-theme-structure-audit/` | 3 テーマ構造監査・RE（INV-01〜17、差分レジスタ、機構比較、統合レポート）。拡大提案の根拠 |
+| `docs/research/2026-08-27-poc-browser-verification/`, `docs/research/2026-08-28-poc-conversion-and-variations/`, `docs/research/2026-08-28-poc-styles-parts-gates/`, `docs/research/2026-08-29-ge1-local/`, `docs/research/2026-08-31-poc-display-errors/` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
+| `docs/design/catalog/` | パーツ図鑑・カスタマイズ性・デザイン力比較 |
+| `docs/design/consistency-responsibilities.md` / `token-structure.md` / `parts-catalog.md` | 現行設計 3 文書（層 1 の所有権・尺度・パーツ一覧） |
+| `themes/` `plugins/` `bin/` | 実装資産。維持する土台（JSON 契約・health・boundary guard・REST 34 / MCP / CLI・パターン 71・variation 9・ゲート 6 + 実機）の根拠 |
+| ADR-001〜030 | 旧時代の判断記録。現行拘束は本正本経由の継承のみ |
 
 ## トレーサビリティ
 
-`L1 BR/FRL1/NFRL1/TRL1/SCR → L2 candidate/surface → L3 WT-* → WT-AC-* → WT-AT-*` を stable ID で接続する。
-孤児、重複 ID、存在しない参照、受入条件のない要求は L3 進行を拒否する（`npm run requirements:validate`）。
+`L1 BR / FRL1 / NFRL1 / TRL1 / SCR → L2 candidate / surface → L3 WT-* → WT-AC-* → WT-AT-*` を stable ID で接続する。
+孤児、重複 ID、存在しない参照、受入条件のない要求、要求に紐づかない問いは L3 進行を拒否する（`npm run requirements:validate`）。
 
 ## HELIX 本体との接続
 

@@ -7,7 +7,7 @@
 - テーマ main = `7df6108`（#61 merge 後）。統合層 `HELIX-MARKETING-HARNESS` の pin は同日更新（ずれていれば pin 更新待ち）。
 - テーマ構造監査（root #2 と INV/CAT/JSON/GATE 全 task・finding #21）は Issue 上すべて close 済み。
   証跡は `docs/research/2026-08-26-theme-structure-audit/`（PR #50）、伏せ字ガードは PR #51。
-- L0 改定ドラフト「構造自由・破壊域停止」+ L3-A5 PoC 棚卸しは PR #48 で main 収録済み（ドラフト扱い）。
+- 旧 L0 改定ドラフト + L3-A5 PoC 棚卸し（いずれも削除済み、PR #77 で新 L0 へ置換）は PR #48 で main 収録済み（ドラフト扱い）。
 - 設計 PoC 3 本（一貫性ゲート・スタイル 3 案・共有パーツ）は PO 判断（08-29）で採用され、#53/#54/#55 として main 収録済み（下記 §3）。
 
 ## 2. 直近 merge（2026-08-26〜29）
@@ -44,5 +44,5 @@
 ## 6. 読む順
 1. 本ファイル
 2. `docs/research/2026-08-26-theme-structure-audit/PROGRESS.md`
-3. `docs/requirements/authority.md`（要求正本）と `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（L0 改定ドラフト）
+3. `docs/requirements/authority.md`（要求正本）と `docs/planning/L0-agent-controlled-variety.md`（L0 企画・要求の起点）
 4. `docs/research/2026-08-26-theme-structure-audit/reports/INV-*.md`

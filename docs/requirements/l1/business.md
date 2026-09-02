@@ -10,21 +10,20 @@ authority: docs/requirements/authority.md
 
 | ID | 要求 | 成功判定 |
 | --- | --- | --- |
-| WT-BR-01 | テーマは運用知見・開発知見をためる場として機能し、実証済みパターンだけを GRAPHIX-NEO へ一方向に取り込める | 取り込み台帳の各行が参照元 commit・証跡・ゲート結果を持ち、逆方向の取り込みが 0 件 |
-| WT-BR-02 | 人と AI の両方が構造・値を自由に編集でき、破壊域だけが止まる | 構造変更で権限エラーが 0 件、破壊域の変更は保存前に停止し、安全域の変更は警告なしで通る |
-| WT-BR-03 | 既存サイト（テーマA / テーマB 相当）から移行しても収益と回遊の置き場所を失わない | 監査で特定した欠落面 D-01〜D-07 のすべてに受け皿パーツまたはパターンがある |
-| WT-BR-04 | テーマ・プラグインに AI 判定ロジックを持ち込まず、AI 判定は HELIX-WP-HARNESS 側が担う | theme / plugin に model 呼び出し・判定ロジック・外部 AI SDK の import が 0 件 |
-| WT-BR-05 | 変更は静的検査と実機ゲートの両方で崩れないことを証跡で示す | 静的ゲート FAIL=0 と実機ゲート invalid=0 が同一 HEAD に束縛された証跡として残る |
+| WT-BR-01 | 機械可読性を維持する。面・部品・値・変種を追加しても、すべてが JSON 宣言（theme.json / config / schema / openapi）から列挙できる | capability manifest の列挙率 100%。PHP にしか存在する面・部品が 0 |
+| WT-BR-02 | テーマA / B が示す一般想定水準に到達する。12 種別の必須パーツ充足に加え、未整備 16 項目に受け皿を持つ | `web-patterns` 12 種別で本テーマだけに欠ける必須パーツ 0。未整備 16 項目の受け皿有無が台帳化 |
+| WT-BR-03 | エージェント制御下でバリエーションを生成できる。面・部品・値・変種・テンプレの選択が JSON 経由で完結し、破壊域へ落ちない | AI 経路の変更のうち JSON 外の操作を要した件数 0。破壊域停止の誤警告 0 |
+| WT-BR-04 | 実証済みパターンを GRAPHIX-NEO へ一方向で渡せる | 台帳行の証跡付き率 100%。逆方向取り込み 0 |
+| WT-BR-05 | AI 判定ロジックをテーマ・プラグインに持ち込まない | 静的検出（判定ロジック・モデル呼び出し）0 |
 
 ## Actor と scope
 
-- actor: PO、編集者（非 AI ユーザー、Site Editor で編集）、運用者、移行者、AI エージェント（HELIX-WP-HARNESS 経由）、決定論ゲート、GRAPHIX-NEO（取り込み側）
-- product boundary: 本テーマは商用製品ではなく運用知見・開発知見をためる場（L0 改定ドラフト）。製品化は GRAPHIX-NEO が担う
+- actor: PO、編集者（Site Editor / Block Editor で編集する人）、運用者、移行者、AI エージェント（HELIX-WP-HARNESS 経由）、決定論ゲート、GRAPHIX-NEO（取り込み側）
+- product boundary: 本テーマは「機械可読性を保ったままエージェント制御でバリエーションを最大化する」ための知見蓄積の場（`docs/planning/L0-agent-controlled-variety.md`）。製品化は GRAPHIX-NEO が担う
 - release boundary: 実用試験。実運用サイトへの配備は PO 承認ごと
-- non-goal: AI 判定ロジックの内蔵、単体販売、第三者テーマとの完全互換、課金・会員機能（案 A: 移行プラグインへ委譲、WT-Q-SCOPE-01）
+- non-goal: 課金・会員機能（移行プラグインへ委譲）、第三者テーマの是正、外部デザインツール取り込み経路、AI 判定ロジックのテーマ内実装
 
-## 未決事項
+## PO への問い
 
-構造編集の適用範囲（WT-Q-STRUCT-01/02）、破壊域の境界値（WT-Q-VALUE-01）、共有パーツ切替の開放（WT-Q-PARTS-01）、
-ゾーン語彙（WT-Q-ZONE-01）、課金スコープ（WT-Q-SCOPE-01）、ADR-028 の再検討（WT-Q-ADR-01）は L2 candidate として owner と
-再入場条件を保持し、freeze へ混入させない。
+`docs/requirements/discovery/candidate-projection.json` の `unresolved` にある WT-Q-* 15 件。いずれも「X ができる（証跡あり）。採用するか」の形で、
+方式・配置先・境界値の詳細は問わない（PoC 証跡で決める）。

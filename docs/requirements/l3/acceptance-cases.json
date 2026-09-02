@@ -2,412 +2,520 @@
   "schema_version": "wt-acceptance-cases.v1",
   "cases": [
     {
-      "id": "WT-AC-STRUCT-01A",
-      "requirement_id": "WT-FR-STRUCT-01",
+      "id": "WT-AC-TR-CORE-01A",
+      "requirement_id": "WT-TR-CORE-01",
       "polarity": "positive",
-      "oracle": "既定パターンを別パターンへ差し替えて保存すると描画され、権限エラー・ロック警告が出ない"
+      "oracle": "新しい slot / パターン / variation を追加すると capability manifest に現れる"
     },
     {
-      "id": "WT-AC-STRUCT-01B",
-      "requirement_id": "WT-FR-STRUCT-01",
+      "id": "WT-AC-TR-CORE-01B",
+      "requirement_id": "WT-TR-CORE-01",
       "polarity": "negative",
-      "oracle": "構造変更を権限エラーにする旧 ACC-016 / 017 の挙動が残っていれば FAIL"
+      "oracle": "JSON 宣言なしに PHP で登録された面・部品が検出されたら FAIL"
     },
     {
-      "id": "WT-AC-STRUCT-02A",
-      "requirement_id": "WT-FR-STRUCT-02",
+      "id": "WT-AC-TR-CORE-02A",
+      "requirement_id": "WT-TR-CORE-02",
       "polarity": "positive",
-      "oracle": "AI 経路の投入は Blueprint で宣言した領域だけを書き換える"
+      "oracle": "health の出力がテーマの登録内容と一致する"
     },
     {
-      "id": "WT-AC-STRUCT-02B",
-      "requirement_id": "WT-FR-STRUCT-02",
+      "id": "WT-AC-TR-CORE-02B",
+      "requirement_id": "WT-TR-CORE-02",
       "polarity": "negative",
-      "oracle": "Blueprint 外の領域を AI 経路が書き換えたら拒否される"
+      "oracle": "登録内容と health の差分が 1 件でもあれば FAIL"
     },
     {
-      "id": "WT-AC-STRUCT-03A",
-      "requirement_id": "WT-FR-STRUCT-03",
+      "id": "WT-AC-TR-CORE-03A",
+      "requirement_id": "WT-TR-CORE-03",
       "polarity": "positive",
-      "oracle": "決定した方式で LP ページが組め、ヘッダーなしで描画される"
+      "oracle": "静的検出で AI SDK import・判定ロジックが 0"
     },
     {
-      "id": "WT-AC-STRUCT-03B",
-      "requirement_id": "WT-FR-STRUCT-03",
+      "id": "WT-AC-TR-CORE-03B",
+      "requirement_id": "WT-TR-CORE-03",
       "polarity": "negative",
-      "oracle": "方式の差（URL 構造・CPT 有無）が移行台帳へ記録されずに失われれば FAIL"
-    },
-    {
-      "id": "WT-AC-VALUE-01A",
-      "requirement_id": "WT-FR-VALUE-01",
-      "polarity": "positive",
-      "oracle": "尺度内のプリセット選択は警告なしで保存できる"
-    },
-    {
-      "id": "WT-AC-VALUE-01B",
-      "requirement_id": "WT-FR-VALUE-01",
-      "polarity": "negative",
-      "oracle": "破壊域の値（尺度最大超の余白、AA 未満のコントラスト）は保存が止まり、権限で迂回できない"
-    },
-    {
-      "id": "WT-AC-VALUE-02A",
-      "requirement_id": "WT-FR-VALUE-02",
-      "polarity": "positive",
-      "oracle": "規則ごとに境界値の内側の値が pass、外側の値が FAIL になる"
-    },
-    {
-      "id": "WT-AC-VALUE-02B",
-      "requirement_id": "WT-FR-VALUE-02",
-      "polarity": "negative",
-      "oracle": "境界値未確定の規則は『未確定』として報告し、pass を出さない"
-    },
-    {
-      "id": "WT-AC-STYLE-01A",
-      "requirement_id": "WT-FR-STYLE-01",
-      "polarity": "positive",
-      "oracle": "全バリエーションで G-T1b が PASS し、切替後も見出し尺度が単調非増加"
-    },
-    {
-      "id": "WT-AC-STYLE-01B",
-      "requirement_id": "WT-FR-STYLE-01",
-      "polarity": "negative",
-      "oracle": "styles/*.json に生 px / rem / em が含まれれば G-T1b が FAIL"
-    },
-    {
-      "id": "WT-AC-PARTS-01A",
-      "requirement_id": "WT-FR-PARTS-01",
-      "polarity": "positive",
-      "oracle": "任意のパーツ案へ差し替えても全テンプレートが描画され、G-S2 が PASS"
-    },
-    {
-      "id": "WT-AC-PARTS-01B",
-      "requirement_id": "WT-FR-PARTS-01",
-      "polarity": "negative",
-      "oracle": "存在しないパーツを参照するテンプレートは G-S2 が FAIL"
-    },
-    {
-      "id": "WT-AC-PARTS-02A",
-      "requirement_id": "WT-FR-PARTS-02",
-      "polarity": "positive",
-      "oracle": "1 つの再利用パーツを更新すると参照する全記事の描画が変わり、参照は ID と版で解決される"
-    },
-    {
-      "id": "WT-AC-PARTS-02B",
-      "requirement_id": "WT-FR-PARTS-02",
-      "polarity": "negative",
-      "oracle": "参照先が消えたパーツは state: missing として注記付きで描画を続行し、黙って空にならない"
-    },
-    {
-      "id": "WT-AC-ZONE-01A",
-      "requirement_id": "WT-FR-ZONE-01",
-      "polarity": "positive",
-      "oracle": "D-01 / D-05 / D-07 の各面に対応するパーツ / パターンが存在し、記事と LP で描画される"
-    },
-    {
-      "id": "WT-AC-ZONE-01B",
-      "requirement_id": "WT-FR-ZONE-01",
-      "polarity": "negative",
-      "oracle": "SP 下部固定領域の積層規約に反する組合せは警告される"
-    },
-    {
-      "id": "WT-AC-ZONE-02A",
-      "requirement_id": "WT-FR-ZONE-02",
-      "polarity": "positive",
-      "oracle": "語彙にあるゾーン ID を指定した広告が条件に一致するページだけに出る"
-    },
-    {
-      "id": "WT-AC-ZONE-02B",
-      "requirement_id": "WT-FR-ZONE-02",
-      "polarity": "negative",
-      "oracle": "語彙外のゾーン ID は schema 検証で拒否される"
-    },
-    {
-      "id": "WT-AC-ZONE-03A",
-      "requirement_id": "WT-FR-ZONE-03",
-      "polarity": "positive",
-      "oracle": "h2 を持つ記事で目次が既定位置に描画され、配置意図を変えると位置が変わる"
-    },
-    {
-      "id": "WT-AC-ZONE-03B",
-      "requirement_id": "WT-FR-ZONE-03",
-      "polarity": "negative",
-      "oracle": "中間 JSON に目次本体（見出しの複製）が含まれれば adapter が拒否する"
-    },
-    {
-      "id": "WT-AC-GATE-01A",
-      "requirement_id": "WT-FR-GATE-01",
-      "polarity": "positive",
-      "oracle": "main の全成果物で FAIL=0、生値は baseline 438 以下"
-    },
-    {
-      "id": "WT-AC-GATE-01B",
-      "requirement_id": "WT-FR-GATE-01",
-      "polarity": "negative",
-      "oracle": "baseline を超える生値の追加は G-T2 が FAIL"
-    },
-    {
-      "id": "WT-AC-GATE-02A",
-      "requirement_id": "WT-FR-GATE-02",
-      "polarity": "positive",
-      "oracle": "全 71 パターンが実機で invalid=0"
-    },
-    {
-      "id": "WT-AC-GATE-02B",
-      "requirement_id": "WT-FR-GATE-02",
-      "polarity": "negative",
-      "oracle": "静的検査が通るが実機で invalid になるパターンを G-E1 が検出する"
+      "oracle": "検出 1 件で FAIL"
     },
     {
       "id": "WT-AC-NFR-GATE-01A",
       "requirement_id": "WT-NFR-GATE-01",
       "polarity": "positive",
-      "oracle": "同一 HEAD で 2 回実行した結果の JSON が一致する"
+      "oracle": "PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される"
     },
     {
       "id": "WT-AC-NFR-GATE-01B",
       "requirement_id": "WT-NFR-GATE-01",
       "polarity": "negative",
-      "oracle": "乱数・時刻・外部 API に依存する判定が含まれれば FAIL"
+      "oracle": "静的 PASS のみで merge された変更が実機 invalid を生めば FAIL"
     },
     {
-      "id": "WT-AC-AGENT-01A",
-      "requirement_id": "WT-FR-AGENT-01",
+      "id": "WT-AC-ZONE-01A",
+      "requirement_id": "WT-FR-ZONE-01",
       "polarity": "positive",
-      "oracle": "同一中間 JSON から生成した markup の digest が一致し、エディタで invalid=0"
+      "oracle": "各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない"
     },
     {
-      "id": "WT-AC-AGENT-01B",
-      "requirement_id": "WT-FR-AGENT-01",
+      "id": "WT-AC-ZONE-01B",
+      "requirement_id": "WT-FR-ZONE-01",
       "polarity": "negative",
-      "oracle": "schema version 不一致の中間 JSON は write 前に拒否される"
+      "oracle": "空 slot が空要素や領域見出しを出せば FAIL"
     },
     {
-      "id": "WT-AC-AGENT-02A",
-      "requirement_id": "WT-FR-AGENT-02",
+      "id": "WT-AC-ZONE-02A",
+      "requirement_id": "WT-FR-ZONE-02",
       "polarity": "positive",
-      "oracle": "意味 31 種の意図ノードが対応ブロックへ展開される"
+      "oracle": "schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される"
     },
     {
-      "id": "WT-AC-AGENT-02B",
-      "requirement_id": "WT-FR-AGENT-02",
+      "id": "WT-AC-ZONE-02B",
+      "requirement_id": "WT-FR-ZONE-02",
       "polarity": "negative",
-      "oracle": "未知のショートコードは破棄されず原文のまま保持される"
+      "oracle": "複数規則が同時適用される、または未定義ゾーンが通れば FAIL"
     },
     {
-      "id": "WT-AC-TR-AGENT-01A",
-      "requirement_id": "WT-TR-AGENT-01",
+      "id": "WT-AC-ZONE-03A",
+      "requirement_id": "WT-FR-ZONE-03",
       "polarity": "positive",
-      "oracle": "A 群の各ルートが OpenAPI 契約と一致する"
+      "oracle": "3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない"
     },
     {
-      "id": "WT-AC-TR-AGENT-01B",
-      "requirement_id": "WT-TR-AGENT-01",
+      "id": "WT-AC-ZONE-03B",
+      "requirement_id": "WT-FR-ZONE-03",
       "polarity": "negative",
-      "oracle": "B 群のルートや外部 AI write 用エンドポイントが存在すれば FAIL"
+      "oracle": "重なりや順序違反があれば FAIL"
+    },
+    {
+      "id": "WT-AC-PARTS-01A",
+      "requirement_id": "WT-FR-PARTS-01",
+      "polarity": "positive",
+      "oracle": "差し替え後の骨格差分（テンプレ・パーツ参照）が表示され、保存後に公開面へ反映される"
+    },
+    {
+      "id": "WT-AC-PARTS-01B",
+      "requirement_id": "WT-FR-PARTS-01",
+      "polarity": "negative",
+      "oracle": "差し替えで参照欠落（G-S2）や invalid が出れば FAIL"
+    },
+    {
+      "id": "WT-AC-PARTS-02A",
+      "requirement_id": "WT-FR-PARTS-02",
+      "polarity": "positive",
+      "oracle": "wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない"
+    },
+    {
+      "id": "WT-AC-PARTS-02B",
+      "requirement_id": "WT-FR-PARTS-02",
+      "polarity": "negative",
+      "oracle": "header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL"
+    },
+    {
+      "id": "WT-AC-VOCAB-01A",
+      "requirement_id": "WT-FR-VOCAB-01",
+      "polarity": "positive",
+      "oracle": "14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種が描画される"
+    },
+    {
+      "id": "WT-AC-VOCAB-01B",
+      "requirement_id": "WT-FR-VOCAB-01",
+      "polarity": "negative",
+      "oracle": "受け皿のない語彙、または 4 つ目の新規ブロックがあれば FAIL"
+    },
+    {
+      "id": "WT-AC-VOCAB-02A",
+      "requirement_id": "WT-FR-VOCAB-02",
+      "polarity": "positive",
+      "oracle": "h2 を持つ記事で目次が最初の h2 直前に出て、投稿メタで OFF にできる"
+    },
+    {
+      "id": "WT-AC-VOCAB-02B",
+      "requirement_id": "WT-FR-VOCAB-02",
+      "polarity": "negative",
+      "oracle": "目次本文が保存 HTML に固定される（h2 変更で不整合）なら FAIL"
+    },
+    {
+      "id": "WT-AC-VOCAB-03A",
+      "requirement_id": "WT-FR-VOCAB-03",
+      "polarity": "positive",
+      "oracle": "提携種別を持つ記事でファーストビュー内に表記が出る"
+    },
+    {
+      "id": "WT-AC-VOCAB-03B",
+      "requirement_id": "WT-FR-VOCAB-03",
+      "polarity": "negative",
+      "oracle": "本文編集で表記を消せる、または対象記事で欠落すれば FAIL"
+    },
+    {
+      "id": "WT-AC-VOCAB-04A",
+      "requirement_id": "WT-FR-VOCAB-04",
+      "polarity": "positive",
+      "oracle": "内部リンクカードが REST 呼び出しなしで描画される"
+    },
+    {
+      "id": "WT-AC-VOCAB-04B",
+      "requirement_id": "WT-FR-VOCAB-04",
+      "polarity": "negative",
+      "oracle": "未認証 REST または未検証 file_get_contents が経路にあれば FAIL"
+    },
+    {
+      "id": "WT-AC-LOOK-01A",
+      "requirement_id": "WT-FR-LOOK-01",
+      "polarity": "positive",
+      "oracle": "見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される"
+    },
+    {
+      "id": "WT-AC-LOOK-01B",
+      "requirement_id": "WT-FR-LOOK-01",
+      "polarity": "negative",
+      "oracle": "生値や !important で実現された装飾があれば FAIL"
+    },
+    {
+      "id": "WT-AC-LOOK-02A",
+      "requirement_id": "WT-FR-LOOK-02",
+      "polarity": "positive",
+      "oracle": "写像した variation がスラッグ集合を変えず G-T1b PASS"
+    },
+    {
+      "id": "WT-AC-LOOK-02B",
+      "requirement_id": "WT-FR-LOOK-02",
+      "polarity": "negative",
+      "oracle": "段の増減や新スラッグを伴う variation があれば FAIL"
+    },
+    {
+      "id": "WT-AC-META-01A",
+      "requirement_id": "WT-FR-META-01",
+      "polarity": "positive",
+      "oracle": "メタを OFF にした記事だけで該当パーツが消え、REST から同じキーを読み書きできる"
+    },
+    {
+      "id": "WT-AC-META-01B",
+      "requirement_id": "WT-FR-META-01",
+      "polarity": "negative",
+      "oracle": "未登録メタや option で表示が変わる経路があれば FAIL"
+    },
+    {
+      "id": "WT-AC-LP-01A",
+      "requirement_id": "WT-FR-LP-01",
+      "polarity": "positive",
+      "oracle": "決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される"
+    },
+    {
+      "id": "WT-AC-LP-01B",
+      "requirement_id": "WT-FR-LP-01",
+      "polarity": "negative",
+      "oracle": "方式差が台帳に無いまま移行されれば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-01A",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "positive",
-      "oracle": "スナップショット取得後に移管必須キーだけが写像され、見た目キーは対象外として台帳に残る"
+      "oracle": "サンプル control（A 400 / B 400）の各行が 4 分類のどれかに落ち、写像先が存在する"
     },
     {
       "id": "WT-AC-MIGRATE-01B",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "negative",
-      "oracle": "スナップショットなしの写像は実行前に拒否される"
+      "oracle": "分類不能または option 不可視上書きに落ちる行があれば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-02A",
       "requirement_id": "WT-FR-MIGRATE-02",
       "polarity": "positive",
-      "oracle": "代表 6 領域と色 8 スラッグの写像が invalid=0 / G-T1b PASS で成立する"
+      "oracle": "代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る"
     },
     {
       "id": "WT-AC-MIGRATE-02B",
       "requirement_id": "WT-FR-MIGRATE-02",
       "polarity": "negative",
-      "oracle": "アニメーション・グラデーション角度・スライダーは写像せず台帳に残る"
+      "oracle": "変換で invalid が出る、または写像不能が黙って落ちれば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-03A",
       "requirement_id": "WT-FR-MIGRATE-03",
       "polarity": "positive",
-      "oracle": "互換キーが未注入なら読み取りは無効で、注入すると読み取れる"
+      "oracle": "移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い"
     },
     {
       "id": "WT-AC-MIGRATE-03B",
       "requirement_id": "WT-FR-MIGRATE-03",
       "polarity": "negative",
-      "oracle": "公開本体に第三者固有名が含まれれば公開情報検査が FAIL"
+      "oracle": "見た目キーの機械移送や固有名の混入があれば FAIL"
+    },
+    {
+      "id": "WT-AC-AGENT-01A",
+      "requirement_id": "WT-FR-AGENT-01",
+      "polarity": "positive",
+      "oracle": "manifest の項目だけを指定して構造・スタイル・値を変更でき、dry-run の差分と apply 結果が一致する"
+    },
+    {
+      "id": "WT-AC-AGENT-01B",
+      "requirement_id": "WT-FR-AGENT-01",
+      "polarity": "negative",
+      "oracle": "manifest 外の指定が通る、または apply が dry-run と異なれば FAIL"
+    },
+    {
+      "id": "WT-AC-AGENT-02A",
+      "requirement_id": "WT-FR-AGENT-02",
+      "polarity": "positive",
+      "oracle": "同じ本文から同じ JSON が出て、循環参照で停止する"
+    },
+    {
+      "id": "WT-AC-AGENT-02B",
+      "requirement_id": "WT-FR-AGENT-02",
+      "polarity": "negative",
+      "oracle": "enqueue 等の副作用や無限ループがあれば FAIL"
+    },
+    {
+      "id": "WT-AC-AGENT-03A",
+      "requirement_id": "WT-FR-AGENT-03",
+      "polarity": "positive",
+      "oracle": "hook 一覧が manifest と実装で一致する"
+    },
+    {
+      "id": "WT-AC-AGENT-03B",
+      "requirement_id": "WT-FR-AGENT-03",
+      "polarity": "negative",
+      "oracle": "manifest に無い hook、または manifest にあるが発火しない hook があれば FAIL"
+    },
+    {
+      "id": "WT-AC-AGENT-04A",
+      "requirement_id": "WT-FR-AGENT-04",
+      "polarity": "positive",
+      "oracle": "参照先を更新すると利用側の digest 記録が差分として検出できる"
+    },
+    {
+      "id": "WT-AC-AGENT-04B",
+      "requirement_id": "WT-FR-AGENT-04",
+      "polarity": "negative",
+      "oracle": "展開保存された複製があれば FAIL"
+    },
+    {
+      "id": "WT-AC-TR-AGENT-05A",
+      "requirement_id": "WT-TR-AGENT-05",
+      "polarity": "positive",
+      "oracle": "OpenAPI の全 path が自前名前空間で、変換層ごとに「入力が同じなら出力が同じ」が成り立つ"
+    },
+    {
+      "id": "WT-AC-TR-AGENT-05B",
+      "requirement_id": "WT-TR-AGENT-05",
+      "polarity": "negative",
+      "oracle": "wp/v2 配下の自前ルート、または層をまたぐ副作用があれば FAIL"
+    },
+    {
+      "id": "WT-AC-VALUE-01A",
+      "requirement_id": "WT-FR-VALUE-01",
+      "polarity": "positive",
+      "oracle": "破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、権限による解除手段が無い"
+    },
+    {
+      "id": "WT-AC-VALUE-01B",
+      "requirement_id": "WT-FR-VALUE-01",
+      "polarity": "negative",
+      "oracle": "破壊域が保存できる、または安全域が誤って止まれば FAIL"
+    },
+    {
+      "id": "WT-AC-VALUE-02A",
+      "requirement_id": "WT-FR-VALUE-02",
+      "polarity": "positive",
+      "oracle": "許容リスト外の生値が G-T2 で FAIL になり、件数が baseline から単調減少する"
+    },
+    {
+      "id": "WT-AC-VALUE-02B",
+      "requirement_id": "WT-FR-VALUE-02",
+      "polarity": "negative",
+      "oracle": "許容リストに実値を足して通す変更があれば FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-VALUE-03A",
+      "requirement_id": "WT-NFR-VALUE-03",
+      "polarity": "positive",
+      "oracle": "段を増減する投影が拒否され、親の 6 段が維持される"
+    },
+    {
+      "id": "WT-AC-NFR-VALUE-03B",
+      "requirement_id": "WT-NFR-VALUE-03",
+      "polarity": "negative",
+      "oracle": "投影で 60 が落ちてコア既定が入る（PoC 実測）状態が再現すれば FAIL"
     },
     {
       "id": "WT-AC-SEO-01A",
       "requirement_id": "WT-FR-SEO-01",
       "polarity": "positive",
-      "oracle": "記事・一覧・FAQ 付き記事で対応する JSON-LD が 1 本ずつ出て、canonical が 404 以外で出る"
+      "oracle": "一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出る"
     },
     {
       "id": "WT-AC-SEO-01B",
       "requirement_id": "WT-FR-SEO-01",
       "polarity": "negative",
-      "oracle": "同型の JSON-LD が複数出力元から重複して出れば FAIL"
+      "oracle": "同型の二重出力や @type 空のスクリプトがあれば FAIL"
+    },
+    {
+      "id": "WT-AC-SEO-02A",
+      "requirement_id": "WT-FR-SEO-02",
+      "polarity": "positive",
+      "oracle": "FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致する"
+    },
+    {
+      "id": "WT-AC-SEO-02B",
+      "requirement_id": "WT-FR-SEO-02",
+      "polarity": "negative",
+      "oracle": "本文に無い項目が JSON-LD に出れば FAIL"
+    },
+    {
+      "id": "WT-AC-SEO-03A",
+      "requirement_id": "WT-FR-SEO-03",
+      "polarity": "positive",
+      "oracle": "12 種別すべてで canonical・description・OGP が出て、AI 向け出力の digest が HTML と整合する"
+    },
+    {
+      "id": "WT-AC-SEO-03B",
+      "requirement_id": "WT-FR-SEO-03",
+      "polarity": "negative",
+      "oracle": "front / archive / search で欠落すれば FAIL"
     },
     {
       "id": "WT-AC-INTAKE-01A",
       "requirement_id": "WT-FR-INTAKE-01",
       "polarity": "positive",
-      "oracle": "台帳の各行が commit・証跡パス・ゲート結果を持つ"
+      "oracle": "台帳 1 行から証跡と commit へ辿れ、ゲート結果が同一 HEAD に束縛される"
     },
     {
       "id": "WT-AC-INTAKE-01B",
       "requirement_id": "WT-FR-INTAKE-01",
       "polarity": "negative",
-      "oracle": "証跡のない行や GRAPHIX-NEO からの逆方向の行は台帳検証が拒否する"
-    },
-    {
-      "id": "WT-AC-TR-PLATFORM-01A",
-      "requirement_id": "WT-TR-PLATFORM-01",
-      "polarity": "positive",
-      "oracle": "docker WP 7.1 / PHP 8.3 で全テンプレートが描画され G-T1 が PASS"
-    },
-    {
-      "id": "WT-AC-TR-PLATFORM-01B",
-      "requirement_id": "WT-TR-PLATFORM-01",
-      "polarity": "negative",
-      "oracle": "子テーマや styles が尺度を再定義すれば G-S1 / G-T1b が FAIL"
-    },
-    {
-      "id": "WT-AC-NFR-PERF-01A",
-      "requirement_id": "WT-NFR-PERF-01",
-      "polarity": "positive",
-      "oracle": "ページ型ごとの転送量が予算内"
-    },
-    {
-      "id": "WT-AC-NFR-PERF-01B",
-      "requirement_id": "WT-NFR-PERF-01",
-      "polarity": "negative",
-      "oracle": "予算超過のページ型があれば性能ゲートが FAIL"
-    },
-    {
-      "id": "WT-AC-NFR-A11Y-01A",
-      "requirement_id": "WT-NFR-A11Y-01",
-      "polarity": "positive",
-      "oracle": "全バリエーションでコントラスト AA を満たす"
-    },
-    {
-      "id": "WT-AC-NFR-A11Y-01B",
-      "requirement_id": "WT-NFR-A11Y-01",
-      "polarity": "negative",
-      "oracle": "AA 未満の色組合せは破壊域停止の対象になる"
+      "oracle": "証跡なしの行、または逆方向の取り込み行があれば FAIL"
     },
     {
       "id": "WT-AC-NFR-SEC-01A",
       "requirement_id": "WT-NFR-SEC-01",
       "polarity": "positive",
-      "oracle": "全ルートが permission_callback を持ち、未認証 GET で Warning 混入が 0"
+      "oracle": "REST 監査で未認証ルート 0、SSRF 形 0、公開面 Warning 0"
     },
     {
       "id": "WT-AC-NFR-SEC-01B",
       "requirement_id": "WT-NFR-SEC-01",
       "polarity": "negative",
-      "oracle": "permission_callback が __return_true のルートや未検証 URL 取得があれば FAIL"
+      "oracle": "1 件でもあれば FAIL"
     },
     {
       "id": "WT-AC-NFR-REL-01A",
       "requirement_id": "WT-NFR-REL-01",
       "polarity": "positive",
-      "oracle": "描画前後で option / theme_mods の差分が 0、末尾スラッシュ有無で正規化リダイレクトが働く"
+      "oracle": "閲覧・クロール前後で option / theme_mod の diff が 0。正規化リダイレクトが動く"
     },
     {
       "id": "WT-AC-NFR-REL-01B",
       "requirement_id": "WT-NFR-REL-01",
       "polarity": "negative",
-      "oracle": "描画中の set_theme_mod / update_option 呼び出しがあれば FAIL"
+      "oracle": "描画時 write または正規化停止があれば FAIL"
     },
     {
       "id": "WT-AC-NFR-PRIV-01A",
       "requirement_id": "WT-NFR-PRIV-01",
       "polarity": "positive",
-      "oracle": "計測イベントに個人識別子が含まれない"
+      "oracle": "テーマ・プラグインに計測 ID・広告 HTML の生値が 0"
     },
     {
       "id": "WT-AC-NFR-PRIV-01B",
       "requirement_id": "WT-NFR-PRIV-01",
       "polarity": "negative",
-      "oracle": "IP・UA 生値・cookie 値の保存があれば FAIL"
+      "oracle": "検出 1 件で FAIL"
     },
     {
       "id": "WT-AC-NFR-PERM-01A",
       "requirement_id": "WT-NFR-PERM-01",
       "polarity": "positive",
-      "oracle": "capability のないユーザーはテンプレート編集に到達できない"
+      "oracle": "管理者権限でも破壊域が保存できず、receipt なしの apply が拒否される"
     },
     {
       "id": "WT-AC-NFR-PERM-01B",
       "requirement_id": "WT-NFR-PERM-01",
       "polarity": "negative",
-      "oracle": "管理者が破壊域の値を保存できれば FAIL"
+      "oracle": "迂回経路 1 件で FAIL"
     },
     {
       "id": "WT-AC-NFR-COST-01A",
       "requirement_id": "WT-NFR-COST-01",
       "polarity": "positive",
-      "oracle": "テーマ / プラグインの依存に外部 API キーを要するものがない"
+      "oracle": "CI と実機ゲートが外部 API なしで green"
     },
     {
       "id": "WT-AC-NFR-COST-01B",
       "requirement_id": "WT-NFR-COST-01",
       "polarity": "negative",
-      "oracle": "外部デザインツールの取り込み経路が復活すれば FAIL"
+      "oracle": "外部 API 呼び出しを含むゲートがあれば FAIL"
     },
     {
       "id": "WT-AC-NFR-LEGAL-01A",
       "requirement_id": "WT-NFR-LEGAL-01",
       "polarity": "positive",
-      "oracle": "開示フラグ付き記事で 3 層の開示が出る"
+      "oracle": "対象記事の表記欠落 0、同梱資産のライセンス台帳あり"
     },
     {
       "id": "WT-AC-NFR-LEGAL-01B",
       "requirement_id": "WT-NFR-LEGAL-01",
       "polarity": "negative",
-      "oracle": "開示フラグなしの記事に開示が出れば FAIL"
+      "oracle": "欠落 1 件で FAIL"
     },
     {
       "id": "WT-AC-NFR-OBS-01A",
       "requirement_id": "WT-NFR-OBS-01",
       "polarity": "positive",
-      "oracle": "PR ごとにゲート JSON が HEAD に束縛されて残る"
+      "oracle": "各出力に HEAD と digest があり再実行で一致する"
     },
     {
       "id": "WT-AC-NFR-OBS-01B",
       "requirement_id": "WT-NFR-OBS-01",
       "polarity": "negative",
-      "oracle": "証跡のない完了主張は受け付けない"
+      "oracle": "不一致 1 件で FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-A11Y-01A",
+      "requirement_id": "WT-NFR-A11Y-01",
+      "polarity": "positive",
+      "oracle": "axe gate 違反 0、mobile 横スクロール 0"
+    },
+    {
+      "id": "WT-AC-NFR-A11Y-01B",
+      "requirement_id": "WT-NFR-A11Y-01",
+      "polarity": "negative",
+      "oracle": "違反 1 件で FAIL"
     },
     {
       "id": "WT-AC-NFR-REC-01A",
       "requirement_id": "WT-NFR-REC-01",
       "polarity": "positive",
-      "oracle": "dry-run が差分だけを返し、apply 後の rollback で digest が元に戻る"
+      "oracle": "apply 後の rollback で変更前 digest と一致する"
     },
     {
       "id": "WT-AC-NFR-REC-01B",
       "requirement_id": "WT-NFR-REC-01",
       "polarity": "negative",
-      "oracle": "rollback 情報のない apply は拒否される"
+      "oracle": "不一致 1 件で FAIL"
     },
     {
       "id": "WT-AC-NFR-CRED-01A",
       "requirement_id": "WT-NFR-CRED-01",
       "polarity": "positive",
-      "oracle": "公開情報検査と伏せ字ガードが commit 前に PASS"
+      "oracle": "public-safety check OK"
     },
     {
       "id": "WT-AC-NFR-CRED-01B",
       "requirement_id": "WT-NFR-CRED-01",
       "polarity": "negative",
-      "oracle": "固有名・絶対パス・credential パターンが含まれれば検査が FAIL"
+      "oracle": "検出 1 件で FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-PERF-01A",
+      "requirement_id": "WT-NFR-PERF-01",
+      "polarity": "positive",
+      "oracle": "予算超過 0、未使用ブロック CSS 0"
+    },
+    {
+      "id": "WT-AC-NFR-PERF-01B",
+      "requirement_id": "WT-NFR-PERF-01",
+      "polarity": "negative",
+      "oracle": "超過 1 件で FAIL"
     }
   ]
 }

@@ -10,27 +10,22 @@ authority: docs/requirements/authority.md
 
 | ID | 品質要求 | 測定方向 |
 | --- | --- | --- |
-| WT-NFRL1-01 | ページ型別に JS / CSS 予算を分離し、記事 15KB・LP 50KB 等の予算を超えない | performance budget test |
-| WT-NFRL1-02 | 公開面と編集面は WCAG 2.2 AA を満たし、破壊域判定にコントラスト比 AA 未満を含む | accessibility test |
-| WT-NFRL1-03 | 全パターン・パーツ・テンプレートの Block validation が実機で invalid=0 | G-E1 実機ゲート |
-| WT-NFRL1-04 | パターン・パーツ・テンプレートの生値は baseline を超えない | G-T2 静的ゲート |
-| WT-NFRL1-05 | 未認証 REST を生やさず、PHP Warning を応答本文へ漏らさず、外部 URL を未検証で取得しない | security test |
-| WT-NFRL1-06 | 描画時に DB 書込（set_theme_mod / update_option）を行わない | render side-effect test |
-| WT-NFRL1-07 | redirect_canonical・session など WP グローバル挙動を改変しない | global behavior test |
-| WT-NFRL1-08 | 公開リポジトリに第三者製品名・実運用サイト・個人環境パス・credential を持たない | public-safety check |
-| WT-NFRL1-09 | WP 6.6 以上（7.x 検証）・PHP 8.1 以上・theme.json v3・GPL 互換で動く | platform matrix test |
-| WT-NFRL1-10 | ゲート・写像・生成は同一入力で同一結果を返す | determinism test |
-| WT-NFRL1-11 | AI 生成コンテンツの開示（可視バッジ・JSON-LD・メタタグ）を表現できる | disclosure rendering test |
-| WT-NFRL1-12 | 移行は事前スナップショットなしに設定を書き換えない | migration snapshot test |
-| WT-NFRL1-13 | 訪問者の個人データを保存せず、計測は匿名イベント（cta_id 等）に限定する | privacy test |
-| WT-NFRL1-14 | 編集権限は WP capability に従い、破壊域停止は権限で迂回できない | permission test |
-| WT-NFRL1-15 | 有料外部サービス・外部デザインツールへの依存を持たない | cost boundary test |
-| WT-NFRL1-16 | ゲート結果と実機検証を JSON 証跡として保存し、CI と PR から参照できる | observability test |
-| WT-NFRL1-17 | 適用と移行は dry-run と rollback を持つ | recovery test |
+| WT-NFRL1-01 | 4 層一貫性（トークン→骨格→部品→内容）を静的ゲートで守る。層 1 だけが尺度を持ち、下位は名前で参照する | G-T1 / T1b / T2 / T3 / S1 / S2 FAIL=0 |
+| WT-NFRL1-02 | 静的検査で通っても実機で壊れる事例があるため、パターン・パーツ変更は実機ゲート（Block validation）を完了条件にする | G-E1 invalid=0 / 全パターン |
+| WT-NFRL1-03 | 描画に副作用を持たない: 描画パスで DB へ書かない。同じ入力は同じ出力になる（決定論） | 描画時 option / theme_mod write 0。同一入力の出力 digest 一致 |
+| WT-NFRL1-04 | 未認証 REST を持たない。外部 URL 取得は検証付き HTTP 経由のみ。PHP Warning を公開面へ出さない | 未認証ルート 0。SSRF 形の関数呼び出し 0。公開面 Warning 0 |
+| WT-NFRL1-05 | アクセシビリティ: 域の判定・状態表示は色だけに依存しない。img alt 欠落 0。AA コントラスト | axe gate 違反 0 |
+| WT-NFRL1-06 | 性能予算: web-vitals-budget を維持する。面・語彙を増やしても CSS は使用分だけ読む | 予算超過 0。未使用ブロック CSS の読み込み 0 |
+| WT-NFRL1-07 | 観測性: health / gate / 台帳の出力は JSON で機械可読。証跡は HEAD と digest に束縛する | JSON 出力率 100%。digest 不一致 0 |
+| WT-NFRL1-08 | credential・実サイト固有名・第三者製品名を公開リポジトリへ置かない。接続情報は環境変数 | public-safety check OK |
+| WT-NFRL1-09 | 復旧: 変更は dry-run → apply → rollback の経路を持ち、失敗時に元へ戻る | rollback 成功率 100% |
+| WT-NFRL1-10 | 法令: PR 表記（景表法ステマ規制）は編集者が消せない位置に出る | 対象記事の表記欠落 0 |
+| WT-NFRL1-11 | プライバシー: 計測・広告タグの正本はテーマ外（HELIX / プラグイン側） | テーマ内の計測 ID 0 |
+| WT-NFRL1-12 | 権限で破壊域停止を迂回できない | 迂回経路 0 |
+| WT-NFRL1-13 | コスト: ゲートと PoC はローカル docker で完結し、有料・無料枠制限のある外部 API に依存しない | 外部 API 依存のゲート 0 |
 
-## 意味境界
+## 出典
 
-- `WT-NFRL1-02` は公開面・編集面の到達性と破壊域判定への組み込み、`WT-NFRL1-14` は権限による迂回不可を扱う。
-- `WT-NFRL1-05` / `06` / `07` は第三者テーマ監査（INV-13 / 16 / 17）で観測した欠陥を本テーマで再発させないための教訓であり、
-  第三者テーマの是正は本リポの要求ではない（HELIX-WP-HARNESS #198）。
-- `WT-NFRL1-03` / `04` の数値（invalid=0、baseline 438）は 2026-08-29 時点の実測で、変更は設計判断（WT-Q-GATE-01）を要する。
+- `WT-NFRL1-01` / `02`: `docs/design/consistency-responsibilities.md`、`docs/research/2026-08-29-ge1-local/README.md`（静的検査で通っても実機で壊れる事例）
+- `WT-NFRL1-03` / `04`: 第三者テーマ監査で観測した欠陥（描画時 DB write、未認証 REST / SSRF、グローバル改変）を本テーマで再発させない教訓（`docs/research/2026-08-26-theme-structure-audit/20-reverse-engineering-synthesis.md` 第 2 部）。第三者テーマ自体の是正は本リポの要求ではない
+- 数値（invalid=0、baseline 438）は 2026-08-29 時点の実測

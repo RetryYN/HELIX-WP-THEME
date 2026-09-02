@@ -1,77 +1,33 @@
 {
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
-  "initiative_id": "WT-STRUCTURE-FREEDOM",
-  "event_head": "WT-EVT-0020",
-  "event_count": 20,
+  "initiative_id": "WT-AGENT-VARIETY",
+  "event_head": "WT-EVT-0018",
+  "event_count": 18,
   "candidates": [
     {
-      "candidate_id": "WT-CAND-STRUCT",
-      "state": "elicited",
-      "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0004",
-        "WT-EVT-0015",
-        "WT-EVT-0016",
-        "WT-EVT-0017"
-      ],
-      "requirement_ids": [
-        "WT-FR-STRUCT-01",
-        "WT-FR-STRUCT-02",
-        "WT-FR-STRUCT-03"
-      ]
-    },
-    {
-      "candidate_id": "WT-CAND-VALUE",
-      "state": "prototyped",
-      "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0005",
-        "WT-EVT-0017",
-        "WT-EVT-0018"
-      ],
-      "requirement_ids": [
-        "WT-FR-VALUE-01",
-        "WT-FR-VALUE-02"
-      ]
-    },
-    {
-      "candidate_id": "WT-CAND-STYLE",
+      "candidate_id": "WT-CAND-CORE",
       "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0003",
-        "WT-EVT-0006",
-        "WT-EVT-0018"
+        "WT-EVT-0016"
       ],
       "requirement_ids": [
-        "WT-FR-STYLE-01"
-      ]
-    },
-    {
-      "candidate_id": "WT-CAND-PARTS",
-      "state": "prototyped",
-      "source_event_ids": [
-        "WT-EVT-0002",
-        "WT-EVT-0003",
-        "WT-EVT-0007",
-        "WT-EVT-0015",
-        "WT-EVT-0017",
-        "WT-EVT-0018"
-      ],
-      "requirement_ids": [
-        "WT-FR-PARTS-01",
-        "WT-FR-PARTS-02"
+        "WT-TR-CORE-01",
+        "WT-TR-CORE-02",
+        "WT-TR-CORE-03",
+        "WT-NFR-GATE-01"
       ]
     },
     {
       "candidate_id": "WT-CAND-ZONE",
-      "state": "elicited",
+      "state": "prototyped",
       "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0008",
-        "WT-EVT-0017",
-        "WT-EVT-0020"
+        "WT-EVT-0002",
+        "WT-EVT-0004",
+        "WT-EVT-0016",
+        "WT-EVT-0017"
       ],
       "requirement_ids": [
         "WT-FR-ZONE-01",
@@ -80,45 +36,81 @@
       ]
     },
     {
-      "candidate_id": "WT-CAND-GATE",
-      "state": "accepted",
+      "candidate_id": "WT-CAND-PARTS",
+      "state": "prototyped",
       "source_event_ids": [
         "WT-EVT-0002",
-        "WT-EVT-0003",
-        "WT-EVT-0009",
-        "WT-EVT-0017",
-        "WT-EVT-0018"
+        "WT-EVT-0005",
+        "WT-EVT-0016",
+        "WT-EVT-0017"
       ],
       "requirement_ids": [
-        "WT-FR-GATE-01",
-        "WT-FR-GATE-02",
-        "WT-NFR-GATE-01"
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02"
       ]
     },
     {
-      "candidate_id": "WT-CAND-AGENT",
-      "state": "elicited",
+      "candidate_id": "WT-CAND-VOCAB",
+      "state": "prototyped",
       "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0010",
+        "WT-EVT-0002",
+        "WT-EVT-0006",
         "WT-EVT-0016",
-        "WT-EVT-0020"
+        "WT-EVT-0017"
       ],
       "requirement_ids": [
-        "WT-FR-AGENT-01",
-        "WT-FR-AGENT-02",
-        "WT-TR-AGENT-01"
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-LOOK",
+      "state": "prototyped",
+      "source_event_ids": [
+        "WT-EVT-0002",
+        "WT-EVT-0007",
+        "WT-EVT-0016",
+        "WT-EVT-0017"
+      ],
+      "requirement_ids": [
+        "WT-FR-LOOK-01",
+        "WT-FR-LOOK-02"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-META",
+      "state": "elicited",
+      "source_event_ids": [
+        "WT-EVT-0002",
+        "WT-EVT-0008",
+        "WT-EVT-0017"
+      ],
+      "requirement_ids": [
+        "WT-FR-META-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-LP",
+      "state": "elicited",
+      "source_event_ids": [
+        "WT-EVT-0002",
+        "WT-EVT-0009",
+        "WT-EVT-0017"
+      ],
+      "requirement_ids": [
+        "WT-FR-LP-01"
       ]
     },
     {
       "candidate_id": "WT-CAND-MIGRATE",
       "state": "prototyped",
       "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0011",
-        "WT-EVT-0017",
-        "WT-EVT-0018",
-        "WT-EVT-0020"
+        "WT-EVT-0002",
+        "WT-EVT-0010",
+        "WT-EVT-0016",
+        "WT-EVT-0017"
       ],
       "requirement_ids": [
         "WT-FR-MIGRATE-01",
@@ -127,23 +119,58 @@
       ]
     },
     {
-      "candidate_id": "WT-CAND-SEO",
+      "candidate_id": "WT-CAND-AGENT",
       "state": "elicited",
       "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0012",
+        "WT-EVT-0002",
+        "WT-EVT-0011",
         "WT-EVT-0017"
       ],
       "requirement_ids": [
-        "WT-FR-SEO-01"
+        "WT-FR-AGENT-01",
+        "WT-FR-AGENT-02",
+        "WT-FR-AGENT-03",
+        "WT-FR-AGENT-04",
+        "WT-TR-AGENT-05"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-VALUE",
+      "state": "prototyped",
+      "source_event_ids": [
+        "WT-EVT-0002",
+        "WT-EVT-0012",
+        "WT-EVT-0016",
+        "WT-EVT-0017"
+      ],
+      "requirement_ids": [
+        "WT-FR-VALUE-01",
+        "WT-FR-VALUE-02",
+        "WT-NFR-VALUE-03"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-SEO",
+      "state": "prototyped",
+      "source_event_ids": [
+        "WT-EVT-0002",
+        "WT-EVT-0013",
+        "WT-EVT-0016",
+        "WT-EVT-0017"
+      ],
+      "requirement_ids": [
+        "WT-FR-SEO-01",
+        "WT-FR-SEO-02",
+        "WT-FR-SEO-03"
       ]
     },
     {
       "candidate_id": "WT-CAND-INTAKE",
       "state": "elicited",
       "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0013"
+        "WT-EVT-0002",
+        "WT-EVT-0014",
+        "WT-EVT-0017"
       ],
       "requirement_ids": [
         "WT-FR-INTAKE-01"
@@ -153,14 +180,11 @@
       "candidate_id": "WT-CAND-QUALITY",
       "state": "elicited",
       "source_event_ids": [
-        "WT-EVT-0003",
-        "WT-EVT-0014",
-        "WT-EVT-0020"
+        "WT-EVT-0002",
+        "WT-EVT-0015",
+        "WT-EVT-0017"
       ],
       "requirement_ids": [
-        "WT-TR-PLATFORM-01",
-        "WT-NFR-PERF-01",
-        "WT-NFR-A11Y-01",
         "WT-NFR-SEC-01",
         "WT-NFR-REL-01",
         "WT-NFR-PRIV-01",
@@ -168,26 +192,29 @@
         "WT-NFR-COST-01",
         "WT-NFR-LEGAL-01",
         "WT-NFR-OBS-01",
+        "WT-NFR-A11Y-01",
         "WT-NFR-REC-01",
-        "WT-NFR-CRED-01"
+        "WT-NFR-CRED-01",
+        "WT-NFR-PERF-01"
       ]
     }
   ],
   "question_ids": [
-    "WT-Q-STRUCT-01",
-    "WT-Q-STRUCT-02",
-    "WT-Q-VALUE-01",
-    "WT-Q-STRUCT-03",
-    "WT-Q-PARTS-01",
-    "WT-Q-GATE-01",
-    "WT-Q-GATE-02",
     "WT-Q-ZONE-01",
-    "WT-Q-SEO-01",
+    "WT-Q-PARTS-01",
+    "WT-Q-VOCAB-01",
+    "WT-Q-VOCAB-02",
+    "WT-Q-VOCAB-03",
+    "WT-Q-LOOK-01",
+    "WT-Q-LOOK-02",
+    "WT-Q-META-01",
+    "WT-Q-LP-01",
     "WT-Q-MIGRATE-01",
-    "WT-Q-MIGRATE-02",
-    "WT-Q-SCOPE-01",
-    "WT-Q-CARRY-01",
-    "WT-Q-ADR-01"
+    "WT-Q-AGENT-01",
+    "WT-Q-AGENT-02",
+    "WT-Q-VALUE-01",
+    "WT-Q-SEO-01",
+    "WT-Q-INTAKE-01"
   ],
   "answered_question_ids": [],
   "prototype_revision_ids": [
@@ -198,88 +225,156 @@
   ],
   "unresolved": [
     {
-      "id": "WT-Q-STRUCT-01",
+      "id": "WT-Q-ZONE-01",
       "owner": "PO",
-      "question": "旧 REQ-F-016（個人版テンプレート固定構成）を廃止するか、既定値へ格下げして解除可能にするか、改定案を取り下げるか",
-      "reentry": "G0.5 判断を requirement_decision_recorded として追記"
-    },
-    {
-      "id": "WT-Q-STRUCT-02",
-      "owner": "PO",
-      "question": "旧 REQ-F-037（Slot Blueprint の編集領域制限）を AI 経路のみに適用するか、人の GUI 編集にも適用するか",
-      "reentry": "G0.5 判断を追記"
-    },
-    {
-      "id": "WT-Q-VALUE-01",
-      "owner": "PO/TL",
-      "question": "破壊域の境界値（尺度超過幅・AA 判定・幅 100% 超・負余白・vh/vw 上限・!important・固定+全画面）を PoC で実物を崩して確定する",
-      "reentry": "PoC 証跡を prototype_reaction_recorded として追記"
-    },
-    {
-      "id": "WT-Q-STRUCT-03",
-      "owner": "PO",
-      "question": "LP を CPT（テーマB 方式）にするか、page template + lp パターン（現行 agent-neo 方式）のままにするか。移行時の CPT 差をどう吸収するか",
-      "reentry": "採否を追記"
+      "form": "capability_adoption",
+      "question": "共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）とゾーン語彙 23 種を JSON で宣言し、空なら描画しない面として持てる（テーマA 10 / B 20 領域の受け皿）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-ZONE"
+      ],
+      "reentry": "requirement_decision_recorded を追記"
     },
     {
       "id": "WT-Q-PARTS-01",
       "owner": "PO",
-      "question": "header / footer / sidebar の複数案切替を人の GUI に開放するか（WT-Q-STRUCT-01/02 に依存）",
-      "reentry": "STRUCT 判断後に決定を追記"
+      "form": "capability_adoption",
+      "question": "実装済みパターン（`docs/design/parts-catalog.md`: header 10 / footer 8 + credit / sidebar 8 / hero 7）とテンプレ変種（single-2col / 1col、footer カラム可変）を、人の GUI と AI の双方から差し替えられる。ナビは wp_navigation 参照にする。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-PARTS"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-GATE-01",
+      "id": "WT-Q-VOCAB-01",
       "owner": "PO",
-      "question": "生値 baseline 438 を『増やさない』方式のままにするか、L0 改定の値方針に合わせて許容リスト方式へ移すか",
-      "reentry": "値方針の決定を追記"
+      "form": "capability_adoption",
+      "question": "記事内語彙 14 種（両テーマ共通 11 組 + 比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビューの 3 つに限定できる。ブログカードは REST を経由しない実装にする。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-VOCAB"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-GATE-02",
-      "owner": "TL",
-      "question": "G-S3（option 上書き検出）を consumer doctor に置くか、テーマ CLI に置くか",
-      "reentry": "配置先の決定を追記"
-    },
-    {
-      "id": "WT-Q-ZONE-01",
+      "id": "WT-Q-VOCAB-02",
       "owner": "PO",
-      "question": "広告ゾーン語彙（意味 23 種）と条件表示モデルのスキーマ改訂案を採用するか",
-      "reentry": "採否を追記"
+      "form": "capability_adoption",
+      "question": "目次をテーマ内蔵にできる（配置は意図ノード、実体はレンダラ導出、既定は最初の h2 直前）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-VOCAB"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-SEO-01",
+      "id": "WT-Q-VOCAB-03",
       "owner": "PO",
-      "question": "構造化データの単一出力元（テーマ側 emitter）を採用し、実装に着手するか",
-      "reentry": "採否を追記"
+      "form": "capability_adoption",
+      "question": "PR 表記を自動出力できる（正本は投稿メタの提携種別、カテゴリ条件は既定値、タイトル直下に編集者が消せない形で出す）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-VOCAB",
+        "WT-CAND-QUALITY"
+      ],
+      "reentry": "同上"
+    },
+    {
+      "id": "WT-Q-LOOK-01",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "見た目の引き出しを増やせる: h3 を h2 より 1 段下げる、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、動きは hover transition・影 1 段・出現 1 種、1200px 段の追加、theme.json の alignWide / gradients / shadow / spacing 段の解放。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-LOOK"
+      ],
+      "reentry": "同上"
+    },
+    {
+      "id": "WT-Q-LOOK-02",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "テーマA のデザインプリセット（15）を style variation 1 本 = プリセット 1 個として写像でき、部品別プリセットは block style で受けられる（PoC: 色 8 スラッグで G-T1b PASS）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-LOOK",
+        "WT-CAND-MIGRATE"
+      ],
+      "reentry": "同上"
+    },
+    {
+      "id": "WT-Q-META-01",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "投稿メタ 4 キー（sidebar / toc / share / pr）とテンプレ側の条件描画で、記事単位の表示切替を持てる。option による不可視上書きは使わない。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-META"
+      ],
+      "reentry": "同上"
+    },
+    {
+      "id": "WT-Q-LP-01",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "LP を投稿型（CPT）として持ち、一覧・REST・テンプレ割当を固定ページから分離できる（テーマB 方式。現行は page template + lp パターン 12 本）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-LP"
+      ],
+      "reentry": "同上"
     },
     {
       "id": "WT-Q-MIGRATE-01",
       "owner": "PO",
-      "question": "theme_mods 235 キーの分類（A 文言 / B 意匠・ON-OFF / C 異常 / D 保留）を移管対象の確定として採用するか",
-      "reentry": "採否を追記"
+      "form": "capability_adoption",
+      "question": "既存サイトの設定を写像できる: カスタマイザ / 設定画面の値 → theme.json / options JSON / wp_navigation、ウィジェット領域 → template part、プリセット → variation、独自ブロック → 受け皿対応表。写像不能（アニメーション・グラデ角度・スライダー）は台帳へ記録し、移管対象はサイト固有 60〜80 キーに絞る。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-MIGRATE"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-MIGRATE-02",
+      "id": "WT-Q-AGENT-01",
       "owner": "PO",
-      "question": "写像不能候補（アニメーション・グラデーション角度・スライダー）の確定作業を移行要求に含めるか",
-      "reentry": "採否を追記"
+      "form": "capability_adoption",
+      "question": "エージェント制御面を拡大できる: 面・部品・値・変種・テンプレの一覧を返す capability manifest、選択を dry-run / apply / rollback で反映する API、主要パーツ前後の hook 各 10、本文の中間 JSON 抽出器（純関数、CLI / REST から）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-AGENT"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-SCOPE-01",
+      "id": "WT-Q-AGENT-02",
       "owner": "PO",
-      "question": "課金・会員機能をスコープ外とし移行プラグインへ委譲する案 A を承認するか（テーマA 有料記事の実運用確認が前提）",
-      "reentry": "実運用確認結果と承認を追記"
+      "form": "capability_adoption",
+      "question": "再利用パーツを参照（ID）で持ち、解決に使った版と digest を記録できる（テーマB blog_parts の JSON 版。展開はしない）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-AGENT"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-CARRY-01",
+      "id": "WT-Q-VALUE-01",
       "owner": "PO",
-      "question": "削除した旧文書のうち新正本へ継承も棄却記録もない項目（REQ-F-009 設定 export/import、REQ-F-028 API schema versioning、GAP-RT-014 広告/PR 表記開示、GAP-RT-024 Web Vitals 計測経路、GAP-RT-026 画像サイズ/CLS 契約）を L2 candidate 化するか不採用とするか",
-      "reentry": "採否を追記"
+      "form": "capability_adoption",
+      "question": "値を安全域 / 生値 / 破壊域の 3 域で制御できる: 安全域は自由、生値は警告、破壊域は停止。生値は許容リスト方式へ移し baseline 438 を 0 にする。境界値は PoC で実物を崩して決める。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-VALUE"
+      ],
+      "reentry": "同上"
     },
     {
-      "id": "WT-Q-ADR-01",
+      "id": "WT-Q-SEO-01",
       "owner": "PO",
-      "question": "ADR-028（エンドユーザー設定 UI を持たない）を L0 改定の『構造自由』に合わせて再検討するか",
-      "reentry": "ADR 改訂の要否を追記"
+      "form": "capability_adoption",
+      "question": "構造化データを単一出力元にし、CollectionPage / SearchAction を追加、FAQPage / HowTo / ItemList を記事内語彙から自動生成できる。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-SEO"
+      ],
+      "reentry": "同上"
+    },
+    {
+      "id": "WT-Q-INTAKE-01",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "取り込み台帳（パターン ID・参照元 commit・証跡パス・ゲート結果・取り込み先）で GRAPHIX-NEO への一方向取り込みを記録できる。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-INTAKE"
+      ],
+      "reentry": "同上"
     }
   ],
   "agreement": null,
@@ -293,7 +388,7 @@
   },
   "convergence": {
     "all_candidates_dispositioned": false,
-    "contradiction_zero_or_typed_defer": false,
+    "contradiction_zero_or_typed_defer": true,
     "unresolved_owned": true,
     "stable_priority_iterations": false,
     "human_prototype_agreement": false

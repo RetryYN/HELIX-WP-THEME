@@ -1,105 +1,215 @@
 {
   "schema_version": "wt-poc-inventory.v1",
-  "inventory_id": "WT-POC-INVENTORY-20260902",
+  "inventory_id": "WT-POC-INVENTORY-20260902-V2",
   "inspected_at": "2026-09-02",
   "source": {
     "repository": "HELIX-WP-THEME",
     "remote": null,
-    "head": "79a8a6e",
+    "head": "fc11221",
+    "head_note": "生成時に checkout していた commit。束縛は evidence ごとの path + sha256 で行い、head は参照時点の目安",
     "access": "read_only_local_checkout",
     "portability": "digest_bound_metadata_only"
   },
   "evidence": [
     {
       "evidence_id": "WT-POC-01",
-      "path": "docs/research/2026-08-27-poc-browser-verification/README.md",
-      "sha256": "83bf730d49c65339dc6540b76e28a671ddae176b994213724cd49c04a386afd9",
-      "finding": "templates 10 / parts 4 / patterns 24 が描画され、PHP Warning・pageerror・横スクロールが 36 ページで 0。article-cta のみ Block validation invalid（#24 で修正）",
+      "path": "docs/research/2026-08-26-theme-structure-audit/04-diff-register.md",
+      "sha256": "d008cda8173f41ab70c1a0a0386ba61f5f4cd822a7a169554ab13410c5175eb3",
+      "finding": "17 軸 × 3 テーマの一枚表。本テーマに無いのは機能ではなく面（D-01〜D-07）。優位は接点・台帳・宣言的トークン・契約スキーマ・ポリシー分離（A-01〜05）",
       "adopt": [
-        "WT-FR-STRUCT-01",
-        "WT-FR-GATE-02",
-        "WT-NFR-SEC-01"
+        "WT-FR-ZONE-01",
+        "WT-FR-PARTS-01",
+        "WT-FR-VOCAB-01",
+        "WT-FR-LP-01",
+        "WT-TR-CORE-01"
       ],
       "limits": [
-        "使い捨て PoC 検証台のみ。実運用サイトは read-only",
-        "スクリーンショットと JSON はリポジトリ外"
+        "実使用は 2 サイトの分布。テーマB は公開記事 7 本で母数が小さい"
       ]
     },
     {
       "evidence_id": "WT-POC-02",
-      "path": "docs/research/2026-08-28-poc-conversion-and-variations/README.md",
-      "sha256": "4e98ca53ad836ceab91f428e661c150ca49c890529da5bfbeac183a4684317af",
-      "finding": "ウィジェット領域→template part（代表 6 領域 invalid=0）、色プリセット→style variation（色 8 スラッグで G-T1b PASS）の写像が成立",
+      "path": "docs/research/2026-08-26-theme-structure-audit/12-mechanism-comparison.md",
+      "sha256": "a0800e5ba7d4d15fb678759a4f82e8271468efb2ce8260270e149593b3e880c3",
+      "finding": "本テーマは 3 者で唯一「自分の状態を機械可読に説明する」。テーマB の 2 パス走査・content_filter 優先度・is_rest 分離は中間 JSON 設計へ転用可",
       "adopt": [
-        "WT-FR-MIGRATE-02",
-        "WT-FR-STYLE-01"
+        "WT-TR-CORE-02",
+        "WT-FR-AGENT-02",
+        "WT-TR-AGENT-05",
+        "WT-NFR-PERF-01"
       ],
       "limits": [
-        "アニメーション・グラデーション角度・スライダーは写像先なし",
-        "テーマ / プラグイン独自ウィジェットは未検証",
-        "accent-aa は近似"
+        "転用は設計原則と機構の 2 点。テーマA のコードは移植対象ではない"
       ]
     },
     {
       "evidence_id": "WT-POC-03",
-      "path": "docs/research/2026-08-28-poc-styles-parts-gates/README.md",
-      "sha256": "3f21ce571b89587bb6f4258bca67b0449d63b683eab7dc3528a9e538719eeb83",
-      "finding": "スタイル 3 案・共有パーツ 22・一貫性ゲート 6 種が成立し PO 判断 08-29 で採用。静的検査で通っても実機で壊れる事例を記録",
+      "path": "docs/research/2026-08-26-theme-structure-audit/20-reverse-engineering-synthesis.md",
+      "sha256": "60badcf02ca369a6643aef558249d7db474264b115ea8ca87fad6d65fb5449a6",
+      "finding": "統合レポート。語彙 11 組 + 比較表・定義リスト・FAQ、消化で確定した設計判断 12 件（参照+digest、目次、3 層、ショートコード、marks、名前空間、ゾーン、課金、トークン 4 分類、移管、構造化データ、グローバル改変）",
       "adopt": [
-        "WT-FR-STYLE-01",
-        "WT-FR-PARTS-01",
-        "WT-FR-GATE-01",
-        "WT-FR-GATE-02"
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-AGENT-04",
+        "WT-TR-AGENT-05",
+        "WT-FR-ZONE-02",
+        "WT-FR-MIGRATE-03",
+        "WT-FR-SEO-02",
+        "WT-NFR-REL-01",
+        "WT-NFR-SEC-01"
       ],
       "limits": [
-        "外部デザインツール取り込み経路は不採用",
-        "WP 7.1 の flex/grid blockGap は inline gap として serialize されない"
+        "未認証 REST の到達性・実ページ JSON-LD 採取・本番 DB SELECT は PO 承認事項で未実施"
       ]
     },
     {
       "evidence_id": "WT-POC-04",
-      "path": "docs/research/2026-08-29-ge1-local/README.md",
-      "sha256": "0557bdddf9eb8c86cd7b4268da7e879d4d336204026dd802801fe5e286682ddb",
-      "finding": "ローカル docker WP 7.1 で全 71 パターン invalid=0、design consistency FAIL=0 / WARN=2、生値 433 / baseline 438",
+      "path": "docs/research/2026-08-26-theme-structure-audit/reports/INV-03-ad-cv-zones.md",
+      "sha256": "43d235170105e2337ce4215b05ed1c80ce21a672349704d19d1e53ef4a36a376",
+      "finding": "ゾーンを意味で正規化すると 23 種。現行 schema の語彙に無いものが 20",
       "adopt": [
-        "WT-FR-GATE-02",
-        "WT-NFR-GATE-01",
-        "WT-TR-PLATFORM-01"
+        "WT-FR-ZONE-01",
+        "WT-FR-ZONE-02",
+        "WT-FR-ZONE-03"
       ],
       "limits": [
-        "ge1-diff.mjs は rich-text 子ブロックを二重ラップする既知の制約",
-        "修正はテーマの静的マークアップに限定"
+        "実配置（ウィジェット領域の中身）は実運用データが必要"
       ]
     },
     {
       "evidence_id": "WT-POC-05",
-      "path": "docs/research/2026-08-31-poc-display-errors/README.md",
-      "sha256": "a8e1a95e4cd85add99dc3a3a6c5653b7828ae33655e0cbd67cc0e8c12c2a0ea2",
-      "finding": "未認証 REST の PHP Warning によるパス開示は display_errors=Off で止まる（第三者テーマの欠陥の再現と対処案）",
+      "path": "docs/research/2026-08-26-theme-structure-audit/reports/INV-08-agent-interface-gap.md",
+      "sha256": "186fc7aa38d809c19a8dd01d8018aab8e6580a8f6dea429c590099aa80e9da7d",
+      "finding": "接点の非対称。本テーマ 34 コントローラ + MCP + CLI。コントローラの仕分け（テーマ非依存 / 自テーマ専用 / 収益系 / 基盤）",
       "adopt": [
-        "WT-NFR-SEC-01"
+        "WT-FR-AGENT-01",
+        "WT-FR-AGENT-03",
+        "WT-TR-AGENT-05"
       ],
       "limits": [
-        "ローカル docker のみ。実運用サイトの是正は HELIX-WP-HARNESS #198 の PO 判断",
-        "FastCGI と mod_php で設定経路が異なる"
+        "テーマB REST 14 本の認証は未精読"
       ]
     },
     {
       "evidence_id": "WT-POC-06",
-      "path": "docs/research/2026-08-26-theme-structure-audit/00-REPORT.md",
-      "sha256": "ec0a12beb599a49ff408451f6c7e602addb2e8c784503a89e442e37389668b6f",
-      "finding": "実運用 2 サイト（テーマA / テーマB）の read-only 全量調査。欠落は機能ではなく面（D-01〜D-07）。動的ブロック 7 種、意味語彙 31 種、ゾーン 23 種、設定の 75% が見た目",
+      "path": "docs/research/2026-08-27-poc-browser-verification/theme-comparison.md",
+      "sha256": "38b64e10d1609a0db7ad787cfe1dfada413028889d9e8c3cdb4eaafa8e168988",
+      "finding": "同一手順で 3 テーマを操作。構造の GUI 編集は本テーマのみ。カスタマイザ A 1,045 / B 520、独自ブロック A 24 / B 33、投稿メタ A 22",
       "adopt": [
-        "WT-FR-ZONE-01",
-        "WT-FR-ZONE-02",
-        "WT-FR-AGENT-02",
-        "WT-FR-MIGRATE-01",
-        "WT-FR-SEO-01",
-        "WT-NFR-REL-01"
+        "WT-FR-META-01",
+        "WT-FR-PARTS-02",
+        "WT-FR-SEO-03"
       ],
       "limits": [
-        "移管量の見積りには実運用データが必要",
-        "theme_mods 235 キーの分類採用は WT-Q-MIGRATE-01"
+        "スクリーンショットと JSON はリポジトリ外"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-07",
+      "path": "docs/research/2026-08-27-poc-browser-verification/json-mapping.md",
+      "sha256": "4ae029d2bc1707ef4bda60d13b2fc0bdb68bbb1ec508a7caee3a15f072bc23eb",
+      "finding": "操作系の値は A 約 94% / B 約 99% が JSON 化可。意味論は受け皿 6 つとパターン差し替え規約が要る。hidden 166 の約 9 割は variation / block style で写像可",
+      "adopt": [
+        "WT-FR-MIGRATE-01",
+        "WT-FR-MIGRATE-02",
+        "WT-FR-LOOK-02"
+      ],
+      "limits": [
+        "個票はリポジトリ外。真に写像不能は 15 件前後で未確定"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-08",
+      "path": "docs/research/2026-08-27-poc-browser-verification/shared-parts.md",
+      "sha256": "f26e165185e1e98a506fa6cfcd0764ed47351e1f83f590cc7dc65ac6f5d5e0a1",
+      "finding": "共有パーツ 15 種の 3 テーマ横断マトリクス。新設が要る受け皿: sidebar / sidebar-sticky / mobile-menu / mobile-bottom / 本文前 slot / 固定ページ slot / 関連 slot",
+      "adopt": [
+        "WT-FR-ZONE-01",
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02"
+      ],
+      "limits": [
+        "archive / page / search / 404 の共有系は未比較"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-09",
+      "path": "docs/design/catalog/design-comparison.md",
+      "sha256": "255633981909e56e7312eccadb794245166660e841b8e886b6ea1c7bb0e72e38",
+      "finding": "デザイン力スコア 本 21 / A 25 / B 27。本テーマは一貫性・配色統制で最良、h2=h3・動き・部品の引き出しが不足",
+      "adopt": [
+        "WT-FR-LOOK-01",
+        "WT-FR-VOCAB-01"
+      ],
+      "limits": [
+        "スコアは計測値と目視の仮置き"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-10",
+      "path": "docs/research/2026-08-28-poc-conversion-and-variations/README.md",
+      "sha256": "4e98ca53ad836ceab91f428e661c150ca49c890529da5bfbeac183a4684317af",
+      "finding": "ウィジェット領域 → template part（代表 6 領域 invalid=0）、プリセット 1 → variation（色 8 スラッグ G-T1b PASS）",
+      "adopt": [
+        "WT-FR-MIGRATE-02",
+        "WT-FR-LOOK-02"
+      ],
+      "limits": [
+        "独自ウィジェットは未検証。アニメーション・グラデ角度・スライダーは写像先なし"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-11",
+      "path": "docs/research/2026-08-28-poc-styles-parts-gates/README.md",
+      "sha256": "5c88f69ae455732cf32a61a0d9c583753993a64d735e48c6a6fd9abc21a08989",
+      "finding": "variation 3 案・共有パーツ 22 パターン・一貫性ゲート 6 種が成立。静的検査で通っても実機で壊れる事例を記録",
+      "adopt": [
+        "WT-NFR-GATE-01",
+        "WT-FR-PARTS-01",
+        "WT-FR-VALUE-02"
+      ],
+      "limits": [
+        "外部デザインツール取り込み経路は不採用"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-12",
+      "path": "docs/research/2026-08-29-ge1-local/README.md",
+      "sha256": "0557bdddf9eb8c86cd7b4268da7e879d4d336204026dd802801fe5e286682ddb",
+      "finding": "ローカル docker WP 7.1 で全 71 パターン invalid=0、design consistency FAIL=0、生値 433 / baseline 438",
+      "adopt": [
+        "WT-NFR-GATE-01",
+        "WT-FR-VALUE-02",
+        "WT-NFR-COST-01"
+      ],
+      "limits": [
+        "ge1-diff.mjs は rich-text 子ブロックを二重ラップする既知の制約"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-13",
+      "path": "docs/research/2026-08-31-poc-display-errors/README.md",
+      "sha256": "a8e1a95e4cd85add99dc3a3a6c5653b7828ae33655e0cbd67cc0e8c12c2a0ea2",
+      "finding": "未認証 REST の PHP Warning によるパス開示は display_errors=Off で止まる（第三者テーマ欠陥の再現）",
+      "adopt": [
+        "WT-NFR-SEC-01"
+      ],
+      "limits": [
+        "ローカル docker のみ。実サイト是正は HELIX-WP-HARNESS #198"
+      ]
+    },
+    {
+      "evidence_id": "WT-POC-14",
+      "path": "docs/design/consistency-responsibilities.md",
+      "sha256": "8fc937f7aa82786e5308f1accad409dbc97272a606d3d42a14d4e0f3d4075d43",
+      "finding": "4 層の不変条件と優先順。bridge 投影が親の 6 段を置き換え 60 を落とす実例（V4 違反）",
+      "adopt": [
+        "WT-NFR-VALUE-03",
+        "WT-NFR-GATE-01",
+        "WT-FR-VALUE-01"
+      ],
+      "limits": [
+        "G-C1（内容ゲート）は未実装"
       ]
     }
   ]

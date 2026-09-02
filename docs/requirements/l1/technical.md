@@ -10,12 +10,11 @@ authority: docs/requirements/authority.md
 
 | ID | 技術境界 |
 | --- | --- |
-| WT-TRL1-01 | 4 層モデル（トークン → 骨格 → パーツ → 内容）を採り、theme.json v3 が尺度の唯一の所有者である |
-| WT-TRL1-02 | 変更可能データは JSON とし、中間 JSON は参照 ID・解決に使った版・digest を持つ |
-| WT-TRL1-03 | 一貫性ゲートは静的（G-T1 / T1b / T2 / T3 / S1 / S2）と実機（G-E1 / G-S3）に分け、実機は docker WP で走る |
-| WT-TRL1-04 | REST 名前空間はコアに相乗りせず、外部 AI からの write を受け付けない |
-| WT-TRL1-05 | テーマ語彙は意図ノードへ展開し、プラグイン語彙は不透明ノードで原文を保持する |
-| WT-TRL1-06 | 外部デザインツールからの取り込み経路を持たない |
-| WT-TRL1-07 | credential・実運用サイトの接続情報・固有名対応表はリポジトリ外に置く |
+| WT-TRL1-01 | WordPress FSE / theme.json v3 / Block API / PHP >= 8.1 / WP 7.1 系。子テーマは層 1（尺度）を再定義しない |
+| WT-TRL1-02 | 契約正本は JSON: theme.json、config/*.json（fail-fast schema 検証）、schema/*.json、openapi.yaml。面・部品・変種の追加は JSON 宣言を伴う |
+| WT-TRL1-03 | エージェント接点は自前 REST 名前空間 + MCP（abilities）+ WP-CLI。WP コア名前空間へ相乗りしない |
+| WT-TRL1-04 | AI 判定ロジックはテーマ・プラグインの外（HELIX 側）。boundary guard を維持する |
+| WT-TRL1-05 | 実機ゲートはローカル docker WP 7.1。実運用サイトは read-only。接続情報は環境変数 |
+| WT-TRL1-06 | GRAPHIX-NEO への取り込みは一方向。参照元 commit・証跡・ゲート結果を台帳に記録する |
 
 PoC で成立した経路は `docs/poc/wt-poc-inventory.json` へ digest 束縛する。PoC 未検証の一般化は行わない。
