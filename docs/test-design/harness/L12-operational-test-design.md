@@ -3,7 +3,7 @@ layer: L12
 sub_doc: operational-test-design
 status: candidate_projection
 source_authority: docs/test-design/l12-operational-value-test-design.md
-source_sha256: fe21bdb45d3efa630c5bff6d6997a2d5e208af14682609405bd46c0daf4089af
+source_sha256: 78b21c7b9c75931de2f94883cd6dc373f653772f867d6289f40175381c7bf982
 pair_artifact: docs/design/harness/L1-requirements/screen-requirements.md
 ---
 

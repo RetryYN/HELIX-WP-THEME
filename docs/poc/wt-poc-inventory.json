@@ -5,7 +5,8 @@
   "source": {
     "repository": "HELIX-WP-THEME",
     "remote": null,
-    "head": "b3738f6",
+    "head": "fc11221",
+    "head_note": "生成時に checkout していた commit。束縛は evidence ごとの path + sha256 で行い、head は参照時点の目安",
     "access": "read_only_local_checkout",
     "portability": "digest_bound_metadata_only"
   },
@@ -160,7 +161,7 @@
     {
       "evidence_id": "WT-POC-11",
       "path": "docs/research/2026-08-28-poc-styles-parts-gates/README.md",
-      "sha256": "3f21ce571b89587bb6f4258bca67b0449d63b683eab7dc3528a9e538719eeb83",
+      "sha256": "5c88f69ae455732cf32a61a0d9c583753993a64d735e48c6a6fd9abc21a08989",
       "finding": "variation 3 案・共有パーツ 22 パターン・一貫性ゲート 6 種が成立。静的検査で通っても実機で壊れる事例を記録",
       "adopt": [
         "WT-NFR-GATE-01",

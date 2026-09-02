@@ -1,7 +1,7 @@
 # 要求入力台帳 — テーマ構造監査・PoC から L1 改定へ渡す項目（2026-08-28 確定）
 
 位置づけ: 監査 Issue（THEME-CAT / THEME-JSON / THEME-GATE）の**出力**。各 Issue はここに「証跡・確定した方針・L1 改定時に決める論点」を収録した時点で閉じる。要求 ID（WP-* stable ID）の発行は L1 改定（G0.5 通過後）で行い、ここでは発行しない。
-上流: `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（PR #48。本 PR より先に merge）（L0 改定案・G0.5 突合）/ 分類: `docs/design/addenda/L3-A5-poc-pattern-disposition.md`（PR #48。本 PR より先に merge）。
+上流: `docs/planning/L0-agent-controlled-variety.md`（L0 企画、2026-09-02。本台帳作成時の上流だった旧 L0 差分ドラフトと L3-A5 棚卸しは削除済み・git 履歴で参照可）。
 
 | # | 項目（Issue） | 証跡 | 確定した方針（本台帳で閉じる） | L1 改定時に決める論点 |
 |---|---|---|---|---|
