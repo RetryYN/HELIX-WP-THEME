@@ -296,13 +296,13 @@
     {
       "id": "WT-FR-VOCAB-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "目次は中間 JSON の一級要素にせず、配置だけを意図ノードで持ち、実体はレンダラが h2 から導出する。既定は最初の h2 直前",
+      "statement": "目次はテーマ内蔵とし、実体は本文の h2/h3 からレンダラが機械導出する（保存 HTML に固定しない）。編集者と AI が選べるのは (a) 配置方式: 固定埋め込み（既定は最初の h2 直前）/ フロート追従（サイドまたは画面端に追従）/ 開閉ボタン化（折りたたみ）、(b) 表示条件: ページ種別（投稿 / 固定ページ / LP / 一覧）ごとの表示・非表示と投稿単位の上書き、(c) 見た目: block style（尺度はプリセット参照）。目次本文の内容は選択対象にしない",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -317,9 +317,6 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-VOCAB-02"
       ]
     },
     {

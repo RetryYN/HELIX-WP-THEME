@@ -10,7 +10,7 @@
 | PerPostToggles | sidebar / toc / share / pr の投稿メタ 4 キーを切り替える |
 | ZoneSlot | 共有 slot 6 種とゾーン語彙 23 種の置き場所。空なら描画しない |
 | VocabBlocks | 記事内語彙 14 種の受け皿（core + block style / 新規ブロック 3） |
-| TocAnchor | 目次の配置意図（既定は最初の h2 直前）。目次本体は一級要素にしない |
+| TocAnchor | 目次の配置意図（埋め込み / フロート追従 / 開閉ボタン、既定は最初の h2 直前）とページ種別ごとの表示条件・block style。目次本体は機械導出で一級要素にしない |
 | PrNotice | PR 表記。タイトル直下、編集者が消せない |
 | JsonLdEmitter / CollectionJsonLd | 単一出力元の構造化データ。型ごとに 1 本。一覧は CollectionPage |
 | HeroSlot / StickyStack / AnnouncementBar | LP / ホームの hero、SP 下部固定の積層（同意バー > メニュー > シェア）、お知らせバー |
