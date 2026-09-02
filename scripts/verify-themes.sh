@@ -7,7 +7,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-OUT_DIR="解析レポート/35-実機検証ログ"
+OUT_DIR="${VERIFY_THEMES_OUT_DIR:-tmp/verify-themes-logs}"  # 実機検証ログはリポジトリに置かない（tmp/ は gitignore）
 mkdir -p "$OUT_DIR"
 
 # WP CLI ラッパー

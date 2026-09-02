@@ -4,7 +4,7 @@ Automation SEO 再設計側が採用する「計測ループ消費者リファ�
 
 ## 目的
 
-AGENT-NEO の export 契約（`docs/features/tracking-pull/D-CONTRACT/export-contract.md`）に
+AGENT-NEO の export 契約（`旧 features/tracking-pull/D-CONTRACT/export-contract.md（削除済み）`）に
 準拠し、計測ループ全周（収集→export公開→**pull→ingest整形**）が閉じることを実証する。
 Python 標準ライブラリのみで動作し、依存ゼロ。
 

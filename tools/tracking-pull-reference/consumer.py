@@ -10,7 +10,7 @@ Automation SEO 再設計側が採用する「消費者リファレンス実装�
   薄い IO シェル（実運用例）: pull_once / run_pull_loop
 
 【対応 contract】
-  docs/features/tracking-pull/D-CONTRACT/export-contract.md
+  旧 features/tracking-pull/D-CONTRACT/export-contract.md（削除済み）
   schema_version: 1
 """
 

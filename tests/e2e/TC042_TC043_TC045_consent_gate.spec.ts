@@ -1,7 +1,7 @@
 /**
  * TC-042 / TC-043 / TC-045: 同意ゲート E2E
  *
- * テスト設計 SSOT: docs/test-plan/L3-test-plan.md §8.3（line 181-184 付近）
+ * テスト設計 SSOT: 旧 L3-test-plan.md（削除済み、TC 番号は履歴 ID） §8.3（line 181-184 付近）
  * 実装根拠:
  *   - themes/agent-neo-theme/inc/assets/class-third-party-manager.php
  *   - themes/agent-neo-theme/assets/js/consent.js

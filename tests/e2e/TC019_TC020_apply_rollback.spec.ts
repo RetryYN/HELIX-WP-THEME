@@ -1,7 +1,7 @@
 /**
  * TC-019 / TC-020 — apply-rollback E2E テスト（実 WP :8086）
  *
- * テスト設計SSOT: docs/test-plan/L3-test-plan.md TC-019/TC-020 (P0)
+ * テスト設計SSOT: 旧 L3-test-plan.md（削除済み、TC 番号は履歴 ID） TC-019/TC-020 (P0)
  * 実装根拠:
  *   - POST /wp-json/agent-neo/v1/actions/dry-run  (class-actions-controller.php)
  *   - POST /wp-json/agent-neo/v1/actions/apply    (class-actions-controller.php)

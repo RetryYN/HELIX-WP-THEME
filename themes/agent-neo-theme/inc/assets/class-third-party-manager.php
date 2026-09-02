@@ -2,7 +2,7 @@
 /**
  * サードパーティタグ管理 — 同意ゲート・遅延ロード制御。
  *
- * 設計根拠: docs/design/addenda/L3-A4-performance-contract-gaps.md §GAP-RT-022
+ * 設計根拠: 旧 L3-A4-performance-contract-gaps.md（削除済み） §GAP-RT-022
  *
  * 責務:
  *   - wp_head（priority 1）で Consent Mode v2 の consent default を出力する。
