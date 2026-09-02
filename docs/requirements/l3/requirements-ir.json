@@ -269,7 +269,7 @@
     {
       "id": "WT-FR-VOCAB-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-SCR-05",
@@ -291,9 +291,6 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-VOCAB-01"
       ]
     },
     {
@@ -358,7 +355,7 @@
     {
       "id": "WT-FR-VOCAB-04",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-NFRL1-04",
@@ -377,10 +374,7 @@
       "test_ids": [
         "WT-AT-VOCAB-04"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-VOCAB-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-LOOK-01",

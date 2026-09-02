@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0020",
-  "event_count": 20,
+  "event_head": "WT-EVT-0021",
+  "event_count": 21,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -53,12 +53,13 @@
     },
     {
       "candidate_id": "WT-CAND-VOCAB",
-      "state": "prototyped",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0006",
         "WT-EVT-0016",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0021"
       ],
       "requirement_ids": [
         "WT-FR-VOCAB-01",
@@ -220,7 +221,8 @@
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
-    "WT-Q-PARTS-01"
+    "WT-Q-PARTS-01",
+    "WT-Q-VOCAB-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -229,16 +231,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-VOCAB-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "記事内語彙 14 種（両テーマ共通 11 組 + 比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビューの 3 つに限定できる。ブログカードは REST を経由しない実装にする。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-VOCAB"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-VOCAB-02",
       "owner": "PO",
