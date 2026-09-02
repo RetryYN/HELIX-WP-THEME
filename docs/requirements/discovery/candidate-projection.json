@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0028",
-  "event_count": 28,
+  "event_head": "WT-EVT-0029",
+  "event_count": 29,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -133,11 +133,12 @@
     },
     {
       "candidate_id": "WT-CAND-AGENT",
-      "state": "elicited",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0011",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0029"
       ],
       "requirement_ids": [
         "WT-FR-AGENT-01",
@@ -240,7 +241,8 @@
     "WT-Q-LOOK-02",
     "WT-Q-META-01",
     "WT-Q-LP-01",
-    "WT-Q-MIGRATE-01"
+    "WT-Q-MIGRATE-01",
+    "WT-Q-AGENT-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -249,16 +251,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-AGENT-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "エージェント制御面を拡大できる: 面・部品・値・変種・テンプレの一覧を返す capability manifest、選択を dry-run / apply / rollback で反映する API、主要パーツ前後の hook 各 10、本文の中間 JSON 抽出器（純関数、CLI / REST から）。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-AGENT"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-AGENT-02",
       "owner": "PO",

@@ -27,7 +27,7 @@
 | WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる | フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL | schema test + mapping receipt |
 | WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | 代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る | 変換で invalid が出る、または写像不能が黙って落ちれば FAIL | conversion receipt |
 | WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い | 見た目キーの機械移送や固有名の混入があれば FAIL | public-safety check |
-| WT-AT-AGENT-01 | WT-FR-AGENT-01 | manifest の項目だけを指定して構造・スタイル・値を変更でき、dry-run の差分と apply 結果が一致する | manifest 外の指定が通る、または apply が dry-run と異なれば FAIL | REST receipt |
+| WT-AT-AGENT-01 | WT-FR-AGENT-01 | 設定で定義した常用パックが MCP の ability として列挙され、1 回の呼び出しで manifest 上の作業単位が dry-run 差分付きで完結し、apply 結果が dry-run と一致する | manifest 外の指定が通る、apply が dry-run と異なる、または REST と MCP で語彙や結果が食い違えば FAIL | MCP receipt + REST parity |
 | WT-AT-AGENT-02 | WT-FR-AGENT-02 | 同じ本文から同じ JSON が出て、循環参照で停止する | enqueue 等の副作用や無限ループがあれば FAIL | extractor fixture |
 | WT-AT-AGENT-03 | WT-FR-AGENT-03 | hook 一覧が manifest と実装で一致する | manifest に無い hook、または manifest にあるが発火しない hook があれば FAIL | hook audit |
 | WT-AT-AGENT-04 | WT-FR-AGENT-04 | 参照先を更新すると利用側の digest 記録が差分として検出できる | 展開保存された複製があれば FAIL | digest diff |

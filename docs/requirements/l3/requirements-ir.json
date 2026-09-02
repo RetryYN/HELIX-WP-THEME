@@ -611,14 +611,14 @@
     {
       "id": "WT-FR-AGENT-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-SCR-08",
         "WT-BR-03",
         "WT-CAND-AGENT"
       ],
-      "statement": "capability manifest（slot・パターン・パーツ・variation・テンプレ変種・値の尺度）を返し、選択を dry-run → apply → rollback で反映する API を REST / MCP / CLI で提供する",
+      "statement": "エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variation・テンプレ変種・値の尺度・投稿メタ・LP 種別・hook）上の操作を用途別に束ねた複合 ability で、細粒度 API を個別に晒すのではなく、設定（JSON）でパックを構築・入れ替えできる。各パックは dry-run → apply → rollback を内包し、manifest 外の指定は拒否理由付きで返す。REST / CLI は同じ manifest とパック定義を読む従属経路とし、経路ごとに別の語彙を持たない。目的はエージェントのコンテキスト効率（1 パック呼び出しで 1 作業単位が完結する）",
       "priority": "P0",
       "actor_ids": [
         "AI_AGENT"
@@ -632,15 +632,12 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-01"
       ]
     },
     {
       "id": "WT-FR-AGENT-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-NFRL1-03",
@@ -660,15 +657,12 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-01"
       ]
     },
     {
       "id": "WT-FR-AGENT-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-TRL1-02",
@@ -689,9 +683,6 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-01"
       ]
     },
     {

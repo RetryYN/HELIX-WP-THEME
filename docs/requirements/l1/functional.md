@@ -16,7 +16,7 @@ authority: docs/requirements/authority.md
 | WT-FRL1-04 | 見た目の引き出しがある: 見出し階層・見出し / ボタンの block style・最小限の動き・レスポンシブ段・style variation でテーマA/B 並みの表現に届き、さらにサイトパターン（コーポレート / サービス / ブランド / ポータル / 比較）の品質水準まで広げる（大量調査が前提） | LOOK |
 | WT-FRL1-05 | 記事単位で切り替えられる: サイドバー・目次・シェア・PR を投稿ごとに ON/OFF できる | META |
 | WT-FRL1-06 | 既存サイトの設定を写せる: カスタマイザ・設定画面・ウィジェット・プリセット・独自ブロックを本テーマの JSON 資産へ写像できる | MIGRATE |
-| WT-FRL1-07 | エージェントが JSON で全部を操作できる: 面・部品・値・変種・テンプレの選択、中間 JSON の抽出、再利用パーツの参照が REST / MCP / CLI から行える | AGENT |
+| WT-FRL1-07 | エージェントが JSON で全部を操作できる: 面・部品・値・変種・テンプレの選択、中間 JSON の抽出、再利用パーツの参照が、設定で束ねた MCP 常用パック（主経路）と REST / CLI（従属経路）から行える | AGENT |
 | WT-FRL1-08 | 値は 3 域で制御される: 安全域は自由、生値は警告、破壊域は停止する。境界値は PoC で決める | VALUE |
 | WT-FRL1-09 | 構造化データと AI 向け出力が単一出力元から出る: CollectionPage / SearchAction を加え、FAQ / HowTo / ItemList は語彙から自動生成する | SEO |
 | WT-FRL1-10 | 実証済みパターンを台帳で GRAPHIX-NEO へ渡せる | INTAKE |

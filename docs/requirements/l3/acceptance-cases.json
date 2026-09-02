@@ -245,13 +245,13 @@
       "id": "WT-AC-AGENT-01A",
       "requirement_id": "WT-FR-AGENT-01",
       "polarity": "positive",
-      "oracle": "manifest の項目だけを指定して構造・スタイル・値を変更でき、dry-run の差分と apply 結果が一致する"
+      "oracle": "設定で定義した常用パックが MCP の ability として列挙され、1 回の呼び出しで manifest 上の作業単位（例: 面にパターンを置いて公開面を確認）が dry-run 差分付きで完結し、apply 結果が dry-run と一致する"
     },
     {
       "id": "WT-AC-AGENT-01B",
       "requirement_id": "WT-FR-AGENT-01",
       "polarity": "negative",
-      "oracle": "manifest 外の指定が通る、または apply が dry-run と異なれば FAIL"
+      "oracle": "manifest 外の指定が通る、apply が dry-run と異なる、または REST と MCP で語彙や結果が食い違えば FAIL"
     },
     {
       "id": "WT-AC-AGENT-02A",

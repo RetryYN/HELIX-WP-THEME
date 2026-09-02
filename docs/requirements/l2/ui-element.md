@@ -15,7 +15,7 @@
 | JsonLdEmitter / CollectionJsonLd | 単一出力元の構造化データ。型ごとに 1 本。一覧は CollectionPage |
 | HeroSlot / StickyStack / AnnouncementBar | LP / ホームの hero、SP 下部固定の積層（同意バー > メニュー > シェア）、お知らせバー |
 | GateReport / RawValueCounter | ゲート ID・FAIL / WARN・対象・原因・baseline 値、生値件数と baseline の差 |
-| CapabilityManifest / SelectionApply / DryRunDiff | 面・部品・値・変種・hook の一覧、選択の適用、dry-run の差分 |
+| CapabilityManifest / McpPack / DryRunDiff | 面・部品・値・変種・hook の一覧、設定で束ねた MCP 常用パック（1 呼び出し = 1 作業単位、dry-run / apply / rollback 内包）、dry-run の差分。REST / CLI は同じ manifest を読む従属経路 |
 | IntakeLedger / EvidenceLink | 取り込み行（パターン ID・参照元 commit・証跡パス・ゲート結果・取り込み先）と証跡リンク。secret 値・実サイト情報は表示しない |
 
 表示 field は `docs/requirements/l3/traceability.json` の surface relation へ 1 つ以上で接続する。
