@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0027",
-  "event_count": 27,
+  "event_head": "WT-EVT-0028",
+  "event_count": 28,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -116,13 +116,14 @@
     },
     {
       "candidate_id": "WT-CAND-MIGRATE",
-      "state": "prototyped",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0010",
         "WT-EVT-0016",
         "WT-EVT-0017",
-        "WT-EVT-0025"
+        "WT-EVT-0025",
+        "WT-EVT-0028"
       ],
       "requirement_ids": [
         "WT-FR-MIGRATE-01",
@@ -238,7 +239,8 @@
     "WT-Q-LOOK-01",
     "WT-Q-LOOK-02",
     "WT-Q-META-01",
-    "WT-Q-LP-01"
+    "WT-Q-LP-01",
+    "WT-Q-MIGRATE-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -247,16 +249,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-MIGRATE-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "既存サイトの設定を写像できる: カスタマイザ / 設定画面の値 → theme.json / options JSON / wp_navigation、ウィジェット領域 → template part、プリセット → variation、独自ブロック → 受け皿対応表。写像不能（アニメーション・グラデ角度・スライダー）は台帳へ記録し、移管対象はサイト固有 60〜80 キーに絞る。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-MIGRATE"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-AGENT-01",
       "owner": "PO",

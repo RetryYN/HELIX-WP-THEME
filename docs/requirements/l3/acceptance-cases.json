@@ -209,13 +209,13 @@
       "id": "WT-AC-MIGRATE-01A",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "positive",
-      "oracle": "サンプル control（A 400 / B 400）の各行が 4 分類のどれかに落ち、写像先が存在する"
+      "oracle": "取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる"
     },
     {
       "id": "WT-AC-MIGRATE-01B",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "negative",
-      "oracle": "分類不能または option 不可視上書きに落ちる行があれば FAIL"
+      "oracle": "フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-02A",

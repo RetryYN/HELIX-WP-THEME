@@ -24,7 +24,7 @@
 | WT-AT-META-01 | WT-FR-META-01 | メタを OFF にした記事だけで該当パーツが消え、REST から同じキーを読み書きできる | 未登録メタや option で表示が変わる経路があれば FAIL | REST + Playwright |
 | WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
 | WT-AT-LP-02 | WT-FR-LP-02 | LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる | 計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL | tracking receipt + Playwright |
-| WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | サンプル control（A 400 / B 400）の各行が 4 分類のどれかに落ち、写像先が存在する | 分類不能または option 不可視上書きに落ちる行があれば FAIL | mapping receipt |
+| WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる | フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL | schema test + mapping receipt |
 | WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | 代表 6 領域の変換が invalid=0 で、独自ウィジェット・写像不能候補が台帳に件数付きで残る | 変換で invalid が出る、または写像不能が黙って落ちれば FAIL | conversion receipt |
 | WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い | 見た目キーの機械移送や固有名の混入があれば FAIL | public-safety check |
 | WT-AT-AGENT-01 | WT-FR-AGENT-01 | manifest の項目だけを指定して構造・スタイル・値を変更でき、dry-run の差分と apply 結果が一致する | manifest 外の指定が通る、または apply が dry-run と異なれば FAIL | REST receipt |

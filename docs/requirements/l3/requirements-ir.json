@@ -538,13 +538,13 @@
     {
       "id": "WT-FR-MIGRATE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-06",
         "WT-BR-02",
         "WT-CAND-MIGRATE"
       ],
-      "statement": "設定の写像先を 4 分類（有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群）で決め、状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とする",
+      "statement": "移行の正本は (1) 取得項目定義（移行元から何を採るか: カスタマイザ / 設定画面 / ウィジェット / メニュー / プリセット / 独自ブロック / 投稿メタの項目と採取方法、read-only）と (2) マッピングフォーマット（項目ごとの写像先を宣言する JSON: 4 分類 = 有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群、写像不能は理由付きで明示）とする。変換器はこの 2 つを読んで動く従属物で、フォーマット外の写像を持たない。状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とし、option の不可視上書きは使わない",
       "priority": "P1",
       "actor_ids": [
         "MIGRATOR"
@@ -557,15 +557,12 @@
       "test_ids": [
         "WT-AT-MIGRATE-01"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-MIGRATE-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-MIGRATE-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-06",
         "WT-NFRL1-02",
@@ -584,15 +581,12 @@
       "test_ids": [
         "WT-AT-MIGRATE-02"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-MIGRATE-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-MIGRATE-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-06",
         "WT-NFRL1-08",
@@ -612,10 +606,7 @@
       "test_ids": [
         "WT-AT-MIGRATE-03"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-MIGRATE-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-AGENT-01",
