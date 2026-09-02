@@ -18,7 +18,7 @@
 1. `helix status` で継続状態を確認する（末尾の HELIX managed block を参照）。
 2. 継続状態がなければ通常開始し、「OK: セッション初期化完了」と宣言する。
 
-## ⚠️ REQ-NF-025 — AIロジック完全分離（絶対制約）
+## ⚠️ WT-TR-CORE-03（旧 REQ-NF-025） — AIロジック完全分離（絶対制約）
 
 **このプロジェクトの最重要アーキテクチャ制約。違反禁止。**
 
@@ -140,7 +140,7 @@ Codex と Claude Code は API 直叩きではなく、契約プラン + ロー�
   2. **(b) 既存実装**: `theme/` / `plugin/` / `src/` 配下の関連ファイル
   3. **(c) 設計ドキュメント**: `docs/design/consistency-responsibilities.md` / `token-structure.md` / `parts-catalog.md` + `docs/adr/`（旧 L2〜L5 設計は削除済み）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（同概念 OSS FSE テーマ）+ テックブログ
-- **REQ-NF-025 遵守**: テーマ・プラグインに AI ロジックを持ち込まない（上記参照）。
+- **WT-TR-CORE-03（旧 REQ-NF-025） 遵守**: テーマ・プラグインに AI ロジックを持ち込まない（上記参照）。
 - **デッドコード掃除**: フェーズ移行時は移行先実装着手前に旧スタブ・未登録ブロック定義を削除。
 
 ## Local Overrides

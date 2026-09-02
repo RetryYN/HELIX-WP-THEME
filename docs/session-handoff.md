@@ -44,5 +44,5 @@
 ## 6. 読む順
 1. 本ファイル
 2. `docs/research/2026-08-26-theme-structure-audit/PROGRESS.md`
-3. `docs/requirements/authority.md`（要求正本）と `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（L0 改定ドラフト）
+3. `docs/requirements/authority.md`（要求正本）と `docs/planning/L0-agent-controlled-variety.md`（L0 企画・要求の起点）
 4. `docs/research/2026-08-26-theme-structure-audit/reports/INV-*.md`

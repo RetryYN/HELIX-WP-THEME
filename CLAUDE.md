@@ -16,7 +16,7 @@ PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作
 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
 
 - **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
-- **要求正本**: `docs/requirements/authority.md`。旧 AGENT NEO 設計書は削除済み（git 履歴のみ）
+- **要求正本**: `docs/requirements/authority.md`（起点は `docs/planning/L0-agent-controlled-variety.md`）。旧 AGENT NEO 設計書は削除済み（git 履歴のみ）
 
 ## 技術スタック
 
@@ -46,10 +46,10 @@ plugins/agent-neo-embed/    AI 生成 HTML 差込ブロック
   └── assets/               ビルド成果物
 
 automation SEO（/opt/seo-tool）
-  └── AI 判定・生成は全てこちら。テーマ側は結果を表示するだけ（REQ-NF-025）
+  └── AI 判定・生成は全てこちら。テーマ側は結果を表示するだけ（WT-TR-CORE-03（旧 REQ-NF-025））
 ```
 
-## ⚠️ REQ-NF-025 — AI ロジック完全分離（絶対制約）
+## ⚠️ WT-TR-CORE-03（旧 REQ-NF-025） — AI ロジック完全分離（絶対制約）
 
 **最重要アーキテクチャ制約。違反禁止。**
 
@@ -154,7 +154,7 @@ Agent({
 ## 禁止事項
 
 - secret / PII / credential を docs / rules / examples に書かない
-- テーマ・プラグインに AI ロジックを持ち込まない（REQ-NF-025）
+- テーマ・プラグインに AI ロジックを持ち込まない（WT-TR-CORE-03（旧 REQ-NF-025））
 - cross-repo 編集（/opt/seo-tool を本リポから変更しない）
 - `.helix/` runtime state・`.claude/settings.local.json` をドキュメント目的で追跡しない
 
