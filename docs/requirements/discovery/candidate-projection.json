@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0029",
-  "event_count": 29,
+  "event_head": "WT-EVT-0030",
+  "event_count": 30,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -138,14 +138,16 @@
         "WT-EVT-0002",
         "WT-EVT-0011",
         "WT-EVT-0017",
-        "WT-EVT-0029"
+        "WT-EVT-0029",
+        "WT-EVT-0030"
       ],
       "requirement_ids": [
         "WT-FR-AGENT-01",
         "WT-FR-AGENT-02",
         "WT-FR-AGENT-03",
         "WT-FR-AGENT-04",
-        "WT-TR-AGENT-05"
+        "WT-TR-AGENT-05",
+        "WT-FR-AGENT-06"
       ]
     },
     {
@@ -242,7 +244,8 @@
     "WT-Q-META-01",
     "WT-Q-LP-01",
     "WT-Q-MIGRATE-01",
-    "WT-Q-AGENT-01"
+    "WT-Q-AGENT-01",
+    "WT-Q-AGENT-02"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -251,16 +254,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-AGENT-02",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "再利用パーツを参照（ID）で持ち、解決に使った版と digest を記録できる（テーマB blog_parts の JSON 版。展開はしない）。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-AGENT"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-VALUE-01",
       "owner": "PO",

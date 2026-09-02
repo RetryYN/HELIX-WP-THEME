@@ -540,6 +540,18 @@
       "requirement_id": "WT-FR-LP-02",
       "polarity": "negative",
       "oracle": "計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL"
+    },
+    {
+      "id": "WT-AC-AGENT-06A",
+      "requirement_id": "WT-FR-AGENT-06",
+      "polarity": "positive",
+      "oracle": "サイト内で作ったパーツが manifest に出て、ゲート通過後にテーマパターンとして登録され、台帳に版・digest・ゲート結果が残る。別テーマ（同トークン契約）で invalid 0 で描画される"
+    },
+    {
+      "id": "WT-AC-AGENT-06B",
+      "requirement_id": "WT-FR-AGENT-06",
+      "polarity": "negative",
+      "oracle": "生値を含むパーツが昇格する、または台帳なしでテーマに入れば FAIL"
     }
   ]
 }

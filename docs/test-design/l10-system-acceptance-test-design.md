@@ -32,6 +32,7 @@
 | WT-AT-AGENT-03 | WT-FR-AGENT-03 | hook 一覧が manifest と実装で一致する | manifest に無い hook、または manifest にあるが発火しない hook があれば FAIL | hook audit |
 | WT-AT-AGENT-04 | WT-FR-AGENT-04 | 参照先を更新すると利用側の digest 記録が差分として検出できる | 展開保存された複製があれば FAIL | digest diff |
 | WT-AT-AGENT-05 | WT-TR-AGENT-05 | OpenAPI の全 path が自前名前空間で、変換層ごとに「入力が同じなら出力が同じ」が成り立つ | wp/v2 配下の自前ルート、または層をまたぐ副作用があれば FAIL | OpenAPI diff |
+| WT-AT-AGENT-06 | WT-FR-AGENT-06 | サイト内で作ったパーツが manifest に出て、ゲート通過後にテーマパターンとして登録され、台帳に版・digest・ゲート結果が残る。別テーマ（同トークン契約）で invalid 0 で描画される | 生値を含むパーツが昇格する、または台帳なしでテーマに入れば FAIL | G-E1 + ledger + cross-theme fixture |
 | WT-AT-VALUE-01 | WT-FR-VALUE-01 | 破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、権限による解除手段が無い | 破壊域が保存できる、または安全域が誤って止まれば FAIL | editor + gate JSON |
 | WT-AT-VALUE-02 | WT-FR-VALUE-02 | 許容リスト外の生値が G-T2 で FAIL になり、件数が baseline から単調減少する | 許容リストに実値を足して通す変更があれば FAIL | gate JSON |
 | WT-AT-VALUE-03 | WT-NFR-VALUE-03 | 段を増減する投影が拒否され、親の 6 段が維持される | 投影で 60 が落ちてコア既定が入る（PoC 実測）状態が再現すれば FAIL | projection fixture |
