@@ -18,10 +18,10 @@ authority: docs/requirements/authority.md
 
 ## Actor と scope
 
-- actor: PO、編集者（Site Editor / Block Editor で編集する人）、運用者、移行者、AI エージェント（HELIX-WP-HARNESS 経由）、決定論ゲート、GRAPHIX-NEO（記録を読むだけの第三者。依存なし）
+- actor: PO、編集者（Site Editor / Block Editor で編集する人）、運用者、移行者（HELIX-WP-HARNESS 側。テーマは写像先の定義を提供するだけ）、AI エージェント（HELIX-WP-HARNESS 経由）、決定論ゲート、GRAPHIX-NEO（記録を読むだけの第三者。依存なし）
 - product boundary: 本テーマは「機械可読性を保ったままエージェント制御でバリエーションを最大化する」ための知見蓄積の場（`docs/planning/L0-agent-controlled-variety.md`）。製品化は GRAPHIX-NEO が担う
 - release boundary: 実用試験。実運用サイトへの配備は PO 承認ごと
-- non-goal: 課金・会員機能（移行プラグインへ委譲）、第三者テーマの是正、外部デザインツール取り込み経路、AI 判定ロジックのテーマ内実装
+- non-goal: 課金・会員機能（テーマ外。必要なら第三者プラグイン）、第三者テーマの是正、外部デザインツール取り込み経路、AI 判定ロジックのテーマ内実装
 
 ## PO への問い
 

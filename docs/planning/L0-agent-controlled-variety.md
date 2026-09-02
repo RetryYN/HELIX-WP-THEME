@@ -27,7 +27,7 @@
 
 ## 3. 非対象
 
-- 課金・会員機能（実運用 2 サイトとも公開面で実使用 0。移行プラグインへ委譲、`docs/research/2026-08-26-theme-structure-audit/reports/INV-11-scope-boundary.md`）
+- 課金・会員機能（実運用 2 サイトとも公開面で実使用 0。テーマ外とし必要なら第三者プラグイン、`docs/research/2026-08-26-theme-structure-audit/reports/INV-11-scope-boundary.md`）
 - 第三者テーマの是正（HELIX-WP-HARNESS #198 の PO 判断）
 - 外部デザインツール取り込み経路（無料枠制約で当面不採用、PO 判断 2026-08-29）
 - AI 判定ロジック（variant 生成・統計判定・リスクスコア）のテーマ内実装
