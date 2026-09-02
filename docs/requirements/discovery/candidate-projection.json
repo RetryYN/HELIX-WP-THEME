@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0030",
-  "event_count": 30,
+  "event_head": "WT-EVT-0031",
+  "event_count": 31,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -152,12 +152,13 @@
     },
     {
       "candidate_id": "WT-CAND-VALUE",
-      "state": "prototyped",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0012",
         "WT-EVT-0016",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0031"
       ],
       "requirement_ids": [
         "WT-FR-VALUE-01",
@@ -245,7 +246,8 @@
     "WT-Q-LP-01",
     "WT-Q-MIGRATE-01",
     "WT-Q-AGENT-01",
-    "WT-Q-AGENT-02"
+    "WT-Q-AGENT-02",
+    "WT-Q-VALUE-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -254,16 +256,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-VALUE-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "値を安全域 / 生値 / 破壊域の 3 域で制御できる: 安全域は自由、生値は警告、破壊域は停止。生値は許容リスト方式へ移し baseline 438 を 0 にする。境界値は PoC で実物を崩して決める。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-VALUE"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-SEO-01",
       "owner": "PO",

@@ -769,7 +769,7 @@
     {
       "id": "WT-FR-VALUE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-08",
         "WT-SCR-03",
@@ -793,15 +793,12 @@
       ],
       "test_ids": [
         "WT-AT-VALUE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-VALUE-01"
       ]
     },
     {
       "id": "WT-FR-VALUE-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-08",
         "WT-NFRL1-01",
@@ -823,9 +820,6 @@
       ],
       "test_ids": [
         "WT-AT-VALUE-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-VALUE-01"
       ]
     },
     {
