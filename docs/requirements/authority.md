@@ -23,12 +23,13 @@
 | --- | --- |
 | `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（L0 改定ドラフト、PR #48） | 新企画書。構造自由・破壊域停止・知見をためる場。G0.5 判断待ち |
 | 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。取り込みは一方向 |
-| 旧 L0-planning.md（削除済み） | 4 原理・ページ型別予算は WT-NFRL1-01 等へ継承済み。価格・単体販売・成功指標は失効（ADR-024） |
-| 旧 L1-requirements.md・nsrm-*（削除済み） | REQ-F-045 / 046 / 025、ADR-024 の継承と REQ-F-016 / 037 の衝突記録だけを本正本へ写した。旧 gate / freeze 表示は拘束ではない |
+| 旧 L0-planning.md（PO 判断 2026-09-02 で削除、git 履歴 2904aea 以前） | 4 原理・ページ型別予算は WT-NFRL1-01 等へ継承済み。価格・単体販売・成功指標は失効（ADR-024） |
+| 旧 L1-requirements.md・nsrm-*・L2〜L5 設計・features・test-plan・解析レポート（削除済み、同上） | 継承: REQ-F-045 / 046 / 025、ADR-024。衝突記録: REQ-F-016 / 037（WT-Q-STRUCT-01/02）。継承も棄却記録もない項目は WT-Q-CARRY-01 で PO 判断 |
 | `docs/research/2026-08-26-theme-structure-audit/` | 調査証跡（INV-01〜17、欠落面 D-01〜07）。要求候補と暗黙要件の入力 |
 | `docs/research/2026-08-2[789]-*`, `2026-08-31-*` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
 | `themes/` `plugins/` `bin/` | 旧実装。能力棚卸し（パターン 71、スタイル 9、parts 5、templates 10、ゲート 6+実機）の根拠 |
-| ADR-001〜030 | 設計資産。ADR-024（単体販売廃止・外部 AI write 不可）は継承、ADR-028 は WT-Q-ADR-01 で再検討 |
+| ADR-001〜030 | 旧時代の判断記録。現行拘束は本正本経由の継承のみ（ADR-024 継承、ADR-028 は WT-Q-ADR-01 で再検討） |
+| `docs/design/api-catalog.md` | REST 契約の現行参照（bin/check-impl-coverage.sh が読む）。文書内の旧 L3 凍結表示は拘束ではない |
 
 ## トレーサビリティ
 

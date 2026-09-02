@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-STRUCTURE-FREEDOM",
-  "event_head": "WT-EVT-0019",
-  "event_count": 19,
+  "event_head": "WT-EVT-0020",
+  "event_count": 20,
   "candidates": [
     {
       "candidate_id": "WT-CAND-STRUCT",
@@ -70,7 +70,8 @@
       "source_event_ids": [
         "WT-EVT-0003",
         "WT-EVT-0008",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0020"
       ],
       "requirement_ids": [
         "WT-FR-ZONE-01",
@@ -100,7 +101,8 @@
       "source_event_ids": [
         "WT-EVT-0003",
         "WT-EVT-0010",
-        "WT-EVT-0016"
+        "WT-EVT-0016",
+        "WT-EVT-0020"
       ],
       "requirement_ids": [
         "WT-FR-AGENT-01",
@@ -115,7 +117,8 @@
         "WT-EVT-0003",
         "WT-EVT-0011",
         "WT-EVT-0017",
-        "WT-EVT-0018"
+        "WT-EVT-0018",
+        "WT-EVT-0020"
       ],
       "requirement_ids": [
         "WT-FR-MIGRATE-01",
@@ -151,7 +154,8 @@
       "state": "elicited",
       "source_event_ids": [
         "WT-EVT-0003",
-        "WT-EVT-0014"
+        "WT-EVT-0014",
+        "WT-EVT-0020"
       ],
       "requirement_ids": [
         "WT-TR-PLATFORM-01",
@@ -182,6 +186,7 @@
     "WT-Q-MIGRATE-01",
     "WT-Q-MIGRATE-02",
     "WT-Q-SCOPE-01",
+    "WT-Q-CARRY-01",
     "WT-Q-ADR-01"
   ],
   "answered_question_ids": [],
@@ -263,6 +268,12 @@
       "owner": "PO",
       "question": "課金・会員機能をスコープ外とし移行プラグインへ委譲する案 A を承認するか（テーマA 有料記事の実運用確認が前提）",
       "reentry": "実運用確認結果と承認を追記"
+    },
+    {
+      "id": "WT-Q-CARRY-01",
+      "owner": "PO",
+      "question": "削除した旧文書のうち新正本へ継承も棄却記録もない項目（REQ-F-009 設定 export/import、REQ-F-028 API schema versioning、GAP-RT-014 広告/PR 表記開示、GAP-RT-024 Web Vitals 計測経路、GAP-RT-026 画像サイズ/CLS 契約）を L2 candidate 化するか不採用とするか",
+      "reentry": "採否を追記"
     },
     {
       "id": "WT-Q-ADR-01",

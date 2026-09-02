@@ -881,7 +881,7 @@ def render_results(checks: list[Check], artifacts: dict[str, Any]) -> str:
     sources = "\n".join(
         [
             "- ADR-026: `docs/adr/ADR-026.md`",
-            "- Test plan: `docs/test-plan/L3-test-plan.md` §10 TC-066 / TC-067 / TC-068 / TC-079",
+            "- Test plan: `旧 test-plan/L3-test-plan.md（削除済み）` §10 TC-066 / TC-067 / TC-068 / TC-079",
             "- WHATWG HTML `<iframe sandbox>`: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox",
             "- MDN CSP `style-src`: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src",
             "- W3C CSP3 directives: `connect-src`, `img-src`, `form-action`: https://www.w3.org/TR/CSP3/",
@@ -969,7 +969,7 @@ def render_blocked_results(bundle: ServerBundle | RouteBundle, error: Exception)
 ## 参照
 
 - ADR-026: `docs/adr/ADR-026.md`
-- Test plan: `docs/test-plan/L3-test-plan.md` §10 TC-066 / TC-067 / TC-068 / TC-079
+- Test plan: `旧 test-plan/L3-test-plan.md（削除済み）` §10 TC-066 / TC-067 / TC-068 / TC-079
 - WHATWG HTML `<iframe sandbox>`: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox
 - MDN CSP `style-src`: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src
 - W3C CSP3 directives: `connect-src`, `img-src`, `form-action`: https://www.w3.org/TR/CSP3/

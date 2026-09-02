@@ -1,5 +1,7 @@
 # agent-neo/v1 全 endpoint カタログ
 
+> **注記（2026-09-02）**: 本文書は REST 契約の現行参照（`bin/check-impl-coverage.sh` が読む）。冒頭の「L3 API 契約凍結（G3）」など旧工程の凍結表示は拘束ではなく、現行の要求状態は `docs/requirements/authority.md`（freeze 未実施）に従う。
+
 > 根拠: L1-requirements.md（43 REQ-F）/ L0-planning.md / L2-design.md §5 API概要設計 / 旧 features/agent-api 分冊（削除済み）
 > 作成日: 2026-04-30
 > ステータス: **L3 API 契約凍結（G3）/ §17 完全一致**（2026-06-14）
