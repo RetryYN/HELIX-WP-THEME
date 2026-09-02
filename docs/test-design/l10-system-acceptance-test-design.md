@@ -39,7 +39,7 @@
 | WT-AT-SEO-01 | WT-FR-SEO-01 | 一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出る | 同型の二重出力や @type 空のスクリプトがあれば FAIL | JSON-LD extract |
 | WT-AT-SEO-02 | WT-FR-SEO-02 | FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致する | 本文に無い項目が JSON-LD に出れば FAIL | JSON-LD extract |
 | WT-AT-SEO-03 | WT-FR-SEO-03 | 12 種別すべてで canonical・description・OGP が出て、AI 向け出力の digest が HTML と整合する | front / archive / search で欠落すれば FAIL | crawl JSON |
-| WT-AT-INTAKE-01 | WT-FR-INTAKE-01 | 台帳 1 行から証跡と commit へ辿れ、ゲート結果が同一 HEAD に束縛される | 証跡なしの行、または逆方向の取り込み行があれば FAIL | ledger validation |
+| WT-AT-INTAKE-01 | WT-FR-INTAKE-01 | 台帳 1 行から証跡と参照元 commit へ辿れ、ゲート結果が同一 HEAD に束縛される。台帳は本リポ内のパスだけを参照する | 証跡なしの行、他リポの状態に依存する項目、または他プロダクトの成果物を本テーマへ取り込む行があれば FAIL | ledger validation |
 | WT-AT-SEC-01 | WT-NFR-SEC-01 | REST 監査で未認証ルート 0、SSRF 形 0、公開面 Warning 0 | 1 件でもあれば FAIL | REST audit |
 | WT-AT-REL-01 | WT-NFR-REL-01 | 閲覧・クロール前後で option / theme_mod の diff が 0。正規化リダイレクトが動く | 描画時 write または正規化停止があれば FAIL | option diff |
 | WT-AT-PRIV-01 | WT-NFR-PRIV-01 | テーマ・プラグインに計測 ID・広告 HTML の生値が 0 | 検出 1 件で FAIL | static grep |

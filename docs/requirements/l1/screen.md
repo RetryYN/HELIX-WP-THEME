@@ -18,7 +18,7 @@ authority: docs/requirements/authority.md
 | WT-SCR-06 | 公開面: ホーム / LP / 一覧 | hero・追尾・SP 下部・お知らせバーの積層と一覧の構造化データが出るか | 閲覧（read-only） |
 | WT-SCR-07 | ゲートレポート（CLI） | FAIL から対象ファイルと原因へ 1 手で辿れるか | 静的 6 ゲート / 実機 G-E1 |
 | WT-SCR-08 | エージェント制御面（REST / MCP manifest） | 面・部品・値・変種を JSON だけで列挙・選択・適用できるか | manifest 取得 / dry-run / apply / rollback |
-| WT-SCR-09 | 取り込み台帳 | 1 行から証跡と参照元 commit へ辿れるか | 台帳追記 / 検証 |
+| WT-SCR-09 | 実証記録台帳 | 1 行から証跡と参照元 commit へ辿れるか | 台帳追記 / 検証 |
 
 編集面は WP Site Editor / Block Editor の既存 UI を面として扱い、テーマは独自の設定 UI を持たない。
-ゲートレポート・エージェント制御面・取り込み台帳は画面ではなく CLI / REST / JSON 文書だが、運用者と AI の判断面として screen 要求に含める。
+ゲートレポート・エージェント制御面・実証記録台帳は画面ではなく CLI / REST / JSON 文書だが、運用者と AI の判断面として screen 要求に含める。

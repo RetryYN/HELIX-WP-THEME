@@ -19,7 +19,7 @@ authority: docs/requirements/authority.md
 | WT-FRL1-07 | エージェントが JSON で全部を操作できる: 面・部品・値・変種・テンプレの選択、中間 JSON の抽出、再利用パーツの参照が、設定で束ねた MCP 常用パック（主経路）と REST / CLI（従属経路）から行える | AGENT |
 | WT-FRL1-08 | 値は 3 域で制御される: 安全域は自由、生値は警告、破壊域は停止する。境界値は PoC で決める | VALUE |
 | WT-FRL1-09 | 構造化データと AI 向け出力が単一出力元から出る: CollectionPage / SearchAction を加え、FAQ / HowTo / ItemList は語彙から自動生成する | SEO |
-| WT-FRL1-10 | 実証済みパターンを台帳で GRAPHIX-NEO へ渡せる | INTAKE |
+| WT-FRL1-10 | 実証済みパターンを証跡付きの記録台帳に残せる（他プロダクトは記録を読んで採否を自分で決める。依存なし） | INTAKE |
 
 L1 の ID はユーザー要求であり、L3 の system requirement ID とは区別する。
 各行はテーマA / B との PoC 比較で本テーマに不足すると分かった面・語彙・引き出しを、機械可読性を保つ形で取り込む提案である

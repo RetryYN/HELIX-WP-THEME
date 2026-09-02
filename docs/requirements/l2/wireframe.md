@@ -15,7 +15,7 @@
 ├─ CLI: ゲート ───────────────────────────────────────────┤
 │ G-T1 PASS  G-T1b PASS  G-T2 433/438  G-T3 PASS          │
 │ G-S1 PASS  G-S2 PASS   G-E1 invalid=0 (71)              │
-└─ 台帳: pattern | commit | evidence | gates | intake_to ──┘
+└─ 台帳: pattern | commit | evidence | gates ──────────┘
 ```
 
 prototype status: `prototyped`（WT-PROT-UI-01-r1、text low-fi）。PO reaction と agreement は未記録であり、G2 freeze ではない。

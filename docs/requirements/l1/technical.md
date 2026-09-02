@@ -15,6 +15,6 @@ authority: docs/requirements/authority.md
 | WT-TRL1-03 | エージェント接点は自前 REST 名前空間 + MCP（abilities）+ WP-CLI。WP コア名前空間へ相乗りしない |
 | WT-TRL1-04 | AI 判定ロジックはテーマ・プラグインの外（HELIX 側）。boundary guard を維持する |
 | WT-TRL1-05 | 実機ゲートはローカル docker WP 7.1。実運用サイトは read-only。接続情報は環境変数 |
-| WT-TRL1-06 | GRAPHIX-NEO への取り込みは一方向。参照元 commit・証跡・ゲート結果を台帳に記録する |
+| WT-TRL1-06 | 実証記録は本リポ内で完結（参照元 commit・証跡・ゲート結果）。他プロダクトへの参照・依存・書き込みを持たない |
 
 PoC で成立した経路は `docs/poc/wt-poc-inventory.json` へ digest 束縛する。PoC 未検証の一般化は行わない。
