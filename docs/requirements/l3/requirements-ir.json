@@ -373,7 +373,7 @@
     {
       "id": "WT-FR-LOOK-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-04",
         "WT-SCR-02",
@@ -382,7 +382,7 @@
         "WT-CAND-LOOK"
       ],
       "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持つ",
-      "priority": "P1",
+      "priority": "P0",
       "actor_ids": [
         "EDITOR"
       ],
@@ -396,9 +396,6 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-LOOK-01"
       ]
     },
     {

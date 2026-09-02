@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0023",
-  "event_count": 23,
+  "event_head": "WT-EVT-0024",
+  "event_count": 24,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -72,12 +72,13 @@
     },
     {
       "candidate_id": "WT-CAND-LOOK",
-      "state": "prototyped",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0007",
         "WT-EVT-0016",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0024"
       ],
       "requirement_ids": [
         "WT-FR-LOOK-01",
@@ -227,7 +228,8 @@
     "WT-Q-PARTS-01",
     "WT-Q-VOCAB-01",
     "WT-Q-VOCAB-02",
-    "WT-Q-VOCAB-03"
+    "WT-Q-VOCAB-03",
+    "WT-Q-LOOK-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -236,16 +238,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-LOOK-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "見た目の引き出しを増やせる: h3 を h2 より 1 段下げる、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、動きは hover transition・影 1 段・出現 1 種、1200px 段の追加、theme.json の alignWide / gradients / shadow / spacing 段の解放。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-LOOK"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-LOOK-02",
       "owner": "PO",
