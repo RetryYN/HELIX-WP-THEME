@@ -211,6 +211,27 @@
       "limits": [
         "G-C1（内容ゲート）は未実装"
       ]
+    },
+    {
+      "evidence_id": "WT-POC-15",
+      "path": "docs/planning/L0-agent-controlled-variety.md",
+      "sha256": "cf0c7e28acaa08039ff762e80d26c343e1e5c13a71489a1dc30439efd2ecccd0",
+      "finding": "PO 指示 2026-09-02 を新規 SELL / SEO / CRAWL 要求の source とする。新規要求固有の PoC 証跡は未収載であり、要求候補の入力としてのみ扱う",
+      "adopt": [
+        "WT-FR-SELL-01",
+        "WT-FR-SELL-02",
+        "WT-FR-SELL-03",
+        "WT-FR-SEO-04",
+        "WT-NFR-SEO-01",
+        "WT-FR-SEO-05",
+        "WT-FR-CRAWL-01",
+        "WT-FR-CRAWL-02",
+        "WT-FR-CRAWL-03",
+        "WT-NFR-CRAWL-01"
+      ],
+      "limits": [
+        "新規要求固有の実装・実機・運用 PoC は未検証。決済・カート・会員、購入完了の計測、Search Console 突合、順位計測は要求の対象外またはテーマ外"
+      ]
     }
   ]
 }

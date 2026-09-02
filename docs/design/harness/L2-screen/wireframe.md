@@ -3,7 +3,7 @@ layer: L2
 sub_doc: wireframe
 status: candidate_projection
 source_authority: docs/requirements/l2/wireframe.md
-source_sha256: c93857d4294c7373af16db85f61862d55fe527e3fd4992dc2d6dbaff19cd5cbd
+source_sha256: b060bd50c00e1cdadcc8e0565c2c9b73a0315cb23027f4f4c1b321b031b74e2a
 pair_artifact: self
 ---
 
@@ -32,3 +32,8 @@ pair_artifact: self
 
 ### PM-10 / WT-UI-10 テーマ設定画面
 
+ProductCatalogTable: 商品一覧、追加・更新、記事への差し込み。
+
+### PM-11 / WT-UI-11 クローラーダッシュボード
+
+CrawlDashboard: bot 別推移、古い URL、404 / 5xx、初回捕捉時間、llms.txt / crawl-map の AI 来訪。RobotsAiCrawlerToggle: robots.txt と AI クローラー許可 / 拒否。

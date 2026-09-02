@@ -21,9 +21,9 @@ authority: docs/requirements/authority.md
 - actor: PO、編集者（Site Editor / Block Editor で編集する人）、運用者、移行者（HELIX-WP-HARNESS 側。テーマは写像先の定義を提供するだけ）、AI エージェント（HELIX-WP-HARNESS 経由）、決定論ゲート、GRAPHIX-NEO（記録を読むだけの第三者。依存なし）
 - product boundary: 本テーマは「機械可読性を保ったままエージェント制御でバリエーションを最大化する」ための知見蓄積の場（`docs/planning/L0-agent-controlled-variety.md`）。製品化は GRAPHIX-NEO が担う
 - release boundary: 実用試験。実運用サイトへの配備は PO 承認ごと
-- non-goal: 課金・会員機能（テーマ外。必要なら第三者プラグイン）、第三者テーマの是正、外部デザインツール取り込み経路、AI 判定ロジックのテーマ内実装
+- non-goal: 決済・カート・会員機能と購入完了の計測（テーマ外。必要なら外部側）、第三者テーマの是正、外部デザインツール取り込み経路、AI 判定ロジックのテーマ内実装
 
 ## PO への問い
 
-WT-Q-* は総数 18 件（採用済み 18: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01, WT-Q-ADMIN-01, WT-Q-SECTION-01, WT-Q-PLUGIN-01。未決 0 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。いずれも「X ができる（証跡あり）。採用するか」の形で、
+WT-Q-* は総数 21 件（採用済み 21: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01, WT-Q-ADMIN-01, WT-Q-SECTION-01, WT-Q-PLUGIN-01, WT-Q-SELL-01, WT-Q-SEO-04, WT-Q-CRAWL-01。未決 0 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。いずれも「X ができる（証跡あり）。採用するか」の形で、
 方式・配置先・境界値の詳細は問わない（PoC 証跡で決める）。
