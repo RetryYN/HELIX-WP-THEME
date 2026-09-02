@@ -3,7 +3,7 @@ layer: L2
 sub_doc: ui-element
 status: candidate_projection
 source_authority: docs/requirements/l2/ui-element.md
-source_sha256: 11111e355daf3d44db45c09fc0cb7cd8b3777f826155e0e7b377c2d1574710c4
+source_sha256: b7757e5d95a9b37817c1d1b2daa68aefe5023fb157e622890f5106f9f1cf97d0
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 ---
 
@@ -21,4 +21,4 @@ pair_artifact: docs/design/harness/L2-screen/wireframe.md
 | **PM-06** | WT-UI-06 | HeroSlot / StickyStack / AnnouncementBar / CollectionJsonLd |
 | **PM-07** | WT-UI-07 | GateReport / RawValueCounter |
 | **PM-08** | WT-UI-08 | CapabilityManifest / SelectionApply / DryRunDiff |
-| **PM-09** | WT-UI-09 | IntakeLedger / EvidenceLink |
+| **PM-09** | WT-UI-09 | EvidenceLedger / EvidenceLink |

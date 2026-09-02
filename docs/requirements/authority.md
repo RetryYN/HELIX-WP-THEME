@@ -28,7 +28,7 @@
 | 資産 | 扱い |
 | --- | --- |
 | `docs/planning/L0-agent-controlled-variety.md` | L0 企画。要求の起点 |
-| 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。取り込みは一方向 |
+| 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。一方向原則。本テーマは記録を残すだけで依存を作らない |
 | `docs/research/2026-08-26-theme-structure-audit/` | 3 テーマ構造監査・RE（INV-01〜17、差分レジスタ、機構比較、統合レポート）。拡大提案の根拠 |
 | `docs/research/2026-08-27-poc-browser-verification/`, `docs/research/2026-08-28-poc-conversion-and-variations/`, `docs/research/2026-08-28-poc-styles-parts-gates/`, `docs/research/2026-08-29-ge1-local/`, `docs/research/2026-08-31-poc-display-errors/` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
 | `docs/design/catalog/` | パーツ図鑑・カスタマイズ性・デザイン力比較 |

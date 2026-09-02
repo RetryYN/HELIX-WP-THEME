@@ -10,6 +10,6 @@
 | WT-UAT-06 | WT-UI-06 | hero・追尾・SP 下部・お知らせバーの積層と一覧の構造化データが出る | WT-Q-ZONE-01 / LP-01 採否後 |
 | WT-UAT-07 | WT-UI-07 | ゲート FAIL から原因ファイルへ 1 手で辿れる | candidate |
 | WT-UAT-08 | WT-UI-08 | manifest だけでエージェントが構造・スタイル・値を選べる | WT-Q-AGENT-01 / 02 採否後 |
-| WT-UAT-09 | WT-UI-09 | 台帳 1 行から証跡と参照元 commit へ辿れる | WT-Q-INTAKE-01 採否後 |
+| WT-UAT-09 | WT-UI-09 | 台帳 1 行から証跡と参照元 commit へ辿れる | candidate |
 
 スクリーンショットだけを合意とみなさず、PO の reaction、accepted / rejected、対象 revision、日時を discovery event へ追記する。

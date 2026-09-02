@@ -3,7 +3,7 @@ layer: L12
 sub_doc: operational-test-design
 status: candidate_projection
 source_authority: docs/test-design/l12-operational-value-test-design.md
-source_sha256: 78b21c7b9c75931de2f94883cd6dc373f653772f867d6289f40175381c7bf982
+source_sha256: 35bc98283a602d33402f9e7698fb02cf25dc2a2b052c1adfe1a03dee4efd2a24
 pair_artifact: docs/design/harness/L1-requirements/screen-requirements.md
 ---
 
@@ -23,4 +23,4 @@ HELIX V-model reader へ L1 screen projection の pair を接続する非正本 
 | PM-06 | WT-UI-06 | 積層規約違反と CollectionPage 欠落を WT-OT-02 へ接続する |
 | PM-07 | WT-UI-07 | 静的 FAIL=0 と実機 invalid=0 の同一 HEAD 束縛率を WT-OT-05 の前提として記録する |
 | PM-08 | WT-UI-08 | manifest 列挙率と manifest 外指定の拒否率を WT-OT-01 / 03 へ接続する |
-| PM-09 | WT-UI-09 | 台帳の証跡付き率と逆方向取り込み 0 を WT-OT-04 へ接続する |
+| PM-09 | WT-UI-09 | 実証記録の証跡付き率と他リポ参照 0 を WT-OT-04 へ接続する |

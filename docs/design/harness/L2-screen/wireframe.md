@@ -3,7 +3,7 @@ layer: L2
 sub_doc: wireframe
 status: candidate_projection
 source_authority: docs/requirements/l2/wireframe.md
-source_sha256: 4783540d5b070e307d3a8257bbfe9004e648a50faa700c9b69d209c7c2e9badc
+source_sha256: 5c4322462d4e57f817590a8dd883132a38f4310653642fa5841bf7c65829a38f
 pair_artifact: self
 ---
 
@@ -28,5 +28,5 @@ pair_artifact: self
 
 ### PM-08 / WT-UI-08 エージェント制御面
 
-### PM-09 / WT-UI-09 取り込み台帳
+### PM-09 / WT-UI-09 実証記録台帳
 
