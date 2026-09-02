@@ -25,5 +25,5 @@ authority: docs/requirements/authority.md
 
 ## PO への問い
 
-`docs/requirements/discovery/candidate-projection.json` の `unresolved` にある WT-Q-* 15 件。いずれも「X ができる（証跡あり）。採用するか」の形で、
+`docs/requirements/discovery/candidate-projection.json` の `unresolved` にある WT-Q-* 15 件（うち採用済み 1: WT-Q-ZONE-01）。いずれも「X ができる（証跡あり）。採用するか」の形で、
 方式・配置先・境界値の詳細は問わない（PoC 証跡で決める）。

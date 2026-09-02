@@ -134,7 +134,7 @@
     {
       "id": "WT-FR-ZONE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-01",
         "WT-SCR-05",
@@ -158,15 +158,12 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-ZONE-01"
       ]
     },
     {
       "id": "WT-FR-ZONE-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-01",
         "WT-TRL1-02",
@@ -188,15 +185,12 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-ZONE-01"
       ]
     },
     {
       "id": "WT-FR-ZONE-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-01",
         "WT-SCR-06",
@@ -216,9 +210,6 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-ZONE-01"
       ]
     },
     {
