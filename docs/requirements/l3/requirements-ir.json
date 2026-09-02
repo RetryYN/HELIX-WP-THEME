@@ -322,14 +322,14 @@
     {
       "id": "WT-FR-VOCAB-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-NFRL1-10",
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "PR 表記は投稿メタの提携種別を正本にカテゴリ条件を既定として、post-header 側でタイトル直下に自動出力し、編集者が本文から消せない",
+      "statement": "PR 表記は表示義務を満たす最小限（「PR が含まれます」程度）とし、大々的に出さない。表示の要否は記事内の広告パーツ・アフィリエイトリンク（affiliation ブロック / 広告ゾーンの creative 参照）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -344,9 +344,6 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-VOCAB-03"
       ]
     },
     {

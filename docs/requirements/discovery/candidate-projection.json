@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0022",
-  "event_count": 22,
+  "event_head": "WT-EVT-0023",
+  "event_count": 23,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -60,7 +60,8 @@
         "WT-EVT-0016",
         "WT-EVT-0017",
         "WT-EVT-0021",
-        "WT-EVT-0022"
+        "WT-EVT-0022",
+        "WT-EVT-0023"
       ],
       "requirement_ids": [
         "WT-FR-VOCAB-01",
@@ -186,7 +187,8 @@
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0015",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0023"
       ],
       "requirement_ids": [
         "WT-NFR-SEC-01",
@@ -224,7 +226,8 @@
     "WT-Q-ZONE-01",
     "WT-Q-PARTS-01",
     "WT-Q-VOCAB-01",
-    "WT-Q-VOCAB-02"
+    "WT-Q-VOCAB-02",
+    "WT-Q-VOCAB-03"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -233,17 +236,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-VOCAB-03",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "PR 表記を自動出力できる（正本は投稿メタの提携種別、カテゴリ条件は既定値、タイトル直下に編集者が消せない形で出す）。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-VOCAB",
-        "WT-CAND-QUALITY"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-LOOK-01",
       "owner": "PO",

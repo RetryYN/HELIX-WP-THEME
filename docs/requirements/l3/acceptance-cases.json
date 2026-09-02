@@ -137,13 +137,13 @@
       "id": "WT-AC-VOCAB-03A",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "positive",
-      "oracle": "提携種別を持つ記事でファーストビュー内に表記が出る"
+      "oracle": "広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる"
     },
     {
       "id": "WT-AC-VOCAB-03B",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "negative",
-      "oracle": "本文編集で表記を消せる、または対象記事で欠落すれば FAIL"
+      "oracle": "対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL"
     },
     {
       "id": "WT-AC-VOCAB-04A",

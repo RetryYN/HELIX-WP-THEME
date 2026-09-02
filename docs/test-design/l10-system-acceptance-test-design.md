@@ -16,7 +16,7 @@
 | WT-AT-PARTS-02 | WT-FR-PARTS-02 | wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない | header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL | parts reference test |
 | WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種が描画される | 受け皿のない語彙、または 4 つ目の新規ブロックがあれば FAIL | vocab fixture |
 | WT-AT-VOCAB-02 | WT-FR-VOCAB-02 | h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する | 目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL | render fixture + Playwright |
-| WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 提携種別を持つ記事でファーストビュー内に表記が出る | 本文編集で表記を消せる、または対象記事で欠落すれば FAIL | Playwright |
+| WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL | Playwright + fixture |
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
 | WT-AT-LOOK-01 | WT-FR-LOOK-01 | 見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される | 生値や !important で実現された装飾があれば FAIL | G-T3 + style list |
 | WT-AT-LOOK-02 | WT-FR-LOOK-02 | 写像した variation がスラッグ集合を変えず G-T1b PASS | 段の増減や新スラッグを伴う variation があれば FAIL | G-T1b JSON |

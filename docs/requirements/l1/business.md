@@ -25,5 +25,5 @@ authority: docs/requirements/authority.md
 
 ## PO への問い
 
-WT-Q-* は総数 15 件（採用済み 4: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02。未決 11 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。いずれも「X ができる（証跡あり）。採用するか」の形で、
+WT-Q-* は総数 15 件（採用済み 5: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03。未決 10 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。いずれも「X ができる（証跡あり）。採用するか」の形で、
 方式・配置先・境界値の詳細は問わない（PoC 証跡で決める）。
