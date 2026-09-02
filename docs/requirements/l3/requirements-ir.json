@@ -434,7 +434,7 @@
         "WT-BR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンは要求にしない",
+      "statement": "variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンは要求にしない。調査対象には 3D アニメーション / ゲーミング系のサイトパターンも含める（PO 問い 2026-09-02）。ただし配色・タイポ・部品は variation / block style で届くが、3D・常時アニメーションは値差し替えの外にあり、動きの資産層（JS / アセット）を持つかは調査結果を見て別提案として出す",
       "priority": "P1",
       "actor_ids": [
         "PO",
@@ -455,7 +455,7 @@
     {
       "id": "WT-FR-META-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-05",
         "WT-SCR-04",
@@ -478,9 +478,6 @@
       ],
       "test_ids": [
         "WT-AT-META-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-META-01"
       ]
     },
     {

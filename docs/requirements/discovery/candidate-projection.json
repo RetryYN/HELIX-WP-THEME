@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0025",
-  "event_count": 25,
+  "event_head": "WT-EVT-0026",
+  "event_count": 26,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -89,11 +89,12 @@
     },
     {
       "candidate_id": "WT-CAND-META",
-      "state": "elicited",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0008",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0026"
       ],
       "requirement_ids": [
         "WT-FR-META-01"
@@ -233,7 +234,8 @@
     "WT-Q-VOCAB-02",
     "WT-Q-VOCAB-03",
     "WT-Q-LOOK-01",
-    "WT-Q-LOOK-02"
+    "WT-Q-LOOK-02",
+    "WT-Q-META-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -242,16 +244,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-META-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "投稿メタ 4 キー（sidebar / toc / share / pr）とテンプレ側の条件描画で、記事単位の表示切替を持てる。option による不可視上書きは使わない。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-META"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-LP-01",
       "owner": "PO",
