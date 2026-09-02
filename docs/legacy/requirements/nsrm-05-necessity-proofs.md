@@ -2,7 +2,7 @@
 
 > ドキュメント種別: NSRM Step 2（必要十分要件メソッド）
 > 作成日: 2026-04-30
-> 入力: L0-planning.md / L1-requirements.md / 解析レポート/34-PM観点統合考察-Codex解析の実コード根拠化.md
+> 入力: L0-planning.md / L1-requirements.md / docs/legacy/解析レポート/34-PM観点統合考察-Codex解析の実コード根拠化.md
 > 対象: REQ-F-001 〜 REQ-F-043（43 件）
 
 ---

@@ -469,7 +469,7 @@ L1〜L8 全フェーズで全ての設計判断の評価軸となる **4 原理*
 | REQ-F-047 | F-047 | — | — | SP-ACC-001 / SP-ACC-002 / SP-ACC-005 |
 | REQ-NF-027 | F-047 | — | — | SP-ACC-003 / SP-ACC-004 |
 
-> **【2026-06-26 追加 / FSE カスタマイズ余地設計】** REQ-F-045 / REQ-F-046 / REQ-NF-026 を採番。feature docs は `docs/features/fse-customization/` に配置。ADR-028 で設計判断を明文化。
+> **【2026-06-26 追加 / FSE カスタマイズ余地設計】** REQ-F-045 / REQ-F-046 / REQ-NF-026 を採番。feature docs は `docs/legacy/features/fse-customization/` に配置。ADR-028 で設計判断を明文化。
 
 > **【2026-06-18 廃止整合 / ADR-024】** REQ-F-043（Open Editor Bridge Plugin）はトレーサビリティマトリクス未掲載（実装未着手で廃止）。ACC-043 / ACC-043a / ACC-043b はテスト対象から除外。REQ-F-042 の受入条件（ACC-042 / ACC-042a）は引き続き有効。REQ-NF-002 行の F-042 参照は維持。
 

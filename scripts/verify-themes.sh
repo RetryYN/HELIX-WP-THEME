@@ -7,7 +7,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-OUT_DIR="解析レポート/35-実機検証ログ"
+OUT_DIR="docs/legacy/解析レポート/35-実機検証ログ"
 mkdir -p "$OUT_DIR"
 
 # WP CLI ラッパー

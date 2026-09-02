@@ -6,7 +6,7 @@
  *   TC-009: POST /tracking/event
  *     - 必須項目（section_id / cta_id / variant_id / event_type）未送付時に 400 を返す
  *
- * テスト設計 SSOT: docs/test-plan/L3-test-plan.md §3.2 TC-009
+ * テスト設計 SSOT: docs/legacy/test-plan/L3-test-plan.md §3.2 TC-009
  *
  * テスト DB: wordpress_test（分離済み）
  * ライブ DB: agent_neo（無変更を保証）

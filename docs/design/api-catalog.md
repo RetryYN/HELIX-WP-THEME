@@ -1,6 +1,6 @@
 # agent-neo/v1 全 endpoint カタログ
 
-> 根拠: L1-requirements.md（43 REQ-F）/ L0-planning.md / L2-design.md §5 API概要設計 / docs/features/agent-api/D-REQ-F/requirements.md
+> 根拠: L1-requirements.md（43 REQ-F）/ L0-planning.md / L2-design.md §5 API概要設計 / docs/legacy/features/agent-api/D-REQ-F/requirements.md
 > 作成日: 2026-04-30
 > ステータス: **L3 API 契約凍結（G3）/ §17 完全一致**（2026-06-14）
 

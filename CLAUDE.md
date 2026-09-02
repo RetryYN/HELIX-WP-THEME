@@ -16,7 +16,7 @@ PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作
 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
 
 - **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
-- **設計資産（参照のみ）**: `docs/design/L2-design.md`、`docs/adr/`。旧 kit の進捗・carry 表示は拘束ではない
+- **要求正本**: `docs/requirements/authority.md`。旧設計は `docs/legacy/`（参照のみ）
 
 ## 技術スタック
 
@@ -123,9 +123,9 @@ npx playwright test
 - **検証駆動開発（VDD）**: 検証完了 = 機能確定。未検証は「実装済み」と見なさない
 - **事前調査強化**: 実装前に Web 検索・公式ドキュメント調査を必ず実施
 - **3 点セット + Web 検索補強チェック義務化**: 設計補強・計画書起票・仕様判断の着手前に以下 4 点を整合性チェック:
-  1. **(a) 要件**: `docs/requirements/legacy/L1-requirements.md` + `docs/design/L2-design.md`
+  1. **(a) 要求**: `docs/requirements/authority.md`（L1 5 sub-doc → L2 discovery → L3 IR。旧 L1 / L2 設計は `docs/legacy/` で参照のみ）
   2. **(b) 既存実装**: `themes/` / `plugins/` 配下の関連ファイル
-  3. **(c) 設計ドキュメント**: `docs/design/` + `docs/adr/`（旧 carry register は参照のみ）
+  3. **(c) 設計ドキュメント**: `docs/design/consistency-responsibilities.md` / `token-structure.md` / `parts-catalog.md` + `docs/adr/`（旧 L2〜L5 設計は `docs/legacy/design/` で参照のみ）
   4. **(d) Web 検索**: WordPress 公式 doc + GitHub（FSE テーマ OSS）+ テックブログ
 - **デッドコード掃除**: フェーズ移行時は旧スタブ・未登録ブロック定義を削除
 

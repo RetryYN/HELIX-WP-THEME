@@ -23,8 +23,8 @@
 | --- | --- |
 | `docs/planning/drafts/L0-ai-editing-freedom-draft.md`（L0 改定ドラフト、PR #48） | 新企画書。構造自由・破壊域停止・知見をためる場。G0.5 判断待ち |
 | 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。取り込みは一方向 |
-| `docs/planning/L0-planning.md`（旧 L0） | 情報源。価格・単体販売・成功指標は失効（ADR-024） |
-| `docs/requirements/legacy/`（旧 L1-requirements.md、nsrm-*） | 情報源。REQ-* ID は継承の根拠にのみ使い、旧 gate / freeze 表示は拘束ではない |
+| `docs/legacy/planning/L0-planning.md`（旧 L0） | 情報源。価格・単体販売・成功指標は失効（ADR-024） |
+| `docs/legacy/requirements/`（旧 L1-requirements.md、nsrm-*） | 情報源。REQ-* ID は継承の根拠にのみ使い、旧 gate / freeze 表示は拘束ではない |
 | `docs/research/2026-08-26-theme-structure-audit/` | 調査証跡（INV-01〜17、欠落面 D-01〜07）。要求候補と暗黙要件の入力 |
 | `docs/research/2026-08-2[789]-*`, `2026-08-31-*` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
 | `themes/` `plugins/` `bin/` | 旧実装。能力棚卸し（パターン 71、スタイル 9、parts 5、templates 10、ゲート 6+実機）の根拠 |

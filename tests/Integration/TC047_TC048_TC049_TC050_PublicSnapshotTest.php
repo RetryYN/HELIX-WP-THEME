@@ -8,7 +8,7 @@
  *   TC-049: nonce 情報がスナップショットレスポンスに含まれないこと
  *   TC-050: ライセンスキー / api_key が公開エンドポイントに含まれないこと
  *
- * テスト設計 SSOT: docs/test-plan/L3-test-plan.md §8.4 (TC-047〜TC-050)
+ * テスト設計 SSOT: docs/legacy/test-plan/L3-test-plan.md §8.4 (TC-047〜TC-050)
  *
  * テスト DB: wordpress_test（分離済み）
  * ライブ DB: agent_neo（無変更を保証）
