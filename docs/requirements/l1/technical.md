@@ -16,5 +16,6 @@ authority: docs/requirements/authority.md
 | WT-TRL1-04 | AI 判定ロジックはテーマ・プラグインの外（HELIX 側）。boundary guard を維持する |
 | WT-TRL1-05 | 実機ゲートはローカル docker WP 7.1。実運用サイトは read-only。接続情報は環境変数 |
 | WT-TRL1-06 | 実証記録は本リポ内で完結（参照元 commit・証跡・ゲート結果）。他プロダクトへの参照・依存・書き込みを持たない |
+| WT-TRL1-07 | 構成はテーマ + 薄いプラグイン。プラグインはテーマを替えても残すべきデータと契約（設定 JSON・投稿メタ・section ID・ゾーン定義・再利用パーツ・REST / MCP / CLI・tracking・実証記録）だけを持ち、表示はテーマ、判定は HELIX 側。移行機能は別プラグイン。第三者プラグインとの出力重複は設定で制御し、全プラグイン互換は非対象 |
 
 PoC で成立した経路は `docs/poc/wt-poc-inventory.json` へ digest 束縛する。PoC 未検証の一般化は行わない。

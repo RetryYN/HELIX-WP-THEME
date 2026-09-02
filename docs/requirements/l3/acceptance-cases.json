@@ -588,6 +588,30 @@
       "requirement_id": "WT-FR-SECTION-02",
       "polarity": "negative",
       "oracle": "区間外が書き換わる、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL"
+    },
+    {
+      "id": "WT-AC-TR-PLUGIN-01A",
+      "requirement_id": "WT-TR-PLUGIN-01",
+      "polarity": "positive",
+      "oracle": "テーマを既定テーマへ切り替えても設定 JSON・投稿メタ・section ID・再利用パーツ・API が残り、プラグインを無効にしても表示は崩れない（AI 経路のみ無効）"
+    },
+    {
+      "id": "WT-AC-TR-PLUGIN-01B",
+      "requirement_id": "WT-TR-PLUGIN-01",
+      "polarity": "negative",
+      "oracle": "テーマ切替でデータが消える、プラグインに表示や判定ロジックが入る、またはプラグイン無効で公開面が壊れれば FAIL"
+    },
+    {
+      "id": "WT-AC-TR-PLUGIN-02A",
+      "requirement_id": "WT-TR-PLUGIN-02",
+      "polarity": "positive",
+      "oracle": "SEO プラグイン有効時に JSON-LD / meta が既定で 1 系統だけ出て、設定画面でどちらが出すかを切り替えられる。移行機能は移行プラグインを無効にすると消える"
+    },
+    {
+      "id": "WT-AC-TR-PLUGIN-02B",
+      "requirement_id": "WT-TR-PLUGIN-02",
+      "polarity": "negative",
+      "oracle": "同型の JSON-LD が 2 本出る、または本体に移行専用コード・互換固有名が入れば FAIL"
     }
   ]
 }
