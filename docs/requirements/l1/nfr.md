@@ -15,7 +15,7 @@ authority: docs/requirements/authority.md
 | WT-NFRL1-03 | 描画に副作用を持たない: 描画パスで DB へ書かない。同じ入力は同じ出力になる（決定論） | 描画時 option / theme_mod write 0。同一入力の出力 digest 一致 |
 | WT-NFRL1-04 | 未認証 REST を持たない。外部 URL 取得は検証付き HTTP 経由のみ。PHP Warning を公開面へ出さない | 未認証ルート 0。SSRF 形の関数呼び出し 0。公開面 Warning 0 |
 | WT-NFRL1-05 | アクセシビリティ: 域の判定・状態表示は色だけに依存しない。img alt 欠落 0。AA コントラスト | axe gate 違反 0 |
-| WT-NFRL1-06 | 性能予算: web-vitals-budget を維持する。面・語彙を増やしても CSS は使用分だけ読む | 予算超過 0。未使用ブロック CSS の読み込み 0 |
+| WT-NFRL1-06 | 性能予算: web-vitals-budget を維持する。面・語彙を増やしても CSS は使用分だけ読む。ページ種別ごとの予算は JSON で列挙する | 予算超過 0。未使用ブロック CSS の読み込み 0 |
 | WT-NFRL1-07 | 観測性: health / gate / 台帳の出力は JSON で機械可読。証跡は HEAD と digest に束縛する | JSON 出力率 100%。digest 不一致 0 |
 | WT-NFRL1-08 | credential・実サイト固有名・第三者製品名を公開リポジトリへ置かない。接続情報は環境変数 | public-safety check OK |
 | WT-NFRL1-09 | 復旧: 変更は dry-run → apply → rollback の経路を持ち、失敗時に元へ戻る | rollback 成功率 100% |
@@ -25,10 +25,15 @@ authority: docs/requirements/authority.md
 | WT-NFRL1-13 | コスト: ゲートと PoC はローカル docker で完結し、有料・無料枠制限のある外部 API に依存しない | 外部 API 依存のゲート 0 |
 | WT-NFRL1-14 | SEO 準拠検査は test lane で走り、Google 公式ドキュメントの出典 URL と参照日を改定時に更新する | SEO 準拠検査の未実施 0。出典 URL / 参照日未更新 0 |
 | WT-NFRL1-15 | クロールログは既定 90 日で保持・間引きし、bot 判定外の個人閲覧を記録しない。WP が応答したリクエストだけを対象とし、キャッシュ / CDN 応答は見えない限界を明記する | 保持期間・間引きの逸脱 0。bot 判定外の個人閲覧の記録 0。対象・限界の未明記 0 |
+| WT-NFRL1-16 | JS 無しで記事・LP・一覧・商品比較の全表示が成立する。動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトは遅延注入する | JS 無し表示の欠落 0。遅延対象外の不要 JS 0 |
+| WT-NFRL1-17 | CSS を語彙単位で分割し、使用分だけ出す。ビルドで短縮化し、critical CSS は inline、残りは非同期、フォントは自己ホスト + `font-display: swap` とする | 未使用 CSS 0。CSS / JS / 画像転送量の JSON 予算超過 0 |
+| WT-NFRL1-18 | 記事・LP・一覧・商品比較で Lighthouse / Core Web Vitals を測り、LCP 2.5s / INP 200ms / CLS 0.1 の閾値割れを CI blocking gate とする | 閾値割れの CI 通過 0。4 ページ種別の測定漏れ 0 |
+| WT-NFRL1-19 | リード情報は保存先・保持期間・consent を明示して扱い、テーマ内に CRM / MA を持たない。外部連携は署名付き webhook までとする | consent なしの保存 0。保持期間逸脱 0。テーマ内 CRM / MA 実装 0 |
 
 ## 出典
 
 - `WT-NFRL1-01` / `02`: `docs/design/consistency-responsibilities.md`、`docs/research/2026-08-29-ge1-local/README.md`（静的検査で通っても実機で壊れる事例）
 - `WT-NFRL1-03` / `04`: 第三者テーマ監査で観測した欠陥（描画時 DB write、未認証 REST / SSRF、グローバル改変）を本テーマで再発させない教訓（`docs/research/2026-08-26-theme-structure-audit/20-reverse-engineering-synthesis.md` 第 2 部）。第三者テーマ自体の是正は本リポの要求ではない
 - 数値（invalid=0、baseline 438）は 2026-08-29 時点の実測
-- `WT-NFRL1-14` の SEO 準拠先: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-02）。構造化データの一般指針: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）
+- `WT-NFRL1-14` の SEO 準拠先: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-03）。構造化データの一般指針: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-03）
+- `WT-NFRL1-16`〜`19`: PO 採用 `WT-Q-PERF-01` / `WT-Q-CV-01`（2026-09-03）。

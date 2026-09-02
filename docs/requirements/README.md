@@ -3,7 +3,7 @@
 正本入口は [`authority.md`](./authority.md)。起点は [`docs/planning/L0-agent-controlled-variety.md`](../planning/L0-agent-controlled-variety.md)。
 L1 の 5 sub-doc、L2 discovery / prototype、L3 precompile inventory、L10〜L12 test design を分離している。
 
-PO への問いは `discovery/candidate-projection.json` の `unresolved`（0 件。WT-Q-* は総数 21 件、うち採用済み 21 件）で、すべて「X ができる。採用するか」の形。
+PO への問いは `discovery/candidate-projection.json` の `unresolved`（0 件。WT-Q-* は総数 31 件、うち採用済み 31 件）で、すべて「X ができる。採用するか」の形。
 
 ```bash
 npm run requirements:validate        # 正本の不変条件

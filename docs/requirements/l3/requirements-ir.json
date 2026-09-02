@@ -460,7 +460,7 @@
         "WT-SCR-03",
         "WT-CAND-SECTION"
       ],
-      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を tracking 経路へ）。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側",
+      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を tracking 経路へ）。section の variant ID と目標 CV ID も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -656,7 +656,7 @@
         "WT-SCR-06",
         "WT-CAND-LP"
       ],
-      "statement": "LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを tracking 経路へ送る）を持つ。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く",
+      "statement": "LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを tracking 経路へ送る）を持つ。LP ごとに目標 CV ID と A/B variant ID を選択し、計測へ渡す。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1340,9 +1340,10 @@
       "status": "candidate_inventory",
       "source_ids": [
         "WT-NFRL1-06",
-        "WT-CAND-QUALITY"
+        "WT-NFRL1-16",
+        "WT-CAND-PERF"
       ],
-      "statement": "web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
+      "statement": "記事・LP・一覧・商品比較は JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1397,7 +1398,7 @@
         "WT-SCR-05",
         "WT-CAND-SELL"
       ],
-      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出し、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。本文中の手組み比較表とは別語彙とする",
+      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出し、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1456,7 +1457,7 @@
         "WT-SCR-07",
         "WT-CAND-SEO"
       ],
-      "statement": "SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティと対象外になった型を出さないこと）、検索の基本（title / meta / canonical / robots / sitemap / hreflang）、ページエクスペリエンス（Core Web Vitals、モバイル）、リンク rel 属性を準拠項目として機械検査できる。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-02）",
+      "statement": "SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティと対象外になった型を出さないこと、代表画像の OGP / 構造化データ image 一致）、検索の基本（title / meta / canonical / robots / sitemap / hreflang、robots meta max-image-preview:large）、ページエクスペリエンス（Core Web Vitals、モバイル）、幅 1200px 以上の Discover 代表画像、リンク rel 属性、クローキングにならない A/B 配信を準拠項目として機械検査できる。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "OPERATOR",
@@ -1633,6 +1634,685 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-NFR-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AB-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-15",
+        "WT-SCR-05",
+        "WT-CAND-AB"
+      ],
+      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AB-01A",
+        "WT-AC-AB-01B"
+      ],
+      "test_ids": [
+        "WT-AT-AB-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AB-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-15",
+        "WT-SCR-06",
+        "WT-CAND-AB"
+      ],
+      "statement": "A/B の impression / click / CV を variant ID 付きで tracking 経路へ送り、section・LP・商品テーブル単位のイベントを集計可能にする。集計と判定は HELIX 側で行う",
+      "priority": "P0",
+      "actor_ids": [
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AB-02A",
+        "WT-AC-AB-02B"
+      ],
+      "test_ids": [
+        "WT-AT-AB-02"
+      ]
+    },
+    {
+      "id": "WT-FR-AB-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-15",
+        "WT-SCR-10",
+        "WT-CAND-AB"
+      ],
+      "statement": "A/B の承認・停止・rollback を WT-UI-10 と MCP 常用パックの双方から操作し、停止時は既定案へ即時復帰する。A/B の判定ロジックはテーマ・プラグインに置かない",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AB-03A",
+        "WT-AC-AB-03B"
+      ],
+      "test_ids": [
+        "WT-AT-AB-03"
+      ]
+    },
+    {
+      "id": "WT-FR-IMG-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-16",
+        "WT-SCR-05",
+        "WT-CAND-IMG"
+      ],
+      "statement": "全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。picture + srcset で配信し、hero は fetchpriority=high、その他は lazy とする",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-IMG-01A",
+        "WT-AC-IMG-01B"
+      ],
+      "test_ids": [
+        "WT-AT-IMG-01"
+      ]
+    },
+    {
+      "id": "WT-FR-IMG-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-16",
+        "WT-SCR-10",
+        "WT-CAND-IMG"
+      ],
+      "statement": "5MB 超・一括画像処理を WP-Cron の非同期ジョブにし、WT-UI-10 と MCP から進行を確認できる。既存画像は管理画面 1 操作と CLI から dry-run（対象件数・削減見込み）付きで再生成できる。動画変換ツールが無い場合は HELIX 側への委譲または手動アップロードを使う",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-07",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-IMG-02A",
+        "WT-AC-IMG-02B"
+      ],
+      "test_ids": [
+        "WT-AT-IMG-02"
+      ]
+    },
+    {
+      "id": "WT-FR-IMG-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-16",
+        "WT-SCR-10",
+        "WT-CAND-IMG"
+      ],
+      "statement": "alt を必須として空の画像は公開前に警告し、AI 側が埋める導線と GIF の動画置換提案を持つ。Discover は幅 1200px 以上の代表画像、robots meta max-image-preview:large、OGP と構造化データ image の一致を検査し、未達を WT-UI-10 と MCP から警告する。第三者画像プラグインとの重複は WT-TR-PLUGIN-02 の設定で制御する",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-IMG-03A",
+        "WT-AC-IMG-03B"
+      ],
+      "test_ids": [
+        "WT-AT-IMG-03"
+      ]
+    },
+    {
+      "id": "WT-NFR-PERF-02",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-17",
+        "WT-SCR-07",
+        "WT-CAND-PERF"
+      ],
+      "statement": "CSS を語彙単位で分割して使用分だけ出し、ビルド工程で短縮化する。critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して検査する",
+      "priority": "P1",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-PERF-02A",
+        "WT-AC-NFR-PERF-02B"
+      ],
+      "test_ids": [
+        "WT-AT-PERF-02"
+      ]
+    },
+    {
+      "id": "WT-NFR-PERF-03",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-18",
+        "WT-SCR-07",
+        "WT-CAND-PERF"
+      ],
+      "statement": "記事・LP・一覧・商品比較で Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-PERF-03A",
+        "WT-AC-NFR-PERF-03B"
+      ],
+      "test_ids": [
+        "WT-AT-PERF-03"
+      ]
+    },
+    {
+      "id": "WT-TR-API-01",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-08",
+        "WT-SCR-08",
+        "WT-CAND-API"
+      ],
+      "statement": "HELIX 連携 API の全一覧読み取りに since / fields / ETag / Last-Modified を備え、差分取得を契約として保証する",
+      "priority": "P1",
+      "actor_ids": [
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-API-01A",
+        "WT-AC-API-01B"
+      ],
+      "test_ids": [
+        "WT-AT-API-01"
+      ]
+    },
+    {
+      "id": "WT-TR-API-02",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-08",
+        "WT-SCR-08",
+        "WT-CAND-API"
+      ],
+      "statement": "HELIX 連携 API の書き込みを batch（全成功か全失敗）とし、dry-run / rollback に対応する。投稿公開・設定変更・クロール異常・A/B 停止は署名付き webhook で押し出す",
+      "priority": "P0",
+      "actor_ids": [
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-API-02A",
+        "WT-AC-API-02B"
+      ],
+      "test_ids": [
+        "WT-AT-API-02"
+      ]
+    },
+    {
+      "id": "WT-TR-API-03",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-08",
+        "WT-SCR-08",
+        "WT-CAND-API"
+      ],
+      "statement": "HELIX 連携 API の応答に schema version を必須化し、破壊的変更時は旧版を併走させる。OpenAPI lint / 差分検査を CI に置き、MCP 常用パック・クローラー計測・A/B・商品正本の API を同契約の上に置く",
+      "priority": "P1",
+      "actor_ids": [
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-API-03A",
+        "WT-AC-API-03B"
+      ],
+      "test_ids": [
+        "WT-AT-API-03"
+      ]
+    },
+    {
+      "id": "WT-FR-ADMIN-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-17",
+        "WT-SCR-10",
+        "WT-CAND-ADMIN"
+      ],
+      "statement": "WT-UI-10 の操作ログタブで AI と人の変更を時系列に表示し、対象・差分・実行者・結果で絞り込み、CSV / JSON export できる",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ADMIN-02A",
+        "WT-AC-ADMIN-02B"
+      ],
+      "test_ids": [
+        "WT-AT-ADMIN-02"
+      ]
+    },
+    {
+      "id": "WT-FR-ADMIN-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-17",
+        "WT-SCR-10",
+        "WT-CAND-ADMIN"
+      ],
+      "statement": "WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ADMIN-03A",
+        "WT-AC-ADMIN-03B"
+      ],
+      "test_ids": [
+        "WT-AT-ADMIN-03"
+      ]
+    },
+    {
+      "id": "WT-FR-ADMIN-04",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-17",
+        "WT-SCR-10",
+        "WT-CAND-ADMIN"
+      ],
+      "statement": "WT-UI-10 の鍵管理タブで HELIX 接続用 API key を発行・失効し、鍵ごとに読み専用 / 書き込み可を設定する。鍵の値は一度だけ表示し、テーマ・プラグインの公開ファイルへ置かない",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ADMIN-04A",
+        "WT-AC-ADMIN-04B"
+      ],
+      "test_ids": [
+        "WT-AT-ADMIN-04"
+      ]
+    },
+    {
+      "id": "WT-TR-CLI-01",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-09",
+        "WT-SCR-08",
+        "WT-CAND-CLI"
+      ],
+      "statement": "MCP 常用パック・REST・WP-CLI の 3 面が、パック定義 JSON から生成された同じ能力集合を扱い、ずれたら契約テストで赤にする",
+      "priority": "P0",
+      "actor_ids": [
+        "AI_AGENT",
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CLI-01A",
+        "WT-AC-CLI-01B"
+      ],
+      "test_ids": [
+        "WT-AT-CLI-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SNS-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-18",
+        "WT-SCR-05",
+        "WT-CAND-SNS"
+      ],
+      "statement": "SNS profile を設定 JSON の一か所に登録し、header / footer / 著者欄と構造化データ sameAs へ反映する。対象 SNS と記事上下・フロート・section 末尾の share 配置を選べ、クリックを計測する",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SNS-01A",
+        "WT-AC-SNS-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SNS-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SNS-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-18",
+        "WT-SCR-06",
+        "WT-CAND-SNS"
+      ],
+      "statement": "SNS 投稿の feed 埋め込みをブロックとして提供し、埋め込みスクリプトを遅延読込して速度予算内にする。メッセージアプリ公式アカウントの友だち追加ボタンと QR を LP のフォーム代替 CTA パーツにし、配信そのものと API 資格情報はテーマ外に置く",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SNS-02A",
+        "WT-AC-SNS-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SNS-02"
+      ]
+    },
+    {
+      "id": "WT-FR-CV-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-19",
+        "WT-SCR-10",
+        "WT-CAND-CV"
+      ],
+      "statement": "サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲覧・電話タップ）、補助指標（スクロール深度・滞在）を複数登録し、各 ID・種別・重み・計測イベント・到達条件を JSON で管理する。記事・LP・section ごとに目標 CV ID を選べる",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CV-01A",
+        "WT-AC-CV-01B"
+      ],
+      "test_ids": [
+        "WT-AT-CV-01"
+      ]
+    },
+    {
+      "id": "WT-FR-CV-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-19",
+        "WT-SCR-06",
+        "WT-CAND-CV"
+      ],
+      "statement": "資料ダウンロードをフォーム入力からメール送付または即時ダウンロードの 2 経路で提供し、完了をマイクロ CV として計測する。ファイルは非公開ディレクトリから署名付き期限 URL で配布する",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CV-02A",
+        "WT-AC-CV-02B"
+      ],
+      "test_ids": [
+        "WT-AT-CV-02"
+      ]
+    },
+    {
+      "id": "WT-FR-CV-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-19",
+        "WT-SCR-05",
+        "WT-CAND-CV"
+      ],
+      "statement": "CTA ボタンに主文言と任意の microcopy を持たせ、候補から選べるようにする。microcopy は必須化せず、A/B と section の計測を CV ID で集計し、判定は HELIX 側で行う",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-CV-03A",
+        "WT-AC-CV-03B"
+      ],
+      "test_ids": [
+        "WT-AT-CV-03"
+      ]
+    },
+    {
+      "id": "WT-NFR-CV-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-19",
+        "WT-SCR-10",
+        "WT-CAND-CV"
+      ],
+      "statement": "リード情報の保存先・保持期間・consent を明示し、consent なしに保存しない。CRM / MA はテーマ内に持たず、外部連携は署名付き webhook で押し出すまでとする",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-CV-01A",
+        "WT-AC-NFR-CV-01B"
+      ],
+      "test_ids": [
+        "WT-AT-CV-NFR-01"
+      ]
+    },
+    {
+      "id": "WT-FR-BANNER-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-20",
+        "WT-SCR-05",
+        "WT-CAND-BANNER"
+      ],
+      "statement": "バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生する。ゾーンに割り当ててページ種別・カテゴリ・記事単位で固定またはローテーション表示し、速度予算に画像を含める",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06"
+      ],
+      "acceptance_ids": [
+        "WT-AC-BANNER-01A",
+        "WT-AC-BANNER-01B"
+      ],
+      "test_ids": [
+        "WT-AT-BANNER-01"
+      ]
+    },
+    {
+      "id": "WT-FR-BANNER-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-20",
+        "WT-SCR-10",
+        "WT-CAND-BANNER"
+      ],
+      "statement": "バナーの impression / click を tracking 経路へ送り、CV ID と A/B variant 単位で扱う。WT-UI-10 と MCP 常用パックから登録・差し替え・停止し、期限切れ・リンク切れ・計測ゼロを警告する。アフィリエイト種別は rel=\"sponsored\" と PR 表記判定へ接続し、広告配信タグはテーマ外に置く",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-BANNER-02A",
+        "WT-AC-BANNER-02B"
+      ],
+      "test_ids": [
+        "WT-AT-BANNER-02"
+      ]
+    },
+    {
+      "id": "WT-FR-AUDIT-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-21",
+        "WT-SCR-10",
+        "WT-CAND-AUDIT"
+      ],
+      "statement": "HELIX 側の指摘（記事 / section / LP / バナー、種別、重さ、根拠、修正案）を Core プラグインが受け取り DB へ保持し、WT-UI-10 の監査タブと記事一覧の件数バッジから対象 section へ移動して適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通す",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AUDIT-01A",
+        "WT-AC-AUDIT-01B"
+      ],
+      "test_ids": [
+        "WT-AT-AUDIT-01"
+      ]
+    },
+    {
+      "id": "WT-FR-AUDIT-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-21",
+        "WT-SCR-08",
+        "WT-CAND-AUDIT"
+      ],
+      "statement": "alt・速度予算・構造化データ・見出し階層は決定論的ルール検査に限定し、CTA 密度・証拠不足・PR 表記欠落・microcopy 未選択・Discover 画像要件未達などの監査結果は HELIX 側から受け取って表示する。サイト単位の集計を JSON / CSV export し、MCP から取得できる",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AUDIT-02A",
+        "WT-AC-AUDIT-02B"
+      ],
+      "test_ids": [
+        "WT-AT-AUDIT-02"
       ]
     }
   ]

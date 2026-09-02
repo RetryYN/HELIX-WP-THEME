@@ -3,7 +3,7 @@ layer: L2
 sub_doc: ui-element
 status: candidate_projection
 source_authority: docs/requirements/l2/ui-element.md
-source_sha256: a4e9de65a58f69a990afe8f129fa70d6cf50483e9997f7ccc196135e7d36fadd
+source_sha256: c360e6e4e56e6019aee3104585b2fcc86c6dee603ba1c6a6c0405f9c06cffdd7
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 ---
 
@@ -17,10 +17,10 @@ pair_artifact: docs/design/harness/L2-screen/wireframe.md
 | **PM-02** | WT-UI-02 | VariationPicker / ScaleGuard |
 | **PM-03** | WT-UI-03 | ValueZoneBadge / DestructiveStop / SectionOutline |
 | **PM-04** | WT-UI-04 | PerPostToggles |
-| **PM-05** | WT-UI-05 | ZoneSlot / VocabBlocks / TocAnchor / PrNotice / JsonLdEmitter |
-| **PM-06** | WT-UI-06 | HeroSlot / StickyStack / AnnouncementBar / CollectionJsonLd |
-| **PM-07** | WT-UI-07 | GateReport / RawValueCounter |
-| **PM-08** | WT-UI-08 | CapabilityManifest / SelectionApply / DryRunDiff |
+| **PM-05** | WT-UI-05 | ZoneSlot / VocabBlocks / TocAnchor / PrNotice / JsonLdEmitter / ShareProfile / ShareButtons / CvDefinitionPanel / BannerSlot / AuditBadge |
+| **PM-06** | WT-UI-06 | HeroSlot / StickyStack / AnnouncementBar / CollectionJsonLd / ShareButtons / FeedEmbed / MessageCta / MicrocopyPicker / BannerSlot |
+| **PM-07** | WT-UI-07 | GateReport / RawValueCounter / PerformanceBudgetReport |
+| **PM-08** | WT-UI-08 | CapabilityManifest / SelectionApply / DryRunDiff / ApiContractDiff / CapabilityParityCheck / AuditExport |
 | **PM-09** | WT-UI-09 | EvidenceLedger / EvidenceLink |
-| **PM-10** | WT-UI-10 | ThemeSettingsForm / SettingsExportImport / ProductCatalogTable |
+| **PM-10** | WT-UI-10 | ThemeSettingsForm / SettingsExportImport / ProductCatalogTable / AbVariantPanel / ImageOptimizationPanel / OperationsLog / DryRunReview / RollbackPanel / KeyManagement / CvDefinitionPanel / BannerCatalog / BannerHealth / AuditReviewPanel |
 | **PM-11** | WT-UI-11 | CrawlDashboard / RobotsAiCrawlerToggle |
