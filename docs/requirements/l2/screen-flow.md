@@ -22,4 +22,4 @@ AI 経路は `WT-UI-08 manifest 取得 → 選択 → dry-run 差分 → apply �
 
 ## navigation
 
-Site Editor / Block Editor の各面へは WP 標準ナビゲーションで到達し、テーマ独自メニューを追加しない。
+Site Editor / Block Editor の各面へは WP 標準ナビゲーションで到達する。テーマ独自メニューはテーマ設定画面（WT-UI-10、PO 2026-09-02）の 1 つだけを追加し、それ以外は追加しない。

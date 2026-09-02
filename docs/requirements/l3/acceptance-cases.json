@@ -581,7 +581,7 @@
       "id": "WT-AC-SECTION-02A",
       "requirement_id": "WT-FR-SECTION-02",
       "polarity": "positive",
-      "oracle": "H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。「2 番目の H2 の後」規則で面が全記事に入り、投稿単位で上書きできる。区間の到達イベントが記録される"
+      "oracle": "H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。区間の順序入れ替え・折りたたみ・非表示・目次への出し分けが Block Editor と MCP パックの双方から同じ結果になる。「2 番目の H2 の後」規則で面が全記事に入り投稿単位で上書きできる。区間ごとの到達と滞在イベントが記録される"
     },
     {
       "id": "WT-AC-SECTION-02B",
@@ -605,13 +605,13 @@
       "id": "WT-AC-TR-PLUGIN-02A",
       "requirement_id": "WT-TR-PLUGIN-02",
       "polarity": "positive",
-      "oracle": "SEO プラグイン有効時に JSON-LD / meta が既定で 1 系統だけ出て、設定画面でどちらが出すかを切り替えられる。移行機能は移行プラグインを無効にすると消える"
+      "oracle": "重なる領域（JSON-LD・meta / OGP・目次・サイトマップ・llms.txt・キャッシュ・フォーム）それぞれで、第三者プラグイン有効時に出力が既定で 1 系統だけになり、設定画面で「本テーマが出す / 譲る」を切り替えられる。フォームは LP のフォーム制御と接続する。移行機能は移行プラグインを無効にすると消える"
     },
     {
       "id": "WT-AC-TR-PLUGIN-02B",
       "requirement_id": "WT-TR-PLUGIN-02",
       "polarity": "negative",
-      "oracle": "同型の JSON-LD が 2 本出る、または本体に移行専用コード・互換固有名が入れば FAIL"
+      "oracle": "いずれかの領域で同型の出力が 2 本出る、設定で切り替えられない、または本体に移行専用コード・互換固有名が入れば FAIL"
     }
   ]
 }
