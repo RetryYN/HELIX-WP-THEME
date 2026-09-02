@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0019",
-  "event_count": 19,
+  "event_head": "WT-EVT-0020",
+  "event_count": 20,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -38,12 +38,13 @@
     },
     {
       "candidate_id": "WT-CAND-PARTS",
-      "state": "prototyped",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0005",
         "WT-EVT-0016",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0020"
       ],
       "requirement_ids": [
         "WT-FR-PARTS-01",
@@ -218,7 +219,8 @@
     "WT-Q-INTAKE-01"
   ],
   "answered_question_ids": [
-    "WT-Q-ZONE-01"
+    "WT-Q-ZONE-01",
+    "WT-Q-PARTS-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -227,16 +229,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-PARTS-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "実装済みパターン（`docs/design/parts-catalog.md`: header 10 / footer 8 + credit / sidebar 8 / hero 7）とテンプレ変種（single-2col / 1col、footer カラム可変）を、人の GUI と AI の双方から差し替えられる。ナビは wp_navigation 参照にする。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-PARTS"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-VOCAB-01",
       "owner": "PO",
