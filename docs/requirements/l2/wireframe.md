@@ -13,6 +13,12 @@
 │ slot/ゾーン割当  SP下部積層  LP種別既定  MCPパック構成    │
 │ [export] [import]  正本 = 設定 JSON（schema 検証）        │
 │ ProductCatalogTable: 商品一覧 [追加][更新][記事へ差し込み] │
+│ tabs: A/B [variant][承認][停止][rollback]  画像 [生成][再生成]│
+│ 画像: WebP / WebM [dry-run][進行][削減見込み][alt 警告]      │
+│ 運用: [操作ログ][差分レビュー][rollback][鍵の発行・失効]   │
+│ SNS / CV: [profile][share][feed][CV 定義][microcopy 選択]  │
+│ Banner: [登録][ゾーン][期限・リンク・計測警告]             │
+│ Audit: [指摘][対象へ][適用][却下][保留][JSON/CSV export]    │
 ├─ 管理画面: クローラー計測（WT-UI-11）───────────────────┤
 │ CrawlDashboard: bot 別推移 | 古い URL | 404 / 5xx        │
 │ 初回捕捉時間 | llms.txt / crawl-map AI 来訪             │
@@ -39,3 +45,8 @@ prototype status: `prototyped`（WT-PROT-UI-01-r1、text low-fi）。PO reaction
 - クローラー判定外の人の閲覧が記録されず、WP 応答分だけをダッシュボードで確認できるか
 - ゲート FAIL から対象ファイルと原因へ 1 手で辿れるか
 - 台帳の 1 行から証跡と参照元 commit へ辿れるか
+- A/B の停止が既定案への復帰となり、variant / CV ID 付き計測を確認できるか
+- 画像の dry-run と非同期進行、WebP / WebM、alt・Discover 警告を確認できるか
+- 差分レビューの適用 / 却下 / 保留、rollback、鍵の一度だけの表示を確認できるか
+- SNS / CV / バナーの正本と、任意 microcopy・期限・計測警告を確認できるか
+- HELIX 監査の適用が dry-run → 差分レビューを通り、JSON / CSV へ出せるか

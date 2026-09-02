@@ -848,7 +848,7 @@
     },
     {
       "l1": "WT-NFRL1-06",
-      "l2": "WT-CAND-QUALITY",
+      "l2": "WT-CAND-PERF",
       "l3": [
         "WT-NFR-PERF-01"
       ],
@@ -900,10 +900,16 @@
       "l1": "WT-SCR-10",
       "l2": "WT-CAND-ADMIN",
       "l3": [
-        "WT-FR-ADMIN-01"
+        "WT-FR-ADMIN-01",
+        "WT-FR-ADMIN-02",
+        "WT-FR-ADMIN-03",
+        "WT-FR-ADMIN-04"
       ],
       "tests": [
-        "WT-AT-ADMIN-01"
+        "WT-AT-ADMIN-01",
+        "WT-AT-ADMIN-02",
+        "WT-AT-ADMIN-03",
+        "WT-AT-ADMIN-04"
       ]
     },
     {
@@ -1146,6 +1152,342 @@
       ],
       "tests": [
         "WT-AT-CRAWL-NFR-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-15",
+      "l2": "WT-CAND-AB",
+      "l3": [
+        "WT-FR-AB-01",
+        "WT-FR-AB-02",
+        "WT-FR-AB-03"
+      ],
+      "tests": [
+        "WT-AT-AB-01",
+        "WT-AT-AB-02",
+        "WT-AT-AB-03"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-AB",
+      "l3": [
+        "WT-FR-AB-01"
+      ],
+      "tests": [
+        "WT-AT-AB-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-AB",
+      "l3": [
+        "WT-FR-AB-02"
+      ],
+      "tests": [
+        "WT-AT-AB-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-AB",
+      "l3": [
+        "WT-FR-AB-03"
+      ],
+      "tests": [
+        "WT-AT-AB-03"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-16",
+      "l2": "WT-CAND-IMG",
+      "l3": [
+        "WT-FR-IMG-01",
+        "WT-FR-IMG-02",
+        "WT-FR-IMG-03"
+      ],
+      "tests": [
+        "WT-AT-IMG-01",
+        "WT-AT-IMG-02",
+        "WT-AT-IMG-03"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-IMG",
+      "l3": [
+        "WT-FR-IMG-01"
+      ],
+      "tests": [
+        "WT-AT-IMG-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-IMG",
+      "l3": [
+        "WT-FR-IMG-02",
+        "WT-FR-IMG-03"
+      ],
+      "tests": [
+        "WT-AT-IMG-02",
+        "WT-AT-IMG-03"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-16",
+      "l2": "WT-CAND-PERF",
+      "l3": [
+        "WT-NFR-PERF-01"
+      ],
+      "tests": [
+        "WT-AT-PERF-01"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-17",
+      "l2": "WT-CAND-PERF",
+      "l3": [
+        "WT-NFR-PERF-02"
+      ],
+      "tests": [
+        "WT-AT-PERF-02"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-18",
+      "l2": "WT-CAND-PERF",
+      "l3": [
+        "WT-NFR-PERF-03"
+      ],
+      "tests": [
+        "WT-AT-PERF-03"
+      ]
+    },
+    {
+      "l1": "WT-SCR-07",
+      "l2": "WT-CAND-PERF",
+      "l3": [
+        "WT-NFR-PERF-02",
+        "WT-NFR-PERF-03"
+      ],
+      "tests": [
+        "WT-AT-PERF-02",
+        "WT-AT-PERF-03"
+      ]
+    },
+    {
+      "l1": "WT-TRL1-08",
+      "l2": "WT-CAND-API",
+      "l3": [
+        "WT-TR-API-01",
+        "WT-TR-API-02",
+        "WT-TR-API-03"
+      ],
+      "tests": [
+        "WT-AT-API-01",
+        "WT-AT-API-02",
+        "WT-AT-API-03"
+      ]
+    },
+    {
+      "l1": "WT-SCR-08",
+      "l2": "WT-CAND-API",
+      "l3": [
+        "WT-TR-API-01",
+        "WT-TR-API-02",
+        "WT-TR-API-03"
+      ],
+      "tests": [
+        "WT-AT-API-01",
+        "WT-AT-API-02",
+        "WT-AT-API-03"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-17",
+      "l2": "WT-CAND-ADMIN",
+      "l3": [
+        "WT-FR-ADMIN-02",
+        "WT-FR-ADMIN-03",
+        "WT-FR-ADMIN-04"
+      ],
+      "tests": [
+        "WT-AT-ADMIN-02",
+        "WT-AT-ADMIN-03",
+        "WT-AT-ADMIN-04"
+      ]
+    },
+    {
+      "l1": "WT-TRL1-09",
+      "l2": "WT-CAND-CLI",
+      "l3": [
+        "WT-TR-CLI-01"
+      ],
+      "tests": [
+        "WT-AT-CLI-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-08",
+      "l2": "WT-CAND-CLI",
+      "l3": [
+        "WT-TR-CLI-01"
+      ],
+      "tests": [
+        "WT-AT-CLI-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-18",
+      "l2": "WT-CAND-SNS",
+      "l3": [
+        "WT-FR-SNS-01",
+        "WT-FR-SNS-02"
+      ],
+      "tests": [
+        "WT-AT-SNS-01",
+        "WT-AT-SNS-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-SNS",
+      "l3": [
+        "WT-FR-SNS-01"
+      ],
+      "tests": [
+        "WT-AT-SNS-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-SNS",
+      "l3": [
+        "WT-FR-SNS-02"
+      ],
+      "tests": [
+        "WT-AT-SNS-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-19",
+      "l2": "WT-CAND-CV",
+      "l3": [
+        "WT-FR-CV-01",
+        "WT-FR-CV-02",
+        "WT-FR-CV-03"
+      ],
+      "tests": [
+        "WT-AT-CV-01",
+        "WT-AT-CV-02",
+        "WT-AT-CV-03"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-19",
+      "l2": "WT-CAND-CV",
+      "l3": [
+        "WT-NFR-CV-01"
+      ],
+      "tests": [
+        "WT-AT-CV-NFR-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-CV",
+      "l3": [
+        "WT-FR-CV-01",
+        "WT-NFR-CV-01"
+      ],
+      "tests": [
+        "WT-AT-CV-01",
+        "WT-AT-CV-NFR-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-CV",
+      "l3": [
+        "WT-FR-CV-02"
+      ],
+      "tests": [
+        "WT-AT-CV-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-CV",
+      "l3": [
+        "WT-FR-CV-03"
+      ],
+      "tests": [
+        "WT-AT-CV-03"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-20",
+      "l2": "WT-CAND-BANNER",
+      "l3": [
+        "WT-FR-BANNER-01",
+        "WT-FR-BANNER-02"
+      ],
+      "tests": [
+        "WT-AT-BANNER-01",
+        "WT-AT-BANNER-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-BANNER",
+      "l3": [
+        "WT-FR-BANNER-01"
+      ],
+      "tests": [
+        "WT-AT-BANNER-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-BANNER",
+      "l3": [
+        "WT-FR-BANNER-02"
+      ],
+      "tests": [
+        "WT-AT-BANNER-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-21",
+      "l2": "WT-CAND-AUDIT",
+      "l3": [
+        "WT-FR-AUDIT-01",
+        "WT-FR-AUDIT-02"
+      ],
+      "tests": [
+        "WT-AT-AUDIT-01",
+        "WT-AT-AUDIT-02"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-AUDIT",
+      "l3": [
+        "WT-FR-AUDIT-01"
+      ],
+      "tests": [
+        "WT-AT-AUDIT-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-08",
+      "l2": "WT-CAND-AUDIT",
+      "l3": [
+        "WT-FR-AUDIT-02"
+      ],
+      "tests": [
+        "WT-AT-AUDIT-02"
       ]
     }
   ]

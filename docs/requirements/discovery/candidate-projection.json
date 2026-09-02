@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0054",
-  "event_count": 54,
+  "event_head": "WT-EVT-0084",
+  "event_count": 84,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -219,6 +219,128 @@
       ]
     },
     {
+      "candidate_id": "WT-CAND-AB",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0055",
+        "WT-EVT-0056",
+        "WT-EVT-0057"
+      ],
+      "requirement_ids": [
+        "WT-FR-AB-01",
+        "WT-FR-AB-02",
+        "WT-FR-AB-03"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-IMG",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0058",
+        "WT-EVT-0059",
+        "WT-EVT-0060"
+      ],
+      "requirement_ids": [
+        "WT-FR-IMG-01",
+        "WT-FR-IMG-02",
+        "WT-FR-IMG-03"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-PERF",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0061",
+        "WT-EVT-0062",
+        "WT-EVT-0063"
+      ],
+      "requirement_ids": [
+        "WT-NFR-PERF-01",
+        "WT-NFR-PERF-02",
+        "WT-NFR-PERF-03"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-API",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0064",
+        "WT-EVT-0065",
+        "WT-EVT-0066"
+      ],
+      "requirement_ids": [
+        "WT-TR-API-01",
+        "WT-TR-API-02",
+        "WT-TR-API-03"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-CLI",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0070",
+        "WT-EVT-0071",
+        "WT-EVT-0072"
+      ],
+      "requirement_ids": [
+        "WT-TR-CLI-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-SNS",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0073",
+        "WT-EVT-0074",
+        "WT-EVT-0075"
+      ],
+      "requirement_ids": [
+        "WT-FR-SNS-01",
+        "WT-FR-SNS-02"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-CV",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0076",
+        "WT-EVT-0077",
+        "WT-EVT-0078"
+      ],
+      "requirement_ids": [
+        "WT-FR-CV-01",
+        "WT-FR-CV-02",
+        "WT-FR-CV-03",
+        "WT-NFR-CV-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-BANNER",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0079",
+        "WT-EVT-0080",
+        "WT-EVT-0081"
+      ],
+      "requirement_ids": [
+        "WT-FR-BANNER-01",
+        "WT-FR-BANNER-02"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-AUDIT",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0082",
+        "WT-EVT-0083",
+        "WT-EVT-0084"
+      ],
+      "requirement_ids": [
+        "WT-FR-AUDIT-01",
+        "WT-FR-AUDIT-02"
+      ]
+    },
+    {
       "candidate_id": "WT-CAND-INTAKE",
       "state": "accepted",
       "source_event_ids": [
@@ -250,8 +372,7 @@
         "WT-NFR-OBS-01",
         "WT-NFR-A11Y-01",
         "WT-NFR-REC-01",
-        "WT-NFR-CRED-01",
-        "WT-NFR-PERF-01"
+        "WT-NFR-CRED-01"
       ]
     },
     {
@@ -260,10 +381,16 @@
       "source_event_ids": [
         "WT-EVT-0034",
         "WT-EVT-0035",
-        "WT-EVT-0036"
+        "WT-EVT-0036",
+        "WT-EVT-0067",
+        "WT-EVT-0068",
+        "WT-EVT-0069"
       ],
       "requirement_ids": [
-        "WT-FR-ADMIN-01"
+        "WT-FR-ADMIN-01",
+        "WT-FR-ADMIN-02",
+        "WT-FR-ADMIN-03",
+        "WT-FR-ADMIN-04"
       ]
     },
     {
@@ -317,7 +444,17 @@
     "WT-Q-PLUGIN-01",
     "WT-Q-SELL-01",
     "WT-Q-SEO-04",
-    "WT-Q-CRAWL-01"
+    "WT-Q-CRAWL-01",
+    "WT-Q-AB-01",
+    "WT-Q-IMG-01",
+    "WT-Q-PERF-01",
+    "WT-Q-API-01",
+    "WT-Q-ADMIN-02",
+    "WT-Q-CLI-01",
+    "WT-Q-SNS-01",
+    "WT-Q-CV-01",
+    "WT-Q-BANNER-01",
+    "WT-Q-AUDIT-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -340,7 +477,17 @@
     "WT-Q-PLUGIN-01",
     "WT-Q-SELL-01",
     "WT-Q-SEO-04",
-    "WT-Q-CRAWL-01"
+    "WT-Q-CRAWL-01",
+    "WT-Q-AB-01",
+    "WT-Q-IMG-01",
+    "WT-Q-PERF-01",
+    "WT-Q-API-01",
+    "WT-Q-ADMIN-02",
+    "WT-Q-CLI-01",
+    "WT-Q-SNS-01",
+    "WT-Q-CV-01",
+    "WT-Q-BANNER-01",
+    "WT-Q-AUDIT-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"

@@ -509,13 +509,13 @@
       "id": "WT-AC-NFR-PERF-01A",
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "positive",
-      "oracle": "予算超過 0、未使用ブロック CSS 0"
+      "oracle": "記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0"
     },
     {
       "id": "WT-AC-NFR-PERF-01B",
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "negative",
-      "oracle": "超過 1 件で FAIL"
+      "oracle": "JS 無し表示が欠落、不要 JS が遅延されない、または予算超過 1 件で FAIL"
     },
     {
       "id": "WT-AC-LOOK-03A",
@@ -533,7 +533,7 @@
       "id": "WT-AC-LP-02A",
       "requirement_id": "WT-FR-LP-02",
       "polarity": "positive",
-      "oracle": "LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる"
+      "oracle": "LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンと目標 CV ID・A/B variant ID が選べる"
     },
     {
       "id": "WT-AC-LP-02B",
@@ -581,13 +581,13 @@
       "id": "WT-AC-SECTION-02A",
       "requirement_id": "WT-FR-SECTION-02",
       "polarity": "positive",
-      "oracle": "H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。区間の順序入れ替え・折りたたみ・非表示・目次への出し分けが Block Editor と MCP パックの双方から同じ結果になる。「2 番目の H2 の後」規則で面が全記事に入り投稿単位で上書きできる。区間ごとの到達と滞在イベントが記録される"
+      "oracle": "H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。区間の順序入れ替え・折りたたみ・非表示・目次への出し分けが Block Editor と MCP パックの双方から同じ結果になる。「2 番目の H2 の後」規則で面が全記事に入り投稿単位で上書きできる。区間ごとの到達と滞在イベントが variant ID・目標 CV ID 付きで記録される"
     },
     {
       "id": "WT-AC-SECTION-02B",
       "requirement_id": "WT-FR-SECTION-02",
       "polarity": "negative",
-      "oracle": "区間外が書き換わる、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL"
+      "oracle": "区間外が書き換わる、variant ID・目標 CV ID が欠落する、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL"
     },
     {
       "id": "WT-AC-TR-PLUGIN-01A",
@@ -629,13 +629,13 @@
       "id": "WT-AC-SELL-02A",
       "requirement_id": "WT-FR-SELL-02",
       "polarity": "positive",
-      "oracle": "同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、Product / Offer / AggregateRating / ItemList 構造化データを出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化する"
+      "oracle": "同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、Product / Offer / AggregateRating / ItemList 構造化データを出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化し、variant ID と目標 CV ID を計測へ渡す"
     },
     {
       "id": "WT-AC-SELL-02B",
       "requirement_id": "WT-FR-SELL-02",
       "polarity": "negative",
-      "oracle": "販売系 4 つのいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、または表示値と構造化データが不一致なら FAIL"
+      "oracle": "販売系 4 つのいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、variant ID・目標 CV ID が計測から欠落する、または表示値と構造化データが不一致なら FAIL"
     },
     {
       "id": "WT-AC-SELL-03A",
@@ -653,13 +653,13 @@
       "id": "WT-AC-SEO-04A",
       "requirement_id": "WT-FR-SEO-04",
       "polarity": "positive",
-      "oracle": "各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-02 の参照日が紐づき、構造化データの必須プロパティ・検索の基本・ページエクスペリエンス・rel 属性の準拠項目が列挙される"
+      "oracle": "各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-03 の参照日が紐づき、構造化データの必須プロパティ・代表画像の OGP / image 一致・Discover 幅 1200px 以上・検索の基本・ページエクスペリエンス・rel 属性・クローキングにならない A/B 配信の準拠項目が列挙される"
     },
     {
       "id": "WT-AC-SEO-04B",
       "requirement_id": "WT-FR-SEO-04",
       "polarity": "negative",
-      "oracle": "出典 URL / 参照日がない、公式仕様と要求の対応が追えない、または対象外になった型・非推奨型を要求する記述が残れば FAIL"
+      "oracle": "出典 URL / 参照日がない、公式仕様と要求の対応が追えない、Discover 画像要件またはクローキング回避が検査されない、または対象外になった型・非推奨型を要求する記述が残れば FAIL"
     },
     {
       "id": "WT-AC-NFR-SEO-01A",
@@ -732,6 +732,306 @@
       "requirement_id": "WT-NFR-CRAWL-01",
       "polarity": "negative",
       "oracle": "90 日を超えて無制限保持、個人閲覧の記録、WP が応答していないリクエストの記録、またはキャッシュ / CDN の観測を保証すれば FAIL"
+    },
+    {
+      "id": "WT-AC-AB-01A",
+      "requirement_id": "WT-FR-AB-01",
+      "polarity": "positive",
+      "oracle": "section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す"
+    },
+    {
+      "id": "WT-AC-AB-01B",
+      "requirement_id": "WT-FR-AB-01",
+      "polarity": "negative",
+      "oracle": "variant 配信がテーマファイルの変更を要する、bot に別 variant を返す、または cookie 固定割当で再現できなければ FAIL"
+    },
+    {
+      "id": "WT-AC-AB-02A",
+      "requirement_id": "WT-FR-AB-02",
+      "polarity": "positive",
+      "oracle": "section・LP・商品テーブルの impression / click / CV が variant ID 付きで tracking 経路へ記録され、集計結果を取得できる"
+    },
+    {
+      "id": "WT-AC-AB-02B",
+      "requirement_id": "WT-FR-AB-02",
+      "polarity": "negative",
+      "oracle": "variant ID が欠落、イベントが別経路へ散る、またはテーマ内で集計・判定すれば FAIL"
+    },
+    {
+      "id": "WT-AC-AB-03A",
+      "requirement_id": "WT-FR-AB-03",
+      "polarity": "positive",
+      "oracle": "WT-UI-10 と MCP 常用パックの双方で A/B を承認・停止・rollback でき、停止後に既定案へ復帰し、その操作が記録される"
+    },
+    {
+      "id": "WT-AC-AB-03B",
+      "requirement_id": "WT-FR-AB-03",
+      "polarity": "negative",
+      "oracle": "停止後も variant が配信される、UI と MCP の結果が異なる、またはテーマ内に判定ロジックが入れば FAIL"
+    },
+    {
+      "id": "WT-AC-IMG-01A",
+      "requirement_id": "WT-FR-IMG-01",
+      "polarity": "positive",
+      "oracle": "全 subsize が WebP で生成され、対応環境の AVIF、GIF アニメ・短尺動画の WebM と fallback MP4、picture + srcset、hero の fetchpriority=high、その他の lazy が確認できる"
+    },
+    {
+      "id": "WT-AC-IMG-01B",
+      "requirement_id": "WT-FR-IMG-01",
+      "polarity": "negative",
+      "oracle": "WebP / WebM の生成または fallback がない、hero とその他の読込優先度が区別されない、または動画属性 autoplay muted loop playsinline が欠ければ FAIL"
+    },
+    {
+      "id": "WT-AC-IMG-02A",
+      "requirement_id": "WT-FR-IMG-02",
+      "polarity": "positive",
+      "oracle": "5MB 超・一括処理が非同期ジョブとなり、WT-UI-10 と MCP で進行を確認でき、既存画像の dry-run が対象件数と削減見込みを返す"
+    },
+    {
+      "id": "WT-AC-IMG-02B",
+      "requirement_id": "WT-FR-IMG-02",
+      "polarity": "negative",
+      "oracle": "大量処理が同期実行でタイムアウトする、dry-run の件数・削減見込みがない、または変換ツール不在時の委譲・手動経路がないなら FAIL"
+    },
+    {
+      "id": "WT-AC-IMG-03A",
+      "requirement_id": "WT-FR-IMG-03",
+      "polarity": "positive",
+      "oracle": "alt 空欄を公開前に警告し、GIF 置換提案、幅 1200px 以上の Discover 代表画像、robots meta max-image-preview:large、OGP と構造化データ image の一致を WT-UI-10 / MCP で確認できる"
+    },
+    {
+      "id": "WT-AC-IMG-03B",
+      "requirement_id": "WT-FR-IMG-03",
+      "polarity": "negative",
+      "oracle": "alt 欠落を警告せず公開できる、Discover 代表画像要件を検査しない、画像プラグインとの重複制御がない、またはテーマ内に AI 判定が入れば FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-PERF-02A",
+      "requirement_id": "WT-NFR-PERF-02",
+      "polarity": "positive",
+      "oracle": "語彙ごとの CSS が使用ページ分だけ出力され、ビルド短縮化、critical CSS inline、残りの非同期読込、自己ホストフォントの font-display: swap、ページ種別ごとの JSON 予算検査が PASS"
+    },
+    {
+      "id": "WT-AC-NFR-PERF-02B",
+      "requirement_id": "WT-NFR-PERF-02",
+      "polarity": "negative",
+      "oracle": "未使用 CSS が出る、critical CSS が無い、フォントが swap でない、または JS / CSS / 画像予算超過を通せば FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-PERF-03A",
+      "requirement_id": "WT-NFR-PERF-03",
+      "polarity": "positive",
+      "oracle": "記事・LP・一覧・商品比較の 4 種別で Lighthouse / Core Web Vitals を測定し、LCP 2.5s・INP 200ms・CLS 0.1 の閾値が CI blocking gate に接続される"
+    },
+    {
+      "id": "WT-AC-NFR-PERF-03B",
+      "requirement_id": "WT-NFR-PERF-03",
+      "polarity": "negative",
+      "oracle": "4 種別のいずれかを測定しない、閾値割れを non-blocking のまま通す、または予算検査を語彙追加後に省略すれば FAIL"
+    },
+    {
+      "id": "WT-AC-API-01A",
+      "requirement_id": "WT-TR-API-01",
+      "polarity": "positive",
+      "oracle": "全一覧の差分読み取りが since / fields / ETag / Last-Modified を受け取り、変更分だけを返す"
+    },
+    {
+      "id": "WT-AC-API-01B",
+      "requirement_id": "WT-TR-API-01",
+      "polarity": "negative",
+      "oracle": "一覧ごとに差分条件が欠ける、毎回全量を返す、または ETag / Last-Modified の不一致を検出しなければ FAIL"
+    },
+    {
+      "id": "WT-AC-API-02A",
+      "requirement_id": "WT-TR-API-02",
+      "polarity": "positive",
+      "oracle": "batch 書き込みが全成功 / 全失敗で処理され、dry-run と rollback ができ、対象イベントの署名付き webhook が押し出される"
+    },
+    {
+      "id": "WT-AC-API-02B",
+      "requirement_id": "WT-TR-API-02",
+      "polarity": "negative",
+      "oracle": "batch の一部だけが保存される、dry-run で書き込む、rollback できない、または署名なし webhook を受け入れれば FAIL"
+    },
+    {
+      "id": "WT-AC-API-03A",
+      "requirement_id": "WT-TR-API-03",
+      "polarity": "positive",
+      "oracle": "応答に schema version があり、破壊的変更時に旧版を併走でき、OpenAPI lint / 差分検査が CI で PASS する"
+    },
+    {
+      "id": "WT-AC-API-03B",
+      "requirement_id": "WT-TR-API-03",
+      "polarity": "negative",
+      "oracle": "schema version が無い、旧版を併走できない、OpenAPI の破壊的差分を通す、または MCP / クローラー計測 / A/B / 商品正本が別契約なら FAIL"
+    },
+    {
+      "id": "WT-AC-ADMIN-02A",
+      "requirement_id": "WT-FR-ADMIN-02",
+      "polarity": "positive",
+      "oracle": "WT-UI-10 の操作ログで AI / 人、対象、差分、実行者、結果を時系列で絞り込み、CSV / JSON export できる"
+    },
+    {
+      "id": "WT-AC-ADMIN-02B",
+      "requirement_id": "WT-FR-ADMIN-02",
+      "polarity": "negative",
+      "oracle": "操作主体・対象・差分・結果を絞れない、export ができない、またはログを改変しても追跡できなければ FAIL"
+    },
+    {
+      "id": "WT-AC-ADMIN-03A",
+      "requirement_id": "WT-FR-ADMIN-03",
+      "polarity": "positive",
+      "oracle": "dry-run の変更案と破壊域停止分を差分レビューし、適用 / 却下を選べ、直近変更を rollback して復旧事実を操作ログへ残せる"
+    },
+    {
+      "id": "WT-AC-ADMIN-03B",
+      "requirement_id": "WT-FR-ADMIN-03",
+      "polarity": "negative",
+      "oracle": "レビューなしで適用される、却下・保留が反映されない、rollback 後の記録がない、または破壊域停止を迂回できれば FAIL"
+    },
+    {
+      "id": "WT-AC-ADMIN-04A",
+      "requirement_id": "WT-FR-ADMIN-04",
+      "polarity": "positive",
+      "oracle": "WT-UI-10 から HELIX 接続用 API key を発行・失効し、読み専用 / 書き込み可を設定でき、発行値は一度だけ表示される"
+    },
+    {
+      "id": "WT-AC-ADMIN-04B",
+      "requirement_id": "WT-FR-ADMIN-04",
+      "polarity": "negative",
+      "oracle": "失効できない、権限を分けられない、同じ鍵の値を再表示できる、または公開ファイルへ鍵を保存すれば FAIL"
+    },
+    {
+      "id": "WT-AC-CLI-01A",
+      "requirement_id": "WT-TR-CLI-01",
+      "polarity": "positive",
+      "oracle": "MCP 常用パック・REST・WP-CLI が同じパック定義 JSON から生成された能力集合を列挙し、契約テストが PASS する"
+    },
+    {
+      "id": "WT-AC-CLI-01B",
+      "requirement_id": "WT-TR-CLI-01",
+      "polarity": "negative",
+      "oracle": "3 面の能力集合に差分がある、パック定義 JSON 外の能力が現れる、または契約テストが差分を赤にしなければ FAIL"
+    },
+    {
+      "id": "WT-AC-SNS-01A",
+      "requirement_id": "WT-FR-SNS-01",
+      "polarity": "positive",
+      "oracle": "SNS profile を設定 JSON の一か所から header / footer / 著者欄 / sameAs へ反映し、share 対象・配置を選べ、クリックを計測できる"
+    },
+    {
+      "id": "WT-AC-SNS-01B",
+      "requirement_id": "WT-FR-SNS-01",
+      "polarity": "negative",
+      "oracle": "profile が複数箇所で不一致、share 配置を選べない、クリック計測が欠落、または資格情報をテーマ・プラグインへ保存すれば FAIL"
+    },
+    {
+      "id": "WT-AC-SNS-02A",
+      "requirement_id": "WT-FR-SNS-02",
+      "polarity": "positive",
+      "oracle": "feed 埋め込みスクリプトが遅延読込され、メッセージアプリ公式アカウントの追加ボタンと QR が LP のフォーム代替 CTA として表示される"
+    },
+    {
+      "id": "WT-AC-SNS-02B",
+      "requirement_id": "WT-FR-SNS-02",
+      "polarity": "negative",
+      "oracle": "feed が速度予算を無視して同期読込される、追加ボタンまたは QR が無い、配信そのものをテーマが持つ、または資格情報を公開すれば FAIL"
+    },
+    {
+      "id": "WT-AC-CV-01A",
+      "requirement_id": "WT-FR-CV-01",
+      "polarity": "positive",
+      "oracle": "本 CV・マイクロ CV・補助指標を複数登録し、ID・種別・重み・計測イベント・到達条件と記事・LP・section の目標 CV ID が JSON で一致する"
+    },
+    {
+      "id": "WT-AC-CV-01B",
+      "requirement_id": "WT-FR-CV-01",
+      "polarity": "negative",
+      "oracle": "CV が 1 種類に固定される、ID・種別・到達条件が欠落する、目標選択と正本が不一致、または判定ロジックをテーマが持てば FAIL"
+    },
+    {
+      "id": "WT-AC-CV-02A",
+      "requirement_id": "WT-FR-CV-02",
+      "polarity": "positive",
+      "oracle": "資料ダウンロードでフォーム入力からメール送付と即時ダウンロードを選べ、完了がマイクロ CV として計測され、非公開ファイルへ署名付き期限 URL で到達する"
+    },
+    {
+      "id": "WT-AC-CV-02B",
+      "requirement_id": "WT-FR-CV-02",
+      "polarity": "negative",
+      "oracle": "非公開でないファイルを恒久 URL で配布する、完了イベントがない、署名または期限を検証しない、または consent なしに入力を保存すれば FAIL"
+    },
+    {
+      "id": "WT-AC-CV-03A",
+      "requirement_id": "WT-FR-CV-03",
+      "polarity": "positive",
+      "oracle": "CTA の主文言と任意 microcopy を候補から選択でき、microcopy 未選択でも公開前エラーにならず、A/B・section の結果を CV ID で集計できる"
+    },
+    {
+      "id": "WT-AC-CV-03B",
+      "requirement_id": "WT-FR-CV-03",
+      "polarity": "negative",
+      "oracle": "microcopy が必須化される、候補選択ができない、CV ID が欠落する、またはテーマ内で A/B の判定を行えば FAIL"
+    },
+    {
+      "id": "WT-AC-NFR-CV-01A",
+      "requirement_id": "WT-NFR-CV-01",
+      "polarity": "positive",
+      "oracle": "リード情報の保存先・保持期間・consent が宣言され、consent を取得した場合だけ保存され、外部連携は署名付き webhook までである"
+    },
+    {
+      "id": "WT-AC-NFR-CV-01B",
+      "requirement_id": "WT-NFR-CV-01",
+      "polarity": "negative",
+      "oracle": "保存先・保持期間・consent が不明、consent なしに保存、テーマ内に CRM / MA がある、または署名なし連携を行えば FAIL"
+    },
+    {
+      "id": "WT-AC-BANNER-01A",
+      "requirement_id": "WT-FR-BANNER-01",
+      "polarity": "positive",
+      "oracle": "PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示できる"
+    },
+    {
+      "id": "WT-AC-BANNER-01B",
+      "requirement_id": "WT-FR-BANNER-01",
+      "polarity": "negative",
+      "oracle": "PC / SP または alt・有効期間が欠落、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL"
+    },
+    {
+      "id": "WT-AC-BANNER-02A",
+      "requirement_id": "WT-FR-BANNER-02",
+      "polarity": "positive",
+      "oracle": "バナーの impression / click を CV ID・A/B variant 単位で追跡し、WT-UI-10 と MCP 常用パックから登録・差し替え・停止でき、3 種の警告を表示する"
+    },
+    {
+      "id": "WT-AC-BANNER-02B",
+      "requirement_id": "WT-FR-BANNER-02",
+      "polarity": "negative",
+      "oracle": "CV ID・variant が計測から欠落、期限切れ・リンク切れ・計測ゼロを警告しない、rel=\"sponsored\" または PR 判定が欠ける、または広告配信タグをテーマが持てば FAIL"
+    },
+    {
+      "id": "WT-AC-AUDIT-01A",
+      "requirement_id": "WT-FR-AUDIT-01",
+      "polarity": "positive",
+      "oracle": "HELIX 側の指摘を対象・種別・重さ・根拠・修正案付きで受け取り、WT-UI-10 と記事一覧バッジから対象 section へ移動し、適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通る"
+    },
+    {
+      "id": "WT-AC-AUDIT-01B",
+      "requirement_id": "WT-FR-AUDIT-01",
+      "polarity": "negative",
+      "oracle": "対象へ移動できない、適用が差分レビューを迂回する、却下・保留が反映されない、またはテーマが監査の判定を生成すれば FAIL"
+    },
+    {
+      "id": "WT-AC-AUDIT-02A",
+      "requirement_id": "WT-FR-AUDIT-02",
+      "polarity": "positive",
+      "oracle": "alt・速度予算・構造化データ・見出し階層だけを決定論的に検査し、その他の指摘を HELIX 側の結果として表示し、サイト集計を JSON / CSV export と MCP 取得できる"
+    },
+    {
+      "id": "WT-AC-AUDIT-02B",
+      "requirement_id": "WT-FR-AUDIT-02",
+      "polarity": "negative",
+      "oracle": "テーマが判断を要する監査結果を生成する、機械検査項目を再現不能な判定にする、export がない、または MCP と画面の集計が不一致なら FAIL"
     }
   ]
 }

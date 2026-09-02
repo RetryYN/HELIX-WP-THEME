@@ -3,7 +3,7 @@ layer: L2
 sub_doc: wireframe
 status: candidate_projection
 source_authority: docs/requirements/l2/wireframe.md
-source_sha256: b060bd50c00e1cdadcc8e0565c2c9b73a0315cb23027f4f4c1b321b031b74e2a
+source_sha256: 5e9e5f95d74c13e91b6707be9265d33e8b6db94bb4ad618938e7d848431063ff
 pair_artifact: self
 ---
 
@@ -33,6 +33,7 @@ pair_artifact: self
 ### PM-10 / WT-UI-10 テーマ設定画面
 
 ProductCatalogTable: 商品一覧、追加・更新、記事への差し込み。
+WT-UI-10 のタブとして AbVariantPanel（variant、承認、停止、rollback）、ImageOptimizationPanel（WebP / WebM、dry-run、進行、削減見込み、alt 警告）、OperationsLog / DryRunReview / RollbackPanel / KeyManagement（ログ、差分、復旧、鍵の発行・失効）、CvDefinitionPanel / MicrocopyPicker、BannerCatalog / BannerHealth、AuditReviewPanel / AuditExport を置く。microcopy 未選択はエラーにしない。画面数は 11 のまま。
 
 ### PM-11 / WT-UI-11 クローラーダッシュボード
 
