@@ -166,7 +166,7 @@
         "WT-SCR-10",
         "WT-CAND-PLUGIN"
       ],
-      "statement": "第三者プラグインとの共存規約: 出力が重なる領域（JSON-LD、meta / OGP、目次、サイトマップ、llms.txt、キャッシュ、フォーム）ごとに「本テーマが出す / 検出して譲る / 設定で選ぶ」を決め、テーマ設定画面で切り替えられる。既定は二重出力を起こさない側。互換の第一対象は実運用 2 サイトで稼働する種類（SEO・サイトマップ・llms.txt・フォーム・画像最適化・キャッシュ・目次）で、全プラグイン互換は非対象。フォームは LP のフォーム制御と接続する。テーマA / B からの写像（MIGRATE）はハーネスがサーバーファイルとテーマ情報を直接書き換えて行い、テーマ側に移行プラグイン・移行コード・互換固有名を持たない",
+      "statement": "第三者プラグインとの共存規約: 出力が重なる領域（JSON-LD、meta / OGP、目次、サイトマップ、llms.txt、キャッシュ、フォーム、同意管理・計測）ごとに「本テーマが出す / 検出して譲る / 設定で選ぶ」を決め、テーマ設定画面で切り替えられる。既定は二重出力を起こさない側。互換の第一対象は実運用 2 サイトで稼働する種類（SEO・サイトマップ・llms.txt・フォーム・画像最適化・キャッシュ・目次）で、全プラグイン互換は非対象。フォームは LP のフォーム制御と接続する。第三者の同意管理・計測が検出された場合は本テーマが同意バーや計測出力を重ねず、同意信号とデータ層契約へ譲る。テーマA / B からの写像（MIGRATE）はハーネスがサーバーファイルとテーマ情報を直接書き換えて行い、テーマ側に移行プラグイン・移行コード・互換固有名を持たない",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
@@ -194,7 +194,7 @@
         "WT-BR-02",
         "WT-CAND-ZONE"
       ],
-      "statement": "共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持ち、空なら描画しない",
+      "statement": "共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持ち、SP 幅を既定の配信面として扱い、空なら描画しない",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -274,7 +274,7 @@
         "WT-BR-03",
         "WT-CAND-PARTS"
       ],
-      "statement": "header / footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、Site Editor と AI 経路の双方から差し替えられる",
+      "statement": "header / footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、SP 幅の既定案を基準に PC 向けの派生を選び、Site Editor と AI 経路の双方から差し替えられる",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -328,7 +328,7 @@
         "WT-BR-02",
         "WT-CAND-VOCAB"
       ],
-      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 7 つに限定する。比較専用テーブルは本文中の手組み比較表とは別語彙とする",
+      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・タブ・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 7 つに限定する。SP 幅では比較を横スクロール / カード、タブをアコーディオン、目次を開閉ボタン、ギャラリーをスワイプ、CTA を全幅 / sticky として選べる。比較専用テーブルは本文中の手組み比較表とは別語彙とする",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -460,7 +460,7 @@
         "WT-SCR-03",
         "WT-CAND-SECTION"
       ],
-      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を tracking 経路へ）。section の variant ID と目標 CV ID も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側",
+      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ）。section ID・variant ID・目標 CV ID・device type も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -492,7 +492,7 @@
         "WT-BR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持つ",
+      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、尺度は SP 基準から PC の fluid 拡張へ派生する",
       "priority": "P0",
       "actor_ids": [
         "EDITOR"
@@ -656,7 +656,7 @@
         "WT-SCR-06",
         "WT-CAND-LP"
       ],
-      "statement": "LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを tracking 経路へ送る）を持つ。LP ごとに目標 CV ID と A/B variant ID を選択し、計測へ渡す。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く",
+      "statement": "LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ送る）を持つ。LP ごとに目標 CV ID と A/B variant ID を選択し、必須 ID として計測へ渡す。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -995,7 +995,7 @@
         "WT-SCR-06",
         "WT-CAND-SEO"
       ],
-      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）と SearchAction（WebSite.potentialAction）を追加する。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）",
+      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）と SearchAction（WebSite.potentialAction）を追加する。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1047,7 +1047,7 @@
         "WT-NFRL1-07",
         "WT-CAND-SEO"
       ],
-      "statement": "title / meta description / canonical / robots / sitemap / hreflang / OGP を全ページ種別で出し、Core Web Vitals とモバイルの確認対象を維持し、llms.txt・crawl-map・LLMO summary の AI 向け出力を同一正本から維持する。Google 検索セントラルの検索の基本と canonical 化に準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls（参照日: 2026-09-02）",
+      "statement": "title / meta description / canonical / robots / sitemap / hreflang / OGP を全ページ種別で出し、SP 幅を主たる確認面として Core Web Vitals とモバイルの確認対象を維持し、llms.txt・crawl-map・LLMO summary の AI 向け出力を同一正本から維持する。第三者 SEO プラグインが検出された場合は重複する meta / OGP / sitemap の出力を検出して譲る。Google 検索セントラルの検索の基本と canonical 化に準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls（参照日: 2026-09-02）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
@@ -1343,7 +1343,7 @@
         "WT-NFRL1-16",
         "WT-CAND-PERF"
       ],
-      "statement": "記事・LP・一覧・商品比較は JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
+      "statement": "記事・LP・一覧・商品比較は SP 幅を主たる確認面として JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1645,7 +1645,7 @@
         "WT-SCR-05",
         "WT-CAND-AB"
       ],
-      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
+      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、SP 幅の既定案を基準に、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1675,7 +1675,7 @@
         "WT-SCR-06",
         "WT-CAND-AB"
       ],
-      "statement": "A/B の impression / click / CV を variant ID 付きで tracking 経路へ送り、section・LP・商品テーブル単位のイベントを集計可能にする。集計と判定は HELIX 側で行う",
+      "statement": "A/B の impression / click / CV を variant ID・section ID・CV ID・device type 付きで WT-FR-TAG-02 の version 付きデータ層契約から tracking 経路へ送り、section・LP・商品テーブル単位のイベントを集計可能にする。集計と判定は HELIX 側で行う",
       "priority": "P0",
       "actor_ids": [
         "AI_AGENT",
@@ -1730,7 +1730,7 @@
         "WT-SCR-05",
         "WT-CAND-IMG"
       ],
-      "statement": "全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。picture + srcset で配信し、hero は fetchpriority=high、その他は lazy とする",
+      "statement": "全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。第三者画像最適化プラグインがサブサイズや WebP を生成している場合はテーマ側の生成を停止し、テーマは picture + srcset / fetchpriority / lazy の配信だけを担う。picture + srcset で配信し、hero は fetchpriority=high、その他は lazy とする",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1815,7 +1815,7 @@
         "WT-SCR-07",
         "WT-CAND-PERF"
       ],
-      "statement": "CSS を語彙単位で分割して使用分だけ出し、ビルド工程で短縮化する。critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して検査する",
+      "statement": "CSS を語彙単位で分割して使用分だけ出し、SP 幅を基準にビルド工程で短縮化する。critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して検査する",
       "priority": "P1",
       "actor_ids": [
         "GATE",
@@ -1841,7 +1841,7 @@
         "WT-SCR-07",
         "WT-CAND-PERF"
       ],
-      "statement": "記事・LP・一覧・商品比較で Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
+      "statement": "記事・LP・一覧・商品比較で SP 幅を主たる面とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
       "priority": "P0",
       "actor_ids": [
         "GATE",
@@ -2104,7 +2104,7 @@
         "WT-SCR-10",
         "WT-CAND-CV"
       ],
-      "statement": "サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲覧・電話タップ）、補助指標（スクロール深度・滞在）を複数登録し、各 ID・種別・重み・計測イベント・到達条件を JSON で管理する。記事・LP・section ごとに目標 CV ID を選べる",
+      "statement": "サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲覧・電話タップ）、補助指標（スクロール深度・滞在）を複数登録し、各 ID・種別・重み・計測イベント・到達条件を JSON で管理する。記事・LP・section ごとに目標 CV ID を選べ、WT-FR-TAG-02 の version 付きデータ層契約へ device type とともに渡す",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -2134,7 +2134,7 @@
         "WT-SCR-06",
         "WT-CAND-CV"
       ],
-      "statement": "資料ダウンロードをフォーム入力からメール送付または即時ダウンロードの 2 経路で提供し、完了をマイクロ CV として計測する。ファイルは非公開ディレクトリから署名付き期限 URL で配布する",
+      "statement": "資料ダウンロードをフォーム入力からメール送付または即時ダウンロードの 2 経路で提供し、完了をマイクロ CV として WT-FR-TAG-02 の version 付きデータ層契約で計測する。第三者フォームが検出された場合は送信経路と同意確認を譲り受け、二重送信を起こさない。ファイルは非公開ディレクトリから署名付き期限 URL で配布する",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -2242,7 +2242,7 @@
         "WT-SCR-10",
         "WT-CAND-BANNER"
       ],
-      "statement": "バナーの impression / click を tracking 経路へ送り、CV ID と A/B variant 単位で扱う。WT-UI-10 と MCP 常用パックから登録・差し替え・停止し、期限切れ・リンク切れ・計測ゼロを警告する。アフィリエイト種別は rel=\"sponsored\" と PR 表記判定へ接続し、広告配信タグはテーマ外に置く",
+      "statement": "バナーの impression / click を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ送り、CV ID・A/B variant ID・section ID・device type 単位で扱う。WT-UI-10 と MCP 常用パックから登録・差し替え・停止し、期限切れ・リンク切れ・計測ゼロを警告する。アフィリエイト種別は rel=\"sponsored\" と PR 表記判定へ接続し、広告配信タグはテーマ外に置く",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
@@ -2313,6 +2313,312 @@
       ],
       "test_ids": [
         "WT-AT-AUDIT-02"
+      ]
+    },
+    {
+      "id": "WT-FR-SP-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-22",
+        "WT-CAND-SP"
+      ],
+      "statement": "面・語彙・パーツの既定表示を SP 幅で定義し、PC は SP に何を足すかの派生として選べる。theme.json の尺度は SP 基準、PC は fluid 拡張とする",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SP-01A",
+        "WT-AC-SP-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SP-01"
+      ]
+    },
+    {
+      "id": "WT-FR-SP-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-23",
+        "WT-CAND-SP"
+      ],
+      "statement": "SP ヘッダー（ロゴ・ハンバーガー・検索・主要 CTA の配置と選択）、ドロワー（階層・CTA・SNS）、SP 下部固定（3〜5 タブ: 電話・メッセージアプリ・資料 DL・目次・トップへ。既存 SP 下部固定 slot の一部）、SP 専用広告面（本文中の SP だけに出す slot / SP のみのバナー）を選べる",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SP-02A",
+        "WT-AC-SP-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SP-02"
+      ]
+    },
+    {
+      "id": "WT-FR-SP-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-24",
+        "WT-CAND-SP"
+      ],
+      "statement": "SP の語彙挙動を JSON で宣言し、比較テーブルは横スクロール / カード、タブはアコーディオン、目次はフロートから開閉ボタン、ギャラリーはスワイプ、CTA は全幅 / sticky として選ぶ。AI の語彙選択は SP の表示形まで選び、管理画面と MCP の SP プレビューで確認できる",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-SP-03A",
+        "WT-AC-SP-03B"
+      ],
+      "test_ids": [
+        "WT-AT-SP-03"
+      ]
+    },
+    {
+      "id": "WT-NFR-SP-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-20",
+        "WT-CAND-SP"
+      ],
+      "statement": "SP の操作はタップ対象 44px 以上、本文文字 16px 以上、横スクロール 0 とし、下部固定・ドロワー・同意バーは本文や CTA を隠さず、積層順を固定する",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE",
+        "EDITOR",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-07"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-SP-01A",
+        "WT-AC-NFR-SP-01B"
+      ],
+      "test_ids": [
+        "WT-AT-SP-NFR-01"
+      ]
+    },
+    {
+      "id": "WT-NFR-SP-02",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-21",
+        "WT-CAND-SP"
+      ],
+      "statement": "SP 幅を主たる測定面とし、代表ページ種別を Lighthouse mobile とスクリーンショット比較で検査する。ローカル Docker の実機相当ゲート、管理画面 / MCP の SP プレビュー、SP 主体の速度・CWV 計測、device type 別の A/B・CV 集計をそろえる。テーマA / B の SP 固有パーツ実使用の再読は後続の PoC 課題とし、現時点の証跡に含めない",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-07",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-SP-02A",
+        "WT-AC-NFR-SP-02B"
+      ],
+      "test_ids": [
+        "WT-AT-SP-NFR-02"
+      ]
+    },
+    {
+      "id": "WT-FR-TAG-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-25",
+        "WT-CAND-TAG"
+      ],
+      "statement": "計測タグの注入面を head・body 開始直後・body 終端の 3 slot に限定し、タグ管理コンテナ / 個別断片の登録・選択を WT-UI-10 と MCP から行える。タグ設定と計測 ID は DB の選択として保持し、テーマと config JSON に計測 ID を置かない。ページ・LP・同意状態別の routing はテーマが配置だけを担い、同意管理・計測プラグインの検出時は WT-TR-PLUGIN-02 の譲渡を適用する",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TAG-01A",
+        "WT-AC-TAG-01B"
+      ],
+      "test_ids": [
+        "WT-AT-TAG-01"
+      ]
+    },
+    {
+      "id": "WT-FR-TAG-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-26",
+        "WT-TRL1-10",
+        "WT-CAND-TAG"
+      ],
+      "statement": "表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type を一つの version 付き JSON データ層契約で定義し、必須項目として CV ID・variant ID・section ID・device type を渡す。外部タグはこの契約を read-only で読む",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TAG-02A",
+        "WT-AC-TAG-02B"
+      ],
+      "test_ids": [
+        "WT-AT-TAG-02"
+      ]
+    },
+    {
+      "id": "WT-FR-TAG-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-27",
+        "WT-CAND-TAG"
+      ],
+      "statement": "同意状態を必須・計測・広告のカテゴリでデータ層へ出し、同意前は該当カテゴリのタグを発火せず、同意後は遅延発火する。サーバー側計測も同意確認を行い、同意なしイベントを保存しない。テーマの同意バーは VOCAB-01 の 7 ブロック上限に数えない既存パーツとして、core ブロック + block style で扱い、第三者同意管理が検出された場合は出力せず信号を読む",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-06",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TAG-03A",
+        "WT-AC-TAG-03B"
+      ],
+      "test_ids": [
+        "WT-AT-TAG-03"
+      ]
+    },
+    {
+      "id": "WT-NFR-TAG-01",
+      "kind": "non_functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-NFRL1-22",
+        "WT-CAND-TAG"
+      ],
+      "statement": "計測の検査で、同意前の非発火、データ層の必須項目、3 slot 外へのスクリプト注入 0、同意なしイベントのサーバー保存 0、タグ転送の性能予算内を確認する",
+      "priority": "P0",
+      "actor_ids": [
+        "GATE",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-07",
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-NFR-TAG-01A",
+        "WT-AC-NFR-TAG-01B"
+      ],
+      "test_ids": [
+        "WT-AT-TAG-NFR-01"
+      ]
+    },
+    {
+      "id": "WT-TR-PLUGIN-03",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-11",
+        "WT-CAND-PLUGIN"
+      ],
+      "statement": "第三者プラグインの capability を領域別に検出し、フォームは送信イベントと同意確認をデータ層契約へ接続、キャッシュ / CDN は A/B cookie・同意 routing・crawl 計測の不成立を警告して人の cache 除外 URL / edge 割当を待ち、画像最適化はテーマの生成を止めて配信だけを行い、SEO は JSON-LD・meta / OGP・sitemap を検出して譲り、同意管理はテーマの同意バーを出さず信号を読む。代表構成は実運用 2 サイトで使うプラグイン種別に限り、全プラグイン互換は対象外とする",
+      "priority": "P0",
+      "actor_ids": [
+        "OPERATOR",
+        "GATE",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TR-PLUGIN-03A",
+        "WT-AC-TR-PLUGIN-03B"
+      ],
+      "test_ids": [
+        "WT-AT-TR-PLUGIN-03"
+      ]
+    },
+    {
+      "id": "WT-TR-PLUGIN-04",
+      "kind": "technical",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-TRL1-11",
+        "WT-CAND-PLUGIN"
+      ],
+      "statement": "検出結果、領域ごとの既定（本テーマが出す / 検出して譲る / 設定で選ぶ）、現在の選択、警告、検査対象構成を capability manifest に載せ、WT-UI-10 と MCP で同じ一覧を返す。JSON-LD / meta / OGP の重複出力とフォーム二重送信は代表構成で赤にする",
+      "priority": "P1",
+      "actor_ids": [
+        "OPERATOR",
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-08",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-TR-PLUGIN-04A",
+        "WT-AC-TR-PLUGIN-04B"
+      ],
+      "test_ids": [
+        "WT-AT-TR-PLUGIN-04"
       ]
     }
   ]

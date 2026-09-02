@@ -1489,6 +1489,118 @@
       "tests": [
         "WT-AT-AUDIT-02"
       ]
+    },
+    {
+      "l1": "WT-FRL1-22",
+      "l2": "WT-CAND-SP",
+      "l3": [
+        "WT-FR-SP-01"
+      ],
+      "tests": [
+        "WT-AT-SP-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-23",
+      "l2": "WT-CAND-SP",
+      "l3": [
+        "WT-FR-SP-02"
+      ],
+      "tests": [
+        "WT-AT-SP-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-24",
+      "l2": "WT-CAND-SP",
+      "l3": [
+        "WT-FR-SP-03"
+      ],
+      "tests": [
+        "WT-AT-SP-03"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-20",
+      "l2": "WT-CAND-SP",
+      "l3": [
+        "WT-NFR-SP-01"
+      ],
+      "tests": [
+        "WT-AT-SP-NFR-01"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-21",
+      "l2": "WT-CAND-SP",
+      "l3": [
+        "WT-NFR-SP-02"
+      ],
+      "tests": [
+        "WT-AT-SP-NFR-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-25",
+      "l2": "WT-CAND-TAG",
+      "l3": [
+        "WT-FR-TAG-01"
+      ],
+      "tests": [
+        "WT-AT-TAG-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-26",
+      "l2": "WT-CAND-TAG",
+      "l3": [
+        "WT-FR-TAG-02"
+      ],
+      "tests": [
+        "WT-AT-TAG-02"
+      ]
+    },
+    {
+      "l1": "WT-TRL1-10",
+      "l2": "WT-CAND-TAG",
+      "l3": [
+        "WT-FR-TAG-02"
+      ],
+      "tests": [
+        "WT-AT-TAG-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-27",
+      "l2": "WT-CAND-TAG",
+      "l3": [
+        "WT-FR-TAG-03"
+      ],
+      "tests": [
+        "WT-AT-TAG-03"
+      ]
+    },
+    {
+      "l1": "WT-NFRL1-22",
+      "l2": "WT-CAND-TAG",
+      "l3": [
+        "WT-NFR-TAG-01"
+      ],
+      "tests": [
+        "WT-AT-TAG-NFR-01"
+      ]
+    },
+    {
+      "l1": "WT-TRL1-11",
+      "l2": "WT-CAND-PLUGIN",
+      "l3": [
+        "WT-TR-PLUGIN-03",
+        "WT-TR-PLUGIN-04"
+      ],
+      "tests": [
+        "WT-AT-TR-PLUGIN-03",
+        "WT-AT-TR-PLUGIN-04"
+      ]
     }
   ]
 }

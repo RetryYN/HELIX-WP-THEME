@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0084",
-  "event_count": 84,
+  "event_head": "WT-EVT-0093",
+  "event_count": 93,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -341,6 +341,37 @@
       ]
     },
     {
+      "candidate_id": "WT-CAND-SP",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0085",
+        "WT-EVT-0086",
+        "WT-EVT-0087"
+      ],
+      "requirement_ids": [
+        "WT-FR-SP-01",
+        "WT-FR-SP-02",
+        "WT-FR-SP-03",
+        "WT-NFR-SP-01",
+        "WT-NFR-SP-02"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-TAG",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0088",
+        "WT-EVT-0089",
+        "WT-EVT-0090"
+      ],
+      "requirement_ids": [
+        "WT-FR-TAG-01",
+        "WT-FR-TAG-02",
+        "WT-FR-TAG-03",
+        "WT-NFR-TAG-01"
+      ]
+    },
+    {
       "candidate_id": "WT-CAND-INTAKE",
       "state": "accepted",
       "source_event_ids": [
@@ -415,11 +446,16 @@
         "WT-EVT-0042",
         "WT-EVT-0043",
         "WT-EVT-0044",
-        "WT-EVT-0045"
+        "WT-EVT-0045",
+        "WT-EVT-0091",
+        "WT-EVT-0092",
+        "WT-EVT-0093"
       ],
       "requirement_ids": [
         "WT-TR-PLUGIN-01",
-        "WT-TR-PLUGIN-02"
+        "WT-TR-PLUGIN-02",
+        "WT-TR-PLUGIN-03",
+        "WT-TR-PLUGIN-04"
       ]
     }
   ],
@@ -454,7 +490,10 @@
     "WT-Q-SNS-01",
     "WT-Q-CV-01",
     "WT-Q-BANNER-01",
-    "WT-Q-AUDIT-01"
+    "WT-Q-AUDIT-01",
+    "WT-Q-SP-01",
+    "WT-Q-TAG-01",
+    "WT-Q-PLUGIN-03"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -487,7 +526,10 @@
     "WT-Q-SNS-01",
     "WT-Q-CV-01",
     "WT-Q-BANNER-01",
-    "WT-Q-AUDIT-01"
+    "WT-Q-AUDIT-01",
+    "WT-Q-SP-01",
+    "WT-Q-TAG-01",
+    "WT-Q-PLUGIN-03"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"

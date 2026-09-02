@@ -10,7 +10,7 @@
 | WT-AT-CORE-03 | WT-TR-CORE-03 | 静的検出で AI SDK import・判定ロジックが 0 | 検出 1 件で FAIL | static analysis |
 | WT-AT-GATE-01 | WT-NFR-GATE-01 | PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される | 静的 PASS のみで merge された変更が実機 invalid を生めば FAIL | gate JSON |
 | WT-AT-TR-PLUGIN-01 | WT-TR-PLUGIN-01 | AI 操作後にテーマファイル digest 不変、選択は WP コアの DB 保存先に入り Site Editor と一致、テーマ切替でデータ残存、プラグイン無効でも表示は崩れない | AI がテーマファイルを書く、独自保存先で Site Editor と食い違う、プラグインに表示 / 判定、テーマ切替でデータ消失なら FAIL | file digest + DB fixture + theme-switch fixture |
-| WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域それぞれで第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、本体に移行コードが無い | いずれかの領域で同型出力 2 本、切替不可、または本体に移行コード・移行プラグイン・互換固有名なら FAIL | plugin matrix（7 領域）+ static analysis |
+| WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域と同意管理・計測で第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、本体に移行コードが無い | いずれかの領域で同型出力 2 本、同意信号を無視、切替不可、または本体に移行コード・移行プラグイン・互換固有名なら FAIL | plugin matrix（7 領域）+ consent fixture + static analysis |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない | 空 slot が空要素や領域見出しを出せば FAIL | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
 | WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
@@ -21,14 +21,14 @@
 | WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL | Playwright + fixture |
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
 | WT-AT-SECTION-01 | WT-FR-SECTION-01 | H2 / H3 が混在する記事で階層 section と親子 ID が中間 JSON に出て、見出し文言を変えても ID が変わらない | 見出し変更で ID がずれる、H4 が区間になる、または H3 の無い H2 区間で境界が壊れれば FAIL | extractor fixture |
-| WT-AT-SECTION-02 | WT-FR-SECTION-02 | H3 区間だけのリライトで diff が区間に閉じ rollback で戻る。順序入れ替え・折りたたみ・非表示・目次出し分けがエディタと MCP で同結果。区間規則が全記事に入り投稿単位で上書き可。区間の到達・滞在イベントが variant ID・目標 CV ID 付きで記録される | 区間外が書き換わる、variant ID・目標 CV ID が欠落する、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL | REST receipt + Playwright + tracking receipt |
+| WT-AT-SECTION-02 | WT-FR-SECTION-02 | H3 区間だけのリライトで diff が区間に閉じ rollback で戻る。順序入れ替え・折りたたみ・非表示・目次出し分けがエディタと MCP で同結果。区間規則が全記事に入り投稿単位で上書き可。区間の到達・滞在イベントが version 付きデータ層契約から section ID・variant ID・目標 CV ID・device type 付きで記録される | 区間外が書き換わる、必須 ID が欠落する、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL | REST receipt + Playwright + data-layer receipt |
 | WT-AT-LOOK-01 | WT-FR-LOOK-01 | 見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される | 生値や !important で実現された装飾があれば FAIL | G-T3 + style list |
 | WT-AT-LOOK-02 | WT-FR-LOOK-02 | 写像した variation がスラッグ集合を変えず G-T1b PASS | 段の増減や新スラッグを伴う variation があれば FAIL | G-T1b JSON |
 | WT-AT-LOOK-03 | WT-FR-LOOK-03 | サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS | 調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL | survey inventory + gate JSON |
 | WT-AT-META-01 | WT-FR-META-01 | メタを OFF にした記事だけで該当パーツが消え、REST から同じキーを読み書きできる | 未登録メタや option で表示が変わる経路があれば FAIL | REST + Playwright |
 | WT-AT-ADMIN-01 | WT-FR-ADMIN-01 | 管理画面だけで各既定を変更・保存でき、保存値が schema 検証を通り、manifest と MCP パックから同じ値が読め、export → import で同一 digest に戻る | schema 外の値が保存できる、設定画面と manifest の値が食い違う、または設定 JSON 以外の option に状態が散れば FAIL | Playwright + schema test + manifest parity |
 | WT-AT-LP-01 | WT-FR-LP-01 | 決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される | 方式差が台帳に無いまま移行されれば FAIL | Playwright + ledger |
-| WT-AT-LP-02 | WT-FR-LP-02 | LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンと目標 CV ID・A/B variant ID が選べる | 計測イベントが欠落する、CV ID が無い、またはテーマ内に最適化・判定ロジックが入れば FAIL | tracking receipt + Playwright |
+| WT-AT-LP-02 | WT-FR-LP-02 | LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが version 付きデータ層契約から必須 ID 付きで記録され、LP 専用 variation / パターンと目標 CV ID・A/B variant ID が選べる | 計測イベントまたは必須 ID が欠落する、契約外経路へ散る、またはテーマ内に最適化・判定ロジックが入れば FAIL | data-layer receipt + Playwright |
 | WT-AT-MIGRATE-01 | WT-FR-MIGRATE-01 | 取得項目定義とマッピングフォーマットが schema 付きで公開され、ハーネスがそれだけを読んでサンプル control を 4 分類または理由付き写像不能に落とせる | テーマ側に変換器・移行 UI・移行プラグインがある、またはフォーマット外の写像が要れば FAIL | schema test + harness mapping receipt |
 | WT-AT-MIGRATE-02 | WT-FR-MIGRATE-02 | フォーマットの写像規則で代表 6 領域の変換結果が invalid=0 になり、独自ウィジェット・写像不能候補が理由付きで列挙されている | 写像不能が黙って落ちる、または変換結果が invalid を出せば FAIL | conversion receipt（ハーネス側）+ format schema test |
 | WT-AT-MIGRATE-03 | WT-FR-MIGRATE-03 | 移管一覧が意味キーだけで構成され、公開リポに第三者固有名が無い | 見た目キーの機械移送や固有名の混入があれば FAIL | public-safety check |
@@ -41,7 +41,7 @@
 | WT-AT-VALUE-01 | WT-FR-VALUE-01 | 破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、権限による解除手段が無い | 破壊域が保存できる、または安全域が誤って止まれば FAIL | editor + gate JSON |
 | WT-AT-VALUE-02 | WT-FR-VALUE-02 | 許容リスト外の生値が G-T2 で FAIL になり、件数が baseline から単調減少する | 許容リストに実値を足して通す変更があれば FAIL | gate JSON |
 | WT-AT-VALUE-03 | WT-NFR-VALUE-03 | 段を増減する投影が拒否され、親の 6 段が維持される | 投影で 60 が落ちてコア既定が入る（PoC 実測）状態が再現すれば FAIL | projection fixture |
-| WT-AT-SEO-01 | WT-FR-SEO-01 | 一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出て、型ごとの必須プロパティが揃い、Google 検索セントラルの出典 URL と参照日が記録される | 同型の二重出力、@type 空のスクリプト、必須プロパティ欠落、または対象外になった型の出力があれば FAIL | JSON-LD extract + source receipt |
+| WT-AT-SEO-01 | WT-FR-SEO-01 | 一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出て、型ごとの必須プロパティが揃い、第三者 SEO プラグイン検出時は重複する JSON-LD・meta / OGP・sitemap を譲り、出典 URL と参照日が記録される | 同型の二重出力、検出後も重複出力、@type 空のスクリプト、必須プロパティ欠落、または対象外になった型の出力があれば FAIL | JSON-LD extract + plugin matrix + source receipt |
 | WT-AT-SEO-02 | WT-FR-SEO-02 | FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致し、型の必須プロパティが揃い、非推奨型を出さない | 本文に無い項目、必須プロパティ欠落、または非推奨型が JSON-LD に出れば FAIL | JSON-LD extract + source receipt |
 | WT-AT-SEO-03 | WT-FR-SEO-03 | 12 種別すべてで title / meta description / canonical / robots / sitemap / hreflang・OGP が出て、Core Web Vitals とモバイルの確認対象を含み、AI 向け出力の digest が HTML と整合する | front / archive / search で欠落、必須プロパティ不備、または非推奨型が出れば FAIL | crawl JSON + source receipt |
 | WT-AT-SELL-01 | WT-FR-SELL-01 | 商品の名前・価格・特徴・評価・画像・アフィリエイト / 外部ストア / 自社 EC URL が 1 つの商品正本に保存され、複数記事から同じ値を参照できる | 記事ごとの手入力が正本になった、リンク先が商品正本外に散った、または決済・カート・会員をテーマが持てば FAIL | product catalog fixture |
@@ -65,11 +65,11 @@
 | WT-AT-A11Y-01 | WT-NFR-A11Y-01 | axe gate 違反 0、mobile 横スクロール 0 | 違反 1 件で FAIL | axe / contrast |
 | WT-AT-REC-01 | WT-NFR-REC-01 | apply 後の rollback で変更前 digest と一致する | 不一致 1 件で FAIL | rollback receipt |
 | WT-AT-CRED-01 | WT-NFR-CRED-01 | public-safety check OK | 検出 1 件で FAIL | public-safety check |
-| WT-AT-PERF-01 | WT-NFR-PERF-01 | 記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0 | JS 無し表示が欠落、不要 JS が遅延されない、または予算超過 1 件で FAIL | transfer size report |
-| WT-AT-AB-01 | WT-FR-AB-01 | section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す | variant 配信がテーマファイルの変更を要する、bot に別 variant を返す、または cookie 固定割当で再現できなければ FAIL | variant fixture + render receipt |
-| WT-AT-AB-02 | WT-FR-AB-02 | section・LP・商品テーブルの impression / click / CV が variant ID 付きで tracking 経路へ記録され、集計結果を取得できる | variant ID が欠落、イベントが別経路へ散る、またはテーマ内で集計・判定すれば FAIL | tracking receipt |
+| WT-AT-PERF-01 | WT-NFR-PERF-01 | SP 幅を主たる確認面として記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0 | SP 幅の表示が欠落、不要 JS が遅延されない、または予算超過 1 件で FAIL | mobile transfer size report |
+| WT-AT-AB-01 | WT-FR-AB-01 | SP 幅の既定案を基準に section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す | SP 既定が選べない、variant 配信がテーマファイルの変更を要する、bot に別 variant を返す、または cookie 固定割当で再現できなければ FAIL | variant fixture + mobile render receipt |
+| WT-AT-AB-02 | WT-FR-AB-02 | section・LP・商品テーブルの impression / click / CV が version 付きデータ層契約から variant ID・section ID・CV ID・device type 付きで記録され、集計結果を取得できる | 必須 ID が欠落、イベントが別経路へ散る、またはテーマ内で集計・判定すれば FAIL | data-layer receipt |
 | WT-AT-AB-03 | WT-FR-AB-03 | WT-UI-10 と MCP 常用パックの双方で A/B を承認・停止・rollback でき、停止後に既定案へ復帰し、その操作が記録される | 停止後も variant が配信される、UI と MCP の結果が異なる、またはテーマ内に判定ロジックが入れば FAIL | admin + MCP receipt |
-| WT-AT-IMG-01 | WT-FR-IMG-01 | 全 subsize が WebP で生成され、対応環境の AVIF、GIF アニメ・短尺動画の WebM と fallback MP4、picture + srcset、hero の fetchpriority=high、その他の lazy が確認できる | WebP / WebM の生成または fallback がない、hero とその他の読込優先度が区別されない、または video autoplay muted loop playsinline が欠ければ FAIL | asset fixture + render audit |
+| WT-AT-IMG-01 | WT-FR-IMG-01 | 全 subsize が WebP で生成され、対応環境の AVIF、GIF アニメ・短尺動画の WebM と fallback MP4、picture + srcset、hero の fetchpriority=high、その他の lazy が確認できる。第三者画像最適化プラグイン検出時はテーマの生成が止まり配信だけになる | WebP / WebM の生成または fallback がない、検出後も生成が二重、hero とその他の読込優先度が区別されない、または video autoplay muted loop playsinline が欠ければ FAIL | asset fixture + plugin matrix + render audit |
 | WT-AT-IMG-02 | WT-FR-IMG-02 | 5MB 超・一括処理が非同期ジョブとなり、WT-UI-10 と MCP で進行を確認でき、既存画像の dry-run が対象件数と削減見込みを返す | 大量処理が同期実行でタイムアウトする、dry-run の件数・削減見込みがない、または変換ツール不在時の委譲・手動経路がないなら FAIL | async job receipt + CLI receipt |
 | WT-AT-IMG-03 | WT-FR-IMG-03 | alt 空欄を公開前に警告し、GIF 置換提案、幅 1200px 以上の Discover 代表画像、robots meta max-image-preview:large、OGP と構造化データ image の一致を WT-UI-10 / MCP で確認できる | alt 欠落を警告せず公開できる、Discover 代表画像要件を検査しない、画像プラグインとの重複制御がない、またはテーマ内に AI 判定が入れば FAIL | SEO + asset audit |
 | WT-AT-PERF-02 | WT-NFR-PERF-02 | 語彙ごとの CSS が使用ページ分だけ出力され、ビルド短縮化、critical CSS inline、残りの非同期読込、自己ホストフォントの font-display: swap、ページ種別ごとの JSON 予算検査が PASS | 未使用 CSS が出る、critical CSS が無い、フォントが swap でない、または JS / CSS / 画像予算超過を通せば FAIL | build artifact + budget receipt |
@@ -83,11 +83,22 @@
 | WT-AT-CLI-01 | WT-TR-CLI-01 | MCP 常用パック・REST・WP-CLI が同じパック定義 JSON から生成された能力集合を列挙し、契約テストが PASS する | 3 面の能力集合に差分がある、パック定義 JSON 外の能力が現れる、または契約テストが差分を赤にしなければ FAIL | capability parity receipt |
 | WT-AT-SNS-01 | WT-FR-SNS-01 | SNS profile を設定 JSON の一か所から header / footer / 著者欄 / sameAs へ反映し、share 対象・配置を選べ、クリックを計測できる | profile が複数箇所で不一致、share 配置を選べない、クリック計測が欠落、または資格情報をテーマ・プラグインへ保存すれば FAIL | profile + render receipt |
 | WT-AT-SNS-02 | WT-FR-SNS-02 | feed 埋め込みスクリプトが遅延読込され、メッセージアプリ公式アカウントの追加ボタンと QR が LP のフォーム代替 CTA として表示される | feed が速度予算を無視して同期読込される、追加ボタンまたは QR が無い、配信そのものをテーマが持つ、または資格情報を公開すれば FAIL | render + script audit |
-| WT-AT-CV-01 | WT-FR-CV-01 | 本 CV・マイクロ CV・補助指標を複数登録し、ID・種別・重み・計測イベント・到達条件と記事・LP・section の目標 CV ID が JSON で一致する | CV が 1 種類に固定される、ID・種別・到達条件が欠落する、目標選択と正本が不一致、または判定ロジックをテーマが持てば FAIL | CV schema + manifest receipt |
-| WT-AT-CV-02 | WT-FR-CV-02 | 資料ダウンロードでフォーム入力からメール送付と即時ダウンロードを選べ、完了がマイクロ CV として計測され、非公開ファイルへ署名付き期限 URL で到達する | 非公開でないファイルを恒久 URL で配布する、完了イベントがない、署名または期限を検証しない、または consent なしに入力を保存すれば FAIL | download + tracking receipt |
+| WT-AT-CV-01 | WT-FR-CV-01 | 本 CV・マイクロ CV・補助指標を複数登録し、ID・種別・重み・計測イベント・到達条件と記事・LP・section の目標 CV ID が JSON で一致し、device type とともにデータ層契約へ渡る | CV が 1 種類に固定される、必須 ID・種別・到達条件が欠落する、目標選択と正本が不一致、または判定ロジックをテーマが持てば FAIL | CV schema + data-layer receipt |
+| WT-AT-CV-02 | WT-FR-CV-02 | 資料ダウンロードでフォーム入力からメール送付と即時ダウンロードを選べ、完了がデータ層契約のマイクロ CV として計測され、非公開ファイルへ署名付き期限 URL で到達する。第三者フォーム検出時は送信・同意確認を譲り二重送信を起こさない | 非公開でないファイルを恒久 URL で配布する、完了イベントがない、署名または期限を検証しない、検出後に二重送信する、または consent なしに入力を保存すれば FAIL | download + data-layer + plugin receipt |
 | WT-AT-CV-03 | WT-FR-CV-03 | CTA の主文言と任意 microcopy を候補から選択でき、microcopy 未選択でも公開前エラーにならず、A/B・section の結果を CV ID で集計できる | microcopy が必須化される、候補選択ができない、CV ID が欠落する、またはテーマ内で A/B の判定を行えば FAIL | CTA fixture + tracking receipt |
 | WT-AT-CV-NFR-01 | WT-NFR-CV-01 | リード情報の保存先・保持期間・consent が宣言され、consent を取得した場合だけ保存され、外部連携は署名付き webhook までである | 保存先・保持期間・consent が不明、consent なしに保存、テーマ内に CRM / MA がある、または署名なし連携を行えば FAIL | privacy + webhook receipt |
 | WT-AT-BANNER-01 | WT-FR-BANNER-01 | PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示できる | PC / SP または alt・有効期間が欠落、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL | banner fixture + render receipt |
-| WT-AT-BANNER-02 | WT-FR-BANNER-02 | バナーの impression / click を CV ID・A/B variant 単位で追跡し、WT-UI-10 と MCP 常用パックから登録・差し替え・停止でき、3 種の警告を表示する | CV ID・variant が計測から欠落、期限切れ・リンク切れ・計測ゼロを警告しない、rel="sponsored" または PR 判定が欠ける、または広告配信タグをテーマが持てば FAIL | banner + tracking receipt |
+| WT-AT-BANNER-02 | WT-FR-BANNER-02 | バナーの impression / click をデータ層契約から CV ID・A/B variant ID・section ID・device type 単位で追跡し、WT-UI-10 と MCP 常用パックから登録・差し替え・停止でき、3 種の警告を表示する | 必須 ID が計測から欠落、期限切れ・リンク切れ・計測ゼロを警告しない、rel="sponsored" または PR 判定が欠ける、または広告配信タグをテーマが持てば FAIL | banner + data-layer receipt |
 | WT-AT-AUDIT-01 | WT-FR-AUDIT-01 | HELIX 側の指摘を対象・種別・重さ・根拠・修正案付きで受け取り、WT-UI-10 と記事一覧バッジから対象 section へ移動し、適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通る | 対象へ移動できない、適用が差分レビューを迂回する、却下・保留が反映されない、またはテーマが監査の判定を生成すれば FAIL | audit + diff receipt |
 | WT-AT-AUDIT-02 | WT-FR-AUDIT-02 | alt・速度予算・構造化データ・見出し階層だけを決定論的に検査し、その他の指摘を HELIX 側の結果として表示し、サイト集計を JSON / CSV export と MCP 取得できる | テーマが判断を要する監査結果を生成する、機械検査項目を再現不能な判定にする、export がない、または MCP と画面の集計が不一致なら FAIL | audit export + MCP receipt |
+| WT-AT-SP-01 | WT-FR-SP-01 | SP 幅の面・語彙・パーツが既定として選ばれ、PC は SP の派生として追加面を選べ、theme.json の尺度が SP 基準から fluid に拡張される | PC が主たる既定面になる、SP の既定値が列挙されない、または尺度が SP 基準を持たなければ FAIL | responsive fixture + theme token audit |
+| WT-AT-SP-02 | WT-FR-SP-02 | SP ヘッダー、ドロワー、3〜5 タブの下部固定、SP 専用広告面を選択でき、電話・メッセージアプリ・資料 DL・目次・トップへを既存 slot の範囲で配置できる | SP 面が選べない、固定面が PC にも無条件で出る、または既存 slot と別の未宣言面を追加すれば FAIL | mobile render + slot audit |
+| WT-AT-SP-03 | WT-FR-SP-03 | JSON の語彙契約、AI 選択、管理画面 / MCP の SP プレビューが一致し、比較・タブ・目次・ギャラリー・CTA の SP 挙動を代表ページで確認できる | JSON に挙動がない、AI 選択が表示形を決めない、または管理画面と MCP の SP プレビューが不一致なら FAIL | vocab contract + preview parity |
+| WT-AT-SP-NFR-01 | WT-NFR-SP-01 | SP のタップ対象 44px 以上、本文文字 16px 以上、横スクロール 0、固定面・ドロワー・同意バーによる本文 / CTA の隠れ 0、積層順違反 0 を確認する | いずれかの境界違反が 1 件でもあれば FAIL | mobile interaction audit |
+| WT-AT-SP-NFR-02 | WT-NFR-SP-02 | 代表ページ種別の Lighthouse mobile・スクリーンショット比較・ローカル Docker 実機相当ゲート・SP プレビュー・SP 主体の CWV / 速度測定・device type 別集計が同じ revision に束縛される | mobile 検査、SP プレビュー、SP 主体測定、device type 集計のいずれかが欠ける、または未実施のテーマA / B 実使用を証跡にすれば FAIL | mobile gate + preview + measurement receipt |
+| WT-AT-TAG-01 | WT-FR-TAG-01 | head・body 開始直後・body 終端の 3 slot にタグを配置でき、WT-UI-10 と MCP の登録・選択結果が DB の選択と一致し、テーマ / config JSON に計測 ID がない | slot 外注入、計測 ID の直書き、UI と MCP の不一致、または同意管理・計測プラグイン検出後の二重出力があれば FAIL | slot audit + config scan |
+| WT-AT-TAG-02 | WT-FR-TAG-02 | 一つの version 付き JSON データ層契約で指定イベントと必須 ID を検証し、外部タグが read-only で同じ契約を参照できる | 未 version 契約への分散、CV ID・variant ID・section ID・device type の欠落、または契約外イベントがあれば FAIL | schema contract + data-layer receipt |
+| WT-AT-TAG-03 | WT-FR-TAG-03 | 必須・計測・広告の同意カテゴリ、同意前非発火、同意後遅延発火、同意信号、サーバー側の同意なし保存 0、既存パーツとしての同意バーまたは第三者信号の一方だけを確認する | 同意前発火、同意なし保存、検出後の同意バー重複、または同意バーを新規 8 ブロック目として扱えば FAIL | consent fixture + server receipt |
+| WT-AT-TAG-NFR-01 | WT-NFR-TAG-01 | 同意前非発火、データ層必須項目、3 slot 外のスクリプト 0、同意なし保存 0、タグ転送の性能予算内が自動検査で PASS する | いずれかの非発火・必須項目・slot・保存・性能予算の検査が FAIL なら FAIL | tag gate + transfer budget |
+| WT-AT-TR-PLUGIN-03 | WT-TR-PLUGIN-03 | フォーム、キャッシュ / CDN、画像最適化、SEO、同意管理の検出で領域別の既定・譲渡・警告が適用され、代表 2 サイト構成で重複出力・二重送信・同意バー重複が起きない | 検出領域を無視する、キャッシュ警告前に A/B を配信する、同意信号を無視する、または全プラグイン互換を要求済みと扱えば FAIL | plugin capability matrix + representative fixtures |
+| WT-AT-TR-PLUGIN-04 | WT-TR-PLUGIN-04 | capability manifest に検出結果、領域別既定、現在の選択、警告、検査対象構成が載り、WT-UI-10 と MCP が同じ一覧を返し、重複出力・二重送信を赤にできる | manifest と管理画面 / MCP の不一致、選択 / 警告の欠落、重複を赤にできない、または未検証の全互換を表明すれば FAIL | manifest parity + conflict receipt |

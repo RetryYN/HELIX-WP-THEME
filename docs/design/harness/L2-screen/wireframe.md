@@ -3,7 +3,7 @@ layer: L2
 sub_doc: wireframe
 status: candidate_projection
 source_authority: docs/requirements/l2/wireframe.md
-source_sha256: 5e9e5f95d74c13e91b6707be9265d33e8b6db94bb4ad618938e7d848431063ff
+source_sha256: c79b501d4572b26bcacb65e1c571850378949418766047f824b668f1190de49a
 pair_artifact: self
 ---
 
@@ -22,7 +22,11 @@ pair_artifact: self
 
 ### PM-05 / WT-UI-05 記事ページ
 
+SP 幅を既定面として、SP ヘッダー・ドロワー・語彙挙動・下部固定・SP 専用広告面を確認する。タグは 3 slot と version 付きデータ層契約、同意状態を表示する。
+
 ### PM-06 / WT-UI-06 ホーム / LP / 一覧
+
+SP の面・語彙・CTA を PC 派生と比較し、資料 DL・バナー・同意状態のイベントがデータ層契約へ接続することを確認する。
 
 ### PM-07 / WT-UI-07 ゲートレポート
 
@@ -33,7 +37,7 @@ pair_artifact: self
 ### PM-10 / WT-UI-10 テーマ設定画面
 
 ProductCatalogTable: 商品一覧、追加・更新、記事への差し込み。
-WT-UI-10 のタブとして AbVariantPanel（variant、承認、停止、rollback）、ImageOptimizationPanel（WebP / WebM、dry-run、進行、削減見込み、alt 警告）、OperationsLog / DryRunReview / RollbackPanel / KeyManagement（ログ、差分、復旧、鍵の発行・失効）、CvDefinitionPanel / MicrocopyPicker、BannerCatalog / BannerHealth、AuditReviewPanel / AuditExport を置く。microcopy 未選択はエラーにしない。画面数は 11 のまま。
+WT-UI-10 のタブとして SpSurfacePanel / SpVocabularyMap / SpPreview（SP 既定、語彙挙動、mobile preview）、TagSlotPanel / DataLayerContractPanel / ConsentStatePanel（3 slot、version、同意前非発火）、PluginCapabilityMatrix / PluginConflictWarning（領域別既定、検出、警告）、AbVariantPanel（variant、承認、停止、rollback）、ImageOptimizationPanel（WebP / WebM、dry-run、進行、削減見込み、alt 警告）、OperationsLog / DryRunReview / RollbackPanel / KeyManagement（ログ、差分、復旧、鍵の発行・失効）、CvDefinitionPanel / MicrocopyPicker、BannerCatalog / BannerHealth、AuditReviewPanel / AuditExport を置く。microcopy 未選択はエラーにしない。画面数は 11 のまま。
 
 ### PM-11 / WT-UI-11 クローラーダッシュボード
 
