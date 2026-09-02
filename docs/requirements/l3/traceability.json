@@ -281,11 +281,13 @@
       "l2": "WT-CAND-LOOK",
       "l3": [
         "WT-FR-LOOK-01",
-        "WT-FR-LOOK-02"
+        "WT-FR-LOOK-02",
+        "WT-FR-LOOK-03"
       ],
       "tests": [
         "WT-AT-LOOK-01",
-        "WT-AT-LOOK-02"
+        "WT-AT-LOOK-02",
+        "WT-AT-LOOK-03"
       ]
     },
     {
@@ -314,10 +316,12 @@
       "l1": "WT-BR-02",
       "l2": "WT-CAND-LOOK",
       "l3": [
-        "WT-FR-LOOK-01"
+        "WT-FR-LOOK-01",
+        "WT-FR-LOOK-03"
       ],
       "tests": [
-        "WT-AT-LOOK-01"
+        "WT-AT-LOOK-01",
+        "WT-AT-LOOK-03"
       ]
     },
     {
@@ -364,20 +368,24 @@
       "l1": "WT-FRL1-02",
       "l2": "WT-CAND-LP",
       "l3": [
-        "WT-FR-LP-01"
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
       ],
       "tests": [
-        "WT-AT-LP-01"
+        "WT-AT-LP-01",
+        "WT-AT-LP-02"
       ]
     },
     {
       "l1": "WT-SCR-06",
       "l2": "WT-CAND-LP",
       "l3": [
-        "WT-FR-LP-01"
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
       ],
       "tests": [
-        "WT-AT-LP-01"
+        "WT-AT-LP-01",
+        "WT-AT-LP-02"
       ]
     },
     {
@@ -432,14 +440,16 @@
         "WT-FR-AGENT-02",
         "WT-FR-AGENT-03",
         "WT-FR-AGENT-04",
-        "WT-TR-AGENT-05"
+        "WT-TR-AGENT-05",
+        "WT-FR-AGENT-06"
       ],
       "tests": [
         "WT-AT-AGENT-01",
         "WT-AT-AGENT-02",
         "WT-AT-AGENT-03",
         "WT-AT-AGENT-04",
-        "WT-AT-AGENT-05"
+        "WT-AT-AGENT-05",
+        "WT-AT-AGENT-06"
       ]
     },
     {
@@ -832,6 +842,36 @@
       ],
       "tests": [
         "WT-AT-PERF-01"
+      ]
+    },
+    {
+      "l1": "WT-BR-03",
+      "l2": "WT-CAND-LP",
+      "l3": [
+        "WT-FR-LP-02"
+      ],
+      "tests": [
+        "WT-AT-LP-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-10",
+      "l2": "WT-CAND-AGENT",
+      "l3": [
+        "WT-FR-AGENT-06"
+      ],
+      "tests": [
+        "WT-AT-AGENT-06"
+      ]
+    },
+    {
+      "l1": "WT-BR-04",
+      "l2": "WT-CAND-AGENT",
+      "l3": [
+        "WT-FR-AGENT-06"
+      ],
+      "tests": [
+        "WT-AT-AGENT-06"
       ]
     }
   ]

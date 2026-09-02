@@ -134,7 +134,7 @@
     {
       "id": "WT-FR-ZONE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-01",
         "WT-SCR-05",
@@ -158,15 +158,12 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-ZONE-01"
       ]
     },
     {
       "id": "WT-FR-ZONE-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-01",
         "WT-TRL1-02",
@@ -188,15 +185,12 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-ZONE-01"
       ]
     },
     {
       "id": "WT-FR-ZONE-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-01",
         "WT-SCR-06",
@@ -216,15 +210,12 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-ZONE-01"
       ]
     },
     {
       "id": "WT-FR-PARTS-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-02",
         "WT-SCR-01",
@@ -247,15 +238,12 @@
       ],
       "test_ids": [
         "WT-AT-PARTS-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-PARTS-01"
       ]
     },
     {
       "id": "WT-FR-PARTS-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-02",
         "WT-SCR-01",
@@ -276,15 +264,12 @@
       ],
       "test_ids": [
         "WT-AT-PARTS-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-PARTS-01"
       ]
     },
     {
       "id": "WT-FR-VOCAB-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-SCR-05",
@@ -306,21 +291,18 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-VOCAB-01"
       ]
     },
     {
       "id": "WT-FR-VOCAB-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "目次は中間 JSON の一級要素にせず、配置だけを意図ノードで持ち、実体はレンダラが h2 から導出する。既定は最初の h2 直前",
+      "statement": "目次はテーマ内蔵とし、実体は本文の h2/h3 からレンダラが機械導出する（保存 HTML に固定しない）。編集者と AI が選べるのは (a) 配置方式: 固定埋め込み（既定は最初の h2 直前）/ フロート追従（サイドまたは画面端に追従）/ 開閉ボタン化（折りたたみ）、(b) 表示条件: ページ種別（投稿 / 固定ページ / LP / 一覧）ごとの表示・非表示と投稿単位の上書き、(c) 見た目: block style（尺度はプリセット参照）。目次本文の内容は選択対象にしない",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -335,22 +317,19 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-VOCAB-02"
       ]
     },
     {
       "id": "WT-FR-VOCAB-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-NFRL1-10",
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "PR 表記は投稿メタの提携種別を正本にカテゴリ条件を既定として、post-header 側でタイトル直下に自動出力し、編集者が本文から消せない",
+      "statement": "PR 表記は表示義務を満たす最小限（「PR が含まれます」程度）とし、大々的に出さない。表示の要否は記事内の広告パーツ・アフィリエイトリンク（affiliation ブロック / 広告ゾーンの creative 参照）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -365,15 +344,12 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-VOCAB-03"
       ]
     },
     {
       "id": "WT-FR-VOCAB-04",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-03",
         "WT-NFRL1-04",
@@ -392,15 +368,12 @@
       "test_ids": [
         "WT-AT-VOCAB-04"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-VOCAB-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-LOOK-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-04",
         "WT-SCR-02",
@@ -409,7 +382,7 @@
         "WT-CAND-LOOK"
       ],
       "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持つ",
-      "priority": "P1",
+      "priority": "P0",
       "actor_ids": [
         "EDITOR"
       ],
@@ -423,22 +396,19 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-LOOK-01"
       ]
     },
     {
       "id": "WT-FR-LOOK-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-04",
         "WT-FRL1-06",
         "WT-SCR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける",
+      "statement": "デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける。写像の対象範囲は WT-FR-LOOK-03 のサイトパターン調査で広げる",
       "priority": "P2",
       "actor_ids": [
         "MIGRATOR",
@@ -453,15 +423,39 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-02"
+      ]
+    },
+    {
+      "id": "WT-FR-LOOK-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-04",
+        "WT-BR-02",
+        "WT-CAND-LOOK"
       ],
-      "pending_resolution": [
-        "WT-Q-LOOK-02"
+      "statement": "variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンは要求にしない。調査対象には 3D アニメーション / ゲーミング系のサイトパターンも含める（PO 問い 2026-09-02）。ただし配色・タイポ・部品は variation / block style で届くが、3D・常時アニメーションは値差し替えの外にあり、動きの資産層（JS / アセット）を持つかは調査結果を見て別提案として出す",
+      "priority": "P1",
+      "actor_ids": [
+        "PO",
+        "EDITOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-02"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B"
+      ],
+      "test_ids": [
+        "WT-AT-LOOK-03"
       ]
     },
     {
       "id": "WT-FR-META-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-05",
         "WT-SCR-04",
@@ -484,22 +478,19 @@
       ],
       "test_ids": [
         "WT-AT-META-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-META-01"
       ]
     },
     {
       "id": "WT-FR-LP-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-02",
         "WT-SCR-06",
         "WT-CAND-LP"
       ],
-      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離できる。採用しない場合は page template + lp パターン 12 本を維持する",
-      "priority": "P2",
+      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページがディレクトリ階層の配下に置かれるのに対し、LP はディレクトリに依存しない構造（階層を持たないスラッグ）とする。LP の種別として通常 LP に加えイベントページ・比較用の特設ページを想定し、種別は JSON で列挙できる。既存の page template + lp パターン 12 本は LP 種別の初期パターン群として引き継ぐ",
+      "priority": "P0",
       "actor_ids": [
         "EDITOR",
         "MIGRATOR"
@@ -513,21 +504,47 @@
       ],
       "test_ids": [
         "WT-AT-LP-01"
+      ]
+    },
+    {
+      "id": "WT-FR-LP-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-BR-03",
+        "WT-SCR-06",
+        "WT-CAND-LP"
       ],
-      "pending_resolution": [
-        "WT-Q-LP-01"
+      "statement": "LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを tracking 経路へ送る）を持つ。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く",
+      "priority": "P0",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "OPERATOR"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-08"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LP-02A",
+        "WT-AC-LP-02B"
+      ],
+      "test_ids": [
+        "WT-AT-LP-02"
       ]
     },
     {
       "id": "WT-FR-MIGRATE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-06",
         "WT-BR-02",
         "WT-CAND-MIGRATE"
       ],
-      "statement": "設定の写像先を 4 分類（有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群）で決め、状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とする",
+      "statement": "移行の正本は (1) 取得項目定義（移行元から何を採るか: カスタマイザ / 設定画面 / ウィジェット / メニュー / プリセット / 独自ブロック / 投稿メタの項目と採取方法、read-only）と (2) マッピングフォーマット（項目ごとの写像先を宣言する JSON: 4 分類 = 有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群、写像不能は理由付きで明示）とする。変換器はこの 2 つを読んで動く従属物で、フォーマット外の写像を持たない。状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とし、option の不可視上書きは使わない",
       "priority": "P1",
       "actor_ids": [
         "MIGRATOR"
@@ -540,15 +557,12 @@
       "test_ids": [
         "WT-AT-MIGRATE-01"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-MIGRATE-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-MIGRATE-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-06",
         "WT-NFRL1-02",
@@ -567,15 +581,12 @@
       "test_ids": [
         "WT-AT-MIGRATE-02"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-MIGRATE-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-MIGRATE-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-06",
         "WT-NFRL1-08",
@@ -595,22 +606,19 @@
       "test_ids": [
         "WT-AT-MIGRATE-03"
       ],
-      "non_ui_na": true,
-      "pending_resolution": [
-        "WT-Q-MIGRATE-01"
-      ]
+      "non_ui_na": true
     },
     {
       "id": "WT-FR-AGENT-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-SCR-08",
         "WT-BR-03",
         "WT-CAND-AGENT"
       ],
-      "statement": "capability manifest（slot・パターン・パーツ・variation・テンプレ変種・値の尺度）を返し、選択を dry-run → apply → rollback で反映する API を REST / MCP / CLI で提供する",
+      "statement": "エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variation・テンプレ変種・値の尺度・投稿メタ・LP 種別・hook）上の操作を用途別に束ねた複合 ability で、細粒度 API を個別に晒すのではなく、設定（JSON）でパックを構築・入れ替えできる。各パックは dry-run → apply → rollback を内包し、manifest 外の指定は拒否理由付きで返す。REST / CLI は同じ manifest とパック定義を読む従属経路とし、経路ごとに別の語彙を持たない。目的はエージェントのコンテキスト効率（1 パック呼び出しで 1 作業単位が完結する）",
       "priority": "P0",
       "actor_ids": [
         "AI_AGENT"
@@ -624,15 +632,12 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-01"
       ]
     },
     {
       "id": "WT-FR-AGENT-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-NFRL1-03",
@@ -652,15 +657,12 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-01"
       ]
     },
     {
       "id": "WT-FR-AGENT-03",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-TRL1-02",
@@ -681,15 +683,12 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-03"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-01"
       ]
     },
     {
       "id": "WT-FR-AGENT-04",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-07",
         "WT-NFRL1-07",
@@ -710,9 +709,6 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-04"
-      ],
-      "pending_resolution": [
-        "WT-Q-AGENT-02"
       ]
     },
     {
@@ -740,9 +736,39 @@
       "non_ui_na": true
     },
     {
+      "id": "WT-FR-AGENT-06",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-07",
+        "WT-FRL1-10",
+        "WT-BR-04",
+        "WT-CAND-AGENT"
+      ],
+      "statement": "カスタムパーツの自己開発経路を持つ: 編集者または AI がブロックを組んで再利用パーツとして登録（参照 + 版 + digest、manifest に出る）→ 実機ゲート（invalid 0、生値なし、参照整合）を通してテーマのパターンへ昇格 → 実証記録台帳に載せる。パーツはトークンをスラッグ名でのみ参照し、トークン契約が同じであれば他テーマでも描画できる形にする（他プロダクトへの依存は作らない）。生値を含むパーツは昇格させない",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "AI_AGENT",
+        "GATE"
+      ],
+      "surface_ids": [
+        "WT-UI-01",
+        "WT-UI-08",
+        "WT-UI-09"
+      ],
+      "acceptance_ids": [
+        "WT-AC-AGENT-06A",
+        "WT-AC-AGENT-06B"
+      ],
+      "test_ids": [
+        "WT-AT-AGENT-06"
+      ]
+    },
+    {
       "id": "WT-FR-VALUE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-08",
         "WT-SCR-03",
@@ -766,15 +792,12 @@
       ],
       "test_ids": [
         "WT-AT-VALUE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-VALUE-01"
       ]
     },
     {
       "id": "WT-FR-VALUE-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-08",
         "WT-NFRL1-01",
@@ -796,9 +819,6 @@
       ],
       "test_ids": [
         "WT-AT-VALUE-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-VALUE-01"
       ]
     },
     {
@@ -828,7 +848,7 @@
     {
       "id": "WT-FR-SEO-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-09",
         "WT-SCR-05",
@@ -850,15 +870,12 @@
       ],
       "test_ids": [
         "WT-AT-SEO-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-SEO-01"
       ]
     },
     {
       "id": "WT-FR-SEO-02",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-09",
         "WT-FRL1-03",
@@ -879,9 +896,6 @@
       ],
       "test_ids": [
         "WT-AT-SEO-02"
-      ],
-      "pending_resolution": [
-        "WT-Q-SEO-01"
       ]
     },
     {
@@ -914,7 +928,7 @@
     {
       "id": "WT-FR-INTAKE-01",
       "kind": "functional",
-      "status": "human_decision_required",
+      "status": "candidate_inventory",
       "source_ids": [
         "WT-FRL1-10",
         "WT-SCR-09",
@@ -922,11 +936,11 @@
         "WT-BR-04",
         "WT-CAND-INTAKE"
       ],
-      "statement": "取り込み台帳（パターン ID・参照元 commit・証跡パス・ゲート結果・取り込み先）を append-only で持ち、GRAPHIX-NEO への一方向取り込みを記録する",
+      "statement": "実証記録台帳を本テーマ内で完結する append-only の JSON Lines として持つ。1 行 = パターン ID・参照元 commit・証跡パス・ゲート結果（静的 6 種 + 実機 invalid 0 が同一 HEAD に束縛）。他プロダクト（GRAPHIX-NEO 等）はこの記録を読んで採否を自分で決めるだけで、台帳は取り込み先の識別子・状態・検証を持たず、他リポへの参照や書き込みを要求しない（依存を作らない）。本テーマ側から他プロダクトの成果物を取り込む行は持たない",
       "priority": "P2",
       "actor_ids": [
         "PO",
-        "GRAPHIX_NEO"
+        "OPERATOR"
       ],
       "surface_ids": [
         "WT-UI-09"
@@ -937,9 +951,6 @@
       ],
       "test_ids": [
         "WT-AT-INTAKE-01"
-      ],
-      "pending_resolution": [
-        "WT-Q-INTAKE-01"
       ]
     },
     {

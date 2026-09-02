@@ -3,7 +3,7 @@ layer: L1
 sub_doc: screen-requirements
 status: candidate_projection
 source_authority: docs/requirements/l1/screen.md
-source_sha256: b00ffed45d190a68b3025e8652e616e837ee47743940b479752731bdc2138fb4
+source_sha256: 5102d09dc92fee777bffc263bcb58a6d0a044d95d08aa086ed6ef5cc1e0e58df
 pair_artifact: docs/test-design/harness/L12-operational-test-design.md
 ---
 

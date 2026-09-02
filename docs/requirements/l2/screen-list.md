@@ -17,6 +17,6 @@ pair_artifact: docs/test-design/l11-user-acceptance-test-design.md
 | WT-UI-06 | `/ , /lp/ , /category/{{term}}/` | WT-SCR-06 | P1 | normal/N/A/failure/N/A |
 | WT-UI-07 | `cli: bin/check-design-consistency.sh, ge1-local.mjs` | WT-SCR-07 | P0 | normal/N/A/failure/timeout |
 | WT-UI-08 | `/wp-json/{{ns}}/v1/capabilities , mcp abilities` | WT-SCR-08 | P0 | normal/cancel/failure/timeout |
-| WT-UI-09 | `docs/intake/ledger.jsonl` | WT-SCR-09 | P2 | normal/N/A/failure/N/A |
+| WT-UI-09 | `docs/evidence/ledger.jsonl` | WT-SCR-09 | P2 | normal/N/A/failure/N/A |
 
 `N/A` は公開面（read-only）に取消がなく、編集面には timeout を伴う外部呼び出しがないため。CLI ゲートは docker 起動待ち、制御面は dry-run の timeout を持つ。

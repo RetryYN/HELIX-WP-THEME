@@ -125,25 +125,25 @@
       "id": "WT-AC-VOCAB-02A",
       "requirement_id": "WT-FR-VOCAB-02",
       "polarity": "positive",
-      "oracle": "h2 を持つ記事で目次が最初の h2 直前に出て、投稿メタで OFF にできる"
+      "oracle": "h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する"
     },
     {
       "id": "WT-AC-VOCAB-02B",
       "requirement_id": "WT-FR-VOCAB-02",
       "polarity": "negative",
-      "oracle": "目次本文が保存 HTML に固定される（h2 変更で不整合）なら FAIL"
+      "oracle": "目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL"
     },
     {
       "id": "WT-AC-VOCAB-03A",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "positive",
-      "oracle": "提携種別を持つ記事でファーストビュー内に表記が出る"
+      "oracle": "広告パーツまたはアフィリエイトリンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる"
     },
     {
       "id": "WT-AC-VOCAB-03B",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "negative",
-      "oracle": "本文編集で表記を消せる、または対象記事で欠落すれば FAIL"
+      "oracle": "対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL"
     },
     {
       "id": "WT-AC-VOCAB-04A",
@@ -197,25 +197,25 @@
       "id": "WT-AC-LP-01A",
       "requirement_id": "WT-FR-LP-01",
       "polarity": "positive",
-      "oracle": "決定した方式で LP がヘッダーなしで組め、移行台帳に方式差（URL 構造・CPT 有無）が記録される"
+      "oracle": "LP が CPT として作成でき、ディレクトリに依存しない URL で公開され、種別（通常 / イベント / 比較特設）が REST と manifest から列挙できる。固定ページは階層 URL のまま"
     },
     {
       "id": "WT-AC-LP-01B",
       "requirement_id": "WT-FR-LP-01",
       "polarity": "negative",
-      "oracle": "方式差が台帳に無いまま移行されれば FAIL"
+      "oracle": "LP が固定ページ階層の配下 URL になる、または種別が JSON で列挙できなければ FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-01A",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "positive",
-      "oracle": "サンプル control（A 400 / B 400）の各行が 4 分類のどれかに落ち、写像先が存在する"
+      "oracle": "取得項目定義とマッピングフォーマットが JSON schema を持ち、サンプル control（A 400 / B 400）の各行がフォーマット上で 4 分類のどれかまたは理由付き写像不能に落ちる"
     },
     {
       "id": "WT-AC-MIGRATE-01B",
       "requirement_id": "WT-FR-MIGRATE-01",
       "polarity": "negative",
-      "oracle": "分類不能または option 不可視上書きに落ちる行があれば FAIL"
+      "oracle": "フォーマットに無い写像を変換器が行う、または分類も写像不能理由も無い行があれば FAIL"
     },
     {
       "id": "WT-AC-MIGRATE-02A",
@@ -245,13 +245,13 @@
       "id": "WT-AC-AGENT-01A",
       "requirement_id": "WT-FR-AGENT-01",
       "polarity": "positive",
-      "oracle": "manifest の項目だけを指定して構造・スタイル・値を変更でき、dry-run の差分と apply 結果が一致する"
+      "oracle": "設定で定義した常用パックが MCP の ability として列挙され、1 回の呼び出しで manifest 上の作業単位（例: 面にパターンを置いて公開面を確認）が dry-run 差分付きで完結し、apply 結果が dry-run と一致する"
     },
     {
       "id": "WT-AC-AGENT-01B",
       "requirement_id": "WT-FR-AGENT-01",
       "polarity": "negative",
-      "oracle": "manifest 外の指定が通る、または apply が dry-run と異なれば FAIL"
+      "oracle": "manifest 外の指定が通る、apply が dry-run と異なる、または REST と MCP で語彙や結果が食い違えば FAIL"
     },
     {
       "id": "WT-AC-AGENT-02A",
@@ -377,13 +377,13 @@
       "id": "WT-AC-INTAKE-01A",
       "requirement_id": "WT-FR-INTAKE-01",
       "polarity": "positive",
-      "oracle": "台帳 1 行から証跡と commit へ辿れ、ゲート結果が同一 HEAD に束縛される"
+      "oracle": "台帳 1 行から証跡と参照元 commit へ辿れ、ゲート結果が同一 HEAD に束縛される。台帳は本リポ内のパスだけを参照する"
     },
     {
       "id": "WT-AC-INTAKE-01B",
       "requirement_id": "WT-FR-INTAKE-01",
       "polarity": "negative",
-      "oracle": "証跡なしの行、または逆方向の取り込み行があれば FAIL"
+      "oracle": "証跡なしの行、他リポの状態に依存する項目、または他プロダクトの成果物を本テーマへ取り込む行があれば FAIL"
     },
     {
       "id": "WT-AC-NFR-SEC-01A",
@@ -516,6 +516,42 @@
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "negative",
       "oracle": "超過 1 件で FAIL"
+    },
+    {
+      "id": "WT-AC-LOOK-03A",
+      "requirement_id": "WT-FR-LOOK-03",
+      "polarity": "positive",
+      "oracle": "サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS"
+    },
+    {
+      "id": "WT-AC-LOOK-03B",
+      "requirement_id": "WT-FR-LOOK-03",
+      "polarity": "negative",
+      "oracle": "調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL"
+    },
+    {
+      "id": "WT-AC-LP-02A",
+      "requirement_id": "WT-FR-LP-02",
+      "polarity": "positive",
+      "oracle": "LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが tracking 経路に記録され、LP 専用 variation / パターンが選べる"
+    },
+    {
+      "id": "WT-AC-LP-02B",
+      "requirement_id": "WT-FR-LP-02",
+      "polarity": "negative",
+      "oracle": "計測イベントが欠落する、またはテーマ内に最適化・判定ロジックが入れば FAIL"
+    },
+    {
+      "id": "WT-AC-AGENT-06A",
+      "requirement_id": "WT-FR-AGENT-06",
+      "polarity": "positive",
+      "oracle": "サイト内で作ったパーツが manifest に出て、ゲート通過後にテーマパターンとして登録され、台帳に版・digest・ゲート結果が残る。別テーマ（同トークン契約）で invalid 0 で描画される"
+    },
+    {
+      "id": "WT-AC-AGENT-06B",
+      "requirement_id": "WT-FR-AGENT-06",
+      "polarity": "negative",
+      "oracle": "生値を含むパーツが昇格する、または台帳なしでテーマに入れば FAIL"
     }
   ]
 }

@@ -20,7 +20,7 @@
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
 | L1 | `docs/requirements/l1/` の 5 sub-doc | confirmed input（PO 指示 2026-09-02 による 0 からの作り直し） | G1 content / pair / trace の PO 承認 |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 問い 15 件（`unresolved` と同数）の採否、prototype reaction、PO agreement |
+| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 問い 0 件（`unresolved` と同数。採用済み: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01）の採否、prototype reaction、PO agreement |
 | L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory | L2 agreement 後の compile、L10 oracle との pair、G3 PO / TL 承認 |
 
 ## 入力資産と扱い
@@ -28,7 +28,7 @@
 | 資産 | 扱い |
 | --- | --- |
 | `docs/planning/L0-agent-controlled-variety.md` | L0 企画。要求の起点 |
-| 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。取り込みは一方向 |
+| 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。一方向原則。本テーマは記録を残すだけで依存を作らない |
 | `docs/research/2026-08-26-theme-structure-audit/` | 3 テーマ構造監査・RE（INV-01〜17、差分レジスタ、機構比較、統合レポート）。拡大提案の根拠 |
 | `docs/research/2026-08-27-poc-browser-verification/`, `docs/research/2026-08-28-poc-conversion-and-variations/`, `docs/research/2026-08-28-poc-styles-parts-gates/`, `docs/research/2026-08-29-ge1-local/`, `docs/research/2026-08-31-poc-display-errors/` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
 | `docs/design/catalog/` | パーツ図鑑・カスタマイズ性・デザイン力比較 |

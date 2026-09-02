@@ -4,7 +4,7 @@ sub_doc: screen-list
 status: candidate_projection
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
 source_authority: docs/requirements/l2/screen-list.md
-source_sha256: 1e618ec875013bf9013ebf5cefac4ad65feff4efc275f56c753af5f961dbfa6b
+source_sha256: 7c9641df75f9a311728a2e1d965655293978b60c3026c4a228e68f7b95ad7e14
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 next_pair_freeze: L10
 implemented_screens: ""
@@ -25,4 +25,4 @@ HELIX reader 用の非正本 ID 対応表。route と状態契約の正本は `d
 | PM-06 | WT-UI-06 | WT-SCR-06 | `/ , /lp/ , /category/{{term}}/` | `docs/requirements/l2/screen-list.md` |
 | PM-07 | WT-UI-07 | WT-SCR-07 | `cli: bin/check-design-consistency.sh, ge1-local.mjs` | `docs/requirements/l2/screen-list.md` |
 | PM-08 | WT-UI-08 | WT-SCR-08 | `/wp-json/{{ns}}/v1/capabilities , mcp abilities` | `docs/requirements/l2/screen-list.md` |
-| PM-09 | WT-UI-09 | WT-SCR-09 | `docs/intake/ledger.jsonl` | `docs/requirements/l2/screen-list.md` |
+| PM-09 | WT-UI-09 | WT-SCR-09 | `docs/evidence/ledger.jsonl` | `docs/requirements/l2/screen-list.md` |
