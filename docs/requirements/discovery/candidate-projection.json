@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0031",
-  "event_count": 31,
+  "event_head": "WT-EVT-0032",
+  "event_count": 32,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -168,12 +168,13 @@
     },
     {
       "candidate_id": "WT-CAND-SEO",
-      "state": "prototyped",
+      "state": "accepted",
       "source_event_ids": [
         "WT-EVT-0002",
         "WT-EVT-0013",
         "WT-EVT-0016",
-        "WT-EVT-0017"
+        "WT-EVT-0017",
+        "WT-EVT-0032"
       ],
       "requirement_ids": [
         "WT-FR-SEO-01",
@@ -247,7 +248,8 @@
     "WT-Q-MIGRATE-01",
     "WT-Q-AGENT-01",
     "WT-Q-AGENT-02",
-    "WT-Q-VALUE-01"
+    "WT-Q-VALUE-01",
+    "WT-Q-SEO-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -256,16 +258,6 @@
     "WT-POC-REACTION-01"
   ],
   "unresolved": [
-    {
-      "id": "WT-Q-SEO-01",
-      "owner": "PO",
-      "form": "capability_adoption",
-      "question": "構造化データを単一出力元にし、CollectionPage / SearchAction を追加、FAQPage / HowTo / ItemList を記事内語彙から自動生成できる。採用するか",
-      "affected_candidate_ids": [
-        "WT-CAND-SEO"
-      ],
-      "reentry": "同上"
-    },
     {
       "id": "WT-Q-INTAKE-01",
       "owner": "PO",
