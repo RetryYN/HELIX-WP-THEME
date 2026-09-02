@@ -23,5 +23,5 @@ authority: docs/requirements/authority.md
 | WT-SCR-11 | クローラーダッシュボード（WP 管理画面） | クローラー別の来訪推移・古い URL・404 / 5xx・新規記事の初回捕捉時間・AI クローラーの llms.txt / crawl-map 来訪を確認し、robots.txt と AI クローラーの許可 / 拒否を設定できるか | ダッシュボード確認 / robots.txt・AI クローラー設定 |
 
 編集面は WP Site Editor / Block Editor の既存 UI を面として扱う。サイト全体の既定はテーマ設定画面（WT-SCR-10）で人が直接設定でき、正本は schema 付きの設定 JSON 1 本で AI と共有する（PO 2026-09-02）。
-WT-Q-AB-01、WT-Q-IMG-01、WT-Q-ADMIN-02、WT-Q-CV-01、WT-Q-BANNER-01、WT-Q-AUDIT-01、WT-Q-SP-01、WT-Q-TAG-01、WT-Q-PLUGIN-03 の追加操作は WT-SCR-10 のタブとして扱い、画面数は 11 のまま（PO 2026-09-03）。
+WT-Q-AB-01、WT-Q-IMG-01、WT-Q-ADMIN-02、WT-Q-CV-01、WT-Q-BANNER-01、WT-Q-AUDIT-01、WT-Q-SP-01、WT-Q-TAG-01、WT-Q-PLUGIN-03 の追加操作は WT-SCR-10 のタブとして扱い、画面数は 11 のまま（WT-EVT-0069 / 0087 / 0090 / 0093 の amendment に基づく claude の判断。PO 決定は各問いの採用のみ）。
 ゲートレポート・エージェント制御面・実証記録台帳は画面ではなく CLI / REST / JSON 文書だが、運用者と AI の判断面として screen 要求に含める。
