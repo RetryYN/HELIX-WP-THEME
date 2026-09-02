@@ -19,5 +19,7 @@ authority: docs/requirements/authority.md
 | WT-TRL1-07 | 構成はテーマ + 薄いプラグイン（PO 確認 2026-09-02）。運用中の AI はテーマファイルを触らず、WP が DB に持つ「サイトの選択」だけをプラグインの API 経由で変える。プラグインは選択を安全に DB へ入れる薄い層（manifest・dry-run・停止・rollback・ログ）とデータ（設定 JSON・投稿メタ・section ID・ゾーン・再利用パーツ・商品正本・variant / CV 定義・クロールログ・計測・ログ）だけを持ち、商品正本は名前・価格・特徴・評価・画像・外部リンクを保持し、クロールログは UA・逆引き / 公開 IP レンジ照合の判定結果と URL・時刻・ステータス・応答時間・ページ種別を保持する。表示はテーマ、判定は HELIX 側。移行の実行はハーネス（HELIX-WP-HARNESS）がサーバーファイルとテーマ情報を直接書き換えて行い、テーマ側に移行プラグインは持たない（PO 2026-09-02）。第三者プラグインとの出力重複は設定で制御し、全プラグイン互換は非対象 |
 | WT-TRL1-08 | HELIX 連携 API は、全一覧の差分読み取り（since / fields / ETag / Last-Modified）、batch 書き込み（全成功 / 全失敗、dry-run / rollback）、署名付き webhook による押し出し、schema version と旧版併走による互換を契約に含める。OpenAPI lint / 差分検査を CI で行い、MCP 常用パック・クローラー計測・A/B・商品正本は同契約の上に置く | API 契約の差分・batch・push・互換の欠落 0 |
 | WT-TRL1-09 | MCP 常用パック・REST・WP-CLI の 3 面は、パック定義 JSON から生成された同じ能力集合を扱う。面ごとの能力ずれは契約テストで検出する | 3 面の能力集合差分 0。契約テストの未実施 0 |
+| WT-TRL1-10 | 計測タグは head・body 先頭・body 末尾の 3 タグ slot に限定し、イベント名・項目・必須 ID を version 付きデータ層 JSON schema で固定する。テーマは DB 上の選択と出し分けを扱い、計測 ID・タグ断片の正本をテーマファイル・設定 JSON に置かない | slot 外注入 0。schema 差分検査の見逃し 0。計測 ID の公開ファイル記載 0 |
+| WT-TRL1-11 | 第三者プラグインの検出結果と現在の選択を capability manifest へ載せ、フォーム・キャッシュ・画像最適化・SEO・同意管理の領域別既定と警告を管理画面 / MCP から同じ契約で取得できる。代表構成は実運用 2 サイトのプラグイン種類に限定し、全プラグイン互換は対象外とする | manifest と管理画面 / MCP の差分 0。代表構成の二重出力・二重送信 0 |
 
 PoC で成立した経路は `docs/poc/wt-poc-inventory.json` へ digest 束縛する。PoC 未検証の一般化は行わない。
