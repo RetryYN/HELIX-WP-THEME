@@ -1,0 +1,170 @@
+{
+  "pack": "wt-site-selection",
+  "version": "0.1.0",
+  "category": {
+    "slug": "wt",
+    "label": "WT site selection",
+    "description": "PoC pack: header part / template variant selection abilities."
+  },
+  "abilities": [
+    {
+      "name": "wt/site-selection-read",
+      "label": "Read site selection",
+      "description": "Returns the current header part candidates and template variants.",
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "header_part": {
+            "type": "string"
+          },
+          "header_candidates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "template_variant": {
+            "type": "string"
+          },
+          "template_variants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "header_part",
+          "header_candidates",
+          "template_variant",
+          "template_variants"
+        ]
+      },
+      "meta": {
+        "annotations": {
+          "readonly": true,
+          "destructive": false,
+          "idempotent": true
+        },
+        "public": true,
+        "show_in_rest": true,
+        "mcp": {
+          "public": true,
+          "type": "tool"
+        }
+      }
+    },
+    {
+      "name": "wt/site-selection-dry-run",
+      "label": "Dry-run site selection change",
+      "description": "Computes the diff for a proposed selection change and returns a receipt. No side effects.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "header_part": {
+            "type": "string",
+            "enum": [
+              "header-a",
+              "header-b",
+              "header-c"
+            ]
+          },
+          "template_variant": {
+            "type": "string",
+            "enum": [
+              "variant-1",
+              "variant-2"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "diff": {
+            "type": "object"
+          },
+          "receipt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "diff",
+          "receipt"
+        ]
+      },
+      "meta": {
+        "annotations": {
+          "readonly": true,
+          "destructive": false,
+          "idempotent": true
+        },
+        "public": true,
+        "show_in_rest": true,
+        "mcp": {
+          "public": true,
+          "type": "tool"
+        }
+      }
+    },
+    {
+      "name": "wt/site-selection-apply",
+      "label": "Apply site selection change",
+      "description": "Applies a selection change. Requires the receipt returned by a dry-run; fails without it.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "header_part": {
+            "type": "string",
+            "enum": [
+              "header-a",
+              "header-b",
+              "header-c"
+            ]
+          },
+          "template_variant": {
+            "type": "string",
+            "enum": [
+              "variant-1",
+              "variant-2"
+            ]
+          },
+          "receipt": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "applied": {
+            "type": "boolean"
+          },
+          "state": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "applied",
+          "state"
+        ]
+      },
+      "meta": {
+        "annotations": {
+          "readonly": false,
+          "destructive": true,
+          "idempotent": true
+        },
+        "public": true,
+        "show_in_rest": true,
+        "mcp": {
+          "public": true,
+          "type": "tool"
+        },
+        "permission": "manage_options"
+      }
+    }
+  ]
+}

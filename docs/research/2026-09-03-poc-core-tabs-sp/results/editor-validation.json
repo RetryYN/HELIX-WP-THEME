@@ -1,0 +1,16 @@
+{
+  "postId": 506,
+  "first_open": {
+    "invalid": [],
+    "count": 12,
+    "dirty": true,
+    "buttons_in_serialized": 3
+  },
+  "after_resave_reload": {
+    "invalid": [],
+    "count": 12,
+    "dirty": false,
+    "buttons_in_serialized": 3,
+    "savedContent": "<!-- wp:tabs {\"className\":\"is-style-sp-accordion\"} -->\n<div class=\"wp-block-tabs is-style-sp-accordion\"><!-- wp:tab-list -->\n<div role=\"tablist\" class=\"wp-block-tab-list\"><button type=\"button\" role=\"tab\">Overview</button><button type=\"button\" role=\"tab\">Specs</button><button type=\"button\" role=\"tab\">Pricing</button></div>\n<!-- /wp:tab-list -->\n\n<!-- wp:tab-panels -->\n<div class=\"wp-block-tab-panels\"><!-- wp:tab-panel {\"label\":\"Overview\"} -->\n<section role=\"tabpanel\" tabindex=\"0\" class=\"wp-block-tab-panel\"><!-- wp:paragraph -->\n<p>Tab one paragraph: general overview text for the SP accordion PoC.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:table -->\n<figure class=\"wp-block-table\"><table class=\"has-fixed-layout\"><tbody><tr><td>Item 1-1</td><td>Value 1-1</td></tr><tr><td>Item 1-2</td><td>Value 1-2</td></tr></tbody></table></figure>\n<!-- /wp:table --></section>\n<!-- /wp:tab-panel -->\n\n<!-- wp:tab-panel {\"label\":\"Specs\"} -->\n<section role=\"tabpanel\" tabindex=\"0\" class=\"wp-block-tab-panel\"><!-- wp:paragraph -->\n<p>Tab two paragraph: specification details.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:table -->\n<figure class=\"wp-block-table\"><table class=\"has-fixed-layout\"><tbody><tr><td>Item 2-1</td><td>Value 2-1</td></tr><tr><td>Item 2-2</td><td>Value 2-2</td></tr></tbody></table></figure>\n<!-- /wp:table --></section>\n<!-- /wp:tab-panel -->\n\n<!-- wp:tab-panel {\"label\":\"Pricing\"} -->\n<section role=\"tabpanel\" tabindex=\"0\" class=\"wp-block-tab-panel\"><!-- wp:paragraph -->\n<p>Tab three paragraph: pricing notes.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:table -->\n<figure class=\"wp-block-table\"><table class=\"has-fixed-layout\"><tbody><tr><td>Item 3-1</td><td>Value 3-1</td></tr><tr><td>Item 3-2</td><td>Value 3-2</td></tr></tbody></table></figure>\n<!-- /wp:table --></section>\n<!-- /wp:tab-panel --></div>\n<!-- /wp:tab-panels --></div>\n<!-- /wp:tabs -->"
+  }
+}

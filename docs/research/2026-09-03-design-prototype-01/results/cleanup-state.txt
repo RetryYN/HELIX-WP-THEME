@@ -1,0 +1,30 @@
+投入物一覧
+- 子テーマ wt-proto（コンテナ内）
+- set-variation.php
+- 投稿 475 / 476
+- wp_global_styles 477 / 479
+
+before 状態
+- 有効テーマ: agent-neo-themes/agent-neo-theme
+- wt-proto: なし
+- design-proto-* 投稿: なし
+
+終了時状態（2026-09-03）
+- 有効テーマ: agent-neo-themes/agent-neo-theme
+- option wt_poc_site_selection: 存在しない
+- mu-plugins: 空
+
+未復元項目（意図的残置）
+- 投稿 475
+- 投稿 476
+- wp_global_styles 投稿 479
+- コンテナ内子テーマ wt-proto
+- 理由: デザイン反復のため（PO 提示用の試作ページ）
+
+削除済み項目
+- 空の global styles 投稿 477（term 未付与で生成されたもの）
+
+撤去コマンド列
+docker compose run --rm -T wpcli post delete 475 476 479 --force
+docker exec agent-neo-wp rm -rf /var/www/html/wp-content/themes/wt-proto
+docker compose run --rm -T wpcli theme activate agent-neo-themes/agent-neo-theme

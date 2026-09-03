@@ -1,0 +1,119 @@
+/*
+Theme Name: WT Proto (design prototype, container-only)
+Template: agent-neo-themes/agent-neo-theme
+Version: 0.0.1
+Description: 設計試作用の子テーマ。リポジトリには置かず、ローカル Docker コンテナ内にのみ配置する。
+Text Domain: wt-proto
+*/
+
+/* ---- 記事内語彙: 囲み (core/group block styles) ---- */
+.wp-block-group.is-style-wt-box-info,
+.wp-block-group.is-style-wt-box-warn,
+.wp-block-group.is-style-wt-box-point {
+  padding: var(--wp--preset--spacing--30);
+  border-radius: 8px;
+  border: 1px solid var(--wp--preset--color--secondary);
+  background: var(--wp--preset--color--secondary);
+  margin-block: var(--wp--preset--spacing--40);
+}
+.wp-block-group.is-style-wt-box-info { border-left: 6px solid var(--wp--preset--color--primary); }
+.wp-block-group.is-style-wt-box-warn { border-left: 6px solid var(--wp--preset--color--accent-aa); }
+.wp-block-group.is-style-wt-box-point {
+  border: 2px solid var(--wp--preset--color--accent-aa);
+  background: var(--wp--preset--color--background);
+}
+.wp-block-group.is-style-wt-box-info > :first-child,
+.wp-block-group.is-style-wt-box-warn > :first-child,
+.wp-block-group.is-style-wt-box-point > :first-child { margin-top: 0; }
+
+/* ---- リンクカード (core/group block style) ---- */
+.wp-block-group.is-style-wt-link-card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--wp--preset--spacing--20);
+  align-items: center;
+  border: 1px solid var(--wp--preset--color--secondary);
+  border-radius: 8px;
+  padding: var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--1);
+  margin-block: var(--wp--preset--spacing--30);
+}
+.wt-thumb {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--wp--preset--color--primary), var(--wp--preset--color--accent));
+  min-height: 72px;
+}
+.wp-block-group.is-style-wt-link-card p { margin: 0; }
+
+/* ---- レビュー (core/group block style) ---- */
+.wp-block-group.is-style-wt-review {
+  border: 1px solid var(--wp--preset--color--secondary);
+  border-radius: 8px;
+  padding: var(--wp--preset--spacing--30);
+  background: var(--wp--preset--color--secondary);
+}
+.wt-stars { color: var(--wp--preset--color--accent); letter-spacing: 0.1em; font-weight: 700; }
+
+/* ---- 商品カード (core/column block style 相当: class で指定) ---- */
+.wt-product-card {
+  border: 1px solid var(--wp--preset--color--secondary);
+  border-radius: 10px;
+  padding: var(--wp--preset--spacing--30);
+  background: var(--wp--preset--color--background);
+  box-shadow: var(--wp--preset--shadow--2);
+}
+.wt-product-thumb {
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  margin-bottom: var(--wp--preset--spacing--20);
+  background: linear-gradient(160deg, var(--wp--preset--color--secondary), var(--wp--preset--color--muted));
+}
+.wt-product-card .wp-block-buttons { margin-top: var(--wp--preset--spacing--20); }
+.wt-product-card .wp-block-button__link { width: 100%; text-align: center; }
+
+/* ---- CTA 束 ---- */
+.wp-block-group.is-style-wt-cta-bundle {
+  text-align: center;
+  padding: var(--wp--preset--spacing--40);
+  border-radius: 10px;
+  background: var(--wp--preset--color--secondary);
+  border: 2px dashed var(--wp--preset--color--accent-aa);
+}
+.wt-cta-note { color: var(--wp--preset--color--muted); font-size: var(--wp--preset--font-size--small); margin-top: var(--wp--preset--spacing--10); }
+
+/* ---- PR 表記 ---- */
+.wt-pr-notice {
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--muted);
+  border: 1px solid var(--wp--preset--color--secondary);
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  display: inline-block;
+}
+
+/* ---- 目次 (手動 list) ---- */
+.wp-block-group.is-style-wt-toc {
+  border: 1px solid var(--wp--preset--color--secondary);
+  border-radius: 8px;
+  padding: var(--wp--preset--spacing--30);
+  background: var(--wp--preset--color--background);
+}
+.wp-block-group.is-style-wt-toc ol { margin: 0; padding-left: 1.25rem; }
+
+/* ---- 比較表 ---- */
+.wt-compare-table table { border-collapse: collapse; width: 100%; }
+.wt-compare-table th { background: var(--wp--preset--color--primary); color: var(--wp--preset--color--background); }
+.wt-compare-table td, .wt-compare-table th { border: 1px solid var(--wp--preset--color--secondary); padding: 0.5rem; }
+.wt-compare-table tbody tr:nth-child(even) td { background: var(--wp--preset--color--secondary); }
+
+/* ---- ボタン第 3 種: ghost ---- */
+.wp-block-button.is-style-wt-ghost .wp-block-button__link {
+  background: transparent;
+  color: var(--wp--preset--color--accent-aa);
+  text-decoration: underline;
+  padding-left: 0.5rem; padding-right: 0.5rem;
+}
+
+/* ---- variation 別の補助 (body class は variation で付かないので data 属性を JS なしに使えない。corporate の字下げは variation の css に置く) ---- */

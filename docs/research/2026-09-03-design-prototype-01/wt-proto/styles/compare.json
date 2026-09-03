@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "試作: 比較・ランキング",
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "primary", "color": "#0b3d91", "name": "Primary" },
+        { "slug": "secondary", "color": "#eef3fb", "name": "Secondary" },
+        { "slug": "accent", "color": "#f28c00", "name": "Accent" },
+        { "slug": "accent-aa", "color": "#b85f00", "name": "Accent AA (白文字対応)" },
+        { "slug": "background", "color": "#ffffff", "name": "Background" },
+        { "slug": "foreground", "color": "#1c2833", "name": "Foreground" },
+        { "slug": "footer-bg", "color": "#082b66", "name": "Footer Background" },
+        { "slug": "muted", "color": "#5b6b7c", "name": "Muted" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        { "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif", "slug": "body", "name": "Body" },
+        { "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif", "slug": "heading", "name": "Heading" },
+        { "fontFamily": "ui-monospace, monospace", "slug": "mono", "name": "Monospace" }
+      ]
+    }
+  },
+  "styles": {
+    "typography": { "fontFamily": "var(--wp--preset--font-family--body)" },
+    "elements": {
+      "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--heading)" }, "color": { "text": "var(--wp--preset--color--primary)" } },
+      "button": { "border": { "radius": "6px" }, "typography": { "fontWeight": "700" } }
+    },
+    "css": "h2.wp-block-heading{border-left:6px solid var(--wp--preset--color--primary);padding-left:.75rem}"
+  }
+}

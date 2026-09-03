@@ -1,0 +1,127 @@
+/var/www/html/wp-includes/blocks/tab-panel/:
+block.json
+style-rtl.css
+style-rtl.min.css
+style.css
+style.min.css
+
+/var/www/html/wp-includes/blocks/tabs/:
+block.json
+style-rtl.css
+style-rtl.min.css
+style.css
+style.min.css
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "core/tabs",
+	"title": "Tabs",
+	"description": "Display content in a tabbed interface to help users navigate detailed content with ease.",
+	"category": "design",
+	"textdomain": "default",
+	"allowedBlocks": [ "core/tab-list", "core/tab-panels" ],
+	"attributes": {
+		"activeTabIndex": {
+			"type": "number",
+			"default": 0
+		},
+		"editorActiveTabIndex": {
+			"type": "number",
+			"role": "local"
+		}
+	},
+	"supports": {
+		"align": true,
+		"anchor": true,
+		"color": {
+			"text": true,
+			"background": true,
+			"__experimentalDefaultControls": {
+				"text": true,
+				"background": true
+			}
+		},
+		"layout": {
+			"allowEditing": false
+		},
+		"html": false,
+		"interactivity": true,
+		"spacing": {
+			"blockGap": true,
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"__experimentalFontFamily": true
+		}
+	},
+	"usesContext": [ "core/tabs-list", "core/tabs-id" ],
+	"style": "wp-block-tabs",
+	"viewScriptModule": "@wordpress/block-library/tabs/view"
+}
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "core/tab-panel",
+	"title": "Tab Panel",
+	"description": "Content for a tab in a tabbed interface.",
+	"category": "design",
+	"textdomain": "default",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"parent": [ "core/tab-panels" ],
+	"usesContext": [ "core/tabs-id" ],
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"layout": true,
+		"spacing": {
+			"blockGap": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"__experimentalFontFamily": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"__experimentalFontFamily": true
+			}
+		},
+		"visibility": false
+	},
+	"providesContext": {
+		"core/tab-label": "label"
+	},
+	"style": "wp-block-tab-panel"
+}
+/var/www/html/wp-includes/blocks/tabs.php:96:	$tag_processor->set_attribute( 'data-wp-interactive', 'core/tabs' );
+/var/www/html/wp-includes/blocks/tabs.php:99:		'data-wp-context',
+/var/www/html/wp-includes/blocks/tabs.php:107:	$tag_processor->set_attribute( 'data-wp-init', 'callbacks.onTabsInit' );
+/var/www/html/wp-includes/blocks/tabs.php:108:	$tag_processor->set_attribute( 'data-wp-on--keydown', 'actions.handleTabKeyDown' );
+/var/www/html/wp-includes/blocks/tab-panel.php:44:	$tag_processor->set_attribute( 'aria-labelledby', 'tab__' . $tab_id );
+/var/www/html/wp-includes/blocks/tab-panel.php:45:	$tag_processor->set_attribute( 'data-wp-bind--hidden', '!state.isActiveTab' );
+/var/www/html/wp-includes/blocks/tab-list.php:13: * tab-specific attributes (id, aria-controls, context) and interactivity
+/var/www/html/wp-includes/blocks/tab-list.php:30:		$tag_processor->set_attribute( 'aria-label', $aria_label );
+/var/www/html/wp-includes/blocks/tab-list.php:47:		$tag_processor->set_attribute( 'aria-controls', $tab_id );
+/var/www/html/wp-includes/blocks/tab-list.php:48:		$tag_processor->set_attribute( 'data-wp-on--click', 'actions.handleTabClick' );
+/var/www/html/wp-includes/blocks/tab-list.php:49:		$tag_processor->set_attribute( 'data-wp-on--keydown', 'actions.handleTabKeyDown' );
+/var/www/html/wp-includes/blocks/tab-list.php:50:		$tag_processor->set_attribute( 'data-wp-bind--aria-selected', 'state.isActiveTab' );
+/var/www/html/wp-includes/blocks/tab-list.php:51:		$tag_processor->set_attribute( 'data-wp-bind--tabindex', 'state.tabIndexAttribute' );
+/var/www/html/wp-includes/blocks/tab-list.php:53:			'data-wp-context',
+----
+.wp-block-tabs {
+  box-sizing: border-box;
+}
