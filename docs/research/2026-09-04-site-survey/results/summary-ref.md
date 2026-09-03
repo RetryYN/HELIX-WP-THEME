@@ -85,8 +85,6 @@
 ### フォント (PC)
 
 - 本文 family 先頭: Noto Sans JP×7
-- 読込済 webfont: Noto Sans JP×4, jin-icons×2, Roboto×2, icomoon×2
-- generator: Site Kit by Google 1.183.0×2, Site Kit by Google 1.181.0×2
 
 ### 色 (PC)
 
@@ -180,8 +178,6 @@ ids: ref-ours-old-article, ref-ours-old-lp, ref-ours-old-top, ref-theme-a-articl
 ### フォント (PC)
 
 - 本文 family 先頭: Noto Sans JP×7
-- 読込済 webfont: Noto Sans JP×4, jin-icons×2, Roboto×2, icomoon×2
-- generator: Site Kit by Google 1.183.0×2, Site Kit by Google 1.181.0×2
 
 ### 色 (PC)
 
