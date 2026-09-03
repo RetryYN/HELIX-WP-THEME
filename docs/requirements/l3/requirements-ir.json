@@ -194,7 +194,7 @@
         "WT-BR-02",
         "WT-CAND-ZONE"
       ],
-      "statement": "共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持ち、SP 幅を既定の配信面として扱い、空なら描画しない",
+      "statement": "共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持つ。共通宣言を fluid で適用し、専用面・並び順・表示形などの device 別差分を宣言して Site Editor と AI の双方から個別編集できる。主たる配信面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を検査する。空なら描画せず、重い面の出し分けは slot の条件描画で行う",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -274,7 +274,7 @@
         "WT-BR-03",
         "WT-CAND-PARTS"
       ],
-      "statement": "header / footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、SP 幅の既定案を基準に PC 向けの派生を選び、Site Editor と AI 経路の双方から差し替えられる",
+      "statement": "header / footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -381,7 +381,7 @@
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "PR 表記は表示義務を満たす最小限（「PR が含まれます」程度）とし、大々的に出さない。表示の要否は記事内の広告パーツ・アフィリエイトリンク・商品リンク（affiliation ブロック / 広告ゾーンの creative 参照を含む）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない",
+      "statement": "PR 表記は表示内容全体から広告であることが不明瞭にならない自己基準を満たし、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所とする。既定は他サイトで一般的な控えめな記事上部一文とし、ボタン・バナーのすぐ近くには置かない。表示の要否は記事内の広告パーツ・アフィリエイトリンク・商品リンク（affiliation ブロック / 広告ゾーンの creative 参照を含む）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない。法令上の数値基準を主張せず、テーマA / テーマB の PR 表記水準の再読を後続 PoC 課題とし、ASP 規約の上乗せは運用側設定で扱う。出典: https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -492,7 +492,7 @@
         "WT-BR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、尺度は SP 基準から PC の fluid 拡張へ派生する",
+      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、theme.json の共通尺度は fluid で定義し、device 別差分を個別に編集・検査する",
       "priority": "P0",
       "actor_ids": [
         "EDITOR"
@@ -916,7 +916,7 @@
         "WT-BR-03",
         "WT-CAND-VALUE"
       ],
-      "statement": "値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、破壊域は保存を止めて規則・値・境界を示す。境界値は PoC で実物を崩して確定する",
+      "statement": "値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、ブロック単位・記事単位の任意 CSS（WP 7.0 のコア機能を含む）も同じ値域判定を通して任意 CSS による迂回を許さない。破壊域は保存を止めて規則・値・境界を示す。境界値は PoC で実物を崩して確定する",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -944,7 +944,7 @@
         "WT-SCR-07",
         "WT-CAND-VALUE"
       ],
-      "statement": "生値は許容リスト方式（尺度系はプリセット参照へ、意匠値は許容リスト）へ移し、baseline 438 を段階的に 0 にする",
+      "statement": "生値は許容リスト方式（尺度系はプリセット参照へ、意匠値は許容リスト）へ移し、baseline 438 を段階的に 0 にする。ブロック単位・記事単位の任意 CSS も同じ値域・許容リスト判定を通し、判定を迂回できない",
       "priority": "P1",
       "actor_ids": [
         "GATE",
@@ -995,7 +995,7 @@
         "WT-SCR-06",
         "WT-CAND-SEO"
       ],
-      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）と SearchAction（WebSite.potentialAction）を追加する。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）",
+      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）を追加する。WebSite は site name 用の name / alternateName / url のみを出し、WebSite.potentialAction（SearchAction）は出さない。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1021,7 +1021,7 @@
         "WT-FRL1-03",
         "WT-CAND-SEO"
       ],
-      "statement": "FAQPage / HowTo / ItemList を記事内語彙（FAQ・手順・比較表）から自動生成し、本文と一致させる。Google 検索セントラルの構造化データ一般ガイドラインに従い、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-02）",
+      "statement": "FAQ・手順の語彙と本文を残しつつ、FAQPage / HowTo の JSON-LD は既定で出力せず、任意 ON 設定も持たない。ItemList は語彙から自動生成し、本文と一致させる。Google 公式 updates に基づく対象外・非推奨型を出さない。出典: https://developers.google.com/search/updates、https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-03）",
       "priority": "P2",
       "actor_ids": [
         "OPERATOR",
@@ -1047,7 +1047,7 @@
         "WT-NFRL1-07",
         "WT-CAND-SEO"
       ],
-      "statement": "title / meta description / canonical / robots / sitemap / hreflang / OGP を全ページ種別で出し、SP 幅を主たる確認面として Core Web Vitals とモバイルの確認対象を維持し、llms.txt・crawl-map・LLMO summary の AI 向け出力を同一正本から維持する。第三者 SEO プラグインが検出された場合は重複する meta / OGP / sitemap の出力を検出して譲る。Google 検索セントラルの検索の基本と canonical 化に準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls（参照日: 2026-09-02）",
+      "statement": "title / meta description / canonical / robots / sitemap / OGP を全ページ種別で出し、hreflang は多言語構成時だけ自己参照・相互参照を検査して出す。主たる確認面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を確認対象にする。llms.txt・crawl-map・LLMO summary の既定出力は同一正本から維持するが、Google の AI 機能への効果や他 AI 事業者の読込を断定せず、WT-FR-CRAWL-02 のアクセス計測で実証する。第三者 SEO プラグインが検出された場合は重複する meta / OGP / sitemap の出力を検出して譲る。Google 検索セントラルの検索の基本・canonical 化・多言語ページのガイド・AI 最適化ガイドに準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls、https://developers.google.com/search/docs/specialty/international/localized-versions、https://developers.google.com/search/docs/fundamentals/ai-optimization-guide（参照日: 2026-09-03）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
@@ -1343,7 +1343,7 @@
         "WT-NFRL1-16",
         "WT-CAND-PERF"
       ],
-      "statement": "記事・LP・一覧・商品比較は SP 幅を主たる確認面として JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
+      "statement": "記事・LP・一覧・商品比較は主たる描画・計測面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を検査し、JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1398,7 +1398,7 @@
         "WT-SCR-05",
         "WT-CAND-SELL"
       ],
-      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出し、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする",
+      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・返品ポリシー付きの merchant listing 形を出し分け、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする。出典: https://developers.google.com/search/docs/appearance/structured-data/product-snippet、https://developers.google.com/search/docs/appearance/structured-data/merchant-listing（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1457,7 +1457,7 @@
         "WT-SCR-07",
         "WT-CAND-SEO"
       ],
-      "statement": "SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティと対象外になった型を出さないこと、代表画像の OGP / 構造化データ image 一致）、検索の基本（title / meta / canonical / robots / sitemap / hreflang、robots meta max-image-preview:large）、ページエクスペリエンス（Core Web Vitals、モバイル）、幅 1200px 以上の Discover 代表画像、リンク rel 属性、クローキングにならない A/B 配信を準拠項目として機械検査できる。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing（参照日: 2026-09-03）",
+      "statement": "SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティ、FAQPage / HowTo / SearchAction など対象外・非推奨型を出さないこと、代表画像の OGP / 構造化データ image 一致）、検索の基本（title / meta / canonical / robots / sitemap、hreflang は多言語構成時のみ自己参照・相互参照、robots meta max-image-preview:large）、ページエクスペリエンス（Core Web Vitals、モバイル）、幅 1200px 以上の Discover 代表画像、リンク rel 属性、クローキングにならない A/B 配信を準拠項目として機械検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を確認する。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox、https://developers.google.com/search/docs/specialty/international/localized-versions（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "OPERATOR",
@@ -1485,7 +1485,7 @@
         "WT-SCR-07",
         "WT-CAND-SEO"
       ],
-      "statement": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane を持ち、必須プロパティ欠落と非推奨型を赤として扱う。Google 公式ドキュメントの改定時は出典 URL と参照日を更新して差分を追う。出典: https://search.google.com/test/rich-results（参照日: 2026-09-02）",
+      "statement": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane を持ち、必須プロパティ欠落と非推奨型を赤として扱う。FAQPage / HowTo / SearchAction ほか Google 公式 updates に基づく廃止型リストを JSON 正本として保持し、各型の出典 URL と参照日を記録して改定差分を追う。出典: https://developers.google.com/search/updates、https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "GATE",
@@ -1565,7 +1565,7 @@
         "WT-SCR-11",
         "WT-CAND-CRAWL"
       ],
-      "statement": "管理画面 WT-UI-11 にクローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無を表示する",
+      "statement": "管理画面 WT-UI-11 にクローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無を表示する。llms.txt の既定出力の効果を断定せず、アクセス有無と時系列を効果実証の計測として追跡する",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1645,7 +1645,7 @@
         "WT-SCR-05",
         "WT-CAND-AB"
       ],
-      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、SP 幅の既定案を基準に、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
+      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、共通の配信定義に device 別差分を持たせ、主たる確認面はサイト設定で選び、SP / PC の両幅で配信と計測を検査し、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1730,7 +1730,7 @@
         "WT-SCR-05",
         "WT-CAND-IMG"
       ],
-      "statement": "全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。第三者画像最適化プラグインがサブサイズや WebP を生成している場合はテーマ側の生成を停止し、テーマは picture + srcset / fetchpriority / lazy の配信だけを担う。picture + srcset で配信し、hero は fetchpriority=high、その他は lazy とする",
+      "statement": "全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。WP 7.1 のブラウザ側画像処理を第一経路とし、サーバー側は既存画像の再生成とブラウザを通らない CLI / REST / MCP 経路に限る。第三者画像最適化プラグインがサブサイズや WebP を生成している場合はテーマ側の生成を停止し、テーマは picture + srcset の配信だけを担う。hero の fetchpriority=high は `wp_get_loading_optimization_attributes()` の filter 経由で指定し、その他はコアの自動判定に任せる。出典: https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/、https://developer.wordpress.org/reference/functions/wp_get_loading_optimization_attributes/（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1757,7 +1757,7 @@
         "WT-SCR-10",
         "WT-CAND-IMG"
       ],
-      "statement": "5MB 超・一括画像処理を WP-Cron の非同期ジョブにし、WT-UI-10 と MCP から進行を確認できる。既存画像は管理画面 1 操作と CLI から dry-run（対象件数・削減見込み）付きで再生成できる。動画変換ツールが無い場合は HELIX 側への委譲または手動アップロードを使う",
+      "statement": "5MB 超・一括画像処理のうちブラウザを通らない CLI / REST / MCP 経路と既存画像の再生成だけをサーバー側 WP-Cron の非同期ジョブにし、ブラウザ側との二重処理を避ける。WT-UI-10 と MCP から進行を確認でき、既存画像は管理画面 1 操作と CLI から dry-run（対象件数・削減見込み）付きで再生成できる。動画変換ツールが無い場合は HELIX 側への委譲または手動アップロードを使う。出典: https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/（参照日: 2026-09-03）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR",
@@ -1815,7 +1815,7 @@
         "WT-SCR-07",
         "WT-CAND-PERF"
       ],
-      "statement": "CSS を語彙単位で分割して使用分だけ出し、SP 幅を基準にビルド工程で短縮化する。critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して検査する",
+      "statement": "CSS を語彙単位で分割して使用分だけ出し、共通定義は fluid、device 別差分は必要な幅だけ出す。ビルド工程で短縮化し、critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して SP / PC の両幅で検査する",
       "priority": "P1",
       "actor_ids": [
         "GATE",
@@ -1841,7 +1841,7 @@
         "WT-SCR-07",
         "WT-CAND-PERF"
       ],
-      "statement": "記事・LP・一覧・商品比較で SP 幅を主たる面とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
+      "statement": "記事・LP・一覧・商品比較で主たる測定面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を測定対象とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
       "priority": "P0",
       "actor_ids": [
         "GATE",
@@ -2323,7 +2323,7 @@
         "WT-FRL1-22",
         "WT-CAND-SP"
       ],
-      "statement": "面・語彙・パーツの既定表示を SP 幅で定義し、PC は SP に何を足すかの派生として選べる。theme.json の尺度は SP 基準、PC は fluid 拡張とする",
+      "statement": "面・語彙・パーツの共通宣言を 1 本の fluid 定義で持ち、専用面・並び順・表示形などの device 別差分を WordPress 7.1 の `@mobile` / `@tablet` 上書きとして宣言する。Site Editor と AI の双方から SP / PC を device 別に個別編集でき、主たる確認面はサイト設定で選ぶ（既定は SP 幅）。ゲートは SP / PC の両幅で検査する。出典: https://make.wordpress.org/core/2026/08/05/responsive-block-styles-and-configurable-viewports-in-wordpress-7-1/（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -2351,7 +2351,7 @@
         "WT-FRL1-23",
         "WT-CAND-SP"
       ],
-      "statement": "SP ヘッダー（ロゴ・ハンバーガー・検索・主要 CTA の配置と選択）、ドロワー（階層・CTA・SNS）、SP 下部固定（3〜5 タブ: 電話・メッセージアプリ・資料 DL・目次・トップへ。既存 SP 下部固定 slot の一部）、SP 専用広告面（本文中の SP だけに出す slot / SP のみのバナー）を選べる",
+      "statement": "SP ヘッダー（ロゴ・ハンバーガー・検索・主要 CTA の配置と選択）、ドロワー（階層・CTA・SNS）、SP 下部固定（3〜5 タブ: 電話・メッセージアプリ・資料 DL・目次・トップへ。既存 SP 下部固定 slot の一部）、SP 専用広告面（本文中の SP だけに出す slot / SP のみのバナー）を device 別差分として選べ、PC 側にも同じ構造の差分・個別編集・検査を持つ。軽いブロックの device 別非表示は WordPress 7.0 Block Visibility（DOM に残る）を編集者に開放するが、広告面・CTA 束・バナー・商品テーブル等の重いブロックには使わせず静的ゲートで赤にし、面の出し分けは slot 条件描画で行う。出典: https://make.wordpress.org/core/2026/03/15/block-visibility-in-wordpress-7-0/（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -2379,7 +2379,7 @@
         "WT-FRL1-24",
         "WT-CAND-SP"
       ],
-      "statement": "SP の語彙挙動を JSON で宣言し、比較テーブルは横スクロール / カード、タブはアコーディオン、目次はフロートから開閉ボタン、ギャラリーはスワイプ、CTA は全幅 / sticky として選ぶ。AI の語彙選択は SP の表示形まで選び、管理画面と MCP の SP プレビューで確認できる",
+      "statement": "共通の語彙定義に対する device 別差分を JSON で宣言し、SP では比較テーブルは横スクロール / カード、タブはアコーディオン、目次はフロートから開閉ボタン、ギャラリーはスワイプ、CTA は全幅 / sticky として選ぶ。PC 側にも同じ項目の差分・個別編集・検査を持ち、AI の語彙選択は各 device の表示形まで選べる。管理画面と MCP から SP / PC のプレビューを確認できる",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -2407,7 +2407,7 @@
         "WT-NFRL1-20",
         "WT-CAND-SP"
       ],
-      "statement": "SP の操作はタップ対象 44px 以上、本文文字 16px 以上、横スクロール 0 とし、下部固定・ドロワー・同意バーは本文や CTA を隠さず、積層順を固定する",
+      "statement": "SP の操作はタップ対象 44px 以上、本文文字 16px 以上、横スクロール 0 とし、下部固定・ドロワー・同意バーは本文や CTA を隠さず、積層順を固定する。PC 側にも共通 + device 別差分の同構造と検査を持ち、SP / PC の両幅で固定要素の被覆と積層順を検査する",
       "priority": "P0",
       "actor_ids": [
         "GATE",
@@ -2435,7 +2435,7 @@
         "WT-NFRL1-21",
         "WT-CAND-SP"
       ],
-      "statement": "SP 幅を主たる測定面とし、代表ページ種別を Lighthouse mobile とスクリーンショット比較で検査する。ローカル Docker の実機相当ゲート、管理画面 / MCP の SP プレビュー、SP 主体の速度・CWV 計測、device type 別の A/B・CV 集計をそろえる。テーマA / B の SP 固有パーツ実使用の再読は後続の PoC 課題とし、現時点の証跡に含めない",
+      "statement": "主たる測定面はサイト設定で選び、既定は SP 幅とする。代表ページ種別を Lighthouse の mobile / PC 幅と SP / PC の両幅のスクリーンショット比較で検査し、ローカル Docker の実機相当ゲート、管理画面 / MCP の両幅プレビュー、両幅の速度・CWV 計測、device type 別の A/B・CV 集計をそろえる。ゲートは両幅で検査する。テーマA / B の SP 固有パーツ実使用の再読は後続の PoC 課題とし、現時点の証跡に含めない",
       "priority": "P0",
       "actor_ids": [
         "GATE",
@@ -2492,7 +2492,7 @@
         "WT-TRL1-10",
         "WT-CAND-TAG"
       ],
-      "statement": "表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type を一つの version 付き JSON データ層契約で定義し、必須項目として CV ID・variant ID・section ID・device type を渡す。外部タグはこの契約を read-only で読む",
+      "statement": "表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type を一つの version 付き JSON データ層契約で定義し、必須項目として CV ID・variant ID・section ID・device type を渡す。TAG-03 の必須・計測・広告の 3 カテゴリを Consent Mode v2 の ad_storage / analytics_storage / ad_user_data / ad_personalization / functionality_storage / personalization_storage / security_storage の 7 種へ写像する対応表を契約に含め、head slot の注入順は consent default を最初に固定する。3 カテゴリは運用者向け表示単位として残す。外部タグはこの契約を read-only で読む。出典: https://developers.google.com/tag-platform/security/guides/consent（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "OPERATOR",
@@ -2520,7 +2520,7 @@
         "WT-FRL1-27",
         "WT-CAND-TAG"
       ],
-      "statement": "同意状態を必須・計測・広告のカテゴリでデータ層へ出し、同意前は該当カテゴリのタグを発火せず、同意後は遅延発火する。サーバー側計測も同意確認を行い、同意なしイベントを保存しない。テーマの同意バーは VOCAB-01 の 7 ブロック上限に数えない既存パーツとして、core ブロック + block style で扱い、第三者同意管理が検出された場合は出力せず信号を読む",
+      "statement": "同意状態を必須・計測・広告の 3 カテゴリで運用者向け表示単位としてデータ層へ出し、Consent Mode v2 の 7 種への写像表も契約に含める。head slot の注入順は consent default を最初に固定し、同意前は該当カテゴリのタグを発火せず、同意後は遅延発火する。サーバー側計測も同意確認を行い、同意なしイベントを保存しない。テーマの同意バーは VOCAB-01 の 7 ブロック上限に数えない既存パーツとして、core ブロック + block style で扱い、第三者同意管理が検出された場合は出力せず信号を読む。出典: https://developers.google.com/tag-platform/security/guides/consent（参照日: 2026-09-03）",
       "priority": "P0",
       "actor_ids": [
         "OPERATOR",
@@ -2548,7 +2548,7 @@
         "WT-NFRL1-22",
         "WT-CAND-TAG"
       ],
-      "statement": "計測の検査で、同意前の非発火、データ層の必須項目、3 slot 外へのスクリプト注入 0、同意なしイベントのサーバー保存 0、タグ転送の性能予算内を確認する",
+      "statement": "計測の検査で、同意前の非発火、データ層の必須項目、Consent Mode v2 7 種への写像表、head slot の consent default 最初の注入順、3 slot 外へのスクリプト注入 0、同意なしイベントのサーバー保存 0、タグ転送の性能予算内を確認する",
       "priority": "P0",
       "actor_ids": [
         "GATE",

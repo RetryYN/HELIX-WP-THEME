@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0093",
-  "event_count": 93,
+  "event_head": "WT-EVT-0129",
+  "event_count": 129,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -28,7 +28,13 @@
         "WT-EVT-0004",
         "WT-EVT-0016",
         "WT-EVT-0017",
-        "WT-EVT-0019"
+        "WT-EVT-0019",
+        "WT-EVT-0106",
+        "WT-EVT-0107",
+        "WT-EVT-0108",
+        "WT-EVT-0109",
+        "WT-EVT-0110",
+        "WT-EVT-0111"
       ],
       "requirement_ids": [
         "WT-FR-ZONE-01",
@@ -44,7 +50,10 @@
         "WT-EVT-0005",
         "WT-EVT-0016",
         "WT-EVT-0017",
-        "WT-EVT-0020"
+        "WT-EVT-0020",
+        "WT-EVT-0106",
+        "WT-EVT-0107",
+        "WT-EVT-0108"
       ],
       "requirement_ids": [
         "WT-FR-PARTS-01",
@@ -61,7 +70,10 @@
         "WT-EVT-0017",
         "WT-EVT-0021",
         "WT-EVT-0022",
-        "WT-EVT-0023"
+        "WT-EVT-0023",
+        "WT-EVT-0103",
+        "WT-EVT-0104",
+        "WT-EVT-0105"
       ],
       "requirement_ids": [
         "WT-FR-VOCAB-01",
@@ -159,7 +171,10 @@
         "WT-EVT-0012",
         "WT-EVT-0016",
         "WT-EVT-0017",
-        "WT-EVT-0031"
+        "WT-EVT-0031",
+        "WT-EVT-0112",
+        "WT-EVT-0113",
+        "WT-EVT-0114"
       ],
       "requirement_ids": [
         "WT-FR-VALUE-01",
@@ -178,7 +193,19 @@
         "WT-EVT-0032",
         "WT-EVT-0049",
         "WT-EVT-0050",
-        "WT-EVT-0051"
+        "WT-EVT-0051",
+        "WT-EVT-0094",
+        "WT-EVT-0095",
+        "WT-EVT-0096",
+        "WT-EVT-0097",
+        "WT-EVT-0098",
+        "WT-EVT-0099",
+        "WT-EVT-0100",
+        "WT-EVT-0101",
+        "WT-EVT-0102",
+        "WT-EVT-0127",
+        "WT-EVT-0128",
+        "WT-EVT-0129"
       ],
       "requirement_ids": [
         "WT-FR-SEO-01",
@@ -195,7 +222,10 @@
       "source_event_ids": [
         "WT-EVT-0046",
         "WT-EVT-0047",
-        "WT-EVT-0048"
+        "WT-EVT-0048",
+        "WT-EVT-0121",
+        "WT-EVT-0122",
+        "WT-EVT-0123"
       ],
       "requirement_ids": [
         "WT-FR-SELL-01",
@@ -209,7 +239,10 @@
       "source_event_ids": [
         "WT-EVT-0052",
         "WT-EVT-0053",
-        "WT-EVT-0054"
+        "WT-EVT-0054",
+        "WT-EVT-0100",
+        "WT-EVT-0101",
+        "WT-EVT-0102"
       ],
       "requirement_ids": [
         "WT-FR-CRAWL-01",
@@ -238,7 +271,13 @@
       "source_event_ids": [
         "WT-EVT-0058",
         "WT-EVT-0059",
-        "WT-EVT-0060"
+        "WT-EVT-0060",
+        "WT-EVT-0115",
+        "WT-EVT-0116",
+        "WT-EVT-0117",
+        "WT-EVT-0118",
+        "WT-EVT-0119",
+        "WT-EVT-0120"
       ],
       "requirement_ids": [
         "WT-FR-IMG-01",
@@ -252,7 +291,13 @@
       "source_event_ids": [
         "WT-EVT-0061",
         "WT-EVT-0062",
-        "WT-EVT-0063"
+        "WT-EVT-0063",
+        "WT-EVT-0106",
+        "WT-EVT-0107",
+        "WT-EVT-0108",
+        "WT-EVT-0109",
+        "WT-EVT-0110",
+        "WT-EVT-0111"
       ],
       "requirement_ids": [
         "WT-NFR-PERF-01",
@@ -346,7 +391,13 @@
       "source_event_ids": [
         "WT-EVT-0085",
         "WT-EVT-0086",
-        "WT-EVT-0087"
+        "WT-EVT-0087",
+        "WT-EVT-0106",
+        "WT-EVT-0107",
+        "WT-EVT-0108",
+        "WT-EVT-0109",
+        "WT-EVT-0110",
+        "WT-EVT-0111"
       ],
       "requirement_ids": [
         "WT-FR-SP-01",
@@ -362,7 +413,10 @@
       "source_event_ids": [
         "WT-EVT-0088",
         "WT-EVT-0089",
-        "WT-EVT-0090"
+        "WT-EVT-0090",
+        "WT-EVT-0124",
+        "WT-EVT-0125",
+        "WT-EVT-0126"
       ],
       "requirement_ids": [
         "WT-FR-TAG-01",
@@ -493,7 +547,19 @@
     "WT-Q-AUDIT-01",
     "WT-Q-SP-01",
     "WT-Q-TAG-01",
-    "WT-Q-PLUGIN-03"
+    "WT-Q-PLUGIN-03",
+    "WT-Q-SEO-06",
+    "WT-Q-SEO-07",
+    "WT-Q-SEO-08",
+    "WT-Q-VOCAB-04",
+    "WT-Q-SP-02",
+    "WT-Q-SP-03",
+    "WT-Q-VALUE-02",
+    "WT-Q-IMG-02",
+    "WT-Q-IMG-03",
+    "WT-Q-SELL-02",
+    "WT-Q-TAG-02",
+    "WT-Q-SEO-09"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -529,7 +595,19 @@
     "WT-Q-AUDIT-01",
     "WT-Q-SP-01",
     "WT-Q-TAG-01",
-    "WT-Q-PLUGIN-03"
+    "WT-Q-PLUGIN-03",
+    "WT-Q-SEO-06",
+    "WT-Q-SEO-07",
+    "WT-Q-SEO-08",
+    "WT-Q-VOCAB-04",
+    "WT-Q-SP-02",
+    "WT-Q-SP-03",
+    "WT-Q-VALUE-02",
+    "WT-Q-IMG-02",
+    "WT-Q-IMG-03",
+    "WT-Q-SELL-02",
+    "WT-Q-TAG-02",
+    "WT-Q-SEO-09"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"

@@ -53,13 +53,13 @@
       "id": "WT-AC-ZONE-01A",
       "requirement_id": "WT-FR-ZONE-01",
       "polarity": "positive",
-      "oracle": "各 slot にパターンを置くと該当位置に描画され、空なら DOM に残らない"
+      "oracle": "各 slot に共通宣言と device 別差分を置くと SP / PC の該当位置に描画され、両幅の検査を通過し、空なら DOM に残らない"
     },
     {
       "id": "WT-AC-ZONE-01B",
       "requirement_id": "WT-FR-ZONE-01",
       "polarity": "negative",
-      "oracle": "空 slot が空要素や領域見出しを出せば FAIL"
+      "oracle": "空 slot が空要素や領域見出しを出す、または重い面を Block Visibility だけで出し分ければ FAIL"
     },
     {
       "id": "WT-AC-ZONE-02A",
@@ -89,13 +89,13 @@
       "id": "WT-AC-PARTS-01A",
       "requirement_id": "WT-FR-PARTS-01",
       "polarity": "positive",
-      "oracle": "差し替え後の骨格差分（テンプレ・パーツ参照）が表示され、保存後に公開面へ反映される"
+      "oracle": "共通宣言と device 別差分の差し替え後に骨格差分（テンプレ・パーツ参照）が表示され、SP / PC の保存結果が公開面へ反映される"
     },
     {
       "id": "WT-AC-PARTS-01B",
       "requirement_id": "WT-FR-PARTS-01",
       "polarity": "negative",
-      "oracle": "差し替えで参照欠落（G-S2）や invalid が出れば FAIL"
+      "oracle": "差し替えで参照欠落（G-S2）、device 別差分の未宣言、または invalid が出れば FAIL"
     },
     {
       "id": "WT-AC-PARTS-02A",
@@ -137,13 +137,13 @@
       "id": "WT-AC-VOCAB-03A",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "positive",
-      "oracle": "広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。表示デザインと表示ページ制御が選べる"
+      "oracle": "広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所を満たす控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。ボタン・バナーのすぐ近くには置かず、表示デザインと表示ページ制御が選べる"
     },
     {
       "id": "WT-AC-VOCAB-03B",
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "negative",
-      "oracle": "対象記事で表記が欠落する、対象外の記事に出る、または本文編集で消せれば FAIL"
+      "oracle": "対象記事で表記が欠落する、対象外の記事に出る、テーマの最小文字サイズまたは AA コントラストを下回る、ボタン・バナーのすぐ近くに出る、または本文編集で消せれば FAIL"
     },
     {
       "id": "WT-AC-VOCAB-04A",
@@ -305,25 +305,25 @@
       "id": "WT-AC-VALUE-01A",
       "requirement_id": "WT-FR-VALUE-01",
       "polarity": "positive",
-      "oracle": "破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、権限による解除手段が無い"
+      "oracle": "破壊域の入力が停止し、どの規則にどの値がどの境界で触れたかが表示され、任意 CSS を含めて権限による解除・判定迂回手段が無い"
     },
     {
       "id": "WT-AC-VALUE-01B",
       "requirement_id": "WT-FR-VALUE-01",
       "polarity": "negative",
-      "oracle": "破壊域が保存できる、または安全域が誤って止まれば FAIL"
+      "oracle": "破壊域が保存できる、任意 CSS で値域判定を迂回できる、または安全域が誤って止まれば FAIL"
     },
     {
       "id": "WT-AC-VALUE-02A",
       "requirement_id": "WT-FR-VALUE-02",
       "polarity": "positive",
-      "oracle": "許容リスト外の生値が G-T2 で FAIL になり、件数が baseline から単調減少する"
+      "oracle": "許容リスト外の生値と任意 CSS による迂回が G-T2 で FAIL になり、件数が baseline から単調減少する"
     },
     {
       "id": "WT-AC-VALUE-02B",
       "requirement_id": "WT-FR-VALUE-02",
       "polarity": "negative",
-      "oracle": "許容リストに実値を足して通す変更があれば FAIL"
+      "oracle": "許容リストに実値を足す、または任意 CSS で値域判定を迂回して通す変更があれば FAIL"
     },
     {
       "id": "WT-AC-NFR-VALUE-03A",
@@ -341,37 +341,37 @@
       "id": "WT-AC-SEO-01A",
       "requirement_id": "WT-FR-SEO-01",
       "polarity": "positive",
-      "oracle": "一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出て、型ごとの必須プロパティが揃い、第三者 SEO プラグイン検出時は重複する JSON-LD・meta / OGP・sitemap を譲り、Google 検索セントラルの出典 URL と参照日が記録される"
+      "oracle": "一覧ページに CollectionPage、全ページに 1 graph の JSON-LD が出て、WebSite は name / alternateName / url のみで SearchAction を含まず、型ごとの必須プロパティが揃い、第三者 SEO プラグイン検出時は重複する JSON-LD・meta / OGP・sitemap を譲り、Google 検索セントラルの出典 URL と参照日が記録される"
     },
     {
       "id": "WT-AC-SEO-01B",
       "requirement_id": "WT-FR-SEO-01",
       "polarity": "negative",
-      "oracle": "同型の二重出力、検出後も重複出力、@type 空のスクリプト、必須プロパティ欠落、または対象外になった型・非推奨型の出力があれば FAIL"
+      "oracle": "同型の二重出力、検出後も重複出力、@type 空のスクリプト、SearchAction、必須プロパティ欠落、または対象外になった型・非推奨型の出力があれば FAIL"
     },
     {
       "id": "WT-AC-SEO-02A",
       "requirement_id": "WT-FR-SEO-02",
       "polarity": "positive",
-      "oracle": "FAQ 語彙を含む記事に FAQPage が出て、項目数が本文と一致し、型の必須プロパティが揃い、非推奨型を出さない"
+      "oracle": "FAQ・手順の語彙と本文が残り、FAQPage / HowTo の JSON-LD は出ず、任意 ON 設定もなく、ItemList は本文と一致して出力され、非推奨型を出さない"
     },
     {
       "id": "WT-AC-SEO-02B",
       "requirement_id": "WT-FR-SEO-02",
       "polarity": "negative",
-      "oracle": "本文に無い項目、必須プロパティ欠落、または非推奨型が JSON-LD に出れば FAIL"
+      "oracle": "FAQPage / HowTo の JSON-LD、任意 ON 設定、本文に無い ItemList 項目、必須プロパティ欠落、または非推奨型が出れば FAIL"
     },
     {
       "id": "WT-AC-SEO-03A",
       "requirement_id": "WT-FR-SEO-03",
       "polarity": "positive",
-      "oracle": "12 種別すべてで title / meta description / canonical / robots / sitemap / hreflang・OGP が出て、SP 幅を主たる確認面とし、第三者 SEO プラグイン検出時は重複出力を譲り、Core Web Vitals とモバイルの確認対象を含み、AI 向け出力の digest が HTML と整合する"
+      "oracle": "12 種別すべてで title / meta description / canonical / robots / sitemap / OGP が出て、hreflang は多言語構成時だけ自己参照・相互参照を満たし、サイト設定で選んだ主たる確認面（既定 SP）と PC の両幅を確認できる。第三者 SEO プラグイン検出時は重複出力を譲り、Core Web Vitals とモバイルの確認対象を含み、既定出力する AI 向けファイルの digest とアクセス計測を HTML / ログに整合させる"
     },
     {
       "id": "WT-AC-SEO-03B",
       "requirement_id": "WT-FR-SEO-03",
       "polarity": "negative",
-      "oracle": "front / archive / search で欠落、検出後も重複出力、必須プロパティ不備、または非推奨型が出れば FAIL"
+      "oracle": "日本語単一サイトで hreflang を出す、多言語時に自己参照・相互参照を満たさない、front / archive / search のいずれかで欠落、検出後も重複出力、必須プロパティ不備、または非推奨型が出れば FAIL"
     },
     {
       "id": "WT-AC-INTAKE-01A",
@@ -509,13 +509,13 @@
       "id": "WT-AC-NFR-PERF-01A",
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "positive",
-      "oracle": "SP 幅を主たる確認面として記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0"
+      "oracle": "サイト設定で選んだ主たる描画面（既定は SP 幅）を含む SP / PC の両幅で記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0"
     },
     {
       "id": "WT-AC-NFR-PERF-01B",
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "negative",
-      "oracle": "SP 幅の表示が欠落、不要 JS が遅延されない、または予算超過 1 件で FAIL"
+      "oracle": "SP / PC いずれかの幅で表示が欠落、不要 JS が遅延されない、または予算超過 1 件で FAIL"
     },
     {
       "id": "WT-AC-LOOK-03A",
@@ -629,13 +629,13 @@
       "id": "WT-AC-SELL-02A",
       "requirement_id": "WT-FR-SELL-02",
       "polarity": "positive",
-      "oracle": "同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、Product / Offer / AggregateRating / ItemList 構造化データを出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化し、variant ID と目標 CV ID を計測へ渡す"
+      "oracle": "同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、リンク先がアフィリエイト・外部ストアなら product snippet 形、自社 EC なら配送・返品ポリシー付き merchant listing 形として Product / Offer / AggregateRating / ItemList 構造化データを出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化し、variant ID と目標 CV ID を計測へ渡す"
     },
     {
       "id": "WT-AC-SELL-02B",
       "requirement_id": "WT-FR-SELL-02",
       "polarity": "negative",
-      "oracle": "販売系 4 つのいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、variant ID・目標 CV ID が計測から欠落する、または表示値と構造化データが不一致なら FAIL"
+      "oracle": "リンク先種別に応じた product snippet / merchant listing の出し分けがない、merchant listing に配送・返品ポリシーがない、販売系 4 つのいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、variant ID・目標 CV ID が計測から欠落する、または表示値と構造化データが不一致なら FAIL"
     },
     {
       "id": "WT-AC-SELL-03A",
@@ -653,25 +653,25 @@
       "id": "WT-AC-SEO-04A",
       "requirement_id": "WT-FR-SEO-04",
       "polarity": "positive",
-      "oracle": "各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-03 の参照日が紐づき、構造化データの必須プロパティ・代表画像の OGP / image 一致・Discover 幅 1200px 以上・検索の基本・ページエクスペリエンス・rel 属性・クローキングにならない A/B 配信の準拠項目が列挙される"
+      "oracle": "各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-03 の参照日が紐づき、構造化データの必須プロパティ・FAQPage / HowTo / SearchAction など対象外・非推奨型を出さないこと・hreflang の多言語時のみの自己参照 / 相互参照・代表画像の OGP / image 一致・Discover 幅 1200px 以上・検索の基本・ページエクスペリエンス・rel 属性・クローキングにならない A/B 配信の準拠項目が列挙される"
     },
     {
       "id": "WT-AC-SEO-04B",
       "requirement_id": "WT-FR-SEO-04",
       "polarity": "negative",
-      "oracle": "出典 URL / 参照日がない、公式仕様と要求の対応が追えない、Discover 画像要件またはクローキング回避が検査されない、または対象外になった型・非推奨型を要求する記述が残れば FAIL"
+      "oracle": "出典 URL / 参照日がない、公式仕様と要求の対応が追えない、単一言語で hreflang を要求する、Discover 画像要件またはクローキング回避が検査されない、または対象外になった型・非推奨型を要求する記述が残れば FAIL"
     },
     {
       "id": "WT-AC-NFR-SEO-01A",
       "requirement_id": "WT-NFR-SEO-01",
       "polarity": "positive",
-      "oracle": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane が走り、違反を赤にして、公式改定時に出典と参照日を更新できる"
+      "oracle": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane が走り、FAQPage / HowTo / SearchAction ほかの廃止型 JSON 正本を照合して違反を赤にし、公式改定時に出典 URL と参照日を更新できる"
     },
     {
       "id": "WT-AC-NFR-SEO-01B",
       "requirement_id": "WT-NFR-SEO-01",
       "polarity": "negative",
-      "oracle": "test lane がない、違反を WARN のまま通す、必須プロパティ欠落を見逃す、または改定後の出典が古いままなら FAIL"
+      "oracle": "test lane がない、廃止型リストにない型を許す、違反を WARN のまま通す、必須プロパティ欠落を見逃す、または改定後の出典 URL / 参照日が古いままなら FAIL"
     },
     {
       "id": "WT-AC-SEO-05A",
@@ -701,13 +701,13 @@
       "id": "WT-AC-CRAWL-02A",
       "requirement_id": "WT-FR-CRAWL-02",
       "polarity": "positive",
-      "oracle": "クローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無が WT-UI-11 に表示される"
+      "oracle": "クローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無と、llms.txt の既定出力の効果実証に使う時系列アクセス計測が WT-UI-11 に表示される"
     },
     {
       "id": "WT-AC-CRAWL-02B",
       "requirement_id": "WT-FR-CRAWL-02",
       "polarity": "negative",
-      "oracle": "指標のいずれかが表示されない、URL・時刻・ステータス・応答時間・ページ種別で確認できない、または人の閲覧を混ぜれば FAIL"
+      "oracle": "指標のいずれかが表示されない、効果実証用のアクセス時系列を追えない、URL・時刻・ステータス・応答時間・ページ種別で確認できない、または人の閲覧を混ぜれば FAIL"
     },
     {
       "id": "WT-AC-CRAWL-03A",
@@ -737,13 +737,13 @@
       "id": "WT-AC-AB-01A",
       "requirement_id": "WT-FR-AB-01",
       "polarity": "positive",
-      "oracle": "SP 幅の既定案を基準に section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す"
+      "oracle": "共通の配信定義に device 別差分を持たせ、主たる確認面をサイト設定で選べ（既定は SP 幅）、SP / PC の両幅で section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す"
     },
     {
       "id": "WT-AC-AB-01B",
       "requirement_id": "WT-FR-AB-01",
       "polarity": "negative",
-      "oracle": "SP 既定が選べない、variant 配信がテーマファイルの変更を要する、bot に別 variant を返す、または cookie 固定割当で再現できなければ FAIL"
+      "oracle": "device 別差分が持てない、両幅で配信と計測が検査できない、variant 配信がテーマファイルの変更を要する、bot に別 variant を返す、または cookie 固定割当で再現できなければ FAIL"
     },
     {
       "id": "WT-AC-AB-02A",
@@ -773,25 +773,25 @@
       "id": "WT-AC-IMG-01A",
       "requirement_id": "WT-FR-IMG-01",
       "polarity": "positive",
-      "oracle": "全 subsize が WebP で生成され、対応環境の AVIF、GIF アニメ・短尺動画の WebM と fallback MP4、picture + srcset、hero の fetchpriority=high、その他の lazy が確認できる。第三者画像最適化プラグイン検出時はテーマの生成が止まり配信だけになる"
+      "oracle": "WP 7.1 のブラウザ側画像処理が第一経路となり、全 subsize が WebP で生成され、対応環境の AVIF、GIF アニメ・短尺動画の WebM と fallback MP4、picture + srcset、hero の fetchpriority=high、その他の lazy が確認できる。hero の指定はコアの filter 経由で、その他はコアの自動判定となり、第三者画像最適化プラグイン検出時はテーマの生成が止まり配信だけになる"
     },
     {
       "id": "WT-AC-IMG-01B",
       "requirement_id": "WT-FR-IMG-01",
       "polarity": "negative",
-      "oracle": "WebP / WebM の生成または fallback がない、検出後も生成が二重、hero とその他の読込優先度が区別されない、または動画属性 autoplay muted loop playsinline が欠ければ FAIL"
+      "oracle": "ブラウザを通らない経路以外でサーバー側変換を重ねる、WebP / WebM の生成または fallback がない、検出後も生成が二重、hero の fetchpriority をコア filter 外で二重指定する、hero とその他の読込優先度が区別されない、または動画属性 autoplay muted loop playsinline が欠ければ FAIL"
     },
     {
       "id": "WT-AC-IMG-02A",
       "requirement_id": "WT-FR-IMG-02",
       "polarity": "positive",
-      "oracle": "5MB 超・一括処理が非同期ジョブとなり、WT-UI-10 と MCP で進行を確認でき、既存画像の dry-run が対象件数と削減見込みを返す"
+      "oracle": "ブラウザを通らない CLI / REST / MCP 経路と既存画像の再生成だけがサーバー側非同期ジョブとなり、WT-UI-10 と MCP で進行を確認でき、既存画像の dry-run が対象件数と削減見込みを返す"
     },
     {
       "id": "WT-AC-IMG-02B",
       "requirement_id": "WT-FR-IMG-02",
       "polarity": "negative",
-      "oracle": "大量処理が同期実行でタイムアウトする、dry-run の件数・削減見込みがない、または変換ツール不在時の委譲・手動経路がないなら FAIL"
+      "oracle": "ブラウザ側とサーバー側で二重処理する、大量処理が同期実行でタイムアウトする、dry-run の件数・削減見込みがない、または変換ツール不在時の委譲・手動経路がないなら FAIL"
     },
     {
       "id": "WT-AC-IMG-03A",
@@ -809,19 +809,19 @@
       "id": "WT-AC-NFR-PERF-02A",
       "requirement_id": "WT-NFR-PERF-02",
       "polarity": "positive",
-      "oracle": "SP 幅を基準に語彙ごとの CSS が使用ページ分だけ出力され、ビルド短縮化、critical CSS inline、残りの非同期読込、自己ホストフォントの font-display: swap、ページ種別ごとの JSON 予算検査が PASS"
+      "oracle": "共通 CSS が fluid で適用され、device 別差分が必要な幅だけ出力され、語彙ごとの CSS が使用ページ分だけ SP / PC の両幅で出力される。ビルド短縮化、critical CSS inline、残りの非同期読込、自己ホストフォントの font-display: swap、ページ種別ごとの JSON 予算検査が PASS"
     },
     {
       "id": "WT-AC-NFR-PERF-02B",
       "requirement_id": "WT-NFR-PERF-02",
       "polarity": "negative",
-      "oracle": "SP 幅で未使用 CSS が出る、critical CSS が無い、フォントが swap でない、または JS / CSS / 画像予算超過を通せば FAIL"
+      "oracle": "SP / PC のいずれかで未使用 CSS が出る、device 別差分が共通定義を迂回する、critical CSS が無い、フォントが swap でない、または JS / CSS / 画像予算超過を通せば FAIL"
     },
     {
       "id": "WT-AC-NFR-PERF-03A",
       "requirement_id": "WT-NFR-PERF-03",
       "polarity": "positive",
-      "oracle": "SP 幅を主たる面として記事・LP・一覧・商品比較の 4 種別で Lighthouse / Core Web Vitals を測定し、LCP 2.5s・INP 200ms・CLS 0.1 の閾値が CI blocking gate に接続される"
+      "oracle": "サイト設定で選んだ主たる測定面（既定は SP 幅）を含む SP / PC の両幅で記事・LP・一覧・商品比較の 4 種別の Lighthouse / Core Web Vitals を測定し、LCP 2.5s・INP 200ms・CLS 0.1 の閾値が CI blocking gate に接続される"
     },
     {
       "id": "WT-AC-NFR-PERF-03B",
@@ -1037,61 +1037,61 @@
       "id": "WT-AC-SP-01A",
       "requirement_id": "WT-FR-SP-01",
       "polarity": "positive",
-      "oracle": "SP 幅の面・語彙・パーツが既定として選ばれ、PC は SP の派生として追加面を選べ、theme.json の尺度が SP 基準から fluid に拡張される"
+      "oracle": "面・語彙・パーツの共通宣言が fluid で適用され、SP / PC の device 別差分を個別に選べ、主たる確認面をサイト設定で選択できる（既定は SP）。theme.json の尺度が両幅で検査される"
     },
     {
       "id": "WT-AC-SP-01B",
       "requirement_id": "WT-FR-SP-01",
       "polarity": "negative",
-      "oracle": "PC が主たる既定面になる、SP の既定値が列挙されない、または theme.json の尺度が SP 基準を持たなければ FAIL"
+      "oracle": "共通宣言がなく幅ごとの差分を個別編集できない、設定した主たる確認面が反映されない、device 別差分が列挙されない、または両幅の theme.json 尺度検査がなければ FAIL"
     },
     {
       "id": "WT-AC-SP-02A",
       "requirement_id": "WT-FR-SP-02",
       "polarity": "positive",
-      "oracle": "SP ヘッダー、ドロワー、3〜5 タブの下部固定、SP 専用広告面を選択でき、電話・メッセージアプリ・資料 DL・目次・トップへを既存 slot の範囲で配置できる"
+      "oracle": "SP ヘッダー、ドロワー、3〜5 タブの下部固定、SP 専用広告面を device 別差分として選択でき、PC 側にも同じ構造の差分と検査があり、電話・メッセージアプリ・資料 DL・目次・トップへを既存 slot の範囲で配置できる"
     },
     {
       "id": "WT-AC-SP-02B",
       "requirement_id": "WT-FR-SP-02",
       "polarity": "negative",
-      "oracle": "SP ヘッダー / ドロワー / 下部固定 / 専用広告面のいずれかが選べない、固定面が PC にも無条件で出る、または既存 slot と別の未宣言面を追加すれば FAIL"
+      "oracle": "SP ヘッダー / ドロワー / 下部固定 / 専用広告面のいずれかが選べない、PC 側の同構造の差分・検査がない、固定面が PC にも無条件で出る、重いブロックを Block Visibility で隠す、または既存 slot と別の未宣言面を追加すれば FAIL"
     },
     {
       "id": "WT-AC-SP-03A",
       "requirement_id": "WT-FR-SP-03",
       "polarity": "positive",
-      "oracle": "JSON の語彙契約に比較の横スクロール / カード、タブのアコーディオン、目次の開閉、ギャラリーのスワイプ、CTA の全幅 / sticky が現れ、AI 選択と管理画面 / MCP の SP プレビューが一致する"
+      "oracle": "JSON の共通語彙契約に device 別差分として比較の横スクロール / カード、タブのアコーディオン、目次の開閉、ギャラリーのスワイプ、CTA の全幅 / sticky が現れ、AI 選択と管理画面 / MCP の SP / PC プレビューが一致する"
     },
     {
       "id": "WT-AC-SP-03B",
       "requirement_id": "WT-FR-SP-03",
       "polarity": "negative",
-      "oracle": "SP の語彙挙動が JSON にない、AI が挙動未選択のまま配信する、または管理画面と MCP の SP プレビューが不一致なら FAIL"
+      "oracle": "device 別の語彙挙動が JSON にない、AI が挙動未選択のまま配信する、PC 側の検査がない、または管理画面と MCP の SP / PC プレビューが不一致なら FAIL"
     },
     {
       "id": "WT-AC-NFR-SP-01A",
       "requirement_id": "WT-NFR-SP-01",
       "polarity": "positive",
-      "oracle": "SP のタップ対象が 44px 以上、本文文字が 16px 以上、横スクロールが 0 で、固定面・ドロワー・同意バーが本文 / CTA を隠さず規定の積層順になる"
+      "oracle": "SP のタップ対象が 44px 以上、本文文字が 16px 以上、横スクロールが 0 で、PC 側にも共通 + device 別差分の同構造があり、固定面・ドロワー・同意バーが両幅で本文 / CTA を隠さず規定の積層順になる"
     },
     {
       "id": "WT-AC-NFR-SP-01B",
       "requirement_id": "WT-NFR-SP-01",
       "polarity": "negative",
-      "oracle": "44px 未満のタップ対象、16px 未満の本文文字、横スクロール、固定面による本文 / CTA の隠れ、または積層順違反が 1 件でもあれば FAIL"
+      "oracle": "44px 未満のタップ対象、16px 未満の本文文字、横スクロール、両幅のいずれかで固定面による本文 / CTA の隠れ、PC 側の同構造欠落、または積層順違反が 1 件でもあれば FAIL"
     },
     {
       "id": "WT-AC-NFR-SP-02A",
       "requirement_id": "WT-NFR-SP-02",
       "polarity": "positive",
-      "oracle": "代表ページ種別の Lighthouse mobile・スクリーンショット比較・ローカル Docker 実機相当ゲート、管理画面 / MCP の SP プレビュー、SP 主体の CWV / 速度測定、device type 別の A/B・CV 集計が同じ revision に束縛される"
+      "oracle": "サイト設定で選んだ主たる確認面（既定 SP）と PC の両幅について、代表ページ種別の Lighthouse mobile / PC 幅・スクリーンショット比較・ローカル Docker 実機相当ゲート、管理画面 / MCP の SP / PC プレビュー、両幅の CWV / 速度測定、device type 別の A/B・CV 集計が同じ revision に束縛される"
     },
     {
       "id": "WT-AC-NFR-SP-02B",
       "requirement_id": "WT-NFR-SP-02",
       "polarity": "negative",
-      "oracle": "SP の mobile 検査または CWV 測定が欠ける、SP プレビューが一方の操作面にしかない、device type が集計にない、または未実施のテーマA / B 実使用を証跡として扱えば FAIL"
+      "oracle": "SP / PC のいずれかの検査または CWV 測定が欠ける、両幅のプレビューが一方の操作面にしかない、device type が集計にない、または未実施のテーマA / B 実使用を証跡として扱えば FAIL"
     },
     {
       "id": "WT-AC-TAG-01A",
@@ -1109,37 +1109,37 @@
       "id": "WT-AC-TAG-02A",
       "requirement_id": "WT-FR-TAG-02",
       "polarity": "positive",
-      "oracle": "一つの version 付き JSON データ層契約に表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type が定義され、CV ID・variant ID・section ID・device type が必須項目として外部タグから read-only 参照できる"
+      "oracle": "一つの version 付き JSON データ層契約に表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type が定義され、3 カテゴリから Consent Mode v2 の 7 種への写像表と head slot の consent default 最初の注入順があり、CV ID・variant ID・section ID・device type が必須項目として外部タグから read-only 参照できる"
     },
     {
       "id": "WT-AC-TAG-02B",
       "requirement_id": "WT-FR-TAG-02",
       "polarity": "negative",
-      "oracle": "イベントが別々の未 version 契約に分かれる、必須 ID が欠ける、外部タグがテーマ内部の判定経路を読む、または契約外のイベントを受け入れれば FAIL"
+      "oracle": "イベントが別々の未 version 契約に分かれる、7 種への写像表がない、consent default が head slot の最初でない、必須 ID が欠ける、外部タグがテーマ内部の判定経路を読む、または契約外のイベントを受け入れれば FAIL"
     },
     {
       "id": "WT-AC-TAG-03A",
       "requirement_id": "WT-FR-TAG-03",
       "polarity": "positive",
-      "oracle": "必須・計測・広告の同意カテゴリがデータ層に出て、同意前は該当タグが発火せず、同意後に遅延発火し、サーバー側も同意なしイベントを保存せず、既存パーツの同意バーまたは検出した第三者信号の一方だけが使われる"
+      "oracle": "必須・計測・広告の 3 同意カテゴリが運用者向け表示単位としてデータ層に出て 7 種へ写像され、head slot の consent default が最初に注入され、同意前は該当タグが発火せず、同意後に遅延発火し、サーバー側も同意なしイベントを保存せず、既存パーツの同意バーまたは検出した第三者信号の一方だけが使われる"
     },
     {
       "id": "WT-AC-TAG-03B",
       "requirement_id": "WT-FR-TAG-03",
       "polarity": "negative",
-      "oracle": "同意前に計測 / 広告タグが発火する、同意なしイベントを保存する、第三者同意管理の検出後もテーマの同意バーを出す、または同意バーを新規 8 ブロック目として数えれば FAIL"
+      "oracle": "consent default が head slot の最初でない、同意前に計測 / 広告タグが発火する、同意なしイベントを保存する、7 種への写像がない、第三者同意管理の検出後もテーマの同意バーを出す、または同意バーを新規 8 ブロック目として数えれば FAIL"
     },
     {
       "id": "WT-AC-NFR-TAG-01A",
       "requirement_id": "WT-NFR-TAG-01",
       "polarity": "positive",
-      "oracle": "同意前非発火、データ層必須項目、3 slot 外のスクリプト 0、同意なし保存 0、タグ転送の性能予算内が自動検査で PASS する"
+      "oracle": "同意前非発火、データ層必須項目、Consent Mode v2 7 種への写像、head slot の consent default 最初の注入順、3 slot 外のスクリプト 0、同意なし保存 0、タグ転送の性能予算内が自動検査で PASS する"
     },
     {
       "id": "WT-AC-NFR-TAG-01B",
       "requirement_id": "WT-NFR-TAG-01",
       "polarity": "negative",
-      "oracle": "同意前発火、必須項目欠落、slot 外スクリプト、同意なし保存、またはタグ転送の予算超過が 1 件でもあれば FAIL"
+      "oracle": "同意前発火、必須項目欠落、7 種への写像欠落、consent default の注入順違反、slot 外スクリプト、同意なし保存、またはタグ転送の予算超過が 1 件でもあれば FAIL"
     },
     {
       "id": "WT-AC-TR-PLUGIN-03A",
