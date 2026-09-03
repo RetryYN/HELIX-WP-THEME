@@ -17,7 +17,7 @@ for (const [pat, list] of Object.entries(byP)) {
     const thumb = await p.evaluate(async (src) => {
       const img = new Image(); img.src = src; await img.decode();
       const c = document.createElement("canvas"); c.width = 234; c.height = 506;
-      c.getContext("2d").drawImage(img, 0, 0, 390, 844, 0, 0, 234, 506);
+      const dpr=img.naturalWidth/390; c.getContext("2d").drawImage(img, 0, 0, 390*dpr, 844*dpr, 0, 0, 234, 506);
       return c.toDataURL("image/webp", 0.8);
     }, data);
     out[pat].push({ id: r.id, country: r.country, genre: r.genre, thumb });
