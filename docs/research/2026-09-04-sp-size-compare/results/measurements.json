@@ -1,0 +1,372 @@
+{
+  "measured_at": "2026-09-04",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 2
+  },
+  "post": "ours-* / ref-tt5: ID 475 /design-proto-article/（ローカル）。theme-a / theme-b: 実運用サイトの最新記事 1 本（URL は非公開）",
+  "method": "Playwright getComputedStyle + getBoundingClientRect（scripts/measure-sp.js。本文コンテナ = 20 文字超の p を最も多く含む最深祖先、ボタン = 背景色付き padding≥8px の a/button）。単位 px。PC は 1280×800 DSF1。",
+  "note": "theme-a / theme-b は実運用サイト上の公開ページ計測（2026-09-04、GET のみ）。ours-* / ref-tt5 はローカル WP の同一投稿。記事が異なるため FV 文字数・記事高さは参考値。",
+  "series": {
+    "theme-a": {
+      "label": "テーマA（親）— 実運用サイト site-A 上の計測",
+      "status": "measured_on_live_site",
+      "measured_at": "2026-09-04",
+      "source": "実運用サイトの公開ページ（トップ + 最新記事 1 本）を GET のみで計測。ローカル同一投稿ではないため記事長・文字数依存の項目は参考値。",
+      "theme_identification": "site-A の HTML でテーマ CSS/JS の読込パスが theme-a 系 slug 配下（17 参照）、body/article クラスの接頭辞も同 slug。generator meta は WP 標準ではなく site-kit 系のため WP 版は不明。",
+      "html_font_size": 10,
+      "body_font_size": 16,
+      "body_line_height": null,
+      "content_inner_width": 360,
+      "content_side_gutter": 15,
+      "paragraph": {
+        "fontSize": 14.5,
+        "lineHeight": 25.23,
+        "marginTop": 33,
+        "marginBottom": 33,
+        "fontSizeMode": 14.5,
+        "fontWeight": "300"
+      },
+      "h1": {
+        "fontSize": 19.6,
+        "lineHeight": 27.44,
+        "marginTop": 12,
+        "marginBottom": 0,
+        "height": 54.84,
+        "chars": 31,
+        "lines": 2
+      },
+      "h2": {
+        "fontSize": 18.85,
+        "lineHeight": 24.51,
+        "marginTop": 52.8,
+        "marginBottom": 27,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "fontSizeMode": 18.85
+      },
+      "h3": {
+        "fontSize": 16.68,
+        "lineHeight": 21.68,
+        "marginTop": 36.3,
+        "marginBottom": 27
+      },
+      "button": {
+        "fontSize": 16.2,
+        "height": 53.69,
+        "paddingTop": 12.75,
+        "paddingBottom": 12.75,
+        "paddingLeft": 30.99,
+        "paddingRight": 48.99
+      },
+      "header_height": 135.31,
+      "site_title_font_size": 26,
+      "h1_top": 495.5,
+      "first_paragraph_top": 642.73,
+      "visible_body_chars_in_first_view": 88,
+      "article_doc_height": 32228,
+      "top_page": {
+        "header_height": 135.31,
+        "hero_height": 330,
+        "hero_note": "スライダー（概算、スクリーンショット目視。main 直下がページ全体のため自動計測不可）",
+        "h1_font_size": null,
+        "doc_height": 9031
+      },
+      "pc_1280": {
+        "article": {
+          "html_font_size": 10,
+          "content_inner_width": 740,
+          "paragraph_font_size": 16,
+          "paragraph_line_height": 31.2,
+          "h1_font_size": 28.5,
+          "h2_font_size": 26.4,
+          "h3_font_size": 21.6,
+          "header_height": 91,
+          "site_title_font_size": 30,
+          "first_paragraph_top": 891.03,
+          "button": {
+            "fontSize": 18,
+            "height": 70.09
+          }
+        },
+        "top": {
+          "header_height": 91,
+          "doc_height": 9692
+        }
+      },
+      "extra": {
+        "header_rows": 2,
+        "header_note": "ロゴ行（約 75px）+ アイコン付きナビ行（約 60px）を header 要素が含む。その下に CTA 帯（約 55px）が別要素で続く",
+        "eyecatch_above_title": true,
+        "consent_banner_fixed_height": 0,
+        "fixed_bottom_note": "初回計測で 95px の固定要素が一時的に検出されたが再計測で非表示（スクロール連動のバー）。cookie バナーは無し"
+      }
+    },
+    "theme-b": {
+      "label": "テーマB（親）— 実運用サイト site-B 上の計測",
+      "status": "measured_on_live_site",
+      "measured_at": "2026-09-04",
+      "source": "実運用サイトの公開ページ（トップ + 最新記事 1 本）を GET のみで計測。ローカル同一投稿ではないため記事長・文字数依存の項目は参考値。",
+      "theme_identification": "site-B の HTML でテーマ CSS/JS の読込パスが theme-b 系 slug 配下（20 参照）、レイアウトクラスは l-/p-/c- 接頭辞の BEM。generator meta は site-kit 系のため WP 版は不明。",
+      "html_font_size": 14.04,
+      "body_font_size": 14.04,
+      "body_line_height": 22.46,
+      "content_inner_width": 358.81,
+      "content_side_gutter": 15.59,
+      "paragraph": {
+        "fontSize": 15,
+        "lineHeight": 27,
+        "marginTop": 0,
+        "marginBottom": 30,
+        "fontSizeMode": 15,
+        "fontWeight": "400"
+      },
+      "h1": {
+        "fontSize": 19.5,
+        "lineHeight": 27.3,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "height": 81.89,
+        "chars": 35,
+        "lines": 3
+      },
+      "h2": {
+        "fontSize": 18,
+        "lineHeight": 25.2,
+        "marginTop": 72,
+        "marginBottom": 36,
+        "paddingTop": 13.5,
+        "paddingLeft": 18,
+        "fontSizeMode": 18
+      },
+      "h3": {
+        "fontSize": 16.5,
+        "lineHeight": 23.1,
+        "marginTop": 49.5,
+        "marginBottom": 33
+      },
+      "button": null,
+      "header_height": 49,
+      "site_title_font_size": 19.5,
+      "h1_top": 109.08,
+      "first_paragraph_top": 667.63,
+      "visible_body_chars_in_first_view": 74,
+      "article_doc_height": 43744,
+      "top_page": {
+        "header_height": 49,
+        "hero_height": 1368,
+        "hero_note": "main 直下の最初のブロック（記事カルーセル + 新着タブ一覧）。ヒーロー見出しは無い",
+        "h1_font_size": 14.04,
+        "doc_height": 2724
+      },
+      "pc_1280": {
+        "article": {
+          "html_font_size": 16,
+          "content_inner_width": 828,
+          "paragraph_font_size": 17,
+          "paragraph_line_height": 30.6,
+          "h1_font_size": 24,
+          "h2_font_size": 23.8,
+          "h3_font_size": 22.1,
+          "header_height": 95,
+          "site_title_font_size": 24,
+          "first_paragraph_top": 1010.11,
+          "button": null
+        },
+        "top": {
+          "header_height": 95,
+          "doc_height": 2380
+        }
+      },
+      "extra": {
+        "header_rows": 1,
+        "header_note": "1 段（ハンバーガー + サイト名 + 検索）49px。パンくず 40px が続く",
+        "eyecatch_above_title": false,
+        "consent_banner_fixed_height": 0,
+        "fixed_bottom_note": "固定バナー無し",
+        "button_note": "記事内にボタン様要素なし（SNS シェア帯は 4 分割 ~43px）"
+      }
+    },
+    "ours-light": {
+      "label": "本テーマ 親 light",
+      "status": "measured",
+      "html_font_size": 16,
+      "body_font_size": 16,
+      "body_line_height": 25.6,
+      "content_inner_width": 326,
+      "content_side_gutter": 32,
+      "paragraph": {
+        "fontSize": 17,
+        "lineHeight": 30.6,
+        "marginTop": 24,
+        "marginBottom": 0
+      },
+      "h1": {
+        "fontSize": 48,
+        "lineHeight": 52.8,
+        "marginTop": 32.16,
+        "marginBottom": 32.16,
+        "height": 316.78
+      },
+      "h2": {
+        "fontSize": 36,
+        "lineHeight": 43.2,
+        "marginTop": 24,
+        "marginBottom": 0
+      },
+      "h3": {
+        "fontSize": 20,
+        "lineHeight": 24,
+        "marginTop": 24,
+        "marginBottom": 0
+      },
+      "button": {
+        "fontSize": 16,
+        "height": 56.8,
+        "paddingTop": 14,
+        "paddingBottom": 14,
+        "paddingLeft": 32,
+        "paddingRight": 32
+      },
+      "header_height": 149,
+      "site_title_font_size": 20,
+      "article_first_block_height": 500.27,
+      "article_first_block": "an-post-header wp-block-template-part",
+      "h1_top": 259.55,
+      "first_paragraph_top": 751.86,
+      "visible_body_chars_in_first_view": 19,
+      "article_doc_height": 7588,
+      "top_page": {
+        "header_height": 149,
+        "hero_height": 701.56,
+        "hero_block": "wp-block-group alignfull an-section an-section--home_hero has-secondary-background-color has-background is-layout-constrained wp-container-core-group-is-layout-8e6aaff5 wp-block-group-is-layout-constrained",
+        "h1_font_size": 48,
+        "doc_height": 6641
+      },
+      "extra": {
+        "consent_banner_fixed_height": 370,
+        "effective_first_view_height": 474,
+        "header_rows": 2,
+        "h1_lines": 6,
+        "h1_chars": 36,
+        "h1_chars_per_line_max": 6,
+        "post_header_part_height": 500
+      }
+    },
+    "ours-compare": {
+      "label": "本テーマ wt-proto compare",
+      "status": "measured",
+      "html_font_size": 16,
+      "body_font_size": 16,
+      "body_line_height": 25.6,
+      "content_inner_width": 326,
+      "content_side_gutter": 32,
+      "paragraph": {
+        "fontSize": 17,
+        "lineHeight": 30.6,
+        "marginTop": 24,
+        "marginBottom": 0
+      },
+      "h1": {
+        "fontSize": 48,
+        "lineHeight": 52.8,
+        "marginTop": 32.16,
+        "marginBottom": 32.16,
+        "height": 316.78
+      },
+      "h2": {
+        "fontSize": 36,
+        "lineHeight": 43.2,
+        "marginTop": 24,
+        "marginBottom": 0
+      },
+      "h3": {
+        "fontSize": 20,
+        "lineHeight": 24,
+        "marginTop": 24,
+        "marginBottom": 0
+      },
+      "button": {
+        "fontSize": 16,
+        "height": 56.8,
+        "paddingTop": 14,
+        "paddingBottom": 14,
+        "paddingLeft": 32,
+        "paddingRight": 32
+      },
+      "header_height": 149,
+      "site_title_font_size": 20,
+      "article_first_block_height": 500.27,
+      "article_first_block": "an-post-header wp-block-template-part",
+      "h1_top": 259.55,
+      "first_paragraph_top": 756.45,
+      "visible_body_chars_in_first_view": 19,
+      "article_doc_height": 8745,
+      "top_page": {
+        "header_height": 149,
+        "hero_height": 701.56,
+        "hero_block": "wp-block-group alignfull an-section an-section--home_hero has-secondary-background-color has-background is-layout-constrained wp-container-core-group-is-layout-8e6aaff5 wp-block-group-is-layout-constrained",
+        "h1_font_size": 48,
+        "doc_height": 6681
+      }
+    },
+    "ref-tt5": {
+      "label": "参考: WP 同梱既定テーマ（Twenty Twenty-Five）— 参考",
+      "status": "measured",
+      "html_font_size": 16,
+      "body_font_size": 18.27,
+      "body_line_height": 25.58,
+      "content_inner_width": 330,
+      "content_side_gutter": 30,
+      "paragraph": {
+        "fontSize": 18.27,
+        "lineHeight": 25.58,
+        "marginTop": 19.2,
+        "marginBottom": 0
+      },
+      "h1": {
+        "fontSize": 35.33,
+        "lineHeight": 39.75,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "height": 158.94
+      },
+      "h2": {
+        "fontSize": 28.27,
+        "lineHeight": 31.81,
+        "marginTop": 19.2,
+        "marginBottom": 0
+      },
+      "h3": {
+        "fontSize": 18.27,
+        "lineHeight": 20.56,
+        "marginTop": 19.2,
+        "marginBottom": 0
+      },
+      "button": {
+        "fontSize": 16.14,
+        "height": 54.59,
+        "paddingTop": 16,
+        "paddingBottom": 16,
+        "paddingLeft": 36,
+        "paddingRight": 36
+      },
+      "header_height": 65.59,
+      "site_title_font_size": 18.27,
+      "article_first_block_height": 4998.88,
+      "article_first_block": "wp-block-group alignfull has-global-padding is-layout-constrained wp-block-group-is-layout-constrained",
+      "h1_top": 125.59,
+      "first_paragraph_top": 423.69,
+      "visible_body_chars_in_first_view": 139,
+      "article_doc_height": 5819,
+      "top_page": {
+        "header_height": 65.59,
+        "hero_height": 39.73,
+        "hero_block": "wp-block-heading has-text-align-left",
+        "h1_font_size": 35.33,
+        "doc_height": 4387
+      }
+    }
+  }
+}
