@@ -10,7 +10,7 @@
 | PerPostToggles | sidebar / toc / share / pr の投稿メタ 4 キーを切り替える |
 | ZoneSlot | 共有 slot 6 種とゾーン語彙 23 種の置き場所。空なら描画しない |
 | SectionOutline / SectionTools | H2 / H3 の階層 section 境界と安定 ID をエディタに表示し、区間単位の差し替え・リライト（diff → apply / rollback）・順序入れ替え・面の挿入・表示制御を AI を介さず操作する |
-| VocabBlocks | 記事内語彙 14 種の受け皿（core + block style / 新規ブロック 7: 吹き出し・タブ・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束）。同意バーは新規ブロックに数えず、既存パーツ（core ブロック + block style）として扱う |
+| VocabBlocks | 記事内語彙 14 種の受け皿（core + block style / 新規ブロック 6 + 空き 1 枠: 吹き出し・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束）。同意バーは新規ブロックに数えず、既存パーツ（core ブロック + block style）として扱う |
 | TocAnchor | 目次の配置意図（埋め込み / フロート追従 / 開閉ボタン、既定は最初の h2 直前）とページ種別ごとの表示条件・block style。目次本体は機械導出で一級要素にしない |
 | PrNotice | PR 表記。広告パーツ / アフィリエイト / 商品リンクの有無から機械判定し該当ページだけに控えめに自動出力。選べるのは表示デザインと表示ページ制御。編集者が消せない |
 | JsonLdEmitter / CollectionJsonLd | 単一出力元の構造化データ。型ごとに 1 本。一覧は CollectionPage、WebSite は name / alternateName / url のみとし SearchAction は出さない。FAQPage / HowTo は JSON-LD にせず、ItemList は本文語彙から導出する |
@@ -31,3 +31,17 @@
 | EvidenceLedger / EvidenceLink | 実証記録行（パターン ID・参照元 commit・証跡パス・ゲート結果）と証跡リンク。他リポの項目は持たない。secret 値・実サイト情報は表示しない |
 
 表示 field は `docs/requirements/l3/traceability.json` の surface relation へ 1 つ以上で接続する。
+
+## S3 WT-UI-10 / WT-UI-11 追加要素
+
+| element | contract |
+| --- | --- |
+| AuthorReviewerPanel | 著者・監修者の名前・経歴・資格・sameAs・画像を正本として管理し、著者欄・監修者欄・著者アーカイブへ反映する |
+| RecommendationPanel | 関連・人気・おすすめを分け、人気の集計方式・期間と手動おすすめ順を選ぶ。自前集計は IP なしの日次集約だけを許可する |
+| TypographyPanel | 和文フォントの複数系統、unicode-range サブセット、size-adjust、OFL 表記、速度予算を確認する |
+| ReadbackPanel / LinkHealthPanel / HostCapabilityPanel | 集計読み戻し、商品・本文外部リンクの HEAD 検査警告、PHP / DB / 画像 / cron / cache / WAF / SMTP の capability を同じ JSON で表示する |
+| SelectionSetTransfer | template part・global styles・設定・商品・zone のスラッグ参照を export / import し、staging dry-run から production apply へ進める |
+| CrawlerLedger / LogRetentionPanel | 4 分類、公式 endpoint・鮮度、未検証 UA、非準拠、cache origin、生行・日次集約・容量上限を区別して表示する |
+| ConsentPrivacyPanel / AssetLedger | 同意の時刻・版・カテゴリ・撤回、外部送信公表、privacy tools、OFL / 画像 metadata / SECURITY.md の台帳を確認する |
+
+J-09 の reader-facing AI disclosure と J-13 の dark mode は要素化しない。

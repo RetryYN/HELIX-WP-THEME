@@ -22,3 +22,7 @@ pair_artifact: docs/test-design/l11-user-acceptance-test-design.md
 | WT-UI-11 | `/wp-admin/admin.php?page=theme-crawl` | WT-SCR-11 | P1 | normal/cancel/failure/timeout |
 
 `N/A` は公開面（read-only）に取消がなく、編集面には timeout を伴う外部呼び出しがないため。CLI ゲートは docker 起動待ち、制御面は dry-run の timeout を持つ。
+
+## S3 画面数の維持
+
+S3 の追加要求は既存 11 画面のタブ・要素・検査項目へ投影する。新規画面や新規 route は作らない。WT-UI-10 は設定・読み戻し・運用警告、WT-UI-11 はクローラー台帳・生ログ・集約を担当する。

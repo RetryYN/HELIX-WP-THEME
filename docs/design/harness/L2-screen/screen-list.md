@@ -4,7 +4,7 @@ sub_doc: screen-list
 status: candidate_projection
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
 source_authority: docs/requirements/l2/screen-list.md
-source_sha256: 4114e5353e4ecb88f82ab00518268cae15757d381883c8fdad37f91eb2b7ffa3
+source_sha256: 2a65b838d0a1f77296311dc5daefcb90837b3b8433c8e6b6027412c3265a4619
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 next_pair_freeze: L10
 implemented_screens: ""
@@ -28,3 +28,7 @@ HELIX reader 用の非正本 ID 対応表。route と状態契約の正本は `d
 | PM-09 | WT-UI-09 | WT-SCR-09 | `docs/evidence/ledger.jsonl` | `docs/requirements/l2/screen-list.md` |
 | PM-10 | WT-UI-10 | WT-SCR-10 | `/wp-admin/admin.php?page=theme-settings` | `docs/requirements/l2/screen-list.md` |
 | PM-11 | WT-UI-11 | WT-SCR-11 | `/wp-admin/admin.php?page=theme-crawl` | `docs/requirements/l2/screen-list.md` |
+
+## S3 projection note
+
+S3 は既存 11 画面の追加タブ・要素へ投影し、新規 route を作らない。
