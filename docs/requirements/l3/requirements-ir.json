@@ -492,7 +492,7 @@
         "WT-BR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、尺度は SP 基準から PC の fluid 拡張へ派生する",
+      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、theme.json の共通尺度は fluid で定義し、device 別差分を個別に編集・検査する",
       "priority": "P0",
       "actor_ids": [
         "EDITOR"
@@ -1343,7 +1343,7 @@
         "WT-NFRL1-16",
         "WT-CAND-PERF"
       ],
-      "statement": "記事・LP・一覧・商品比較は SP 幅を主たる確認面として JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
+      "statement": "記事・LP・一覧・商品比較は 主たる描画・計測面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を検査し、 JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1645,7 +1645,7 @@
         "WT-SCR-05",
         "WT-CAND-AB"
       ],
-      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、SP 幅の既定案を基準に、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
+      "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、共通の配信定義に device 別差分を持たせ、主たる確認面はサイト設定で選び、SP / PC の両幅で配信と計測を検査し、、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -1841,7 +1841,7 @@
         "WT-SCR-07",
         "WT-CAND-PERF"
       ],
-      "statement": "記事・LP・一覧・商品比較で SP 幅を主たる面とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
+      "statement": "記事・LP・一覧・商品比較で 主たる測定面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を測定対象とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う",
       "priority": "P0",
       "actor_ids": [
         "GATE",
