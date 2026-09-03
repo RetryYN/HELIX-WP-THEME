@@ -509,7 +509,7 @@
       "id": "WT-AC-NFR-PERF-01A",
       "requirement_id": "WT-NFR-PERF-01",
       "polarity": "positive",
-      "oracle": "主たる描画面（サイト設定、既定 SP 幅）と PC 幅の両方で記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0"
+      "oracle": "サイト設定で選んだ主たる描画面（既定は SP 幅）を含む SP / PC の両幅で記事・LP・一覧・商品比較の JS 無し表示が成立し、必要な JS と第三者スクリプトが遅延注入され、予算超過 0、未使用ブロック CSS 0"
     },
     {
       "id": "WT-AC-NFR-PERF-01B",
@@ -737,7 +737,7 @@
       "id": "WT-AC-AB-01A",
       "requirement_id": "WT-FR-AB-01",
       "polarity": "positive",
-      "oracle": "共通の配信定義に device 別差分を持たせ、SP / PC の両幅で section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す"
+      "oracle": "共通の配信定義に device 別差分を持たせ、主たる確認面をサイト設定で選べ（既定は SP 幅）、SP / PC の両幅で section、hero / CTA / 商品テーブル、LP 全体の variant を DB 上の選択として登録し、cookie 固定割当で配信でき、bot には既定案だけを返す"
     },
     {
       "id": "WT-AC-AB-01B",
@@ -821,7 +821,7 @@
       "id": "WT-AC-NFR-PERF-03A",
       "requirement_id": "WT-NFR-PERF-03",
       "polarity": "positive",
-      "oracle": "主たる測定面（サイト設定、既定 SP 幅）と PC 幅の両方で記事・LP・一覧・商品比較の 4 種別の Lighthouse / Core Web Vitals を測定し、LCP 2.5s・INP 200ms・CLS 0.1 の閾値が CI blocking gate に接続される"
+      "oracle": "サイト設定で選んだ主たる測定面（既定は SP 幅）を含む SP / PC の両幅で記事・LP・一覧・商品比較の 4 種別の Lighthouse / Core Web Vitals を測定し、LCP 2.5s・INP 200ms・CLS 0.1 の閾値が CI blocking gate に接続される"
     },
     {
       "id": "WT-AC-NFR-PERF-03B",
