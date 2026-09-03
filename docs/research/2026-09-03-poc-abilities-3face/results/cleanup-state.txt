@@ -1,0 +1,15 @@
+mu-plugins:
+total 8
+drwxr-xr-x 2 root     root     4096 Sep  3 12:56 .
+drwxr-xr-x 8 www-data www-data 4096 Aug 30 17:04 ..
+plugins:
+name	status	update	version	update_version	auto_update
+akismet	inactive	available	5.6	5.7.2	off
+hello	inactive	none	1.7.2		off
+abilities:
+["core\/get-site-info","core\/get-user-info","core\/get-environment-info"]
+app passwords (admin):
+name
+poc posts:
+0rest namespaces:
+['oembed/1.0', 'wp/v2', 'wp-site-health/v1', 'wp-block-editor/v1', 'wp-abilities/v1']

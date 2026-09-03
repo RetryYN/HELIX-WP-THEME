@@ -1,0 +1,170 @@
+{
+  "verdict": "partial",
+  "post": {
+    "id": 506,
+    "blocks": 12,
+    "invalid_blocks": []
+  },
+  "viewports": {
+    "390": {
+      "tabs_display": "flex",
+      "tablist_display": "contents",
+      "visible_panel": {
+        "initial": 0,
+        "click_tab2": 1,
+        "arrow_right": 1,
+        "arrow_right_enter": 2,
+        "arrow_left": 2,
+        "arrow_left_space": 1
+      },
+      "focus_after_arrow_right": "Pricing",
+      "tab_key_enters_panel": true,
+      "buttons_top": [
+        85,
+        144,
+        420
+      ],
+      "panels_top_height": [
+        [
+          0,
+          0
+        ],
+        [
+          202,
+          218
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "aria": {
+        "tablist": "tablist",
+        "tabs": [
+          {
+            "role": "tab",
+            "selected": "false",
+            "tabindex": "-1",
+            "controls": "tabs_2-tab-0",
+            "id": "tab__tabs_2-tab-0"
+          },
+          {
+            "role": "tab",
+            "selected": "true",
+            "tabindex": "0",
+            "controls": "tabs_2-tab-1",
+            "id": "tab__tabs_2-tab-1"
+          },
+          {
+            "role": "tab",
+            "selected": "false",
+            "tabindex": "-1",
+            "controls": "tabs_2-tab-2",
+            "id": "tab__tabs_2-tab-2"
+          }
+        ],
+        "panels": [
+          {
+            "tag": "section",
+            "role": "tabpanel",
+            "hidden": true,
+            "id": "tabs_2-tab-0"
+          },
+          {
+            "tag": "section",
+            "role": "tabpanel",
+            "hidden": false,
+            "id": "tabs_2-tab-1"
+          },
+          {
+            "tag": "section",
+            "role": "tabpanel",
+            "hidden": true,
+            "id": "tabs_2-tab-2"
+          }
+        ]
+      },
+      "aria_snapshot": "- tablist \"Tabbed content\":\n  - tab \"Overview ▼\"\n  - tab \"Specs ▲\" [selected]\n  - tab \"Pricing ▼\"\n- tabpanel \"Specs ▲\":\n  - paragraph: \"Tab two paragraph: specification details.\"\n  - figure:\n    - table:\n      - rowgroup:\n        - row \"Item 2-1 Value 2-1\":\n          - cell \"Item 2-1\"\n          - cell \"Value 2-1\"\n        - row \"Item 2-2 Value 2-2\":\n          - cell \"Item 2-2\"\n          - cell \"Value 2-2\""
+    },
+    "1280": {
+      "tabs_display": "block",
+      "tablist_display": "flex",
+      "visible_panel": {
+        "initial": 0,
+        "click_tab2": 1,
+        "arrow_right": 1,
+        "arrow_right_enter": 2,
+        "arrow_left": 2,
+        "arrow_left_space": 1
+      },
+      "focus_after_arrow_right": "Pricing",
+      "tab_key_enters_panel": true,
+      "buttons_top": [
+        339,
+        339,
+        339
+      ],
+      "panels_top_height": [
+        [
+          0,
+          0
+        ],
+        [
+          425,
+          153
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "aria": {
+        "tablist": "tablist",
+        "tabs": [
+          {
+            "role": "tab",
+            "selected": "false",
+            "tabindex": "-1",
+            "controls": "tabs_2-tab-0",
+            "id": "tab__tabs_2-tab-0"
+          },
+          {
+            "role": "tab",
+            "selected": "true",
+            "tabindex": "0",
+            "controls": "tabs_2-tab-1",
+            "id": "tab__tabs_2-tab-1"
+          },
+          {
+            "role": "tab",
+            "selected": "false",
+            "tabindex": "-1",
+            "controls": "tabs_2-tab-2",
+            "id": "tab__tabs_2-tab-2"
+          }
+        ],
+        "panels": [
+          {
+            "tag": "section",
+            "role": "tabpanel",
+            "hidden": true,
+            "id": "tabs_2-tab-0"
+          },
+          {
+            "tag": "section",
+            "role": "tabpanel",
+            "hidden": false,
+            "id": "tabs_2-tab-1"
+          },
+          {
+            "tag": "section",
+            "role": "tabpanel",
+            "hidden": true,
+            "id": "tabs_2-tab-2"
+          }
+        ]
+      },
+      "aria_snapshot": "- tablist \"Tabbed content\":\n  - tab \"Overview\"\n  - tab \"Specs\" [selected]\n  - tab \"Pricing\"\n- tabpanel \"Specs\":\n  - paragraph: \"Tab two paragraph: specification details.\"\n  - figure:\n    - table:\n      - rowgroup:\n        - row \"Item 2-1 Value 2-1\":\n          - cell \"Item 2-1\"\n          - cell \"Value 2-1\"\n        - row \"Item 2-2 Value 2-2\":\n          - cell \"Item 2-2\"\n          - cell \"Value 2-2\""
+    }
+  }
+}

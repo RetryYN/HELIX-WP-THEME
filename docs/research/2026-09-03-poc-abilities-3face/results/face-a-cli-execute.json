@@ -1,0 +1,51 @@
+{
+    "read": {
+        "header_part": "header-a",
+        "header_candidates": [
+            "header-a",
+            "header-b",
+            "header-c"
+        ],
+        "template_variant": "variant-1",
+        "template_variants": [
+            "variant-1",
+            "variant-2"
+        ]
+    },
+    "dry_run": {
+        "diff": {
+            "header_part": {
+                "from": "header-a",
+                "to": "header-b"
+            }
+        },
+        "receipt": "wt-dryrun-6d222389dcaf0f21"
+    },
+    "apply_without_receipt": {
+        "error": "wt_receipt_required",
+        "msg": "A dry-run receipt is required before apply."
+    },
+    "apply_bogus_receipt": {
+        "error": "wt_receipt_mismatch"
+    },
+    "apply_with_receipt": {
+        "applied": true,
+        "state": {
+            "header_part": "header-b",
+            "template_variant": "variant-1"
+        }
+    },
+    "read_after": {
+        "header_part": "header-b",
+        "header_candidates": [
+            "header-a",
+            "header-b",
+            "header-c"
+        ],
+        "template_variant": "variant-1",
+        "template_variants": [
+            "variant-1",
+            "variant-2"
+        ]
+    }
+}

@@ -1,0 +1,220 @@
+{
+    "core/tabs": {
+        "api_version": 3,
+        "parent": null,
+        "allowed_blocks": [
+            "core/tab-list",
+            "core/tab-panels"
+        ],
+        "supports": {
+            "align": true,
+            "anchor": true,
+            "color": {
+                "text": true,
+                "background": true,
+                "__experimentalDefaultControls": {
+                    "text": true,
+                    "background": true
+                }
+            },
+            "layout": {
+                "allowEditing": false
+            },
+            "html": false,
+            "interactivity": true,
+            "spacing": {
+                "blockGap": true,
+                "margin": true,
+                "padding": true
+            },
+            "typography": {
+                "fontSize": true,
+                "__experimentalFontFamily": true
+            }
+        },
+        "attributes": [
+            "activeTabIndex",
+            "editorActiveTabIndex",
+            "lock",
+            "metadata",
+            "align",
+            "className",
+            "style",
+            "backgroundColor",
+            "textColor",
+            "fontSize",
+            "fontFamily",
+            "layout",
+            "anchor"
+        ],
+        "styles": [],
+        "render_callback": true
+    },
+    "core/tab-list": {
+        "api_version": 3,
+        "parent": [
+            "core/tabs"
+        ],
+        "allowed_blocks": null,
+        "supports": {
+            "html": false,
+            "ariaLabel": true,
+            "visibility": false,
+            "lock": false,
+            "color": {
+                "background": true,
+                "text": true,
+                "__experimentalSkipSerialization": true,
+                "__experimentalDefaultControls": {
+                    "background": true,
+                    "text": true
+                }
+            },
+            "typography": {
+                "fontSize": true,
+                "__experimentalFontFamily": true
+            },
+            "__experimentalBorder": {
+                "color": true,
+                "radius": true,
+                "style": true,
+                "width": true,
+                "__experimentalSkipSerialization": true
+            },
+            "layout": {
+                "default": {
+                    "type": "flex",
+                    "flexWrap": "wrap"
+                },
+                "allowVerticalAlignment": false,
+                "allowOrientation": false,
+                "allowWrap": false
+            },
+            "spacing": {
+                "padding": true,
+                "blockGap": true,
+                "__experimentalSkipSerialization": [
+                    "padding"
+                ],
+                "__experimentalDefaultControls": {
+                    "padding": true,
+                    "blockGap": true
+                }
+            }
+        },
+        "attributes": [
+            "tabs",
+            "lock",
+            "metadata",
+            "className",
+            "style",
+            "backgroundColor",
+            "textColor",
+            "fontSize",
+            "fontFamily",
+            "borderColor",
+            "layout",
+            "ariaLabel"
+        ],
+        "styles": [],
+        "render_callback": true
+    },
+    "core/tab-panels": {
+        "api_version": 3,
+        "parent": [
+            "core/tabs"
+        ],
+        "allowed_blocks": [
+            "core/tab-panel"
+        ],
+        "supports": {
+            "html": false,
+            "visibility": false,
+            "lock": false,
+            "color": {
+                "background": true,
+                "text": true,
+                "heading": true,
+                "link": true,
+                "__experimentalDefaultControls": {
+                    "background": true,
+                    "text": true
+                }
+            },
+            "spacing": {
+                "padding": true
+            },
+            "typography": {
+                "fontSize": true,
+                "__experimentalFontFamily": true
+            },
+            "__experimentalBorder": {
+                "radius": true,
+                "color": true,
+                "width": true,
+                "style": true
+            }
+        },
+        "attributes": [
+            "lock",
+            "metadata",
+            "className",
+            "style",
+            "backgroundColor",
+            "textColor",
+            "fontSize",
+            "fontFamily",
+            "borderColor"
+        ],
+        "styles": [],
+        "render_callback": false
+    },
+    "core/tab-panel": {
+        "api_version": 3,
+        "parent": [
+            "core/tab-panels"
+        ],
+        "allowed_blocks": null,
+        "supports": {
+            "anchor": true,
+            "html": false,
+            "color": {
+                "background": true,
+                "text": true,
+                "__experimentalDefaultControls": {
+                    "background": true,
+                    "text": true
+                }
+            },
+            "layout": true,
+            "spacing": {
+                "blockGap": true,
+                "padding": true
+            },
+            "typography": {
+                "fontSize": true,
+                "__experimentalFontFamily": true,
+                "__experimentalDefaultControls": {
+                    "fontSize": true,
+                    "__experimentalFontFamily": true
+                }
+            },
+            "visibility": false
+        },
+        "attributes": [
+            "label",
+            "lock",
+            "metadata",
+            "className",
+            "style",
+            "backgroundColor",
+            "textColor",
+            "fontSize",
+            "fontFamily",
+            "layout",
+            "anchor"
+        ],
+        "styles": [],
+        "render_callback": true
+    }
+}

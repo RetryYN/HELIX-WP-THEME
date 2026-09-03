@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "試作: サービス LP",
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "primary", "color": "#0d9488", "name": "Primary" },
+        { "slug": "secondary", "color": "#ecfdfa", "name": "Secondary" },
+        { "slug": "accent", "color": "#ff4d6d", "name": "Accent" },
+        { "slug": "accent-aa", "color": "#c8173a", "name": "Accent AA (白文字対応)" },
+        { "slug": "background", "color": "#ffffff", "name": "Background" },
+        { "slug": "foreground", "color": "#0f172a", "name": "Foreground" },
+        { "slug": "footer-bg", "color": "#0f766e", "name": "Footer Background" },
+        { "slug": "muted", "color": "#64748b", "name": "Muted" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        { "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif", "slug": "body", "name": "Body" },
+        { "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif", "slug": "heading", "name": "Heading" },
+        { "fontFamily": "ui-monospace, monospace", "slug": "mono", "name": "Monospace" }
+      ]
+    }
+  },
+  "styles": {
+    "typography": { "fontFamily": "var(--wp--preset--font-family--body)" },
+    "elements": {
+      "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--heading)" }, "color": { "text": "var(--wp--preset--color--primary)" } },
+      "button": { "border": { "radius": "999px" }, "typography": { "fontWeight": "800", "fontSize": "1.125rem" }, "spacing": { "padding": { "top": "1.125rem", "bottom": "1.125rem", "left": "2.5rem", "right": "2.5rem" } } }
+    },
+    "css": ".wp-block-button__link{box-shadow:0 6px 0 rgba(0,0,0,.18)}"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "試作: コーポレート",
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "primary", "color": "#1f2a44", "name": "Primary" },
+        { "slug": "secondary", "color": "#f2f3f5", "name": "Secondary" },
+        { "slug": "accent", "color": "#8a6d3b", "name": "Accent" },
+        { "slug": "accent-aa", "color": "#6e5327", "name": "Accent AA (白文字対応)" },
+        { "slug": "background", "color": "#fbfbfc", "name": "Background" },
+        { "slug": "foreground", "color": "#2b2f36", "name": "Foreground" },
+        { "slug": "footer-bg", "color": "#1a2238", "name": "Footer Background" },
+        { "slug": "muted", "color": "#6b7280", "name": "Muted" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        { "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif", "slug": "body", "name": "Body" },
+        { "fontFamily": "'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', serif", "slug": "heading", "name": "Heading" },
+        { "fontFamily": "ui-monospace, monospace", "slug": "mono", "name": "Monospace" }
+      ]
+    }
+  },
+  "styles": {
+    "typography": { "fontFamily": "var(--wp--preset--font-family--body)" },
+    "elements": {
+      "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--heading)" }, "color": { "text": "var(--wp--preset--color--primary)" } },
+      "button": { "border": { "radius": "0px" }, "typography": { "fontWeight": "500", "letterSpacing": "0.06em" } }
+    },
+    "css": ".wp-block-post-content > p{text-indent:1em} h2.wp-block-heading{letter-spacing:.04em;border-bottom:1px solid var(--wp--preset--color--muted);padding-bottom:.35rem}"
+  }
+}
