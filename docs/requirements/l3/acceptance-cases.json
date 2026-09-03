@@ -86,6 +86,18 @@
       "oracle": "重なりや順序違反があれば FAIL"
     },
     {
+      "id": "WT-AC-ZONE-03C",
+      "requirement_id": "WT-FR-ZONE-03",
+      "polarity": "positive",
+      "oracle": "ゾーン割当に広告・バナーの面積上限が宣言され、初回表示で同意バー以外のモーダルが出ず、LP 単位設定で例外を選べ、G-E1 が両方を検査する"
+    },
+    {
+      "id": "WT-AC-ZONE-03D",
+      "requirement_id": "WT-FR-ZONE-03",
+      "polarity": "negative",
+      "oracle": "面積上限を超える割当、LP 設定なしの初回モーダル、または G-E1 が検査しない場合は FAIL"
+    },
+    {
       "id": "WT-AC-PARTS-01A",
       "requirement_id": "WT-FR-PARTS-01",
       "polarity": "positive",
@@ -996,6 +1008,18 @@
       "requirement_id": "WT-FR-BANNER-01",
       "polarity": "negative",
       "oracle": "PC / SP または alt・有効期間が欠落、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL"
+    },
+    {
+      "id": "WT-AC-BANNER-01C",
+      "requirement_id": "WT-FR-BANNER-01",
+      "polarity": "positive",
+      "oracle": "お知らせバーがバナー正本から派生してヘッダー直下 slot に出て、閉じた状態が端末側に記憶される"
+    },
+    {
+      "id": "WT-AC-BANNER-01D",
+      "requirement_id": "WT-FR-BANNER-01",
+      "polarity": "negative",
+      "oracle": "お知らせバーが正本と別管理、slot 外、または閉じ状態が記憶されなければ FAIL"
     },
     {
       "id": "WT-AC-BANNER-02A",

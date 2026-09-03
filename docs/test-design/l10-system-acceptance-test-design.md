@@ -13,7 +13,7 @@
 | WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域と同意管理・計測で第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、本体に移行コードが無い | いずれかの領域で同型出力 2 本、同意信号を無視、切替不可、または本体に移行コード・移行プラグイン・互換固有名なら FAIL | plugin matrix（7 領域）+ consent fixture + static analysis |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot に共通宣言と device 別差分を置くと SP / PC の該当位置に描画され、両幅の検査を通過し、空なら DOM に残らない | 空 slot が空要素や領域見出しを出す、または重い面を Block Visibility だけで出し分ければ FAIL | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
-| WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
+| WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し CTA と重ならず、面積上限内で初回表示に同意バー以外のモーダルが出ない（LP は設定で例外） | 重なり・順序違反・面積超過・LP 設定なしの初回モーダルがあれば FAIL | Playwright |
 | WT-AT-PARTS-01 | WT-FR-PARTS-01 | 共通宣言と device 別差分の差し替え後に骨格差分（テンプレ・パーツ参照）が表示され、SP / PC の保存結果が公開面へ反映される | 差し替えで参照欠落（G-S2）、device 別差分の未宣言、または invalid が出れば FAIL | Playwright + G-S2 |
 | WT-AT-PARTS-02 | WT-FR-PARTS-02 | wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない | header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL | parts reference test |
 | WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画される。新規ブロックは 6 つ + 空き 1 枠（上限 7）に限定される | 受け皿のない語彙、または 8 つ目の新規ブロックがあれば FAIL | vocab fixture |
@@ -87,7 +87,7 @@
 | WT-AT-CV-02 | WT-FR-CV-02 | 資料ダウンロードでフォーム入力からメール送付と即時ダウンロードを選べ、完了がデータ層契約のマイクロ CV として計測され、非公開ファイルへ署名付き期限 URL で到達する。第三者フォーム検出時は送信・同意確認を譲り二重送信を起こさない | 非公開でないファイルを恒久 URL で配布する、完了イベントがない、署名または期限を検証しない、検出後に二重送信する、または consent なしに入力を保存すれば FAIL | download + data-layer + plugin receipt |
 | WT-AT-CV-03 | WT-FR-CV-03 | CTA の主文言と任意 microcopy を候補から選択でき、microcopy 未選択でも公開前エラーにならず、A/B・section の結果を CV ID で集計できる | microcopy が必須化される、候補選択ができない、CV ID が欠落する、またはテーマ内で A/B の判定を行えば FAIL | CTA fixture + tracking receipt |
 | WT-AT-CV-NFR-01 | WT-NFR-CV-01 | リード情報の保存先・保持期間・consent が宣言され、consent を取得した場合だけ保存され、外部連携は署名付き webhook までである | 保存先・保持期間・consent が不明、consent なしに保存、テーマ内に CRM / MA がある、または署名なし連携を行えば FAIL | privacy + webhook receipt |
-| WT-AT-BANNER-01 | WT-FR-BANNER-01 | PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示できる | PC / SP または alt・有効期間が欠落、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL | banner fixture + render receipt |
+| WT-AT-BANNER-01 | WT-FR-BANNER-01 | PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示でき、お知らせバーが正本から派生し閉じ状態を端末側に記憶する | PC / SP または alt・有効期間が欠落、お知らせバーが別管理、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL | banner fixture + render receipt |
 | WT-AT-BANNER-02 | WT-FR-BANNER-02 | バナーの impression / click をデータ層契約から CV ID・A/B variant ID・section ID・device type 単位で追跡し、WT-UI-10 と MCP 常用パックから登録・差し替え・停止でき、3 種の警告を表示する | 必須 ID が計測から欠落、期限切れ・リンク切れ・計測ゼロを警告しない、rel="sponsored" または PR 判定が欠ける、または広告配信タグをテーマが持てば FAIL | banner + data-layer receipt |
 | WT-AT-AUDIT-01 | WT-FR-AUDIT-01 | HELIX 側の指摘を対象・種別・重さ・根拠・修正案付きで受け取り、WT-UI-10 と記事一覧バッジから対象 section へ移動し、適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通る | 対象へ移動できない、適用が差分レビューを迂回する、却下・保留が反映されない、またはテーマが監査の判定を生成すれば FAIL | audit + diff receipt |
 | WT-AT-AUDIT-02 | WT-FR-AUDIT-02 | alt・速度予算・構造化データ・見出し階層だけを決定論的に検査し、その他の指摘を HELIX 側の結果として表示し、サイト集計を JSON / CSV export と MCP 取得できる | テーマが判断を要する監査結果を生成する、機械検査項目を再現不能な判定にする、export がない、または MCP と画面の集計が不一致なら FAIL | audit export + MCP receipt |

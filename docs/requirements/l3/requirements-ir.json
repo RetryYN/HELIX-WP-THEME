@@ -248,7 +248,7 @@
         "WT-SCR-06",
         "WT-CAND-ZONE"
       ],
-      "statement": "SP 下部固定領域の積層は 同意バー > メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページトップは footer 内",
+      "statement": "SP 下部固定領域の積層は 同意バー > メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページトップは footer 内。ビューポート内で広告・バナーが占める面積の上限をゾーン割当に宣言し（値は PoC でテーマA / テーマB の実測から確定）、初回表示のモーダルは同意バーを除き禁止する。LP は LP 単位の設定で例外を許容する。いずれも G-E1 で検査する（PO 2026-09-03、WT-Q-ZONE-02）",
       "priority": "P2",
       "actor_ids": [
         "EDITOR"
@@ -258,7 +258,9 @@
       ],
       "acceptance_ids": [
         "WT-AC-ZONE-03A",
-        "WT-AC-ZONE-03B"
+        "WT-AC-ZONE-03B",
+        "WT-AC-ZONE-03C",
+        "WT-AC-ZONE-03D"
       ],
       "test_ids": [
         "WT-AT-ZONE-03"
@@ -2215,7 +2217,7 @@
         "WT-SCR-05",
         "WT-CAND-BANNER"
       ],
-      "statement": "バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生する。ゾーンに割り当ててページ種別・カテゴリ・記事単位で固定またはローテーション表示し、速度予算に画像を含める",
+      "statement": "バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生する。ゾーンに割り当ててページ種別・カテゴリ・記事単位で固定またはローテーション表示し、速度予算に画像を含める。お知らせバーは本正本から派生し（有効期間・リンク・種別）、ZONE-03 のヘッダー直下 slot に置き、閉じた状態は端末側に記憶する（WT-Q-PARTS-02）",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -2227,7 +2229,9 @@
       ],
       "acceptance_ids": [
         "WT-AC-BANNER-01A",
-        "WT-AC-BANNER-01B"
+        "WT-AC-BANNER-01B",
+        "WT-AC-BANNER-01C",
+        "WT-AC-BANNER-01D"
       ],
       "test_ids": [
         "WT-AT-BANNER-01"
