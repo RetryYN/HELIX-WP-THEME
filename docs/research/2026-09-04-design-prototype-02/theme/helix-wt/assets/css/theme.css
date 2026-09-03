@@ -1,0 +1,177 @@
+/* HELIX WT prototype 02 — 尺度は docs/research/2026-09-04-site-survey §6 */
+:root{--wt-header-h:var(--wp--custom--header-height,60px)}
+html{-webkit-text-size-adjust:100%}
+body{font-feature-settings:"palt" 0;overflow-wrap:anywhere}
+img{height:auto;max-width:100%}
+
+/* ヘッダー: 1 段 60px、固定 */
+.wt-header{position:sticky;top:0;z-index:50;background:var(--wp--preset--color--base);border-bottom:1px solid var(--wp--preset--color--line)}
+.wt-header__row{min-height:var(--wt-header-h)}
+.wt-header .wp-block-site-title{line-height:1;margin:0}
+.wt-header__cta .wp-block-button__link{padding:.75rem 1rem;font-size:.8125rem}
+.wt-btn-s .wp-block-button__link{padding:.75rem 1rem;font-size:.8125rem}
+.wt-header .wp-block-navigation__responsive-container-open{padding:0;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open{padding:var(--wt-header-h) var(--wp--custom--gutter) 2rem;background:var(--wp--preset--color--base)}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container{gap:0}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom:1px solid var(--wp--preset--color--line);width:100%}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{display:block;padding:.9rem 0;font-size:1rem}
+@media (max-width:599px){.wt-header__cta{display:none}}
+
+/* ボタン: 高 46 */
+.wp-block-button__link{min-height:var(--wp--custom--button-height);display:inline-flex;align-items:center;justify-content:center;transition:background-color .15s,transform .15s}
+.wp-block-button__link:hover{transform:translateY(-1px)}
+.wp-block-button.is-style-wt-pill .wp-block-button__link{border-radius:999px}
+.wp-block-button.is-style-outline .wp-block-button__link{border:1.5px solid currentColor;background:transparent;color:var(--wp--preset--color--accent)}
+
+/* 見出しスタイル */
+.wp-block-heading.is-style-wt-bar{padding-left:.75rem;border-left:4px solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-underline{padding-bottom:.5rem;border-bottom:2px solid var(--wp--preset--color--contrast)}
+
+/* 囲み */
+.wp-block-group.is-style-wt-note,.wp-block-group.is-style-wt-point,.wp-block-group.is-style-wt-warn{padding:1rem 1.25rem;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem}
+.wp-block-group.is-style-wt-note{background:var(--wp--preset--color--surface)}
+.wp-block-group.is-style-wt-point{background:var(--wp--preset--color--accent-soft);border-left:4px solid var(--wp--preset--color--accent)}
+.wp-block-group.is-style-wt-warn{background:#fff4ec;border-left:4px solid var(--wp--preset--color--cta)}
+.wp-block-group.is-style-wt-note>:first-child,.wp-block-group.is-style-wt-point>:first-child,.wp-block-group.is-style-wt-warn>:first-child{margin-top:0}
+.wp-block-group.is-style-wt-note>:last-child,.wp-block-group.is-style-wt-point>:last-child,.wp-block-group.is-style-wt-warn>:last-child{margin-bottom:0}
+
+/* カード */
+.wt-card,.wp-block-group.is-style-wt-card,.wp-block-group.is-style-wt-card-shadow{background:var(--wp--preset--color--base);border-radius:var(--wp--custom--radius-m);overflow:hidden}
+.wp-block-group.is-style-wt-card{border:1px solid var(--wp--preset--color--line);padding:1.25rem}
+.wp-block-group.is-style-wt-card-shadow{box-shadow:var(--wp--preset--shadow--soft);padding:1.25rem}
+.wt-card .wp-block-post-featured-image{margin-bottom:.5rem}
+.wt-card .wp-block-post-title a{text-decoration:none;color:inherit}
+.wt-cardlist{gap:1.5rem 1.25rem}
+@media (max-width:599px){.wt-cardlist{grid-template-columns:1fr!important}}
+
+/* チェックリスト */
+.wp-block-list.is-style-wt-check{list-style:none;padding-left:0}
+.wp-block-list.is-style-wt-check li{position:relative;padding-left:1.75rem;margin-bottom:.5rem}
+.wp-block-list.is-style-wt-check li::before{content:"";position:absolute;left:0;top:.35em;width:1.1em;height:1.1em;border-radius:50%;background:var(--wp--preset--color--accent)}
+.wp-block-list.is-style-wt-check li::after{content:"";position:absolute;left:.3em;top:.55em;width:.5em;height:.3em;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg)}
+
+/* 比較表 */
+.wp-block-table.is-style-wt-compare{overflow-x:auto}
+.wp-block-table.is-style-wt-compare table{min-width:560px;border-collapse:separate;border-spacing:0}
+.wp-block-table.is-style-wt-compare th,.wp-block-table.is-style-wt-compare td{border:0;border-bottom:1px solid var(--wp--preset--color--line);padding:.75rem .75rem;vertical-align:top}
+.wp-block-table.is-style-wt-compare thead th{background:var(--wp--preset--color--surface);font-size:.8125rem;white-space:nowrap}
+.wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td:first-child{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line)}
+.wp-block-table figcaption{text-align:left}
+
+/* 記事 */
+.wt-article .wp-block-post-content>*+*{margin-block-start:0}
+.wt-article .wp-block-post-content>h2{margin-top:2.5rem;margin-bottom:1rem}
+.wt-article .wp-block-post-content>h3{margin-top:2rem;margin-bottom:.75rem}
+.wt-article .wp-block-post-content>p,.wt-article .wp-block-post-content>ul,.wt-article .wp-block-post-content>ol{margin-bottom:1rem}
+.wt-breadcrumb p{margin:0}.wt-breadcrumb a{color:inherit;text-decoration:none}
+.wt-meta .wp-block-post-author-name{font-weight:500}
+.wt-toc{background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m);padding:1rem 1.25rem;margin-block:1.5rem}
+.wt-toc summary{font-weight:700;cursor:pointer;font-size:.9375rem}
+.wt-toc ol{margin:.75rem 0 0;padding-left:1.25rem;font-size:.9375rem}.wt-toc li{margin:.35rem 0}.wt-toc a{text-decoration:none;color:inherit}
+.wt-lead{font-size:var(--wp--preset--font-size--l);color:var(--wp--preset--color--mute);line-height:1.7}
+.wp-block-details{margin-bottom:0}.wp-block-details summary{font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:1.5rem}
+.wp-block-details summary::-webkit-details-marker{display:none}
+.wp-block-details summary::after{content:"+";position:absolute;right:0;top:0;color:var(--wp--preset--color--accent);font-weight:700}
+.wp-block-details[open] summary::after{content:"−"}
+.wp-block-details>:not(summary){margin-top:.75rem;font-size:.9375rem;color:var(--wp--preset--color--mute)}
+
+/* 商品カード・レビュー */
+.wt-product{display:grid;grid-template-columns:120px 1fr;gap:1rem;align-items:start}
+@media (max-width:479px){.wt-product{grid-template-columns:1fr}}
+.wt-stars{color:#f0a500;letter-spacing:.05em;font-size:.875rem}
+.wt-badge{display:inline-block;font-size:.6875rem;font-weight:700;padding:.2rem .5rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);margin-right:.5rem}
+.wt-badge--cta{background:#fff0e6;color:var(--wp--preset--color--cta)}
+
+/* 数字訴求 */
+.wt-num{font-family:var(--wp--preset--font-family--latin);font-size:var(--wp--preset--font-size--hero);font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--wp--preset--color--accent)}
+.wt-num small{font-size:.45em;margin-left:.15em;color:var(--wp--preset--color--contrast)}
+
+/* セクション */
+.wt-section{padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)}
+.wt-eyebrow{font-family:var(--wp--preset--font-family--latin);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wp--preset--color--accent);margin-bottom:.5rem}
+.wt-hero{padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)}
+.wt-hero .wp-block-buttons{margin-top:1.5rem}
+.wt-hero__visual{aspect-ratio:4/3;border-radius:var(--wp--custom--radius-l);background:linear-gradient(135deg,#dfe7fb,#f4f6f9);min-height:200px}
+.wt-photo{background:linear-gradient(160deg,#c9d4ea,#e6ebf3);border-radius:var(--wp--custom--radius-s)}
+.wt-steps{counter-reset:s}.wt-steps>.wp-block-group{position:relative;padding-left:3rem}
+.wt-steps>.wp-block-group::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;font-family:var(--wp--preset--font-family--latin);font-weight:700;color:var(--wp--preset--color--accent);font-size:1.25rem}
+.wt-plan--featured{border-color:var(--wp--preset--color--accent)!important;box-shadow:0 0 0 1px var(--wp--preset--color--accent)}
+.wt-price{font-family:var(--wp--preset--font-family--latin);font-size:2rem;font-weight:700;line-height:1}
+.wt-price small{font-size:.875rem;font-weight:500;color:var(--wp--preset--color--mute)}
+
+/* 出現アニメ（IO、reduced-motion 尊重） */
+@media (prefers-reduced-motion:no-preference){
+.wt-reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.wt-reveal.is-in{opacity:1;transform:none}}
+
+/* ヘッダー順: CTA → ハンバーガー（SP）。PC はハンバーガー非表示 */
+@media (max-width:599px){.wt-header__cta{display:block}.wt-header__cta .wp-block-button__link{padding:.6rem .9rem;font-size:.75rem;min-height:38px}}
+@media (min-width:600px){.wt-header .wp-block-navigation__responsive-container-open:not(.always-shown){display:none}}
+
+/* 見出し付きボックス: 3 型（帯 / タブ / ラベル） */
+.wt-box{position:relative;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);margin-block:1.5rem;background:var(--wp--preset--color--base)}
+.wt-box__title{margin:0;font-weight:700;font-size:.9375rem;display:flex;align-items:center;gap:.5rem}
+.wt-box__body{padding:1rem 1.25rem}.wt-box__body>:first-child{margin-top:0}.wt-box__body>:last-child{margin-bottom:0}
+.wt-box--band .wt-box__title{background:var(--wp--preset--color--accent);color:#fff;padding:.6rem 1.25rem;border-radius:calc(var(--wp--custom--radius-m) - 1px) calc(var(--wp--custom--radius-m) - 1px) 0 0}
+.wt-box--band{border-color:var(--wp--preset--color--accent)}
+.wt-box--tab{margin-top:2.4rem}.wt-box--tab .wt-box__title{position:absolute;top:0;left:1rem;transform:translateY(-50%);background:var(--wp--preset--color--base);padding:.15rem .75rem;border:1px solid var(--wp--preset--color--line);border-radius:999px;font-size:.8125rem;color:var(--wp--preset--color--accent)}
+.wt-box--tab .wt-box__body{padding-top:1.25rem}
+.wt-box--label .wt-box__title{padding:.75rem 1.25rem 0;color:var(--wp--preset--color--accent)}
+.wt-box--label .wt-box__body{padding-top:.5rem}
+.wt-box--warn.wt-box--band .wt-box__title{background:var(--wp--preset--color--cta)}.wt-box--warn{border-color:var(--wp--preset--color--cta)}
+.wt-box--soft{background:var(--wp--preset--color--surface);border-color:transparent}
+.wt-box--soft.wt-box--tab .wt-box__title{background:var(--wp--preset--color--surface);border-color:transparent}
+
+/* 吹き出し */
+.wt-talk{display:grid;grid-template-columns:56px 1fr;gap:.75rem;align-items:start;margin-block:1.25rem}
+.wt-talk--r{grid-template-columns:1fr 56px}.wt-talk--r .wt-talk__who{order:2}.wt-talk--r .wt-talk__bubble{order:1}
+.wt-talk__who{text-align:center;font-size:.6875rem;color:var(--wp--preset--color--mute)}.wt-talk__who img{width:56px;height:56px;border-radius:50%;display:block;object-fit:cover;margin-bottom:.25rem;border:1px solid var(--wp--preset--color--line)}
+.wt-talk__bubble{position:relative;background:var(--wp--preset--color--surface);border-radius:12px;padding:.85rem 1rem;font-size:.9375rem}
+.wt-talk__bubble::before{content:"";position:absolute;top:18px;left:-8px;border:8px solid transparent;border-left:0;border-right-color:var(--wp--preset--color--surface)}
+.wt-talk--r .wt-talk__bubble{background:var(--wp--preset--color--accent-soft)}.wt-talk--r .wt-talk__bubble::before{left:auto;right:-8px;border-right:0;border-left:8px solid var(--wp--preset--color--accent-soft)}
+.wt-talk__bubble p{margin:0}
+
+/* ステップ（縦タイムライン） */
+.wt-timeline{list-style:none;padding:0;margin:1.5rem 0;counter-reset:t}
+.wt-timeline>li{position:relative;padding:0 0 1.5rem 3rem;counter-increment:t}
+.wt-timeline>li::before{content:counter(t);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--wp--preset--font-family--latin)}
+.wt-timeline>li::after{content:"";position:absolute;left:calc(1rem - 1px);top:2rem;bottom:0;width:2px;background:var(--wp--preset--color--line)}
+.wt-timeline>li:last-child::after{display:none}.wt-timeline>li:last-child{padding-bottom:0}
+.wt-timeline b{display:block;margin-bottom:.25rem}
+
+/* 評価バー */
+.wt-rate{display:grid;grid-template-columns:7em 1fr 2.5em;gap:.5rem;align-items:center;font-size:.875rem;margin:.4rem 0}
+.wt-rate i{display:block;height:8px;border-radius:4px;background:var(--wp--preset--color--line);overflow:hidden}
+.wt-rate i::before{content:"";display:block;height:100%;width:var(--v);background:var(--wp--preset--color--accent);border-radius:4px}
+.wt-rate b{font-family:var(--wp--preset--font-family--latin);text-align:right}
+
+/* アイコン付きリスト・メリデメ */
+.wt-ilist{list-style:none;padding:0;margin:0 0 1rem}.wt-ilist li{display:flex;gap:.6rem;align-items:flex-start;margin:.45rem 0}.wt-ilist .wt-i{flex:0 0 auto;margin-top:.15em;color:var(--wp--preset--color--accent)}
+.wt-prosc{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-block:1.5rem}@media (max-width:599px){.wt-prosc{grid-template-columns:1fr}}
+.wt-prosc .wt-box{margin:0}.wt-prosc--good .wt-i{color:#1a9c5b}.wt-prosc--bad .wt-i{color:var(--wp--preset--color--cta)}
+
+/* メディア系トップ部品 */
+.wt-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}@media (max-width:899px){.wt-pick{grid-template-columns:repeat(2,1fr)}}@media (max-width:599px){.wt-pick{grid-template-columns:1fr 1fr;gap:.75rem}}
+.wt-pick__item{display:block;color:inherit;text-decoration:none}.wt-pick__item img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m);display:block}
+.wt-pick__cat{display:inline-block;font-size:.6875rem;font-weight:700;color:#fff;background:var(--wp--preset--color--accent);padding:.15rem .5rem;border-radius:3px;margin:.5rem 0 .25rem}
+.wt-pick__title{font-weight:700;font-size:.9375rem;line-height:1.45;margin:0}.wt-pick__date{font-size:.6875rem;color:var(--wp--preset--color--mute)}
+@media (max-width:599px){.wt-pick__title{font-size:.8125rem}}
+.wt-pick--hero{grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto}.wt-pick--hero .wt-pick__item:first-child{grid-row:1/3}
+@media (max-width:899px){.wt-pick--hero{grid-template-columns:1fr 1fr}.wt-pick--hero .wt-pick__item:first-child{grid-column:1/3;grid-row:auto}}
+.wt-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}@media (max-width:599px){.wt-cats{grid-template-columns:1fr 1fr}}
+.wt-cats a{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1rem .5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);text-decoration:none;color:inherit;font-size:.8125rem;font-weight:700;background:var(--wp--preset--color--base)}
+.wt-cats .wt-i{color:var(--wp--preset--color--accent)}
+.wt-rank{list-style:none;padding:0;margin:0;counter-reset:r}.wt-rank li{display:grid;grid-template-columns:2rem 96px 1fr;gap:.75rem;align-items:center;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line);counter-increment:r}
+.wt-rank li::before{content:counter(r);font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:1.25rem;color:var(--wp--preset--color--accent)}
+.wt-rank li:nth-child(1)::before{color:#c9a227}.wt-rank li:nth-child(2)::before{color:#8a8f98}.wt-rank li:nth-child(3)::before{color:#a0623d}
+.wt-rank img{width:96px;aspect-ratio:16/9;object-fit:cover;border-radius:4px}.wt-rank a{color:inherit;text-decoration:none;font-weight:700;font-size:.875rem;line-height:1.45}
+.wt-profile{display:grid;grid-template-columns:96px 1fr;gap:1rem;align-items:start;padding:1.25rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m)}
+.wt-profile img{width:96px;height:96px;border-radius:50%;object-fit:cover}.wt-profile p{margin:.25rem 0;font-size:.875rem}
+.wt-tabs .wp-block-tabs__list{border-bottom:2px solid var(--wp--preset--color--line);gap:0}
+.wt-tabs .wp-block-tabs__tab-label{padding:.75rem 1.25rem;font-weight:700;color:var(--wp--preset--color--mute);border:0;background:none;position:relative}
+.wt-tabs .wp-block-tabs__tab-label[aria-selected="true"]{color:var(--wp--preset--color--contrast)}
+.wt-tabs .wp-block-tabs__tab-label[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--wp--preset--color--accent)}
+.wt-hero__visual img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+.wt-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.wt-feature-icon{width:64px;height:64px;margin-bottom:.75rem}
+@media (min-width:600px){.wt-header__cta{order:2}}
