@@ -39,7 +39,7 @@ destructive ability（`wt/site-selection-apply`）は receipt なしの execute 
 
 ### MCP Adapter の取得・設置
 
-WordPress 公式 MCP Adapter（GitHub release v0.6.1）の zip をホストで取得し、コンテナ内の plugins ディレクトリへ展開する。実際に使った有効化 slug は scripts / results から特定できないため、ここでは `<mcp-adapter-slug>` と記す。
+WordPress 公式 MCP Adapter（GitHub release v0.6.1）の zip をホストで取得し、コンテナ内の plugins ディレクトリへ展開する。有効化 slug は zip 展開後のディレクトリ名で、`docker compose run --rm -T wpcli plugin list --field=name | grep -i mcp` で確認して `<mcp-adapter-slug>` に読み替える（本 PoC の証跡には slug を記録していない）。
 
 ```text
 curl -L <WordPress 公式 MCP Adapter v0.6.1 の GitHub release zip URL> -o <出力先>/mcp-adapter-v0.6.1.zip
@@ -112,11 +112,46 @@ wp mcp-adapter serve --server=wt-pack-server --user=admin
 python scripts/compare-faces.py
 ```
 
+
+### results/ の各ファイルを生成する呼び出し列
+
+上の「3 面の呼び出し」は代表例。`results/face-*.json` は次の呼び出しの応答（body、REST は HTTP status を含む）をそのまま保存したもので、`scripts/compare-faces.py` はこの一式を前提にする。`$AUTH` は `-u "admin:$WP_APP_PASS"`、`$MCP` は `-H "Mcp-Session-Id: $MCP_SESSION_ID" -H 'Content-Type: application/json' -X POST "$WP_BASE_URL/wp-json/mcp/wt-pack"` の略。
+
+| 保存先 | 呼び出し |
+|---|---|
+| face-a-cli-abilities.json | `wpcli --user=admin eval 'echo wp_json_encode( wp_get_abilities() );'` |
+| face-a-cli-execute.json | `wpcli --user=admin eval` で read → dry-run（`header_part: header-b`）→ apply（dry-run の receipt を渡す）を順に execute |
+| face-a-cli-apply-anon.json | `--user` なしで apply を execute（WP_Error を期待） |
+| face-b-rest-abilities-anon.json / -auth.json | `GET /wp-json/wp-abilities/v1/abilities`（`$AUTH` なし / あり） |
+| face-b-rest-run-read-anon.json / -auth.json | `GET .../abilities/wt/site-selection-read/run`（なし / あり） |
+| face-b-rest-run-dryrun-auth.json | `POST .../abilities/wt/site-selection-dry-run/run` `--data '{"header_part":"header-b"}'` |
+| face-b-rest-run-apply-noreceipt-auth.json | `DELETE .../abilities/wt/site-selection-apply/run` `--data '{"header_part":"header-b"}'`（409 を期待） |
+| face-b-rest-run-apply-bogus-auth.json | 同上、`receipt` に任意の偽文字列（409 を期待） |
+| face-b-rest-run-apply-anon.json / -anon-post.json | 同上を `$AUTH` なしで DELETE / POST（401 を期待） |
+| face-b-rest-run-apply-receipt-auth.json | 同上、dry-run 応答の receipt を渡す（200 を期待） |
+| face-b-rest-run-read-after.json | apply 後に read を再取得（`header_part` が header-b に変わる） |
+| face-c-cli-servers.json | `wpcli mcp-adapter list --format=json` |
+| face-c-mcp-wt-pack-initialize.json | `initialize`（上記の代表例。応答ヘッダの `Mcp-Session-Id` を `MCP_SESSION_ID` に） |
+| face-c-mcp-wt-pack-tools-list.json | `$MCP --data '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}'` |
+| face-c-mcp-wt-pack-tools-list-nosession.json | 同上を `Mcp-Session-Id` なしで（-32600 を期待） |
+| face-c-mcp-wt-pack-tools-list-anon.json | 同上を `$AUTH` なしで（401 を期待） |
+| face-c-mcp-wt-pack-call-read.json | `tools/call` `name: wt-site-selection-read` |
+| face-c-mcp-wt-pack-call-dryrun.json | `tools/call` `name: wt-site-selection-dry-run` `arguments: {"header_part":"header-b"}` |
+| face-c-mcp-wt-pack-call-apply-noreceipt.json | `tools/call` `name: wt-site-selection-apply`、receipt なし（`isError: true` を期待） |
+| face-c-mcp-wt-pack-call-apply-receipt.json | 同上、dry-run の receipt を渡す |
+| face-c-mcp-mcp-adapter-default-server-initialize.json / -tools-list.json | `/wp-json/mcp/mcp-adapter-default-server` へ同じ `initialize` / `tools/list` |
+| face-c-mcp-default-call-discover.json | default サーバーへ `tools/call` `name: mcp-adapter-discover-abilities` |
+| face-c-mcp-default-call-execute-apply-noreceipt.json | default サーバーへ `tools/call` `name: mcp-adapter-execute-ability` `arguments: {"ability":"wt/site-selection-apply","parameters":{"header_part":"header-b"}}`（拒否を期待） |
+| face-c-stdio-wt-pack.jsonl | `wp mcp-adapter serve --server=wt-pack-server --user=admin` の stdin へ `initialize` → `tools/list` → `tools/call`（read）を 1 行 1 JSON で流した応答 |
+
+receipt の実値は `<redacted-receipt>` に置換してある（ローカル salt 由来）。
+
 ### 撤去
 
 ```text
 docker exec agent-neo-wp rm -f /var/www/html/wp-content/mu-plugins/zz-wt-pack.php /var/www/html/wp-content/mu-plugins/zz-wt-poc-env.php /var/www/html/wp-content/mu-plugins/wt-pack.json
-docker compose run --rm -T wpcli user application-password delete admin --all
+docker compose run --rm -T wpcli user application-password list admin --fields=uuid,name
+docker compose run --rm -T wpcli user application-password delete admin <wt-poc の uuid>
 docker compose run --rm -T wpcli plugin deactivate <mcp-adapter-slug>
 docker compose run --rm -T wpcli plugin delete <mcp-adapter-slug>
 docker compose run --rm -T wpcli option delete wt_poc_site_selection

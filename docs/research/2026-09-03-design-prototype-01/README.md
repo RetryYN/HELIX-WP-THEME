@@ -101,7 +101,7 @@ LP の順序: hero → problem → agitation → solution → feature → benefi
 - 投稿 476（page、slug `design-proto-lp`、公開）
 - `wp_global_styles` 投稿 479（`wt-proto` 用）
 - コンテナ内子テーマ `wt-proto`
-- 理由: デザイン反復のため（PO に提示済みの試作ページ）。
+- 理由: デザイン反復のため（PO 提示用の試作ページ）。
 
 削除済み:
 

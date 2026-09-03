@@ -9,6 +9,7 @@ before 状態
 - mu-plugins: 空
 - 対象 PoC 投稿: なし
 - option wt_poc_site_selection: なし
+- application password (admin): PoC 開始時の一覧は取得しておらず記録なし。撤去では `--all` を使ったため、PoC 以前に発行済みの鍵があれば併せて削除されている（ローカル docker のみ）。終了時は 0 件
 
 終了時状態（2026-09-03）
 - 有効テーマ: agent-neo-themes/agent-neo-theme
