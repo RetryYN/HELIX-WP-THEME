@@ -2,8 +2,8 @@
 
 - 対象の問い: WT-Q-VOCAB-05 の PoC 課題「コア Tabs + block style で SP はアコーディオン化が成立するか」
 - 実施日: 2026-09-03
-- 環境: ローカル Docker の WordPress 7.1、有効テーマは本リポの試作テーマ、Playwright（Chromium）
-- 環境は終了時に元へ戻した（mu-plugin 削除、テスト投稿削除。`results/cleanup-state.txt`）。`themes/` `plugins/` は変更していない。
+- 環境: ローカル Docker の WordPress 7.1、有効テーマは `agent-neo-themes/agent-neo-theme`、Playwright（Chromium）
+- 終了時状態は `results/cleanup-state.txt`（mu-plugin 削除、テスト投稿削除、有効テーマ `agent-neo-themes/agent-neo-theme`）。`themes/` `plugins/` は変更していない。
 
 ## 結論
 
@@ -35,6 +35,67 @@
 5. `scripts/tabs-frontend.mjs`: 390 / 1280 でスクリーンショット、クリック・矢印・Enter・Space・Tab の各操作後の
    `aria-*` と表示パネル、`getBoundingClientRect` の並び、`ariaSnapshot` を記録（`results/frontend-checks.json`、要約は `results/results.json`）。
 
+## 再現手順
+
+前提:
+
+- `docker compose` で WordPress 7.1 が起動済み（`http://localhost:8086`）。
+- Playwright（Chromium）が別ディレクトリに導入済み。
+- 管理ユーザーは `admin`。
+
+環境変数（`scripts/*.mjs` の実参照名）:
+
+- `BASE_URL`: WordPress のベース URL。未設定時の既定値は `http://localhost:8086`。`WP_BASE_URL` はスクリプトが参照しないため、その名前で渡す場合はスクリプト内の定数を書き換える。
+- `WP_ADMIN_USER`、`WP_ADMIN_PASS`: 管理画面ログイン用。値は記録せず環境変数で渡す。
+- `S`: Playwright の `package.json` があるディレクトリ。各スクリプトは `${S}/package.json` から `playwright` を解決する。
+- `NODE_PATH`: Playwright の `node_modules`。`.mjs` から直接は参照されない。実際のモジュール解決には上記 `S` が使われる。
+- `OUT`: JSON とエディタ画像の出力先。`WT_OUT_DIR` はスクリプトが参照しないため、その名前で渡す場合はスクリプト内の定数を書き換える。
+- `POST_ID`: `tabs-editor-resave.mjs` / `tabs-editor-validate.mjs` が開く投稿 ID。
+- `URL`: `tabs-frontend.mjs` が検証する公開ページ URL。
+- `SHOTS`: `tabs-frontend.mjs` がスクリーンショットを書き出すディレクトリ。
+
+```text
+export BASE_URL=http://localhost:8086
+export WP_ADMIN_USER=admin
+: "${WP_ADMIN_PASS:?WP_ADMIN_PASS を環境変数で指定する}"
+export S=<Playwright の package.json があるディレクトリ>
+export NODE_PATH=<Playwright の node_modules>
+export OUT=<出力先>
+export SHOTS=<スクリーンショット出力先>
+export URL=<対象ページ URL>
+```
+
+mu-plugin を投入する。
+
+```text
+docker cp scripts/zz-wt-tabs-sp.php agent-neo-wp:/var/www/html/wp-content/mu-plugins/zz-wt-tabs-sp.php
+```
+
+`.mjs` は次の順で実行する。`tabs-editor-create.mjs` の出力に含まれる ID を `<ID>` に置き換える。
+
+```text
+node scripts/tabs-editor-create.mjs
+POST_ID=<ID> node scripts/tabs-editor-resave.mjs
+docker compose run --rm -T wpcli --user=admin post update <ID> < scripts/tabs-post-content.html
+node scripts/tabs-frontend.mjs
+```
+
+初回の無効 HTML を検証する場合だけ、create の後、resave の前に次を任意で実行する。
+
+```text
+POST_ID=<ID> node scripts/tabs-editor-validate.mjs
+```
+
+撤去する。
+
+```text
+docker exec agent-neo-wp rm -f /var/www/html/wp-content/mu-plugins/zz-wt-tabs-sp.php
+docker compose run --rm -T wpcli post delete <ID> --force
+docker compose run --rm -T wpcli theme status
+```
+
+最後に `results/cleanup-state.txt` と `docker compose run --rm -T wpcli theme status` 等で、mu-plugin・テスト投稿・有効テーマを確認する。
+
 ## 想定と違った点
 
 1. 手書きの `<!-- wp:tab-list /-->` は無効（editor の save 形式は `div[role=tablist] > button[role=tab]`）。canonical な保存 HTML はエディタ経由で作る必要がある。
@@ -54,3 +115,11 @@
 - `scripts/`: tabs-editor-create.mjs, tabs-editor-resave.mjs, tabs-editor-validate.mjs（初回の無効 HTML 検証用）, tabs-frontend.mjs, zz-wt-tabs-sp.php, tabs-post-content.html
 - `results/`: block-registry.json, core-block-sources.txt, editor-validation.json, frontend-checks.json, results.json, cleanup-state.txt
 - `screenshots/`: editor-1280-reloaded.png, tabs-390-initial.png, tabs-390-tab2.png, tabs-390-tab3-keyboard.png, tabs-1280-*.png, page-390.png, page-1280.png
+
+## 出典
+
+- Tabs ブロック — WordPress 7.1 field guide のタグ一覧（2026-09-03 参照）: https://make.wordpress.org/core/tag/7-1/
+- Core block reference（2026-09-03 参照）: https://developer.wordpress.org/block-editor/reference-guides/core-blocks/
+- Interactivity API（2026-09-03 参照）: https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/
+- Block validation（2026-09-03 参照）: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#validation
+- `register_block_style`（2026-09-03 参照）: https://developer.wordpress.org/reference/functions/register_block_style/

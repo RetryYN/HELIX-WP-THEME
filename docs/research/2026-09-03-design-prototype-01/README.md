@@ -12,7 +12,7 @@ WT-FR-LOOK-03（サイトパターン別の見た目）と記事内語彙の見�
 - `themes/` 配下（テーマ本体）は編集していない。試作物はすべて子テーマ `wt-proto` として
   **コンテナ内のみ**に置いた（`/var/www/html/wp-content/themes/wt-proto`、`docker cp` で投入）。
   本ディレクトリの `wt-proto/` はその複製（再現用）で、テーマとしては読み込まれない。
-- 作業後は元テーマ `agent-neo-themes/agent-neo-theme` を再有効化した。
+- 終了時にテーマは `agent-neo-themes/agent-neo-theme` を再有効化したが、投稿 475 / 476、`wp_global_styles` 投稿 479、コンテナ内子テーマ `wt-proto` の 4 点は意図的に残置している（未復元項目。理由・撤去方法は「終了時状態と未復元項目」を参照）。
 - git commit / push はしていない。DB は消していない。既存の `ge1-*` 下書きは触っていない。
 - 画像は生成していない（サムネイル等は CSS グラデーションのプレースホルダ）。
 - サンプル本文は架空（商品 A / B / C、価格はサンプル値）。第三者製品名・実サイト名は含めない。
@@ -27,7 +27,7 @@ WT-FR-LOOK-03（サイトパターン別の見た目）と記事内語彙の見�
 | LP（page、公開） | 476 | `/design-proto-lp/` | `page-lp-sample` | 本文は空。テンプレートが lp-* パターン 12 本を並べる |
 | トップ | — | `/` | `front-page` | show_on_front=posts のまま front-page.html が適用される。home-* パターン 7 本 |
 | 子テーマ | — | `wt-proto`（コンテナ内） | Template: agent-neo-themes/agent-neo-theme | styles/ に試作 variation 3 本、style.css に試作 block style |
-| user global styles | 479 | `wp_global_styles`（wt-proto 用） | — | variation 切替の書き込み先。477 は term 未付与の空投稿（後述） |
+| user global styles | 479 | `wp_global_styles`（wt-proto 用） | — | variation 切替の書き込み先。477 は term 未付与で生成された空投稿（削除済み） |
 
 記事内語彙（記事 475 の本文）: PR 表記（先頭）、目次（手動 list、`is-style-wt-toc`）、
 囲み 3 種（`core/group` block style `wt-box-info / wt-box-warn / wt-box-point`）、
@@ -87,7 +87,35 @@ LP の順序: hero → problem → agitation → solution → feature → benefi
    ```
    WT_THEME_DIR=<テーマリポ root> WT_OUT_DIR=<出力先> NODE_PATH=<playwright の node_modules> node scripts/shoot.js
    ```
-4. 後片付け: `docker compose run --rm -T wpcli theme activate agent-neo-themes/agent-neo-theme`
+## 終了時状態と未復元項目
+
+終了時状態（2026-09-03）:
+
+- 有効テーマ: `agent-neo-themes/agent-neo-theme`
+- option `wt_poc_site_selection`: 存在しない
+- `mu-plugins`: 空
+
+意図的残置（未復元）4 点:
+
+- 投稿 475（post、slug `design-proto-article`、公開）
+- 投稿 476（page、slug `design-proto-lp`、公開）
+- `wp_global_styles` 投稿 479（`wt-proto` 用）
+- コンテナ内子テーマ `wt-proto`
+- 理由: デザイン反復のため（PO に提示済みの試作ページ）。
+
+削除済み:
+
+- 空の global styles 投稿 477（term 未付与で生成されたもの）。
+
+PO が撤去を判断したとき用の撤去コマンド列:
+
+```text
+docker compose run --rm -T wpcli post delete 475 476 479 --force
+docker exec agent-neo-wp rm -rf /var/www/html/wp-content/themes/wt-proto
+docker compose run --rm -T wpcli theme activate agent-neo-themes/agent-neo-theme
+```
+
+終了時状態と未復元項目の記録は `results/cleanup-state.txt` を参照。
 
 ## 出力
 
@@ -96,24 +124,30 @@ LP の順序: hero → problem → agitation → solution → feature → benefi
   name = box, box-warn, box-point, buttons, link-card, steps, table, faq, review, product-card, cta, toc, pr-notice = 13 枚
 - `index.json`: 全 85 枚の page / variation / width / path / 8 色 / 計算済み（body 背景・body フォント・見出しフォント・見出し色）/ verified
 - 検証結果: 72 枚すべて palette 一致（`problems` は 0 件）、pageerror なし
+- フルページ PNG 85 枚（約 50MB）と `index.json` が指す `path` の実体はリポジトリ外（作業用ディレクトリ）にある。`index.json` の `path` はプレースホルダ扱いであり、ホストの絶対パスは記録していない。
+- `results/` に収載した画像（webp 3 枚）:
+  - `results/vocab-faq-sp.webp`: FAQ 無装飾
+  - `results/article-dark-sp.webp`: Cookie バナーが dark で浮く
+  - `results/article-compare-sp.webp`: compare variation の記事全体・フォント fallback
 
 ## うまくいかなかったこと・注意点（正直に）
 
 - **variation 切替の落とし穴**: wp-cli を `--user` なしで動かすと `tax_input` が捨てられ、生成された
   `wp_global_styles` 投稿に `wp_theme` term が付かず、書き込んでもフロントに反映されない。
   `set-variation.php` 内で `wp_set_object_terms` を補い、`--user=admin` で実行して解決。
-  この過程で term 未付与の投稿 ID 477 が残っている（無害だが不要。削除は PO 判断に委ねる）。
+  この過程で生成された term 未付与の投稿 ID 477 は削除済み。
 - **Cookie 同意バナー**: テーマ同梱の固定バナーが SP では画面の大半を覆う。スクリーンショット前に
   「拒否する」をクリックして閉じている（スクリプトの `dismissConsent`）。バナーは variation の色を受けず白固定で、
-  dark / night-contrast では浮く（テーマ側の課題として記録）。
-- **目次**: テーマに自動目次の仕組みはない。記事では手動の番号リスト + anchor で代用した。
+  dark / night-contrast では浮く（`results/article-dark-sp.webp` 参照。Cookie バナーが dark で浮く所見の根拠）。
+- **記事全体（compare variation）**: SP の記事全体とフォント fallback は `results/article-compare-sp.webp` を参照。
+- **目次**（作業時観察・画像未収載）: テーマに自動目次の仕組みはない。記事では手動の番号リスト + anchor で代用した。
 - **FAQ（core/details）**: テーマ側にスタイルがなく、境界線・背景のない素の `<details>` として描画される
-  （`vocab-faq-sp.png` 参照）。囲みとの一体感がない。
+  （`results/vocab-faq-sp.webp` 参照。FAQ 無装飾の所見の根拠）。囲みとの一体感がない。
 - **block validation**: フロント描画には影響しないが、`core/html` でプレースホルダ `<div>` を置いたため、
   エディタで開くと HTML ブロックとして扱われる（validation エラーではない）。エディタでの検証は未実施。
-- **トップの「最新の記事」**: DB に残っている他 PoC の投稿（poc-core-* 系）がそのまま並ぶ。今回の記事も混ざる。
-- **記事のカテゴリ**: 「Uncategorized」表示のまま。
-- **見出し明朝（corporate）**: ローカル chromium に日本語明朝フォントがない場合は環境の serif に fallback する。
+- **トップの「最新の記事」**（作業時観察・画像未収載）: DB に残っている他 PoC の投稿（poc-core-* 系）がそのまま並ぶ。今回の記事も混ざる。
+- **記事のカテゴリ**（作業時観察・画像未収載）: 「Uncategorized」表示のまま。
+- **見出し明朝（corporate）**（作業時観察・画像未収載）: ローカル chromium に日本語明朝フォントがない場合は環境の serif に fallback する。
   スクリーンショットは生成環境のフォントに依存する。
 - 試作 variation の `styles.css` は variation JSON 内のカスタム CSS で、LOOK-02 の「8 色 + fontFamilies の差し替えのみ」から
   はみ出す。色・フォントだけで足りない差（字下げ・ボタン形状）を示すために意図的に入れたもので、採否は PO 判断。
@@ -123,3 +157,8 @@ LP の順序: hero → problem → agitation → solution → feature → benefi
 - テーマ本体: `themes/agent-neo-theme`（theme.json v3、styles/ 9 本、patterns/ lp-* / home-*、templates/）
 - 要求参照: WT-FR-LOOK-02 / WT-FR-LOOK-03（サイトパターン向け variation）
 - WP: 7.1（docker）、wp-cli、Playwright chromium
+- theme.json（style variations / styles ディレクトリ）（2026-09-03 参照）: https://developer.wordpress.org/themes/global-settings-and-styles/style-variations/
+- theme.json 全般（2026-09-03 参照）: https://developer.wordpress.org/themes/global-settings-and-styles/
+- global styles（ユーザー global styles / `wp_global_styles`）（2026-09-03 参照）: https://developer.wordpress.org/block-editor/how-to-guides/themes/global-settings-and-styles/
+- `register_block_style`（2026-09-03 参照）: https://developer.wordpress.org/reference/functions/register_block_style/
+- 子テーマ（2026-09-03 参照）: https://developer.wordpress.org/themes/advanced-topics/child-themes/

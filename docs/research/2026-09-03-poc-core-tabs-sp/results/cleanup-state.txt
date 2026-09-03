@@ -1,3 +1,18 @@
+投入物一覧
+- mu-plugin: zz-wt-tabs-sp.php
+- テスト投稿: poc-core-tabs-sp-canonical
+
+before 状態
+- mu-plugins: 空
+- 対象 PoC 投稿: なし
+- option wt_poc_site_selection: なし
+
+終了時状態（2026-09-03）
+- 有効テーマ: agent-neo-themes/agent-neo-theme
+- mu-plugins: 空
+- option wt_poc_site_selection: 存在しない（削除確認済み）
+
+終了時の生出力
 mu-plugins:
 total 8
 drwxr-xr-x 2 root     root     4096 Sep  3 12:56 .
@@ -11,5 +26,6 @@ abilities:
 app passwords (admin):
 name
 poc posts:
-0rest namespaces:
+0
+rest namespaces:
 ['oembed/1.0', 'wp/v2', 'wp-site-health/v1', 'wp-block-editor/v1', 'wp-abilities/v1']
