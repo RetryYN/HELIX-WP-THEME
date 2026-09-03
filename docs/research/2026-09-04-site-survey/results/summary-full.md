@@ -115,8 +115,8 @@
 
 ### フォント (PC)
 
-- 本文 family 先頭: Noto Sans JP×31, -apple-system×16, 游ゴシック体×11, sans-serif×9, Helvetica Neue×9, Times New Roman×9, Hiragino Kaku Gothic ProN×8, Inter×6, Lato×5, YuGothic×5
-- 読込済 webfont: Noto Sans JP×56, icomoon×22, Inter×13, Roboto×9, swiper-icons×8, FontAwesome×7, Lato×6, Poppins×6, YakuHanJP×6, Zen Kaku Gothic New×5
+- 本文 family 先頭: Noto Sans JP×31, -apple-system×16, 游ゴシック体×11, sans-serif×9, Helvetica Neue×9, Hiragino Kaku Gothic ProN×8, Inter×6, Lato×5, YuGothic×5, その他（非公開）×9
+- 読込済 webfont: Noto Sans JP×56, Inter×13, Roboto×9, Lato×6, Poppins×6, YakuHanJP×6, Zen Kaku Gothic New×5, その他（非公開）×37
 
 ### 色 (PC)
 
@@ -209,8 +209,8 @@ ids: brand-jp-069, brand-jp-070, brand-jp-071, brand-jp-072, brand-jp-073, brand
 
 ### フォント (PC)
 
-- 本文 family 先頭: Noto Sans JP×3, Zen Kaku Gothic New×2, Shippori Mincho×2, Yu Gothic Pr6N M×1, 游ゴシック×1, akzidenz-grotesk×1, sans-serif×1, -apple-system×1, Poppins×1, Swis721×1
-- 読込済 webfont: Noto Sans JP×6, swiper-icons×5, Inter×4, Font Awesome 5 Brands×3, Shippori Mincho×3, futura-pt×2, Instrument Sans×2, Zen Kaku Gothic New×2, yu-gothic-pr6n×2, EB Garamond×2
+- 本文 family 先頭: Noto Sans JP×3, Zen Kaku Gothic New×2, Shippori Mincho×2, sans-serif×1, -apple-system×1, Poppins×1, その他（非公開）×4
+- 読込済 webfont: Noto Sans JP×6, Inter×4, Shippori Mincho×3, Zen Kaku Gothic New×2, EB Garamond×2, その他（非公開）×14
 
 ### 色 (PC)
 
@@ -303,8 +303,8 @@ ids: compare-jp-136-article, compare-jp-136, compare-jp-137-article, compare-jp-
 
 ### フォント (PC)
 
-- 本文 family 先頭: 游ゴシック体×11, Noto Sans JP×7, Helvetica Neue×7, -apple-system×6, Times New Roman×5, Lato×5, Hiragino Kaku Gothic ProN×4, Inter×4, メイリオ×2, ui-sans-serif×2
-- 読込済 webfont: icomoon×16, Noto Sans JP×10, Lato×4, Inter×4, Font Awesome 5 Free×3, FontAwesome×3, Fjalla One×3, Open Sans×3, Font Awesome 5 Brands×2, Montserrat×2
+- 本文 family 先頭: 游ゴシック体×11, Noto Sans JP×7, Helvetica Neue×7, -apple-system×6, Lato×5, Hiragino Kaku Gothic ProN×4, Inter×4, その他（非公開）×9
+- 読込済 webfont: Noto Sans JP×10, Lato×4, Inter×4, Fjalla One×3, Open Sans×3, Montserrat×2, その他（非公開）×24
 
 ### 色 (PC)
 
@@ -397,8 +397,8 @@ ids: corporate-jp-000, corporate-jp-001, corporate-jp-002, corporate-jp-003, cor
 
 ### フォント (PC)
 
-- 本文 family 先頭: Noto Sans JP×7, sans-serif×3, YuGothic×3, Zen Kaku Gothic New×1, Zen Kaku Gothic Antique×1, MFW-PA1GothicStdN-Regular×1, helvetica-neue-lt-pro×1, YakuHanJP_Noto×1, IBM Plex Sans JP×1, neue-haas-unica×1
-- 読込済 webfont: Noto Sans JP×10, Zen Kaku Gothic New×2, Albert Sans×2, Work Sans×1, Crimson Text×1, Plus Jakarta Sans×1, Akshar×1, Geist×1, Zain×1, Lexend×1
+- 本文 family 先頭: Noto Sans JP×7, sans-serif×3, YuGothic×3, Zen Kaku Gothic New×1, Zen Kaku Gothic Antique×1, その他（非公開）×5
+- 読込済 webfont: Noto Sans JP×10, Zen Kaku Gothic New×2, Albert Sans×2, その他（非公開）×7
 
 ### 色 (PC)
 
@@ -491,8 +491,8 @@ ids: motion-jp-169, motion-jp-170, motion-jp-171, motion-jp-172, motion-jp-173, 
 
 ### フォント (PC)
 
-- 本文 family 先頭: Noto Sans JP×2, Times New Roman×2, Zen Old Mincho×1, Futura×1, MFW-PA1MinchoStdN-Regular×1, Yu Gothic×1, a-otf-ud-shin-go-con80-pr6n×1, PP Neue Montreal Medium×1, Noto Serif JP×1, DotGothic16×1
-- 読込済 webfont: Noto Sans JP×7, Oswald×3, YakuHanJP×2, Cormorant Garamond×2, Noto Serif JP×2, M PLUS 1p×2, IBMPlexMono×2, Google Sans×1, Zen Old Mincho×1, Futura×1
+- 本文 family 先頭: Noto Sans JP×2, Zen Old Mincho×1, Yu Gothic×1, Noto Serif JP×1, その他（非公開）×7
+- 読込済 webfont: Noto Sans JP×7, Oswald×3, YakuHanJP×2, Cormorant Garamond×2, Noto Serif JP×2, M PLUS 1p×2, IBMPlexMono×2, Zen Old Mincho×1, その他（非公開）×2
 
 ### 色 (PC)
 
@@ -585,8 +585,8 @@ ids: portal-jp-104-article, portal-jp-104, portal-jp-105-article, portal-jp-105,
 
 ### フォント (PC)
 
-- 本文 family 先頭: -apple-system×6, sans-serif×5, ヒラギノ角ゴ ProN W3×5, Hiragino Kaku Gothic ProN×4, acumin-pro×2, Helvetica Neue×2, 游ゴシック Medium×2, メイリオ×2, Hiragino Kaku Gothic W3 JIS2004×2, Avenir Next W00×2
-- 読込済 webfont: Noto Sans JP×4, icomoon×4, Special Gothic Expanded One×2, FontAwesome×2, acumin-pro×2, Dongle×2, Quicksand×2, iconfont×2, DM Sans×2, M PLUS Rounded 1c×2
+- 本文 family 先頭: -apple-system×6, sans-serif×5, ヒラギノ角ゴ ProN W3×5, Hiragino Kaku Gothic ProN×4, Helvetica Neue×2, その他（非公開）×10
+- 読込済 webfont: Noto Sans JP×4, その他（非公開）×20
 
 ### 色 (PC)
 
@@ -679,8 +679,8 @@ ids: service-jp-035, service-jp-036, service-jp-037, service-jp-038, service-jp-
 
 ### フォント (PC)
 
-- 本文 family 先頭: Noto Sans JP×11, YakuHanJP×2, Inter×2, Poppins×2, AdjustedYuGothic×1, Chatwork Sans R×1, HCo Gotham SSm×1, Roboto×1, NotoSansJP-circled-1×1, Zen Kaku Gothic New×1
-- 読込済 webfont: Noto Sans JP×19, Roboto×4, Inter×4, Poppins×4, YakuHanJP×2, icomoon×2, slick×2, Montserrat×2, Font Awesome 6 Free×2, Material Symbols Outlined×2
+- 本文 family 先頭: Noto Sans JP×11, YakuHanJP×2, Inter×2, Poppins×2, Roboto×1, Zen Kaku Gothic New×1, その他（非公開）×4
+- 読込済 webfont: Noto Sans JP×19, Roboto×4, Inter×4, Poppins×4, YakuHanJP×2, Montserrat×2, その他（非公開）×8
 
 ### 色 (PC)
 
