@@ -125,7 +125,7 @@ python scripts/compare-faces.py
 | face-b-rest-abilities-anon.json / -auth.json | `GET /wp-json/wp-abilities/v1/abilities`（`$AUTH` なし / あり） |
 | face-b-rest-run-read-anon.json / -auth.json | `GET .../abilities/wt/site-selection-read/run`（なし / あり） |
 | face-b-rest-run-dryrun-auth.json | `POST .../abilities/wt/site-selection-dry-run/run` `--data '{"header_part":"header-b"}'` |
-| face-b-rest-run-apply-noreceipt-auth.json | `DELETE .../abilities/wt/site-selection-apply/run` `--data '{"header_part":"header-b"}'`（409 を期待） |
+| face-b-rest-run-apply-noreceipt-auth.json | `DELETE .../abilities/wt/site-selection-apply/run` `--data '{"header_part":"header-b"}'`（400 `wt_receipt_required` を期待） |
 | face-b-rest-run-apply-bogus-auth.json | 同上、`receipt` に任意の偽文字列（409 を期待） |
 | face-b-rest-run-apply-anon.json / -anon-post.json | 同上を `$AUTH` なしで DELETE / POST（401 を期待） |
 | face-b-rest-run-apply-receipt-auth.json | 同上、dry-run 応答の receipt を渡す（200 を期待） |
@@ -141,7 +141,7 @@ python scripts/compare-faces.py
 | face-c-mcp-wt-pack-call-apply-receipt.json | 同上、dry-run の receipt を渡す |
 | face-c-mcp-mcp-adapter-default-server-initialize.json / -tools-list.json | `/wp-json/mcp/mcp-adapter-default-server` へ同じ `initialize` / `tools/list` |
 | face-c-mcp-default-call-discover.json | default サーバーへ `tools/call` `name: mcp-adapter-discover-abilities` |
-| face-c-mcp-default-call-execute-apply-noreceipt.json | default サーバーへ `tools/call` `name: mcp-adapter-execute-ability` `arguments: {"ability":"wt/site-selection-apply","parameters":{"header_part":"header-b"}}`（拒否を期待） |
+| face-c-mcp-default-call-execute-apply-noreceipt.json | default サーバーへ `tools/call` `name: mcp-adapter-execute-ability` `arguments: {"ability_name":"wt/site-selection-apply","parameters":{"header_part":"header-b"}}`（拒否を期待） |
 | face-c-stdio-wt-pack.jsonl | `wp mcp-adapter serve --server=wt-pack-server --user=admin` の stdin へ `initialize` → `tools/list` → `tools/call`（read）を 1 行 1 JSON で流した応答 |
 
 receipt の実値は `<redacted-receipt>` に置換してある（ローカル salt 由来）。
