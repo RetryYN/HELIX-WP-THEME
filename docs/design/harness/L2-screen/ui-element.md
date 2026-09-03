@@ -3,7 +3,7 @@ layer: L2
 sub_doc: ui-element
 status: candidate_projection
 source_authority: docs/requirements/l2/ui-element.md
-source_sha256: 477591db8b991aa936dc672c571285a38c936968114a990edf87b882ee04563c
+source_sha256: 07e6ba1716bed8ccf56f4586003df6b40e71f6cec35d83577d8b1bd47ef960e7
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 ---
 
@@ -24,3 +24,7 @@ pair_artifact: docs/design/harness/L2-screen/wireframe.md
 | **PM-09** | WT-UI-09 | EvidenceLedger / EvidenceLink |
 | **PM-10** | WT-UI-10 | ThemeSettingsForm / SpSurfacePanel / SpVocabularyMap / SpPreview / TagSlotPanel / DataLayerContractPanel / ConsentStatePanel / PluginCapabilityMatrix / PluginConflictWarning / SettingsExportImport / ProductCatalogTable / AbVariantPanel / ImageOptimizationPanel / OperationsLog / DryRunReview / RollbackPanel / KeyManagement / CvDefinitionPanel / BannerCatalog / BannerHealth / AuditReviewPanel |
 | **PM-11** | WT-UI-11 | CrawlDashboard / RobotsAiCrawlerToggle |
+
+## S3 projection note
+
+WT-UI-10 に著者・監修者、レコメンド、フォント、読み戻し、リンク切れ、host capability、選択セット、同意・privacy・asset ledger を追加し、WT-UI-11 に 4 分類台帳と response origin を追加する。

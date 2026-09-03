@@ -3,7 +3,7 @@ layer: L1
 sub_doc: screen-requirements
 status: candidate_projection
 source_authority: docs/requirements/l1/screen.md
-source_sha256: c425de398e94da3e00225d3ee3999d902b0f1f1901afc68a373685caf5717a85
+source_sha256: 33f198a3da4e2aa06c71fa0b52e228e5b1749f0739efae50802f27b4a5e1ce26
 pair_artifact: docs/test-design/harness/L12-operational-test-design.md
 ---
 
@@ -25,3 +25,7 @@ pair_artifact: docs/test-design/harness/L12-operational-test-design.md
 | **PM-09** | WT-SCR-09 | WT-UI-09 | `docs/requirements/l1/screen.md` |
 | **PM-10** | WT-SCR-10 | WT-UI-10 | `docs/requirements/l1/screen.md` |
 | **PM-11** | WT-SCR-11 | WT-UI-11 | `docs/requirements/l1/screen.md` |
+
+## S3 projection note
+
+S3 の追加要求は WT-UI-10 / WT-UI-11 の既存面へ投影し、画面数は 11 のままとする。著者・監修者、レコメンド、フォント、読み戻し、リンク切れ、hosting capability、選択セット、外部送信公表、同意記録を WT-UI-10 の要素として扱う。

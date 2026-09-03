@@ -3,7 +3,7 @@ layer: L12
 sub_doc: operational-test-design
 status: candidate_projection
 source_authority: docs/test-design/l12-operational-value-test-design.md
-source_sha256: ad02b9e6764312c93b9341f24dc876a8c6e9ccf40b3e9768b898ad8809b27371
+source_sha256: e1680fcd989c1ee8bb1cf255b38814fb3dd811620be695f50ee43f1ab135bb6a
 pair_artifact: docs/design/harness/L1-requirements/screen-requirements.md
 ---
 
@@ -26,3 +26,7 @@ HELIX V-model reader へ L1 screen projection の pair を接続する非正本 
 | PM-09 | WT-UI-09 | 実証記録の証跡付き率と他リポ参照 0 を WT-OT-04 へ接続する |
 | PM-10 | WT-UI-10 | 設定 JSON の schema 検証違反件数と manifest との不一致 0 を WT-OT-01 / 22 へ、主たる確認面（既定 SP）・共通 + device 別差分・SP / PC 両幅プレビュー、tag slot・データ層・Consent Mode v2 同意、第三者プラグインの領域別既定・警告、A/B・画像・操作ログ・差分・rollback・鍵・CV・バナー・監査の運用値を WT-OT-08 / 09 / 13 / 15 / 16 / 17 / 18 / 20 / 21 / 22 / 23 へ、商品正本の反映率・商品 CTA の計測経路欠落・購入完了のテーマ内扱い 0 を WT-OT-06 へ接続する |
 | PM-11 | WT-UI-11 | bot 識別済みクロール指標・保持/非記録・キャッシュ限界を WT-OT-07 へ接続する |
+
+## S3 projection note
+
+S3 の著者・レコメンド・host capability・ログ・同意・資産台帳・選択セットの運用測定を追加した。

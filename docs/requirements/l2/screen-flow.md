@@ -28,3 +28,7 @@ SNS / CV / バナーは `WT-UI-10 正本の編集 → 記事・LP・section へ�
 ## navigation
 
 Site Editor / Block Editor の各面へは WP 標準ナビゲーションで到達する。テーマ独自メニューはテーマ設定画面（WT-UI-10、PO 2026-09-02）の 1 つだけを追加し、A/B・画像・運用・CV・バナー・監査はそのタブとして扱う。WT-UI-11 は Core プラグインの管理画面として扱う（画面数 11、PO 2026-09-03）。
+
+## S3 追加フロー
+
+WT-UI-10 では、著者・監修者正本 → 公開面 / 構造化データ、記事一覧方式 → 関連・人気・手動おすすめ、商品正本 → 302 経路 / リンク検査、フォント / capability → fallback 警告、選択セット → staging dry-run → production apply を確認する。WT-UI-11 では用途別クローラー台帳 → endpoint / 鮮度 → raw log / cache origin → 日次集約・保持上限を確認する。どちらも同じ設定 JSON と manifest を読み、AI 判定は生成しない。

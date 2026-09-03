@@ -58,3 +58,13 @@ prototype status: `prototyped`（WT-PROT-UI-01-r1、text low-fi）。PO reaction
 - サイト設定で選んだ主たる確認面（既定 SP）と PC の両幅で、共通 + device 別差分、44px タップ領域・16px テキスト・横スクロール 0・固定要素の被覆なしを確認できるか
 - タグ slot 外の script 注入がなく、version 付きデータ層の必須 ID と同意前非発火を確認できるか
 - 第三者プラグイン検出時の領域別既定・警告・manifest が管理画面と MCP で一致するか
+
+## S3 追加ワイヤー
+
+### WT-UI-10
+
+Theme Settings: author/reviewer、recommendations、fonts、readback、redirects/index、link health、host capability、selection set、consent/privacy、asset ledger を既存タブ内に配置し、dry-run / apply / rollback / export / import を同じ操作列に置く。
+
+### WT-UI-11
+
+Crawler Ledger: training / search / user-triggered / ads-preview、endpoint / freshness / token / verified / delay、WP response / cache origin / raw limit / daily rollup を区別して表示する。

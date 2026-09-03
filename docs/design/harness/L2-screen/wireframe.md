@@ -3,7 +3,7 @@ layer: L2
 sub_doc: wireframe
 status: candidate_projection
 source_authority: docs/requirements/l2/wireframe.md
-source_sha256: 8a649f2080dec7f4a656af2b18c5a442022305a6b59197393762b1a0d8ddc575
+source_sha256: 04e750c86d7d26342661c0be53764ddc313baea4988c4ea6f8e0596623644543
 pair_artifact: self
 ---
 
@@ -42,3 +42,7 @@ WT-UI-10 のタブとして SpSurfacePanel / SpVocabularyMap / SpPreview（主�
 ### PM-11 / WT-UI-11 クローラーダッシュボード
 
 CrawlDashboard: bot 別推移、古い URL、404 / 5xx、初回捕捉時間、llms.txt / crawl-map の AI 来訪、llms.txt の既定出力の効果実証用アクセス時系列。RobotsAiCrawlerToggle: robots.txt と AI クローラー許可 / 拒否。
+
+## S3 projection note
+
+S3 の設定タブとクローラー台帳 wireframe を追加した。画面数と route は不変。

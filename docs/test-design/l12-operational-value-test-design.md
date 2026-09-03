@@ -3,7 +3,7 @@
 | Test ID | Business requirement | measurement |
 | --- | --- | --- |
 | WT-OT-01 | WT-BR-01 | capability manifest の列挙率、PHP のみに存在する面・部品の件数（0 であること） |
-| WT-OT-02 | WT-BR-02 | 12 種別の必須パーツ充足率、未整備 16 項目と 2026-09-03 採用 25 件の受け皿有無 |
+| WT-OT-02 | WT-BR-02 | 12 種別の必須パーツ充足率、未整備 16 項目と S3 追加 26 問（採用 24・reject 2）の受け皿有無 |
 | WT-OT-03 | WT-BR-03 | AI 経路で JSON 外の操作を要した件数、variant / CV ID の欠落件数、破壊域停止件数、誤警告件数 |
 | WT-OT-04 | WT-BR-04 | 実証記録の証跡付き率、他リポへの参照・書き込み件数（0 であること） |
 | WT-OT-05 | WT-BR-05 | theme / plugin の AI SDK import・判定ロジックの静的検出件数（0 であること） |
@@ -27,3 +27,16 @@
 | WT-OT-23 | WT-BR-03 | 代表 2 サイト構成におけるフォーム二重送信、JSON-LD / meta / OGP 重複、画像生成重複、同意バー重複、キャッシュ警告前の A/B 配信の件数（0） |
 
 破壊域の境界値が PoC で未確定の間、WT-OT-03 の誤警告件数は測定不能として pass を出さない。
+
+## S3 追加運用測定
+
+| Test ID | Business requirement | measurement |
+| --- | --- | --- |
+| WT-OT-24 | WT-BR-02 | 著者・監修者正本、Breadcrumbs、関連・人気・おすすめの設定 JSON と公開面の一致率 |
+| WT-OT-25 | WT-BR-03 | 商品正本から 302 経路への rel / robots / IP 非保存 / 二重計上防止の適合率、IndexNow 失敗ログ率 |
+| WT-OT-26 | WT-BR-01 | AI 利用許諾 3 用途、クローラー 4 分類、endpoint 鮮度、未検証・非準拠表示の一致率 |
+| WT-OT-27 | WT-BR-01 | hosting capability の health・MCP・ハーネス一致率、対応範囲外の警告率、iframed editor smoke の実施率 |
+| WT-OT-28 | WT-BR-03 | raw log の人行 / IP 廃棄率、response origin 区別率、日次集約・容量警告の適合率、SMTP / WAF / cron の警告率 |
+| WT-OT-29 | WT-BR-02 | WCAG 2.2 AA・APG・reduced-motion・和文タイポ・フォント OFL / 速度予算の gate 通過率 |
+| WT-OT-30 | WT-BR-03 | 外部送信公表、同意の時刻・版・カテゴリ・撤回、privacy tools、ランキング根拠・打消し表示の欠落件数（0） |
+| WT-OT-31 | WT-BR-02 | 404 / 検索テンプレ、固定ページ群、選択セットの URL 非依存 dry-run → apply → rollback 成功率 |

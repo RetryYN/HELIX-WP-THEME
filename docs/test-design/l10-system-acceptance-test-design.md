@@ -13,10 +13,10 @@
 | WT-AT-TR-PLUGIN-02 | WT-TR-PLUGIN-02 | 重なる 7 領域と同意管理・計測で第三者プラグイン有効時に出力が 1 系統になり設定で切替可、フォームは LP と接続、本体に移行コードが無い | いずれかの領域で同型出力 2 本、同意信号を無視、切替不可、または本体に移行コード・移行プラグイン・互換固有名なら FAIL | plugin matrix（7 領域）+ consent fixture + static analysis |
 | WT-AT-ZONE-01 | WT-FR-ZONE-01 | 各 slot に共通宣言と device 別差分を置くと SP / PC の該当位置に描画され、両幅の検査を通過し、空なら DOM に残らない | 空 slot が空要素や領域見出しを出す、または重い面を Block Visibility だけで出し分ければ FAIL | Playwright |
 | WT-AT-ZONE-02 | WT-FR-ZONE-02 | schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される | 複数規則が同時適用される、または未定義ゾーンが通れば FAIL | schema test |
-| WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない | 重なりや順序違反があれば FAIL | Playwright |
+| WT-AT-ZONE-03 | WT-FR-ZONE-03 | 3 要素を同時に有効化しても規約の順で積層し CTA と重ならず、面積上限内で初回表示に同意バー以外のモーダルが出ない（LP は設定で例外） | 重なり・順序違反・面積超過・LP 設定なしの初回モーダルがあれば FAIL | Playwright |
 | WT-AT-PARTS-01 | WT-FR-PARTS-01 | 共通宣言と device 別差分の差し替え後に骨格差分（テンプレ・パーツ参照）が表示され、SP / PC の保存結果が公開面へ反映される | 差し替えで参照欠落（G-S2）、device 別差分の未宣言、または invalid が出れば FAIL | Playwright + G-S2 |
 | WT-AT-PARTS-02 | WT-FR-PARTS-02 | wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない | header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL | parts reference test |
-| WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画される。新規ブロックは 7 つに限定される | 受け皿のない語彙、または 8 つ目の新規ブロックがあれば FAIL | vocab fixture |
+| WT-AT-VOCAB-01 | WT-FR-VOCAB-01 | 14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画される。新規ブロックは 6 つ + 空き 1 枠（上限 7）に限定される | 受け皿のない語彙、または 8 つ目の新規ブロックがあれば FAIL | vocab fixture |
 | WT-AT-VOCAB-02 | WT-FR-VOCAB-02 | h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する | 目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL | render fixture + Playwright |
 | WT-AT-VOCAB-03 | WT-FR-VOCAB-03 | 広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所を満たす控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。ボタン・バナーのすぐ近くには置かず、表示デザインと表示ページ制御が選べる | 対象記事で表記が欠落する、対象外の記事に出る、テーマの最小文字サイズまたは AA コントラストを下回る、ボタン・バナーのすぐ近くに出る、または本文編集で消せれば FAIL | Playwright + fixture |
 | WT-AT-VOCAB-04 | WT-FR-VOCAB-04 | 内部リンクカードが REST 呼び出しなしで描画される | 未認証 REST または未検証 file_get_contents が経路にあれば FAIL | REST audit |
@@ -87,7 +87,7 @@
 | WT-AT-CV-02 | WT-FR-CV-02 | 資料ダウンロードでフォーム入力からメール送付と即時ダウンロードを選べ、完了がデータ層契約のマイクロ CV として計測され、非公開ファイルへ署名付き期限 URL で到達する。第三者フォーム検出時は送信・同意確認を譲り二重送信を起こさない | 非公開でないファイルを恒久 URL で配布する、完了イベントがない、署名または期限を検証しない、検出後に二重送信する、または consent なしに入力を保存すれば FAIL | download + data-layer + plugin receipt |
 | WT-AT-CV-03 | WT-FR-CV-03 | CTA の主文言と任意 microcopy を候補から選択でき、microcopy 未選択でも公開前エラーにならず、A/B・section の結果を CV ID で集計できる | microcopy が必須化される、候補選択ができない、CV ID が欠落する、またはテーマ内で A/B の判定を行えば FAIL | CTA fixture + tracking receipt |
 | WT-AT-CV-NFR-01 | WT-NFR-CV-01 | リード情報の保存先・保持期間・consent が宣言され、consent を取得した場合だけ保存され、外部連携は署名付き webhook までである | 保存先・保持期間・consent が不明、consent なしに保存、テーマ内に CRM / MA がある、または署名なし連携を行えば FAIL | privacy + webhook receipt |
-| WT-AT-BANNER-01 | WT-FR-BANNER-01 | PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示できる | PC / SP または alt・有効期間が欠落、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL | banner fixture + render receipt |
+| WT-AT-BANNER-01 | WT-FR-BANNER-01 | PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示でき、お知らせバーが正本から派生し閉じ状態を端末側に記憶する | PC / SP または alt・有効期間が欠落、お知らせバーが別管理、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL | banner fixture + render receipt |
 | WT-AT-BANNER-02 | WT-FR-BANNER-02 | バナーの impression / click をデータ層契約から CV ID・A/B variant ID・section ID・device type 単位で追跡し、WT-UI-10 と MCP 常用パックから登録・差し替え・停止でき、3 種の警告を表示する | 必須 ID が計測から欠落、期限切れ・リンク切れ・計測ゼロを警告しない、rel="sponsored" または PR 判定が欠ける、または広告配信タグをテーマが持てば FAIL | banner + data-layer receipt |
 | WT-AT-AUDIT-01 | WT-FR-AUDIT-01 | HELIX 側の指摘を対象・種別・重さ・根拠・修正案付きで受け取り、WT-UI-10 と記事一覧バッジから対象 section へ移動し、適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通る | 対象へ移動できない、適用が差分レビューを迂回する、却下・保留が反映されない、またはテーマが監査の判定を生成すれば FAIL | audit + diff receipt |
 | WT-AT-AUDIT-02 | WT-FR-AUDIT-02 | alt・速度予算・構造化データ・見出し階層だけを決定論的に検査し、その他の指摘を HELIX 側の結果として表示し、サイト集計を JSON / CSV export と MCP 取得できる | テーマが判断を要する監査結果を生成する、機械検査項目を再現不能な判定にする、export がない、または MCP と画面の集計が不一致なら FAIL | audit export + MCP receipt |
@@ -102,3 +102,32 @@
 | WT-AT-TAG-NFR-01 | WT-NFR-TAG-01 | 同意前非発火、データ層必須項目、Consent Mode v2 7 種への写像、head slot の consent default 最初の注入順、3 slot 外のスクリプト 0、同意なし保存 0、タグ転送の性能予算内が自動検査で PASS する | 同意前発火、必須項目欠落、7 種への写像欠落、consent default の注入順違反、slot 外スクリプト、同意なし保存、またはタグ転送の予算超過が 1 件でもあれば FAIL | tag gate + transfer budget |
 | WT-AT-TR-PLUGIN-03 | WT-TR-PLUGIN-03 | フォーム、キャッシュ / CDN、画像最適化、SEO、同意管理の検出で領域別の既定・譲渡・警告が適用され、代表 2 サイト構成で重複出力・二重送信・同意バー重複が起きない | 検出領域を無視する、キャッシュ警告前に A/B を配信する、同意信号を無視する、または全プラグイン互換を要求済みと扱えば FAIL | plugin capability matrix + representative fixtures |
 | WT-AT-TR-PLUGIN-04 | WT-TR-PLUGIN-04 | capability manifest に検出結果、領域別既定、現在の選択、警告、検査対象構成が載り、WT-UI-10 と MCP が同じ一覧を返し、重複出力・二重送信を赤にできる | manifest と管理画面 / MCP の不一致、選択 / 警告の欠落、重複を赤にできない、または未検証の全互換を表明すれば FAIL | manifest parity + conflict receipt |
+
+## S3 追加受入テスト
+
+| WT-AT-AUTHOR-01 | WT-FR-AUTHOR-01 | 正本を1回更新すると著者欄・監修者欄・著者アーカイブが同じ値で更新され、MCP と画面の設定 JSON が一致する | 著者と監修者の値が分散する、公開面に反映されない、またはテーマが著者の判定を生成すれば FAIL | S3 receipt |
+| WT-AT-AUTHOR-02 | WT-FR-AUTHOR-02 | 著者・監修者の構造化データが表示欄と同じ正本を参照し、ProfilePage の必須項目と代表画像が検査を通る | author / reviewedBy / ProfilePage の正本が表示欄と不一致、または自社 Organization を review author にすれば FAIL | S3 receipt |
+| WT-AT-NAV-01 | WT-FR-NAV-01 | 表示パンくずと BreadcrumbList の階層・順序・URL が同一正本から生成され、保存 HTML の手書き固定がない | 表示だけまたは JSON-LD だけが別系統、階層が手書き固定、LP の課題が未記録なら FAIL | S3 receipt |
+| WT-AT-RECO-01 | WT-FR-RECO-01 | 3方式と人気の方式・期間・手動順を設定でき、表示結果・設定 JSON・読み戻しが一致し、自前集計は IP なし日次集約になる | 人気方式が固定、手動おすすめを指定できない、人の閲覧や IP を保存する、またはテーマが順位判定を AI 生成すれば FAIL | S3 receipt |
+| WT-AT-SELL-04 | WT-FR-SELL-04 | /go/<id> が 302 と rel / robots 規則を満たし、IP なしのクリック記録と二重計上防止設定が確認できる | 直リンクで 200 を返す、sponsored / nofollow または robots 除外がない、IP を保存する、または二重計上すれば FAIL | S3 receipt |
+| WT-AT-SEO-06 | WT-FR-SEO-06 | 公開・更新・削除の3操作で送信・鍵ファイル・失敗ログの receipt が対応し、鍵本体が公開ファイルにない | 鍵本体を公開する、削除を送信しない、失敗を握りつぶす、またはテーマへ送信クライアントを置けば FAIL | S3 receipt |
+| WT-AT-CRAWL-04 | WT-FR-CRAWL-04 | 1設定の3用途が全出力面で一致し、既定値・出典・参照日・仕様未確定の表示が manifest と画面で一致する | 用途間で値が食い違う、既定値が不明、標準確定と断定する、または出典・参照日がなければ FAIL | S3 receipt |
+| WT-AT-LOOK-04 | WT-FR-LOOK-04 | 複数の和文フォント選択が自己ホストのサブセット・OFL・速度予算とともに theme.json / 設定 JSON へ現れる | 遠隔読込、OFL 表記なし、全書体の単一巨大ファイル、Font Library の無制限取り込み、または速度予算超過があれば FAIL | S3 receipt |
+| WT-AT-CRAWL-05 | WT-FR-CRAWL-05 | 4分類、UA / endpoint / 鮮度 / 根拠、control token、遅延、未検証状態が台帳・manifest・UI で一致する | 異なる用途を合算、Google-Extended と Googlebot を混同、UA 一致だけを検証済みと表示、または非準拠を制御可能と断定すれば FAIL | S3 receipt |
+| WT-AT-HOST-01 | WT-TR-HOST-01 | health・MCP・ハーネス・WT-UI-10 の capability 一覧が同じ revision と値を返す | host capability が未申告、面ごとに値が異なる、secret を manifest に含める、または未対応を対応済みと表示すれば FAIL | S3 receipt |
+| WT-AT-HOST-02 | WT-TR-HOST-02 | 対応表・style.css / CI matrix・iframed editor smoke の revision が一致し、範囲外は明示的に警告される | 対応範囲を曖昧にする、iframed editor の検証を省く、または範囲外を無警告で受け入れれば FAIL | S3 receipt |
+| WT-AT-LOG-01 | WT-FR-LOG-01 | WP 応答・cache 応答・未観測を response_origin で区別し、人の行と IP が保存されず、WP-Cron / CLI の同じ集約結果になる | IP を取り込む、人の閲覧を bot として保存する、cache origin を WP 応答と混ぜる、または未観測を観測済みとすれば FAIL | S3 receipt |
+| WT-AT-LOG-NFR-01 | WT-NFR-LOG-01 | 上限、保持期間、日次集約、逼迫警告が設定 JSON・操作ログ・台帳に現れ、集約キーに IP がない | 無制限保存、容量超過を無警告で継続、生行を長期保持、または URL × bot × 日の集約ができなければ FAIL | S3 receipt |
+| WT-AT-MAIL-01 | WT-FR-MAIL-01 | SMTP 認証・From 整合・3認証状態・失敗ログ・第三者送信への譲渡が同じ capability 結果で確認できる | 認証なし送信、From 不整合、失敗の未記録、第三者 SMTP との二重送信、または資格情報の公開保存があれば FAIL | S3 receipt |
+| WT-AT-SYNC-01 | WT-FR-SYNC-01 | 選択セットの export / import が URL 非依存で差分を示し、staging dry-run receipt の承認後だけ production apply できる | URL を固定保存、dry-run なしに本番 apply、未知 slug の黙示変換、または rollback 記録欠落があれば FAIL | S3 receipt |
+| WT-AT-A11Y-02 | WT-NFR-A11Y-02 | reduced-motion 環境で autoplay・必須 animation・自動スクロールが停止し、静的な操作経路が残る | reduced-motion を無視、停止後に内容が欠落、または操作完了に animation を要求すれば FAIL | S3 receipt |
+| WT-AT-TYPO-01 | WT-FR-TYPO-01 | theme.json / block style / CSS に指定値が現れ、未対応環境でも見出し・本文が横溢れせず、両幅の検査を通る | word-break の過剰指定、未対応機能の無 fallback、横溢れ、または指定が PHP のみで宣言されれば FAIL | S3 receipt |
+| WT-AT-LEGAL-02 | WT-FR-LEGAL-02 | 登録された全タグが3つの公表メタを持ち、同じ JSON から外部送信先一覧が生成される | 送信先・情報・目的のいずれかが欠落、公表ページだけ手書き、または未登録タグが送信すれば FAIL | S3 receipt |
+| WT-AT-LEGAL-03 | WT-FR-LEGAL-03 | ランキング根拠の全項目と脚注が商品・比較表示に対応し、打消し表示が CTA と同じ viewport・サイズで検査される | 根拠なしの No.1、脚注欠落、打消しを小さく隠す、またはテーマがランキングを自動判定すれば FAIL | S3 receipt |
+| WT-AT-CONSENT-01 | WT-FR-CONSENT-01 | 同意・撤回・GPC の各操作が時刻・版・カテゴリ付きで記録され、既定オフと地域条件が設定 JSON に一致する | 事前チェック、撤回不能、同意版なし、非対象地域への暗黙適用、または同意前の広告保存があれば FAIL | S3 receipt |
+| WT-AT-PRIV-02 | WT-NFR-PRIV-02 | privacy tools が対象データ・保持・出力・消去の範囲を同じ宣言から返し、IP を出力しない | 収集データが privacy tools から孤立、消去要求を無視、IP を export、またはポリシー記載と実データが不一致なら FAIL | S3 receipt |
+| WT-AT-OSS-01 | WT-NFR-OSS-01 | 配布物と asset ledger の資産・ライセンス・SECURITY.md・semver / CHANGELOG が一致し、台帳外は gate が検出する | OFL 全文欠落、台帳外資産、SECURITY.md 欠落、変更履歴なし、または子テーマ方針不明があれば FAIL | S3 receipt |
+| WT-AT-ENV-01 | WT-NFR-ENV-01 | Text Domain・POT・日本語 / 英語のソース言語・RTL 非対象が release receipt で確認できる | 翻訳関数を使わない表示、POT とソースの差分、言語方針の未記載、または RTL 対応を未検証で宣言すれば FAIL | S3 receipt |
+| WT-AT-TPL-01 | WT-FR-TPL-01 | 404 / 検索テンプレ変種を選べ、検索結果 noindex と bot 除外・IP 非保存のログが確認できる | 404 が単一固定、検索結果を index 可、bot を検索語ログへ混入、または IP を保存すれば FAIL | S3 receipt |
+| WT-AT-PAGE-01 | WT-FR-PAGE-01 | 固定ページ群のパターンと事業者情報の自動充填が設定 JSON から生成され、自前フォームなしの譲渡境界が表示される | 固定ページの情報が分散、外部送信ページが手書きだけ、自前フォームや認証情報をテーマが保持、または第三者フォームとの二重送信があれば FAIL | S3 receipt |
+| WT-AT-SELL-05 | WT-FR-SELL-05 | 商品・本文リンクの HEAD 結果、検査日時、警告が UI と MCP で一致し、WP-Cron の失敗も警告される | 商品リンクだけを検査、本文リンクを漏らす、警告が UI / MCP で不一致、または破壊的な GET を行えば FAIL | S3 receipt |
