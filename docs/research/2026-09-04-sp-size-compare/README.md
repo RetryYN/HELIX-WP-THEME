@@ -76,9 +76,9 @@ SP では約 0.7〜0.8 倍に縮む。本テーマは SP/PC とも 48 で縮ま�
 - テーマB: ヘッダー 49 + 記事カルーセル（h1 はサイト名 14px 相当）。ヒーロー見出し無し、FV の大半が記事カード。
 - TT5 の "/" は投稿一覧（ヘッダー 65.6）。
 
-代表画像（390 等倍・webp q80、**寸法確認用**。実サイトの画像はロゴ・アイキャッチ等の識別部位を塗りつぶし、本文の引用はしない）:
-`results/theme-a-article-fv-390.webp`, `results/theme-b-article-fv-390.webp`, `results/ours-light-article-fv-390.webp`,
-`results/ours-compare-article-fv-390.webp`, `results/ref-tt5-article-fv-390.webp`。フルページ PNG・top FV・PC FV・生 JSON（URL 含む）は scratchpad 側（リポ外）。
+代表画像（390 等倍・webp q80、**寸法確認用**、本文の引用はしない）: `results/ours-light-article-fv-390.webp`,
+`results/ours-compare-article-fv-390.webp`, `results/ref-tt5-article-fv-390.webp`。実サイト由来（テーマA / B）の画像は未収載（「画像収載について」節を参照）。
+フルページ PNG・top FV・PC FV・生 JSON（URL 含む）は scratchpad 側（リポ外）。
 
 ## 所見（本テーマが「おかしい」と感じる原因の候補）
 
@@ -141,14 +141,16 @@ docker compose run --rm -T wpcli theme activate agent-neo-themes/agent-neo-theme
 bash docs/research/2026-09-04-sp-size-compare/scripts/measure-live.sh theme-a https://<site-a> /<latest-post-path>/
 bash docs/research/2026-09-04-sp-size-compare/scripts/measure-live.sh theme-b https://<site-b> /<latest-post-path>/
 ```
-webp はロゴ・アイキャッチ領域を `ffmpeg drawbox` で塗りつぶした版を収載（座標は scratchpad 側のメモ）。
+実サイト由来の画像は未収載（scratchpad に保持）。
 `measure-sp.js` はローカル・実サイト共通で、PC 1280×800 の計測（`pc` キー）も同時に取る（ours-* / ref-tt5 の既存 JSON は PC 計測前の版）。
+
+- 各系列 1 回のみの計測で、ばらつきは未評価。
 
 ## 環境復元
 
 有効テーマ `agent-neo-themes/agent-neo-theme` に戻し済み。DB・リポの `themes/` `plugins/` は未変更。
 `wt-proto` の user global styles（wp_global_styles 投稿）は compare 適用のまま（子テーマは非 active なので表示に影響しない）。
-実運用サイトへの write は無し（GET のみ、ログイン・フォーム送信なし）。
+本手順としての書き込みは無し（GET 閲覧のみ。ログイン・投稿・フォーム送信は行わず、サイト側スクリプトは通常閲覧と同様に動作する）。
 
 
 ## 画像収載について
