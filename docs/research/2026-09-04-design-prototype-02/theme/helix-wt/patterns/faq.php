@@ -6,7 +6,7 @@
  * Description: details 4 件
  */
 ?>
-<!-- wp:group {"className":"wt-section wt-reveal","align":"full","layout":{"type":"constrained"}} -->
+<!-- wp:group {"anchor":"faq","className":"wt-section wt-reveal","align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull wt-section wt-reveal" id="faq">
 <!-- wp:paragraph {"className":"wt-eyebrow","align":"center"} --><p class="has-text-align-center wt-eyebrow">FAQ</p><!-- /wp:paragraph -->
 <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"0","bottom":"1.5rem"}}}} --><h2 class="wp-block-heading has-text-align-center" style="margin-top:0;margin-bottom:1.5rem">よくある質問</h2><!-- /wp:heading -->

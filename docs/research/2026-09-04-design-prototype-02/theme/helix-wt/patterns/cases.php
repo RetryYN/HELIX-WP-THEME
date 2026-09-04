@@ -7,7 +7,7 @@
  */
 $u = get_theme_file_uri( "assets/img" );
 ?>
-<!-- wp:group {"className":"wt-section wt-reveal","align":"full","layout":{"type":"constrained","wideSize":"1120px"}} -->
+<!-- wp:group {"anchor":"cases","className":"wt-section wt-reveal","align":"full","layout":{"type":"constrained","wideSize":"1120px"}} -->
 <div class="wp-block-group alignfull wt-section wt-reveal" id="cases">
 <!-- wp:paragraph {"className":"wt-eyebrow","align":"center"} --><p class="has-text-align-center wt-eyebrow">Cases</p><!-- /wp:paragraph -->
 <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"0"}}}} --><h2 class="wp-block-heading has-text-align-center" style="margin-top:0">導入事例</h2><!-- /wp:heading -->

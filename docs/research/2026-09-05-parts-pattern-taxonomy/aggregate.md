@@ -22,8 +22,6 @@
 - top/pc (n=329): na 61 (18%), none 56 (17%), announce-bar 46 (13%), sticky-header 42 (12%), cookie-consent 41 (12%), float-cta 30 (9%), float-chat 15 (4%), other:back-to-top 3 (0%), other:loading-screen 3 (0%), other:region-modal 2 (0%), other:age-gate 2 (0%), other:popup-modal 2 (0%)
 - top/sp (n=278): na 124 (44%), none 64 (23%), announce-bar 42 (15%), cookie-consent 17 (6%), float-cta 7 (2%), other:age-gate 3 (1%), sticky-header 3 (1%), other:region-modal 2 (0%), other:loading-screen 2 (0%), other:email-modal 1 (0%), other:lead-modal 1 (0%), other:loader 1 (0%)
 
-## footer.calc
-
 ## footer.cta
 - article/pc (n=95): na 95 (100%)
 - article/sp (n=94): na 93 (98%), none 1 (1%)
@@ -87,8 +85,6 @@
 ## table
 - article/pc (n=100): na 69 (69%), none 12 (12%), product-table-with-cta 10 (10%), simple-striped 4 (4%), compare-sticky-first-col 4 (4%), other:横スクロール 1 (1%)
 - article/sp (n=98): na 65 (66%), none 11 (11%), product-table-with-cta 9 (9%), compare-sticky-first-col 6 (6%), simple-striped 4 (4%), other:tabs-table 1 (1%), other:横スクロール表 1 (1%), other:横スクロール 1 (1%)
-
-## talk
 
 ## talk.bubble
 - article/pc (n=96): na 51 (53%), none 37 (38%), yes-icon-left 6 (6%), yes-both-sides 1 (1%), other:右アイコン 1 (1%)

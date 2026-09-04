@@ -6,7 +6,7 @@
  * Description: 中央を推奨プラン
  */
 ?>
-<!-- wp:group {"className":"wt-section wt-reveal","align":"full","backgroundColor":"surface","layout":{"type":"constrained","wideSize":"1120px"}} -->
+<!-- wp:group {"anchor":"pricing","className":"wt-section wt-reveal","align":"full","backgroundColor":"surface","layout":{"type":"constrained","wideSize":"1120px"}} -->
 <div class="wp-block-group alignfull wt-section wt-reveal has-surface-background-color has-background" id="pricing">
 <!-- wp:paragraph {"className":"wt-eyebrow","align":"center"} --><p class="has-text-align-center wt-eyebrow">Pricing</p><!-- /wp:paragraph -->
 <!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"0"}}}} --><h2 class="wp-block-heading has-text-align-center" style="margin-top:0">料金プラン</h2><!-- /wp:heading -->

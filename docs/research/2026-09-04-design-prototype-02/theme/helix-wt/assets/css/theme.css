@@ -20,6 +20,7 @@ img{height:auto;max-width:100%}
 /* ボタン: 高 46 */
 .wp-block-button__link{min-height:var(--wp--custom--button-height);display:inline-flex;align-items:center;justify-content:center;transition:background-color .15s,transform .15s}
 .wp-block-button__link:hover{transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){.wp-block-button__link{transition:none}.wp-block-button__link:hover{transform:none}}
 .wp-block-button.is-style-wt-pill .wp-block-button__link{border-radius:999px}
 .wp-block-button.is-style-outline .wp-block-button__link{border:1.5px solid currentColor;background:transparent;color:var(--wp--preset--color--accent)}
 
@@ -100,9 +101,10 @@ img{height:auto;max-width:100%}
 .wt-price small{font-size:.875rem;font-weight:500;color:var(--wp--preset--color--mute)}
 
 /* 出現アニメ（IO、reduced-motion 尊重） */
+/* JS 初期化（html.wt-js）が確認できた場合のみ初期非表示にする: JS 無効・IO 非対応時は常に表示 */
 @media (prefers-reduced-motion:no-preference){
-.wt-reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
-.wt-reveal.is-in{opacity:1;transform:none}}
+html.wt-js .wt-reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+html.wt-js .wt-reveal.is-in{opacity:1;transform:none}}
 
 /* ヘッダー順: CTA → ハンバーガー（SP）。PC はハンバーガー非表示 */
 @media (max-width:599px){.wt-header__cta{display:block}.wt-header__cta .wp-block-button__link{padding:.6rem .9rem;font-size:.75rem;min-height:38px}}
