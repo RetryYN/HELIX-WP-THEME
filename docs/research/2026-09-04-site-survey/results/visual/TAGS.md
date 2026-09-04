@@ -27,4 +27,4 @@ corporate-trust / tech-modern / warm-lifestyle / luxury-minimal / playful-pop / 
 ## 検証規則（2026-09-05 追記）
 
 - タグは所属する分類にのみ記録する（色タグを surface に入れない等）。集計前に語彙外・分類違反を検出して差し戻す。2026-09-05 に 5 件を是正し tag-rates.json を再生成した。
-- ローダー・ゲート画面が初回画面だった場合は `splash-loader` を motion_cue に記録し、nav / type は「不明（na）」として空にする。「無し」とは区別する。
+- ローダー・ゲート画面が初回画面だった場合は `splash-loader` を motion_cue に記録する。nav / type は「その画面で見えたもの」を記録し（ハンバーガーだけ見えれば `hamburger-only`）、何も見えなければ空 = 不明（na）とする。「無し」とは区別する。既存データ 194 件はこの運用で記録済み。
