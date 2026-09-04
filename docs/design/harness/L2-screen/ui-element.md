@@ -3,7 +3,7 @@ layer: L2
 sub_doc: ui-element
 status: candidate_projection
 source_authority: docs/requirements/l2/ui-element.md
-source_sha256: 0502fc711d86805b738d5a73c0f39b4365073a870b60ad32164fc4c576bb2bdc
+source_sha256: cd091986ec3da6a5aedbe632cfb7dfb958696abc49cf079e1c0b34a315c2298a
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 ---
 
