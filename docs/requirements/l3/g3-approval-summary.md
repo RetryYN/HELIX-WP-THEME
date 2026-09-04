@@ -31,7 +31,7 @@ HELIX の規律（RDJ-FR-007）では、直近 2 iteration で優先度が安定
 
 ## 2. family 別の全体像
 
-| family | 件数 | P0 / P1 / P2 | 受入条件 | 要旨（P0 先頭の抜粋） |
+| family | 件数 | P0 / P1 / P2 | 受入条件 | 要旨（P0 の先頭要件から抜粋。P0 が無い family は先頭要件） |
 | --- | --- | --- | --- | --- |
 | SEO | 7 | 2 / 4 / 1 | 15 | SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティ、FAQPa… |
 | AGENT | 6 | 1 / 3 / 2 | 12 | エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variati… |
@@ -321,7 +321,7 @@ P0 は「これが無いと企画（L1）が成立しない」もの。全文は
 | plugin capability matrix + representative fixtures | 1 |
 | manifest parity + conflict receipt | 1 |
 
-**弱点（Claude 所見）**: evidence が「S3 receipt」とだけ書かれたテストが 26 件ある。これは S3 反映時に oracle を仮置きしたもので、L5 の先行テスト設計で具体の evidence 種別（Playwright / schema test / static analysis 等）へ置き換える必要がある。凍結の妨げにはしないが、L5 の義務として記録する。
+**弱点（Claude 所見）**: evidence が「S3 receipt」とだけ書かれたテストが 26 件ある。これは S3 反映時に oracle を仮置きしたもので、L5 の先行テスト設計で具体の evidence 種別（Playwright / schema test / static analysis 等）へ置き換える必要がある。Claude 案としては凍結の妨げにせず L5 で具体化する義務として記録する提案だが、凍結前に具体化を求めるかは PO の判断（WT-Q-G3-01 の回答に含めてよい）。
 
 ## 6. 開発スタイル（WT-Q-STYLE-01）
 
