@@ -9,11 +9,11 @@
     "l2_projection": "docs/requirements/discovery/candidate-projection.json",
     "poc_inventory": "docs/poc/wt-poc-inventory.json"
   },
-  "compile_result": "not_requested",
+  "compile_result": "backflow_required",
   "freeze": {
-    "g1": "pending_po",
-    "g2": "pending_prototype_agreement",
-    "g3": "not_started"
+    "g1": "approved_po_2026-09-05",
+    "g2": "agreed_2026-09-05",
+    "g3": "pending_po_tl"
   },
   "actors": [
     "PO",
@@ -50,7 +50,10 @@
       ],
       "test_ids": [
         "WT-AT-CORE-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "ffd857f09275e4f7"
     },
     {
       "id": "WT-TR-CORE-02",
@@ -77,7 +80,10 @@
       ],
       "test_ids": [
         "WT-AT-CORE-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "dc2e7bba9d0c9892"
     },
     {
       "id": "WT-TR-CORE-03",
@@ -101,7 +107,10 @@
       "test_ids": [
         "WT-AT-CORE-03"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "0c2a06ac7122a3d1"
     },
     {
       "id": "WT-NFR-GATE-01",
@@ -129,7 +138,10 @@
       ],
       "test_ids": [
         "WT-AT-GATE-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9a9411010c26fa2f"
     },
     {
       "id": "WT-TR-PLUGIN-01",
@@ -155,7 +167,10 @@
       "test_ids": [
         "WT-AT-TR-PLUGIN-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "08b2fc6c5faba24d"
     },
     {
       "id": "WT-TR-PLUGIN-02",
@@ -181,7 +196,10 @@
       ],
       "test_ids": [
         "WT-AT-TR-PLUGIN-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "840615a14b516533"
     },
     {
       "id": "WT-FR-ZONE-01",
@@ -210,7 +228,10 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "753d22487339618e"
     },
     {
       "id": "WT-FR-ZONE-02",
@@ -237,7 +258,10 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8324bea0f716403b"
     },
     {
       "id": "WT-FR-ZONE-03",
@@ -264,7 +288,10 @@
       ],
       "test_ids": [
         "WT-AT-ZONE-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "4436e08d054a0bb8"
     },
     {
       "id": "WT-FR-PARTS-01",
@@ -293,7 +320,10 @@
       ],
       "test_ids": [
         "WT-AT-PARTS-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "62223b9c2b9f802e"
     },
     {
       "id": "WT-FR-PARTS-02",
@@ -319,7 +349,10 @@
       ],
       "test_ids": [
         "WT-AT-PARTS-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "84947c39cad55e8a"
     },
     {
       "id": "WT-FR-VOCAB-01",
@@ -347,7 +380,10 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9c154e2a8a0c24e8"
     },
     {
       "id": "WT-FR-VOCAB-02",
@@ -373,7 +409,10 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c212dc79531b4c4c"
     },
     {
       "id": "WT-FR-VOCAB-03",
@@ -400,7 +439,10 @@
       ],
       "test_ids": [
         "WT-AT-VOCAB-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "079dd56567039f22"
     },
     {
       "id": "WT-FR-VOCAB-04",
@@ -424,7 +466,10 @@
       "test_ids": [
         "WT-AT-VOCAB-04"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "aad31da40ad960f2"
     },
     {
       "id": "WT-FR-SECTION-01",
@@ -452,7 +497,10 @@
       ],
       "test_ids": [
         "WT-AT-SECTION-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a2c4c2143c506082"
     },
     {
       "id": "WT-FR-SECTION-02",
@@ -483,7 +531,10 @@
       ],
       "test_ids": [
         "WT-AT-SECTION-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c9899d1a84664726"
     },
     {
       "id": "WT-FR-LOOK-01",
@@ -513,7 +564,10 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "3dc51be4cdec4656"
     },
     {
       "id": "WT-FR-LOOK-02",
@@ -540,7 +594,10 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "6e55fd21683dd875"
     },
     {
       "id": "WT-FR-LOOK-03",
@@ -567,7 +624,10 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "547abe21a01b6e47"
     },
     {
       "id": "WT-FR-META-01",
@@ -596,7 +656,10 @@
       ],
       "test_ids": [
         "WT-AT-META-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "1a5cc13e01d4576d"
     },
     {
       "id": "WT-FR-ADMIN-01",
@@ -627,7 +690,10 @@
       ],
       "test_ids": [
         "WT-AT-ADMIN-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "70319de104544216"
     },
     {
       "id": "WT-FR-LP-01",
@@ -653,7 +719,10 @@
       ],
       "test_ids": [
         "WT-AT-LP-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "e3de22cc4d07c9bb"
     },
     {
       "id": "WT-FR-LP-02",
@@ -682,7 +751,10 @@
       ],
       "test_ids": [
         "WT-AT-LP-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "2792d6fee520b059"
     },
     {
       "id": "WT-FR-MIGRATE-01",
@@ -706,7 +778,10 @@
       "test_ids": [
         "WT-AT-MIGRATE-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a5c23c4d67d18e40"
     },
     {
       "id": "WT-FR-MIGRATE-02",
@@ -730,7 +805,10 @@
       "test_ids": [
         "WT-AT-MIGRATE-02"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c029d1924d759470"
     },
     {
       "id": "WT-FR-MIGRATE-03",
@@ -755,7 +833,10 @@
       "test_ids": [
         "WT-AT-MIGRATE-03"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "dbc7a867f2fb2791"
     },
     {
       "id": "WT-FR-AGENT-01",
@@ -781,7 +862,10 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a84c666af9c91310"
     },
     {
       "id": "WT-FR-AGENT-02",
@@ -806,7 +890,10 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "89f4e2553a6d37a4"
     },
     {
       "id": "WT-FR-AGENT-03",
@@ -832,7 +919,10 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "b57ab67ed8739191"
     },
     {
       "id": "WT-FR-AGENT-04",
@@ -858,7 +948,10 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "d23f73ffa8db109b"
     },
     {
       "id": "WT-TR-AGENT-05",
@@ -882,7 +975,10 @@
       "test_ids": [
         "WT-AT-AGENT-05"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "05976c88447721d0"
     },
     {
       "id": "WT-FR-AGENT-06",
@@ -912,7 +1008,10 @@
       ],
       "test_ids": [
         "WT-AT-AGENT-06"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8f04c5fa7681b469"
     },
     {
       "id": "WT-FR-VALUE-01",
@@ -941,7 +1040,10 @@
       ],
       "test_ids": [
         "WT-AT-VALUE-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "0ae78057d6233f78"
     },
     {
       "id": "WT-FR-VALUE-02",
@@ -968,7 +1070,10 @@
       ],
       "test_ids": [
         "WT-AT-VALUE-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "bec9cee6aa59de69"
     },
     {
       "id": "WT-NFR-VALUE-03",
@@ -992,7 +1097,10 @@
       "test_ids": [
         "WT-AT-VALUE-03"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ecd79026cbee056b"
     },
     {
       "id": "WT-FR-SEO-01",
@@ -1020,7 +1128,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "bb2631383f35bee6"
     },
     {
       "id": "WT-FR-SEO-02",
@@ -1046,7 +1157,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "6b5cc1477d61666d"
     },
     {
       "id": "WT-FR-SEO-03",
@@ -1073,7 +1187,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "720386f95674ea7b"
     },
     {
       "id": "WT-FR-INTAKE-01",
@@ -1101,7 +1218,10 @@
       ],
       "test_ids": [
         "WT-AT-INTAKE-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "45b567aa3a6eaca6"
     },
     {
       "id": "WT-NFR-SEC-01",
@@ -1125,7 +1245,10 @@
       "test_ids": [
         "WT-AT-SEC-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "4ad14571c69c0a8f"
     },
     {
       "id": "WT-NFR-REL-01",
@@ -1149,7 +1272,10 @@
       "test_ids": [
         "WT-AT-REL-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8493a2b5160a2dc0"
     },
     {
       "id": "WT-NFR-PRIV-01",
@@ -1172,7 +1298,10 @@
       "test_ids": [
         "WT-AT-PRIV-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9390fdb162356d8c"
     },
     {
       "id": "WT-NFR-PERM-01",
@@ -1197,7 +1326,10 @@
       "test_ids": [
         "WT-AT-PERM-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "1c943c1e039d6a84"
     },
     {
       "id": "WT-NFR-COST-01",
@@ -1221,7 +1353,10 @@
       "test_ids": [
         "WT-AT-COST-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ff73349b78c9f7df"
     },
     {
       "id": "WT-NFR-LEGAL-01",
@@ -1244,7 +1379,10 @@
       "test_ids": [
         "WT-AT-LEGAL-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ce94e736141aa132"
     },
     {
       "id": "WT-NFR-OBS-01",
@@ -1269,7 +1407,10 @@
       ],
       "test_ids": [
         "WT-AT-OBS-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "5c11af8b900caa82"
     },
     {
       "id": "WT-NFR-A11Y-01",
@@ -1294,7 +1435,10 @@
       ],
       "test_ids": [
         "WT-AT-A11Y-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "036fa7094e4050d7"
     },
     {
       "id": "WT-NFR-REC-01",
@@ -1318,7 +1462,10 @@
       "test_ids": [
         "WT-AT-REC-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8bd203a7bf008de2"
     },
     {
       "id": "WT-NFR-CRED-01",
@@ -1342,7 +1489,10 @@
       "test_ids": [
         "WT-AT-CRED-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "4ce4817a1f2becff"
     },
     {
       "id": "WT-NFR-PERF-01",
@@ -1366,7 +1516,10 @@
       "test_ids": [
         "WT-AT-PERF-01"
       ],
-      "non_ui_na": true
+      "non_ui_na": true,
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c0583141501020d0"
     },
     {
       "id": "WT-FR-SELL-01",
@@ -1396,7 +1549,10 @@
       ],
       "test_ids": [
         "WT-AT-SELL-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "28cc11b3bc943d72"
     },
     {
       "id": "WT-FR-SELL-02",
@@ -1424,7 +1580,10 @@
       ],
       "test_ids": [
         "WT-AT-SELL-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ae57a9ed9601257f"
     },
     {
       "id": "WT-FR-SELL-03",
@@ -1454,7 +1613,10 @@
       ],
       "test_ids": [
         "WT-AT-SELL-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "5f4b5cdfd562d887"
     },
     {
       "id": "WT-FR-SEO-04",
@@ -1484,7 +1646,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "80725ac68b43abf9"
     },
     {
       "id": "WT-NFR-SEO-01",
@@ -1510,7 +1675,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-NFR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "d36d82d80467ffc3"
     },
     {
       "id": "WT-FR-SEO-05",
@@ -1537,7 +1705,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-05"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a01d7afc466167d2"
     },
     {
       "id": "WT-FR-CRAWL-01",
@@ -1564,7 +1735,10 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "bb02a2bcc20d61e7"
     },
     {
       "id": "WT-FR-CRAWL-02",
@@ -1589,7 +1763,10 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a7745ebede71edd1"
     },
     {
       "id": "WT-FR-CRAWL-03",
@@ -1618,7 +1795,10 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "675cbe8c5d9b3709"
     },
     {
       "id": "WT-NFR-CRAWL-01",
@@ -1644,7 +1824,10 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-NFR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "3288631d093ef32a"
     },
     {
       "id": "WT-FR-AB-01",
@@ -1674,7 +1857,10 @@
       ],
       "test_ids": [
         "WT-AT-AB-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8de26f8375defaa0"
     },
     {
       "id": "WT-FR-AB-02",
@@ -1702,7 +1888,10 @@
       ],
       "test_ids": [
         "WT-AT-AB-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "45c9ced1265ce693"
     },
     {
       "id": "WT-FR-AB-03",
@@ -1729,7 +1918,10 @@
       ],
       "test_ids": [
         "WT-AT-AB-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a234f10eae5f15ef"
     },
     {
       "id": "WT-FR-IMG-01",
@@ -1756,7 +1948,10 @@
       ],
       "test_ids": [
         "WT-AT-IMG-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "508b668d5a1dc8fd"
     },
     {
       "id": "WT-FR-IMG-02",
@@ -1784,7 +1979,10 @@
       ],
       "test_ids": [
         "WT-AT-IMG-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "1c776aa054a0cc40"
     },
     {
       "id": "WT-FR-IMG-03",
@@ -1814,7 +2012,10 @@
       ],
       "test_ids": [
         "WT-AT-IMG-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "1de35a3be8a63352"
     },
     {
       "id": "WT-NFR-PERF-02",
@@ -1840,7 +2041,10 @@
       ],
       "test_ids": [
         "WT-AT-PERF-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "7029c01eba0a7ded"
     },
     {
       "id": "WT-NFR-PERF-03",
@@ -1866,7 +2070,10 @@
       ],
       "test_ids": [
         "WT-AT-PERF-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8c6a1d99ffc9d4a8"
     },
     {
       "id": "WT-TR-API-01",
@@ -1892,7 +2099,10 @@
       ],
       "test_ids": [
         "WT-AT-API-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "0ee0d4ef3142d098"
     },
     {
       "id": "WT-TR-API-02",
@@ -1918,7 +2128,10 @@
       ],
       "test_ids": [
         "WT-AT-API-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "b0a21d04b89307cc"
     },
     {
       "id": "WT-TR-API-03",
@@ -1944,7 +2157,10 @@
       ],
       "test_ids": [
         "WT-AT-API-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "5d169d657f719aeb"
     },
     {
       "id": "WT-FR-ADMIN-02",
@@ -1970,7 +2186,10 @@
       ],
       "test_ids": [
         "WT-AT-ADMIN-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "52c1e904e29ab840"
     },
     {
       "id": "WT-FR-ADMIN-03",
@@ -1997,7 +2216,10 @@
       ],
       "test_ids": [
         "WT-AT-ADMIN-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "4cd81ab8d291225e"
     },
     {
       "id": "WT-FR-ADMIN-04",
@@ -2022,7 +2244,10 @@
       ],
       "test_ids": [
         "WT-AT-ADMIN-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "e8ca68c8d9f991a6"
     },
     {
       "id": "WT-TR-CLI-01",
@@ -2049,7 +2274,10 @@
       ],
       "test_ids": [
         "WT-AT-CLI-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "dcc1bc2a3ebfbb47"
     },
     {
       "id": "WT-FR-SNS-01",
@@ -2076,7 +2304,10 @@
       ],
       "test_ids": [
         "WT-AT-SNS-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "2257b86e583075c9"
     },
     {
       "id": "WT-FR-SNS-02",
@@ -2103,7 +2334,10 @@
       ],
       "test_ids": [
         "WT-AT-SNS-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c50816ba943c130d"
     },
     {
       "id": "WT-FR-CV-01",
@@ -2133,7 +2367,10 @@
       ],
       "test_ids": [
         "WT-AT-CV-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "3af232ad2424bda8"
     },
     {
       "id": "WT-FR-CV-02",
@@ -2160,7 +2397,10 @@
       ],
       "test_ids": [
         "WT-AT-CV-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "1088306e91659785"
     },
     {
       "id": "WT-FR-CV-03",
@@ -2188,7 +2428,10 @@
       ],
       "test_ids": [
         "WT-AT-CV-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "3183fb7085b785fa"
     },
     {
       "id": "WT-NFR-CV-01",
@@ -2214,7 +2457,10 @@
       ],
       "test_ids": [
         "WT-AT-CV-NFR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "5c716be5ae86e4fc"
     },
     {
       "id": "WT-FR-BANNER-01",
@@ -2244,7 +2490,10 @@
       ],
       "test_ids": [
         "WT-AT-BANNER-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9f69d181bedf6af4"
     },
     {
       "id": "WT-FR-BANNER-02",
@@ -2271,7 +2520,10 @@
       ],
       "test_ids": [
         "WT-AT-BANNER-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "d4a6c3103696db1f"
     },
     {
       "id": "WT-FR-AUDIT-01",
@@ -2298,7 +2550,10 @@
       ],
       "test_ids": [
         "WT-AT-AUDIT-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "e7664727d8c535e0"
     },
     {
       "id": "WT-FR-AUDIT-02",
@@ -2326,7 +2581,10 @@
       ],
       "test_ids": [
         "WT-AT-AUDIT-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "57cb5e0c9b62b426"
     },
     {
       "id": "WT-FR-SP-01",
@@ -2354,7 +2612,10 @@
       ],
       "test_ids": [
         "WT-AT-SP-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "76a6cb23bb7283ad"
     },
     {
       "id": "WT-FR-SP-02",
@@ -2382,7 +2643,10 @@
       ],
       "test_ids": [
         "WT-AT-SP-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "f95c1921a8bd9e1f"
     },
     {
       "id": "WT-FR-SP-03",
@@ -2410,7 +2674,10 @@
       ],
       "test_ids": [
         "WT-AT-SP-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "883199a3ab6510d8"
     },
     {
       "id": "WT-NFR-SP-01",
@@ -2438,7 +2705,10 @@
       ],
       "test_ids": [
         "WT-AT-SP-NFR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "742eae5f1ddaffb4"
     },
     {
       "id": "WT-NFR-SP-02",
@@ -2466,7 +2736,10 @@
       ],
       "test_ids": [
         "WT-AT-SP-NFR-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "f502435b004c0767"
     },
     {
       "id": "WT-FR-TAG-01",
@@ -2494,7 +2767,10 @@
       ],
       "test_ids": [
         "WT-AT-TAG-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "2fd0b34c06266bc6"
     },
     {
       "id": "WT-FR-TAG-02",
@@ -2523,7 +2799,10 @@
       ],
       "test_ids": [
         "WT-AT-TAG-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ec21dd93b7490a37"
     },
     {
       "id": "WT-FR-TAG-03",
@@ -2551,7 +2830,10 @@
       ],
       "test_ids": [
         "WT-AT-TAG-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "4a2e2e67b3a91dac"
     },
     {
       "id": "WT-NFR-TAG-01",
@@ -2578,7 +2860,10 @@
       ],
       "test_ids": [
         "WT-AT-TAG-NFR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "71376fbcb96122f5"
     },
     {
       "id": "WT-TR-PLUGIN-03",
@@ -2605,7 +2890,10 @@
       ],
       "test_ids": [
         "WT-AT-TR-PLUGIN-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "41d975381613e518"
     },
     {
       "id": "WT-TR-PLUGIN-04",
@@ -2632,7 +2920,10 @@
       ],
       "test_ids": [
         "WT-AT-TR-PLUGIN-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "1ac832cae2e19176"
     },
     {
       "id": "WT-FR-AUTHOR-01",
@@ -2662,7 +2953,10 @@
       ],
       "test_ids": [
         "WT-AT-AUTHOR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "63af34f6bb234993"
     },
     {
       "id": "WT-FR-AUTHOR-02",
@@ -2692,7 +2986,10 @@
       ],
       "test_ids": [
         "WT-AT-AUTHOR-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "f2d754d81bb75db3"
     },
     {
       "id": "WT-FR-NAV-01",
@@ -2723,7 +3020,10 @@
       ],
       "test_ids": [
         "WT-AT-NAV-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c8e46379ba35e66f"
     },
     {
       "id": "WT-FR-RECO-01",
@@ -2755,7 +3055,10 @@
       ],
       "test_ids": [
         "WT-AT-RECO-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9ff277e2c360bdfe"
     },
     {
       "id": "WT-FR-SELL-04",
@@ -2787,7 +3090,10 @@
       ],
       "test_ids": [
         "WT-AT-SELL-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "84450959d1ca460d"
     },
     {
       "id": "WT-FR-SEO-06",
@@ -2819,7 +3125,10 @@
       ],
       "test_ids": [
         "WT-AT-SEO-06"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "47eba56d19546400"
     },
     {
       "id": "WT-FR-CRAWL-04",
@@ -2848,7 +3157,10 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8153912ffd7ad22f"
     },
     {
       "id": "WT-FR-LOOK-04",
@@ -2881,7 +3193,10 @@
       ],
       "test_ids": [
         "WT-AT-LOOK-04"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "4932fd179373629f"
     },
     {
       "id": "WT-FR-CRAWL-05",
@@ -2909,7 +3224,10 @@
       ],
       "test_ids": [
         "WT-AT-CRAWL-05"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "bfc4fc91b2aea2cd"
     },
     {
       "id": "WT-TR-HOST-01",
@@ -2939,7 +3257,10 @@
       ],
       "test_ids": [
         "WT-AT-HOST-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "68a0ec1542141c88"
     },
     {
       "id": "WT-TR-HOST-02",
@@ -2968,7 +3289,10 @@
       ],
       "test_ids": [
         "WT-AT-HOST-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "TL",
+      "semantic_digest": "67d6310f5425a4fb"
     },
     {
       "id": "WT-FR-LOG-01",
@@ -2997,7 +3321,10 @@
       ],
       "test_ids": [
         "WT-AT-LOG-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ab721ed0498ecaa6"
     },
     {
       "id": "WT-NFR-LOG-01",
@@ -3026,7 +3353,10 @@
       ],
       "test_ids": [
         "WT-AT-LOG-NFR-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "a0a66ebb9e3a0fc8"
     },
     {
       "id": "WT-FR-MAIL-01",
@@ -3053,7 +3383,10 @@
       ],
       "test_ids": [
         "WT-AT-MAIL-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "44e86a1ce36809b9"
     },
     {
       "id": "WT-FR-SYNC-01",
@@ -3084,7 +3417,10 @@
       ],
       "test_ids": [
         "WT-AT-SYNC-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "37c6a1f21e8d8c6b"
     },
     {
       "id": "WT-NFR-A11Y-02",
@@ -3110,7 +3446,10 @@
       ],
       "test_ids": [
         "WT-AT-A11Y-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "7311ed2e3b28fa69"
     },
     {
       "id": "WT-FR-TYPO-01",
@@ -3140,7 +3479,10 @@
       ],
       "test_ids": [
         "WT-AT-TYPO-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "07777113d3b3b550"
     },
     {
       "id": "WT-FR-LEGAL-02",
@@ -3169,7 +3511,10 @@
       ],
       "test_ids": [
         "WT-AT-LEGAL-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "72d214b04545c6fa"
     },
     {
       "id": "WT-FR-LEGAL-03",
@@ -3200,7 +3545,10 @@
       ],
       "test_ids": [
         "WT-AT-LEGAL-03"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "7ef7ad004291c7db"
     },
     {
       "id": "WT-FR-CONSENT-01",
@@ -3229,7 +3577,10 @@
       ],
       "test_ids": [
         "WT-AT-CONSENT-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "08fc7f27ca5c6096"
     },
     {
       "id": "WT-NFR-PRIV-02",
@@ -3260,7 +3611,10 @@
       ],
       "test_ids": [
         "WT-AT-PRIV-02"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "f57014dc5d520cd1"
     },
     {
       "id": "WT-NFR-OSS-01",
@@ -3290,7 +3644,10 @@
       ],
       "test_ids": [
         "WT-AT-OSS-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "dddf8029292de4be"
     },
     {
       "id": "WT-NFR-ENV-01",
@@ -3317,7 +3674,10 @@
       ],
       "test_ids": [
         "WT-AT-ENV-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9688503b89e59448"
     },
     {
       "id": "WT-FR-TPL-01",
@@ -3347,7 +3707,10 @@
       ],
       "test_ids": [
         "WT-AT-TPL-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "d65820e41848daed"
     },
     {
       "id": "WT-FR-PAGE-01",
@@ -3376,7 +3739,10 @@
       ],
       "test_ids": [
         "WT-AT-PAGE-01"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "f5f1d7ee79650dc5"
     },
     {
       "id": "WT-FR-SELL-05",
@@ -3406,7 +3772,10 @@
       ],
       "test_ids": [
         "WT-AT-SELL-05"
-      ]
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "e0bb9d1380fba273"
     }
   ]
 }

@@ -38,7 +38,7 @@
 └─ 台帳: pattern | commit | evidence | gates ──────────┘
 ```
 
-prototype status: `prototyped`（WT-PROT-UI-01-r1、text low-fi）。PO reaction と agreement は未記録であり、G2 freeze ではない。
+prototype status: `prototyped`（WT-PROT-UI-01-r1、text low-fi）。PO reaction は WT-PROT-REACTION-02（デザイン試作 02 カタログへの反応）、agreement は WT-AGREE-01（2026-09-05）として記録済み。G3 freeze ではない。
 
 ## Reaction checklist
 

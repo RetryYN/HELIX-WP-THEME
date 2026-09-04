@@ -1,7 +1,7 @@
 # L10 System Acceptance Test Design
 
-本書は L2 candidate から抽出した oracle inventory である。画面合意後に L3 requirement を compile する際の右腕候補であり、
-現時点では L10 成果物、pair freeze、G3 到達を主張しない。
+本書は L3 requirement inventory（G1 承認・G2 合意済み、compile は iteration 2 待ち）と pair する oracle inventory である。
+pair freeze と G3 到達は主張しない。
 
 | Test ID | Requirement | positive oracle | negative/boundary oracle | evidence |
 | --- | --- | --- | --- | --- |

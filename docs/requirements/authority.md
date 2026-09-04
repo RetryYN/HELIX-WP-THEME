@@ -4,8 +4,8 @@
 - canonical V-model: `L1-L12`
 - development style candidate: `V_DESIGN_SCRUM_IMPLEMENTATION`
 - case-driven model: `DISCOVERY_POC`（PoC 証跡は入力、S4 前に canonical 化しない）
-- lifecycle: `elicited`
-- freeze: **未実施**
+- lifecycle: `accepted`（G1 承認・G2 合意済み。compile は RDJ-FR-007 の 2 iteration 条件で backflow、iteration 2 で再実行）
+- freeze: **G1 承認・G2 合意（PO 2026-09-05、WT-EVT-0232）。G3 未実施**
 - authority owner: PO
 - updated: 2026-09-05
 
@@ -19,9 +19,9 @@
 
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
-| L1 | `docs/requirements/l1/` の 5 sub-doc | confirmed input（PO 指示 2026-09-02 による 0 からの作り直し） | G1 content / pair / trace の PO 承認 |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 問い 0 件（総数 79 件、採用 77 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
-| L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory | L2 agreement 後の compile、L10 oracle との pair、G3 PO / TL 承認 |
+| L1 | `docs/requirements/l1/` の 5 sub-doc | G1 approved（PO 2026-09-05） | 変更は改定として L2 問い → 再 compile |
+| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate、agreement WT-AGREE-01 記録済み | 問い 0 件（総数 79 件、採用 77 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
+| L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory（revision / owner / semantic digest 付与済み、compile は backflow_required） | iteration 2（G3 承認用要件要約の PO 確認）で優先度安定を判定 → compile → `specified` → G3 承認で `frozen` |
 
 ## 入力資産と扱い
 
