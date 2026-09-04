@@ -237,7 +237,7 @@
 | 背景ブロック | カラム内/単色CTA/背景画像/タイムライン同梱 の 4 例 | ta-parts-background s02–s03 |
 | カテゴリ区別 | 記事下 Recommend 差替え、記事上ナビ差替え の 2 例（画像） | ta-parts-catsep s01 |
 | 有料記事 | 鍵付きカード一覧・購入後解除の図解（2 図） | ta-parts-premium s01–s03 |
-| SNS シェア | X/SNS/メッセージアプリ/URLコピー 横並びテキスト | ta-parts-blogcard s01 |
+| SNS シェア | SNS 3 種 + URL コピー 横並びテキスト | ta-parts-blogcard s01 |
 | サイドバー | 検索＋バナー（PC のみ、全 ta-parts） | ta-parts-* s00 |
 
 ---

@@ -12,7 +12,7 @@
 - header.sp: na
 - hero.type: slider | article-grid(media)（記事サムネ大 + 右に大きな番号「…」＋タイトル＋"Read more"、ドット・ページャ。背景は濃紺の斜めカット）
 - hero.cta: single（Read more テキストリンク）
-- section.types: category-cards | tabs(ステップ①②③のような番号見出し) | article-grid | ranking | banner-row(比較サービスへの 2 ボタン帯) | faq-accordion(閉じたアコーディオン行が見える) | cta-band(X シェア帯・SP で確認)
+- section.types: category-cards | tabs(ステップ①②③のような番号見出し) | article-grid | ranking | banner-row(比較サービスへの 2 ボタン帯) | faq-accordion(閉じたアコーディオン行が見える) | cta-band(SNS シェア帯・SP で確認)
 - card.style: image-top | shadow | flat-no-border（白カード・角丸・薄い影、サムネ上・タイトル・灰色メタ）
 - footer.layout: mega(sitemap) | columns-4 | with-sns-icons(プロフィール枠内) | logo-only-legal(右端に ©)
 - fixed.parts: announce-bar | none(その他は未確認)
