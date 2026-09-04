@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0234",
-  "event_count": 234,
+  "event_head": "WT-EVT-0235",
+  "event_count": 235,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -1045,7 +1045,7 @@
       "g3": "pending"
     }
   },
-  "compile_status": "completed",
+  "compile_status": "backflow_required",
   "coverage": {
     "actors_present": true,
     "tasks_present": true,
@@ -1059,5 +1059,12 @@
     "unresolved_owned": true,
     "stable_priority_iterations": false,
     "human_prototype_agreement": true
+  },
+  "convergence_backflow": {
+    "rule": "RDJ-FR-007",
+    "unmet": [
+      "stable_priority_iterations"
+    ],
+    "reentry": "iteration 2（G3 承認用要件要約の PO 確認）で優先度安定を判定して再 compile"
   }
 }

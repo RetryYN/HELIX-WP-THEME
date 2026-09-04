@@ -1,7 +1,7 @@
 # L10 System Acceptance Test Design
 
-本書は L3 requirement（compile 2026-09-05、全件 `specified`）と pair する oracle inventory である。
-G3 未凍結のため pair freeze と G3 到達は主張しない。
+本書は L3 requirement inventory（G1 承認・G2 合意済み、compile は iteration 2 待ち）と pair する oracle inventory である。
+pair freeze と G3 到達は主張しない。
 
 | Test ID | Requirement | positive oracle | negative/boundary oracle | evidence |
 | --- | --- | --- | --- | --- |

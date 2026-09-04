@@ -123,11 +123,15 @@ for (const id of ["WT-NFR-SEC-01", "WT-NFR-PRIV-01", "WT-NFR-PERM-01", "WT-NFR-C
 const testIds = new Set();
 const acceptanceIds = [];
 for (const requirement of ir.requirements) {
-  const commonKeys = ["id", "kind", "status", "source_ids", "statement", "priority", "actor_ids", "surface_ids", "acceptance_ids", "test_ids"];
+  const commonKeys = ["id", "kind", "status", "source_ids", "statement", "priority", "actor_ids", "surface_ids", "acceptance_ids", "test_ids", "revision", "owner", "semantic_digest"];
   const conditionalKeys = requirement.surface_ids?.length ? [] : ["non_ui_na"];
   const decisionKeys = requirement.pending_resolution ? ["pending_resolution"] : [];
   exactKeys(requirement, [...commonKeys, ...conditionalKeys, ...decisionKeys], `requirement ${requirement.id}`);
   if (!requirementStatuses.has(requirement.status)) fail(`unknown requirement status ${requirement.status} at ${requirement.id}`);
+  if (!Number.isInteger(requirement.revision) || requirement.revision < 1) fail(`invalid revision at ${requirement.id}`);
+  if (!["PO", "TL"].includes(requirement.owner)) fail(`invalid owner at ${requirement.id}`);
+  const expectedDigest = createHash("sha256").update(`${requirement.statement}|${requirement.acceptance_ids.join(",")}`).digest("hex").slice(0, 16);
+  if (requirement.semantic_digest !== expectedDigest) fail(`semantic digest drift at ${requirement.id}`);
   if (requirement.status === "specified" && (ir.compile_result !== "completed" || !projection.agreement)) {
     fail(`${requirement.id} claims specified without completed compile and L2 agreement`);
   }
