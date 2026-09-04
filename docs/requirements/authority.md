@@ -20,8 +20,8 @@
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
 | L1 | `docs/requirements/l1/` の 5 sub-doc | G1 approved（PO 2026-09-05） | 変更は改定として L2 問い → 再 compile |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate、agreement WT-AGREE-01 記録済み | 問い 0 件（総数 79 件、採用 77 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
-| L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory（revision / owner / semantic digest 付与済み、compile は backflow_required） | iteration 2（G3 承認用要件要約の PO 確認）で優先度安定を判定 → compile → `specified` → G3 承認で `frozen` |
+| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate、agreement WT-AGREE-01 記録済み | 問い 0 件（現在 iteration 2 の未決 2 件。総数 81 件、採用 77 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
+| L3 | `docs/requirements/l3/requirements-ir.json`（承認用ビュー: `l3/g3-approval-summary.md`） | non-canonical precompile inventory（revision / owner / semantic digest 付与済み、compile は backflow_required、iteration 2 の PO 確認中） | iteration 2（G3 承認用要件要約の PO 確認）で優先度安定を判定 → compile → `specified` → G3 承認で `frozen` |
 
 ## 入力資産と扱い
 
