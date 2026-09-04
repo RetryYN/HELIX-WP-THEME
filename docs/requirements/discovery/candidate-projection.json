@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0208",
-  "event_count": 208,
+  "event_head": "WT-EVT-0229",
+  "event_count": 229,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -48,7 +48,13 @@
         "WT-EVT-0190",
         "WT-EVT-0191",
         "WT-EVT-0192",
-        "WT-EVT-0208"
+        "WT-EVT-0208",
+        "WT-EVT-0212",
+        "WT-EVT-0213",
+        "WT-EVT-0214",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-FR-ZONE-01",
@@ -70,7 +76,13 @@
         "WT-EVT-0108",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220",
+        "WT-EVT-0223",
+        "WT-EVT-0224",
+        "WT-EVT-0228"
       ],
       "requirement_ids": [
         "WT-FR-PARTS-01",
@@ -103,7 +115,13 @@
         "WT-EVT-0204",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-FR-VOCAB-01",
@@ -130,7 +148,19 @@
         "WT-EVT-0198",
         "WT-EVT-0199",
         "WT-EVT-0200",
-        "WT-EVT-0201"
+        "WT-EVT-0201",
+        "WT-EVT-0209",
+        "WT-EVT-0210",
+        "WT-EVT-0211",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220",
+        "WT-EVT-0221",
+        "WT-EVT-0222",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0227",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-FR-LOOK-01",
@@ -147,7 +177,10 @@
         "WT-EVT-0002",
         "WT-EVT-0008",
         "WT-EVT-0017",
-        "WT-EVT-0026"
+        "WT-EVT-0026",
+        "WT-EVT-0209",
+        "WT-EVT-0210",
+        "WT-EVT-0211"
       ],
       "requirement_ids": [
         "WT-FR-META-01"
@@ -360,7 +393,10 @@
         "WT-EVT-0171",
         "WT-EVT-0181",
         "WT-EVT-0182",
-        "WT-EVT-0183"
+        "WT-EVT-0183",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220"
       ],
       "requirement_ids": [
         "WT-FR-CRAWL-01",
@@ -412,7 +448,13 @@
         "WT-EVT-0156",
         "WT-EVT-0157",
         "WT-EVT-0158",
-        "WT-EVT-0159"
+        "WT-EVT-0159",
+        "WT-EVT-0223",
+        "WT-EVT-0224",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0228",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-FR-IMG-01",
@@ -441,7 +483,10 @@
         "WT-EVT-0147",
         "WT-EVT-0154",
         "WT-EVT-0155",
-        "WT-EVT-0156"
+        "WT-EVT-0156",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-NFR-PERF-01",
@@ -526,7 +571,10 @@
         "WT-EVT-0177",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0223",
+        "WT-EVT-0224",
+        "WT-EVT-0228"
       ],
       "requirement_ids": [
         "WT-FR-BANNER-01",
@@ -570,7 +618,10 @@
         "WT-EVT-0111",
         "WT-EVT-0148",
         "WT-EVT-0149",
-        "WT-EVT-0150"
+        "WT-EVT-0150",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-FR-SP-01",
@@ -598,7 +649,13 @@
         "WT-EVT-0159",
         "WT-EVT-0175",
         "WT-EVT-0176",
-        "WT-EVT-0177"
+        "WT-EVT-0177",
+        "WT-EVT-0212",
+        "WT-EVT-0213",
+        "WT-EVT-0214",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-FR-TAG-01",
@@ -645,7 +702,10 @@
         "WT-EVT-0171",
         "WT-EVT-0193",
         "WT-EVT-0194",
-        "WT-EVT-0195"
+        "WT-EVT-0195",
+        "WT-EVT-0225",
+        "WT-EVT-0226",
+        "WT-EVT-0229"
       ],
       "requirement_ids": [
         "WT-NFR-SEC-01",
@@ -686,7 +746,10 @@
         "WT-EVT-0159",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0215",
+        "WT-EVT-0216",
+        "WT-EVT-0217"
       ],
       "requirement_ids": [
         "WT-FR-ADMIN-01",
@@ -775,7 +838,10 @@
       "source_event_ids": [
         "WT-EVT-0166",
         "WT-EVT-0167",
-        "WT-EVT-0168"
+        "WT-EVT-0168",
+        "WT-EVT-0223",
+        "WT-EVT-0224",
+        "WT-EVT-0228"
       ],
       "requirement_ids": [
         "WT-FR-NAV-01"
@@ -787,7 +853,10 @@
       "source_event_ids": [
         "WT-EVT-0169",
         "WT-EVT-0170",
-        "WT-EVT-0171"
+        "WT-EVT-0171",
+        "WT-EVT-0223",
+        "WT-EVT-0224",
+        "WT-EVT-0228"
       ],
       "requirement_ids": [
         "WT-FR-RECO-01"
@@ -866,7 +935,14 @@
     "WT-Q-LOOK-03",
     "WT-Q-LOOK-04",
     "WT-Q-VOCAB-05",
-    "WT-Q-PARTS-02"
+    "WT-Q-PARTS-02",
+    "WT-Q-META-02",
+    "WT-Q-CONSENT-02",
+    "WT-Q-ADMIN-04",
+    "WT-Q-LOOK-05",
+    "WT-Q-LOOK-06",
+    "WT-Q-PARTS-03",
+    "WT-Q-EVID-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -940,7 +1016,14 @@
     "WT-Q-LOOK-03",
     "WT-Q-LOOK-04",
     "WT-Q-VOCAB-05",
-    "WT-Q-PARTS-02"
+    "WT-Q-PARTS-02",
+    "WT-Q-META-02",
+    "WT-Q-CONSENT-02",
+    "WT-Q-ADMIN-04",
+    "WT-Q-LOOK-05",
+    "WT-Q-LOOK-06",
+    "WT-Q-PARTS-03",
+    "WT-Q-EVID-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
