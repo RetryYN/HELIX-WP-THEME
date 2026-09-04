@@ -31,7 +31,7 @@
 | 旧テーマ 記事 | 17 | 1.8 | 48 | 36 | 20 | 149 | 57 | 326 |
 | 調査 記事 中央値 | 16 | 1.8 | 22.2 | 20 | 18 | 64 | 40 | 351 |
 
-PC 1280 の新テーマ記事: 本文 16 / h1 28 / h2 24 / h3 20 / ヘッダー 61 / 本文列 740。全数値は `results/metrics.json`。
+PC 1280 の新テーマ記事: 本文 16 / h1 28 / h2 24 / h3 20 / ヘッダー 61 / 本文列（内容幅）740。全数値は `results/metrics.json`（同ファイルの `cont` 1240 は post-content 外枠 = alignfull の幅で、本文列 740 とは測定対象が異なる）。
 
 ## 3. 描画証跡
 
@@ -67,3 +67,4 @@ PC 1280 の新テーマ記事: 本文 16 / h1 28 / h2 24 / h3 20 / ヘッダー 
 - PO 指摘で列内カードの高さを自動統一する CSS を `assets/css/theme.css` 末尾に追加（columns 内の card / price を stretch）。
 - dark variation を撤去（PO 決定 WT-Q-LOOK-04 不採用に反していた）。コンテナ内の `styles/dark.json` も削除済み。
 - アイキャッチ位置 5 案・カードのメディア枠 5 案はカタログ（scratchpad、DOM 注入による見た目比較）で PO に提示。テーマ側の実装は Issue #126 / #127。
+- 2026-09-05 事後レビュー（Astra）対応: CTA 色を #c2410c へ（白文字 4.5:1 以上）、出現アニメは `html.wt-js` 付与後のみ初期非表示（JS 無効時は常に表示）、ボタン hover は reduced-motion で停止、pattern の id に `anchor` 属性を付与、page テンプレの padding を HTML 側にも反映。
