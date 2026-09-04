@@ -1,5 +1,6 @@
 import json,glob,collections,sys
-T='/tmp/claude-1000/-home-tenni-dev-HELIX-MARKETING-HARNESS/6d07f64c-69bc-4f01-b637-4250e6c70d9c/scratchpad/taxonomy'
+import os
+T=sys.argv[1] if len(sys.argv)>1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # 作業ディレクトリ（coded/ を含む）
 rows=[]
 for f in sorted(glob.glob(f'{T}/coded/g*.jsonl')):
     for l in open(f,encoding='utf-8'):
