@@ -118,6 +118,7 @@
 | 列内カードの高さ自動統一（columns 内 card / price は stretch） | LOOK-01, PO 指摘 2026-09-05 | 選択なし（既定で揃える） | ◎ 試作 02 CSS で対応 | – |
 | 影 1 段・出現 1 種・hover transition | LOOK-01, NFR-A11Y-02 | S1: 影の強弱、reduced-motion で停止 | ◎ | – |
 | 1200px 段 / alignWide / gradients / spacing 段 | LOOK-01 | theme.json | ◎（wide 1120） | – |
+| 写真・色地上の文字の自動コントラスト guard（画像輝度の事前計算・スクリム自動強度・palette 組の検査・G-E1 実測） | NFR-A11Y-01, VALUE-01, PO 指示 2026-09-05 | 選択なし（自動。編集者は「写真の上に置くか」だけ選ぶ） | × | #130 |
 | 値の 3 域判定（安全 / 生値 / 破壊） | VALUE-01/02 | ゲート | × | 既存 THEME-GATE 系 |
 
 ## 7. 状態・条件（見た目以外の「選ぶ場所」）
