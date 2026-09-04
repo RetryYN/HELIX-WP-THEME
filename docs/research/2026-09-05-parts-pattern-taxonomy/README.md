@@ -32,7 +32,7 @@
 | 著者欄 | article/pc: avatar+bio 31%, none 31%, avatar+bio+sns 18%, supervisor-separate 12%, other:left-column 6%（n=16）<br>article/sp: avatar+bio 38%, none 38%, supervisor-separate 23%（n=13） | 4（プロフィール） | 3 | 1 | #109 |
 | シェア | article/pc: top-and-bottom 43%, float 31%, none 23%, other:left-column 1%（n=64）<br>article/sp: top-and-bottom 47%, none 33%, float 16%, other:inline-bar 2%（n=42） | – | SNS シェアバー | 0 | #105 |
 | サイドバー | article/pc: cta-banner 20%, none 18%, categories 10%, popular-ranking 9%, toc-sticky 8%, search 7%（n=174） | あり | 24 エリア | 0 | #95 |
-| カテゴリ面 | article/pc: –<br>article/sp: – | – | – | index のみ | #129: 参照サイトは「ステップ 1→2→3」の画像バナーで子カテゴリ導線、各ブロック 11 件 + 一覧へボタン、PV ランキング |
+| カテゴリ面 | article/pc: –<br>article/sp: – | – | – | index のみ | #129: 参照サイトは「ステップ 1→2→3」の画像バナーで子カテゴリ導線、各ブロック十数件 + 一覧へボタン、PV ランキング |
 
 ## 2. 読み取り（Claude 案）
 

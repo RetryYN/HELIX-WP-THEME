@@ -32,7 +32,7 @@
 - category.children: cards（3 枚のステップ画像バナーがそのまま子カテゴリ導線）
 - reading.order: series-numbered（ステップ1→2→3、各ブロックにチェック丸アイコン＋「…」の灰色補助文）
 - ranking.in-category: yes（ページ末尾に PV ランキング 4×2、views 数付き）
-- list.layout: grid（4 列、子カテゴリごとに最大 11〜12 件を表示して「…」ボタン）
+- list.layout: grid（4 列、子カテゴリごとに十数件を表示して「…」ボタン）
 - pagination: prev-next ではなく other:「…」ボタンで子カテゴリ一覧へ送る（ページ番号なし）
 
 ### category / SP
