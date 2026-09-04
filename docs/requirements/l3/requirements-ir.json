@@ -608,7 +608,7 @@
         "WT-BR-01",
         "WT-CAND-ADMIN"
       ],
-      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）サイト既定セットの初期値は CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）とし、個別に変更できる。証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。",
+      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）を各項目の所有先の初期値にする: 設定 JSON が持つ項目はサイト既定セットの初期値、theme.json / block style が持つ項目（本文幅・書体など）はテーマ既定、選択なしの guard 項目（44px・コントラスト等）は検査で強制し設定にしない。選択を持つ項目だけ個別に変更でき、証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",

@@ -1571,7 +1571,7 @@
       "id": "WT-AC-ADMIN-01D",
       "requirement_id": "WT-FR-ADMIN-01",
       "polarity": "positive",
-      "oracle": "初期状態の設定 JSON が P01〜P33 の値と一致し、各項目を個別に変更でき、強度 C の項目に要自社検証の注記が出る"
+      "oracle": "P01〜P33 の各項目が所有先（設定 JSON / theme.json・block style / guard）の初期値または検査として実現され、選択を持つ項目だけ個別に変更でき、guard 項目は設定に現れず、強度 C の項目に要自社検証の注記が出る"
     }
   ]
 }
