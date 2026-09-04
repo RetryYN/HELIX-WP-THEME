@@ -116,6 +116,7 @@
 | 和文フォント系統（ゴシック / 明朝 / 丸ゴ / 手書き・デザイン系、自己ホスト・サブセット・size-adjust・OFL 台帳） | LOOK-04, NFR-PERF-02, NFR-OSS-01 | S1/S7: 系統、Font Library はテーマ提供限定 | △ システムフォントのみ | #123 |
 | 和文組版 CSS（line-break strict / overflow-wrap anywhere / text-autospace / text-wrap balance） | TYPO-01 | 既定（選択なし） | ○ 一部 | #123 |
 | 列内カードの高さ自動統一（columns 内 card / price は stretch） | LOOK-01, PO 指摘 2026-09-05 | 選択なし（既定で揃える） | ◎ 試作 02 CSS で対応 | – |
+| LP / HP のアニメーション語彙（出現 8 / スクロール連動 4 / hero 演出 6 / マイクロ 5 / 数値 2）+ reduced-motion・性能 guard | LOOK-01 改定候補, LP-01, NFR-A11Y-01, PO 指示 2026-09-05 | S2: pattern 属性で出現型、S7: hero 演出と既定、S8: SP は軽量型へ降格。記事面は対象外 | △ 出現 1 種（reveal.js） | #132 |
 | 影 1 段・出現 1 種・hover transition | LOOK-01, NFR-A11Y-02 | S1: 影の強弱、reduced-motion で停止 | ◎ | – |
 | 1200px 段 / alignWide / gradients / spacing 段 | LOOK-01 | theme.json | ◎（wide 1120） | – |
 | 写真・色地上の文字の自動コントラスト guard（画像輝度の事前計算・スクリム自動強度・palette 組の検査・G-E1 実測） | NFR-A11Y-01, VALUE-01, PO 指示 2026-09-05 | 選択なし（自動。編集者は「写真の上に置くか」だけ選ぶ） | × | #130 |
