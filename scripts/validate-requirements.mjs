@@ -129,7 +129,8 @@ for (const requirement of ir.requirements) {
   exactKeys(requirement, [...commonKeys, ...conditionalKeys, ...decisionKeys], `requirement ${requirement.id}`);
   if (!requirementStatuses.has(requirement.status)) fail(`unknown requirement status ${requirement.status} at ${requirement.id}`);
   if (!Number.isInteger(requirement.revision) || requirement.revision < 1) fail(`invalid revision at ${requirement.id}`);
-  if (!["PO", "TL"].includes(requirement.owner)) fail(`invalid owner at ${requirement.id}`);
+  const expectedOwner = requirement.kind === "technical" ? "TL" : "PO";
+  if (requirement.owner !== expectedOwner) fail(`owner must be ${expectedOwner} for kind ${requirement.kind} at ${requirement.id}`);
   const expectedDigest = createHash("sha256").update(`${requirement.statement}|${requirement.acceptance_ids.join(",")}`).digest("hex").slice(0, 16);
   if (requirement.semantic_digest !== expectedDigest) fail(`semantic digest drift at ${requirement.id}`);
   if (requirement.status === "specified" && (ir.compile_result !== "completed" || !projection.agreement)) {
