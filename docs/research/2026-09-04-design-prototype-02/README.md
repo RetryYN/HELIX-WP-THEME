@@ -16,7 +16,7 @@
 | block style 10 | group: note / point / warn / card / card-shadow、list: check、heading: bar / underline、button: pill、table: compare |
 | CSS 部品 | 見出し付きボックス 3 型（帯 / タブ / ラベル）× 色、吹き出し 2 方向、タイムライン、評価バー、メリデメ、アイコン付きリスト・ボタン、ピックアップ（大 1 + 小 4）、新着 / 人気タブ（core/tabs）、カテゴリカード、ランキング、プロフィール、数字訴求 |
 | SVG アイコン 36 | 自前作成（24 grid、stroke 2）。`assets/icons/*.svg` と CSS mask クラス（`assets/css/icons.css`、currentColor） |
-| style variation 3 | mincho / dark / rules（palette と radius の差し替えのみ） |
+| style variation 2 | mincho / rules（palette と radius の差し替えのみ）。dark は PO 決定（2026-09-03 WT-Q-LOOK-04 不採用・J-13）に反していたため 2026-09-05 に撤去 |
 | 画像 15 | codex 画像生成（hero、事例 3、商品、著者、特徴 3、記事カバー 6）。架空・無文字。`assets/img/` |
 | JS | IO 出現アニメ 1 種（reduced-motion で停止） |
 
@@ -35,7 +35,7 @@ PC 1280 の新テーマ記事: 本文 16 / h1 28 / h2 24 / h3 20 / ヘッダー 
 
 ## 3. 描画証跡
 
-`results/`: 企業型トップ SP / PC、メディア型トップ SP / PC、記事 SP 全長、variation 3 本の SP 初回画面（いずれもローカル docker WP 7.1、生成画像・架空文）。
+`results/`: 企業型トップ SP / PC、メディア型トップ SP / PC、記事 SP 全長、variation 2 本（mincho / rules）の SP 初回画面（いずれもローカル docker WP 7.1、生成画像・架空文）。
 
 ## 4. 手順（再現）
 
@@ -61,3 +61,9 @@ PC 1280 の新テーマ記事: 本文 16 / h1 28 / h2 24 / h3 20 / ヘッダー 
 ## 7. 公開安全
 
 サイト名・URL なし。参照テーマは テーマA / テーマB 表記。画像は生成画像（文字・ロゴ・実在ブランドなし）。統合層の `check-public-safety.sh --staged` 通過。
+
+## 8. 2026-09-05 追記
+
+- PO 指摘で列内カードの高さを自動統一する CSS を `assets/css/theme.css` 末尾に追加（columns 内の card / price を stretch）。
+- dark variation を撤去（PO 決定 WT-Q-LOOK-04 不採用に反していた）。コンテナ内の `styles/dark.json` も削除済み。
+- アイキャッチ位置 5 案・カードのメディア枠 5 案はカタログ（scratchpad、DOM 注入による見た目比較）で PO に提示。テーマ側の実装は Issue #126 / #127。

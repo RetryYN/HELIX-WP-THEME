@@ -175,3 +175,11 @@ img{height:auto;max-width:100%}
 .wt-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 .wt-feature-icon{width:64px;height:64px;margin-bottom:.75rem}
 @media (min-width:600px){.wt-header__cta{order:2}}
+
+/* 2026-09-05 PO 指摘: 列内カードの高さを自動で統一（内容量の差で凸凹にしない） */
+.wp-block-column:has(> .is-style-wt-card, > .is-style-wt-card-shadow, > .wt-card, > .wt-price) { display: flex; flex-direction: column; }
+.wp-block-column > .is-style-wt-card,
+.wp-block-column > .is-style-wt-card-shadow,
+.wp-block-column > .wt-card,
+.wp-block-column > .wt-price { flex: 1 1 auto; height: 100%; }
+.wt-cardlist > * { height: 100%; }
