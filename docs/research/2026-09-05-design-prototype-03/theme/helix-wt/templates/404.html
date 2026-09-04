@@ -1,0 +1,38 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<!-- wp:group {"tagName":"main","className":"wt-404","layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|80"}}}} -->
+<main class="wp-block-group wt-404">
+<!-- wp:paragraph {"className":"wt-404__code"} --><p class="wt-404__code" aria-hidden="true">404</p><!-- /wp:paragraph -->
+<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">ページが見つかりませんでした</h1><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"wt-404__why"} --><p class="wt-404__why">ご不便をおかけしてすみません。URL が変わった、記事が公開終了した、または入力に誤りがある可能性があります。下の検索や一覧から目的のページをお探しください。</p><!-- /wp:paragraph -->
+<!-- wp:search {"label":"サイト内検索","showLabel":false,"placeholder":"キーワードで検索","buttonText":"検索","className":"wt-404__search"} /-->
+<!-- wp:group {"className":"wt-404__variant wt-404__variant--popular wt-404__sect","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-404__variant wt-404__variant--popular wt-404__sect"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">よく読まれている記事</h2><!-- /wp:heading -->
+<!-- wp:query {"queryId":903,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"className":"wt-related"} -->
+<div class="wp-block-query wt-related"><!-- wp:post-template {"layout":{"type":"default"}} -->
+<!-- wp:group {"className":"wt-rcard","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-rcard"><!-- wp:post-featured-image {"isLink":false} /-->
+<!-- wp:group {"layout":{"type":"flow"},"style":{"spacing":{"blockGap":"0.25rem"}}} -->
+<div class="wp-block-group"><!-- wp:post-terms {"term":"category","fontSize":"xs"} /--><!-- wp:post-title {"isLink":true,"level":3} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- /wp:post-template --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"wt-404__variant wt-404__variant--cta wt-404__sect","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-404__variant wt-404__variant--cta wt-404__sect"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">探す前に、3 分で診断</h2><!-- /wp:heading -->
+<!-- wp:pattern {"slug":"helix-wt/cta-box"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"wt-404__variant wt-404__variant--suggest wt-404__sect","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-404__variant wt-404__variant--suggest wt-404__sect"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">こちらをお探しですか</h2><!-- /wp:heading -->
+<!-- wp:html --><ul class="wt-suggest" data-wt-from-path><li><a href="/?s=%E6%98%87%E9%99%8D%E3%83%87%E3%82%B9%E3%82%AF">「昇降デスク」で検索</a></li><li><a href="/?s=%E6%AF%94%E8%BC%83">「比較」で検索</a></li></ul><!-- /wp:html --></div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"wt-404__sect wt-404__cats","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-404__sect wt-404__cats"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">カテゴリから探す</h2><!-- /wp:heading --><!-- wp:categories {"showPostCounts":true} /--></div>
+<!-- /wp:group -->
+<!-- wp:buttons {"className":"wt-404__home","layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons wt-404__home"><!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/">ホームへ戻る</a></div><!-- /wp:button --></div>
+<!-- /wp:buttons -->
+<!-- wp:template-part {"slug":"cv-slot","tagName":"aside"} /-->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
