@@ -3,7 +3,7 @@ layer: L2
 sub_doc: wireframe
 status: candidate_projection
 source_authority: docs/requirements/l2/wireframe.md
-source_sha256: 04e750c86d7d26342661c0be53764ddc313baea4988c4ea6f8e0596623644543
+source_sha256: fd4991ea12e960038b4eaed0e1c8ab3bcd3a5a6e88c98379fff31fb23357ebba
 pair_artifact: self
 ---
 

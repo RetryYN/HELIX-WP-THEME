@@ -1,7 +1,7 @@
 ---
 layer: L1
 sub_doc: screen
-status: confirmed_input
+status: g1_approved
 pair_artifact: docs/requirements/l2/screen-list.md
 authority: docs/requirements/authority.md
 ---

@@ -1,7 +1,7 @@
 ---
 layer: L1
 sub_doc: nfr
-status: confirmed_input
+status: g1_approved
 pair_artifact: docs/test-design/l12-operational-value-test-design.md
 authority: docs/requirements/authority.md
 ---

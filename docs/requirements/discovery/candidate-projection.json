@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0229",
-  "event_count": 229,
+  "event_head": "WT-EVT-0234",
+  "event_count": 234,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -1029,11 +1029,23 @@
     "WT-PROT-UI-01-r1"
   ],
   "reaction_ids": [
-    "WT-POC-REACTION-01"
+    "WT-POC-REACTION-01",
+    "WT-PROT-REACTION-02"
   ],
   "unresolved": [],
-  "agreement": null,
-  "compile_status": "backflow_required",
+  "agreement": {
+    "agreement_id": "WT-AGREE-01",
+    "event_id": "WT-EVT-0232",
+    "actor": "PO",
+    "occurred_at": "2026-09-05",
+    "revision_event_head": "WT-EVT-0231",
+    "gates": {
+      "g1": "approved",
+      "g2": "agreed",
+      "g3": "pending"
+    }
+  },
+  "compile_status": "completed",
   "coverage": {
     "actors_present": true,
     "tasks_present": true,
@@ -1042,10 +1054,10 @@
     "implicit_matrix_complete": true
   },
   "convergence": {
-    "all_candidates_dispositioned": false,
+    "all_candidates_dispositioned": true,
     "contradiction_zero_or_typed_defer": true,
     "unresolved_owned": true,
     "stable_priority_iterations": false,
-    "human_prototype_agreement": false
+    "human_prototype_agreement": true
   }
 }
