@@ -118,6 +118,7 @@
 | 列内カードの高さ自動統一（columns 内 card / price は stretch） | LOOK-01, PO 指摘 2026-09-05 | 選択なし（既定で揃える） | ◎ 試作 02 CSS で対応 | – |
 | LP / HP のアニメーション語彙（出現 8 / スクロール連動 4 / hero 演出 6 / マイクロ 5 / 数値 2）+ reduced-motion・性能 guard | LOOK-01 改定候補, LP-01, NFR-A11Y-01, PO 指示 2026-09-05 | S2: pattern 属性で出現型、S7: hero 演出と既定、S8: SP は軽量型へ降格。記事面は対象外 | △ 出現 1 種（reveal.js） | #132 |
 | 奥行き・立体の型（影 4 段、カード浮遊 / lift / 重なり / ガラス / 面帯、立体ボタン 5 型、文字影） | LOOK-01 改定候補, PO 指示 2026-09-05 | S1: variation で影の強さ、S2: block style で型 | △ 影 1 段・hover lift | #122 |
+| 空間パターン（余白密度 3 段 × 配置 5 × グリッド 6 × 幅 4 × 重なり 3 × セクションリズム 3 × 縦リズム 3 段） | LOOK-01 改定候補, LOOK-03, VALUE-01, PO 指示 2026-09-05 | S1: 密度・縦リズム、S2: section 属性で配置 / グリッド / 幅 / 重なり、S7: リズム既定、S8: SP 降格 | △ wide / full のみ | #134 |
 | 影 1 段・出現 1 種・hover transition | LOOK-01, NFR-A11Y-02 | S1: 影の強弱、reduced-motion で停止 | ◎ | – |
 | 1200px 段 / alignWide / gradients / spacing 段 | LOOK-01 | theme.json | ◎（wide 1120） | – |
 | 写真・色地上の文字の自動コントラスト guard（画像輝度の事前計算・スクリム自動強度・palette 組の検査・G-E1 実測） | NFR-A11Y-01, VALUE-01, PO 指示 2026-09-05 | 選択なし（自動。編集者は「写真の上に置くか」だけ選ぶ） | × | #130 |
