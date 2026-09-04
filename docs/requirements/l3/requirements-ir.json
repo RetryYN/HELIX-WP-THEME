@@ -276,7 +276,7 @@
         "WT-BR-03",
         "WT-CAND-PARTS"
       ],
-      "statement": "header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする",
+      "statement": "header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする。footer にサイトマップ枠と関連サイト / ページ枠を選べる（PO 2026-09-05、WT-Q-PARTS-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -288,7 +288,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-PARTS-01A",
-        "WT-AC-PARTS-01B"
+        "WT-AC-PARTS-01B",
+        "WT-AC-PARTS-01C"
       ],
       "test_ids": [
         "WT-AT-PARTS-01"
@@ -330,7 +331,7 @@
         "WT-BR-02",
         "WT-CAND-VOCAB"
       ],
-      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 6 種 + 空き 1 枠（上限 7）に限定する。SP 幅では比較を横スクロール / カード、タブをアコーディオン、目次を開閉ボタン、ギャラリーをスワイプ、CTA を全幅 / sticky として選べる。比較専用テーブルは本文中の手組み比較表とは別語彙とする。タブはコア Tabs + block style を使い、pros-cons / timeline は core + block style、料金表は比較専用テーブルの variant として受ける。",
+      "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 6 種 + 空き 1 枠（上限 7）に限定する。SP 幅では比較を横スクロール / カード、タブをアコーディオン、目次を開閉ボタン、ギャラリーをスワイプ、CTA を全幅 / sticky として選べる。比較専用テーブルは本文中の手組み比較表とは別語彙とする。タブはコア Tabs + block style を使い、pros-cons / timeline は core + block style、料金表は比較専用テーブルの variant として受ける。カード・箇条書き・手順のメディア枠は自前 SVG アイコン・アップロード画像・写真・番号・なしから選べる（PO 2026-09-05、WT-Q-PARTS-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -341,7 +342,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-VOCAB-01A",
-        "WT-AC-VOCAB-01B"
+        "WT-AC-VOCAB-01B",
+        "WT-AC-VOCAB-01C"
       ],
       "test_ids": [
         "WT-AT-VOCAB-01"
@@ -494,7 +496,7 @@
         "WT-BR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "見た目の型は目標数を持たず、用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サイト・テーマA / B・参照サイトの観察由来）を入力にする。h3 を h2 より 1 段下げ、h2 / h3 の block style とボタン variant は台帳由来の型数とし、h2 ×3 / h3 ×2 / ボタン ×3 は下限（Claude 案）。同じ列のカードは高さを自動で揃え、見出し文字は 1 行に収める寸法を既定とし、補助文は抑えた無彩色にする。hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする（PO 2026-09-05、WT-Q-LOOK-05）。",
+      "statement": "見た目の型は目標数を持たず、用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サイト・テーマA / B・参照サイトの観察由来）を入力にする。h3 を h2 より 1 段下げ、h2 / h3 の block style とボタン variant は台帳由来の型数とし、h2 ×3 / h3 ×2 / ボタン ×3 は下限（Claude 案）。同じ列のカードは高さを自動で揃え、見出し文字は 1 行に収める寸法を既定とし、補助文は抑えた無彩色にする。hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする（PO 2026-09-05、WT-Q-LOOK-05）見た目の選択軸に動き（LP / HP の出現・スクロール連動・hero 演出・マイクロ）、奥行き（カードの浮き・立体ボタン）、空間（余白密度・配置・グリッド・リズム）、脱テキスト感（見出し・箇条書きの装飾型）を加え、動きは reduced-motion と JS 無効時の表示を保証し、写真・色地上の文字は自動コントラスト guard（4.5:1、大文字 3:1）で守る（PO 2026-09-05、WT-Q-LOOK-06）。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR"
@@ -506,7 +508,8 @@
       "acceptance_ids": [
         "WT-AC-LOOK-01A",
         "WT-AC-LOOK-01B",
-        "WT-AC-LOOK-01C"
+        "WT-AC-LOOK-01C",
+        "WT-AC-LOOK-01D"
       ],
       "test_ids": [
         "WT-AT-LOOK-01"
@@ -605,7 +608,7 @@
         "WT-BR-01",
         "WT-CAND-ADMIN"
       ],
-      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）。",
+      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）サイト既定セットの初期値は CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）とし、個別に変更できる。証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -619,7 +622,8 @@
       "acceptance_ids": [
         "WT-AC-ADMIN-01A",
         "WT-AC-ADMIN-01B",
-        "WT-AC-ADMIN-01C"
+        "WT-AC-ADMIN-01C",
+        "WT-AC-ADMIN-01D"
       ],
       "test_ids": [
         "WT-AT-ADMIN-01"
@@ -1000,7 +1004,7 @@
         "WT-SCR-06",
         "WT-CAND-SEO"
       ],
-      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）を追加する。WebSite は site name 用の name / alternateName / url のみを出し、WebSite.potentialAction（SearchAction）は出さない。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）。Organization・site name・favicon・BreadcrumbList を root / 構造の正本から出し、対象外の merchant feed 経路を持たない。",
+      "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）を追加する。WebSite は site name 用の name / alternateName / url のみを出し、WebSite.potentialAction（SearchAction）は出さない。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）。Organization・site name・favicon・BreadcrumbList を root / 構造の正本から出し、対象外の merchant feed 経路を持たない。カテゴリ一覧テンプレはミニ HOME 型（親・子・孫の階層、読む順、記事数、カテゴリ内人気、新着）を選べ、CollectionPage は同じ出力元から出す（PO 2026-09-05、WT-Q-PARTS-03）",
       "priority": "P1",
       "actor_ids": [
         "OPERATOR"
@@ -1011,7 +1015,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-SEO-01A",
-        "WT-AC-SEO-01B"
+        "WT-AC-SEO-01B",
+        "WT-AC-SEO-01C"
       ],
       "test_ids": [
         "WT-AT-SEO-01"
@@ -2220,7 +2225,7 @@
         "WT-SCR-05",
         "WT-CAND-BANNER"
       ],
-      "statement": "バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生する。ゾーンに割り当ててページ種別・カテゴリ・記事単位で固定またはローテーション表示し、速度予算に画像を含める。お知らせバーは本正本から派生し（有効期間・リンク・種別）、ZONE-03 のヘッダー直下 slot に置き、閉じた状態は端末側に記憶する（WT-Q-PARTS-02）",
+      "statement": "バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生する。ゾーンに割り当ててページ種別・カテゴリ・記事単位で固定またはローテーション表示し、速度予算に画像を含める。お知らせバーは本正本から派生し（有効期間・リンク・種別）、ZONE-03 のヘッダー直下 slot に置き、閉じた状態は端末側に記憶する（WT-Q-PARTS-02）。バナーと問い合わせボタンの枠は全面（header / footer / sidebar / 本文前後 / 一覧 / 404）のゾーンに置ける（PO 2026-09-05、WT-Q-PARTS-03）",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -2234,7 +2239,8 @@
         "WT-AC-BANNER-01A",
         "WT-AC-BANNER-01B",
         "WT-AC-BANNER-01C",
-        "WT-AC-BANNER-01D"
+        "WT-AC-BANNER-01D",
+        "WT-AC-BANNER-01E"
       ],
       "test_ids": [
         "WT-AT-BANNER-01"
@@ -2731,7 +2737,7 @@
         "WT-SCR-10",
         "WT-CAND-RECO"
       ],
-      "statement": "記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選ぶ場合も bot・管理者を除外し、IP を保存せず日次で集約する。外部集計の読み戻しも選択できる",
+      "statement": "記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選ぶ場合も bot・管理者を除外し、IP を保存せず日次で集約する。外部集計の読み戻しも選択できる。関連 / 人気 / おすすめの表示型（カード・リスト・ランキング番号付き・サムネイル大小・横スクロール）を用途別一覧から選べる（PO 2026-09-05、WT-Q-PARTS-03）",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -2744,7 +2750,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-RECO-01A",
-        "WT-AC-RECO-01B"
+        "WT-AC-RECO-01B",
+        "WT-AC-RECO-01C"
       ],
       "test_ids": [
         "WT-AT-RECO-01"

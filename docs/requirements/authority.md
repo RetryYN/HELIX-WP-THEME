@@ -20,7 +20,7 @@
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
 | L1 | `docs/requirements/l1/` の 5 sub-doc | confirmed input（PO 指示 2026-09-02 による 0 からの作り直し） | G1 content / pair / trace の PO 承認 |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 問い 0 件（現在 未決 3 件。総数 79 件、採用 74 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
+| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate | 問い 0 件（総数 79 件、採用 77 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
 | L3 | `docs/requirements/l3/requirements-ir.json` | non-canonical precompile inventory | L2 agreement 後の compile、L10 oracle との pair、G3 PO / TL 承認 |
 
 ## 入力資産と扱い

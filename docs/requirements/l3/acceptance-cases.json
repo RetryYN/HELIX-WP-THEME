@@ -1530,6 +1530,48 @@
       "requirement_id": "WT-FR-TPL-01",
       "polarity": "positive",
       "oracle": "404 が HTTP 404 を返し、選んだ変種の CV 導線 slot に LP / 比較記事 / 問い合わせのリンクが出る"
+    },
+    {
+      "id": "WT-AC-LOOK-01D",
+      "requirement_id": "WT-FR-LOOK-01",
+      "polarity": "negative",
+      "oracle": "reduced-motion 下で装飾モーションが動く、JS 無効で要素が消える、または写真・色地上の文字が 4.5:1（大文字 3:1）未満で出れば FAIL"
+    },
+    {
+      "id": "WT-AC-PARTS-01C",
+      "requirement_id": "WT-FR-PARTS-01",
+      "polarity": "positive",
+      "oracle": "footer パターンにサイトマップ枠と関連サイト / ページ枠があり、空なら DOM に残らない"
+    },
+    {
+      "id": "WT-AC-RECO-01C",
+      "requirement_id": "WT-FR-RECO-01",
+      "polarity": "positive",
+      "oracle": "表示型を切り替えても集計方式と件数が変わらず、型が用途別一覧の参照 ID を持つ"
+    },
+    {
+      "id": "WT-AC-BANNER-01E",
+      "requirement_id": "WT-FR-BANNER-01",
+      "polarity": "boundary",
+      "oracle": "全面のゾーンにバナー / 問い合わせボタンを置いても広告面積上限と初回モーダル禁止の検査を通る"
+    },
+    {
+      "id": "WT-AC-VOCAB-01C",
+      "requirement_id": "WT-FR-VOCAB-01",
+      "polarity": "positive",
+      "oracle": "メディア枠の 5 択を切り替えても語彙の本文構造が変わらず、画像は alt と width / height を持つ"
+    },
+    {
+      "id": "WT-AC-SEO-01C",
+      "requirement_id": "WT-FR-SEO-01",
+      "polarity": "positive",
+      "oracle": "ミニ HOME 型のカテゴリ一覧で階層・読む順・記事数・人気・新着が出て、CollectionPage が 1 本だけ出る"
+    },
+    {
+      "id": "WT-AC-ADMIN-01D",
+      "requirement_id": "WT-FR-ADMIN-01",
+      "polarity": "positive",
+      "oracle": "初期状態の設定 JSON が P01〜P33 の値と一致し、各項目を個別に変更でき、強度 C の項目に要自社検証の注記が出る"
     }
   ]
 }

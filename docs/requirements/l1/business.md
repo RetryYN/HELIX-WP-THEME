@@ -25,7 +25,7 @@ authority: docs/requirements/authority.md
 
 ## PO への問い
 
-WT-Q-* は総数 79 件（採用 74・reject 2（WT-Q-AUDIT-02 / WT-Q-LOOK-04）・未決 3（WT-Q-LOOK-06 / WT-Q-PARTS-03 / WT-Q-EVID-01）: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01, WT-Q-ADMIN-01, WT-Q-SECTION-01, WT-Q-PLUGIN-01, WT-Q-SELL-01, WT-Q-SEO-04, WT-Q-CRAWL-01, WT-Q-AB-01, WT-Q-IMG-01, WT-Q-PERF-01, WT-Q-API-01, WT-Q-ADMIN-02, WT-Q-CLI-01, WT-Q-SNS-01, WT-Q-CV-01, WT-Q-BANNER-01, WT-Q-AUDIT-01, WT-Q-SP-01, WT-Q-TAG-01, WT-Q-PLUGIN-03, WT-Q-SEO-06, WT-Q-SEO-07, WT-Q-SEO-08, WT-Q-VOCAB-04, WT-Q-SP-02, WT-Q-SP-03, WT-Q-VALUE-02, WT-Q-IMG-02, WT-Q-IMG-03, WT-Q-SELL-02, WT-Q-TAG-02, WT-Q-SEO-09。未決 3 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。通常の問いは「X ができる（証跡あり）。採用するか」の形で、直接反映分（WT-Q-DIRECT-01〜08）は「反映内容一覧の確認」の形で記録する。
+WT-Q-* は総数 79 件（採用 77・reject 2（WT-Q-AUDIT-02 / WT-Q-LOOK-04）: WT-Q-ZONE-01, WT-Q-PARTS-01, WT-Q-VOCAB-01, WT-Q-VOCAB-02, WT-Q-VOCAB-03, WT-Q-LOOK-01, WT-Q-LOOK-02, WT-Q-META-01, WT-Q-LP-01, WT-Q-MIGRATE-01, WT-Q-AGENT-01, WT-Q-AGENT-02, WT-Q-VALUE-01, WT-Q-SEO-01, WT-Q-INTAKE-01, WT-Q-ADMIN-01, WT-Q-SECTION-01, WT-Q-PLUGIN-01, WT-Q-SELL-01, WT-Q-SEO-04, WT-Q-CRAWL-01, WT-Q-AB-01, WT-Q-IMG-01, WT-Q-PERF-01, WT-Q-API-01, WT-Q-ADMIN-02, WT-Q-CLI-01, WT-Q-SNS-01, WT-Q-CV-01, WT-Q-BANNER-01, WT-Q-AUDIT-01, WT-Q-SP-01, WT-Q-TAG-01, WT-Q-PLUGIN-03, WT-Q-SEO-06, WT-Q-SEO-07, WT-Q-SEO-08, WT-Q-VOCAB-04, WT-Q-SP-02, WT-Q-SP-03, WT-Q-VALUE-02, WT-Q-IMG-02, WT-Q-IMG-03, WT-Q-SELL-02, WT-Q-TAG-02, WT-Q-SEO-09。未決 0 件は `docs/requirements/discovery/candidate-projection.json` の `unresolved`）。通常の問いは「X ができる（証跡あり）。採用するか」の形で、直接反映分（WT-Q-DIRECT-01〜08）は「反映内容一覧の確認」の形で記録する。
 方式・配置先・境界値の詳細は問わない（PoC 証跡で決める）。
 
 ## S3 問い集計（2026-09-03）
@@ -36,4 +36,4 @@ WT-Q-* は総数 79 件（採用 74・reject 2（WT-Q-AUDIT-02 / WT-Q-LOOK-04）
 
 ## S4 問い集計（2026-09-05）
 
-問いは 72 件に S4 の 7 件を加えた 79 件、採用 74 件（72 件中 70 + S4 4）、reject 2 件、未決 3 件。S4 の問い ID は `WT-Q-META-02`、`WT-Q-CONSENT-02`、`WT-Q-ADMIN-04`、`WT-Q-LOOK-05`（採用）、`WT-Q-LOOK-06`、`WT-Q-PARTS-03`、`WT-Q-EVID-01`（未決）。
+問いは 72 件に S4 の 7 件を加えた 79 件、採用 77 件（72 件中 70 + S4 7）、reject 2 件、未決 0 件。S4 の問い ID は `WT-Q-META-02`、`WT-Q-CONSENT-02`、`WT-Q-ADMIN-04`、`WT-Q-LOOK-05`、`WT-Q-LOOK-06`、`WT-Q-PARTS-03`、`WT-Q-EVID-01`（PO 2026-09-05「採用で」で全件採用、除外番号なし）。
