@@ -248,7 +248,7 @@
         "WT-SCR-06",
         "WT-CAND-ZONE"
       ],
-      "statement": "SP 下部固定領域の積層は 同意バー > メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページトップは footer 内。ビューポート内で広告・バナーが占める面積の上限をゾーン割当に宣言し（値は PoC でテーマA / テーマB の実測から確定）、初回表示のモーダルは同意バーを除き禁止する。LP は LP 単位の設定で例外を許容する。いずれも G-E1 で検査する（PO 2026-09-03、WT-Q-ZONE-02）",
+      "statement": "SP 下部固定領域の積層は 同意バー（位置を下部固定に選んだ場合のみ）> メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページトップは footer 内。ビューポート内で広告・バナーが占める面積の上限をゾーン割当に宣言し（値は PoC でテーマA / テーマB の実測から確定）、初回表示のモーダルは同意バーを除き禁止する。LP は LP 単位の設定で例外を許容する。いずれも G-E1 で検査する（PO 2026-09-03、WT-Q-ZONE-02）",
       "priority": "P2",
       "actor_ids": [
         "EDITOR"
@@ -276,7 +276,7 @@
         "WT-BR-03",
         "WT-CAND-PARTS"
       ],
-      "statement": "header / footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする",
+      "statement": "header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -356,7 +356,7 @@
         "WT-SCR-05",
         "WT-CAND-VOCAB"
       ],
-      "statement": "目次はテーマ内蔵とし、実体は本文の h2/h3 からレンダラが機械導出する（保存 HTML に固定しない）。編集者と AI が選べるのは (a) 配置方式: 固定埋め込み（既定は最初の h2 直前）/ フロート追従（サイドまたは画面端に追従）/ 開閉ボタン化（折りたたみ）、(b) 表示条件: ページ種別（投稿 / 固定ページ / LP / 一覧）ごとの表示・非表示と投稿単位の上書き、(c) 見た目: block style（尺度はプリセット参照）。目次本文の内容は選択対象にしない",
+      "statement": "目次はテーマ内蔵とし、実体は本文の h2/h3 からレンダラが機械導出する（保存 HTML に固定しない）。編集者と AI が選べるのは (a) 配置方式: 固定埋め込み（既定は最初の h2 直前）/ フロート追従（サイドまたは画面端に追従）/ 開閉ボタン化（折りたたみ）、(b) 表示条件: ページ種別（投稿 / 固定ページ / LP / 一覧）ごとの表示・非表示と投稿単位の上書き、(c) 見た目: block style（尺度はプリセット参照）。目次本文の内容は選択対象にしない。機能は第三者の目次プラグインの一般水準（階層表示・折りたたみ・現在位置追従・見出し数閾値・除外指定）を下限とする（PO 2026-09-05、WT-Q-LOOK-05）",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -494,7 +494,7 @@
         "WT-BR-02",
         "WT-CAND-LOOK"
       ],
-      "statement": "h3 を h2 より 1 段下げ、h2 block style 3 種 / h3 2 種、ボタン variant 3 種、hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、theme.json の共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする。",
+      "statement": "見た目の型は目標数を持たず、用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サイト・テーマA / B・参照サイトの観察由来）を入力にする。h3 を h2 より 1 段下げ、h2 / h3 の block style とボタン variant は台帳由来の型数とし、h2 ×3 / h3 ×2 / ボタン ×3 は下限（Claude 案）。同じ列のカードは高さを自動で揃え、見出し文字は 1 行に収める寸法を既定とし、補助文は抑えた無彩色にする。hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする（PO 2026-09-05、WT-Q-LOOK-05）。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR"
@@ -505,7 +505,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-LOOK-01A",
-        "WT-AC-LOOK-01B"
+        "WT-AC-LOOK-01B",
+        "WT-AC-LOOK-01C"
       ],
       "test_ids": [
         "WT-AT-LOOK-01"
@@ -575,7 +576,7 @@
         "WT-SCR-05",
         "WT-CAND-META"
       ],
-      "statement": "投稿メタ 4 キー（sidebar / toc / share / pr）を登録し、テンプレ側の条件描画で記事単位の表示切替を持つ。option による不可視上書きは使わない",
+      "statement": "投稿メタ 5 キー（sidebar / toc / share / pr / eyecatch）を登録し、テンプレ側の条件描画で記事単位の表示切替を持つ。eyecatch は位置（本文上 / タイトル上 / 全幅 hero / サイドバー寄せ）と有無を持ち、サイト既定は設定 JSON、記事単位はメタで上書きする。option による不可視上書きは使わない（PO 2026-09-05、WT-Q-META-02）",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -587,7 +588,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-META-01A",
-        "WT-AC-META-01B"
+        "WT-AC-META-01B",
+        "WT-AC-META-01C"
       ],
       "test_ids": [
         "WT-AT-META-01"
@@ -603,7 +605,7 @@
         "WT-BR-01",
         "WT-CAND-ADMIN"
       ],
-      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。",
+      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -616,7 +618,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-ADMIN-01A",
-        "WT-AC-ADMIN-01B"
+        "WT-AC-ADMIN-01B",
+        "WT-AC-ADMIN-01C"
       ],
       "test_ids": [
         "WT-AT-ADMIN-01"
@@ -3202,7 +3205,7 @@
         "WT-SCR-10",
         "WT-CAND-TAG"
       ],
-      "statement": "同意記録へ時刻・ポリシー版・カテゴリ・保持期間を持たせ、撤回を常設する。明示 opt-in は既定オフとし、GPC 信号を検出した広告拒否は日本限定構成でのみ既定化し、非対象地域では設定を明示する",
+      "statement": "同意記録へ時刻・ポリシー版・カテゴリ・保持期間を持たせ、撤回を常設する。明示 opt-in は既定オフとし、GPC 信号を検出した広告拒否は日本限定構成でのみ既定化し、非対象地域では設定を明示する。同意バーは既定 OFF とし、選択は ON/OFF と位置（先頭の非固定 = 既定 / 下部固定）の 2 つに限定する。日本の法令上の必須ではない（PO 2026-09-05、WT-Q-CONSENT-02）",
       "priority": "P0",
       "actor_ids": [
         "OPERATOR",
@@ -3214,7 +3217,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-CONSENT-01A",
-        "WT-AC-CONSENT-01B"
+        "WT-AC-CONSENT-01B",
+        "WT-AC-CONSENT-01C"
       ],
       "test_ids": [
         "WT-AT-CONSENT-01"
@@ -3319,7 +3323,7 @@
         "WT-SCR-11",
         "WT-CAND-CRAWL"
       ],
-      "statement": "404 と検索結果に複数のテンプレ変種（人気記事・CTA・検索語提案）を持ち、検索結果は noindex を既定とする。検索語ログは bot を除外し IP を保存しない",
+      "statement": "404 と検索結果に選べる複数のテンプレ変種（人気記事・CTA・検索語提案）を持ち、404 には LP・比較記事・問い合わせへの CV 導線 slot を置ける。検索結果は noindex を既定とし、404 は HTTP 404 を返す。検索語ログは bot を除外し IP を保存しない（PO 2026-09-05、WT-Q-LOOK-05）",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -3331,7 +3335,8 @@
       ],
       "acceptance_ids": [
         "WT-AC-TPL-01A",
-        "WT-AC-TPL-01B"
+        "WT-AC-TPL-01B",
+        "WT-AC-TPL-01C"
       ],
       "test_ids": [
         "WT-AT-TPL-01"

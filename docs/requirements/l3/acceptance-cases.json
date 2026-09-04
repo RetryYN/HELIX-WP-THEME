@@ -1500,6 +1500,36 @@
       "requirement_id": "WT-FR-SELL-05",
       "polarity": "negative",
       "oracle": "商品リンクだけを検査、本文リンクを漏らす、警告が UI / MCP で不一致、または破壊的な GET を行えば FAIL"
+    },
+    {
+      "id": "WT-AC-META-01C",
+      "requirement_id": "WT-FR-META-01",
+      "polarity": "positive",
+      "oracle": "記事の eyecatch メタで位置・有無を変えると該当記事だけ出力位置が変わり、未設定の記事はサイト既定に従う"
+    },
+    {
+      "id": "WT-AC-CONSENT-01C",
+      "requirement_id": "WT-FR-CONSENT-01",
+      "polarity": "boundary",
+      "oracle": "同意バーの設定項目が ON/OFF と位置の 2 つだけで、既定 OFF では出力されず、下部固定を選んだときだけ SP 下部固定の積層に入る"
+    },
+    {
+      "id": "WT-AC-ADMIN-01C",
+      "requirement_id": "WT-FR-ADMIN-01",
+      "polarity": "positive",
+      "oracle": "サイト既定セット・パーツ選択・記事上書きの 3 層が UI で分かれ、視覚ピッカーの選択結果が設定 JSON の同じキーへ書かれる"
+    },
+    {
+      "id": "WT-AC-LOOK-01C",
+      "requirement_id": "WT-FR-LOOK-01",
+      "polarity": "positive",
+      "oracle": "同一列のカードの高さが本文量に関わらず一致し、見出しが既定寸法で 1 行に収まり、型数が用途別一覧の参照 ID を持つ"
+    },
+    {
+      "id": "WT-AC-TPL-01C",
+      "requirement_id": "WT-FR-TPL-01",
+      "polarity": "positive",
+      "oracle": "404 が HTTP 404 を返し、選んだ変種の CV 導線 slot に LP / 比較記事 / 問い合わせのリンクが出る"
     }
   ]
 }

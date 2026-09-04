@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0208",
-  "event_count": 208,
+  "event_head": "WT-EVT-0226",
+  "event_count": 226,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -48,7 +48,12 @@
         "WT-EVT-0190",
         "WT-EVT-0191",
         "WT-EVT-0192",
-        "WT-EVT-0208"
+        "WT-EVT-0208",
+        "WT-EVT-0212",
+        "WT-EVT-0213",
+        "WT-EVT-0214",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-FR-ZONE-01",
@@ -70,7 +75,12 @@
         "WT-EVT-0108",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220",
+        "WT-EVT-0223",
+        "WT-EVT-0224"
       ],
       "requirement_ids": [
         "WT-FR-PARTS-01",
@@ -103,7 +113,12 @@
         "WT-EVT-0204",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-FR-VOCAB-01",
@@ -130,7 +145,17 @@
         "WT-EVT-0198",
         "WT-EVT-0199",
         "WT-EVT-0200",
-        "WT-EVT-0201"
+        "WT-EVT-0201",
+        "WT-EVT-0209",
+        "WT-EVT-0210",
+        "WT-EVT-0211",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220",
+        "WT-EVT-0221",
+        "WT-EVT-0222",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-FR-LOOK-01",
@@ -147,7 +172,10 @@
         "WT-EVT-0002",
         "WT-EVT-0008",
         "WT-EVT-0017",
-        "WT-EVT-0026"
+        "WT-EVT-0026",
+        "WT-EVT-0209",
+        "WT-EVT-0210",
+        "WT-EVT-0211"
       ],
       "requirement_ids": [
         "WT-FR-META-01"
@@ -360,7 +388,10 @@
         "WT-EVT-0171",
         "WT-EVT-0181",
         "WT-EVT-0182",
-        "WT-EVT-0183"
+        "WT-EVT-0183",
+        "WT-EVT-0218",
+        "WT-EVT-0219",
+        "WT-EVT-0220"
       ],
       "requirement_ids": [
         "WT-FR-CRAWL-01",
@@ -412,7 +443,11 @@
         "WT-EVT-0156",
         "WT-EVT-0157",
         "WT-EVT-0158",
-        "WT-EVT-0159"
+        "WT-EVT-0159",
+        "WT-EVT-0223",
+        "WT-EVT-0224",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-FR-IMG-01",
@@ -441,7 +476,9 @@
         "WT-EVT-0147",
         "WT-EVT-0154",
         "WT-EVT-0155",
-        "WT-EVT-0156"
+        "WT-EVT-0156",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-NFR-PERF-01",
@@ -526,7 +563,9 @@
         "WT-EVT-0177",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0223",
+        "WT-EVT-0224"
       ],
       "requirement_ids": [
         "WT-FR-BANNER-01",
@@ -570,7 +609,9 @@
         "WT-EVT-0111",
         "WT-EVT-0148",
         "WT-EVT-0149",
-        "WT-EVT-0150"
+        "WT-EVT-0150",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-FR-SP-01",
@@ -598,7 +639,12 @@
         "WT-EVT-0159",
         "WT-EVT-0175",
         "WT-EVT-0176",
-        "WT-EVT-0177"
+        "WT-EVT-0177",
+        "WT-EVT-0212",
+        "WT-EVT-0213",
+        "WT-EVT-0214",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-FR-TAG-01",
@@ -645,7 +691,9 @@
         "WT-EVT-0171",
         "WT-EVT-0193",
         "WT-EVT-0194",
-        "WT-EVT-0195"
+        "WT-EVT-0195",
+        "WT-EVT-0225",
+        "WT-EVT-0226"
       ],
       "requirement_ids": [
         "WT-NFR-SEC-01",
@@ -686,7 +734,10 @@
         "WT-EVT-0159",
         "WT-EVT-0205",
         "WT-EVT-0206",
-        "WT-EVT-0207"
+        "WT-EVT-0207",
+        "WT-EVT-0215",
+        "WT-EVT-0216",
+        "WT-EVT-0217"
       ],
       "requirement_ids": [
         "WT-FR-ADMIN-01",
@@ -775,7 +826,9 @@
       "source_event_ids": [
         "WT-EVT-0166",
         "WT-EVT-0167",
-        "WT-EVT-0168"
+        "WT-EVT-0168",
+        "WT-EVT-0223",
+        "WT-EVT-0224"
       ],
       "requirement_ids": [
         "WT-FR-NAV-01"
@@ -787,7 +840,9 @@
       "source_event_ids": [
         "WT-EVT-0169",
         "WT-EVT-0170",
-        "WT-EVT-0171"
+        "WT-EVT-0171",
+        "WT-EVT-0223",
+        "WT-EVT-0224"
       ],
       "requirement_ids": [
         "WT-FR-RECO-01"
@@ -866,7 +921,14 @@
     "WT-Q-LOOK-03",
     "WT-Q-LOOK-04",
     "WT-Q-VOCAB-05",
-    "WT-Q-PARTS-02"
+    "WT-Q-PARTS-02",
+    "WT-Q-META-02",
+    "WT-Q-CONSENT-02",
+    "WT-Q-ADMIN-04",
+    "WT-Q-LOOK-05",
+    "WT-Q-LOOK-06",
+    "WT-Q-PARTS-03",
+    "WT-Q-EVID-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -940,7 +1002,11 @@
     "WT-Q-LOOK-03",
     "WT-Q-LOOK-04",
     "WT-Q-VOCAB-05",
-    "WT-Q-PARTS-02"
+    "WT-Q-PARTS-02",
+    "WT-Q-META-02",
+    "WT-Q-CONSENT-02",
+    "WT-Q-ADMIN-04",
+    "WT-Q-LOOK-05"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -948,7 +1014,49 @@
   "reaction_ids": [
     "WT-POC-REACTION-01"
   ],
-  "unresolved": [],
+  "unresolved": [
+    {
+      "id": "WT-Q-LOOK-06",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "動き・奥行き・空間・脱テキスト感の 4 軸と自動コントラスト guard を選べる。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-LOOK"
+      ],
+      "reentry": "PO の採否を requirement_decision_recorded として追記し、採用なら L3 statement へ反映する"
+    },
+    {
+      "id": "WT-Q-PARTS-03",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "footer サイトマップ・関連サイト枠、カテゴリのミニ HOME、関連一覧の表示型拡張、バナー / 問い合わせ枠、メディア枠を追加する。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-PARTS",
+        "WT-CAND-RECO",
+        "WT-CAND-BANNER",
+        "WT-CAND-IMG",
+        "WT-CAND-NAV"
+      ],
+      "reentry": "PO の採否を requirement_decision_recorded として追記し、採用なら L3 statement へ反映する"
+    },
+    {
+      "id": "WT-Q-EVID-01",
+      "owner": "PO",
+      "form": "capability_adoption",
+      "question": "既定値 P01〜P33 をテーマ既定にする（除外する番号があれば指定）。採用するか",
+      "affected_candidate_ids": [
+        "WT-CAND-QUALITY",
+        "WT-CAND-LOOK",
+        "WT-CAND-ZONE",
+        "WT-CAND-VOCAB",
+        "WT-CAND-SP",
+        "WT-CAND-TAG",
+        "WT-CAND-IMG",
+        "WT-CAND-PERF"
+      ],
+      "reentry": "PO の採否を requirement_decision_recorded として追記し、採用なら L3 statement へ反映する"
+    }
+  ],
   "agreement": null,
   "compile_status": "backflow_required",
   "coverage": {

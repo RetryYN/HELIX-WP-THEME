@@ -45,3 +45,11 @@
 | ConsentPrivacyPanel / AssetLedger | 同意の時刻・版・カテゴリ・撤回、外部送信公表、privacy tools、OFL / 画像 metadata / SECURITY.md の台帳を確認する |
 
 J-09 の reader-facing AI disclosure と J-13 の dark mode は要素化しない。
+
+## S4 WT-UI-10 / WT-UI-04 追加要素（2026-09-05）
+
+| 要素 | 役割 |
+| --- | --- |
+| DefaultSetPicker / PartsPicker / PostOverridePanel | 3 層（サイト既定セット / パーツ単位 / 記事単位）の選択 UI。選択セットとプレビュー付き視覚ピッカーで選び、結果は設定 JSON の同じキーへ書く（WT-Q-ADMIN-04） |
+| EyecatchPanel | WT-UI-04 の投稿メタ eyecatch（位置・有無）。未設定はサイト既定に従う（WT-Q-META-02） |
+| ConsentBarToggle | 同意バーの ON/OFF と位置（先頭非固定 / 下部固定）の 2 選択のみ（WT-Q-CONSENT-02） |
