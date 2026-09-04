@@ -237,7 +237,7 @@
 | 背景ブロック | カラム内/単色CTA/背景画像/タイムライン同梱 の 4 例 | ta-parts-background s02–s03 |
 | カテゴリ区別 | 記事下 Recommend 差替え、記事上ナビ差替え の 2 例（画像） | ta-parts-catsep s01 |
 | 有料記事 | 鍵付きカード一覧・購入後解除の図解（2 図） | ta-parts-premium s01–s03 |
-| SNS シェア | X/FB/LINE/URLコピー 横並びテキスト | ta-parts-blogcard s01 |
+| SNS シェア | X/SNS/メッセージアプリ/URLコピー 横並びテキスト | ta-parts-blogcard s01 |
 | サイドバー | 検索＋バナー（PC のみ、全 ta-parts） | ta-parts-* s00 |
 
 ---
@@ -428,12 +428,12 @@
 | フルワイド | 単色（青灰）全幅、記述: 上下余白/斜め/なみなみ境界 | tb-blocks s12 |
 | ABテスト | エディタ画像のみ | tb-blocks s10–s11 |
 | 広告タグ / ブログパーツ | 記述＋ブログカードのみ | tb-blocks s12 |
-| SNS シェア | 色付き横並びボタン 6 個（FB/X/B!/Pocket/LINE/コピー） | tb-blocks s13 |
+| SNS シェア | 色付き横並びボタン 6 個（SNS 5 種 + URL コピー） | tb-blocks s13 |
 | 前後記事ナビ | 左右矢印付き 2 分割 | tb-blocks s13 |
 | パンくず | ホーム icon ＞ 階層 | tb-blocks s00, tb-feature s00 |
 | タグクラウド | 灰枠タグ | tb-blocks s01, tb-func-* |
 | ページネーション | 角数字（紺）/ 丸数字（tb-demo-02, 04, 06） | tb-func-*, tb-demo-* |
-| 縦 SNS 追尾バー | 左端固定（FB/X/B!/Pocket/LINE/コピー） | tb-blocks s00 |
+| 縦 SNS 追尾バー | 左端固定（SNS 5 種 + URL コピー） | tb-blocks s00 |
 | 記事タイトルの日付 | 左に「年/月日」縦積み | tb-blocks s00, tb-demo-04 |
 
 ---
