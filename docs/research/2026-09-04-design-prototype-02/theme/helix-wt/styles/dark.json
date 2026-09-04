@@ -1,7 +1,0 @@
-{ "$schema": "https://schemas.wp.org/trunk/theme.json", "version": 3, "title": "ダーク",
-  "settings": { "color": { "palette": [
-    { "slug": "base", "color": "#0f1216", "name": "地" }, { "slug": "surface", "color": "#181c22", "name": "面" }, { "slug": "line", "color": "#2a3038", "name": "罫線" },
-    { "slug": "mute", "color": "#9aa4b1", "name": "補助文字" }, { "slug": "contrast", "color": "#eef1f5", "name": "文字" },
-    { "slug": "accent", "color": "#7aa2ff", "name": "アクセント" }, { "slug": "accent-soft", "color": "#1c2436", "name": "アクセント淡" },
-    { "slug": "cta", "color": "#ff7a3d", "name": "CTA" }, { "slug": "cta-contrast", "color": "#111111", "name": "CTA 文字" } ] } },
-  "styles": { "elements": { "button": { "color": { "background": "var(--wp--preset--color--accent)", "text": "#0f1216" }, ":hover": { "color": { "background": "#a9c1ff", "text": "#0f1216" } } } } } }
