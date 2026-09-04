@@ -177,8 +177,7 @@ img{height:auto;max-width:100%}
 @media (min-width:600px){.wt-header__cta{order:2}}
 
 /* 2026-09-05 PO 指摘: 列内カードの高さを自動で統一（内容量の差で凸凹にしない） */
-.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column,
-.wp-block-columns.is-not-stacked-on-mobile > .wp-block-column { display: flex; flex-direction: column; }
+.wp-block-column:has(> .is-style-wt-card, > .is-style-wt-card-shadow, > .wt-card, > .wt-price) { display: flex; flex-direction: column; }
 .wp-block-column > .is-style-wt-card,
 .wp-block-column > .is-style-wt-card-shadow,
 .wp-block-column > .wt-card,

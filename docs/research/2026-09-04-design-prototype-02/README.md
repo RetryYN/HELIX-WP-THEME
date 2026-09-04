@@ -35,7 +35,7 @@ PC 1280 の新テーマ記事: 本文 16 / h1 28 / h2 24 / h3 20 / ヘッダー 
 
 ## 3. 描画証跡
 
-`results/`: 企業型トップ SP / PC、メディア型トップ SP / PC、記事 SP 全長、variation 3 本の SP 初回画面（いずれもローカル docker WP 7.1、生成画像・架空文）。
+`results/`: 企業型トップ SP / PC、メディア型トップ SP / PC、記事 SP 全長、variation 2 本（mincho / rules）の SP 初回画面（いずれもローカル docker WP 7.1、生成画像・架空文）。
 
 ## 4. 手順（再現）
 
