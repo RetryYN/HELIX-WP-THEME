@@ -34,13 +34,43 @@
 | サイドバー | article/pc: cta-banner 20%, none 18%, categories 10%, popular-ranking 9%, toc-sticky 8%, search 7%（n=174） | あり | 24 エリア | 0 | #95 |
 | カテゴリ面 | article/pc: –<br>article/sp: – | – | – | index のみ | #129: 参照サイトは「ステップ 1→2→3」の画像バナーで子カテゴリ導線、各ブロック十数件 + 一覧へボタン、PV ランキング |
 
+### 1b. 再取得 v2（footer・記事末尾・カテゴリ面、`recapture-v2/`）
+
+§1 で観察不足だった 3 領域を、末尾までスクロールしてから再取得し（対象 278 サイト、1 面以上取得できたのは 268 サイト。1,047 key = サイト×面×端末、画像はリポ外）、語彙 v2（`recapture-v2/PARTS-VOCAB-v2.md`）でコーディングした。集計は `recapture-v2/aggregate-v2.md`、取得記録は `recapture-v2/CAPTURE-SUMMARY.md`。%は n 比（na を含む）。
+
+| パーツ | 実サイト（PC） | 実サイト（SP） | 読み取り（Claude 案） |
+|---|---|---|---|
+| footer 構成 | top: mega(sitemap) 35%, single-row 23%, columns-3 9%, columns-4 8%（n=254）<br>cat: mega(sitemap) 40%, single-row 23%, columns-3 12%, columns-4 9%（n=184） | top: single-row 26%, mega(sitemap) 19%, accordion(sp) 16%, stacked-centered 11%（n=267）<br>cat: mega(sitemap) 28%, single-row 25%, accordion(sp) 16%, stacked-centered 10%（n=190） | PC は sitemap 型（mega）と 1 行型の 2 極。SP は 1 行 / mega / アコーディオン / 中央積み。列数指定（2〜4 列）は PC 専用の変種で、SP では積みかアコーディオンへ畳む |
+| footer 直上の帯 | top: banner-row 33%, none 26%, cta-band 17%, newsletter 4%（n=272） | top: none 35%, banner-row 21%, cta-band 17%, newsletter 6%（n=276） | バナー列と CTA 帯が 2 大。newsletter・問い合わせブロックは用途依存（ポータル / 企業 HP） |
+| footer ナビ | top: sitemap-full 54%, legal-only 14%, primary-only 11%, none 6%（n=254） | top: sitemap-full 42%, legal-only 14%, primary-only 11%, none 10%（n=267） | 全サイトマップが半数。法定リンクのみ・主要ナビのみが各 1 割強。SP ではカテゴリリンク型が増える |
+| footer 付属 | top: sns-icons 38%, none 20%, related-sites 9%, certification-badges 9%（n=320） | top: sns-icons 36%, none 20%, certification-badges 8%, address 7%（n=343） | SNS アイコンが最多。関連サイト・認証バッジ・住所 / 電話は用途依存 |
+| 法定表示 | top: copyright+links 44%, copyright-only 30%, none 5%, other:tagline 0%（n=254） | top: copyright+links 35%, copyright-only 35%, none 7%, other:links-only 0%（n=267） | copyright + 法定リンク列 と copyright のみ の 2 型で十分 |
+| back-to-top | top: none 58%, button-fixed 15%, inline-link 3%（n=254） | top: none 62%, button-fixed 11%, inline-link 4%（n=267） | 無しが多数。固定ボタンは 1 割強。既定 OFF の選択肢 |
+| footer 周辺の固定パーツ | top: none 57%, cookie-consent 11%, float-cta 7%, float-chat 6%（n=257） | top: none 59%, cookie-consent 11%, float-chat 5%, float-cta 5%（n=272） | cookie 同意 1 割、float CTA / chat 各 5%、SP 下部バー 4% |
+| 記事末尾の並び順 | related 29%, author 12%, share 12%, cta 9%, prev-next 7%, comments 5%（n=177） | related 22%, author 14%, cta 11%, category-links 9%, share 9%, ad 6%（n=142） | 頻度上位は 関連 / 著者 / シェア / CTA（順序は集計していない。並び順の既定は by-purpose §2b の Claude 案）。SP はカテゴリリンク・ランキングが末尾に出る |
+| 記事末 CTA | none 65%, box-with-copy 10%, banner-image 8%, button-only 5%（n=78） | none 73%, box-with-copy 13%, banner-image 5%, line/newsletter 2%（n=73） | 無しが 2/3。あるときはコピー付き箱 > バナー画像 > ボタンのみ |
+| 記事末シェア | none 60%, icons-row 30%, icons-with-count 2%, text-buttons 1%（n=78） | none 71%, icons-row 13%, text-buttons 4%, icons-with-count 2%（n=73） | アイコン列 1 型で足りる。件数付きは 2% |
+| 著者欄 | none 60%, avatar+bio+sns 14%, avatar+bio 14%, name-only 5%（n=78） | none 65%, avatar+bio+sns 12%, avatar+bio 9%, name-only 6%（n=73） | 無し 6 割。avatar+bio（SNS 有 / 無）の 2 型 + 監修別枠 |
+| 関連記事（末尾） | grid-cards 36%, none 29%, thumb-list-1line 13%, featured-big+small 5%（n=79） | none 46%, thumb-list-1line 20%, grid-cards 9%, ranking-numbers 6%（n=73） | PC はグリッド、SP はサムネ 1 行リストが主。件数は 1–3 / 4–6 / 7+ に分散（`tail.related.count`） |
+| 前後記事 | none 78%, with-thumb 11%, text-only 6%（n=78） | none 89%, text-only 5%, with-thumb 4%（n=73） | 無しが 8〜9 割。サムネ付き 1 型で足りる |
+| カテゴリ見出し | name-only 42%, name+description 26%, hero-style 5%, name+count 4%（n=184） | name-only 46%, name+description 24%, hero-style 5%, name+count 2%（n=190） | 名前のみ 4 割、名前 + 説明 1/4。hero 型・件数付きは 5% 以下 |
+| 子カテゴリ導線 | none 56%, chips 29%, list 3%, cards 2%（n=184） | none 55%, chips 25%, list 7%, cards 2%（n=190） | 無し半数、chips 1/4〜3 割。カード / 画像バナー / ステップ番号は稀（参照サイトの型は世の中では少数） |
+| カテゴリ導入文 | none 67%, lead-text 21%, editorial-article 3%（n=184） | none 68%, lead-text 20%, editorial-article 5%（n=190） | リード文 2 割、編集記事型 3〜5% |
+| カテゴリ ミニ HOME | none 86%, yes(sections per child) 8%（n=184） | none 87%, yes(sections per child) 7%（n=190） | 子カテゴリ別セクション構成は 7〜8%（compare / portal / major / service に分布）。要求 SEO-01 の「カテゴリ ミニ HOME」は少数派の型を選ぶ判断であり、既定にするなら理由が要る |
+| カテゴリ内ランキング | none 85%, sidebar 8%, bottom 1%, top 0%（n=184） | none 88%, bottom 4%, sidebar 1%, top 1%（n=190） | 無し 85%。PC はサイドバー、SP は末尾に置く |
+| 一覧レイアウト | grid 44%, text-list 19%, thumb-list 14%, featured+grid 4%（n=184） | thumb-list 35%, text-list 23%, grid 14%, featured+grid 8%（n=190） | PC グリッド、SP サムネリスト（または文字リスト）。featured+grid は 4〜8% |
+| 一覧カード | image-top 25%, with-date 24%, with-category-chip 16%, with-excerpt 12%, title-only 8%（n=355） | image-top 25%, with-date 23%, with-category-chip 17%, with-excerpt 12%, title-only 9%（n=373） | 画像上 + 日付 + カテゴリチップ が基本要素。抜粋は 12% |
+| 1 画面あたり件数 | 7-12 26%, 13+ 15%, 7+ 15%, 1-6 14%（n=184） | 7+ 21%, 1-6 16%, 7-12 14%, 13+ 6%（n=190） | PC は 7–12 件が最多。SP は na が 36% で 7+ と 1–6 に分かれ、1 画面で件数を読める割合が低い |
+| ページ送り | numbers 27%, none 16%, load-more 9%, prev-next 3%（n=185） | numbers 19%, none 9%, load-more 6%, prev-next 3%（n=190） | 観察できた範囲では番号 > もっと見る > 前後。無限スクロールは 1 件 |
+| カテゴリ面サイドバー（PC） | none 52%, categories 16%, popular-ranking 10%, profile 4%, tags 3%（n=186） | – | 無し半数。カテゴリ一覧・人気ランキングが主 |
+
 ## 2. 読み取り（Claude 案）
 
 - **実サイトは「装飾が少ない」側に寄る**（h2 は無装飾太字が最多、カードは無枠が最多、囲みは淡塗りが最多）。テーマ A/B が多数持つ装飾型は「引き出し」として必要だが、既定は控えめでよい。試作 02 の方向はここでは外れていない。
 - **型数を目標にしない**（PO 指示 2026-09-05）。型は用途 × 目的 × 面ごとに「必要な分だけ」入れる。整理は `by-purpose.md`。テーマ A/B の型数は参考値であって目標ではない。要求 LOOK-01 の「h2 ×3 / h3 ×2 / ボタン ×3」は固定数ではなく用途由来の一覧に置き換える（#122）。
 - 世の中の幅（header 6 型、hero 8 型、囲み 10 型、関連 8〜9 型など）は「上限の目安」であり、用途に無い型は作らない。
-- **カテゴリ面**は実サイト調査では観察数が少なく、参照サイトの構成（ステップ型子カテゴリ導線・件数付きブロック・PV ランキング）が最も具体的な手本になる（#129）。
-- **footer と記事末尾は観察不足**（§5）。ブラウザで末尾だけ再取得する追加調査が必要。
+- **カテゴリ面**は再取得 v2（§1b）で 195 サイト分を観察した。世の中の多数派は「名前（+ 説明）→ グリッド / サムネリスト → 番号ページ送り」で、子カテゴリ導線は chips、ミニ HOME 構成は 7〜8%。参照サイトの構成（ステップ型子カテゴリ導線・件数付きブロック・PV ランキング、#129）は少数派の型として位置づけ、比較媒体 / ポータルの回遊目的に限って採る案。
+- **footer と記事末尾**は再取得 v2（§1b）で解消。footer は PC「サイトマップ型 / 1 行型」+ SP「1 行 / アコーディオン / 中央積み」、直上は「バナー列 / CTA 帯」、記事末尾は 関連 / 著者 / シェア / CTA の 4 要素が頻度上位（並び順は集計しておらず、既定順は Claude 案）。
 
 ## 3. 語彙外で繰り返し出た型（other:）
 
@@ -78,8 +108,8 @@
 - 各 shot は単一コーダー（12 並列）で、評価者間一致は未測定。出現率は探索的頻度として扱う。
 - SP の末尾切り出しは高さ上限 1000px のため、末尾 400px が欠ける場合がある（`scripts/crop3.js` の regions 1400 と cap 1000 の差）。footer の na にはこの欠落分も含まれる。
 
-- 切り出しは各面の上部〜中央が中心で、**footer・記事末尾（関連 / 著者 / シェア）・サイドバー下部は多くが na**。遅延読込で未描画の shot も一定数ある（bot 検証・年齢ゲート・ローダーで潰れたサイトは約 20 件）。
-- 追加調査案: (a) ブラウザで末尾までスクロールしてから footer / 記事末尾だけを再取得（730 shot）。(b) カテゴリ面を対象に追加した再調査（現状はカテゴリ面の shot がほぼ無い）。(c) 語彙 v2 で再コーディング。
+- §1 の切り出しは各面の上部〜中央が中心で、footer・記事末尾・サイドバー下部は多くが na だった。→ 再取得 v2（§1b、`recapture-v2/`）で footer / 記事末尾 / カテゴリ面を末尾までスクロールして取得し直し、語彙 v2 でコーディングした（1,047 key、単一コーダー 12 並列、評価者間一致は未測定）。
+- v2 の限界: カテゴリ導線をトップから見つけられなかったサイトが 91 件（`no_cat_link`、サイト×端末では 172 行）、bot 壁・タイムアウトで取れなかった面がある（`recapture-v2/CAPTURE-SUMMARY.md`）。カテゴリ面として取得したページの一部は単一記事だった（`na` / `other:article` として記録）。記事末尾は記事 URL を持つ 95 サイトのうち 78 件のみ。SP の `pagination` は 6 割が na（1 画面に入らない）。
 - テーマ A/B の本体コードはローカルに無く（vendor-themes は空の placeholder）、variant 数は公式ページとデモで「実際に見えた数」。記述上の数（例: ボタン 10 種）は別掲。
 
 ## 6. 公開情報の扱い

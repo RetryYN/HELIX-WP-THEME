@@ -4,7 +4,7 @@
 - 用途 = サイトパターン（企業 HP / サービス LP / 比較媒体 / ポータル / ブランド / 個人 / 大手）× 面（トップ・LP・記事・カテゴリ・固定・404）× 目的（認知 / 信頼 / 理解 / 行動 / 回遊 / 読了）。
 - 本書の §2〜§4 は Claude 案（PO 判断待ち）。L2 探索証跡であり要求・設計の決定ではない。
 - 型を入れる条件（案）: (a) その用途の実サイトで一定以上観察される、または (b) 根拠つきルール（PR #133 の R 番号）が要求する、または (c) PO 指示。どれにも当たらない型は作らない、という運用を提案する。テーマ A/B の型数は参考であって目標ではない。
-- 観察値は `aggregate.json` の pattern 別集計。分母は na（切り出し範囲外・未描画）を除いたタグ出現数で、1 shot に複数の型があれば各々 1 と数える（README.md と同じ定義。n は shot 数ではない）。
+- 観察値は `aggregate.json` の pattern 別集計。分母は na（切り出し範囲外・未描画）を除いたタグ出現数で、1 shot に複数の型があれば各々 1 と数える（README.md と同じ定義。n は shot 数ではない）。**v2 行（footer（v2）/ カテゴリ面（v2）/ 記事末尾（v2）と §2b）の出典は `recapture-v2/aggregate-v2.json` で、分母は na を含むタグ出現数（README §1b と同じ）。v1 と v2 で分母の扱いが異なる。**
 
 ## 1. 用途（サイトパターン）ごとに実際に観察された型
 
@@ -18,6 +18,8 @@
 | トップのセクション | news-list 17%, features-3col 14%, banner-row 9%, cases-cards 6%（n=63） | news-list 12%, features-3col 12%, banner-row 9%, features-icon-list 5%（n=54） |
 | カード | flat-no-border 27%, image-top 27%, photo-full-overlay 16%, shadow 11%（n=43） | image-top 28%, flat-no-border 26%, photo-full-overlay 13%, shadow 13%（n=38） |
 | 固定パーツ | cookie-consent 26%, none 23%, sticky-header 20%, float-cta 6%（n=30） | none 36%, cookie-consent 26%, float-cta 10%, announce-bar 10%（n=19） |
+| footer（v2）| single-row 25%, mega(sitemap) 22%, columns-4 18%（n=27） / 直上 cta-band 33%, banner-row 23%, contact-block 16%（n=30） | single-row 30%, columns-2 15%, mega(sitemap) 15%（n=33） |
+| カテゴリ面（v2）| 見出し name-only 52%, hero-style 14%（n=21） / 子 none 61%, chips 23%（n=21） / 一覧 text-list 38%, grid 38%（n=21） / ミニ HOME none 95%, yes(sections per child) 4%（n=21） | 一覧 text-list 44%, thumb-list 36%（n=25） |
 
 ### サービス / SaaS LP（service）
 
@@ -29,6 +31,8 @@
 | トップのセクション | logos-row 19%, features-3col 14%, numbers 12%, badges-awards 9%（n=128） | features-icon-list 14%, logos-row 13%, features-3col 9%, badges-awards 9%（n=111） |
 | カード | shadow 25%, flat-no-border 25%, icon-top 13%, image-left 9%（n=51） | shadow 28%, border 15%, icon-top 13%, flat-no-border 13%（n=53） |
 | 固定パーツ | sticky-header 21%, cookie-consent 17%, announce-bar 17%, float-chat 17%（n=41） | announce-bar 37%, none 31%, cookie-consent 12%, other:lead-modal 6%（n=16） |
+| footer（v2）| mega(sitemap) 91%, columns-3 5%（n=34） / 直上 cta-band 37%, banner-row 32%, none 27%（n=40） | accordion(sp) 50%, mega(sitemap) 35%, single-row 8%（n=34） |
+| カテゴリ面（v2）| 見出し name-only 32%, name+description 25%（n=31） / 子 chips 51%, none 41%（n=31） / 一覧 grid 54%, text-list 12%（n=31） / ミニ HOME none 87%, yes(sections per child) 9%（n=31） | 一覧 thumb-list 35%, featured+grid 19%（n=31） |
 
 ### 比較・アフィリエイト媒体（compare）
 
@@ -46,6 +50,9 @@
 | 記事: 囲み | plain-border 26%, tinted 21%, band-title 21%, shadow-card 12%（n=41） | plain-border 30%, tinted 23%, band-title 14%, tab-title 9%（n=42） |
 | 記事: 記事内 CTA | product-card-bundle 37%, banner-image 27%, button-only 20%, box-with-copy 10%（n=29） | banner-image 33%, product-card-bundle 33%, button-only 22%, box-with-copy 7%（n=27） |
 | 記事: 関連 | sidebar-widget-list 40%, grid-cards 26%, ranking-numbers 13%, carousel 13%（n=15） | thumb-list-1line 37%, carousel 25%, grid-cards 25%, ranking-numbers 12%（n=8） |
+| footer（v2）| mega(sitemap) 40%, single-row 37%, columns-4 7%（n=27） / 直上 banner-row 48%, none 24%, cta-band 20%（n=29） | single-row 33%, mega(sitemap) 26%, columns-2 13%（n=30） |
+| カテゴリ面（v2）| 見出し name-only 42%, name+description 31%（n=19） / 子 none 63%, chips 26%（n=19） / 一覧 thumb-list 36%, grid 31%（n=19） / ミニ HOME none 84%, yes(sections per child) 15%（n=19） | 一覧 thumb-list 47%, grid 19%（n=21） |
+| 記事末尾（v2）| 並び related 34%, tags 8%, cta 8%, share 8%（n=35） / 関連 grid-cards 40%, none 35%, text-numbered 10%（n=20） | 関連 none 33%, thumb-list-1line 20%, grid-cards 20%（n=15） |
 
 ### ポータル・ニュース（portal）
 
@@ -63,6 +70,9 @@
 | 記事: 囲み | none 50%, tinted 25%, plain-border 8%, other:quick-summary 4%（n=24） | none 44%, tinted 24%, plain-border 12%, shadow-card 8%（n=25） |
 | 記事: 記事内 CTA | none 66%, banner-image 16%, button-only 8%, product-card-bundle 8%（n=12） | none 41%, banner-image 17%, product-card-bundle 17%, box-with-copy 11%（n=17） |
 | 記事: 関連 | sidebar-widget-list 77%, ranking-numbers 22%（n=9） | grid-cards 40%, text-numbered 20%, other:テキスト罫線 20%, thumb-list-1line 20%（n=5） |
+| footer（v2）| mega(sitemap) 54%, single-row 16%, stacked-centered 9%（n=31） / 直上 none 51%, banner-row 18%, newsletter 12%（n=33） | single-row 45%, mega(sitemap) 41%, columns-2 3%（n=31） |
+| カテゴリ面（v2）| 見出し name-only 44%, name+description 25%（n=27） / 子 none 70%, chips 22%（n=27） / 一覧 grid 40%, thumb-list 33%（n=27） / ミニ HOME none 85%, yes(sections per child) 14%（n=27） | 一覧 thumb-list 42%, text-list 19%（n=26） |
+| 記事末尾（v2）| 並び related 33%, share 12%, author 11%, cta 11%（n=71） / 関連 grid-cards 35%, none 29%, thumb-list-1line 19%（n=31） | 関連 none 50%, thumb-list-1line 23%, ranking-numbers 10%（n=30） |
 
 ### ブランド・EC（brand）
 
@@ -74,6 +84,8 @@
 | トップのセクション | banner-row 21%, category-cards 16%, article-grid 10%, news-list 10%（n=60） | category-cards 22%, banner-row 14%, other:product-carousel 10%, article-grid 8%（n=57） |
 | カード | flat-no-border 39%, image-top 39%, photo-full-overlay 14%, image-left 4%（n=41） | image-top 42%, flat-no-border 34%, photo-full-overlay 14%, border 6%（n=47） |
 | 固定パーツ | announce-bar 30%, sticky-header 17%, cookie-consent 17%, float-cta 6%（n=46） | announce-bar 46%, none 10%, cookie-consent 10%, other:region-modal 7%（n=28） |
+| footer（v2）| columns-4 23%, single-row 20%, columns-3 20%（n=34） / 直上 banner-row 50%, newsletter 15%, none 13%（n=38） | accordion(sp) 25%, single-row 20%, stacked-centered 17%（n=35） |
+| カテゴリ面（v2）| 見出し name-only 50%, name+description 15%（n=20） / 子 none 65%, chips 25%（n=20） / 一覧 grid 60%, text-list 20%（n=20） / ミニ HOME none 95%（n=20） | 一覧 grid 31%, thumb-list 27%（n=22） |
 
 ### 個人ブログ・ポートフォリオ（personal）
 
@@ -91,6 +103,9 @@
 | 記事: 囲み | tinted 25%, none 13%, label-title 11%, shadow-card 9%（n=43） | tinted 28%, none 15%, plain-border 12%, check-list 7%（n=39） |
 | 記事: 記事内 CTA | none 29%, banner-image 23%, button-only 17%, product-card-bundle 17%（n=17） | button-only 30%, none 25%, product-card-bundle 15%, box-with-copy 15%（n=20） |
 | 記事: 関連 | sidebar-widget-list 53%, grid-cards 23%, ranking-numbers 7%, series-prev-next 7%（n=13） | grid-cards 50%, series-prev-next 25%, thumb-list-1line 25%（n=4） |
+| footer（v2）| single-row 41%, columns-3 20%, mega(sitemap) 10%（n=39） / 直上 none 51%, banner-row 20%, contact-block 5%（n=39） | single-row 32%, stacked-centered 32%, columns-2 7%（n=40） |
+| カテゴリ面（v2）| 見出し name+description 46%, name-only 32%（n=28） / 子 none 57%, chips 25%（n=28） / 一覧 grid 60%, text-list 14%（n=28） / ミニ HOME none 82%, yes(sections per child) 7%（n=28） | 一覧 thumb-list 46%, text-list 21%（n=28） |
+| 記事末尾（v2）| 並び related 23%, author 16%, share 14%, prev-next 12%（n=71） / 関連 grid-cards 35%, none 25%, thumb-list-1line 14%（n=28） | 関連 none 50%, thumb-list-1line 17%, grid-cards 10%（n=28） |
 
 ### 大手メディア（major）
 
@@ -102,6 +117,8 @@
 | トップのセクション | banner-row 18%, category-cards 14%, news-list 11%, tabs 8%（n=85） | banner-row 16%, category-cards 14%, news-list 9%, cta-band 9%（n=84） |
 | カード | flat-no-border 30%, image-top 22%, shadow 12%, icon-top 12%（n=50） | image-top 30%, flat-no-border 28%, shadow 9%, image-left 7%（n=52） |
 | 固定パーツ | announce-bar 26%, cookie-consent 23%, float-cta 17%, float-chat 11%（n=34） | announce-bar 35%, none 29%, cookie-consent 17%, float-cta 11%（n=17） |
+| footer（v2）| mega(sitemap) 55%, single-row 18%, columns-4 14%（n=27） / 直上 banner-row 62%, none 22%, cta-band 11%（n=27） | accordion(sp) 33%, mega(sitemap) 29%, single-row 14%（n=27） |
+| カテゴリ面（v2）| 見出し name-only 50%, name+description 27%（n=22） / 子 chips 36%, none 36%（n=22） / 一覧 text-list 36%, grid 22%（n=22） / ミニ HOME none 86%, yes(sections per child) 13%（n=22） | 一覧 text-list 45%, thumb-list 18%（n=22） |
 
 ### 表現重視（参考のみ）（motion）
 
@@ -113,6 +130,8 @@
 | トップのセクション | news-list 18%, video 9%, banner-row 9%, tabs 9%（n=32） | news-list 17%, article-grid 8%, video 5%, banner-row 5%（n=34） |
 | カード | image-top 38%, flat-no-border 33%, border 11%, photo-full-overlay 11%（n=18） | image-top 34%, flat-no-border 34%, border 13%, shadow 4%（n=23） |
 | 固定パーツ | none 21%, cookie-consent 17%, float-cta 17%, sticky-header 14%（n=28） | none 46%, cookie-consent 13%, sticky-header 13%, other:loader 6%（n=15） |
+| footer（v2）| single-row 19%, logo-only-legal 12%, stacked-centered 6%（n=31） / 直上 banner-row 21%, none 12%, cta-band 9%（n=32） | single-row 24%, columns-2 9%, stacked-centered 9%（n=33） |
+| カテゴリ面（v2）| 見出し name-only 30%, name+description 15%（n=13） / 子 none 53%, chips 15%（n=13） / 一覧 grid 38%, thumb-list 15%（n=13） / ミニ HOME none 76%（n=13） | 一覧 thumb-list 25%, grid 25%（n=12） |
 
 ## 2. 用途 × 目的 → 必要な型（Claude 案、PO 判断待ち）
 
@@ -131,6 +150,17 @@
 | ブランド・EC | 認知 | トップ | header: 透過 or ロゴ中央。hero: 全面写真 / 動画（既定 OFF、有効時は LCP ゲート）/ 商品カルーセル。セクション: 商品グリッド / ブランドメッセージ / 写真 + 文の交互。密度 airy、明朝または display 系書体 | 観察 brand 上位、#130 #134 |
 | 個人ブログ | 読了・回遊 | 記事 | シンプル header、タイトル→画像、h2 は無装飾 or 下線、囲み淡塗り、吹き出し、リンクカード、記事末: 関連グリッド + 著者。SP 下部バーなし | 観察 personal 上位、R46–R49 |
 | 全用途共通 | 守り | 全面 | 自動コントラスト guard、reduced-motion、44px タップ、LCP 2.5s、同意バー（既定 OFF、位置 2 択）、404 の変種（TPL-01）+ CV slot、パンくず、alt 必須 | R75 R83–R93 #103 #98 #130 |
+
+### 2b. 再取得 v2 から加える行（Claude 案、PO 判断待ち）
+
+| 用途 | 目的 | 面 | 必要な型 | 根拠 |
+|---|---|---|---|---|
+| 全用途共通 | 回遊・信頼 | footer | PC: サイトマップ型（列数は項目数から自動）/ 1 行型 の 2 型。SP: 1 行 / アコーディオン / 中央積み の 3 型（PC の列型は SP で畳む）。法定行は copyright + リンク列 / copyright のみ の 2 型。付属: SNS アイコン・関連サイト・認証バッジ・住所 / 電話 を slot で ON/OFF。back-to-top は既定 OFF | §1b footer.* |
+| 企業 HP / サービス LP | 行動 | footer 直上 | CTA 帯（企業 HP 33%、サービス 37% で最多）。問い合わせブロックは企業 HP のみ | §1b footer.above |
+| ブランド / 大手 / 比較 | 回遊 | footer 直上 | バナー列（ブランド 50%、大手 62%、比較 48%） | §1b footer.above |
+| ポータル | 継続 | footer 直上 | newsletter（ポータルの cat / article 面で 2 割） | §1b footer.above |
+| 比較媒体 / ポータル / 個人 | 回遊 | 記事末尾 | 並び順は「関連 → 著者 → シェア → CTA」を既定とする案（v2 は要素の頻度のみ集計し、順序は未集計。既定順は観察事実ではなく Claude 案）。slot 順は入れ替え可。関連は PC グリッド / SP サムネ 1 行リスト。前後記事・コメント欄は既定 OFF | §1b tail.* |
+| 全用途共通 | 回遊 | カテゴリ面 | 既定は「名前（+ 説明）→ PC グリッド / SP サムネリスト（画像上 + 日付 + カテゴリチップ）→ 番号ページ送り」。子カテゴリは chips。ミニ HOME（子カテゴリ別セクション + 読む順番 + ランキング）は比較媒体 / ポータル向けの選択肢として残し、既定にしない | §1b category.* / list.* |
 
 ## 3. 用途に入らなかった型（初期版では作らない案）
 
