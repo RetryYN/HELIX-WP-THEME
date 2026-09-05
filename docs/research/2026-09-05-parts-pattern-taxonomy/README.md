@@ -72,7 +72,7 @@ PO 反応 17 回目「カテゴリーはもっと強化リサーチをかけて�
 - 記録: `observations.json`（1 件 1 オブジェクト。header / lead / children_nav / list_layout / columns_pc / filter_sort / pagination / ranking / pickup / minihome / cta / card_elements / sidebar / count_per_page / notes / page_kind）と `summary.md`。summary は `gen_summary.py` で JSON から**全文生成**し、集計値に手計算を残さない（`python3 gen_summary.py | diff - summary.md` で一致）。
 - 多数派の型（観察事実、`summary.md` §2）: header は name-count（名前 + 件数）、list_layout は grid-3 と text-list が同率、columns は 2 列（右サイドバー）、children_nav は none と chips が拮抗、pagination は numbers と none が拮抗、ranking は none、minihome は na を除くと yes がやや多い。
 - レビュー: codex-astra（gpt-6-astra）が 3〜11 巡目で数値整合・適格基準・分母・語彙・解釈語を指摘し、11 巡目で「可」。対応履歴は `summary.md` 冒頭。
-- 限界（`summary.md` §5）: 区分ごと n=5〜12。大手サイトは取得不能が多く中小に偏る。SP 差分は未観察。page_kind は WebFetch 経由 1 回の判定。
+- 限界（`summary.md` §5）: 区分ごと n=5〜11。大手サイトは取得不能が多く中小に偏る。SP 差分は未観察。page_kind は WebFetch 経由 1 回の判定。
 - 試作への持ち込み（Claude 案、`summary.md` §6）: 観察された型から選ぶカテゴリ面 variant の試作候補としてのみ使う（用途別集計ではない）。要求への昇格は別途 PO 判断。
 
 ### 1e. HP 面・イベントページの観察（`home-event-recapture/`、2026-09-06、PO 指示 WT-EVT-0277）
@@ -83,7 +83,7 @@ PO 反応 17 回目「HPページは？イベントとかが組めるページ�
 - 記録: `observations-home.json` / `observations-event.json` と `summary.md`（`gen_summary.py` で全文生成、分母は「集計対象集合の n」と「欠測除外後の n」を行ごとに明記）。
 - 多数派の型（観察事実、`summary.md` §2・§3a）: HP は hero text-only（最多、過半数ではない）、hero CTA double、news list-with-date、contact tel+form、fixed sticky-header。イベント（n=8 の小標本）は hero photo-overlay / key-visual、info inline-text、apply inline-form。
 - レビュー: codex-astra が 3〜8 巡目で主集計の定義運用（E03 / E06 / E14 / E16 / E19 / E20 / E21 / E25 の境界例）・分母・固定文言を指摘し、8 巡目で「可」。
-- 限界（`summary.md` §5）: イベント主集計 n=8、区分 n=1〜4。WebFetch の本文要約経由で実ブラウザ目視・SP は未検証。
+- 限界（`summary.md` §5）: イベント主集計 n=8、区分 n=1〜3。WebFetch の本文要約経由で実ブラウザ目視・SP は未検証。
 - 試作への持ち込み（Claude 案、`summary.md` §6）: 全体集計から観察した型で選ぶ候補であり用途別集計ではない。試作 03 の HP 面・イベント面の初期 variant 選定にのみ使い、要求への昇格は別途 PO 判断。
 
 ## 2. 読み取り（Claude 案）

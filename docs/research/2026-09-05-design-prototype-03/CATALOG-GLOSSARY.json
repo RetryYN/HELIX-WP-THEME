@@ -660,17 +660,17 @@
   },
   "event-hero": {
    "label": "イベント hero",
-   "desc": "イベントページ最上部。台帳（個別 16 件 + 一覧系 4 件、n=20）の最多型 photo-overlay 55% を既定。",
+   "desc": "イベントページ最上部。台帳の主集計（個別募集ページ n=8）の最多型 key-visual 50% を既定（photo-overlay 25% / date-place-block 12% / text-only 12%）。",
    "variants": {
-    "photo-overlay": "写真にスクリムを重ね、タイトル・日時・会場・申込ボタンを白文字で置く型（既定）。",
-    "key-visual": "キービジュアル画像の下にタイトルと日時を置く型。",
+    "photo-overlay": "写真にスクリムを重ね、タイトル・日時・会場・申込ボタンを白文字で置く型。",
+    "key-visual": "キービジュアル画像の下にタイトルと日時を置く型（既定）。",
     "date-place-block": "日付を大きな箱で見せ、右に見出しと会場・定員を置く型（少数派）。",
     "text-only": "写真なしで見出しとリードと申込ボタン。"
    }
   },
   "event-info": {
    "label": "開催情報",
-   "desc": "日時 / 会場 / 定員 / 参加費の見せ方。台帳 inline-text 50%。",
+   "desc": "日時 / 会場 / 定員 / 参加費の見せ方。台帳（主集計 n=8）inline-text 62% / none 25% / table 12%。",
    "variants": {
     "inline-text": "1 段落に「日時 … / 会場 …」と並べる型（既定）。",
     "table": "見出し列付きの表（セミナー・展示会で観察）。",
@@ -680,7 +680,7 @@
   },
   "event-schedule": {
    "label": "スケジュール",
-   "desc": "タイムテーブルの型。台帳では none 50%。",
+   "desc": "タイムテーブルの型。台帳（主集計 n=8）none 38% / table 25% / timeline 12%。",
    "variants": {
     "none": "置かない（既定）。",
     "table": "時間 / 内容 / 登壇の表。",
@@ -690,7 +690,7 @@
   },
   "event-speakers": {
    "label": "登壇者",
-   "desc": "台帳では none 63%、あるときは写真カード。",
+   "desc": "台帳（主集計 n=8）none 50% / cards-photo 25% / list 12% / single-profile 12%。",
    "variants": {
     "none": "置かない（既定）。",
     "cards-photo": "顔写真つきカード 3 枚。",
@@ -700,7 +700,7 @@
   },
   "event-apply": {
    "label": "申込",
-   "desc": "参加申込の型。台帳 inline-form 31%（個別 16 件、有効 13 件）。フォームは送信しない（PoC）。",
+   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。",
    "variants": {
     "inline-form": "ページ内フォーム（氏名 / 会社 / メール / 区分 / 同意）（既定）。",
     "external-form": "別ページのフォームへ遷移（リンク先はダミー）。",
@@ -710,17 +710,17 @@
   },
   "event-status": {
    "label": "受付状態バッジ",
-   "desc": "hero の上に置く受付状態。台帳 none 50%。",
+   "desc": "hero の上に置く受付状態。台帳（主集計 n=8）open 62% / ended 25% / none 12%。",
    "variants": {
-    "none": "バッジなし（既定）。",
-    "open": "受付中（緑）。",
+    "none": "バッジなし。",
+    "open": "受付中（緑、既定）。",
     "few-seats": "残席わずか（CTA 色）。",
     "ended": "受付終了（灰）。"
    }
   },
   "event-map": {
    "label": "会場アクセス",
-   "desc": "地図の見せ方。埋め込み地図（外部）は使わず、静止画像または文字。",
+   "desc": "地図の見せ方。台帳（主集計 n=8）none 50% / text-only 50%。埋め込み地図（外部）は使わず、静止画像または文字。",
    "variants": {
     "none": "アクセス区間なし（既定）。",
     "static-image": "地図画像（PoC ではダミー画像）+ 住所。",
@@ -729,7 +729,7 @@
   },
   "event-fixed": {
    "label": "イベントの固定導線",
-   "desc": "申込への追従導線。closed-notice のときは出さない。",
+   "desc": "申込への追従導線。台帳（主集計 n=8）では none 100%。Claude 案として追加。closed-notice のときは出さない。",
    "variants": {
     "none": "なし（既定）。",
     "sp-bottom-bar": "SP 下部の日時 + 申込ボタン。",
@@ -738,7 +738,7 @@
   },
   "event-share": {
    "label": "共有 / カレンダー",
-   "desc": "注意事項区間の末尾に置く共有導線。",
+   "desc": "注意事項区間の末尾に置く共有導線。台帳（主集計 n=8）none 62% / icons 38%。",
    "variants": {
     "none": "なし（既定）。",
     "icons": "X / LINE の自作グリフ + リンクコピー（リンク先はダミー）。",

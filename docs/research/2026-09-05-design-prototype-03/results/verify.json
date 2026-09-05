@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884849)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.88484)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -13896,6 +13896,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "text-only",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "text-only"
@@ -13921,6 +13922,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "slider",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "slider"
@@ -13946,6 +13948,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "fullbleed",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "fullbleed"
@@ -13971,6 +13974,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "split",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "split"
@@ -13996,6 +14000,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "article-grid",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "article-grid"
@@ -14021,6 +14026,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "video",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "video"
@@ -14046,6 +14052,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "double",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "double"
@@ -14071,6 +14078,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "single",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "single"
@@ -14096,6 +14104,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14119,6 +14128,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "tel-button",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tel-button"
@@ -14144,6 +14154,7 @@
      "js": true,
      "axis": "home_news",
      "v": "list-with-date",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "list-with-date"
@@ -14169,6 +14180,7 @@
      "js": true,
      "axis": "home_news",
      "v": "tabs",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tabs"
@@ -14194,6 +14206,7 @@
      "js": true,
      "axis": "home_news",
      "v": "cards",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "cards"
@@ -14219,6 +14232,7 @@
      "js": true,
      "axis": "home_news",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14242,6 +14256,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "tel-form",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tel-form"
@@ -14267,6 +14282,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "form-only",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "form-only"
@@ -14292,6 +14308,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "tel-only",
+     "expectForms": 0,
      "body": true,
      "shown": [
       "tel-only"
@@ -14309,6 +14326,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "line",
+     "expectForms": 0,
      "body": true,
      "shown": [
       "line"
@@ -14326,6 +14344,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "none",
+     "expectForms": 0,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14341,6 +14360,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14364,6 +14384,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "float-cta",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "float-cta"
@@ -14389,6 +14410,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "sp-bottom-bar",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "sp-bottom-bar"
@@ -14414,6 +14436,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "float-tel",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "float-tel"
@@ -14491,6 +14514,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "text-only",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "text-only"
@@ -14516,6 +14540,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "slider",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "slider"
@@ -14541,6 +14566,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "fullbleed",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "fullbleed"
@@ -14566,6 +14592,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "split",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "split"
@@ -14591,6 +14618,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "article-grid",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "article-grid"
@@ -14616,6 +14644,7 @@
      "js": true,
      "axis": "home_hero",
      "v": "video",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "video"
@@ -14641,6 +14670,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "double",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "double"
@@ -14666,6 +14696,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "single",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "single"
@@ -14691,6 +14722,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14714,6 +14746,7 @@
      "js": true,
      "axis": "home_hero_cta",
      "v": "tel-button",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tel-button"
@@ -14739,6 +14772,7 @@
      "js": true,
      "axis": "home_news",
      "v": "list-with-date",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "list-with-date"
@@ -14764,6 +14798,7 @@
      "js": true,
      "axis": "home_news",
      "v": "tabs",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tabs"
@@ -14789,6 +14824,7 @@
      "js": true,
      "axis": "home_news",
      "v": "cards",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "cards"
@@ -14814,6 +14850,7 @@
      "js": true,
      "axis": "home_news",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14837,6 +14874,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "tel-form",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tel-form"
@@ -14862,6 +14900,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "form-only",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "form-only"
@@ -14887,6 +14926,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "tel-only",
+     "expectForms": 0,
      "body": true,
      "shown": [
       "tel-only"
@@ -14904,6 +14944,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "line",
+     "expectForms": 0,
      "body": true,
      "shown": [
       "line"
@@ -14921,6 +14962,7 @@
      "js": true,
      "axis": "home_contact",
      "v": "none",
+     "expectForms": 0,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14936,6 +14978,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -14959,6 +15002,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "float-cta",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "float-cta"
@@ -14984,6 +15028,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "sp-bottom-bar",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -15007,6 +15052,7 @@
      "js": true,
      "axis": "home_fixed",
      "v": "float-tel",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -15082,6 +15128,7 @@
      "js": false,
      "axis": "home_hero",
      "v": "text-only",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "text-only"
@@ -15107,6 +15154,7 @@
      "js": false,
      "axis": "home_hero",
      "v": "slider",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "slider"
@@ -15132,6 +15180,7 @@
      "js": false,
      "axis": "home_hero",
      "v": "fullbleed",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "fullbleed"
@@ -15157,6 +15206,7 @@
      "js": false,
      "axis": "home_hero",
      "v": "split",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "split"
@@ -15182,6 +15232,7 @@
      "js": false,
      "axis": "home_hero",
      "v": "article-grid",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "article-grid"
@@ -15207,6 +15258,7 @@
      "js": false,
      "axis": "home_hero",
      "v": "video",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "video"
@@ -15232,6 +15284,7 @@
      "js": false,
      "axis": "home_hero_cta",
      "v": "double",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "double"
@@ -15257,6 +15310,7 @@
      "js": false,
      "axis": "home_hero_cta",
      "v": "single",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "single"
@@ -15282,6 +15336,7 @@
      "js": false,
      "axis": "home_hero_cta",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -15305,6 +15360,7 @@
      "js": false,
      "axis": "home_hero_cta",
      "v": "tel-button",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tel-button"
@@ -15330,6 +15386,7 @@
      "js": false,
      "axis": "home_news",
      "v": "list-with-date",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "list-with-date"
@@ -15355,6 +15412,7 @@
      "js": false,
      "axis": "home_news",
      "v": "tabs",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tabs"
@@ -15380,6 +15438,7 @@
      "js": false,
      "axis": "home_news",
      "v": "cards",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "cards"
@@ -15405,6 +15464,7 @@
      "js": false,
      "axis": "home_news",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -15428,6 +15488,7 @@
      "js": false,
      "axis": "home_contact",
      "v": "tel-form",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "tel-form"
@@ -15453,6 +15514,7 @@
      "js": false,
      "axis": "home_contact",
      "v": "form-only",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "form-only"
@@ -15478,6 +15540,7 @@
      "js": false,
      "axis": "home_contact",
      "v": "tel-only",
+     "expectForms": 0,
      "body": true,
      "shown": [
       "tel-only"
@@ -15495,6 +15558,7 @@
      "js": false,
      "axis": "home_contact",
      "v": "line",
+     "expectForms": 0,
      "body": true,
      "shown": [
       "line"
@@ -15512,6 +15576,7 @@
      "js": false,
      "axis": "home_contact",
      "v": "none",
+     "expectForms": 0,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -15527,6 +15592,7 @@
      "js": false,
      "axis": "home_fixed",
      "v": "none",
+     "expectForms": 1,
      "body": true,
      "shown": [],
      "heroVisible": 1,
@@ -15550,6 +15616,7 @@
      "js": false,
      "axis": "home_fixed",
      "v": "float-cta",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "float-cta"
@@ -15575,6 +15642,7 @@
      "js": false,
      "axis": "home_fixed",
      "v": "sp-bottom-bar",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "sp-bottom-bar"
@@ -15600,6 +15668,7 @@
      "js": false,
      "axis": "home_fixed",
      "v": "float-tel",
+     "expectForms": 1,
      "body": true,
      "shown": [
       "float-tel"
@@ -15675,6 +15744,8 @@
  "homeHeroContrast": {
   "rows": [
    {
+    "dev": "pc",
+    "js": true,
     "v": "fullbleed",
     "stops": [
      [
@@ -15693,9 +15764,13 @@
     "titleTopPctFromBottom": 50.7,
     "alphaAtTitleTop": 0.854,
     "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
     "v": "slider",
     "stops": [
      [
@@ -15714,9 +15789,13 @@
     "titleTopPctFromBottom": 42.6,
     "alphaAtTitleTop": 0.858,
     "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
     "v": "text-only",
     "title": [
      "rgb(23, 28, 34)",
@@ -15729,6 +15808,8 @@
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
     "v": "split",
     "title": [
      "rgb(23, 28, 34)",
@@ -15741,6 +15822,192 @@
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
+    "v": "video",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "lead": [
+     "rgb(92, 104, 117)",
+     "rgb(255, 255, 255)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "fullbleed",
+    "stops": [
+     [
+      0,
+      0.88
+     ],
+     [
+      78,
+      0.84
+     ],
+     [
+      100,
+      0.4
+     ]
+    ],
+    "titleTopPctFromBottom": 71.9,
+    "alphaAtTitleTop": 0.843,
+    "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "slider",
+    "stops": [
+     [
+      0,
+      0.88
+     ],
+     [
+      78,
+      0.84
+     ],
+     [
+      100,
+      0.4
+     ]
+    ],
+    "titleTopPctFromBottom": 66.8,
+    "alphaAtTitleTop": 0.846,
+    "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "text-only",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(232, 238, 252)"
+    ],
+    "lead": [
+     "rgb(92, 104, 117)",
+     "rgb(232, 238, 252)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "split",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "lead": [
+     "rgb(92, 104, 117)",
+     "rgb(255, 255, 255)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "video",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "lead": [
+     "rgb(92, 104, 117)",
+     "rgb(255, 255, 255)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "fullbleed",
+    "stops": [
+     [
+      0,
+      0.88
+     ],
+     [
+      78,
+      0.84
+     ],
+     [
+      100,
+      0.4
+     ]
+    ],
+    "titleTopPctFromBottom": 71.9,
+    "alphaAtTitleTop": 0.843,
+    "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "slider",
+    "stops": [
+     [
+      0,
+      0.88
+     ],
+     [
+      78,
+      0.84
+     ],
+     [
+      100,
+      0.4
+     ]
+    ],
+    "titleTopPctFromBottom": 66.8,
+    "alphaAtTitleTop": 0.846,
+    "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "text-only",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(232, 238, 252)"
+    ],
+    "lead": [
+     "rgb(92, 104, 117)",
+     "rgb(232, 238, 252)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "split",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "lead": [
+     "rgb(92, 104, 117)",
+     "rgb(255, 255, 255)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
     "v": "video",
     "title": [
      "rgb(23, 28, 34)",
@@ -15758,13 +16025,15 @@
  "homeFixedOverlap": {
   "sp": [
    {
+    "face": "home",
     "v": "float-cta",
     "visible": true,
-    "inViewport": false,
+    "inViewport": true,
     "overlaps": [],
     "pass": true
    },
    {
+    "face": "home",
     "v": "sp-bottom-bar",
     "visible": true,
     "inViewport": true,
@@ -15772,7 +16041,24 @@
     "pass": true
    },
    {
+    "face": "home",
     "v": "float-tel",
+    "visible": true,
+    "inViewport": true,
+    "overlaps": [],
+    "pass": true
+   },
+   {
+    "face": "event",
+    "v": "sp-bottom-bar",
+    "visible": true,
+    "inViewport": true,
+    "overlaps": [],
+    "pass": true
+   },
+   {
+    "face": "event",
+    "v": "float-apply",
     "visible": true,
     "inViewport": true,
     "overlaps": [],
@@ -15781,7 +16067,16 @@
   ],
   "pc": [
    {
+    "face": "home",
     "v": "float-cta",
+    "visible": true,
+    "inViewport": true,
+    "overlaps": [],
+    "pass": true
+   },
+   {
+    "face": "event",
+    "v": "float-apply",
     "visible": true,
     "inViewport": true,
     "overlaps": [],
@@ -15797,6 +16092,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "photo-overlay",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "photo-overlay"
@@ -15809,6 +16105,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15821,6 +16118,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "key-visual",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "key-visual"
@@ -15833,6 +16131,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15845,6 +16144,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "date-place-block",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "date-place-block"
@@ -15857,6 +16157,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15869,6 +16170,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "text-only",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "text-only"
@@ -15881,6 +16183,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15893,6 +16196,7 @@
     "js": true,
     "axis": "event_info",
     "v": "inline-text",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "inline-text"
@@ -15905,6 +16209,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15917,6 +16222,7 @@
     "js": true,
     "axis": "event_info",
     "v": "table",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "table"
@@ -15929,6 +16235,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15941,6 +16248,7 @@
     "js": true,
     "axis": "event_info",
     "v": "icon-list",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "icon-list"
@@ -15953,6 +16261,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15965,6 +16274,7 @@
     "js": true,
     "axis": "event_info",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -15975,6 +16285,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -15987,6 +16298,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -15997,6 +16309,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16009,6 +16322,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "table",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "table"
@@ -16021,6 +16335,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16033,6 +16348,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "timeline",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "timeline"
@@ -16045,6 +16361,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16057,6 +16374,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "accordion",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "accordion"
@@ -16069,6 +16387,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16081,6 +16400,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16091,6 +16411,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16103,6 +16424,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "cards-photo",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "cards-photo"
@@ -16115,6 +16437,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16127,6 +16450,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "list",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "list"
@@ -16139,6 +16463,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16151,6 +16476,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "single-profile",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "single-profile"
@@ -16163,6 +16489,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16175,6 +16502,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "inline-form",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "inline-form"
@@ -16187,6 +16515,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16199,6 +16528,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "external-form",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "external-form"
@@ -16216,6 +16546,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "ticket-link",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "ticket-link"
@@ -16233,6 +16564,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "closed-notice",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "closed-notice"
@@ -16250,6 +16582,7 @@
     "js": true,
     "axis": "event_status",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16260,6 +16593,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16272,6 +16606,7 @@
     "js": true,
     "axis": "event_status",
     "v": "open",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "open"
@@ -16284,6 +16619,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16296,6 +16632,7 @@
     "js": true,
     "axis": "event_status",
     "v": "few-seats",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "few-seats"
@@ -16308,6 +16645,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16320,6 +16658,7 @@
     "js": true,
     "axis": "event_status",
     "v": "ended",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "ended"
@@ -16332,6 +16671,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16344,6 +16684,7 @@
     "js": true,
     "axis": "event_map",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16354,6 +16695,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16366,6 +16708,7 @@
     "js": true,
     "axis": "event_map",
     "v": "static-image",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "static-image"
@@ -16378,6 +16721,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16390,6 +16734,7 @@
     "js": true,
     "axis": "event_map",
     "v": "text-only",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "text-only"
@@ -16402,6 +16747,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16414,6 +16760,7 @@
     "js": true,
     "axis": "event_fixed",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16424,6 +16771,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16436,6 +16784,7 @@
     "js": true,
     "axis": "event_fixed",
     "v": "sp-bottom-bar",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "sp-bottom-bar"
@@ -16448,6 +16797,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16460,6 +16810,7 @@
     "js": true,
     "axis": "event_fixed",
     "v": "float-apply",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "float-apply"
@@ -16472,6 +16823,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16484,6 +16836,7 @@
     "js": true,
     "axis": "event_share",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16494,6 +16847,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16506,6 +16860,7 @@
     "js": true,
     "axis": "event_share",
     "v": "icons",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "icons"
@@ -16518,6 +16873,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16530,6 +16886,7 @@
     "js": true,
     "axis": "event_share",
     "v": "add-to-calendar",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "add-to-calendar"
@@ -16542,6 +16899,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16556,6 +16914,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "photo-overlay",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "photo-overlay"
@@ -16568,6 +16927,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16580,6 +16940,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "key-visual",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "key-visual"
@@ -16592,6 +16953,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16604,6 +16966,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "date-place-block",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "date-place-block"
@@ -16616,6 +16979,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16628,6 +16992,7 @@
     "js": true,
     "axis": "event_hero",
     "v": "text-only",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "text-only"
@@ -16640,6 +17005,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16652,6 +17018,7 @@
     "js": true,
     "axis": "event_info",
     "v": "inline-text",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "inline-text"
@@ -16664,6 +17031,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16676,6 +17044,7 @@
     "js": true,
     "axis": "event_info",
     "v": "table",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "table"
@@ -16688,6 +17057,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16700,6 +17070,7 @@
     "js": true,
     "axis": "event_info",
     "v": "icon-list",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "icon-list"
@@ -16712,6 +17083,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16724,6 +17096,7 @@
     "js": true,
     "axis": "event_info",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16734,6 +17107,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16746,6 +17120,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16756,6 +17131,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16768,6 +17144,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "table",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "table"
@@ -16780,6 +17157,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16792,6 +17170,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "timeline",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "timeline"
@@ -16804,6 +17183,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16816,6 +17196,7 @@
     "js": true,
     "axis": "event_schedule",
     "v": "accordion",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "accordion"
@@ -16828,6 +17209,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16840,6 +17222,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -16850,6 +17233,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16862,6 +17246,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "cards-photo",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "cards-photo"
@@ -16874,6 +17259,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16886,6 +17272,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "list",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "list"
@@ -16898,6 +17285,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16910,6 +17298,7 @@
     "js": true,
     "axis": "event_speakers",
     "v": "single-profile",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "single-profile"
@@ -16922,6 +17311,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16934,6 +17324,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "inline-form",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "inline-form"
@@ -16946,6 +17337,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -16958,6 +17350,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "external-form",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "external-form"
@@ -16975,6 +17368,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "ticket-link",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "ticket-link"
@@ -16992,6 +17386,7 @@
     "js": true,
     "axis": "event_apply",
     "v": "closed-notice",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "closed-notice"
@@ -17009,6 +17404,7 @@
     "js": true,
     "axis": "event_status",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17019,6 +17415,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17031,6 +17428,7 @@
     "js": true,
     "axis": "event_status",
     "v": "open",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "open"
@@ -17043,6 +17441,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17055,6 +17454,7 @@
     "js": true,
     "axis": "event_status",
     "v": "few-seats",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "few-seats"
@@ -17067,6 +17467,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17079,6 +17480,7 @@
     "js": true,
     "axis": "event_status",
     "v": "ended",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "ended"
@@ -17091,6 +17493,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17103,6 +17506,7 @@
     "js": true,
     "axis": "event_map",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17113,6 +17517,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17125,6 +17530,7 @@
     "js": true,
     "axis": "event_map",
     "v": "static-image",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "static-image"
@@ -17137,6 +17543,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17149,6 +17556,7 @@
     "js": true,
     "axis": "event_map",
     "v": "text-only",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "text-only"
@@ -17161,6 +17569,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17173,6 +17582,7 @@
     "js": true,
     "axis": "event_fixed",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17183,6 +17593,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17195,6 +17606,7 @@
     "js": true,
     "axis": "event_fixed",
     "v": "sp-bottom-bar",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17205,6 +17617,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17217,6 +17630,7 @@
     "js": true,
     "axis": "event_fixed",
     "v": "float-apply",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "float-apply"
@@ -17229,6 +17643,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17241,6 +17656,7 @@
     "js": true,
     "axis": "event_share",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17251,6 +17667,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17263,6 +17680,7 @@
     "js": true,
     "axis": "event_share",
     "v": "icons",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "icons"
@@ -17275,6 +17693,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17287,6 +17706,7 @@
     "js": true,
     "axis": "event_share",
     "v": "add-to-calendar",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "add-to-calendar"
@@ -17299,6 +17719,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17313,6 +17734,7 @@
     "js": false,
     "axis": "event_hero",
     "v": "photo-overlay",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "photo-overlay"
@@ -17325,6 +17747,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17337,6 +17760,7 @@
     "js": false,
     "axis": "event_hero",
     "v": "key-visual",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "key-visual"
@@ -17349,6 +17773,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17361,6 +17786,7 @@
     "js": false,
     "axis": "event_hero",
     "v": "date-place-block",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "date-place-block"
@@ -17373,6 +17799,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17385,6 +17812,7 @@
     "js": false,
     "axis": "event_hero",
     "v": "text-only",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "text-only"
@@ -17397,6 +17825,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17409,6 +17838,7 @@
     "js": false,
     "axis": "event_info",
     "v": "inline-text",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "inline-text"
@@ -17421,6 +17851,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17433,6 +17864,7 @@
     "js": false,
     "axis": "event_info",
     "v": "table",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "table"
@@ -17445,6 +17877,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17457,6 +17890,7 @@
     "js": false,
     "axis": "event_info",
     "v": "icon-list",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "icon-list"
@@ -17469,6 +17903,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17481,6 +17916,7 @@
     "js": false,
     "axis": "event_info",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17491,6 +17927,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17503,6 +17940,7 @@
     "js": false,
     "axis": "event_schedule",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17513,6 +17951,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17525,6 +17964,7 @@
     "js": false,
     "axis": "event_schedule",
     "v": "table",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "table"
@@ -17537,6 +17977,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17549,6 +17990,7 @@
     "js": false,
     "axis": "event_schedule",
     "v": "timeline",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "timeline"
@@ -17561,6 +18003,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17573,6 +18016,7 @@
     "js": false,
     "axis": "event_schedule",
     "v": "accordion",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "accordion"
@@ -17585,6 +18029,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17597,6 +18042,7 @@
     "js": false,
     "axis": "event_speakers",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17607,6 +18053,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17619,6 +18066,7 @@
     "js": false,
     "axis": "event_speakers",
     "v": "cards-photo",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "cards-photo"
@@ -17631,6 +18079,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17643,6 +18092,7 @@
     "js": false,
     "axis": "event_speakers",
     "v": "list",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "list"
@@ -17655,6 +18105,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17667,6 +18118,7 @@
     "js": false,
     "axis": "event_speakers",
     "v": "single-profile",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "single-profile"
@@ -17679,6 +18131,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17691,6 +18144,7 @@
     "js": false,
     "axis": "event_apply",
     "v": "inline-form",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "inline-form"
@@ -17703,6 +18157,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17715,6 +18170,7 @@
     "js": false,
     "axis": "event_apply",
     "v": "external-form",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "external-form"
@@ -17732,6 +18188,7 @@
     "js": false,
     "axis": "event_apply",
     "v": "ticket-link",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "ticket-link"
@@ -17749,6 +18206,7 @@
     "js": false,
     "axis": "event_apply",
     "v": "closed-notice",
+    "expectForms": 0,
     "body": true,
     "shown": [
      "closed-notice"
@@ -17766,6 +18224,7 @@
     "js": false,
     "axis": "event_status",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17776,6 +18235,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17788,6 +18248,7 @@
     "js": false,
     "axis": "event_status",
     "v": "open",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "open"
@@ -17800,6 +18261,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17812,6 +18274,7 @@
     "js": false,
     "axis": "event_status",
     "v": "few-seats",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "few-seats"
@@ -17824,6 +18287,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17836,6 +18300,7 @@
     "js": false,
     "axis": "event_status",
     "v": "ended",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "ended"
@@ -17848,6 +18313,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17860,6 +18326,7 @@
     "js": false,
     "axis": "event_map",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17870,6 +18337,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17882,6 +18350,7 @@
     "js": false,
     "axis": "event_map",
     "v": "static-image",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "static-image"
@@ -17894,6 +18363,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17906,6 +18376,7 @@
     "js": false,
     "axis": "event_map",
     "v": "text-only",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "text-only"
@@ -17918,6 +18389,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17930,6 +18402,7 @@
     "js": false,
     "axis": "event_fixed",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -17940,6 +18413,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17952,6 +18426,7 @@
     "js": false,
     "axis": "event_fixed",
     "v": "sp-bottom-bar",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "sp-bottom-bar"
@@ -17964,6 +18439,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -17976,6 +18452,7 @@
     "js": false,
     "axis": "event_fixed",
     "v": "float-apply",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "float-apply"
@@ -17988,6 +18465,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -18000,6 +18478,7 @@
     "js": false,
     "axis": "event_share",
     "v": "none",
+    "expectForms": 1,
     "body": true,
     "shown": [],
     "heroVisible": 1,
@@ -18010,6 +18489,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -18022,6 +18502,7 @@
     "js": false,
     "axis": "event_share",
     "v": "icons",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "icons"
@@ -18034,6 +18515,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -18046,6 +18528,7 @@
     "js": false,
     "axis": "event_share",
     "v": "add-to-calendar",
+    "expectForms": 1,
     "body": true,
     "shown": [
      "add-to-calendar"
@@ -18058,6 +18541,7 @@
       "method": "get",
       "action": "#apply",
       "submit": 0,
+      "inputs": 5,
       "labelled": true
      }
     ],
@@ -18071,6 +18555,8 @@
  "eventHeroContrast": {
   "rows": [
    {
+    "dev": "pc",
+    "js": true,
     "v": "photo-overlay",
     "stops": [
      [
@@ -18089,9 +18575,13 @@
     "titleTopPctFromBottom": 50.2,
     "alphaAtTitleTop": 0.854,
     "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
     "v": "key-visual",
     "st": "few-seats",
     "title": [
@@ -18110,6 +18600,8 @@
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
     "v": "date-place-block",
     "st": "ended",
     "title": [
@@ -18128,6 +18620,178 @@
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
+    "v": "text-only",
+    "st": "open",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(244, 246, 249)"
+    ],
+    "badge": [
+     "rgb(255, 255, 255)",
+     "rgb(21, 128, 61)"
+    ],
+    "badgeSize": 13,
+    "meta": [
+     "rgb(92, 104, 117)",
+     "rgb(244, 246, 249)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "photo-overlay",
+    "stops": [
+     [
+      0,
+      0.88
+     ],
+     [
+      78,
+      0.84
+     ],
+     [
+      100,
+      0.4
+     ]
+    ],
+    "titleTopPctFromBottom": 58.7,
+    "alphaAtTitleTop": 0.85,
+    "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "key-visual",
+    "st": "few-seats",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "badge": [
+     "rgb(255, 255, 255)",
+     "rgb(194, 65, 12)"
+    ],
+    "badgeSize": 13,
+    "meta": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "date-place-block",
+    "st": "ended",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(232, 238, 252)"
+    ],
+    "badge": [
+     "rgb(255, 255, 255)",
+     "rgb(92, 104, 117)"
+    ],
+    "badgeSize": 13,
+    "meta": [
+     "rgb(23, 28, 34)",
+     "rgb(232, 238, 252)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "v": "text-only",
+    "st": "open",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(244, 246, 249)"
+    ],
+    "badge": [
+     "rgb(255, 255, 255)",
+     "rgb(21, 128, 61)"
+    ],
+    "badgeSize": 13,
+    "meta": [
+     "rgb(92, 104, 117)",
+     "rgb(244, 246, 249)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "photo-overlay",
+    "stops": [
+     [
+      0,
+      0.88
+     ],
+     [
+      78,
+      0.84
+     ],
+     [
+      100,
+      0.4
+     ]
+    ],
+    "titleTopPctFromBottom": 58.7,
+    "alphaAtTitleTop": 0.85,
+    "titleColor": "rgb(255, 255, 255)",
+    "scrimAboveImg": true,
+    "hitInTitle": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "key-visual",
+    "st": "few-seats",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "badge": [
+     "rgb(255, 255, 255)",
+     "rgb(194, 65, 12)"
+    ],
+    "badgeSize": 13,
+    "meta": [
+     "rgb(23, 28, 34)",
+     "rgb(255, 255, 255)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "v": "date-place-block",
+    "st": "ended",
+    "title": [
+     "rgb(23, 28, 34)",
+     "rgb(232, 238, 252)"
+    ],
+    "badge": [
+     "rgb(255, 255, 255)",
+     "rgb(92, 104, 117)"
+    ],
+    "badgeSize": 13,
+    "meta": [
+     "rgb(23, 28, 34)",
+     "rgb(232, 238, 252)"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
     "v": "text-only",
     "st": "open",
     "title": [

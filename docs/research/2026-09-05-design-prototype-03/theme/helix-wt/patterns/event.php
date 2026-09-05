@@ -4,7 +4,7 @@
  * Slug: helix-wt/event
  * Categories: helix-wt
  * Description: 2026-09-06 PO 反応 17 回目 WT-EVT-0277「イベントとかが組めるページは？」の Claude 案。hero 4 型・開催情報 4 型・スケジュール 4 型・登壇者 4 型・申込 4 型・受付状態 4 型・地図 3 型・固定導線 3 型・共有 3 型。
- *              既定は台帳 research-r17（イベント個別ページ 16 件）の最多型。日時・会場・人物は PoC 用の架空。フォームは送信しない。埋め込み地図・外部チケットサービスへは接続しない（リンク先はダミー）。
+ *              既定は台帳 research-r17（イベント個別募集ページ 8 件、取得 20 件から page_kind 除外後）の最多型。日時・会場・人物は PoC 用の架空。フォームは送信しない。埋め込み地図・外部チケットサービスへは接続しない（リンク先はダミー）。
  */
 $u = get_theme_file_uri( 'assets/img' );
 $status = '<span class="wt-event-status wt-event-status--open">受付中</span><span class="wt-event-status wt-event-status--few-seats">残席わずか</span><span class="wt-event-status wt-event-status--ended">受付終了</span>';

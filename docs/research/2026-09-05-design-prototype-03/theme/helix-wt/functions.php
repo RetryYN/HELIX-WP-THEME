@@ -53,7 +53,7 @@ function wt_axes() {
 		'lp_line'      => array( 'button', array( 'button', 'qr' ) ),
 		'lp_legal'     => array( 'on', array( 'on', 'off' ) ),
 		// 2026-09-06 PO 反応 17 回目 WT-EVT-0277「HP ページは？イベントとかが組めるページは？」（Claude 案）。
-		// 既定は台帳 research-r17（HP 39 件 / イベント個別 16 件、Astra レビュー済み）の最多型。n が小さい区分の型は「選べる型」として置く
+		// 既定は台帳 research-r17（HP 39 件 / イベント個別募集ページ 8 件（取得 20 件から page_kind 除外後）、Astra レビュー済み）の最多型。n が小さい区分の型は「選べる型」として置く
 		'home_hero'     => array( 'text-only', array( 'text-only', 'slider', 'fullbleed', 'split', 'article-grid', 'video' ) ), // HP n=39: text-only 33% / slider 26% / fullbleed 21%（台帳 home-event-recapture）
 		'home_hero_cta' => array( 'double', array( 'double', 'single', 'none', 'tel-button' ) ), // double 62%（CTA 2 つ。用途は home_contact）
 		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media' ) ), // 用途別の区間セット
@@ -73,7 +73,11 @@ function wt_axes() {
 }
 
 function wt_is_event_page() {
-	return function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) );
+	// 固定ページの template meta が空でも、block テーマの階層（page-{slug}.html）で page-event が解決されることがある
+	// （ローカル検証台で確認）。その場合 is_page_template() は false になるため、実際に解決した template id も見る。
+	global $_wp_current_template_id;
+	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-event' );
+	return $resolved || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
 }
 
 function wt_is_lp_page() {
@@ -483,9 +487,6 @@ add_filter( 'query_loop_block_query_vars', function ( $query, $block ) {
 
 // ---------- 404: HTTP 404 は WP 既定（template 404.html）。noindex を明示 ----------
 add_action( 'wp_head', function () {
-	if ( is_front_page() ) {
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.13', $defer );
-	}
 	if ( is_404() ) {
 		echo '<meta name="robots" content="noindex">' . "\n";
 	}

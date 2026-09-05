@@ -8,8 +8,9 @@
   var dots = nav ? nav.querySelector('.wt-home-slider__dots') : null;
   var prev = nav ? nav.querySelector('[data-wt-slide="prev"]') : null;
   var next = nav ? nav.querySelector('[data-wt-slide="next"]') : null;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var current = 0;
-  function go(i){ current = (i + slides.length) % slides.length; track.scrollTo({ left: slides[current].offsetLeft, behavior: 'smooth' }); update(); }
+  function go(i){ current = (i + slides.length) % slides.length; track.scrollTo({ left: slides[current].offsetLeft, behavior: reduced ? 'auto' : 'smooth' }); update(); }
   function update(){
     if (!dots) return;
     Array.prototype.forEach.call(dots.children, function(d, i){ d.setAttribute('aria-current', i === current ? 'true' : 'false'); });
