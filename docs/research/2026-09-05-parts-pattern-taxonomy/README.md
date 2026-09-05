@@ -115,3 +115,13 @@
 ## 6. 公開情報の扱い
 
 - サイト・テーマ・ベンダー・参照サイトの固有名と URL は書かない。`coded/` のキーは調査 ID のみ。`vendor-variants.md` はテーマ A / B 表記。`ref-site-notes.md` は「参照サイト」表記。取得スクリプトのうち URL を含むもの（vendor-urls / ref）はリポジトリ外に置く。
+### 1c. LP 面の再収集（`lp-recapture/`、2026-09-06、PO 指示 WT-EVT-0268）
+
+PO 反応 16 回目「まだLPは弱すぎるからリスティング広告とかクリックしてデザインを再収集してきてくれるか？」を受けた LP 面の観察。広告のクリックは広告主に課金が発生するため行わず、検索の自然結果と LP ギャラリー系サイトの一覧から URL を集めて read-only で取得した（PO へ方針を提示済み）。
+
+- 収集: **39 件**（A 企業向け SaaS / BtoB 8、B 個人向けサービス 14、C 資料 DL・比較媒体 5、D イベント・セミナー・展示会・キャンペーン 8、E EC・単品商品 4）。fetched: full 34 / partial 5 / failed 0（除外 4〜5 件の理由は `summary.md` §5）。
+- 記録: `observations.json`（1 件 1 オブジェクト。`sections_order`、9 パーツの型（`interview_card` / `review` / `external_rating` / `download` / `embedded_form` / `line_cta` / `float_button` / `hero` / `cta_style`）、`notes`）と `summary.md`（区分 × 7 パーツの出現率、区分別セクション順、型内訳、多数派の型、限界）。
+- 多数派の型（観察事実、`summary.md` §4）: インタビューカードは summary-card（遷移リンクなしのサマリー表示）、口コミは quote+photo、外部評価は certification（認証・許認可）、資料 DL は button-to-form、フォームは external（外部遷移）、LINE 導線は button、フロートボタンは sp-bottom-bar。D（イベント）区分は埋め込みフォーム 75% 以外のパーツがほぼ 0 で、来場登録は外部フォームへの誘導が多い。
+- 限界（`summary.md` §5）: 39 件のうち 20 件（site-L06〜L25）は初回パスの記録を再分類したもので、対応表に元 URL が引き継がれず今回のパスで実ページを再検証できていない。JS 描画中心のページはフィールド数などを判定できず partial。区分 C・E は n が 4〜5 件で割合は少数からの算出。
+- 公開情報: 固有名・ドメインは書かない。site-Lxx と実サイトの対応表はリポジトリ外（scratchpad / 非公開）にのみ置く。
+- 次段（Claude 案、PO 判断待ち）: 試作 03 の LP に 7 パーツ（インタビューカード・口コミ評価・外部評価・資料 DL・埋め込みフォーム・LINE 導線・フロートボタン）を、ここで観察された多数派の型を既定にして試作する。
