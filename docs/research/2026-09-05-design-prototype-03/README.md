@@ -104,7 +104,7 @@
 | バナー画像 | `helix-wt/cta-banner`、`.wp-block-image.is-style-wt-banner` | banner-image | 観察 27–33% |
 | ボタンのみ | `helix-wt/cta-button`、`.wt-cta-btn`（幅広 56px） | button-only | 観察 20–22% |
 | コピー付きボックス | `helix-wt/cta-box`、`.is-style-wt-cta-box` | box-with-copy | 観察 7–10% |
-| 比較表 | `.wp-block-table.is-style-wt-compare`（PC: 先頭列 sticky + 横スクロール、SP: 行ごとのカード縦積み。render_block で `data-th` / `scope` を付与、`caption` あり、数値は `.wt-num` 右揃え、◎○△ は凡例で文字代替） | table: compare-sticky-first-col | R39–R41、P24 |
+| 比較表 | `.wp-block-table.is-style-wt-compare`（PC: 先頭列 sticky + 横スクロール、SP: 行ごとのカード縦積み。render_block で先頭列を `<th scope="row">` に、他列に `data-th` を付与、thead の `th` に `scope="col"`、`caption` あり、数値は `.wt-num` 右揃え、◎○△ は凡例で文字代替） | table: compare-sticky-first-col | R39–R41、P24 |
 | 比較表（SP も横スクロール） | `.is-style-wt-compare-scroll` | 同 | R39 |
 | メリデメ | `columns.wt-prosc` + `.is-style-wt-label-title.wt-c-ok/.wt-c-warn` + `.is-style-wt-pros/-cons` | pros-cons | §2 |
 | 評価バー | `.wt-rate`（試作 02 の CSS） | review bar | P25 |
@@ -137,8 +137,8 @@
 ### 2.9 自動コントラスト guard
 
 - `assets/js/contrast.js`: 写真の上に文字を置く要素（hero アイキャッチ `.wt-posthead__img`、`cover.is-style-wt-scrim`、`[data-wt-scrim]`）の画像を 32×32 の canvas に描き、**下部 55%（文字が載る領域）の相対輝度 L** から `data-wt-lum="dark|mid|light"` を付ける（L < 0.12 / < 0.35 / それ以上）。`data-wt-lum-value` に L を残す。
-- CSS: `data-wt-lum` ごとにスクリム（黒の linear-gradient、to top）の不透明度を切替。下端 / 55–70% / 上端の alpha は dark .55/.40/0、mid .80/.70/.15、light .95/.93/.70、未計測（既定）.90/.84/.30。**同一オリジンでない・読めない画像は属性を付けず既定（強）に倒す**。初回計測で light 画像の h3 位置が 3.49:1 だったため、文字位置（下部 0〜60%）の最小 alpha を引き上げた（§4）。
-- ゲートの検査方法（`scripts/verify.mjs` §6、実描画から算出）: 文字要素の boundingRect を取り、(a) スクリム擬似要素の `background-image` の gradient stop を解析して文字矩形の上端・下端位置の alpha を線形補間し小さい方を採る、(b) 画像を canvas に描き object-fit: cover の写像で文字矩形に当たる画素の平均輝度 L と最大輝度を測る、(c) 合成輝度 `Lc = L × (1 − α)`（黒スクリム）と白文字の比 `1.05 / (Lc + 0.05)` を本文 4.5:1・大文字（≥18.67px bold / ≥24px）3:1 で判定。gradient の補間は線形近似で、ブラウザの実際の補間（sRGB / premultiplied）と僅差があるため**概算**。最大輝度画素での比も `ratioWorstPixel` として併記。
+- CSS: `.wt-posthead__img[data-wt-lum]::after` と `.wp-block-cover.is-style-wt-scrim[data-wt-lum]::before`（登録 block style のクラス）で、`data-wt-lum` ごとにスクリム（黒の linear-gradient、to top）の不透明度を切替。下端 / 55–70% / 上端の alpha は dark .55/.40/0、mid .80/.70/.15、light .95/.93/.70、未計測（既定）.90/.84/.30。**同一オリジンでない・読めない画像は属性を付けず既定（強）に倒す**。初回計測で light 画像の h3 位置が 3.49:1 だったため、文字位置（下部 0〜60%）の最小 alpha を引き上げた（§4）。
+- ゲートの検査方法（`scripts/verify.mjs` §6、実描画から算出）: 文字要素の boundingRect を取り、(a) スクリム擬似要素の `background-image` の gradient stop を解析して文字矩形の上端・下端位置の alpha を線形補間し小さい方を採る、(b) 画像を canvas に描き object-fit: cover の写像で文字矩形に当たる画素の平均輝度 L と最大輝度を測る、(c) 文字要素ごとに `getComputedStyle().color` の実色の輝度 Lt を取り、合成輝度 `Lc = L × (1 − α)`（黒スクリム）との比 `(Lt + 0.05) / (Lc + 0.05)` を本文 4.5:1・大文字（≥18.67px bold / ≥24px）3:1 で判定。hero では h1・パンくず 2 リンク・日付を個別に測る（メタは CSS で白に上書き）。gradient の補間は線形近似で、ブラウザの実際の補間（sRGB / premultiplied）と僅差があるため**概算**。最大輝度画素での比も `ratioWorstPixel` として併記。
 
 ### 2.10 404
 
@@ -172,15 +172,15 @@
 | JS 無効描画（SP、`motion:on,header:announce`） | `html.wt-js` なし、お知らせ帯 存在・可視、目次 表示・開・リンク 12、`.wt-reveal` 10 件すべて opacity 1、商品カード・比較表・関連カード 7 件 表示、本文 3,052 字表示。`pass: true` |
 | reduced-motion（SP、`motion:on`） | `.wt-reveal` 10/10 が初期表示、ヘッダー・ボタンの transition `none`、count-up は最終値「1,284」。比較: 通常設定では読み込み直後 10/10 が非表示 → スクロールで出現 |
 | コントラスト（PC、算出） | CTA ボタン 白/#c2410c **5.18:1**、本文段落内リンク（`.wp-block-post-content > p > a`、#1d4ed8/白）6.7:1、補助文字 mute 5.69:1、PR 表記 5.69:1、目次リンク 6.19:1、帯タイトル 6.7:1、ランクバッジ 5.18:1、アウトラインボタン 6.7:1、価格単位 5.69:1、リンクカードラベル 5.69:1、カード日付 5.69:1。11 項目すべて 4.5:1 以上 |
-| 自動コントラスト guard（実描画、§2.9 の算式） | dark 画像（`dark`、文字位置の画像 L 0.025 / α .371）本文 15.98:1・h3 16.74:1 / mid（`mid`、L 0.246 / α .66）本文 7.86:1・h3 6.17:1 / light（`light`、L 0.882 / α .933）本文 9.62:1・h3 5.48:1。スクリムなしでは mid 3.55、light 1.13 で不合格。記事 hero アイキャッチ（生成写真、`mid`）h1 11.21:1（最大輝度画素 3.38、要 3:1）、meta 10.94:1。8 判定すべて合格 |
-| 比較表（記事 554 の描画 HTML） | `<thead>` 無傷、`th` 4 / `scope="col"` 4、行見出し `td[scope=row]` 8、`data-th` 32、`caption` あり。`pass: true` |
+| 自動コントラスト guard（実描画、§2.9 の算式、文字は実色 #fff） | dark 画像（`dark`、文字位置の画像 L 0.025 / α .371）本文 15.98:1・h3 16.74:1 / mid（`mid`、L 0.246 / α .66）本文 7.86:1・h3 6.17:1 / light（`light`、L 0.882 / α .933）本文 9.62:1・h3 5.48:1。スクリムなしでは mid 3.55、light 1.13 で不合格。記事 hero アイキャッチ（生成写真、`mid`）h1 11.21:1（最大輝度画素 3.38、要 3:1）、パンくず「ホーム」10.39:1、カテゴリ 7.38:1、日付 17.35:1（いずれも実色 rgb(255,255,255)。著者名・更新日はこの記事では非描画）。10 判定すべて合格 |
+| 比較表（記事 554 の描画 HTML） | `<thead>` 無傷、`th` 4 / `scope="col"` 4、行 8 / 行見出し `tbody th[scope=row]` 8（`td[scope=row]` 0）、`data-th` 24（データセルのみ）、`caption` あり。`pass: true` |
 | 404 | 素の URL・3 変種すべて **HTTP 404**、robots meta 全件 `["max-image-preview:large","noindex"]` → noindex あり、謝意・原因・検索（ボタン付き）・人気 3 件・カテゴリ・ホーム・CV slot 3 枠・検索語提案 4 件 |
 | タップ領域監査（SP） | 除外は p / li 直下の display:inline リンクだけ（記事 2・カタログ 1・404 0）。core の skip-link（1×1、フォーカス時のみ表示）は SR 用として別掲。**44px（P05）**: 記事 50/50、帯 + カルーセル + float 共有 54/54、404 23/23、カタログ 13/13。**24px（WCAG 2.5.8）**: 同じく全件。サイト名・パンくず・カテゴリターム・カードタイトルは inline-flex + 負マージンで 44px 化（行送りは据え置き） |
 | 見出し 1 行 | h2 18.5px、18 字、358px、1 行（19.3 字まで） |
 | 目次しきい値 | h2 5 / h3 7 → 目次 5 / 7、`scroll-margin-top` 76px、SP は JS で閉 |
 | 動作（別スクリプト） | お知らせ帯: 閉 → 再読込後も非表示（localStorage キー 1 件）。ヘッダー: 下スクロールで隠れ、上で再表示、背景不透明。目次: `#h-3` 到達で「3 製品の比較表」が current。カルーセル前後ボタン 2 組。比較表 SP: 行が block（カード）。横スクロールなし |
 
-修正した点（初回検証・Astra レビューで判明）: PR 表記の重複判定が `is-style-wt-product` に誤一致して未挿入だった（`class="wt-pr "` 判定へ）、次に読むカードが関連グリッドの列幅を継承していた、目次リンク・FAQ summary・フッターナビが 44px 未満だった。レビュー指摘: `<th` の正規表現が `<thead>` に一致し最後の列見出しに scope が付かなかった（thead 内限定・タグ境界限定・件数制限なしへ）、post meta 4 件に sanitize_callback（allowlist 外は既定値）と REST schema enum を追加、監査の除外条件を狭め 44 / 24 を分離、guard の検査を固定 alpha から実描画へ（その結果 light 画像が未達と判明 → スクリム強化）、robots meta 全件判定、JS 無効テストで帯を検査、本文リンクのセレクタを段落内に限定（記事本文に内部リンクを 1 つ追加）。
+修正した点（初回検証・Astra レビューで判明）: PR 表記の重複判定が `is-style-wt-product` に誤一致して未挿入だった（`class="wt-pr "` 判定へ）、次に読むカードが関連グリッドの列幅を継承していた、目次リンク・FAQ summary・フッターナビが 44px 未満だった。レビュー指摘: `<th` の正規表現が `<thead>` に一致し最後の列見出しに scope が付かなかった（thead 内限定・タグ境界限定・件数制限なしへ）、post meta 4 件に sanitize_callback（allowlist 外は既定値）と REST schema enum を追加、監査の除外条件を狭め 44 / 24 を分離、guard の検査を固定 alpha から実描画へ（その結果 light 画像が未達と判明 → スクリム強化）、robots meta 全件判定、JS 無効テストで帯を検査、本文リンクのセレクタを段落内に限定（記事本文に内部リンクを 1 つ追加）。再レビュー（head cc9fa8b）: post meta の空文字はサイト設定継承として保持、比較表の先頭列を `<th scope="row">` に（CSS・検査も th 前提へ）、輝度別スクリムのセレクタを登録 block style クラス `.is-style-wt-scrim` に統一、guard は文字要素ごとの実色で判定し hero 上のメタを白に上書き、既存 scope 検出を空白・大文字対応に。
 
 ## 5. 描画証跡
 

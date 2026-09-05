@@ -256,9 +256,9 @@ body.wt-eyecatch-hero .wt-posthead__text{z-index:1;align-self:end;padding:1.25re
 body.wt-eyecatch-hero .wt-posthead__text a,body.wt-eyecatch-hero .wt-posthead__text .has-mute-color{color:#fff!important}
 body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inset:0;border-radius:var(--wp--custom--radius-m);pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.10) 100%)}
 /* 自動コントラスト guard: data-wt-lum（dark / mid / light、未計測 = 強）でスクリム強度を切替 */
-[data-wt-lum="dark"].wt-posthead__img::after,.wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.30) 45%,rgba(0,0,0,0) 100%)!important}
-[data-wt-lum="mid"].wt-posthead__img::after,.wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.50) 45%,rgba(0,0,0,.05) 100%)!important}
-[data-wt-lum="light"].wt-posthead__img::after,.wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.72) 45%,rgba(0,0,0,.25) 100%)!important}
+[data-wt-lum="dark"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.30) 45%,rgba(0,0,0,0) 100%)!important}
+[data-wt-lum="mid"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.50) 45%,rgba(0,0,0,.05) 100%)!important}
+[data-wt-lum="light"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.72) 45%,rgba(0,0,0,.25) 100%)!important}
 .wp-block-cover.is-style-wt-scrim .wp-block-cover__background{opacity:0!important}
 .wp-block-cover.is-style-wt-scrim::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.35))}
 .wp-block-cover.is-style-wt-scrim .wp-block-cover__inner-container{z-index:2}
@@ -373,18 +373,18 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wp-block-table.is-style-wt-compare-scroll table,.wp-block-table.is-style-wt-compare table{min-width:560px;border-collapse:separate;border-spacing:0}
 .wp-block-table.is-style-wt-compare-scroll th,.wp-block-table.is-style-wt-compare-scroll td,.wp-block-table.is-style-wt-compare th,.wp-block-table.is-style-wt-compare td{border:0;border-bottom:1px solid var(--wp--preset--color--line);padding:.75rem;vertical-align:top;text-align:left}
 .wp-block-table.is-style-wt-compare-scroll thead th,.wp-block-table.is-style-wt-compare thead th{background:var(--wp--preset--color--surface);font-size:.8125rem;white-space:nowrap}
-.wp-block-table.is-style-wt-compare-scroll td:first-child,.wp-block-table.is-style-wt-compare td:first-child{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line);z-index:1}
+.wp-block-table.is-style-wt-compare-scroll tbody th,.wp-block-table.is-style-wt-compare tbody th{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line);z-index:1}
 .wp-block-table.is-style-wt-compare-scroll thead th:first-child,.wp-block-table.is-style-wt-compare thead th:first-child{position:sticky;left:0;z-index:2}
 .wp-block-table.is-style-wt-compare td.wt-num,.wp-block-table.is-style-wt-compare-scroll td.wt-num{text-align:right;font-variant-numeric:tabular-nums}
 .wp-block-table.is-style-wt-compare .wt-mark{font-weight:700}
 @media (max-width:599px){
 .wp-block-table.is-style-wt-compare table{min-width:0;display:block}
 .wp-block-table.is-style-wt-compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
-.wp-block-table.is-style-wt-compare tbody,.wp-block-table.is-style-wt-compare tr,.wp-block-table.is-style-wt-compare td{display:block}
+.wp-block-table.is-style-wt-compare tbody,.wp-block-table.is-style-wt-compare tr,.wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td{display:block}
 .wp-block-table.is-style-wt-compare tr{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);margin-bottom:.75rem;overflow:hidden;background:var(--wp--preset--color--base)}
 .wp-block-table.is-style-wt-compare td{position:static;box-shadow:none;display:flex;justify-content:space-between;gap:1rem;padding:.6rem .9rem;font-weight:400;text-align:right}
-.wp-block-table.is-style-wt-compare td:first-child{background:var(--wp--preset--color--surface);font-weight:700;text-align:left;display:block}
-.wp-block-table.is-style-wt-compare td:not(:first-child)::before{content:attr(data-th);color:var(--wp--preset--color--mute);font-size:.8125rem;text-align:left;flex:0 0 40%}
+.wp-block-table.is-style-wt-compare tbody th{position:static;box-shadow:none;background:var(--wp--preset--color--surface);font-weight:700;text-align:left;display:block;padding:.6rem .9rem}
+.wp-block-table.is-style-wt-compare td::before{content:attr(data-th);color:var(--wp--preset--color--mute);font-size:.8125rem;text-align:left;flex:0 0 40%}
 .wp-block-table.is-style-wt-compare td:last-child{border-bottom:0}
 }
 /* リンクカード（内部・全面クリック） */
@@ -544,7 +544,9 @@ body.wt-detext-on .wt-toc__list>li::before{top:.85rem}
 .wt-rcard .wp-block-post-terms a{margin-block:calc((1lh - 44px) / 2)}
 /* レビュー対応 2026-09-05: 実描画計測で light 画像が 4.5:1 未達だったため、文字位置（下部 0〜60%）でのスクリム最小 alpha を引き上げる */
 body.wt-eyecatch-hero .wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.84) 55%,rgba(0,0,0,.30) 100%)}
-[data-wt-lum="dark"].wt-posthead__img::after,.wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.40) 55%,rgba(0,0,0,0) 100%)!important}
-[data-wt-lum="mid"].wt-posthead__img::after,.wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.80) 0%,rgba(0,0,0,.70) 55%,rgba(0,0,0,.15) 100%)!important}
-[data-wt-lum="light"].wt-posthead__img::after,.wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.93) 70%,rgba(0,0,0,.70) 100%)!important}
+[data-wt-lum="dark"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.40) 55%,rgba(0,0,0,0) 100%)!important}
+[data-wt-lum="mid"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.80) 0%,rgba(0,0,0,.70) 55%,rgba(0,0,0,.15) 100%)!important}
+[data-wt-lum="light"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.93) 70%,rgba(0,0,0,.70) 100%)!important}
 .wt-breadcrumb a{min-width:44px;justify-content:center}
+/* 再レビュー対応: hero 上のメタ（日付・著者・パンくず・ターム）は白系に上書き（mute 色は写真上で 4.5:1 を満たさない） */
+body.wt-eyecatch-hero .wt-posthead__text :is(.wp-block-post-date,.wp-block-post-author-name,.wt-breadcrumb,.wt-breadcrumb p,.wp-block-post-terms,.wp-block-post-terms a,time){color:#fff!important}

@@ -154,6 +154,9 @@ add_action( 'init', function () {
 			'default'           => '',
 			'sanitize_callback' => function ( $value ) use ( $default, $allowed ) {
 				$value = is_string( $value ) ? sanitize_key( $value ) : '';
+				if ( '' === $value ) {
+					return ''; // 空 = サイト設定（theme_mod）を継承
+				}
 				return in_array( $value, $allowed, true ) ? $value : $default;
 			},
 			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
@@ -246,18 +249,19 @@ add_filter( 'render_block_core/table', function ( $html, $block ) {
 	$heads = array_map( 'wp_strip_all_tags', $ths[1] );
 	// thead 内の th だけに scope="col"（タグ境界を限定し <thead> に誤一致しない。件数制限なし）
 	$html  = preg_replace_callback( '/<thead>.*?<\/thead>/s', function ( $thead ) {
-		return preg_replace( '/<th(?=[\s>])(?![^>]*\sscope=)([^>]*)>/', '<th scope="col"$1>', $thead[0] );
+		return preg_replace( '/<th(?=[\s>])(?![^>]*\sscope\s*=)([^>]*)>/i', '<th scope="col"$1>', $thead[0] );
 	}, $html, 1 );
 	$html  = preg_replace_callback( '/<tr>(.*?)<\/tr>/s', function ( $row ) use ( $heads ) {
 		if ( str_contains( $row[1], '<th' ) ) {
 			return $row[0];
 		}
 		$i = 0;
-		$r = preg_replace_callback( '/<td([^>]*)>/', function ( $td ) use ( &$i, $heads ) {
+		// 先頭列は行見出し <th scope="row">（開始・終了タグとも）。他列は data-th で列見出しを持つ
+		$r = preg_replace_callback( '/<td([^>]*)>(.*?)<\/td>/s', function ( $td ) use ( &$i, $heads ) {
 			$label = $heads[ $i ] ?? '';
-			$attr  = 0 === $i ? ' scope="row"' : '';
+			$cell  = 0 === $i ? array( 'th', ' scope="row"' ) : array( 'td', '' );
 			$i++;
-			return '<td' . $td[1] . ' data-th="' . esc_attr( $label ) . '"' . $attr . '>';
+			return '<' . $cell[0] . $td[1] . ' data-th="' . esc_attr( $label ) . '"' . $cell[1] . '>' . $td[2] . '</' . $cell[0] . '>';
 		}, $row[1] );
 		return '<tr>' . $r . '</tr>';
 	}, $html );

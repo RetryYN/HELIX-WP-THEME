@@ -206,6 +206,11 @@
  "contrastGuard": [
   {
    "sel": "#cat-contrast-dark",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "dark",
    "sampledL": 0.026,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 100%)",
@@ -216,7 +221,8 @@
    "fontSize": 14,
    "fontWeight": "400",
    "compositeL": 0.016,
-   "ratioWhiteText": 15.98,
+   "textL": 1,
+   "ratioText": 15.98,
    "ratioWorstPixel": 13.52,
    "ratioWithoutScrim": 14,
    "required": 4.5,
@@ -224,6 +230,11 @@
   },
   {
    "sel": "#cat-contrast-dark",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "dark",
    "sampledL": 0.026,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 100%)",
@@ -234,7 +245,8 @@
    "fontSize": 18,
    "fontWeight": "700",
    "compositeL": 0.013,
-   "ratioWhiteText": 16.74,
+   "textL": 1,
+   "ratioText": 16.74,
    "ratioWorstPixel": 14.92,
    "ratioWithoutScrim": 16.15,
    "required": 4.5,
@@ -242,6 +254,11 @@
   },
   {
    "sel": "#cat-contrast-mid",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "mid",
    "sampledL": 0.255,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
@@ -252,7 +269,8 @@
    "fontSize": 14,
    "fontWeight": "400",
    "compositeL": 0.084,
-   "ratioWhiteText": 7.86,
+   "textL": 1,
+   "ratioText": 7.86,
    "ratioWorstPixel": 6.43,
    "ratioWithoutScrim": 3.55,
    "required": 4.5,
@@ -260,6 +278,11 @@
   },
   {
    "sel": "#cat-contrast-mid",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "mid",
    "sampledL": 0.255,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
@@ -270,7 +293,8 @@
    "fontSize": 18,
    "fontWeight": "700",
    "compositeL": 0.12,
-   "ratioWhiteText": 6.17,
+   "textL": 1,
+   "ratioText": 6.17,
    "ratioWorstPixel": 5.4,
    "ratioWithoutScrim": 4.43,
    "required": 4.5,
@@ -278,6 +302,11 @@
   },
   {
    "sel": "#cat-contrast-light",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "light",
    "sampledL": 0.882,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.93) 70%, rgba(0, 0, 0, 0.7) 100%)",
@@ -288,7 +317,8 @@
    "fontSize": 14,
    "fontWeight": "400",
    "compositeL": 0.059,
-   "ratioWhiteText": 9.62,
+   "textL": 1,
+   "ratioText": 9.62,
    "ratioWorstPixel": 9.12,
    "ratioWithoutScrim": 1.13,
    "required": 4.5,
@@ -296,6 +326,11 @@
   },
   {
    "sel": "#cat-contrast-light",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "light",
    "sampledL": 0.882,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.93) 70%, rgba(0, 0, 0, 0.7) 100%)",
@@ -306,7 +341,8 @@
    "fontSize": 18,
    "fontWeight": "700",
    "compositeL": 0.142,
-   "ratioWhiteText": 5.48,
+   "textL": 1,
+   "ratioText": 5.48,
    "ratioWorstPixel": 5.04,
    "ratioWithoutScrim": 1.19,
    "required": 4.5,
@@ -314,6 +350,11 @@
   },
   {
    "sel": "article hero h1",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "mid",
    "sampledL": 0.152,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
@@ -324,27 +365,82 @@
    "fontSize": 28,
    "fontWeight": "700",
    "compositeL": 0.044,
-   "ratioWhiteText": 11.21,
+   "textL": 1,
+   "ratioText": 11.21,
    "ratioWorstPixel": 3.38,
    "ratioWithoutScrim": 4.93,
    "required": 3,
    "pass": true
   },
   {
-   "sel": "article hero meta",
+   "sel": "article hero meta:A#0",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
+   "lum": "mid",
+   "sampledL": 0.152,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
+   "alphaAtText": 0.703,
+   "imageLAtText": 0.172,
+   "imageLMaxAtText": 0.746,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 12,
+   "fontWeight": "400",
+   "compositeL": 0.051,
+   "textL": 1,
+   "ratioText": 10.39,
+   "ratioWorstPixel": 3.87,
+   "ratioWithoutScrim": 4.73,
+   "required": 4.5,
+   "pass": true
+  },
+  {
+   "sel": "article hero meta:A#1",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
+   "lum": "mid",
+   "sampledL": 0.152,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
+   "alphaAtText": 0.703,
+   "imageLAtText": 0.311,
+   "imageLMaxAtText": 0.826,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 12,
+   "fontWeight": "400",
+   "compositeL": 0.092,
+   "textL": 1,
+   "ratioText": 7.38,
+   "ratioWorstPixel": 3.56,
+   "ratioWithoutScrim": 2.91,
+   "required": 4.5,
+   "pass": true
+  },
+  {
+   "sel": "article hero meta:wp-block-post-date#2",
+   "textLum": [
+    255,
+    255,
+    255
+   ],
    "lum": "mid",
    "sampledL": 0.152,
    "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
    "alphaAtText": 0.781,
-   "imageLAtText": 0.21,
-   "imageLMaxAtText": 0.822,
+   "imageLAtText": 0.048,
+   "imageLMaxAtText": 0.097,
    "textColor": "rgb(255, 255, 255)",
-   "fontSize": 17,
+   "fontSize": 12,
    "fontWeight": "400",
-   "compositeL": 0.046,
-   "ratioWhiteText": 10.94,
-   "ratioWorstPixel": 4.56,
-   "ratioWithoutScrim": 4.04,
+   "compositeL": 0.011,
+   "textL": 1,
+   "ratioText": 17.35,
+   "ratioWorstPixel": 14.74,
+   "ratioWithoutScrim": 10.71,
    "required": 4.5,
    "pass": true
   }
@@ -363,7 +459,9 @@
   "thCount": 4,
   "thWithScopeCol": 4,
   "rowHeaders": 8,
-  "dataTh": 32,
+  "rowHeaderTd": 0,
+  "rows": 8,
+  "dataTh": 24,
   "caption": true,
   "pass": true
  },
