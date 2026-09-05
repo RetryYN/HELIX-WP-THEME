@@ -844,6 +844,35 @@ if (WPCLIDIR) {
   out.relatedQuality.pass = out.relatedQuality.variants.length === 12 && out.relatedQuality.variants.every((item) => item.pass);
 }
 
+// 9.5. detext:on が実記事の h2/ol/blockquote のうち少なくとも1要素で off と異なる computed style になっているか
+// （PO 反応8回目 WT-EVT-0249: is-style-wt-* を使う実記事で detext:on が見た目に変化しない不具合の回帰防止）
+{
+  const readState = async (state) => {
+    const ctx = await browser.newContext(SP);
+    const p = await ctx.newPage();
+    await p.goto(BASE + ARTICLE + `?wt=detext:${state}`, { waitUntil: "networkidle" });
+    const data = await p.evaluate(() => {
+      const h2 = document.querySelector(".wp-block-post-content>h2");
+      const ol = document.querySelector(".wp-block-post-content>ol");
+      const bq = document.querySelector(".wp-block-quote");
+      const before = (el) => el ? getComputedStyle(el, "::before").content : null;
+      return {
+        h2Before: before(h2), h2Class: h2 ? h2.className : null,
+        olListStyle: ol ? getComputedStyle(ol).listStyleType : null, olClass: ol ? ol.className : null,
+        bqBefore: before(bq), bqClass: bq ? bq.className : null,
+      };
+    });
+    await ctx.close();
+    return data;
+  };
+  const off = await readState("off");
+  const on = await readState("on");
+  out.detextVisualDiff = { off, on };
+  const elementsPresent = off.h2Class !== null && on.h2Class !== null && off.olClass !== null && on.olClass !== null && off.bqClass !== null && on.bqClass !== null;
+  out.detextVisualDiff.elementsPresent = elementsPresent;
+  out.detextVisualDiff.pass = elementsPresent && (off.h2Before !== on.h2Before || off.olListStyle !== on.olListStyle || off.bqBefore !== on.bqBefore);
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -869,6 +898,7 @@ const checkList = [
   ["tableCaptionSp", out.tableCaptionSp.pass], ["tableNumFontSize", out.tableNumFontSize.pass], ["headerInnerWidth", out.headerInnerWidth.pass], ["headerCtaOffCenter", out.headerCtaOffCenter.pass],
   ["headingNumberPc", out.headingNumberPc.pass], ["headingNumberSp", out.headingNumberSp.pass], ["underlineGap", out.underlineGap.pass], ["prTagNotStackedPc", out.prTagNotStackedPc.pass], ["prTagNotStackedSp", out.prTagNotStackedSp.pass],
   ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
+  ["detextVisualDiff", out.detextVisualDiff.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

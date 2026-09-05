@@ -727,3 +727,76 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 ## 9. 公開安全
 
 サイト名・URL・実在の製品名・ブランド名なし（製品・価格・数値・引用は架空）。参照テーマは テーマA / テーマB 表記、第三者プラグイン名・SNS 名なし（共有は Web Share API + リンクコピー）。画像は生成画像と GD 生成のグラデーション（文字・ロゴなし）。パスはリポ相対。スクリプトの既定 URL はローカル docker のもの。
+
+## 2.18 段5 — PO 反応 8 回目（WT-EVT-0249）の是正
+
+### PO 原文
+
+> 「density:compact これがバクにしか見えないんだけどなに？axis-detextこれもよくわらんな。axis-motionこれはなに見た目わからん。レビューするうえで説明入れといて。後半になればなるほど何を指しているかわかんね～。」
+
+### 原因の分析（Claude 案）
+
+- `density` は旧撮影が記事冒頭の切り出しで、余白差が最も出る本文中盤の「見出し → 段落 → リスト → 次の見出し」を同じ範囲で比較していなかった。また、旧画像の `off/on` という命名は、実装上の `airy / normal / compact` という 3 値を表していない。旧 PR タグの縦積みも同じ画面に写り、軸の差ではなく不具合のように見えた可能性がある。
+- `detext` は、現行記事の h2 が `is-style-wt-2tone`、ol が `is-style-wt-badge-list`、blockquote が `is-style-wt-quote-mark` である。CSS は h2・ol・quote について `:not([class*="is-style-wt-"])` を条件にしているため、これらの本文コンテンツには `detext:on` の追加差分が出ない。除外条件のない `.wt-toc__list>li::before` の目次丸番号バッジだけが、現行記事で実際に見える差分である。旧撮影が「変化しない本文」を説明なしに見せていたことが、軸の意味を分かりにくくした可能性が高い（Claude 案）。
+- `motion` は IntersectionObserver が `.wt-reveal` に `is-in` を付け、`opacity:0 / translateY(12px)` から 375ms で表示する軸である。静止画 1 枚だけでは、薄く浮いた途中フレームなのか、表示完了後なのかを区別できず、「見た目がわからない」状態になった可能性がある（Claude 案）。
+
+### 対応
+
+新規スクリプト `scripts/shots-reaction4.mjs` では、通常実行時は既存画像・既存 `CATALOG-INDEX.json` エントリを変更せず、以下の比較を新しいファイル名で追加する設計にした。`--motion-only true` は既存 motion 4 枚の再撮影専用で、一時ディレクトリへ出力して成功後に同名で置換する。
+
+- `density` は `airy / normal / compact` の 3 値を SP/PC それぞれで同じ `#h-4` 付近から viewport 撮影する。各ページで h2 の `margin-top`、h2 後の段落の `margin-bottom`、連続する 2 段落間の実測距離を `page.evaluate` で取得し、`results/density-measure.json` に保存する。
+- `detext` は記事冒頭の `.wt-toc` を off/on で撮影する。SP では通常の box が閉じるため、番号バッジを読めるよう撮影時だけ details を開く。併せて `#h-4` 付近の本文を off/on で撮影し、h2 は 2tone などに追加ドットが出る一方、list/quote は既存意匠の除外で変わらないことを比較対象として明記する。
+- `motion` は同じ記事末の先頭 `.wt-rcard` を画面外（下）へ置いてから、上端が viewport の上から 40% に来る位置まで移動し、ページを毎回開き直して `f0=0ms`、`f1=200ms`、`f2=900ms` を撮影する。別途 `motion:off` を 900ms 後に撮影し、途中フレームと完了後・無効状態を切り分ける。
+
+実機で `shots-reaction4.mjs` を実行し、18 枚の追加画像と `results/density-measure.json` を生成した。density の計測は SP/PC の両 viewport で同じ値になったため、下表には値ごとの共通値を記載する。
+
+### density 実測値
+
+| 値 | h2 上マージン実測 px | h2 後の段落 margin-bottom 実測 px | 連続 2 段落間の実測距離 px |
+|---|---:|---:|---:|
+| airy | 52 | 4 | 21.59 |
+| normal | 40 | 4 | 16 |
+| compact | 32 | 4 | 12 |
+
+`h2 後の段落 margin-bottom` は `#h-4` 直後に実際に置かれた段落の computed style、`連続 2 段落間の実測距離` は記事本文内で隣接する 2 段落の矩形距離である。参考として CSS の指定は `airy` が h2 `3.25rem`・段落 `1.35rem`、`compact` が h2 `2rem`・段落 `.75rem`、`normal` は既定値であり、実測値はこの指定が反映された結果である。
+
+### 追加画像一覧（撮影対象）
+
+期待する追加枚数は合計 18 枚で、内訳は density 6 枚、detext-toc 4 枚、detext-body 4 枚、motion 4 枚である。
+
+- density: `axis-density-airy-sp.jpg`、`axis-density-airy-pc.jpg`、`axis-density-normal-sp.jpg`、`axis-density-normal-pc.jpg`、`axis-density-compact-sp.jpg`、`axis-density-compact-pc.jpg`
+- detext-toc: `axis-detext-off-toc-sp.jpg`、`axis-detext-off-toc-pc.jpg`、`axis-detext-on-toc-sp.jpg`、`axis-detext-on-toc-pc.jpg`
+- detext-body: `axis-detext-off-body-sp.jpg`、`axis-detext-off-body-pc.jpg`、`axis-detext-on-body-sp.jpg`、`axis-detext-on-body-pc.jpg`
+- motion: `axis-motion-on-f0-sp.jpg`、`axis-motion-on-f1-sp.jpg`、`axis-motion-on-f2-sp.jpg`、`axis-motion-off-f2-sp.jpg`
+
+上記 18 ファイルを生成済みで、各ファイルは非空の JPEG として確認した。`CATALOG-INDEX.json` には既存 425 件を変更せず、新規 18 件を追記し、425+18=443 件となっている。計測データは `results/density-measure.json` に保存した。
+
+### 用語集
+
+`CATALOG-GLOSSARY.json` は本ディレクトリ直下に置く **Claude 案の用語集**である。既存カタログの全 `part` / `variant` と `face` を、日本語の `label`・`desc`、型ごとの見え方、軸ごとの `changes`・`where`・`how_to_tell` に整理している。追加撮影で使う density、detext body、motion frame の値も、同じ形式で説明している。
+
+GLOSSARY と CATALOG-INDEX の機械照合結果は parts 49、axes 35、faces 5、variant 合計 217 で、parts・variants・faces の欠けは0件だった。
+
+### 追加是正2: detext 本文差分の実装是正（PR #152）
+
+前項の原因分析後、PO 指示に基づき detext の実装を追加是正した。原因は、h2・ol・blockquote の CSS が `:not([class*="is-style-wt-"])` で広く除外されていたため、実記事で使っている `is-style-wt-2tone` の h2、`is-style-wt-badge-list` の ol、`is-style-wt-quote-mark` の quote に `detext:on` の追加差分が出なかったことである。
+
+- h2 は `is-style-wt-icon`、`is-style-wt-numbox`、`is-style-wt-label` だけを除外するよう変更した。これらは既存の `::before` を使うため、detext のドットマーカーが既存意匠を奪わないようにするためである。その他の h2 block style（2tone を含む）にはドットマーカーを適用する。
+- ol の `is-style-wt-badge-list` と quote の `is-style-wt-quote-mark` は、既存の丸バッジ／大型引用符が detext と同一の見た目であるため、二重適用を避ける除外を据え置いた。
+- `scripts/verify.mjs` に `detextVisualDiff` を追加し、実記事の h2 / ol / blockquote について detext off/on の computed style を比較する。h2 など少なくとも1要素の差分を必須にし、今回の再発を検出する。compose project dir を `--wpclidir` に渡した実機実行結果は `summary.pass=58`、`summary.fail=0`、`skipped=[]`、`detextVisualDiff.pass=true`、`prAutoFixtures.pass=true` だった。値は off が h2 `before="none"`、ol `listStyleType="none"`、quote `before="“"`、on が h2 `before=""`、ol `listStyleType="none"`、quote `before="“"` で、`is-style-wt-2tone` の h2 に差分が出た。
+- `axis-detext-{off,on}-body-{sp,pc}.jpg` の4枚を修正後の実機表示で再撮影した。SP は各 740×1600（off 159,141 bytes / on 159,408 bytes）、PC は各 1440×900（off 153,481 bytes / on 153,507 bytes）の非空 JPEG で、on では h2 の左に青いドット、off ではドットなしの差を目視確認した。CATALOG-INDEX は全443件を維持し、今回の4エントリ以外の439件は変更していない。
+- `/catalog-03/` でも detext:on/off を確認し、`#cat-h2-icon` は SVG mask、`#cat-h2-numbox` は `counter(wt-h2num, decimal-leading-zero)` の既存 `::before` が on/off で同じ値を保っており、二重化や消失はなかった。目次は on で `counter(toc)`、off で `counter(toc, decimal-leading-zero)` の差分が確認できた。
+
+### 追加是正4: Astra レビュー是正（改善5・軽微2、PR #152）
+
+- detext:on の h2 セレクタに `is-style-wt-label` の除外を追加し、`SECTION` ラベルの `::before` をドットマーカーで上書きしないようにした。GLOSSARY の detext 説明も、icon / numbox / label だけを除外し、2tone など他の h2 style にはドットを付ける実態へ更新した。density の判別説明から、CSS で変更していない行間を削除した。
+- `verify.mjs` の `detextVisualDiff` は off/on 双方の h2・ol・quote の存在を `elementsPresent` として必須化し、欠損時は無条件で fail になるようにした。
+- `shots-reaction4.mjs --motion-only true` で motion の4枚を再撮影した。4枚とも 740×1600 の非空 JPEG（f0 95619 bytes、f1 117275 bytes、on f2 133803 bytes、off f2 151010 bytes）で、対象 `.wt-rcard` の四隅が切れず画面内に収まることを目視確認した。f2 と off f2 の `page.evaluate` 取得値は、ともに `opacity=1` / `transform=none` だった。
+- 機械照合は parts 49、axes 35、faces 5、variant 合計 217、欠け0件。テーマ Version は 0.3.6 に更新した。
+- 実機 `verify.mjs` は `summary.pass=58`、`summary.fail=0`、`skipped=[]`、`detextVisualDiff.elementsPresent=true`、`detextVisualDiff.pass=true` となった。
+
+### 追加是正5: Astra 再レビュー「merge 不可」改善1件の是正
+
+- `shots-reaction4.mjs --motion-only true` は、撮影前に既存 motion 画像を削除しない。各 JPEG を実行ごとの一時ディレクトリへ保存し、4 枚すべての撮影・完了フレーム判定・非空検査を通過した後、`fs.renameSync` で `results/` の本来のファイル名へ置換する。一時ファイルの移動が完了してから一時ディレクトリを削除し、最後に `CATALOG-INDEX.json` を更新するため、撮影途中の失敗では既存 4 枚を保持する。
+- motion 画像の置換は、旧画像を退避してから新画像を配置し、途中で失敗した場合は退避先から復元して元の例外を再送出する。配置成功後の退避ディレクトリ削除は復元処理と分離し、削除に失敗しても配置済みの新画像には触れず警告のみ残す（Astra 4 巡目の是正）。
+- h2 の block style は **既存6型 + 追加4型 = 10型**（`plain` / `2tone` / `icon` / `bar` / `underline` / `band` / `numbox` / `barbg` / `doubleline` / `label`）である。このうち `::before` を使うのは `icon` / `numbox` / `label` の **3型**で、型数と既存意匠の除外条件を一致させた。

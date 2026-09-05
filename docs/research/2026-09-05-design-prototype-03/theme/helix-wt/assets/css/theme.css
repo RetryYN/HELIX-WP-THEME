@@ -565,11 +565,16 @@ body.wt-density-airy .wp-block-post-content>p{margin-bottom:1.35rem}body.wt-dens
 body.wt-density-compact .wp-block-post-content>p{margin-bottom:.75rem}body.wt-density-compact .wp-block-post-content>h2{margin-top:2rem;margin-bottom:.75rem}body.wt-density-compact .wp-block-post-content>h3{margin-top:1.5rem}
 body.wt-density-compact .wp-block-group[class*="is-style-wt-"]{margin-block:1rem;padding:.75rem 1rem}
 body.wt-density-compact .wt-related .wp-block-post-template{gap:.75rem}
-/* de-text: 文字を減らす装飾（見出しマーク・番号バッジ・引用符・目次番号丸） */
-body.wt-detext-on .wp-block-post-content>h2:not([class*="is-style-wt-"])::before,body.wt-detext-on .wp-block-post-content>h2.is-style-wt-plain::before{content:"";display:inline-block;width:.5em;height:.5em;border-radius:50%;background:var(--wp--preset--color--accent);margin-right:.5rem;vertical-align:.15em}
-body.wt-detext-on .wp-block-post-content>ol:not([class*="is-style-wt-"]){list-style:none;padding-left:0;counter-reset:b}
-body.wt-detext-on .wp-block-post-content>ol:not([class*="is-style-wt-"])>li{position:relative;padding-left:2.4rem;margin-bottom:.6rem;counter-increment:b}
-body.wt-detext-on .wp-block-post-content>ol:not([class*="is-style-wt-"])>li::before{content:counter(b);position:absolute;left:0;top:.05em;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;font-family:var(--wp--preset--font-family--latin);display:flex;align-items:center;justify-content:center;font-size:.875rem}
+/* de-text: 文字を減らす装飾（見出しマーク・番号バッジ・引用符・目次番号丸）。
+   is-style-wt-icon（SVGアイコンで::beforeを使用）・is-style-wt-numbox（丸数字バッジで::beforeを使用）・
+   is-style-wt-label（SECTIONラベルで::beforeを使用）は
+   detextのドットマーカーと同じ擬似要素を奪い合うため除外し、既存 block style の意匠に譲る。
+   is-style-wt-badge-list（ol）・is-style-wt-quote-mark（quote）は既に detext と同一の丸バッジ／大型引用符
+   デザインを持つため、二重適用を避けるため除外する（PO 反応8回目 WT-EVT-0249 是正、Claude 案）。 */
+body.wt-detext-on .wp-block-post-content>h2:not(.is-style-wt-icon):not(.is-style-wt-numbox):not(.is-style-wt-label)::before{content:"";display:inline-block;width:.5em;height:.5em;border-radius:50%;background:var(--wp--preset--color--accent);margin-right:.5rem;vertical-align:.15em}
+body.wt-detext-on .wp-block-post-content>ol:not(.is-style-wt-badge-list){list-style:none;padding-left:0;counter-reset:b}
+body.wt-detext-on .wp-block-post-content>ol:not(.is-style-wt-badge-list)>li{position:relative;padding-left:2.4rem;margin-bottom:.6rem;counter-increment:b}
+body.wt-detext-on .wp-block-post-content>ol:not(.is-style-wt-badge-list)>li::before{content:counter(b);position:absolute;left:0;top:.05em;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;font-family:var(--wp--preset--font-family--latin);display:flex;align-items:center;justify-content:center;font-size:.875rem}
 body.wt-detext-on .wp-block-quote:not(.is-style-wt-quote-mark){border-left:0;padding:1.25rem 1.25rem 1.25rem 3rem;position:relative;background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m)}
 body.wt-detext-on .wp-block-quote:not(.is-style-wt-quote-mark)::before{content:"“";position:absolute;left:.9rem;top:.1rem;font-size:3rem;line-height:1;font-family:Georgia,serif;color:var(--wp--preset--color--accent);opacity:.6}
 body.wt-detext-on .wt-toc__list>li::before{content:counter(toc);width:1.4rem;height:1.4rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;top:.15em;left:-1.9rem}

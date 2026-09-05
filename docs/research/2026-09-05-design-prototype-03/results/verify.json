@@ -9353,6 +9353,26 @@
   ],
   "pass": true
  },
+ "detextVisualDiff": {
+  "off": {
+   "h2Before": "none",
+   "h2Class": "wp-block-heading is-style-wt-2tone",
+   "olListStyle": "none",
+   "olClass": "wp-block-list is-style-wt-badge-list",
+   "bqBefore": "\"“\"",
+   "bqClass": "wp-block-quote is-style-wt-quote-mark is-layout-flow wp-block-quote-is-layout-flow"
+  },
+  "on": {
+   "h2Before": "\"\"",
+   "h2Class": "wp-block-heading is-style-wt-2tone",
+   "olListStyle": "none",
+   "olClass": "wp-block-list is-style-wt-badge-list",
+   "bqBefore": "\"“\"",
+   "bqClass": "wp-block-quote is-style-wt-quote-mark is-layout-flow wp-block-quote-is-layout-flow"
+  },
+  "elementsPresent": true,
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "contrastVariantsPass": true,
@@ -9360,7 +9380,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 57,
+  "pass": 58,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -9420,6 +9440,7 @@
    "prTagNotStackedSp": true,
    "tocFloatLeft": true,
    "tableCaptionPcPosition": true,
+   "detextVisualDiff": true,
    "prAutoFixtures": true
   }
  },
