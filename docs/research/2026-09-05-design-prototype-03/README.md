@@ -8,12 +8,12 @@
 
 ## 1. 選択軸の仕組み
 
-選択は `functions.php` の `wt_axes()` に列挙した 34 軸。解決順は **プレビュー引数 `?wt=key:value,...`（PoC 用）→ 記事の post meta `wt_<key>`（eyecatch / toc / pr / share のみ、「この記事では目次を隠す」等）→ `theme_mod` `wt_<key>`（サイト既定）→ 既定値**。結果は `body.wt-<key>-<value>` の class になり、段3以降の `_` を含むキーには互換用の正規化 class（例: `wt-cat_header-hero` と `wt-cat-header-hero`）も付く。CSS がその class を切り替える。ヘッダーだけは `render_block_data` で template part の slug を `header-<variant>` に差し替える。LP の `footer_layout` は、そのページ面で theme_mod 未設定のときだけ `single-row` を面別既定にする。実装時はプレビュー引数を管理者限定にし、サイトエディター / 記事サイドバーの選択 UI を付ける。
+選択は `functions.php` の `wt_axes()` に列挙した 34 軸（値の追加は各節に記載）。解決順は **プレビュー引数 `?wt=key:value,...`（PoC 用）→ 記事の post meta `wt_<key>`（eyecatch / toc / pr / share のみ、「この記事では目次を隠す」等）→ `theme_mod` `wt_<key>`（サイト既定）→ 既定値**。結果は `body.wt-<key>-<value>` の class になり、段3以降の `_` を含むキーには互換用の正規化 class（例: `wt-cat_header-hero` と `wt-cat-header-hero`）も付く。CSS がその class を切り替える。ヘッダーだけは `render_block_data` で template part の slug を `header-<variant>` に差し替える。LP の `footer_layout` は、そのページ面で theme_mod 未設定のときだけ `single-row` を面別既定にする。実装時はプレビュー引数を管理者限定にし、サイトエディター / 記事サイドバーの選択 UI を付ける。
 
 | 軸 | 値（既定を太字） | 切替の実体 |
 |---|---|---|
-| header | **search** / nav / cta / announce | template part `parts/header{,-nav,-cta,-announce}.html` |
-| sp（SP ヘッダー） | **search** / right / left | `body.wt-sp-*` + flex order |
+| header | **search** / nav / cta / announce / center / two-rows / tel / band / overlay | template part `parts/header{,-nav,-cta,-announce,-center,-two-rows,-tel,-band,-overlay}.html`（+5 型は §2.24、WT-EVT-0270） |
+| sp（SP ヘッダー） | **search** / right / left / cta / text-nav / center-logo | `body.wt-sp-*` + flex order（+3 型は §2.24。cta / text-nav の要素は pattern `header-sp-extras` を全ヘッダー部品に含め CSS で出し分け） |
 | eyecatch | **title-image** / image-title / hero / side / none | `body.wt-eyecatch-*`（`.wt-posthead` の grid） |
 | toc | **box** / float / collapsible / none | サーバ生成 `nav.wt-toc.wt-toc--*` |
 | related | **grid** / list / rank / carousel / featured / ranking-numbers | `body.wt-related-*`（Query Loop の post-template） |
@@ -870,3 +870,21 @@ PO 発言（原文、WT-EVT-0268）: 「LPにはインタビュー記事カー�
 6. `style.css` 0.3.10 → 0.3.11。用語集に lp-interview / lp-review / lp-rating / lp-download / lp-form / lp-line と extended・line-sticky を追加。
 7. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 70 / fail 0**（69 + `lpParts`、skipped なし）、総合 `pass: true`。`lpSections` は 4 型（full / short / trust は段4 のまま、extended は 18 区間の順序を照合。Astra 是正: 当初 review 区間が期待配列から漏れていた）。`lpVisibleAnchors` は 4 型（extended の副 CTA は `#comparison`）。
 8. 撮影環境の是正（verify）: load-more 検査の直後に同じ page で記事へ遷移すると `net::ERR_ABORTED; maybe frame was detached?` で中断することが 3 回連続で起きたため、`fixedOverlap` の遷移前に `networkidle` を待ち、中断時は 1 回だけやり直す（検査内容は不変）。renderer の "Page crashed" は tmpfs（/tmp）上の scratchpad が RAM を圧迫していたことが原因で、調査資料をディスクへ退避して解消（リポには影響なし）。
+
+## 2.24 段5 — PO 反応 17 回目（WT-EVT-0270〜0278）の反映
+
+PO 発言（原文、2026-09-06）: 「ヘッダーバリエーション増やそうか。announceのお知らせは幅いっぱいがよさそう。numboxとnumは対応したら？graphはパターン強化、カテゴリーはもっと強化リサーチをかけて。offのSP版がバグってね？lp-lineこれおかしくない？LINEのアイコン使ったら？何度も言うが、HPページは？イベントとかが組めるページは？なんでいったことを無視するの？」「リサーチからの抽出をアストラにも見てもらって。」
+
+本節は上記のうち試作 03 の記事面・LP・footer に閉じる 7 件（0270〜0276）の反映。カテゴリ面の強化リサーチ（0274）、HP 面・イベントページ（0277）は別 PR（リサーチ台帳 → Astra レビュー（0278）→ 試作）。要求・設計の決定ではない。
+
+1. **ヘッダー +8 型（0270、Claude 案）**: PC は台帳 §1 の header レイアウト観察型から center（logo-center-nav-below）/ two-rows / tel（with-tel）/ band（テーマ A/B の帯色型）/ overlay（transparent-over-hero、`eyecatch:hero` と併用）。SP は `sp` 軸に cta（≡ + CTA、台帳 13%）/ text-nav（≡ なしテキストナビ、10%）/ center-logo（検索左・ロゴ中央・≡ 右）。overlay は sticky を外して絶対配置にし、hero の上端に暗いグラデーションを足して白文字を読ませる（JS の部分固定は作用しない）。SP の cta / text-nav 用要素は pattern `header-sp-extras` として全ヘッダー部品に含め、`body.wt-sp-*` の SP 幅でだけ表示する。
+2. **announce の全幅化（0271）**: `.wt-announce__in` の `max-width:1120px` を外し、左右 gutter だけ残す。
+3. **numbox × num の連動（0272、Claude 解釈）**: h2 が `is-style-wt-numbox` の本文で、h3 の `is-style-wt-num` を「親番号-連番」（01-1, 01-2 / 02-1）にし h2 ごとに振り直す。`.wp-block-post-content:has(> .is-style-wt-numbox)` で本文単位に切り替えるため、numbox を使わない記事の h3 は従来の単独連番。実装上の実測: 親（post-content）に `counter-reset:wt-h3` があると、h2 側の `counter-reset` は Chromium 151 で後続兄弟に伝わらず（02-3 になる）、`counter-set:wt-h3 0` なら伝わる。解釈が違えば PO 反応で修正する。
+4. **グラフ +5 型（0273、Claude 案）**: grouped（2 系列横棒）/ column（縦棒ランキング）/ score（5 段階スコア）/ gauge（半円ゲージ ×3）/ radar（5 軸レーダー、inline SVG）。既存 4 型と同じく JS なし、`figcaption` と読み上げ用の表を併置、column / gauge / radar は `role=img` + `aria-label`。
+5. **「off の SP 版」の崩れ（0275、Claude 解釈）**: SP の関連グリッド（tail-prevnext-off 等）に既定カテゴリの fixture 投稿（Uncategorized の「Hello world!」等）が入り、サムネ無しで行高が崩れていた。`query_loop_block_query_vars` で関連 Query Loop（901 / 902）から既定カテゴリの投稿と自記事を除外。既定画像の補完（§2.17）は継続。関連グリッドを含む 32 枚を再撮影。
+6. **LINE 導線のアイコン（0276）**: 白丸の中の文字「LINE」を自作の吹き出しグリフ（`wt-i--bubble`、LINE ブランド緑は装飾のみ）に替え、ボタン文言を「LINE で友だち追加」に。qr 型の SP で「QR を読み取って」と書きながらボタンだけ出ていた不整合を、PC / SP で説明文を切り替えて是正。公式ロゴ画像はブランドガイドライン確認が要るため PoC では使わない。追尾 LINE ボタンも同じ mark。
+7. **SNS アイコン（0262 の解釈を反映）**: footer の SNS slot の数字プレースホルダ「1 2 3」を X / Instagram / YouTube / LINE の自作グリフ 4 導線に、記事末 icons-row の X / LINE も同じグリフに（はてなは文字）。商標ロゴは使わない。
+8. **verify +7**: `headerVariants`（PC 5 型 + SP 5 型: 軸 class・部品描画・ナビ可視・44px・band のコントラスト・overlay の absolute / 透過 / hero 上端 0 / 白文字 + 影・center のロゴ中央）、`announceFullWidth`（PC 1440 で内側幅 ≥ 1360 かつ > 1120、SP ≥ 342）、`numboxNum`（counter-set / content 式 / ::before の幅が単独連番より 1.4 倍以上）、`graphsMore`（5 型: 表 3 行以上・視覚要素・figcaption・aria-label・SP の横はみ出しなし）、`relatedNoFixture`（6 + 1 件、Uncategorized なし・自記事なし・画像あり）、`lineIcon`（mark 全てグリフ・文字なし、qr の PC / SP 文言切替、追尾ボタン）、`snsIcons`（footer 4 導線 + 記事末 3 導線、aria-label・グリフ・44px、JS 無効でも同じ）。
+9. **撮影 `scripts/shots-reaction10.mjs`**（reaction7〜9 方式）: 新規 22 枚（ヘッダー PC 5 + SP 5、numbox×num 2、グラフ 10）+ 同名置換 98 枚（announce 2、LINE 6、footer 56、関連グリッド 32、icons-row 2）。`CATALOG-INDEX.json` 504 → **526**。予定集合は「置換予定は INDEX 登録済み・新規予定は未登録」も照合する。
+10. `style.css` 0.3.11 → 0.3.12。用語集に header 9 型・sp 3 型・h2「numbox + h3 num」・graph 5 型・lp-line / footer-extra sns / icons-row の説明を追加。
+11. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 77 / fail 0**（70 + 7、skipped なし）、総合 `pass: true`。初回実行で 4 件が落ちた是正: 既存 `graphs` は figure 全件を数えて 9 ≠ 4 になったため当初 4 型に限定（追加 5 型は `graphsMore`）、`headerVariants` は PC のナビ文字リンクを既存 tap 監査と同じくインライン扱いにし（CTA・電話・検索は 44px を要求）、overlay の hero 上端は「ヘッダー高 60px 未満」に（posthead の余白で 16px）、`numboxNum` の幅比は実測 1.39 倍のため閾値 1.25、`lineIcon` は追尾ボタンの文言が aria-label 側に LINE を持つため aria-label を含めて判定。

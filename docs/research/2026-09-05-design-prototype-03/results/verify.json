@@ -9,7 +9,7 @@
   "productVisible": true,
   "tableVisible": true,
   "relatedCards": 7,
-  "textChars": 3129,
+  "textChars": 3093,
   "headerVisible": true,
   "announceExists": true,
   "announceVisible": true,
@@ -167,9 +167,9 @@
  },
  "tap": {
   "404": {
-   "total": 45,
-   "ok44": 45,
-   "ok24": 45,
+   "total": 46,
+   "ok44": 46,
+   "ok24": 46,
    "inlineText": 0,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -179,9 +179,9 @@
    "pass": true
   },
   "article": {
-   "total": 68,
-   "ok44": 68,
-   "ok24": 68,
+   "total": 69,
+   "ok44": 69,
+   "ok24": 69,
    "inlineText": 2,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -191,9 +191,9 @@
    "pass": true
   },
   "article-announce": {
-   "total": 70,
-   "ok44": 70,
-   "ok24": 70,
+   "total": 71,
+   "ok44": 71,
+   "ok24": 71,
    "inlineText": 2,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -203,9 +203,9 @@
    "pass": true
   },
   "catalog": {
-   "total": 40,
-   "ok44": 40,
-   "ok24": 40,
+   "total": 41,
+   "ok44": 41,
+   "ok24": 41,
    "inlineText": 5,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -251,27 +251,27 @@
    "pass": true
   },
   "footerSp": {
-   "total": 26,
-   "ok44": 26,
-   "ok24": 26,
+   "total": 27,
+   "ok44": 27,
+   "ok24": 27,
    "inlineText": 0,
    "below44": [],
    "below24": [],
    "pass": true
   },
   "footerPc": {
-   "total": 26,
-   "ok44": 26,
-   "ok24": 26,
+   "total": 27,
+   "ok44": 27,
+   "ok24": 27,
    "inlineText": 0,
    "below44": [],
    "below24": [],
    "pass": true
   },
   "lpSp": {
-   "total": 24,
-   "ok44": 24,
-   "ok24": 24,
+   "total": 25,
+   "ok44": 25,
+   "ok24": 25,
    "inlineText": 1,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -281,9 +281,9 @@
    "pass": true
   },
   "lpPc": {
-   "total": 24,
-   "ok44": 24,
-   "ok24": 24,
+   "total": 25,
+   "ok44": 25,
+   "ok24": 25,
    "inlineText": 1,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -6850,6 +6850,13 @@
     "pass": true
    },
    {
+    "label": "social icon",
+    "selector": ".wt-footer-extra-slot--sns a",
+    "ratio": 17.13,
+    "required": 4.5,
+    "pass": true
+   },
+   {
     "label": "related site",
     "selector": ".wt-footer-extra-slot--sites a",
     "ratio": 15.83,
@@ -9948,9 +9955,9 @@
   "js": {
    "count": 3,
    "tops": [
-    14390,
-    14390,
-    14390
+    14743,
+    14743,
+    14743
    ],
    "rights": [
     132.65625,
@@ -9970,9 +9977,9 @@
   "noJs": {
    "count": 3,
    "tops": [
-    14482,
-    14482,
-    14482
+    14835,
+    14835,
+    14835
    ],
    "rights": [
     132.65625,
@@ -10174,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.834119)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.833883)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -10682,7 +10689,7 @@
     "taps": [
      {
       "tag": "a",
-      "w": 273.421875,
+      "w": 231.421875,
       "h": 52,
       "ok": true
      }
@@ -10695,7 +10702,7 @@
     "qrVisible": null,
     "spBtnVisible": null,
     "imgs": [],
-    "text": 35
+    "text": 31
    },
    {
     "dev": "sp",
@@ -10708,7 +10715,7 @@
     "taps": [
      {
       "tag": "a",
-      "w": 273.421875,
+      "w": 231.421875,
       "h": 52,
       "ok": true
      }
@@ -10721,7 +10728,7 @@
     "qrVisible": false,
     "spBtnVisible": true,
     "imgs": [],
-    "text": 50
+    "text": 105
    }
   ],
   "pc": [
@@ -11121,7 +11128,7 @@
     "taps": [
      {
       "tag": "a",
-      "w": 273.421875,
+      "w": 231.421875,
       "h": 52,
       "ok": true
      }
@@ -11134,7 +11141,7 @@
     "qrVisible": null,
     "spBtnVisible": null,
     "imgs": [],
-    "text": 35
+    "text": 31
    },
    {
     "dev": "pc",
@@ -11153,7 +11160,7 @@
     "qrVisible": true,
     "spBtnVisible": false,
     "imgs": [],
-    "text": 50
+    "text": 105
    }
   ],
   "noJs": [
@@ -11553,7 +11560,7 @@
     "taps": [
      {
       "tag": "a",
-      "w": 273.421875,
+      "w": 231.421875,
       "h": 52,
       "ok": true
      }
@@ -11566,7 +11573,7 @@
     "qrVisible": null,
     "spBtnVisible": null,
     "imgs": [],
-    "text": 35
+    "text": 31
    },
    {
     "dev": "sp-nojs",
@@ -11579,7 +11586,7 @@
     "taps": [
      {
       "tag": "a",
-      "w": 273.421875,
+      "w": 231.421875,
       "h": 52,
       "ok": true
      }
@@ -11592,7 +11599,7 @@
     "qrVisible": false,
     "spBtnVisible": true,
     "imgs": [],
-    "text": 50
+    "text": 105
    }
   ],
   "sticky": {
@@ -11627,6 +11634,779 @@
   "sameNoJs": true,
   "pass": true
  },
+ "headerVariants": {
+  "results": [
+   {
+    "dev": "pc",
+    "variant": "center",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "taps": 5,
+    "below44": [],
+    "titleCenterDx": 0,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 327,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "variant": "two-rows",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "visibleLinks": 6,
+    "taps": 10,
+    "below44": [],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 326,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "variant": "tel",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "taps": 7,
+    "below44": [
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content"
+    ],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 265,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "variant": "band",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(29, 78, 216)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(29, 78, 216)",
+    "visibleLinks": 4,
+    "taps": 7,
+    "below44": [
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content"
+    ],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 265,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "variant": "overlay",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "rgba(0, 0, 0, 0.45) 0px 1px 2px",
+    "position": "absolute",
+    "headerBg": "rgba(0, 0, 0, 0)",
+    "visibleLinks": 4,
+    "taps": 5,
+    "below44": [
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content",
+     "wp-block-navigation-item__content"
+    ],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 16,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "band",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(29, 78, 216)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(29, 78, 216)",
+    "visibleLinks": 0,
+    "taps": 3,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": true,
+    "searchVisible": true,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 279,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "overlay",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "rgba(0, 0, 0, 0.45) 0px 1px 2px",
+    "position": "absolute",
+    "headerBg": "rgba(0, 0, 0, 0)",
+    "visibleLinks": 0,
+    "taps": 3,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": true,
+    "searchVisible": true,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 16,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "hamburger-cta",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "visibleLinks": 0,
+    "taps": 3,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": true,
+    "searchVisible": false,
+    "spCtaVisible": true,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 279,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "text-nav",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "taps": 6,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": false,
+    "searchVisible": true,
+    "spCtaVisible": false,
+    "textNavVisible": true,
+    "textNavLinks": 4,
+    "announceInWidth": null,
+    "heroTop": 312,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "center-logo",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "visibleLinks": 0,
+    "taps": 3,
+    "below44": [],
+    "titleCenterDx": 2,
+    "hamburgerVisible": true,
+    "searchVisible": true,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announceInWidth": null,
+    "heroTop": 279,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "announceFullWidth": {
+  "sp": 358,
+  "pc": 1392,
+  "pass": true
+ },
+ "numboxNum": {
+  "h2Count": 2,
+  "h3Count": 3,
+  "counterSet": [
+   "wt-h3 0",
+   "wt-h3 0"
+  ],
+  "h2Increment": [
+   "wt-h2num 1",
+   "wt-h2num 1"
+  ],
+  "h3Content": [
+   "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)",
+   "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)",
+   "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+  ],
+  "plainContent": "counter(wt-h3, decimal-leading-zero)",
+  "linkedWidth": [
+   46.8438,
+   46.8438,
+   46.8438
+  ],
+  "plainWidth": 33.7812,
+  "pass": true
+ },
+ "graphsMore": {
+  "pc": [
+   {
+    "k": "grouped",
+    "rows": 3,
+    "vis": 6,
+    "caption": true,
+    "ariaImgs": 0,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 680
+   },
+   {
+    "k": "column",
+    "rows": 5,
+    "vis": 5,
+    "caption": true,
+    "ariaImgs": 1,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 680
+   },
+   {
+    "k": "score",
+    "rows": 5,
+    "vis": 25,
+    "caption": true,
+    "ariaImgs": 0,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 680
+   },
+   {
+    "k": "gauge",
+    "rows": 3,
+    "vis": 3,
+    "caption": true,
+    "ariaImgs": 3,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 680
+   },
+   {
+    "k": "radar",
+    "rows": 5,
+    "vis": 1,
+    "caption": true,
+    "ariaImgs": 1,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 680
+   }
+  ],
+  "sp": [
+   {
+    "k": "grouped",
+    "rows": 3,
+    "vis": 6,
+    "caption": true,
+    "ariaImgs": 0,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358
+   },
+   {
+    "k": "column",
+    "rows": 5,
+    "vis": 5,
+    "caption": true,
+    "ariaImgs": 1,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358
+   },
+   {
+    "k": "score",
+    "rows": 5,
+    "vis": 25,
+    "caption": true,
+    "ariaImgs": 0,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358
+   },
+   {
+    "k": "gauge",
+    "rows": 3,
+    "vis": 3,
+    "caption": true,
+    "ariaImgs": 3,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358
+   },
+   {
+    "k": "radar",
+    "rows": 5,
+    "vis": 1,
+    "caption": true,
+    "ariaImgs": 1,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358
+   }
+  ],
+  "pass": true
+ },
+ "relatedNoFixture": {
+  "pc": {
+   "count": 6,
+   "nextCount": 1,
+   "cards": [
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
+     "img": true
+    },
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "昇降デスクのケーブル整理。トレー・スパイラル・マグネットの比較",
+     "img": true
+    },
+    {
+     "terms": [
+      "読みもの目次"
+     ],
+     "title": "読みもの 17: 横断まとめ 2",
+     "img": true
+    },
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "在宅ワークの椅子 5 脚を 1 か月比較。腰痛持ちが選ぶ 1 脚",
+     "img": true
+    },
+    {
+     "terms": [
+      "読みもの目次"
+     ],
+     "title": "読みもの 16: 横断まとめ 1",
+     "img": true
+    },
+    {
+     "terms": [
+      "テーマ 3"
+     ],
+     "title": "読みもの 15: 運用編 5",
+     "img": true
+    }
+   ],
+   "next": [
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
+     "img": true
+    }
+   ],
+   "self": "電動昇降デスク 3 製品を 2 週間ずつ比較。予算 6 万円なら L1、4 万円以下なら S2 が結論"
+  },
+  "sp": {
+   "count": 6,
+   "nextCount": 1,
+   "cards": [
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
+     "img": true
+    },
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "昇降デスクのケーブル整理。トレー・スパイラル・マグネットの比較",
+     "img": true
+    },
+    {
+     "terms": [
+      "読みもの目次"
+     ],
+     "title": "読みもの 17: 横断まとめ 2",
+     "img": true
+    },
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "在宅ワークの椅子 5 脚を 1 か月比較。腰痛持ちが選ぶ 1 脚",
+     "img": true
+    },
+    {
+     "terms": [
+      "読みもの目次"
+     ],
+     "title": "読みもの 16: 横断まとめ 1",
+     "img": true
+    },
+    {
+     "terms": [
+      "テーマ 3"
+     ],
+     "title": "読みもの 15: 運用編 5",
+     "img": true
+    }
+   ],
+   "next": [
+    {
+     "terms": [
+      "デスク・家具"
+     ],
+     "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
+     "img": true
+    }
+   ],
+   "self": "電動昇降デスク 3 製品を 2 週間ずつ比較。予算 6 万円なら L1、4 万円以下なら S2 が結論"
+  },
+  "pass": true
+ },
+ "lineIcon": {
+  "pc": {
+   "dev": "pc",
+   "marks": 3,
+   "marksWithGlyph": 3,
+   "marksWithText": 0,
+   "pcTextVisible": [
+    true,
+    true
+   ],
+   "spTextVisible": [
+    false,
+    false
+   ],
+   "qrVisible": true,
+   "spBtnVisible": false,
+   "stickyGlyph": true,
+   "btnTexts": [
+    "LINE で相談する（追尾ボタン。PoC ではお問い合わせ帯へのアンカー） 相談する"
+   ]
+  },
+  "sp": {
+   "dev": "sp",
+   "marks": 3,
+   "marksWithGlyph": 3,
+   "marksWithText": 0,
+   "pcTextVisible": [
+    false,
+    false
+   ],
+   "spTextVisible": [
+    true,
+    true
+   ],
+   "qrVisible": false,
+   "spBtnVisible": true,
+   "stickyGlyph": true,
+   "btnTexts": [
+    " LINE で友だち追加",
+    "LINE で相談する（追尾ボタン。PoC ではお問い合わせ帯へのアンカー） 相談する"
+   ]
+  },
+  "pass": true
+ },
+ "snsIcons": {
+  "spJs": {
+   "footer": [
+    {
+     "label": "X（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "Instagram（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "YouTube（公式チャンネル）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "LINE（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    }
+   ],
+   "tail": [
+    {
+     "label": "X でポスト",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    },
+    {
+     "label": "LINE で送る",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    },
+    {
+     "label": "はてなブックマークに追加",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    }
+   ]
+  },
+  "pcJs": {
+   "footer": [
+    {
+     "label": "X（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "Instagram（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "YouTube（公式チャンネル）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "LINE（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    }
+   ],
+   "tail": [
+    {
+     "label": "X でポスト",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    },
+    {
+     "label": "LINE で送る",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    },
+    {
+     "label": "はてなブックマークに追加",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    }
+   ]
+  },
+  "spNoJs": {
+   "footer": [
+    {
+     "label": "X（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "Instagram（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "YouTube（公式チャンネル）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    },
+    {
+     "label": "LINE（公式アカウント）",
+     "glyph": true,
+     "digits": false,
+     "size": [
+      44,
+      44
+     ],
+     "rel": "nofollow"
+    }
+   ],
+   "tail": [
+    {
+     "label": "X でポスト",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    },
+    {
+     "label": "LINE で送る",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    },
+    {
+     "label": "はてなブックマークに追加",
+     "glyph": true,
+     "size": [
+      44,
+      44
+     ]
+    }
+   ]
+  },
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "contrastVariantsPass": true,
@@ -11634,7 +12414,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 70,
+  "pass": 77,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -11707,6 +12487,13 @@
    "tableRich": true,
    "footerCredit": true,
    "lpParts": true,
+   "headerVariants": true,
+   "announceFullWidth": true,
+   "numboxNum": true,
+   "graphsMore": true,
+   "relatedNoFixture": true,
+   "lineIcon": true,
+   "snsIcons": true,
    "prAutoFixtures": true
   }
  },

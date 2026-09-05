@@ -7,9 +7,11 @@
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {
 	return array(
-		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce' ) ),
+		// 2026-09-06 PO 反応 17 回目 WT-EVT-0270「ヘッダーバリエーション増やそうか」: 台帳 §1 header レイアウトの観察型から +5（Claude 案）
+		// center = logo-center-nav-below / two-rows / overlay = transparent-over-hero（eyecatch:hero と併用）/ tel = with-tel / band = テーマ A/B の帯色型
+		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce', 'center', 'two-rows', 'overlay', 'tel', 'band' ) ),
 		'width'    => array( 'default', array( 'narrow', 'default', 'wide' ) ), // 2026-09-05 PO 反応: 本文 / wide / ヘッダー最大幅のプリセット比較（?wt=width:narrow|default|wide）
-		'sp'       => array( 'search', array( 'search', 'right', 'left' ) ),           // SP ヘッダー: hamburger+search / hamburger-right / hamburger-left
+		'sp'       => array( 'search', array( 'search', 'right', 'left', 'cta', 'text-nav', 'center-logo' ) ), // SP ヘッダー: hamburger+search / hamburger-right / hamburger-left + WT-EVT-0270: hamburger+cta / no-hamburger(text nav) / logo-center（検索左・≡ 右）
 		'eyecatch' => array( 'title-image', array( 'title-image', 'image-title', 'hero', 'side', 'none' ) ),
 		'toc'      => array( 'box', array( 'box', 'float', 'collapsible', 'none' ) ),
 		'related'  => array( 'grid', array( 'grid', 'list', 'rank', 'carousel', 'featured', 'ranking-numbers', 'slider' ) ), // slider: PO 反応 16 回目 WT-EVT-0261
@@ -101,8 +103,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.2' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.11' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.12' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.12' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -667,6 +669,25 @@ function wt_render_tail_author() {
 	}
 	return $out;
 }
+
+// 2026-09-06 PO 反応 17 回目 WT-EVT-0275「off の SP 版がバグってね？」（Claude 解釈）: 記事末尾の関連 Query Loop（901 / 902）が
+// 既定カテゴリ（Uncategorized）の fixture 投稿と表示中の記事自身を拾い、SP のグリッド 1 行目に本文と無関係なカードが入っていた。
+// 既定カテゴリの投稿と自記事を除外する（表示件数は perPage のまま。該当が足りない小規模サイトでは件数が減るだけで崩れない）。
+add_filter( 'query_loop_block_query_vars', function ( $query, $block ) {
+	$query_id = ( $block instanceof WP_Block && isset( $block->context['queryId'] ) ) ? (int) $block->context['queryId'] : 0;
+	if ( ! in_array( $query_id, array( 901, 902 ), true ) ) {
+		return $query;
+	}
+	$default_cat = (int) get_option( 'default_category' );
+	if ( $default_cat > 0 ) {
+		$query['category__not_in'] = array_values( array_unique( array_merge( (array) ( $query['category__not_in'] ?? array() ), array( $default_cat ) ) ) );
+	}
+	$self = (int) get_queried_object_id();
+	if ( $self > 0 ) {
+		$query['post__not_in'] = array_values( array_unique( array_merge( (array) ( $query['post__not_in'] ?? array() ), array( $self ) ) ) );
+	}
+	return $query;
+}, 10, 2 );
 
 // PO 反応7（related 再設計、Claude 案）: アイキャッチ未設定の投稿でも関連カードの 16:9 サムネ枠を崩さないよう、
 // 記事末尾の関連 Query Loop（parts/article-tail.html の queryId 901 / 902）の post-featured-image ブロックが空を返したときだけ
