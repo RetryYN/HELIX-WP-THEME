@@ -1,10 +1,10 @@
-/* 段 3 category: load-more は JS 有効時だけ番号送りを置き換え、失敗時は番号リンクへ戻す。 */
+/* 段 3 category: core の「次のページ」リンクは a 要素自身が .wp-block-query-pagination-next を持つ（子 a ではない）。 load-more は JS 有効時だけ番号送りを置き換え、失敗時は番号リンクへ戻す。 */
 (function(){
   var button = document.querySelector('[data-wt-load-more]');
   var body = document.body;
   if (!button || !body.classList.contains('wt-cat-pagination-load-more') || !document.documentElement.classList.contains('wt-js')) return;
   var list = document.querySelector('.wt-cat-list');
-  var next = document.querySelector('.wt-cat-pagination .wp-block-query-pagination-next a');
+  var next = document.querySelector('.wt-cat-pagination a.wp-block-query-pagination-next');
   var fallback = function(){
     body.classList.remove('wt-cat-pagination-load-more');
     button.hidden = true;
@@ -15,7 +15,7 @@
   var sync = function(doc){
     var incoming = doc.querySelectorAll('.wt-cat-list > li');
     incoming.forEach(function(item){ list.appendChild(document.importNode(item, true)); });
-    var following = doc.querySelector('.wt-cat-pagination .wp-block-query-pagination-next a');
+    var following = doc.querySelector('.wt-cat-pagination a.wp-block-query-pagination-next');
     if (following) { next = following; button.disabled = false; button.textContent = 'さらに読む'; }
     else { button.hidden = true; }
   };
