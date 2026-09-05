@@ -9955,9 +9955,9 @@
   "js": {
    "count": 3,
    "tops": [
-    14743,
-    14743,
-    14743
+    15262,
+    15262,
+    15262
    ],
    "rights": [
     132.65625,
@@ -9977,9 +9977,9 @@
   "noJs": {
    "count": 3,
    "tops": [
-    14835,
-    14835,
-    14835
+    15354,
+    15354,
+    15354
    ],
    "rights": [
     132.65625,
@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.833991)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.8848)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -12556,6 +12556,44 @@
     "label": "01"
    }
   ],
+  "plainGroup": [
+   {
+    "heading": "連番検証 A（専用 class なしの Group）",
+    "expected": "02",
+    "actual": "02"
+   },
+   {
+    "heading": "連番検証 A-1",
+    "expected": "02-1",
+    "actual": "02-1"
+   },
+   {
+    "heading": "連番検証 A-2",
+    "expected": "02-2",
+    "actual": "02-2"
+   },
+   {
+    "heading": "連番検証 L（post-content 直下の単独 num）",
+    "expected": "01",
+    "actual": "01"
+   },
+   {
+    "heading": "連番検証 B（後続の別 Group）",
+    "expected": "03",
+    "actual": "03"
+   },
+   {
+    "heading": "連番検証 B-1",
+    "expected": "03-1",
+    "actual": "03-1"
+   },
+   {
+    "heading": "連番検証 M（B の後の単独 num）",
+    "expected": "01",
+    "actual": "01"
+   }
+  ],
+  "numboxBeforeA": 1,
   "counterSet": [
    "wt-h3 0",
    "wt-h3 0"
@@ -12791,13 +12829,15 @@
        "points": 5,
        "vis": true,
        "fill": "0.22",
-       "maxDev": 0.05
+       "maxDev": 0.04654016542036743,
+       "maxDevShown": 0.05
       },
       {
        "points": 5,
        "vis": true,
        "fill": "0.16",
-       "maxDev": 0.05
+       "maxDev": 0.04648022006978181,
+       "maxDevShown": 0.05
       }
      ],
      "legend": 2,
@@ -13027,13 +13067,15 @@
        "points": 5,
        "vis": true,
        "fill": "0.22",
-       "maxDev": 0.05
+       "maxDev": 0.04654016542036743,
+       "maxDevShown": 0.05
       },
       {
        "points": 5,
        "vis": true,
        "fill": "0.16",
-       "maxDev": 0.05
+       "maxDev": 0.04648022006978181,
+       "maxDevShown": 0.05
       }
      ],
      "legend": 2,
@@ -13263,13 +13305,15 @@
        "points": 5,
        "vis": true,
        "fill": "0.22",
-       "maxDev": 0.05
+       "maxDev": 0.04654016542036743,
+       "maxDevShown": 0.05
       },
       {
        "points": 5,
        "vis": true,
        "fill": "0.16",
-       "maxDev": 0.05
+       "maxDev": 0.04648022006978181,
+       "maxDevShown": 0.05
       }
      ],
      "legend": 2,

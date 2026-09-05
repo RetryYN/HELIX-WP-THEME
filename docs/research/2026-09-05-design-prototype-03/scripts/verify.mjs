@@ -1282,7 +1282,7 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
     const doc = snap.documents[0], S = snap.strings, N = doc.nodes, L = doc.layout;
     const ids = {}; for (let i = 0; i < N.nodeName.length; i++) { const at = N.attributes[i] || []; for (let k = 0; k < at.length; k += 2) if (S[at[k]] === "id") ids[i] = S[at[k + 1]]; }
     const childText = {}; for (let i = 0; i < N.nodeName.length; i++) if (S[N.nodeName[i]] === "#text") childText[N.parentIndex[i]] = (childText[N.parentIndex[i]] || "") + S[N.nodeValue[i]];
-    const inRoot = (ni) => { let guard = 0; for (let x = ni; x >= 0 && guard < 200; x = N.parentIndex[x], guard++) { if (ids[x] === rootId) return true; if (N.parentIndex[x] === x) break; } return false; };
+    const inRoot = (ni) => { if (rootId === null) return true; let guard = 0; for (let x = ni; x >= 0 && guard < 200; x = N.parentIndex[x], guard++) { if (ids[x] === rootId) return true; if (N.parentIndex[x] === x) break; } return false; };
     const per = new Map();
     for (let i = 0; i < L.nodeIndex.length; i++) { const ni = L.nodeIndex[i]; if (S[N.nodeName[ni]] !== "::before") continue; const par = N.parentIndex[ni]; const pn = S[N.nodeName[par]]; if (pn !== "H2" && pn !== "H3") continue; if (!inRoot(par)) continue; const t = L.text[i]; if (t === undefined || t < 0) continue; per.set(par, (per.get(par) || "") + S[t]); }
     return Array.from(per.entries()).sort((x, y) => x[0] - y[0]).map(([par, label]) => ({ tag: S[N.nodeName[par]], heading: (childText[par] || "").trim(), label }));
@@ -1293,16 +1293,24 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
     return { list: out, counterSet: h2s.map((h) => getComputedStyle(h).counterSet), h2Increment: h2s.map((h) => getComputedStyle(h).counterIncrement), h3Increment: Array.from(demo.querySelectorAll("h3.is-style-wt-num")).map((h) => getComputedStyle(h).counterIncrement) }; });
   const actual = await readLabels("cat-h2-numbox-h3num");
   const plain = await readLabels("cat-h3-num");
+  // 専用 class なしの Group・post-content 直下・後続の別コンテナ（#cat-h2-numbox-plain 以降）。counter は DOM 順に引き継がれるため、見出し文字で拾って期待値と完全一致させる
+  const allLabels = await readLabels(null);
+  // h2 番号（wt-h2num）は本文全体で続くため、A の番号 = A より前にある（.wt-numbox-demo の入れ子スコープ外の）numbox h2 の数 + 1
+  const nBefore = await p.evaluate(() => { const all = Array.from(document.querySelectorAll(".wp-block-post-content h2.is-style-wt-numbox")).filter((h) => !h.closest(".wt-numbox-demo")); const a = all.findIndex((h) => h.textContent.trim().startsWith("連番検証 A")); return a; });
+  const pad2 = (v) => String(v).padStart(2, "0");
+  const PLAIN_EXPECT = [["連番検証 A（専用 class なしの Group）", pad2(nBefore + 1)], ["連番検証 A-1", `${pad2(nBefore + 1)}-1`], ["連番検証 A-2", `${pad2(nBefore + 1)}-2`], ["連番検証 L（post-content 直下の単独 num）", "01"], ["連番検証 B（後続の別 Group）", pad2(nBefore + 2)], ["連番検証 B-1", `${pad2(nBefore + 2)}-1`], ["連番検証 M（B の後の単独 num）", "01"]];
+  const plainGroup = PLAIN_EXPECT.map(([heading, label]) => { const f = allLabels.find((x) => x.heading === heading); return { heading, expected: label, actual: f ? f.label : null }; });
   await p.addStyleTag({ content: ".wt-numbox-demo h3.is-style-wt-num{counter-increment:wt-h3 2}" });
   const mutated = await readLabels("cat-h2-numbox-h3num");
   const same = (x, y) => x.tag === y.tag && x.heading === y.heading && x.label === y.label;
   const h3Idx = expected.list.map((e, i) => (e.tag === "H3" ? i : -1)).filter((i) => i >= 0);
-  const n = { expected: expected.list, actual, mutated, plain, counterSet: expected.counterSet, h2Increment: expected.h2Increment, h3Increment: expected.h3Increment };
+  const n = { expected: expected.list, actual, mutated, plain, plainGroup, numboxBeforeA: nBefore, counterSet: expected.counterSet, h2Increment: expected.h2Increment, h3Increment: expected.h3Increment };
   n.pass = expected.list.length === 5 && expected.list.map((e) => e.label).join(",") === "01,01-1,01-2,02,02-1"
     && actual.length === expected.list.length && actual.every((x, i) => same(x, expected.list[i]))
     && mutated.length === expected.list.length && h3Idx.length === 3 && h3Idx.every((i) => mutated[i].label !== expected.list[i].label) && mutated.filter((x) => x.tag === "H2").every((x, j) => x.label === expected.list.filter((e) => e.tag === "H2")[j].label)
     && n.counterSet.length === 2 && n.counterSet.every((v) => v === "wt-h3 0") && n.h2Increment.every((v) => v === "wt-h2num 1") && n.h3Increment.length === 3 && n.h3Increment.every((v) => v === "wt-h3 1")
-    && plain.length >= 1 && plain[0].tag === "H3" && plain[0].label === "01" && plain.every((x) => !/-/.test(x.label));
+    && plain.length >= 1 && plain[0].tag === "H3" && plain[0].label === "01" && plain.every((x) => !/-/.test(x.label))
+    && nBefore >= 0 && plainGroup.length === 7 && plainGroup.every((x) => x.actual === x.expected);
   out.numboxNum = n;
   await ctx.close();
 }
@@ -1348,7 +1356,7 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
           const maxScore = 5;
           const polys = ["a", "b"].map((s, si) => { const pl = f.querySelector(`.wt-graph__radar-${s}`); const pts = parsePts(pl); const exp = tds.map((r, i) => { const th = (i * 72) * Math.PI / 180; const rr = r[si] / maxScore * R; return [cx + rr * Math.sin(th), cy - rr * Math.cos(th)]; });
             const dev = pts.length === exp.length ? Math.max(...pts.map(([x, y], i) => Math.max(Math.abs(x - exp[i][0]), Math.abs(y - exp[i][1])))) : Infinity;
-            return { points: pts.length, vis: vis(pl), fill: pl ? getComputedStyle(pl).fillOpacity : null, maxDev: Math.round(dev * 100) / 100 }; });
+            return { points: pts.length, vis: vis(pl), fill: pl ? getComputedStyle(pl).fillOpacity : null, maxDev: dev, maxDevShown: Math.round(dev * 100) / 100 }; });
           const legend = f.querySelectorAll(".wt-graph__legend li").length; const labels = f.querySelectorAll(".wt-graph__radar-labels text").length;
           g.valuesOk = tds.length === 5 && tds.every((r) => r.length === 2) && Number.isFinite(cx) && Number.isFinite(R) && R > 50 && axes.length === 5 && polys.every((pl) => pl.points === 5 && pl.maxDev <= 0.6) && legend === 2 && labels === 5;
           g.visibleOk = polys.every((pl) => pl.vis && parseFloat(pl.fill) > 0); g.detail = { polys, legend, labels, cx, cy, R };
@@ -1399,7 +1407,10 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
     await ctx.close(); return { dev, variant, ...r }; };
   const qrPc = await run(PC, "pc", "qr"), qrSp = await run(SP, "sp", "qr"), btnPc = await run(PC, "pc", "button"), btnSp = await run(SP, "sp", "button");
   const expectMarks = (r) => (r.variant === "qr" && r.dev === "pc" ? 1 : 2);
-  const base = (r) => r.marks === expectMarks(r) && r.marksWithGlyph === r.marks && r.marksWithText === 0 && r.stickyGlyph && r.btnTexts.length === expectMarks(r) && r.btnTexts.every((t) => /LINE/.test(t));
+  const STICKY_TEXT = "LINE で相談する（追尾ボタン。PoC ではお問い合わせ帯へのアンカー） 相談する", BTN_TEXT = "LINE で友だち追加";
+  const expectTexts = (r) => (r.variant === "qr" && r.dev === "pc" ? [STICKY_TEXT] : [BTN_TEXT, STICKY_TEXT]);
+  // 文言は完全一致（部分一致 /LINE/ は OFFLINE 等を通すため不可。Astra 3 巡目）
+  const base = (r) => r.marks === expectMarks(r) && r.marksWithGlyph === r.marks && r.marksWithText === 0 && r.stickyGlyph && JSON.stringify(r.btnTexts.map((t) => t.trim())) === JSON.stringify(expectTexts(r));
   const qrOk = qrPc.qrBlockVisible && !qrPc.buttonBlockVisible && qrSp.qrBlockVisible && !qrSp.buttonBlockVisible
     && qrPc.pcTextVisible.length === 2 && qrPc.pcTextVisible.every(Boolean) && qrPc.spTextVisible.length === 2 && qrPc.spTextVisible.every((v) => !v) && qrPc.qrVisible && !qrPc.spBtnVisible
     && qrSp.spTextVisible.length === 2 && qrSp.spTextVisible.every(Boolean) && qrSp.pcTextVisible.length === 2 && qrSp.pcTextVisible.every((v) => !v) && !qrSp.qrVisible && qrSp.spBtnVisible;

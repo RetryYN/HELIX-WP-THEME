@@ -34,6 +34,18 @@ $h3 = function ( $style, $id ) {
 <!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">価格と保証</h3><!-- /wp:heading -->
 <!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">h2 が numbox のとき、h3 の num は「01-1, 01-2 / 02-1」と親番号付きになり、h2 ごとに振り直す。</p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-h2-numbox-plain","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-h2-numbox-plain">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 A（専用 class なしの Group）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 A-1</h3><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 A-2</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 L（post-content 直下の単独 num）</h3><!-- /wp:heading -->
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 B（後続の別 Group）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 B-1</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 M（B の後の単独 num）</h3><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">検証用: 専用 class なしの Group に入れた numbox は本文全体の h2 番号を続け（上の h2 見本が 01 なので 02, 03）、配下の num は 02-1 / 02-2 / 03-1。Group の直後から単独 num は 01 に戻る（L・M とも 01）。</p><!-- /wp:paragraph -->
 <!-- wp:heading --><h2 class="wp-block-heading">囲み 7 型 + 色</h2><!-- /wp:heading -->
 <?php
 $body = '昇降デスクは「最低高さ」が意外に重要です。身長 160cm 前後の人は座り姿勢で 62cm 以下まで下がらないと、肩がこります。';
