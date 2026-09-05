@@ -10,6 +10,7 @@ const args = Object.fromEntries(process.argv.slice(2).map((a, i, arr) => a.start
 const BASE = args.base || "http://localhost:8086";
 const OUT = path.resolve(args.out || "../results/verify.json");
 const ARTICLE = "/standing-desk-compare/";
+const CATEGORY = "/category/topic-index/";
 const SP = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const PC = { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
 const out = {};
@@ -163,6 +164,128 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   out.toc = await p.evaluate(() => ({ h2Count: document.querySelectorAll(".wp-block-post-content h2").length, h3Count: document.querySelectorAll(".wp-block-post-content h3").length, tocH2: document.querySelectorAll(".wt-toc__list > li").length, tocH3: document.querySelectorAll(".wt-toc__list ol li").length, scrollMarginTop: getComputedStyle(document.querySelector("h2[id]")).scrollMarginTop, spClosedByJs: !document.querySelector(".wt-toc details").open }));
   await ctx.close();
 }
+// 8. 段 3 guard: カテゴリ面の SP / PC タップ監査、hero コントラスト、footer の no-JS 展開、load-more 退避、ページ送り 200
+{
+  const audit = async (page, rootSelector) => page.evaluate((selector) => {
+    const root = selector ? document.querySelector(selector) : document;
+    if (!root) return { total: 0, ok44: 0, ok24: 0, inlineText: 0, below44: [], below24: [], pass: false, missing: true };
+    const els = Array.from(root.querySelectorAll("a[href], button, input, summary, [role=button]"));
+    const res = { total: 0, ok44: 0, ok24: 0, inlineText: 0, below44: [], below24: [] };
+    for (const el of els) {
+      const r = el.getBoundingClientRect(); const s = getComputedStyle(el);
+      if (r.width === 0 || r.height === 0 || s.visibility === "hidden" || s.display === "none") continue;
+      const desc = el.tagName.toLowerCase() + " '" + (el.getAttribute("aria-label") || el.textContent || el.value || "").trim().slice(0, 24) + "' " + Math.round(r.width) + "x" + Math.round(r.height);
+      const inline = el.tagName === "A" && s.display === "inline" && el.parentElement && /^(P|LI)$/.test(el.parentElement.tagName);
+      if (inline) { res.inlineText++; continue; }
+      res.total++;
+      if (r.width >= 44 && r.height >= 44) res.ok44++; else res.below44.push(desc);
+      if (r.width >= 24 && r.height >= 24) res.ok24++; else res.below24.push(desc);
+    }
+    res.pass = res.below44.length === 0 && res.below24.length === 0;
+    return res;
+  }, rootSelector);
+  const sp = await browser.newContext(SP); const spPage = await sp.newPage();
+  await spPage.goto(BASE + CATEGORY, { waitUntil: "networkidle" }); await spPage.waitForTimeout(300);
+  out.tap.categorySp = await audit(spPage, ".wt-category");
+  const pc = await browser.newContext(PC); const pcPage = await pc.newPage();
+  await pcPage.goto(BASE + CATEGORY, { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  out.tap.categoryPc = await audit(pcPage, ".wt-category");
+  const paginationLinks = await pcPage.$$eval(".wt-cat-pagination a[href]", (links) => links.map((a) => a.href));
+  const paginationStatuses = await pcPage.evaluate(async (hrefs) => Promise.all(hrefs.map(async (href) => { try { const r = await fetch(href, { credentials: "same-origin" }); return { href, status: r.status }; } catch (e) { return { href, status: 0 }; } })), paginationLinks);
+  out.categoryPagination = { links: paginationStatuses, pass: paginationStatuses.length > 0 && paginationStatuses.every((x) => x.status === 200) };
+
+  const footerUrl = ARTICLE + "?wt=footer_extra:all,footer_totop:button";
+  await spPage.goto(BASE + footerUrl, { waitUntil: "networkidle" }); await spPage.waitForTimeout(300);
+  out.tap.footerSp = await audit(spPage, ".wt-footer");
+  await pcPage.goto(BASE + footerUrl, { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  out.tap.footerPc = await audit(pcPage, ".wt-footer");
+  out.footerContrast = await pcPage.evaluate(() => {
+    const root = document.querySelector(".wt-footer");
+    if (!root) return { items: [], pass: false, missing: true };
+    const parse = (s) => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(",").map(Number); return { rgb: p.slice(0, 3), a: p[3] ?? 1 }; };
+    const lum = (rgb) => { const f = (c) => { c /= 255; return c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); }; return .2126 * f(rgb[0]) + .7152 * f(rgb[1]) + .0722 * f(rgb[2]); };
+    const ratio = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+    const bg = parse(getComputedStyle(root).backgroundColor);
+    if (!bg) return { items: [], pass: false, missing: true };
+    const selectors = [
+      [".wt-footer__brand .wp-block-site-title", "brand"],
+      [".wt-footer__sitemap summary", "sitemap summary"],
+      [".wt-footer__sitemap a", "sitemap link"],
+      [".wt-footer__legal--links p", "legal copyright"],
+      [".wt-footer__legal--links a", "legal link"],
+      [".wt-footer-extra-slot--sns h2, .wt-footer-extra-slot--sites h2, .wt-footer-extra-slot--badges h2, .wt-footer-extra-slot--address h2", "extra heading"],
+      [".wt-footer-extra-slot--sns a", "social icon"],
+      [".wt-footer-extra-slot--sites a", "related site"],
+      [".wt-footer-extra-slot--badges span", "badge"],
+      [".wt-footer-extra-slot--address address", "address"],
+      [".wt-totop", "to top"],
+    ];
+    // 要素自身の実効背景（丸アイコン・to-top ボタンのように自前の背景色を持つ要素は footer 背景でなくそれと比較する）
+    const effectiveBg = (el) => { for (let n = el; n && n !== root.parentElement; n = n.parentElement) { const b = parse(getComputedStyle(n).backgroundColor); if (b && b.a > 0) return b; } return bg; };
+    const items = [];
+    for (const [selector, label] of selectors) for (const el of root.querySelectorAll(selector)) {
+      const s = getComputedStyle(el), c = parse(s.color); if (!c) continue;
+      const r = ratio(lum(c.rgb), lum(effectiveBg(el).rgb)); const large = parseFloat(s.fontSize) >= 24 || (parseFloat(s.fontSize) >= 18.67 && parseInt(s.fontWeight) >= 700);
+      items.push({ label, selector, ratio: Math.round(r * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) });
+    }
+    return { background: getComputedStyle(root).backgroundColor, items, pass: items.length > 0 && items.every((item) => item.pass) };
+  });
+
+  const noJsFooter = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJsFooterPage = await noJsFooter.newPage();
+  await noJsFooterPage.goto(BASE + ARTICLE, { waitUntil: "load" });
+  out.footerNoJs = await noJsFooterPage.evaluate(() => {
+    const details = Array.from(document.querySelectorAll(".wt-footer__sitemap details"));
+    const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none"; };
+    const contentsVisible = details.every((d) => visible(d.querySelector("ul")));
+    return { details: details.length, open: details.filter((d) => d.open).length, contentsVisible, pass: details.length > 0 && details.every((d) => d.open) && contentsVisible };
+  });
+  await noJsFooter.close(); await noJsFooterPage.close().catch(() => {});
+
+  const noJsLoadMore = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJsLoadMorePage = await noJsLoadMore.newPage();
+  await noJsLoadMorePage.goto(BASE + CATEGORY + "?wt=cat_pagination:load-more", { waitUntil: "load" });
+  out.loadMoreNoJs = await noJsLoadMorePage.evaluate(() => {
+    const pagination = document.querySelector(".wt-cat-pagination"); const button = document.querySelector(".wt-load-more");
+    const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none"; };
+    const numbers = document.querySelectorAll(".wt-cat-pagination .wp-block-query-pagination-numbers a, .wt-cat-pagination .wp-block-query-pagination-numbers span").length;
+    return { paginationVisible: visible(pagination), buttonVisible: visible(button), numbers, pass: visible(pagination) && !visible(button) && numbers > 0 };
+  });
+  await noJsLoadMore.close(); await noJsLoadMorePage.close().catch(() => {});
+
+  await pcPage.goto(BASE + CATEGORY + "?wt=cat_header:hero", { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  out.categoryHeroContrast = await pcPage.evaluate(() => {
+    const head = document.querySelector(".wt-cat-head"); if (!head) return { missing: true, pass: false };
+    const image = getComputedStyle(head, "::before").backgroundImage;
+    const stops = Array.from(image.matchAll(/rgba?\(([^)]+)\)/g)).map((m) => m[1].split(",").map(Number));
+    const alpha = stops.length ? (stops[0][3] ?? 1) : 0;
+    const f = (c) => { c /= 255; return c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); };
+    const bg = .2126 * f(23) + .7152 * f(28) + .0722 * f(34);
+    const composite = bg * alpha + (1 - alpha); const contrast = (1.05) / (composite + .05);
+    const heading = getComputedStyle(head.querySelector("h1")).color;
+    return { backgroundImage: image, alpha, contrast: Math.round(contrast * 100) / 100, heading, pass: alpha >= .8 && contrast >= 4.5 && /255/.test(heading) };
+  });
+  const reduce = await browser.newContext({ ...SP, reducedMotion: "reduce" }); const reducePage = await reduce.newPage();
+  await reducePage.goto(BASE + CATEGORY + "?wt=footer_totop:button", { waitUntil: "networkidle" }); await reducePage.waitForTimeout(300);
+  out.reducedMotion.categoryFooter = await reducePage.evaluate(() => {
+    const card = document.querySelector(".wt-cat-card"); const top = document.querySelector(".wt-totop"); const footer = document.querySelector(".wt-footer");
+    if (!card || !top || !footer) return { missing: true, pass: false };
+    const cardStyle = getComputedStyle(card); const topStyle = getComputedStyle(top); const footerStyle = getComputedStyle(footer);
+    const noTransition = (style) => style.transitionProperty === "none" || style.transitionDuration === "0s";
+    return { cardTransition: cardStyle.transitionProperty, topTransition: topStyle.transitionProperty, footerTransition: footerStyle.transitionProperty, pass: noTransition(cardStyle) && noTransition(topStyle) };
+  });
+  await reduce.close();
+  await sp.close(); await pc.close();
+}
+
+// 9. 結果の集計（既存 gate と段 3 gate を同じ verify.json に固定する）
+out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
+out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
+out.reducedMotion.pass = out.reducedMotion.revealHidden === 0 && out.reducedMotion.categoryFooter.pass;
+const checkList = [
+  ["noJs", out.noJs.pass], ["reducedMotion", out.reducedMotion.pass], ["status404", out.status404.pass], ["table", out.table.pass], ["toc", out.toc.pass],
+  ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass],
+];
+out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
+out.pass = out.summary.fail === 0;
 await browser.close();
 fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
 console.log(JSON.stringify(out, null, 1));
