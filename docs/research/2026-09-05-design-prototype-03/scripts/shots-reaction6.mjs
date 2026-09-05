@@ -36,9 +36,7 @@ async function save(page, name, meta, opts = {}) {
     await page.waitForTimeout(150);
     await el.screenshot({ path: png });
   } else if (opts.viewportOnly) await page.screenshot({ path: png });
-  // SP の全長撮影は DPR2 だと出力が 16384 device px を超え Chromium が "Unable to capture screenshot" を返す（実測: 記事 10758 css px）。
-  // 全長画像は JPEG 化で長辺 1600 に縮むため、SP 全長だけ CSS px（1x）で出力する。情報量は縮小後と同等。
-  else await page.screenshot({ path: png, fullPage: true, scale: meta.dev === "sp" ? "css" : "device" });
+  else await page.screenshot({ path: png, fullPage: true });
   toJpeg(png, jpg);
   if (!fs.statSync(jpg).size) throw new Error(`空の JPEG: ${jpg}`);
   index.push({ file: name + ".jpg", ...meta });
@@ -57,15 +55,25 @@ async function open(ctx, url) {
   return page;
 }
 
+async function main() {
 const browser = await chromium.launch();
 try {
 for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
   const ctx = await browser.newContext(cfg);
 
   // 記事 全長 + 画面単位（本文中の商品カード束の反映）
+  // SP の全長撮影は DPR2 だと出力が 16384 device px を超え Chromium が "Unable to capture screenshot" を返す（実測: 記事 10758 css px、LP 8788 css px も失敗、
+  // scale:"css" も不安定）。全長画像は JPEG 化で長辺 1600 に縮むため、SP 全長だけ deviceScaleFactor 1 の別 context で撮る（幅 390・mobile エミュレーションは同じ）。
   let p = await open(ctx, ARTICLE);
   await assertNoPrBadge(p, ".wp-block-post-content .is-style-wt-product", `article ${dev}`);
-  await save(p, `article-full-${dev}`, { face: "article", part: "full", variant: "default", dev });
+  if (dev === "sp") {
+    const ctx1 = await browser.newContext({ ...cfg, deviceScaleFactor: 1 });
+    const p1 = await open(ctx1, ARTICLE);
+    await save(p1, `article-full-${dev}`, { face: "article", part: "full", variant: "default", dev });
+    await ctx1.close();
+  } else {
+    await save(p, `article-full-${dev}`, { face: "article", part: "full", variant: "default", dev });
+  }
   const vh = cfg.viewport.height, total = await p.evaluate(() => document.documentElement.scrollHeight);
   for (let i = 0, y = 0; y < total && i < 12; i++, y += vh) {
     await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(150);
@@ -91,17 +99,14 @@ for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
 
   await ctx.close();
 }
-} catch (error) {
+} finally {
   await browser.close();
-  try { fs.rmSync(TMP, { recursive: true, force: true }); } catch (_) { /* 一時 dir が残っても既存証跡には影響しない */ }
-  throw error;
 }
-await browser.close();
 
 const catalogFile = path.join(OUT, "..", "CATALOG-INDEX.json");
 const existing = JSON.parse(fs.readFileSync(catalogFile, "utf8"));
 // 予定集合 = INDEX 上の cta-product / article-full / article-screen（同名置換）+ 新規 4 枚（box-qa-modal / box-qa-modal-open × SP/PC）。
-// 撮影集合と完全一致しなければ置換に入らない（一部だけ撮れた状態を成功扱いにしない）。
+// 新規 4 枚は初回は追加、再実行時（既に INDEX にある）は同名置換として扱う。撮影集合と完全一致しなければ置換に入らない。
 const NEW_FILES = ["box-qa-modal-sp.jpg", "box-qa-modal-open-sp.jpg", "box-qa-modal-pc.jpg", "box-qa-modal-open-pc.jpg"];
 const planned = new Set(existing.filter((entry) => /^(cta-product|article-full|article-screen-\d{2})-(sp|pc)\.jpg$/.test(entry.file)).map((entry) => entry.file).concat(NEW_FILES));
 const captured = new Set(index.map((entry) => entry.file));
@@ -110,40 +115,55 @@ const unknown = [...captured].filter((f) => !planned.has(f));
 if (missing.length || unknown.length || captured.size !== index.length) {
   throw new Error(`撮影集合が予定集合と一致しません（予定 ${planned.size} / 撮影 ${captured.size}）。欠落: ${missing.join(", ") || "なし"} / 予定外: ${unknown.join(", ") || "なし"}`);
 }
-const alreadyKnownNew = NEW_FILES.filter((f) => existing.some((entry) => entry.file === f));
-if (alreadyKnownNew.length) throw new Error(`新規予定のファイルが既に INDEX にあります: ${alreadyKnownNew.join(", ")}`);
 for (const entry of index) {
   const tmp = path.join(TMP, entry.file);
   if (!fs.existsSync(tmp) || !fs.statSync(tmp).size) throw new Error(`一時ディレクトリ内の JPEG が見つからないか空です: ${tmp}`);
 }
 
-// 置換: 旧画像を退避 → 新画像を配置。途中で失敗したら退避先から復元して元の例外を再送出する。
-// 成功後の退避・一時ディレクトリ削除は復元処理と分離し、失敗しても配置済みの新画像には触れず警告のみ残す。
+// 置換: 旧画像を退避 → 新画像を配置。途中で失敗したら、配置済みの新画像を取り除き（退避のない新規分は削除）、退避先から旧画像を復元して元の例外を再送出する。
+// 成功後の退避ディレクトリ削除は復元処理と分離し、失敗しても配置済みの新画像には触れず警告のみ残す。
 const backupDir = fs.mkdtempSync(path.join(OUT, ".reaction6-backup-"));
-const backedUp = [];
+const backedUp = new Set();
+const placed = [];
+let keepBackup = false;
 try {
   for (const entry of index) {
     const target = path.join(OUT, entry.file);
-    if (fs.existsSync(target)) { fs.renameSync(target, path.join(backupDir, entry.file)); backedUp.push(entry.file); }
+    if (fs.existsSync(target)) { fs.renameSync(target, path.join(backupDir, entry.file)); backedUp.add(entry.file); }
   }
-  for (const entry of index) fs.renameSync(path.join(TMP, entry.file), path.join(OUT, entry.file));
+  for (const entry of index) { fs.renameSync(path.join(TMP, entry.file), path.join(OUT, entry.file)); placed.push(entry.file); }
 } catch (error) {
   const restoreFailures = [];
+  for (const file of placed) {
+    // 退避のある同名置換は下で旧画像の rename が上書きする。退避のない新規分は INDEX 未登録の孤児になるため取り除く。
+    if (backedUp.has(file)) continue;
+    try { fs.unlinkSync(path.join(OUT, file)); } catch (removeError) { restoreFailures.push({ file, error: String(removeError) }); }
+  }
   for (const file of backedUp) {
     const backupPath = path.join(backupDir, file);
     if (!fs.existsSync(backupPath)) continue;
     try { fs.renameSync(backupPath, path.join(OUT, file)); } catch (restoreError) { restoreFailures.push({ file, error: String(restoreError) }); }
   }
-  if (restoreFailures.length) console.error(`画像の復元に失敗しました。退避ディレクトリを手動で確認してください: ${backupDir}`, restoreFailures);
+  if (restoreFailures.length) { keepBackup = true; console.error(`画像の復元に失敗しました。退避ディレクトリを手動で確認してください: ${backupDir}`, restoreFailures); }
   throw error;
+} finally {
+  if (!keepBackup) {
+    try { fs.rmSync(backupDir, { recursive: true, force: true }); } catch (cleanupError) { console.error(`退避ディレクトリの削除に失敗しました（配置済みの画像はそのまま）: ${backupDir}`, cleanupError); }
+  }
 }
-for (const [dir, label] of [[backupDir, "退避"], [TMP, "一時"]]) {
-  try { fs.rmSync(dir, { recursive: true, force: true }); } catch (cleanupError) { console.error(`${label}ディレクトリの削除に失敗しました（配置済みの新画像はそのまま）: ${dir}`, cleanupError); }
-}
-// INDEX は画像の配置が完了した後に、一時ファイルへ書いてから rename で置換する。
+// INDEX は画像の配置が完了した後に、一時ファイルへ書いてから rename で置換する。既存エントリは同名置換、未登録の新規分だけ末尾に追加。
 const replacement = new Map(index.map((entry) => [entry.file, entry]));
-const added = index.filter((entry) => NEW_FILES.includes(entry.file));
+const known = new Set(existing.map((entry) => entry.file));
+const added = index.filter((entry) => !known.has(entry.file));
 const indexTmp = catalogFile + ".reaction6.tmp";
 fs.writeFileSync(indexTmp, JSON.stringify(existing.map((entry) => replacement.get(entry.file) || entry).concat(added), null, 1) + "\n");
 fs.renameSync(indexTmp, catalogFile);
-console.log("reaction6 done", index.length, "entries", existing.length + added.length);
+console.log("reaction6 done", index.length, "entries", existing.length + added.length, "added", added.length);
+}
+
+// 一時ディレクトリは成否に関わらず最後に削除する（撮影中・照合・配置のどこで失敗しても残さない）。退避ディレクトリだけは復元失敗時に保持する。
+try {
+  await main();
+} finally {
+  try { fs.rmSync(TMP, { recursive: true, force: true }); } catch (cleanupError) { console.error(`一時ディレクトリの削除に失敗しました: ${TMP}`, cleanupError); }
+}
