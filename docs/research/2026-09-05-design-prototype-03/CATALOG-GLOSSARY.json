@@ -362,7 +362,8 @@
    "variants": {
     "none": "固定 CTA を表示しない型。",
     "sp-bottom-bar": "SP の画面下端に CTA バーを固定する型。",
-    "float-cta": "画面内に小さな浮遊 CTA を固定する型。"
+    "float-cta": "画面内に小さな浮遊 CTA を固定する型。",
+    "line-sticky": "左下に追尾する LINE ボタン（float-cta と同じ位置。同時には 1 つだけ）。台帳では sp-bottom-bar が多数派で、LINE の追尾は少数の型。"
    }
   },
   "lp-footer-layout": {
@@ -416,7 +417,17 @@
    "variants": {
     "full": "機能、手順、実績、料金、FAQ などを一通り表示する型。",
     "short": "主要説明と料金・FAQ に絞る短縮型。",
-    "trust": "ロゴ、数値、声、バッジなど信頼要素を優先する型。"
+    "trust": "ロゴ、数値、声、バッジなど信頼要素を優先する型。",
+    "extended": "段4 の全区間に LP パーツ 7 種（導入事例・口コミ・第三者確認・資料 DL・申込フォーム・LINE 導線）を加えた 18 区間。高さの制約で上から順に分割撮影（1/N…N/N）。",
+    "extended 1/3": "extended の SP 分割 1/3。",
+    "extended 2/3": "extended の SP 分割 2/3。",
+    "extended 3/3": "extended の SP 分割 3/3。",
+    "extended 1/6": "extended の PC 分割 1/6。",
+    "extended 2/6": "extended の PC 分割 2/6。",
+    "extended 3/6": "extended の PC 分割 3/6。",
+    "extended 4/6": "extended の PC 分割 4/6。",
+    "extended 5/6": "extended の PC 分割 5/6。",
+    "extended 6/6": "extended の PC 分割 6/6。"
    }
   },
   "pr-notice": {
@@ -518,6 +529,57 @@
    "desc": "フッター法的表記の下に置くテーマ名クレジット（PO 反応 16 回目「フッターに宣伝用のテーマ名を入れない？（笑）」への Claude 案）。footer_credit 軸で none / text。",
    "variants": {
     "text": "「Theme: HELIX WT」の 1 行リンクを右寄せで表示。既定は none（非表示）。"
+   }
+  },
+  "lp-interview": {
+   "label": "LP 導入事例（インタビューカード）",
+   "desc": "導入事例・利用者の声をカードで見せる区間（PO 反応 16 回目 WT-EVT-0268、Claude 案）。既定は台帳 lp-recapture の多数派 summary-card。",
+   "variants": {
+    "summary-card": "顔写真・肩書・見出し・効果数値・要約を 1 枚に収め、記事へは遷移しない（台帳の多数派 4/7）。",
+    "link-card": "顔写真・肩書・見出しだけを置き「記事を読む」で事例記事へ遷移する型（1/7）。",
+    "logo-only": "導入企業のロゴ枠だけを並べる型（2/7）。"
+   }
+  },
+  "lp-review": {
+   "label": "LP 口コミ評価",
+   "desc": "利用者の評価を見せる区間（WT-EVT-0268、Claude 案）。既定は台帳の多数派 quote+photo。",
+   "variants": {
+    "quote-photo": "顔写真 + 引用 + 属性の 3 枚（台帳 6/9）。",
+    "stars-count": "星の平均点 + 件数 + 点数分布バー（台帳 2/9）。",
+    "satisfaction-number": "満足度の大きな数値 + 調査条件の注記（台帳 1/9）。"
+   }
+  },
+  "lp-rating": {
+   "label": "LP 第三者による確認（外部評価）",
+   "desc": "受賞・認証・掲載などの外部評価枠（WT-EVT-0268、Claude 案）。固有名は使わず汎用枠。既定は台帳の多数派 certification。",
+   "variants": {
+    "certification": "認証・許認可の枠 3 つ（台帳 5/14）。",
+    "client-logos": "取引先ロゴ枠 8 つ（台帳 3/14）。",
+    "award-badge": "受賞・ランキング・媒体掲載の枠 3 つ（台帳 3/14 + 2 + 1）。"
+   }
+  },
+  "lp-download": {
+   "label": "LP 資料ダウンロード",
+   "desc": "資料（PDF）を受け取る区間（WT-EVT-0268、Claude 案）。既定は台帳の多数派 button-to-form。",
+   "variants": {
+    "button-to-form": "表紙画像 + 内容 3 点 + ボタン（フォームへ遷移。台帳 8/13）。",
+    "form-inline": "表紙画像の横に氏名・メールの 2 項目フォームを同居（台帳 3/13）。"
+   }
+  },
+  "lp-form": {
+   "label": "LP 申込フォーム",
+   "desc": "相談・申込のフォーム区間（WT-EVT-0268、Claude 案）。既定は台帳の多数派 external。",
+   "variants": {
+    "external": "別ページのフォームへ遷移するボタン（所要時間・項目数を明示。台帳 7/14）。",
+    "inline": "ページ内に 5 項目（氏名・会社・メール・電話・相談内容）+ 同意チェックを埋め込む型。"
+   }
+  },
+  "lp-line": {
+   "label": "LP LINE 導線",
+   "desc": "LINE で相談へ送る区間（WT-EVT-0268、Claude 案）。既定は台帳の多数派 button。リンク先は PoC のダミー。",
+   "variants": {
+    "button": "友だち追加ボタン 1 つ + 注記（台帳 2/3）。",
+    "qr": "PC は QR 枠 + 説明、SP では QR を隠してボタンに切り替える（台帳 1/3）。"
    }
   }
  },

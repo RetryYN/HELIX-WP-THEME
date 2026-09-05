@@ -7677,6 +7677,50 @@
      "cta-band--three"
     ],
     "pass": true
+   },
+   {
+    "variant": "extended",
+    "visible": [
+     "numbers",
+     "features",
+     "steps",
+     "logos",
+     "interview",
+     "testimonials",
+     "review",
+     "pricing",
+     "comparison",
+     "faq",
+     "download",
+     "badges",
+     "rating",
+     "cta-band--one",
+     "cta-band--two",
+     "form",
+     "line",
+     "cta-band--three"
+    ],
+    "expected": [
+     "numbers",
+     "features",
+     "steps",
+     "logos",
+     "interview",
+     "testimonials",
+     "review",
+     "pricing",
+     "comparison",
+     "faq",
+     "download",
+     "badges",
+     "rating",
+     "cta-band--one",
+     "cta-band--two",
+     "form",
+     "line",
+     "cta-band--three"
+    ],
+    "pass": true
    }
   ],
   "pass": true
@@ -8148,6 +8192,101 @@
      "#voices"
     ],
     "expectedHref": "#voices",
+    "secondaryPass": true,
+    "pass": true
+   },
+   {
+    "variant": "extended",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#comparison",
+      "targetId": "comparison",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-form",
+      "targetId": "lp-form",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-form",
+      "targetId": "lp-form",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#line",
+      "targetId": "line",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#comparison",
+      "targetId": "comparison",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "secondaryButtons": [
+     "#comparison"
+    ],
+    "expectedHref": "#comparison",
     "secondaryPass": true,
     "pass": true
    }
@@ -10035,7 +10174,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.834216)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.834119)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -10145,6 +10284,1349 @@
   },
   "pass": true
  },
+ "lpParts": {
+  "sp": [
+   {
+    "dev": "sp",
+    "part": "interview",
+    "v": "summary-card",
+    "body": true,
+    "shown": [
+     "summary-card"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 184
+   },
+   {
+    "dev": "sp",
+    "part": "interview",
+    "v": "link-card",
+    "body": true,
+    "shown": [
+     "link-card"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 326,
+      "h": 143.140625,
+      "ok": true
+     },
+     {
+      "tag": "a",
+      "w": 326,
+      "h": 119.34375,
+      "ok": true
+     },
+     {
+      "tag": "a",
+      "w": 326,
+      "h": 119.34375,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 82
+   },
+   {
+    "dev": "sp",
+    "part": "interview",
+    "v": "logo-only",
+    "body": true,
+    "shown": [
+     "logo-only"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 36
+   },
+   {
+    "dev": "sp",
+    "part": "review",
+    "v": "quote-photo",
+    "body": true,
+    "shown": [
+     "quote-photo"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 109
+   },
+   {
+    "dev": "sp",
+    "part": "review",
+    "v": "stars-count",
+    "body": true,
+    "shown": [
+     "stars-count"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 44
+   },
+   {
+    "dev": "sp",
+    "part": "review",
+    "v": "satisfaction-number",
+    "body": true,
+    "shown": [
+     "satisfaction-number"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 69
+   },
+   {
+    "dev": "sp",
+    "part": "rating",
+    "v": "certification",
+    "body": true,
+    "shown": [
+     "certification"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 39
+   },
+   {
+    "dev": "sp",
+    "part": "rating",
+    "v": "client-logos",
+    "body": true,
+    "shown": [
+     "client-logos"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 48
+   },
+   {
+    "dev": "sp",
+    "part": "rating",
+    "v": "award-badge",
+    "body": true,
+    "shown": [
+     "award-badge"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 45
+   },
+   {
+    "dev": "sp",
+    "part": "download",
+    "v": "button-to-form",
+    "body": true,
+    "shown": [
+     "button-to-form"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "資料の表紙イメージ",
+      "ok": true
+     }
+    ],
+    "text": 58
+   },
+   {
+    "dev": "sp",
+    "part": "download",
+    "v": "form-inline",
+    "body": true,
+    "shown": [
+     "form-inline"
+    ],
+    "taps": [
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "button",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 2,
+    "labelled": true,
+    "forms": 1,
+    "submitButtons": 0,
+    "pocButtons": 1,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "資料の表紙イメージ",
+      "ok": true
+     }
+    ],
+    "text": 100
+   },
+   {
+    "dev": "sp",
+    "part": "form",
+    "v": "external",
+    "body": true,
+    "shown": [
+     "external"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 63
+   },
+   {
+    "dev": "sp",
+    "part": "form",
+    "v": "inline",
+    "body": true,
+    "shown": [
+     "inline"
+    ],
+    "taps": [
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "textarea",
+      "w": 276,
+      "h": 99.5625,
+      "ok": true
+     },
+     {
+      "tag": "button",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 6,
+    "labelled": true,
+    "forms": 1,
+    "submitButtons": 0,
+    "pocButtons": 1,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 117
+   },
+   {
+    "dev": "sp",
+    "part": "line",
+    "v": "button",
+    "body": true,
+    "shown": [
+     "button"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 273.421875,
+      "h": 52,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 35
+   },
+   {
+    "dev": "sp",
+    "part": "line",
+    "v": "qr",
+    "body": true,
+    "shown": [
+     "qr"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 273.421875,
+      "h": 52,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": false,
+    "spBtnVisible": true,
+    "imgs": [],
+    "text": 50
+   }
+  ],
+  "pc": [
+   {
+    "dev": "pc",
+    "part": "interview",
+    "v": "summary-card",
+    "body": true,
+    "shown": [
+     "summary-card"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 184
+   },
+   {
+    "dev": "pc",
+    "part": "interview",
+    "v": "link-card",
+    "body": true,
+    "shown": [
+     "link-card"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 346.65625,
+      "h": 146.84375,
+      "ok": true
+     },
+     {
+      "tag": "a",
+      "w": 346.671875,
+      "h": 146.84375,
+      "ok": true
+     },
+     {
+      "tag": "a",
+      "w": 346.65625,
+      "h": 146.84375,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 82
+   },
+   {
+    "dev": "pc",
+    "part": "interview",
+    "v": "logo-only",
+    "body": true,
+    "shown": [
+     "logo-only"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 36
+   },
+   {
+    "dev": "pc",
+    "part": "review",
+    "v": "quote-photo",
+    "body": true,
+    "shown": [
+     "quote-photo"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 109
+   },
+   {
+    "dev": "pc",
+    "part": "review",
+    "v": "stars-count",
+    "body": true,
+    "shown": [
+     "stars-count"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 44
+   },
+   {
+    "dev": "pc",
+    "part": "review",
+    "v": "satisfaction-number",
+    "body": true,
+    "shown": [
+     "satisfaction-number"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 69
+   },
+   {
+    "dev": "pc",
+    "part": "rating",
+    "v": "certification",
+    "body": true,
+    "shown": [
+     "certification"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 39
+   },
+   {
+    "dev": "pc",
+    "part": "rating",
+    "v": "client-logos",
+    "body": true,
+    "shown": [
+     "client-logos"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 48
+   },
+   {
+    "dev": "pc",
+    "part": "rating",
+    "v": "award-badge",
+    "body": true,
+    "shown": [
+     "award-badge"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 45
+   },
+   {
+    "dev": "pc",
+    "part": "download",
+    "v": "button-to-form",
+    "body": true,
+    "shown": [
+     "button-to-form"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 144.390625,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "資料の表紙イメージ",
+      "ok": true
+     }
+    ],
+    "text": 58
+   },
+   {
+    "dev": "pc",
+    "part": "download",
+    "v": "form-inline",
+    "body": true,
+    "shown": [
+     "form-inline"
+    ],
+    "taps": [
+     {
+      "tag": "input",
+      "w": 838,
+      "h": 46.890625,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 838,
+      "h": 46.890625,
+      "ok": true
+     },
+     {
+      "tag": "button",
+      "w": 156,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 2,
+    "labelled": true,
+    "forms": 1,
+    "submitButtons": 0,
+    "pocButtons": 1,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "資料の表紙イメージ",
+      "ok": true
+     }
+    ],
+    "text": 100
+   },
+   {
+    "dev": "pc",
+    "part": "form",
+    "v": "external",
+    "body": true,
+    "shown": [
+     "external"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 186.640625,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 63
+   },
+   {
+    "dev": "pc",
+    "part": "form",
+    "v": "inline",
+    "body": true,
+    "shown": [
+     "inline"
+    ],
+    "taps": [
+     {
+      "tag": "input",
+      "w": 501,
+      "h": 46.890625,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 501,
+      "h": 46.890625,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 501,
+      "h": 46.890625,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 501,
+      "h": 46.890625,
+      "ok": true
+     },
+     {
+      "tag": "textarea",
+      "w": 1022,
+      "h": 104.671875,
+      "ok": true
+     },
+     {
+      "tag": "button",
+      "w": 170,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 6,
+    "labelled": true,
+    "forms": 1,
+    "submitButtons": 0,
+    "pocButtons": 1,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 117
+   },
+   {
+    "dev": "pc",
+    "part": "line",
+    "v": "button",
+    "body": true,
+    "shown": [
+     "button"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 273.421875,
+      "h": 52,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 35
+   },
+   {
+    "dev": "pc",
+    "part": "line",
+    "v": "qr",
+    "body": true,
+    "shown": [
+     "qr"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": true,
+    "spBtnVisible": false,
+    "imgs": [],
+    "text": 50
+   }
+  ],
+  "noJs": [
+   {
+    "dev": "sp-nojs",
+    "part": "interview",
+    "v": "summary-card",
+    "body": true,
+    "shown": [
+     "summary-card"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 184
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "interview",
+    "v": "link-card",
+    "body": true,
+    "shown": [
+     "link-card"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 326,
+      "h": 143.140625,
+      "ok": true
+     },
+     {
+      "tag": "a",
+      "w": 326,
+      "h": 119.34375,
+      "ok": true
+     },
+     {
+      "tag": "a",
+      "w": 326,
+      "h": 119.34375,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 82
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "interview",
+    "v": "logo-only",
+    "body": true,
+    "shown": [
+     "logo-only"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 36
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "review",
+    "v": "quote-photo",
+    "body": true,
+    "shown": [
+     "quote-photo"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     },
+     {
+      "alt": "",
+      "ok": true
+     }
+    ],
+    "text": 109
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "review",
+    "v": "stars-count",
+    "body": true,
+    "shown": [
+     "stars-count"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 44
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "review",
+    "v": "satisfaction-number",
+    "body": true,
+    "shown": [
+     "satisfaction-number"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 69
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "rating",
+    "v": "certification",
+    "body": true,
+    "shown": [
+     "certification"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 39
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "rating",
+    "v": "client-logos",
+    "body": true,
+    "shown": [
+     "client-logos"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 48
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "rating",
+    "v": "award-badge",
+    "body": true,
+    "shown": [
+     "award-badge"
+    ],
+    "taps": [],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 45
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "download",
+    "v": "button-to-form",
+    "body": true,
+    "shown": [
+     "button-to-form"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "資料の表紙イメージ",
+      "ok": true
+     }
+    ],
+    "text": 58
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "download",
+    "v": "form-inline",
+    "body": true,
+    "shown": [
+     "form-inline"
+    ],
+    "taps": [
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "button",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 2,
+    "labelled": true,
+    "forms": 1,
+    "submitButtons": 0,
+    "pocButtons": 1,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [
+     {
+      "alt": "資料の表紙イメージ",
+      "ok": true
+     }
+    ],
+    "text": 100
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "form",
+    "v": "external",
+    "body": true,
+    "shown": [
+     "external"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 63
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "form",
+    "v": "inline",
+    "body": true,
+    "shown": [
+     "inline"
+    ],
+    "taps": [
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "input",
+      "w": 276,
+      "h": 45.1875,
+      "ok": true
+     },
+     {
+      "tag": "textarea",
+      "w": 276,
+      "h": 99.5625,
+      "ok": true
+     },
+     {
+      "tag": "button",
+      "w": 276,
+      "h": 48,
+      "ok": true
+     }
+    ],
+    "inputs": 6,
+    "labelled": true,
+    "forms": 1,
+    "submitButtons": 0,
+    "pocButtons": 1,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 117
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "line",
+    "v": "button",
+    "body": true,
+    "shown": [
+     "button"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 273.421875,
+      "h": 52,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": null,
+    "spBtnVisible": null,
+    "imgs": [],
+    "text": 35
+   },
+   {
+    "dev": "sp-nojs",
+    "part": "line",
+    "v": "qr",
+    "body": true,
+    "shown": [
+     "qr"
+    ],
+    "taps": [
+     {
+      "tag": "a",
+      "w": 273.421875,
+      "h": 52,
+      "ok": true
+     }
+    ],
+    "inputs": 0,
+    "labelled": true,
+    "forms": 0,
+    "submitButtons": 0,
+    "pocButtons": 0,
+    "qrVisible": false,
+    "spBtnVisible": true,
+    "imgs": [],
+    "text": 50
+   }
+  ],
+  "sticky": {
+   "sp": {
+    "visible": true,
+    "w": 152.5625,
+    "h": 52,
+    "fixed": true,
+    "floatHidden": true,
+    "inViewport": true,
+    "hiddenByDefault": true
+   },
+   "pc": {
+    "visible": true,
+    "w": 152.5625,
+    "h": 52,
+    "fixed": true,
+    "floatHidden": true,
+    "inViewport": true,
+    "hiddenByDefault": true
+   },
+   "noJs": {
+    "visible": true,
+    "w": 152.5625,
+    "h": 52,
+    "fixed": true,
+    "floatHidden": true,
+    "inViewport": true,
+    "hiddenByDefault": true
+   }
+  },
+  "sameNoJs": true,
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "contrastVariantsPass": true,
@@ -10152,7 +11634,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 69,
+  "pass": 70,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -10224,6 +11706,7 @@
    "depthFloat": true,
    "tableRich": true,
    "footerCredit": true,
+   "lpParts": true,
    "prAutoFixtures": true
   }
  },
