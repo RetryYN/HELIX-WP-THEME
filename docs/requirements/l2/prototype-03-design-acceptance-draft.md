@@ -595,7 +595,7 @@
 2. sections を 3 構成（full/short/trust）から選べ、各構成で期待した slot だけが可視になる — 検証: `verify.json.lpSections`（full: 12 slot、short: 4 slot、trust: 該当 slot、いずれも `visible === expected`、`pass:true`）。
 3. form-inline の hero で、JS 無効でも `method=post` `action=/lp/`、`input id` と `label[for]` の対応が成立する — 検証: `verify.json.lpFormNoJs`（`method:"post", action:"/lp/", inputId:"lp-email-split", labelFor:"lp-email-split", pass:true`）。
 4. CTA style 3 型（solid/outline/pill）のいずれも header CTA・hero CTA・CTA帯・pricing 見出し/価格/CTA が AA コントラスト（本文 4.5:1、大文字 3:1）を満たす — 検証: `verify.json.lpContrast`（3 style × 各 21 項目、すべて `pass:true`。例: solid header CTA 5.18:1、CTA帯見出し 17.13:1）。
-5. **fullbleed hero の自動コントラスト guard は平均輝度による概算（`ratioText`）では合格する（`verify.json.lpFullbleedContrast`、`pass:true`。h1 4.77:1、lead 5.46:1）が、`ratioWorstPixel`（文字要素の矩形に対応する画像領域内の最大輝度とスクリムの近似から算出、`scripts/verify.mjs:124-137,150-151`。画像全体の最明画素ではない）は h1 1.84・lead 3.26 でいずれも基準（大文字3:1・本文4.5:1）未達。文字直下の実際の背景画素との適合は未検証**（判定は `ratioText` のみを見ており `ratioWorstPixel` は合否に使われていない）。
+5. **fullbleed hero の自動コントラスト guard は平均輝度による概算（`ratioText`）では合格する（`verify.json.lpFullbleedContrast`、`pass:true`。h1 4.77:1、lead 5.46:1）が、`ratioWorstPixel`（文字要素の矩形に対応する画像領域内の最大輝度とスクリムの近似から算出。`lpFullbleedContrast` の実装は `scripts/verify.mjs:407` から、標本化・合否判定は同422〜430行。画像全体の最明画素ではない）は h1 1.84・lead 3.26 でいずれも基準（大文字3:1・本文4.5:1）未達。文字直下の実際の背景画素との適合は未検証**（判定は `ratioText` のみを見ており `ratioWorstPixel` は合否に使われていない）。
 6. fixed 3 型（none/sp-bottom-bar/float-cta）のいずれでも、シェア float・totop ボタンと重ならずタップ到達可能 — 検証: `verify.json.lpFixedOverlap.sp/.pc`（各 variant で `intersections: []`, `clickable` 全 true, `pass:true`）。
 7. hero 画像（split/fullbleed/product）に `fetchpriority="high"` と `width`/`height` があり、text-only は画像を持たない — 検証: `verify.json.lpLcpHero.variants`（各 `attrs.fetchpriority==="high"`、`pass:true`）。
 8. reduced-motion 環境で LP の出現要素が非表示のまま残らず、CTA/section の transition が停止する — 検証: `verify.json.lpReducedMotion`（`revealHidden:0, actionTransition:"none", sectionTransition:"none", pass:true`）。
@@ -657,15 +657,15 @@
 
 ## 未実装・未検証で試作 03 が触れていないデザイン系要件
 
-**選定基準**: 要件の (c) に、①条件そのものが 1 つも書けない（全面未実装）、②書いた条件の一部に検証手段がない・未実測と明記した、のいずれかに該当する要件を挙げる（一部の条件だけ検証できた要件も含む。全条件が検証できた要件は挙げない）。
+**選定基準**: 要件の (c) に、①条件そのものが 1 つも書けない（全面未実装）、②書いた条件の一部に検証手段がない・未実測と明記した、のいずれかに該当する要件を挙げる（一部の条件だけ検証できた要件も含む。全条件が検証できた要件は挙げない）。**照合方法**: 本文の (c) から「未検証」「検証手段なし」「未実測」「未判定」等の語を含む記述を grep で全件抽出し、それぞれの記述が属する要件 ID が本一覧の同じ要件 ID の項目に内容として含まれることを確認した（35 件・要件 ID の重複なし）。
 
-1. WT-FR-ZONE-01 — 空 slot が DOM に要素を残さない（お知らせ帯 OFF 時）ことの検証（`verify.json.noJs`の`vis()`判定は非表示とDOM削除を区別せず、専用の検査がない）
+1. WT-FR-ZONE-01 — 空 slot が DOM に要素を残さない（お知らせ帯 OFF 時）ことの検証（`verify.json.noJs`の`vis()`判定は非表示とDOM削除を区別せず、専用の検査がない）。また `fixedOverlap.sp.intersects` はシェア float と totop の重なりのみを測り、本文本体や CTA との被覆有無は未検証
 2. WT-FR-ZONE-02 — ゾーン語彙 23 種 JSON schema・overrides first-match-wins（軸方式に部分対応のみ）
 3. WT-FR-ZONE-03 — 同意バー・広告面積上限・初回モーダル禁止（一部のみ、同意バー自体が未実装）
 4. WT-FR-PARTS-01 — footer_layout の残り 2 型（single-row / columns-3）の JS 無効時の挙動（`footerNoJs` は既定の sitemap 型 1 ケースのみ検査）
 5. WT-FR-PARTS-02 — テンプレ変種名・footer カラム可変・wp_navigation ref 参照
 6. WT-FR-VOCAB-01 — メディア枠 5 択（自前SVG・アップロード・写真・番号・なし）の切替検証（README に個別記載がなく未実測）、および `WT-AC-VOCAB-01A`（14 語彙×受け皿の対応表、実使用上位7種・販売系4種の描画）は未判定（件数上限条件 `WT-AC-VOCAB-01B` のみ PASS 判定済み）
-7. WT-FR-VOCAB-03 — 広告パーツ・アフィリエイト/商品リンクの有無からの機械判定・自動出力（試作03は全記事既定ON+手動offで代替、機械判定自体は未実装）
+7. WT-FR-VOCAB-03 — 広告パーツ・アフィリエイト/商品リンクの有無からの機械判定・自動出力（試作03は全記事既定ON+手動offで代替、機械判定自体は未実装）。試作03の実測は`wt_pr`既定ON状態のみで、記事単位で`wt_pr=off`にした場合の表記消失は未実測（手動off実測未取得）
 8. WT-FR-VOCAB-04 — url_to_postid 直呼び・外部 URL 検証付き HTTP（解決方式）
 9. WT-FR-SECTION-01 — 見出し区間の中間 JSON 出力・安定 ID・見出し ID 付与規則自体（目次件数の一致以外に検証手段がなく全面未検証）
 10. WT-FR-SECTION-02 — 区間単位のリライト・diff/apply/rollback・計測
@@ -691,10 +691,12 @@
 30. WT-FR-IMG-02 — 非同期ジョブ（WP-Cron等）・dry-run
 31. WT-FR-IMG-03 — alt必須警告UI・GIF動画置換提案・Discover代表画像検査（alt属性が空文字で保証される点のみ(c)に条件あり、警告UI・置換提案・Discover検査自体は未実装）
 32. WT-FR-TYPO-01 — 和文改行制御の個別CSSプロパティ（`text-wrap`等）、横スクロール量の検査
-33. WT-FR-NAV-01 — BreadcrumbList JSON-LD の同一正本検証（表示は確認できたが構造化データ出力は未検証）
-34. WT-FR-LP-01 — CPT化（`show_in_rest`によるREST分離）・ディレクトリ非依存URL・種別（通常/イベント/比較特設）のJSON列挙（試作03は固定ページ+専用テンプレートで代替、CPT化自体は未実装。`_wp_page_template`保存値・`page-template-page-lp`classもverify.json未検証）
-35. WT-FR-LP-02 — イベント計測（表示/スクロール/CTAクリック/送信のデータ層契約送信、CV ID・A/B variant ID の付与）。加えて `lpAnchorNav`（`lp_header:none` のアンカーナビ）はリンク先IDの存在とリンク自身の可視性のみ検査しており、遷移先要素（ジャンプ先セクション）自体の可視性は未検証
+33. WT-FR-NAV-01 — BreadcrumbList JSON-LD の同一正本検証（表示は確認できたが構造化データ出力は未検証）。加えて、パンくずの文字直下背景とのコントラスト適合は、平均輝度による概算（`ratioText`）では基準を満たすが`ratioWorstPixel`（A#0 3.87・A#1 3.56）はいずれも4.5未満で、文字直下の実際の背景画素との適合自体は未検証
+34. WT-FR-LP-01 — CPT化（`show_in_rest`によるREST分離）・ディレクトリ非依存URL・種別（通常/イベント/比較特設）のJSON列挙（試作03は固定ページ+専用テンプレートで代替、CPT化自体は未実装。`_wp_page_template`保存値・`page-template-page-lp`classもverify.json未検証）。また `lpAnchorNav`（`lp_header:none` のアンカーナビ、(c)条件4）はリンク先IDの存在とリンク自身の可視性のみ検査しており、遷移先要素（ジャンプ先セクション）自体の可視性は未検証
+35. WT-FR-LP-02 — イベント計測（表示/スクロール/CTAクリック/送信のデータ層契約送信、CV ID・A/B variant ID の付与）。fullbleed hero の文字直下背景とのコントラスト適合は、平均輝度による概算（`ratioText`）では基準を満たすが`ratioWorstPixel`（h1 1.84・lead 3.26）はいずれも基準未達で、文字直下の実際の背景画素との適合自体は未検証（アンカー遷移先の可視性未検証は WT-FR-LP-01 の項目を参照）
 
 以上 35 件（本一覧は「(c) を全く記載していない全面未実装」と「(c) に一部条件はあるが別の一部が未実装・未検証」の両方を含む）。
 
-対象 37 件のうち、(c) に検証手段付きの条件を 1 件以上記載した要件は 29 件（WT-FR-IMG-03 は alt 属性保証の条件のみ (c) にあるため「1 件以上記載」に含む）、(c) を完全に保留またはすべての条件が検証不能と判明した要件は 8 件（WT-FR-SECTION-01 / WT-FR-SECTION-02 / WT-FR-LOOK-02 / WT-FR-LOOK-04 / WT-FR-BANNER-02 / WT-FR-IMG-01 / WT-FR-IMG-02 / WT-FR-TYPO-01）。WT-FR-LP-01 は (c) に条件 4 件を記載しているため「(c) を保留した要件」には含めない（CPT 化に限定した未実装として上記一覧に計上）。なお WT-NFR-PERF-02/03 の (c) にある「JS無効環境での表示成立」条件は WT-NFR-PERF-01 との共通 no-JS 検査であり、これを CSS転送量予算・Lighthouse/CWV閾値そのものの達成証拠と混同しない（予算・閾値自体は本一覧の26〜28番として未実装に計上している）。
+**集計基準**: 「検証手段あり」は、(c) の条件のうち少なくとも 1 件が、引用した実測値・検査結果から明確な PASS/FAIL の受入判定に至っている要件を数える。「全面未検証」は、(c) の全条件が受入判定に至らず（条件が書けない、または書いた条件がすべて「未検証」「検証手段なし」で締められている）要件を数える。この基準では、平均輝度の概算値の引用だけで実際の受入判定（文字直下の背景での適合）に至っていない場合は「検証手段あり」に数えない。
+
+対象 37 件のうち、(c) に検証手段付きの条件を 1 件以上記載した要件は 28 件（WT-FR-IMG-03 は alt 属性保証の条件が明確に PASS 相当のため「1 件以上記載」に含む）、(c) の全条件が受入判定に至っていない要件は 9 件（WT-FR-SECTION-01 / WT-FR-SECTION-02 / WT-FR-LOOK-02 / WT-FR-LOOK-04 / WT-FR-BANNER-02 / WT-FR-IMG-01 / WT-FR-IMG-02 / WT-FR-TYPO-01 / WT-FR-NAV-01）。**WT-FR-NAV-01 は (c) の 2 条件がいずれも「未検証」で締められている（条件1は平均輝度の概算値は引用するが最終的な適合判定は未検証、条件2はJSON-LD自体が未検証）ため、本集計では全面未検証に含める。** WT-FR-LP-01 は (c) に受入判定に至った条件を含むため「全面未検証」には含めない（CPT 化に限定した未実装として上記一覧に計上）。なお WT-NFR-PERF-02/03 の (c) にある「JS無効環境での表示成立」条件は WT-NFR-PERF-01 との共通 no-JS 検査であり、これを CSS転送量予算・Lighthouse/CWV閾値そのものの達成証拠と混同しない（予算・閾値自体は本一覧の26〜28番として未実装に計上している）。
