@@ -1,23 +1,41 @@
 <!-- wp:group {"tagName":"footer","className":"wt-footer","backgroundColor":"surface","layout":{"type":"constrained","wideSize":"1120px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}}} -->
 <footer class="wp-block-group wt-footer has-surface-background-color has-background">
-<!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"top"},"style":{"spacing":{"blockGap":"1.5rem"}}} -->
-<div class="wp-block-group alignwide">
-<!-- wp:group {"layout":{"type":"flow"},"style":{"spacing":{"blockGap":"0.5rem"}}} -->
-<div class="wp-block-group"><!-- wp:site-title {"level":0} /-->
-<!-- wp:paragraph {"fontSize":"s","textColor":"mute"} -->
-<p class="has-mute-color has-text-color has-s-font-size">中小企業のための集客と運用のパートナー。</p>
-<!-- /wp:paragraph --></div>
+<!-- wp:group {"align":"wide","className":"wt-footer__brand","layout":{"type":"flow"}} -->
+<div class="wp-block-group alignwide wt-footer__brand"><!-- wp:site-title {"level":0} /-->
+<!-- wp:paragraph {"fontSize":"s","textColor":"mute"} --><p class="has-mute-color has-text-color has-s-font-size">読みものと案内をまとめたフッター枠。</p><!-- /wp:paragraph --></div>
 <!-- /wp:group -->
-<!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"1.25rem"}},"fontSize":"s"} -->
-<!-- wp:navigation-link {"label":"会社概要","url":"#","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"プライバシーポリシー","url":"#","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"特定商取引法に基づく表記","url":"#","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"お問い合わせ","url":"#","kind":"custom"} /-->
-<!-- /wp:navigation -->
+<!-- wp:html -->
+<section class="wt-footer__above" aria-label="フッター直上の導線">
+  <div class="wt-footer__above-slot wt-footer__above-slot--none"></div>
+  <div class="wt-footer__above-slot wt-footer__above-slot--cta-band"><p class="wt-eyebrow">NEXT STEP</p><h2>続けて読むための案内</h2><a class="wt-footer__action" href="/category/topic-index/">カテゴリを見る</a></div>
+  <div class="wt-footer__above-slot wt-footer__above-slot--banner-row"><a href="/category/topic-index/">全体の案内</a><a href="/category/topic-one/">最初の読みもの</a><a href="/category/topic-two/">比較の読みもの</a></div>
+  <div class="wt-footer__above-slot wt-footer__above-slot--newsletter"><div><p class="wt-eyebrow">UPDATE</p><h2>更新のお知らせを受け取る</h2></div><form class="wt-footer__form" action="#" method="post"><label><span class="screen-reader-text">メールアドレス</span><input type="email" name="email" placeholder="メールアドレス" /></label><button type="submit">登録</button></form></div>
+</section>
+<div class="wt-footer__layouts">
+  <section class="wt-footer__layout wt-footer__layout--sitemap" aria-label="サイトマップ">
+    <div class="wt-footer__sitemap">
+      <details open><summary>読む</summary><ul><li><a href="/category/topic-index/">カテゴリ一覧</a></li><li><a href="/category/topic-one/">読み進める</a></li><li><a href="/category/topic-two/">比べる</a></li></ul></details>
+      <details open><summary>使う</summary><ul><li><a href="/">案内を見る</a></li><li><a href="/category/topic-three/">選ぶ</a></li><li><a href="/">更新情報</a></li></ul></details>
+      <details open><summary>知る</summary><ul><li><a href="/">このページについて</a></li><li><a href="/">読み方</a></li><li><a href="/">よくある質問</a></li></ul></details>
+      <details open><summary>案内</summary><ul><li><a href="/">お問い合わせ</a></li><li><a href="/">利用規約</a></li><li><a href="/">プライバシー</a></li></ul></details>
+    </div>
+  </section>
+  <nav class="wt-footer__layout wt-footer__layout--single-row" aria-label="フッターナビ"><a href="/category/topic-index/">カテゴリ一覧</a><a href="/">案内を見る</a><a href="/">お問い合わせ</a><a href="/">利用規約</a></nav>
+  <section class="wt-footer__layout wt-footer__layout--columns-3" aria-label="フッター案内">
+    <div><h2>読む</h2><a href="/category/topic-one/">読み進める</a><a href="/category/topic-two/">比べる</a></div>
+    <div><h2>使う</h2><a href="/category/topic-three/">選ぶ</a><a href="/">更新情報</a></div>
+    <div><h2>案内</h2><a href="/">お問い合わせ</a><a href="/">利用規約</a></div>
+  </section>
 </div>
-<!-- /wp:group -->
-<!-- wp:paragraph {"align":"left","fontSize":"xs","textColor":"mute","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-left has-mute-color has-text-color has-xs-font-size" style="margin-top:var(--wp--preset--spacing--50)">© 2026 Example Inc.</p>
-<!-- /wp:paragraph -->
+<section class="wt-footer__extra" aria-label="フッター付属情報">
+  <div class="wt-footer-extra-slot wt-footer-extra-slot--sns"><h2>SNSアイコン</h2><div class="wt-social"><a href="#" aria-label="共有先 1"><span aria-hidden="true">1</span></a><a href="#" aria-label="共有先 2"><span aria-hidden="true">2</span></a><a href="#" aria-label="共有先 3"><span aria-hidden="true">3</span></a></div></div>
+  <div class="wt-footer-extra-slot wt-footer-extra-slot--sites"><h2>関連サイト</h2><ul><li><a href="/">関連サイト 1</a></li><li><a href="/">関連サイト 2</a></li></ul></div>
+  <div class="wt-footer-extra-slot wt-footer-extra-slot--badges"><h2>認証バッジ</h2><div class="wt-badges"><span>認証</span><span>安全</span></div></div>
+  <div class="wt-footer-extra-slot wt-footer-extra-slot--address"><h2>住所</h2><address>設定された所在地</address></div>
+</section>
+<section class="wt-footer__legal wt-footer__legal--links"><p>© 2026 サンプル</p><nav aria-label="法定リンク"><a href="/">利用規約</a><a href="/">プライバシー</a><a href="/">お問い合わせ</a></nav></section>
+<section class="wt-footer__legal wt-footer__legal--only"><p>© 2026 サンプル</p></section>
+<a class="wt-totop" href="#" aria-label="ページ上部へ">↑</a>
+<!-- /wp:html -->
 </footer>
 <!-- /wp:group -->
