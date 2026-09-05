@@ -1,7 +1,7 @@
 # 要求
 
 正本入口は [`authority.md`](./authority.md)。起点は [`docs/planning/L0-agent-controlled-variety.md`](../planning/L0-agent-controlled-variety.md)。
-L1 の 5 sub-doc、L2 discovery / prototype、L3 strict JSON IR（precompile inventory、compile は iteration 2 待ち）、L10〜L12 test design を分離している。
+L1 の 5 sub-doc、L2 discovery / prototype（デザイン系受入条件ドラフトは [`l2/prototype-03-design-acceptance-draft.md`](./l2/prototype-03-design-acceptance-draft.md)、PO 反応待ち・要求正本ではない）、L3 strict JSON IR（precompile inventory、compile は iteration 2 待ち）、L10〜L12 test design を分離している。
 
 PO への問いは `discovery/candidate-projection.json` の `unresolved`（2 件: G3 承認と開発スタイル。WT-Q-* は総数 81 件、うち採用 77 件・reject 2 件）。通常の問いは「X ができる。採用するか」、直接反映分は「反映内容一覧の確認」の形。
 
