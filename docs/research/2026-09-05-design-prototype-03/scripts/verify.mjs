@@ -1150,7 +1150,7 @@ if (WPCLIDIR) {
         const labelled = inputs.every((i) => i.type === "checkbox" ? !!i.closest("label") : !!(i.id && document.querySelector(`label[for="${i.id}"]`)));
         const forms = el ? el.querySelectorAll("form").length + (el.tagName === "FORM" ? 1 : 0) : 0;
         const submitButtons = el ? el.querySelectorAll("button[type=submit], input[type=submit], button:not([type])").length : 0;
-        const pocButtons = el ? el.querySelectorAll("form[data-wt-poc-form=no-submit] button[type=button]").length + (el.tagName === "FORM" && el.dataset.wtPocForm === "no-submit" ? el.querySelectorAll("button[type=button]").length : 0) : 0;
+        const pocButtons = el ? (el.tagName === "FORM" && el.dataset.wtPocForm === "no-submit" ? el.querySelectorAll("button[type=button]").length : el.querySelectorAll("form[data-wt-poc-form=no-submit] button[type=button]").length) : 0;
         const qr = el ? el.querySelector(".wt-lp-line__qr") : null; const spBtn = el ? el.querySelector(".wt-lp-line__btn--sp") : null;
         const imgs = el ? Array.from(el.querySelectorAll("img")).map((i) => ({ alt: i.getAttribute("alt"), ok: i.complete && i.naturalWidth > 0 })) : [];
         return { body: document.body.classList.contains(`wt-lp-${part}-${v}`), shown, taps, inputs: inputs.length, labelled, forms, submitButtons, pocButtons, qrVisible: qr ? vis(qr) : null, spBtnVisible: spBtn ? vis(spBtn) : null, imgs, text: el ? el.textContent.replace(/\s+/g, " ").trim().length : 0 };
@@ -1172,7 +1172,8 @@ if (WPCLIDIR) {
   const okItem = (r) => {
     const m = MIN[`${r.part}/${r.v}-${r.dev.startsWith("pc") ? "pc" : "sp"}`] || MIN[`${r.part}/${r.v}`] || {};
     if ((m.imgs || 0) > r.imgs.length || (m.taps || 0) > r.taps.length || (m.inputs || 0) > (r.inputs || 0)) return false;
-    return r.body && r.shown.length === 1 && r.shown[0] === r.v && r.text > 0 && r.taps.every((t) => t.ok) && r.labelled // タップ要素の有無は MIN で型ごとに要求（表示だけの型は 0 でよい） && r.imgs.every((i) => i.alt !== null && i.ok)
+    // タップ要素の有無は MIN で型ごとに要求（表示だけの型は 0 でよい）。画像は全件 alt あり・読み込み済み
+    return r.body && r.shown.length === 1 && r.shown[0] === r.v && r.text > 0 && r.taps.every((t) => t.ok) && r.labelled && r.imgs.every((i) => i.alt !== null && i.ok)
     && (r.part !== "form" || (r.v === "external" ? r.forms === 0 && r.taps.some((t) => t.tag === "a") : r.forms >= 1 && r.submitButtons === 0 && r.pocButtons >= 1))
     && (r.part !== "download" || (r.v === "form-inline" ? r.forms >= 1 && r.submitButtons === 0 && r.pocButtons >= 1 : r.forms === 0))
     && (!(r.part === "line" && r.v === "qr") || (r.dev === "pc" ? r.qrVisible === true && r.spBtnVisible === false : r.qrVisible === false && r.spBtnVisible === true));
