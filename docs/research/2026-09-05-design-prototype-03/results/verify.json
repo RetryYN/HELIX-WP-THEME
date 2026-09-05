@@ -9,7 +9,7 @@
   "productVisible": true,
   "tableVisible": true,
   "relatedCards": 7,
-  "textChars": 3048,
+  "textChars": 3154,
   "headerVisible": true,
   "announceExists": true,
   "announceVisible": true,
@@ -203,10 +203,10 @@
    "pass": true
   },
   "catalog": {
-   "total": 31,
-   "ok44": 31,
-   "ok24": 31,
-   "inlineText": 1,
+   "total": 36,
+   "ok44": 36,
+   "ok24": 36,
+   "inlineText": 2,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
@@ -2275,10 +2275,61 @@
   "offsetRatio": 0.8073676215277777,
   "pass": true
  },
+ "headingNumberPc": {
+  "exists": true,
+  "numFs": 30,
+  "textFs": 20,
+  "headingHeight": 31,
+  "lineHeight": 28,
+  "notStacked": true,
+  "biggerThanText": true,
+  "pass": true
+ },
+ "headingNumberSp": {
+  "exists": true,
+  "headingHeight": 49.34375,
+  "lineHeight": 24.1777,
+  "linesApprox": 2.0408785781939556,
+  "notStacked": true,
+  "pass": true
+ },
+ "underlineGap": [
+  {
+   "sel": ".is-style-wt-2tone",
+   "exists": true,
+   "gap": 7.2,
+   "pass": true
+  },
+  {
+   "sel": ".is-style-wt-underline",
+   "exists": true,
+   "gap": 7.2,
+   "pass": true
+  },
+  {
+   "sel": ".is-style-wt-dotted",
+   "exists": true,
+   "gap": 6,
+   "pass": true
+  },
+  {
+   "sel": ".is-style-wt-underline-thin",
+   "exists": true,
+   "gap": 6,
+   "pass": true
+  }
+ ],
+ "prTagNotStacked": {
+  "exists": true,
+  "width": 29.140625,
+  "height": 17.390625,
+  "ratio": 1.6756513926325247,
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "summary": {
-  "pass": 44,
+  "pass": 48,
   "fail": 0,
   "checks": {
    "noJs": true,
@@ -2324,7 +2375,11 @@
    "tableCaptionSp": true,
    "tableNumFontSize": true,
    "headerInnerWidth": true,
-   "headerCtaOffCenter": true
+   "headerCtaOffCenter": true,
+   "headingNumberPc": true,
+   "headingNumberSp": true,
+   "underlineGap": true,
+   "prTagNotStacked": true
   }
  },
  "pass": true

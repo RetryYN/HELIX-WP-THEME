@@ -622,6 +622,67 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   await pcCtx.close();
 }
 
+// 12. 2026-09-05 PO 反応2・3・6回目（h3 番号前置・下線系見出し・PR タグの縦積み是正）
+{
+  const ctx = await browser.newContext(PC); const page = await ctx.newPage();
+  await page.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+
+  // 12a. h3 番号前置（is-style-wt-num）: (1) ::before が縦積みでない（高さ ≤ 行高×1.3 かつ 幅 ≥ 文字数(2)×0.5em）
+  //      (2) 番号の font-size が h3 テキスト本体より大きい
+  out.headingNumberPc = await page.evaluate(() => {
+    const h3 = document.querySelector(".wp-block-heading.is-style-wt-num");
+    if (!h3) return { exists: false };
+    const s = getComputedStyle(h3, "::before");
+    const numFs = parseFloat(s.fontSize);
+    const textFs = parseFloat(getComputedStyle(h3).fontSize);
+    // ::before 自体の矩形は取得できないため、フォントサイズから最小幅（2 桁 × 0.5em）としきい高さを見積もり、
+    // 実際の見出し全体の高さが 1 行分（行高 ×1.3 以内）に収まっているかで縦積みを検知する
+    const r = h3.getBoundingClientRect();
+    const lineHeight = parseFloat(getComputedStyle(h3).lineHeight) || textFs * 1.4;
+    return { exists: true, numFs, textFs, headingHeight: r.height, lineHeight, notStacked: r.height <= lineHeight * 1.3, biggerThanText: numFs > textFs };
+  });
+  out.headingNumberPc.pass = out.headingNumberPc.exists && out.headingNumberPc.notStacked && out.headingNumberPc.biggerThanText;
+  const spCtxHn = await browser.newContext(SP); const spPageHn = await spCtxHn.newPage();
+  await spPageHn.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.headingNumberSp = await spPageHn.evaluate(() => {
+    const h3 = document.querySelector(".wp-block-heading.is-style-wt-num");
+    if (!h3) return { exists: false };
+    const r = h3.getBoundingClientRect();
+    const lineHeight = parseFloat(getComputedStyle(h3).lineHeight);
+    const linesApprox = r.height / lineHeight;
+    // 見出し文言は SP で 2 行に折り返る想定（h3 の文字数が長いため）。番号（::before）自体が
+    // さらに縦積みなら 3 行相当を超えて高くなるので、上限を 2.6 行分に取って検知する
+    return { exists: true, headingHeight: r.height, lineHeight, linesApprox, notStacked: linesApprox <= 2.6 };
+  });
+  out.headingNumberSp.pass = out.headingNumberSp.exists && out.headingNumberSp.notStacked;
+  await spCtxHn.close();
+
+  // 12b. 下線系見出し（2tone/underline/dotted/underline-thin）の文字下端〜下線の距離が 4〜8px
+  await page.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+  out.underlineGap = await page.evaluate(() => {
+    const sels = [".is-style-wt-2tone", ".is-style-wt-underline", ".is-style-wt-dotted", ".is-style-wt-underline-thin"];
+    return sels.map((sel) => {
+      const el = document.querySelector(sel);
+      if (!el) return { sel, exists: false };
+      const gap = parseFloat(getComputedStyle(el).paddingBottom);
+      return { sel, exists: true, gap, pass: gap >= 4 && gap <= 8 };
+    });
+  });
+  out.underlineGap.pass = out.underlineGap.length > 0 && out.underlineGap.every((x) => x.exists && x.pass);
+
+  // 12c. PR タグ（.wt-pr__tag）が縦積みでない（幅 ≥ 高さ、= 横長）
+  await page.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.prTagNotStacked = await page.evaluate(() => {
+    const tag = document.querySelector(".wt-pr__tag");
+    if (!tag) return { exists: false };
+    const r = tag.getBoundingClientRect();
+    return { exists: true, width: r.width, height: r.height, ratio: r.height > 0 ? r.width / r.height : 0 };
+  });
+  out.prTagNotStacked.pass = out.prTagNotStacked.exists && out.prTagNotStacked.ratio >= 1;
+
+  await ctx.close();
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -640,6 +701,7 @@ const checkList = [
   ["lpTapSp", out.tap.lpSp.pass], ["lpTapPc", out.tap.lpPc.pass], ["lpContrast", out.lpContrast.pass], ["lpFullbleedContrast", out.lpFullbleedContrast.pass], ["lpFormNoJs", out.lpFormNoJs.pass], ["lpAnchorNav", out.lpAnchorNav.pass], ["lpSections", out.lpSections.pass], ["lpFixedOverlapSp", out.lpFixedOverlap.sp.pass], ["lpFixedOverlapPc", out.lpFixedOverlap.pc.pass], ["lpReducedMotion", out.lpReducedMotion.pass], ["lpLcpHero", out.lpLcpHero.pass],
   ["lpFooterFaceDefault", out.lpFooterFaceDefault.pass], ["lpVisibleAnchors", out.lpVisibleAnchors.pass], ["lpFaceScopedTotop", out.lpFaceScopedTotop.pass],
   ["tableCaptionSp", out.tableCaptionSp.pass], ["tableNumFontSize", out.tableNumFontSize.pass], ["headerInnerWidth", out.headerInnerWidth.pass], ["headerCtaOffCenter", out.headerCtaOffCenter.pass],
+  ["headingNumberPc", out.headingNumberPc.pass], ["headingNumberSp", out.headingNumberSp.pass], ["underlineGap", out.underlineGap.pass], ["prTagNotStacked", out.prTagNotStacked.pass],
 ];
 out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;

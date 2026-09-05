@@ -19,7 +19,7 @@ function wt_axes() {
 		'density'  => array( 'normal', array( 'airy', 'normal', 'compact' ) ),
 		'detext'   => array( 'off', array( 'off', 'on' ) ),
 		'nf'       => array( 'popular', array( 'popular', 'cta', 'suggest' ) ),    // 404 変種
-		'pr'       => array( 'on', array( 'on', 'off' ) ),                          // PR 表記の自動挿入
+		'pr'       => array( 'auto', array( 'auto', 'on', 'off' ) ),                // PR 表記の自動挿入。auto は本文先頭の重複表記を検出して抑止する（2026-09-05 PO 反応5回目）
 		'cat_header'    => array( 'name-only', array( 'name-only', 'name-desc', 'hero' ) ),
 		'cat_children' => array( 'chips', array( 'none', 'chips', 'cards', 'steps' ) ),
 		'cat_list'     => array( 'grid', array( 'grid', 'thumb-list', 'featured-grid' ) ),
@@ -155,10 +155,18 @@ add_action( 'init', function () {
 		array( 'core/heading', 'wt-bar', '左バー' ),
 		array( 'core/heading', 'wt-underline', '下線' ),
 		array( 'core/heading', 'wt-band', '帯（塗り）' ),
+		// 2026-09-05 PO 反応2回目: h2 バリエーション強化（+4）。台帳 parts-pattern-taxonomy README §1 の観察型から選定
+		array( 'core/heading', 'wt-numbox', '番号ボックス' ),
+		array( 'core/heading', 'wt-barbg', '左太罫 + 背景淡色' ),
+		array( 'core/heading', 'wt-doubleline', '上下二重線' ),
+		array( 'core/heading', 'wt-label', '英字ラベル付き' ),
 		// h3 向けの控えめな型
 		array( 'core/heading', 'wt-bar-thin', '細い左バー（h3）' ),
 		array( 'core/heading', 'wt-dotted', '点線下線（h3）' ),
 		array( 'core/heading', 'wt-num', '番号前置（h3）' ),
+		// 2026-09-05 PO 反応2回目: h3 バリエーション強化（+2）
+		array( 'core/heading', 'wt-marker', '左マーカー（h3）' ),
+		array( 'core/heading', 'wt-underline-thin', '下線 細（h3）' ),
 		// 囲み（観察: plain-border / tinted / band-title / tab-title / label-title / shadow-card / check-list）
 		array( 'core/group', 'wt-plain-border', '囲み: 罫線' ),
 		array( 'core/group', 'wt-tinted', '囲み: 淡塗り' ),
@@ -166,6 +174,13 @@ add_action( 'init', function () {
 		array( 'core/group', 'wt-tab-title', '囲み: タブタイトル' ),
 		array( 'core/group', 'wt-label-title', '囲み: ラベルタイトル' ),
 		array( 'core/group', 'wt-card-shadow', '囲み: 影カード' ),
+		// 2026-09-05 PO 反応4回目: 囲みバリエーション強化（+5）。台帳 parts-pattern-taxonomy README §1「囲み」の観察型（引用・タブ・チェック等）と
+		// PO 提案（Q&A ボックス・番号手順ボックス・warn の強弱2段）から選定。既存7型は変更していない
+		array( 'core/group', 'wt-quote', '囲み: 引用風' ),
+		array( 'core/group', 'wt-dashed', '囲み: 破線' ),
+		array( 'core/group', 'wt-steps', '囲み: 番号手順' ),
+		array( 'core/group', 'wt-qa', '囲み: Q&A' ),
+		array( 'core/group', 'wt-warn-soft', '囲み: 注意（弱）' ),
 		array( 'core/group', 'wt-note', '注記（囲み）' ),
 		array( 'core/group', 'wt-point', 'ポイント（囲み）' ),
 		array( 'core/group', 'wt-warn', '注意（囲み）' ),
@@ -285,9 +300,21 @@ add_filter( 'the_content', function ( $content ) {
 }, 12 );
 
 // PR 表記（1 行・控えめ）を本文先頭へ。記事 meta wt_pr=off で抑止
+// 2026-09-05 PO 反応5回目:「記事本文にすでに PR 表記が入っている場合、自動挿入が重複する」への是正。
+// pr:auto（既定）は本文先頭 200 字以内に PR / 広告 / アフィリエイト の語を検出したら自動挿入を抑止する。
+// pr:on は検出をせず常に挿入（旧既定の挙動）、pr:off は常に挿入しない。
+// 注: 「本文の語を機械判定してよいか」自体は要求 VOCAB-03 の解釈に関わるため、本実装は PoC の是正であり、
+// 正本の判定方式（語検出の是非・対象語・文字数）を確定させる決定ではない。
 function wt_insert_pr( $content ) {
-	if ( 'on' !== wt_opt( 'pr' ) || str_contains( $content, 'class="wt-pr ' ) ) {
+	$mode = wt_opt( 'pr' );
+	if ( 'off' === $mode || str_contains( $content, 'class="wt-pr ' ) ) {
 		return $content;
+	}
+	if ( 'auto' === $mode ) {
+		$head = mb_substr( wp_strip_all_tags( $content ), 0, 200 );
+		if ( preg_match( '/PR|広告|アフィリエイト/u', $head ) ) {
+			return $content;
+		}
 	}
 	return '<p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p>' . $content;
 }

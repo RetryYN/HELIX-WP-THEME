@@ -23,7 +23,7 @@
 | density | airy / **normal** / compact | `body.wt-density-*`（spacing preset の差し替え） |
 | detext | **off** / on | `body.wt-detext-on` |
 | nf（404） | **popular** / cta / suggest | `body.wt-nf-*` |
-| pr | **on** / off | 本文先頭に PR 表記を自動挿入 |
+| pr（段5 反応5回目で既定変更） | **auto** / on / off | 本文先頭に PR 表記を自動挿入。auto は本文先頭 200 字以内の「PR/広告/アフィリエイト」検出で重複挿入を抑止（旧既定 on は無条件挿入のまま残置） |
 | cat_header | **name-only** / name-desc / hero | `templates/category.html` / `.wt-cat-head`（`core/term-description` を name-desc / hero で表示） |
 | cat_children | none / **chips** / cards / steps | `helix-wt/category-children`（chips / card-grid / numbered-steps） |
 | cat_list | **grid** / thumb-list / featured-grid | `.wt-cat-list`（PC grid、SP は画像左の thumb-list へ自動適用） |
@@ -498,6 +498,57 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 是正後の実機再実行（`results/verify.json`）: `summary` 44 項目 **pass 44 / fail 0**（既存 40 + 新規 4: `tableCaptionSp` / `tableNumFontSize` / `headerInnerWidth` / `headerCtaOffCenter`）、総合 `pass: true`。再撮影は `scripts/shots-reaction1.mjs`（`--stage` 系と同じ merge 方式で `CATALOG-INDEX.json` を更新）で、記事全長 2・画面単位 20・ヘッダー PC 4・比較表 2・404（fullPage キャプチャでヘッダーを含むため wideSize 1120→1440 の影響を受ける）6 の既存 34 枚を差し替え、新規に幅プリセット `width-{narrow,default,wide}-{sp,pc}.jpg` 6 枚を追加した（既存 311 → 317）。段1〜4の他の画面（アイキャッチ・目次・囲み・カテゴリ・footer・LP 等はいずれも該当要素だけを切り出す `selector` 指定でヘッダーを含まない）は本是正の変更が及ばないため再撮影していない。
 
+## 2.15 段5 — PO 反応 2〜5 回目（2026-09-05）の是正
+
+同日中に続けて 4 回の反応を受けた。反応 1 回目と同じ PR（`research/2026-09-05-design-prototype-03-reaction1`）に合流している。反応 6 回目（比較表・pros-cons・レビューバー・ブログカード・PR 参考実装・detext のバリエーション追加、6 語彙にまたがる大きめの追加要求）は本 PR の範囲外とし、別途の追加作業とする（§8 未実装・次タスクに記載）。
+
+### 反応 2 回目（原文）
+
+「H2のチェックマークの見出しはリストと被るから別のに変更を。H3の見出しの番号は見出しテキストより大きくなるべきだな。あと数字が縦に積まれるのはいただけない。見出し系は少しバリエーション強化で。」（後日「番号サイズは見出しテキストより大きく」と訂正）
+
+1. **h2 アイコン前置とリストの被り**: 既定アイコンが `check-circle`（丸背景 + 白チェック）で、`is-style-wt-check` リスト（同じ丸背景 + 白チェック）と見分けがつかなかった。既定を `star`（星）へ変更（`theme.css` `.is-style-wt-icon::before` の base SVG、`functions.php` の `data-wt-icon` 既定値表記）。証跡: `results/h2-icon-{sp,pc}.jpg`。
+2. **h3 番号（`is-style-wt-num`）が数字ごとに縦積み**: 原因は比較表 caption と同種——親が `display:flex` のとき子は既定 `flex-shrink:1` のため、行が窮屈だと自身の内容幅より縮んで折り返す（SP 390 幅で長い見出しが 2 行になると、`::before` の「01」が「0」「1」に割れて表示されていた）。`flex:0 0 auto; white-space:nowrap` を追加して防止。証跡: `results/h3-num-sp.jpg`（1 行に復帰）。
+3. **番号の大きさ**: `.9em`（本文より小さい）→ `1.5em`（**見出しテキスト自身**の 1.5 倍、太字化）。verify: `headingNumberPc`（PC 実測 `numFs` 30px / `textFs` 20px、`biggerThanText: true`）、`headingNumberSp`（縦積み検知: 見出し全体の高さが行高 ×2.6 以内）。
+4. **見出しバリエーション強化**: h2 は既存 6 型（plain / 2tone / icon / bar / underline / band）に **+4**（`numbox` 番号ボックス・`barbg` 左太罫+背景淡色・`doubleline` 上下二重線・`label` 英字ラベル付き）、h3 は既存 3 型（bar-thin / dotted / num）に **+2**（`marker` 左マーカー・`underline-thin` 下線細）。型数そのものは目標にせず、台帳 `../2026-09-05-parts-pattern-taxonomy/README.md` §1 の観察型（h2/h3 行）から重複しない型を選定した（既存型は変更なし、`numbox`/`barbg`/`doubleline`/`label`/`marker`/`underline-thin` は追加のみ）。
+
+| 見出し | 旧 | 新（追加分） |
+|---|---|---|
+| h2 | plain / 2tone / icon / bar / underline / band | + numbox / barbg / doubleline / label |
+| h3 | bar-thin / dotted / num | + marker / underline-thin |
+
+### 反応 3 回目（原文）
+
+「見出しのアンダーバー系は文字からちょっと低い位置にありすぎるな。」
+
+下線系（`is-style-wt-2tone` / `is-style-wt-underline` / `is-style-wt-dotted` / 新規 `is-style-wt-underline-thin`）の `padding-bottom` を固定 rem（.5〜.6rem = 8〜9.6px）から `0.3em`（文字サイズに追従）へ変更し、文字下端〜下線の距離を概ね 4〜8px に収めた。verify: `underlineGap`（4 型すべて実測 6〜7.2px、`pass: true`）。証跡: `results/h2-underline-{sp,pc}.jpg`、`results/h2-2tone-*`・`results/h3-dotted-*`（既存ファイルを再撮影、型自体は変更なし）。
+
+### 反応 4 回目（原文）
+
+「ボックスは悪くないがバリエーションがさみしいから追加で。」
+
+既存 7 型（plain-border / tinted / band-title / tab-title / label-title / card-shadow / check-list 併用）は変更せず、**+5** 型を追加した。選定は台帳 `../2026-09-05-parts-pattern-taxonomy/README.md` §1「囲み」の観察型（引用 2%・タブ 3% 等）と PO 提案（Q&A・番号手順・warn の強弱2段）から。
+
+| 型名 | 用途 | 台帳での観察 |
+|---|---|---|
+| `wt-quote`（引用風） | 短い体験談・レビュー引用の強調 | 「引用」2% |
+| `wt-dashed`（破線） | 一時的な注記・撮影時点限定の断り書き | 台帳に破線の直接観察なし（PO 提案、既存 plain-border の枠種違いとして追加） |
+| `wt-steps`（番号手順） | 手順・使い方の段階説明（`wt-timeline` の縦タイムラインより軽量な箱入り版） | 手順表示は「タブ」3% 系に近い運用（台帳に手順専用の観察行はなし、PO 提案） |
+| `wt-qa`（Q&A） | 記事内の一問一答（`wp:details` の FAQ とは別に、本文中で強調したい Q&A に使う） | 台帳に Q&A 専用の観察行はなし（PO 提案） |
+| `wt-warn-soft`（注意・弱） | 強い警告色（既存 `wt-c-warn` 赤系）ほどではない軽い注意書き | 「注意」系全体の強弱バリエーションとして PO 提案 |
+
+証跡: `results/box-{quote,dashed,steps,qa,warn-soft}-{sp,pc}.jpg`。記事本文（`patterns/compare-article.php`）にも `wt-dashed`（比較表直後の一時的な注記）と `wt-quote`（F3 レビュー末尾の短い引用）を各 1 箇所配置し、文脈内での見え方を確認できるようにした（`results/article-full-{sp,pc}.jpg` に反映）。
+
+### 反応 5 回目（原文）
+
+「CTAはいい感じバリエーションを追加。あと記事本文に入っているからPRの記載は不要。」
+
+1. **記事内 CTA +4**（既存4型 button-only / box-with-copy / banner-image / product-card-bundle は変更なし）: `cta-triple`（比較表直下の3社横並びボタン）・`cta-rank-featured`（ランキング1位強調カード）・`cta-price-tier`（価格 + 特典の2段ボタン）・`cta-textlink`（テキストリンク型「公式サイトで確認 →」）。証跡: `results/cta-{triple,rank,price-tier,textlink}-{sp,pc}.jpg`。
+2. **PR 表記の重複抑止**: `pr` 軸に `auto`（本文先頭 200 字以内に「PR」「広告」「アフィリエイト」を検出したら自動挿入を抑止）を追加し既定を `auto` に変更（旧既定 `on` は常時挿入のまま axis 値として残す、`off` も変更なし）。実機確認: 記事 561（ダミー記事）の本文を一時的に「本記事はPRを含みます。…」へ書き換え、`.wt-pr`（`is-style-wt-pr`）が描画されないことを確認（`is-style-wt-pr` / `wt-pr__tag` の出現回数 0）。対照として記事 562（本文に PR 語なし）では通常どおり `.wt-pr` が 1 回描画されることを確認（出現回数 1）。確認後、記事 561 の本文は元のダミー文へ戻した（一時的な実機確認のみで、リポジトリ・fixture には残していない）。
+   - **注記**: 「本文の語を機械判定して自動挿入を抑止してよいか」自体は要求 VOCAB-03「機械判定」の解釈に関わる論点であり、本是正はその判定方式（対象語・文字数・除外条件）を正式決定するものではない。PoC の是正として `auto` を実装したのみで、正本の仕様確定は別途 PO 判断とする。
+   - ついでに: `.wt-pr__tag`（「PR」の1行タグ）が `.wt-pr` の `display:flex` 内で `flex-shrink:1`（既定）により縮んで P/R に縦積みになる同種の不具合を発見し、`flex:0 0 auto; white-space:nowrap` で修正（比較表 caption・h3 番号と同じ原因）。verify: `prTagNotStacked`（実測 `ratio`＝幅/高さ 1.68、横長であることを確認）。証跡: `results/pr-notice-one-line-{sp,pc}.jpg`。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 48 項目 **pass 48 / fail 0**（反応1回目までの44 + 新規4: `headingNumberPc` / `headingNumberSp` / `underlineGap` / `prTagNotStacked`）、総合 `pass: true`。再撮影は `scripts/shots-reaction2.mjs`（同じ merge 方式）で、記事全長・画面単位（本文が伸びた分、SP は 10→12 画面）・h2 6・h3 4・囲み新規5・CTA 新規4・PR 表記 1 の計 64 枚を差し替え / 追加した（既存 317 → 349）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -530,7 +581,7 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 ## 5. 描画証跡
 
-`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。段4で 48 枚を追加（`lp-*` 42 + LP 面 `footer-layout` 6）、計 311。段5（PO 反応1回目、`scripts/shots-reaction1.mjs`）で記事全長 2・画面単位 20・ヘッダー PC 4・比較表 2・404 6 の既存 34 枚を差し替え、新規に幅プリセット `width-{narrow,default,wide}-{sp,pc}.jpg` 6 枚を追加し、計 317。既存の残り277枚（段1〜4のうち段5で差し替えた34枚を除く）のファイル名・内容は変更していない。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
+`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。段4で 48 枚を追加（`lp-*` 42 + LP 面 `footer-layout` 6）、計 311。段5（PO 反応1回目、`scripts/shots-reaction1.mjs`）で記事全長 2・画面単位 20・ヘッダー PC 4・比較表 2・404 6 の既存 34 枚を差し替え、新規に幅プリセット `width-{narrow,default,wide}-{sp,pc}.jpg` 6 枚を追加し、計 317。反応2〜5回目（`scripts/shots-reaction2.mjs`）で記事全長 2・画面単位 20（SP は本文が伸びて 10→12 枚になり、うち 11・12 は新規）・h2 既存2型（icon/underline）4・h3 既存2型（dotted/num）4・PR 表記 1 の既存 32 枚を差し替え、新規に画面単位 SP 11・12 の 2 枚と h2 +4 型・h3 +2 型・囲み +5 型・CTA +4 型（各 SP/PC）計 30 枚を追加し（新規計 32）、計 349。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
 
 ## 6. 手順（再現）
 
@@ -541,6 +592,7 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 5. 段4のテーマ配置（リポ root から）: `docker cp docs/research/2026-09-05-design-prototype-03/theme/helix-wt/. agent-neo-wp:/var/www/html/wp-content/themes/helix-wt/`。LP ページが未作成なら `docker compose run --rm -T wpcli post create --post_type=page --post_status=publish --post_name=lp --post_title='案内ページ' --page_template=page-lp` で 1 枚だけ作成する。撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage4 true --base <site> --out results`。検証は `NODE_PATH=<playwright の node_modules> node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
 6. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
 7. 段5（PO 反応1回目）のテーマ配置は手順5と同じ `docker cp`。再撮影は `NODE_PATH=<playwright の node_modules> node scripts/shots-reaction1.mjs --base <site> --out results`（`--stage3`/`--stage4` と同じ merge 方式で `CATALOG-INDEX.json` を更新）、検証は手順5と同じ `scripts/verify.mjs`
+8. 段5（PO 反応2〜5回目）は同じ `docker cp` で配置。新規パターン（`patterns/cta-*.php`）追加時は WP core の block pattern スキャンがディレクトリの mtime を見て結果をサイトトランジェント（`wp_theme_files_patterns-*`）にキャッシュするため、**ファイル追加だけでは反映されないことがある**（`docker cp` は個々のファイルの mtime は更新するが、ディレクトリ自体の mtime やキャッシュキーに使う `style.css` の `Version` が変わらないと古いキャッシュが残る）。`style.css` の `Version` を上げる（本 PR は 0.3.0→0.3.1）か `wp transient delete --all` を実行してから確認すること。再撮影は `NODE_PATH=<playwright の node_modules> node scripts/shots-reaction2.mjs --base <site> --out results`（同じ merge 方式）
 
 ## 7. 終了時状態（意図的に残置）
 
@@ -557,6 +609,7 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 - PR 表記の自動挿入は投稿タイプ post 全件（比較媒体前提）。実装ではカテゴリ / 記事 meta で対象を絞る。
 - 4 軸のうち depth-2 の CTA 立体化と `.is-style-wt-raised` の重複、`.wt-c-*` 色 modifier の block style 化（現状は追加 CSS class）は設計で整理。
 - 44px 監査: カード全面クリックの実効領域を数える監査ロジック（`a::after` の矩形を含める）。
+- **PO 反応 6 回目（2026-09-05、中間報告扱い）は本 PR の範囲外**。要求内容: 比較表 +3〜4 型、pros-cons +3 型（用途の1行説明を添える）、レビューバー +3 型、リンクカードの呼称を「ブログカード」へ変更 +3 型、PR 表記を PO 指定の参照テーマ2種（伏せ字: テーマA / テーマB。実名は公開リポに書かず `~/.config/helix-redaction/redaction-map.txt` 側でのみ確認する）を参考に追加、detext（脱テキスト感の軸）に用途別 +3 型。6 語彙にまたがり、うち PR は外部サイトの read-only 観察を要するため、反応1〜5 とは切り離し、PO 判断のうえで別 PR として着手する。
 
 ## 9. 公開安全
 

@@ -21,10 +21,10 @@ $h3 = function ( $style, $id ) {
 	echo '<!-- wp:group {"anchor":"' . $id . '","layout":{"type":"flow"}} --><div class="wp-block-group" id="' . $id . '"><!-- wp:heading {"level":3,"className":"is-style-wt-' . $style . '"} --><h3 class="wp-block-heading is-style-wt-' . $style . '">リフトワン L1：静かで低い位置まで下がる</h3><!-- /wp:heading --></div><!-- /wp:group -->';
 };
 ?>
-<!-- wp:heading --><h2 class="wp-block-heading">h2 6 型</h2><!-- /wp:heading -->
-<?php foreach ( array( 'plain', '2tone', 'icon', 'bar', 'underline', 'band' ) as $s ) { $h2( $s, 'cat-h2-' . $s ); } ?>
-<!-- wp:heading --><h2 class="wp-block-heading">h3 3 型</h2><!-- /wp:heading -->
-<?php foreach ( array( 'bar-thin', 'dotted', 'num' ) as $s ) { $h3( $s, 'cat-h3-' . $s ); } ?>
+<!-- wp:heading --><h2 class="wp-block-heading">h2 10 型</h2><!-- /wp:heading -->
+<?php foreach ( array( 'plain', '2tone', 'icon', 'bar', 'underline', 'band', 'numbox', 'barbg', 'doubleline', 'label' ) as $s ) { $h2( $s, 'cat-h2-' . $s ); } ?>
+<!-- wp:heading --><h2 class="wp-block-heading">h3 5 型</h2><!-- /wp:heading -->
+<?php foreach ( array( 'bar-thin', 'dotted', 'num', 'marker', 'underline-thin' ) as $s ) { $h3( $s, 'cat-h3-' . $s ); } ?>
 <!-- wp:heading --><h2 class="wp-block-heading">囲み 7 型 + 色</h2><!-- /wp:heading -->
 <?php
 $body = '昇降デスクは「最低高さ」が意外に重要です。身長 160cm 前後の人は座り姿勢で 62cm 以下まで下がらないと、肩がこります。';
@@ -43,11 +43,23 @@ $box( 'tab-title', 'point', 'ポイント', '月額の差より、作業時間�
 $box( 'tinted', 'note', '補足', '価格は 2026 年 8 月時点の公式サイトの表示。セール価格は含めていません。', 'cat-box-note' );
 ?>
 </div><!-- /wp:group -->
-<!-- wp:heading --><h2 class="wp-block-heading">記事内 CTA 4 型</h2><!-- /wp:heading -->
+<!-- wp:heading --><h2 class="wp-block-heading">囲み +5（2026-09-05 PO 反応4回目）</h2><!-- /wp:heading -->
+<?php
+$box( 'quote', '', '', '「最初の 1 台としては十分でした」', 'cat-box-quote' );
+$box( 'dashed', '', '一時的な注記', '撮影時点の価格・在庫は変動します。購入前に公式サイトでご確認ください。', 'cat-box-dashed' );
+$box( 'qa', '', '天板は後から交換できますか？', 'メーカー純正の天板のみ対応。他社天板は取付穴の位置が合わないことがあります。', 'cat-box-qa' );
+$box( 'warn-soft', '', 'ご注意（軽微）', '型番により電源プラグの形状が異なります。設置場所のコンセント形状を事前にご確認ください。', 'cat-box-warn-soft' );
+?>
+<!-- wp:group {"className":"is-style-wt-steps","anchor":"cat-box-steps","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-steps" id="cat-box-steps"><!-- wp:paragraph --><p>無料登録して身長と机の高さを入力する</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>2 週間、座り・立ちを交互に試す</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>合わなければ 30 日以内に返品する</p><!-- /wp:paragraph --></div><!-- /wp:group -->
+<!-- wp:heading --><h2 class="wp-block-heading">記事内 CTA 8 型</h2><!-- /wp:heading -->
 <!-- wp:group {"anchor":"cat-cta-product","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-product"><!-- wp:pattern {"slug":"helix-wt/product-bundle"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-cta-banner","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-banner"><!-- wp:pattern {"slug":"helix-wt/cta-banner"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-cta-button","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-button"><!-- wp:pattern {"slug":"helix-wt/cta-button"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-cta-box","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-box"><!-- wp:pattern {"slug":"helix-wt/cta-box"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-cta-triple","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-triple"><!-- wp:pattern {"slug":"helix-wt/cta-triple"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-cta-rank","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-rank"><!-- wp:pattern {"slug":"helix-wt/cta-rank-featured"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-cta-price-tier","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-price-tier"><!-- wp:pattern {"slug":"helix-wt/cta-price-tier"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-cta-textlink","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-cta-textlink"><!-- wp:pattern {"slug":"helix-wt/cta-textlink"} /--></div><!-- /wp:group -->
 <!-- wp:heading --><h2 class="wp-block-heading">比較表・メリデメ・評価バー・リンクカード・PR</h2><!-- /wp:heading -->
 <!-- wp:group {"anchor":"cat-table","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-table"><!-- wp:table {"className":"is-style-wt-compare"} --><figure class="wp-block-table is-style-wt-compare"><table><caption>電動昇降デスク 3 製品の比較</caption><thead><tr><th>項目</th><th>リフトワン L1</th><th>スタンド・ライト S2</th><th>フレックス・プロ F3</th></tr></thead><tbody><tr><td>価格</td><td class="wt-num">59,800 円</td><td class="wt-num">39,800 円</td><td class="wt-num">84,800 円</td></tr><tr><td>昇降範囲</td><td>62〜127 cm</td><td>71〜118 cm</td><td>60〜125 cm</td></tr><tr><td>静音性</td><td><span class="wt-mark">◎</span> 42 dB</td><td><span class="wt-mark">○</span> 48 dB</td><td><span class="wt-mark">◎</span> 41 dB</td></tr><tr><td>保証</td><td>5 年</td><td>2 年</td><td>7 年</td></tr></tbody></table></figure><!-- /wp:table --></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-prosc","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-prosc"><!-- wp:columns {"className":"wt-prosc"} --><div class="wp-block-columns wt-prosc"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"is-style-wt-label-title wt-c-ok","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-label-title wt-c-ok"><!-- wp:paragraph --><p>メリット</p><!-- /wp:paragraph --><!-- wp:list {"className":"is-style-wt-pros"} --><ul class="wp-block-list is-style-wt-pros"><li>62cm まで下がる</li><li>昇降が静か</li><li>5 年保証</li></ul><!-- /wp:list --></div><!-- /wp:group --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"is-style-wt-label-title wt-c-warn","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-label-title wt-c-warn"><!-- wp:paragraph --><p>デメリット</p><!-- /wp:paragraph --><!-- wp:list {"className":"is-style-wt-cons"} --><ul class="wp-block-list is-style-wt-cons"><li>天板は 2 サイズのみ</li><li>最高位置で少し揺れる</li></ul><!-- /wp:list --></div><!-- /wp:group --></div><!-- /wp:column --></div><!-- /wp:columns --></div><!-- /wp:group -->
