@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // shots-reaction5.mjs — 2026-09-05 PO 反応 13 回目（WT-EVT-0254「PRが残ってるけど？」）の是正差分だけを再撮影する。
 // 対象: CTA バナー（catalog の #cat-cta-banner、キャプション先頭の「PR: 」を除去）と、同パターンを本文に含む記事 full / full-screens。
-// CATALOG-INDEX.json は同名ファイルだけ置換する（reaction2 と同じ merge 方式。新規エントリは無い）。
+// 撮影・JPEG 変換はすべて一時ディレクトリで行い、全枚数の非空検査と INDEX 照合を通った後に
+// 旧画像を退避 → 新画像を配置（失敗時は退避先から復元）→ INDEX 書き出しの順で置換する（shots-reaction4 の motion 置換と同じ方式）。
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -23,9 +24,10 @@ function toJpeg(png, jpg) {
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", png, "-vf", "scale='if(gte(iw,ih),min(1600,iw),-2)':'if(gte(iw,ih),-2,min(1600,ih))'", "-q:v", "5", jpg]);
   fs.unlinkSync(png);
 }
-// 撮影は一時 PNG → JPEG 変換の順で行い、既存 JPEG は変換成功時にだけ上書きされる（事前削除しない）。
+// 撮影は一時ディレクトリへ行う。results/ の既存 JPEG は promote() で全枚数の検査を通った後にだけ置換される。
+const TMP = fs.mkdtempSync(path.join(OUT, ".reaction5-capture-"));
 async function save(page, name, meta, opts = {}) {
-  const png = path.join(OUT, name + ".png"), jpg = path.join(OUT, name + ".jpg");
+  const png = path.join(TMP, name + ".png"), jpg = path.join(TMP, name + ".jpg");
   if (opts.selector) {
     const el = page.locator(opts.selector).first();
     await el.waitFor({ state: "visible", timeout: 8000 });
@@ -38,6 +40,14 @@ async function save(page, name, meta, opts = {}) {
   if (!fs.statSync(jpg).size) throw new Error(`空の JPEG: ${jpg}`);
   index.push({ file: name + ".jpg", ...meta });
   console.log("shot", name);
+}
+// verify.mjs の ctaBannerNoPrPrefix と同じ禁止表記。catalog / 記事の両面で、撮影前に要素の存在と表記なしを確認する。
+const PR_RE = /^(PR|広告|アフィリエイト|【PR】|\[PR\])/;
+async function assertNoPr(page, selector, label) {
+  const texts = await page.evaluate((sel) => Array.from(document.querySelectorAll(sel)).map((el) => el.textContent.trim()), selector);
+  if (!texts.length) throw new Error(`${label}: CTA バナーのキャプションが見つかりません（${selector}）`);
+  const bad = texts.filter((t) => PR_RE.test(t));
+  if (bad.length) throw new Error(`${label}: CTA バナーのキャプションに PR 表記が残っています: ${bad.join(" / ")}`);
 }
 async function open(ctx, url) {
   const page = await ctx.newPage();
@@ -52,13 +62,13 @@ for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
 
   // CTA バナー（catalog）: キャプションに「PR: 」が残っていないことを撮影前に確認する
   let p = await open(ctx, CATALOG);
-  const caption = await p.locator("#cat-cta-banner figcaption").first().innerText();
-  if (/^\s*(PR|広告|アフィリエイト)/.test(caption)) throw new Error(`CTA バナーのキャプションに PR 表記が残っています: ${caption}`);
+  await assertNoPr(p, "#cat-cta-banner figcaption", `catalog ${dev}`);
   await save(p, `cta-banner-${dev}`, { face: "article", part: "cta", variant: "banner", dev }, { selector: "#cat-cta-banner" });
   await p.close();
 
   // 記事 全長 + 画面単位（本文中の CTA バナーの反映）
   p = await open(ctx, ARTICLE);
+  await assertNoPr(p, ".wp-block-post-content .is-style-wt-banner figcaption", `article ${dev}`);
   await save(p, `article-full-${dev}`, { face: "article", part: "full", variant: "default", dev });
   const vh = cfg.viewport.height, total = await p.evaluate(() => document.documentElement.scrollHeight);
   for (let i = 0, y = 0; y < total && i < 12; i++, y += vh) {
@@ -75,6 +85,37 @@ const existing = JSON.parse(fs.readFileSync(catalogFile, "utf8"));
 const known = new Set(existing.map((entry) => entry.file));
 const unknown = index.filter((entry) => !known.has(entry.file));
 if (unknown.length) throw new Error(`既存エントリに無いファイルを撮影しました（本スクリプトは置換のみ）: ${unknown.map((e) => e.file).join(", ")}`);
+for (const entry of index) {
+  const tmp = path.join(TMP, entry.file);
+  if (!fs.existsSync(tmp) || !fs.statSync(tmp).size) throw new Error(`一時ディレクトリ内の JPEG が見つからないか空です: ${tmp}`);
+}
+
+// 置換: 旧画像を退避 → 新画像を配置。途中で失敗したら退避先から復元して元の例外を再送出する。
+// 成功後の退避・一時ディレクトリ削除は復元処理と分離し、失敗しても配置済みの新画像には触れず警告のみ残す。
+const backupDir = fs.mkdtempSync(path.join(OUT, ".reaction5-backup-"));
+const backedUp = [];
+try {
+  for (const entry of index) {
+    const target = path.join(OUT, entry.file);
+    if (fs.existsSync(target)) { fs.renameSync(target, path.join(backupDir, entry.file)); backedUp.push(entry.file); }
+  }
+  for (const entry of index) fs.renameSync(path.join(TMP, entry.file), path.join(OUT, entry.file));
+} catch (error) {
+  const restoreFailures = [];
+  for (const file of backedUp) {
+    const backupPath = path.join(backupDir, file);
+    if (!fs.existsSync(backupPath)) continue;
+    try { fs.renameSync(backupPath, path.join(OUT, file)); } catch (restoreError) { restoreFailures.push({ file, error: String(restoreError) }); }
+  }
+  if (restoreFailures.length) console.error(`画像の復元に失敗しました。退避ディレクトリを手動で確認してください: ${backupDir}`, restoreFailures);
+  throw error;
+}
+for (const [dir, label] of [[backupDir, "退避"], [TMP, "一時"]]) {
+  try { fs.rmSync(dir, { recursive: true, force: true }); } catch (cleanupError) { console.error(`${label}ディレクトリの削除に失敗しました（配置済みの新画像はそのまま）: ${dir}`, cleanupError); }
+}
+// INDEX は画像の配置が完了した後に、一時ファイルへ書いてから rename で置換する。
 const replacement = new Map(index.map((entry) => [entry.file, entry]));
-fs.writeFileSync(catalogFile, JSON.stringify(existing.map((entry) => replacement.get(entry.file) || entry), null, 1) + "\n");
+const indexTmp = catalogFile + ".reaction5.tmp";
+fs.writeFileSync(indexTmp, JSON.stringify(existing.map((entry) => replacement.get(entry.file) || entry), null, 1) + "\n");
+fs.renameSync(indexTmp, catalogFile);
 console.log("reaction5 done", index.length, "entries", existing.length);
