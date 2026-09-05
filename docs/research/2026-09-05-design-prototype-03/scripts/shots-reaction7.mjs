@@ -94,14 +94,24 @@ const backupDir = fs.mkdtempSync(path.join(OUT, ".reaction7-backup-"));
 const backedUp = new Set();
 const placed = [];
 let keepBackup = false;
+// INDEX の新内容は先に作っておく（既存エントリは同名置換、未登録の新規分だけ末尾に追加）。
+const replacement = new Map(index.map((entry) => [entry.file, entry]));
+const known = new Set(existing.map((entry) => entry.file));
+const added = index.filter((entry) => !known.has(entry.file));
+const nextIndex = JSON.stringify(existing.map((entry) => replacement.get(entry.file) || entry).concat(added), null, 1) + "\n";
+const indexTmp = catalogFile + ".reaction7.tmp";
 try {
   for (const entry of index) {
     const target = path.join(OUT, entry.file);
     if (fs.existsSync(target)) { fs.renameSync(target, path.join(backupDir, entry.file)); backedUp.add(entry.file); }
   }
   for (const entry of index) { fs.renameSync(path.join(TMP, entry.file), path.join(OUT, entry.file)); placed.push(entry.file); }
+  // INDEX は画像配置の直後・退避削除の前に、一時ファイルへ書いてから rename で置換する（失敗したら下の catch で画像も戻す。rename は原子的で旧 INDEX は壊れない）。
+  fs.writeFileSync(indexTmp, nextIndex);
+  fs.renameSync(indexTmp, catalogFile);
 } catch (error) {
   const restoreFailures = [];
+  try { fs.rmSync(indexTmp, { force: true }); } catch (_) { /* 一時 INDEX が残っても旧 INDEX は無傷 */ }
   for (const file of placed) {
     // 退避のある同名置換は下で旧画像の rename が上書きする。退避のない新規分は INDEX 未登録の孤児になるため取り除く。
     if (backedUp.has(file)) continue;
@@ -119,13 +129,6 @@ try {
     try { fs.rmSync(backupDir, { recursive: true, force: true }); } catch (cleanupError) { console.error(`退避ディレクトリの削除に失敗しました（配置済みの画像はそのまま）: ${backupDir}`, cleanupError); }
   }
 }
-// INDEX は画像の配置が完了した後に、一時ファイルへ書いてから rename で置換する。既存エントリは同名置換、未登録の新規分だけ末尾に追加。
-const replacement = new Map(index.map((entry) => [entry.file, entry]));
-const known = new Set(existing.map((entry) => entry.file));
-const added = index.filter((entry) => !known.has(entry.file));
-const indexTmp = catalogFile + ".reaction7.tmp";
-fs.writeFileSync(indexTmp, JSON.stringify(existing.map((entry) => replacement.get(entry.file) || entry).concat(added), null, 1) + "\n");
-fs.renameSync(indexTmp, catalogFile);
 console.log("reaction7 done", index.length, "entries", existing.length + added.length, "added", added.length);
 }
 

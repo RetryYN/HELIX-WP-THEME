@@ -1083,7 +1083,7 @@ body.wt-related-carousel .wt-related:not(.wt-next) .wp-block-post-template>li{fl
 .wt-graph__labels text{fill:var(--wp--preset--color--mute);text-anchor:middle}
 .wt-graph__line{fill:none;stroke:var(--wt-g-a);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
 .wt-graph__dots circle{fill:var(--wp--preset--color--base);stroke:var(--wt-g-a);stroke-width:2.5}
-@media (max-width:599px){.wt-graph__row{grid-template-columns:minmax(5em,7em) 1fr 3.2em}.wt-graph__donut-wrap{gap:1rem}.wt-graph__donut{width:120px;height:120px}.wt-graph__donut::after{inset:18px}.wt-graph__center b{font-size:1.5rem}}
+@media (max-width:599px){.wt-graph__row{grid-template-columns:minmax(5em,7em) 1fr 3.2em}.wt-graph__donut-wrap{flex-direction:column;align-items:flex-start;gap:.75rem}.wt-graph__donut{width:120px;height:120px;align-self:center}.wt-graph__donut::after{inset:18px}.wt-graph__center b{font-size:1.5rem}.wt-graph__legend--col{flex-direction:row;flex-wrap:wrap;gap:.35rem 1rem}}
 /* 2026-09-05 PO 反応 15 回目（WT-EVT-0259「metrics がスマホでの配置がよくない」）: SP で 3 指標を縦積みにせず 3 列のまま並べ、
    数字を小さくして区切り線を入れる（Claude 案。上の @media で 1 列にしていた指定を上書き） */
 @media (max-width:599px){.wp-block-group.is-style-wt-detext-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding:.9rem .5rem}.wt-detext__metric{padding:0 .25rem}.wt-detext__metric+.wt-detext__metric{border-left:1px solid var(--wp--preset--color--line)}.wt-detext__metric .wt-num{font-size:clamp(1.5rem,7.5vw,2rem)}.wt-detext__metric>small{display:block;font-size:.75rem;line-height:1.3;margin-top:.25rem}}
