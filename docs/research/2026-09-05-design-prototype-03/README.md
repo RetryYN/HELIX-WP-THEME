@@ -774,3 +774,13 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 ### 用語集
 
 `CATALOG-GLOSSARY.json` は本ディレクトリ直下に置く **Claude 案の用語集**である。既存カタログの全 `part` / `variant` と `face` を、日本語の `label`・`desc`、型ごとの見え方、軸ごとの `changes`・`where`・`how_to_tell` に整理している。追加撮影で使う density、detext body、motion frame の値も、同じ形式で説明している。
+
+### 追加是正2: detext 本文差分の実装是正（PR #152）
+
+前項の原因分析後、PO 指示に基づき detext の実装を追加是正した。原因は、h2・ol・blockquote の CSS が `:not([class*="is-style-wt-"])` で広く除外されていたため、実記事で使っている `is-style-wt-2tone` の h2、`is-style-wt-badge-list` の ol、`is-style-wt-quote-mark` の quote に `detext:on` の追加差分が出なかったことである。
+
+- h2 は `is-style-wt-icon` と `is-style-wt-numbox` だけを除外するよう変更した。これらは既存の `::before` を使うため、detext のドットマーカーが既存意匠を奪わないようにするためである。その他の h2 block style（2tone を含む）にはドットマーカーを適用する。
+- ol の `is-style-wt-badge-list` と quote の `is-style-wt-quote-mark` は、既存の丸バッジ／大型引用符が detext と同一の見た目であるため、二重適用を避ける除外を据え置いた。
+- `scripts/verify.mjs` に `detextVisualDiff` を追加し、実記事の h2 / ol / blockquote について detext off/on の computed style を比較する。h2 など少なくとも1要素の差分を必須にし、今回の再発を検出する。compose project dir を `--wpclidir` に渡した実機実行結果は `summary.pass=58`、`summary.fail=0`、`skipped=[]`、`detextVisualDiff.pass=true`、`prAutoFixtures.pass=true` だった。値は off が h2 `before="none"`、ol `listStyleType="none"`、quote `before="“"`、on が h2 `before=""`、ol `listStyleType="none"`、quote `before="“"` で、`is-style-wt-2tone` の h2 に差分が出た。
+- `axis-detext-{off,on}-body-{sp,pc}.jpg` の4枚を修正後の実機表示で再撮影した。SP は各 740×1600（off 159,141 bytes / on 159,408 bytes）、PC は各 1440×900（off 153,481 bytes / on 153,507 bytes）の非空 JPEG で、on では h2 の左に青いドット、off ではドットなしの差を目視確認した。CATALOG-INDEX は全443件を維持し、今回の4エントリ以外の439件は変更していない。
+- `/catalog-03/` でも detext:on/off を確認し、`#cat-h2-icon` は SVG mask、`#cat-h2-numbox` は `counter(wt-h2num, decimal-leading-zero)` の既存 `::before` が on/off で同じ値を保っており、二重化や消失はなかった。目次は on で `counter(toc)`、off で `counter(toc, decimal-leading-zero)` の差分が確認できた。

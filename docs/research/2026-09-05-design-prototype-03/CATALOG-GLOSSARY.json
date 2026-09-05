@@ -64,12 +64,12 @@
     },
     "axis-detext": {
       "label": "detext 軸の比較",
-      "desc": "文字だけでなくマークやバッジで構造を補助する軸の証跡。目次と本文を分けて差分の有無を見る。",
+      "desc": "h2（is-style-wt-icon / is-style-wt-numbox を除く）と目次で効果がある。ol は is-style-wt-badge-list、quote は is-style-wt-quote-mark の記事では既存の意匠と同一のため見た目上の変化はない（既に同じ見た目のため）。",
       "variants": {
         "detext:off": "目次を通常の数字表示にし、本文の detext 装飾も適用しない型。",
-        "detext:on": "目次の章番号を丸バッジにし、適用対象の本文装飾を有効にする型。",
-        "detext:off (body, no visible diff)": "現行本文の対象箇所では除外条件により見た目が変わらない off の比較用。",
-        "detext:on (body, no visible diff)": "現行記事の h2・list・quote が is-style-wt-* のため除外され、目視差分が出ない on の比較用。"
+        "detext:on": "is-style-wt-icon / is-style-wt-numbox 以外の h2 にドットマーカーを付け、目次の章番号を丸バッジにする型。",
+        "detext:off (body, no visible diff)": "本文の既存 block style の意匠をそのまま表示する off の比較用。",
+        "detext:on (body, no visible diff)": "h2 は detext のドットマーカーを追加し、is-style-wt-badge-list の ol と is-style-wt-quote-mark の quote は既存意匠と同一のため二重適用しない on の比較用。"
       }
     },
     "axis-motion": {
