@@ -9,9 +9,11 @@
   "productVisible": true,
   "tableVisible": true,
   "relatedCards": 7,
-  "textChars": 3023,
+  "textChars": 3052,
   "headerVisible": true,
-  "announceHidden": false
+  "announceExists": true,
+  "announceVisible": true,
+  "pass": true
  },
  "reducedMotion": {
   "revealHidden": 0,
@@ -34,12 +36,12 @@
    "pass": true
   },
   {
-   "label": "body link",
-   "color": "rgb(23, 28, 34)",
+   "label": "body link (inline in paragraph)",
+   "color": "rgb(29, 78, 216)",
    "bg": "rgb(255, 255, 255)",
-   "fontSize": 15,
-   "fontWeight": "700",
-   "ratio": 17.13,
+   "fontSize": 17,
+   "fontWeight": "400",
+   "ratio": 6.7,
    "required": 4.5,
    "pass": true
   },
@@ -139,7 +141,11 @@
   "/no-such-page/?wt=nf:popular": 404,
   "/no-such-page/?wt=nf:cta": 404,
   "/no-such-page/?wt=nf:suggest": 404,
-  "robots": "max-image-preview:large",
+  "robotsAll": [
+   "max-image-preview:large",
+   "noindex"
+  ],
+  "noindex": true,
   "has": {
    "apology": true,
    "cause": true,
@@ -151,125 +157,196 @@
    "suggestLinks": 4
   }
  },
- "tap44": {
+ "tap": {
   "404": {
-   "total": 24,
-   "ok": 17,
-   "inlineText": [
-    "a 'デスク比較ノート' 117x21",
-    "a '会計・バックオフィス' 123x17",
-    "a 'Uncategorized' 85x17",
-    "a 'Uncategorized' 85x17",
-    "a 'デスク比較ノート' 117x21"
+   "total": 23,
+   "ok44": 23,
+   "ok24": 23,
+   "inlineText": 0,
+   "srOnly": [
+    "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
-   "violations": [
-    "a.skip-link.screen-reader-text 'Skip to content' 1x1",
-    "a 'Hello world!' 93x22"
-   ]
+   "below44": [],
+   "below24": []
   },
   "article": {
-   "total": 52,
-   "ok": 39,
-   "inlineText": [
-    "a 'デスク比較ノート' 117x21",
-    "a 'ホーム' 37x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'Uncategorized' 85x17",
-    "a 'Uncategorized' 85x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク比較ノート' 117x21"
+   "total": 50,
+   "ok44": 50,
+   "ok24": 50,
+   "inlineText": 2,
+   "srOnly": [
+    "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
-   "violations": [
-    "a.skip-link.screen-reader-text 'Skip to content' 1x1",
-    "a 'Hello world!' 93x22"
-   ]
+   "below44": [],
+   "below24": []
   },
   "article-announce": {
-   "total": 56,
-   "ok": 38,
-   "inlineText": [
-    "a '最新の順位を見る' 107x19",
-    "a 'デスク比較ノート' 117x21",
-    "a 'ホーム' 37x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'Uncategorized' 85x17",
-    "a 'Uncategorized' 85x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク・家具' 74x17",
-    "a 'デスク比較ノート' 117x21"
+   "total": 54,
+   "ok44": 54,
+   "ok24": 54,
+   "inlineText": 2,
+   "srOnly": [
+    "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
-   "violations": [
-    "a.skip-link.screen-reader-text 'Skip to content' 1x1",
-    "a 'Hello world!' 93x22",
-    "a '6 畳の部屋にデスクを置く。120cm と 14' 251x44",
-    "a '昇降デスクのケーブル整理。トレー・スパイラル・マ' 251x44",
-    "a '在宅ワークの椅子 5 脚を 1 か月比較。腰痛持' 251x44",
-    "a 'モニターアームは天板の厚みで選ぶ。3 製品の対応' 251x44"
-   ]
+   "below44": [],
+   "below24": []
   },
   "catalog": {
-   "total": 15,
-   "ok": 12,
-   "inlineText": [
-    "a 'デスク比較ノート' 117x21",
-    "a 'デスク比較ノート' 117x21"
-   ],
-   "violations": [
+   "total": 13,
+   "ok44": 13,
+   "ok24": 13,
+   "inlineText": 1,
+   "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
-   ]
+   ],
+   "below44": [],
+   "below24": []
   }
  },
  "contrastGuard": [
   {
-   "image": "dark",
+   "sel": "#cat-contrast-dark",
    "lum": "dark",
-   "L": 0.026,
-   "headingPx": 18,
-   "bodyPx": 14,
-   "scrimAlpha": 0.5,
+   "sampledL": 0.026,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 100%)",
+   "alphaAtText": 0.371,
+   "imageLAtText": 0.025,
+   "imageLMaxAtText": 0.044,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 14,
+   "fontWeight": "400",
+   "compositeL": 0.016,
+   "ratioWhiteText": 15.98,
+   "ratioWorstPixel": 13.52,
+   "ratioWithoutScrim": 14,
+   "required": 4.5,
+   "pass": true
+  },
+  {
+   "sel": "#cat-contrast-dark",
+   "lum": "dark",
+   "sampledL": 0.026,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 100%)",
+   "alphaAtText": 0.151,
+   "imageLAtText": 0.015,
+   "imageLMaxAtText": 0.024,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 18,
+   "fontWeight": "700",
    "compositeL": 0.013,
-   "ratioWhiteText": 16.67,
-   "ratioWithoutScrim": 13.82,
-   "passBody": true,
-   "passHeading": true
+   "ratioWhiteText": 16.74,
+   "ratioWorstPixel": 14.92,
+   "ratioWithoutScrim": 16.15,
+   "required": 4.5,
+   "pass": true
   },
   {
-   "image": "mid",
+   "sel": "#cat-contrast-mid",
    "lum": "mid",
-   "L": 0.255,
-   "headingPx": 18,
-   "bodyPx": 14,
-   "scrimAlpha": 0.72,
-   "compositeL": 0.071,
-   "ratioWhiteText": 8.65,
-   "ratioWithoutScrim": 3.44,
-   "passBody": true,
-   "passHeading": true
+   "sampledL": 0.255,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
+   "alphaAtText": 0.66,
+   "imageLAtText": 0.246,
+   "imageLMaxAtText": 0.333,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 14,
+   "fontWeight": "400",
+   "compositeL": 0.084,
+   "ratioWhiteText": 7.86,
+   "ratioWorstPixel": 6.43,
+   "ratioWithoutScrim": 3.55,
+   "required": 4.5,
+   "pass": true
   },
   {
-   "image": "light",
+   "sel": "#cat-contrast-mid",
+   "lum": "mid",
+   "sampledL": 0.255,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
+   "alphaAtText": 0.358,
+   "imageLAtText": 0.187,
+   "imageLMaxAtText": 0.225,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 18,
+   "fontWeight": "700",
+   "compositeL": 0.12,
+   "ratioWhiteText": 6.17,
+   "ratioWorstPixel": 5.4,
+   "ratioWithoutScrim": 4.43,
+   "required": 4.5,
+   "pass": true
+  },
+  {
+   "sel": "#cat-contrast-light",
    "lum": "light",
-   "L": 0.882,
-   "headingPx": 18,
-   "bodyPx": 14,
-   "scrimAlpha": 0.86,
-   "compositeL": 0.123,
-   "ratioWhiteText": 6.05,
+   "sampledL": 0.882,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.93) 70%, rgba(0, 0, 0, 0.7) 100%)",
+   "alphaAtText": 0.933,
+   "imageLAtText": 0.882,
+   "imageLMaxAtText": 0.972,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 14,
+   "fontWeight": "400",
+   "compositeL": 0.059,
+   "ratioWhiteText": 9.62,
+   "ratioWorstPixel": 9.12,
    "ratioWithoutScrim": 1.13,
-   "passBody": true,
-   "passHeading": true
+   "required": 4.5,
+   "pass": true
   },
   {
-   "image": "article eyecatch (hero)",
+   "sel": "#cat-contrast-light",
+   "lum": "light",
+   "sampledL": 0.882,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.93) 70%, rgba(0, 0, 0, 0.7) 100%)",
+   "alphaAtText": 0.83,
+   "imageLAtText": 0.833,
+   "imageLMaxAtText": 0.931,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 18,
+   "fontWeight": "700",
+   "compositeL": 0.142,
+   "ratioWhiteText": 5.48,
+   "ratioWorstPixel": 5.04,
+   "ratioWithoutScrim": 1.19,
+   "required": 4.5,
+   "pass": true
+  },
+  {
+   "sel": "article hero h1",
    "lum": "mid",
-   "L": 0.152
+   "sampledL": 0.152,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
+   "alphaAtText": 0.732,
+   "imageLAtText": 0.163,
+   "imageLMaxAtText": 0.974,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 28,
+   "fontWeight": "700",
+   "compositeL": 0.044,
+   "ratioWhiteText": 11.21,
+   "ratioWorstPixel": 3.38,
+   "ratioWithoutScrim": 4.93,
+   "required": 3,
+   "pass": true
+  },
+  {
+   "sel": "article hero meta",
+   "lum": "mid",
+   "sampledL": 0.152,
+   "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0.15) 100%)",
+   "alphaAtText": 0.781,
+   "imageLAtText": 0.21,
+   "imageLMaxAtText": 0.822,
+   "textColor": "rgb(255, 255, 255)",
+   "fontSize": 17,
+   "fontWeight": "400",
+   "compositeL": 0.046,
+   "ratioWhiteText": 10.94,
+   "ratioWorstPixel": 4.56,
+   "ratioWithoutScrim": 4.04,
+   "required": 4.5,
+   "pass": true
   }
  ],
  "headline": {
@@ -280,6 +357,15 @@
   "boxHeight": 25.9375,
   "lines": 1,
   "contentWidth": 358
+ },
+ "table": {
+  "theadIntact": true,
+  "thCount": 4,
+  "thWithScopeCol": 4,
+  "rowHeaders": 8,
+  "dataTh": 32,
+  "caption": true,
+  "pass": true
  },
  "toc": {
   "h2Count": 5,

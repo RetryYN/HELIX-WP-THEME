@@ -538,3 +538,13 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
 body.wt-detext-on .wt-toc__list>li::before{top:.85rem}
 .wp-block-details summary{min-height:44px;display:flex;align-items:center}
 .wt-footer .wp-block-navigation-item__content{display:inline-flex;align-items:center;min-height:44px}
+/* レビュー対応 2026-09-05: 独立リンクの当たり判定 44px（サイト名・パンくず・カテゴリターム・カードタイトル）。行送りは負マージンで据え置き */
+.wp-block-site-title a,.wt-breadcrumb a,.wp-block-post-terms a,.wt-announce__text a{display:inline-flex;align-items:center;min-height:44px;margin-block:calc((1lh - 44px) / 2)}
+.wt-rcard .wp-block-post-title a{display:flex;align-items:flex-start;min-height:44px}
+.wt-rcard .wp-block-post-terms a{margin-block:calc((1lh - 44px) / 2)}
+/* レビュー対応 2026-09-05: 実描画計測で light 画像が 4.5:1 未達だったため、文字位置（下部 0〜60%）でのスクリム最小 alpha を引き上げる */
+body.wt-eyecatch-hero .wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.84) 55%,rgba(0,0,0,.30) 100%)}
+[data-wt-lum="dark"].wt-posthead__img::after,.wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.40) 55%,rgba(0,0,0,0) 100%)!important}
+[data-wt-lum="mid"].wt-posthead__img::after,.wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.80) 0%,rgba(0,0,0,.70) 55%,rgba(0,0,0,.15) 100%)!important}
+[data-wt-lum="light"].wt-posthead__img::after,.wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.93) 70%,rgba(0,0,0,.70) 100%)!important}
+.wt-breadcrumb a{min-width:44px;justify-content:center}

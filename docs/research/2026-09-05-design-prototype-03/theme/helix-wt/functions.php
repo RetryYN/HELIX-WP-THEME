@@ -145,10 +145,21 @@ add_action( 'init', function () {
 	foreach ( $styles as $s ) {
 		register_block_style( $s[0], array( 'name' => $s[1], 'label' => $s[2] ) );
 	}
-	register_post_meta( 'post', 'wt_eyecatch', array( 'type' => 'string', 'single' => true, 'show_in_rest' => true ) );
-	register_post_meta( 'post', 'wt_toc', array( 'type' => 'string', 'single' => true, 'show_in_rest' => true ) );
-	register_post_meta( 'post', 'wt_pr', array( 'type' => 'string', 'single' => true, 'show_in_rest' => true ) );
-	register_post_meta( 'post', 'wt_share', array( 'type' => 'string', 'single' => true, 'show_in_rest' => true ) );
+	// 記事単位の上書き meta: 許容値は wt_axes() と同じ。allowlist 外は既定値へ丸め、REST schema に enum を出す
+	foreach ( array( 'eyecatch', 'toc', 'pr', 'share' ) as $key ) {
+		list( $default, $allowed ) = wt_axes()[ $key ];
+		register_post_meta( 'post', 'wt_' . $key, array(
+			'type'              => 'string',
+			'single'            => true,
+			'default'           => '',
+			'sanitize_callback' => function ( $value ) use ( $default, $allowed ) {
+				$value = is_string( $value ) ? sanitize_key( $value ) : '';
+				return in_array( $value, $allowed, true ) ? $value : $default;
+			},
+			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
+			'show_in_rest'      => array( 'schema' => array( 'type' => 'string', 'enum' => array_merge( array( '' ), $allowed ), 'default' => '' ) ),
+		) );
+	}
 } );
 
 // ---------- 目次: h2/h3 機械導出、h2 ≥ 3 で挿入、記事上書き wt_toc=none で非表示 ----------
@@ -233,7 +244,10 @@ add_filter( 'render_block_core/table', function ( $html, $block ) {
 	}
 	preg_match_all( '/<th[^>]*>(.*?)<\/th>/s', $th[1], $ths );
 	$heads = array_map( 'wp_strip_all_tags', $ths[1] );
-	$html  = preg_replace( '/<th(?![^>]*scope=)([^>]*)>/', '<th scope="col"$1>', $html, count( $heads ) );
+	// thead 内の th だけに scope="col"（タグ境界を限定し <thead> に誤一致しない。件数制限なし）
+	$html  = preg_replace_callback( '/<thead>.*?<\/thead>/s', function ( $thead ) {
+		return preg_replace( '/<th(?=[\s>])(?![^>]*\sscope=)([^>]*)>/', '<th scope="col"$1>', $thead[0] );
+	}, $html, 1 );
 	$html  = preg_replace_callback( '/<tr>(.*?)<\/tr>/s', function ( $row ) use ( $heads ) {
 		if ( str_contains( $row[1], '<th' ) ) {
 			return $row[0];

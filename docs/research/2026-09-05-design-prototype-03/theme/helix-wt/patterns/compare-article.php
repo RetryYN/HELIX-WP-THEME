@@ -12,7 +12,7 @@ $u = get_theme_file_uri( 'assets/img' );
 
 <!-- wp:heading {"className":"is-style-wt-2tone"} --><h2 class="wp-block-heading is-style-wt-2tone">比較の前提と評価軸</h2><!-- /wp:heading -->
 <!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">価格は 2026 年 8 月時点の各社公式サイトの表示（税込）。セール価格は含めていません。</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p>対象は 6〜8 畳の部屋で 1 日 6 時間以上 PC 作業をする人。3 製品を同じ位置に置き、同じ椅子・同じモニターアームで 2 週間ずつ使いました。評価軸は次の 5 点です。</p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p>対象は 6〜8 畳の部屋で 1 日 6 時間以上 PC 作業をする人。3 製品を同じ位置に置き、同じ椅子・同じモニターアームで 2 週間ずつ使いました。評価軸は次の 5 点です。椅子との高さ合わせは<a href="/desk-height-guide/">身長別の目安表</a>を先に確認してください。</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":3,"className":"is-style-wt-bar-thin"} --><h3 class="wp-block-heading is-style-wt-bar-thin">評価軸 5 点</h3><!-- /wp:heading -->
 <!-- wp:list {"className":"is-style-wt-badge-list"} --><ol class="wp-block-list is-style-wt-badge-list"><li><strong>昇降範囲</strong> — 座り姿勢と立ち姿勢の両方で肘が 90 度になるか</li><li><strong>静音性</strong> — 昇降時の音量（1m 離れた位置で測定）</li><li><strong>安定性</strong> — 最高位置でのぐらつき、モニター 2 枚での揺れ</li><li><strong>価格と保証</strong> — 本体価格、保証年数、返品条件</li><li><strong>組み立て</strong> — 1 人で組めるか、所要時間</li></ol><!-- /wp:list -->
 <!-- wp:group {"className":"is-style-wt-tab-title wt-c-point","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-tab-title wt-c-point"><!-- wp:paragraph --><p>ポイント</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>昇降デスクは「最低高さ」が意外に重要です。身長 160cm 前後の人は座り姿勢で 62cm 以下まで下がらないと、肘が上がって肩がこります。</p><!-- /wp:paragraph --></div><!-- /wp:group -->
