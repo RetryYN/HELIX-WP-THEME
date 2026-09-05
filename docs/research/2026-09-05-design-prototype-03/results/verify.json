@@ -269,9 +269,9 @@
    "pass": true
   },
   "lpSp": {
-   "total": 36,
-   "ok44": 36,
-   "ok24": 36,
+   "total": 24,
+   "ok44": 24,
+   "ok24": 24,
    "inlineText": 1,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -281,9 +281,9 @@
    "pass": true
   },
   "lpPc": {
-   "total": 36,
-   "ok44": 36,
-   "ok24": 36,
+   "total": 24,
+   "ok44": 24,
+   "ok24": 24,
    "inlineText": 1,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
@@ -2028,10 +2028,202 @@
   ],
   "pass": true
  },
+ "lpFooterFaceDefault": {
+  "lpHasFace": true,
+  "lpHasSingleRow": true,
+  "articleHasFace": false,
+  "articleHasSingleRow": false,
+  "articleHasSitemap": true,
+  "pass": true
+ },
+ "lpVisibleAnchors": {
+  "variants": [
+   {
+    "variant": "full",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#comparison",
+      "targetId": "comparison",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#comparison",
+      "targetId": "comparison",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "pass": true
+   },
+   {
+    "variant": "short",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#pricing",
+      "targetId": "pricing",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "pass": true
+   },
+   {
+    "variant": "trust",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#voices",
+      "targetId": "voices",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "lpFaceScopedTotop": {
+  "baseline": "16px",
+  "withLpFixed": "16px",
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "summary": {
-  "pass": 37,
+  "pass": 40,
   "fail": 0,
   "checks": {
    "noJs": true,
@@ -2070,7 +2262,10 @@
    "lpFixedOverlapSp": true,
    "lpFixedOverlapPc": true,
    "lpReducedMotion": true,
-   "lpLcpHero": true
+   "lpLcpHero": true,
+   "lpFooterFaceDefault": true,
+   "lpVisibleAnchors": true,
+   "lpFaceScopedTotop": true
   }
  },
  "pass": true

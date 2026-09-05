@@ -45,7 +45,9 @@ function wt_axes() {
 }
 
 function wt_is_lp_page() {
-	return function_exists( 'is_page_template' ) && is_page_template( 'page-lp.html' );
+	// customTemplates は theme.json に登録した slug（拡張子なし）で core に保存される。
+	// is_page_template() は保存値との完全一致判定のため、slug 表記・旧 .html 表記の両方を許容する。
+	return function_exists( 'is_page_template' ) && is_page_template( array( 'page-lp', 'page-lp.html' ) );
 }
 
 function wt_opt( $key ) {
@@ -110,6 +112,10 @@ add_action( 'wp_enqueue_scripts', function () {
 
 // ---------- body class: 選択軸を class へ ----------
 add_filter( 'body_class', function ( $classes ) {
+	// LP 面限定の CSS 分岐（to-top 位置など）が非 LP 面へ漏れないよう、面クラスを別枠で付与する。
+	if ( wt_is_lp_page() ) {
+		$classes[] = 'wt-face-lp';
+	}
 	foreach ( wt_axes() as $key => $def ) {
 		$classes[] = 'wt-' . $key . '-' . wt_opt( $key );
 		$class_key = str_replace( '_', '-', $key );

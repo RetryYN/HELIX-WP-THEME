@@ -16,7 +16,7 @@ $u = get_theme_file_uri( 'assets/img' );
         <h1 id="lp-hero-split-title">比べたあとに、迷わず相談できる案内を。</h1>
         <p class="wt-lp-hero__lead">候補の違いを整理した読者へ、選び方と次の一歩をひとつのページで伝えます。</p>
         <div class="wt-lp-cta wt-lp-cta--single"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a></div>
-        <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" href="#comparison">比較表を見る</a></div>
+        <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="full" href="#comparison">比較表を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="short" href="#pricing">料金を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="trust" href="#voices">利用者の声を見る</a></div>
         <form class="wt-lp-cta wt-lp-cta--form-inline wt-lp-cta-form" method="post" action="/lp/">
           <label for="lp-email-split">メールアドレス</label><div class="wt-lp-cta-form__row"><input id="lp-email-split" name="email" type="email" autocomplete="email" required placeholder="name@example.invalid"><button class="wt-lp-cta-action" type="submit">案内を受け取る</button></div>
         </form>
@@ -33,7 +33,7 @@ $u = get_theme_file_uri( 'assets/img' );
       <h1 id="lp-hero-fullbleed-title">選ぶための情報を、次の行動につなげる。</h1>
       <p class="wt-lp-hero__lead">数字・比較・声を一つにまとめ、読み終わった瞬間の迷いを減らします。</p>
       <div class="wt-lp-cta wt-lp-cta--single"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a></div>
-      <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" href="#comparison">比較表を見る</a></div>
+      <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="full" href="#comparison">比較表を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="short" href="#pricing">料金を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="trust" href="#voices">利用者の声を見る</a></div>
       <form class="wt-lp-cta wt-lp-cta--form-inline wt-lp-cta-form" method="post" action="/lp/">
         <label for="lp-email-fullbleed">メールアドレス</label><div class="wt-lp-cta-form__row"><input id="lp-email-fullbleed" name="email" type="email" autocomplete="email" required placeholder="name@example.invalid"><button class="wt-lp-cta-action" type="submit">案内を受け取る</button></div>
       </form>
@@ -48,7 +48,7 @@ $u = get_theme_file_uri( 'assets/img' );
       <h1 id="lp-hero-product-title">比較した候補を、ひとつの案内に。</h1>
       <p class="wt-lp-hero__lead">仕様と使い方を見比べて、自分に合う選択肢を確認できます。</p>
       <div class="wt-lp-cta wt-lp-cta--single"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a></div>
-      <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" href="#comparison">比較表を見る</a></div>
+      <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="full" href="#comparison">比較表を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="short" href="#pricing">料金を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="trust" href="#voices">利用者の声を見る</a></div>
       <form class="wt-lp-cta wt-lp-cta--form-inline wt-lp-cta-form" method="post" action="/lp/">
         <label for="lp-email-product">メールアドレス</label><div class="wt-lp-cta-form__row"><input id="lp-email-product" name="email" type="email" autocomplete="email" required placeholder="name@example.invalid"><button class="wt-lp-cta-action" type="submit">案内を受け取る</button></div>
       </form>
@@ -62,7 +62,7 @@ $u = get_theme_file_uri( 'assets/img' );
       <h1 id="lp-hero-text-title">選ぶ前の疑問を、短くわかりやすく。</h1>
       <p class="wt-lp-hero__lead">比較記事で得た気づきを、相談・資料・次の確認へ自然につなぎます。</p>
       <div class="wt-lp-cta wt-lp-cta--single"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a></div>
-      <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" href="#comparison">比較表を見る</a></div>
+      <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact">無料で相談する</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="full" href="#comparison">比較表を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="short" href="#pricing">料金を見る</a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="trust" href="#voices">利用者の声を見る</a></div>
       <form class="wt-lp-cta wt-lp-cta--form-inline wt-lp-cta-form" method="post" action="/lp/">
         <label for="lp-email-text">メールアドレス</label><div class="wt-lp-cta-form__row"><input id="lp-email-text" name="email" type="email" autocomplete="email" required placeholder="name@example.invalid"><button class="wt-lp-cta-action" type="submit">案内を受け取る</button></div>
       </form>
@@ -113,6 +113,7 @@ $u = get_theme_file_uri( 'assets/img' );
 <!-- wp:table {"className":"is-style-wt-compare wt-lp-comparison-table"} -->
 <figure class="wp-block-table is-style-wt-compare wt-lp-comparison-table"><table><thead><tr><th>比較項目</th><th>候補 A</th><th>候補 B</th><th>候補 C</th></tr></thead><tbody><tr><td>準備時間</td><td>短い</td><td>標準</td><td>長い</td></tr><tr><td>案内の量</td><td>3 項目</td><td>5 項目</td><td>7 項目</td></tr><tr><td>相談方法</td><td>メール</td><td>フォーム</td><td>電話</td></tr></tbody><tfoot><tr><td colspan="4">比較軸は目的に応じて確認してください。</td></tr></tfoot></table><figcaption>比較表の表示例（PoC 用の架空データ）。</figcaption></figure>
 <!-- /wp:table -->
+</div>
 <!-- /wp:group -->
 </section>
 <!-- /wp:group -->

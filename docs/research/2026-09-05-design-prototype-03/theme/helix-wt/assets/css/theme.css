@@ -692,6 +692,10 @@ body.wt-lp-cta-style-outline .wt-lp-hero--fullbleed .wt-lp-cta-action,body.wt-lp
 .wt-lp-cta-form label{display:block;margin:0 0 .35rem;color:inherit;font-size:var(--wp--preset--font-size--s);font-weight:700}
 .wt-lp-cta-form__row{display:flex;align-items:stretch;gap:.5rem;max-width:34rem}.wt-lp-cta-form input{flex:1 1 auto;min-width:12rem;min-height:48px;padding:0 .75rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--base);color:var(--wp--preset--color--contrast);font:inherit}.wt-lp-cta-form input:focus{outline:2px solid var(--wp--preset--color--accent);outline-offset:2px}
 .wt-lp .wp-block-details summary{display:flex;align-items:center;min-height:44px}
+.wt-lp-cta-action--secondary[data-lp-cta-target]{display:none}
+body.wt-lp-sections-short .wt-lp-cta-action--secondary[data-lp-cta-target=short]{display:inline-flex}
+body.wt-lp-sections-trust .wt-lp-cta-action--secondary[data-lp-cta-target=trust]{display:inline-flex}
+body:not(.wt-lp-sections-short):not(.wt-lp-sections-trust) .wt-lp-cta-action--secondary[data-lp-cta-target=full]{display:inline-flex}
 
 .wt-lp__sections{display:flex;flex-direction:column;width:100%;margin:0;padding:0}.wt-lp__section{display:none!important;order:1}
 body.wt-lp-sections-full .wt-lp__section{display:block!important}
@@ -725,6 +729,6 @@ body.wt-lp-fixed-float-cta .wt-lp-fixed--float-cta{display:inline-flex;position:
   .wt-lp-anchor-nav{justify-content:space-between;gap:.25rem;padding-inline:var(--wp--custom--gutter)}.wt-lp-anchor-nav a{flex:1 1 auto;justify-content:center;padding-inline:.25rem}
   .wt-lp-testimonial-grid,.wt-lp-badge-row{grid-template-columns:1fr}.wt-lp-logo-row{grid-template-columns:repeat(2,minmax(0,1fr))}.wt-lp-logo-row li{min-height:64px}
   body.wt-lp-fixed-sp-bottom-bar.wt-share-float .wt-lp-fixed--sp-bottom-bar{right:calc(1rem + 48px + .5rem)}
-  body.wt-lp-fixed-sp-bottom-bar.wt-footer-totop-button:not(.wt-share-float) .wt-totop{bottom:calc(56px + .75rem)}
+  body.wt-face-lp.wt-lp-fixed-sp-bottom-bar.wt-footer-totop-button:not(.wt-share-float) .wt-totop{bottom:calc(56px + .75rem)}
 }
 @media (prefers-reduced-motion:reduce){.wt-lp *,.wt-lp-header *,.wt-lp-legal *,.wt-lp-fixed,.wt-lp-fixed *{animation:none!important;transition:none!important;transform:none!important}.wt-lp-cta-action:hover{transform:none}}

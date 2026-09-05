@@ -39,7 +39,7 @@
 | tail_share | **none** / icons-row | `.wt-tail__slot--share` > `.wt-tail-icons`（既存 share 軸の bottom / float 共有は `.wt-tail` の外に据え置き、両立） |
 | tail_author | **none** / avatar-bio / avatar-bio-sns / supervisor | `.wt-author-variant--*` |
 | tail_prevnext | **off** / thumb | `helix-wt/tail-prevnext` / `.wt-tail__prevnext` |
-| lp_header | **minimal** / logo-only / none | `page-lp.html` の3 header slot、none は LP 内アンカーナビ |
+| lp_header | **minimal** / logo-only / none | `page-lp` の3 header slot、none は LP 内アンカーナビ |
 | lp_hero | **split** / fullbleed / product / text-only | `helix-wt/lp` の4 hero slot、fullbleed は `[data-wt-scrim]` |
 | lp_hero_cta | **single** / double / form-inline | hero 内 CTA slot。form-inline は `method` / `action` と label を持つ form |
 | lp_sections | **full** / short / trust | `helix-wt/lp` の section slot を body class と CSS order で表示・並べ替え |
@@ -257,7 +257,7 @@ Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ
 
 ## 2.13 段4 — 比較媒体が出すサービス訴求 LP
 
-段4は `page-lp.html` 1 枚を対象に、固有名のないダミー商材へサービス訴求を行う LP の PoC である。要求・設計の決定ではなく、段3までの選択機構を LP 面へ往復させる観察記録として実装した。`patterns/lp.php` は既存の `hero-split` / `numbers` / `features` / `steps` / `pricing` / `faq` pattern と比較表 style を流用し、LP 専用のロゴ枠・声・バッジ枠・CTA 帯だけを追加している。実ロゴ、受賞名、認証名、第三者サービス名は表示しない。
+段4は `page-lp` 1 枚を対象に、固有名のないダミー商材へサービス訴求を行う LP の PoC である。要求・設計の決定ではなく、段3までの選択機構を LP 面へ往復させる観察記録として実装した。`patterns/lp.php` は既存の `hero-split` / `numbers` / `features` / `steps` / `pricing` / `faq` pattern と比較表 style を流用し、LP 専用のロゴ枠・声・バッジ枠・CTA 帯だけを追加している。実ロゴ、受賞名、認証名、第三者サービス名は表示しない。
 
 ### LP の軸と型
 
@@ -306,10 +306,13 @@ LP は「サービス / SaaS LP」向けの型を主に採り、比較媒体の 
 - `lpFixedOverlap.sp` / `.pc`: `lp_fixed` 3 variant と `footer_totop:button` / `share:float` の組み合わせで、可視固定要素の矩形交差・viewport 内・中心点のクリック到達を確認する。
 - `lpReducedMotion`: `prefers-reduced-motion: reduce` で LP の出現要素が透明にならず、LP action / section の transition が停止することを確認する。
 - `lpLcpHero`: split / fullbleed / product の hero 画像に `fetchpriority="high"` と `width` / `height` があり、text-only は画像なしであることを確認する。
+- `lpFooterFaceDefault`（Astra 1巡目是正）: theme_mod 未設定時、LP 面の body class に `wt-face-lp` / `wt-footer-layout-single-row` が付き、非 LP 面（記事）には `wt-face-lp` が付かず `wt-footer-layout-sitemap`（既定）のままであることを確認する。
+- `lpVisibleAnchors`（Astra 1巡目是正）: `lp_hero_cta:double` × `lp_sections:{full,short,trust}` の3組合せで、表示中の全アンカー（header 内アンカーナビだけでなく hero CTA を含む）の href 先が実在し可視であることを確認する（href="#" のみの placeholder リンクは対象外）。
+- `lpFaceScopedTotop`（Astra 1巡目是正）: 非LP面（記事）で `lp_fixed:sp-bottom-bar` を指定しても `.wt-totop` の `bottom` が既定値から変わらないことを確認する（LP面限定のCSSが非LP面へ漏れていないか）。
 
 ### 段4の検証結果
 
-実機での再実行結果（`results/verify.json`）: `summary` 37 項目 **pass 37 / fail 0**、総合 `pass: true`。以下は保存済みフィールドの値を丸めずに転記した PoC の観察記録であり、要求・設計の決定ではない。
+実機での再実行結果（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`。以下は保存済みフィールドの値を丸めずに転記した PoC の観察記録であり、要求・設計の決定ではない。
 
 タップ監査（`tap.lpSp` / `tap.lpPc`）: 44px 目標・24px 下限の結果は次のとおり。両画面とも `below44: []` / `below24: []`。`srOnly` は `["a.skip-link.screen-reader-text 'Skip to content' 1x1"]` として別掲されている。
 
@@ -451,6 +454,15 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 
 `shots.mjs --stage4 true` の撮影行列は実機で実行済み。段4で 48 枚を追加した（LP 専用 7 軸の `lp-*` 42 枚 + LP 面の `footer_layout` 3 variant × SP / PC の 6 枚）、計 311。既存 263 枚のファイル名・内容は変更していない。`CATALOG-INDEX.json` の末尾へ `{file, face: "lp", part, variant, dev}` を 48 件追記し、263 → 311 エントリになった。
 
+### Astra 1巡目是正（head e4d6a8d に対するレビュー、指摘 4 件）
+
+- 重大: `wt_is_lp_page()` が `is_page_template('page-lp.html')` で判定しており、`theme.json` の `customTemplates` 登録名（core が保存する slug）`page-lp` と不一致だった。通常のテンプレート選択・WP-CLI の `--page_template=page-lp` は slug 表記で `_wp_page_template` を保存するため、旧コードでは常に false になり footer の LP 既定（`single-row`）が効かなかった。`is_page_template( array( 'page-lp', 'page-lp.html' ) )` に修正し、README §6 手順 5 の `--page_template=page-lp.html` も `page-lp` に修正した（README 内の他の `page-lp.html` 表記も同語へ統一）。実機で LP ページ（post 601）の `_wp_page_template` を `wp post meta get 601 _wp_page_template` で確認し `page-lp` が保存されていること、body class に `page-template-page-lp` / `wt-face-lp` / `wt-footer-layout-single-row` が付くこと、記事面には付かず `wt-footer-layout-sitemap`（既定）のままであることを確認した。`verify.mjs` に `lpFooterFaceDefault` を追加し検査化した。
+- 改善: `patterns/lp.php` の double CTA 副ボタン「比較表を見る」（`#comparison`）が `lp_sections:short` / `trust` では非表示セクションを指していた。副ボタンを `full → #comparison`（比較表を見る）/ `short → #pricing`（料金を見る）/ `trust → #voices`（利用者の声を見る、testimonials セクションの実 id）の3種の `<a data-lp-cta-target="...">` に分け、`theme.css` に `body.wt-lp-sections-{short,trust}` に応じて該当 variant だけを `inline-flex` にする CSS を追加した（既定は `full`）。`verify.mjs` に `lpVisibleAnchors` を追加し、`lp_hero_cta:double × lp_sections:{full,short,trust}` の3組合せで表示中の全アンカー（header 内だけでなく hero CTA も対象）の href 先が実在し可視であることを検査する（`href="#"` のみの placeholder リンクは対象外）。
+- 改善: `theme.css` の `.wt-lp-fixed-sp-bottom-bar.wt-footer-totop-button:not(.wt-share-float) .wt-totop{bottom:...}` が LP 面限定の条件を持たず、`wt_lp_fixed` は全画面へ body class が付くため非LP面でも SP の to-top が持ち上がり得た。`functions.php` の `body_class` フィルタで LP 判定時だけ `wt-face-lp` を付与し、該当 CSS ルールを `body.wt-face-lp.wt-lp-fixed-sp-bottom-bar...` に限定した。`verify.mjs` に `lpFaceScopedTotop` を追加し、記事面（非LP）で `lp_fixed:sp-bottom-bar` を指定しても `.wt-totop` の `bottom` が既定（16px）から変わらないことを検査する。
+- 軽微: `patterns/lp.php:112` の比較セクション内 `.wt-lp-section-inner` の閉じ `</div>` 欠落を追加した。`php -l` 通過、レンダリング後の DOM で当該 `<div class="wp-block-group wt-lp-section-inner">` が正しく `</section>` の前で閉じることを確認した。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**（既存 37 + 新規 3）、総合 `pass: true`。`shots.mjs --stage4` の再撮影は既存 311 枚と一致し、差分 0 枚だった（本是正は body class の追加条件と CSS セレクタ限定・PHP マークアップの閉じタグ追加のみで、既定描画・見た目には変化がないため）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -464,7 +476,7 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 
 ## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。段4まで実機実行済み）
 
-下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 11 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero）の結果は §2.13「段4の検証結果」に記載。保存済みの最新 `results/verify.json` は `summary` 37 項目 **pass 37 / fail 0**、総合 `pass: true`。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段4までの全項目の AND。
+下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 14 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero / lpFooterFaceDefault / lpVisibleAnchors / lpFaceScopedTotop）の結果は §2.13「段4の検証結果」に記載。保存済みの最新 `results/verify.json` は `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段4までの全項目の AND。
 
 | 項目 | 結果 |
 |---|---|
@@ -491,7 +503,7 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 2. 記事: `wp post create --post_type=post --post_content='<!-- wp:pattern {"slug":"helix-wt/compare-article"} /-->' ...`、アイキャッチは `wp media import <theme>/assets/img/media-pickup-1.jpg` → `_thumbnail_id`。関連一覧用に短い架空記事 5 件 + カタログ固定ページ（`helix-wt/catalog-03`、テンプレ page-canvas）
 3. 段3データ: WP-CLIで親カテゴリ `topic-index` を作成し、子カテゴリ `topic-one` / `topic-two` / `topic-three` を `--parent=<親term_id>` で作成する。各子へダミー記事を5件ずつ、親へ横断記事を2件以上 `wp post create --post_type=post --post_status=publish --post_category=<term_id> --post_content='<!-- wp:paragraph --><p>ダミー本文です。</p><!-- /wp:paragraph -->' --post_title='読みもの <連番>'` で登録し、合計14件以上にする。カテゴリ説明は `wp term update category <term_id> --description='カテゴリの説明文です。'` で設定する。固有名・実在URL・第三者ロゴは使わない。
 4. 変種の確認: 既存軸は `?wt=header:cta,sp:left,eyecatch:hero,toc:float,related:rank,share:float,motion:on,depth:2,density:airy,detext:on,nf:suggest`、段3は `?wt=cat_header:hero,cat_children:steps,cat_list:featured-grid,cat_pagination:load-more,cat_ranking:sidebar,cat_minihome:on,footer_layout:columns-3,footer_above:banner-row,footer_legal:copyright-only,footer_extra:sns-sites,footer_totop:button,tail_order:cta-related-author-share,tail_share:icons-row,tail_author:avatar-bio-sns,tail_prevnext:thumb` のように付ける。サイト既定は `wp theme mod set wt_<key> <value>`、記事単位は `wp post meta set <ID> wt_eyecatch|wt_toc|wt_pr|wt_share <value>`
-5. 段4のテーマ配置（リポ root から）: `docker cp docs/research/2026-09-05-design-prototype-03/theme/helix-wt/. agent-neo-wp:/var/www/html/wp-content/themes/helix-wt/`。LP ページが未作成なら `docker compose run --rm -T wpcli post create --post_type=page --post_status=publish --post_name=lp --post_title='案内ページ' --page_template=page-lp.html` で 1 枚だけ作成する。撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage4 true --base <site> --out results`。検証は `NODE_PATH=<playwright の node_modules> node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
+5. 段4のテーマ配置（リポ root から）: `docker cp docs/research/2026-09-05-design-prototype-03/theme/helix-wt/. agent-neo-wp:/var/www/html/wp-content/themes/helix-wt/`。LP ページが未作成なら `docker compose run --rm -T wpcli post create --post_type=page --post_status=publish --post_name=lp --post_title='案内ページ' --page_template=page-lp` で 1 枚だけ作成する。撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage4 true --base <site> --out results`。検証は `NODE_PATH=<playwright の node_modules> node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
 6. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
 
 ## 7. 終了時状態（意図的に残置）

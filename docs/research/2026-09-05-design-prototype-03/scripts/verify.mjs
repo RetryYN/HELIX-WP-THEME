@@ -512,7 +512,51 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     }, variant));
   }
   out.lpLcpHero.pass = out.lpLcpHero.variants.length === 4 && out.lpLcpHero.variants.every((item) => item.pass);
+
+  // LP 面判定（is_page_template）の修正確認: theme_mod 未設定時、LP 面だけ footer_layout の既定が single-row になり、非 LP 面（記事）は sitemap のまま。
+  await lpPcPage.goto(BASE + LP, { waitUntil: "networkidle" });
+  const lpBody = await lpPcPage.evaluate(() => document.body.className);
+  await lpPcPage.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  const articleBody = await lpPcPage.evaluate(() => document.body.className);
+  out.lpFooterFaceDefault = {
+    lpHasFace: lpBody.split(/\s+/).includes("wt-face-lp"),
+    lpHasSingleRow: lpBody.split(/\s+/).includes("wt-footer-layout-single-row"),
+    articleHasFace: articleBody.split(/\s+/).includes("wt-face-lp"),
+    articleHasSingleRow: articleBody.split(/\s+/).includes("wt-footer-layout-single-row"),
+    articleHasSitemap: articleBody.split(/\s+/).includes("wt-footer-layout-sitemap"),
+  };
+  out.lpFooterFaceDefault.pass = out.lpFooterFaceDefault.lpHasFace && out.lpFooterFaceDefault.lpHasSingleRow && !out.lpFooterFaceDefault.articleHasFace && !out.lpFooterFaceDefault.articleHasSingleRow && out.lpFooterFaceDefault.articleHasSitemap;
+
+  // double CTA の副ボタン: short / trust で比較セクションが非表示になる組み合わせでも、表示中の全アンカー（hero CTA を含む）の遷移先が存在し可視であること。
+  out.lpVisibleAnchors = { variants: [] };
+  for (const variant of ["full", "short", "trust"]) {
+    await lpPcPage.goto(BASE + LP + `?wt=lp_hero_cta:double,lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
+    const result = await lpPcPage.evaluate(() => {
+      const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+      // href="#"（フラグメント空）は共有アイコン等の placeholder リンクで、ページ内遷移を意図しないため対象外。実際にセクションを指すリンクだけを検査する。
+      const links = Array.from(document.querySelectorAll("a[href^='#']")).filter((a) => a.getAttribute("href") !== "#").filter(visible).map((a) => {
+        const targetId = a.getAttribute("href").slice(1);
+        const target = document.getElementById(targetId);
+        return { href: a.getAttribute("href"), targetId, targetExists: !!target, targetVisible: visible(target) };
+      });
+      return { links, pass: links.length > 0 && links.every((l) => l.targetExists && l.targetVisible) };
+    });
+    out.lpVisibleAnchors.variants.push({ variant, ...result });
+  }
+  out.lpVisibleAnchors.pass = out.lpVisibleAnchors.variants.length === 3 && out.lpVisibleAnchors.variants.every((item) => item.pass);
+
   await lpSpCtx.close(); await lpPcCtx.close();
+
+  // LP 面限定の to-top 配置: 非 LP 面（記事）で lp_fixed:sp-bottom-bar を指定しても .wt-totop の bottom が既定から変わらない（SP）。
+  {
+    const totopCtx = await browser.newContext(SP); const totopPage = await totopCtx.newPage();
+    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button", { waitUntil: "networkidle" });
+    const baseline = await totopPage.evaluate(() => { const el = document.querySelector(".wt-totop"); return el ? getComputedStyle(el).bottom : null; });
+    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button,lp_fixed:sp-bottom-bar", { waitUntil: "networkidle" });
+    const withLpFixed = await totopPage.evaluate(() => { const el = document.querySelector(".wt-totop"); return el ? getComputedStyle(el).bottom : null; });
+    out.lpFaceScopedTotop = { baseline, withLpFixed, pass: baseline !== null && baseline === withLpFixed };
+    await totopCtx.close();
+  }
 }
 
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
@@ -531,6 +575,7 @@ const checkList = [
   ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["authorSnsTapSp", out.tap.authorSnsSp.pass], ["authorSnsTapPc", out.tap.authorSnsPc.pass],
   ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],
   ["lpTapSp", out.tap.lpSp.pass], ["lpTapPc", out.tap.lpPc.pass], ["lpContrast", out.lpContrast.pass], ["lpFullbleedContrast", out.lpFullbleedContrast.pass], ["lpFormNoJs", out.lpFormNoJs.pass], ["lpAnchorNav", out.lpAnchorNav.pass], ["lpSections", out.lpSections.pass], ["lpFixedOverlapSp", out.lpFixedOverlap.sp.pass], ["lpFixedOverlapPc", out.lpFixedOverlap.pc.pass], ["lpReducedMotion", out.lpReducedMotion.pass], ["lpLcpHero", out.lpLcpHero.pass],
+  ["lpFooterFaceDefault", out.lpFooterFaceDefault.pass], ["lpVisibleAnchors", out.lpVisibleAnchors.pass], ["lpFaceScopedTotop", out.lpFaceScopedTotop.pass],
 ];
 out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;
