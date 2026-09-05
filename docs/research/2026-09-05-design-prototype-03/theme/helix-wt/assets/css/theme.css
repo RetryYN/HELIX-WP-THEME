@@ -383,6 +383,28 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wp-block-group.is-style-wt-qa>:first-child::before{content:"Q";position:absolute;left:0;top:0;color:#fff;background:var(--wt-box-accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-family:var(--wp--preset--font-family--latin)}
 .wp-block-group.is-style-wt-qa>:last-child:not(:first-child){position:relative;padding-left:2rem}
 .wp-block-group.is-style-wt-qa>:last-child:not(:first-child)::before{content:"A";position:absolute;left:0;top:0;color:var(--wt-box-accent);border:1px solid var(--wt-box-accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;font-family:var(--wp--preset--font-family--latin)}
+/* 2026-09-05 PO 反応 14 回目（WT-EVT-0256）: 囲み Q&A にモーダルウィンドウ型を追加。質問行 + 「回答を見る」ボタンだけを本文に置き、
+   回答は <dialog> で開く。JS 無効時は回答段落が本文内にそのまま残る（qa 型と同じ見え方）。 */
+.wp-block-group.is-style-wt-qa-modal{border:1px solid var(--wt-box-line);border-radius:var(--wp--custom--radius-m);margin-block:1.5rem;padding:1.1rem 1.25rem;position:relative}
+.wp-block-group.is-style-wt-qa-modal>:first-child{position:relative;padding-left:2rem;font-weight:700;margin:0}
+.wp-block-group.is-style-wt-qa-modal>:first-child::before{content:"Q";position:absolute;left:0;top:0;color:#fff;background:var(--wt-box-accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-family:var(--wp--preset--font-family--latin)}
+.wp-block-group.is-style-wt-qa-modal>p:not(:first-child){position:relative;padding-left:2rem;margin-top:.75rem}
+.wp-block-group.is-style-wt-qa-modal>p:not(:first-child)::before{content:"A";position:absolute;left:0;top:0;color:var(--wt-box-accent);border:1px solid var(--wt-box-accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;font-family:var(--wp--preset--font-family--latin)}
+.wt-qa-modal__open{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;margin:.75rem 0 0 2rem;padding:.55rem 1.1rem;border:1px solid var(--wt-box-accent);border-radius:999px;background:var(--wp--preset--color--base);color:var(--wt-box-accent);font-weight:700;font-size:.9375rem;cursor:pointer;font-family:inherit}
+.wt-qa-modal__open::after{content:"";width:.5em;height:.5em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg)}
+.wt-qa-modal__open:hover{background:var(--wt-box-soft)}
+.wt-qa-modal__open:focus-visible{outline:2px solid var(--wt-box-accent);outline-offset:2px}
+.wt-qa-modal__dialog{border:0;border-radius:var(--wp--custom--radius-m);padding:0;max-width:min(36rem,calc(100vw - 2rem));width:100%;background:var(--wp--preset--color--base);color:inherit;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.wt-qa-modal__dialog::backdrop{background:rgba(20,24,32,.55)}
+.wt-qa-modal__head{display:flex;align-items:flex-start;gap:.75rem;padding:1rem 1.25rem;border-bottom:1px solid var(--wt-box-line, var(--wp--preset--color--line))}
+.wt-qa-modal__head p{margin:0;flex:1;font-weight:700;position:relative;padding-left:2rem}
+.wt-qa-modal__head p::before{content:"Q";position:absolute;left:0;top:0;color:#fff;background:var(--wp--preset--color--accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-family:var(--wp--preset--font-family--latin)}
+.wt-qa-modal__close{flex:0 0 auto;width:44px;height:44px;margin:-.5rem -.5rem -.5rem 0;border:0;border-radius:50%;background:transparent;color:var(--wp--preset--color--mute);font-size:1.5rem;line-height:1;cursor:pointer}
+.wt-qa-modal__close:hover{background:var(--wp--preset--color--surface)}
+.wt-qa-modal__close:focus-visible{outline:2px solid var(--wp--preset--color--accent);outline-offset:2px}
+.wt-qa-modal__body{padding:1rem 1.25rem 1.25rem}
+.wt-qa-modal__body p{margin:0;position:relative;padding-left:2rem}
+.wt-qa-modal__body p::before{content:"A";position:absolute;left:0;top:0;color:var(--wp--preset--color--accent);border:1px solid var(--wp--preset--color--accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;font-family:var(--wp--preset--font-family--latin)}
 .wp-block-group.is-style-wt-warn-soft{background:var(--wp--preset--color--warn-soft);border-left:3px solid var(--wp--preset--color--mute)}
 /* リスト: check / badge / icon / pros / cons */
 .wp-block-list.is-style-wt-badge-list{list-style:none;padding-left:0;counter-reset:b}
@@ -425,7 +447,6 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wt-product__price small{font-size:.75rem;font-weight:500;color:var(--wp--preset--color--mute);margin-left:.25rem;font-family:var(--wp--preset--font-family--body)}
 .wt-product .wp-block-buttons{margin-top:.75rem;gap:.5rem}
 .wt-product .wp-block-button{flex:1 1 180px}.wt-product .wp-block-button__link{width:100%}
-.wt-badge--pr{background:var(--wp--preset--color--surface);color:var(--wp--preset--color--mute);border:1px solid var(--wp--preset--color--line)}
 .wt-badge--rank{background:var(--wp--preset--color--cta);color:#fff}
 .wt-stars{display:inline-flex;align-items:center;gap:.35rem;font-size:.875rem}
 .wt-stars b{font-family:var(--wp--preset--font-family--latin);font-size:1rem}
