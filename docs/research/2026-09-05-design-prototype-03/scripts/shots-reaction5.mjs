@@ -82,9 +82,15 @@ await browser.close();
 
 const catalogFile = path.join(OUT, "..", "CATALOG-INDEX.json");
 const existing = JSON.parse(fs.readFileSync(catalogFile, "utf8"));
-const known = new Set(existing.map((entry) => entry.file));
-const unknown = index.filter((entry) => !known.has(entry.file));
-if (unknown.length) throw new Error(`既存エントリに無いファイルを撮影しました（本スクリプトは置換のみ）: ${unknown.map((e) => e.file).join(", ")}`);
+// 予定集合 = INDEX 上の cta-banner / article-full / article-screen（SP・PC）。撮影集合と完全一致しなければ置換に入らない
+// （記事が短くなって画面数が減る等、一部だけ撮れた状態を成功扱いにしない）。
+const planned = new Set(existing.filter((entry) => /^(cta-banner|article-full|article-screen-\d{2})-(sp|pc)\.jpg$/.test(entry.file)).map((entry) => entry.file));
+const captured = new Set(index.map((entry) => entry.file));
+const missing = [...planned].filter((f) => !captured.has(f));
+const unknown = [...captured].filter((f) => !planned.has(f));
+if (missing.length || unknown.length || captured.size !== index.length) {
+  throw new Error(`撮影集合が予定集合と一致しません（予定 ${planned.size} / 撮影 ${captured.size}）。欠落: ${missing.join(", ") || "なし"} / 予定外: ${unknown.join(", ") || "なし"}`);
+}
 for (const entry of index) {
   const tmp = path.join(TMP, entry.file);
   if (!fs.existsSync(tmp) || !fs.statSync(tmp).size) throw new Error(`一時ディレクトリ内の JPEG が見つからないか空です: ${tmp}`);
