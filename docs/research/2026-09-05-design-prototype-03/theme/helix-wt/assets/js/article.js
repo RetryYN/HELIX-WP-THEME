@@ -26,15 +26,29 @@
     }
   }
 
-  // 関連カルーセル: 前後ボタン（自動送りは実装しない）
-  document.querySelectorAll('.wt-related .wp-block-post-template').forEach(function(track){
-    if (!document.body.classList.contains('wt-related-carousel')) return;
+  // 関連カルーセル / スライダー: 前後ボタン（自動送りは実装しない）。slider はページ送り + ドット（PO 反応 16 回目 WT-EVT-0261、Claude 案）
+  document.querySelectorAll('.wt-related:not(.wt-next) .wp-block-post-template').forEach(function(track){
+    var isCarousel = document.body.classList.contains('wt-related-carousel'), isSlider = document.body.classList.contains('wt-related-slider');
+    if (!isCarousel && !isSlider) return;
     var nav = document.createElement('div'); nav.className = 'wt-carousel__nav';
-    var mk = function(dir, label){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = '<i class="wt-i wt-i--chevron-' + (dir < 0 ? 'right" style="transform:scaleX(-1)' : 'right"') + '" aria-hidden="true"></i>'; b.addEventListener('click', function(){ track.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }); }); return b; };
+    var page = function(){ return isSlider ? track.clientWidth : track.clientWidth * 0.8; };
+    var mk = function(dir, label){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = '<i class="wt-i wt-i--chevron-' + (dir < 0 ? 'right" style="transform:scaleX(-1)' : 'right"') + '" aria-hidden="true"></i>'; b.addEventListener('click', function(){ track.scrollBy({ left: dir * page(), behavior: reduce ? 'auto' : 'smooth' }); }); return b; };
     var prev = mk(-1, '前へ'), next = mk(1, '次へ');
-    nav.appendChild(prev); nav.appendChild(next);
+    nav.appendChild(prev);
+    var dots = null, dotBtns = [];
+    if (isSlider) {
+      dots = document.createElement('div'); dots.className = 'wt-slider__dots'; dots.setAttribute('role', 'tablist'); dots.setAttribute('aria-label', 'ページ');
+      var items = track.children.length, per = Math.max(1, Math.round(track.clientWidth / (track.firstElementChild ? track.firstElementChild.getBoundingClientRect().width + 16 : track.clientWidth)));
+      var pages = Math.max(1, Math.ceil(items / per));
+      for (var i = 0; i < pages; i++) { var d = document.createElement('button'); d.type = 'button'; d.setAttribute('role', 'tab'); d.setAttribute('aria-label', (i + 1) + ' / ' + pages); (function(idx){ d.addEventListener('click', function(){ track.scrollTo({ left: idx * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); }); })(i); dots.appendChild(d); dotBtns.push(d); }
+      nav.appendChild(dots);
+    }
+    nav.appendChild(next);
     track.parentNode.insertBefore(nav, track.nextSibling);
-    var upd = function(){ prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2; };
+    var upd = function(){
+      prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      if (dotBtns.length) { var cur = Math.min(dotBtns.length - 1, Math.round(track.scrollLeft / track.clientWidth)); dotBtns.forEach(function(d, i){ d.setAttribute('aria-selected', i === cur ? 'true' : 'false'); }); }
+    };
     track.addEventListener('scroll', upd, { passive: true }); upd();
   });
 

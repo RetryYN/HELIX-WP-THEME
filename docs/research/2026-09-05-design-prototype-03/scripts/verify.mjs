@@ -804,7 +804,7 @@ if (WPCLIDIR) {
 
 // 14. 関連記事品質（PC / SP、既存4型の再設計 + featured-big+small / ranking-numbers）
 {
-  const variants = ["grid", "list", "rank", "carousel", "featured", "ranking-numbers"];
+  const variants = ["grid", "list", "rank", "carousel", "featured", "ranking-numbers", "slider"];
   out.relatedQuality = { variants: [] };
   for (const [dev, config] of [["sp", SP], ["pc", PC]]) {
     const ctx = await browser.newContext(config); const page = await ctx.newPage();
@@ -841,7 +841,7 @@ if (WPCLIDIR) {
     }
     await ctx.close();
   }
-  out.relatedQuality.pass = out.relatedQuality.variants.length === 12 && out.relatedQuality.variants.every((item) => item.pass);
+  out.relatedQuality.pass = out.relatedQuality.variants.length === 14 && out.relatedQuality.variants.every((item) => item.pass);
 }
 
 // 9.5. detext:on が実記事の h2/ol/blockquote のうち少なくとも1要素で off と異なる computed style になっているか
@@ -1013,6 +1013,101 @@ if (WPCLIDIR) {
   out.metricsSp.pass = ok(js) && ok(noJs) && JSON.stringify(js.texts) === JSON.stringify(noJs.texts);
 }
 
+// 9.11. PO 反応 16 回目（WT-EVT-0261〜0266）
+// (a) PR 表記の既定文言 = PO 決定「本記事にはプロモーションが含まれます。」（pr:on の実記事と catalog の両方）
+{
+  const ctx = await browser.newContext(PC); const p = await ctx.newPage();
+  await p.goto(BASE + ARTICLE + "?wt=pr:on", { waitUntil: "networkidle" });
+  const article = await p.evaluate(() => Array.from(document.querySelectorAll(".wt-pr.is-style-wt-pr")).map((el) => el.textContent.replace(/\s+/g, "").replace(/^PR/, "")));
+  await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+  const catalog = await p.evaluate(() => Array.from(document.querySelectorAll("#cat-pr .wt-pr")).map((el) => el.textContent.replace(/\s+/g, "").replace(/^PR/, "")));
+  await ctx.close();
+  const want = "本記事にはプロモーションが含まれます。";
+  out.prNoticeText = { article, catalog, pass: article.length >= 1 && catalog.length >= 1 && [...article, ...catalog].every((t) => t === want) };
+}
+// (b) related:slider — 1 画面 1 枚（PC 2 枚）の snap、ドット数 = ページ数、前後ボタン、自動送りなし（1.5 秒待っても scrollLeft 不変）、ドットは 44px、JS 無効でも横スクロールで全カード到達可
+{
+  const read = async (ctx, js) => {
+    const p = await ctx.newPage(); await p.goto(BASE + ARTICLE + "?wt=related:slider", { waitUntil: "networkidle" }); await p.waitForTimeout(400);
+    const before = await p.evaluate(() => { const t = document.querySelector(".wt-related:not(.wt-next) .wp-block-post-template"); return t.scrollLeft; });
+    await p.waitForTimeout(1500);
+    const d = await p.evaluate((before) => {
+      const t = document.querySelector(".wt-related:not(.wt-next) .wp-block-post-template"); const cs = getComputedStyle(t);
+      const items = Array.from(t.children); const w = t.clientWidth; const per = Math.max(1, Math.round(w / (items[0].getBoundingClientRect().width + 16)));
+      const dots = Array.from(document.querySelectorAll(".wt-tail__slot--related .wt-slider__dots button"));
+      return { items: items.length, per, pages: Math.ceil(items.length / per), snap: cs.scrollSnapType, overflow: cs.overflowX, dots: dots.length, dotSize: dots.map((b) => [b.getBoundingClientRect().width, b.getBoundingClientRect().height]), selected: dots.filter((b) => b.getAttribute("aria-selected") === "true").length, nav: document.querySelectorAll(".wt-tail__slot--related .wt-carousel__nav button[aria-label]").length, autoMoved: t.scrollLeft !== before, reachable: t.scrollWidth - t.clientWidth >= (items.length - per) * items[0].getBoundingClientRect().width * 0.9 };
+    }, before);
+    await p.close(); return d;
+  };
+  const c1 = await browser.newContext(SP); const sp = await read(c1, true); await c1.close();
+  const c2 = await browser.newContext(PC); const pc = await read(c2, true); await c2.close();
+  const c3 = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await read(c3, false); await c3.close();
+  out.relatedSlider = { sp, pc, noJs };
+  const okJs = (d, per) => d.items >= 2 && d.per === per && d.snap.startsWith("x") && d.overflow === "auto" && d.dots === d.pages && d.selected === 1 && d.dotSize.every(([w, h]) => w >= 44 && h >= 44) && d.nav >= 2 && !d.autoMoved && d.reachable;
+  out.relatedSlider.pass = okJs(sp, 1) && okJs(pc, 2) && noJs.dots === 0 && noJs.overflow === "auto" && noJs.reachable && !noJs.autoMoved;
+}
+// (c) 記事末尾 SNS 共有（tail_share:icons-row）— 3 サービス（Facebook は guard 例外の PO 判断待ちで未収録）、href に本記事の permalink（エンコード済み）を含む、別タブ + noopener、44px、JS 無効でも href が有効
+{
+  const read = async (ctx) => {
+    const p = await ctx.newPage(); await p.goto(BASE + ARTICLE + "?wt=tail_share:icons-row", { waitUntil: "networkidle" });
+    const d = await p.evaluate(() => { const enc = encodeURIComponent(location.origin + location.pathname); return Array.from(document.querySelectorAll(".wt-tail__slot--share a.wt-sns")).map((a) => { const r = a.getBoundingClientRect(); return { key: a.dataset.wtSns, host: new URL(a.href).host, external: new URL(a.href).host !== location.host, hasUrl: a.href.includes(enc) || a.href.includes(location.origin + location.pathname), blank: a.target === "_blank", rel: a.rel, size: [r.width, r.height], label: a.getAttribute("aria-label") }; }); });
+    await p.close(); return d;
+  };
+  const c1 = await browser.newContext(SP); const js = await read(c1); await c1.close();
+  const c2 = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await read(c2); await c2.close();
+  out.shareSns = { js, noJs };
+  const ok = (d) => d.length === 3 && new Set(d.map((x) => x.key)).size === 3 && d.every((x) => x.hasUrl && x.blank && /noopener/.test(x.rel) && x.size[0] >= 44 && x.size[1] >= 44 && x.label && x.host && x.external === true);
+  out.shareSns.pass = ok(js) && ok(noJs);
+}
+// (d) depth:float — hover で transform が変わる（浮く）、reduced-motion では transform / animation なし、motion:on で商品カードに animation
+{
+  const ctx = await browser.newContext(PC); const p = await ctx.newPage();
+  await p.goto(BASE + "/catalog-03/?wt=depth:float,motion:on", { waitUntil: "networkidle" });
+  const sel = "#cat-cta-product .is-style-wt-product";
+  const base = await p.evaluate((s) => { const el = document.querySelector(s); const cs = getComputedStyle(el); return { shadow: cs.boxShadow, animation: cs.animationName }; }, sel);
+  // 浮遊アニメーション中は要素が "stable" にならず locator.hover がタイムアウトするため、矩形中心へ mouse.move で hover する
+  // locator の scrollIntoViewIfNeeded / boundingBox は要素の "stable" を待つため、浮遊アニメーション中はタイムアウトする。DOM API で直接スクロールし矩形中心へ mouse.move する
+  const hoverAt = async (page, selector) => { await page.evaluate((sel) => document.querySelector(sel).scrollIntoView({ block: "center" }), selector); await page.waitForTimeout(150); const c = await page.evaluate((sel) => { const r = document.querySelector(sel).getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }, selector); await page.mouse.move(c.x, c.y); };
+  await hoverAt(p, sel); await p.waitForTimeout(500);
+  const hover = await p.evaluate((s) => { const cs = getComputedStyle(document.querySelector(s)); return { transform: cs.transform, shadow: cs.boxShadow, animation: cs.animationName }; }, sel);
+  await ctx.close();
+  const rm = await browser.newContext({ ...PC, reducedMotion: "reduce" }); const rp = await rm.newPage();
+  await rp.goto(BASE + "/catalog-03/?wt=depth:float,motion:on", { waitUntil: "networkidle" });
+  const reduced0 = await rp.evaluate((s) => getComputedStyle(document.querySelector(s)).animationName, sel);
+  await hoverAt(rp, sel); await rp.waitForTimeout(500);
+  const reduced = await rp.evaluate((s) => { const cs = getComputedStyle(document.querySelector(s)); return { transform: cs.transform, animation: cs.animationName }; }, sel);
+  await rm.close();
+  out.depthFloat = { base, hover, reduced0, reduced };
+  out.depthFloat.pass = base.animation === "wt-float" && hover.transform !== "none" && hover.transform !== base.transform && hover.shadow !== base.shadow && hover.animation === "none" && reduced0 === "none" && reduced.transform === "none" && reduced.animation === "none";
+}
+// (e) 比較表 rich — 画像 3（alt あり・描画済み）、アイコン付きセル、購入ボタン 3（44px 以上、rel sponsored nofollow）、SP は横スクロール（はみ出さない）
+{
+  const read = async (ctx) => {
+    const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+    // 画像は loading="lazy" のため、表を viewport に入れて読み込み完了を待ってから判定する
+    await p.evaluate(() => document.querySelector("#cat-table-rich").scrollIntoView({ block: "center" }));
+    await p.waitForFunction(() => Array.from(document.querySelectorAll("#cat-table-rich .wt-tcell__img")).every((i) => i.complete), null, { timeout: 8000 });
+    const d = await p.evaluate(() => { const fig = document.querySelector("#cat-table-rich .wp-block-table"); const imgs = Array.from(fig.querySelectorAll(".wt-tcell__img")); const btns = Array.from(fig.querySelectorAll(".wt-tbtn")); return { imgs: imgs.map((i) => ({ alt: i.alt, ok: i.complete && i.naturalWidth > 0, w: i.getBoundingClientRect().width })), icons: fig.querySelectorAll(".wt-tcell__icon .wt-i").length, btns: btns.map((b) => ({ h: b.getBoundingClientRect().height, w: b.getBoundingClientRect().width, rel: b.rel })), overflowX: getComputedStyle(fig).overflowX, figRight: fig.getBoundingClientRect().right, vw: innerWidth }; });
+    await p.close(); return d;
+  };
+  const c1 = await browser.newContext(SP); const sp = await read(c1); await c1.close();
+  const c2 = await browser.newContext(PC); const pc = await read(c2); await c2.close();
+  out.tableRich = { sp, pc };
+  const ok = (d) => d.imgs.length === 3 && d.imgs.every((i) => i.alt && i.ok && i.w > 0) && d.icons >= 6 && d.btns.length === 3 && d.btns.every((b) => b.h >= 44 && b.w >= 44 && /sponsored/.test(b.rel) && /nofollow/.test(b.rel)) && d.overflowX === "auto" && d.figRight <= d.vw;
+  out.tableRich.pass = ok(sp) && ok(pc);
+}
+// (f) footer_credit — 既定 none で非表示、text で法的表記の下に表示、リンクは nofollow
+{
+  const ctx = await browser.newContext(SP); const p = await ctx.newPage();
+  await p.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  const off = await p.evaluate(() => { const el = document.querySelector(".wt-footer__credit"); return el ? getComputedStyle(el).display : null; });
+  await p.goto(BASE + ARTICLE + "?wt=footer_credit:text", { waitUntil: "networkidle" });
+  const on = await p.evaluate(() => { const el = document.querySelector(".wt-footer__credit"); const legal = document.querySelector(".wt-footer__legal--links, .wt-footer__legal--only"); const a = el && el.querySelector("a"); return el ? { display: getComputedStyle(el).display, belowLegal: legal ? el.getBoundingClientRect().top >= legal.getBoundingClientRect().bottom - 1 : null, rel: a ? a.rel : null, text: el.textContent.trim() } : null; });
+  await ctx.close();
+  out.footerCredit = { off, on };
+  out.footerCredit.pass = off === "none" && !!on && on.display !== "none" && on.belowLegal === true && /nofollow/.test(on.rel || "") && on.text.length > 0;
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -1041,6 +1136,7 @@ const checkList = [
   ["detextVisualDiff", out.detextVisualDiff.pass], ["ctaBannerNoPrPrefix", out.ctaBannerNoPrPrefix.pass],
   ["productCardNoPrBadge", out.productCardNoPrBadge.pass], ["qaModal", out.qaModal.pass],
   ["graphs", out.graphs.pass], ["metricsSp", out.metricsSp.pass],
+  ["prNoticeText", out.prNoticeText.pass], ["relatedSlider", out.relatedSlider.pass], ["shareSns", out.shareSns.pass], ["depthFloat", out.depthFloat.pass], ["tableRich", out.tableRich.pass], ["footerCredit", out.footerCredit.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
