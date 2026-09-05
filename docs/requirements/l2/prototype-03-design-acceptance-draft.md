@@ -3,7 +3,7 @@
 - 位置づけ: L2 プロト往復（前段決定 `front-first-decision-2026-09-05`）の出力。**PO 反応待ちのドラフトであり、要求正本ではない**。
   `docs/requirements/l3/requirements-ir.json` / `acceptance-cases.json` / `docs/requirements/discovery/events.jsonl` は本 PR で変更していない。
 - 凍結・採用・決定は主張しない。本書内の「% 観察」は台帳（`docs/research/2026-09-05-parts-pattern-taxonomy/`）の集計値、「既定値の案」「書き直し案」はすべて Claude の提案であり、PO が採否だけを判断する対象。
-- 対象: デザイン系要件ファミリー（WT-FR-LOOK / PARTS / VOCAB / ZONE / SP / META / TPL / RECO / BANNER / LP / SECTION / TYPO / IMG / NAV と、画面表示に関わる WT-NFR-A11Y / SP / PERF）計 37 件。
+- 対象: デザイン系要件ファミリー（WT-FR-LOOK / PARTS / VOCAB / ZONE / SP / META / TPL / RECO / BANNER / LP / SECTION / TYPO / IMG / NAV と、画面表示に関わる WT-NFR-A11Y / SP / PERF）計 37 件。段4（LP、PR #143）merge 済みのため LP 2 件も他要件と同じ書式で記載している。
 - 入力: デザイン試作 03（`docs/research/2026-09-05-design-prototype-03/README.md`、`results/verify.json`、`CATALOG-INDEX.json`）とパーツ別パターン台帳（`docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md` §2/§2b、`README.md` §1/§1b）。
 - 各節の書式: (a) 現行 statement / 既存 AC の要約、(b) 試作 03 の実装 variant、(c) 書き直し案の受入条件（1 行 1 条件 + 検証手段）、(d) 台帳の観察 % と既定値の Claude 案、(e) PO に問うべき点（採否のみ）。
 
@@ -381,10 +381,10 @@
 **(c) 書き直し案**
 1. 主要な色コントラスト（CTAボタン・本文リンク・ヘルパーテキスト）がAA基準を満たす — 検証: `verify.json.contrast`各項目`pass:true`。
 2. タップ対象が24px以上（WCAG2.5.8）かつ44px以上（P05目標）を満たす — 検証: `verify.json.tap.*`（記事68/68、404 45/45、カタログ31/31、いずれもok44=ok24=total）。
-3. **axeによる自動監査（role/aria-expanded、focus可視、reflow、text-spacing）は`verify.json.summary`に個別項目名がなく、`pass:26,fail:0`という要約のみ** — 検証: `verify.json.summary`（26項目pass、詳細な axe violation 件数は本ドラフトの調査範囲では確認できず）。
+3. **axeによる自動監査（role/aria-expanded、focus可視、reflow、text-spacing）は`verify.json.summary`に個別項目名がなく、`pass:40,fail:0（段4merge後）`という要約のみ** — 検証: `verify.json.summary`（40項目pass、詳細な axe violation 件数は本ドラフトの調査範囲では確認できず）。
 
 **(d)** 台帳の直接該当なし（全用途共通の守り要件）。
-**(e)** 問い: axe監査の個別違反件数を`verify.json`にどこまで出力するかは実装側の検査様式の話であり、本ドラフトでは受入条件を「summary.pass=26/26」で代替してよいか。
+**(e)** 問い: axe監査の個別違反件数を`verify.json`にどこまで出力するかは実装側の検査様式の話であり、本ドラフトでは受入条件を「summary.pass=40/40」で代替してよいか。
 
 ---
 
@@ -497,9 +497,45 @@
 
 ---
 
-## WT-FR-LP-01 / WT-FR-LP-02（LP CPT化・フォーム制御・LP専用計測）— 段4 merge 後に追記
+## WT-FR-LP-01（LP を CPT として分離・ディレクトリ非依存 URL・種別列挙）
 
-本節は空節。LP（`WT-FR-LP-*`）はデザイン試作 03 の段 4（記事末尾 slot・LP 関連、branch `research/2026-09-05-design-prototype-03-stage4`、PR 作成中・未 merge）の範囲であり、その PR が main へ merge された後、本ドラフトへ (a)〜(e) を追記する。現時点では試作証跡を参照できないため受入条件案を書かない。
+**(a)** LP を投稿型（CPT、`show_in_rest`）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL はディレクトリ非依存（階層を持たないスラッグ）。種別（通常/イベント/比較特設）を JSON で列挙できる。page template + lp パターン 12 本を初期パターン群として引き継ぐ。
+
+**(b)** 試作 03 段 4 の実装（README §2.13）: LP は **`post_type=page` + 固定ページテンプレート `page-lp`**（`wp post create --post_type=page --page_template=page-lp`）として作成しており、**CPT ではなく固定ページの1バリエーションとして代替した**。`wt_is_lp_page()` は `is_page_template( array( 'page-lp', 'page-lp.html' ) )` で判定し、body class に `wt-face-lp` を付与する（README「重大」是正記録、459行目）。`patterns/lp.php` は `hero-split` / `numbers` / `features` / `steps` / `pricing` / `faq` の既存 pattern と比較表 style を流用し、LP 専用のロゴ枠・声・バッジ枠・CTA 帯を追加する構成。
+
+**(c) 書き直し案**
+1. LP ページの `_wp_page_template` が `page-lp` として保存され、body class に `page-template-page-lp` / `wt-face-lp` が付く — 検証: `verify.json.lpFooterFaceDefault`（`lpHasFace:true, lpHasSingleRow:true`）。
+2. 非 LP 面（記事）には `wt-face-lp` が付かず、footer 既定（sitemap）のままである — 検証: `verify.json.lpFooterFaceDefault`（`articleHasFace:false, articleHasSitemap:true`）。
+3. LP 面限定の CSS（`lp_fixed:sp-bottom-bar` 由来の totop 位置調整）が非 LP 面へ漏れない — 検証: `verify.json.lpFaceScopedTotop`（`baseline:"16px", withLpFixed:"16px"`、非LP面で不変）。
+4. LP header 3 型（minimal / logo-only / none）が切り替えられ、`none` はアンカーナビの遷移先が実在し可視である — 検証: `lp-header-*-pc.jpg` / `-sp.jpg` 目視 + `verify.json.lpAnchorNav`（3 リンクとも `targetExists:true, visible:true`）。
+5. **CPT 化（`show_in_rest` による REST 分離）、ディレクトリ非依存 URL（固定ページ階層から独立したスラッグ体系）、種別（通常/イベント/比較特設）の JSON 列挙は試作 03 に実装がなく検証不能。** 現行実装は固定ページの子として存在するため、要求が指す「固定ページからの分離」を満たしていない。
+
+**(d)** 台帳の直接該当なし（CPT 化はテーマ実装規約の話であり、`by-purpose.md` の観察対象外）。
+**(e)** 問い: LP-01 の「CPT として固定ページから分離する」要求を維持し、試作 03 の「固定ページ + page-lp テンプレート」代替は段 4 の PoC 止まりとして次段（実装 PR）で CPT 化を扱う整理でよいか。あるいは、固定ページ + 専用テンプレートの実装で要件を満たしたとみなし、CPT 化を不要と判断するか。
+
+---
+
+## WT-FR-LP-02（LP のフォーム制御・デザイン拡張性・イベント計測）
+
+**(a)** LP はフォーム制御（配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用 variation/block style/セクションパターン）、イベント計測（表示・スクロール・CTAクリック・フォーム送信を WT-FR-TAG-02 のデータ層契約で送信、目標CV ID・A/B variant ID を伴う）を持つ。
+
+**(b)** 試作 03 段 4 の実装（README §2.13）: header 3 型・hero 4 型（split/fullbleed/product/text-only）・hero CTA 3 型（single/double/form-inline）・sections 3 構成（full/short/trust）・CTA style 3 型（solid/outline/pill）・fixed 3 型（none/sp-bottom-bar/float-cta）・legal on/off の**7 軸**を LP 専用パターン（`patterns/lp.php`）として実装。フォームは `method="post"` `action="/lp/"`、`input` に固有 `id`、対応する `label[for]` を持ち JS 無しで送信可能な構造（README §2.13「段4の guard」）。**イベント計測（表示/スクロール/CTAクリック/送信のデータ層契約送信、CV ID・A/B variant ID）は試作 03 に実装がない**（見た目とフォームの静的構造のみ）。
+
+**(c) 書き直し案**
+1. LP hero を 4 型（split 既定 / fullbleed / product / text-only）から選べ、hero CTA を 3 型（single 既定 / double / form-inline）から選べる — 検証: `lp-hero-*-pc.jpg` / `-sp.jpg`、`lp-hero-cta-*-pc.jpg` / `-sp.jpg` 目視。
+2. sections を 3 構成（full/short/trust）から選べ、各構成で期待した slot だけが可視になる — 検証: `verify.json.lpSections`（full: 12 slot、short: 4 slot、trust: 該当 slot、いずれも `visible === expected`、`pass:true`）。
+3. form-inline の hero で、JS 無効でも `method=post` `action=/lp/`、`input id` と `label[for]` の対応が成立する — 検証: `verify.json.lpFormNoJs`（`method:"post", action:"/lp/", inputId:"lp-email-split", labelFor:"lp-email-split", pass:true`）。
+4. CTA style 3 型（solid/outline/pill）のいずれも header CTA・hero CTA・CTA帯・pricing 見出し/価格/CTA が AA コントラスト（本文 4.5:1、大文字 3:1）を満たす — 検証: `verify.json.lpContrast`（3 style × 各 21 項目、すべて `pass:true`。例: solid header CTA 5.18:1、CTA帯見出し 17.13:1）。
+5. fullbleed hero で自動コントラスト guard が働き、h1/lead が基準を満たす — 検証: `verify.json.lpFullbleedContrast`（`pass:true`、概算値と明記）。
+6. fixed 3 型（none/sp-bottom-bar/float-cta）のいずれでも、シェア float・totop ボタンと重ならずタップ到達可能 — 検証: `verify.json.lpFixedOverlap.sp/.pc`（各 variant で `intersections: []`, `clickable` 全 true, `pass:true`）。
+7. hero 画像（split/fullbleed/product）に `fetchpriority="high"` と `width`/`height` があり、text-only は画像を持たない — 検証: `verify.json.lpLcpHero.variants`（各 `attrs.fetchpriority==="high"`、`pass:true`）。
+8. reduced-motion 環境で LP の出現要素が非表示のまま残らず、CTA/section の transition が停止する — 検証: `verify.json.lpReducedMotion`（`revealHidden:0, actionTransition:"none", sectionTransition:"none", pass:true`）。
+9. LP 全面のタップ対象が 44px 目標・24px 下限を満たす（SP/PC 両方） — 検証: `verify.json.tap.lpSp` / `tap.lpPc`（各 `total:24, ok44:24, ok24:24, pass:true`）。
+10. legal on では打消し表示 + PR 表記が出て、off では出ない — 検証: `lp-legal-on-*.jpg` / `lp-legal-off-*.jpg` 目視。
+11. **イベント計測（表示・スクロール・CTAクリック・フォーム送信のデータ層契約送信、CV ID・A/B variant ID の付与）は試作 03 に実装がなく検証不能。**
+
+**(d)** 台帳: サービス LP は「header: logo-left-cta-right PC34%/SP74%、hero: split PC35%・text-only SP35%、hero CTA: single/double 各 PC17%、footer: mega(sitemap) PC91%・SP accordion 50%」（README §2.13「観察の多数派 / 少数派」表、`by-purpose.md` §1「サービス/SaaS LP」・§2「サービスLP | 行動・信頼」からの転記）。既定値案（試作 03 実装）: header=minimal、hero=split、hero CTA=single、sections=full、CTA style=solid、fixed=none、legal=on。台帳の多数派（logo-left-cta-right、split、mega footer）と概ね整合する。
+**(e)** 問い: イベント計測（データ層契約・CV ID・A/B variant ID）の実装を次段の試作対象に含めるか、それとも別要件（実装 PR、HELIX 連携）として切り出すか。
 
 ---
 
@@ -524,9 +560,11 @@
 | WT-Q-PROTO3-15 | BANNER-01 のバナー正本（一元管理UI）を実装設計側の受入条件として切り出してよいか | WT-FR-BANNER-01 |
 | WT-Q-PROTO3-16 | SP-02 の下部固定3〜5タブ（CVタブバー）を次段の試作対象に含めるか | WT-FR-SP-02 |
 | WT-Q-PROTO3-17 | SP-03 のタブ/ギャラリー/CTAのSP変換を次段の試作対象に含めるか | WT-FR-SP-03 |
-| WT-Q-PROTO3-18 | A11Y-01 の受入条件を「summary.pass=26/26」で代替し、axe個別違反件数の出力様式は実装側に委ねてよいか | WT-NFR-A11Y-01 |
+| WT-Q-PROTO3-18 | A11Y-01 の受入条件を「summary.pass=40/40」（段4merge後の項目数）で代替し、axe個別違反件数の出力様式は実装側に委ねてよいか | WT-NFR-A11Y-01 |
 | WT-Q-PROTO3-19 | NFR-SP-02 / NFR-PERF-01〜03 のLighthouse/CWV実測を次段（実サーバー相当環境）で行う対象に含めるか | WT-NFR-SP-02, WT-NFR-PERF-01〜03 |
 | WT-Q-PROTO3-20 | NAV-01 のBreadcrumbList JSON-LD検証（構造化データテスト等）を次段の検証手段に追加するか | WT-FR-NAV-01 |
+| WT-Q-PROTO3-21 | LP-01 の「CPT として固定ページから分離する」要求を維持し、試作03の「固定ページ+page-lpテンプレート」代替は次段（実装PR）でCPT化を扱う整理でよいか、それとも固定ページ+専用テンプレートの実装で要件を満たしたとみなすか | WT-FR-LP-01 |
+| WT-Q-PROTO3-22 | LP-02 のイベント計測（データ層契約・CV ID・A/B variant ID）実装を次段の試作対象に含めるか、別要件として切り出すか | WT-FR-LP-02 |
 
 ---
 
@@ -557,6 +595,7 @@
 21. WT-FR-IMG-03 — alt必須警告UI・GIF動画置換提案・Discover代表画像検査
 22. WT-FR-TYPO-01 — 和文改行制御の個別CSSプロパティ（`text-wrap`等）
 23. WT-FR-NAV-01 — BreadcrumbList JSON-LD の同一正本検証（表示は確認できたが構造化データ出力は未検証）
-24. WT-FR-LP-01 / WT-FR-LP-02 — 段4 merge 後に追記（本ドラフトでは空節）
+24. WT-FR-LP-01 — CPT化（`show_in_rest`によるREST分離）・ディレクトリ非依存URL・種別（通常/イベント/比較特設）のJSON列挙（試作03は固定ページ+専用テンプレートで代替、CPT化自体は未実装）
+25. WT-FR-LP-02 — イベント計測（表示/スクロール/CTAクリック/送信のデータ層契約送信、CV ID・A/B variant ID の付与）
 
-以上 24 件（LP の 2 件を含む）。残り 13 件は本ドラフトの (c) 書き直し案で検証手段付きの条件を記載した。
+以上 25 件（本一覧は「全面未実装」と「一部未実装（他の条件は (c) に記載済み）」の両方を含む。LP-01 は全面未実装、LP-02 はイベント計測の 1 項目のみ未実装で他 10 条件は (c) に記載済み）。対象 37 件のうち、(c) に検証手段付きの条件を 1 件以上記載した要件は 31 件、(c) を完全に保留した全面未実装の要件は 6 件（WT-FR-SECTION-02 / WT-FR-LOOK-04 / WT-FR-BANNER-02 / WT-FR-IMG-01 / WT-FR-IMG-02 / WT-FR-IMG-03）+ WT-FR-LP-01 の計 7 件。
