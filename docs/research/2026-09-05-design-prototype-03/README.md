@@ -27,7 +27,7 @@
 | cat_header | **name-only** / name-desc / hero | `templates/category.html` / `.wt-cat-head`（`core/term-description` を name-desc / hero で表示） |
 | cat_children | none / **chips** / cards / steps | `helix-wt/category-children`（chips / card-grid / numbered-steps） |
 | cat_list | **grid** / thumb-list / featured-grid | `.wt-cat-list`（PC grid、SP は画像左の thumb-list へ自動適用） |
-| cat_pagination | **numbers** / load-more / prev-next | `.wt-cat-pagination` + `category.js`（load-more は no-JS で numbers） |
+| cat_pagination | **numbers** / load-more / prev-next | `.wt-cat-pagination` + `category.js`（load-more は JS 有効時に `a.wp-block-query-pagination-next` の href を fetch して `.wt-cat-list` へ追記、no-JS では numbers） |
 | cat_ranking | **none** / sidebar / bottom | `helix-wt/category-ranking`（sidebar は PC、SP では下部） |
 | cat_minihome | **off** / on | `helix-wt/category-minihome`（子カテゴリごとの4件、読む順番、ランキング） |
 | footer_layout | **sitemap** / single-row / columns-3 | `parts/footer.html` の3 layout slot。sitemap の `details` は SP アコーディオン |
@@ -36,7 +36,7 @@
 | footer_extra | **sns** / none / sites / badges / address / 組み合わせ / all | SNS・関連サイト・認証バッジ・住所を slot ごとに body class で表示 |
 | footer_totop | **off** / button | `.wt-totop`（`footer.js`、JS無効時も `href="#"` が上部へ戻る） |
 | tail_order | **related-author-share-cta** / cta-related-author-share / related-cta-author | `.wt-tail__slot` の CSS order |
-| tail_share | **none** / icons-row | `.wt-tail__slot--share`（既存の share 軸とは別の末尾 slot） |
+| tail_share | **none** / icons-row | `.wt-tail__slot--share` > `.wt-tail-icons`（既存 share 軸の bottom / float 共有は `.wt-tail` の外に据え置き、両立） |
 | tail_author | **none** / avatar-bio / avatar-bio-sns / supervisor | `.wt-author-variant--*` |
 | tail_prevnext | **off** / thumb | `helix-wt/tail-prevnext` / `.wt-tail__prevnext` |
 
@@ -228,7 +228,7 @@ SPのsitemapはHTML側で全 `details` に `open` を付け、`footer.js` がJS�
 | `tail_order: cta-related-author-share` | 同上 | CTA → related → author → share | slot順入替 |
 | `tail_order: related-cta-author` | 同上 | related → CTA → author（shareは末尾） | slot順入替 |
 | `tail_share: none` | `.wt-tail__slot--share` 非表示 | tail.share: none | 60% / 71%（多数派） |
-| `tail_share: icons-row` | `.wt-tail__slot--share` | tail.share: icons-row | 30% / 13% |
+| `tail_share: icons-row` | `.wt-tail__slot--share` > `.wt-tail-icons`（汎用の丸アイコン 3 + リンクコピー、各 44px） | tail.share: icons-row | 30% / 13% |
 | `tail_author: none` | `.wt-author-variant` 非表示 | tail.author: none | 60% / 65%（多数派） |
 | `tail_author: avatar-bio` | `.wt-author-variant--avatar-bio` | avatar+bio | 14% / 9% |
 | `tail_author: avatar-bio-sns` | `.wt-author-variant--avatar-bio-sns` | avatar+bio+sns | 14% / 12% |
@@ -240,9 +240,11 @@ SPのsitemapはHTML側で全 `details` に `open` を付け、`footer.js` がJS�
 
 ### 段3のguardと証跡
 
-`verify.mjs` §8 は既存のSP監査に加えて、カテゴリ面とfooterのSP/PC 44px・24px監査、footerの表示色、hero見出しコントラスト、footer sitemap の no-JS 全展開、load-more の no-JS numbers退避、カテゴリページ送りリンクのHTTP 200、カテゴリ/footerの reduced-motion を記録する。`shots.mjs --stage3 true` は既存151枚を保持し、カテゴリ18 variant×SP/PC、footer27 variant×SP/PC、記事末尾11 variant×SP/PCの計112枚を追加する（実機実行済み。`CATALOG-INDEX.json` は 151 → 263 エントリ、`results/*.jpg` 263 枚）。実機結果（`results/verify.json`、WP 7.1 ローカル）: `summary` **pass 14 / fail 0**。段3分の内訳 — タップ監査 カテゴリ面 SP 34/34・PC 34/34、footer（`footer_extra:all,footer_totop:button`）SP 26/26・PC 26/26（44px・24px とも未達 0、inline 除外 0）。footer 表示色 34 要素すべて 4.5:1 以上（最小 5.25:1 = 法的表記・extra 見出しの mute 色。丸アイコン・to-top は自前の背景（contrast 色）との比 17.13:1 で判定。初回実行では footer 背景と比べて 1.08:1 と誤判定したため、guard を「要素自身の実効背景（最も近い不透明な祖先）」で測る形に直した）。hero 見出し: スクリム alpha 0.88、白見出しとの比 5.84:1。footer sitemap no-JS: `details` 4/4 が open・内容可視。load-more no-JS: ボタン非表示・numbers 2 件表示。ページ送りリンク 2 件とも HTTP 200（`/page/2/`）。reduced-motion: カード・to-top・footer の transition `none`。
+`verify.mjs` §8 は既存のSP監査に加えて、カテゴリ面とfooterのSP/PC 44px・24px監査、footerの表示色、hero見出しコントラスト、footer sitemap の no-JS 全展開、load-more の no-JS numbers退避、カテゴリページ送りリンクのHTTP 200、カテゴリ/footerの reduced-motion を記録する。`shots.mjs --stage3 true` は既存151枚を保持し、カテゴリ18 variant×SP/PC、footer27 variant×SP/PC、記事末尾11 variant×SP/PCの計112枚を追加する（実機実行済み。`CATALOG-INDEX.json` は 151 → 263 エントリ、`results/*.jpg` 263 枚）。実機結果（`results/verify.json`、WP 7.1 ローカル）: `summary` **pass 24 / fail 0**（段 1/2 の 12 項目 + 段 3 の 12 項目。総合 `pass` は全検査の AND）。段3分の内訳 — タップ監査 カテゴリ面 SP 34/34・PC 34/34、footer（`footer_extra:all,footer_totop:button`）SP 26/26・PC 26/26、著者 SNS（`tail_author:avatar-bio-sns`、`.wt-author-sns a` 44px）SP 3/3・PC 3/3（44px・24px とも未達 0、inline 除外 0）。footer 表示色 34 要素すべて 4.5:1 以上（最小 5.25:1 = 法的表記・extra 見出しの mute 色。丸アイコン・to-top は自前の背景（contrast 色）との比 17.13:1 で判定。初回実行では footer 背景と比べて 1.08:1 と誤判定したため、guard を「要素自身の実効背景（最も近い不透明な祖先）」で測る形に直した）。hero 見出し（段 1 の guard と同じ方式: 文字矩形 4 隅を 115deg の gradient 軸へ射影した実効 α の最小値、`hero.png` を cover 写像で canvas から採った文字位置の平均輝度 L、実色、合成 Lc = L×(1−α) + Lscrim×α）: h1 40px bold α .635・L .395 → **5.21:1**（要 3:1、最大輝度画素では 2.49）、説明文 17px α .627・L .438 → **4.76:1**（要 4.5:1、最大輝度画素 2.44）。スクリムなしでは 2.36 / 2.15 で不合格。最大輝度画素比は段 1 と同じく参考値として併記（判定は平均輝度）。footer sitemap no-JS: `details` 4/4 が open・内容可視。load-more no-JS: ボタン非表示・numbers 2 件表示。load-more JS 有効（PC）: ボタン表示・番号送り非表示・`a.wp-block-query-pagination-next` あり → クリックで 10 件 → 17 件（+7、2 ページ目の全件）、次ページなしでボタンは hidden。ページ送りリンク 2 件とも HTTP 200（`/page/2/`）。reduced-motion: カード・to-top・footer の transition `none`。
 
 撮影スクリプトの修正: footer / 記事末尾は viewport 外に位置するため、`save()` の clip をページ座標 + `fullPage` で切り出す形に直した（初回は「Clipped area is outside」で footer の 1 枚目に失敗）。あわせて、要素までスクロールして lazy 画像を eager 化し読込を待つこと、`fullPage` 撮影で srcset 候補が切り替わり再読込が走るため 1 回目を捨てて撮り直すこと、を追加した（それ以前の撮影では関連カードの画像が空だった）。記事末尾の author / share / prevnext は該当 slot（`.wt-tail__slot--*`）だけを切り出し、order 3 型と none / off は末尾全体 `.wt-tail` を撮る。実機で見つけて直した表示不具合: footer SP で `.wt-footer__legal` の両型が同時表示（SP の `display:block` が型別の非表示を打ち消していた）、記事末尾 author slot の core ブロックが空描画（→ `helix-wt/tail-author`）、記事 554 の `post_author` が 0（→ 1 を設定）。
+
+Astra レビュー（PR #141 1 巡目）の是正: (1) `category.js` の「次のページ」セレクタが `.wp-block-query-pagination-next a` で、core は a 要素自身にそのクラスを付けるため JS 有効時も常に numbers へ退避していた → `a.wp-block-query-pagination-next` に修正し、verify に JS 有効時の実動検査 `loadMoreJs` を追加。(2) 段 1 の `share:float` 用 `.wt-share--float` が `article-tail.html` から消えていた → bottom / float 共有を `.wt-tail` の外へ復元（share 軸で制御）し、`tail_share` slot は `.wt-tail-icons` 専用に。(3) hero コントラストを固定 α・固定 RGB の概算から段 1 と同じ実描画方式へ。(4) 総合 `pass` に `contrast` / `contrastGuard` / `headline` / 段 1 タップ 4 画面 / footer transition を反映。(5) `.wt-author-sns a` 32px → 44px、監査対象に追加。(6) §4 の数値を verify.json と再同期。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
@@ -257,17 +259,17 @@ SPのsitemapはHTML側で全 `details` に `open` を付け、`footer.js` がJS�
 
 ## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。Astra レビュー PR #139 の指摘 8 件を反映して再実行）
 
-下表は段1/2の検査項目。段3で追加した 9 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / footerContrast / footerNoJs / loadMoreNoJs / categoryPagination / categoryHeroContrast）の結果は §2.12「段3のguardと証跡」に記載し、`summary` は 14 項目 pass 14 / fail 0。
+下表は段1/2の検査項目（段 3 の再実行後の値。段 3 で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段 1 時点から変わっている）。段3で追加した 12 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast）の結果は §2.12「段3のguardと証跡」に記載。`summary` は 24 項目 pass 24 / fail 0。段 1/2 の項目も `contrast` / `contrastGuard` / `headline` / タップ 4 画面に合否を持たせ、総合 `pass` は全項目の AND。
 
 | 項目 | 結果 |
 |---|---|
-| JS 無効描画（SP、`motion:on,header:announce`） | `html.wt-js` なし、お知らせ帯 存在・可視、目次 表示・開・リンク 12、`.wt-reveal` 10 件すべて opacity 1、商品カード・比較表・関連カード 7 件 表示、本文 3,052 字表示。`pass: true` |
+| JS 無効描画（SP、`motion:on,header:announce`） | `html.wt-js` なし、お知らせ帯 存在・可視、目次 表示・開・リンク 12、`.wt-reveal` 10 件すべて opacity 1、商品カード・比較表・関連カード 7 件 表示、本文 3,048 字表示。`pass: true` |
 | reduced-motion（SP、`motion:on`） | `.wt-reveal` 10/10 が初期表示、ヘッダー・ボタンの transition `none`、count-up は最終値「1,284」。比較: 通常設定では読み込み直後 10/10 が非表示 → スクロールで出現 |
 | コントラスト（PC、算出） | CTA ボタン 白/#c2410c **5.18:1**、本文段落内リンク（`.wp-block-post-content > p > a`、#1d4ed8/白）6.7:1、補助文字 mute 5.69:1、PR 表記 5.69:1、目次リンク 6.19:1、帯タイトル 6.7:1、ランクバッジ 5.18:1、アウトラインボタン 6.7:1、価格単位 5.69:1、リンクカードラベル 5.69:1、カード日付 5.69:1。11 項目すべて 4.5:1 以上 |
-| 自動コントラスト guard（実描画、§2.9 の算式、文字は実色 #fff） | dark 画像（`dark`、文字位置の画像 L 0.025 / α .371）本文 15.98:1・h3 16.74:1 / mid（`mid`、L 0.246 / α .66）本文 7.86:1・h3 6.17:1 / light（`light`、L 0.882 / α .933）本文 9.62:1・h3 5.48:1。スクリムなしでは mid 3.55、light 1.13 で不合格。記事 hero アイキャッチ（生成写真、`mid`）h1 11.21:1（最大輝度画素 3.38、要 3:1）、パンくず「ホーム」10.39:1、カテゴリ 7.38:1、日付 17.35:1（いずれも実色 rgb(255,255,255)。著者名・更新日はこの記事では非描画）。10 判定すべて合格 |
+| 自動コントラスト guard（実描画、§2.9 の算式、文字は実色 #fff） | dark 画像（`dark`、文字位置の画像 L 0.025 / α .371）本文 15.98:1・h3 16.74:1 / mid（`mid`、L 0.246 / α .66）本文 7.86:1・h3 6.17:1 / light（`light`、L 0.882 / α .933）本文 9.62:1・h3 5.48:1。スクリムなしでは mid 3.55、light 1.13 で不合格。記事 hero アイキャッチ（生成写真、`mid`）h1 11.21:1（最大輝度画素 3.38、要 3:1）、パンくず「ホーム」10.39:1、カテゴリ 7.38:1、著者名 17.61:1、日付 11.95:1、更新日 10.74:1（いずれも実色 rgb(255,255,255)）。12 判定すべて合格 |
 | 比較表（記事 554 の描画 HTML） | `<thead>` 無傷、`th` 4 / `scope="col"` 4、行 8 / 行見出し `tbody th[scope=row]` 8（`td[scope=row]` 0）、`data-th` 24（データセル td のみ。行見出し th の `data-th` 0）、`tfoot` 行は変換対象外（本記事に tfoot なし、変換件数 0）、`caption` あり。`pass: true` |
 | 404 | 素の URL・3 変種すべて **HTTP 404**、robots meta 全件 `["max-image-preview:large","noindex"]` → noindex あり、謝意・原因・検索（ボタン付き）・人気 3 件・カテゴリ・ホーム・CV slot 3 枠・検索語提案 4 件 |
-| タップ領域監査（SP） | 除外は p / li 直下の display:inline リンクだけ（記事 2・カタログ 1・404 0）。core の skip-link（1×1、フォーカス時のみ表示）は SR 用として別掲。**44px（P05）**: 記事 50/50、帯 + カルーセル + float 共有 54/54、404 23/23、カタログ 13/13。**24px（WCAG 2.5.8）**: 同じく全件。サイト名・パンくず・カテゴリターム・カードタイトルは inline-flex + 負マージンで 44px 化（行送りは据え置き） |
+| タップ領域監査（SP） | 除外は p / li 直下の display:inline リンクだけ（記事 2・カタログ 1・404 0）。core の skip-link（1×1、フォーカス時のみ表示）は SR 用として別掲。**44px（P05）**: 記事 68/68、帯 + カルーセル + float 共有 72/72、404 45/45、カタログ 31/31。**24px（WCAG 2.5.8）**: 同じく全件。サイト名・パンくず・カテゴリターム・カードタイトルは inline-flex + 負マージンで 44px 化（行送りは据え置き） |
 | 見出し 1 行 | h2 18.5px、18 字、358px、1 行（19.3 字まで） |
 | 目次しきい値 | h2 5 / h3 7 → 目次 5 / 7、`scroll-margin-top` 76px、SP は JS で閉 |
 | 動作（別スクリプト） | お知らせ帯: 閉 → 再読込後も非表示（localStorage キー 1 件）。ヘッダー: 下スクロールで隠れ、上で再表示、背景不透明。目次: `#h-3` 到達で「3 製品の比較表」が current。カルーセル前後ボタン 2 組。比較表 SP: 行が block（カード）。横スクロールなし |

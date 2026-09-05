@@ -9,7 +9,7 @@
   "productVisible": true,
   "tableVisible": true,
   "relatedCards": 7,
-  "textChars": 3030,
+  "textChars": 3048,
   "headerVisible": true,
   "announceExists": true,
   "announceVisible": true,
@@ -175,29 +175,32 @@
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
    "below44": [],
-   "below24": []
+   "below24": [],
+   "pass": true
   },
   "article": {
-   "total": 66,
-   "ok44": 66,
-   "ok24": 66,
+   "total": 68,
+   "ok44": 68,
+   "ok24": 68,
    "inlineText": 2,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
    "below44": [],
-   "below24": []
+   "below24": [],
+   "pass": true
   },
   "article-announce": {
-   "total": 70,
-   "ok44": 70,
-   "ok24": 70,
+   "total": 72,
+   "ok44": 72,
+   "ok24": 72,
    "inlineText": 2,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
    "below44": [],
-   "below24": []
+   "below24": [],
+   "pass": true
   },
   "catalog": {
    "total": 31,
@@ -208,7 +211,8 @@
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
    "below44": [],
-   "below24": []
+   "below24": [],
+   "pass": true
   },
   "categorySp": {
    "total": 34,
@@ -223,6 +227,24 @@
    "total": 34,
    "ok44": 34,
    "ok24": 34,
+   "inlineText": 0,
+   "below44": [],
+   "below24": [],
+   "pass": true
+  },
+  "authorSnsSp": {
+   "total": 3,
+   "ok44": 3,
+   "ok24": 3,
+   "inlineText": 0,
+   "below44": [],
+   "below24": [],
+   "pass": true
+  },
+  "authorSnsPc": {
+   "total": 3,
+   "ok44": 3,
+   "ok24": 3,
    "inlineText": 0,
    "below44": [],
    "below24": [],
@@ -544,7 +566,8 @@
   "lineHeight": 25.935,
   "boxHeight": 25.9375,
   "lines": 1,
-  "contentWidth": 358
+  "contentWidth": 358,
+  "pass": true
  },
  "table": {
   "theadIntact": true,
@@ -579,6 +602,23 @@
     "status": 200
    }
   ],
+  "pass": true
+ },
+ "loadMoreJs": {
+  "before": {
+   "items": 10,
+   "buttonVisible": true,
+   "paginationVisible": false,
+   "nextHref": "http://localhost:8086/category/topic-index/page/2/?wt=cat_pagination%3Aload-more"
+  },
+  "after": {
+   "items": 17,
+   "error": null,
+   "buttonText": "読み込み中…",
+   "buttonHidden": true,
+   "bodyStillLoadMore": true
+  },
+  "added": 7,
   "pass": true
  },
  "footerContrast": {
@@ -838,14 +878,54 @@
   "pass": true
  },
  "categoryHeroContrast": {
-  "backgroundImage": "linear-gradient(115deg, rgba(23, 28, 34, 0.88), rgba(23, 28, 34, 0.72) 62%, rgba(23, 28, 34, 0.58))",
-  "alpha": 0.88,
-  "contrast": 5.84,
-  "heading": "rgb(255, 255, 255)",
+  "image": "img/hero.png",
+  "gradient": "linear-gradient(115deg, rgba(23, 28, 34, 0.88), rgba(23, 28, 34, 0.72) 62%, rgba(23, 28, 34, 0.58))",
+  "angle": 115,
+  "scrimRgb": [
+   23,
+   28,
+   34
+  ],
+  "items": [
+   {
+    "label": "h1",
+    "textColor": "rgb(255, 255, 255)",
+    "fontSize": 40,
+    "fontWeight": "700",
+    "alphaAtText": 0.635,
+    "imageLAtText": 0.395,
+    "imageLMaxAtText": 1,
+    "compositeL": 0.152,
+    "textL": 1,
+    "ratioText": 5.21,
+    "ratioWorstPixel": 2.49,
+    "ratioWithoutScrim": 2.36,
+    "required": 3,
+    "pass": true
+   },
+   {
+    "label": "description",
+    "textColor": "rgb(255, 255, 255)",
+    "fontSize": 17,
+    "fontWeight": "400",
+    "alphaAtText": 0.627,
+    "imageLAtText": 0.438,
+    "imageLMaxAtText": 1,
+    "compositeL": 0.171,
+    "textL": 1,
+    "ratioText": 4.76,
+    "ratioWorstPixel": 2.44,
+    "ratioWithoutScrim": 2.15,
+    "required": 4.5,
+    "pass": true
+   }
+  ],
   "pass": true
  },
+ "contrastPass": true,
+ "contrastGuardPass": true,
  "summary": {
-  "pass": 14,
+  "pass": 24,
   "fail": 0,
   "checks": {
    "noJs": true,
@@ -853,13 +933,23 @@
    "status404": true,
    "table": true,
    "toc": true,
+   "contrast": true,
+   "contrastGuard": true,
+   "headline": true,
+   "articleTapSp": true,
+   "articleAnnounceTapSp": true,
+   "notFoundTapSp": true,
+   "catalogTapSp": true,
    "categoryTapSp": true,
    "categoryTapPc": true,
    "footerTapSp": true,
    "footerTapPc": true,
+   "authorSnsTapSp": true,
+   "authorSnsTapPc": true,
    "footerContrast": true,
    "footerNoJs": true,
    "loadMoreNoJs": true,
+   "loadMoreJs": true,
    "categoryPagination": true,
    "categoryHeroContrast": true
   }
