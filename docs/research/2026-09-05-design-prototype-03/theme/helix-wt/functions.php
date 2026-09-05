@@ -324,6 +324,11 @@ function wt_insert_pr( $content ) {
 // 同一文（。！？または改行で区切った1文）内に共起する場合だけを開示文とみなす。
 // 走査範囲は本文先頭の段落（<p> タグ）を先頭から最大3つ、かつ合計600字までとし、200字の固定長では
 // 拾えない201字目以降の開示文にも対応する（それ以降・見出し内の記述は対象外＝既知の限界）。
+// 2026-09-05 Astra 再レビュー是正（重大）: 上記 (1)(2) の共起だけでは「広告のない製品を掲載しています」
+// 「本記事には広告を含みません」のような**否定文**も開示文として誤検出していた。同一文内に否定語
+// （ない・なし・ません・ありません・ございません 等。「含みません」のように動詞へ直結する否定形も
+// 部分一致で拾う）があれば、その文は開示文とみなさない（文単位のヒューリスティックのため、
+// 無関係な否定表現が同じ文に混在する場合は見逃す方向に倒れる＝既知の限界）。
 function wt_content_has_pr_disclosure( $content ) {
 	preg_match_all( '/<p[^>]*>(.*?)<\/p>/su', $content, $m );
 	$paragraphs = array_slice( $m[1], 0, 3 );
@@ -334,10 +339,11 @@ function wt_content_has_pr_disclosure( $content ) {
 	}
 	$plain = mb_substr( $plain, 0, 600 );
 	$sentences = preg_split( '/(?<=[。！？])|\n+/u', $plain, -1, PREG_SPLIT_NO_EMPTY );
-	$topic = '/(?<![A-Za-z])PR(?![A-Za-z])|広告|アフィリエイト|プロモーション/u';
-	$verb  = '/含み(ます)?|含む|掲載|表記/u';
+	$topic    = '/(?<![A-Za-z])PR(?![A-Za-z])|広告|アフィリエイト|プロモーション/u';
+	$verb     = '/含み(ます)?|含む|掲載|表記/u';
+	$negation = '/ない|なし|ません|ありません|ございません/u';
 	foreach ( $sentences as $s ) {
-		if ( preg_match( $topic, $s ) && preg_match( $verb, $s ) ) {
+		if ( preg_match( $topic, $s ) && preg_match( $verb, $s ) && ! preg_match( $negation, $s ) ) {
 			return true;
 		}
 	}

@@ -587,6 +587,19 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 是正後の実機再実行（`results/verify.json`）: `summary` 52 項目 **pass 52 / fail 0**（反応2〜5回目までの48 + 新規4: `prTagNotStackedSp`〈`prTagNotStacked` から分離〉/ `tocFloatLeft` / `tableCaptionPcPosition` / `prAutoFixtures`）、総合 `pass: true`。再撮影は `scripts/shots-reaction2.mjs`（`2tone`/`toc-float` 追加）+ 個別実行で `h2-2tone-{sp,pc}.jpg` / `toc-float-pc.jpg` / `table-compare-{sp,pc}.jpg` の計5枚を差し替えた（件数は変更なし、349枚のまま）。
 
+### Astra 再レビュー（head 4c19ce3、重大1・改善2）の是正
+
+1. **重大: `wt_content_has_pr_disclosure()` が否定文を開示扱いにしていた**
+   - 原因: 話題語（PR/広告/アフィリエイト/プロモーション）と開示述語（含む/含みます/掲載/表記）の共起だけを見ており、「広告のない製品を掲載しています。」（話題語+「掲載」で共起するが「ない」で否定）や「本記事には広告を含みません。」（「含みません」を「含み」の部分一致で誤って開示述語と判定）も開示文として検出し、`.wt-pr` の自動挿入を誤って抑止していた。
+   - 是正: 同一文内に否定語（`ない`/`なし`/`ません`/`ありません`/`ございません`）があれば、その文は開示文とみなさないよう `$negation` 判定を追加した（文単位のヒューリスティックのため、無関係な否定表現が同じ文に混在する場合は見逃す方向に倒れる＝既知の限界として明記）。
+   - 検証: `prAutoFixtures` に否定形の陰性フィクスチャを2件追加（`neg-4`「広告のない製品を掲載しています。」、`neg-5`「本記事には広告を含みません。」）。両方とも `.wt-pr` が通常どおり描画される（`autoInserted: true`）ことを実機（wp-cli 一時記事）で確認。既存の陽性3件（「本記事はPRを含みます」等）は維持され、引き続き非表示（`autoInserted: false`）。
+2. **改善: `prAutoFixtures.pass===null`（`--wpclidir` 未指定によるスキップ）を `true` に変換して合格件数へ加算していた**
+   - 是正: `scripts/verify.mjs` の集計を変更し、スキップ時は `checkList`（分母・分子とも）から除外、`summary.skipped` に配列として別掲するようにした（`--wpclidir` 指定時は `skipped: []`、未指定時は `skipped: ["prAutoFixtures"]` で `summary.pass`/`fail` の母数は51項目になる）。
+3. **改善: 陽性フィクスチャが短文のみで201字目以降の検出を実証していなかった**
+   - 是正: 長文の陽性フィクスチャを2件追加。`pos-4-long-250`（フィラー1段落＋開示文、開示文の開始位置は約264字目）、`pos-5-long-400`（フィラー2段落＋開示文、開始位置は約414字目）。いずれも3段落・600字の走査範囲内に収まる（39字の開示文を含めても合計 303字 / 453字で600字を超えない）。実機確認: 両方とも `.wt-pr` が非表示（`autoInserted: false`）となり、旧実装（200字固定長）では検出できなかった位置の開示文を検出できることを確認した。
+
+是正後の実機再実行（`results/verify.json`、`--wpclidir` 指定で `prAutoFixtures` を実行）: `summary` 52 項目 **pass 52 / fail 0**（`skipped: []`）、`prAutoFixtures.results` は陽性5・陰性5・境界2 の計12件すべて期待どおり、総合 `pass: true`。テーマ・verify スクリプトの変更のみで描画への影響はないため画像の再撮影はしていない。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |

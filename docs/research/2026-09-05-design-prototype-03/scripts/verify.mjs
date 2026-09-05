@@ -748,8 +748,12 @@ if (WPCLIDIR) {
     { name: "neg-1", content: "<!-- wp:paragraph --><p>広告のない製品を比較します。</p><!-- /wp:paragraph -->", expectAuto: true, note: "話題語のみ・開示述語なし（誤検出の代表例）" },
     { name: "neg-2", content: "<!-- wp:paragraph --><p>PROモデルを紹介します。</p><!-- /wp:paragraph -->", expectAuto: true, note: "「PRO」の部分一致除外（誤検出の代表例）" },
     { name: "neg-3", content: "<!-- wp:paragraph --><p>今日は天気がいいですね。デスクの話をします。</p><!-- /wp:paragraph -->", expectAuto: true, note: "無関係な本文（対照）" },
+    { name: "neg-4", content: "<!-- wp:paragraph --><p>広告のない製品を掲載しています。</p><!-- /wp:paragraph -->", expectAuto: true, note: "否定文（「ない」+「掲載」の共起を誤って開示扱いしていた重大指摘の再現例）" },
+    { name: "neg-5", content: "<!-- wp:paragraph --><p>本記事には広告を含みません。</p><!-- /wp:paragraph -->", expectAuto: true, note: "否定文（「含みません」を「含み」の部分一致で誤検出していた重大指摘の再現例）" },
     { name: "boundary-201plus", content: "<!-- wp:paragraph --><p>" + "あ".repeat(250) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>" + "い".repeat(250) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>" + "う".repeat(250) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。</p><!-- /wp:paragraph -->", expectAuto: true, note: "開示文が4段落目・600字超（走査範囲外、既知の限界＝挿入されるのが正)" },
     { name: "boundary-heading", content: "<!-- wp:heading --><h2>本記事はPRを含みます</h2><!-- /wp:heading --><!-- wp:paragraph --><p>本文です。</p><!-- /wp:paragraph -->", expectAuto: true, note: "見出し内のみの記述（段落を走査対象にするため対象外＝挿入されるのが正)" },
+    { name: "pos-4-long-250", content: "<!-- wp:paragraph --><p>" + "この記事は在宅ワーク向けの電動昇降デスクを実機で比較したものです。".repeat(8) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p><!-- /wp:paragraph -->", expectAuto: false, note: "開示文の開始位置が約264字目（先頭段落がフィラー264字、開示は2段落目・3段落/600字の走査範囲内。旧200字固定長では検出できなかった位置）" },
+    { name: "pos-5-long-400", content: "<!-- wp:paragraph --><p>" + "この記事は在宅ワーク向けの電動昇降デスクを実機で比較したものです。".repeat(8) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>" + "同じ部屋・同じ期間で使い比べ、価格と昇降範囲を比較しました。".repeat(5) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p><!-- /wp:paragraph -->", expectAuto: false, note: "開示文の開始位置が約414字目（フィラー2段落・3段落/600字の走査範囲内、旧200字固定長では検出できなかった位置）" },
   ];
   const wp = (cmdArgs) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...cmdArgs], { cwd: WPCLIDIR, encoding: "utf8" });
   out.prAutoFixtures = { results: [] };
@@ -794,9 +798,17 @@ const checkList = [
   ["tableCaptionSp", out.tableCaptionSp.pass], ["tableNumFontSize", out.tableNumFontSize.pass], ["headerInnerWidth", out.headerInnerWidth.pass], ["headerCtaOffCenter", out.headerCtaOffCenter.pass],
   ["headingNumberPc", out.headingNumberPc.pass], ["headingNumberSp", out.headingNumberSp.pass], ["underlineGap", out.underlineGap.pass], ["prTagNotStackedPc", out.prTagNotStackedPc.pass], ["prTagNotStackedSp", out.prTagNotStackedSp.pass],
   ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
-  ["prAutoFixtures", out.prAutoFixtures.pass === null ? true : out.prAutoFixtures.pass],
 ];
-out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
+// 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
+// true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
+// skip 時は checkList（分母・分子とも）から除外し、summary.skipped に別掲する。
+const skipped = [];
+if (out.prAutoFixtures.pass === null) {
+  skipped.push("prAutoFixtures");
+} else {
+  checkList.push(["prAutoFixtures", out.prAutoFixtures.pass]);
+}
+out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, skipped, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;
 await browser.close();
 fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
