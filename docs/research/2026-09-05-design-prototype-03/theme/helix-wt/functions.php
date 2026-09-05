@@ -175,7 +175,7 @@ add_action( 'init', function () {
 		array( 'core/group', 'wt-label-title', '囲み: ラベルタイトル' ),
 		array( 'core/group', 'wt-card-shadow', '囲み: 影カード' ),
 		// 2026-09-05 PO 反応4回目: 囲みバリエーション強化（+5）。台帳 parts-pattern-taxonomy README §1「囲み」の観察型（引用・タブ・チェック等）と
-		// PO 提案（Q&A ボックス・番号手順ボックス・warn の強弱2段）から選定。既存7型は変更していない
+		// Claude 案（Q&A ボックス・番号手順ボックス・warn の強弱2段。PO 指示は「バリエーション追加」まで）から選定。既存7型は変更していない
 		array( 'core/group', 'wt-quote', '囲み: 引用風' ),
 		array( 'core/group', 'wt-dashed', '囲み: 破線' ),
 		array( 'core/group', 'wt-steps', '囲み: 番号手順' ),
@@ -301,22 +301,47 @@ add_filter( 'the_content', function ( $content ) {
 
 // PR 表記（1 行・控えめ）を本文先頭へ。記事 meta wt_pr=off で抑止
 // 2026-09-05 PO 反応5回目:「記事本文にすでに PR 表記が入っている場合、自動挿入が重複する」への是正。
-// pr:auto（既定）は本文先頭 200 字以内に PR / 広告 / アフィリエイト の語を検出したら自動挿入を抑止する。
+// pr:auto（既定）は本文の開示文らしき記述を検出したら自動挿入を抑止する。
 // pr:on は検出をせず常に挿入（旧既定の挙動）、pr:off は常に挿入しない。
 // 注: 「本文の語を機械判定してよいか」自体は要求 VOCAB-03 の解釈に関わるため、本実装は PoC の是正であり、
-// 正本の判定方式（語検出の是非・対象語・文字数）を確定させる決定ではない。
+// 正本の判定方式（語検出の是非・対象語・範囲）を確定させる決定ではない。
 function wt_insert_pr( $content ) {
 	$mode = wt_opt( 'pr' );
 	if ( 'off' === $mode || str_contains( $content, 'class="wt-pr ' ) ) {
 		return $content;
 	}
-	if ( 'auto' === $mode ) {
-		$head = mb_substr( wp_strip_all_tags( $content ), 0, 200 );
-		if ( preg_match( '/PR|広告|アフィリエイト/u', $head ) ) {
-			return $content;
-		}
+	if ( 'auto' === $mode && wt_content_has_pr_disclosure( $content ) ) {
+		return $content;
 	}
 	return '<p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p>' . $content;
+}
+
+// 2026-09-05 PO反応5回目 Astraレビュー是正: 「PR」「広告」等の単純な部分一致だと
+// 「広告のない製品」「PROモデル」等に誤検出し（false positive）、逆に本文201字目以降の
+// 実際の開示文は見逃す（false negative）。
+// 本関数は (1) 開示の話題語（PR / 広告 / アフィリエイト / プロモーション。"PR" は前後が英字でない
+// 独立した2文字のときだけ一致させ "PRO" 等を除外）と (2) 開示の述語（含む・含みます・掲載・表記）が
+// 同一文（。！？または改行で区切った1文）内に共起する場合だけを開示文とみなす。
+// 走査範囲は本文先頭の段落（<p> タグ）を先頭から最大3つ、かつ合計600字までとし、200字の固定長では
+// 拾えない201字目以降の開示文にも対応する（それ以降・見出し内の記述は対象外＝既知の限界）。
+function wt_content_has_pr_disclosure( $content ) {
+	preg_match_all( '/<p[^>]*>(.*?)<\/p>/su', $content, $m );
+	$paragraphs = array_slice( $m[1], 0, 3 );
+	$plain = trim( wp_strip_all_tags( implode( "\n", $paragraphs ) ) );
+	if ( '' === $plain ) {
+		// p タグを持たない本文（wp:html 等）へのフォールバック
+		$plain = wp_strip_all_tags( $content );
+	}
+	$plain = mb_substr( $plain, 0, 600 );
+	$sentences = preg_split( '/(?<=[。！？])|\n+/u', $plain, -1, PREG_SPLIT_NO_EMPTY );
+	$topic = '/(?<![A-Za-z])PR(?![A-Za-z])|広告|アフィリエイト|プロモーション/u';
+	$verb  = '/含み(ます)?|含む|掲載|表記/u';
+	foreach ( $sentences as $s ) {
+		if ( preg_match( $topic, $s ) && preg_match( $verb, $s ) ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 // ---------- 比較表: SP カード化のための data-th を各セルへ付与 ----------

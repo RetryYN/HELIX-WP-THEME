@@ -526,15 +526,15 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 「ボックスは悪くないがバリエーションがさみしいから追加で。」
 
-既存 7 型（plain-border / tinted / band-title / tab-title / label-title / card-shadow / check-list 併用）は変更せず、**+5** 型を追加した。選定は台帳 `../2026-09-05-parts-pattern-taxonomy/README.md` §1「囲み」の観察型（引用 2%・タブ 3% 等）と PO 提案（Q&A・番号手順・warn の強弱2段）から。
+既存 7 型（plain-border / tinted / band-title / tab-title / label-title / card-shadow / check-list 併用）は変更せず、**+5** 型を追加した。選定は台帳 `../2026-09-05-parts-pattern-taxonomy/README.md` §1「囲み」の観察型（引用 2%・タブ 3% 等）と Claude 案（Q&A・番号手順・warn の強弱2段。PO 指示は「バリエーション追加」までで、具体型は Claude 解釈）から。
 
 | 型名 | 用途 | 台帳での観察 |
 |---|---|---|
 | `wt-quote`（引用風） | 短い体験談・レビュー引用の強調 | 「引用」2% |
-| `wt-dashed`（破線） | 一時的な注記・撮影時点限定の断り書き | 台帳に破線の直接観察なし（PO 提案、既存 plain-border の枠種違いとして追加） |
-| `wt-steps`（番号手順） | 手順・使い方の段階説明（`wt-timeline` の縦タイムラインより軽量な箱入り版） | 手順表示は「タブ」3% 系に近い運用（台帳に手順専用の観察行はなし、PO 提案） |
-| `wt-qa`（Q&A） | 記事内の一問一答（`wp:details` の FAQ とは別に、本文中で強調したい Q&A に使う） | 台帳に Q&A 専用の観察行はなし（PO 提案） |
-| `wt-warn-soft`（注意・弱） | 強い警告色（既存 `wt-c-warn` 赤系）ほどではない軽い注意書き | 「注意」系全体の強弱バリエーションとして PO 提案 |
+| `wt-dashed`（破線） | 一時的な注記・撮影時点限定の断り書き | 台帳に破線の直接観察なし（Claude 案、既存 plain-border の枠種違いとして追加） |
+| `wt-steps`（番号手順） | 手順・使い方の段階説明（`wt-timeline` の縦タイムラインより軽量な箱入り版） | 手順表示は「タブ」3% 系に近い運用（台帳に手順専用の観察行はなし、Claude 案） |
+| `wt-qa`（Q&A） | 記事内の一問一答（`wp:details` の FAQ とは別に、本文中で強調したい Q&A に使う） | 台帳に Q&A 専用の観察行はなし（Claude 案） |
+| `wt-warn-soft`（注意・弱） | 強い警告色（既存 `wt-c-warn` 赤系）ほどではない軽い注意書き | 「注意」系全体の強弱バリエーションとして Claude 案 |
 
 証跡: `results/box-{quote,dashed,steps,qa,warn-soft}-{sp,pc}.jpg`。記事本文（`patterns/compare-article.php`）にも `wt-dashed`（比較表直後の一時的な注記）と `wt-quote`（F3 レビュー末尾の短い引用）を各 1 箇所配置し、文脈内での見え方を確認できるようにした（`results/article-full-{sp,pc}.jpg` に反映）。
 
@@ -559,6 +559,34 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 - **(1) contrast-guard の見せ方バリエーション +5〜6型**（白フェード・暖色/寒色/ブランド色オーバーレイ・下部グラデーション・ぼかし・デュオトーン風）は、既存3段（dark/mid/light スクリム）を作り直すものではなく実装コストが大きいため次回に持ち越す（§8）。
 - **(2) related の品質再調査**（テーマA・テーマBの実物参照を含む）は、外部サイトの read-only 観察を要する点で反応6回目 PR 表記の調査と同種のため、同じ枠へ合流させ次回に持ち越す（§8）。
 
+## 2.16 段5 — Astra レビュー（head 85ae634、重大1・改善5）の是正
+
+指摘は根拠（ファイル・行）付きの6件すべてを是正した（PO 方針: 改善も直す）。
+
+1. **重大: `pr:auto` の重複検出が先頭200字の単純部分一致で誤検出・見逃しがある**
+   - 原因: `functions.php` の旧実装は `PR|広告|アフィリエイト` の話題語だけを先頭200字に対して部分一致させており、「広告のない製品を比較します」（話題語はあるが開示ではない）や「PROモデルを紹介します」（`PR` が `PRO` の部分文字列として誤一致）で誤って自動挿入を抑止し、逆に201字目以降にある実際の開示文は見逃していた。
+   - 是正: `wt_content_has_pr_disclosure()` を新設し、(a) 話題語（PR/広告/アフィリエイト/プロモーション。`PR` は前後が英字でない独立した2文字のときだけ一致＝`PRO` 等を除外）と (b) 開示の述語（含む・含みます・掲載・表記）が**同一文**（。！？・改行区切り）に共起する場合だけを開示文とみなす。走査範囲は先頭の `<p>` を最大3つ・合計600字までとし、固定200字より広く201字目以降にも対応する（見出し内・4段落目以降は対象外＝既知の限界として明記）。
+   - 検証: `scripts/verify.mjs` に `prAutoFixtures`（`--wpclidir <docker-compose project dir>` 指定時に実行。wp-cli で一時記事を作成→実機で `.wt-pr` の有無を確認→削除）を追加し、陽性3例（定型開示文／「PRを含みます」／「プロモーションを含みます」）・陰性3例（「広告のない製品を比較します」／「PROモデルを紹介します」／無関係文）・境界2例（開示文が4段落目・600字超／見出し内のみ）の計8件を検証。実機確認: 8/8 期待どおり（陽性→非表示、陰性・境界→表示）。`--wpclidir` 未指定時はスキップし `pass` を集計に含めない（環境依存の docker-compose 経路を必須にしないため）。
+2. **改善: サイド目次 float の left が負値で画面左へ欠ける**
+   - 原因: サイドカラム幅トークンを 240→280px（min）へ上げた際、1200px 幅では `left = 600 − 340 − 16 − 280 = −36px`（wide 側 `sidebar-w-max` 336px ではさらに `−76px`）になっていた。
+   - 是正: `theme.css` の `.wt-toc--float` の `left` を `max(8px, calc(...))` に変更し、本文幅・サイド幅のどのプリセット組み合わせでも画面内の左端 8px を下限にした。
+   - 検証: `verify.mjs` に `tocFloatLeft`（1200/1280/1440px × narrow/default/wide の9通りで `left ≥ 0` を検査）を追加。実測はすべて `left ≥ 8px`（1440px・narrow プリセットで最大 67px）。
+3. **改善: SP 向け caption 修正が PC 比較表を崩す**
+   - 原因: `caption{display:block}` を無条件（メディアクエリ外）に適用していたため、PC の通常 table でも caption が table 書式の外に出て、列見出しと価格行の間に紛れ込んでいた。
+   - 是正: 当該ルールを SP カード表示専用の `@media (max-width:599px)` ブロック内へ移設し、PC では `caption-side:top` の既定挙動（表の上）に戻した。
+   - 検証: `verify.mjs` に `tableCaptionPcPosition`（caption の y 座標 < thead の y 座標）を追加、実測 `capY 2507 < theadY 2531` で合格。証跡: `results/table-compare-pc.jpg` 再撮影（caption が表の最上部に復帰）。
+4. **改善: 新規 verify の判定が主張を保証しない**
+   - `headerCtaOffCenter`: 絶対値だと左寄せでも合格していたため、符号付き判定（`(cx − center) / center ≥ 0.25`）に変更。
+   - `headingNumberPc/Sp`: 見出し全体の高さだけでは「番号自身は縦積みだが本文が短く全体高さは閾値内」を見逃すため、`::before` 自身の `white-space:nowrap` かつ `flex-shrink:0`（＝縮んで折り返すことが構造的に起きないという CSS 宣言そのもの）を検査対象にした。
+   - `underlineGap`: `padding-bottom` の値ではなく、`Range.selectNodeContents()` で実テキスト（疑似要素を含まない）の bounding rect を取り、要素外枠下端 − border 幅 との実距離を測るよう変更。
+   - PR タグ検査: `prTagNotStackedPc` に加え `prTagNotStackedSp` を追加し SP も検査対象にした。
+5. **改善: 変更済み要素の画像証跡が古い**
+   - `scripts/shots-reaction2.mjs` の撮影対象に `2tone`（h2 の下線間隔を変更したのに撮り直していなかった）と `toc-float`（サイド幅トークン変更の影響を受けるのに撮り直していなかった）を追加し、`h2-2tone-{sp,pc}.jpg` / `toc-float-pc.jpg` / `table-compare-{sp,pc}.jpg` を再撮影した。
+6. **改善: Claude 案を「PO 提案」と記録していた**
+   - `README.md`（囲み +5型の表・本文）と `theme/helix-wt/functions.php`（コメント）の「PO 提案」を「Claude 案（PO 指示は追加のみ）」へ修正した。イベント 0245 の PO 指示は「ボックスのバリエーション追加」までで、Q&A・番号手順・warn の強弱2段という具体型は Claude の解釈であり、PO 自身の提案ではない。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 52 項目 **pass 52 / fail 0**（反応2〜5回目までの48 + 新規4: `prTagNotStackedSp`〈`prTagNotStacked` から分離〉/ `tocFloatLeft` / `tableCaptionPcPosition` / `prAutoFixtures`）、総合 `pass: true`。再撮影は `scripts/shots-reaction2.mjs`（`2tone`/`toc-float` 追加）+ 個別実行で `h2-2tone-{sp,pc}.jpg` / `toc-float-pc.jpg` / `table-compare-{sp,pc}.jpg` の計5枚を差し替えた（件数は変更なし、349枚のまま）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -570,9 +598,9 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 小タップ率（`smallTapRate`）は調査スクリプトの定義（44px 未満の a/button の割合。本文中のインラインリンクを含む）。
 
-## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。段5（PO 反応1回目）まで実機実行済み）
+## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。段5（PO 反応1〜7回目 + Astra レビュー是正）まで実機実行済み）
 
-下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 14 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero / lpFooterFaceDefault / lpVisibleAnchors / lpFaceScopedTotop）の結果は §2.13「段4の検証結果」に記載。段5で追加した 4 項目（tableCaptionSp / tableNumFontSize / headerInnerWidth / headerCtaOffCenter）の結果は §2.14「段5 — PO 反応1回目の是正」に記載。保存済みの最新 `results/verify.json` は `summary` 44 項目 **pass 44 / fail 0**、総合 `pass: true`。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段5までの全項目の AND。
+下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 14 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero / lpFooterFaceDefault / lpVisibleAnchors / lpFaceScopedTotop）の結果は §2.13「段4の検証結果」に記載。段5で追加した4項目（tableCaptionSp / tableNumFontSize / headerInnerWidth / headerCtaOffCenter）は §2.14、続く4項目（headingNumberPc / headingNumberSp / underlineGap / prTagNotStacked→後述の理由で `prTagNotStackedPc`/`prTagNotStackedSp` に分離）は §2.15、Astra レビュー是正で追加した4項目（`prTagNotStackedSp`・`tocFloatLeft`・`tableCaptionPcPosition`・`prAutoFixtures`）は §2.16 に記載。保存済みの最新 `results/verify.json` は `summary` 52 項目 **pass 52 / fail 0**、総合 `pass: true`（`prAutoFixtures` は `--wpclidir` 指定時に wp-cli で一時記事を作成し実機確認する検査で、本 README の実行では指定して実行済み）。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段5までの全項目の AND。
 
 | 項目 | 結果 |
 |---|---|
@@ -603,6 +631,7 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 6. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
 7. 段5（PO 反応1回目）のテーマ配置は手順5と同じ `docker cp`。再撮影は `NODE_PATH=<playwright の node_modules> node scripts/shots-reaction1.mjs --base <site> --out results`（`--stage3`/`--stage4` と同じ merge 方式で `CATALOG-INDEX.json` を更新）、検証は手順5と同じ `scripts/verify.mjs`
 8. 段5（PO 反応2〜5回目）は同じ `docker cp` で配置。新規パターン（`patterns/cta-*.php`）追加時は WP core の block pattern スキャンがディレクトリの mtime を見て結果をサイトトランジェント（`wp_theme_files_patterns-*`）にキャッシュするため、**ファイル追加だけでは反映されないことがある**（`docker cp` は個々のファイルの mtime は更新するが、ディレクトリ自体の mtime やキャッシュキーに使う `style.css` の `Version` が変わらないと古いキャッシュが残る）。`style.css` の `Version` を上げる（本 PR は 0.3.0→0.3.1）か `wp transient delete --all` を実行してから確認すること。再撮影は `NODE_PATH=<playwright の node_modules> node scripts/shots-reaction2.mjs --base <site> --out results`（同じ merge 方式）
+9. `pr:auto` の重複検出フィクスチャ検査（`verify.mjs` の `prAutoFixtures`）は wp-cli で一時記事を作成・削除するため、docker compose の wpcli サービスを持つ project dir を `--wpclidir <dir>` で渡す（例: `node verify.mjs --base <site> --out results/verify.json --wpclidir /path/to/docker-compose-project`）。未指定時はこの1項目だけスキップし、集計 `pass` には影響しない。
 
 ## 7. 終了時状態（意図的に残置）
 

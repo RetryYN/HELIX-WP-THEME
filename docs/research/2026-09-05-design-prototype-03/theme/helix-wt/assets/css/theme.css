@@ -79,7 +79,9 @@ img{height:auto;max-width:100%}
 /* 2026-09-05 PO 反応: <table><caption> は tbody 等を display:block にカード化した際
    table-caption ボックスの生成元（table 書式）が失われ、幅が確定せず 1 文字ずつ縦積みになる。
    caption を明示的にブロック化・全幅化して初期整形へ戻す（PC の通常 table でも無害）。 */
-.wp-block-table.is-style-wt-compare caption,.wp-block-table.is-style-wt-compare-scroll caption{caption-side:top;display:block;width:100%;text-align:left;font-weight:700;font-size:var(--wp--preset--font-size--m);line-height:1.4;margin:0 0 .75rem;color:var(--wp--preset--color--contrast)}
+/* 2026-09-05 PO 反応 是正（Astra レビューで PC 回帰を指摘され、SP カード表示専用の max-width:599px
+   ブロック内へ移設。それ以前は無条件 display:block だったため、PC の通常 table でも
+   caption が table 書式の外に出て列見出しと価格行の間に紛れ込んでいた）。 */
 
 /* 記事 */
 .wt-article .wp-block-post-content>*+*{margin-block-start:0}
@@ -304,8 +306,12 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wt-toc a.is-current{color:var(--wp--preset--color--accent);font-weight:700}
 .wt-toc--collapsible .wt-toc__d{}
 /* float-side（PC のみ、1200px 以上でレール固定。狭い幅では box と同じ） */
+/* 2026-09-05 Astra レビュー是正: サイドカラム幅トークンを 240→280px（min）に上げた際、
+   1200px 幅では left = 600 − 340 − 16 − 280 = −36px（wide 側の sidebar-w-max 336px ではさらに −76px）
+   と画面左へ欠けていた。max() で左端 8px を下限にし、本文幅・サイド幅のプリセット組み合わせに関わらず
+   常に画面内に収まるようにする（狭い実効幅では本文列の直左に張り付く形になる）。 */
 @media (min-width:1200px){
-.wt-toc--float{position:fixed;left:calc(50% - (var(--wt-content-max) / 2) - 16px - var(--wt-sidebar-w));top:calc(var(--wt-header-h) + 1.5rem);width:var(--wt-sidebar-w);max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
+.wt-toc--float{position:fixed;left:max(8px, calc(50% - (var(--wt-content-max) / 2) - 16px - var(--wt-sidebar-w)));top:calc(var(--wt-header-h) + 1.5rem);width:var(--wt-sidebar-w);max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
 .wt-toc--float .wt-toc__s::after{display:none}
 }
 @media (min-width:1200px){body.wt-toc-float .wp-block-post-content{}}
@@ -454,6 +460,10 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wp-block-table.is-style-wt-compare .wt-mark{font-weight:700}
 @media (max-width:599px){
 .wp-block-table.is-style-wt-compare table{min-width:0;display:block}
+/* caption は table 書式の外に出た瞬間、table-caption ボックスの生成元を失い幅が確定せず
+   1 文字ずつ縦積みになる（is-style-wt-compare-scroll は PC でも横スクロールの通常 table のままなので対象外）。
+   SP カード表示のときだけ明示的にブロック化・全幅化して初期整形へ戻す。 */
+.wp-block-table.is-style-wt-compare caption{caption-side:top;display:block;width:100%;text-align:left;font-weight:700;font-size:var(--wp--preset--font-size--m);line-height:1.4;margin:0 0 .75rem;color:var(--wp--preset--color--contrast)}
 .wp-block-table.is-style-wt-compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
 .wp-block-table.is-style-wt-compare tbody,.wp-block-table.is-style-wt-compare tr,.wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td{display:block}
 .wp-block-table.is-style-wt-compare tr{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);margin-bottom:.75rem;overflow:hidden;background:var(--wp--preset--color--base)}

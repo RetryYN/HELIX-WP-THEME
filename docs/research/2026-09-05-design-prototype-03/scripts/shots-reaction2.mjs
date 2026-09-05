@@ -61,7 +61,7 @@ for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
 
   // h2 新規4型 + 既存 icon（アイコン差し替え）/ underline（詰め）
   p = await open(ctx, CATALOG);
-  for (const s of ["icon", "underline", "numbox", "barbg", "doubleline", "label"]) {
+  for (const s of ["icon", "2tone", "underline", "numbox", "barbg", "doubleline", "label"]) {
     await save(p, `h2-${s}-${dev}`, { face: "article", part: "h2", variant: s, dev }, { selector: "#cat-h2-" + s });
   }
   // h3 新規2型 + 既存 dotted（詰め）/ num（サイズ・縦積み是正）
@@ -79,6 +79,15 @@ for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
   // PR（タグ縦積み是正）
   await save(p, `pr-notice-one-line-${dev}`, { face: "article", part: "pr-notice", variant: "one-line", dev }, { selector: "#cat-pr" });
   await p.close();
+
+  // toc-float（サイドカラム幅トークン変更で left が動いた分の再撮影。PC のみ）
+  if (dev === "pc") {
+    const tp = await open(ctx, ARTICLE + "?wt=toc:float");
+    await tp.evaluate(() => scrollTo(0, 900));
+    await tp.waitForTimeout(400);
+    await save(tp, `toc-float-${dev}`, { face: "article", part: "toc", variant: "float", dev }, { viewportOnly: true });
+    await tp.close();
+  }
 
   await ctx.close();
 }
