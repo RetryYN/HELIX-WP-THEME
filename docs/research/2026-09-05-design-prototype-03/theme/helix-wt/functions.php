@@ -656,12 +656,33 @@ function wt_render_tail_author() {
 	return $out;
 }
 
-// PO 反応7（related 再設計、Claude 案）: アイキャッチ未設定の投稿でもカードの 16:9 サムネ枠を崩さないよう、
-// フロントの投稿カードだけ既定画像（同梱の無文字グラデーション lum-mid.jpg）を返す。管理画面・添付ページは対象外。
-add_filter( 'post_thumbnail_html', function ( $html, $post_id, $thumbnail_id ) {
-	if ( '' !== $html || $thumbnail_id || is_admin() || 'post' !== get_post_type( $post_id ) ) {
+// PO 反応7（related 再設計、Claude 案）: アイキャッチ未設定の投稿でも関連カードの 16:9 サムネ枠を崩さないよう、
+// 記事末尾の関連 Query Loop（parts/article-tail.html の queryId 901 / 902）の post-featured-image ブロックが空を返したときだけ
+// 既定画像（同梱の無文字グラデーション lum-mid.jpg）を figure で返す。get_the_post_thumbnail() 自体には作用させない
+// （カテゴリカード wt_category_card_image() の $attr・空プレースホルダはそのまま）。Astra レビュー是正。
+// core/post-template は各投稿の子ブロックを context なしで再生成するため queryId が post-featured-image まで届かない。
+// post-template 自身の context（queryId）を描画中だけ退避し、子の post-featured-image の context へ引き継ぐ。
+add_filter( 'render_block_context', function ( $context, $parsed_block ) {
+	$name = isset( $parsed_block['blockName'] ) ? $parsed_block['blockName'] : '';
+	if ( 'core/post-template' === $name ) {
+		$GLOBALS['wt_rendering_query_id'] = isset( $context['queryId'] ) ? (int) $context['queryId'] : 0;
+	} elseif ( 'core/post-featured-image' === $name && ! isset( $context['queryId'] ) && ! empty( $GLOBALS['wt_rendering_query_id'] ) ) {
+		$context['queryId'] = (int) $GLOBALS['wt_rendering_query_id'];
+	}
+	return $context;
+}, 10, 2 );
+add_filter( 'render_block_core/post-template', function ( $html ) {
+	$GLOBALS['wt_rendering_query_id'] = 0;
+	return $html;
+} );
+add_filter( 'render_block_core/post-featured-image', function ( $html, $block, $instance ) {
+	if ( '' !== trim( (string) $html ) || is_admin() ) {
+		return $html;
+	}
+	$query_id = ( $instance instanceof WP_Block && isset( $instance->context['queryId'] ) ) ? (int) $instance->context['queryId'] : 0;
+	if ( ! in_array( $query_id, array( 901, 902 ), true ) ) {
 		return $html;
 	}
 	$src = get_theme_file_uri( 'assets/img/lum-mid.jpg' );
-	return '<img class="wt-thumb-fallback" src="' . esc_url( $src ) . '" alt="" width="1600" height="900" loading="lazy" decoding="async" />';
+	return '<figure class="wp-block-post-featured-image"><img class="wt-thumb-fallback" src="' . esc_url( $src ) . '" alt="" width="1600" height="900" loading="lazy" decoding="async" /></figure>';
 }, 10, 3 );

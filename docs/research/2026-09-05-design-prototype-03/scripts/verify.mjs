@@ -114,7 +114,7 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 //    (b) 画像を canvas に描き文字矩形の平均輝度を測り、合成輝度と文字色の比を出す。gradient・filter の補間は線形近似（概算）
 {
   const ctx = await browser.newContext(PC); const p = await ctx.newPage();
-  const measure = async (sel, pseudo, textSel) => p.evaluate(([sel, pseudo, textSel]) => {
+  const measureOn = async (page, sel, pseudo, textSel) => page.evaluate(([sel, pseudo, textSel]) => {
     const el = document.querySelector(sel); if (!el) return { sel, missing: true };
     const img = el.querySelector("img"); const txt = el.querySelector(textSel);
     const er = el.getBoundingClientRect(), tr = txt.getBoundingClientRect();
@@ -142,6 +142,7 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     const brightnessMatch = filter.match(/brightness\(([\d.]+)\)/);
     return { sel, textLum: tc, lum: el.getAttribute("data-wt-lum"), sampledL: parseFloat(el.getAttribute("data-wt-lum-value")), gradient: bgi.slice(0, 160), overlayColor: overlayAt, filterBrightness: brightnessMatch ? parseFloat(brightnessMatch[1]) : 1, alphaAtText: alpha == null ? null : Math.round(alpha * 1000) / 1000, imageLAtText: Math.round((sum / n) * 1000) / 1000, imageLMaxAtText: Math.round(lmax * 1000) / 1000, textColor: ts.color, fontSize: parseFloat(ts.fontSize), fontWeight: ts.fontWeight };
   }, [sel, pseudo, textSel]);
+  const measure = (sel, pseudo, textSel) => measureOn(p, sel, pseudo, textSel);
   const finish = (x) => { if (x.missing || x.alphaAtText == null) return { ...x, note: "スクリム未検出" }; const Lt = Array.isArray(x.textLum) ? lum(x.textLum.slice(0, 3)) : 1; const overlayL = Array.isArray(x.overlayColor) ? lum(x.overlayColor.slice(0, 3)) : 0; const factor = Number.isFinite(x.filterBrightness) ? x.filterBrightness : 1; const imageL = x.imageLAtText * factor, imageLMax = x.imageLMaxAtText * factor; const Lc = imageL * (1 - x.alphaAtText) + overlayL * x.alphaAtText, LcMax = imageLMax * (1 - x.alphaAtText) + overlayL * x.alphaAtText; const r = ratio(Lt, Lc), rWorst = ratio(Lt, LcMax); const large = x.fontSize >= 24 || (x.fontSize >= 18.67 && parseInt(x.fontWeight) >= 700); return { ...x, compositeL: Math.round(Lc * 1000) / 1000, textL: Math.round(Lt * 1000) / 1000, ratioText: Math.round(r * 100) / 100, ratioWorstPixel: Math.round(rWorst * 100) / 100, ratioWithoutScrim: Math.round(ratio(Lt, x.imageLAtText) * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) }; };
   await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p.waitForTimeout(600);
   out.contrastGuard = [];
@@ -162,13 +163,24 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   });
   hero.forEach((h) => out.contrastGuard.push(finish(h)));
   await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p.waitForTimeout(600);
-  out.contrastVariants = [];
+  // Astra 是正: 7 型 × dark/mid/light × 本文/見出し = 42 判定を PC / SP、さらに JS 無効（data-wt-lum 属性なし = 強の既定）でも実施する。
+  // カタログの cover は型 class 単独（is-style-wt-scrim なし）で置かれており、singleClass で単独成立を確認する。
   const contrastVariants = ["white-fade", "overlay-warm", "overlay-cool", "overlay-brand", "bottom-gradient", "blur-bright", "duotone"];
-  for (const variant of contrastVariants) for (const image of ["dark", "mid", "light"]) {
-    const id = `#cat-contrast-${variant}-${image}`;
-    const body = finish(await measure(id, "::before", "p")); body.variant = variant; body.image = image; body.text = "body"; out.contrastVariants.push(body);
-    const heading = finish(await measure(id, "::before", "h3")); heading.variant = variant; heading.image = image; heading.text = "heading"; out.contrastVariants.push(heading);
-  }
+  const collectVariants = async (page) => {
+    const rows = [];
+    for (const variant of contrastVariants) for (const image of ["dark", "mid", "light"]) {
+      const id = `#cat-contrast-${variant}-${image}`;
+      const meta = await page.evaluate((id) => { const el = document.querySelector(id); return el ? { singleClass: !el.classList.contains("is-style-wt-scrim"), hasBefore: getComputedStyle(el, "::before").content !== "none" } : { singleClass: false, hasBefore: false }; }, id);
+      for (const [textSel, text] of [["p", "body"], ["h3", "heading"]]) {
+        const r = finish(await measureOn(page, id, "::before", textSel)); rows.push({ ...r, ...meta, variant, image, text });
+      }
+    }
+    return rows;
+  };
+  out.contrastVariants = await collectVariants(p);
+  { const c2 = await browser.newContext(SP); const p2 = await c2.newPage(); await p2.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p2.waitForTimeout(600); out.contrastVariantsSp = await collectVariants(p2); await c2.close(); }
+  { const c3 = await browser.newContext({ ...PC, javaScriptEnabled: false }); const p3 = await c3.newPage(); await p3.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p3.waitForTimeout(600); out.contrastVariantsNoJs = await collectVariants(p3); await c3.close(); }
+  { const c4 = await browser.newContext({ ...SP, javaScriptEnabled: false }); const p4 = await c4.newPage(); await p4.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p4.waitForTimeout(600); out.contrastVariantsNoJsSp = await collectVariants(p4); await c4.close(); }
   await ctx.close();
 }
 // 7. 見出し 1 行収まり（SP 390、20 字）と本文列幅・目次しきい値
@@ -839,12 +851,16 @@ out.reducedMotion.pass = out.reducedMotion.revealHidden === 0 && out.reducedMoti
 // 段 1/2 の検査も合否を持たせる（コントラスト 11 項目、guard 12 判定、タップ監査 4 画面、見出し 1 行）
 out.contrastPass = out.contrast.length > 0 && out.contrast.every((x) => !x.missing && x.pass);
 out.contrastGuardPass = out.contrastGuard.length > 0 && out.contrastGuard.every((x) => x.pass === true);
-out.contrastVariantsPass = out.contrastVariants.length === 42 && out.contrastVariants.every((x) => x.pass === true && x.required >= 3);
+const contrastVariantsOk = (rows, expectNoLum) => Array.isArray(rows) && rows.length === 42 && rows.every((x) => x.pass === true && x.required >= 3 && x.singleClass === true && x.hasBefore === true && (!expectNoLum || x.lum === null));
+out.contrastVariantsPass = contrastVariantsOk(out.contrastVariants, false);
+out.contrastVariantsSpPass = contrastVariantsOk(out.contrastVariantsSp, false);
+out.contrastVariantsNoJsPass = contrastVariantsOk(out.contrastVariantsNoJs, true);
+out.contrastVariantsNoJsSpPass = contrastVariantsOk(out.contrastVariantsNoJsSp, true);
 for (const k of ["article", "article-announce", "404", "catalog"]) out.tap[k].pass = out.tap[k].below44.length === 0 && out.tap[k].below24.length === 0;
 out.headline.pass = out.headline.lines === 1;
 const checkList = [
   ["noJs", out.noJs.pass], ["reducedMotion", out.reducedMotion.pass], ["status404", out.status404.pass], ["table", out.table.pass], ["toc", out.toc.pass],
-  ["contrast", out.contrastPass], ["contrastGuard", out.contrastGuardPass], ["contrastVariants", out.contrastVariantsPass], ["relatedQuality", out.relatedQuality.pass], ["headline", out.headline.pass],
+  ["contrast", out.contrastPass], ["contrastGuard", out.contrastGuardPass], ["contrastVariants", out.contrastVariantsPass], ["contrastVariantsSp", out.contrastVariantsSpPass], ["contrastVariantsNoJs", out.contrastVariantsNoJsPass], ["contrastVariantsNoJsSp", out.contrastVariantsNoJsSpPass], ["relatedQuality", out.relatedQuality.pass], ["headline", out.headline.pass],
   ["articleTapSp", out.tap.article.pass], ["articleAnnounceTapSp", out.tap["article-announce"].pass], ["notFoundTapSp", out.tap["404"].pass], ["catalogTapSp", out.tap.catalog.pass],
   ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["authorSnsTapSp", out.tap.authorSnsSp.pass], ["authorSnsTapPc", out.tap.authorSnsPc.pass],
   ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],

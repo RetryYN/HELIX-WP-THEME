@@ -634,16 +634,30 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 `axis-depth` は質問のみのため、`depth` の軸説明へ「奥行き軸（影・重なり・階層の強さ）」を残し、実装軸は増やしていない。contrast-guardは既存の自動輝度判定の上へ、白フェード、カラーオーバーレイ（暖色・寒色・ブランド色）、下部グラデーション、ぼかし+明度調整、デュオトーン風を追加した。概念5型・具体7型で、具体型ごとに dark / mid / light の画像をカタログへ置き、本文4.5:1・見出し3:1の近似式チェックを追加した。
 
-relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再確認し、PCのgrid-cards 36%・SPのthumb-list-1line 20%・featured-big+small・ranking-numbers・carousel等の分布を入力にした。併せて **テーマA / テーマBの実物（各ベンダー自身の公開記事面）を Playwright の read-only 参照で構造だけ観察し、型として言語化した**（固有名・画像・文言・ドメイン・スクリーンショットは保存していない）。観察できた事実は次のとおり: テーマBの記事末関連は 4 件のカード、PC 4 列 / SP 2 列、サムネ 16:9（object-fit: cover）、角丸・枠・影なし、タイトル 14px 太字で最大 3 行、メタは日付のみ（カテゴリチップなし）。テーマAはサンプルした記事面に関連記事欄がなく観察できなかった。PR 表記はどちらのベンダー記事面にも開示文がなく（ベンダー自身の媒体のため）、型の追加は台帳 §1 の PR チップ観察と Claude 案に基づく。再設計後はサムネ16:9固定、角丸、枠/影、タイトル2行クランプ、カテゴリチップ+日付（チップは当たり判定 44px を保ちつつ見た目 1.35rem のピルを `::before` で描く）、gap、hover、SPのサムネ20%前後の1行リストを共通基準にした。アイキャッチ未設定の投稿はフロントの投稿カードだけ同梱の無文字グラデーション（`assets/img/lum-mid.jpg`）を既定画像として返し、16:9 枠を崩さない（`post_thumbnail_html` フィルタ、Claude案）。既存4型（grid / list / rank / carousel）を再設計し、`featured`（featured-big+small）と `ranking-numbers` を追加した。`featured` は初回実装（3 列 + 大カード 2 行スパン）を実機撮影で見ると大カード内に空白が残り 6 件目が幅広で折り返したため、**左に大カード 1 + 右に横サムネの小リスト 5**（台帳の観察形）へ作り直した。SP は大カード 1 + 1 行リストに落ちる。
+relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再確認し、PCのgrid-cards 36%・SPのthumb-list-1line 20%・featured-big+small・ranking-numbers・carousel等の分布を入力にした。併せて **テーマA / テーマBの実物（各ベンダー自身の公開記事面）を Playwright の read-only 参照で構造だけ観察し、型として言語化した**（固有名・画像・文言・ドメイン・スクリーンショットは保存していない）。観察できた事実は次のとおり: テーマBの記事末関連は 4 件のカード、PC 4 列 / SP 2 列、サムネ 16:9（object-fit: cover）、角丸・枠・影なし、タイトル 14px 太字で最大 3 行、メタは日付のみ（カテゴリチップなし）。テーマAはサンプルした記事面に関連記事欄がなく観察できなかった。PR 表記はどちらのベンダー記事面にも開示文がなく（ベンダー自身の媒体のため）、型の追加は台帳 §1 の PR チップ観察と Claude 案に基づく。再設計後はサムネ16:9固定、角丸、枠/影、タイトル2行クランプ、カテゴリチップ+日付（チップは当たり判定 44px を保ちつつ見た目 1.35rem のピルを `::before` で描く）、gap、hover、SPのサムネ20%前後の1行リストを共通基準にした。アイキャッチ未設定の投稿は、記事末尾の関連 Query Loop（queryId 901 / 902）の `post-featured-image` ブロックが空を返したときだけ同梱の無文字グラデーション（`assets/img/lum-mid.jpg`）を figure で返し、16:9 枠を崩さない（`render_block_core/post-featured-image`、Claude案。`get_the_post_thumbnail()` やカテゴリカードには作用しない）。既存4型（grid / list / rank / carousel）を再設計し、`featured`（featured-big+small）と `ranking-numbers` を追加した。`featured` は初回実装（3 列 + 大カード 2 行スパン）を実機撮影で見ると大カード内に空白が残り 6 件目が幅広で折り返したため、**左に大カード 1 + 右に横サムネの小リスト 5**（台帳の観察形）へ作り直した。SP は大カード 1 + 1 行リストに落ちる。
 
 ### 数値的根拠と検証状態
 
 - コントラスト: `verify.mjs` の既存近似式を拡張し、追加7具体型 × dark/mid/light × 本文/見出し = **42判定**。本文は4.5:1、見出しは3:1を要求する。画像filter・gradient色の合成も含むが、実際の文字グリフ画素を直接測るものではないため**近似式である**。
 - related: `verify.mjs` でSP/PC各6型について、同一行カード高さの差 **±2px以内**、タイトル `line-clamp:2`、サムネ比率 **16:9±1%** を検証する。
 - 台帳値: `tail.related.layout` のPCはgrid-cards 36%、SPはthumb-list-1line 20%、featured-big+smallはPC 5% / SP 2%、SPのranking-numbers 6%。比較媒体行はPC grid-cards 40% / text-numbered 10%、SP thumb-list-1line 20%を示す。これらは観察値であり要求値ではない。
-- 撮影・実機検証（origin/main c0a719a へ rebase 後、docker `agent-neo-wp` に配置し直して再実行）: `scripts/shots-reaction3.mjs`（新規）で追加型 34 × SP/PC = **68 枚** を撮影し `CATALOG-INDEX.json` へ追記（349 → 417 エントリ、既存エントリ変更なし）。`scripts/verify.mjs`（既存を拡張）は **54 項目 pass 0 fail**（`--wpclidir` 指定で prAutoFixtures も実行、skip なし）。近似コントラスト 42 判定の最小値は **5.11:1**、related 12 ケース（6 型 × SP/PC）は高さ差 0px・2 行以内・16:9 すべて pass。
+- 撮影・実機検証（origin/main c0a719a へ rebase 後、docker `agent-neo-wp` に配置し直して再実行）: `scripts/shots-reaction3.mjs`（新規）で追加型 34 × SP/PC = **68 枚** を撮影し `CATALOG-INDEX.json` へ追記（349 → 417 エントリ、既存エントリ変更なし）。`scripts/verify.mjs`（既存を拡張）は Astra 是正前 54 項目 pass 0 fail、是正後 **57 項目 pass 0 fail**（下記小節）（`--wpclidir` 指定で prAutoFixtures も実行、skip なし）。近似コントラスト 42 判定の最小値は **5.11:1**、related 12 ケース（6 型 × SP/PC）は高さ差 0px・2 行以内・16:9 すべて pass。
 - 実機で見つけて直した 3 点（Codex 初回実装からの是正）: (a) 追加 7 型は mid / light 画像で白文字の近似比が 1.83〜4.49:1 に落ちていた → `data-wt-lum` ごとに強度を上げる型別ルールを重ねた（例: light 画像の暖色オーバーレイは alpha .90〜.94 のほぼ均一な濃い暖色になる。「自動で強くなる」のが guard の意図）。(b) 関連カードのカテゴリチップが 97×25px で 44px の当たり判定を割った（記事面タップ検査 2 件が fail）→ 見た目 1.35rem のピルを `::before` で描き、アンカー箱を 44px + 負マージンにした。(c) タイトル 2 行クランプの検査が computed `display` のキーワード（`-webkit-box`）を見ていたが、近年の Chromium は `flow-root` と報告する（CSS Overflow 4 の legacy line-clamp 扱い）→ 実描画の高さ ≤ 2 行で判定する実測式に変えた。
 - 参照サイト観察は Codex sandbox では Chromium が起動できず未実施だったため、Claude が read-only で構造だけ観察して上記 related 段落に言語化した（撮影・保存なし）。
+
+### Astra レビュー（PR #151 head 8716b62、重大 2・改善 3）の是正
+
+| # | 指摘 | 是正 |
+|---|---|---|
+| 重大 1 | `post_thumbnail_html` フォールバックが post type と画像有無しか見ておらず、カード外の `get_the_post_thumbnail()`（カテゴリカードの `$attr` 等）にも作用する | `post_thumbnail_html` フィルタを撤去。`render_block_core/post-featured-image` で、記事末尾の関連 Query Loop（`parts/article-tail.html` の queryId 901 / 902）の子ブロックが空を返したときだけ figure を返す。core/post-template は子を context なしで再生成し queryId が届かないため、`render_block_context` で post-template の queryId を描画中だけ退避して子へ引き継ぐ。実機: 記事面の関連カードで 2 件（投稿 475 / 1）に出現、カテゴリ面・カタログでは 0 件 |
+| 重大 2 | 型別 `!important` が `data-wt-lum` 属性なし（JS 無効・別オリジン・canvas 失敗）時の強い既定スクリムを上書きし、暖色型で約 2.96:1 になる | 順序を「属性なし = 強（light 相当）→ `[data-wt-lum="mid"]` で中 → `[data-wt-lum="dark"]` で弱」に組み替えた。`[data-wt-lum]`（値不問）を default と同じ強に置き、mid / dark だけを後段の属性付きセレクタで弱める。verify に JS 無効（属性なし）状態の 42 判定を PC / SP で追加し、`lum === null` であることも確認する |
+| 改善 1 | 7 型が独立 block style で、`is-style-wt-scrim` なしではガードが働かない（カタログが手書きの二重 class に依存） | 型 class 単独で成立するよう `.wp-block-cover[class*="is-style-wt-contrast-"]` に擬似要素・背景 dim 無効化を持たせ、`contrast.js` の計測対象にも追加。カタログの二重 class を外し、verify で `singleClass`（`is-style-wt-scrim` を含まない）と `::before` の存在を全 cover で確認する |
+| 改善 2 | 42 判定が PC のみ、撮影が mid 画像のみ | 判定を PC / SP × JS 有効 / 無効の 4 系統（各 42）に拡張。撮影は代表 2 型（overlay-warm / white-fade）に dark / light を追加（+8 枚） |
+| 改善 3 | 近似式が filter の brightness しか読まない | 下記「近似式の省略」に明記 |
+
+**近似式の省略（verify.mjs §6）**: 合成輝度は「画像の文字矩形平均輝度 × brightness 係数 × (1 − スクリム alpha) + スクリム色輝度 × alpha」で、`filter` からは `brightness()` だけを読む。`blur()`・`saturate()`・`grayscale()`・`contrast()` と `mix-blend-mode: multiply` は計算に入れていない。影響: `blur-bright` は blur で局所の明部が平均化される分だけ実比が近似より高くも低くもなり得る（最悪画素は `ratioWorstPixel` に別掲）。`duotone` は `grayscale(1) contrast(1.12)` で明部がさらに明るくなるため、白文字の実比は近似より**低い**可能性がある一方、`multiply` は暗く倒す方向に働く。いずれも近似であり、実際の文字グリフ画素は測っていない。判定は近似値に対する 4.5:1 / 3:1 であって、実測保証ではない。
+
+実機再検証（Astra 是正後、style.css 0.3.4）: verify **57 項目 pass / 0 fail（contrast 4 系統 × 42 判定の最小値: PC 5.11 / SP 5.75 / PC no-JS 5.39 / SP no-JS 5.85、no-JS 系統は全 cover で data-wt-lum 属性なしを確認）**、撮影 **76 枚（68 + dark/light 8）、CATALOG-INDEX 349 → 425 エントリ（既存不変更）**。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
@@ -708,7 +722,7 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 - PR 表記の自動挿入は投稿タイプ post 全件（比較媒体前提）。実装ではカテゴリ / 記事 meta で対象を絞る。
 - 4 軸のうち depth-2 の CTA 立体化と `.is-style-wt-raised` の重複、`.wt-c-*` 色 modifier の block style 化（現状は追加 CSS class）は設計で整理。
 - 44px 監査: カード全面クリックの実効領域を数える監査ロジック（`a::after` の矩形を含める）。
-- PO反応6・7の追加型（比較表 / pros-cons / review-bar / ブログカード / PR / detext / contrast-guard / related）は §2.17 に実装・実機検証（verify 54/54、撮影 68 枚）を記録した。次段は PO の反応待ち。related の既定画像フォールバックは投稿カード限定で、カテゴリ面カードへの適用可否は次の反応で判断する。
+- PO反応6・7の追加型（比較表 / pros-cons / review-bar / ブログカード / PR / detext / contrast-guard / related）は §2.17 に実装・実機検証（verify 57/57、撮影 76 枚）を記録した。次段は PO の反応待ち。related の既定画像フォールバックは投稿カード限定で、カテゴリ面カードへの適用可否は次の反応で判断する。
 
 ## 9. 公開安全
 

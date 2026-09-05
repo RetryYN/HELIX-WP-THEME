@@ -941,28 +941,32 @@ body.wt-lp-fixed-float-cta .wt-lp-fixed--float-cta{display:inline-flex;position:
 .wp-block-cover[class*="is-style-wt-contrast-"]{isolation:isolate;overflow:hidden}
 .wp-block-cover[class*="is-style-wt-contrast-"] .wp-block-cover__image-background{z-index:0;transition:filter var(--wp--custom--motion-base),transform var(--wp--custom--motion-base)}
 .wp-block-cover[class*="is-style-wt-contrast-"] .wp-block-cover__inner-container{z-index:2;position:relative}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-white-fade::before{background:linear-gradient(to top,rgba(255,255,255,.95) 0%,rgba(255,255,255,.86) 58%,rgba(255,255,255,.62) 100%)!important}
+/* 反応7 Astra 是正: 7 型は is-style-wt-scrim を含意する（型 class 単独で擬似要素・背景 dim 無効化・計測対象が成立）。
+   強度の順序は「属性なし（JS 無効・別オリジン・canvas 失敗）= 強（light 相当）」→ data-wt-lum=mid で中 → dark で弱。
+   [data-wt-lum]（値不問）を default と同じ強に置き、mid / dark だけを後段で弱める */
+.wp-block-cover[class*="is-style-wt-contrast-"]::before{content:"";position:absolute;inset:0;z-index:1}
+.wp-block-cover[class*="is-style-wt-contrast-"] .wp-block-cover__background{opacity:0!important}
+.wp-block-cover.is-style-wt-contrast-white-fade::before,.wp-block-cover.is-style-wt-contrast-white-fade[data-wt-lum]::before{background:linear-gradient(to top,rgba(255,255,255,.95) 0%,rgba(255,255,255,.86) 58%,rgba(255,255,255,.62) 100%)!important}
 .wp-block-cover.is-style-wt-contrast-white-fade .wp-block-cover__inner-container,.wp-block-cover.is-style-wt-contrast-white-fade .wp-block-heading,.wp-block-cover.is-style-wt-contrast-white-fade p{color:var(--wp--preset--color--contrast)!important;text-shadow:none}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-warm::before{background:linear-gradient(to top,rgba(117,42,18,.88) 0%,rgba(180,83,9,.70) 58%,rgba(251,146,60,.42) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-cool::before{background:linear-gradient(to top,rgba(15,55,92,.90) 0%,rgba(29,78,121,.72) 58%,rgba(96,165,250,.40) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-brand::before{background:linear-gradient(to top,rgba(30,58,138,.90) 0%,rgba(29,78,216,.72) 58%,rgba(96,165,250,.42) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-bottom-gradient::before{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.08) 100%)!important}
-.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-cover__image-background{filter:blur(2px) brightness(.72) saturate(.9);transform:scale(1.04)}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-blur-bright::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.20) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-warm::before,.wp-block-cover.is-style-wt-contrast-overlay-warm[data-wt-lum]::before{background:linear-gradient(to top,rgba(117,42,18,.94) 0%,rgba(117,42,18,.92) 58%,rgba(117,42,18,.90) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-warm[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(117,42,18,.90) 0%,rgba(150,60,10,.82) 58%,rgba(180,83,9,.72) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-warm[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(117,42,18,.88) 0%,rgba(180,83,9,.70) 58%,rgba(251,146,60,.42) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-cool::before,.wp-block-cover.is-style-wt-contrast-overlay-cool[data-wt-lum]::before{background:linear-gradient(to top,rgba(15,55,92,.94) 0%,rgba(15,55,92,.92) 58%,rgba(15,55,92,.90) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-cool[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(15,55,92,.90) 0%,rgba(22,66,105,.82) 58%,rgba(29,78,121,.72) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-cool[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(15,55,92,.90) 0%,rgba(29,78,121,.72) 58%,rgba(96,165,250,.40) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-brand::before,.wp-block-cover.is-style-wt-contrast-overlay-brand[data-wt-lum]::before{background:linear-gradient(to top,rgba(30,58,138,.94) 0%,rgba(30,58,138,.92) 58%,rgba(30,58,138,.90) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-brand[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(30,58,138,.90) 0%,rgba(30,58,138,.82) 58%,rgba(29,78,216,.72) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-brand[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(30,58,138,.90) 0%,rgba(29,78,216,.72) 58%,rgba(96,165,250,.42) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-bottom-gradient::before,.wp-block-cover.is-style-wt-contrast-bottom-gradient[data-wt-lum]::before{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.88) 58%,rgba(0,0,0,.80) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-bottom-gradient[data-wt-lum="mid"]::before,.wp-block-cover.is-style-wt-contrast-bottom-gradient[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.08) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-cover__image-background{filter:blur(2px) brightness(.55) saturate(.9);transform:scale(1.04)}
+.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="mid"] .wp-block-cover__image-background,.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="dark"] .wp-block-cover__image-background{filter:blur(2px) brightness(.72) saturate(.9)}
+.wp-block-cover.is-style-wt-contrast-blur-bright::before,.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum]::before{background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.80) 58%,rgba(0,0,0,.62) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="mid"]::before,.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.20) 100%)!important}
 .wp-block-cover.is-style-wt-contrast-duotone .wp-block-cover__image-background{filter:grayscale(1) contrast(1.12);transform:scale(1.02)}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-duotone::before{background:linear-gradient(to top,rgba(30,58,138,.92) 0%,rgba(29,78,216,.72) 58%,rgba(23,28,34,.28) 100%)!important;mix-blend-mode:multiply}
+.wp-block-cover.is-style-wt-contrast-duotone::before,.wp-block-cover.is-style-wt-contrast-duotone[data-wt-lum]::before{background:linear-gradient(to top,rgba(30,58,138,.94) 0%,rgba(30,58,138,.90) 58%,rgba(30,58,138,.86) 100%)!important;mix-blend-mode:multiply}
+.wp-block-cover.is-style-wt-contrast-duotone[data-wt-lum="mid"]::before,.wp-block-cover.is-style-wt-contrast-duotone[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(30,58,138,.92) 0%,rgba(29,78,216,.72) 58%,rgba(23,28,34,.28) 100%)!important;mix-blend-mode:multiply}
 .wp-block-cover.is-style-wt-contrast-overlay-warm .wp-block-heading,.wp-block-cover.is-style-wt-contrast-overlay-warm p,.wp-block-cover.is-style-wt-contrast-overlay-cool .wp-block-heading,.wp-block-cover.is-style-wt-contrast-overlay-cool p,.wp-block-cover.is-style-wt-contrast-overlay-brand .wp-block-heading,.wp-block-cover.is-style-wt-contrast-overlay-brand p,.wp-block-cover.is-style-wt-contrast-bottom-gradient .wp-block-heading,.wp-block-cover.is-style-wt-contrast-bottom-gradient p,.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-heading,.wp-block-cover.is-style-wt-contrast-blur-bright p,.wp-block-cover.is-style-wt-contrast-duotone .wp-block-heading,.wp-block-cover.is-style-wt-contrast-duotone p{color:#fff!important}
-/* 反応7是正: 画像の見せ方の各型も既存の輝度計測（data-wt-lum）に従って強度を上げる。mid / light 画像では白文字の近似コントラストが 4.5:1 を割った実測に基づく */
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-warm[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(117,42,18,.90) 0%,rgba(150,60,10,.82) 58%,rgba(180,83,9,.72) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-warm[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(117,42,18,.94) 0%,rgba(117,42,18,.92) 58%,rgba(117,42,18,.90) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-cool[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(15,55,92,.90) 0%,rgba(22,66,105,.82) 58%,rgba(29,78,121,.72) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-cool[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(15,55,92,.94) 0%,rgba(15,55,92,.92) 58%,rgba(15,55,92,.90) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-brand[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(30,58,138,.90) 0%,rgba(30,58,138,.82) 58%,rgba(29,78,216,.72) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-overlay-brand[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(30,58,138,.94) 0%,rgba(30,58,138,.92) 58%,rgba(30,58,138,.90) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-bottom-gradient[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.88) 58%,rgba(0,0,0,.80) 100%)!important}
-.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="light"] .wp-block-cover__image-background{filter:blur(2px) brightness(.55) saturate(.9)}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-blur-bright[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.80) 58%,rgba(0,0,0,.62) 100%)!important}
-.wp-block-cover.is-style-wt-scrim.is-style-wt-contrast-duotone[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(30,58,138,.94) 0%,rgba(30,58,138,.90) 58%,rgba(30,58,138,.86) 100%)!important;mix-blend-mode:multiply}
 @media (prefers-reduced-motion:reduce){.wp-block-cover[class*="is-style-wt-contrast-"] *{transition:none!important}.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-cover__image-background,.wp-block-cover.is-style-wt-contrast-duotone .wp-block-cover__image-background{transform:none}}
 
 /* 関連記事: 共通の品質基準（16:9 / 角丸 / 影・枠 / 2行タイトル / メタ） */

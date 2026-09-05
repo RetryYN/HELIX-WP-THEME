@@ -94,6 +94,10 @@ try {
       const selector = `#cat-contrast-${variant}-mid`;
       index.push(await save(catalogPage, `reaction7-contrast-${variant}-${dev}`, { face: "article", part: "contrast-guard", variant: `${variant} / mid`, dev }, selector));
     }
+    // Astra 是正: 代表 2 型は dark / light 画像も撮る（mid は上で全型撮影済み）
+    for (const variant of ["overlay-warm", "white-fade"]) for (const image of ["dark", "light"]) {
+      index.push(await save(catalogPage, `reaction7-contrast-${variant}-${image}-${dev}`, { face: "article", part: "contrast-guard", variant: `${variant} / ${image}`, dev }, `#cat-contrast-${variant}-${image}`));
+    }
     await catalogPage.close();
     for (const variant of relatedParts) {
       const page = await context.newPage();

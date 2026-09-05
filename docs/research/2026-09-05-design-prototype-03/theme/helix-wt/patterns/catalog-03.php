@@ -148,7 +148,7 @@ $contrast_variants = array(
 );
 foreach ( $contrast_variants as $variant => $label ) :
 	foreach ( array( 'dark' => 'lum-dark.jpg', 'mid' => 'lum-mid.jpg', 'light' => 'lum-light.jpg' ) as $lum_key => $file ) :
-		$contrast_class = 'is-style-wt-scrim is-style-wt-contrast-' . $variant;
+		$contrast_class = 'is-style-wt-contrast-' . $variant; // 型 class 単独（is-style-wt-scrim を含意する。Astra 是正）
 		$text_class     = 'white-fade' === $variant ? 'has-contrast-color has-text-color' : 'has-base-color has-text-color';
 		$cover_id       = 'cat-contrast-' . $variant . '-' . $lum_key;
 ?>
