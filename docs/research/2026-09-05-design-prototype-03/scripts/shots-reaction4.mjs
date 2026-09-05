@@ -305,7 +305,43 @@ function promoteMotionFiles() {
       throw new Error(`一時ディレクトリ内の JPEG が見つからないか空です: ${source}`);
     }
   }
-  for (const { source, target } of promotions) fs.renameSync(source, target);
+  const backupDir = fs.mkdtempSync(path.join(OUT, ".reaction4-motion-backup-"));
+  const backedUp = [];
+  try {
+    for (const { target } of promotions) {
+      if (fs.existsSync(target)) {
+        const file = path.basename(target);
+        fs.renameSync(target, path.join(backupDir, file));
+        backedUp.push(file);
+      }
+    }
+    for (const { source, target } of promotions) fs.renameSync(source, target);
+    fs.rmSync(backupDir, { recursive: true, force: true });
+  } catch (error) {
+    const restoreFailures = [];
+    for (const file of backedUp) {
+      const backupPath = path.join(backupDir, file);
+      if (!fs.existsSync(backupPath)) continue;
+      try {
+        fs.renameSync(backupPath, path.join(OUT, file));
+      } catch (restoreError) {
+        restoreFailures.push({ file, error: restoreError });
+      }
+    }
+    if (restoreFailures.length) {
+      console.error(
+        `motion画像の復元に失敗しました。退避ディレクトリを手動で確認してください: ${backupDir}`,
+        restoreFailures,
+      );
+    } else {
+      try {
+        fs.rmSync(backupDir, { recursive: true, force: true });
+      } catch (cleanupError) {
+        console.error(`motion画像の退避ディレクトリ削除に失敗しました: ${backupDir}`, cleanupError);
+      }
+    }
+    throw error;
+  }
   fs.rmSync(motionTmpDir, { recursive: true, force: true });
 }
 
