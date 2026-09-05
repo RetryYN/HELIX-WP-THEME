@@ -806,7 +806,11 @@ if (WPCLIDIR) {
           const image = card.querySelector(".wp-block-post-featured-image img");
           const ts = title ? getComputedStyle(title) : null;
           const ir = image ? image.getBoundingClientRect() : null;
-          return { top: r.top, height: r.height, titleClamp: ts ? ts.webkitLineClamp : null, titleDisplay: ts ? ts.display : null, ratio: ir && ir.height ? ir.width / ir.height : null };
+          const tr = title ? title.getBoundingClientRect() : null;
+          const lh = ts ? parseFloat(ts.lineHeight) : null;
+          // 近年の Chromium は -webkit-box + -webkit-line-clamp を CSS Overflow 4 の legacy line-clamp として扱い、computed display を flow-root と報告する。
+          // display のキーワードではなく、実描画の高さが 2 行分（line-height×2、a の min-height 44px を許容）に収まることで判定する。
+          return { top: r.top, height: r.height, titleClamp: ts ? ts.webkitLineClamp : null, titleDisplay: ts ? ts.display : null, titleHeight: tr ? tr.height : null, titleLineHeight: lh, titleLines: tr && lh ? Math.round(tr.height / lh * 10) / 10 : null, ratio: ir && ir.height ? ir.width / ir.height : null };
         });
         const comparable = variant === "featured" ? cardData.slice(1) : cardData;
         const rows = [];
@@ -817,7 +821,7 @@ if (WPCLIDIR) {
         }
         const rowDiffs = rows.map((row) => Math.max(...row.heights) - Math.min(...row.heights));
         const sameRow = comparable.length > 0 && rowDiffs.every((diff) => diff <= 2);
-        const titleClamp = cardData.length > 0 && cardData.every((card) => card.titleClamp === "2" && /box/i.test(card.titleDisplay || ""));
+        const titleClamp = cardData.length > 0 && cardData.every((card) => card.titleClamp === "2" && card.titleHeight !== null && card.titleHeight <= Math.max(card.titleLineHeight * 2, 44) + 2);
         const thumbnailRatio = cardData.length > 0 && cardData.every((card) => card.ratio !== null && Math.abs(card.ratio - 16 / 9) / (16 / 9) <= .01);
         return { cardCount: cardData.length, rowDiffs, sameRow, titleClamp, thumbnailRatio, cards: cardData, pass: sameRow && titleClamp && thumbnailRatio };
       }, variant);

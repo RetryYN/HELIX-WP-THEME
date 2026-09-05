@@ -28,14 +28,27 @@ async function save(page, name, meta, selector) {
   const el = page.locator(selector).first();
   await el.waitFor({ state: "visible", timeout: 8000 });
   await el.scrollIntoViewIfNeeded();
-  await page.evaluate(async (sel) => {
+  await page.evaluate((sel) => {
     const root = document.querySelector(sel);
-    const images = Array.from(root ? root.querySelectorAll("img") : []);
-    images.forEach((image) => { image.loading = "eager"; });
-    await Promise.all(images.map((image) => image.complete ? null : new Promise((resolve) => { image.onload = image.onerror = resolve; setTimeout(resolve, 3000); })));
+    Array.from(root ? root.querySelectorAll("img") : []).forEach((image) => { image.loading = "eager"; });
   }, selector);
-  await page.waitForTimeout(200);
+  // 未着手の loading="lazy" 画像は complete が true を返すため、complete ではなく naturalWidth > 0（=読み込み済み）を全画像で待つ
+  // （PC 撮影で関連カードのサムネが白抜けした実測への対応。上限 5 秒）
+  await page.waitForFunction((sel) => { const root = document.querySelector(sel); return Array.from(root ? root.querySelectorAll("img") : []).every((image) => image.naturalWidth > 0); }, selector, { timeout: 5000 }).catch(() => null);
+  await page.evaluate(async (sel) => { const root = document.querySelector(sel); await Promise.all(Array.from(root ? root.querySelectorAll("img") : []).map((image) => image.decode ? image.decode().catch(() => null) : null)); }, selector);
+  // 要素が viewport より高いと Playwright が撮影時に viewport を拡縮し、srcset + sizes="auto" の画像が候補を再選択して白抜けする実測があった。
+  // 先に viewport を要素の高さまで広げ、画像を待ち直してから撮影し、終わったら元に戻す。
+  const vp = page.viewportSize(); const box = await el.boundingBox();
+  const grow = box && vp && box.height + 120 > vp.height;
+  if (grow) {
+    await page.setViewportSize({ width: vp.width, height: Math.ceil(box.height) + 120 });
+    await el.scrollIntoViewIfNeeded();
+    await page.waitForFunction((sel) => { const root = document.querySelector(sel); return Array.from(root ? root.querySelectorAll("img") : []).every((image) => image.naturalWidth > 0); }, selector, { timeout: 5000 }).catch(() => null);
+    await page.evaluate(async (sel) => { const root = document.querySelector(sel); await Promise.all(Array.from(root ? root.querySelectorAll("img") : []).map((image) => image.decode ? image.decode().catch(() => null) : null)); }, selector);
+  }
+  await page.waitForTimeout(500);
   await el.screenshot({ path: png });
+  if (grow) await page.setViewportSize(vp);
   toJpeg(png, jpg);
   return { file: name + ".jpg", ...meta };
 }

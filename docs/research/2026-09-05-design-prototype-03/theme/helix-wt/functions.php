@@ -655,3 +655,13 @@ function wt_render_tail_author() {
 	}
 	return $out;
 }
+
+// PO 反応7（related 再設計、Claude 案）: アイキャッチ未設定の投稿でもカードの 16:9 サムネ枠を崩さないよう、
+// フロントの投稿カードだけ既定画像（同梱の無文字グラデーション lum-mid.jpg）を返す。管理画面・添付ページは対象外。
+add_filter( 'post_thumbnail_html', function ( $html, $post_id, $thumbnail_id ) {
+	if ( '' !== $html || $thumbnail_id || is_admin() || 'post' !== get_post_type( $post_id ) ) {
+		return $html;
+	}
+	$src = get_theme_file_uri( 'assets/img/lum-mid.jpg' );
+	return '<img class="wt-thumb-fallback" src="' . esc_url( $src ) . '" alt="" width="1600" height="900" loading="lazy" decoding="async" />';
+}, 10, 3 );

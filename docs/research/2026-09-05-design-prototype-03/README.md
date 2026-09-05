@@ -509,7 +509,7 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 ## 2.15 段5 — PO 反応 2〜5 回目（2026-09-05）の是正
 
-同日中に続けて 4 回の反応を受けた。反応 1 回目と同じ PR（`research/2026-09-05-design-prototype-03-reaction1`）に合流している。反応 6 回目の追加要求は本ブランチの §2.16 で往復した。
+同日中に続けて 4 回の反応を受けた。反応 1 回目と同じ PR（`research/2026-09-05-design-prototype-03-reaction1`）に合流している。反応 6 回目の追加要求は本ブランチの §2.17 で往復した。
 
 ### 反応 2 回目（原文）
 
@@ -562,45 +562,11 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 「contrast-guard は面白いからいろんなパターンを追加できるか？写真自体を薄くしたり、透明系統、暖色系等などのカラーバリエーションの追加だな。ようは画像に見せ方を変えるような感じに。relatedはかなりしょぼい。これはデザイン品質の問題で再調査して品質向上をしてくれ。axis-depthこれはなんだ？」
 
-3 点の要求のうち、(3) は本 PR で対応済み、(1)(2) は本ブランチの §2.16 で追加する。
+3 点の要求のうち、(3) は本 PR で対応済み、(1)(2) は本ブランチの §2.17 で追加する。
 
 - **(3) axis-depth ほか4軸の説明**: 実装変更ではなく PO の質問への回答。README §1 の軸一覧表に `motion` / `depth` / `density` / `detext` の1行説明を追記した（`depth` = 奥行き軸〈影・重なり・階層の強さ。0=フラット / 1=弱い影 / 2=強い影と浮き〉、他3軸も同様）。
-- **(1) contrast-guard の見せ方バリエーション +5〜6型**（白フェード・暖色/寒色/ブランド色オーバーレイ・下部グラデーション・ぼかし・デュオトーン風）は §2.16 で追加する。
-- **(2) related の品質再調査**（テーマA・テーマBの実物参照を含む）は §2.16 で追加する。
-
-## 2.16 段5 — PO反応6・7の是正（2026-09-05、Claude案の追加型）
-
-この節は L2 プロト往復の証跡であり、要求・設計の決定ではない。原文の語彙に対し、追加型はすべて Claude 案として記録する。既存型の削除・名称変更・クラス変更は行わず、ブログカードだけは表示名を変更し、互換の `linkcard` / `wt-linkcard` は残した。
-
-### PO反応6（原文）
-
-「テーブルパターンを増やせるか？pros-cons 1これはよくわからんがバリエーションを増やしてみてほしい。用途があまり見えてない。レビューバーもバリエーションを追加。linkcard 1正式にはブログカードって名称だろうな。これもバリエーションを追加。PRバリエーションは（テーマA・テーマB）を参考に修正。detext はまだ用途が見えないからバリエーション追加。中間報告。」
-
-対応は次のとおり。
-
-| 語彙 | 旧型 → 新型（追加分はすべてClaude案） | 用途の仮説 |
-|---|---|---|
-| 比較表 | 既存 `compare` / `compare-scroll` → `compare-striped` / `compare-evaluation` / `compare-price` / `compare-showdown` | 縞で一覧性を上げる、◎○△で評価差を先に読む、価格行を比較判断の起点にする、最終候補2製品を対決させる |
-| pros-cons | 既存 `label-title + pros/cons` → `pros-contrast` / `pros-icons` / `pros-band` | 比較記事の各製品節末尾でメリット・デメリットを並べる装置。SPは縦積み |
-| review-bar | 既存 `item-bars` → `review-stars` / `review-bars` / `review-score` | 星+数値、5項目の内訳、総合点+コメントで、読者が評価粒度を選べる |
-| ブログカード | 旧表示名「リンクカード（内部）」 / 既存 `wt-linkcard` → 表示名「ブログカード（内部）」 / `blogcard-top` / `blogcard-band` / `blogcard-ogp` | 画像上+抜粋、画像なしのテキスト帯、外部OGP風の出典導線。CSS/HTMLクラス名とslugは互換維持 |
-| PR表記 | 既存 `one-line` → `pr-intro` / `pr-inline` / `pr-double` / `pr-band` | 記事上部、見出し横、上下開示、アイコン帯。タグは `white-space:nowrap` でP/R分割を防止 |
-| detext | 既存 `badge-list` / `icon-list` / `quote-mark` / `number` → `detext-takeaways` / `detext-metrics` / `detext-diagram` / `detext-quote` | 要点3つ、数字、図解の骨子、短い引用へ要約し、本文の文字密度を下げ長文比較記事の読了率を上げる |
-
-### PO反応7（原文）
-
-「contrast-guardは面白いからいろんなパターンを追加できるか？写真自体を薄くしたり、透明系統、暖色系等などのカラーバリエーションの追加だな。ようは画像に見せ方を変えるような感じに。relatedはかなりしょぼい。これはデザイン品質の問題で再調査して品質向上をしてくれ。axis-depthこれはなんだ？」
-
-`axis-depth` は質問のみのため、`depth` の軸説明へ「奥行き軸（影・重なり・階層の強さ）」を残し、実装軸は増やしていない。contrast-guardは既存の自動輝度判定の上へ、白フェード、カラーオーバーレイ（暖色・寒色・ブランド色）、下部グラデーション、ぼかし+明度調整、デュオトーン風を追加した。概念5型・具体7型で、具体型ごとに dark / mid / light の画像をカタログへ置き、本文4.5:1・見出し3:1の近似式チェックを追加した。
-
-relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再確認し、PCのgrid-cards 36%・SPのthumb-list-1line 20%・featured-big+small・ranking-numbers・carousel等の分布を入力にした。さらに**テーマA / テーマBの実物で観察した型の言語化**を照合軸にし、固有名・画像・文言・ドメイン・スクリーンショットは保存していない。再設計後はサムネ16:9固定、角丸、枠/影、タイトル2行クランプ、カテゴリチップ+日付、gap、hover、SPのサムネ20%前後の1行リストを共通基準にした。既存4型（grid / list / rank / carousel）を再設計し、`featured`（featured-big+small）と `ranking-numbers` を追加した。
-
-### 数値的根拠と検証状態
-
-- コントラスト: `verify.mjs` の既存近似式を拡張し、追加7具体型 × dark/mid/light × 本文/見出し = **42判定**。本文は4.5:1、見出しは3:1を要求する。画像filter・gradient色の合成も含むが、実際の文字グリフ画素を直接測るものではないため**近似式である**。
-- related: `verify.mjs` でSP/PC各6型について、同一行カード高さの差 **±2px以内**、タイトル `line-clamp:2`、サムネ比率 **16:9±1%** を検証する。
-- 台帳値: `tail.related.layout` のPCはgrid-cards 36%、SPはthumb-list-1line 20%、featured-big+smallはPC 5% / SP 2%、SPのranking-numbers 6%。比較媒体行はPC grid-cards 40% / text-numbered 10%、SP thumb-list-1line 20%を示す。これらは観察値であり要求値ではない。
-- 撮影・実機検証: `scripts/shots-reaction3.mjs` と `scripts/verify.mjs` を追加した。今回の作業環境ではDockerソケットとChromium起動が権限制約で失敗するため、実機結果・新規スクリーンショット・CATALOG-INDEX追記は未生成。ローカルPHP/JS/JSONの静的検証は別途実行する。
+- **(1) contrast-guard の見せ方バリエーション +5〜6型**（白フェード・暖色/寒色/ブランド色オーバーレイ・下部グラデーション・ぼかし・デュオトーン風）は §2.17 で追加する。
+- **(2) related の品質再調査**（テーマA・テーマBの実物参照を含む）は §2.17 で追加する。
 
 ## 2.16 段5 — Astra レビュー（head 85ae634、重大1・改善5）の是正
 
@@ -642,6 +608,42 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
    - 是正: 長文の陽性フィクスチャを2件追加。`pos-4-long-250`（フィラー1段落＋開示文、開示文の開始位置は266字目（段落間改行・1始まりを含む））、`pos-5-long-400`（フィラー2段落＋開示文、開始位置は417字目）。いずれも3段落・600字の走査範囲内に収まる（39字の開示文を含めても合計 304字 / 455字で600字を超えない）。実機確認: 両方とも `.wt-pr` が非表示（`autoInserted: false`）となり、旧実装（200字固定長）では検出できなかった位置の開示文を検出できることを確認した。
 
 是正後の実機再実行（`results/verify.json`、`--wpclidir` 指定で `prAutoFixtures` を実行）: `summary` 52 項目 **pass 52 / fail 0**（`skipped: []`）、`prAutoFixtures.results` は陽性5・陰性5・境界2 の計12件すべて期待どおり、総合 `pass: true`。テーマ・verify スクリプトの変更のみで描画への影響はないため画像の再撮影はしていない。
+
+## 2.17 段5 — PO反応6・7の是正（2026-09-05、Claude案の追加型）
+
+この節は L2 プロト往復の証跡であり、要求・設計の決定ではない。原文の語彙に対し、追加型はすべて Claude 案として記録する。既存型の削除・名称変更・クラス変更は行わず、ブログカードだけは表示名を変更し、互換の `linkcard` / `wt-linkcard` は残した。
+
+### PO反応6（原文）
+
+「テーブルパターンを増やせるか？pros-cons 1これはよくわからんがバリエーションを増やしてみてほしい。用途があまり見えてない。レビューバーもバリエーションを追加。linkcard 1正式にはブログカードって名称だろうな。これもバリエーションを追加。PRバリエーションは（テーマA・テーマB）を参考に修正。detext はまだ用途が見えないからバリエーション追加。中間報告。」
+
+対応は次のとおり。
+
+| 語彙 | 旧型 → 新型（追加分はすべてClaude案） | 用途の仮説 |
+|---|---|---|
+| 比較表 | 既存 `compare` / `compare-scroll` → `compare-striped` / `compare-evaluation` / `compare-price` / `compare-showdown` | 縞で一覧性を上げる、◎○△で評価差を先に読む、価格行を比較判断の起点にする、最終候補2製品を対決させる |
+| pros-cons | 既存 `label-title + pros/cons` → `pros-contrast` / `pros-icons` / `pros-band` | 比較記事の各製品節末尾でメリット・デメリットを並べる装置。SPは縦積み |
+| review-bar | 既存 `item-bars` → `review-stars` / `review-bars` / `review-score` | 星+数値、5項目の内訳、総合点+コメントで、読者が評価粒度を選べる |
+| ブログカード | 旧表示名「リンクカード（内部）」 / 既存 `wt-linkcard` → 表示名「ブログカード（内部）」 / `blogcard-top` / `blogcard-band` / `blogcard-ogp` | 画像上+抜粋、画像なしのテキスト帯、外部OGP風の出典導線。CSS/HTMLクラス名とslugは互換維持 |
+| PR表記 | 既存 `one-line` → `pr-intro` / `pr-inline` / `pr-double` / `pr-band` | 記事上部、見出し横、上下開示、アイコン帯。タグは `white-space:nowrap` でP/R分割を防止 |
+| detext | 既存 `badge-list` / `icon-list` / `quote-mark` / `number` → `detext-takeaways` / `detext-metrics` / `detext-diagram` / `detext-quote` | 要点3つ、数字、図解の骨子、短い引用へ要約し、本文の文字密度を下げ長文比較記事の読了率を上げる |
+
+### PO反応7（原文）
+
+「contrast-guardは面白いからいろんなパターンを追加できるか？写真自体を薄くしたり、透明系統、暖色系等などのカラーバリエーションの追加だな。ようは画像に見せ方を変えるような感じに。relatedはかなりしょぼい。これはデザイン品質の問題で再調査して品質向上をしてくれ。axis-depthこれはなんだ？」
+
+`axis-depth` は質問のみのため、`depth` の軸説明へ「奥行き軸（影・重なり・階層の強さ）」を残し、実装軸は増やしていない。contrast-guardは既存の自動輝度判定の上へ、白フェード、カラーオーバーレイ（暖色・寒色・ブランド色）、下部グラデーション、ぼかし+明度調整、デュオトーン風を追加した。概念5型・具体7型で、具体型ごとに dark / mid / light の画像をカタログへ置き、本文4.5:1・見出し3:1の近似式チェックを追加した。
+
+relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再確認し、PCのgrid-cards 36%・SPのthumb-list-1line 20%・featured-big+small・ranking-numbers・carousel等の分布を入力にした。併せて **テーマA / テーマBの実物（各ベンダー自身の公開記事面）を Playwright の read-only 参照で構造だけ観察し、型として言語化した**（固有名・画像・文言・ドメイン・スクリーンショットは保存していない）。観察できた事実は次のとおり: テーマBの記事末関連は 4 件のカード、PC 4 列 / SP 2 列、サムネ 16:9（object-fit: cover）、角丸・枠・影なし、タイトル 14px 太字で最大 3 行、メタは日付のみ（カテゴリチップなし）。テーマAはサンプルした記事面に関連記事欄がなく観察できなかった。PR 表記はどちらのベンダー記事面にも開示文がなく（ベンダー自身の媒体のため）、型の追加は台帳 §1 の PR チップ観察と Claude 案に基づく。再設計後はサムネ16:9固定、角丸、枠/影、タイトル2行クランプ、カテゴリチップ+日付（チップは当たり判定 44px を保ちつつ見た目 1.35rem のピルを `::before` で描く）、gap、hover、SPのサムネ20%前後の1行リストを共通基準にした。アイキャッチ未設定の投稿はフロントの投稿カードだけ同梱の無文字グラデーション（`assets/img/lum-mid.jpg`）を既定画像として返し、16:9 枠を崩さない（`post_thumbnail_html` フィルタ、Claude案）。既存4型（grid / list / rank / carousel）を再設計し、`featured`（featured-big+small）と `ranking-numbers` を追加した。`featured` は初回実装（3 列 + 大カード 2 行スパン）を実機撮影で見ると大カード内に空白が残り 6 件目が幅広で折り返したため、**左に大カード 1 + 右に横サムネの小リスト 5**（台帳の観察形）へ作り直した。SP は大カード 1 + 1 行リストに落ちる。
+
+### 数値的根拠と検証状態
+
+- コントラスト: `verify.mjs` の既存近似式を拡張し、追加7具体型 × dark/mid/light × 本文/見出し = **42判定**。本文は4.5:1、見出しは3:1を要求する。画像filter・gradient色の合成も含むが、実際の文字グリフ画素を直接測るものではないため**近似式である**。
+- related: `verify.mjs` でSP/PC各6型について、同一行カード高さの差 **±2px以内**、タイトル `line-clamp:2`、サムネ比率 **16:9±1%** を検証する。
+- 台帳値: `tail.related.layout` のPCはgrid-cards 36%、SPはthumb-list-1line 20%、featured-big+smallはPC 5% / SP 2%、SPのranking-numbers 6%。比較媒体行はPC grid-cards 40% / text-numbered 10%、SP thumb-list-1line 20%を示す。これらは観察値であり要求値ではない。
+- 撮影・実機検証（origin/main c0a719a へ rebase 後、docker `agent-neo-wp` に配置し直して再実行）: `scripts/shots-reaction3.mjs`（新規）で追加型 34 × SP/PC = **68 枚** を撮影し `CATALOG-INDEX.json` へ追記（349 → 417 エントリ、既存エントリ変更なし）。`scripts/verify.mjs`（既存を拡張）は **54 項目 pass 0 fail**（`--wpclidir` 指定で prAutoFixtures も実行、skip なし）。近似コントラスト 42 判定の最小値は **5.11:1**、related 12 ケース（6 型 × SP/PC）は高さ差 0px・2 行以内・16:9 すべて pass。
+- 実機で見つけて直した 3 点（Codex 初回実装からの是正）: (a) 追加 7 型は mid / light 画像で白文字の近似比が 1.83〜4.49:1 に落ちていた → `data-wt-lum` ごとに強度を上げる型別ルールを重ねた（例: light 画像の暖色オーバーレイは alpha .90〜.94 のほぼ均一な濃い暖色になる。「自動で強くなる」のが guard の意図）。(b) 関連カードのカテゴリチップが 97×25px で 44px の当たり判定を割った（記事面タップ検査 2 件が fail）→ 見た目 1.35rem のピルを `::before` で描き、アンカー箱を 44px + 負マージンにした。(c) タイトル 2 行クランプの検査が computed `display` のキーワード（`-webkit-box`）を見ていたが、近年の Chromium は `flow-root` と報告する（CSS Overflow 4 の legacy line-clamp 扱い）→ 実描画の高さ ≤ 2 行で判定する実測式に変えた。
+- 参照サイト観察は Codex sandbox では Chromium が起動できず未実施だったため、Claude が read-only で構造だけ観察して上記 related 段落に言語化した（撮影・保存なし）。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
@@ -692,6 +694,7 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 
 ## 7. 終了時状態（意図的に残置）
 
+- 反応 6・7 是正時（本ブランチ）: 過去の `verify.mjs` 実行が残した一時記事 8 件（`fixture-*`、ID 604–611、`prAutoFixtures` の後片付け失敗分）を **削除せず下書きへ変更**した（関連一覧の最新 6 件を占めていたため。削除は PO 判断事項として未実施）。投稿 475 / 1 はアイキャッチ未設定のままで、関連カードは既定画像フォールバックで描画される。
 - テーマ `helix-wt`（試作 03 版）が有効。投稿: 記事 **554**（`/standing-desk-compare/`）、関連用 555–559、カタログ固定ページ 560（`/catalog-03/`）、添付 548–553、カテゴリ term 7（desk）。段3: カテゴリ term 8 `topic-index`（説明あり）、子 9 `topic-one` / 10 `topic-two` / 11 `topic-three`（各 5 件）、ダミー記事 561–577（17 件、親直下 2 件、アイキャッチは 548–553 を再利用、日付 2026-08-01〜17）。554–559 と 561–577 の `post_author` を 1 に設定（WP-CLI 作成時は 0 で、著者ボックスが空になる）。試作 02 の 518 / 519 / 520 / 533 と `wp_global_styles` 525 はそのまま。519 にアイキャッチ（添付 551）を付与。
 - サイト名・キャッチフレーズ・ユーザー 1 の表示名と紹介文を架空値へ変更（試作 02 時の値から）。
 - 撤去: `wp post delete 554 555 556 557 558 559 560 --force`、`wp post delete 548 549 550 551 552 553 --force`、`wp term delete category 7`、段3: `wp post delete $(seq 561 577) --force`、`wp term delete category 9 10 11 8`、試作 02 の README §5 の手順。
@@ -705,7 +708,7 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 - PR 表記の自動挿入は投稿タイプ post 全件（比較媒体前提）。実装ではカテゴリ / 記事 meta で対象を絞る。
 - 4 軸のうち depth-2 の CTA 立体化と `.is-style-wt-raised` の重複、`.wt-c-*` 色 modifier の block style 化（現状は追加 CSS class）は設計で整理。
 - 44px 監査: カード全面クリックの実効領域を数える監査ロジック（`a::after` の矩形を含める）。
-- PO反応6・7の追加型（比較表 / pros-cons / review-bar / ブログカード / PR / detext / contrast-guard / related）は §2.16 に実装内容と未実機検証の状態を記録した。残タスクは実機環境復旧後の撮影・`CATALOG-INDEX.json`追記・`verify.mjs`全件pass確認である。
+- PO反応6・7の追加型（比較表 / pros-cons / review-bar / ブログカード / PR / detext / contrast-guard / related）は §2.17 に実装・実機検証（verify 54/54、撮影 68 枚）を記録した。次段は PO の反応待ち。related の既定画像フォールバックは投稿カード限定で、カテゴリ面カードへの適用可否は次の反応で判断する。
 
 ## 9. 公開安全
 
