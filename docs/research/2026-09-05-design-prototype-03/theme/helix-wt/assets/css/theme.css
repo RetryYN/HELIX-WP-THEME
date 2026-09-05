@@ -1,5 +1,23 @@
 /* HELIX WT prototype 02 — 尺度は docs/research/2026-09-04-site-survey §6 */
 :root{--wt-header-h:var(--wp--custom--header-height,60px)}
+
+/* ---------- 2026-09-05 PO 反応: 幅トークン（本文最大 / wide 最大 / ヘッダー最大 / サイド列幅 / 余白） ----------
+   既定値は theme.json settings.custom を参照。--wp--style--global--content-size /
+   ...-wide-size は post-content 等 core 側が既に var() 経由で参照しているため、
+   ?wt=width:<preset> による上書きはここで再定義するだけで下流に伝わる。
+   ヘッダー（parts/header*.html）は wideSize をブロック属性へ literal 値で持つため
+   通常の var() 継承では上書きできず、.wt-header__row 側に !important の再代入をかける。 */
+:root{
+  --wt-content-max:var(--wp--custom--content-max,680px);
+  --wt-wide-max:var(--wp--custom--wide-max,1120px);
+  --wt-header-max:var(--wp--custom--header-max,1440px);
+  --wt-sidebar-w:clamp(var(--wp--custom--sidebar-w-min,280px),22vw,var(--wp--custom--sidebar-w-max,336px));
+  --wt-gutter-pc:var(--wp--custom--gutter-pc,clamp(24px,3vw,32px));
+}
+/* narrow / wide プリセット（既定 = default、theme.json の値のまま） */
+body.wt-width-narrow{--wp--style--global--content-size:640px;--wp--style--global--wide-size:1040px;--wt-content-max:640px;--wt-wide-max:1040px;--wt-header-max:1200px}
+body.wt-width-wide{--wp--style--global--content-size:760px;--wp--style--global--wide-size:1240px;--wt-content-max:760px;--wt-wide-max:1240px;--wt-header-max:1600px}
+.wt-header__row{max-width:var(--wt-header-max)!important;margin-inline:auto!important}
 html{-webkit-text-size-adjust:100%}
 body{font-feature-settings:"palt" 0;overflow-wrap:anywhere}
 img{height:auto;max-width:100%}
@@ -58,6 +76,10 @@ img{height:auto;max-width:100%}
 .wp-block-table.is-style-wt-compare thead th{background:var(--wp--preset--color--surface);font-size:.8125rem;white-space:nowrap}
 .wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td:first-child{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line)}
 .wp-block-table figcaption{text-align:left}
+/* 2026-09-05 PO 反応: <table><caption> は tbody 等を display:block にカード化した際
+   table-caption ボックスの生成元（table 書式）が失われ、幅が確定せず 1 文字ずつ縦積みになる。
+   caption を明示的にブロック化・全幅化して初期整形へ戻す（PC の通常 table でも無害）。 */
+.wp-block-table.is-style-wt-compare caption,.wp-block-table.is-style-wt-compare-scroll caption{caption-side:top;display:block;width:100%;text-align:left;font-weight:700;font-size:var(--wp--preset--font-size--m);line-height:1.4;margin:0 0 .75rem;color:var(--wp--preset--color--contrast)}
 
 /* 記事 */
 .wt-article .wp-block-post-content>*+*{margin-block-start:0}
@@ -283,7 +305,7 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wt-toc--collapsible .wt-toc__d{}
 /* float-side（PC のみ、1200px 以上でレール固定。狭い幅では box と同じ） */
 @media (min-width:1200px){
-.wt-toc--float{position:fixed;left:calc(50% - 340px - 16px - 240px);top:calc(var(--wt-header-h) + 1.5rem);width:240px;max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
+.wt-toc--float{position:fixed;left:calc(50% - (var(--wt-content-max) / 2) - 16px - var(--wt-sidebar-w));top:calc(var(--wt-header-h) + 1.5rem);width:var(--wt-sidebar-w);max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
 .wt-toc--float .wt-toc__s::after{display:none}
 }
 @media (min-width:1200px){body.wt-toc-float .wp-block-post-content{}}
@@ -376,6 +398,11 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wp-block-table.is-style-wt-compare-scroll tbody th,.wp-block-table.is-style-wt-compare tbody th{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line);z-index:1}
 .wp-block-table.is-style-wt-compare-scroll thead th:first-child,.wp-block-table.is-style-wt-compare thead th:first-child{position:sticky;left:0;z-index:2}
 .wp-block-table.is-style-wt-compare td.wt-num,.wp-block-table.is-style-wt-compare-scroll td.wt-num{text-align:right;font-variant-numeric:tabular-nums}
+/* 2026-09-05 PO 反応: .wt-num は数字訴求セクション（LP hero 等）専用の hero サイズ（40px 級）。
+   比較表セルにも同じクラスが付いていたため価格だけ極端に大きく見えていた。
+   表内は本文サイズに戻し、強調は太字・アクセント色のみで担う（サイズでの強調をやめる）。 */
+.wp-block-table.is-style-wt-compare td.wt-num,.wp-block-table.is-style-wt-compare-scroll td.wt-num{font-family:inherit;font-size:var(--wp--preset--font-size--m);font-weight:700;letter-spacing:normal;line-height:inherit}
+.wp-block-table.is-style-wt-compare td.wt-num small,.wp-block-table.is-style-wt-compare-scroll td.wt-num small{font-size:.8em}
 .wp-block-table.is-style-wt-compare .wt-mark{font-weight:700}
 @media (max-width:599px){
 .wp-block-table.is-style-wt-compare table{min-width:0;display:block}
@@ -453,7 +480,7 @@ body.wt-share-float .wt-share--float{display:flex;position:fixed;right:1rem;bott
 body.wt-share-float .wt-share--float .wt-share__label{display:none}
 body.wt-share-float .wt-share--float button{padding:0;width:48px;height:48px;justify-content:center;box-shadow:var(--wp--preset--shadow--depth-2)}
 body.wt-share-float .wt-share--float button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
-@media (min-width:1200px){body.wt-share-float .wt-share--float{right:auto;left:calc(50% + 340px + 24px);top:calc(var(--wt-header-h) + 2rem);bottom:auto}}
+@media (min-width:1200px){body.wt-share-float .wt-share--float{right:auto;left:calc(50% + (var(--wt-content-max) / 2) + 24px);top:calc(var(--wt-header-h) + 2rem);bottom:auto}}
 
 /* ---------- 8. 4 軸（motion / depth / density / de-text）: body class の opt-in ---------- */
 /* motion: 出現は body.wt-motion-on かつ html.wt-js のときだけ初期非表示。reduced-motion は常に表示 */
@@ -521,10 +548,16 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
 .wt-cv__item .wp-block-buttons{margin-top:.5rem}
 .wt-cv__item--cta{background:var(--wp--preset--color--accent-soft);border-color:transparent}
 /* header: logo-left-cta-right（文字ナビなし）は PC でもハンバーガー + CTA */
+/* 2026-09-05 PO 反応: CTA が画面中央に来ていた原因は wt-header__row の space-between を
+   ロゴ / 検索 / CTA / ナビ の 4 要素に等分していたこと。CTA を wt-header__nav の内側へ移し
+   （parts/header-cta.html）、行は justify-content:left、wt-header__nav 側の flex:1 1 auto と
+   justify-content:flex-end（既定 CSS）で「ロゴ左・残り全部右」に統一する。
+   order は旧構造（wt-header__row の直接子として cta / nav が並ぶ想定）の名残なので、
+   ネスト後も nav より前に出るよう order:0（ソース順）へ戻す。 */
 .wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
 .wt-header--cta .wp-block-navigation__responsive-container:not(.is-menu-open){display:none}
-@media (min-width:600px){.wt-header--cta .wt-header__cta{display:block;order:1}.wt-header--cta .wt-header__nav{flex:0 0 auto;order:2}}
-@media (max-width:599px){.wt-header--cta .wt-header__cta{display:block}.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
+.wt-header--cta .wt-header__cta{order:0}
+@media (max-width:599px){.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
 /* カタログ: cover 3 枚（コントラスト guard）*/
 .wt-lumgrid{display:grid;gap:1rem}@media (min-width:768px){.wt-lumgrid{grid-template-columns:repeat(3,1fr)}}
 .wt-lumgrid .wp-block-cover{margin:0;border-radius:var(--wp--custom--radius-m);overflow:hidden}

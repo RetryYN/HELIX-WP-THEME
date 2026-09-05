@@ -46,6 +46,7 @@
 | lp_cta_style | **solid** / outline / pill | LP CTA action の実色・border-radius・大型 pill |
 | lp_fixed | **none** / sp-bottom-bar / float-cta | LP 内固定 CTA。SP 下部バーは SP のみ表示 |
 | lp_legal | **on** / off | 打消し脚注と PR 表記の表示 |
+| width（段5 追加） | narrow / **default** / wide | `body.wt-width-*` が `--wp--style--global--content-size` / `-wide-size` と `--wt-header-max` を上書き。本文最大 640/**680**/760px、wide 最大 1040/**1120**/1240px、ヘッダー内側最大 1200/**1440**/1600px |
 
 ## 2. 作ったもの（変種ごとのセレクタ・型名・根拠）
 
@@ -471,6 +472,32 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 
 是正後の実機再実行（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`（項目数は前回是正から変わらず、検査条件のみ強化）。`shots.mjs --stage4` の再撮影は既存 311 枚の MD5 と一致し、差分 0 枚だった（本是正は `verify.mjs` の検査条件強化と README の数値修正のみで、テーマの PHP / CSS には変更がないため）。
 
+## 2.14 段5 — PO 反応 1 回目（2026-09-05）の是正
+
+PO 反応（原文）:「フルスクリーン10の3スマホのテーブルがおかしいな。ここテーブルは調整できるか？価格の文字サイズがおかしいな。ヘッダーのPCがおかしいな。これ画面に合わせたコンテンツ幅になっている？CTAど真ん中は気持ち悪いなｗおそらく全体的にPCのコンテンツ幅、サイドカラム幅この辺りの最大サイズ、最小サイズみたいな定義が変。ひとまずの指摘。」
+
+指摘は4点。それぞれの原因と是正、証跡ファイルは以下（要求・設計の決定ではなく PoC の是正）。
+
+1. **比較表 SP（`article-screen-03-sp.jpg` = PO 指摘「フルスクリーン10の3」）でキャプションが1文字ずつ縦積みになっていた**
+   - 原因: `<table><caption>電動昇降デスク 3 製品の比較（…）</caption>…</table>` で、SP のカード化 CSS（`is-style-wt-compare table{display:block}`）が `table` を table 書式から外すと、子の `caption`（既定 `display:table-caption`）はその生成元を失い、幅が確定せず 1 文字ずつ折り返す。
+   - 是正: `theme/helix-wt/assets/css/theme.css` に `caption{caption-side:top;display:block;width:100%;text-align:left;font-weight:700;font-size:var(--wp--preset--font-size--m)}` を追加し明示的にブロック化・全幅化した（PC の通常 table でも無害）。
+   - 証跡: `results/article-screen-03-sp.jpg`（1 行の横書きに復帰）、`results/table-compare-sp.jpg` / `results/table-compare-pc.jpg`。`verify.json.tableCaptionSp`（`ratio` = 幅/高さ、縦積みなら概ね 1 未満、実測 7.52 → `pass: true`）。
+2. **比較表の価格セルの文字サイズがおかしい**
+   - 原因: `<td class="wt-num">` の `.wt-num` は数字訴求セクション（LP hero の大型価格表示など）向けの hero サイズ（`--wp--preset--font-size--hero` = 40px 級・太字）で、比較表セルにも同じクラスがそのまま当たっていた。
+   - 是正: `.wp-block-table.is-style-wt-compare td.wt-num` を本文サイズ（`--wp--preset--font-size--m` = 17px）へ戻し、強調はサイズではなく太字 + アクセント色のみで担うよう限定した（`.wt-num` 本体・LP 側の hero 用途は変更していない）。
+   - 証跡: `results/table-compare-sp.jpg` / `results/table-compare-pc.jpg`。`verify.json.tableNumFontSize`（`bodyFs` 17px に対し `sizes` 全 6 セル 17px、`maxDeviation` 0 → `pass: true`）。
+3. **ヘッダー PC がおかしい／画面幅に合っていない／CTA がど真ん中**
+   - 原因（2 つ）: (a) `parts/header*.html` の外枠 `wideSize` が `1120px` 固定で、1440px 幅での撮影ではロゴ・ナビが内側 1120px に寄って両端に不自然な余白ができていた。(b) `parts/header-cta.html` の行はロゴ／検索／CTA ボタン／ナビの4要素を `justify-content:space-between` で等間隔に並べる構造で、PC では検索欄が非表示になるため実質3要素になり、CTA が中央付近に来ていた。
+   - 是正: (a) 4 種のヘッダー全部で `wideSize` を `1440px`（新規トークン `--wt-header-max`、`theme.json` `settings.custom.header-max`）に上げ、画面に合わせて広がるようにした。(b) `header-cta.html` の CTA ボタンをナビ用の `.wt-header__nav`（`flex:1 1 auto; justify-content:flex-end`）の内側へ移し、行を `justify-content:left` に変更。結果「ロゴ左／CTA + ハンバーガー右」に統一し、CTA は右端に固定される（中央に来ない）。SP は「ロゴ左／CTA + ハンバーガー右」（`order:0` でソース順を保持するよう `theme.css` の旧 order ルールを整理）。
+   - 証跡: `results/header-cta-pc.jpg`（CTA が右端）、`results/header-search-pc.jpg` / `results/header-nav-pc.jpg` / `results/header-announce-pc.jpg`（いずれも 1440px 幅いっぱいに広がる）。`verify.json.headerInnerWidth`（`rowWidth` 実測が `min(viewport, --wt-header-max) − gutter×2` の期待値と誤差 4px 以内 → `pass: true`）、`verify.json.headerCtaOffCenter`（CTA 中心が viewport 中央から `offsetRatio` 0.807 離れている（≥0.25 を要求）→ `pass: true`）。
+4. **PC のコンテンツ幅・サイドカラム幅の最大／最小サイズの定義がない**
+   - 原因: `theme.json` の `layout.contentSize`（680px）/ `wideSize`（1120px）以外に、幅の上限・下限を表す名前付きトークンがなく、ヘッダー最大幅・サイドカラム（目次 float・共有 float）幅も個別のマジックナンバー（`340px` / `240px` 等）で書かれていた。
+   - 是正: `theme.json` `settings.custom` に `content-max`（680px、既定維持）/ `wide-max`（1120px、既定維持）/ `header-max`（1440px）/ `sidebar-w-min`（280px）/ `sidebar-w-max`（336px）/ `gutter-pc`（`clamp(24px,3vw,32px)`）を追加し、`theme.css` の `:root` に `--wt-content-max` / `--wt-wide-max` / `--wt-header-max` / `--wt-sidebar-w`（`clamp(280px,22vw,336px)`）として定義した。目次 float（`.wt-toc--float`）・共有 float（`body.wt-share-float .wt-share--float`）の位置計算をこれらの変数（`calc(50% - var(--wt-content-max)/2 - …)`）へ置き換え、マジックナンバーを解消した。
+   - `content-max` / `wide-max` は段1〜4のキャプチャとの回帰比較を優先し既定値を据え置いた（680px / 1120px のまま。変える場合は別 PO 判断）。代わりに `?wt=width:<preset>` 軸（`narrow` / `default` / `wide`、Claude 案の3プリセット）を新設し、本文最大 640/680/760px・wide 最大 1040/1120/1240px・ヘッダー最大 1200/1440/1600px を切り替えて比較できるようにした（`body.wt-width-*` が `--wp--style--global--content-size` 等を上書き）。
+   - 証跡: `results/width-narrow-{sp,pc}.jpg` / `results/width-default-{sp,pc}.jpg` / `results/width-wide-{sp,pc}.jpg`（6 枚、`CATALOG-INDEX.json` に width 軸として追記）。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 44 項目 **pass 44 / fail 0**（既存 40 + 新規 4: `tableCaptionSp` / `tableNumFontSize` / `headerInnerWidth` / `headerCtaOffCenter`）、総合 `pass: true`。再撮影は `scripts/shots-reaction1.mjs`（`--stage` 系と同じ merge 方式で `CATALOG-INDEX.json` を更新）で、記事全長 2・画面単位 20・ヘッダー PC 4・比較表 2・404（fullPage キャプチャでヘッダーを含むため wideSize 1120→1440 の影響を受ける）6 の既存 34 枚を差し替え、新規に幅プリセット `width-{narrow,default,wide}-{sp,pc}.jpg` 6 枚を追加した（既存 311 → 317）。段1〜4の他の画面（アイキャッチ・目次・囲み・カテゴリ・footer・LP 等はいずれも該当要素だけを切り出す `selector` 指定でヘッダーを含まない）は本是正の変更が及ばないため再撮影していない。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -482,9 +509,9 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 
 小タップ率（`smallTapRate`）は調査スクリプトの定義（44px 未満の a/button の割合。本文中のインラインリンクを含む）。
 
-## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。段4まで実機実行済み）
+## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。段5（PO 反応1回目）まで実機実行済み）
 
-下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 14 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero / lpFooterFaceDefault / lpVisibleAnchors / lpFaceScopedTotop）の結果は §2.13「段4の検証結果」に記載。保存済みの最新 `results/verify.json` は `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段4までの全項目の AND。
+下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 14 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero / lpFooterFaceDefault / lpVisibleAnchors / lpFaceScopedTotop）の結果は §2.13「段4の検証結果」に記載。段5で追加した 4 項目（tableCaptionSp / tableNumFontSize / headerInnerWidth / headerCtaOffCenter）の結果は §2.14「段5 — PO 反応1回目の是正」に記載。保存済みの最新 `results/verify.json` は `summary` 44 項目 **pass 44 / fail 0**、総合 `pass: true`。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段5までの全項目の AND。
 
 | 項目 | 結果 |
 |---|---|
@@ -503,7 +530,7 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 
 ## 5. 描画証跡
 
-`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。段4で 48 枚を追加（`lp-*` 42 + LP 面 `footer-layout` 6）、計 311。既存 263 枚のファイル名・内容は変更していない。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
+`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。段4で 48 枚を追加（`lp-*` 42 + LP 面 `footer-layout` 6）、計 311。段5（PO 反応1回目、`scripts/shots-reaction1.mjs`）で記事全長 2・画面単位 20・ヘッダー PC 4・比較表 2・404 6 の既存 34 枚を差し替え、新規に幅プリセット `width-{narrow,default,wide}-{sp,pc}.jpg` 6 枚を追加し、計 317。既存の残り277枚（段1〜4のうち段5で差し替えた34枚を除く）のファイル名・内容は変更していない。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
 
 ## 6. 手順（再現）
 
@@ -513,6 +540,7 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 4. 変種の確認: 既存軸は `?wt=header:cta,sp:left,eyecatch:hero,toc:float,related:rank,share:float,motion:on,depth:2,density:airy,detext:on,nf:suggest`、段3は `?wt=cat_header:hero,cat_children:steps,cat_list:featured-grid,cat_pagination:load-more,cat_ranking:sidebar,cat_minihome:on,footer_layout:columns-3,footer_above:banner-row,footer_legal:copyright-only,footer_extra:sns-sites,footer_totop:button,tail_order:cta-related-author-share,tail_share:icons-row,tail_author:avatar-bio-sns,tail_prevnext:thumb` のように付ける。サイト既定は `wp theme mod set wt_<key> <value>`、記事単位は `wp post meta set <ID> wt_eyecatch|wt_toc|wt_pr|wt_share <value>`
 5. 段4のテーマ配置（リポ root から）: `docker cp docs/research/2026-09-05-design-prototype-03/theme/helix-wt/. agent-neo-wp:/var/www/html/wp-content/themes/helix-wt/`。LP ページが未作成なら `docker compose run --rm -T wpcli post create --post_type=page --post_status=publish --post_name=lp --post_title='案内ページ' --page_template=page-lp` で 1 枚だけ作成する。撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage4 true --base <site> --out results`。検証は `NODE_PATH=<playwright の node_modules> node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
 6. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
+7. 段5（PO 反応1回目）のテーマ配置は手順5と同じ `docker cp`。再撮影は `NODE_PATH=<playwright の node_modules> node scripts/shots-reaction1.mjs --base <site> --out results`（`--stage3`/`--stage4` と同じ merge 方式で `CATALOG-INDEX.json` を更新）、検証は手順5と同じ `scripts/verify.mjs`
 
 ## 7. 終了時状態（意図的に残置）
 

@@ -8,6 +8,7 @@
 function wt_axes() {
 	return array(
 		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce' ) ),
+		'width'    => array( 'default', array( 'narrow', 'default', 'wide' ) ), // 2026-09-05 PO 反応: 本文 / wide / ヘッダー最大幅のプリセット比較（?wt=width:narrow|default|wide）
 		'sp'       => array( 'search', array( 'search', 'right', 'left' ) ),           // SP ヘッダー: hamburger+search / hamburger-right / hamburger-left
 		'eyecatch' => array( 'title-image', array( 'title-image', 'image-title', 'hero', 'side', 'none' ) ),
 		'toc'      => array( 'box', array( 'box', 'float', 'collapsible', 'none' ) ),

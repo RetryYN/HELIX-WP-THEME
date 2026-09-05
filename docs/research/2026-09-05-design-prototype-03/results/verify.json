@@ -2236,10 +2236,49 @@
   "expected": "16px",
   "pass": true
  },
+ "tableCaptionSp": {
+  "exists": true,
+  "width": 358,
+  "height": 47.59375,
+  "ratio": 7.5219960604070915,
+  "display": "block",
+  "text": "電動昇降デスク 3 製品の比較（2026 年 8 月時点、税込）",
+  "pass": true
+ },
+ "tableNumFontSize": {
+  "bodyFs": 17,
+  "cellCount": 6,
+  "sizes": [
+   17,
+   17,
+   17,
+   17,
+   17,
+   17
+  ],
+  "maxDeviation": 0,
+  "pass": true
+ },
+ "headerInnerWidth": {
+  "rowWidth": 1392,
+  "headerMax": 1440,
+  "gutter": 24,
+  "viewport": 1440,
+  "expectedRowWidth": 1392,
+  "withinTolerance": true,
+  "pass": true
+ },
+ "headerCtaOffCenter": {
+  "cx": 1301.3046875,
+  "viewportCenter": 720,
+  "viewport": 1440,
+  "offsetRatio": 0.8073676215277777,
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "summary": {
-  "pass": 40,
+  "pass": 44,
   "fail": 0,
   "checks": {
    "noJs": true,
@@ -2281,7 +2320,11 @@
    "lpLcpHero": true,
    "lpFooterFaceDefault": true,
    "lpVisibleAnchors": true,
-   "lpFaceScopedTotop": true
+   "lpFaceScopedTotop": true,
+   "tableCaptionSp": true,
+   "tableNumFontSize": true,
+   "headerInnerWidth": true,
+   "headerCtaOffCenter": true
   }
  },
  "pass": true

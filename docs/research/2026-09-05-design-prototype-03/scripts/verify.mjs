@@ -567,6 +567,61 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   }
 }
 
+// 11. 2026-09-05 PO 反応（比較表 SP caption・価格文字サイズ・ヘッダー内側幅・CTA 中央寄せ是正）
+{
+  // 11a. caption が 1 行以上の横書きで表示される（高さ/幅比で「1 文字ずつ縦積み」を検知）
+  const spCtx = await browser.newContext(SP); const spPage = await spCtx.newPage();
+  await spPage.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.tableCaptionSp = await spPage.evaluate(() => {
+    const cap = document.querySelector(".is-style-wt-compare caption");
+    if (!cap) return { exists: false };
+    const r = cap.getBoundingClientRect();
+    const s = getComputedStyle(cap);
+    return { exists: true, width: r.width, height: r.height, ratio: r.height > 0 ? r.width / r.height : 0, display: s.display, text: cap.textContent.trim() };
+  });
+  out.tableCaptionSp.pass = out.tableCaptionSp.exists && out.tableCaptionSp.ratio > 3; // 横書き1〜数行なら幅は高さの数倍以上になる。縦積みだと概ね 1 未満
+  await spCtx.close();
+
+  // 11b. 表内数値セル（td.wt-num）の font-size が本文（p）の ±10% 以内（数字訴求 hero 用サイズが紛れ込んでいないか）
+  const pcCtx = await browser.newContext(PC); const pcPage = await pcCtx.newPage();
+  await pcPage.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.tableNumFontSize = await pcPage.evaluate(() => {
+    const bodyFs = parseFloat(getComputedStyle(document.body).fontSize); // theme.json 本文 17px（preset font-size m）を基準にする。
+    const cells = Array.from(document.querySelectorAll(".is-style-wt-compare td.wt-num"));
+    const sizes = cells.map((c) => parseFloat(getComputedStyle(c).fontSize));
+    return { bodyFs, cellCount: cells.length, sizes, maxDeviation: cells.length ? Math.max(...sizes.map((s) => Math.abs(s - bodyFs) / bodyFs)) : null };
+  });
+  out.tableNumFontSize.pass = out.tableNumFontSize.cellCount > 0 && out.tableNumFontSize.maxDeviation !== null && out.tableNumFontSize.maxDeviation <= 0.10;
+
+  // 11c. ヘッダー内側幅 = min(viewport − 2×gutter, --wt-header-max)（header:cta 変種、幅プリセット既定）
+  await pcPage.goto(BASE + ARTICLE + "?wt=header:cta", { waitUntil: "networkidle" });
+  out.headerInnerWidth = await pcPage.evaluate(() => {
+    const row = document.querySelector(".wt-header__row");
+    const outer = row.closest(".wt-header");
+    const r = row.getBoundingClientRect();
+    const headerMax = parseFloat(getComputedStyle(document.body).getPropertyValue("--wt-header-max"));
+    const gutter = parseFloat(getComputedStyle(outer).paddingLeft); // constrained layout の実際の padding-inline（gutter clamp の実測値）
+    const viewport = window.innerWidth;
+    const expectedRowWidth = Math.min(viewport, headerMax) - gutter * 2;
+    return { rowWidth: r.width, headerMax, gutter, viewport, expectedRowWidth, withinTolerance: Math.abs(r.width - expectedRowWidth) <= 4 };
+  });
+  out.headerInnerWidth.pass = out.headerInnerWidth.withinTolerance;
+
+  // 11d. CTA ボタンの中心 x が viewport 中央から 25% 以上離れている（右寄せで、真ん中に来ていないこと）
+  out.headerCtaOffCenter = await pcPage.evaluate(() => {
+    const btn = document.querySelector(".wt-header__cta .wp-block-button__link");
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const viewport = window.innerWidth;
+    const viewportCenter = viewport / 2;
+    const offsetRatio = Math.abs(cx - viewportCenter) / viewportCenter;
+    return { cx, viewportCenter, viewport, offsetRatio };
+  });
+  out.headerCtaOffCenter.pass = out.headerCtaOffCenter.offsetRatio >= 0.25;
+
+  await pcCtx.close();
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -584,6 +639,7 @@ const checkList = [
   ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],
   ["lpTapSp", out.tap.lpSp.pass], ["lpTapPc", out.tap.lpPc.pass], ["lpContrast", out.lpContrast.pass], ["lpFullbleedContrast", out.lpFullbleedContrast.pass], ["lpFormNoJs", out.lpFormNoJs.pass], ["lpAnchorNav", out.lpAnchorNav.pass], ["lpSections", out.lpSections.pass], ["lpFixedOverlapSp", out.lpFixedOverlap.sp.pass], ["lpFixedOverlapPc", out.lpFixedOverlap.pc.pass], ["lpReducedMotion", out.lpReducedMotion.pass], ["lpLcpHero", out.lpLcpHero.pass],
   ["lpFooterFaceDefault", out.lpFooterFaceDefault.pass], ["lpVisibleAnchors", out.lpVisibleAnchors.pass], ["lpFaceScopedTotop", out.lpFaceScopedTotop.pass],
+  ["tableCaptionSp", out.tableCaptionSp.pass], ["tableNumFontSize", out.tableNumFontSize.pass], ["headerInnerWidth", out.headerInnerWidth.pass], ["headerCtaOffCenter", out.headerCtaOffCenter.pass],
 ];
 out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;
