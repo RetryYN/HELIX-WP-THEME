@@ -18,10 +18,10 @@
 | toc | **box** / float / collapsible / none | サーバ生成 `nav.wt-toc.wt-toc--*` |
 | related | **grid** / list / rank / carousel | `body.wt-related-*`（Query Loop の post-template） |
 | share | **topbottom** / float / none | `body.wt-share-*` |
-| motion | **off** / on | `body.wt-motion-on` + `html.wt-js` |
-| depth | **0** / 1 / 2 | `body.wt-depth-*` |
-| density | airy / **normal** / compact | `body.wt-density-*`（spacing preset の差し替え） |
-| detext | **off** / on | `body.wt-detext-on` |
+| motion | **off** / on | `body.wt-motion-on` + `html.wt-js`。**説明（PO 反応7回目）**: 出現アニメ軸。fade-up・count-up の on/off（`prefers-reduced-motion` は常に off 相当） |
+| depth | **0** / 1 / 2 | `body.wt-depth-*`。**説明（PO 反応7回目）**: 奥行き軸。影・重なり・階層の強さ（0=フラット / 1=弱い影 / 2=強い影と浮き） |
+| density | airy / **normal** / compact | `body.wt-density-*`（spacing preset の差し替え）。**説明（PO 反応7回目）**: 余白密度軸。行間・見出し上マージンの疎密（airy=広い / compact=詰める） |
+| detext | **off** / on | `body.wt-detext-on`。**説明（PO 反応7回目、用途は再調査中）**: 脱テキスト感の軸。見出し先頭のドット・番号付きリストの丸バッジ化など、本文の文字密度を下げる装置（長文の比較記事で読了率を上げる用途を想定。具体の用途別バリエーションは §8 の反応6/7回目 積み残しで再検討） |
 | nf（404） | **popular** / cta / suggest | `body.wt-nf-*` |
 | pr（段5 反応5回目で既定変更） | **auto** / on / off | 本文先頭に PR 表記を自動挿入。auto は本文先頭 200 字以内の「PR/広告/アフィリエイト」検出で重複挿入を抑止（旧既定 on は無条件挿入のまま残置） |
 | cat_header | **name-only** / name-desc / hero | `templates/category.html` / `.wt-cat-head`（`core/term-description` を name-desc / hero で表示） |
@@ -549,6 +549,16 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 
 是正後の実機再実行（`results/verify.json`）: `summary` 48 項目 **pass 48 / fail 0**（反応1回目までの44 + 新規4: `headingNumberPc` / `headingNumberSp` / `underlineGap` / `prTagNotStacked`）、総合 `pass: true`。再撮影は `scripts/shots-reaction2.mjs`（同じ merge 方式）で、記事全長・画面単位（本文が伸びた分、SP は 10→12 画面）・h2 6・h3 4・囲み新規5・CTA 新規4・PR 表記 1 の計 64 枚を差し替え / 追加した（既存 317 → 349）。
 
+### 反応 7 回目（原文、一部のみ本 PR で対応）
+
+「contrast-guard は面白いからいろんなパターンを追加できるか？写真自体を薄くしたり、透明系統、暖色系等などのカラーバリエーションの追加だな。ようは画像に見せ方を変えるような感じに。relatedはかなりしょぼい。これはデザイン品質の問題で再調査して品質向上をしてくれ。axis-depthこれはなんだ？」
+
+3 点の要求のうち、(3) は本 PR で対応、(1)(2) は反応6回目と同じ理由で範囲外とした（§8）。
+
+- **(3) axis-depth ほか4軸の説明**: 実装変更ではなく PO の質問への回答。README §1 の軸一覧表に `motion` / `depth` / `density` / `detext` の1行説明を追記した（`depth` = 奥行き軸〈影・重なり・階層の強さ。0=フラット / 1=弱い影 / 2=強い影と浮き〉、他3軸も同様）。
+- **(1) contrast-guard の見せ方バリエーション +5〜6型**（白フェード・暖色/寒色/ブランド色オーバーレイ・下部グラデーション・ぼかし・デュオトーン風）は、既存3段（dark/mid/light スクリム）を作り直すものではなく実装コストが大きいため次回に持ち越す（§8）。
+- **(2) related の品質再調査**（テーマA・テーマBの実物参照を含む）は、外部サイトの read-only 観察を要する点で反応6回目 PR 表記の調査と同種のため、同じ枠へ合流させ次回に持ち越す（§8）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -610,6 +620,7 @@ PO 反応（原文）:「フルスクリーン10の3スマホのテーブルが�
 - 4 軸のうち depth-2 の CTA 立体化と `.is-style-wt-raised` の重複、`.wt-c-*` 色 modifier の block style 化（現状は追加 CSS class）は設計で整理。
 - 44px 監査: カード全面クリックの実効領域を数える監査ロジック（`a::after` の矩形を含める）。
 - **PO 反応 6 回目（2026-09-05、中間報告扱い）は本 PR の範囲外**。要求内容: 比較表 +3〜4 型、pros-cons +3 型（用途の1行説明を添える）、レビューバー +3 型、リンクカードの呼称を「ブログカード」へ変更 +3 型、PR 表記を PO 指定の参照テーマ2種（伏せ字: テーマA / テーマB。実名は公開リポに書かず `~/.config/helix-redaction/redaction-map.txt` 側でのみ確認する）を参考に追加、detext（脱テキスト感の軸）に用途別 +3 型。6 語彙にまたがり、うち PR は外部サイトの read-only 観察を要するため、反応1〜5 とは切り離し、PO 判断のうえで別 PR として着手する。
+- **PO 反応 7 回目の (1)(2) も同じ理由で本 PR の範囲外**。(1) contrast-guard に「画像の見せ方」バリエーション +5〜6型（白フェード・暖色/寒色/ブランド色オーバーレイ・下部グラデーション・ぼかし・デュオトーン風。輝度計測→自動選択と 4.5:1/3:1 の検査は維持）。(2) related（記事末尾関連記事）の品質再調査（台帳 recapture-v2 の観察 % とテーマA・テーマBの実物参照、カード比率・タイトル行数制限・メタ・余白・hover を設計し直し、既存4型を作り直し+2型追加）。反応6回目・7回目(1)(2)をまとめて次回の別 PR で着手する。
 
 ## 9. 公開安全
 
