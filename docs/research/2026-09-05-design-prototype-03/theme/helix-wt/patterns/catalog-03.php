@@ -25,6 +25,43 @@ $h3 = function ( $style, $id ) {
 <?php foreach ( array( 'plain', '2tone', 'icon', 'bar', 'underline', 'band', 'numbox', 'barbg', 'doubleline', 'label' ) as $s ) { $h2( $s, 'cat-h2-' . $s ); } ?>
 <!-- wp:heading --><h2 class="wp-block-heading">h3 5 型</h2><!-- /wp:heading -->
 <?php foreach ( array( 'bar-thin', 'dotted', 'num', 'marker', 'underline-thin' ) as $s ) { $h3( $s, 'cat-h3-' . $s ); } ?>
+<!-- WT-EVT-0272（Claude 解釈）: numbox の h2 と num の h3 の連番連動デモ。本文では .wp-block-post-content:has(> .is-style-wt-numbox) で同じ表示になる -->
+<!-- wp:group {"className":"wt-numbox-demo","anchor":"cat-h2-numbox-h3num","layout":{"type":"flow"}} --><div class="wp-block-group wt-numbox-demo" id="cat-h2-numbox-h3num">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">比較の前提と評価軸</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">評価軸は 5 点</h3><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">測り方と条件</h3><!-- /wp:heading -->
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">3 製品の比較表</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">価格と保証</h3><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">h2 が numbox のとき、h3 の num は「01-1, 01-2 / 02-1」と親番号付きになり、h2 ごとに振り直す。</p><!-- /wp:paragraph -->
+</div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-h2-numbox-plain","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-h2-numbox-plain">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 A（専用 class なしの Group）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 A-1</h3><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 A-2</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 L（post-content 直下の単独 num）</h3><!-- /wp:heading -->
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 B（後続の別 Group）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 B-1</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 M（B の後の単独 num）</h3><!-- /wp:heading -->
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 C（入れ子 Group の内側）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 C-1</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+</div><!-- /wp:group -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 N（入れ子 Group の外へ出た単独 num）</h3><!-- /wp:heading -->
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 D（入れ子 Group、直後は段落）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 D-1</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+</div><!-- /wp:group -->
+<!-- wp:paragraph --><p>Group 直後の段落（ここで wt-h3 を 0 に戻す通常分岐）。</p><!-- /wp:paragraph -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 P-1（段落の後の単独 num）</h3><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 P-2（後続への継承）</h3><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">検証用: 専用 class なしの Group に入れた numbox は本文全体の h2 番号を続け（上の h2 見本が 01 なので 02, 03）、配下の num は 02-1 / 02-2 / 03-1。Group の直後から単独 num は 01 に戻る（L・M・N とも 01。N は入れ子 Group の外へ出た境界）。Group 直後が段落なら 0 に戻し、その後の単独 num は 01 / 02（P-1 / P-2）。</p><!-- /wp:paragraph -->
 <!-- wp:heading --><h2 class="wp-block-heading">囲み 7 型 + 色</h2><!-- /wp:heading -->
 <?php
 $body = '昇降デスクは「最低高さ」が意外に重要です。身長 160cm 前後の人は座り姿勢で 62cm 以下まで下がらないと、肩がこります。';
@@ -146,6 +183,11 @@ $reaction_table( 'compare-showdown', 'cat-table-showdown', '2製品対決: 最�
 <!-- wp:group {"anchor":"cat-detext-metrics","className":"is-style-wt-detext-metrics","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-detext-metrics" id="cat-detext-metrics"><!-- wp:html --><div class="wt-detext__metric"><span class="wt-num">62<small>cm</small></span><small>最低高さ</small></div><div class="wt-detext__metric"><span class="wt-num">41<small>dB</small></span><small>静音性</small></div><div class="wt-detext__metric"><span class="wt-num">7<small>年</small></span><small>保証</small></div><!-- /wp:html --></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-graph-bar","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-bar"><!-- wp:pattern {"slug":"helix-wt/graphs"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-graph-stack","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-stack"><!-- wp:pattern {"slug":"helix-wt/graph-stack"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-graph-grouped","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-grouped"><!-- wp:pattern {"slug":"helix-wt/graph-grouped"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-graph-column","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-column"><!-- wp:pattern {"slug":"helix-wt/graph-column"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-graph-score","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-score"><!-- wp:pattern {"slug":"helix-wt/graph-score"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-graph-gauge","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-gauge"><!-- wp:pattern {"slug":"helix-wt/graph-gauge"} /--></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-graph-radar","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-radar"><!-- wp:pattern {"slug":"helix-wt/graph-radar"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-graph-donut","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-donut"><!-- wp:pattern {"slug":"helix-wt/graph-donut"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-graph-line","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-graph-line"><!-- wp:pattern {"slug":"helix-wt/graph-line"} /--></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-detext-diagram","className":"is-style-wt-detext-diagram","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-detext-diagram" id="cat-detext-diagram"><!-- wp:html --><div class="wt-detext__diagram-box">身長</div><span class="wt-detext__diagram-arrow" aria-hidden="true">→</span><div class="wt-detext__diagram-box">机の高さ</div><!-- /wp:html --></div><!-- /wp:group -->

@@ -236,9 +236,9 @@ h2[id],h3[id]{scroll-margin-top:calc(var(--wt-header-h) + 1rem)}
 .wt-header__nav{flex:1 1 auto;justify-content:flex-end}
 .wt-header .wp-block-navigation{flex-wrap:nowrap}
 /* 検索: PC はインライン、SP はアイコンボタン（core/search button-only） */
-.wt-header__search .wp-block-search__inside-wrapper{border:1px solid var(--wp--preset--color--line);border-radius:999px;overflow:hidden;background:var(--wp--preset--color--surface);min-height:40px}
-.wt-header__search .wp-block-search__input{border:0;background:transparent;padding:0 .9rem;font-size:.875rem;min-height:40px;width:180px}
-.wt-header__search .wp-block-search__button{border:0;background:transparent;padding:0 .75rem;min-height:40px;min-width:44px;color:var(--wp--preset--color--mute);display:inline-flex;align-items:center}
+.wt-header__search .wp-block-search__inside-wrapper{border:1px solid var(--wp--preset--color--line);border-radius:999px;overflow:hidden;background:var(--wp--preset--color--surface);min-height:44px}
+.wt-header__search .wp-block-search__input{border:0;background:transparent;padding:0 .9rem;font-size:.875rem;min-height:44px;width:180px}
+.wt-header__search .wp-block-search__button{border:0;background:transparent;padding:0 .75rem;min-height:44px;min-width:44px;color:var(--wp--preset--color--mute);display:inline-flex;align-items:center}
 .wt-header__search .wp-block-search__button svg{width:20px;height:20px;fill:currentColor}
 .wt-header__search--sp .wp-block-search__inside-wrapper{border:0;background:none;min-height:44px}
 .wt-header__search--sp .wp-block-search__button{min-height:44px;min-width:44px;color:var(--wp--preset--color--contrast)}
@@ -1172,3 +1172,125 @@ body.wt-lp-review-quote-photo .wt-lp-review--quote-photo{display:grid;grid-templ
 /* .wt-lp-line__btn の display:inline-flex に負けないよう 2 クラスで非表示を明示し、軸 class のときだけ表示 */
 .wt-lp-fixed.wt-lp-fixed--line-sticky{display:none}
 body.wt-lp-fixed-line-sticky .wt-lp-fixed.wt-lp-fixed--line-sticky{display:inline-flex;position:fixed;left:1rem;bottom:1rem;z-index:45;box-shadow:var(--wp--preset--shadow--depth-2)}
+
+/* ===== 2026-09-06 PO 反応 17 回目（WT-EVT-0270〜0278） ===== */
+/* WT-EVT-0271「announce のお知らせは幅いっぱいがよさそう」: 内側幅の上限（1120px）を外し、左右 gutter だけ残す */
+.wt-announce__in{max-width:none}
+
+/* WT-EVT-0270 ヘッダー +5 型（PC）。center: ロゴ中央・ナビ下段 / two-rows: 1 段目ロゴ + 検索 + CTA、2 段目 全幅ナビ帯 / tel: 電話 + CTA / band: 帯色 / overlay: hero 上の透過 */
+.wt-header--center .wt-header__row--brand{justify-content:center}
+.wt-header--center .wt-header__row--brand .wp-block-site-title{margin:0}
+.wt-header--center .wt-header__row--navline{min-height:44px;border-top:1px solid var(--wp--preset--color--line)}
+.wt-header--center .wt-header__row--navline .wp-block-navigation-item__content{padding:.6rem .25rem;font-size:.9375rem}
+@media (min-width:600px){.wt-header--center .wt-header__nav--sp-only,.wt-header--two-rows .wt-header__nav--sp-only{display:none}}
+.wt-header__navband{background:var(--wp--preset--color--surface);border-top:1px solid var(--wp--preset--color--line)}
+.wt-header--two-rows .wt-header__row--navline{min-height:44px}
+.wt-header--two-rows .wt-header__navband .wp-block-navigation-item__content{display:inline-flex;align-items:center;min-height:44px;padding:0 1.1rem;font-size:.875rem;font-weight:700;border-right:1px solid var(--wp--preset--color--line)}
+.wt-header--two-rows .wt-header__navband .wp-block-navigation-item:first-child .wp-block-navigation-item__content{padding-left:0}
+.wt-header__tel{display:inline-grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:.4rem;align-items:center;color:inherit;text-decoration:none;line-height:1.1;min-height:44px}
+.wt-header__tel .wt-i{grid-row:1 / span 2;width:1.4em;height:1.4em;color:var(--wp--preset--color--accent)}
+.wt-header__tel-num{font-family:var(--wp--preset--font-family--latin);font-weight:800;font-size:1.125rem;letter-spacing:.01em}
+.wt-header__tel-hours{font-size:.6875rem;color:var(--wp--preset--color--mute)}
+.wt-header--band{background:var(--wp--preset--color--accent);border-bottom-color:transparent;color:#fff}
+.wt-header--band .wp-block-site-title a,.wt-header--band .wp-block-navigation-item__content,.wt-header--band .wp-block-navigation__responsive-container-open,.wt-header--band .wt-header__search--sp .wp-block-search__button{color:#fff}
+.wt-header--band .wt-header__search .wp-block-search__inside-wrapper{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35)}
+.wt-header--band .wt-header__search .wp-block-search__input{color:#fff}.wt-header--band .wt-header__search .wp-block-search__input::placeholder{color:rgba(255,255,255,.75)}
+.wt-header--band .wt-header__search .wp-block-search__button{color:#fff}
+.wt-header--band .wp-block-navigation__responsive-container.is-menu-open{background:var(--wp--preset--color--accent)}
+.wt-header--band .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom-color:rgba(255,255,255,.25)}
+.wt-header--band .wp-block-navigation__responsive-container-close{color:#fff}
+/* overlay: 記事 hero（eyecatch:hero）や LP の上に透過で重ねる。sticky を外して絶対配置、本文の上余白を 0 にして画像が上端まで来る。JS の部分固定は position:absolute では作用しない */
+body.wt-header-overlay .wt-header{position:absolute;top:0;left:0;right:0;background:transparent;border-bottom:0;color:#fff;will-change:auto}
+body.wt-header-overlay .wt-header.is-hidden{transform:none}
+body.wt-header-overlay .wt-header .wp-block-site-title a,body.wt-header-overlay .wt-header .wp-block-navigation-item__content,body.wt-header-overlay .wt-header .wp-block-navigation__responsive-container-open,body.wt-header-overlay .wt-header .wt-header__search--sp .wp-block-search__button{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+body.wt-header-overlay .wt-header .wp-block-navigation__responsive-container.is-menu-open{color:var(--wp--preset--color--contrast)}
+body.wt-header-overlay .wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:var(--wp--preset--color--contrast);text-shadow:none}
+body.wt-header-overlay .wt-article{padding-top:0}
+body.wt-header-overlay .wt-posthead{margin-top:0}
+body.wt-header-overlay.wt-eyecatch-hero .wt-article{margin-top:0}/* main の block-gap 由来 16px を消し、ヒーロー画像を y=0 に置く（ヘッダー文字が画像上に乗る条件） */
+/* overlay の hero は画面幅いっぱいに広げ、ヘッダーの文字が必ず画像（+ 上端スクリム）の上に載るようにする（PC で本文幅の画像だと左右のロゴ・ナビが白地に白文字で消える） */
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__img{width:100vw;margin-inline:calc(50% - 50vw)}
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__img img{min-height:420px;max-height:70vh;object-fit:cover;border-radius:0}
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__text{max-width:var(--wt-content-max,760px);margin-inline:auto;width:100%}
+/* 上端の帯は 72px まで一定 α .82（白背景の画像でも白文字 4.5:1 を満たす下限 α .82 ⇒ 背景輝度 .18）にし、そこから 40% 位置まで透明へ。verify headerVariants が α を解析する */
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__img::after{border-radius:0;background:linear-gradient(to bottom,rgba(0,0,0,.82) 0,rgba(0,0,0,.82) 72px,rgba(0,0,0,0) 40%),linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.84) 40%,rgba(0,0,0,.30) 100%)}
+/* JS の明度判定（data-wt-lum）は下側スクリムだけを変える。上側 72px の α=.82 は明度に関わらず固定（白文字 4.5:1 の担保。!important は lum 規則の !important に勝つため） */
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__img[data-wt-lum="dark"]::after{background:linear-gradient(to bottom,rgba(0,0,0,.82) 0,rgba(0,0,0,.82) 72px,rgba(0,0,0,0) 40%),linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.40) 40%,rgba(0,0,0,0) 100%)!important}
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__img[data-wt-lum="mid"]::after{background:linear-gradient(to bottom,rgba(0,0,0,.82) 0,rgba(0,0,0,.82) 72px,rgba(0,0,0,0) 40%),linear-gradient(to top,rgba(0,0,0,.80) 0%,rgba(0,0,0,.70) 40%,rgba(0,0,0,.15) 100%)!important}
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__img[data-wt-lum="light"]::after{background:linear-gradient(to bottom,rgba(0,0,0,.82) 0,rgba(0,0,0,.82) 72px,rgba(0,0,0,0) 40%),linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.93) 40%,rgba(0,0,0,.70) 100%)!important}
+body.wt-header-overlay.wt-eyecatch-hero .wt-posthead__text{padding-top:calc(var(--wt-header-h) + 1rem)}
+body.wt-header-overlay:not(.wt-eyecatch-hero) .wt-header{background:linear-gradient(to bottom,rgba(0,0,0,.82) 0,rgba(0,0,0,.82) 72px,rgba(0,0,0,0) 100%)}
+body.wt-header-overlay:not(.wt-eyecatch-hero) .wt-article{padding-top:calc(var(--wt-header-h) + var(--wp--preset--spacing--50))}
+/* SP +3 型（WT-EVT-0270）: cta = ≡ + CTA / text-nav = ≡ なしテキストナビ（横スクロール）/ center-logo = 検索左・ロゴ中央・≡ 右 */
+.wt-header__spcta,.wt-header__textnav{display:none}
+@media (max-width:599px){
+body.wt-sp-cta .wt-header__spcta{display:inline-flex;align-items:center;order:2;min-height:44px;padding:0 .8rem;border-radius:999px;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);font-size:.75rem;font-weight:700;text-decoration:none;white-space:nowrap}
+body.wt-sp-cta .wt-header__search--sp,body.wt-sp-cta .wt-header__cta{display:none}
+body.wt-sp-text-nav .wt-header__row{flex-wrap:wrap}
+body.wt-sp-text-nav .wt-header__nav,body.wt-sp-text-nav .wt-header__nav--sp-only{display:none}
+body.wt-sp-text-nav .wt-header__textnav{display:flex;order:9;flex:1 0 100%;gap:1.1rem;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--wp--custom--gutter) * -1);padding:0 var(--wp--custom--gutter);border-top:1px solid var(--wp--preset--color--line)}
+body.wt-sp-text-nav .wt-header__textnav::-webkit-scrollbar{display:none}
+body.wt-sp-text-nav .wt-header__textnav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 .35rem;font-size:.875rem;font-weight:700;color:inherit;text-decoration:none;white-space:nowrap}
+body.wt-sp-center-logo .wt-header__search--sp{order:0;margin-right:auto}
+body.wt-sp-center-logo .wt-header .wp-block-site-title{order:1;margin:0 auto}
+body.wt-sp-center-logo .wt-header__nav{order:3;margin-left:auto}
+body.wt-sp-center-logo .wt-header__cta{display:none}
+body.wt-sp-center-logo .wt-header__nav .wp-block-navigation{min-width:44px}
+}
+
+/* WT-EVT-0272「numbox と num は対応したら？」（Claude 解釈）: 本文に numbox の h2 があるとき、h3 の num を「親番号-連番」にし、h2 ごとに連番を振り直す */
+/* 親（post-content）に wt-h3 の counter-reset があるため、h2 側は counter-reset ではなく counter-set で 0 に戻す（Chromium 151 で counter-reset は後続兄弟に伝わらないことを実測） */
+.wp-block-heading.is-style-wt-numbox{counter-set:wt-h3 0}
+/* 適用範囲（Astra 是正 2 巡目）: 「numbox の h2 と同じ親コンテナ（post-content 直下でも Group 内でも）に置かれた num の h3」だけを親番号付きにする。Group に入れた numbox も対象で、別コンテナの h3 には波及しない（同一本文内の別セクションの単独 num は従来の連番のまま）。同じ親コンテナ内では、numbox の h2 を 1 つでも使う本文では num の h3 がすべて「直前の numbox 番号-連番」になる。
+   通常 h2 が混在する場合も h2 ごとに連番は振り直す（通常 h2 は親番号を進めない）。「numbox 以外の h2 の配下だけ単独連番」は CSS では判定できないため、混在は想定外として README に明記 */
+:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > h2:not(.is-style-wt-numbox){counter-set:wt-h3 0}
+:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:1.15em}
+/* numbox を（入れ子の深さを問わず）含むコンテナ（Group 等）の直後の兄弟から wt-h3 を 0 に戻す（入れ子 Group の外へ出る境界も対象。Astra 4 巡目）。これで後続の別コンテナ・post-content 直下の単独 num は 01 から数え直す（wt-h2num は本文全体で続く）。counter-set は後続兄弟へ伝わる（counter-reset は伝わらない。1243 行の注記と同じ実測） */
+.wp-block-post-content :has(.is-style-wt-numbox) + *,.wp-block-post-content > :has(.is-style-wt-numbox) + *{counter-set:wt-h3 0}
+/* 直後の兄弟が num の h3 自身なら 1（counter-set は counter-increment の後に適用されるため 0 にすると 00 になる。CSS Lists 3 の適用順） */
+.wp-block-post-content :has(.is-style-wt-numbox) + .is-style-wt-num,.wp-block-post-content > :has(.is-style-wt-numbox) + .is-style-wt-num{counter-set:wt-h3 1}
+.wt-numbox-demo{counter-reset:wt-h3 wt-h2num}
+
+/* WT-EVT-0276 LINE 導線: 白丸の中を「LINE」の文字から吹き出しグリフへ。色は LINE ブランド緑（装飾のみ、文字は使わない） */
+.wt-lp-line__mark .wt-i{width:1.5rem;height:1.5rem;color:#06c755;vertical-align:0}
+.wt-lp-line__qrwrap .wt-only-sp{display:none}
+@media (max-width:599px){.wt-lp-line__qrwrap .wt-only-pc{display:none!important}.wt-lp-line__qrwrap .wt-only-sp{display:block}}
+
+/* footer SNS / 記事末 icons-row: 数字プレースホルダ → 自作グリフ */
+.wt-social a .wt-i,.wt-tail-icons a .wt-i{width:1.35rem;height:1.35rem;vertical-align:0}
+.wt-tail-icons a{font-size:.8125rem}
+
+/* WT-EVT-0273「graph はパターン強化」: +5 型（grouped / column / score / gauge / radar）。JS なし */
+.wt-graph--grouped .wt-graph__row{grid-template-columns:minmax(6em,9em) 1fr;align-items:start}
+.wt-graph__pair{display:grid;gap:.3rem;padding-right:2.4rem}
+.wt-graph__pair .wt-graph__bar{position:relative;height:12px}
+.wt-graph__pair .wt-graph__bar::after{content:attr(data-v);position:absolute;left:calc(var(--v,0) * 1% + .35rem);top:50%;transform:translateY(-50%);font-family:var(--wp--preset--font-family--latin);font-size:.7rem;font-weight:700;color:var(--wp--preset--color--contrast);line-height:1;white-space:nowrap}
+.wt-graph__pair .wt-graph__bar i{background:var(--wt-g-a)}.wt-graph__pair .wt-graph__bar--b i{background:var(--wt-g-b)}
+.wt-graph--grouped .wt-graph__row:nth-child(2) .wt-graph__bar i,.wt-graph--grouped .wt-graph__row:nth-child(3) .wt-graph__bar i{background:var(--wt-g-a)}
+.wt-graph--grouped .wt-graph__row:nth-child(2) .wt-graph__bar--b i,.wt-graph--grouped .wt-graph__row:nth-child(3) .wt-graph__bar--b i{background:var(--wt-g-b)}
+.wt-graph__cols{display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:.6rem;align-items:end;height:180px;padding-top:1.2rem}
+.wt-graph__col{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.wt-graph__col i{display:block;width:min(100%,56px);height:calc(var(--v,0) * 1%);border-radius:6px 6px 0 0;background:var(--wt-g-a)}
+.wt-graph__col:first-child i{background:var(--wt-g-c)}
+.wt-graph__col b{position:absolute;bottom:calc(var(--v,0) * 1% + .25rem);font-family:var(--wp--preset--font-family--latin);font-size:.8125rem;line-height:1}
+.wt-graph__collabels{display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:.6rem;margin-top:.5rem;font-size:.75rem;text-align:center;overflow-wrap:anywhere}
+.wt-graph__collabels span:first-child{font-weight:700}
+.wt-graph--score .wt-graph__row{grid-template-columns:minmax(5em,8em) 1fr 2.4em}
+.wt-graph__score{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;height:12px}
+.wt-graph__score i{display:block;border-radius:3px;background:var(--wt-g-track)}
+.wt-graph__score i:nth-child(-n+5){background:var(--wt-g-track)}
+.wt-graph__score[data-v="1"] i:nth-child(-n+1),.wt-graph__score[data-v="2"] i:nth-child(-n+2),.wt-graph__score[data-v="3"] i:nth-child(-n+3),.wt-graph__score[data-v="4"] i:nth-child(-n+4),.wt-graph__score[data-v="5"] i:nth-child(-n+5){background:var(--wt-g-a)}
+.wt-graph__gauges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.wt-graph__gauge{position:relative;width:min(100%,150px);aspect-ratio:2/1;margin:0 auto;border-radius:150px 150px 0 0;background:conic-gradient(from -90deg at 50% 100%,var(--wt-g-a) 0 calc(var(--v,0) * 0.5%),var(--wt-g-track) calc(var(--v,0) * 0.5%) 50%,transparent 50%);overflow:hidden}
+.wt-graph__gauge::after{content:"";position:absolute;left:18%;right:18%;bottom:0;top:36%;border-radius:150px 150px 0 0;background:var(--wp--preset--color--base)}
+.wt-graph__gauge b{position:absolute;left:0;right:0;bottom:0;z-index:1;text-align:center;font-family:var(--wp--preset--font-family--latin);font-size:1.5rem;line-height:1;color:var(--wt-g-a)}
+.wt-graph__gauge b small{font-size:.55em}
+.wt-graph__gauge-label{display:block;margin-top:.4rem;text-align:center;font-size:.8125rem;font-weight:700}
+.wt-graph__gaugewrap:nth-child(2) .wt-graph__gauge{background:conic-gradient(from -90deg at 50% 100%,var(--wt-g-b) 0 calc(var(--v,0) * 0.5%),var(--wt-g-track) calc(var(--v,0) * 0.5%) 50%,transparent 50%)}.wt-graph__gaugewrap:nth-child(2) .wt-graph__gauge b{color:var(--wt-g-b)}
+.wt-graph__gaugewrap:nth-child(3) .wt-graph__gauge{background:conic-gradient(from -90deg at 50% 100%,var(--wt-g-c) 0 calc(var(--v,0) * 0.5%),var(--wt-g-track) calc(var(--v,0) * 0.5%) 50%,transparent 50%)}.wt-graph__gaugewrap:nth-child(3) .wt-graph__gauge b{color:var(--wt-g-c)}
+.wt-graph--radar .wt-graph__svg{max-width:340px;margin:0 auto}
+.wt-graph__radar-grid{fill:none;stroke:var(--wp--preset--color--line);stroke-width:1}
+.wt-graph__radar-a{fill:var(--wt-g-a);fill-opacity:.22;stroke:var(--wt-g-a);stroke-width:2}
+.wt-graph__radar-b{fill:var(--wt-g-b);fill-opacity:.16;stroke:var(--wt-g-b);stroke-width:2}
+.wt-graph__radar-labels text{fill:var(--wp--preset--color--contrast);font-size:11px;font-weight:700;text-anchor:middle}
+@media (max-width:599px){.wt-graph--grouped .wt-graph__row{grid-template-columns:minmax(5em,6.5em) 1fr}.wt-graph__cols{height:150px}.wt-graph__gauges{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}.wt-graph__gauge b{font-size:1.15rem}.wt-graph--score .wt-graph__row{grid-template-columns:minmax(4.5em,6em) 1fr 2.2em}}
