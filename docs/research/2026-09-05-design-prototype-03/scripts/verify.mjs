@@ -868,7 +868,9 @@ if (WPCLIDIR) {
   const off = await readState("off");
   const on = await readState("on");
   out.detextVisualDiff = { off, on };
-  out.detextVisualDiff.pass = off.h2Before !== on.h2Before || off.olListStyle !== on.olListStyle || off.bqBefore !== on.bqBefore;
+  const elementsPresent = off.h2Class !== null && on.h2Class !== null && off.olClass !== null && on.olClass !== null && off.bqClass !== null && on.bqClass !== null;
+  out.detextVisualDiff.elementsPresent = elementsPresent;
+  out.detextVisualDiff.pass = elementsPresent && (off.h2Before !== on.h2Before || off.olListStyle !== on.olListStyle || off.bqBefore !== on.bqBefore);
 }
 
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）

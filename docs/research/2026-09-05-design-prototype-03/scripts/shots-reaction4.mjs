@@ -2,7 +2,8 @@
 // shots-reaction4.mjs — 2026-09-05 PO 反応 8 回目（WT-EVT-0249）の証跡を追加撮影する。
 // density は同じ本文中盤を3値で比較し、detext は toc と本文を切り分け、
 // motion は同じ関連カードを別ページで3フレーム撮影する。
-// 既存画像・既存 CATALOG-INDEX.json エントリは変更せず、新規ファイルだけを末尾へ追記する。
+// 通常実行では既存画像・既存 CATALOG-INDEX.json エントリを変更せず、新規ファイルだけを末尾へ追記する。
+// --motion-only true のときだけ、指定した motion 4 枚を削除して同名で再追加する。
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -23,10 +24,29 @@ const ARTICLE = "/standing-desk-compare/";
 const DENSITIES = ["airy", "normal", "compact"];
 const SP = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const PC = { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
+// --motion-only true は、既存の reaction4 motion 4 枚だけを再撮影するための明示的な経路。
+const motionOnly = args["motion-only"] === "true";
+const motionRetakeFiles = new Set([
+  "axis-motion-on-f0-sp.jpg",
+  "axis-motion-on-f1-sp.jpg",
+  "axis-motion-on-f2-sp.jpg",
+  "axis-motion-off-f2-sp.jpg",
+]);
 
 fs.mkdirSync(OUT, { recursive: true });
 const existingCatalog = JSON.parse(fs.readFileSync(CATALOG_FILE, "utf8"));
-const existingFiles = new Set(existingCatalog.map((entry) => entry.file));
+const catalogEntries = motionOnly
+  ? existingCatalog.filter((entry) => !motionRetakeFiles.has(entry.file))
+  : existingCatalog;
+const existingFiles = new Set(catalogEntries.map((entry) => entry.file));
+if (motionOnly) {
+  for (const file of motionRetakeFiles) {
+    for (const extension of [".jpg", ".png"]) {
+      const target = path.join(OUT, file.replace(/\.jpg$/, extension));
+      if (fs.existsSync(target)) fs.unlinkSync(target);
+    }
+  }
+}
 const addedEntries = [];
 const addedFiles = new Set();
 const densityMeasurements = [];
@@ -139,15 +159,36 @@ async function prepareRevealEntry(page) {
   await page.evaluate(() => {
     const card = document.querySelector(".wt-rcard");
     if (!card) throw new Error("motion 対象の .wt-rcard が見つかりません");
-    const triggerTop = window.innerHeight - Math.round(window.innerHeight * 0.1) + 2;
-    window.scrollTo(0, Math.max(0, window.scrollY + card.getBoundingClientRect().top - triggerTop));
+    // カード上端を viewport の上から 40% に置き、カード本体を十分に表示する。
+    const targetTop = Math.round(window.innerHeight * 0.4);
+    window.scrollTo(0, Math.max(0, window.scrollY + card.getBoundingClientRect().top - targetTop));
   });
+  await page.waitForTimeout(80);
+}
+
+async function readRevealState(page) {
+  return page.evaluate(() => {
+    const card = document.querySelector(".wt-rcard");
+    if (!card) throw new Error("motion 完了状態の対象 .wt-rcard が見つかりません");
+    const style = getComputedStyle(card);
+    return { opacity: Number(style.opacity), transform: style.transform };
+  });
+}
+
+function assertRevealComplete(state, label) {
+  console.log(`motion completion ${label}`, JSON.stringify(state));
+  if (state.opacity !== 1 || state.transform !== "none") {
+    throw new Error(`motion 完了状態ではありません (${label}): ${JSON.stringify(state)}`);
+  }
 }
 
 async function captureMotionFrame(context, frame, waitMs) {
   const page = await open(context, `${ARTICLE}?wt=motion:on`);
   await prepareRevealEntry(page);
   await page.waitForTimeout(waitMs);
+  if (frame === 2) {
+    assertRevealComplete(await readRevealState(page), "on f2");
+  }
   await save(page, `axis-motion-on-f${frame}-sp`, {
     face: "article",
     part: "axis-motion",
@@ -159,47 +200,49 @@ async function captureMotionFrame(context, frame, waitMs) {
 
 const browser = await chromium.launch();
 try {
-  for (const [dev, device] of [["sp", SP], ["pc", PC]]) {
-    const context = await browser.newContext(device);
-    try {
-      for (const density of DENSITIES) {
-        const page = await open(context, `${ARTICLE}?wt=density:${density}`);
-        await measureDensity(page, density, dev);
-        await scrollToHeading(page);
-        await save(page, `axis-density-${density}-${dev}`, {
-          face: "article",
-          part: "axis-density",
-          variant: `density:${density}`,
-          dev,
-        }, { viewportOnly: true });
-        await page.close();
-      }
+  if (!motionOnly) {
+    for (const [dev, device] of [["sp", SP], ["pc", PC]]) {
+      const context = await browser.newContext(device);
+      try {
+        for (const density of DENSITIES) {
+          const page = await open(context, `${ARTICLE}?wt=density:${density}`);
+          await measureDensity(page, density, dev);
+          await scrollToHeading(page);
+          await save(page, `axis-density-${density}-${dev}`, {
+            face: "article",
+            part: "axis-density",
+            variant: `density:${density}`,
+            dev,
+          }, { viewportOnly: true });
+          await page.close();
+        }
 
-      for (const state of ["off", "on"]) {
-        const page = await open(context, `${ARTICLE}?wt=toc:box,detext:${state}`);
-        await openTocForEvidence(page);
-        await save(page, `axis-detext-${state}-toc-${dev}`, {
-          face: "article",
-          part: "axis-detext",
-          variant: `detext:${state}`,
-          dev,
-        }, { selector: ".wt-toc" });
-        await page.close();
-      }
+        for (const state of ["off", "on"]) {
+          const page = await open(context, `${ARTICLE}?wt=toc:box,detext:${state}`);
+          await openTocForEvidence(page);
+          await save(page, `axis-detext-${state}-toc-${dev}`, {
+            face: "article",
+            part: "axis-detext",
+            variant: `detext:${state}`,
+            dev,
+          }, { selector: ".wt-toc" });
+          await page.close();
+        }
 
-      for (const state of ["off", "on"]) {
-        const page = await open(context, `${ARTICLE}?wt=detext:${state}`);
-        await scrollToHeading(page);
-        await save(page, `axis-detext-${state}-body-${dev}`, {
-          face: "article",
-          part: "axis-detext",
-          variant: `detext:${state} (body, no visible diff)`,
-          dev,
-        }, { viewportOnly: true });
-        await page.close();
+        for (const state of ["off", "on"]) {
+          const page = await open(context, `${ARTICLE}?wt=detext:${state}`);
+          await scrollToHeading(page);
+          await save(page, `axis-detext-${state}-body-${dev}`, {
+            face: "article",
+            part: "axis-detext",
+            variant: `detext:${state} (body, no visible diff)`,
+            dev,
+          }, { viewportOnly: true });
+          await page.close();
+        }
+      } finally {
+        await context.close();
       }
-    } finally {
-      await context.close();
     }
   }
 
@@ -212,6 +255,7 @@ try {
     const offPage = await open(motionContext, `${ARTICLE}?wt=motion:off`);
     await prepareRevealEntry(offPage);
     await offPage.waitForTimeout(900);
+    assertRevealComplete(await readRevealState(offPage), "off f2");
     await save(offPage, "axis-motion-off-f2-sp", {
       face: "article",
       part: "axis-motion",
@@ -226,8 +270,9 @@ try {
   await browser.close();
 }
 
-if (addedEntries.length !== 18) {
-  throw new Error(`追加画像数が想定外です: ${addedEntries.length}（期待値 18）`);
+const expectedTotal = motionOnly ? 4 : 18;
+if (addedEntries.length !== expectedTotal) {
+  throw new Error(`追加画像数が想定外です: ${addedEntries.length}（期待値 ${expectedTotal}）`);
 }
 
 const counts = {
@@ -238,18 +283,27 @@ const counts = {
   detext_body: addedEntries.filter((entry) => entry.part === "axis-detext" && entry.variant.includes("body, no visible diff")).length,
   motion: addedEntries.filter((entry) => entry.part === "axis-motion").length,
 };
-if (JSON.stringify(counts) !== JSON.stringify({ density: 6, detext_toc: 4, detext_body: 4, motion: 4 })) {
+const expectedCounts = motionOnly
+  ? { density: 0, detext_toc: 0, detext_body: 0, motion: 4 }
+  : { density: 6, detext_toc: 4, detext_body: 4, motion: 4 };
+if (JSON.stringify(counts) !== JSON.stringify(expectedCounts)) {
   throw new Error(`追加画像の内訳が想定外です: ${JSON.stringify(counts)}`);
 }
 
-fs.writeFileSync(
-  path.join(OUT, "density-measure.json"),
-  JSON.stringify({ article: ARTICLE, measurements: densityMeasurements }, null, 2) + "\n",
-);
+if (!motionOnly) {
+  fs.writeFileSync(
+    path.join(OUT, "density-measure.json"),
+    JSON.stringify({ article: ARTICLE, measurements: densityMeasurements }, null, 2) + "\n",
+  );
+}
 
 const duplicateCatalogFile = addedEntries.find((entry) => existingFiles.has(entry.file));
 if (duplicateCatalogFile) throw new Error(`既存エントリを変更しようとしています: ${duplicateCatalogFile.file}`);
-fs.writeFileSync(CATALOG_FILE, JSON.stringify(existingCatalog.concat(addedEntries), null, 1) + "\n");
+const replacementEntries = new Map(addedEntries.map((entry) => [entry.file, entry]));
+const outputCatalog = motionOnly
+  ? existingCatalog.map((entry) => replacementEntries.get(entry.file) || entry)
+  : catalogEntries.concat(addedEntries);
+fs.writeFileSync(CATALOG_FILE, JSON.stringify(outputCatalog, null, 1) + "\n");
 
 console.log("density measurements", JSON.stringify(densityMeasurements, null, 2));
 console.log("reaction4 done", JSON.stringify(counts), `total=${addedEntries.length}`);

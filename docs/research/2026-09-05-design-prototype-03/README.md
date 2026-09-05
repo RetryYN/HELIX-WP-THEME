@@ -745,8 +745,8 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 新規スクリプト `scripts/shots-reaction4.mjs` では、既存画像・既存 `CATALOG-INDEX.json` エントリを変更せず、以下の比較を新しいファイル名で追加する設計にした。
 
 - `density` は `airy / normal / compact` の 3 値を SP/PC それぞれで同じ `#h-4` 付近から viewport 撮影する。各ページで h2 の `margin-top`、h2 後の段落の `margin-bottom`、連続する 2 段落間の実測距離を `page.evaluate` で取得し、`results/density-measure.json` に保存する。
-- `detext` は記事冒頭の `.wt-toc` を off/on で撮影する。SP では通常の box が閉じるため、番号バッジを読めるよう撮影時だけ details を開く。併せて `#h-4` 付近の本文を off/on で撮影し、h2/list/quote に差分が出ないことを比較対象として明記する。
-- `motion` は同じ記事末の先頭 `.wt-rcard` が画面下から入り始める位置へ移動し、ページを毎回開き直して `f0=0ms`、`f1=200ms`、`f2=900ms` を撮影する。別途 `motion:off` を 900ms 後に撮影し、途中フレームと完了後・無効状態を切り分ける。
+- `detext` は記事冒頭の `.wt-toc` を off/on で撮影する。SP では通常の box が閉じるため、番号バッジを読めるよう撮影時だけ details を開く。併せて `#h-4` 付近の本文を off/on で撮影し、h2 は 2tone などに追加ドットが出る一方、list/quote は既存意匠の除外で変わらないことを比較対象として明記する。
+- `motion` は同じ記事末の先頭 `.wt-rcard` を画面外（下）へ置いてから、上端が viewport の上から 40% に来る位置まで移動し、ページを毎回開き直して `f0=0ms`、`f1=200ms`、`f2=900ms` を撮影する。別途 `motion:off` を 900ms 後に撮影し、途中フレームと完了後・無効状態を切り分ける。
 
 実機で `shots-reaction4.mjs` を実行し、18 枚の追加画像と `results/density-measure.json` を生成した。density の計測は SP/PC の両 viewport で同じ値になったため、下表には値ごとの共通値を記載する。
 
@@ -769,18 +769,28 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 - detext-body: `axis-detext-off-body-sp.jpg`、`axis-detext-off-body-pc.jpg`、`axis-detext-on-body-sp.jpg`、`axis-detext-on-body-pc.jpg`
 - motion: `axis-motion-on-f0-sp.jpg`、`axis-motion-on-f1-sp.jpg`、`axis-motion-on-f2-sp.jpg`、`axis-motion-off-f2-sp.jpg`
 
-上記 18 ファイルを生成済みで、各ファイルは非空の JPEG として確認した。`CATALOG-INDEX.json` には既存 349 件を変更せず、新規 18 件を追記している。計測データは `results/density-measure.json` に保存した。
+上記 18 ファイルを生成済みで、各ファイルは非空の JPEG として確認した。`CATALOG-INDEX.json` には既存 425 件を変更せず、新規 18 件を追記し、425+18=443 件となっている。計測データは `results/density-measure.json` に保存した。
 
 ### 用語集
 
 `CATALOG-GLOSSARY.json` は本ディレクトリ直下に置く **Claude 案の用語集**である。既存カタログの全 `part` / `variant` と `face` を、日本語の `label`・`desc`、型ごとの見え方、軸ごとの `changes`・`where`・`how_to_tell` に整理している。追加撮影で使う density、detext body、motion frame の値も、同じ形式で説明している。
 
+GLOSSARY と CATALOG-INDEX の機械照合結果は parts 49、axes 35、faces 5、variant 合計 217 で、parts・variants・faces の欠けは0件だった。
+
 ### 追加是正2: detext 本文差分の実装是正（PR #152）
 
 前項の原因分析後、PO 指示に基づき detext の実装を追加是正した。原因は、h2・ol・blockquote の CSS が `:not([class*="is-style-wt-"])` で広く除外されていたため、実記事で使っている `is-style-wt-2tone` の h2、`is-style-wt-badge-list` の ol、`is-style-wt-quote-mark` の quote に `detext:on` の追加差分が出なかったことである。
 
-- h2 は `is-style-wt-icon` と `is-style-wt-numbox` だけを除外するよう変更した。これらは既存の `::before` を使うため、detext のドットマーカーが既存意匠を奪わないようにするためである。その他の h2 block style（2tone を含む）にはドットマーカーを適用する。
+- h2 は `is-style-wt-icon`、`is-style-wt-numbox`、`is-style-wt-label` だけを除外するよう変更した。これらは既存の `::before` を使うため、detext のドットマーカーが既存意匠を奪わないようにするためである。その他の h2 block style（2tone を含む）にはドットマーカーを適用する。
 - ol の `is-style-wt-badge-list` と quote の `is-style-wt-quote-mark` は、既存の丸バッジ／大型引用符が detext と同一の見た目であるため、二重適用を避ける除外を据え置いた。
 - `scripts/verify.mjs` に `detextVisualDiff` を追加し、実記事の h2 / ol / blockquote について detext off/on の computed style を比較する。h2 など少なくとも1要素の差分を必須にし、今回の再発を検出する。compose project dir を `--wpclidir` に渡した実機実行結果は `summary.pass=58`、`summary.fail=0`、`skipped=[]`、`detextVisualDiff.pass=true`、`prAutoFixtures.pass=true` だった。値は off が h2 `before="none"`、ol `listStyleType="none"`、quote `before="“"`、on が h2 `before=""`、ol `listStyleType="none"`、quote `before="“"` で、`is-style-wt-2tone` の h2 に差分が出た。
 - `axis-detext-{off,on}-body-{sp,pc}.jpg` の4枚を修正後の実機表示で再撮影した。SP は各 740×1600（off 159,141 bytes / on 159,408 bytes）、PC は各 1440×900（off 153,481 bytes / on 153,507 bytes）の非空 JPEG で、on では h2 の左に青いドット、off ではドットなしの差を目視確認した。CATALOG-INDEX は全443件を維持し、今回の4エントリ以外の439件は変更していない。
 - `/catalog-03/` でも detext:on/off を確認し、`#cat-h2-icon` は SVG mask、`#cat-h2-numbox` は `counter(wt-h2num, decimal-leading-zero)` の既存 `::before` が on/off で同じ値を保っており、二重化や消失はなかった。目次は on で `counter(toc)`、off で `counter(toc, decimal-leading-zero)` の差分が確認できた。
+
+### 追加是正4: Astra レビュー是正（改善5・軽微2、PR #152）
+
+- detext:on の h2 セレクタに `is-style-wt-label` の除外を追加し、`SECTION` ラベルの `::before` をドットマーカーで上書きしないようにした。GLOSSARY の detext 説明も、icon / numbox / label だけを除外し、2tone など他の h2 style にはドットを付ける実態へ更新した。density の判別説明から、CSS で変更していない行間を削除した。
+- `verify.mjs` の `detextVisualDiff` は off/on 双方の h2・ol・quote の存在を `elementsPresent` として必須化し、欠損時は無条件で fail になるようにした。
+- `shots-reaction4.mjs --motion-only true` で motion の4枚を再撮影した。4枚とも 740×1600 の非空 JPEG（f0 100743 bytes、f1 118964 bytes、on f2 133803 bytes、off f2 151010 bytes）で、対象 `.wt-rcard` の四隅が切れず画面内に収まることを目視確認した。f2 と off f2 の `page.evaluate` 取得値は、ともに `opacity=1` / `transform=none` だった。
+- 機械照合は parts 49、axes 35、faces 5、variant 合計 217、欠け0件。テーマ Version は 0.3.6 に更新した。
+- 実機 `verify.mjs` は `summary.pass=58`、`summary.fail=0`、`skipped=[]`、`detextVisualDiff.elementsPresent=true`、`detextVisualDiff.pass=true` となった。

@@ -578,13 +578,13 @@
       "label": "余白密度",
       "changes": "本文段落、見出し、囲み、関連記事の余白値を切り替える。",
       "where": "本文中盤の見出し上、段落間、囲み内外、記事末カードの間隔が変わる。",
-      "how_to_tell": "compact は詰める、airy は広げる、normal が既定。見出し上マージン・段落間・行間を同じ範囲で比べると判別しやすい（Claude 案）。"
+      "how_to_tell": "compact は詰める、airy は広げる、normal が既定。見出し上マージン・段落間を同じ範囲で比べると判別しやすい（Claude 案）。"
     },
     "detext": {
       "label": "脱テキスト装飾",
       "changes": "見出し、無装飾 ol、引用、目次番号に補助マークを付ける。",
-      "where": "実際に差が出るのは目次の丸番号バッジで、本文の対象セレクタにも影響する。",
-      "how_to_tell": "detext:on では目次番号が丸バッジになるが、現行記事の h2・list・quote は is-style-wt-* を使うため CSS の :not([class*='is-style-wt-']) 除外条件に一致し、見た目の変化が出ない。目次のみ実際に見える差分である（Claude 案）。"
+      "where": "目次の丸番号バッジと、is-style-wt-icon / is-style-wt-numbox / is-style-wt-label 以外の本文 h2 に効果が出る。ol の is-style-wt-badge-list と quote の is-style-wt-quote-mark は既存意匠を維持する。",
+      "how_to_tell": "detext:on では目次番号が丸バッジになり、h2 は is-style-wt-icon / is-style-wt-numbox / is-style-wt-label だけを除外して、2tone など他の h2 style にはドットマーカーを付ける。ol の is-style-wt-badge-list と quote の is-style-wt-quote-mark は既存の意匠を維持する（Claude 案）。"
     },
     "nf": {
       "label": "404 の回遊型",
