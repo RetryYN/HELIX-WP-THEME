@@ -1099,7 +1099,7 @@ body.wt-related-slider .wt-carousel__nav{display:flex;align-items:center;justify
 .wt-slider__dots{display:flex;gap:.25rem}
 .wt-slider__dots button{width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 .wt-slider__dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--wp--preset--color--line);transition:transform var(--wp--custom--motion-base),background var(--wp--custom--motion-base)}
-.wt-slider__dots button[aria-selected="true"]::before{background:var(--wp--preset--color--accent);transform:scale(1.4)}
+.wt-slider__dots button[aria-current="true"]::before{background:var(--wp--preset--color--accent);transform:scale(1.4)}
 .wt-slider__dots button:focus-visible{outline:2px solid var(--wp--preset--color--accent);outline-offset:-6px;border-radius:50%}
 /* WT-EVT-0262「shareにSNS系のシェアを追加。」「icons-rowSNSアイコンつけるってことでOK？」: 記事末尾 icons-row を SNS 3 サービス + コピーに（Facebook は PO 判断待ち）。href はパターン（PHP）で生成し JS 無効でも動く */
 .wt-tail-icons a.wt-sns{font-family:var(--wp--preset--font-family--latin);font-size:.9375rem;letter-spacing:-.02em}
@@ -1121,7 +1121,7 @@ body.wt-depth-float .wp-block-button__link.has-cta-background-color{box-shadow:0
 .wp-block-table.is-style-wt-compare-rich th,.wp-block-table.is-style-wt-compare-rich td{padding:.7rem .75rem;border-bottom:1px solid var(--wp--preset--color--line);text-align:center;vertical-align:middle}
 .wp-block-table.is-style-wt-compare-rich thead th{background:var(--wp--preset--color--contrast);color:#fff;font-weight:700}
 .wp-block-table.is-style-wt-compare-rich thead th:first-child{border-radius:var(--wp--custom--radius-s) 0 0 0}.wp-block-table.is-style-wt-compare-rich thead th:last-child{border-radius:0 var(--wp--custom--radius-s) 0 0}
-.wp-block-table.is-style-wt-compare-rich tbody td:first-child{text-align:left;font-weight:700;background:var(--wp--preset--color--surface);position:sticky;left:0;z-index:1;min-width:6em}
+.wp-block-table.is-style-wt-compare-rich tbody th:first-child,.wp-block-table.is-style-wt-compare-rich tbody td:first-child{text-align:left;font-weight:700;background:var(--wp--preset--color--surface);position:sticky;left:0;z-index:1;min-width:6em} /* 先頭セルは functions.php で th[scope=row] に変換されるため th も対象にする（Astra 是正） */
 .wp-block-table.is-style-wt-compare-rich tr.wt-row-image td{padding-top:1rem}
 .wp-block-table.is-style-wt-compare-rich .wt-tcell__img{display:block;width:96px;height:96px;object-fit:cover;margin:0 auto;border-radius:var(--wp--custom--radius-s);border:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base)}
 .wp-block-table.is-style-wt-compare-rich .wt-tcell__icon{display:inline-flex;align-items:center;gap:.3rem;font-variant-numeric:tabular-nums}

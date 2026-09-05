@@ -36,19 +36,39 @@
     var prev = mk(-1, '前へ'), next = mk(1, '次へ');
     nav.appendChild(prev);
     var dots = null, dotBtns = [];
-    if (isSlider) {
-      dots = document.createElement('div'); dots.className = 'wt-slider__dots'; dots.setAttribute('role', 'tablist'); dots.setAttribute('aria-label', 'ページ');
-      var items = track.children.length, per = Math.max(1, Math.round(track.clientWidth / (track.firstElementChild ? track.firstElementChild.getBoundingClientRect().width + 16 : track.clientWidth)));
-      var pages = Math.max(1, Math.ceil(items / per));
-      for (var i = 0; i < pages; i++) { var d = document.createElement('button'); d.type = 'button'; d.setAttribute('role', 'tab'); d.setAttribute('aria-label', (i + 1) + ' / ' + pages); (function(idx){ d.addEventListener('click', function(){ track.scrollTo({ left: idx * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); }); })(i); dots.appendChild(d); dotBtns.push(d); }
-      nav.appendChild(dots);
-    }
+    var pageCount = function(){ var first = track.firstElementChild; if (!first) return 1; var per = Math.max(1, Math.round(track.clientWidth / (first.getBoundingClientRect().width + 16))); return Math.max(1, Math.ceil(track.children.length / per)); };
+    var goTo = function(idx){ track.scrollTo({ left: idx * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); };
+    var buildDots = function(){
+      if (!dots) return;
+      dots.innerHTML = ''; dotBtns = [];
+      var pages = pageCount();
+      for (var i = 0; i < pages; i++) {
+        var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', (i + 1) + ' / ' + pages + ' ページ');
+        (function(idx, btn){
+          btn.addEventListener('click', function(){ goTo(idx); });
+          // 左右キーで隣のドットへ（フォーカスも移す）、Home / End で両端へ
+          btn.addEventListener('keydown', function(e){
+            var n = null;
+            if (e.key === 'ArrowRight') n = Math.min(dotBtns.length - 1, idx + 1);
+            else if (e.key === 'ArrowLeft') n = Math.max(0, idx - 1);
+            else if (e.key === 'Home') n = 0; else if (e.key === 'End') n = dotBtns.length - 1;
+            if (n === null) return; e.preventDefault(); dotBtns[n].focus(); goTo(n);
+          });
+        })(i, d);
+        dots.appendChild(d); dotBtns.push(d);
+      }
+      upd();
+    };
+    if (isSlider) { dots = document.createElement('div'); dots.className = 'wt-slider__dots'; dots.setAttribute('aria-label', 'ページ送り'); nav.appendChild(dots); }
     nav.appendChild(next);
     track.parentNode.insertBefore(nav, track.nextSibling);
     var upd = function(){
       prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
-      if (dotBtns.length) { var cur = Math.min(dotBtns.length - 1, Math.round(track.scrollLeft / track.clientWidth)); dotBtns.forEach(function(d, i){ d.setAttribute('aria-selected', i === cur ? 'true' : 'false'); }); }
+      if (dotBtns.length) { var cur = Math.min(dotBtns.length - 1, Math.round(track.scrollLeft / track.clientWidth)); dotBtns.forEach(function(d, i){ if (i === cur) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); }); }
     };
+    buildDots();
+    // 画面幅が変わるとページ数（1 画面あたりの枚数）が変わるため、ドットを作り直す（Astra 是正）
+    var rt = null; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ if (dots && dotBtns.length !== pageCount()) buildDots(); else upd(); }, 150); });
     track.addEventListener('scroll', upd, { passive: true }); upd();
   });
 

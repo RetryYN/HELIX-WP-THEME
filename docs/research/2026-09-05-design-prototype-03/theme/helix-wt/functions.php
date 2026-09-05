@@ -373,7 +373,7 @@ function wt_content_has_pr_disclosure( $content ) {
 	$plain = mb_substr( $plain, 0, 600 );
 	$sentences = preg_split( '/(?<=[。！？])|\n+/u', $plain, -1, PREG_SPLIT_NO_EMPTY );
 	$topic    = '/(?<![A-Za-z])PR(?![A-Za-z])|広告|アフィリエイト|プロモーション/u';
-	$verb     = '/含み(ます)?|含む|掲載|表記/u';
+	$verb     = '/含まれ(ます|る|て)?|含み(ます)?|含む|掲載|表記/u'; // 「含まれます」（PO 決定の既定文言）も述語に含める（Astra 是正）
 	$negation = '/ない|なし|ません|ありません|ございません/u';
 	foreach ( $sentences as $s ) {
 		if ( preg_match( $topic, $s ) && preg_match( $verb, $s ) && ! preg_match( $negation, $s ) ) {

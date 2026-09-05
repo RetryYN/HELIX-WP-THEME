@@ -1035,16 +1035,26 @@ if (WPCLIDIR) {
       const t = document.querySelector(".wt-related:not(.wt-next) .wp-block-post-template"); const cs = getComputedStyle(t);
       const items = Array.from(t.children); const w = t.clientWidth; const per = Math.max(1, Math.round(w / (items[0].getBoundingClientRect().width + 16)));
       const dots = Array.from(document.querySelectorAll(".wt-tail__slot--related .wt-slider__dots button"));
-      return { items: items.length, per, pages: Math.ceil(items.length / per), snap: cs.scrollSnapType, overflow: cs.overflowX, dots: dots.length, dotSize: dots.map((b) => [b.getBoundingClientRect().width, b.getBoundingClientRect().height]), selected: dots.filter((b) => b.getAttribute("aria-selected") === "true").length, nav: document.querySelectorAll(".wt-tail__slot--related .wt-carousel__nav button[aria-label]").length, autoMoved: t.scrollLeft !== before, reachable: t.scrollWidth - t.clientWidth >= (items.length - per) * items[0].getBoundingClientRect().width * 0.9 };
+      return { items: items.length, per, pages: Math.ceil(items.length / per), snap: cs.scrollSnapType, overflow: cs.overflowX, dots: dots.length, dotSize: dots.map((b) => [b.getBoundingClientRect().width, b.getBoundingClientRect().height]), selected: dots.filter((b) => b.getAttribute("aria-current") === "true").length, nav: document.querySelectorAll(".wt-tail__slot--related .wt-carousel__nav > button[aria-label]").length, autoMoved: t.scrollLeft !== before, reachable: t.scrollWidth - t.clientWidth >= (items.length - per) * items[0].getBoundingClientRect().width * 0.9 };
     }, before);
+    if (js) {
+      // 「次へ」を押して実際に送られること（scrollLeft が増える）、ドットの current が移ることを確認（Astra 是正: ボタン数だけ数えていた）
+      const nextBtn = p.locator(".wt-tail__slot--related .wt-carousel__nav > button[aria-label='次へ']");
+      d.nextExists = (await nextBtn.count()) === 1;
+      if (d.nextExists) { await nextBtn.click(); await p.waitForTimeout(700); }
+      const after = await p.evaluate(() => { const t = document.querySelector(".wt-related:not(.wt-next) .wp-block-post-template"); const cur = Array.from(document.querySelectorAll(".wt-tail__slot--related .wt-slider__dots button")).findIndex((b) => b.getAttribute("aria-current") === "true"); return { scrollLeft: t.scrollLeft, current: cur }; });
+      d.movedByNext = after.scrollLeft > before + 10; d.currentAfterNext = after.current;
+      // リサイズでドット数が作り直されるか（PC 幅 → SP 幅）
+      if (d.per === 2) { await p.setViewportSize({ width: 390, height: 844 }); await p.waitForTimeout(500); d.dotsAfterResize = await p.evaluate(() => document.querySelectorAll(".wt-tail__slot--related .wt-slider__dots button").length); }
+    }
     await p.close(); return d;
   };
   const c1 = await browser.newContext(SP); const sp = await read(c1, true); await c1.close();
   const c2 = await browser.newContext(PC); const pc = await read(c2, true); await c2.close();
   const c3 = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await read(c3, false); await c3.close();
   out.relatedSlider = { sp, pc, noJs };
-  const okJs = (d, per) => d.items >= 2 && d.per === per && d.snap.startsWith("x") && d.overflow === "auto" && d.dots === d.pages && d.selected === 1 && d.dotSize.every(([w, h]) => w >= 44 && h >= 44) && d.nav >= 2 && !d.autoMoved && d.reachable;
-  out.relatedSlider.pass = okJs(sp, 1) && okJs(pc, 2) && noJs.dots === 0 && noJs.overflow === "auto" && noJs.reachable && !noJs.autoMoved;
+  const okJs = (d, per) => d.items >= 2 && d.per === per && d.snap.startsWith("x") && d.overflow === "auto" && d.dots === d.pages && d.selected === 1 && d.dotSize.every(([w, h]) => w >= 44 && h >= 44) && d.nav === 2 && d.nextExists && d.movedByNext && d.currentAfterNext === 1 && !d.autoMoved && d.reachable;
+  out.relatedSlider.pass = okJs(sp, 1) && okJs(pc, 2) && pc.dotsAfterResize === pc.items && noJs.dots === 0 && noJs.overflow === "auto" && noJs.reachable && !noJs.autoMoved;
 }
 // (c) 記事末尾 SNS 共有（tail_share:icons-row）— 3 サービス（Facebook は guard 例外の PO 判断待ちで未収録）、href に本記事の permalink（エンコード済み）を含む、別タブ + noopener、44px、JS 無効でも href が有効
 {
@@ -1064,7 +1074,7 @@ if (WPCLIDIR) {
   const ctx = await browser.newContext(PC); const p = await ctx.newPage();
   await p.goto(BASE + "/catalog-03/?wt=depth:float,motion:on", { waitUntil: "networkidle" });
   const sel = "#cat-cta-product .is-style-wt-product";
-  const base = await p.evaluate((s) => { const el = document.querySelector(s); const cs = getComputedStyle(el); return { shadow: cs.boxShadow, animation: cs.animationName }; }, sel);
+  const base = await p.evaluate((s) => { const el = document.querySelector(s); const cs = getComputedStyle(el); return { transform: cs.transform, shadow: cs.boxShadow, animation: cs.animationName }; }, sel);
   // 浮遊アニメーション中は要素が "stable" にならず locator.hover がタイムアウトするため、矩形中心へ mouse.move で hover する
   // locator の scrollIntoViewIfNeeded / boundingBox は要素の "stable" を待つため、浮遊アニメーション中はタイムアウトする。DOM API で直接スクロールし矩形中心へ mouse.move する
   const hoverAt = async (page, selector) => { await page.evaluate((sel) => document.querySelector(sel).scrollIntoView({ block: "center" }), selector); await page.waitForTimeout(150); const c = await page.evaluate((sel) => { const r = document.querySelector(sel).getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }, selector); await page.mouse.move(c.x, c.y); };
@@ -1078,7 +1088,9 @@ if (WPCLIDIR) {
   const reduced = await rp.evaluate((s) => { const cs = getComputedStyle(document.querySelector(s)); return { transform: cs.transform, animation: cs.animationName }; }, sel);
   await rm.close();
   out.depthFloat = { base, hover, reduced0, reduced };
-  out.depthFloat.pass = base.animation === "wt-float" && hover.transform !== "none" && hover.transform !== base.transform && hover.shadow !== base.shadow && hover.animation === "none" && reduced0 === "none" && reduced.transform === "none" && reduced.animation === "none";
+  // hover 中は CSS の translateY(-8px) scale(1.01) = matrix(1.01, 0, 0, 1.01, 0, -8) に一致すること（浮遊アニメーション中の base.transform は時々刻々変わるため差分比較ではなく期待値で判定。Astra 是正）
+  out.depthFloat.expectedHover = "matrix(1.01, 0, 0, 1.01, 0, -8)";
+  out.depthFloat.pass = base.animation === "wt-float" && typeof base.transform === "string" && hover.transform === out.depthFloat.expectedHover && hover.shadow !== base.shadow && hover.animation === "none" && reduced0 === "none" && reduced.transform === "none" && reduced.animation === "none";
 }
 // (e) 比較表 rich — 画像 3（alt あり・描画済み）、アイコン付きセル、購入ボタン 3（44px 以上、rel sponsored nofollow）、SP は横スクロール（はみ出さない）
 {

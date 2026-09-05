@@ -9896,9 +9896,12 @@
     ]
    ],
    "selected": 1,
-   "nav": 8,
+   "nav": 2,
    "autoMoved": false,
-   "reachable": true
+   "reachable": true,
+   "nextExists": true,
+   "movedByNext": true,
+   "currentAfterNext": 1
   },
   "pc": {
    "items": 6,
@@ -9922,9 +9925,13 @@
     ]
    ],
    "selected": 1,
-   "nav": 5,
+   "nav": 2,
    "autoMoved": false,
-   "reachable": true
+   "reachable": true,
+   "nextExists": true,
+   "movedByNext": true,
+   "currentAfterNext": 1,
+   "dotsAfterResize": 6
   },
   "noJs": {
    "items": 6,
@@ -10028,6 +10035,7 @@
  },
  "depthFloat": {
   "base": {
+   "transform": "matrix(1, 0, 0, 1, 0, -0.834216)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -10041,6 +10049,7 @@
    "transform": "none",
    "animation": "none"
   },
+  "expectedHover": "matrix(1.01, 0, 0, 1.01, 0, -8)",
   "pass": true
  },
  "tableRich": {
