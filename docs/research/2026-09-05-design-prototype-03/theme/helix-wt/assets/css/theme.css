@@ -1047,3 +1047,43 @@ body.wt-related-carousel .wt-related:not(.wt-next) .wp-block-post-template>li{fl
   body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:not(:first-child) .wt-rcard{grid-template-columns:20% minmax(0,1fr);grid-template-rows:1fr;align-items:center;gap:.7rem;padding:.6rem 0;border-width:0 0 1px;border-radius:0;box-shadow:none}
   body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:not(:first-child) .wt-rcard .wp-block-post-featured-image img{aspect-ratio:16/9}
 }
+/* 2026-09-05 PO 反応 15 回目（WT-EVT-0257「データグラフいれない？」）: データグラフ 4 型（Claude 案）。JS なし。
+   値は --v（%）で持ち、非テキストのコントラスト（3:1）を満たす accent / ok / cta の 3 色を系列色にする。同じ値の表を screen-reader-text で併置。 */
+.wt-graph{margin:1.5rem 0;padding:1rem 1.1rem 0.9rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);--wt-g-a:var(--wp--preset--color--accent);--wt-g-b:var(--wp--preset--color--ok);--wt-g-c:var(--wp--preset--color--cta);--wt-g-track:var(--wp--preset--color--surface)}
+.wt-graph figcaption{margin-top:.75rem;font-size:.8125rem;color:var(--wp--preset--color--mute);text-align:left}
+.wt-graph__rows{display:grid;gap:.6rem}
+.wt-graph__row{display:grid;grid-template-columns:minmax(6em,9em) 1fr 3.6em;align-items:center;gap:.6rem}
+.wt-graph__label{font-size:.875rem;font-weight:700;overflow-wrap:anywhere}
+.wt-graph__bar{display:block;height:14px;border-radius:999px;background:var(--wt-g-track);overflow:hidden}
+.wt-graph__bar i{display:block;height:100%;width:calc(var(--v,0) * 1%);border-radius:inherit;background:var(--wt-g-a)}
+.wt-graph__row:nth-child(2) .wt-graph__bar i{background:var(--wt-g-b)}
+.wt-graph__row:nth-child(3) .wt-graph__bar i{background:var(--wt-g-c)}
+.wt-graph__val{font-family:var(--wp--preset--font-family--latin);font-weight:700;font-variant-numeric:tabular-nums;text-align:right;line-height:1}
+.wt-graph__val small{font-size:.7em;margin-left:.1em;color:var(--wp--preset--color--mute)}
+.wt-graph__stack{display:flex;height:28px;border-radius:999px;overflow:hidden;background:var(--wt-g-track)}
+.wt-graph__seg{flex:0 0 calc(var(--v,0) * 1%);min-width:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-family:var(--wp--preset--font-family--latin)}
+.wt-graph__seg b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.wt-graph__seg--a,.wt-graph__sw--a{background:var(--wt-g-a)}
+.wt-graph__seg--b,.wt-graph__sw--b{background:var(--wt-g-b)}
+.wt-graph__seg--c,.wt-graph__sw--c{background:var(--wt-g-c)}
+.wt-graph__legend{list-style:none;margin:.6rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem 1rem;font-size:.8125rem}
+.wt-graph__legend li{display:inline-flex;align-items:center;gap:.4rem}
+.wt-graph__legend--col{flex-direction:column;gap:.4rem;margin:0}
+.wt-graph__sw{display:inline-block;width:.75rem;height:.75rem;border-radius:3px}
+.wt-graph__donut-wrap{display:flex;align-items:center;gap:1.25rem}
+.wt-graph__donut{position:relative;flex:0 0 auto;width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--wt-g-a) 0 calc(var(--a,0) * 1%),var(--wt-g-b) calc(var(--a,0) * 1%) calc(var(--b,0) * 1%),var(--wt-g-c) calc(var(--b,0) * 1%) 100%)}
+.wt-graph__donut::after{content:"";position:absolute;inset:22px;border-radius:50%;background:var(--wp--preset--color--base)}
+.wt-graph__center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1;line-height:1}
+.wt-graph__center b{font-family:var(--wp--preset--font-family--latin);font-size:1.9rem;color:var(--wt-g-a)}
+.wt-graph__center b small{font-size:.5em}
+.wt-graph__center>small{margin-top:.3rem;font-size:.75rem;color:var(--wp--preset--color--mute)}
+.wt-graph__svg{display:block;width:100%;height:auto;font-family:var(--wp--preset--font-family--latin);font-size:10px}
+.wt-graph__grid line{stroke:var(--wp--preset--color--line);stroke-width:1}
+.wt-graph__ticks text{fill:var(--wp--preset--color--mute);text-anchor:end}
+.wt-graph__labels text{fill:var(--wp--preset--color--mute);text-anchor:middle}
+.wt-graph__line{fill:none;stroke:var(--wt-g-a);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.wt-graph__dots circle{fill:var(--wp--preset--color--base);stroke:var(--wt-g-a);stroke-width:2.5}
+@media (max-width:599px){.wt-graph__row{grid-template-columns:minmax(5em,7em) 1fr 3.2em}.wt-graph__donut-wrap{flex-direction:column;align-items:flex-start;gap:.75rem}.wt-graph__donut{width:120px;height:120px;align-self:center}.wt-graph__donut::after{inset:18px}.wt-graph__center b{font-size:1.5rem}.wt-graph__legend--col{flex-direction:row;flex-wrap:wrap;gap:.35rem 1rem}}
+/* 2026-09-05 PO 反応 15 回目（WT-EVT-0259「metrics がスマホでの配置がよくない」）: SP で 3 指標を縦積みにせず 3 列のまま並べ、
+   数字を小さくして区切り線を入れる（Claude 案。上の @media で 1 列にしていた指定を上書き） */
+@media (max-width:599px){.wp-block-group.is-style-wt-detext-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding:.9rem .5rem}.wt-detext__metric{padding:0 .25rem}.wt-detext__metric+.wt-detext__metric{border-left:1px solid var(--wp--preset--color--line)}.wt-detext__metric .wt-num{font-size:clamp(1.5rem,7.5vw,2rem)}.wt-detext__metric>small{display:block;font-size:.75rem;line-height:1.3;margin-top:.25rem}}

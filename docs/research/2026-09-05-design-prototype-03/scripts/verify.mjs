@@ -921,6 +921,98 @@ if (WPCLIDIR) {
     && closed.open === false && closed.focusOnOpenBtn;
 }
 
+// 9.9. データグラフ 4 型（PO 反応 15 回目 WT-EVT-0257、Claude 案）: 型ごとに「視覚化の値」と「読み上げ用の表の値」の一致、aria-label に表の値が含まれること、
+//      figcaption、系列色と面（base）/ トラック（surface）の非テキストコントラスト 3:1 以上、JS 無効時に同じ内容が可視で描かれることを見る（Astra 是正: 空配列の every() すり抜け・可視性未検査を塞ぐ）。
+{
+  const lum = (rgb) => { const [r, g, b] = rgb.match(/\d+/g).slice(0, 3).map((v) => { v = +v / 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const ratio = (a, b) => { const la = lum(a), lb = lum(b); return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05); };
+  const read = async (ctx) => {
+    const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+    const data = await p.evaluate(() => Array.from(document.querySelectorAll("figure.wt-graph")).map((f) => {
+      const cs = getComputedStyle(f);
+      const visibleChain = (el) => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.display === "none" || s.visibility === "hidden" || parseFloat(s.opacity) === 0) return false; } return true; };
+      const tableVals = Array.from(f.querySelectorAll("table.wt-graph__data tbody tr td")).map((td) => parseFloat(td.textContent));
+      const tableLabels = Array.from(f.querySelectorAll("table.wt-graph__data tbody tr th")).map((th) => th.textContent.trim());
+      const type = f.dataset.wtGraph;
+      let visualVals = [], aria = null, marks = 0;
+      if (type === "bar") { visualVals = Array.from(f.querySelectorAll(".wt-graph__row")).map((el) => parseFloat(getComputedStyle(el).getPropertyValue("--v"))); marks = f.querySelectorAll(".wt-graph__bar i").length; }
+      if (type === "stack") { const segs = Array.from(f.querySelectorAll(".wt-graph__seg")); visualVals = segs.map((el) => parseFloat(getComputedStyle(el).getPropertyValue("--v"))); marks = segs.length; aria = (f.querySelector(".wt-graph__stack") || {}).getAttribute?.("aria-label") || null; }
+      if (type === "donut") { const d = f.querySelector(".wt-graph__donut"); const a = parseFloat(getComputedStyle(d).getPropertyValue("--a")), b = parseFloat(getComputedStyle(d).getPropertyValue("--b")); visualVals = [a, b - a, 100 - b]; marks = f.querySelectorAll(".wt-graph__legend li").length; aria = d.getAttribute("aria-label"); }
+      if (type === "line") {
+        // 折れ線の y 座標を目盛り（.wt-graph__ticks text の y と数値）から線形に値へ戻し、表の値と突合する（Astra 是正: 点数だけの比較だった）
+        const ticks = Array.from(f.querySelectorAll(".wt-graph__ticks text")).map((t) => ({ y: parseFloat(t.getAttribute("y")) - 4, v: parseFloat(t.textContent) })).filter((t) => !Number.isNaN(t.y) && !Number.isNaN(t.v));
+        const t0 = ticks[0], t1 = ticks[ticks.length - 1];
+        const toVal = (y) => (t0 && t1 && t1.y !== t0.y) ? t0.v + (y - t0.y) * (t1.v - t0.v) / (t1.y - t0.y) : NaN;
+        const pts = ((f.querySelector(".wt-graph__line") || {}).getAttribute?.("points") || "").trim().split(/\s+/).filter(Boolean).map((pt) => pt.split(",").map(Number));
+        const dots = Array.from(f.querySelectorAll(".wt-graph__dots circle")).map((c) => [parseFloat(c.getAttribute("cx")), parseFloat(c.getAttribute("cy"))]);
+        visualVals = pts.map(([, y]) => Math.round(toVal(y) * 100) / 100);
+        marks = dots.length;
+        aria = f.querySelector(".wt-graph__svg").getAttribute("aria-label");
+        // 点（circle）が折れ線の頂点と一致するかも保持
+        f.__lineDotsMatch = dots.length === pts.length && dots.every(([x, y], i) => Math.abs(x - pts[i][0]) < 0.01 && Math.abs(y - pts[i][1]) < 0.01);
+      }
+      const seriesEls = Array.from(f.querySelectorAll(".wt-graph__bar i, .wt-graph__seg, .wt-graph__sw"));
+      const series = [...new Set(seriesEls.map((el) => getComputedStyle(el).backgroundColor))];
+      const svgLine = f.querySelector(".wt-graph__line"); if (svgLine) series.push(getComputedStyle(svgLine).stroke);
+      const visualEl = f.querySelector(".wt-graph__rows, .wt-graph__stack, .wt-graph__donut, .wt-graph__svg");
+      // 描画要素そのもの（棒の塗り・区分・ドーナツ・折れ線と点）が可視で大きさを持つか（Astra 是正: コンテナだけ見ていた）
+      const drawn = Array.from(f.querySelectorAll(".wt-graph__bar i, .wt-graph__seg, .wt-graph__donut, .wt-graph__line, .wt-graph__dots circle"));
+      const drawnVisible = drawn.length > 0 && drawn.every((el) => { const r = el.getBoundingClientRect(); return visibleChain(el) && r.width > 0 && r.height > 0; });
+      return { type, caption: (f.querySelector("figcaption") || {}).textContent?.trim() || "", tableLabels, tableVals, visualVals, marks, aria, series, bg: cs.backgroundColor, track: f.querySelector(".wt-graph__bar, .wt-graph__stack") ? getComputedStyle(f.querySelector(".wt-graph__bar, .wt-graph__stack")).backgroundColor : null, width: f.getBoundingClientRect().width, visible: visibleChain(f) && !!visualEl && visibleChain(visualEl) && visualEl.getBoundingClientRect().height > 0 && drawnVisible, lineDotsMatch: type === "line" ? f.__lineDotsMatch === true : null, text: f.textContent.replace(/\s+/g, " ").trim() };
+    }));
+    await p.close(); return data;
+  };
+  const ctxJs = await browser.newContext(SP); const withJs = await read(ctxJs); await ctxJs.close();
+  const ctxNoJs = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await read(ctxNoJs); await ctxNoJs.close();
+  const ctxPc = await browser.newContext(PC); const pc = await read(ctxPc); await ctxPc.close();
+  const near = (a, b) => Math.abs(a - b) < 0.01;
+  const valuesMatch = (g) => {
+    if (!g.tableVals.length || g.tableVals.some((v) => Number.isNaN(v))) return false;
+    if (g.type === "bar" || g.type === "stack") return g.visualVals.length === g.tableVals.length && g.visualVals.every((v, i) => near(v, g.tableVals[i]) && v >= 0 && v <= 100) && g.marks === g.tableVals.length && (g.type !== "stack" || near(g.visualVals.reduce((x, y) => x + y, 0), 100));
+    if (g.type === "donut") return g.visualVals.length === 3 && g.tableVals.length === 3 && g.visualVals.every((v, i) => near(v, g.tableVals[i]) && v > 0) && g.marks === 3;
+    if (g.type === "line") return g.visualVals.length === g.tableVals.length && g.tableVals.length >= 3 && g.visualVals.every((v, i) => Math.abs(v - g.tableVals[i]) <= 0.05) && g.marks === g.tableVals.length && g.lineDotsMatch === true;
+    return false;
+  };
+  // aria-label は「<説明>: <ラベル> <値>[%]、<ラベル> <値>[%]、…」の形式とみなし、コロン以降を「、」で分割した各区分が
+  // 表の各行（順序どおり）の「ラベル 値」に完全一致することを要求する（Astra 是正 3 巡目: 部分一致・数値列だけの照合・ラベル位置非依存をやめた）。
+  const fmtVal = (v) => Number.isInteger(v) ? String(v) : String(v);
+  const ariaOk = (g) => {
+    if (g.type === "bar") return true;
+    if (!g.aria || !g.tableLabels.length || g.tableLabels.length !== g.tableVals.length) return false;
+    const m = g.aria.match(/^[^:：]+[:：]\s*(.+)$/);
+    if (!m) return false;
+    const parts = m[1].split(/、|,\s*/).map((t) => t.trim());
+    if (parts.length !== g.tableLabels.length) return false;
+    return parts.every((part, i) => {
+      const pm = part.match(/^(.+?)\s+(\d+(?:\.\d+)?)(%?)$/);
+      return !!pm && pm[1] === g.tableLabels[i] && Number(pm[2]) === g.tableVals[i] && fmtVal(g.tableVals[i]) === pm[2];
+    });
+  };
+  const contrast = withJs.map((g) => g.series.map((c) => ({ color: c, vsBg: +ratio(c, g.bg).toFixed(2), vsTrack: g.track ? +ratio(c, g.track).toFixed(2) : null })));
+  const typesOk = ["bar", "stack", "donut", "line"].every((t) => withJs.filter((g) => g.type === t).length === 1);
+  const each = withJs.every((g) => g.caption.length > 0 && valuesMatch(g) && ariaOk(g) && g.width > 0 && g.visible);
+  const contrastOk = contrast.every((rows) => rows.length > 0 && rows.every((r) => r.vsBg >= 3 && (r.vsTrack === null || r.vsTrack >= 3)));
+  const key = (g) => JSON.stringify([g.type, g.tableLabels, g.tableVals, g.visualVals, g.marks, g.aria, g.caption, g.text, g.visible, g.lineDotsMatch]);
+  const sameNoJs = noJs.length === withJs.length && noJs.every((g, i) => key(g) === key(withJs[i])) && noJs.every((g) => g.visible);
+  const spNoOverflow = withJs.every((g) => g.width <= 390);
+  out.graphs = { count: withJs.length, sp: withJs, pc: pc.map((g) => ({ type: g.type, width: g.width, visible: g.visible })), contrast, typesOk, each, contrastOk, sameNoJs, spNoOverflow };
+  out.graphs.pass = withJs.length === 4 && typesOk && each && contrastOk && sameNoJs && spNoOverflow && pc.every((g) => g.visible);
+}
+
+// 9.10. detext metrics の SP 配置（PO 反応 15 回目 WT-EVT-0259）: JS 有効・無効の両方で、3 指標が可視のまま 1 行（同じ top）に並び、はみ出しがなく、数字が幅内に収まる。
+{
+  const read = async (ctx) => {
+    const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+    const m = await p.evaluate(() => { const box = document.querySelector("#cat-detext-metrics"); if (!box) return { count: 0 }; const visibleChain = (el) => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.display === "none" || s.visibility === "hidden" || parseFloat(s.opacity) === 0) return false; } return true; }; const items = Array.from(box.querySelectorAll(".wt-detext__metric")); const br = box.getBoundingClientRect(); return { count: items.length, tops: items.map((el) => Math.round(el.getBoundingClientRect().top)), rights: items.map((el) => el.getBoundingClientRect().right), boxRight: br.right, boxWidth: br.width, numOverflow: items.filter((el) => el.querySelector(".wt-num").scrollWidth > el.clientWidth).length, visible: items.every((el) => visibleChain(el) && el.getBoundingClientRect().height > 0), texts: items.map((el) => el.textContent.replace(/\s+/g, " ").trim()) }; });
+    await p.close(); return m;
+  };
+  const ctx = await browser.newContext(SP); const js = await read(ctx); await ctx.close();
+  const ctxNo = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await read(ctxNo); await ctxNo.close();
+  const ok = (m) => m.count === 3 && new Set(m.tops).size === 1 && m.rights.every((r) => r <= m.boxRight + 1) && m.numOverflow === 0 && m.visible === true && m.texts.every((t) => t.length > 0);
+  out.metricsSp = { js, noJs };
+  out.metricsSp.pass = ok(js) && ok(noJs) && JSON.stringify(js.texts) === JSON.stringify(noJs.texts);
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -948,6 +1040,7 @@ const checkList = [
   ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
   ["detextVisualDiff", out.detextVisualDiff.pass], ["ctaBannerNoPrPrefix", out.ctaBannerNoPrPrefix.pass],
   ["productCardNoPrBadge", out.productCardNoPrBadge.pass], ["qaModal", out.qaModal.pass],
+  ["graphs", out.graphs.pass], ["metricsSp", out.metricsSp.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
