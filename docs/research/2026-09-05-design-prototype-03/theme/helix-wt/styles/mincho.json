@@ -1,0 +1,11 @@
+{ "$schema": "https://schemas.wp.org/trunk/theme.json", "version": 3, "title": "明朝（信頼・格式）",
+  "settings": { "color": { "palette": [
+    { "slug": "base", "color": "#fbfaf7", "name": "地" }, { "slug": "surface", "color": "#f2efe8", "name": "面" }, { "slug": "line", "color": "#e0dbd0", "name": "罫線" },
+    { "slug": "mute", "color": "#6b6459", "name": "補助文字" }, { "slug": "contrast", "color": "#1f1b16", "name": "文字" },
+    { "slug": "accent", "color": "#1f3a5f", "name": "アクセント" }, { "slug": "accent-soft", "color": "#e9eef4", "name": "アクセント淡" },
+    { "slug": "cta", "color": "#9a4b1f", "name": "CTA" }, { "slug": "cta-contrast", "color": "#ffffff", "name": "CTA 文字" } ] },
+    "custom": { "radius-s": "0px", "radius-m": "2px", "radius-l": "2px" } },
+  "styles": { "typography": { "letterSpacing": "0.04em" },
+    "elements": { "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--mincho)", "fontWeight": "600", "letterSpacing": "0.06em" } },
+      "button": { "border": { "radius": "2px" } } },
+    "blocks": { "core/site-title": { "typography": { "fontFamily": "var(--wp--preset--font-family--mincho)", "letterSpacing": "0.1em" } } } } }

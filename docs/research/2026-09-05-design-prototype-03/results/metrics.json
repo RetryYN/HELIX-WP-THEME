@@ -1,0 +1,48 @@
+{
+ "proto03-article": {
+  "sp": {
+   "body": 17,
+   "lh": 1.6,
+   "h1": 22.53,
+   "h2": 18.52,
+   "h3": 17.27,
+   "header": 61,
+   "btn": 48,
+   "cont": 358,
+   "fv": 256,
+   "tap": 0.04,
+   "kb": 926,
+   "lcp": 508,
+   "toc": true,
+   "sticky": true,
+   "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 2
+   }
+  },
+  "pc": {
+   "body": 17,
+   "lh": 1.7,
+   "h1": 28,
+   "h2": 24,
+   "h3": 20,
+   "header": 61,
+   "btn": 48,
+   "cont": 1232,
+   "fv": 242,
+   "tap": 0.16,
+   "kb": 1075,
+   "lcp": 984,
+   "toc": true,
+   "sticky": true,
+   "viewport": {
+    "width": 1280,
+    "height": 800,
+    "dpr": 1
+   }
+  }
+ },
+ "source": "../2026-09-04-site-survey/scripts/measure.mjs --url <article> (SP 390x844 DPR2 / PC 1280x800 DPR1)",
+ "measuredAt": "2026-09-04T23:59:12.422Z"
+}

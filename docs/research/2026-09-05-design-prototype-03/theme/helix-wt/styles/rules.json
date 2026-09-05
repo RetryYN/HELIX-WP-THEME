@@ -1,0 +1,10 @@
+{ "$schema": "https://schemas.wp.org/trunk/theme.json", "version": 3, "title": "罫線（企業・直角）",
+  "settings": { "color": { "palette": [
+    { "slug": "base", "color": "#ffffff", "name": "地" }, { "slug": "surface", "color": "#f6f6f4", "name": "面" }, { "slug": "line", "color": "#171c22", "name": "罫線" },
+    { "slug": "mute", "color": "#5a5f66", "name": "補助文字" }, { "slug": "contrast", "color": "#171c22", "name": "文字" },
+    { "slug": "accent", "color": "#171c22", "name": "アクセント" }, { "slug": "accent-soft", "color": "#eeeeec", "name": "アクセント淡" },
+    { "slug": "cta", "color": "#c8102e", "name": "CTA" }, { "slug": "cta-contrast", "color": "#ffffff", "name": "CTA 文字" } ] },
+    "custom": { "radius-s": "0px", "radius-m": "0px", "radius-l": "0px" } },
+  "styles": { "elements": { "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--latin)", "letterSpacing": "-0.01em" } },
+      "button": { "border": { "radius": "0px" } } },
+    "blocks": { "core/image": { "border": { "radius": "0px" } } } } }

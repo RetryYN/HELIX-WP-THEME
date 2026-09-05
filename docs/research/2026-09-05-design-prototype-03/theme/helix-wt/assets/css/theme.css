@@ -1,0 +1,552 @@
+/* HELIX WT prototype 02 — 尺度は docs/research/2026-09-04-site-survey §6 */
+:root{--wt-header-h:var(--wp--custom--header-height,60px)}
+html{-webkit-text-size-adjust:100%}
+body{font-feature-settings:"palt" 0;overflow-wrap:anywhere}
+img{height:auto;max-width:100%}
+
+/* ヘッダー: 1 段 60px、固定 */
+.wt-header{position:sticky;top:0;z-index:50;background:var(--wp--preset--color--base);border-bottom:1px solid var(--wp--preset--color--line)}
+.wt-header__row{min-height:var(--wt-header-h)}
+.wt-header .wp-block-site-title{line-height:1;margin:0}
+.wt-header__cta .wp-block-button__link{padding:.75rem 1rem;font-size:.8125rem}
+.wt-btn-s .wp-block-button__link{padding:.75rem 1rem;font-size:.8125rem}
+.wt-header .wp-block-navigation__responsive-container-open{padding:0;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open{padding:var(--wt-header-h) var(--wp--custom--gutter) 2rem;background:var(--wp--preset--color--base)}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container{gap:0}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom:1px solid var(--wp--preset--color--line);width:100%}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{display:block;padding:.9rem 0;font-size:1rem}
+@media (max-width:599px){.wt-header__cta{display:none}}
+
+/* ボタン: 高 46 */
+.wp-block-button__link{min-height:var(--wp--custom--button-height);display:inline-flex;align-items:center;justify-content:center;transition:background-color .15s,transform .15s}
+.wp-block-button__link:hover{transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){.wp-block-button__link{transition:none}.wp-block-button__link:hover{transform:none}}
+.wp-block-button.is-style-wt-pill .wp-block-button__link{border-radius:999px}
+.wp-block-button.is-style-outline .wp-block-button__link{border:1.5px solid currentColor;background:transparent;color:var(--wp--preset--color--accent)}
+
+/* 見出しスタイル */
+.wp-block-heading.is-style-wt-bar{padding-left:.75rem;border-left:4px solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-underline{padding-bottom:.5rem;border-bottom:2px solid var(--wp--preset--color--contrast)}
+
+/* 囲み */
+.wp-block-group.is-style-wt-note,.wp-block-group.is-style-wt-point,.wp-block-group.is-style-wt-warn{padding:1rem 1.25rem;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem}
+.wp-block-group.is-style-wt-note{background:var(--wp--preset--color--surface)}
+.wp-block-group.is-style-wt-point{background:var(--wp--preset--color--accent-soft);border-left:4px solid var(--wp--preset--color--accent)}
+.wp-block-group.is-style-wt-warn{background:#fff4ec;border-left:4px solid var(--wp--preset--color--cta)}
+.wp-block-group.is-style-wt-note>:first-child,.wp-block-group.is-style-wt-point>:first-child,.wp-block-group.is-style-wt-warn>:first-child{margin-top:0}
+.wp-block-group.is-style-wt-note>:last-child,.wp-block-group.is-style-wt-point>:last-child,.wp-block-group.is-style-wt-warn>:last-child{margin-bottom:0}
+
+/* カード */
+.wt-card,.wp-block-group.is-style-wt-card,.wp-block-group.is-style-wt-card-shadow{background:var(--wp--preset--color--base);border-radius:var(--wp--custom--radius-m);overflow:hidden}
+.wp-block-group.is-style-wt-card{border:1px solid var(--wp--preset--color--line);padding:1.25rem}
+.wp-block-group.is-style-wt-card-shadow{box-shadow:var(--wp--preset--shadow--soft);padding:1.25rem}
+.wt-card .wp-block-post-featured-image{margin-bottom:.5rem}
+.wt-card .wp-block-post-title a{text-decoration:none;color:inherit}
+.wt-cardlist{gap:1.5rem 1.25rem}
+@media (max-width:599px){.wt-cardlist{grid-template-columns:1fr!important}}
+
+/* チェックリスト */
+.wp-block-list.is-style-wt-check{list-style:none;padding-left:0}
+.wp-block-list.is-style-wt-check li{position:relative;padding-left:1.75rem;margin-bottom:.5rem}
+.wp-block-list.is-style-wt-check li::before{content:"";position:absolute;left:0;top:.35em;width:1.1em;height:1.1em;border-radius:50%;background:var(--wp--preset--color--accent)}
+.wp-block-list.is-style-wt-check li::after{content:"";position:absolute;left:.3em;top:.55em;width:.5em;height:.3em;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg)}
+
+/* 比較表 */
+.wp-block-table.is-style-wt-compare{overflow-x:auto}
+.wp-block-table.is-style-wt-compare table{min-width:560px;border-collapse:separate;border-spacing:0}
+.wp-block-table.is-style-wt-compare th,.wp-block-table.is-style-wt-compare td{border:0;border-bottom:1px solid var(--wp--preset--color--line);padding:.75rem .75rem;vertical-align:top}
+.wp-block-table.is-style-wt-compare thead th{background:var(--wp--preset--color--surface);font-size:.8125rem;white-space:nowrap}
+.wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td:first-child{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line)}
+.wp-block-table figcaption{text-align:left}
+
+/* 記事 */
+.wt-article .wp-block-post-content>*+*{margin-block-start:0}
+.wt-article .wp-block-post-content>h2{margin-top:2.5rem;margin-bottom:1rem}
+.wt-article .wp-block-post-content>h3{margin-top:2rem;margin-bottom:.75rem}
+.wt-article .wp-block-post-content>p,.wt-article .wp-block-post-content>ul,.wt-article .wp-block-post-content>ol{margin-bottom:1rem}
+.wt-breadcrumb p{margin:0}.wt-breadcrumb a{color:inherit;text-decoration:none}
+.wt-meta .wp-block-post-author-name{font-weight:500}
+.wt-toc{background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m);padding:1rem 1.25rem;margin-block:1.5rem}
+.wt-toc summary{font-weight:700;cursor:pointer;font-size:.9375rem}
+.wt-toc ol{margin:.75rem 0 0;padding-left:1.25rem;font-size:.9375rem}.wt-toc li{margin:.35rem 0}.wt-toc a{text-decoration:none;color:inherit}
+.wt-lead{font-size:var(--wp--preset--font-size--l);color:var(--wp--preset--color--mute);line-height:1.7}
+.wp-block-details{margin-bottom:0}.wp-block-details summary{font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:1.5rem}
+.wp-block-details summary::-webkit-details-marker{display:none}
+.wp-block-details summary::after{content:"+";position:absolute;right:0;top:0;color:var(--wp--preset--color--accent);font-weight:700}
+.wp-block-details[open] summary::after{content:"−"}
+.wp-block-details>:not(summary){margin-top:.75rem;font-size:.9375rem;color:var(--wp--preset--color--mute)}
+
+/* 商品カード・レビュー */
+.wt-product{display:grid;grid-template-columns:120px 1fr;gap:1rem;align-items:start}
+@media (max-width:479px){.wt-product{grid-template-columns:1fr}}
+.wt-stars{color:#f0a500;letter-spacing:.05em;font-size:.875rem}
+.wt-badge{display:inline-block;font-size:.6875rem;font-weight:700;padding:.2rem .5rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);margin-right:.5rem}
+.wt-badge--cta{background:#fff0e6;color:var(--wp--preset--color--cta)}
+
+/* 数字訴求 */
+.wt-num{font-family:var(--wp--preset--font-family--latin);font-size:var(--wp--preset--font-size--hero);font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--wp--preset--color--accent)}
+.wt-num small{font-size:.45em;margin-left:.15em;color:var(--wp--preset--color--contrast)}
+
+/* セクション */
+.wt-section{padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)}
+.wt-eyebrow{font-family:var(--wp--preset--font-family--latin);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wp--preset--color--accent);margin-bottom:.5rem}
+.wt-hero{padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)}
+.wt-hero .wp-block-buttons{margin-top:1.5rem}
+.wt-hero__visual{aspect-ratio:4/3;border-radius:var(--wp--custom--radius-l);background:linear-gradient(135deg,#dfe7fb,#f4f6f9);min-height:200px}
+.wt-photo{background:linear-gradient(160deg,#c9d4ea,#e6ebf3);border-radius:var(--wp--custom--radius-s)}
+.wt-steps{counter-reset:s}.wt-steps>.wp-block-group{position:relative;padding-left:3rem}
+.wt-steps>.wp-block-group::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;font-family:var(--wp--preset--font-family--latin);font-weight:700;color:var(--wp--preset--color--accent);font-size:1.25rem}
+.wt-plan--featured{border-color:var(--wp--preset--color--accent)!important;box-shadow:0 0 0 1px var(--wp--preset--color--accent)}
+.wt-price{font-family:var(--wp--preset--font-family--latin);font-size:2rem;font-weight:700;line-height:1}
+.wt-price small{font-size:.875rem;font-weight:500;color:var(--wp--preset--color--mute)}
+
+/* 出現アニメ（IO、reduced-motion 尊重） */
+/* JS 初期化（html.wt-js）が確認できた場合のみ初期非表示にする: JS 無効・IO 非対応時は常に表示 */
+@media (prefers-reduced-motion:no-preference){
+html.wt-js .wt-reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+html.wt-js .wt-reveal.is-in{opacity:1;transform:none}}
+
+/* ヘッダー順: CTA → ハンバーガー（SP）。PC はハンバーガー非表示 */
+@media (max-width:599px){.wt-header__cta{display:block}.wt-header__cta .wp-block-button__link{padding:.6rem .9rem;font-size:.75rem;min-height:38px}}
+@media (min-width:600px){.wt-header .wp-block-navigation__responsive-container-open:not(.always-shown){display:none}}
+
+/* 見出し付きボックス: 3 型（帯 / タブ / ラベル） */
+.wt-box{position:relative;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);margin-block:1.5rem;background:var(--wp--preset--color--base)}
+.wt-box__title{margin:0;font-weight:700;font-size:.9375rem;display:flex;align-items:center;gap:.5rem}
+.wt-box__body{padding:1rem 1.25rem}.wt-box__body>:first-child{margin-top:0}.wt-box__body>:last-child{margin-bottom:0}
+.wt-box--band .wt-box__title{background:var(--wp--preset--color--accent);color:#fff;padding:.6rem 1.25rem;border-radius:calc(var(--wp--custom--radius-m) - 1px) calc(var(--wp--custom--radius-m) - 1px) 0 0}
+.wt-box--band{border-color:var(--wp--preset--color--accent)}
+.wt-box--tab{margin-top:2.4rem}.wt-box--tab .wt-box__title{position:absolute;top:0;left:1rem;transform:translateY(-50%);background:var(--wp--preset--color--base);padding:.15rem .75rem;border:1px solid var(--wp--preset--color--line);border-radius:999px;font-size:.8125rem;color:var(--wp--preset--color--accent)}
+.wt-box--tab .wt-box__body{padding-top:1.25rem}
+.wt-box--label .wt-box__title{padding:.75rem 1.25rem 0;color:var(--wp--preset--color--accent)}
+.wt-box--label .wt-box__body{padding-top:.5rem}
+.wt-box--warn.wt-box--band .wt-box__title{background:var(--wp--preset--color--cta)}.wt-box--warn{border-color:var(--wp--preset--color--cta)}
+.wt-box--soft{background:var(--wp--preset--color--surface);border-color:transparent}
+.wt-box--soft.wt-box--tab .wt-box__title{background:var(--wp--preset--color--surface);border-color:transparent}
+
+/* 吹き出し */
+.wt-talk{display:grid;grid-template-columns:56px 1fr;gap:.75rem;align-items:start;margin-block:1.25rem}
+.wt-talk--r{grid-template-columns:1fr 56px}.wt-talk--r .wt-talk__who{order:2}.wt-talk--r .wt-talk__bubble{order:1}
+.wt-talk__who{text-align:center;font-size:.6875rem;color:var(--wp--preset--color--mute)}.wt-talk__who img{width:56px;height:56px;border-radius:50%;display:block;object-fit:cover;margin-bottom:.25rem;border:1px solid var(--wp--preset--color--line)}
+.wt-talk__bubble{position:relative;background:var(--wp--preset--color--surface);border-radius:12px;padding:.85rem 1rem;font-size:.9375rem}
+.wt-talk__bubble::before{content:"";position:absolute;top:18px;left:-8px;border:8px solid transparent;border-left:0;border-right-color:var(--wp--preset--color--surface)}
+.wt-talk--r .wt-talk__bubble{background:var(--wp--preset--color--accent-soft)}.wt-talk--r .wt-talk__bubble::before{left:auto;right:-8px;border-right:0;border-left:8px solid var(--wp--preset--color--accent-soft)}
+.wt-talk__bubble p{margin:0}
+
+/* ステップ（縦タイムライン） */
+.wt-timeline{list-style:none;padding:0;margin:1.5rem 0;counter-reset:t}
+.wt-timeline>li{position:relative;padding:0 0 1.5rem 3rem;counter-increment:t}
+.wt-timeline>li::before{content:counter(t);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--wp--preset--font-family--latin)}
+.wt-timeline>li::after{content:"";position:absolute;left:calc(1rem - 1px);top:2rem;bottom:0;width:2px;background:var(--wp--preset--color--line)}
+.wt-timeline>li:last-child::after{display:none}.wt-timeline>li:last-child{padding-bottom:0}
+.wt-timeline b{display:block;margin-bottom:.25rem}
+
+/* 評価バー */
+.wt-rate{display:grid;grid-template-columns:7em 1fr 2.5em;gap:.5rem;align-items:center;font-size:.875rem;margin:.4rem 0}
+.wt-rate i{display:block;height:8px;border-radius:4px;background:var(--wp--preset--color--line);overflow:hidden}
+.wt-rate i::before{content:"";display:block;height:100%;width:var(--v);background:var(--wp--preset--color--accent);border-radius:4px}
+.wt-rate b{font-family:var(--wp--preset--font-family--latin);text-align:right}
+
+/* アイコン付きリスト・メリデメ */
+.wt-ilist{list-style:none;padding:0;margin:0 0 1rem}.wt-ilist li{display:flex;gap:.6rem;align-items:flex-start;margin:.45rem 0}.wt-ilist .wt-i{flex:0 0 auto;margin-top:.15em;color:var(--wp--preset--color--accent)}
+.wt-prosc{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-block:1.5rem}@media (max-width:599px){.wt-prosc{grid-template-columns:1fr}}
+.wt-prosc .wt-box{margin:0}.wt-prosc--good .wt-i{color:#1a9c5b}.wt-prosc--bad .wt-i{color:var(--wp--preset--color--cta)}
+
+/* メディア系トップ部品 */
+.wt-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}@media (max-width:899px){.wt-pick{grid-template-columns:repeat(2,1fr)}}@media (max-width:599px){.wt-pick{grid-template-columns:1fr 1fr;gap:.75rem}}
+.wt-pick__item{display:block;color:inherit;text-decoration:none}.wt-pick__item img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m);display:block}
+.wt-pick__cat{display:inline-block;font-size:.6875rem;font-weight:700;color:#fff;background:var(--wp--preset--color--accent);padding:.15rem .5rem;border-radius:3px;margin:.5rem 0 .25rem}
+.wt-pick__title{font-weight:700;font-size:.9375rem;line-height:1.45;margin:0}.wt-pick__date{font-size:.6875rem;color:var(--wp--preset--color--mute)}
+@media (max-width:599px){.wt-pick__title{font-size:.8125rem}}
+.wt-pick--hero{grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto}.wt-pick--hero .wt-pick__item:first-child{grid-row:1/3}
+@media (max-width:899px){.wt-pick--hero{grid-template-columns:1fr 1fr}.wt-pick--hero .wt-pick__item:first-child{grid-column:1/3;grid-row:auto}}
+.wt-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}@media (max-width:599px){.wt-cats{grid-template-columns:1fr 1fr}}
+.wt-cats a{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1rem .5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);text-decoration:none;color:inherit;font-size:.8125rem;font-weight:700;background:var(--wp--preset--color--base)}
+.wt-cats .wt-i{color:var(--wp--preset--color--accent)}
+.wt-rank{list-style:none;padding:0;margin:0;counter-reset:r}.wt-rank li{display:grid;grid-template-columns:2rem 96px 1fr;gap:.75rem;align-items:center;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line);counter-increment:r}
+.wt-rank li::before{content:counter(r);font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:1.25rem;color:var(--wp--preset--color--accent)}
+.wt-rank li:nth-child(1)::before{color:#c9a227}.wt-rank li:nth-child(2)::before{color:#8a8f98}.wt-rank li:nth-child(3)::before{color:#a0623d}
+.wt-rank img{width:96px;aspect-ratio:16/9;object-fit:cover;border-radius:4px}.wt-rank a{color:inherit;text-decoration:none;font-weight:700;font-size:.875rem;line-height:1.45}
+.wt-profile{display:grid;grid-template-columns:96px 1fr;gap:1rem;align-items:start;padding:1.25rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m)}
+.wt-profile img{width:96px;height:96px;border-radius:50%;object-fit:cover}.wt-profile p{margin:.25rem 0;font-size:.875rem}
+.wt-tabs .wp-block-tabs__list{border-bottom:2px solid var(--wp--preset--color--line);gap:0}
+.wt-tabs .wp-block-tabs__tab-label{padding:.75rem 1.25rem;font-weight:700;color:var(--wp--preset--color--mute);border:0;background:none;position:relative}
+.wt-tabs .wp-block-tabs__tab-label[aria-selected="true"]{color:var(--wp--preset--color--contrast)}
+.wt-tabs .wp-block-tabs__tab-label[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--wp--preset--color--accent)}
+.wt-hero__visual img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+.wt-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.wt-feature-icon{width:64px;height:64px;margin-bottom:.75rem}
+@media (min-width:600px){.wt-header__cta{order:2}}
+
+/* 2026-09-05 PO 指摘: 列内カードの高さを自動で統一（内容量の差で凸凹にしない） */
+.wp-block-column:has(> .is-style-wt-card, > .is-style-wt-card-shadow, > .wt-card, > .wt-price) { display: flex; flex-direction: column; }
+.wp-block-column > .is-style-wt-card,
+.wp-block-column > .is-style-wt-card-shadow,
+.wp-block-column > .wt-card,
+.wp-block-column > .wt-price { flex: 1 1 auto; height: 100%; }
+.wt-cardlist > * { height: 100%; }
+
+/* ============================================================
+   prototype 03 — 比較媒体 記事面・404（選択軸は body class / block style / pattern）
+   既定値は ../2026-09-05-cro-usability-evidence/README.md §2 P01–P33
+   ============================================================ */
+
+/* 基本: 本文 17px（theme.json）、lh SP 1.6 / PC 1.7、focus ring、scroll-margin、tap 44 */
+body{line-height:1.6}
+@media (min-width:768px){body{line-height:1.7}}
+:where(a,button,input,summary,[tabindex]):focus-visible{outline:2px solid var(--wp--preset--color--accent);outline-offset:2px;box-shadow:0 0 0 4px #fff}
+h2[id],h3[id]{scroll-margin-top:calc(var(--wt-header-h) + 1rem)}
+.wp-block-button__link{min-height:var(--wp--custom--button-height)}
+.wt-header .wp-block-navigation__responsive-container-close{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.wt-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{min-height:44px}
+.wt-sub{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s);margin-top:-.25rem}
+.wt-only-sp{display:none}@media (max-width:599px){.wt-only-sp{display:block}.wt-only-pc{display:none!important}}
+.screen-reader-text{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);clip-path:inset(50%)}
+
+/* ---------- 1. ヘッダー: 部分固定（下スクロールで隠れ、上で再表示）・不透明 ---------- */
+.wt-header{transition:transform var(--wp--custom--motion-base) ease;will-change:transform}
+.wt-header.is-hidden{transform:translateY(-100%)}
+@media (prefers-reduced-motion:reduce){.wt-header{transition:none}}
+.wt-header__row{gap:.75rem}
+.wt-header .wp-block-site-title{white-space:nowrap}
+.wt-header__nav{flex:1 1 auto;justify-content:flex-end}
+.wt-header .wp-block-navigation{flex-wrap:nowrap}
+/* 検索: PC はインライン、SP はアイコンボタン（core/search button-only） */
+.wt-header__search .wp-block-search__inside-wrapper{border:1px solid var(--wp--preset--color--line);border-radius:999px;overflow:hidden;background:var(--wp--preset--color--surface);min-height:40px}
+.wt-header__search .wp-block-search__input{border:0;background:transparent;padding:0 .9rem;font-size:.875rem;min-height:40px;width:180px}
+.wt-header__search .wp-block-search__button{border:0;background:transparent;padding:0 .75rem;min-height:40px;min-width:44px;color:var(--wp--preset--color--mute);display:inline-flex;align-items:center}
+.wt-header__search .wp-block-search__button svg{width:20px;height:20px;fill:currentColor}
+.wt-header__search--sp .wp-block-search__inside-wrapper{border:0;background:none;min-height:44px}
+.wt-header__search--sp .wp-block-search__button{min-height:44px;min-width:44px;color:var(--wp--preset--color--contrast)}
+.wt-header__search--sp .wp-block-search__button-behavior-expand .wp-block-search__inside-wrapper{}
+/* SP 3 型: hamburger+search（既定）/ hamburger-right / hamburger-left */
+@media (max-width:599px){
+.wt-header__row{gap:.25rem}
+.wt-header .wp-block-site-title{order:1;margin-right:auto}
+.wt-header__search--sp{order:2}
+.wt-header__nav{order:3;flex:0 0 auto}
+.wt-header__cta{order:2}
+body.wt-sp-right .wt-header__search--sp{display:none}
+body.wt-sp-left .wt-header__nav{order:0}
+body.wt-sp-left .wt-header .wp-block-site-title{margin-left:.25rem}
+body.wt-sp-left .wt-header__search--sp{margin-left:auto}
+body.wt-sp-left .wt-header__cta{display:none}
+}
+@media (min-width:600px){.wt-header__search--sp{display:none}}
+/* お知らせ帯: 1 行・閉じられる・端末側記憶（html.wt-announce-closed） */
+.wt-announce{background:var(--wp--preset--color--accent);color:#fff;font-size:.8125rem;line-height:1.4}
+.wt-announce__in{display:flex;align-items:center;gap:.5rem;min-height:36px;max-width:1120px;margin:0 auto;padding:0 var(--wp--custom--gutter)}
+.wt-announce__text{flex:1 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}
+.wt-announce a{color:inherit}
+.wt-announce__close{flex:0 0 auto;width:44px;height:44px;border:0;background:transparent;color:inherit;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin-right:-.75rem}
+html.wt-announce-closed .wt-announce{display:none}
+
+/* ---------- 2. アイキャッチ位置 × 有無（body.wt-eyecatch-*） ---------- */
+.wt-posthead{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;margin-bottom:1.5rem}
+.wt-posthead__text{display:grid;gap:.75rem}
+.wt-posthead__img{margin:0;position:relative}
+.wt-posthead__img img{width:100%;height:auto;display:block;border-radius:var(--wp--custom--radius-m)}
+body.wt-eyecatch-image-title .wt-posthead__img{order:-1}
+body.wt-eyecatch-none .wt-posthead__img{display:none}
+@media (min-width:600px){body.wt-eyecatch-side .wt-posthead{grid-template-columns:minmax(0,1fr) 220px;align-items:start}body.wt-eyecatch-side .wt-posthead__img img{aspect-ratio:4/3;object-fit:cover}}
+body.wt-eyecatch-hero .wt-posthead__img,body.wt-eyecatch-hero .wt-posthead__text{grid-area:1/1}
+body.wt-eyecatch-hero .wt-posthead__img img{aspect-ratio:16/9;object-fit:cover;min-height:280px}
+@media (max-width:599px){body.wt-eyecatch-hero .wt-posthead__img img{aspect-ratio:4/5;min-height:360px}}
+body.wt-eyecatch-hero .wt-posthead__text{z-index:1;align-self:end;padding:1.25rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+body.wt-eyecatch-hero .wt-posthead__text a,body.wt-eyecatch-hero .wt-posthead__text .has-mute-color{color:#fff!important}
+body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inset:0;border-radius:var(--wp--custom--radius-m);pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.10) 100%)}
+/* 自動コントラスト guard: data-wt-lum（dark / mid / light、未計測 = 強）でスクリム強度を切替 */
+[data-wt-lum="dark"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.30) 45%,rgba(0,0,0,0) 100%)!important}
+[data-wt-lum="mid"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.50) 45%,rgba(0,0,0,.05) 100%)!important}
+[data-wt-lum="light"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.72) 45%,rgba(0,0,0,.25) 100%)!important}
+.wp-block-cover.is-style-wt-scrim .wp-block-cover__background{opacity:0!important}
+.wp-block-cover.is-style-wt-scrim::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.35))}
+.wp-block-cover.is-style-wt-scrim .wp-block-cover__inner-container{z-index:2}
+
+/* ---------- 3. 目次（サーバ生成 nav.wt-toc、h2/h3、現在位置、開閉） ---------- */
+.wt-toc{background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m);padding:0;margin-block:1.5rem;font-size:.9375rem}
+.wt-toc__d{padding:1rem 1.25rem}
+.wt-toc__s{font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.5rem;min-height:44px;margin:-1rem -1.25rem;padding:0 1.25rem}
+.wt-toc__s::-webkit-details-marker{display:none}
+.wt-toc__s::after{content:"";width:.6em;height:.6em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-left:auto;transition:transform var(--wp--custom--motion-fast)}
+.wt-toc__d[open] .wt-toc__s::after{transform:rotate(-135deg)}
+.wt-toc__count{font-size:.75rem;font-weight:500;color:var(--wp--preset--color--mute);margin-left:.25rem}
+.wt-toc__list{margin:1.25rem 0 0;padding-left:1.5rem;counter-reset:toc}
+.wt-toc__list>li{margin:.4rem 0;counter-increment:toc;list-style:none;position:relative}
+.wt-toc__list>li::before{content:counter(toc,decimal-leading-zero);position:absolute;left:-1.5rem;top:.1em;font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:.8125rem;color:var(--wp--preset--color--accent)}
+.wt-toc__list ol{margin:.25rem 0 .25rem 0;padding-left:1rem;font-size:.875rem;list-style:none}
+.wt-toc__list ol li{margin:.25rem 0;position:relative;padding-left:.75rem}
+.wt-toc__list ol li::before{content:"";position:absolute;left:0;top:.7em;width:.4rem;height:1px;background:var(--wp--preset--color--mute)}
+.wt-toc a{text-decoration:none;color:inherit;display:inline-block;padding:.15rem 0;min-height:1.5rem}
+.wt-toc a:hover{text-decoration:underline}
+.wt-toc a.is-current{color:var(--wp--preset--color--accent);font-weight:700}
+.wt-toc--collapsible .wt-toc__d{}
+/* float-side（PC のみ、1200px 以上でレール固定。狭い幅では box と同じ） */
+@media (min-width:1200px){
+.wt-toc--float{position:fixed;left:calc(50% - 340px - 16px - 240px);top:calc(var(--wt-header-h) + 1.5rem);width:240px;max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
+.wt-toc--float .wt-toc__s::after{display:none}
+}
+@media (min-width:1200px){body.wt-toc-float .wp-block-post-content{}}
+
+/* ---------- 4. 見出し（block style、h2 6 型 / h3 3 型） ---------- */
+.wp-block-heading.is-style-wt-plain{font-weight:800}
+.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:.6rem;border-bottom:2px solid var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-2tone::after{content:"";position:absolute;left:0;bottom:-2px;width:5rem;height:2px;background:var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-icon{display:flex;align-items:center;gap:.6rem}
+.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:1.15em;height:1.15em;background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M8.5%2012.5l2.5%202.5%204.5-5%22/%3E%3C/svg%3E")}
+.wp-block-heading.is-style-wt-icon[data-wt-icon="lightbulb"]::before{--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%2018h6M10%2021h4M12%203a6%206%200%200%201%203.5%2010.9c-.6.5-1%201.2-1%202.1h-5c0-.9-.4-1.6-1-2.1A6%206%200%200%201%2012%203z%22/%3E%3C/svg%3E")}
+.wp-block-heading.is-style-wt-band{background:var(--wp--preset--color--accent);color:#fff;padding:.55rem .9rem;border-radius:var(--wp--custom--radius-s)}
+.wp-block-heading.is-style-wt-bar-thin{padding-left:.6rem;border-left:3px solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-dotted{padding-bottom:.4rem;border-bottom:2px dotted var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-num{display:flex;align-items:baseline;gap:.5rem;counter-increment:wt-h3}
+.wp-block-post-content{counter-reset:wt-h3}
+.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-size:.9em}
+
+/* ---------- 5. 囲み（group block style 7 型 × 色 modifier .wt-c-*） ---------- */
+.wp-block-group[class*="is-style-wt-"]{--wt-box-accent:var(--wp--preset--color--accent);--wt-box-soft:var(--wp--preset--color--accent-soft);--wt-box-line:var(--wp--preset--color--line)}
+.wp-block-group.wt-c-warn{--wt-box-accent:var(--wp--preset--color--cta);--wt-box-soft:var(--wp--preset--color--warn-soft)}
+.wp-block-group.wt-c-point{--wt-box-accent:var(--wp--preset--color--accent);--wt-box-soft:var(--wp--preset--color--accent-soft)}
+.wp-block-group.wt-c-note{--wt-box-accent:var(--wp--preset--color--mute);--wt-box-soft:var(--wp--preset--color--surface)}
+.wp-block-group.wt-c-ok{--wt-box-accent:var(--wp--preset--color--ok);--wt-box-soft:var(--wp--preset--color--ok-soft)}
+.wp-block-group.is-style-wt-plain-border,.wp-block-group.is-style-wt-tinted,.wp-block-group.is-style-wt-band-title,.wp-block-group.is-style-wt-tab-title,.wp-block-group.is-style-wt-label-title,.wp-block-group.is-style-wt-card-shadow,.wp-block-group.is-style-wt-cta-box{position:relative;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem;padding:1rem 1.25rem}
+.wp-block-group[class*="is-style-wt-"]>:first-child{margin-top:0}.wp-block-group[class*="is-style-wt-"]>:last-child{margin-bottom:0}
+.wp-block-group.is-style-wt-plain-border{border:1px solid var(--wt-box-accent)}
+.wp-block-group.is-style-wt-tinted{background:var(--wt-box-soft)}
+.wp-block-group.is-style-wt-band-title{border:1px solid var(--wt-box-accent);padding-top:0}
+.wp-block-group.is-style-wt-band-title>:first-child{margin:0 -1.25rem 1rem;padding:.6rem 1.25rem;background:var(--wt-box-accent);color:#fff;font-weight:700;font-size:.9375rem;border-radius:calc(var(--wp--custom--radius-m) - 1px) calc(var(--wp--custom--radius-m) - 1px) 0 0}
+.wp-block-group.is-style-wt-tab-title{border:1px solid var(--wt-box-accent);margin-top:2.4rem;padding-top:1.25rem}
+.wp-block-group.is-style-wt-tab-title>:first-child{position:absolute;top:0;left:1rem;transform:translateY(-50%);background:var(--wt-box-accent);color:#fff;padding:.25rem .8rem;border-radius:999px;font-size:.8125rem;font-weight:700;margin:0}
+.wp-block-group.is-style-wt-label-title{border:1px solid var(--wt-box-line);border-top:3px solid var(--wt-box-accent)}
+.wp-block-group.is-style-wt-label-title>:first-child{color:var(--wt-box-accent);font-weight:700;font-size:.9375rem;margin-bottom:.5rem}
+.wp-block-group.is-style-wt-card-shadow{background:var(--wp--preset--color--base);box-shadow:var(--wp--preset--shadow--depth-1)}
+.wp-block-group.is-style-wt-warn{background:var(--wp--preset--color--warn-soft)}
+/* リスト: check / badge / icon / pros / cons */
+.wp-block-list.is-style-wt-badge-list{list-style:none;padding-left:0;counter-reset:b}
+.wp-block-list.is-style-wt-badge-list li{position:relative;padding-left:2.4rem;margin-bottom:.6rem;counter-increment:b;min-height:1.75rem}
+.wp-block-list.is-style-wt-badge-list li::before{content:counter(b);position:absolute;left:0;top:.05em;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;font-family:var(--wp--preset--font-family--latin);display:flex;align-items:center;justify-content:center;font-size:.875rem}
+.wp-block-list.is-style-wt-icon-list{list-style:none;padding-left:0}
+.wp-block-list.is-style-wt-icon-list li{position:relative;padding-left:1.9rem;margin-bottom:.5rem}
+.wp-block-list.is-style-wt-icon-list li::before{content:"";position:absolute;left:0;top:.25em;width:1.2em;height:1.2em;background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2012h14M13%206l6%206-6%206%22/%3E%3C/svg%3E")}
+.wp-block-list.is-style-wt-pros,.wp-block-list.is-style-wt-cons{list-style:none;padding-left:0}
+.wp-block-list.is-style-wt-pros li,.wp-block-list.is-style-wt-cons li{position:relative;padding-left:1.75rem;margin-bottom:.45rem}
+.wp-block-list.is-style-wt-pros li::before,.wp-block-list.is-style-wt-cons li::before{position:absolute;left:0;top:0;font-weight:700;font-family:var(--wp--preset--font-family--latin)}
+.wp-block-list.is-style-wt-pros li::before{content:"○";color:var(--wp--preset--color--ok)}
+.wp-block-list.is-style-wt-cons li::before{content:"×";color:var(--wp--preset--color--cta)}
+.wt-prosc>.wp-block-group{margin:0}
+.wt-prosc .wt-c-ok>:first-child{color:var(--wp--preset--color--ok)}
+
+/* ---------- 6. 記事内 CTA 4 型・比較表・リンクカード・PR ---------- */
+.wt-pr{font-size:.75rem;color:var(--wp--preset--color--mute);margin:0 0 1rem;display:flex;gap:.5rem;align-items:center;line-height:1.4}
+.wt-pr__tag{display:inline-block;border:1px solid var(--wp--preset--color--line);border-radius:3px;padding:0 .35rem;font-weight:700;font-size:.6875rem;letter-spacing:.05em}
+/* product-card-bundle */
+.wp-block-group.is-style-wt-product{display:grid;grid-template-columns:140px minmax(0,1fr);gap:1.25rem;align-items:start;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-l);padding:1.25rem;margin-block:1.5rem;background:var(--wp--preset--color--base)}
+@media (max-width:479px){.wp-block-group.is-style-wt-product{grid-template-columns:1fr}}
+.wp-block-group.is-style-wt-product .wp-block-image{margin:0}
+.wp-block-group.is-style-wt-product .wp-block-image img{aspect-ratio:1;object-fit:cover;width:100%;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--surface)}
+.wt-product__head{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:0 0 .25rem}
+.wt-product__name{font-size:var(--wp--preset--font-size--l);font-weight:700;margin:0 0 .25rem;line-height:1.4}
+.wt-product__price{font-family:var(--wp--preset--font-family--latin);font-size:1.5rem;font-weight:700;margin:0 0 .5rem;line-height:1.2}
+.wt-product__price small{font-size:.75rem;font-weight:500;color:var(--wp--preset--color--mute);margin-left:.25rem;font-family:var(--wp--preset--font-family--body)}
+.wt-product .wp-block-buttons{margin-top:.75rem;gap:.5rem}
+.wt-product .wp-block-button{flex:1 1 180px}.wt-product .wp-block-button__link{width:100%}
+.wt-badge--pr{background:var(--wp--preset--color--surface);color:var(--wp--preset--color--mute);border:1px solid var(--wp--preset--color--line)}
+.wt-badge--rank{background:var(--wp--preset--color--cta);color:#fff}
+.wt-stars{display:inline-flex;align-items:center;gap:.35rem;font-size:.875rem}
+.wt-stars b{font-family:var(--wp--preset--font-family--latin);font-size:1rem}
+/* banner-image */
+.wp-block-image.is-style-wt-banner{margin-block:1.5rem}
+.wp-block-image.is-style-wt-banner a{display:block;border-radius:var(--wp--custom--radius-m);overflow:hidden;transition:transform var(--wp--custom--motion-fast)}
+.wp-block-image.is-style-wt-banner a:hover{transform:translateY(-2px)}
+.wp-block-image.is-style-wt-banner img{width:100%;aspect-ratio:3.2/1;object-fit:cover;display:block}
+.wp-block-image.is-style-wt-banner figcaption{margin-top:.35rem}
+/* button-only（幅広） */
+.wt-cta-btn .wp-block-button{flex:1 1 auto}.wt-cta-btn .wp-block-button__link{width:100%;min-height:56px;font-size:1rem}
+.wt-cta-btn .wp-block-button__link .wt-i{margin-left:.35rem}
+/* box-with-copy */
+.wp-block-group.is-style-wt-cta-box{background:var(--wp--preset--color--accent-soft);text-align:center;padding:1.75rem 1.25rem}
+.wp-block-group.is-style-wt-cta-box .wt-cta-box__title{font-weight:700;font-size:var(--wp--preset--font-size--l);margin:0 0 .25rem}
+.wp-block-group.is-style-wt-cta-box .wt-cta-box__note{font-size:.75rem;color:var(--wp--preset--color--mute);margin:.75rem 0 0}
+/* CTA 専用色（P07）: cta / cta-contrast 以外の UI に使わない。ボタン hover は暗色 */
+.wp-block-button__link.has-cta-background-color:hover{background-color:#9a3412!important}
+/* 比較表: 先頭列固定 + 横スクロール（PC）、SP はカード縦積み（data-th）*/
+.wp-block-table.is-style-wt-compare-scroll{overflow-x:auto}
+.wp-block-table.is-style-wt-compare-scroll table,.wp-block-table.is-style-wt-compare table{min-width:560px;border-collapse:separate;border-spacing:0}
+.wp-block-table.is-style-wt-compare-scroll th,.wp-block-table.is-style-wt-compare-scroll td,.wp-block-table.is-style-wt-compare th,.wp-block-table.is-style-wt-compare td{border:0;border-bottom:1px solid var(--wp--preset--color--line);padding:.75rem;vertical-align:top;text-align:left}
+.wp-block-table.is-style-wt-compare-scroll thead th,.wp-block-table.is-style-wt-compare thead th{background:var(--wp--preset--color--surface);font-size:.8125rem;white-space:nowrap}
+.wp-block-table.is-style-wt-compare-scroll tbody th,.wp-block-table.is-style-wt-compare tbody th{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line);z-index:1}
+.wp-block-table.is-style-wt-compare-scroll thead th:first-child,.wp-block-table.is-style-wt-compare thead th:first-child{position:sticky;left:0;z-index:2}
+.wp-block-table.is-style-wt-compare td.wt-num,.wp-block-table.is-style-wt-compare-scroll td.wt-num{text-align:right;font-variant-numeric:tabular-nums}
+.wp-block-table.is-style-wt-compare .wt-mark{font-weight:700}
+@media (max-width:599px){
+.wp-block-table.is-style-wt-compare table{min-width:0;display:block}
+.wp-block-table.is-style-wt-compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
+.wp-block-table.is-style-wt-compare tbody,.wp-block-table.is-style-wt-compare tr,.wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td{display:block}
+.wp-block-table.is-style-wt-compare tr{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);margin-bottom:.75rem;overflow:hidden;background:var(--wp--preset--color--base)}
+.wp-block-table.is-style-wt-compare td{position:static;box-shadow:none;display:flex;justify-content:space-between;gap:1rem;padding:.6rem .9rem;font-weight:400;text-align:right}
+.wp-block-table.is-style-wt-compare tbody th{position:static;box-shadow:none;background:var(--wp--preset--color--surface);font-weight:700;text-align:left;display:block;padding:.6rem .9rem}
+.wp-block-table.is-style-wt-compare td::before{content:attr(data-th);color:var(--wp--preset--color--mute);font-size:.8125rem;text-align:left;flex:0 0 40%}
+.wp-block-table.is-style-wt-compare td:last-child{border-bottom:0}
+}
+/* リンクカード（内部・全面クリック） */
+.wp-block-group.is-style-wt-linkcard{display:grid;grid-template-columns:120px minmax(0,1fr);gap:1rem;align-items:center;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);padding:.75rem;margin-block:1.5rem;position:relative;background:var(--wp--preset--color--base);transition:box-shadow var(--wp--custom--motion-fast)}
+.wp-block-group.is-style-wt-linkcard:hover{box-shadow:var(--wp--preset--shadow--depth-1)}
+.wp-block-group.is-style-wt-linkcard .wp-block-image{margin:0}.wp-block-group.is-style-wt-linkcard img{aspect-ratio:16/10;object-fit:cover;width:100%;border-radius:var(--wp--custom--radius-s)}
+.wp-block-group.is-style-wt-linkcard .wt-linkcard__label{font-size:.6875rem;color:var(--wp--preset--color--mute);margin:0 0 .25rem;letter-spacing:.05em}
+.wp-block-group.is-style-wt-linkcard .wt-linkcard__title{font-weight:700;margin:0;font-size:.9375rem;line-height:1.45}
+.wp-block-group.is-style-wt-linkcard .wt-linkcard__title a{color:inherit;text-decoration:none}
+.wp-block-group.is-style-wt-linkcard .wt-linkcard__title a::after{content:"";position:absolute;inset:0}
+.wp-block-group.is-style-wt-linkcard .wt-linkcard__desc{font-size:.8125rem;color:var(--wp--preset--color--mute);margin:.25rem 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:479px){.wp-block-group.is-style-wt-linkcard{grid-template-columns:96px minmax(0,1fr)}.wp-block-group.is-style-wt-linkcard .wt-linkcard__desc{display:none}}
+/* 引用符 */
+.wp-block-quote.is-style-wt-quote-mark{border-left:0;padding:1.25rem 1.25rem 1.25rem 3rem;position:relative;background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m)}
+.wp-block-quote.is-style-wt-quote-mark::before{content:"“";position:absolute;left:.9rem;top:.1rem;font-size:3rem;line-height:1;font-family:Georgia,serif;color:var(--wp--preset--color--accent);opacity:.6}
+
+/* ---------- 7. 記事末: 次に読む 1 → 関連 3–6（4 型）→ CTA → 著者、共有 ---------- */
+.wt-tail{margin-top:var(--wp--preset--spacing--70)}
+.wt-tail__h{font-size:var(--wp--preset--font-size--l);margin:0 0 1rem;display:flex;align-items:center;gap:.5rem}
+.wt-tail__h::before{content:"";width:4px;height:1em;background:var(--wp--preset--color--accent);border-radius:2px}
+.wt-rcard{position:relative;display:grid;gap:.5rem;height:100%;border-radius:var(--wp--custom--radius-m);overflow:hidden;background:var(--wp--preset--color--base)}
+.wt-rcard .wp-block-post-featured-image{margin:0}.wt-rcard .wp-block-post-featured-image img{aspect-ratio:16/9;object-fit:cover;width:100%;display:block;border-radius:var(--wp--custom--radius-s)}
+.wt-rcard .wp-block-post-title{font-size:.9375rem;line-height:1.45;margin:0}
+.wt-rcard .wp-block-post-title a{color:inherit;text-decoration:none}
+.wt-rcard .wp-block-post-title a::after{content:"";position:absolute;inset:0}
+.wt-rcard .wp-block-post-date{margin:0}
+.wt-rcard .wp-block-post-terms{margin:0}
+/* 次に読む（横長 1 枚） */
+.wt-next .wt-rcard{grid-template-columns:160px minmax(0,1fr);align-items:center;border:1px solid var(--wp--preset--color--line);padding:.75rem;gap:1rem}
+.wt-next .wt-rcard .wp-block-post-featured-image img{aspect-ratio:4/3}
+.wt-next .wt-rcard .wp-block-post-title{font-size:var(--wp--preset--font-size--l)}
+@media (max-width:479px){.wt-next .wt-rcard{grid-template-columns:110px minmax(0,1fr)}.wt-next .wt-rcard .wp-block-post-title{font-size:.9375rem}}
+/* 関連: grid-cards（既定） */
+.wt-related .wp-block-post-template{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem 1rem;list-style:none;padding:0;margin:0}
+@media (max-width:599px){.wt-related .wp-block-post-template{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem .75rem}}
+/* thumb-list-1line */
+body.wt-related-list .wt-related .wp-block-post-template{grid-template-columns:1fr;gap:0}
+body.wt-related-list .wt-related .wt-rcard{grid-template-columns:120px minmax(0,1fr);align-items:center;gap:.9rem;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line);border-radius:0}
+body.wt-related-list .wt-related .wt-rcard .wp-block-post-featured-image img{aspect-ratio:16/10}
+/* ranking-numbers */
+body.wt-related-rank .wt-related .wp-block-post-template{grid-template-columns:1fr;gap:0;counter-reset:rk}
+body.wt-related-rank .wt-related .wp-block-post-template>li{counter-increment:rk;position:relative}
+body.wt-related-rank .wt-related .wt-rcard{grid-template-columns:2.25rem 120px minmax(0,1fr);align-items:center;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line);border-radius:0}
+body.wt-related-rank .wt-related .wt-rcard::before{content:counter(rk);font-family:var(--wp--preset--font-family--latin);font-weight:800;font-size:1.5rem;color:var(--wp--preset--color--accent);text-align:center;line-height:1}
+body.wt-related-rank .wt-related li:nth-child(1) .wt-rcard::before{color:#b8860b}body.wt-related-rank .wt-related li:nth-child(2) .wt-rcard::before{color:#7d8590}body.wt-related-rank .wt-related li:nth-child(3) .wt-rcard::before{color:#a0623d}
+/* carousel（自動送りなし、scroll-snap、前後ボタンは JS） */
+body.wt-related-carousel .wt-related .wp-block-post-template{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-bottom:.5rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+body.wt-related-carousel .wt-related .wp-block-post-template>li{flex:0 0 min(70%,260px);scroll-snap-align:start}
+.wt-carousel__nav{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
+.wt-carousel__nav button{width:44px;height:44px;border:1px solid var(--wp--preset--color--line);border-radius:50%;background:var(--wp--preset--color--base);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--wp--preset--color--contrast)}
+.wt-carousel__nav button:disabled{opacity:.35;cursor:default}
+body:not(.wt-related-carousel) .wt-carousel__nav{display:none}
+/* 記事末 CTA・著者 */
+.wt-tail__cta{margin-top:var(--wp--preset--spacing--60)}
+.wt-author-box{margin-top:var(--wp--preset--spacing--60)}
+.wt-author-box .wp-block-avatar img{width:56px;height:56px}
+/* 共有: 記事上下 / float / none（SNS 名を出さず Web Share + リンクコピー） */
+.wt-share{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-block:1rem}
+.wt-share__label{font-size:.75rem;color:var(--wp--preset--color--mute);margin:0}
+.wt-share button{min-height:44px;min-width:44px;border:1px solid var(--wp--preset--color--line);border-radius:999px;background:var(--wp--preset--color--base);padding:0 1rem;font-size:.8125rem;font-weight:700;color:var(--wp--preset--color--contrast);display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
+.wt-share button:hover{background:var(--wp--preset--color--surface)}
+.wt-share--float{display:none}
+body.wt-share-none .wt-share{display:none}
+body.wt-share-float .wt-share--top,body.wt-share-float .wt-share--bottom{display:none}
+body.wt-share-float .wt-share--float{display:flex;position:fixed;right:1rem;bottom:1rem;z-index:40;flex-direction:column;gap:.5rem;margin:0}
+body.wt-share-float .wt-share--float .wt-share__label{display:none}
+body.wt-share-float .wt-share--float button{padding:0;width:48px;height:48px;justify-content:center;box-shadow:var(--wp--preset--shadow--depth-2)}
+body.wt-share-float .wt-share--float button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
+@media (min-width:1200px){body.wt-share-float .wt-share--float{right:auto;left:calc(50% + 340px + 24px);top:calc(var(--wt-header-h) + 2rem);bottom:auto}}
+
+/* ---------- 8. 4 軸（motion / depth / density / de-text）: body class の opt-in ---------- */
+/* motion: 出現は body.wt-motion-on かつ html.wt-js のときだけ初期非表示。reduced-motion は常に表示 */
+@media (prefers-reduced-motion:no-preference){
+html.wt-js body.wt-motion-on .wt-reveal{opacity:0;transform:translateY(12px);transition:opacity var(--wp--custom--motion-slow) ease,transform var(--wp--custom--motion-slow) ease}
+html.wt-js body.wt-motion-on .wt-reveal.is-in{opacity:1;transform:none}
+}
+html.wt-js body.wt-motion-off .wt-reveal,html.wt-js body:not(.wt-motion-on) .wt-reveal{opacity:1;transform:none}
+.wt-count{font-variant-numeric:tabular-nums}
+/* depth 0 / 1 / 2 */
+body.wt-depth-1 .wp-block-group.is-style-wt-product,body.wt-depth-1 .wp-block-group.is-style-wt-linkcard,body.wt-depth-1 .wp-block-group.is-style-wt-card,body.wt-depth-1 .wt-related .wt-rcard{box-shadow:var(--wp--preset--shadow--depth-1);border-color:transparent}
+body.wt-depth-2 .wp-block-group.is-style-wt-product,body.wt-depth-2 .wp-block-group.is-style-wt-linkcard,body.wt-depth-2 .wp-block-group.is-style-wt-card,body.wt-depth-2 .wt-related .wt-rcard,body.wt-depth-2 .wt-toc{box-shadow:var(--wp--preset--shadow--depth-2);border-color:transparent}
+body.wt-depth-1 .wt-related .wt-rcard,body.wt-depth-2 .wt-related .wt-rcard{padding:.6rem}
+body[class*="wt-depth-"]:not(.wt-depth-0) .wp-block-group.is-style-wt-product,body[class*="wt-depth-"]:not(.wt-depth-0) .wp-block-group.is-style-wt-linkcard,body[class*="wt-depth-"]:not(.wt-depth-0) .wt-related .wt-rcard{transition:transform var(--wp--custom--motion-base),box-shadow var(--wp--custom--motion-base)}
+body[class*="wt-depth-"]:not(.wt-depth-0) .wp-block-group.is-style-wt-linkcard:hover,body[class*="wt-depth-"]:not(.wt-depth-0) .wt-related .wt-rcard:hover{transform:translateY(-3px);box-shadow:var(--wp--preset--shadow--depth-3)}
+body.wt-depth-2 .wp-block-button__link.has-cta-background-color,body .wp-block-button.is-style-wt-raised .wp-block-button__link{box-shadow:0 4px 0 #7c2d12,0 6px 12px -4px rgba(23,28,34,.3);transform:translateY(-2px)}
+body.wt-depth-2 .wp-block-button__link.has-cta-background-color:active,.wp-block-button.is-style-wt-raised .wp-block-button__link:active{transform:translateY(1px);box-shadow:0 1px 0 #7c2d12}
+.wp-block-button.is-style-wt-ghost .wp-block-button__link{background:transparent;border:1.5px solid var(--wp--preset--color--line);color:var(--wp--preset--color--contrast)}
+@media (prefers-reduced-motion:reduce){body[class*="wt-depth-"] *{transition:none!important}body[class*="wt-depth-"] .wt-rcard:hover,body[class*="wt-depth-"] .is-style-wt-linkcard:hover{transform:none}}
+/* density: spacing preset の差し替え（airy / normal / compact） */
+body.wt-density-airy{--wp--preset--spacing--40:1.25rem;--wp--preset--spacing--50:2rem;--wp--preset--spacing--60:2.75rem;--wp--preset--spacing--70:clamp(2.75rem,1.6rem + 4vw,4rem);--wp--preset--spacing--80:clamp(4rem,2rem + 7vw,7rem);--wt-block-gap:1.35rem}
+body.wt-density-compact{--wp--preset--spacing--40:.75rem;--wp--preset--spacing--50:1rem;--wp--preset--spacing--60:1.5rem;--wp--preset--spacing--70:clamp(1.5rem,1rem + 2vw,2rem);--wp--preset--spacing--80:clamp(2rem,1.2rem + 3vw,3rem);--wt-block-gap:.75rem}
+body.wt-density-airy .wp-block-post-content>p{margin-bottom:1.35rem}body.wt-density-airy .wp-block-post-content>h2{margin-top:3.25rem}
+body.wt-density-compact .wp-block-post-content>p{margin-bottom:.75rem}body.wt-density-compact .wp-block-post-content>h2{margin-top:2rem;margin-bottom:.75rem}body.wt-density-compact .wp-block-post-content>h3{margin-top:1.5rem}
+body.wt-density-compact .wp-block-group[class*="is-style-wt-"]{margin-block:1rem;padding:.75rem 1rem}
+body.wt-density-compact .wt-related .wp-block-post-template{gap:.75rem}
+/* de-text: 文字を減らす装飾（見出しマーク・番号バッジ・引用符・目次番号丸） */
+body.wt-detext-on .wp-block-post-content>h2:not([class*="is-style-wt-"])::before,body.wt-detext-on .wp-block-post-content>h2.is-style-wt-plain::before{content:"";display:inline-block;width:.5em;height:.5em;border-radius:50%;background:var(--wp--preset--color--accent);margin-right:.5rem;vertical-align:.15em}
+body.wt-detext-on .wp-block-post-content>ol:not([class*="is-style-wt-"]){list-style:none;padding-left:0;counter-reset:b}
+body.wt-detext-on .wp-block-post-content>ol:not([class*="is-style-wt-"])>li{position:relative;padding-left:2.4rem;margin-bottom:.6rem;counter-increment:b}
+body.wt-detext-on .wp-block-post-content>ol:not([class*="is-style-wt-"])>li::before{content:counter(b);position:absolute;left:0;top:.05em;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;font-family:var(--wp--preset--font-family--latin);display:flex;align-items:center;justify-content:center;font-size:.875rem}
+body.wt-detext-on .wp-block-quote:not(.is-style-wt-quote-mark){border-left:0;padding:1.25rem 1.25rem 1.25rem 3rem;position:relative;background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m)}
+body.wt-detext-on .wp-block-quote:not(.is-style-wt-quote-mark)::before{content:"“";position:absolute;left:.9rem;top:.1rem;font-size:3rem;line-height:1;font-family:Georgia,serif;color:var(--wp--preset--color--accent);opacity:.6}
+body.wt-detext-on .wt-toc__list>li::before{content:counter(toc);width:1.4rem;height:1.4rem;border-radius:50%;background:var(--wp--preset--color--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;top:.15em;left:-1.9rem}
+body.wt-detext-on .wt-toc__list{padding-left:1.9rem}
+body.wt-detext-on .wp-block-heading.is-style-wt-plain{font-weight:700}
+
+/* ---------- 10. 404（3 変種 + CV slot） ---------- */
+.wt-404{text-align:center}
+.wt-404__code{font-family:var(--wp--preset--font-family--latin);font-size:clamp(3rem,8vw,5rem);font-weight:800;color:var(--wp--preset--color--accent-soft);line-height:1;margin:0;letter-spacing:-.02em}
+.wt-404 h1{margin:.25rem 0 .5rem}
+.wt-404__why{color:var(--wp--preset--color--mute);font-size:.9375rem;max-width:36em;margin:0 auto 1.5rem}
+.wt-404__search{max-width:520px;margin:0 auto 2rem}
+.wt-404__search .wp-block-search__inside-wrapper{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);overflow:hidden}
+.wt-404__search .wp-block-search__input{border:0;min-height:48px;padding:0 1rem;font-size:1rem}
+.wt-404__search .wp-block-search__button{border:0;min-height:48px;padding:0 1.25rem;background:var(--wp--preset--color--accent);color:#fff;font-weight:700}
+.wt-404__sect{text-align:left;margin-top:var(--wp--preset--spacing--60)}
+.wt-404__sect>h2{font-size:var(--wp--preset--font-size--l);margin:0 0 1rem;display:flex;align-items:center;gap:.5rem}
+.wt-404__sect>h2::before{content:"";width:4px;height:1em;background:var(--wp--preset--color--accent);border-radius:2px}
+.wt-404__variant{display:none}
+body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--cta,body.wt-nf-suggest .wt-404__variant--suggest{display:block}
+.wt-404__cats .wp-block-categories{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.wt-404__cats .wp-block-categories a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:1px solid var(--wp--preset--color--line);border-radius:999px;text-decoration:none;color:var(--wp--preset--color--contrast);font-size:.875rem;background:var(--wp--preset--color--base)}
+.wt-404__home{margin-top:1.5rem}
+.wt-404 .wt-related .wp-block-post-template{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:599px){.wt-404 .wt-related .wp-block-post-template{grid-template-columns:1fr 1fr}}
+.wt-suggest{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.wt-suggest a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);text-decoration:none;font-weight:700;font-size:.875rem}
+/* CV slot lane（LP / 比較記事 / 問い合わせ） */
+.wt-cv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:var(--wp--preset--spacing--60)}
+@media (max-width:767px){.wt-cv{grid-template-columns:1fr}}
+.wt-cv__item{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);padding:1.25rem;display:grid;gap:.5rem;align-content:start;text-align:left;background:var(--wp--preset--color--base)}
+.wt-cv__item .wt-eyebrow{margin:0}
+.wt-cv__item p{margin:0}
+.wt-cv__item .wp-block-buttons{margin-top:.5rem}
+.wt-cv__item--cta{background:var(--wp--preset--color--accent-soft);border-color:transparent}
+/* header: logo-left-cta-right（文字ナビなし）は PC でもハンバーガー + CTA */
+.wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
+.wt-header--cta .wp-block-navigation__responsive-container:not(.is-menu-open){display:none}
+@media (min-width:600px){.wt-header--cta .wt-header__cta{display:block;order:1}.wt-header--cta .wt-header__nav{flex:0 0 auto;order:2}}
+@media (max-width:599px){.wt-header--cta .wt-header__cta{display:block}.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
+/* カタログ: cover 3 枚（コントラスト guard）*/
+.wt-lumgrid{display:grid;gap:1rem}@media (min-width:768px){.wt-lumgrid{grid-template-columns:repeat(3,1fr)}}
+.wt-lumgrid .wp-block-cover{margin:0;border-radius:var(--wp--custom--radius-m);overflow:hidden}
+.wt-lumgrid .wp-block-cover .wp-block-cover__inner-container{align-self:end;padding:1rem}
+.wt-lumgrid .wp-block-cover h3{margin:0 0 .25rem;font-size:1.125rem}.wt-lumgrid .wp-block-cover p{margin:0}
+/* 修正 2026-09-05: 次に読むは 1 列、44px（TOC リンク・FAQ summary・フッターナビ）*/
+.wt-next .wp-block-post-template{grid-template-columns:1fr}
+.wt-toc a{display:flex;align-items:center;min-height:44px;padding:0}
+.wt-toc__list>li{margin:0}.wt-toc__list ol li{margin:0}
+.wt-toc__list>li::before{top:.75rem}.wt-toc__list ol li::before{top:1.4rem}
+body.wt-detext-on .wt-toc__list>li::before{top:.85rem}
+.wp-block-details summary{min-height:44px;display:flex;align-items:center}
+.wt-footer .wp-block-navigation-item__content{display:inline-flex;align-items:center;min-height:44px}
+/* レビュー対応 2026-09-05: 独立リンクの当たり判定 44px（サイト名・パンくず・カテゴリターム・カードタイトル）。行送りは負マージンで据え置き */
+.wp-block-site-title a,.wt-breadcrumb a,.wp-block-post-terms a,.wt-announce__text a{display:inline-flex;align-items:center;min-height:44px;margin-block:calc((1lh - 44px) / 2)}
+.wt-rcard .wp-block-post-title a{display:flex;align-items:flex-start;min-height:44px}
+.wt-rcard .wp-block-post-terms a{margin-block:calc((1lh - 44px) / 2)}
+/* レビュー対応 2026-09-05: 実描画計測で light 画像が 4.5:1 未達だったため、文字位置（下部 0〜60%）でのスクリム最小 alpha を引き上げる */
+body.wt-eyecatch-hero .wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.84) 55%,rgba(0,0,0,.30) 100%)}
+[data-wt-lum="dark"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.40) 55%,rgba(0,0,0,0) 100%)!important}
+[data-wt-lum="mid"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(0,0,0,.80) 0%,rgba(0,0,0,.70) 55%,rgba(0,0,0,.15) 100%)!important}
+[data-wt-lum="light"].wt-posthead__img::after,.wp-block-cover.is-style-wt-scrim[data-wt-lum="light"]::before{background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.93) 70%,rgba(0,0,0,.70) 100%)!important}
+.wt-breadcrumb a{min-width:44px;justify-content:center}
+/* 再レビュー対応: hero 上のメタ（日付・著者・パンくず・ターム）は白系に上書き（mute 色は写真上で 4.5:1 を満たさない） */
+body.wt-eyecatch-hero .wt-posthead__text :is(.wp-block-post-date,.wp-block-post-author-name,.wt-breadcrumb,.wt-breadcrumb p,.wp-block-post-terms,.wp-block-post-terms a,time){color:#fff!important}
