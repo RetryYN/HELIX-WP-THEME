@@ -3,6 +3,7 @@
 **収集件数**: 39 件（既存 24 件を再分類・統合 + 新規 15 件）
 **区分**: A 企業向けSaaS/BtoB=8 / B 個人向けサービス=14 / C 資料DL・比較媒体=5 / D イベント・セミナー・キャンペーン=8 / E EC・単品商品=4
 **fetched 内訳**: full=34 / partial=5（reason は observations.json 各件に記載） / failed=0（取得失敗は下記「除外」参照）
+**再検証（reverified）**: true=19（今回のパスで実ページを取得・観察）/ false=20（site-L06〜L25。初回パスの記録を再分類したもので、この版では実ページを再検証していない。`fetched` は初回パス時の取得状態であり、再検証状態とは別の意味）。各件に `reverified` と `reverify_note` を記録。
 
 ---
 
@@ -23,7 +24,7 @@
 - **A**（n=8、多くが個別構成で一致は少ない）: `hero→features→case-interview→review→form`（1件）／`hero→steps→steps→faq`（1件）／`hero→steps`（1件）。他5件は上記いずれとも異なる個別構成。
 - **B**（n=14）: `hero→campaigns→promotion_grid`（1件）／`hero→campaigns→cards`（1件）／`hero→benefits_3→features→terms`（1件）。14件中一致した並びは無く、個別構成が大半。
 - **C**（n=5）: `hero→value→form`（2件、最多）／`hero→value→download`（1件）／`hero→compare→review→download→footer`（1件）。
-- **D**（n=8）: `hero→overview→speaker→form`（1件）／`hero→features→problem→compare→steps→compare`（1件）／`hero→steps→faq→footer`（1件）。8件中7件が異なる個別構成。
+- **D**（n=8）: `hero→overview→speaker→form`（1件）／`hero→features→problem→compare→steps→compare`（1件）／`hero→steps→faq→footer`（1件）。8件すべてが異なる個別構成。
 - **E**（n=4）: `hero→problem→features→review`（1件）／`hero→offer→form→features→footer`（1件）／`hero→pricing→problem→features→review→faq→form→footer`（1件）。
 
 ---
@@ -42,7 +43,7 @@
 
 ## 4. 観察された多数派の型（事実のみ、7パーツ各1行）
 
-- interview_card: 型が付いた9件中 summary-card が最多（4件）。
+- interview_card: 型が付いた7件中 summary-card が最多（4件）。
 - review: 型が付いた9件中 quote+photo が最多（6件）。
 - external_rating: 型が付いた14件中 certification が最多（5件）。
 - download: 型が付いた13件中 button-to-form が最多（8件）。
