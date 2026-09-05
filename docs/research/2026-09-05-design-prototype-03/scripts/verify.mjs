@@ -247,8 +247,16 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 
   // share:float と footer_totop:button の併用で固定ボタンが重ならない（SP / PC）。両方とも position:fixed なので最下部へスクロールしてから矩形を比較
   out.fixedOverlap = {};
+  // 直前の load-more 検査（pcPage）で追記後に history / 追加読み込みが動いている最中に次の goto を始めると
+  // "net::ERR_ABORTED; maybe frame was detached?" で中断することがある（2026-09-06 に 3 回連続で実測）。
+  // networkidle を待ってから遷移し、中断時は 1 回だけやり直す。検査内容は変えない。
+  const gotoSettled = async (page, url) => {
+    await page.waitForLoadState("networkidle").catch(() => {}); await page.waitForTimeout(500);
+    try { await page.goto(url, { waitUntil: "networkidle" }); }
+    catch (e) { if (!/ERR_ABORTED|detached/.test(String(e))) throw e; await page.waitForTimeout(800); await page.goto(url, { waitUntil: "networkidle" }); }
+  };
   for (const [dev, page] of [["sp", spPage], ["pc", pcPage]]) {
-    await page.goto(BASE + ARTICLE + "?wt=share:float,footer_totop:button", { waitUntil: "networkidle" }); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(400);
+    await gotoSettled(page, BASE + ARTICLE + "?wt=share:float,footer_totop:button"); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(400);
     out.fixedOverlap[dev] = await page.evaluate(() => {
       const rect = (el) => { const r = el.getBoundingClientRect(); return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) }; };
       const share = document.querySelector(".wt-share--float"); const top = document.querySelector(".wt-totop");
@@ -485,13 +493,15 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     full: ["numbers", "features", "steps", "logos", "testimonials", "pricing", "comparison", "faq", "badges", "cta-band--one", "cta-band--two", "cta-band--three"],
     short: ["features", "pricing", "faq", "cta-band--three"],
     trust: ["logos", "numbers", "testimonials", "badges", "cta-band--three"],
+    // WT-EVT-0268: 全区間 + LP パーツ 7 種（順序は order 値）
+    extended: ["numbers", "features", "steps", "logos", "interview", "testimonials", "pricing", "comparison", "faq", "download", "badges", "rating", "cta-band--one", "cta-band--two", "form", "line", "cta-band--three"],
   };
   for (const variant of Object.keys(expectedSections)) {
     await lpPcPage.goto(BASE + LP + `?wt=lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
     const result = await lpPcPage.evaluate(() => {
       const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
       const key = (el) => {
-        const section = ["numbers", "features", "steps", "logos", "testimonials", "pricing", "comparison", "faq", "badges"].find((name) => el.classList.contains(`wt-lp__section--${name}`));
+        const section = ["numbers", "features", "steps", "logos", "interview", "testimonials", "pricing", "comparison", "faq", "download", "badges", "rating", "form", "line"].find((name) => el.classList.contains(`wt-lp__section--${name}`));
         const band = ["one", "two", "three"].find((name) => el.classList.contains(`wt-lp-cta-band--${name}`));
         return section || (band ? `cta-band--${band}` : undefined);
       };
@@ -499,7 +509,7 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     });
     out.lpSections.variants.push({ variant, visible: result, expected: expectedSections[variant], pass: JSON.stringify(result) === JSON.stringify(expectedSections[variant]) });
   }
-  out.lpSections.pass = out.lpSections.variants.length === 3 && out.lpSections.variants.every((item) => item.pass);
+  out.lpSections.pass = out.lpSections.variants.length === 4 && out.lpSections.variants.every((item) => item.pass);
 
   const fixedAudit = async (page, dev, variant) => {
     await page.goto(BASE + LP + `?wt=lp_fixed:${variant},footer_totop:button,share:float`, { waitUntil: "networkidle" }); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(450);
@@ -557,9 +567,9 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 
   // double CTA の副ボタン: short / trust で比較セクションが非表示になる組み合わせでも、表示中の全アンカー（hero CTA を含む）の遷移先が存在し可視であること。
   // 構成ごとの期待遷移先（副 CTA は full → 比較表 / short → 料金 / trust → 声、のはずが消失していないかを検査する）
-  const expectedSecondaryHref = { full: "#comparison", short: "#pricing", trust: "#voices" };
+  const expectedSecondaryHref = { full: "#comparison", short: "#pricing", trust: "#voices", extended: "#comparison" };
   out.lpVisibleAnchors = { variants: [] };
-  for (const variant of ["full", "short", "trust"]) {
+  for (const variant of ["full", "short", "trust", "extended"]) {
     await lpPcPage.goto(BASE + LP + `?wt=lp_hero_cta:double,lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
     const result = await lpPcPage.evaluate((expectedHref) => {
       const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
@@ -577,7 +587,7 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     }, expectedSecondaryHref[variant]);
     out.lpVisibleAnchors.variants.push({ variant, ...result });
   }
-  out.lpVisibleAnchors.pass = out.lpVisibleAnchors.variants.length === 3 && out.lpVisibleAnchors.variants.every((item) => item.pass);
+  out.lpVisibleAnchors.pass = out.lpVisibleAnchors.variants.length === 4 && out.lpVisibleAnchors.variants.every((item) => item.pass);
 
   await lpSpCtx.close(); await lpPcCtx.close();
 
@@ -1120,6 +1130,51 @@ if (WPCLIDIR) {
   out.footerCredit.pass = off === "none" && !!on && on.display !== "none" && on.belowLegal === true && /nofollow/.test(on.rel || "") && on.text.length > 0;
 }
 
+// 9.12. LP パーツ 7 種（WT-EVT-0268、Claude 案）: 軸ごとに 1 型だけが表示され他は非表示、JS 無効でも同じ、タップ 44px、
+//       フォームは全入力に label、外部フォーム型はリンク（form 要素なし）、QR 型は SP で QR を隠しボタンを出す、追尾 LINE ボタンは float-cta と重ならず 44px 以上。
+{
+  const PARTS = { interview: ["summary-card", "link-card", "logo-only"], review: ["quote-photo", "stars-count", "satisfaction-number"], rating: ["certification", "client-logos", "award-badge"], download: ["button-to-form", "form-inline"], form: ["external", "inline"], line: ["button", "qr"] };
+  const audit = async (ctx, dev) => {
+    const p = await ctx.newPage(); const results = [];
+    for (const [part, variants] of Object.entries(PARTS)) for (const v of variants) {
+      await p.goto(BASE + LP + `?wt=lp_sections:extended,lp_${part}:${v}`, { waitUntil: "networkidle" });
+      // 画像は loading="lazy" のため、当該区間を viewport に入れて読み込み完了を待ってから判定する
+      await p.evaluate(([part]) => { const el = document.querySelector(`.wt-lp__section--${part}`); if (el) el.scrollIntoView({ block: "start" }); }, [part]);
+      await p.waitForFunction(([part, v]) => { const el = document.querySelector(`.wt-lp-${part}--${v}`); return !el || Array.from(el.querySelectorAll("img")).every((i) => i.complete); }, [part, v], { timeout: 8000 }).catch(() => {});
+      const r = await p.evaluate(([part, v, variants]) => {
+        const vis = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+        const shown = variants.filter((x) => { const el = document.querySelector(`.wt-lp-${part}--${x}`); return el && vis(el); });
+        const el = document.querySelector(`.wt-lp-${part}--${v}`);
+        const taps = el ? Array.from(el.querySelectorAll("a[href], button, input:not([type=checkbox]), textarea")).filter(vis).map((t) => { const r = t.getBoundingClientRect(); return { tag: t.tagName.toLowerCase(), w: r.width, h: r.height, ok: r.height >= 44 && r.width >= 44 }; }) : [];
+        const inputs = el ? Array.from(el.querySelectorAll("input, textarea")).filter(vis) : [];
+        const labelled = inputs.every((i) => i.type === "checkbox" ? !!i.closest("label") : !!(i.id && document.querySelector(`label[for="${i.id}"]`)));
+        const forms = el ? el.querySelectorAll("form").length + (el.tagName === "FORM" ? 1 : 0) : 0;
+        const qr = el ? el.querySelector(".wt-lp-line__qr") : null; const spBtn = el ? el.querySelector(".wt-lp-line__btn--sp") : null;
+        const imgs = el ? Array.from(el.querySelectorAll("img")).map((i) => ({ alt: i.getAttribute("alt"), ok: i.complete && i.naturalWidth > 0 })) : [];
+        return { body: document.body.classList.contains(`wt-lp-${part}-${v}`), shown, taps, labelled, forms, qrVisible: qr ? vis(qr) : null, spBtnVisible: spBtn ? vis(spBtn) : null, imgs, text: el ? el.textContent.replace(/\s+/g, " ").trim().length : 0 };
+      }, [part, v, variants]);
+      results.push({ dev, part, v, ...r });
+    }
+    await p.goto(BASE + LP + "?wt=lp_sections:extended", { waitUntil: "networkidle" });
+    const stickyOff = await p.evaluate(() => { const el = document.querySelector(".wt-lp-fixed--line-sticky"); return el ? getComputedStyle(el).display : null; });
+    await p.goto(BASE + LP + "?wt=lp_fixed:line-sticky,lp_sections:extended", { waitUntil: "networkidle" });
+    const sticky = await p.evaluate(() => { const el = document.querySelector(".wt-lp-fixed--line-sticky"); const r = el.getBoundingClientRect(); const float = document.querySelector(".wt-lp-fixed--float-cta"); const fr = float.getBoundingClientRect(); return { visible: r.width > 0 && r.height > 0 && getComputedStyle(el).display !== "none", w: r.width, h: r.height, fixed: getComputedStyle(el).position === "fixed", floatHidden: fr.width === 0 || getComputedStyle(float).display === "none", inViewport: r.bottom <= innerHeight && r.left >= 0 }; });
+    sticky.hiddenByDefault = stickyOff === "none";
+    await p.close(); return { results, sticky };
+  };
+  const cSp = await browser.newContext(SP); const sp = await audit(cSp, "sp"); await cSp.close();
+  const cPc = await browser.newContext(PC); const pc = await audit(cPc, "pc"); await cPc.close();
+  const cNo = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await audit(cNo, "sp-nojs"); await cNo.close();
+  const okItem = (r) => r.body && r.shown.length === 1 && r.shown[0] === r.v && r.text > 0 && r.taps.every((t) => t.ok) && r.labelled && r.imgs.every((i) => i.alt !== null && i.ok)
+    && (r.part !== "form" || (r.v === "external" ? r.forms === 0 && r.taps.some((t) => t.tag === "a") : r.forms >= 1))
+    && (r.part !== "download" || (r.v === "form-inline" ? r.forms >= 1 : r.forms === 0))
+    && (!(r.part === "line" && r.v === "qr") || (r.dev === "pc" ? r.qrVisible === true && r.spBtnVisible === false : r.qrVisible === false && r.spBtnVisible === true));
+  const okSticky = (s) => s.visible && s.fixed && s.w >= 44 && s.h >= 44 && s.floatHidden && s.inViewport && s.hiddenByDefault === true; // 既定（軸なし）では非表示（実装時に常時表示になっていた不具合の回帰防止）
+  const sameNoJs = JSON.stringify(noJs.results.map((r) => [r.part, r.v, r.shown, r.text])) === JSON.stringify(sp.results.map((r) => [r.part, r.v, r.shown, r.text]));
+  out.lpParts = { sp: sp.results, pc: pc.results, noJs: noJs.results, sticky: { sp: sp.sticky, pc: pc.sticky }, sameNoJs };
+  out.lpParts.pass = sp.results.length === 15 && pc.results.length === 15 && sp.results.every(okItem) && pc.results.every(okItem) && okSticky(sp.sticky) && okSticky(pc.sticky) && sameNoJs;
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -1149,6 +1204,7 @@ const checkList = [
   ["productCardNoPrBadge", out.productCardNoPrBadge.pass], ["qaModal", out.qaModal.pass],
   ["graphs", out.graphs.pass], ["metricsSp", out.metricsSp.pass],
   ["prNoticeText", out.prNoticeText.pass], ["relatedSlider", out.relatedSlider.pass], ["shareSns", out.shareSns.pass], ["depthFloat", out.depthFloat.pass], ["tableRich", out.tableRich.pass], ["footerCredit", out.footerCredit.pass],
+  ["lpParts", out.lpParts.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

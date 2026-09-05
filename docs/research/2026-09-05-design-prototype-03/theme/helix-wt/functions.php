@@ -39,9 +39,16 @@ function wt_axes() {
 		'lp_header'    => array( 'minimal', array( 'minimal', 'logo-only', 'none' ) ),
 		'lp_hero'      => array( 'split', array( 'split', 'fullbleed', 'product', 'text-only' ) ),
 		'lp_hero_cta'  => array( 'single', array( 'single', 'double', 'form-inline' ) ),
-		'lp_sections'  => array( 'full', array( 'full', 'short', 'trust' ) ),
+		'lp_sections'  => array( 'full', array( 'full', 'short', 'trust', 'extended' ) ), // extended: 段4 の全区間 + PO 反応 16 回目（WT-EVT-0268）の LP パーツ 7 種
 		'lp_cta_style' => array( 'solid', array( 'solid', 'outline', 'pill' ) ),
-		'lp_fixed'     => array( 'none', array( 'none', 'sp-bottom-bar', 'float-cta' ) ),
+		'lp_fixed'     => array( 'none', array( 'none', 'sp-bottom-bar', 'float-cta', 'line-sticky' ) ),
+		// LP パーツ 7 種（WT-EVT-0268、Claude 案）。既定は台帳 lp-recapture の多数派の型
+		'lp_interview' => array( 'summary-card', array( 'summary-card', 'link-card', 'logo-only' ) ),
+		'lp_review'    => array( 'quote-photo', array( 'quote-photo', 'stars-count', 'satisfaction-number' ) ),
+		'lp_rating'    => array( 'certification', array( 'certification', 'client-logos', 'award-badge' ) ),
+		'lp_download'  => array( 'button-to-form', array( 'button-to-form', 'form-inline' ) ),
+		'lp_form'      => array( 'external', array( 'external', 'inline' ) ),
+		'lp_line'      => array( 'button', array( 'button', 'qr' ) ),
 		'lp_legal'     => array( 'on', array( 'on', 'off' ) ),
 	);
 }
@@ -95,7 +102,7 @@ add_action( 'after_setup_theme', function () {
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.2' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.10' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.11' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
