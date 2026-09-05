@@ -494,14 +494,14 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     short: ["features", "pricing", "faq", "cta-band--three"],
     trust: ["logos", "numbers", "testimonials", "badges", "cta-band--three"],
     // WT-EVT-0268: 全区間 + LP パーツ 7 種（順序は order 値）
-    extended: ["numbers", "features", "steps", "logos", "interview", "testimonials", "pricing", "comparison", "faq", "download", "badges", "rating", "cta-band--one", "cta-band--two", "form", "line", "cta-band--three"],
+    extended: ["numbers", "features", "steps", "logos", "interview", "testimonials", "review", "pricing", "comparison", "faq", "download", "badges", "rating", "cta-band--one", "cta-band--two", "form", "line", "cta-band--three"],
   };
   for (const variant of Object.keys(expectedSections)) {
     await lpPcPage.goto(BASE + LP + `?wt=lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
     const result = await lpPcPage.evaluate(() => {
       const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
       const key = (el) => {
-        const section = ["numbers", "features", "steps", "logos", "interview", "testimonials", "pricing", "comparison", "faq", "download", "badges", "rating", "form", "line"].find((name) => el.classList.contains(`wt-lp__section--${name}`));
+        const section = ["numbers", "features", "steps", "logos", "interview", "testimonials", "review", "pricing", "comparison", "faq", "download", "badges", "rating", "form", "line"].find((name) => el.classList.contains(`wt-lp__section--${name}`));
         const band = ["one", "two", "three"].find((name) => el.classList.contains(`wt-lp-cta-band--${name}`));
         return section || (band ? `cta-band--${band}` : undefined);
       };
@@ -1149,9 +1149,11 @@ if (WPCLIDIR) {
         const inputs = el ? Array.from(el.querySelectorAll("input, textarea")).filter(vis) : [];
         const labelled = inputs.every((i) => i.type === "checkbox" ? !!i.closest("label") : !!(i.id && document.querySelector(`label[for="${i.id}"]`)));
         const forms = el ? el.querySelectorAll("form").length + (el.tagName === "FORM" ? 1 : 0) : 0;
+        const submitButtons = el ? el.querySelectorAll("button[type=submit], input[type=submit], button:not([type])").length : 0;
+        const pocButtons = el ? el.querySelectorAll("form[data-wt-poc-form=no-submit] button[type=button]").length + (el.tagName === "FORM" && el.dataset.wtPocForm === "no-submit" ? el.querySelectorAll("button[type=button]").length : 0) : 0;
         const qr = el ? el.querySelector(".wt-lp-line__qr") : null; const spBtn = el ? el.querySelector(".wt-lp-line__btn--sp") : null;
         const imgs = el ? Array.from(el.querySelectorAll("img")).map((i) => ({ alt: i.getAttribute("alt"), ok: i.complete && i.naturalWidth > 0 })) : [];
-        return { body: document.body.classList.contains(`wt-lp-${part}-${v}`), shown, taps, labelled, forms, qrVisible: qr ? vis(qr) : null, spBtnVisible: spBtn ? vis(spBtn) : null, imgs, text: el ? el.textContent.replace(/\s+/g, " ").trim().length : 0 };
+        return { body: document.body.classList.contains(`wt-lp-${part}-${v}`), shown, taps, inputs: inputs.length, labelled, forms, submitButtons, pocButtons, qrVisible: qr ? vis(qr) : null, spBtnVisible: spBtn ? vis(spBtn) : null, imgs, text: el ? el.textContent.replace(/\s+/g, " ").trim().length : 0 };
       }, [part, v, variants]);
       results.push({ dev, part, v, ...r });
     }
@@ -1165,14 +1167,21 @@ if (WPCLIDIR) {
   const cSp = await browser.newContext(SP); const sp = await audit(cSp, "sp"); await cSp.close();
   const cPc = await browser.newContext(PC); const pc = await audit(cPc, "pc"); await cPc.close();
   const cNo = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await audit(cNo, "sp-nojs"); await cNo.close();
-  const okItem = (r) => r.body && r.shown.length === 1 && r.shown[0] === r.v && r.text > 0 && r.taps.every((t) => t.ok) && r.labelled && r.imgs.every((i) => i.alt !== null && i.ok)
-    && (r.part !== "form" || (r.v === "external" ? r.forms === 0 && r.taps.some((t) => t.tag === "a") : r.forms >= 1))
-    && (r.part !== "download" || (r.v === "form-inline" ? r.forms >= 1 : r.forms === 0))
+  // 必要要素の下限（空配列の every() で合格しないように）: タップ要素 1 以上、写真が要る型は img 1 以上、フォーム型は入力数と「送信できないボタン」
+  const MIN = { "interview/summary-card": { imgs: 3 }, "interview/link-card": { imgs: 3, taps: 3 }, "review/quote-photo": { imgs: 3 }, "download/button-to-form": { imgs: 1, taps: 1 }, "download/form-inline": { imgs: 1, inputs: 2 }, "form/inline": { inputs: 6 }, "line/button": { taps: 1 }, "line/qr-sp": { taps: 1 }, "line/qr-pc": { taps: 0 } }; // qr は PC では QR 枠のみ（タップ要素なし）、SP ではボタンに切替
+  const okItem = (r) => {
+    const m = MIN[`${r.part}/${r.v}-${r.dev.startsWith("pc") ? "pc" : "sp"}`] || MIN[`${r.part}/${r.v}`] || {};
+    if ((m.imgs || 0) > r.imgs.length || (m.taps || 0) > r.taps.length || (m.inputs || 0) > (r.inputs || 0)) return false;
+    return r.body && r.shown.length === 1 && r.shown[0] === r.v && r.text > 0 && r.taps.every((t) => t.ok) && r.labelled // タップ要素の有無は MIN で型ごとに要求（表示だけの型は 0 でよい） && r.imgs.every((i) => i.alt !== null && i.ok)
+    && (r.part !== "form" || (r.v === "external" ? r.forms === 0 && r.taps.some((t) => t.tag === "a") : r.forms >= 1 && r.submitButtons === 0 && r.pocButtons >= 1))
+    && (r.part !== "download" || (r.v === "form-inline" ? r.forms >= 1 && r.submitButtons === 0 && r.pocButtons >= 1 : r.forms === 0))
     && (!(r.part === "line" && r.v === "qr") || (r.dev === "pc" ? r.qrVisible === true && r.spBtnVisible === false : r.qrVisible === false && r.spBtnVisible === true));
+  };
   const okSticky = (s) => s.visible && s.fixed && s.w >= 44 && s.h >= 44 && s.floatHidden && s.inViewport && s.hiddenByDefault === true; // 既定（軸なし）では非表示（実装時に常時表示になっていた不具合の回帰防止）
   const sameNoJs = JSON.stringify(noJs.results.map((r) => [r.part, r.v, r.shown, r.text])) === JSON.stringify(sp.results.map((r) => [r.part, r.v, r.shown, r.text]));
-  out.lpParts = { sp: sp.results, pc: pc.results, noJs: noJs.results, sticky: { sp: sp.sticky, pc: pc.sticky }, sameNoJs };
-  out.lpParts.pass = sp.results.length === 15 && pc.results.length === 15 && sp.results.every(okItem) && pc.results.every(okItem) && okSticky(sp.sticky) && okSticky(pc.sticky) && sameNoJs;
+  out.lpParts = { sp: sp.results, pc: pc.results, noJs: noJs.results, sticky: { sp: sp.sticky, pc: pc.sticky, noJs: noJs.sticky }, sameNoJs };
+  // JS 無効の結果も同じ判定（okItem / okSticky）にかける（Astra 是正: 表示型とテキスト長の比較だけだった）
+  out.lpParts.pass = sp.results.length === 15 && pc.results.length === 15 && noJs.results.length === 15 && sp.results.every(okItem) && pc.results.every(okItem) && noJs.results.every(okItem) && okSticky(sp.sticky) && okSticky(pc.sticky) && okSticky(noJs.sticky) && sameNoJs;
 }
 
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）

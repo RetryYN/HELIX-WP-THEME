@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // shots-reaction9.mjs — 2026-09-06 PO 反応 16 回目 WT-EVT-0268（LP パーツ 7 種、台帳 lp-recapture の多数派を既定）の新規撮影。
-// 対象: 新規 38 枚（lp-sections extended ×2、lp-interview 3 型・lp-review 3 型・lp-rating 3 型・lp-download 2 型・lp-form 2 型・lp-line 2 型・lp-fixed line-sticky を SP/PC）。同名置換なし。
+// 対象: 新規 41 枚（extended の分割数は高さから決まる: 2026-09-06 時点で SP 3 + PC 6）+ 15 型 × 2 + line-sticky × 2。当初コメントの 38 は誤り（lp-sections extended ×2、lp-interview 3 型・lp-review 3 型・lp-rating 3 型・lp-download 2 型・lp-form 2 型・lp-line 2 型・lp-fixed line-sticky を SP/PC）。同名置換なし。
 // 撮影・JPEG 変換はすべて一時ディレクトリで行い、全枚数の非空検査と INDEX 照合を通った後に
 // 旧画像を退避 → 新画像を配置（失敗時は退避先から復元）→ INDEX 書き出しの順で置換する（shots-reaction4 の motion 置換と同じ方式）。
 import fs from "node:fs";
@@ -126,13 +126,16 @@ let keepBackup = false;
 const replacement = new Map(index.map((entry) => [entry.file, entry]));
 const known = new Set(existing.map((entry) => entry.file));
 const added = index.filter((entry) => !known.has(entry.file));
-const nextIndex = JSON.stringify(existing.map((entry) => replacement.get(entry.file) || entry).concat(added), null, 1) + "\n";
+// 分割数が前回より減った場合、旧 extended チャンク（今回の予定集合に無いもの）は INDEX から外し、画像も退避 dir へ移す（成功時に削除、失敗時に復元）
+const stale = existing.filter((entry) => /^lp-sections-extended-\d+-(sp|pc)\.jpg$/.test(entry.file) && !planned.has(entry.file)).map((entry) => entry.file);
+const nextIndex = JSON.stringify(existing.filter((entry) => !stale.includes(entry.file)).map((entry) => replacement.get(entry.file) || entry).concat(added), null, 1) + "\n";
 const indexTmp = catalogFile + ".reaction9.tmp";
 try {
   for (const entry of index) {
     const target = path.join(OUT, entry.file);
     if (fs.existsSync(target)) { fs.renameSync(target, path.join(backupDir, entry.file)); backedUp.add(entry.file); }
   }
+  for (const file of stale) { const t = path.join(OUT, file); if (fs.existsSync(t)) { fs.renameSync(t, path.join(backupDir, file)); backedUp.add(file); } }
   for (const entry of index) { fs.renameSync(path.join(TMP, entry.file), path.join(OUT, entry.file)); placed.push(entry.file); }
   // INDEX は画像配置の直後・退避削除の前に、一時ファイルへ書いてから rename で置換する（失敗したら下の catch で画像も戻す。rename は原子的で旧 INDEX は壊れない）。
   fs.writeFileSync(indexTmp, nextIndex);
