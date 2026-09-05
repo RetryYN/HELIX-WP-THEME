@@ -616,10 +616,91 @@
    "error": null,
    "buttonText": "読み込み中…",
    "buttonHidden": true,
+   "buttonDisplay": "none",
+   "buttonRect": [
+    0,
+    0
+   ],
+   "buttonVisible": false,
+   "nextLinkRemains": true,
    "bodyStillLoadMore": true
   },
   "added": 7,
   "pass": true
+ },
+ "fixedOverlap": {
+  "sp": {
+   "share": {
+    "x": 326,
+    "y": 724,
+    "w": 48,
+    "h": 104
+   },
+   "shareButtons": [
+    {
+     "x": 326,
+     "y": 724,
+     "w": 48,
+     "h": 48
+    },
+    {
+     "x": 326,
+     "y": 780,
+     "w": 48,
+     "h": 48
+    }
+   ],
+   "totop": {
+    "x": 326,
+    "y": 664,
+    "w": 48,
+    "h": 48
+   },
+   "intersects": false,
+   "reachable": [
+    true,
+    true,
+    true
+   ],
+   "inViewport": true,
+   "pass": true
+  },
+  "pc": {
+   "share": {
+    "x": 1084,
+    "y": 92,
+    "w": 48,
+    "h": 104
+   },
+   "shareButtons": [
+    {
+     "x": 1084,
+     "y": 92,
+     "w": 48,
+     "h": 48
+    },
+    {
+     "x": 1084,
+     "y": 148,
+     "w": 48,
+     "h": 48
+    }
+   ],
+   "totop": {
+    "x": 1376,
+    "y": 836,
+    "w": 48,
+    "h": 48
+   },
+   "intersects": false,
+   "reachable": [
+    true,
+    true,
+    true
+   ],
+   "inViewport": true,
+   "pass": true
+  }
  },
  "footerContrast": {
   "background": "rgb(244, 246, 249)",
@@ -925,7 +1006,7 @@
  "contrastPass": true,
  "contrastGuardPass": true,
  "summary": {
-  "pass": 24,
+  "pass": 26,
   "fail": 0,
   "checks": {
    "noJs": true,
@@ -951,7 +1032,9 @@
    "loadMoreNoJs": true,
    "loadMoreJs": true,
    "categoryPagination": true,
-   "categoryHeroContrast": true
+   "categoryHeroContrast": true,
+   "fixedOverlapSp": true,
+   "fixedOverlapPc": true
   }
  },
  "pass": true
