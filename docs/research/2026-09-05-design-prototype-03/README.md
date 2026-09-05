@@ -727,3 +727,50 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 ## 9. 公開安全
 
 サイト名・URL・実在の製品名・ブランド名なし（製品・価格・数値・引用は架空）。参照テーマは テーマA / テーマB 表記、第三者プラグイン名・SNS 名なし（共有は Web Share API + リンクコピー）。画像は生成画像と GD 生成のグラデーション（文字・ロゴなし）。パスはリポ相対。スクリプトの既定 URL はローカル docker のもの。
+
+## 10. 段5 — PO 反応 8 回目（WT-EVT-0249）の是正
+
+### PO 原文
+
+> 「density:compact これがバクにしか見えないんだけどなに？axis-detextこれもよくわらんな。axis-motionこれはなに見た目わからん。レビューするうえで説明入れといて。後半になればなるほど何を指しているかわかんね～。」
+
+### 原因の分析（Claude 案）
+
+- `density` は旧撮影が記事冒頭の切り出しで、余白差が最も出る本文中盤の「見出し → 段落 → リスト → 次の見出し」を同じ範囲で比較していなかった。また、旧画像の `off/on` という命名は、実装上の `airy / normal / compact` という 3 値を表していない。旧 PR タグの縦積みも同じ画面に写り、軸の差ではなく不具合のように見えた可能性がある。
+- `detext` は、現行記事の h2 が `is-style-wt-2tone`、ol が `is-style-wt-badge-list`、blockquote が `is-style-wt-quote-mark` である。CSS は h2・ol・quote について `:not([class*="is-style-wt-"])` を条件にしているため、これらの本文コンテンツには `detext:on` の追加差分が出ない。除外条件のない `.wt-toc__list>li::before` の目次丸番号バッジだけが、現行記事で実際に見える差分である。旧撮影が「変化しない本文」を説明なしに見せていたことが、軸の意味を分かりにくくした可能性が高い（Claude 案）。
+- `motion` は IntersectionObserver が `.wt-reveal` に `is-in` を付け、`opacity:0 / translateY(12px)` から 375ms で表示する軸である。静止画 1 枚だけでは、薄く浮いた途中フレームなのか、表示完了後なのかを区別できず、「見た目がわからない」状態になった可能性がある（Claude 案）。
+
+### 対応
+
+新規スクリプト `scripts/shots-reaction4.mjs` では、既存画像・既存 `CATALOG-INDEX.json` エントリを変更せず、以下の比較を新しいファイル名で追加する設計にした。
+
+- `density` は `airy / normal / compact` の 3 値を SP/PC それぞれで同じ `#h-4` 付近から viewport 撮影する。各ページで h2 の `margin-top`、h2 後の段落の `margin-bottom`、連続する 2 段落間の実測距離を `page.evaluate` で取得し、`results/density-measure.json` に保存する。
+- `detext` は記事冒頭の `.wt-toc` を off/on で撮影する。SP では通常の box が閉じるため、番号バッジを読めるよう撮影時だけ details を開く。併せて `#h-4` 付近の本文を off/on で撮影し、h2/list/quote に差分が出ないことを比較対象として明記する。
+- `motion` は同じ記事末の先頭 `.wt-rcard` が画面下から入り始める位置へ移動し、ページを毎回開き直して `f0=0ms`、`f1=200ms`、`f2=900ms` を撮影する。別途 `motion:off` を 900ms 後に撮影し、途中フレームと完了後・無効状態を切り分ける。
+
+実機で `shots-reaction4.mjs` を実行し、18 枚の追加画像と `results/density-measure.json` を生成した。density の計測は SP/PC の両 viewport で同じ値になったため、下表には値ごとの共通値を記載する。
+
+### density 実測値
+
+| 値 | h2 上マージン実測 px | h2 後の段落 margin-bottom 実測 px | 連続 2 段落間の実測距離 px |
+|---|---:|---:|---:|
+| airy | 52 | 4 | 21.59 |
+| normal | 40 | 4 | 16 |
+| compact | 32 | 4 | 12 |
+
+`h2 後の段落 margin-bottom` は `#h-4` 直後に実際に置かれた段落の computed style、`連続 2 段落間の実測距離` は記事本文内で隣接する 2 段落の矩形距離である。参考として CSS の指定は `airy` が h2 `3.25rem`・段落 `1.35rem`、`compact` が h2 `2rem`・段落 `.75rem`、`normal` は既定値であり、実測値はこの指定が反映された結果である。
+
+### 追加画像一覧（撮影対象）
+
+期待する追加枚数は合計 18 枚で、内訳は density 6 枚、detext-toc 4 枚、detext-body 4 枚、motion 4 枚である。
+
+- density: `axis-density-airy-sp.jpg`、`axis-density-airy-pc.jpg`、`axis-density-normal-sp.jpg`、`axis-density-normal-pc.jpg`、`axis-density-compact-sp.jpg`、`axis-density-compact-pc.jpg`
+- detext-toc: `axis-detext-off-toc-sp.jpg`、`axis-detext-off-toc-pc.jpg`、`axis-detext-on-toc-sp.jpg`、`axis-detext-on-toc-pc.jpg`
+- detext-body: `axis-detext-off-body-sp.jpg`、`axis-detext-off-body-pc.jpg`、`axis-detext-on-body-sp.jpg`、`axis-detext-on-body-pc.jpg`
+- motion: `axis-motion-on-f0-sp.jpg`、`axis-motion-on-f1-sp.jpg`、`axis-motion-on-f2-sp.jpg`、`axis-motion-off-f2-sp.jpg`
+
+上記 18 ファイルを生成済みで、各ファイルは非空の JPEG として確認した。`CATALOG-INDEX.json` には既存 349 件を変更せず、新規 18 件を追記している。計測データは `results/density-measure.json` に保存した。
+
+### 用語集
+
+`CATALOG-GLOSSARY.json` は本ディレクトリ直下に置く **Claude 案の用語集**である。既存カタログの全 `part` / `variant` と `face` を、日本語の `label`・`desc`、型ごとの見え方、軸ごとの `changes`・`where`・`how_to_tell` に整理している。追加撮影で使う density、detext body、motion frame の値も、同じ形式で説明している。

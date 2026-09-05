@@ -1,0 +1,688 @@
+{
+  "parts": {
+    "404": {
+      "label": "404 面",
+      "desc": "存在しない URL に表示する案内面。原因説明、検索、回遊、行動導線のどこを見せるかを比較する。",
+      "variants": {
+        "popular": "人気・おすすめ記事を中心に回遊させる型。",
+        "cta": "行動喚起のカードを中心に戻り先を示す型。",
+        "suggest": "URL から推測した検索語候補を表示して再検索を促す型。"
+      }
+    },
+    "article-tail-author": {
+      "label": "記事末の著者欄",
+      "desc": "本文を読み終えた位置に置く著者情報。顔写真、紹介文、監修者表示の有無を見る。",
+      "variants": {
+        "none": "著者欄を表示しない型。",
+        "avatar-bio": "アバターと著者名・紹介文を並べる型。",
+        "avatar-bio-sns": "アバターと紹介文に外部プロフィール導線を加える型。",
+        "supervisor": "執筆者とは別に監修者を目立たせる型。"
+      }
+    },
+    "article-tail-order": {
+      "label": "記事末スロット順",
+      "desc": "関連記事、CTA、著者、共有など記事末部品の並び順。読み終わりから次の行動までの流れを見る。",
+      "variants": {
+        "related-author-share-cta": "関連記事、著者、共有、CTA の順に置く型。",
+        "cta-related-author-share": "CTA を先頭に置き、その後に関連記事、著者、共有を置く型。",
+        "related-cta-author": "関連記事、CTA、著者の順に置き、共有は末尾側に残す型。"
+      }
+    },
+    "article-tail-prevnext": {
+      "label": "記事末の前後記事",
+      "desc": "現在の記事から前後の記事へ移動する部品。サムネイルを添えるか、部品自体を省略するかを見る。",
+      "variants": {
+        "off": "前後記事の導線を表示しない型。",
+        "thumb": "前後記事のタイトルにサムネイルを添える型。"
+      }
+    },
+    "article-tail-share": {
+      "label": "記事末の共有",
+      "desc": "記事末に置く共有導線。共有先を丸いアイコン列で見せるかを確認する。",
+      "variants": {
+        "none": "記事末の追加共有列を表示しない型。",
+        "icons-row": "共有アイコンとリンクコピーを横一列に置く型。"
+      }
+    },
+    "axis-density": {
+      "label": "density 軸の比較",
+      "desc": "本文の余白密度を同じ記事の同じ範囲で比べる証跡。見出し、段落、ブロック間の距離を見る。",
+      "variants": {
+        "density:airy": "見出し上マージンと段落間を広げた型。",
+        "density:normal": "既定の余白値を使う中間の型。",
+        "density:compact": "見出し上マージンと段落間を詰めた型。"
+      }
+    },
+    "axis-depth": {
+      "label": "depth 軸の比較",
+      "desc": "カードや CTA に付く影と浮き上がりの強さを比べる証跡。平面から立体への差を見る。",
+      "variants": {
+        "depth:0": "影をほぼ付けず、平面に見せる型。",
+        "depth:2": "強めの影と浮きを付ける型。",
+        "depth:1": "弱めの影を付ける中間の型。"
+      }
+    },
+    "axis-detext": {
+      "label": "detext 軸の比較",
+      "desc": "文字だけでなくマークやバッジで構造を補助する軸の証跡。目次と本文を分けて差分の有無を見る。",
+      "variants": {
+        "detext:off": "目次を通常の数字表示にし、本文の detext 装飾も適用しない型。",
+        "detext:on": "目次の章番号を丸バッジにし、適用対象の本文装飾を有効にする型。",
+        "detext:off (body, no visible diff)": "現行本文の対象箇所では除外条件により見た目が変わらない off の比較用。",
+        "detext:on (body, no visible diff)": "現行記事の h2・list・quote が is-style-wt-* のため除外され、目視差分が出ない on の比較用。"
+      }
+    },
+    "axis-motion": {
+      "label": "motion 軸の比較",
+      "desc": "画面内へ入った要素をフェードアップさせる軸の証跡。関連カードが見え始めてから完了するまでをフレームで確認する。",
+      "variants": {
+        "motion:off (60ms after scroll)": "アニメーションを無効にして表示した旧比較用の型。",
+        "motion:on (60ms after scroll)": "アニメーションを有効にして短時間後に表示した旧比較用の型。",
+        "motion:on frame 0 (t=0ms)": "関連カードが viewport に入り始めた直後の初期フレーム。",
+        "motion:on frame 1 (t=200ms)": "初期フレームから 200ms 後の遷移途中を示すフレーム。",
+        "motion:on frame 2 (t=900ms)": "375ms の transition 完了後を確認するフレーム。",
+        "motion:off (no animation)": "同じ位置でアニメーションを無効にし、最初から表示する比較用。"
+      }
+    },
+    "box": {
+      "label": "囲み",
+      "desc": "本文中の注意、補足、手順などをひとまとまりにする group。枠、背景、見出しの形と色 modifier を見る。",
+      "variants": {
+        "plain-border": "細い罫線だけで内容を囲む型。",
+        "tinted": "淡い背景色で内容を面として包む型。",
+        "band-title": "上端を帯タイトルにして本文を囲む型。",
+        "tab-title": "枠の上にタブ状のタイトルを重ねる型。",
+        "label-title": "上辺の色線と小さなラベルで内容を示す型。",
+        "shadow-card": "背景と影でカードのように浮かせる型。",
+        "check-list": "チェック印付きの箇条書きを入れる囲み型。",
+        "colors": "warn、point、note、ok などの色 modifier を比較する型。",
+        "quote": "引用符と淡い面で引用文を強調する型。",
+        "dashed": "破線の枠で一時的な注記を示す型。",
+        "steps": "番号バッジを付けた段階説明を囲む型。",
+        "qa": "質問と回答を本文中の一組として見せる型。",
+        "warn-soft": "強い警告色より弱い注意として見せる型。"
+      }
+    },
+    "category-children": {
+      "label": "カテゴリの子分類導線",
+      "desc": "カテゴリ面で子カテゴリへの入り口をまとめる部品。チップ、カード、手順のどれで回遊させるかを見る。",
+      "variants": {
+        "none": "子カテゴリ導線を表示しない型。",
+        "chips": "子カテゴリを小さなチップで並べる型。",
+        "cards": "子カテゴリを画像や説明付きカードで並べる型。",
+        "steps": "読む順番を意識した番号付きの子カテゴリ導線。"
+      }
+    },
+    "category-header": {
+      "label": "カテゴリ見出し",
+      "desc": "カテゴリ名と説明を表示する面上部。説明文や背景表現を加えるかを見る。",
+      "variants": {
+        "name-only": "カテゴリ名だけを簡潔に表示する型。",
+        "name-desc": "カテゴリ名に説明文を添える型。",
+        "hero": "カテゴリ見出しを背景付きのヒーロー風に見せる型。"
+      }
+    },
+    "category-list": {
+      "label": "カテゴリ記事一覧",
+      "desc": "カテゴリ内の記事カードを並べる主領域。PC と SP で画像・本文の配置がどう変わるかを見る。",
+      "variants": {
+        "grid": "記事カードを均等なグリッドに並べる型。",
+        "thumb-list": "サムネイルと本文を横並びにする一覧型。",
+        "featured-grid": "先頭記事を強調し、残りをグリッドにする型。"
+      }
+    },
+    "category-minihome": {
+      "label": "カテゴリのミニホーム",
+      "desc": "子カテゴリごとの記事、読む順番、ランキングをカテゴリ面にまとめる部品。カテゴリを小さな入口面として使う。",
+      "variants": {
+        "off": "ミニホーム区画を表示しない型。",
+        "on": "子カテゴリ別の小一覧と回遊情報を表示する型。"
+      }
+    },
+    "category-pagination": {
+      "label": "カテゴリのページ送り",
+      "desc": "記事一覧の続きを取得する導線。ページ番号、追加読み込み、前後移動の操作感を見る。",
+      "variants": {
+        "numbers": "ページ番号を並べる型。",
+        "load-more": "ボタンで次の記事を一覧へ追加する型。",
+        "prev-next": "前の記事・次の記事へ移動する型。"
+      }
+    },
+    "category-ranking": {
+      "label": "カテゴリ内ランキング",
+      "desc": "カテゴリ記事の人気導線を置く位置。表示しない、側欄、下部の違いを見る。",
+      "variants": {
+        "none": "カテゴリ内ランキングを表示しない型。",
+        "sidebar": "PC では側欄、SP では下部にランキングを置く型。",
+        "bottom": "面の下部にランキングを置く型。"
+      }
+    },
+    "contrast-guard": {
+      "label": "自動コントラスト guard",
+      "desc": "画像の輝度に応じて文字下のスクリム強度を変える部品。暗、中、明の画像で文字の読みやすさを比較する。",
+      "variants": {
+        "dark (data-wt-lum=dark, L=0.026)": "暗い画像として判定され、弱いスクリムを使う型。",
+        "mid (data-wt-lum=mid, L=0.255)": "中間の輝度として判定され、中程度のスクリムを使う型。",
+        "light (data-wt-lum=light, L=0.882)": "明るい画像として判定され、強いスクリムを使う型。"
+      }
+    },
+    "cta": {
+      "label": "記事内 CTA",
+      "desc": "記事中で次の行動へ送る呼びかけ。商品、バナー、ボタン、コピー量の違いを見る。",
+      "variants": {
+        "product": "画像、評価、価格、複数の CTA をまとめた商品カード束。",
+        "banner": "画像を主役にした横長の CTA バナー。",
+        "button": "説明を抑えて幅広のボタンを主役にする型。",
+        "box": "短い説明文とボタンを囲みでまとめる型。",
+        "triple": "複数の選択肢を三つの CTA として並べる型。",
+        "rank": "順位やおすすめ度を前面に出す CTA カード。",
+        "price-tier": "価格帯やプランを比較して選ばせる CTA。",
+        "textlink": "強い面やボタンを使わず、本文に近いリンクで誘導する型。"
+      }
+    },
+    "detext": {
+      "label": "detext 部品見本",
+      "desc": "文字列だけでなく番号、アイコン、引用符で情報のまとまりを示す部品群。軸の状態とは分けて、装飾の実例を見る。",
+      "variants": {
+        "styles": "番号付きリスト、アイコン付きリスト、引用、数値表示を一つの見本にまとめた型。"
+      }
+    },
+    "eyecatch": {
+      "label": "記事アイキャッチ",
+      "desc": "記事タイトル周辺の画像配置。タイトルとの順序、重ね方、横配置、画像なしを比較する。",
+      "variants": {
+        "title-image": "タイトルを先に置き、その下に画像を置く型。",
+        "image-title": "画像を先に置き、その後にタイトルを置く型。",
+        "hero": "画像の上にタイトルやメタ情報を重ねる型。",
+        "side": "タイトルと横サムネイルを二列に置く型。",
+        "none": "アイキャッチ画像を表示しない型。"
+      }
+    },
+    "footer-above": {
+      "label": "フッター直前スロット",
+      "desc": "フッターの直前に置く補助導線。CTA、バナー、登録案内を表示する位置を見る。",
+      "variants": {
+        "none": "フッター直前の補助区画を表示しない型。",
+        "cta-band": "背景色の帯で CTA を置く型。",
+        "banner-row": "複数のバナーを横並びに置く型。",
+        "newsletter": "更新通知などの登録フォームを置く型。"
+      }
+    },
+    "footer-extra": {
+      "label": "フッター追加情報",
+      "desc": "SNS、関連サイト、認証バッジ、住所などの補助情報を slot ごとに表示する部品。組み合わせによる密度を見る。",
+      "variants": {
+        "none": "追加情報を表示しない型。",
+        "sns": "SNS 導線だけを表示する型。",
+        "sites": "関連サイトへの導線だけを表示する型。",
+        "badges": "認証や評価のバッジだけを表示する型。",
+        "address": "所在地などの住所情報だけを表示する型。",
+        "sns-sites": "SNS と関連サイトを表示する組み合わせ。",
+        "sns-badges": "SNS とバッジを表示する組み合わせ。",
+        "sns-address": "SNS と住所を表示する組み合わせ。",
+        "sites-badges": "関連サイトとバッジを表示する組み合わせ。",
+        "sites-address": "関連サイトと住所を表示する組み合わせ。",
+        "badges-address": "バッジと住所を表示する組み合わせ。",
+        "sns-sites-badges": "SNS、関連サイト、バッジを表示する組み合わせ。",
+        "sns-sites-address": "SNS、関連サイト、住所を表示する組み合わせ。",
+        "sns-badges-address": "SNS、バッジ、住所を表示する組み合わせ。",
+        "sites-badges-address": "関連サイト、バッジ、住所を表示する組み合わせ。",
+        "all": "SNS、関連サイト、バッジ、住所をすべて表示する型。"
+      }
+    },
+    "footer-layout": {
+      "label": "通常面のフッター構成",
+      "desc": "フッターの大枠の組み方。サイトマップ、横一列、三列の情報配置を見る。",
+      "variants": {
+        "sitemap": "複数列のサイトマップを置き、SP では開閉できる型。",
+        "single-row": "主要リンクを一列にまとめる型。",
+        "columns-3": "三つの列に情報を分ける型。"
+      }
+    },
+    "footer-legal": {
+      "label": "フッター法定表示",
+      "desc": "コピーライトと補助リンクの表示方法。権利表記だけか、リンクも添えるかを見る。",
+      "variants": {
+        "copyright-links": "コピーライトに補助リンクを添える型。",
+        "copyright-only": "コピーライトだけを表示する型。"
+      }
+    },
+    "footer-totop": {
+      "label": "フッターのトップへ戻る",
+      "desc": "長い面の末尾や固定位置から上部へ戻る導線。表示の有無とボタン形状を見る。",
+      "variants": {
+        "off": "トップへ戻るボタンを表示しない型。",
+        "button": "固定または末尾付近に戻るボタンを表示する型。"
+      }
+    },
+    "full": {
+      "label": "記事全長",
+      "desc": "記事面をページ全体で確認する証跡。面の流れと部品の出現順を一覧する。",
+      "variants": {
+        "default": "現在の既定軸で記事全体を表示する型。"
+      }
+    },
+    "full-screens": {
+      "label": "記事の画面単位",
+      "desc": "長い記事を viewport 高さごとに分けた証跡。全長縮小画像では読み取りにくい位置を確認する。",
+      "variants": {
+        "default screen 1": "記事先頭の viewport。",
+        "default screen 2": "記事上部の 2 枚目 viewport。",
+        "default screen 3": "記事上部の 3 枚目 viewport。",
+        "default screen 4": "記事中盤前の 4 枚目 viewport。",
+        "default screen 5": "記事中盤前の 5 枚目 viewport。",
+        "default screen 6": "比較表付近の 6 枚目 viewport。",
+        "default screen 7": "各製品レビュー付近の 7 枚目 viewport。",
+        "default screen 8": "各製品レビュー中盤の 8 枚目 viewport。",
+        "default screen 9": "用途別の選び方付近の 9 枚目 viewport。",
+        "default screen 10": "FAQ 付近の 10 枚目 viewport。",
+        "default screen 11": "記事末前半の 11 枚目 viewport。",
+        "default screen 12": "記事末の 12 枚目 viewport。"
+      }
+    },
+    "h2": {
+      "label": "h2 見出し",
+      "desc": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "variants": {
+        "plain": "装飾を抑えた太字の見出し。",
+        "bar": "左側に縦のアクセントバーを置く見出し。",
+        "band": "背景色の帯で見出し全体を包む型。",
+        "icon": "先頭にアイコンを置く見出し。",
+        "2tone": "二色の下線を引く記事既定の見出し。",
+        "underline": "文字の下に一本の下線を置く見出し。",
+        "numbox": "番号を小さな箱に入れて先頭に置く見出し。",
+        "barbg": "左バーと淡い背景を組み合わせる見出し。",
+        "doubleline": "上下の線を組み合わせる見出し。",
+        "label": "SECTION などの小ラベルを上に置く見出し。"
+      }
+    },
+    "h3": {
+      "label": "h3 見出し",
+      "desc": "記事内の小見出しの block style。下位の話題を線、番号、マーカーで区切る。",
+      "variants": {
+        "bar-thin": "細い左バーを置く小見出し。",
+        "dotted": "点線の下線を置く小見出し。",
+        "num": "連番を先頭に置く小見出し。",
+        "marker": "小さな四角マーカーを先頭に置く小見出し。",
+        "underline-thin": "細い下線を置く小見出し。"
+      }
+    },
+    "header": {
+      "label": "記事ヘッダー",
+      "desc": "サイト名、ナビゲーション、検索、CTA を含む上部の共通部品。PC と SP の優先順位を見る。",
+      "variants": {
+        "hamburger-search": "SP でハンバーガーと検索を併置する型。",
+        "hamburger-right": "SP でハンバーガーを右側に置く型。",
+        "hamburger-left": "SP でハンバーガーを左側に置く型。",
+        "announce": "お知らせ帯をヘッダー上部に加える型。",
+        "search": "サイト名、ナビゲーション、検索を標準配置する型。",
+        "nav": "サイト名の横にナビゲーションを置く型。",
+        "cta": "ナビゲーションより CTA を優先して右側に置く型。"
+      }
+    },
+    "linkcard": {
+      "label": "内部リンクカード",
+      "desc": "記事中から別の記事や案内へ送るカード。画像、タイトル、メタ情報、全面クリック範囲を見る。",
+      "variants": {
+        "internal": "同一サイト内のリンクをサムネイル付きで示す型。"
+      }
+    },
+    "lp-cta-style": {
+      "label": "LP CTA の見た目",
+      "desc": "LP の主要 CTA の塗り、線、角丸を切り替える軸。ボタンの強さと形状を見る。",
+      "variants": {
+        "solid": "背景色を塗った通常ボタン。",
+        "outline": "背景を透明にして線で囲むボタン。",
+        "pill": "大きな角丸で横長に見せるボタン。"
+      }
+    },
+    "lp-fixed": {
+      "label": "LP 固定 CTA",
+      "desc": "LP のスクロール中も画面に残す CTA。固定しない、SP 下部バー、浮遊ボタンの違いを見る。",
+      "variants": {
+        "none": "固定 CTA を表示しない型。",
+        "sp-bottom-bar": "SP の画面下端に CTA バーを固定する型。",
+        "float-cta": "画面内に小さな浮遊 CTA を固定する型。"
+      }
+    },
+    "lp-footer-layout": {
+      "label": "LP のフッター構成",
+      "desc": "LP 面で選べるフッターの大枠。通常面のフッターとは面別既定を分けて比較する。",
+      "variants": {
+        "sitemap": "LP 末尾にサイトマップ型のフッターを置く型。",
+        "single-row": "LP 末尾にリンクを一列で置く型。",
+        "columns-3": "LP 末尾に三列の情報を置く型。"
+      }
+    },
+    "lp-header": {
+      "label": "LP ヘッダー",
+      "desc": "LP 専用の上部導線。ロゴ、CTA、アンカーナビの情報量を見る。",
+      "variants": {
+        "minimal": "ロゴと主要 CTA を最小構成で表示する型。",
+        "logo-only": "ロゴを中心に置き、余分なナビを省く型。",
+        "none": "通常ヘッダーを省き、LP 内アンカーナビだけを置く型。"
+      }
+    },
+    "lp-hero": {
+      "label": "LP ヒーロー",
+      "desc": "LP の冒頭で主張と画像を見せる区画。左右分割、全面画像、商品画像、文字だけを比べる。",
+      "variants": {
+        "split": "テキストと画像を左右に分ける型。",
+        "fullbleed": "画像を全面に敷き、その上に文字を重ねる型。",
+        "product": "商品画像を主役にして説明を添える型。",
+        "text-only": "画像を使わず、文字と CTA で始める型。"
+      }
+    },
+    "lp-hero-cta": {
+      "label": "LP ヒーロー CTA",
+      "desc": "LP 冒頭の CTA の数と入力方法。単一ボタン、二つの選択肢、フォームを比較する。",
+      "variants": {
+        "single": "主 CTA を一つだけ置く型。",
+        "double": "主 CTA と補助 CTA を二つ置く型。",
+        "form-inline": "短い入力フォームをヒーロー内に置く型。"
+      }
+    },
+    "lp-legal": {
+      "label": "LP の法定・注記表示",
+      "desc": "LP 内の打ち消し説明や広告開示の表示。行動導線と注記の両立を見る。",
+      "variants": {
+        "on": "打ち消し説明と PR 表記を表示する型。",
+        "off": "LP 内の法定・注記区画を表示しない型。"
+      }
+    },
+    "lp-sections": {
+      "label": "LP セクション構成",
+      "desc": "LP の中盤以降に置く説明区画の組み合わせと順序。情報量と信頼補強の違いを見る。",
+      "variants": {
+        "full": "機能、手順、実績、料金、FAQ などを一通り表示する型。",
+        "short": "主要説明と料金・FAQ に絞る短縮型。",
+        "trust": "ロゴ、数値、声、バッジなど信頼要素を優先する型。"
+      }
+    },
+    "pr-notice": {
+      "label": "PR 表記",
+      "desc": "記事冒頭などで広告・アフィリエイトを開示する表示。短い一行で本文との境界を示す。",
+      "variants": {
+        "one-line": "PR タグと短い開示文を一行にまとめる型。"
+      }
+    },
+    "pros-cons": {
+      "label": "メリット・デメリット",
+      "desc": "比較対象の長所と短所を左右または上下で並べる部品。ラベルとリストの対応を見る。",
+      "variants": {
+        "label-title": "メリットとデメリットをラベル付きの囲みで分ける型。"
+      }
+    },
+    "related": {
+      "label": "関連記事",
+      "desc": "記事末や面内で別の記事を紹介する Query Loop。カードの並び方と順位表示を見る。",
+      "variants": {
+        "grid": "関連記事カードをグリッドに並べる型。",
+        "list": "サムネイルと本文を横一列に並べる型。",
+        "rank": "順位番号を付けて関連記事を並べる型。",
+        "carousel": "横スクロールできるカード列として見せる型。"
+      }
+    },
+    "review-bar": {
+      "label": "評価バー",
+      "desc": "評価項目と数値を横長のバーで示す部品。項目名、充填率、点数の対応を見る。",
+      "variants": {
+        "default": "評価項目ごとに横バーと数値を置く標準型。"
+      }
+    },
+    "share": {
+      "label": "共有導線",
+      "desc": "記事の上下や画面端に置く共有操作。本文の流れを妨げずに共有できる位置を見る。",
+      "variants": {
+        "float": "本文横または画面端に固定して共有する型。",
+        "top-and-bottom (top)": "記事上部と下部の共有導線のうち上部側を確認する型。"
+      }
+    },
+    "table": {
+      "label": "比較表",
+      "desc": "複数候補のスペックを行列で比べる部品。SP のカード化、PC の横幅、見出しの対応を見る。",
+      "variants": {
+        "compare": "先頭列を基準にして比較するアクセシブルな比較表。"
+      }
+    },
+    "toc": {
+      "label": "目次",
+      "desc": "記事の h2・h3 から生成する章一覧。埋め込み、フロート、開閉、非表示の違いを見る。",
+      "variants": {
+        "box": "本文中に面として埋め込む標準の目次。",
+        "float": "PC の本文横レールに固定する目次。",
+        "collapsible": "開閉操作を前提にした目次。",
+        "none": "目次を表示しない型。",
+        "box-open": "埋め込み目次を開いた状態で確認する撮影用の型。"
+      }
+    },
+    "width": {
+      "label": "幅軸",
+      "desc": "本文、wide 区画、ヘッダー内側の最大幅をまとめて切り替える軸。文字列の折り返しと余白を見る。",
+      "variants": {
+        "narrow": "本文と wide 区画を狭くして読み幅を絞る型。",
+        "default": "本文と wide 区画を既定の最大幅にする型。",
+        "wide": "本文と wide 区画、ヘッダー内側を広げる型。"
+      }
+    }
+  },
+  "faces": {
+    "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
+    "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。",
+    "category": "カテゴリ面: カテゴリ見出し、記事一覧、子分類、ランキングを確認する面。",
+    "footer": "フッター面: フッターの配置、補助情報、法定表示を確認する面。",
+    "lp": "LP 面: ヒーロー、説明区画、CTA、固定導線を確認する面。"
+  },
+  "axes": {
+    "header": {
+      "label": "ヘッダー型",
+      "changes": "検索、ナビ、CTA、お知らせ帯の上部構成を切り替える。",
+      "where": "サイト上端のヘッダーと、その中の右側導線が変わる。",
+      "how_to_tell": "search は標準検索、nav はナビ、cta は CTA 優先、announce はお知らせ帯付きとして見分ける。"
+    },
+    "width": {
+      "label": "幅",
+      "changes": "本文、wide 区画、ヘッダー内側の最大幅を narrow・default・wide で切り替える。",
+      "where": "記事本文の左右余白、全幅に近い区画、ヘッダー内側の折り返しが変わる。",
+      "how_to_tell": "narrow は本文最大 640px、default は 680px、wide は 760pxを目安にし、wide 区画とヘッダー幅も同時に広がる。"
+    },
+    "sp": {
+      "label": "SP ヘッダー配置",
+      "changes": "SP のハンバーガーと検索の左右配置を切り替える。",
+      "where": "幅 599px 以下のヘッダー行が変わる。",
+      "how_to_tell": "search はハンバーガーと検索、right はハンバーガー右、left はハンバーガー左として見分ける。"
+    },
+    "eyecatch": {
+      "label": "アイキャッチ位置",
+      "changes": "記事タイトルとアイキャッチ画像の順序・重なり・有無を切り替える。",
+      "where": "記事タイトル直下の投稿ヘッダーが変わる。",
+      "how_to_tell": "title-image、image-title、hero、side、none の順序・重なり・画像有無を見比べる。"
+    },
+    "toc": {
+      "label": "目次型",
+      "changes": "記事目次を box・float・collapsible・none で切り替える。",
+      "where": "記事冒頭の目次、または PC の本文横レールが変わる。",
+      "how_to_tell": "box は本文内、float は PC 側欄、collapsible は開閉式、none は非表示として見分ける。"
+    },
+    "related": {
+      "label": "関連記事レイアウト",
+      "changes": "関連記事カードを grid・list・rank・carousel で切り替える。",
+      "where": "記事末の関連記事区画のカード配置が変わる。",
+      "how_to_tell": "grid は複数列、list は横サムネ、rank は順位番号、carousel は横スクロールとして見分ける。"
+    },
+    "share": {
+      "label": "共有位置",
+      "changes": "共有導線を記事上下、フロート、非表示で切り替える。",
+      "where": "記事上部・下部または本文横の共有操作が変わる。",
+      "how_to_tell": "topbottom は記事の上下、float は画面端、none は追加共有なしとして見分ける。"
+    },
+    "motion": {
+      "label": "出現モーション",
+      "changes": "wt-reveal 要素の fade-up transition を有効・無効にする。",
+      "where": "記事末の関連カードなど、画面内へ入る wt-reveal 要素が変わる。",
+      "how_to_tell": "off は最初から表示、on は opacity 0・translateY(12px) から約 375ms で表示される。静止画は途中フレームであり、薄い/浮いた要素はフェードイン途中であって不具合ではない（Claude 案）。"
+    },
+    "depth": {
+      "label": "奥行き",
+      "changes": "カードや CTA の影・浮き上がりの強さを 0・1・2 で切り替える。",
+      "where": "商品カード、リンクカード、関連記事カード、CTA ボタンの立体感が変わる。",
+      "how_to_tell": "0 は平面、1 は弱い影、2 は強い影と浮きとして見分ける。"
+    },
+    "density": {
+      "label": "余白密度",
+      "changes": "本文段落、見出し、囲み、関連記事の余白値を切り替える。",
+      "where": "本文中盤の見出し上、段落間、囲み内外、記事末カードの間隔が変わる。",
+      "how_to_tell": "compact は詰める、airy は広げる、normal が既定。見出し上マージン・段落間・行間を同じ範囲で比べると判別しやすい（Claude 案）。"
+    },
+    "detext": {
+      "label": "脱テキスト装飾",
+      "changes": "見出し、無装飾 ol、引用、目次番号に補助マークを付ける。",
+      "where": "実際に差が出るのは目次の丸番号バッジで、本文の対象セレクタにも影響する。",
+      "how_to_tell": "detext:on では目次番号が丸バッジになるが、現行記事の h2・list・quote は is-style-wt-* を使うため CSS の :not([class*='is-style-wt-']) 除外条件に一致し、見た目の変化が出ない。目次のみ実際に見える差分である（Claude 案）。"
+    },
+    "nf": {
+      "label": "404 の回遊型",
+      "changes": "404 面の主な戻り先を popular・cta・suggest で切り替える。",
+      "where": "404 面の下部にあるおすすめ、CTA、検索語候補の区画が変わる。",
+      "how_to_tell": "popular は記事回遊、cta は行動喚起、suggest は検索候補として見分ける。"
+    },
+    "pr": {
+      "label": "PR 表記モード",
+      "changes": "記事冒頭の広告開示を auto・on・off で切り替える。",
+      "where": "記事本文の先頭付近に PR 表記が出るかが変わる。",
+      "how_to_tell": "auto は既存の開示文があれば重複を抑止、on は常に挿入、off は表示しない。"
+    },
+    "cat_header": {
+      "label": "カテゴリ見出し型",
+      "changes": "カテゴリ名だけ、説明付き、ヒーロー風の見出しを切り替える。",
+      "where": "カテゴリ面の上端の見出し区画が変わる。",
+      "how_to_tell": "name-only、name-desc、hero の順に説明文と背景表現の有無を見分ける。"
+    },
+    "cat_children": {
+      "label": "カテゴリ子分類型",
+      "changes": "子カテゴリ導線を none・chips・cards・steps で切り替える。",
+      "where": "カテゴリ見出しの下にある子分類導線が変わる。",
+      "how_to_tell": "none はなし、chips は小チップ、cards はカード、steps は番号付き導線として見分ける。"
+    },
+    "cat_list": {
+      "label": "カテゴリ一覧型",
+      "changes": "記事一覧を grid・thumb-list・featured-grid で切り替える。",
+      "where": "カテゴリ面の主記事一覧のカード配置が変わる。",
+      "how_to_tell": "grid は均等列、thumb-list は横サムネ、featured-grid は先頭記事の強調として見分ける。"
+    },
+    "cat_pagination": {
+      "label": "カテゴリページ送り",
+      "changes": "一覧の続きを numbers・load-more・prev-next で取得する。",
+      "where": "カテゴリ記事一覧の末尾にあるページ送りが変わる。",
+      "how_to_tell": "numbers は番号、load-more は追加ボタン、prev-next は前後リンクとして見分ける。"
+    },
+    "cat_ranking": {
+      "label": "カテゴリランキング位置",
+      "changes": "ランキングを表示しない、側欄、下部で切り替える。",
+      "where": "カテゴリ面の側欄または下部のランキング区画が変わる。",
+      "how_to_tell": "none はなし、sidebar は PC 側欄中心、bottom は下部表示として見分ける。"
+    },
+    "cat_minihome": {
+      "label": "カテゴリミニホーム",
+      "changes": "子カテゴリごとの小一覧と回遊区画を表示・非表示にする。",
+      "where": "カテゴリ面の主一覧とは別の子カテゴリ区画が変わる。",
+      "how_to_tell": "off は通常一覧のみ、on は子カテゴリ別の 4 件一覧や読む順番が出る。"
+    },
+    "footer_layout": {
+      "label": "フッター大枠",
+      "changes": "フッターを sitemap・single-row・columns-3 で切り替える。",
+      "where": "通常面とカテゴリ面のフッター全体の列構成が変わる。",
+      "how_to_tell": "sitemap は多列と SP 開閉、single-row は一列、columns-3 は三列として見分ける。"
+    },
+    "footer_above": {
+      "label": "フッター直前区画",
+      "changes": "フッター直前を none・cta-band・banner-row・newsletter で切り替える。",
+      "where": "フッターの直上にある補助導線が変わる。",
+      "how_to_tell": "none はなし、cta-band は CTA 帯、banner-row はバナー列、newsletter は登録案内として見分ける。"
+    },
+    "footer_legal": {
+      "label": "フッター法定表示",
+      "changes": "コピーライトとリンクの組み合わせを切り替える。",
+      "where": "フッター最下部の法定表示が変わる。",
+      "how_to_tell": "copyright-links は補助リンク付き、copyright-only はコピーライトだけとして見分ける。"
+    },
+    "footer_extra": {
+      "label": "フッター追加情報の組み合わせ",
+      "changes": "SNS、関連サイト、バッジ、住所の slot を個別または組み合わせで切り替える。",
+      "where": "フッターの補助情報列・行が変わる。",
+      "how_to_tell": "値に含まれる sns・sites・badges・address の語が表示 slot を示し、all は四つすべてを示す。"
+    },
+    "footer_totop": {
+      "label": "トップへ戻る",
+      "changes": "フッター付近のトップへ戻るボタンを表示・非表示にする。",
+      "where": "通常面やカテゴリ面の固定ボタンまたはフッター付近が変わる。",
+      "how_to_tell": "off は表示なし、button は戻るボタンありとして見分ける。"
+    },
+    "tail_order": {
+      "label": "記事末の順序",
+      "changes": "記事末スロットの CSS order を切り替える。",
+      "where": "関連記事、CTA、著者、共有の縦方向の順番が変わる。",
+      "how_to_tell": "variant 名を左から読み、related・cta・author・share の並びを画面で照合する。"
+    },
+    "tail_share": {
+      "label": "記事末共有列",
+      "changes": "記事末の追加共有列を表示・非表示にする。",
+      "where": "記事末スロット内の共有アイコン列が変わる。",
+      "how_to_tell": "none は列なし、icons-row は丸い共有アイコンとリンクコピーありとして見分ける。"
+    },
+    "tail_author": {
+      "label": "記事末著者型",
+      "changes": "著者欄を none・avatar-bio・avatar-bio-sns・supervisor で切り替える。",
+      "where": "記事末の著者・監修者区画が変わる。",
+      "how_to_tell": "アバター、紹介文、プロフィール導線、監修者表示の有無を値と照合する。"
+    },
+    "tail_prevnext": {
+      "label": "記事末前後記事",
+      "changes": "前後記事リンクを表示・非表示にし、表示時はサムネイルを添える。",
+      "where": "記事末の前後記事導線が変わる。",
+      "how_to_tell": "off はなし、thumb はサムネイル付きとして見分ける。"
+    },
+    "lp_header": {
+      "label": "LP ヘッダー型",
+      "changes": "LP の上部を minimal・logo-only・none で切り替える。",
+      "where": "LP の最上部のロゴ、CTA、アンカーナビが変わる。",
+      "how_to_tell": "minimal は最小ヘッダー、logo-only はロゴ中心、none は LP 内アンカーのみとして見分ける。"
+    },
+    "lp_hero": {
+      "label": "LP ヒーロー型",
+      "changes": "LP 冒頭の画像とテキストの構成を切り替える。",
+      "where": "LP の最初の主張・画像・CTA 区画が変わる。",
+      "how_to_tell": "split、fullbleed、product、text-only の画像配置と文字量を見比べる。"
+    },
+    "lp_hero_cta": {
+      "label": "LP ヒーロー CTA 数",
+      "changes": "LP 冒頭の CTA を single・double・form-inline で切り替える。",
+      "where": "ヒーロー内のボタンまたは入力フォームが変わる。",
+      "how_to_tell": "single は一つ、double は二つ、form-inline は入力欄付きとして見分ける。"
+    },
+    "lp_sections": {
+      "label": "LP セクション量",
+      "changes": "LP の説明区画を full・short・trust の順序・量で切り替える。",
+      "where": "ヒーロー以降の機能、実績、料金、FAQ、信頼要素の並びが変わる。",
+      "how_to_tell": "full は全区画、short は短縮、trust は信頼要素優先として見分ける。"
+    },
+    "lp_cta_style": {
+      "label": "LP CTA スタイル",
+      "changes": "LP の CTA ボタンを solid・outline・pill で切り替える。",
+      "where": "LP のヒーロー・説明区画・固定 CTA のボタン表示が変わる。",
+      "how_to_tell": "solid は塗り、outline は線、pill は大きな角丸として見分ける。"
+    },
+    "lp_fixed": {
+      "label": "LP 固定導線",
+      "changes": "LP の固定 CTA を none・sp-bottom-bar・float-cta で切り替える。",
+      "where": "スクロール中の画面下端または画面内の固定 CTA が変わる。",
+      "how_to_tell": "none はなし、sp-bottom-bar は SP 下部バー、float-cta は浮遊ボタンとして見分ける。"
+    },
+    "lp_legal": {
+      "label": "LP 注記表示",
+      "changes": "LP の打ち消し説明と PR 表記を表示・非表示にする。",
+      "where": "LP 内の CTA 近くや末尾の注記が変わる。",
+      "how_to_tell": "on は注記あり、off は注記なしとして見分ける。"
+    }
+  }
+}
