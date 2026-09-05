@@ -973,16 +973,20 @@ if (WPCLIDIR) {
     if (g.type === "line") return g.visualVals.length === g.tableVals.length && g.tableVals.length >= 3 && g.visualVals.every((v, i) => Math.abs(v - g.tableVals[i]) <= 0.05) && g.marks === g.tableVals.length && g.lineDotsMatch === true;
     return false;
   };
-  // aria-label は「ラベル 値」の並びを厳密に照合する: aria 内の数値トークン列（凡例の合計等を含まない前提）が表の値列と順序も含めて一致し、各ラベルがトークンとして現れること（Astra 是正: 部分文字列一致だった）
+  // aria-label は「<説明>: <ラベル> <値>[%]、<ラベル> <値>[%]、…」の形式とみなし、コロン以降を「、」で分割した各区分が
+  // 表の各行（順序どおり）の「ラベル 値」に完全一致することを要求する（Astra 是正 3 巡目: 部分一致・数値列だけの照合・ラベル位置非依存をやめた）。
+  const fmtVal = (v) => Number.isInteger(v) ? String(v) : String(v);
   const ariaOk = (g) => {
     if (g.type === "bar") return true;
-    if (!g.aria) return false;
-    const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    // ラベル（「1月」のように数字を含み得る）をトークン境界で取り除いてから数値列を取り、表の値列と順序も含めて一致させる
-    let rest = g.aria;
-    const labelsOk = g.tableLabels.every((l) => { const re = new RegExp(`(^|[\\s、,:：])${esc(l)}(?=\\s|$)`); if (!re.test(rest)) return false; rest = rest.replace(re, "$1"); return true; });
-    const nums = (rest.replace(/^[^:：]*[:：]/, "").match(/\d+(?:\.\d+)?/g) || []).map(Number);
-    return labelsOk && nums.length === g.tableVals.length && nums.every((n, i) => Math.abs(n - g.tableVals[i]) < 0.001);
+    if (!g.aria || !g.tableLabels.length || g.tableLabels.length !== g.tableVals.length) return false;
+    const m = g.aria.match(/^[^:：]+[:：]\s*(.+)$/);
+    if (!m) return false;
+    const parts = m[1].split(/、|,\s*/).map((t) => t.trim());
+    if (parts.length !== g.tableLabels.length) return false;
+    return parts.every((part, i) => {
+      const pm = part.match(/^(.+?)\s+(\d+(?:\.\d+)?)(%?)$/);
+      return !!pm && pm[1] === g.tableLabels[i] && Number(pm[2]) === g.tableVals[i] && fmtVal(g.tableVals[i]) === pm[2];
+    });
   };
   const contrast = withJs.map((g) => g.series.map((c) => ({ color: c, vsBg: +ratio(c, g.bg).toFixed(2), vsTrack: g.track ? +ratio(c, g.track).toFixed(2) : null })));
   const typesOk = ["bar", "stack", "donut", "line"].every((t) => withJs.filter((g) => g.type === t).length === 1);
