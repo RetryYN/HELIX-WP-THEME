@@ -889,6 +889,38 @@ if (WPCLIDIR) {
   out.ctaBannerNoPrPrefix = { catalog, article, pass: catalog.length > 0 && article.length > 0 && [...catalog, ...article].every((t) => !re.test(t)) };
 }
 
+// 9.7. 商品カード束に PR バッジが残っていないか（PO 判断 WT-EVT-0255「不要」）。catalog と実記事本文の両方でカードの存在を必須にする。
+{
+  const ctx = await browser.newContext(PC); const p = await ctx.newPage();
+  const read = async (url) => { await p.goto(BASE + url, { waitUntil: "networkidle" }); return p.evaluate(() => ({ cards: document.querySelectorAll(".is-style-wt-product").length, prBadges: document.querySelectorAll(".wt-badge--pr").length })); };
+  const catalog = await read("/catalog-03/"); const article = await read(ARTICLE);
+  await ctx.close();
+  out.productCardNoPrBadge = { catalog, article, pass: catalog.cards > 0 && article.cards > 0 && catalog.prBadges === 0 && article.prBadges === 0 };
+}
+
+// 9.8. 囲み Q&A モーダル型（PO 指示 WT-EVT-0256）: JS 無効時は回答が本文内に見える。JS 有効時はボタンで <dialog> が開き回答が見え、
+//      Esc で閉じてフォーカスがボタンへ戻る。ボタン・閉じるは SP で 44px 以上。reduced-motion で transition なし。
+{
+  const sel = "#cat-box-qa-modal";
+  const noJsCtx = await browser.newContext({ ...SP, javaScriptEnabled: false }); const np = await noJsCtx.newPage();
+  await np.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+  const noJs = await np.evaluate((sel) => { const box = document.querySelector(sel); const ps = box ? box.querySelectorAll(":scope > p") : []; const a = ps[1]; const r = a ? a.getBoundingClientRect() : null; return { box: !!box, paragraphs: ps.length, answerVisible: !!(r && r.height > 0 && getComputedStyle(a).visibility !== "hidden"), dialogs: box ? box.querySelectorAll("dialog").length : 0, buttons: box ? box.querySelectorAll("button").length : 0 }; }, sel);
+  await noJsCtx.close();
+  const ctx = await browser.newContext(SP); const p = await ctx.newPage();
+  await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p.waitForTimeout(300);
+  const before = await p.evaluate((sel) => { const box = document.querySelector(sel); const d = box.querySelector("dialog"); const b = box.querySelector(".wt-qa-modal__open"); const r = b.getBoundingClientRect(); return { answerInBody: box.querySelectorAll(":scope > p").length, dialogOpen: d ? d.open : null, openBtn: { w: r.width, h: r.height }, transition: getComputedStyle(b).transitionDuration }; }, sel);
+  await p.locator(sel + " .wt-qa-modal__open").scrollIntoViewIfNeeded(); await p.locator(sel + " .wt-qa-modal__open").click(); await p.waitForTimeout(200);
+  const opened = await p.evaluate((sel) => { const box = document.querySelector(sel); const d = box.querySelector("dialog"); const a = d.querySelector(".wt-qa-modal__body p"); const ar = a.getBoundingClientRect(); const c = d.querySelector(".wt-qa-modal__close"); const cr = c.getBoundingClientRect(); return { open: d.open, answerText: a.textContent.trim().slice(0, 20), answerVisible: ar.height > 0 && ar.top >= 0 && ar.bottom <= innerHeight, closeBtn: { w: cr.width, h: cr.height }, focusInDialog: d.contains(document.activeElement), labelledby: d.getAttribute("aria-labelledby") && !!document.getElementById(d.getAttribute("aria-labelledby")) }; }, sel);
+  await p.keyboard.press("Escape"); await p.waitForTimeout(150);
+  const closed = await p.evaluate((sel) => { const box = document.querySelector(sel); return { open: box.querySelector("dialog").open, focusOnOpenBtn: document.activeElement === box.querySelector(".wt-qa-modal__open") }; }, sel);
+  await ctx.close();
+  out.qaModal = { noJs, before, opened, closed };
+  out.qaModal.pass = noJs.box && noJs.paragraphs >= 2 && noJs.answerVisible && noJs.dialogs === 0 && noJs.buttons === 0
+    && before.answerInBody === 1 && before.dialogOpen === false && before.openBtn.h >= 44
+    && opened.open === true && opened.answerVisible && opened.answerText.length > 0 && opened.closeBtn.w >= 44 && opened.closeBtn.h >= 44 && opened.focusInDialog && opened.labelledby === true
+    && closed.open === false && closed.focusOnOpenBtn;
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -915,6 +947,7 @@ const checkList = [
   ["headingNumberPc", out.headingNumberPc.pass], ["headingNumberSp", out.headingNumberSp.pass], ["underlineGap", out.underlineGap.pass], ["prTagNotStackedPc", out.prTagNotStackedPc.pass], ["prTagNotStackedSp", out.prTagNotStackedSp.pass],
   ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
   ["detextVisualDiff", out.detextVisualDiff.pass], ["ctaBannerNoPrPrefix", out.ctaBannerNoPrPrefix.pass],
+  ["productCardNoPrBadge", out.productCardNoPrBadge.pass], ["qaModal", out.qaModal.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

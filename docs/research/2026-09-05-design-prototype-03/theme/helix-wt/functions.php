@@ -94,7 +94,7 @@ add_action( 'after_setup_theme', function () {
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.2' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.2' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.8' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -106,6 +106,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
 	}
 	wp_enqueue_script( 'helix-wt-footer', get_theme_file_uri( 'assets/js/footer.js' ), array(), '0.3.2', $defer );
+	wp_enqueue_script( 'helix-wt-qa-modal', get_theme_file_uri( 'assets/js/qa-modal.js' ), array(), '0.3.8', $defer );
 	if ( is_category() || is_archive() ) {
 		wp_enqueue_script( 'helix-wt-category', get_theme_file_uri( 'assets/js/category.js' ), array(), '0.3.2', $defer );
 	}
@@ -180,6 +181,8 @@ add_action( 'init', function () {
 		array( 'core/group', 'wt-dashed', '囲み: 破線' ),
 		array( 'core/group', 'wt-steps', '囲み: 番号手順' ),
 		array( 'core/group', 'wt-qa', '囲み: Q&A' ),
+		// 2026-09-05 PO 反応 14 回目（WT-EVT-0256）: Q&A のモーダルウィンドウ型（回答を <dialog> で開く。JS 無効時は本文内に残る）
+		array( 'core/group', 'wt-qa-modal', '囲み: Q&A（モーダル）' ),
 		array( 'core/group', 'wt-warn-soft', '囲み: 注意（弱）' ),
 		array( 'core/group', 'wt-note', '注記（囲み）' ),
 		array( 'core/group', 'wt-point', 'ポイント（囲み）' ),

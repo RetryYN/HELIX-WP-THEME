@@ -123,7 +123,7 @@
 
 | 変種 | セレクタ / pattern | 型名 | 根拠 |
 |---|---|---|---|
-| 商品カード束（既定） | `helix-wt/product-bundle`、`.is-style-wt-product`（画像・名前・星 + 実数・価格・CTA ×2・PR バッジ） | cta.inpost: product-card-bundle | 観察 33–37%、P25、SELL |
+| 商品カード束（既定） | `helix-wt/product-bundle`、`.is-style-wt-product`（画像・名前・星 + 実数・価格・CTA ×2。PR バッジは WT-EVT-0255 で除去） | cta.inpost: product-card-bundle | 観察 33–37%、P25、SELL |
 | バナー画像 | `helix-wt/cta-banner`、`.wp-block-image.is-style-wt-banner` | banner-image | 観察 27–33% |
 | ボタンのみ | `helix-wt/cta-button`、`.wt-cta-btn`（幅広 56px） | button-only | 観察 20–22% |
 | コピー付きボックス | `helix-wt/cta-box`、`.is-style-wt-cta-box` | box-with-copy | 観察 7–10% |
@@ -813,3 +813,15 @@ PO 反応（原文）: 「PRが残ってるけど？」（更新後カタログ�
 3. 再撮影 `scripts/shots-reaction5.mjs`: catalog の `cta-banner-{sp,pc}` と、同 pattern を本文に含む記事 `article-full-{sp,pc}` / `article-screen-*-{sp,pc}` の計 26 枚を同名置換（新規エントリなし）。撮影前に catalog / 記事の両面で verify と同じ禁止表記（PR / 広告 / アフィリエイト / 【PR】 / [PR]）と要素の存在を検査して不合格なら例外で停止。撮影・JPEG 変換は一時ディレクトリで行い、全枚数の非空検査と INDEX 照合（INDEX 上の cta-banner / article-full / article-screen 26 枚の予定集合と撮影集合の完全一致。欠落・予定外があれば置換に入らない）の後に旧画像を退避 → 新画像を配置（失敗時は退避先から復元、成功後の清掃は復元と分離）→ INDEX を一時ファイル経由の rename で書き出す（Astra レビュー 1 巡目の是正: 改善 2 件 = ffmpeg 直接上書きによる証跡破損の可能性・記事側の撮影前検査欠如とブラケット表記の検出漏れ）。`CATALOG-INDEX.json` は 443 のまま。
 4. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 59 / fail 0**（skipped: なし。58 項目 + 新規 `ctaBannerNoPrPrefix`）、総合 `pass: true`。`ctaBannerNoPrPrefix`: catalog 1 件・article 1 件とも PR 表記なし。`prAutoFixtures` 12 件すべて期待どおり、一時記事の後片付けエラーなし。
 5. `style.css` 0.3.6 → 0.3.7。手順: `docker cp` でテーマ配置 → `NODE_PATH=$HOME/dev/poc-wp/node_modules node scripts/shots-reaction5.mjs --out results` → `node scripts/verify.mjs --out results/verify.json --wpclidir <docker compose project dir>`。
+
+## 2.20 段5 — PO 反応 14 回目（WT-EVT-0255 / WT-EVT-0256）の反映
+
+PO 発言（原文）: 「不要。そしてボックスのQAにモーダルウィンドウ型ボックスを追加」。前半は §2.19 で問い合わせた「商品カード束の PR バッジは残すか」への回答、後半は囲み Q&A への型追加の指示。
+
+1. **商品カード束の PR バッジ除去（WT-EVT-0255、PO 判断）**: `patterns/product-bundle.php` の `.wt-badge--pr`（「PR」）を除去し、未使用になった `.wt-badge--pr` の CSS を削除。pattern Title の「・PR」も除去。テーマ内の `wt-badge--pr` は 0 件。`verify.mjs` に `productCardNoPrBadge`（catalog `#cat-cta-product` と実記事本文の両方でカードの存在を必須にし `.wt-badge--pr` 0 件）を追加。
+2. **囲み Q&A モーダルウィンドウ型（WT-EVT-0256、PO 指示）**: block style `is-style-wt-qa-modal`（core/group、「囲み: Q&A（モーダル）」）を追加。本文には質問行（Q バッジ）と「回答を見る」ボタン（44px、pill）だけを置き、回答は `assets/js/qa-modal.js` が `<dialog>` へ移して `showModal()` で開く。閉じるは × ボタン（44×44）・Esc・背景クリック。開いたらフォーカスは × へ、閉じたら「回答を見る」へ戻す。`aria-labelledby` で質問を dialog のラベルにする。**JS 無効時は回答段落が本文内に残り qa 型と同じ見え方**（dialog・ボタンは生成されない）。`<dialog>` 非対応ブラウザも同じ。transition は持たせない（reduced-motion で差が出ない）。catalog に `#cat-box-qa-modal` を追加。
+   - `verify.mjs` に `qaModal` を追加: JS 無効（回答が本文内で可視・dialog 0・button 0）／JS 有効（本文の段落 1・dialog 閉・ボタン高 44px 以上）／押下後（dialog open・回答が viewport 内で可視・× 44×44・フォーカスが dialog 内・labelledby が実在要素）／Esc 後（dialog 閉・フォーカスがボタン）を 1 つの合否にまとめる。
+3. 撮影 `scripts/shots-reaction6.mjs`（reaction5 と同じ一時 dir → 予定集合との完全一致 → 退避 → 配置 → 失敗時復元 → INDEX を一時ファイル経由で置換）: 同名置換 26 枚（`cta-product-{sp,pc}`、`article-full-{sp,pc}`、`article-screen-*`。商品カード束は記事本文にもあるため）+ 新規 4 枚（`box-qa-modal-{sp,pc}` 閉状態の要素撮影、`box-qa-modal-open-{sp,pc}` ボタン押下後の viewport 撮影。dialog は top layer なので要素撮影では背景の暗転が入らない）。撮影前に catalog / 記事の両面で商品カードの存在と PR バッジ 0 を検査。`CATALOG-INDEX.json` 443 → **447**。用語集に `qa-modal` / `qa-modal open` を追加。
+   - 撮影環境の実測: SP（DPR2）の全長撮影で Chromium が `Unable to capture screenshot` を返した（記事 10758 css px → 21516 device px、LP 8788 css px も失敗、カテゴリ 2003 css px は成功。main のテーマでも同じ）。全長画像は JPEG 化で長辺 1600 に縮むため、SP 全長だけ `scale: "css"`（1x）で出力するようにした。縮小後の情報量は同等だが、`article-full-sp.jpg` のバイト列は変わる。
+4. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 61 / fail 0**（59 + `productCardNoPrBadge` + `qaModal`、skipped なし）、総合 `pass: true`。`qaModal`: ボタン 128×44、× 44×44、Esc 後フォーカス復帰 true。
+5. `style.css` 0.3.7 → 0.3.8、`theme.css` / `qa-modal.js` の enqueue version 0.3.8。手順: `docker cp` でテーマ配置 → `node scripts/shots-reaction6.mjs --out results` → `node scripts/verify.mjs --out results/verify.json --wpclidir <docker compose project dir>`。

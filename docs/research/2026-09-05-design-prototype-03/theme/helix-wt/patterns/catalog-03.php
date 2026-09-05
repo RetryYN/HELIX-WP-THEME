@@ -48,6 +48,7 @@ $box( 'tinted', 'note', '補足', '価格は 2026 年 8 月時点の公式サイ
 $box( 'quote', '', '', '「最初の 1 台としては十分でした」', 'cat-box-quote' );
 $box( 'dashed', '', '一時的な注記', '撮影時点の価格・在庫は変動します。購入前に公式サイトでご確認ください。', 'cat-box-dashed' );
 $box( 'qa', '', '天板は後から交換できますか？', 'メーカー純正の天板のみ対応。他社天板は取付穴の位置が合わないことがあります。', 'cat-box-qa' );
+$box( 'qa-modal', '', '天板は後から交換できますか？', 'メーカー純正の天板のみ対応。他社天板は取付穴の位置が合わないことがあります。交換時は脚部のボルト径（M6 / M8）も確認してください。', 'cat-box-qa-modal' );
 $box( 'warn-soft', '', 'ご注意（軽微）', '型番により電源プラグの形状が異なります。設置場所のコンセント形状を事前にご確認ください。', 'cat-box-warn-soft' );
 ?>
 <!-- wp:group {"className":"is-style-wt-steps","anchor":"cat-box-steps","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-steps" id="cat-box-steps"><!-- wp:paragraph --><p>無料登録して身長と机の高さを入力する</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>2 週間、座り・立ちを交互に試す</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>合わなければ 30 日以内に返品する</p><!-- /wp:paragraph --></div><!-- /wp:group -->
