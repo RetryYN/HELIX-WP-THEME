@@ -45,7 +45,14 @@ $h3 = function ( $style, $id ) {
 <!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 B-1</h3><!-- /wp:heading -->
 </div><!-- /wp:group -->
 <!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 M（B の後の単独 num）</h3><!-- /wp:heading -->
-<!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">検証用: 専用 class なしの Group に入れた numbox は本文全体の h2 番号を続け（上の h2 見本が 01 なので 02, 03）、配下の num は 02-1 / 02-2 / 03-1。Group の直後から単独 num は 01 に戻る（L・M とも 01）。</p><!-- /wp:paragraph -->
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:group {"layout":{"type":"flow"}} --><div class="wp-block-group">
+<!-- wp:heading {"className":"is-style-wt-numbox"} --><h2 class="wp-block-heading is-style-wt-numbox">連番検証 C（入れ子 Group の内側）</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 C-1</h3><!-- /wp:heading -->
+</div><!-- /wp:group -->
+</div><!-- /wp:group -->
+<!-- wp:heading {"level":3,"className":"is-style-wt-num"} --><h3 class="wp-block-heading is-style-wt-num">連番検証 N（入れ子 Group の外へ出た単独 num）</h3><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"wt-sub"} --><p class="wt-sub">検証用: 専用 class なしの Group に入れた numbox は本文全体の h2 番号を続け（上の h2 見本が 01 なので 02, 03）、配下の num は 02-1 / 02-2 / 03-1。Group の直後から単独 num は 01 に戻る（L・M・N とも 01。N は入れ子 Group の外へ出た境界）。</p><!-- /wp:paragraph -->
 <!-- wp:heading --><h2 class="wp-block-heading">囲み 7 型 + 色</h2><!-- /wp:heading -->
 <?php
 $body = '昇降デスクは「最低高さ」が意外に重要です。身長 160cm 前後の人は座り姿勢で 62cm 以下まで下がらないと、肩がこります。';

@@ -9955,9 +9955,9 @@
   "js": {
    "count": 3,
    "tops": [
-    15262,
-    15262,
-    15262
+    15472,
+    15472,
+    15472
    ],
    "rights": [
     132.65625,
@@ -9977,9 +9977,9 @@
   "noJs": {
    "count": 3,
    "tops": [
-    15354,
-    15354,
-    15354
+    15564,
+    15564,
+    15564
    ],
    "rights": [
     132.65625,
@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.8848)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884834)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -12589,6 +12589,21 @@
    },
    {
     "heading": "連番検証 M（B の後の単独 num）",
+    "expected": "01",
+    "actual": "01"
+   },
+   {
+    "heading": "連番検証 C（入れ子 Group の内側）",
+    "expected": "04",
+    "actual": "04"
+   },
+   {
+    "heading": "連番検証 C-1",
+    "expected": "04-1",
+    "actual": "04-1"
+   },
+   {
+    "heading": "連番検証 N（入れ子 Group の外へ出た単独 num）",
     "expected": "01",
     "actual": "01"
    }

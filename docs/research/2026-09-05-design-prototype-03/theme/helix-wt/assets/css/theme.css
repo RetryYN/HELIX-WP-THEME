@@ -1245,10 +1245,10 @@ body.wt-sp-center-logo .wt-header__nav .wp-block-navigation{min-width:44px}
    通常 h2 が混在する場合も h2 ごとに連番は振り直す（通常 h2 は親番号を進めない）。「numbox 以外の h2 の配下だけ単独連番」は CSS では判定できないため、混在は想定外として README に明記 */
 :is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > h2:not(.is-style-wt-numbox){counter-set:wt-h3 0}
 :is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:1.15em}
-/* numbox を直接含むコンテナ（Group 等）の直後の兄弟から wt-h3 を 0 に戻す。これで後続の別コンテナ・post-content 直下の単独 num は 01 から数え直す（wt-h2num は本文全体で続く）。counter-set は後続兄弟へ伝わる（counter-reset は伝わらない。1243 行の注記と同じ実測） */
-.wp-block-post-content :has(> .is-style-wt-numbox) + *,.wp-block-post-content > :has(> .is-style-wt-numbox) + *{counter-set:wt-h3 0}
+/* numbox を（入れ子の深さを問わず）含むコンテナ（Group 等）の直後の兄弟から wt-h3 を 0 に戻す（入れ子 Group の外へ出る境界も対象。Astra 4 巡目）。これで後続の別コンテナ・post-content 直下の単独 num は 01 から数え直す（wt-h2num は本文全体で続く）。counter-set は後続兄弟へ伝わる（counter-reset は伝わらない。1243 行の注記と同じ実測） */
+.wp-block-post-content :has(.is-style-wt-numbox) + *,.wp-block-post-content > :has(.is-style-wt-numbox) + *{counter-set:wt-h3 0}
 /* 直後の兄弟が num の h3 自身なら 1（counter-set は counter-increment の後に適用されるため 0 にすると 00 になる。CSS Lists 3 の適用順） */
-.wp-block-post-content :has(> .is-style-wt-numbox) + .is-style-wt-num,.wp-block-post-content > :has(> .is-style-wt-numbox) + .is-style-wt-num{counter-set:wt-h3 1}
+.wp-block-post-content :has(.is-style-wt-numbox) + .is-style-wt-num,.wp-block-post-content > :has(.is-style-wt-numbox) + .is-style-wt-num{counter-set:wt-h3 1}
 .wt-numbox-demo{counter-reset:wt-h3 wt-h2num}
 
 /* WT-EVT-0276 LINE 導線: 白丸の中を「LINE」の文字から吹き出しグリフへ。色は LINE ブランド緑（装飾のみ、文字は使わない） */
