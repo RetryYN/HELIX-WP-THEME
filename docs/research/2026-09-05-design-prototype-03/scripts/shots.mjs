@@ -13,6 +13,7 @@ const BASE = args.base || "http://localhost:8086";
 const OUT = path.resolve(args.out || "../results");
 const ARTICLE = "/standing-desk-compare/";
 const CATALOG = "/catalog-03/";
+const LP = "/lp/";
 fs.mkdirSync(OUT, { recursive: true });
 const index = [];
 const SP = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
@@ -55,6 +56,41 @@ async function open(ctx, url, opts = {}) {
   return page;
 }
 const wt = (q) => `?wt=${q}`;
+
+// 段 4 の LP 撮影。新規ファイルだけを CATALOG-INDEX.json の末尾へ追加し、既存の段 1〜3 エントリは変更しない。
+if (args.stage4 === "true") {
+  const browserStage4 = await chromium.launch();
+  const lpAxes = [
+    ["header", ["minimal", "logo-only", "none"], (v) => `.wt-lp-header--${v}`, undefined],
+    ["hero", ["split", "fullbleed", "product", "text-only"], (v) => `.wt-lp-hero--${v}`, undefined],
+    ["hero-cta", ["single", "double", "form-inline"], () => ".wt-lp-hero--split", undefined],
+    ["sections", ["full", "short", "trust"], () => ".wt-lp__sections", 2200],
+    ["cta-style", ["solid", "outline", "pill"], () => ".wt-lp-hero--split", undefined],
+    ["fixed", ["none", "sp-bottom-bar", "float-cta"], (v, dev) => v === "none" || (v === "sp-bottom-bar" && dev === "pc") ? ".wt-lp-hero--split" : `.wt-lp-fixed--${v}`, undefined],
+    ["legal", ["on", "off"], (v) => v === "on" ? ".wt-lp-legal" : ".wt-lp__sections", 900],
+    ["footer-layout", ["sitemap", "single-row", "columns-3"], () => ".wt-footer", 1600],
+  ];
+  for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
+    const ctx = await browserStage4.newContext(cfg);
+    for (const [part, variants, selectorFor, clipHeight] of lpAxes) {
+      for (const variant of variants) {
+        const axis = part === "footer-layout" ? `footer_layout:${variant}` : `lp_${part.replaceAll("-", "_")}:${variant}`;
+        const p = await open(ctx, LP + wt(axis));
+        const selector = selectorFor(variant, dev);
+        await save(p, `lp-${part}-${variant}-${dev}`, { face: "lp", part: `lp-${part}`, variant, dev }, { selector, clipHeight });
+        await p.close();
+      }
+    }
+    await ctx.close();
+  }
+  await browserStage4.close();
+  const catalogFile = path.join(OUT, "..", "CATALOG-INDEX.json");
+  const existing = fs.existsSync(catalogFile) ? JSON.parse(fs.readFileSync(catalogFile, "utf8")) : [];
+  const newFiles = new Set(index.map((entry) => entry.file));
+  fs.writeFileSync(catalogFile, JSON.stringify(existing.filter((entry) => !newFiles.has(entry.file)).concat(index), null, 1));
+  console.log("stage4 done", index.length);
+  process.exit(0);
+}
 
 // 段 3 の追加撮影。既存151枚は読んでから保持し、同名の段3ファイルだけ再実行時に置換する。
 if (args.stage3 === "true") {

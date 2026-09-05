@@ -1,14 +1,14 @@
-# デザイン試作 03 — 比較・アフィリエイト媒体の記事面・404・カテゴリ面・footer（選べる型として実装）
+# デザイン試作 03 — 比較・アフィリエイト媒体の記事面・404・カテゴリ面・footer・LP（選べる型として実装）
 
 - 実施日: 2026-09-05。計画は `PLAN.md`（段 1 = 記事面 + 404 が本書の範囲）
-- 位置づけ: PoC 証跡。要求の確定・設計の決定ではない。PO 決定 2026-09-05「フロント先行」（試作 02 は殺風景・変化が少ないという PO 判定を受け、1 サイトパターン = 比較・アフィリエイト媒体に絞る）に基づく。段3ではカテゴリ ミニ HOME・footer・記事末尾 slot の型を選択可能な状態にする。
-- 方針: 見た目の差はすべて**テーマの実コード**（theme.json / block style / pattern / template part / CSS / 小さな JS）で、選択軸は body class・block style・pattern として実際に切り替えられる（DOM 注入のモックではない）。
+- 位置づけ: PoC 証跡。要求の確定・設計の決定ではない。PO 決定 2026-09-05「フロント先行」（試作 02 は殺風景・変化が少ないという PO 判定を受け、1 サイトパターン = 比較・アフィリエイト媒体に絞る）に基づく。段3ではカテゴリ ミニ HOME・footer・記事末尾 slot、段4では比較媒体が出すサービス訴求 LP の型を選択可能な状態にする。
+- 方針: 見た目の差はすべて**テーマの実コード**（theme.json / block style / pattern / template part / CSS / 小さな JS）で、選択軸は body class・block style・pattern として実際に切り替えられる（DOM 注入のモックではない）。LP も固有名なしのダミー商材を対象にし、AI 判定・外部 API・外部フォント / スクリプトは持たない。
 - 入力: 型の棚卸し `../2026-09-05-parts-pattern-taxonomy/by-purpose.md` §1「比較・アフィリエイト媒体」と §2（比較媒体・全用途共通）、語彙 `../2026-09-05-parts-pattern-taxonomy/PARTS-VOCAB.md`、既定値 `../2026-09-05-cro-usability-evidence/README.md` §2 P01–P33、パーツ一覧 `../2026-09-04-parts-inventory/README.md`（#98 / #107 / #110 / #122 / #126 / #127 / #130 / #132 / #134）。
 - テーマ本体（`themes/`）・`plugins/` は未編集。`theme/helix-wt/` は試作 02 の複製に上書きした試作テーマ。
 
 ## 1. 選択軸の仕組み
 
-選択は `functions.php` の `wt_axes()` に列挙した 27 軸。解決順は **プレビュー引数 `?wt=key:value,...`（PoC 用）→ 記事の post meta `wt_<key>`（eyecatch / toc / pr / share のみ、「この記事では目次を隠す」等）→ `theme_mod` `wt_<key>`（サイト既定）→ 既定値**。結果は `body.wt-<key>-<value>` の class になり、段3の `_` を含むキーには互換用の正規化 class（例: `wt-cat_header-hero` と `wt-cat-header-hero`）も付く。CSS がその class を切り替える。ヘッダーだけは `render_block_data` で template part の slug を `header-<variant>` に差し替える。実装時はプレビュー引数を管理者限定にし、サイトエディター / 記事サイドバーの選択 UI を付ける。
+選択は `functions.php` の `wt_axes()` に列挙した 34 軸。解決順は **プレビュー引数 `?wt=key:value,...`（PoC 用）→ 記事の post meta `wt_<key>`（eyecatch / toc / pr / share のみ、「この記事では目次を隠す」等）→ `theme_mod` `wt_<key>`（サイト既定）→ 既定値**。結果は `body.wt-<key>-<value>` の class になり、段3以降の `_` を含むキーには互換用の正規化 class（例: `wt-cat_header-hero` と `wt-cat-header-hero`）も付く。CSS がその class を切り替える。ヘッダーだけは `render_block_data` で template part の slug を `header-<variant>` に差し替える。LP の `footer_layout` は、そのページ面で theme_mod 未設定のときだけ `single-row` を面別既定にする。実装時はプレビュー引数を管理者限定にし、サイトエディター / 記事サイドバーの選択 UI を付ける。
 
 | 軸 | 値（既定を太字） | 切替の実体 |
 |---|---|---|
@@ -39,6 +39,13 @@
 | tail_share | **none** / icons-row | `.wt-tail__slot--share` > `.wt-tail-icons`（既存 share 軸の bottom / float 共有は `.wt-tail` の外に据え置き、両立） |
 | tail_author | **none** / avatar-bio / avatar-bio-sns / supervisor | `.wt-author-variant--*` |
 | tail_prevnext | **off** / thumb | `helix-wt/tail-prevnext` / `.wt-tail__prevnext` |
+| lp_header | **minimal** / logo-only / none | `page-lp` の3 header slot、none は LP 内アンカーナビ |
+| lp_hero | **split** / fullbleed / product / text-only | `helix-wt/lp` の4 hero slot、fullbleed は `[data-wt-scrim]` |
+| lp_hero_cta | **single** / double / form-inline | hero 内 CTA slot。form-inline は `method` / `action` と label を持つ form |
+| lp_sections | **full** / short / trust | `helix-wt/lp` の section slot を body class と CSS order で表示・並べ替え |
+| lp_cta_style | **solid** / outline / pill | LP CTA action の実色・border-radius・大型 pill |
+| lp_fixed | **none** / sp-bottom-bar / float-cta | LP 内固定 CTA。SP 下部バーは SP のみ表示 |
+| lp_legal | **on** / off | 打消し脚注と PR 表記の表示 |
 
 ## 2. 作ったもの（変種ごとのセレクタ・型名・根拠）
 
@@ -248,6 +255,222 @@ Astra レビュー（PR #141 1 巡目）の是正: (1) `category.js` の「次�
 
 Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ後にボタンが残る（`[hidden]` が CSS の `display:flex` に負ける）→ `.wt-load-more:not([hidden])` に表示を限定し `[hidden]{display:none!important}` を明示、JS もインライン display:none を設定、verify `loadMoreJs` は属性でなく computed 可視性（矩形・display）で「最終ページ後に非表示」を assert。(2) `share:float` と `footer_totop:button` が 1200px 未満で同じ右下に重なる → 併用時は to-top を float 共有の上へオフセット、verify に `fixedOverlapSp` / `fixedOverlapPc`（矩形交差なし・中心点のクリック到達）を追加。(3) hero コントラストが近似式である旨を明記（上記）。
 
+## 2.13 段4 — 比較媒体が出すサービス訴求 LP
+
+段4は `page-lp` 1 枚を対象に、固有名のないダミー商材へサービス訴求を行う LP の PoC である。要求・設計の決定ではなく、段3までの選択機構を LP 面へ往復させる観察記録として実装した。`patterns/lp.php` は既存の `hero-split` / `numbers` / `features` / `steps` / `pricing` / `faq` pattern と比較表 style を流用し、LP 専用のロゴ枠・声・バッジ枠・CTA 帯だけを追加している。実ロゴ、受賞名、認証名、第三者サービス名は表示しない。
+
+### LP の軸と型
+
+| 軸 / variant | セレクタ・実体 | 型名 | PoC 既定 |
+|---|---|---|---|
+| `lp_header: minimal` | `.wt-lp-header--minimal` | header: minimal logo + CTA | **既定** |
+| `lp_header: logo-only` / `none` | `.wt-lp-header--logo-only` / `.wt-lp-header--none`（後者は `.wt-lp-anchor-nav` のみ） | header: logo-only / anchor-nav-only | 選択可 |
+| `lp_hero: split` | `.wt-lp-hero--split`（PC は画像右・見出し左） | hero: split-text-image | **既定** |
+| `lp_hero: fullbleed` / `product` / `text-only` | `.wt-lp-hero--fullbleed[data-wt-scrim]` / `.wt-lp-hero--product` / `.wt-lp-hero--text-only` | hero: fullbleed-photo-overlay / product-shot / text-only | 選択可 |
+| `lp_hero_cta: single` / `double` / `form-inline` | `.wt-lp-cta--single` / `--double` / `.wt-lp-cta-form` | hero CTA: single / double / form-inline | **single** |
+| `lp_sections: full` | `.wt-lp__section` 全 slot、表示順は CSS `order` | sections: full | **既定** |
+| `lp_sections: short` | hero → features → pricing → FAQ → CTA 帯 1 slot | sections: short | 選択可 |
+| `lp_sections: trust` | hero → logos → numbers → testimonials → badges → CTA 帯 1 slot | sections: trust | 選択可 |
+| `lp_cta_style: solid` / `outline` / `pill` | `.wt-lp-cta-action` | CTA: solid / outline / large pill | **solid** |
+| `lp_fixed: none` / `sp-bottom-bar` / `float-cta` | `.wt-lp-fixed--*`（SP 下部バーは SP のみ） | fixed: none / SP bottom bar / float CTA | **none** |
+| `lp_legal: on` / `off` | `.wt-lp-legal`（打消し脚注 + PR 表記） | legal: disclosure + PR | **on** |
+| `footer_layout` | 段3の `.wt-footer__layout--*` | footer: 既存 3 型 | LP 面の未設定時は **single-row** |
+
+CTA 帯は最大 3 slot（one / two / three）を持ち、全構成では 3 slot、short / trust では最終 slot を表示する。`comparison-table` は段1の `.is-style-wt-compare` を使い、`numbers` は出典注記、`testimonials` は掲載件数注記、`logos-row` / `badges` は汎用枠だけを置く。form-inline は全 hero variant に `method="post"` / `action="/lp/"`、`input` の固有 `id`、対応する `label[for]` を持たせ、JavaScript が無くても HTML form として送信できる形にした。
+
+### 観察の多数派 / 少数派（台帳の %）
+
+LP は「サービス / SaaS LP」向けの型を主に採り、比較媒体の hero / 固定パーツと全用途共通の v2 footer 値を補助参照した。以下は `../2026-09-05-parts-pattern-taxonomy/by-purpose.md` §1「サービス / SaaS LP」、§2「サービス LP | 行動・信頼」「全用途共通 | 守り」の値を転記したもので、LP の採用決定や要求値ではない。`—` はその variant 自体の直接集計が無いことを示す。
+
+| 軸 | 観察の多数派 | 観察の少数派 / 直接集計なし | 本 PoC の読み方 |
+|---|---|---|---|
+| header | サービス LP の `logo-left-cta-right` は PC 34% / SP 74% | `with-announce-bar` は PC 10% / SP 13%、`transparent-over-hero` は SP 4%。logo-only / anchor-nav-only は LP 専用値 — | minimal を既定。logo-only / none は比較媒体 SP の `logo-center-only` 12% / `no-hamburger(text nav)` 17%を参照 |
+| hero | サービス LP は PC `split-text-image` 35%、SP `text-only` 35% | サービス LP の `product-shot` は PC 27% / SP 29%、`split` は SP 14%、`text-only` は PC 13%。比較媒体の `fullbleed-photo-overlay` は PC 15% / SP 18% | split を既定、product / text-only / fullbleed を比較可能にする |
+| hero CTA | 実装候補内では `single` PC 17% / SP 15%、`double` PC 17% / SP 11% | `form-inline` は PC 5% / SP 5%。なお `none` は PC 58% / SP 66%で最多だが、今回の LP 軸には入れない | LP の行動導線として single を既定、double / form は観察用 |
+| sections | サービス LP の `logos-row` は PC 19% / SP 13%、`features` は PC 14% / SP 9%、`numbers` は PC 12% | `badges-awards` は PC 9% / SP 9%。steps / pricing / testimonials / comparison / FAQ はこの行の型別 %なし | 行動・信頼の必要型として full / short / trust の順序差を観察 |
+| CTA style | `solid` / `outline` / `pill` の直接集計 — | 型別の %は作らない | theme.json の CTA / contrast 色で3表示を比較 |
+| fixed | サービス LP の PC は `sticky-header` 21%、`cookie-consent` 17%、`announce-bar` 17%。SP は `announce-bar` 37%、`none` 31% | サービス LP の `float-cta` は上位外。比較媒体 PC の `float-cta` は15%、全用途 v2 の SP 下部バーは4% | none を既定、SP bottom bar / float CTA を選択可。footer to-top / share と矩形監査 |
+| legal | サービス LP の信頼行は「数字（出典付き）/ 打消し表示」を必要型として記載 | 打消し / PR の LP 専用出現率 —。近接する footer 法定表示は copyright+links PC 44% / SP 35%、copyright-only PC 30% / SP 35% | 数字・No.1の脚注と PR 表記は on を既定、off も観察 |
+| footer | サービス LP の PC `mega(sitemap)` 91%。SP `accordion(sp)` 50%、`mega(sitemap)` 35% | PC `columns-3` 5%、SP `single-row` 8% | LP の面別未設定既定だけ `single-row` にし、段3の全 variant は残す |
+
+### 段4の guard / 検査項目
+
+`verify.mjs` §9 は段3までの検査に加えて、次の結果を同じ `results/verify.json` の `summary` へ反映する。数値結果は `verify.json` の同名フィールドを正本とし、この節に別の計算値を作らない。
+
+- `tap.lpSp` / `tap.lpPc`: LP 全面の可視 `a` / `button` / `input` / `summary` を、44px 目標と 24px 下限で監査する。本文中の inline link と打消し脚注の inline link はインライン例外として記録する。
+- `lpContrast`: `solid` / `outline` / `pill` 各 variant の computed style の実色で、header / hero / CTA 帯 / おすすめ pricing の文字と背景を計算する。CTA 帯は theme.json の `contrast` 色を背景、`base` 色を文字へ使う。
+- `lpFullbleedContrast`: 段1と同じ canvas の画像輝度標本化、cover 写像、gradient stop の alpha 線形補間で h1 / lead を測る。これは文字グリフの実ピクセルを直接測るものではない**近似**であり、`ratioWorstPixel` も参考値として残す。
+- `lpFormNoJs`: JS 無効コンテキストで form の `method` / `action`、input `id`、label の関連付けを確認する。
+- `lpAnchorNav`: `lp_header:none` のアンカー各 `href` について、スクロール先の実在とリンク可視を確認する。
+- `lpSections`: full / short / trust の可視 slot と、画面上の CSS `order` を確認する。
+- `lpFixedOverlap.sp` / `.pc`: `lp_fixed` 3 variant と `footer_totop:button` / `share:float` の組み合わせで、可視固定要素の矩形交差・viewport 内・中心点のクリック到達を確認する。
+- `lpReducedMotion`: `prefers-reduced-motion: reduce` で LP の出現要素が透明にならず、LP action / section の transition が停止することを確認する。
+- `lpLcpHero`: split / fullbleed / product の hero 画像に `fetchpriority="high"` と `width` / `height` があり、text-only は画像なしであることを確認する。
+- `lpFooterFaceDefault`（Astra 1巡目是正）: theme_mod 未設定時、LP 面の body class に `wt-face-lp` / `wt-footer-layout-single-row` が付き、非 LP 面（記事）には `wt-face-lp` が付かず `wt-footer-layout-sitemap`（既定）のままであることを確認する。
+- `lpVisibleAnchors`（Astra 1巡目是正）: `lp_hero_cta:double` × `lp_sections:{full,short,trust}` の3組合せで、表示中の全アンカー（header 内アンカーナビだけでなく hero CTA を含む）の href 先が実在し可視であることを確認する（href="#" のみの placeholder リンクは対象外）。
+- `lpFaceScopedTotop`（Astra 1巡目是正）: 非LP面（記事）で `lp_fixed:sp-bottom-bar` を指定しても `.wt-totop` の `bottom` が既定値から変わらないことを確認する（LP面限定のCSSが非LP面へ漏れていないか）。
+
+### 段4の検証結果
+
+実機での再実行結果（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`。以下は保存済みフィールドの値を丸めずに転記した PoC の観察記録であり、要求・設計の決定ではない。
+
+タップ監査（`tap.lpSp` / `tap.lpPc`）: 44px 目標・24px 下限の結果は次のとおり。両画面とも `below44: []` / `below24: []`。`srOnly` は `["a.skip-link.screen-reader-text 'Skip to content' 1x1"]` として別掲されている。
+
+| フィールド | total | ok44 | ok24 | inlineText | pass |
+|---|---|---|---|---|---|
+| `tap.lpSp` | 24 | 24 | 24 | 1 | true |
+| `tap.lpPc` | 24 | 24 | 24 | 1 | true |
+
+表示色（`lpContrast`）: 下表は各 `styles[].items[]` の記録順で、index は 0 起点。同じ label の要素も省略せず、文字の実色 `color` と実効背景 `background`、`ratio`、判定しきい値 `required` を項目ごとに記載した。比は `:1`、各 style と `lpContrast` 全体も `pass: true`。
+
+`lpContrast` — `style: solid`（`items`）
+
+| index / label | color | background | ratio | required | pass |
+|---|---|---|---|---|---|
+| 0 / header CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 1 / hero CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 2 / CTA band action | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 3 / CTA band action | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 4 / CTA band action | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 5 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 6 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 7 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 8 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 9 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 10 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 11 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 12 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 13 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 14 / featured pricing heading | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 15 / featured pricing price | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 3 | true |
+| 16 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 17 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 18 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 19 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 20 / featured pricing CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+
+`lpContrast` — `style: outline`（`items`）
+
+| index / label | color | background | ratio | required | pass |
+|---|---|---|---|---|---|
+| 0 / header CTA | `rgb(29, 78, 216)` | `rgb(255, 255, 255)` | 6.7 | 4.5 | true |
+| 1 / hero CTA | `rgb(29, 78, 216)` | `rgb(255, 255, 255)` | 6.7 | 4.5 | true |
+| 2 / CTA band action | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 3 / CTA band action | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 4 / CTA band action | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 5 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 6 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 7 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 8 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 9 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 10 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 11 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 12 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 13 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 14 / featured pricing heading | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 15 / featured pricing price | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 3 | true |
+| 16 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 17 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 18 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 19 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 20 / featured pricing CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+
+`lpContrast` — `style: pill`（`items`）
+
+| index / label | color | background | ratio | required | pass |
+|---|---|---|---|---|---|
+| 0 / header CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 1 / hero CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 2 / CTA band action | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 3 / CTA band action | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 4 / CTA band action | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+| 5 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 6 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 7 / CTA band heading | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 3 | true |
+| 8 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 9 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 10 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 11 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 12 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 13 / CTA band text | `rgb(255, 255, 255)` | `rgb(23, 28, 34)` | 17.13 | 4.5 | true |
+| 14 / featured pricing heading | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 15 / featured pricing price | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 3 | true |
+| 16 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 17 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 18 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 19 / featured pricing item | `rgb(23, 28, 34)` | `rgb(255, 255, 255)` | 17.13 | 4.5 | true |
+| 20 / featured pricing CTA | `rgb(255, 255, 255)` | `rgb(194, 65, 12)` | 5.18 | 4.5 | true |
+
+fullbleed hero の自動コントラスト（`lpFullbleedContrast`）: `lum: light`、`sampledL: 0.553`、`gradient` は `linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 45%, rgba(0, 0, 0, 0.25) 100%)`。`approximation` は「段1と同じ canvas 輝度標本化 + linear-gradient の線形補間による概算」、全体の `pass: true`。
+
+| label | textColor | alphaAtText | imageLAtText | imageLMaxAtText | compositeL | ratioText | ratioWorstPixel | required | pass |
+|---|---|---|---|---|---|---|---|---|---|
+| h1 | `rgb(255, 255, 255)` | 0.479 | 0.327 | 1 | 0.17 | 4.77 | 1.84 | 3 | true |
+| lead | `rgb(255, 255, 255)` | 0.728 | 0.522 | 1 | 0.142 | 5.46 | 3.26 | 4.5 | true |
+
+段1・段3と同様、文字グリフでなく文字コンテナ矩形内の平均画像輝度と gradient の実効 alpha を使い、輝度同士を線形混合する**近似式による評価**であり、実描画ピクセルの直接測定ではない。合否は平均輝度に基づく `ratioText` で判定し、最大輝度画素による `ratioWorstPixel` は参考値として併記する。今回の `ratioWorstPixel` は両項目とも `required` 未満であり、全画素での達成を示す記録ではない。
+
+form-inline の no-JS（`lpFormNoJs`）: `hero: "wt-lp-hero wt-lp-hero--split"`、`method: "post"`、`action: "/lp/"`、`inputId: "lp-email-split"`、`labelFor: "lp-email-split"`、`pass: true`。JS 無効時の form 属性と label 関連付けを確認した結果であり、送信先での受付・配送の実動検証ではない。
+
+アンカーナビ（`lpAnchorNav`）: `targets` は `["lp-hero","lp-sections","contact"]`、`pass: true`。リンクごとの記録は次のとおり。
+
+| href | targetId | targetExists | visible |
+|---|---|---|---|
+| `#lp-hero` | `lp-hero` | true | true |
+| `#lp-sections` | `lp-sections` | true | true |
+| `#contact` | `contact` | true | true |
+
+セクション順（`lpSections`）: `.wt-lp__sections` 内の可視 slot を表示順に記録した `visible` は下表のとおり。各 variant の `expected` と同じ配列で、全体も `pass: true`。hero はこの配列の対象外。
+
+| variant | visible（順序を保持） | pass |
+|---|---|---|
+| `full` | `["numbers","features","steps","logos","testimonials","pricing","comparison","faq","badges","cta-band--one","cta-band--two","cta-band--three"]` | true |
+| `short` | `["features","pricing","faq","cta-band--three"]` | true |
+| `trust` | `["logos","numbers","testimonials","badges","cta-band--three"]` | true |
+
+固定要素の併用（`lpFixedOverlap.sp` / `.pc`、`footer_totop:button,share:float`）: 可視要素の `items` を原配列順に記載。矩形は `x` / `y` / `w` / `h`（px）で、`fixed` は LP 固定 CTA、`share` は float 共有、`totop` は to-top。`intersections` の件数は空配列の 0 件、`clickable` は各ボタン中心点での到達結果。
+
+| dev / variant | fixedVisible / expectedFixedVisible | items（可視要素の矩形） | intersections（件数） | clickable | inViewport / pass |
+|---|---|---|---|---|---|
+| `sp / none` | `false / false` | `share {"x":326,"y":724,"w":48,"h":104}`、`totop {"x":326,"y":664,"w":48,"h":48}` | `[]`（0 件） | `[true,true,true]` | `true / true` |
+| `sp / sp-bottom-bar` | `true / true` | `fixed {"x":0,"y":787,"w":318,"h":57}`、`share {"x":326,"y":724,"w":48,"h":104}`、`totop {"x":326,"y":664,"w":48,"h":48}` | `[]`（0 件） | `[true,true,true,true,true]` | `true / true` |
+| `sp / float-cta` | `true / true` | `fixed {"x":16,"y":780,"w":144,"h":48}`、`share {"x":326,"y":724,"w":48,"h":104}`、`totop {"x":326,"y":664,"w":48,"h":48}` | `[]`（0 件） | `[true,true,true,true]` | `true / true` |
+| `pc / none` | `false / false` | `share {"x":1084,"y":92,"w":48,"h":104}`、`totop {"x":1376,"y":836,"w":48,"h":48}` | `[]`（0 件） | `[true,true,true]` | `true / true` |
+| `pc / sp-bottom-bar` | `false / false` | `share {"x":1084,"y":92,"w":48,"h":104}`、`totop {"x":1376,"y":836,"w":48,"h":48}` | `[]`（0 件） | `[true,true,true]` | `true / true` |
+| `pc / float-cta` | `true / true` | `fixed {"x":16,"y":836,"w":144,"h":48}`、`share {"x":1084,"y":92,"w":48,"h":104}`、`totop {"x":1376,"y":836,"w":48,"h":48}` | `[]`（0 件） | `[true,true,true,true]` | `true / true` |
+
+reduced-motion（`lpReducedMotion`）: `revealHidden: 0`、`actionTransition: "none"`、`sectionTransition: "none"`、`pass: true`。
+
+LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次のとおり（属性値の文字列と数値・真偽値を原記録のまま区別）。全体の `pass: true`。これは画像の優先度・寸法属性と読込状態の検査であり、LCP 時間の実測ではない。
+
+| variant | heroVisible | imageExpected | attrs | pass |
+|---|---|---|---|---|
+| `split` | true | true | `{"fetchpriority":"high","loading":"eager","width":"720","height":"540","complete":true,"naturalWidth":1200}` | true |
+| `fullbleed` | true | true | `{"fetchpriority":"high","loading":"eager","width":"1440","height":"820","complete":true,"naturalWidth":1200}` | true |
+| `product` | true | true | `{"fetchpriority":"high","loading":"eager","width":"512","height":"512","complete":true,"naturalWidth":800}` | true |
+| `text-only` | true | false | `null` | true |
+
+実機検証での是正の記録: (1) SP header の site-title が flex 内で幅 15px に潰れ、44px 監査に落ちた → site-title に `flex:1 1 auto;min-width:0`、リンクに `white-space:nowrap`、header CTA に `flex:0 0 auto` と SP の `width:auto` を設定した。(2) LP 要素の `content-box` と `width:100%` に padding / border が加算され、SP の layout viewport が 433px に拡大し、全幅化した float-cta が `share:float` と交差した → LP 関連要素を `border-box` 化し、SP float-cta は `width:auto;max-width:calc(100vw - 2rem - 48px - .75rem)` として右側の float 帯を避けた。(3) `verify.mjs` の cta-band キー抽出が接頭辞を二重に付け、正しい DOM の `wt-lp-cta-band--one/two/three` を拾えなかった → `one/two/three` のクラスを先に検索し、見つかった名前へ `cta-band--` を付ける順に是正した。上記の再実行値はこれらの是正後の観察である。
+
+`shots.mjs --stage4 true` の撮影行列は実機で実行済み。段4で 48 枚を追加した（LP 専用 7 軸の `lp-*` 42 枚 + LP 面の `footer_layout` 3 variant × SP / PC の 6 枚）、計 311。既存 263 枚のファイル名・内容は変更していない。`CATALOG-INDEX.json` の末尾へ `{file, face: "lp", part, variant, dev}` を 48 件追記し、263 → 311 エントリになった。
+
+### Astra 1巡目是正（head e4d6a8d に対するレビュー、指摘 4 件）
+
+- 重大: `wt_is_lp_page()` が `is_page_template('page-lp.html')` で判定しており、`theme.json` の `customTemplates` 登録名（core が保存する slug）`page-lp` と不一致だった。通常のテンプレート選択・WP-CLI の `--page_template=page-lp` は slug 表記で `_wp_page_template` を保存するため、旧コードでは常に false になり footer の LP 既定（`single-row`）が効かなかった。`is_page_template( array( 'page-lp', 'page-lp.html' ) )` に修正し、README §6 手順 5 の `--page_template=page-lp.html` も `page-lp` に修正した（README 内の他の `page-lp.html` 表記も同語へ統一）。実機で LP ページ（post 601）の `_wp_page_template` を `wp post meta get 601 _wp_page_template` で確認し `page-lp` が保存されていること、body class に `page-template-page-lp` / `wt-face-lp` / `wt-footer-layout-single-row` が付くこと、記事面には付かず `wt-footer-layout-sitemap`（既定）のままであることを確認した。`verify.mjs` に `lpFooterFaceDefault` を追加し検査化した。
+- 改善: `patterns/lp.php` の double CTA 副ボタン「比較表を見る」（`#comparison`）が `lp_sections:short` / `trust` では非表示セクションを指していた。副ボタンを `full → #comparison`（比較表を見る）/ `short → #pricing`（料金を見る）/ `trust → #voices`（利用者の声を見る、testimonials セクションの実 id）の3種の `<a data-lp-cta-target="...">` に分け、`theme.css` に `body.wt-lp-sections-{short,trust}` に応じて該当 variant だけを `inline-flex` にする CSS を追加した（既定は `full`）。`verify.mjs` に `lpVisibleAnchors` を追加し、`lp_hero_cta:double × lp_sections:{full,short,trust}` の3組合せで表示中の全アンカー（header 内だけでなく hero CTA も対象）の href 先が実在し可視であることを検査する（`href="#"` のみの placeholder リンクは対象外）。
+- 改善: `theme.css` の `.wt-lp-fixed-sp-bottom-bar.wt-footer-totop-button:not(.wt-share-float) .wt-totop{bottom:...}` が LP 面限定の条件を持たず、`wt_lp_fixed` は全画面へ body class が付くため非LP面でも SP の to-top が持ち上がり得た。`functions.php` の `body_class` フィルタで LP 判定時だけ `wt-face-lp` を付与し、該当 CSS ルールを `body.wt-face-lp.wt-lp-fixed-sp-bottom-bar...` に限定した。`verify.mjs` に `lpFaceScopedTotop` を追加し、記事面（非LP）で `lp_fixed:sp-bottom-bar` を指定しても `.wt-totop` の `bottom` が既定（16px）から変わらないことを検査する。
+- 軽微: `patterns/lp.php:112` の比較セクション内 `.wt-lp-section-inner` の閉じ `</div>` 欠落を追加した。`php -l` 通過、レンダリング後の DOM で当該 `<div class="wp-block-group wt-lp-section-inner">` が正しく `</section>` の前で閉じることを確認した。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**（既存 37 + 新規 3）、総合 `pass: true`。`shots.mjs --stage4` の再撮影は既存 311 枚と一致し、差分 0 枚だった（本是正は body class の追加条件と CSS セレクタ限定・PHP マークアップの閉じタグ追加のみで、既定描画・見た目には変化がないため）。
+
+### Astra 2巡目是正（head 5d3bb62 に対するレビュー、指摘 改善2・軽微1。重大なし・merge可の判定を維持）
+
+- 改善: `lpVisibleAnchors` は「表示中の全リンクが href 先を持つ」ことしか検査しておらず、副 CTA そのものが1本も表示されていない・別 variant の href のまま残っている、といった消失を検出できなかった（保存済みリンク集合から副 CTA だけを除いても同じ判定なら合格してしまう）。`scripts/verify.mjs` の `lpVisibleAnchors` に `.wt-lp-cta-action--secondary[data-lp-cta-target]` を直接クエリする検査を追加し、構成ごとに「可視な副 CTA が **ちょうど1本**」かつ「その `href` が期待値（full→`#comparison` / short→`#pricing` / trust→`#voices`）と一致」することを合格条件に加えた（`secondaryButtons` / `expectedHref` / `secondaryPass` を記録）。
+- 改善: `lpFaceScopedTotop` は非 null・前後一致のみを見ており、両方が同じ非既定値（例 68px）でも合格し、かつ `share:float` を明示回避していなかったため、サイト既定（`share` の既定値）次第で問題の CSS 分岐を踏まずに合格できる余地があった。記事面の計測を `share:topbottom`（float ではない）に固定し、判定を「`baseline` と `withLpFixed` がともに `"16px"`（`theme.css:631` の `.wt-totop{bottom:1rem}` = 16px という既定値そのもの）と一致」に変更した。
+- 軽微: README §2.13 のタップ数（`tap.lpSp` / `tap.lpPc`）が「36 / 36 / 36」のまま古く、`results/verify.json` の実データ（total 24・ok44 24・ok24 24）と不一致だった。表を実データへ修正し、他の掲載数値（`lpContrast` 各 style 21 件、`lpFullbleedContrast`、`lpAnchorNav`、`lpSections`、`lpFixedOverlap.sp`/`.pc`、`lpLcpHero`）も `results/verify.json` と全件照合し、一致を確認した（不一致はタップ数のみ）。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`（項目数は前回是正から変わらず、検査条件のみ強化）。`shots.mjs --stage4` の再撮影は既存 311 枚の MD5 と一致し、差分 0 枚だった（本是正は `verify.mjs` の検査条件強化と README の数値修正のみで、テーマの PHP / CSS には変更がないため）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -259,9 +482,9 @@ Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ
 
 小タップ率（`smallTapRate`）は調査スクリプトの定義（44px 未満の a/button の割合。本文中のインラインリンクを含む）。
 
-## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。Astra レビュー PR #139 の指摘 8 件を反映して再実行）
+## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。段4まで実機実行済み）
 
-下表は段1/2の検査項目（段 3 の再実行後の値。段 3 で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段 1 時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。`summary` は 26 項目 pass 26 / fail 0。段 1/2 の項目も `contrast` / `contrastGuard` / `headline` / タップ 4 画面に合否を持たせ、総合 `pass` は全項目の AND。
+下表は段1/2の検査項目（段4の再実行後の値。段3で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段1時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。段4で追加した 14 項目（lpTapSp / lpTapPc / lpContrast / lpFullbleedContrast / lpFormNoJs / lpAnchorNav / lpSections / lpFixedOverlapSp / lpFixedOverlapPc / lpReducedMotion / lpLcpHero / lpFooterFaceDefault / lpVisibleAnchors / lpFaceScopedTotop）の結果は §2.13「段4の検証結果」に記載。保存済みの最新 `results/verify.json` は `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`。段1/2の項目も `contrast` / `contrastGuard` / `headline` / タップ4画面に合否を持たせ、総合 `pass` は段4までの全項目の AND。
 
 | 項目 | 結果 |
 |---|---|
@@ -280,7 +503,7 @@ Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ
 
 ## 5. 描画証跡
 
-`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。既存 151 枚のファイル名・内容は変更していない。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
+`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。段4で 48 枚を追加（`lp-*` 42 + LP 面 `footer-layout` 6）、計 311。既存 263 枚のファイル名・内容は変更していない。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
 
 ## 6. 手順（再現）
 
@@ -288,7 +511,7 @@ Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ
 2. 記事: `wp post create --post_type=post --post_content='<!-- wp:pattern {"slug":"helix-wt/compare-article"} /-->' ...`、アイキャッチは `wp media import <theme>/assets/img/media-pickup-1.jpg` → `_thumbnail_id`。関連一覧用に短い架空記事 5 件 + カタログ固定ページ（`helix-wt/catalog-03`、テンプレ page-canvas）
 3. 段3データ: WP-CLIで親カテゴリ `topic-index` を作成し、子カテゴリ `topic-one` / `topic-two` / `topic-three` を `--parent=<親term_id>` で作成する。各子へダミー記事を5件ずつ、親へ横断記事を2件以上 `wp post create --post_type=post --post_status=publish --post_category=<term_id> --post_content='<!-- wp:paragraph --><p>ダミー本文です。</p><!-- /wp:paragraph -->' --post_title='読みもの <連番>'` で登録し、合計14件以上にする。カテゴリ説明は `wp term update category <term_id> --description='カテゴリの説明文です。'` で設定する。固有名・実在URL・第三者ロゴは使わない。
 4. 変種の確認: 既存軸は `?wt=header:cta,sp:left,eyecatch:hero,toc:float,related:rank,share:float,motion:on,depth:2,density:airy,detext:on,nf:suggest`、段3は `?wt=cat_header:hero,cat_children:steps,cat_list:featured-grid,cat_pagination:load-more,cat_ranking:sidebar,cat_minihome:on,footer_layout:columns-3,footer_above:banner-row,footer_legal:copyright-only,footer_extra:sns-sites,footer_totop:button,tail_order:cta-related-author-share,tail_share:icons-row,tail_author:avatar-bio-sns,tail_prevnext:thumb` のように付ける。サイト既定は `wp theme mod set wt_<key> <value>`、記事単位は `wp post meta set <ID> wt_eyecatch|wt_toc|wt_pr|wt_share <value>`
-5. 撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage3 true --base <site> --out results`。検証は `node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
+5. 段4のテーマ配置（リポ root から）: `docker cp docs/research/2026-09-05-design-prototype-03/theme/helix-wt/. agent-neo-wp:/var/www/html/wp-content/themes/helix-wt/`。LP ページが未作成なら `docker compose run --rm -T wpcli post create --post_type=page --post_status=publish --post_name=lp --post_title='案内ページ' --page_template=page-lp` で 1 枚だけ作成する。撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage4 true --base <site> --out results`。検証は `NODE_PATH=<playwright の node_modules> node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
 6. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
 
 ## 7. 終了時状態（意図的に残置）
@@ -299,7 +522,6 @@ Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ
 
 ## 8. 未実装・次タスク
 
-- LP: 段4で実装する。
 - 人気記事の集計方式（404 の人気・関連の「人気」は新着順で代替、#110）。
 - 選択 UI（サイトエディターの variation / 記事サイドバー）。現状は theme_mod・post meta・プレビュー引数。
 - 目次の float は 1200px 以上のみ（本文 680 + レール 240 + 余白）。1024–1199px では box にフォールバック。

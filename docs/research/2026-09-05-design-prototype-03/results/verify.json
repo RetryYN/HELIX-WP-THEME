@@ -267,6 +267,30 @@
    "below44": [],
    "below24": [],
    "pass": true
+  },
+  "lpSp": {
+   "total": 24,
+   "ok44": 24,
+   "ok24": 24,
+   "inlineText": 1,
+   "srOnly": [
+    "a.skip-link.screen-reader-text 'Skip to content' 1x1"
+   ],
+   "below44": [],
+   "below24": [],
+   "pass": true
+  },
+  "lpPc": {
+   "total": 24,
+   "ok44": 24,
+   "ok24": 24,
+   "inlineText": 1,
+   "srOnly": [
+    "a.skip-link.screen-reader-text 'Skip to content' 1x1"
+   ],
+   "below44": [],
+   "below24": [],
+   "pass": true
   }
  },
  "contrastGuard": [
@@ -1003,10 +1027,1219 @@
   ],
   "pass": true
  },
+ "lpContrast": {
+  "styles": [
+   {
+    "style": "solid",
+    "items": [
+     {
+      "label": "header CTA",
+      "selector": ".wt-lp-header .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "hero CTA",
+      "selector": ".wt-lp-hero .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing heading",
+      "selector": ".wt-plan--featured h3",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing price",
+      "selector": ".wt-plan--featured .wt-price",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing CTA",
+      "selector": ".wt-plan--featured .wp-block-button__link",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     }
+    ],
+    "pass": true
+   },
+   {
+    "style": "outline",
+    "items": [
+     {
+      "label": "header CTA",
+      "selector": ".wt-lp-header .wt-lp-cta-action",
+      "color": "rgb(29, 78, 216)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 6.7,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "hero CTA",
+      "selector": ".wt-lp-hero .wt-lp-cta-action",
+      "color": "rgb(29, 78, 216)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 6.7,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing heading",
+      "selector": ".wt-plan--featured h3",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing price",
+      "selector": ".wt-plan--featured .wt-price",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing CTA",
+      "selector": ".wt-plan--featured .wp-block-button__link",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     }
+    ],
+    "pass": true
+   },
+   {
+    "style": "pill",
+    "items": [
+     {
+      "label": "header CTA",
+      "selector": ".wt-lp-header .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "hero CTA",
+      "selector": ".wt-lp-hero .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band action",
+      "selector": ".wt-lp-cta-band .wt-lp-cta-action",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band heading",
+      "selector": ".wt-lp-cta-band h2",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "CTA band text",
+      "selector": ".wt-lp-cta-band p",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(23, 28, 34)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing heading",
+      "selector": ".wt-plan--featured h3",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing price",
+      "selector": ".wt-plan--featured .wt-price",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 3,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing item",
+      "selector": ".wt-plan--featured li",
+      "color": "rgb(23, 28, 34)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 17.13,
+      "required": 4.5,
+      "pass": true
+     },
+     {
+      "label": "featured pricing CTA",
+      "selector": ".wt-plan--featured .wp-block-button__link",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(194, 65, 12)",
+      "ratio": 5.18,
+      "required": 4.5,
+      "pass": true
+     }
+    ],
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "lpFullbleedContrast": {
+  "lum": "light",
+  "sampledL": 0.553,
+  "gradient": "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 45%, rgba(0, 0, 0, 0.25) 100%)",
+  "approximation": "段1と同じ canvas 輝度標本化 + linear-gradient の線形補間による概算",
+  "items": [
+   {
+    "label": "h1",
+    "textColor": "rgb(255, 255, 255)",
+    "alphaAtText": 0.479,
+    "imageLAtText": 0.327,
+    "imageLMaxAtText": 1,
+    "compositeL": 0.17,
+    "ratioText": 4.77,
+    "ratioWorstPixel": 1.84,
+    "required": 3,
+    "pass": true
+   },
+   {
+    "label": "lead",
+    "textColor": "rgb(255, 255, 255)",
+    "alphaAtText": 0.728,
+    "imageLAtText": 0.522,
+    "imageLMaxAtText": 1,
+    "compositeL": 0.142,
+    "ratioText": 5.46,
+    "ratioWorstPixel": 3.26,
+    "required": 4.5,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "lpFormNoJs": {
+  "hero": "wt-lp-hero wt-lp-hero--split",
+  "method": "post",
+  "action": "/lp/",
+  "inputId": "lp-email-split",
+  "labelFor": "lp-email-split",
+  "pass": true
+ },
+ "lpAnchorNav": {
+  "links": [
+   {
+    "href": "#lp-hero",
+    "targetId": "lp-hero",
+    "targetExists": true,
+    "visible": true
+   },
+   {
+    "href": "#lp-sections",
+    "targetId": "lp-sections",
+    "targetExists": true,
+    "visible": true
+   },
+   {
+    "href": "#contact",
+    "targetId": "contact",
+    "targetExists": true,
+    "visible": true
+   }
+  ],
+  "targets": [
+   "lp-hero",
+   "lp-sections",
+   "contact"
+  ],
+  "pass": true
+ },
+ "lpSections": {
+  "variants": [
+   {
+    "variant": "full",
+    "visible": [
+     "numbers",
+     "features",
+     "steps",
+     "logos",
+     "testimonials",
+     "pricing",
+     "comparison",
+     "faq",
+     "badges",
+     "cta-band--one",
+     "cta-band--two",
+     "cta-band--three"
+    ],
+    "expected": [
+     "numbers",
+     "features",
+     "steps",
+     "logos",
+     "testimonials",
+     "pricing",
+     "comparison",
+     "faq",
+     "badges",
+     "cta-band--one",
+     "cta-band--two",
+     "cta-band--three"
+    ],
+    "pass": true
+   },
+   {
+    "variant": "short",
+    "visible": [
+     "features",
+     "pricing",
+     "faq",
+     "cta-band--three"
+    ],
+    "expected": [
+     "features",
+     "pricing",
+     "faq",
+     "cta-band--three"
+    ],
+    "pass": true
+   },
+   {
+    "variant": "trust",
+    "visible": [
+     "logos",
+     "numbers",
+     "testimonials",
+     "badges",
+     "cta-band--three"
+    ],
+    "expected": [
+     "logos",
+     "numbers",
+     "testimonials",
+     "badges",
+     "cta-band--three"
+    ],
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "lpFixedOverlap": {
+  "sp": [
+   {
+    "dev": "sp",
+    "variant": "none",
+    "fixedVisible": false,
+    "expectedFixedVisible": false,
+    "items": [
+     {
+      "name": "share",
+      "x": 326,
+      "y": 724,
+      "w": 48,
+      "h": 104
+     },
+     {
+      "name": "totop",
+      "x": 326,
+      "y": 664,
+      "w": 48,
+      "h": 48
+     }
+    ],
+    "intersections": [],
+    "clickable": [
+     true,
+     true,
+     true
+    ],
+    "inViewport": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "sp-bottom-bar",
+    "fixedVisible": true,
+    "expectedFixedVisible": true,
+    "items": [
+     {
+      "name": "fixed",
+      "x": 0,
+      "y": 787,
+      "w": 318,
+      "h": 57
+     },
+     {
+      "name": "share",
+      "x": 326,
+      "y": 724,
+      "w": 48,
+      "h": 104
+     },
+     {
+      "name": "totop",
+      "x": 326,
+      "y": 664,
+      "w": 48,
+      "h": 48
+     }
+    ],
+    "intersections": [],
+    "clickable": [
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "inViewport": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "variant": "float-cta",
+    "fixedVisible": true,
+    "expectedFixedVisible": true,
+    "items": [
+     {
+      "name": "fixed",
+      "x": 16,
+      "y": 780,
+      "w": 144,
+      "h": 48
+     },
+     {
+      "name": "share",
+      "x": 326,
+      "y": 724,
+      "w": 48,
+      "h": 104
+     },
+     {
+      "name": "totop",
+      "x": 326,
+      "y": 664,
+      "w": 48,
+      "h": 48
+     }
+    ],
+    "intersections": [],
+    "clickable": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "inViewport": true,
+    "pass": true
+   }
+  ],
+  "pc": [
+   {
+    "dev": "pc",
+    "variant": "none",
+    "fixedVisible": false,
+    "expectedFixedVisible": false,
+    "items": [
+     {
+      "name": "share",
+      "x": 1084,
+      "y": 92,
+      "w": 48,
+      "h": 104
+     },
+     {
+      "name": "totop",
+      "x": 1376,
+      "y": 836,
+      "w": 48,
+      "h": 48
+     }
+    ],
+    "intersections": [],
+    "clickable": [
+     true,
+     true,
+     true
+    ],
+    "inViewport": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "variant": "sp-bottom-bar",
+    "fixedVisible": false,
+    "expectedFixedVisible": false,
+    "items": [
+     {
+      "name": "share",
+      "x": 1084,
+      "y": 92,
+      "w": 48,
+      "h": 104
+     },
+     {
+      "name": "totop",
+      "x": 1376,
+      "y": 836,
+      "w": 48,
+      "h": 48
+     }
+    ],
+    "intersections": [],
+    "clickable": [
+     true,
+     true,
+     true
+    ],
+    "inViewport": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "variant": "float-cta",
+    "fixedVisible": true,
+    "expectedFixedVisible": true,
+    "items": [
+     {
+      "name": "fixed",
+      "x": 16,
+      "y": 836,
+      "w": 144,
+      "h": 48
+     },
+     {
+      "name": "share",
+      "x": 1084,
+      "y": 92,
+      "w": 48,
+      "h": 104
+     },
+     {
+      "name": "totop",
+      "x": 1376,
+      "y": 836,
+      "w": 48,
+      "h": 48
+     }
+    ],
+    "intersections": [],
+    "clickable": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "inViewport": true,
+    "pass": true
+   }
+  ]
+ },
+ "lpReducedMotion": {
+  "revealHidden": 0,
+  "actionTransition": "none",
+  "sectionTransition": "none",
+  "pass": true
+ },
+ "lpLcpHero": {
+  "variants": [
+   {
+    "variant": "split",
+    "heroVisible": true,
+    "imageExpected": true,
+    "attrs": {
+     "fetchpriority": "high",
+     "loading": "eager",
+     "width": "720",
+     "height": "540",
+     "complete": true,
+     "naturalWidth": 1200
+    },
+    "pass": true
+   },
+   {
+    "variant": "fullbleed",
+    "heroVisible": true,
+    "imageExpected": true,
+    "attrs": {
+     "fetchpriority": "high",
+     "loading": "eager",
+     "width": "1440",
+     "height": "820",
+     "complete": true,
+     "naturalWidth": 1200
+    },
+    "pass": true
+   },
+   {
+    "variant": "product",
+    "heroVisible": true,
+    "imageExpected": true,
+    "attrs": {
+     "fetchpriority": "high",
+     "loading": "eager",
+     "width": "512",
+     "height": "512",
+     "complete": true,
+     "naturalWidth": 800
+    },
+    "pass": true
+   },
+   {
+    "variant": "text-only",
+    "heroVisible": true,
+    "imageExpected": false,
+    "attrs": null,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "lpFooterFaceDefault": {
+  "lpHasFace": true,
+  "lpHasSingleRow": true,
+  "articleHasFace": false,
+  "articleHasSingleRow": false,
+  "articleHasSitemap": true,
+  "pass": true
+ },
+ "lpVisibleAnchors": {
+  "variants": [
+   {
+    "variant": "full",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#comparison",
+      "targetId": "comparison",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#comparison",
+      "targetId": "comparison",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "secondaryButtons": [
+     "#comparison"
+    ],
+    "expectedHref": "#comparison",
+    "secondaryPass": true,
+    "pass": true
+   },
+   {
+    "variant": "short",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#pricing",
+      "targetId": "pricing",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "secondaryButtons": [
+     "#pricing"
+    ],
+    "expectedHref": "#pricing",
+    "secondaryPass": true,
+    "pass": true
+   },
+   {
+    "variant": "trust",
+    "links": [
+     {
+      "href": "#wp--skip-link--target",
+      "targetId": "wp--skip-link--target",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#contact",
+      "targetId": "contact",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#voices",
+      "targetId": "voices",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-hero",
+      "targetId": "lp-hero",
+      "targetExists": true,
+      "targetVisible": true
+     },
+     {
+      "href": "#lp-footnote-1",
+      "targetId": "lp-footnote-1",
+      "targetExists": true,
+      "targetVisible": true
+     }
+    ],
+    "secondaryButtons": [
+     "#voices"
+    ],
+    "expectedHref": "#voices",
+    "secondaryPass": true,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "lpFaceScopedTotop": {
+  "baseline": "16px",
+  "withLpFixed": "16px",
+  "expected": "16px",
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "summary": {
-  "pass": 26,
+  "pass": 40,
   "fail": 0,
   "checks": {
    "noJs": true,
@@ -1034,7 +2267,21 @@
    "categoryPagination": true,
    "categoryHeroContrast": true,
    "fixedOverlapSp": true,
-   "fixedOverlapPc": true
+   "fixedOverlapPc": true,
+   "lpTapSp": true,
+   "lpTapPc": true,
+   "lpContrast": true,
+   "lpFullbleedContrast": true,
+   "lpFormNoJs": true,
+   "lpAnchorNav": true,
+   "lpSections": true,
+   "lpFixedOverlapSp": true,
+   "lpFixedOverlapPc": true,
+   "lpReducedMotion": true,
+   "lpLcpHero": true,
+   "lpFooterFaceDefault": true,
+   "lpVisibleAnchors": true,
+   "lpFaceScopedTotop": true
   }
  },
  "pass": true

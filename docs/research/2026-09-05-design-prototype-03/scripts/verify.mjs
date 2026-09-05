@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// verify.mjs — 試作 03 の検証: JS 無効描画、reduced-motion、CTA コントラスト、404 ステータス、SP 44px 監査、自動コントラスト guard の計算。
+// verify.mjs — 試作 03 の検証: JS 無効描画、reduced-motion、CTA コントラスト、404 ステータス、SP/PC 44px 監査、自動コントラスト guard、LP の form/fixed/LCP。
 // 使い方: NODE_PATH=<playwright の node_modules> node verify.mjs --base http://localhost:8086 --out ../results/verify.json
 import fs from "node:fs";
 import path from "node:path";
@@ -11,6 +11,7 @@ const BASE = args.base || "http://localhost:8086";
 const OUT = path.resolve(args.out || "../results/verify.json");
 const ARTICLE = "/standing-desk-compare/";
 const CATEGORY = "/category/topic-index/";
+const LP = "/lp/";
 const SP = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const PC = { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
 const out = {};
@@ -342,7 +343,231 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   await sp.close(); await pc.close();
 }
 
-// 9. 結果の集計（既存 gate と段 3 gate を同じ verify.json に固定する）
+// 9. 段 4 guard: LP の SP / PC タップ領域、実色コントラスト、hero guard、form、アンカー、固定要素、motion、LCP
+{
+  const lpTapAudit = async (page) => page.evaluate(() => {
+    const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none"; };
+    const els = Array.from(document.querySelectorAll("a[href], button, input, summary, [role=button]"));
+    const res = { total: 0, ok44: 0, ok24: 0, inlineText: 0, srOnly: [], below44: [], below24: [] };
+    for (const el of els) {
+      if (!visible(el)) continue;
+      const r = el.getBoundingClientRect(); const s = getComputedStyle(el);
+      const desc = (el.tagName.toLowerCase() + (el.className && typeof el.className === "string" ? "." + el.className.split(" ").slice(0, 2).join(".") : "") + " '" + (el.getAttribute("aria-label") || el.textContent || el.value || "").trim().slice(0, 24) + "' " + Math.round(r.width) + "x" + Math.round(r.height));
+      if (el.classList.contains("screen-reader-text")) { res.srOnly.push(desc); continue; }
+      const inline = el.tagName === "A" && ((s.display === "inline" && el.parentElement && /^(P|LI)$/.test(el.parentElement.tagName)) || (el.closest(".wt-lp-legal") && el.parentElement?.tagName === "SUP"));
+      if (inline) { res.inlineText++; continue; }
+      res.total++;
+      if (r.width >= 44 && r.height >= 44) res.ok44++; else res.below44.push(desc);
+      if (r.width >= 24 && r.height >= 24) res.ok24++; else res.below24.push(desc);
+    }
+    res.pass = res.total > 0 && res.below44.length === 0 && res.below24.length === 0;
+    return res;
+  });
+  const lpSpCtx = await browser.newContext(SP); const lpSpPage = await lpSpCtx.newPage();
+  await lpSpPage.goto(BASE + LP, { waitUntil: "networkidle" }); await lpSpPage.waitForTimeout(500);
+  out.tap.lpSp = await lpTapAudit(lpSpPage);
+  const lpPcCtx = await browser.newContext(PC); const lpPcPage = await lpPcCtx.newPage();
+  await lpPcPage.goto(BASE + LP, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(500);
+  out.tap.lpPc = await lpTapAudit(lpPcPage);
+
+  const lpContrast = async (page, style) => page.evaluate((style) => {
+    const parse = (s) => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(",").map(Number); return { rgb: p.slice(0, 3), a: p[3] ?? 1 }; };
+    const lum = (rgb) => { const f = (c) => { c /= 255; return c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); }; return .2126 * f(rgb[0]) + .7152 * f(rgb[1]) + .0722 * f(rgb[2]); };
+    const ratio = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+    const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+    const effectiveBg = (el) => { for (let n = el; n; n = n.parentElement) { const c = parse(getComputedStyle(n).backgroundColor); if (c && c.a > 0) return c; } return { rgb: [255, 255, 255], a: 1 }; };
+    const selectors = [
+      [".wt-lp-header .wt-lp-cta-action", "header CTA"],
+      [".wt-lp-hero .wt-lp-cta-action", "hero CTA"],
+      [".wt-lp-cta-band .wt-lp-cta-action", "CTA band action"],
+      [".wt-lp-cta-band h2", "CTA band heading"],
+      [".wt-lp-cta-band p", "CTA band text"],
+      [".wt-plan--featured h3", "featured pricing heading"],
+      [".wt-plan--featured .wt-price", "featured pricing price"],
+      [".wt-plan--featured li", "featured pricing item"],
+      [".wt-plan--featured .wp-block-button__link", "featured pricing CTA"],
+    ];
+    const items = [];
+    for (const [selector, label] of selectors) for (const el of document.querySelectorAll(selector)) {
+      if (!visible(el)) continue;
+      const s = getComputedStyle(el); const c = parse(s.color); const b = effectiveBg(el); if (!c || !b) continue;
+      const r = ratio(lum(c.rgb), lum(b.rgb)); const large = parseFloat(s.fontSize) >= 24 || (parseFloat(s.fontSize) >= 18.67 && parseInt(s.fontWeight) >= 700);
+      items.push({ label, selector, color: s.color, background: `rgb(${b.rgb.join(", ")})`, ratio: Math.round(r * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) });
+    }
+    return { style, items, pass: items.length > 0 && items.every((item) => item.pass) };
+  }, style);
+  out.lpContrast = { styles: [] };
+  for (const style of ["solid", "outline", "pill"]) {
+    await lpPcPage.goto(BASE + LP + `?wt=lp_cta_style:${style}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(350);
+    out.lpContrast.styles.push(await lpContrast(lpPcPage, style));
+  }
+  out.lpContrast.pass = out.lpContrast.styles.length === 3 && out.lpContrast.styles.every((item) => item.pass);
+
+  await lpPcPage.goto(BASE + LP + "?wt=lp_hero:fullbleed", { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(700);
+  out.lpFullbleedContrast = await lpPcPage.evaluate(async () => {
+    try {
+      const hero = document.querySelector(".wt-lp-hero--fullbleed"); const img = hero?.querySelector("img");
+      if (!hero || !img || !img.naturalWidth || !img.naturalHeight) return { missing: true, pass: false };
+      const parse = (str) => { const m = str.match(/rgba?\(([^)]+)\)/); if (!m) return null; const c = m[1].split(",").map(Number); return { rgb: c.slice(0, 3), a: c[3] ?? 1 }; };
+      const f = (v) => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+      const lum = (rgb) => .2126 * f(rgb[0]) + .7152 * f(rgb[1]) + .0722 * f(rgb[2]);
+      const ratio = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+      const er = hero.getBoundingClientRect(); const bgi = getComputedStyle(hero, "::before").backgroundImage;
+      const stops = Array.from(bgi.matchAll(/rgba?\(([^)]+)\)\s*([\d.]+)%/g)).map((m) => { const c = m[1].split(",").map(Number); return { rgb: c.slice(0, 3), a: c[3] ?? 1, pos: parseFloat(m[2]) / 100 }; });
+      if (!stops.length) return { missing: true, gradient: bgi, pass: false };
+      const fracFromBottom = (y) => (er.bottom - y) / er.height;
+      const alphaAt = (v) => { if (v <= stops[0].pos) return stops[0].a; for (let i = 1; i < stops.length; i++) if (v <= stops[i].pos) { const a = stops[i - 1], b = stops[i]; return a.a + (b.a - a.a) * ((v - a.pos) / (b.pos - a.pos)); } return stops[stops.length - 1].a; };
+      const cv = document.createElement("canvas"); cv.width = img.naturalWidth; cv.height = img.naturalHeight; const cx = cv.getContext("2d"); cx.drawImage(img, 0, 0);
+      const scale = Math.max(er.width / img.naturalWidth, er.height / img.naturalHeight); const dw = img.naturalWidth * scale; const dh = img.naturalHeight * scale; const ox = er.left + (er.width - dw) / 2; const oy = er.top + (er.height - dh) / 2;
+      const sample = (target) => {
+        const tr = target.getBoundingClientRect(); const sx = Math.max(0, Math.min(img.naturalWidth - 1, (tr.left - ox) / scale)); const sy = Math.max(0, Math.min(img.naturalHeight - 1, (tr.top - oy) / scale)); const sw = Math.max(1, Math.min(img.naturalWidth - sx, tr.width / scale)); const sh = Math.max(1, Math.min(img.naturalHeight - sy, tr.height / scale));
+        const d = cx.getImageData(Math.floor(sx), Math.floor(sy), Math.max(1, Math.floor(sw)), Math.max(1, Math.floor(sh))).data; let sum = 0; let n = 0; let max = 0;
+        for (let i = 0; i < d.length; i += 4) { const l = lum([d[i], d[i + 1], d[i + 2]]); sum += l; n++; max = Math.max(max, l); }
+        return { mean: sum / n, max };
+      };
+      const measure = (target, label) => {
+        const tr = target.getBoundingClientRect(); const ts = getComputedStyle(target); const tc = parse(ts.color); const alpha = Math.min(alphaAt(fracFromBottom(tr.top)), alphaAt(fracFromBottom(tr.bottom))); const source = sample(target); const scrimLum = lum(stops[0].rgb); const composite = source.mean * (1 - alpha) + scrimLum * alpha; const worst = source.max * (1 - alpha) + scrimLum * alpha; const textLum = lum(tc.rgb); const large = parseFloat(ts.fontSize) >= 24 || (parseFloat(ts.fontSize) >= 18.67 && parseInt(ts.fontWeight) >= 700); const r = ratio(textLum, composite);
+        return { label, textColor: ts.color, alphaAtText: Math.round(alpha * 1000) / 1000, imageLAtText: Math.round(source.mean * 1000) / 1000, imageLMaxAtText: Math.round(source.max * 1000) / 1000, compositeL: Math.round(composite * 1000) / 1000, ratioText: Math.round(r * 100) / 100, ratioWorstPixel: Math.round(ratio(textLum, worst) * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) };
+      };
+      const targets = [[hero.querySelector("h1"), "h1"], [hero.querySelector(".wt-lp-hero__lead"), "lead"]].filter(([el]) => el);
+      const items = targets.map(([el, label]) => measure(el, label));
+      return { lum: hero.getAttribute("data-wt-lum"), sampledL: parseFloat(hero.getAttribute("data-wt-lum-value")), gradient: bgi.slice(0, 160), approximation: "段1と同じ canvas 輝度標本化 + linear-gradient の線形補間による概算", items, pass: items.length === 2 && items.every((item) => item.pass) };
+    } catch (error) { return { error: String(error), pass: false }; }
+  });
+
+  const formCtx = await browser.newContext({ ...SP, javaScriptEnabled: false }); const formPage = await formCtx.newPage();
+  await formPage.goto(BASE + LP + "?wt=lp_hero_cta:form-inline", { waitUntil: "load" });
+  out.lpFormNoJs = await formPage.evaluate(() => {
+    const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+    const hero = Array.from(document.querySelectorAll(".wt-lp-hero")).find(visible); const form = hero?.querySelector("form.wt-lp-cta-form"); const input = form?.querySelector("input[name=email]"); const label = input ? form.querySelector(`label[for="${CSS.escape(input.id)}"]`) : null; const method = form?.getAttribute("method")?.toLowerCase() || ""; const action = form?.getAttribute("action") || "";
+    return { hero: hero?.className || null, method, action, inputId: input?.id || null, labelFor: label?.getAttribute("for") || null, pass: !!form && ["get", "post"].includes(method) && action.trim().length > 0 && !!input?.id && !!label && label.getAttribute("for") === input.id };
+  });
+  await formCtx.close();
+
+  await lpSpPage.goto(BASE + LP + "?wt=lp_header:none", { waitUntil: "networkidle" }); await lpSpPage.waitForTimeout(350);
+  out.lpAnchorNav = await lpSpPage.evaluate(() => {
+    const nav = document.querySelector(".wt-lp-anchor-nav"); if (!nav) return { links: [], pass: false, missing: true };
+    const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+    const links = Array.from(nav.querySelectorAll("a[href^='#']")).map((a) => { const targetId = a.getAttribute("href").slice(1); const target = document.getElementById(targetId); return { href: a.getAttribute("href"), targetId, targetExists: !!target, visible: visible(a) }; });
+    return { links, targets: links.map((item) => item.targetId), pass: links.length > 0 && links.every((item) => item.targetExists && item.visible) };
+  });
+
+  out.lpSections = { variants: [] };
+  const expectedSections = {
+    full: ["numbers", "features", "steps", "logos", "testimonials", "pricing", "comparison", "faq", "badges", "cta-band--one", "cta-band--two", "cta-band--three"],
+    short: ["features", "pricing", "faq", "cta-band--three"],
+    trust: ["logos", "numbers", "testimonials", "badges", "cta-band--three"],
+  };
+  for (const variant of Object.keys(expectedSections)) {
+    await lpPcPage.goto(BASE + LP + `?wt=lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
+    const result = await lpPcPage.evaluate(() => {
+      const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+      const key = (el) => {
+        const section = ["numbers", "features", "steps", "logos", "testimonials", "pricing", "comparison", "faq", "badges"].find((name) => el.classList.contains(`wt-lp__section--${name}`));
+        const band = ["one", "two", "three"].find((name) => el.classList.contains(`wt-lp-cta-band--${name}`));
+        return section || (band ? `cta-band--${band}` : undefined);
+      };
+      return Array.from(document.querySelectorAll(".wt-lp__sections > .wt-lp__section")).filter(visible).map((el) => ({ name: key(el), top: el.getBoundingClientRect().top })).filter((item) => item.name).sort((a, b) => a.top - b.top).map((item) => item.name);
+    });
+    out.lpSections.variants.push({ variant, visible: result, expected: expectedSections[variant], pass: JSON.stringify(result) === JSON.stringify(expectedSections[variant]) });
+  }
+  out.lpSections.pass = out.lpSections.variants.length === 3 && out.lpSections.variants.every((item) => item.pass);
+
+  const fixedAudit = async (page, dev, variant) => {
+    await page.goto(BASE + LP + `?wt=lp_fixed:${variant},footer_totop:button,share:float`, { waitUntil: "networkidle" }); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(450);
+    return page.evaluate(({ dev, variant }) => {
+      const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+      const rect = (el) => { const r = el.getBoundingClientRect(); return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) }; };
+      const overlap = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+      const fixed = variant === "none" ? null : document.querySelector(`.wt-lp-fixed--${variant}`); const share = document.querySelector(".wt-share--float"); const top = document.querySelector(".wt-totop");
+      const fixedVisible = visible(fixed); const expectedFixedVisible = variant !== "none" && !(variant === "sp-bottom-bar" && dev === "pc"); const items = [["fixed", fixed], ["share", share], ["totop", top]].filter(([, el]) => visible(el)).map(([name, el]) => ({ name, el, rect: rect(el) }));
+      const intersections = []; for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) if (overlap(items[i].rect, items[j].rect)) intersections.push([items[i].name, items[j].name]);
+      const inViewport = (r) => r.x >= 0 && r.y >= 0 && r.x + r.w <= innerWidth && r.y + r.h <= innerHeight;
+      const reach = (el) => { if (!visible(el)) return true; const r = el.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!hit && (hit === el || el.contains(hit)); };
+      const clickable = items.flatMap(({ el }) => el.matches("a,button") ? [el] : Array.from(el.querySelectorAll("a,button"))).map(reach);
+      return { dev, variant, fixedVisible, expectedFixedVisible, items: items.map(({ name, rect }) => ({ name, ...rect })), intersections, clickable, inViewport: items.every((item) => inViewport(item.rect)), pass: fixedVisible === expectedFixedVisible && intersections.length === 0 && clickable.every(Boolean) && items.every((item) => inViewport(item.rect)) };
+    }, { dev, variant });
+  };
+  out.lpFixedOverlap = { sp: [], pc: [] };
+  for (const variant of ["none", "sp-bottom-bar", "float-cta"]) out.lpFixedOverlap.sp.push(await fixedAudit(lpSpPage, "sp", variant));
+  for (const variant of ["none", "sp-bottom-bar", "float-cta"]) out.lpFixedOverlap.pc.push(await fixedAudit(lpPcPage, "pc", variant));
+  out.lpFixedOverlap.sp.pass = out.lpFixedOverlap.sp.every((item) => item.pass);
+  out.lpFixedOverlap.pc.pass = out.lpFixedOverlap.pc.every((item) => item.pass);
+
+  const reduceCtx = await browser.newContext({ ...SP, reducedMotion: "reduce" }); const reducePage = await reduceCtx.newPage();
+  await reducePage.goto(BASE + LP + "?wt=motion:on,lp_fixed:float-cta", { waitUntil: "networkidle" }); await reducePage.waitForTimeout(400);
+  out.lpReducedMotion = await reducePage.evaluate(() => {
+    const action = document.querySelector(".wt-lp-cta-action"); const section = document.querySelector(".wt-lp__section--features"); const hidden = Array.from(document.querySelectorAll(".wt-lp .wt-reveal")).filter((el) => parseFloat(getComputedStyle(el).opacity) < 1).length; const noTransition = (el) => { if (!el) return false; const s = getComputedStyle(el); return s.transitionProperty === "none" || s.transitionDuration === "0s"; };
+    return { revealHidden: hidden, actionTransition: action ? getComputedStyle(action).transitionProperty : null, sectionTransition: section ? getComputedStyle(section).transitionProperty : null, pass: hidden === 0 && noTransition(action) && noTransition(section) };
+  });
+  await reduceCtx.close();
+
+  out.lpLcpHero = { variants: [] };
+  for (const variant of ["split", "fullbleed", "product", "text-only"]) {
+    await lpPcPage.goto(BASE + LP + `?wt=lp_hero:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(400);
+    out.lpLcpHero.variants.push(await lpPcPage.evaluate((variant) => {
+      const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+      const hero = document.querySelector(`.wt-lp-hero--${variant}`); const img = hero?.querySelector("img"); const imageExpected = variant !== "text-only"; const attrs = img ? { fetchpriority: img.getAttribute("fetchpriority"), loading: img.getAttribute("loading"), width: img.getAttribute("width"), height: img.getAttribute("height"), complete: img.complete, naturalWidth: img.naturalWidth } : null;
+      return { variant, heroVisible: visible(hero), imageExpected, attrs, pass: visible(hero) && (imageExpected ? !!img && attrs.fetchpriority === "high" && Number(attrs.width) > 0 && Number(attrs.height) > 0 : !img) };
+    }, variant));
+  }
+  out.lpLcpHero.pass = out.lpLcpHero.variants.length === 4 && out.lpLcpHero.variants.every((item) => item.pass);
+
+  // LP 面判定（is_page_template）の修正確認: theme_mod 未設定時、LP 面だけ footer_layout の既定が single-row になり、非 LP 面（記事）は sitemap のまま。
+  await lpPcPage.goto(BASE + LP, { waitUntil: "networkidle" });
+  const lpBody = await lpPcPage.evaluate(() => document.body.className);
+  await lpPcPage.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  const articleBody = await lpPcPage.evaluate(() => document.body.className);
+  out.lpFooterFaceDefault = {
+    lpHasFace: lpBody.split(/\s+/).includes("wt-face-lp"),
+    lpHasSingleRow: lpBody.split(/\s+/).includes("wt-footer-layout-single-row"),
+    articleHasFace: articleBody.split(/\s+/).includes("wt-face-lp"),
+    articleHasSingleRow: articleBody.split(/\s+/).includes("wt-footer-layout-single-row"),
+    articleHasSitemap: articleBody.split(/\s+/).includes("wt-footer-layout-sitemap"),
+  };
+  out.lpFooterFaceDefault.pass = out.lpFooterFaceDefault.lpHasFace && out.lpFooterFaceDefault.lpHasSingleRow && !out.lpFooterFaceDefault.articleHasFace && !out.lpFooterFaceDefault.articleHasSingleRow && out.lpFooterFaceDefault.articleHasSitemap;
+
+  // double CTA の副ボタン: short / trust で比較セクションが非表示になる組み合わせでも、表示中の全アンカー（hero CTA を含む）の遷移先が存在し可視であること。
+  // 構成ごとの期待遷移先（副 CTA は full → 比較表 / short → 料金 / trust → 声、のはずが消失していないかを検査する）
+  const expectedSecondaryHref = { full: "#comparison", short: "#pricing", trust: "#voices" };
+  out.lpVisibleAnchors = { variants: [] };
+  for (const variant of ["full", "short", "trust"]) {
+    await lpPcPage.goto(BASE + LP + `?wt=lp_hero_cta:double,lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
+    const result = await lpPcPage.evaluate((expectedHref) => {
+      const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
+      // href="#"（フラグメント空）は共有アイコン等の placeholder リンクで、ページ内遷移を意図しないため対象外。実際にセクションを指すリンクだけを検査する。
+      const links = Array.from(document.querySelectorAll("a[href^='#']")).filter((a) => a.getAttribute("href") !== "#").filter(visible).map((a) => {
+        const targetId = a.getAttribute("href").slice(1);
+        const target = document.getElementById(targetId);
+        return { href: a.getAttribute("href"), targetId, targetExists: !!target, targetVisible: visible(target) };
+      });
+      // double CTA の副ボタン自体が消失していないか（可視本数・href）を直接検査する。可視リンク全体の存在チェックだけでは、
+      // 副ボタンを除いた集合でも他のリンクが揃っていれば合格してしまうため、ここを分けて明示的に assert する。
+      const secondaryButtons = Array.from(document.querySelectorAll(".wt-lp-cta-action--secondary[data-lp-cta-target]")).filter(visible).map((a) => a.getAttribute("href"));
+      const secondaryPass = secondaryButtons.length === 1 && secondaryButtons[0] === expectedHref;
+      return { links, secondaryButtons, expectedHref, secondaryPass, pass: links.length > 0 && links.every((l) => l.targetExists && l.targetVisible) && secondaryPass };
+    }, expectedSecondaryHref[variant]);
+    out.lpVisibleAnchors.variants.push({ variant, ...result });
+  }
+  out.lpVisibleAnchors.pass = out.lpVisibleAnchors.variants.length === 3 && out.lpVisibleAnchors.variants.every((item) => item.pass);
+
+  await lpSpCtx.close(); await lpPcCtx.close();
+
+  // LP 面限定の to-top 配置: 非 LP 面（記事）で lp_fixed:sp-bottom-bar を指定しても .wt-totop の bottom が既定（16px = 1rem、
+  // theme.css:631 の .wt-totop{bottom:1rem}）から変わらないことを、SP・share:topbottom（float ではない）固定で確認する。
+  {
+    const totopCtx = await browser.newContext(SP); const totopPage = await totopCtx.newPage();
+    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button,share:topbottom", { waitUntil: "networkidle" });
+    const baseline = await totopPage.evaluate(() => { const el = document.querySelector(".wt-totop"); return el ? getComputedStyle(el).bottom : null; });
+    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button,share:topbottom,lp_fixed:sp-bottom-bar", { waitUntil: "networkidle" });
+    const withLpFixed = await totopPage.evaluate(() => { const el = document.querySelector(".wt-totop"); return el ? getComputedStyle(el).bottom : null; });
+    const expected = "16px";
+    out.lpFaceScopedTotop = { baseline, withLpFixed, expected, pass: baseline === expected && withLpFixed === expected };
+    await totopCtx.close();
+  }
+}
+
+// 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
 out.reducedMotion.pass = out.reducedMotion.revealHidden === 0 && out.reducedMotion.categoryFooter.pass;
@@ -357,6 +582,8 @@ const checkList = [
   ["articleTapSp", out.tap.article.pass], ["articleAnnounceTapSp", out.tap["article-announce"].pass], ["notFoundTapSp", out.tap["404"].pass], ["catalogTapSp", out.tap.catalog.pass],
   ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["authorSnsTapSp", out.tap.authorSnsSp.pass], ["authorSnsTapPc", out.tap.authorSnsPc.pass],
   ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],
+  ["lpTapSp", out.tap.lpSp.pass], ["lpTapPc", out.tap.lpPc.pass], ["lpContrast", out.lpContrast.pass], ["lpFullbleedContrast", out.lpFullbleedContrast.pass], ["lpFormNoJs", out.lpFormNoJs.pass], ["lpAnchorNav", out.lpAnchorNav.pass], ["lpSections", out.lpSections.pass], ["lpFixedOverlapSp", out.lpFixedOverlap.sp.pass], ["lpFixedOverlapPc", out.lpFixedOverlap.pc.pass], ["lpReducedMotion", out.lpReducedMotion.pass], ["lpLcpHero", out.lpLcpHero.pass],
+  ["lpFooterFaceDefault", out.lpFooterFaceDefault.pass], ["lpVisibleAnchors", out.lpVisibleAnchors.pass], ["lpFaceScopedTotop", out.lpFaceScopedTotop.pass],
 ];
 out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;
