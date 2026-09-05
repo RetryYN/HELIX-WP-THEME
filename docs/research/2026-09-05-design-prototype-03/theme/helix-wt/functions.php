@@ -153,10 +153,11 @@ add_action( 'init', function () {
 			'single'            => true,
 			'default'           => '',
 			'sanitize_callback' => function ( $value ) use ( $default, $allowed ) {
-				$value = is_string( $value ) ? sanitize_key( $value ) : '';
-				if ( '' === $value ) {
-					return ''; // 空 = サイト設定（theme_mod）を継承
+				if ( '' === $value || null === $value ) {
+					return ''; // 元入力が厳密に空 = サイト設定（theme_mod）を継承
 				}
+				// 非空の入力は sanitize_key 後に allowlist 照合。記号・空白・非 ASCII のみで空になった値も既定値へ丸める（継承にしない）
+				$value = is_string( $value ) ? sanitize_key( $value ) : '';
 				return in_array( $value, $allowed, true ) ? $value : $default;
 			},
 			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
@@ -251,20 +252,25 @@ add_filter( 'render_block_core/table', function ( $html, $block ) {
 	$html  = preg_replace_callback( '/<thead>.*?<\/thead>/s', function ( $thead ) {
 		return preg_replace( '/<th(?=[\s>])(?![^>]*\sscope\s*=)([^>]*)>/i', '<th scope="col"$1>', $thead[0] );
 	}, $html, 1 );
-	$html  = preg_replace_callback( '/<tr>(.*?)<\/tr>/s', function ( $row ) use ( $heads ) {
-		if ( str_contains( $row[1], '<th' ) ) {
-			return $row[0];
-		}
-		$i = 0;
-		// 先頭列は行見出し <th scope="row">（開始・終了タグとも）。他列は data-th で列見出しを持つ
-		$r = preg_replace_callback( '/<td([^>]*)>(.*?)<\/td>/s', function ( $td ) use ( &$i, $heads ) {
-			$label = $heads[ $i ] ?? '';
-			$cell  = 0 === $i ? array( 'th', ' scope="row"' ) : array( 'td', '' );
-			$i++;
-			return '<' . $cell[0] . $td[1] . ' data-th="' . esc_attr( $label ) . '"' . $cell[1] . '>' . $td[2] . '</' . $cell[0] . '>';
-		}, $row[1] );
-		return '<tr>' . $r . '</tr>';
-	}, $html );
+	// 行見出し変換は <tbody> 内に限定（tfoot は対象外。SP カード CSS も tbody th のみを扱う）
+	$html  = preg_replace_callback( '/<tbody>.*?<\/tbody>/s', function ( $tbody ) use ( $heads ) {
+		return preg_replace_callback( '/<tr>(.*?)<\/tr>/s', function ( $row ) use ( $heads ) {
+			if ( str_contains( $row[1], '<th' ) ) {
+				return $row[0];
+			}
+			$i = 0;
+			// 先頭列は行見出し <th scope="row">（開始・終了タグとも、data-th なし）。データセル td だけが data-th で列見出しを持つ
+			$r = preg_replace_callback( '/<td([^>]*)>(.*?)<\/td>/s', function ( $td ) use ( &$i, $heads ) {
+				$label = $heads[ $i ] ?? '';
+				$out   = 0 === $i
+					? '<th' . $td[1] . ' scope="row">' . $td[2] . '</th>'
+					: '<td' . $td[1] . ' data-th="' . esc_attr( $label ) . '">' . $td[2] . '</td>';
+				$i++;
+				return $out;
+			}, $row[1] );
+			return '<tr>' . $r . '</tr>';
+		}, $tbody[0] );
+	}, $html, 1 );
 	return $html;
 }, 10, 2 );
 
