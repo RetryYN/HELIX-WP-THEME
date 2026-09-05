@@ -18,12 +18,12 @@
 **(c) 書き直し案**
 1. ヘッダー直下 slot にお知らせ帯を出し、`wt=header:announce` で切替できる — 検証: `results/*/header-announce-*.jpg` 目視 + `verify.json.summary.checks`（ヘッダー系タップ監査）。
 2. PC 1200px 以上で目次フロート slot が本文と重ならず追従する — 検証: `README.md` §2.3、目視 `toc-float-pc.jpg`。
-3. SP 下部固定 slot（シェア float）が本文 / CTA を覆わない — 検証: `verify.json.fixedOverlap.sp.intersects === false`。
+3. SP でシェア float と totop ボタンが互いに重ならない — 検証: `verify.json.fixedOverlap.sp.intersects === false`（この項目はシェア float と totop の重なりのみを測り、本文本体や CTA との重なりは別項目であり `fixedOverlap` の対象外。本文 / CTA との被覆有無は未検証）。
 4. 404 の CV slot レーンに LP / 比較記事 / 問い合わせの 3 枠が出る — 検証: `verify.json.status404.has.cvSlot === 3`。
 5. 空 slot は DOM に要素を残さない（お知らせ帯を閉じた場合等） — 検証: 目視 + `verify.json.noJs.announceVisible` の on/off 比較（現状は on のみ実測、off の実測は未取得）。
 
-**(d)** 台帳: 固定・追従パーツは「お知らせ帯 17%（PC top）/ 27%（SP top）」観察（README §1）。追尾サイドバー相当は目次フロート「PC 18〜25%」観察（README §1「目次」）。既定値案: お知らせ帯・目次フロート・SP シェア float はいずれも「既定 OFF またはコンテンツ次第」（現行 `wt_axes()` の既定は `header:search` / `toc:box` / `share:topbottom` で、フロート系は非既定）。
-**(e)** 問い: 5 の「空 slot は要素を残さない」を条件 4 の未実測（お知らせ帯 OFF 時の DOM）まで含めて確認が必要な条件として残すか、それとも試作 03 の実測範囲（お知らせ帯 ON 時の挙動）だけで採否を判断してよいか。
+**(d)** 台帳: 固定・追従パーツは「お知らせ帯 17%（PC top）/ 27%（SP top）」観察（README §1）。追尾サイドバー相当は目次「フロート PC25%・SP1%」観察（README §1「目次」、article/pc・article/sp の観察列。台帳の観察列と旧 Issue コメント列は分母が異なるため混同しない）。既定値案: お知らせ帯・目次フロート・SP シェア float はいずれも「既定 OFF またはコンテンツ次第」（現行 `wt_axes()` の既定は `header:search` / `toc:box` / `share:topbottom` で、フロート系は非既定）。
+**(e)** 問い: 共有 slot は、内容が無い場合に空要素を DOM に残さない実装にする。採用するか。
 
 ---
 
@@ -34,12 +34,12 @@
 **(b)** 試作 03 は `functions.php` の `wt_axes()` に 27 の**選択軸**（header / eyecatch / toc / footer_extra 等）を列挙し、解決順「プレビュー引数 → 記事 post meta → theme_mod → 既定値」の**単一解決チェーン**で body class を出す実装（README §1 冒頭）。これは「軸ごとに 1 つの値を選ぶ」仕組みであり、要求が指す「ゾーンへ creative（コンテンツ）を配置する overrides 配列・first-match-wins」の仕組みそのものではない。
 
 **(c) 書き直し案**
-1. 27 軸が JSON（`functions.php` の `wt_axes()` 定義）として列挙でき、未定義の軸 key・値は body class に現れない — 検証: 目視でソースの `wt_axes()` 配列を確認（自動検査は未実装）。
+1. 34 軸が JSON（`functions.php` の `wt_axes()` 定義）として列挙でき、未定義の軸 key・値は body class に現れない — 検証: 目視でソースの `wt_axes()` 配列を確認（自動検査は未実装）。
 2. 解決順（プレビュー引数 → post meta → theme_mod → 既定値）が 1 箇所に決まっている — 検証: 目視でソースを確認。
 3. **overrides の first-match-wins 配列は試作 03 に存在しないため検証手段なし。**
 
 **(d)** 台帳の直接該当なし（軸の型数は他要件の台帳に分散）。既定値案: 軸選択方式（現行実装の解決順）を「ゾーン語彙 23 種」要求の実現手段として読み替える。
-**(e)** 問い: WT-FR-ZONE-02 を「27 軸 + 単一解決チェーン」方式（試作 03 実装済み）に書き直してよいか、それとも「creative 配置 + overrides 配列」を別途の実装課題として残すか。
+**(e)** 問い: WT-FR-ZONE-02 を「34 軸 + 単一解決チェーン」方式（試作 03 実装済み）に書き直してよいか、それとも「creative 配置 + overrides 配列」を別途の実装課題として残すか。
 
 ---
 
@@ -100,10 +100,10 @@
 **(c) 書き直し案**
 1. 比較表が PC ではヘッダー列 sticky・横スクロール、SP では行ごとのカード縦積みに切り替わり、`scope="row"/"col"` が data 属性と一致する — 検証: `verify.json.table`（`theadIntact, thWithScopeCol:4, rowHeaders:8, caption:true, pass:true`）。
 2. 記事内 CTA 4 型（商品カード束 / バナー画像 / ボタンのみ / コピー付きボックス）を切り替えても本文構造（見出し・段落の位置）が変わらない — 検証: `cta-*-pc.jpg` / `cta-*-sp.jpg` 目視。
-3. 新規ブロック種別数が 8 種を超えない（README 列挙の CTA 系 4 + カテゴリ系 3 + 前後記事 1 = 8、うち VOCAB-01 が指す「6+空き1」の対象は記事内語彙のみで、カテゴリ系 3 種は別要求 RECO-01/PARTS-01 に属する） — 検証: 目視でソース `helix-wt/*` 一覧を数える（自動検査は未実装）。
+3. 試作 03 の新規ブロックは `product-bundle` / `cta-banner` / `cta-button` / `cta-box` / `linkcard`（記事内本文語彙相当 5 種）+ `category-children` / `category-ranking` / `category-minihome`（カテゴリ系 3 種、別要求 RECO-01/PARTS-01 に属する）+ `tail-prevnext`（1 種）の計 9 種。VOCAB-01 が指す「6 種 + 空き 1 枠（上限 7）」の対象を記事内本文語彙相当の 5 種に限定すれば上限内（5 ≤ 7）に収まる — 検証: 目視でソース `helix-wt/*` 一覧を数える（自動検査は未実装）。カテゴリ系・前後記事系を含めるかどうかは要件のスコープ確定待ちで、本ドラフトでは対象外と Claude が仮定した。
 4. **メディア枠 5 択（自前 SVG・アップロード・写真・番号・なし）の切替検証は試作 03 の README に個別記載がなく、カテゴリ children の steps 型（`#129`）や見出しアイコン（`data-wt-icon`）は部分実装のみ** — 検証: 未実測、次段課題。
 
-**(d)** 台帳: 囲みは「淡塗り 21〜25%・罫線 15〜19%・帯タイトル 8〜12%」（README §1）、比較表は「先頭列固定 12〜18%」（README §1）。既定値案: 囲みは淡塗り + 罫線の 2 型優先、比較表は先頭列固定 SP スクロールを既定。
+**(d)** 台帳（README §1「囲み」、article/pc・article/sp の観察列）: 淡塗り（tinted）PC24%/SP25%、罫線（plain-border）PC15%/SP19%、帯タイトル（band-title）PC12%/SP8%。比較表は「先頭列固定 12〜18%」（README §1「表」）。既定値案: 囲みは淡塗り + 罫線の 2 型優先、比較表は先頭列固定 SP スクロールを既定。
 **(e)** 問い: 新規ブロック上限（6+空き1=7）の数え方を「記事内本文語彙のみ」に限定し、カテゴリ / footer 系の新規ブロックは別枠として扱ってよいか。
 
 ---
@@ -120,8 +120,8 @@
 3. `scroll-margin-top` がヘッダー高 + 1rem（76px）に設定され、見出しジャンプ時にヘッダーで隠れない — 検証: `verify.json.toc.scrollMarginTop === "76px"`。
 4. 記事単位で目次を非表示にできる（`wt_toc=none`） — 検証: post meta 設定後の目視（実測は README に記載、`verify.json` には非表示ケースの実測なし）。
 
-**(d)** 台帳: 目次は「なし 44〜53%・フロート 18〜25%（PC）・枠内 13〜18%・開閉 6〜9%」（README §1）。既定値案（PO 決定済み、WT-EVT-0220）: 比較媒体は「タイトル→画像、目次（非固定、開閉）」。試作 03 の既定 `box-inline` は「非固定・開閉」の性質と一致（`<details>` は開閉）。
-**(e)** 問い: なし（none）が台帳最多（44〜53%）だが、比較媒体では目次が読了・回遊に寄与するため box-inline を既定にする Claude 案でよいか。
+**(d)** 台帳（README §1「目次」、article/pc・article/sp の観察列）: なし PC44%/SP53%、フロート PC25%/SP1%、枠内（box-inline）PC18%/SP28%、開閉（collapsible）PC9%/SP13%。既定値案（Claude 案。`events.jsonl` に「目次は非固定・開閉を既定にする」という個別の PO 決定は無く、WT-EVT-0220 は LOOK-01/PARTS-01/VOCAB-02/TPL-01 を「用途由来の型一覧へ置き換える」ことの採否のみを記録している）: 試作 03 の既定 `box-inline` は `<details>` による開閉式で、比較媒体の回遊・読了に寄与すると Claude は判断したが、台帳は「なし」が両画面で最多（PC44%/SP53%）である。
+**(e)** 問い: 目次を「なし」ではなく `box-inline`（非固定・開閉）を既定にする。採用するか。
 
 ---
 
@@ -163,7 +163,7 @@
 **(b)** **試作 03 は body class によるテーマの見た目切替の PoC であり、「中間 JSON への section 境界出力」「AI によるリライト対象の機械可読な単位化」は範囲外。** 目次機能が h2/h3 に `id="h-n"` を機械付与する点（README §2.3）は関連するが、親子の安定 ID・中間 JSON 出力は未実装。
 
 **(c) 書き直し案**
-1. 目次の見出し ID (`id="h-n"`) が本文の h2/h3 順に機械付与される — 検証: `verify.json.toc`（h2Count/h3Count と tocH2/tocH3 の一致）。
+1. **目次の見出し数が本文の h2/h3 数と一致することは `verify.json.toc`（`h2Count/h3Count` と `tocH2/tocH3` の一致）で確認できるが、これは件数の一致であり、見出し `id="h-n"` が実際に本文の h2/h3 順へ機械付与されている規則自体・ID の親子安定性は verify.json に個別のフィールドがなく検証できない。** 件数一致は必要条件だが十分条件ではないため、検証手段なしとして扱う。
 2. **見出し文言変更後も ID が変わらないこと、H4 以下を区間としないこと、中間 JSON への境界出力は試作 03 で未検証**（この要件はテーマ実装というより中間表現・AI 連携の設計課題）。
 
 **(d)** 台帳の直接該当なし。
@@ -195,11 +195,11 @@
 2. SP 390px 幅で見出しが 18 字まで 1 行に収まる — 検証: `verify.json.headline`（`chars:18, lines:1, pass:true`）。
 3. reduced-motion 環境で装飾モーション（fade-up・count-up）が停止し、最終状態が表示される — 検証: `verify.json.reducedMotion`（`revealHidden:0, pass:true`）。
 4. JS 無効でも `.wt-reveal` 要素が非表示のまま残らない — 検証: `verify.json.noJs`（`revealHidden:0`）。
-5. 写真・色地上の文字が dark/mid/light いずれの guard レベルでも本文 4.5:1・大文字 3:1 を満たす — 検証: `verify.json.contrastGuard` / `contrastGuardPass === true`（dark 本文 15.98:1、mid 7.86:1、light 9.62:1、hero h1 5.21:1 等）。
+5. 写真・色地上の文字が dark/mid/light いずれの guard レベルでも本文 4.5:1・大文字 3:1 を満たす — 検証: `verify.json.contrastGuard` / `contrastGuardPass === true`（guard 用サンプル画像: dark 本文 15.98:1、mid 7.86:1、light 9.62:1。実写真では `contrastGuard` の `article hero h1` が 11.21:1）。加えて `verify.json.categoryHeroContrast.items` のカテゴリ hero h1 は 5.21:1（大文字基準 3:1 を満たす）。
 6. 生値や `!important` による装飾がなく、見出し尺度が単調非増加である — 検証: 目視 + 既存 AC WT-AC-LOOK-01A/B（G-T3 相当、試作 03 では未自動化）。
 
-**(d)** 台帳: h2 見出しは「無装飾太字 44〜45%」最多、比較媒体は「控えめな装飾 + アイコン前置」を用途別に選択（by-purpose §2）。4 軸は台帳外（PO 個別承認 WT-EVT-0227「採用で」）。既定値案: motion/depth/density/detext はいずれも既定 OFF（現行 `wt_axes()` の既定値と一致）。
-**(e)** 問い: カード高さ自動統一の**自動検査**（実測値での高さ差分ゼロ確認）を段6以降で追加する対象に含めるか、それとも目視確認で足りるとするか。
+**(d)** 台帳: h2 見出しは「無装飾太字 44〜45%」最多、比較媒体は「控えめな装飾 + アイコン前置」を用途別に選択（by-purpose §2）。4 軸は台帳外（PO 個別承認 WT-EVT-0227「採用で」）。既定値案: `motion:off` / `depth:0` / `density:normal` / `detext:off`（現行 `wt_axes()` の既定値、README §1 軸表と一致）。
+**(e)** 問い: カード高さの自動統一を自動検査（実測値での高さ差分ゼロ確認）付きの受入条件として持つ。採用するか（未採用の場合は目視確認のみで扱う）。
 
 ---
 
@@ -210,7 +210,7 @@
 **(b)** **試作 03 は単一 variation（比較媒体用の 1 セット）のみで、複数プリセット→複数 variation の写像は範囲外**（README に variation 複数化の言及なし）。
 
 **(c) 書き直し案**
-1. 現行 variation がスラッグ集合（色 8 個）を変えずに動作する — 検証: 目視でカタログの色使用箇所を確認（自動 G-T1b 検査は未実装）。
+1. **現行 variation が色スラッグ 8 個の集合を変えずに動作するかは、カタログ画像の目視だけでは確認できない**（目視では実際に使われた色が「元の 8 スラッグの範囲内か」を判定できず、スラッグ定義ファイル `theme.json` 側の直接確認が必要）。既存 AC（G-T1b 相当）は試作 03 では自動化されておらず、検証手段なしとして扱う。
 2. **複数プリセット→複数 variation の写像は未検証**（次段課題）。
 
 **(d)** 台帳の直接該当なし（WT-FR-LOOK-03 の調査待ち）。
@@ -333,11 +333,11 @@
 **(b)** 試作03は body class（`wt-<key>-<value>`）+ CSSメディアクエリで SP/PC 差分を実現（README冒頭）。ただし `@mobile`/`@tablet` という WordPress 7.1 の新記法そのものの使用は README に明記されておらず、実装詳細は本ドラフトの調査範囲外。
 
 **(c) 書き直し案**
-1. 各軸（27軸）についてSP/PC双方の見え方が個別に選べ、両幅で目視確認できる — 検証: `results/`内のPC/SP両方のスクリーンショット（例 `header-search-pc.jpg`/`header-hamburger-search-sp.jpg`）。
-2. SP側のレイアウト崩れ（横スクロール）がない — 検証: `verify.json`のタップ監査系（`tap.*`、全項目 `pass:true`かつ横スクロール0の言及、README §2.11・§2.9参照）。
+1. 各軸（34軸）についてSP/PC双方の見え方が個別に選べ、両幅で目視確認できる — 検証: `results/`内のPC/SP両方のスクリーンショット（例 `header-search-pc.jpg`/`header-hamburger-search-sp.jpg`）。
+2. **SP側の横スクロール量は `verify.json` に専用フィールドが無く、タップ監査（`tap.*`）はタップ対象の44px/24px判定のみで横スクロール自体を測っていない。横スクロール0の主張は検証手段なし**（次段で `document.documentElement.scrollWidth` 等の専用検査を追加する必要がある）。
 
 **(d)** 台帳の直接該当なし（実装方式の要件）。
-**(e)** 問い: `@mobile`/`@tablet`記法の採用有無はソースコードレビュー観点として実装PR側に送ってよいか。
+**(e)** 問い: SP/PCのdevice別差分をWordPress 7.1の`@mobile`/`@tablet`記法で宣言する。採用するか（採用可否に関わらず、記法自体の使用有無はソースコード確認が必要で本ドラフト範囲外）。
 
 ---
 
@@ -378,13 +378,15 @@
 
 **(b)** 試作03の`verify.json`は複数の該当検査を実測: `contrast`（CTAボタン5.18:1、本文リンク6.7:1等）、`tap`（44px/24px両方全件pass）、`toc`（開閉のaria状態は`<details>`ネイティブ機構）。
 
-**(c) 書き直し案**
+**(c) 書き直し案（試作03で実測した範囲に限定する。`verify.json.summary`の`pass:40,fail:0`はaxe実行の要約ではなく、404・ページ送り・LP面判定などaxeと無関係な検査を含む合算値のため、この総数を役割/キーボード等の受入根拠には使わない）**
 1. 主要な色コントラスト（CTAボタン・本文リンク・ヘルパーテキスト）がAA基準を満たす — 検証: `verify.json.contrast`各項目`pass:true`。
 2. タップ対象が24px以上（WCAG2.5.8）かつ44px以上（P05目標）を満たす — 検証: `verify.json.tap.*`（記事68/68、404 45/45、カタログ31/31、いずれもok44=ok24=total）。
-3. **axeによる自動監査（role/aria-expanded、focus可視、reflow、text-spacing）は`verify.json.summary`に個別項目名がなく、`pass:40,fail:0（段4merge後）`という要約のみ** — 検証: `verify.json.summary`（40項目pass、詳細な axe violation 件数は本ドラフトの調査範囲では確認できず）。
+3. reduced-motion環境で動きが停止する（A11Y-02と共通の実測） — 検証: `verify.json.reducedMotion.pass === true`。
+4. JS無効環境でも主要要素が表示される（no-JS実測） — 検証: `verify.json.noJs.pass === true`。
+5. **role/aria-expanded、キーボード操作契約、focus可視、reflow、text-spacingのAPG/WCAG検査（axe相当の自動監査）は`verify.json`に実行記録が無く、試作03では未検証。`verify.json.summary`の`pass:40`はこれらを含まない合算値であり代替根拠にできない。**
 
 **(d)** 台帳の直接該当なし（全用途共通の守り要件）。
-**(e)** 問い: axe監査の個別違反件数を`verify.json`にどこまで出力するかは実装側の検査様式の話であり、本ドラフトでは受入条件を「summary.pass=40/40」で代替してよいか。
+**(e)** 問い: role/aria-expanded・キーボード操作契約・focus可視・reflow・text-spacingのaxe相当自動監査を、次段の試作で追加する対象に含めるか。
 
 ---
 
@@ -424,10 +426,10 @@
 
 **(a)** 主測定面をサイト設定で選択（既定SP）。代表ページのLighthouse mobile/PC幅・両幅スクリーンショット比較・ローカルDocker実機相当ゲート・管理画面/MCP両幅プレビュー・両幅速度/CWV計測・device別A/B集計を同一revisionで束縛。
 
-**(b)** 試作03: `results/`配下に全variant のPC/SPスクリーンショットが揃い（263ファイル、`CATALOG-INDEX.json`で`dev:"pc"/"sp"`管理）、`verify.json`もSP/PC両方の検査を含む。**Lighthouse/CWV測定、device別A/B集計、管理画面/MCPプレビュー機能は試作03の範囲外**（静的テーマファイルとverify.mjsのみ）。
+**(b)** 試作03: `results/`配下に全variant のPC/SPスクリーンショットが揃い（311ファイル、`CATALOG-INDEX.json`で`dev:"pc"/"sp"`管理）、`verify.json`もSP/PC両方の検査を含む。**Lighthouse/CWV測定、device別A/B集計、管理画面/MCPプレビュー機能は試作03の範囲外**（静的テーマファイルとverify.mjsのみ）。
 
 **(c) 書き直し案**
-1. 各variantでPC/SP両方のスクリーンショットが揃い、`CATALOG-INDEX.json`から`dev`属性で参照できる — 検証: `CATALOG-INDEX.json`（263件、`dev`フィールド）。
+1. 各variantでPC/SP両方のスクリーンショットが揃い、`CATALOG-INDEX.json`から`dev`属性で参照できる — 検証: `CATALOG-INDEX.json`（311件、`dev`フィールド）。
 2. タップ・コントラスト・404等の静的検査がSP/PC両方で実行される — 検証: `verify.json`各項目。
 3. **Lighthouse/CWV測定、device別A/B集計は未実装**（次段の実装課題）。
 
@@ -474,7 +476,7 @@
 **(b)** **試作03のREADMEに個別CSSプロパティの明記なし**（見出しの1行収め・行間はREADME §2.4に実測あり、改行制御プロパティの適用有無は本ドラフトの調査範囲では未確認）。
 
 **(c) 書き直し案**
-1. SP幅で見出し・本文が横スクロールを起こさず折り返す — 検証: `verify.json`のタップ監査で横スクロール言及（0件、README §2.11・§2.9参照）+ 目視。
+1. **SP幅で見出し・本文が横スクロールを起こさず折り返すかは、`verify.json` に横スクロール量の専用フィールドが無く、タップ監査（`tap.*`）はタップ対象サイズのみを測るため検証手段なし**（目視でも折り返しの逸脱は見逃しうる。次段で `scrollWidth` 等の専用検査を追加する必要がある）。
 2. **`text-wrap:balance/pretty`等の個別プロパティ適用はソースコード確認が必要で、本ドラフトの証跡（README/verify.json/カタログ）だけでは検証不能。**
 
 **(d)** 台帳の直接該当なし。
@@ -486,10 +488,10 @@
 
 **(a)** コアBreadcrumbsブロックを表示しBreadcrumbList構造化データを同じ出力元から生成。階層は投稿/固定ページ/LPの構造から機械導出。
 
-**(b)** 試作03: 自動コントラストguardの検査対象にパンくず2リンクが含まれる（README §2.9「パンくず2リンク」実測、`verify.json.categoryHeroContrast`にも「パンくず『ホーム』10.39:1」の実測あり）ことから、パンくずが記事hero上に表示される実装は確認できる。**BreadcrumbList構造化データが同一出力元から生成されるかは試作03の証跡（見た目のスクリーンショット）からは検証不能。**
+**(b)** 試作03: 自動コントラストguardの検査対象にパンくず2リンクが含まれる（README §2.9「パンくず2リンク」実測、`verify.json.contrastGuard`に `article hero meta:A#0`（10.39:1）・`article hero meta:A#1`（7.38:1）として実測あり）ことから、パンくずが記事hero上に表示される実装は確認できる。**BreadcrumbList構造化データが同一出力元から生成されるかは試作03の証跡（見た目のスクリーンショット）からは検証不能。**
 
 **(c) 書き直し案**
-1. パンくずが記事hero（画像重ね型）上でも4.5:1以上のコントラストで読める — 検証: `verify.json.categoryHeroContrast.items`（パンくず「ホーム」10.39:1、カテゴリ7.38:1）。
+1. パンくずが記事hero（画像重ね型）上でも4.5:1以上のコントラストで読める — 検証: `verify.json.contrastGuard`（`article hero meta:A#0` 10.39:1、`article hero meta:A#1` 7.38:1）。
 2. **BreadcrumbListのJSON-LD出力が表示パンくずと同一正本かは未検証**（次段でJSON-LD出力の目視・構造化データテスト結果を追加する必要がある）。
 
 **(d)** 台帳の直接該当なし。
@@ -504,14 +506,14 @@
 **(b)** 試作 03 段 4 の実装（README §2.13）: LP は **`post_type=page` + 固定ページテンプレート `page-lp`**（`wp post create --post_type=page --page_template=page-lp`）として作成しており、**CPT ではなく固定ページの1バリエーションとして代替した**。`wt_is_lp_page()` は `is_page_template( array( 'page-lp', 'page-lp.html' ) )` で判定し、body class に `wt-face-lp` を付与する（README「重大」是正記録、459行目）。`patterns/lp.php` は `hero-split` / `numbers` / `features` / `steps` / `pricing` / `faq` の既存 pattern と比較表 style を流用し、LP 専用のロゴ枠・声・バッジ枠・CTA 帯を追加する構成。
 
 **(c) 書き直し案**
-1. LP ページの `_wp_page_template` が `page-lp` として保存され、body class に `page-template-page-lp` / `wt-face-lp` が付く — 検証: `verify.json.lpFooterFaceDefault`（`lpHasFace:true, lpHasSingleRow:true`）。
+1. LP ページで body class に `wt-face-lp` が付き footer 既定が `single-row` になる — 検証: `verify.json.lpFooterFaceDefault`（`lpHasFace:true, lpHasSingleRow:true`）。**ただし `lpFooterFaceDefault` が検査するのは `wt-face-lp` / `wt-footer-layout-single-row` の body class のみで、`_wp_page_template` メタの保存値や `page-template-page-lp` class 自体は verify.json に専用フィールドが無く検証不能**（README 本文の記載（`wp post meta get 601 _wp_page_template` で確認したという記述）はあるが、`verify.json` には反映されていない）。
 2. 非 LP 面（記事）には `wt-face-lp` が付かず、footer 既定（sitemap）のままである — 検証: `verify.json.lpFooterFaceDefault`（`articleHasFace:false, articleHasSitemap:true`）。
 3. LP 面限定の CSS（`lp_fixed:sp-bottom-bar` 由来の totop 位置調整）が非 LP 面へ漏れない — 検証: `verify.json.lpFaceScopedTotop`（`baseline:"16px", withLpFixed:"16px"`、非LP面で不変）。
 4. LP header 3 型（minimal / logo-only / none）が切り替えられ、`none` はアンカーナビの遷移先が実在し可視である — 検証: `lp-header-*-pc.jpg` / `-sp.jpg` 目視 + `verify.json.lpAnchorNav`（3 リンクとも `targetExists:true, visible:true`）。
 5. **CPT 化（`show_in_rest` による REST 分離）、ディレクトリ非依存 URL（固定ページ階層から独立したスラッグ体系）、種別（通常/イベント/比較特設）の JSON 列挙は試作 03 に実装がなく検証不能。** 現行実装は固定ページの子として存在するため、要求が指す「固定ページからの分離」を満たしていない。
 
 **(d)** 台帳の直接該当なし（CPT 化はテーマ実装規約の話であり、`by-purpose.md` の観察対象外）。
-**(e)** 問い: LP-01 の「CPT として固定ページから分離する」要求を維持し、試作 03 の「固定ページ + page-lp テンプレート」代替は段 4 の PoC 止まりとして次段（実装 PR）で CPT 化を扱う整理でよいか。あるいは、固定ページ + 専用テンプレートの実装で要件を満たしたとみなし、CPT 化を不要と判断するか。
+**(e)** 問い: LP を CPT（`show_in_rest`）として固定ページから分離し、ディレクトリ非依存 URL・種別（通常/イベント/比較特設）の JSON 列挙を持たせる（現行の固定ページ + `page-lp` テンプレート代替を置き換える）。採用するか。
 
 ---
 
@@ -534,8 +536,8 @@
 10. legal on では打消し表示 + PR 表記が出て、off では出ない — 検証: `lp-legal-on-*.jpg` / `lp-legal-off-*.jpg` 目視。
 11. **イベント計測（表示・スクロール・CTAクリック・フォーム送信のデータ層契約送信、CV ID・A/B variant ID の付与）は試作 03 に実装がなく検証不能。**
 
-**(d)** 台帳: サービス LP は「header: logo-left-cta-right PC34%/SP74%、hero: split PC35%・text-only SP35%、hero CTA: single/double 各 PC17%、footer: mega(sitemap) PC91%・SP accordion 50%」（README §2.13「観察の多数派 / 少数派」表、`by-purpose.md` §1「サービス/SaaS LP」・§2「サービスLP | 行動・信頼」からの転記）。既定値案（試作 03 実装）: header=minimal、hero=split、hero CTA=single、sections=full、CTA style=solid、fixed=none、legal=on。台帳の多数派（logo-left-cta-right、split、mega footer）と概ね整合する。
-**(e)** 問い: イベント計測（データ層契約・CV ID・A/B variant ID）の実装を次段の試作対象に含めるか、それとも別要件（実装 PR、HELIX 連携）として切り出すか。
+**(d)** 台帳（README §2.13「観察の多数派 / 少数派」表を転記、値の対象集団は表内の注記のとおりで一律ではない）: header は「サービス LP の `logo-left-cta-right` PC34%/SP74%」。hero は「サービス LP の `split-text-image` PC35%、`text-only` SP35%」。hero CTA は「（LPで採用した3型に限った）`single` PC17%/SP15%、`double` PC17%/SP11%」（`none` はLP軸に採用しなかった全体top/PCの値でPC58%/SP66%と最多だが比較対象ではない）。footer は「サービス LP の `mega(sitemap)` PC91%、SP `accordion(sp)` 50%」。既定値案（試作 03 実装）: header=minimal、hero=split、hero CTA=single、sections=full、CTA style=solid、fixed=none、legal=on、**footer=single-row**。header/hero/hero CTA の既定は台帳の多数派と整合するが、**footer の既定 `single-row` は台帳の多数派 `mega(sitemap)`（PC91%）とは異なる少数派の選択であり、単一 LP ページでは項目数が少なく sitemap 型が過剰という Claude の判断による（台帳との不整合は意図的な逸脱として記録する）**。
+**(e)** 問い: LP の表示・スクロール・CTAクリック・フォーム送信を、目標 CV ID・A/B variant ID 付きの version 付きデータ層契約で計測する機能を持たせる。採用するか。
 
 ---
 
@@ -543,8 +545,8 @@
 
 | ID | 問い | 対象要件 |
 |---|---|---|
-| WT-Q-PROTO3-01 | ZONE-01 の「空 slot は要素を残さない」条件を、お知らせ帯 ON 時の実測のみで採否判断してよいか（OFF 時のDOM未実測） | WT-FR-ZONE-01 |
-| WT-Q-PROTO3-02 | ZONE-02 を「27軸+単一解決チェーン」方式の実装に書き直してよいか（creative配置+overrides配列は別課題として残すか） | WT-FR-ZONE-02 |
+| WT-Q-PROTO3-01 | 共有slotは内容が無い場合に空要素をDOMに残さない実装にする。採用するか | WT-FR-ZONE-01 |
+| WT-Q-PROTO3-02 | ZONE-02 を「34軸+単一解決チェーン」方式の実装に書き直してよいか（creative配置+overrides配列は別課題として残すか） | WT-FR-ZONE-02 |
 | WT-Q-PROTO3-03 | ZONE-03 の AC を「シェアfloat/totopの重なりなし」まで縮小し、同意バー・広告面積上限・初回モーダル禁止は次段試作課題として明記してよいか | WT-FR-ZONE-03 |
 | WT-Q-PROTO3-04 | PARTS-01 の透過ヘッダー型（top/PC8%・top/SP11%観察）を次段の型追加対象に含めるか | WT-FR-PARTS-01 |
 | WT-Q-PROTO3-05 | PARTS-02 をデザイン系受入条件の対象から外し、実装PRのレビュー観点として扱ってよいか | WT-FR-PARTS-02 |
@@ -553,18 +555,19 @@
 | WT-Q-PROTO3-08 | VOCAB-03 の「機械判定して該当ページだけ自動出力」を試作03の「全記事既定ON+手動off」方式に緩和してよいか | WT-FR-VOCAB-03 |
 | WT-Q-PROTO3-09 | VOCAB-04 をデザイン系受入条件の対象から外し実装PR側で扱ってよいか | WT-FR-VOCAB-04 |
 | WT-Q-PROTO3-10 | SECTION-01/02 を「未実装」として次段（L3→L4）へ送る扱いでよいか | WT-FR-SECTION-01/02 |
-| WT-Q-PROTO3-11 | LOOK-01 のカード高さ自動統一に自動検査（実測高さ差分ゼロ確認）を段6以降で追加するか、目視確認で足りるとするか | WT-FR-LOOK-01 |
+| WT-Q-PROTO3-11 | カード高さの自動統一を自動検査（実測高さ差分ゼロ確認）付きの受入条件として持つ。採用するか | WT-FR-LOOK-01 |
 | WT-Q-PROTO3-12 | 次段で企業HP・サービスLPパターンの試作に進む優先順位でよいか | WT-FR-LOOK-03 |
 | WT-Q-PROTO3-13 | TPL-01 の検索結果テンプレート（noindex・ログ非保存）の実測を次段の試作対象に加えるか | WT-FR-TPL-01 |
 | WT-Q-PROTO3-14 | RECO-01 の人気集計を試作03の日付順代替のまま「表示型のみ受入条件化」し、集計ロジックは別要件で検証する扱いでよいか | WT-FR-RECO-01 |
 | WT-Q-PROTO3-15 | BANNER-01 のバナー正本（一元管理UI）を実装設計側の受入条件として切り出してよいか | WT-FR-BANNER-01 |
 | WT-Q-PROTO3-16 | SP-02 の下部固定3〜5タブ（CVタブバー）を次段の試作対象に含めるか | WT-FR-SP-02 |
 | WT-Q-PROTO3-17 | SP-03 のタブ/ギャラリー/CTAのSP変換を次段の試作対象に含めるか | WT-FR-SP-03 |
-| WT-Q-PROTO3-18 | A11Y-01 の受入条件を「summary.pass=40/40」（段4merge後の項目数）で代替し、axe個別違反件数の出力様式は実装側に委ねてよいか | WT-NFR-A11Y-01 |
+| WT-Q-PROTO3-18 | role/aria-expanded・キーボード操作契約・focus可視・reflow・text-spacingのaxe相当自動監査を次段の試作対象に含めるか | WT-NFR-A11Y-01 |
 | WT-Q-PROTO3-19 | NFR-SP-02 / NFR-PERF-01〜03 のLighthouse/CWV実測を次段（実サーバー相当環境）で行う対象に含めるか | WT-NFR-SP-02, WT-NFR-PERF-01〜03 |
 | WT-Q-PROTO3-20 | NAV-01 のBreadcrumbList JSON-LD検証（構造化データテスト等）を次段の検証手段に追加するか | WT-FR-NAV-01 |
-| WT-Q-PROTO3-21 | LP-01 の「CPT として固定ページから分離する」要求を維持し、試作03の「固定ページ+page-lpテンプレート」代替は次段（実装PR）でCPT化を扱う整理でよいか、それとも固定ページ+専用テンプレートの実装で要件を満たしたとみなすか | WT-FR-LP-01 |
-| WT-Q-PROTO3-22 | LP-02 のイベント計測（データ層契約・CV ID・A/B variant ID）実装を次段の試作対象に含めるか、別要件として切り出すか | WT-FR-LP-02 |
+| WT-Q-PROTO3-21 | LP を CPT（`show_in_rest`）として固定ページから分離し、ディレクトリ非依存URL・種別のJSON列挙を持たせる（現行の固定ページ+page-lpテンプレート代替を置き換える）。採用するか | WT-FR-LP-01 |
+| WT-Q-PROTO3-22 | LP の表示・スクロール・CTAクリック・フォーム送信を、目標CV ID・A/B variant ID付きのデータ層契約で計測する機能を持たせる。採用するか | WT-FR-LP-02 |
+| WT-Q-PROTO3-23 | SP/PCのdevice別差分をWordPress 7.1の`@mobile`/`@tablet`記法で宣言する。採用するか | WT-FR-SP-01 |
 
 ---
 
@@ -575,27 +578,33 @@
 1. WT-FR-ZONE-02 — ゾーン語彙 23 種 JSON schema・overrides first-match-wins（軸方式に部分対応のみ）
 2. WT-FR-ZONE-03 — 同意バー・広告面積上限・初回モーダル禁止（一部のみ、同意バー自体が未実装）
 3. WT-FR-PARTS-02 — テンプレ変種名・footer カラム可変・wp_navigation ref 参照
-4. WT-FR-VOCAB-04 — url_to_postid 直呼び・外部 URL 検証付き HTTP（解決方式）
-5. WT-FR-SECTION-01 — 見出し区間の中間 JSON 出力・安定 ID（部分対応: 目次 ID 付与のみ）
-6. WT-FR-SECTION-02 — 区間単位のリライト・diff/apply/rollback・計測
-7. WT-FR-LOOK-02 — 複数プリセット→複数 variation の写像
-8. WT-FR-LOOK-03 — 他 4 サイトパターン（企業HP/サービスLP/ポータル/ブランド）の variation 実装
-9. WT-FR-LOOK-04 — 和文フォント複数系統の選択・自己ホスト・サブセット化
-10. WT-FR-BANNER-01 — バナー正本の一元管理・商品ID派生・全面ゾーン配置UI（一部のみ、お知らせ帯派生は実装）
-11. WT-FR-BANNER-02 — バナー計測（impression/click・rel=sponsored・広告タグ分離）
-12. WT-FR-SP-01 — `@mobile`/`@tablet` 記法・管理画面/MCP個別編集UI
-13. WT-FR-SP-02 — SP下部固定3〜5タブ（電話/メッセージ/資料DL）・ドロワー階層・SP専用広告面
-14. WT-FR-SP-03 — タブのアコーディオン変換・ギャラリーのスワイプ・CTAの全幅/sticky変換
-15. WT-NFR-SP-02 — Lighthouse/CWV測定・device別A/B集計・管理画面/MCPプレビュー
-16. WT-NFR-PERF-01 — 予算超過ゲート・第三者スクリプト遅延注入のCI接続
-17. WT-NFR-PERF-02 — CSS転送量予算・critical CSS inline・フォントswapのビルド検証
-18. WT-NFR-PERF-03 — Lighthouse/CWV閾値のCI blocking gate
-19. WT-FR-IMG-01 — WebP/AVIF生成パイプライン・GIF→WebM変換
-20. WT-FR-IMG-02 — 非同期ジョブ（WP-Cron等）・dry-run
-21. WT-FR-IMG-03 — alt必須警告UI・GIF動画置換提案・Discover代表画像検査
-22. WT-FR-TYPO-01 — 和文改行制御の個別CSSプロパティ（`text-wrap`等）
-23. WT-FR-NAV-01 — BreadcrumbList JSON-LD の同一正本検証（表示は確認できたが構造化データ出力は未検証）
-24. WT-FR-LP-01 — CPT化（`show_in_rest`によるREST分離）・ディレクトリ非依存URL・種別（通常/イベント/比較特設）のJSON列挙（試作03は固定ページ+専用テンプレートで代替、CPT化自体は未実装）
-25. WT-FR-LP-02 — イベント計測（表示/スクロール/CTAクリック/送信のデータ層契約送信、CV ID・A/B variant ID の付与）
+4. WT-FR-VOCAB-03 — 広告パーツ・アフィリエイト/商品リンクの有無からの機械判定・自動出力（試作03は全記事既定ON+手動offで代替、機械判定自体は未実装）
+5. WT-FR-VOCAB-04 — url_to_postid 直呼び・外部 URL 検証付き HTTP（解決方式）
+6. WT-FR-SECTION-01 — 見出し区間の中間 JSON 出力・安定 ID・見出し ID 付与規則自体（目次件数の一致以外に検証手段がなく全面未検証）
+7. WT-FR-SECTION-02 — 区間単位のリライト・diff/apply/rollback・計測
+8. WT-FR-LOOK-02 — 複数プリセット→複数 variation の写像（色スラッグ集合不変の自動検査を含め全面未検証）
+9. WT-FR-LOOK-03 — 他 4 サイトパターン（企業HP/サービスLP/ポータル/ブランド）の variation 実装
+10. WT-FR-LOOK-04 — 和文フォント複数系統の選択・自己ホスト・サブセット化
+11. WT-FR-BANNER-01 — バナー正本の一元管理・商品ID派生・全面ゾーン配置UI（一部のみ、お知らせ帯派生は実装）
+12. WT-FR-BANNER-02 — バナー計測（impression/click・rel=sponsored・広告タグ分離）
+13. WT-FR-SP-01 — `@mobile`/`@tablet` 記法の使用有無・管理画面/MCP個別編集UI・SP横スクロール量の検査（tap監査は横スクロールを測らない）
+14. WT-FR-SP-02 — SP下部固定3〜5タブ（電話/メッセージ/資料DL）・ドロワー階層・SP専用広告面
+15. WT-FR-SP-03 — タブのアコーディオン変換・ギャラリーのスワイプ・CTAの全幅/sticky変換
+16. WT-FR-TPL-01 — 検索結果テンプレートの noindex 既定、bot 除外・IP 非保存の検索語ログ（404 のみ実測、検索結果自体は未実測）
+17. WT-FR-RECO-01 — 人気の集計方式・期間選択、bot/管理者除外・IP非保存（試作03は日付順代替で集計ロジック自体は未実装）
+18. WT-NFR-A11Y-01 — role/aria-expanded・キーボード操作契約・focus可視・reflow・text-spacingのaxe相当自動監査（`verify.json.summary`はaxe実行を含まない合算値のため代替不可）
+19. WT-NFR-SP-01 — SP/PC横スクロール量の検査（tap監査は横スクロールを測らない）、同意バーを含む3要素の積層順検査
+20. WT-NFR-SP-02 — Lighthouse/CWV測定・device別A/B集計・管理画面/MCPプレビュー
+21. WT-NFR-PERF-01 — 予算超過ゲート・第三者スクリプト遅延注入のCI接続
+22. WT-NFR-PERF-02 — CSS転送量予算・critical CSS inline・フォントswapのビルド検証
+23. WT-NFR-PERF-03 — Lighthouse/CWV閾値のCI blocking gate
+24. WT-FR-IMG-01 — WebP/AVIF生成パイプライン・GIF→WebM変換
+25. WT-FR-IMG-02 — 非同期ジョブ（WP-Cron等）・dry-run
+26. WT-FR-TYPO-01 — 和文改行制御の個別CSSプロパティ（`text-wrap`等）、横スクロール量の検査
+27. WT-FR-NAV-01 — BreadcrumbList JSON-LD の同一正本検証（表示は確認できたが構造化データ出力は未検証）
+28. WT-FR-LP-01 — CPT化（`show_in_rest`によるREST分離）・ディレクトリ非依存URL・種別（通常/イベント/比較特設）のJSON列挙（試作03は固定ページ+専用テンプレートで代替、CPT化自体は未実装。`_wp_page_template`保存値・`page-template-page-lp`classもverify.json未検証）
+29. WT-FR-LP-02 — イベント計測（表示/スクロール/CTAクリック/送信のデータ層契約送信、CV ID・A/B variant ID の付与）
 
-以上 25 件（本一覧は「全面未実装」と「一部未実装（他の条件は (c) に記載済み）」の両方を含む。LP-01 は全面未実装、LP-02 はイベント計測の 1 項目のみ未実装で他 10 条件は (c) に記載済み）。対象 37 件のうち、(c) に検証手段付きの条件を 1 件以上記載した要件は 31 件、(c) を完全に保留した全面未実装の要件は 6 件（WT-FR-SECTION-02 / WT-FR-LOOK-04 / WT-FR-BANNER-02 / WT-FR-IMG-01 / WT-FR-IMG-02 / WT-FR-IMG-03）+ WT-FR-LP-01 の計 7 件。
+以上 29 件（本一覧は「(c) を全く記載していない全面未実装」と「(c) に一部条件はあるが別の一部が未実装・未検証」の両方を含む。WT-FR-IMG-03 は alt 属性保証の条件のみ (c) にあり、それ以外（WebP/AVIF 生成・非同期ジョブ・alt 警告 UI・Discover 検査）は未実装のため本一覧には含めていないが、該当箇所は WT-FR-IMG-01/02 の項目に集約して記載した）。
+
+対象 37 件のうち、(c) に検証手段付きの条件を 1 件以上記載した要件は 29 件、(c) を完全に保留またはすべての条件が検証不能と判明した要件は 8 件（WT-FR-SECTION-01 / WT-FR-SECTION-02 / WT-FR-LOOK-02 / WT-FR-LOOK-04 / WT-FR-BANNER-02 / WT-FR-IMG-01 / WT-FR-IMG-02 / WT-FR-TYPO-01）。WT-FR-LP-01 は (c) に条件 4 件を記載しているため「(c) を保留した要件」には含めない（CPT 化に限定した未実装として上記一覧に計上）。
