@@ -1,6 +1,6 @@
 <?php
 /**
- * HELIX WT prototype 03 — 比較媒体の記事面・404・カテゴリ面。選択軸は ?wt= プレビュー → post meta（記事上書き）→ theme_mod（サイト既定）→ 既定値の順で解決する。
+ * HELIX WT prototype 03 — 比較媒体の記事面・404・カテゴリ面・LP。選択軸は ?wt= プレビュー → post meta（記事上書き）→ theme_mod（サイト既定）→ 既定値の順で解決する。
  * PoC 証跡。実装時はプレビュー引数を管理者限定にし、選択 UI（サイトエディター / 記事サイドバー）を付ける。
  */
 
@@ -34,7 +34,20 @@ function wt_axes() {
 		'tail_share'    => array( 'none', array( 'none', 'icons-row' ) ),
 		'tail_author'   => array( 'none', array( 'none', 'avatar-bio', 'avatar-bio-sns', 'supervisor' ) ),
 		'tail_prevnext' => array( 'off', array( 'off', 'thumb' ) ),
+		'lp_header'    => array( 'minimal', array( 'minimal', 'logo-only', 'none' ) ),
+		'lp_hero'      => array( 'split', array( 'split', 'fullbleed', 'product', 'text-only' ) ),
+		'lp_hero_cta'  => array( 'single', array( 'single', 'double', 'form-inline' ) ),
+		'lp_sections'  => array( 'full', array( 'full', 'short', 'trust' ) ),
+		'lp_cta_style' => array( 'solid', array( 'solid', 'outline', 'pill' ) ),
+		'lp_fixed'     => array( 'none', array( 'none', 'sp-bottom-bar', 'float-cta' ) ),
+		'lp_legal'     => array( 'on', array( 'on', 'off' ) ),
 	);
+}
+
+function wt_is_lp_page() {
+	// customTemplates は theme.json に登録した slug（拡張子なし）で core に保存される。
+	// is_page_template() は保存値との完全一致判定のため、slug 表記・旧 .html 表記の両方を許容する。
+	return function_exists( 'is_page_template' ) && is_page_template( array( 'page-lp', 'page-lp.html' ) );
 }
 
 function wt_opt( $key ) {
@@ -63,7 +76,10 @@ function wt_opt( $key ) {
 		}
 	}
 	if ( null === $v ) {
-		$v = get_theme_mod( 'wt_' . $key, $default );
+		// LP は面の性格に合わせて footer の未設定時だけ 1 行型を既定にする。
+		// 明示した theme_mod / プレビュー値は通常どおり優先する。
+		$site_default = wt_is_lp_page() && 'footer_layout' === $key ? 'single-row' : $default;
+		$v = get_theme_mod( 'wt_' . $key, $site_default );
 	}
 	return in_array( (string) $v, $allowed, true ) ? (string) $v : $default;
 }
@@ -96,6 +112,10 @@ add_action( 'wp_enqueue_scripts', function () {
 
 // ---------- body class: 選択軸を class へ ----------
 add_filter( 'body_class', function ( $classes ) {
+	// LP 面限定の CSS 分岐（to-top 位置など）が非 LP 面へ漏れないよう、面クラスを別枠で付与する。
+	if ( wt_is_lp_page() ) {
+		$classes[] = 'wt-face-lp';
+	}
 	foreach ( wt_axes() as $key => $def ) {
 		$classes[] = 'wt-' . $key . '-' . wt_opt( $key );
 		$class_key = str_replace( '_', '-', $key );
