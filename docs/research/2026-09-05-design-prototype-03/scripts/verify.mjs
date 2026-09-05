@@ -3,11 +3,15 @@
 // 使い方: NODE_PATH=<playwright の node_modules> node verify.mjs --base http://localhost:8086 --out ../results/verify.json
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { createRequire } from "node:module";
 const require = createRequire(process.env.NODE_PATH ? path.join(process.env.NODE_PATH, "x.js") : import.meta.url); // NODE_PATH の playwright を優先（リポ内の別版と混ざらないように）
 const { chromium } = require("playwright");
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, arr) => a.startsWith("--") ? [a.slice(2), arr[i + 1]] : null).filter(Boolean));
 const BASE = args.base || "http://localhost:8086";
+// pr:auto の陽性/陰性/境界フィクスチャ検査に使う wp-cli（docker compose の wpcli サービス）の project dir。
+// 未指定なら該当検査はスキップし出力に理由を残す（環境依存の docker-compose 経路を必須にしないため）。
+const WPCLIDIR = args.wpclidir || null;
 const OUT = path.resolve(args.out || "../results/verify.json");
 const ARTICLE = "/standing-desk-compare/";
 const CATEGORY = "/category/topic-index/";
@@ -567,6 +571,213 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   }
 }
 
+// 11. 2026-09-05 PO 反応（比較表 SP caption・価格文字サイズ・ヘッダー内側幅・CTA 中央寄せ是正）
+{
+  // 11a. caption が 1 行以上の横書きで表示される（高さ/幅比で「1 文字ずつ縦積み」を検知）
+  const spCtx = await browser.newContext(SP); const spPage = await spCtx.newPage();
+  await spPage.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.tableCaptionSp = await spPage.evaluate(() => {
+    const cap = document.querySelector(".is-style-wt-compare caption");
+    if (!cap) return { exists: false };
+    const r = cap.getBoundingClientRect();
+    const s = getComputedStyle(cap);
+    return { exists: true, width: r.width, height: r.height, ratio: r.height > 0 ? r.width / r.height : 0, display: s.display, text: cap.textContent.trim() };
+  });
+  out.tableCaptionSp.pass = out.tableCaptionSp.exists && out.tableCaptionSp.ratio > 3; // 横書き1〜数行なら幅は高さの数倍以上になる。縦積みだと概ね 1 未満
+  await spCtx.close();
+
+  // 11b. 表内数値セル（td.wt-num）の font-size が本文（p）の ±10% 以内（数字訴求 hero 用サイズが紛れ込んでいないか）
+  const pcCtx = await browser.newContext(PC); const pcPage = await pcCtx.newPage();
+  await pcPage.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.tableNumFontSize = await pcPage.evaluate(() => {
+    const bodyFs = parseFloat(getComputedStyle(document.body).fontSize); // theme.json 本文 17px（preset font-size m）を基準にする。
+    const cells = Array.from(document.querySelectorAll(".is-style-wt-compare td.wt-num"));
+    const sizes = cells.map((c) => parseFloat(getComputedStyle(c).fontSize));
+    return { bodyFs, cellCount: cells.length, sizes, maxDeviation: cells.length ? Math.max(...sizes.map((s) => Math.abs(s - bodyFs) / bodyFs)) : null };
+  });
+  out.tableNumFontSize.pass = out.tableNumFontSize.cellCount > 0 && out.tableNumFontSize.maxDeviation !== null && out.tableNumFontSize.maxDeviation <= 0.10;
+
+  // 11c. ヘッダー内側幅 = min(viewport − 2×gutter, --wt-header-max)（header:cta 変種、幅プリセット既定）
+  await pcPage.goto(BASE + ARTICLE + "?wt=header:cta", { waitUntil: "networkidle" });
+  out.headerInnerWidth = await pcPage.evaluate(() => {
+    const row = document.querySelector(".wt-header__row");
+    const outer = row.closest(".wt-header");
+    const r = row.getBoundingClientRect();
+    const headerMax = parseFloat(getComputedStyle(document.body).getPropertyValue("--wt-header-max"));
+    const gutter = parseFloat(getComputedStyle(outer).paddingLeft); // constrained layout の実際の padding-inline（gutter clamp の実測値）
+    const viewport = window.innerWidth;
+    const expectedRowWidth = Math.min(viewport, headerMax) - gutter * 2;
+    return { rowWidth: r.width, headerMax, gutter, viewport, expectedRowWidth, withinTolerance: Math.abs(r.width - expectedRowWidth) <= 4 };
+  });
+  out.headerInnerWidth.pass = out.headerInnerWidth.withinTolerance;
+
+  // 11d. CTA ボタンの中心 x が viewport 中央より右（符号付き）に 25% 以上ずれている（右寄せで、真ん中に来ていないこと）。
+  // 2026-09-05 Astra レビュー是正: 絶対値だと左寄せでも合格してしまうため、符号を見る（cx > center * 1.25）。
+  out.headerCtaOffCenter = await pcPage.evaluate(() => {
+    const btn = document.querySelector(".wt-header__cta .wp-block-button__link");
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const viewport = window.innerWidth;
+    const viewportCenter = viewport / 2;
+    const offsetSigned = (cx - viewportCenter) / viewportCenter; // 正 = 右、負 = 左
+    return { cx, viewportCenter, viewport, offsetSigned };
+  });
+  out.headerCtaOffCenter.pass = out.headerCtaOffCenter.offsetSigned >= 0.25;
+
+  await pcCtx.close();
+}
+
+// 12. 2026-09-05 PO 反応2・3・6回目（h3 番号前置・下線系見出し・PR タグの縦積み是正）
+// Astra レビュー是正（head 85ae634 指摘）: 見出し全体の高さだけを見る検査は「番号自身は縦積みだが
+// 本文側が短くて全体高さが閾値内」というケースを見逃す。white-space:nowrap・flex-shrink:0 という
+// 「縦積みを構造的に禁止する CSS 宣言そのもの」を検査対象にし、幾何計測は補助情報として残す。
+{
+  const ctx = await browser.newContext(PC); const page = await ctx.newPage();
+  await page.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+
+  // 12a. h3 番号前置（is-style-wt-num）: (1) ::before 自身が white-space:nowrap かつ flex-shrink:0
+  //      で「縮んで折り返す」ことが構造的に起きない（2) 番号の font-size が h3 テキスト本体より大きい
+  const readHeadingNumber = async (p) => p.evaluate(() => {
+    const h3 = document.querySelector(".wp-block-heading.is-style-wt-num");
+    if (!h3) return { exists: false };
+    const s = getComputedStyle(h3, "::before");
+    const numFs = parseFloat(s.fontSize);
+    const textFs = parseFloat(getComputedStyle(h3).fontSize);
+    const r = h3.getBoundingClientRect();
+    const lineHeight = parseFloat(getComputedStyle(h3).lineHeight) || textFs * 1.4;
+    return {
+      exists: true, numFs, textFs, headingHeight: r.height, lineHeight,
+      whiteSpace: s.whiteSpace, flexShrink: s.flexShrink,
+      structurallyNotStackable: s.whiteSpace === "nowrap" && parseFloat(s.flexShrink) === 0,
+      biggerThanText: numFs > textFs,
+    };
+  });
+  out.headingNumberPc = await readHeadingNumber(page);
+  out.headingNumberPc.pass = out.headingNumberPc.exists && out.headingNumberPc.structurallyNotStackable && out.headingNumberPc.biggerThanText;
+  const spCtxHn = await browser.newContext(SP); const spPageHn = await spCtxHn.newPage();
+  await spPageHn.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.headingNumberSp = await readHeadingNumber(spPageHn);
+  out.headingNumberSp.pass = out.headingNumberSp.exists && out.headingNumberSp.structurallyNotStackable && out.headingNumberSp.biggerThanText;
+  await spCtxHn.close();
+
+  // 12b. 下線系見出し（2tone/underline/dotted/underline-thin）の「実テキスト下端」〜「border-bottom の描画開始位置」の
+  // 実距離が 4〜8px。padding-bottom の値そのものではなく、Range で実テキスト（疑似要素を含まない）の
+  // bounding rect を取り、要素外枠の下端 − border 幅 と比較する。
+  const readUnderlineGap = async (p) => p.evaluate(() => {
+    const sels = [".is-style-wt-2tone", ".is-style-wt-underline", ".is-style-wt-dotted", ".is-style-wt-underline-thin"];
+    return sels.map((sel) => {
+      const el = document.querySelector(sel);
+      if (!el) return { sel, exists: false };
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const textRect = range.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const bw = parseFloat(getComputedStyle(el).borderBottomWidth) || 0;
+      const lineY = elRect.bottom - bw;
+      const gap = lineY - textRect.bottom;
+      return { sel, exists: true, gap, pass: gap >= 4 && gap <= 8 };
+    });
+  });
+  await page.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+  out.underlineGap = await readUnderlineGap(page);
+  out.underlineGap.pass = out.underlineGap.length > 0 && out.underlineGap.every((x) => x.exists && x.pass);
+
+  // 12c. PR タグ（.wt-pr__tag）が縦積みでない（幅 ≥ 高さ、= 横長）。SP でも同様に検査する。
+  const readPrTag = async (p) => p.evaluate(() => {
+    const tag = document.querySelector(".wt-pr__tag");
+    if (!tag) return { exists: false };
+    const r = tag.getBoundingClientRect();
+    return { exists: true, width: r.width, height: r.height, ratio: r.height > 0 ? r.width / r.height : 0 };
+  });
+  await page.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.prTagNotStackedPc = await readPrTag(page);
+  out.prTagNotStackedPc.pass = out.prTagNotStackedPc.exists && out.prTagNotStackedPc.ratio >= 1;
+  const spCtxPr = await browser.newContext(SP); const spPagePr = await spCtxPr.newPage();
+  await spPagePr.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.prTagNotStackedSp = await readPrTag(spPagePr);
+  out.prTagNotStackedSp.pass = out.prTagNotStackedSp.exists && out.prTagNotStackedSp.ratio >= 1;
+  await spCtxPr.close();
+
+  // 12d. 目次 float（.wt-toc--float）の left が画面左へ欠けない（≥ 0）。1200/1280/1440 の3幅 × 幅プリセット3種で検査。
+  // 2026-09-05 Astra レビュー是正: サイドカラム幅を 240→280px に上げた際、1200px 幅では
+  // left = 600 − 340 − 16 − 280 = −36px と負値になっていた（theme.css で max(8px, …) に変更済み）。
+  out.tocFloatLeft = [];
+  for (const width of [1200, 1280, 1440]) {
+    const tctx = await browser.newContext({ viewport: { width, height: 900 }, deviceScaleFactor: 1 });
+    for (const preset of ["narrow", "default", "wide"]) {
+      const tp = await tctx.newPage();
+      await tp.goto(BASE + ARTICLE + "?wt=toc:float,width:" + preset, { waitUntil: "networkidle" });
+      await tp.waitForTimeout(200);
+      const left = await tp.evaluate(() => {
+        const el = document.querySelector(".wt-toc--float");
+        return el ? el.getBoundingClientRect().left : null;
+      });
+      out.tocFloatLeft.push({ width, preset, left, pass: left !== null && left >= 0 });
+      await tp.close();
+    }
+    await tctx.close();
+  }
+  out.tocFloatLeft.pass = out.tocFloatLeft.length > 0 && out.tocFloatLeft.every((x) => x.pass);
+
+  // 12e. PC の比較表: caption が表の上（thead より上）にあること（caption の y < thead の y）。
+  // 2026-09-05 Astra レビュー是正: caption の display:block を SP カード表示専用の
+  // max-width:599px 内へ移設したため、PC では table 書式のまま（caption-side:top の既定挙動）に戻る。
+  await page.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
+  out.tableCaptionPcPosition = await page.evaluate(() => {
+    const cap = document.querySelector(".is-style-wt-compare caption");
+    const thead = document.querySelector(".is-style-wt-compare thead");
+    if (!cap || !thead) return { exists: false };
+    const capY = cap.getBoundingClientRect().top;
+    const theadY = thead.getBoundingClientRect().top;
+    return { exists: true, capY, theadY, aboveThead: capY < theadY };
+  });
+  out.tableCaptionPcPosition.pass = out.tableCaptionPcPosition.exists && out.tableCaptionPcPosition.aboveThead;
+
+  await ctx.close();
+}
+
+// 13. 2026-09-05 Astra レビュー是正: pr:auto の陽性/陰性/境界フィクスチャ（重大指摘）。
+// 先頭200字の単純部分一致だと「広告のない製品」「PROモデル」に誤検出し、201字目以降は見逃す問題への対応として、
+// functions.php の wt_content_has_pr_disclosure() を文単位の共起判定へ書き換えた。ここでは実機（wp-cli で
+// 一時記事を作成）で 8 フィクスチャ（陽性3・陰性3・境界2）を検証する。WPCLIDIR 未指定時はスキップする。
+if (WPCLIDIR) {
+  const fixtures = [
+    { name: "pos-1", content: "<!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。</p><!-- /wp:paragraph -->", expectAuto: false, note: "定型の開示文（既存デフォルト文と同種）" },
+    { name: "pos-2", content: "<!-- wp:paragraph --><p>この記事はPRを含みます。</p><!-- /wp:paragraph -->", expectAuto: false, note: "「PR」+「含みます」共起" },
+    { name: "pos-3", content: "<!-- wp:paragraph --><p>本記事は企業からのプロモーションを含みます。</p><!-- /wp:paragraph -->", expectAuto: false, note: "「プロモーション」+「含みます」共起" },
+    { name: "neg-1", content: "<!-- wp:paragraph --><p>広告のない製品を比較します。</p><!-- /wp:paragraph -->", expectAuto: true, note: "話題語のみ・開示述語なし（誤検出の代表例）" },
+    { name: "neg-2", content: "<!-- wp:paragraph --><p>PROモデルを紹介します。</p><!-- /wp:paragraph -->", expectAuto: true, note: "「PRO」の部分一致除外（誤検出の代表例）" },
+    { name: "neg-3", content: "<!-- wp:paragraph --><p>今日は天気がいいですね。デスクの話をします。</p><!-- /wp:paragraph -->", expectAuto: true, note: "無関係な本文（対照）" },
+    { name: "neg-4", content: "<!-- wp:paragraph --><p>広告のない製品を掲載しています。</p><!-- /wp:paragraph -->", expectAuto: true, note: "否定文（「ない」+「掲載」の共起を誤って開示扱いしていた重大指摘の再現例）" },
+    { name: "neg-5", content: "<!-- wp:paragraph --><p>本記事には広告を含みません。</p><!-- /wp:paragraph -->", expectAuto: true, note: "否定文（「含みません」を「含み」の部分一致で誤検出していた重大指摘の再現例）" },
+    { name: "boundary-201plus", content: "<!-- wp:paragraph --><p>" + "あ".repeat(250) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>" + "い".repeat(250) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>" + "う".repeat(250) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。</p><!-- /wp:paragraph -->", expectAuto: true, note: "開示文が4段落目・600字超（走査範囲外、既知の限界＝挿入されるのが正)" },
+    { name: "boundary-heading", content: "<!-- wp:heading --><h2>本記事はPRを含みます</h2><!-- /wp:heading --><!-- wp:paragraph --><p>本文です。</p><!-- /wp:paragraph -->", expectAuto: true, note: "見出し内のみの記述（段落を走査対象にするため対象外＝挿入されるのが正)" },
+    { name: "pos-4-long-250", content: "<!-- wp:paragraph --><p>" + "この記事は在宅ワーク向けの電動昇降デスクを実機で比較したものです。".repeat(8) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p><!-- /wp:paragraph -->", expectAuto: false, note: "開示文の開始位置が266字目（先頭段落がフィラー264字、開示は2段落目・3段落/600字の走査範囲内。旧200字固定長では検出できなかった位置）" },
+    { name: "pos-5-long-400", content: "<!-- wp:paragraph --><p>" + "この記事は在宅ワーク向けの電動昇降デスクを実機で比較したものです。".repeat(8) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>" + "同じ部屋・同じ期間で使い比べ、価格と昇降範囲を比較しました。".repeat(5) + "</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p><!-- /wp:paragraph -->", expectAuto: false, note: "開示文の開始位置が417字目（フィラー2段落・3段落/600字の走査範囲内、旧200字固定長では検出できなかった位置）" },
+  ];
+  const wp = (cmdArgs) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...cmdArgs], { cwd: WPCLIDIR, encoding: "utf8" });
+  out.prAutoFixtures = { results: [] };
+  const ids = [];
+  try {
+    for (const f of fixtures) {
+      const id = wp(["post", "create", "--post_type=post", "--post_status=publish", "--post_author=1", "--post_title=verify-fixture-" + f.name, "--post_content=" + f.content, "--porcelain"]).trim();
+      ids.push(id);
+      const page2 = await browser.newPage();
+      await page2.goto(BASE + "/?p=" + id, { waitUntil: "networkidle" });
+      const prCount = await page2.evaluate(() => document.querySelectorAll(".is-style-wt-pr").length);
+      await page2.close();
+      const autoInserted = prCount > 0;
+      out.prAutoFixtures.results.push({ name: f.name, note: f.note, expectAuto: f.expectAuto, autoInserted, pass: autoInserted === f.expectAuto });
+    }
+  } finally {
+    for (const id of ids) { try { wp(["post", "delete", id, "--force"]); } catch (e) { /* 後片付け失敗は握りつぶさず出力に残す */ out.prAutoFixtures.cleanupError = String(e); } }
+  }
+  out.prAutoFixtures.pass = out.prAutoFixtures.results.length === fixtures.length && out.prAutoFixtures.results.every((r) => r.pass);
+} else {
+  out.prAutoFixtures = { skipped: true, reason: "WPCLIDIR 未指定（--wpclidir <docker-compose project dir> を渡すと実行）" };
+  out.prAutoFixtures.pass = null; // 集計からは除外（下記 checkList に含めない）
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -584,8 +795,20 @@ const checkList = [
   ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],
   ["lpTapSp", out.tap.lpSp.pass], ["lpTapPc", out.tap.lpPc.pass], ["lpContrast", out.lpContrast.pass], ["lpFullbleedContrast", out.lpFullbleedContrast.pass], ["lpFormNoJs", out.lpFormNoJs.pass], ["lpAnchorNav", out.lpAnchorNav.pass], ["lpSections", out.lpSections.pass], ["lpFixedOverlapSp", out.lpFixedOverlap.sp.pass], ["lpFixedOverlapPc", out.lpFixedOverlap.pc.pass], ["lpReducedMotion", out.lpReducedMotion.pass], ["lpLcpHero", out.lpLcpHero.pass],
   ["lpFooterFaceDefault", out.lpFooterFaceDefault.pass], ["lpVisibleAnchors", out.lpVisibleAnchors.pass], ["lpFaceScopedTotop", out.lpFaceScopedTotop.pass],
+  ["tableCaptionSp", out.tableCaptionSp.pass], ["tableNumFontSize", out.tableNumFontSize.pass], ["headerInnerWidth", out.headerInnerWidth.pass], ["headerCtaOffCenter", out.headerCtaOffCenter.pass],
+  ["headingNumberPc", out.headingNumberPc.pass], ["headingNumberSp", out.headingNumberSp.pass], ["underlineGap", out.underlineGap.pass], ["prTagNotStackedPc", out.prTagNotStackedPc.pass], ["prTagNotStackedSp", out.prTagNotStackedSp.pass],
+  ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
 ];
-out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
+// 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
+// true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
+// skip 時は checkList（分母・分子とも）から除外し、summary.skipped に別掲する。
+const skipped = [];
+if (out.prAutoFixtures.pass === null) {
+  skipped.push("prAutoFixtures");
+} else {
+  checkList.push(["prAutoFixtures", out.prAutoFixtures.pass]);
+}
+out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, skipped, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;
 await browser.close();
 fs.writeFileSync(OUT, JSON.stringify(out, null, 1));

@@ -9,7 +9,7 @@
   "productVisible": true,
   "tableVisible": true,
   "relatedCards": 7,
-  "textChars": 3048,
+  "textChars": 3120,
   "headerVisible": true,
   "announceExists": true,
   "announceVisible": true,
@@ -203,10 +203,10 @@
    "pass": true
   },
   "catalog": {
-   "total": 31,
-   "ok44": 31,
-   "ok24": 31,
-   "inlineText": 1,
+   "total": 36,
+   "ok44": 36,
+   "ok24": 36,
+   "inlineText": 2,
    "srOnly": [
     "a.skip-link.screen-reader-text 'Skip to content' 1x1"
    ],
@@ -2236,11 +2236,267 @@
   "expected": "16px",
   "pass": true
  },
+ "tableCaptionSp": {
+  "exists": true,
+  "width": 358,
+  "height": 47.59375,
+  "ratio": 7.5219960604070915,
+  "display": "block",
+  "text": "電動昇降デスク 3 製品の比較（2026 年 8 月時点、税込）",
+  "pass": true
+ },
+ "tableNumFontSize": {
+  "bodyFs": 17,
+  "cellCount": 6,
+  "sizes": [
+   17,
+   17,
+   17,
+   17,
+   17,
+   17
+  ],
+  "maxDeviation": 0,
+  "pass": true
+ },
+ "headerInnerWidth": {
+  "rowWidth": 1392,
+  "headerMax": 1440,
+  "gutter": 24,
+  "viewport": 1440,
+  "expectedRowWidth": 1392,
+  "withinTolerance": true,
+  "pass": true
+ },
+ "headerCtaOffCenter": {
+  "cx": 1301.3046875,
+  "viewportCenter": 720,
+  "viewport": 1440,
+  "offsetSigned": 0.8073676215277777,
+  "pass": true
+ },
+ "headingNumberPc": {
+  "exists": true,
+  "numFs": 30,
+  "textFs": 20,
+  "headingHeight": 31,
+  "lineHeight": 28,
+  "whiteSpace": "nowrap",
+  "flexShrink": "0",
+  "structurallyNotStackable": true,
+  "biggerThanText": true,
+  "pass": true
+ },
+ "headingNumberSp": {
+  "exists": true,
+  "numFs": 25.9047,
+  "textFs": 17.2698,
+  "headingHeight": 49.34375,
+  "lineHeight": 24.1777,
+  "whiteSpace": "nowrap",
+  "flexShrink": "0",
+  "structurallyNotStackable": true,
+  "biggerThanText": true,
+  "pass": true
+ },
+ "underlineGap": [
+  {
+   "sel": ".is-style-wt-2tone",
+   "exists": true,
+   "gap": 6.78125,
+   "pass": true
+  },
+  {
+   "sel": ".is-style-wt-underline",
+   "exists": true,
+   "gap": 6.78125,
+   "pass": true
+  },
+  {
+   "sel": ".is-style-wt-dotted",
+   "exists": true,
+   "gap": 6,
+   "pass": true
+  },
+  {
+   "sel": ".is-style-wt-underline-thin",
+   "exists": true,
+   "gap": 6,
+   "pass": true
+  }
+ ],
+ "prTagNotStackedPc": {
+  "exists": true,
+  "width": 29.140625,
+  "height": 17.390625,
+  "ratio": 1.6756513926325247,
+  "pass": true
+ },
+ "prTagNotStackedSp": {
+  "exists": true,
+  "width": 29.140625,
+  "height": 17.390625,
+  "ratio": 1.6756513926325247,
+  "pass": true
+ },
+ "tocFloatLeft": [
+  {
+   "width": 1200,
+   "preset": "narrow",
+   "left": 8,
+   "pass": true
+  },
+  {
+   "width": 1200,
+   "preset": "default",
+   "left": 8,
+   "pass": true
+  },
+  {
+   "width": 1200,
+   "preset": "wide",
+   "left": 8,
+   "pass": true
+  },
+  {
+   "width": 1280,
+   "preset": "narrow",
+   "left": 22.390625,
+   "pass": true
+  },
+  {
+   "width": 1280,
+   "preset": "default",
+   "left": 8,
+   "pass": true
+  },
+  {
+   "width": 1280,
+   "preset": "wide",
+   "left": 8,
+   "pass": true
+  },
+  {
+   "width": 1440,
+   "preset": "narrow",
+   "left": 67.1875,
+   "pass": true
+  },
+  {
+   "width": 1440,
+   "preset": "default",
+   "left": 47.1875,
+   "pass": true
+  },
+  {
+   "width": 1440,
+   "preset": "wide",
+   "left": 8,
+   "pass": true
+  }
+ ],
+ "tableCaptionPcPosition": {
+  "exists": true,
+  "capY": 2507.234375,
+  "theadY": 2531.03125,
+  "aboveThead": true,
+  "pass": true
+ },
+ "prAutoFixtures": {
+  "results": [
+   {
+    "name": "pos-1",
+    "note": "定型の開示文（既存デフォルト文と同種）",
+    "expectAuto": false,
+    "autoInserted": false,
+    "pass": true
+   },
+   {
+    "name": "pos-2",
+    "note": "「PR」+「含みます」共起",
+    "expectAuto": false,
+    "autoInserted": false,
+    "pass": true
+   },
+   {
+    "name": "pos-3",
+    "note": "「プロモーション」+「含みます」共起",
+    "expectAuto": false,
+    "autoInserted": false,
+    "pass": true
+   },
+   {
+    "name": "neg-1",
+    "note": "話題語のみ・開示述語なし（誤検出の代表例）",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "neg-2",
+    "note": "「PRO」の部分一致除外（誤検出の代表例）",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "neg-3",
+    "note": "無関係な本文（対照）",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "neg-4",
+    "note": "否定文（「ない」+「掲載」の共起を誤って開示扱いしていた重大指摘の再現例）",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "neg-5",
+    "note": "否定文（「含みません」を「含み」の部分一致で誤検出していた重大指摘の再現例）",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "boundary-201plus",
+    "note": "開示文が4段落目・600字超（走査範囲外、既知の限界＝挿入されるのが正)",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "boundary-heading",
+    "note": "見出し内のみの記述（段落を走査対象にするため対象外＝挿入されるのが正)",
+    "expectAuto": true,
+    "autoInserted": true,
+    "pass": true
+   },
+   {
+    "name": "pos-4-long-250",
+    "note": "開示文の開始位置が266字目（先頭段落がフィラー264字、開示は2段落目・3段落/600字の走査範囲内。旧200字固定長では検出できなかった位置）",
+    "expectAuto": false,
+    "autoInserted": false,
+    "pass": true
+   },
+   {
+    "name": "pos-5-long-400",
+    "note": "開示文の開始位置が417字目（フィラー2段落・3段落/600字の走査範囲内、旧200字固定長では検出できなかった位置）",
+    "expectAuto": false,
+    "autoInserted": false,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "summary": {
-  "pass": 40,
+  "pass": 52,
   "fail": 0,
+  "skipped": [],
   "checks": {
    "noJs": true,
    "reducedMotion": true,
@@ -2281,7 +2537,19 @@
    "lpLcpHero": true,
    "lpFooterFaceDefault": true,
    "lpVisibleAnchors": true,
-   "lpFaceScopedTotop": true
+   "lpFaceScopedTotop": true,
+   "tableCaptionSp": true,
+   "tableNumFontSize": true,
+   "headerInnerWidth": true,
+   "headerCtaOffCenter": true,
+   "headingNumberPc": true,
+   "headingNumberSp": true,
+   "underlineGap": true,
+   "prTagNotStackedPc": true,
+   "prTagNotStackedSp": true,
+   "tocFloatLeft": true,
+   "tableCaptionPcPosition": true,
+   "prAutoFixtures": true
   }
  },
  "pass": true

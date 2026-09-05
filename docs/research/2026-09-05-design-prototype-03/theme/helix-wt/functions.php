@@ -8,6 +8,7 @@
 function wt_axes() {
 	return array(
 		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce' ) ),
+		'width'    => array( 'default', array( 'narrow', 'default', 'wide' ) ), // 2026-09-05 PO 反応: 本文 / wide / ヘッダー最大幅のプリセット比較（?wt=width:narrow|default|wide）
 		'sp'       => array( 'search', array( 'search', 'right', 'left' ) ),           // SP ヘッダー: hamburger+search / hamburger-right / hamburger-left
 		'eyecatch' => array( 'title-image', array( 'title-image', 'image-title', 'hero', 'side', 'none' ) ),
 		'toc'      => array( 'box', array( 'box', 'float', 'collapsible', 'none' ) ),
@@ -18,7 +19,7 @@ function wt_axes() {
 		'density'  => array( 'normal', array( 'airy', 'normal', 'compact' ) ),
 		'detext'   => array( 'off', array( 'off', 'on' ) ),
 		'nf'       => array( 'popular', array( 'popular', 'cta', 'suggest' ) ),    // 404 変種
-		'pr'       => array( 'on', array( 'on', 'off' ) ),                          // PR 表記の自動挿入
+		'pr'       => array( 'auto', array( 'auto', 'on', 'off' ) ),                // PR 表記の自動挿入。auto は本文先頭の重複表記を検出して抑止する（2026-09-05 PO 反応5回目）
 		'cat_header'    => array( 'name-only', array( 'name-only', 'name-desc', 'hero' ) ),
 		'cat_children' => array( 'chips', array( 'none', 'chips', 'cards', 'steps' ) ),
 		'cat_list'     => array( 'grid', array( 'grid', 'thumb-list', 'featured-grid' ) ),
@@ -154,10 +155,18 @@ add_action( 'init', function () {
 		array( 'core/heading', 'wt-bar', '左バー' ),
 		array( 'core/heading', 'wt-underline', '下線' ),
 		array( 'core/heading', 'wt-band', '帯（塗り）' ),
+		// 2026-09-05 PO 反応2回目: h2 バリエーション強化（+4）。台帳 parts-pattern-taxonomy README §1 の観察型から選定
+		array( 'core/heading', 'wt-numbox', '番号ボックス' ),
+		array( 'core/heading', 'wt-barbg', '左太罫 + 背景淡色' ),
+		array( 'core/heading', 'wt-doubleline', '上下二重線' ),
+		array( 'core/heading', 'wt-label', '英字ラベル付き' ),
 		// h3 向けの控えめな型
 		array( 'core/heading', 'wt-bar-thin', '細い左バー（h3）' ),
 		array( 'core/heading', 'wt-dotted', '点線下線（h3）' ),
 		array( 'core/heading', 'wt-num', '番号前置（h3）' ),
+		// 2026-09-05 PO 反応2回目: h3 バリエーション強化（+2）
+		array( 'core/heading', 'wt-marker', '左マーカー（h3）' ),
+		array( 'core/heading', 'wt-underline-thin', '下線 細（h3）' ),
 		// 囲み（観察: plain-border / tinted / band-title / tab-title / label-title / shadow-card / check-list）
 		array( 'core/group', 'wt-plain-border', '囲み: 罫線' ),
 		array( 'core/group', 'wt-tinted', '囲み: 淡塗り' ),
@@ -165,6 +174,13 @@ add_action( 'init', function () {
 		array( 'core/group', 'wt-tab-title', '囲み: タブタイトル' ),
 		array( 'core/group', 'wt-label-title', '囲み: ラベルタイトル' ),
 		array( 'core/group', 'wt-card-shadow', '囲み: 影カード' ),
+		// 2026-09-05 PO 反応4回目: 囲みバリエーション強化（+5）。台帳 parts-pattern-taxonomy README §1「囲み」の観察型（引用・タブ・チェック等）と
+		// Claude 案（Q&A ボックス・番号手順ボックス・warn の強弱2段。PO 指示は「バリエーション追加」まで）から選定。既存7型は変更していない
+		array( 'core/group', 'wt-quote', '囲み: 引用風' ),
+		array( 'core/group', 'wt-dashed', '囲み: 破線' ),
+		array( 'core/group', 'wt-steps', '囲み: 番号手順' ),
+		array( 'core/group', 'wt-qa', '囲み: Q&A' ),
+		array( 'core/group', 'wt-warn-soft', '囲み: 注意（弱）' ),
 		array( 'core/group', 'wt-note', '注記（囲み）' ),
 		array( 'core/group', 'wt-point', 'ポイント（囲み）' ),
 		array( 'core/group', 'wt-warn', '注意（囲み）' ),
@@ -284,11 +300,54 @@ add_filter( 'the_content', function ( $content ) {
 }, 12 );
 
 // PR 表記（1 行・控えめ）を本文先頭へ。記事 meta wt_pr=off で抑止
+// 2026-09-05 PO 反応5回目:「記事本文にすでに PR 表記が入っている場合、自動挿入が重複する」への是正。
+// pr:auto（既定）は本文の開示文らしき記述を検出したら自動挿入を抑止する。
+// pr:on は検出をせず常に挿入（旧既定の挙動）、pr:off は常に挿入しない。
+// 注: 「本文の語を機械判定してよいか」自体は要求 VOCAB-03 の解釈に関わるため、本実装は PoC の是正であり、
+// 正本の判定方式（語検出の是非・対象語・範囲）を確定させる決定ではない。
 function wt_insert_pr( $content ) {
-	if ( 'on' !== wt_opt( 'pr' ) || str_contains( $content, 'class="wt-pr ' ) ) {
+	$mode = wt_opt( 'pr' );
+	if ( 'off' === $mode || str_contains( $content, 'class="wt-pr ' ) ) {
+		return $content;
+	}
+	if ( 'auto' === $mode && wt_content_has_pr_disclosure( $content ) ) {
 		return $content;
 	}
 	return '<p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p>' . $content;
+}
+
+// 2026-09-05 PO反応5回目 Astraレビュー是正: 「PR」「広告」等の単純な部分一致だと
+// 「広告のない製品」「PROモデル」等に誤検出し（false positive）、逆に本文201字目以降の
+// 実際の開示文は見逃す（false negative）。
+// 本関数は (1) 開示の話題語（PR / 広告 / アフィリエイト / プロモーション。"PR" は前後が英字でない
+// 独立した2文字のときだけ一致させ "PRO" 等を除外）と (2) 開示の述語（含む・含みます・掲載・表記）が
+// 同一文（。！？または改行で区切った1文）内に共起する場合だけを開示文とみなす。
+// 走査範囲は本文先頭の段落（<p> タグ）を先頭から最大3つ、かつ合計600字までとし、200字の固定長では
+// 拾えない201字目以降の開示文にも対応する（それ以降・見出し内の記述は対象外＝既知の限界）。
+// 2026-09-05 Astra 再レビュー是正（重大）: 上記 (1)(2) の共起だけでは「広告のない製品を掲載しています」
+// 「本記事には広告を含みません」のような**否定文**も開示文として誤検出していた。同一文内に否定語
+// （ない・なし・ません・ありません・ございません 等。「含みません」のように動詞へ直結する否定形も
+// 部分一致で拾う）があれば、その文は開示文とみなさない（文単位のヒューリスティックのため、
+// 無関係な否定表現が同じ文に混在する場合は見逃す方向に倒れる＝既知の限界）。
+function wt_content_has_pr_disclosure( $content ) {
+	preg_match_all( '/<p[^>]*>(.*?)<\/p>/su', $content, $m );
+	$paragraphs = array_slice( $m[1], 0, 3 );
+	$plain = trim( wp_strip_all_tags( implode( "\n", $paragraphs ) ) );
+	if ( '' === $plain ) {
+		// p タグを持たない本文（wp:html 等）へのフォールバック
+		$plain = wp_strip_all_tags( $content );
+	}
+	$plain = mb_substr( $plain, 0, 600 );
+	$sentences = preg_split( '/(?<=[。！？])|\n+/u', $plain, -1, PREG_SPLIT_NO_EMPTY );
+	$topic    = '/(?<![A-Za-z])PR(?![A-Za-z])|広告|アフィリエイト|プロモーション/u';
+	$verb     = '/含み(ます)?|含む|掲載|表記/u';
+	$negation = '/ない|なし|ません|ありません|ございません/u';
+	foreach ( $sentences as $s ) {
+		if ( preg_match( $topic, $s ) && preg_match( $verb, $s ) && ! preg_match( $negation, $s ) ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 // ---------- 比較表: SP カード化のための data-th を各セルへ付与 ----------

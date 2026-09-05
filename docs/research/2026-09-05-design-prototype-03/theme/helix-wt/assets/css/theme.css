@@ -1,5 +1,23 @@
 /* HELIX WT prototype 02 — 尺度は docs/research/2026-09-04-site-survey §6 */
 :root{--wt-header-h:var(--wp--custom--header-height,60px)}
+
+/* ---------- 2026-09-05 PO 反応: 幅トークン（本文最大 / wide 最大 / ヘッダー最大 / サイド列幅 / 余白） ----------
+   既定値は theme.json settings.custom を参照。--wp--style--global--content-size /
+   ...-wide-size は post-content 等 core 側が既に var() 経由で参照しているため、
+   ?wt=width:<preset> による上書きはここで再定義するだけで下流に伝わる。
+   ヘッダー（parts/header*.html）は wideSize をブロック属性へ literal 値で持つため
+   通常の var() 継承では上書きできず、.wt-header__row 側に !important の再代入をかける。 */
+:root{
+  --wt-content-max:var(--wp--custom--content-max,680px);
+  --wt-wide-max:var(--wp--custom--wide-max,1120px);
+  --wt-header-max:var(--wp--custom--header-max,1440px);
+  --wt-sidebar-w:clamp(var(--wp--custom--sidebar-w-min,280px),22vw,var(--wp--custom--sidebar-w-max,336px));
+  --wt-gutter-pc:var(--wp--custom--gutter-pc,clamp(24px,3vw,32px));
+}
+/* narrow / wide プリセット（既定 = default、theme.json の値のまま） */
+body.wt-width-narrow{--wp--style--global--content-size:640px;--wp--style--global--wide-size:1040px;--wt-content-max:640px;--wt-wide-max:1040px;--wt-header-max:1200px}
+body.wt-width-wide{--wp--style--global--content-size:760px;--wp--style--global--wide-size:1240px;--wt-content-max:760px;--wt-wide-max:1240px;--wt-header-max:1600px}
+.wt-header__row{max-width:var(--wt-header-max)!important;margin-inline:auto!important}
 html{-webkit-text-size-adjust:100%}
 body{font-feature-settings:"palt" 0;overflow-wrap:anywhere}
 img{height:auto;max-width:100%}
@@ -26,7 +44,7 @@ img{height:auto;max-width:100%}
 
 /* 見出しスタイル */
 .wp-block-heading.is-style-wt-bar{padding-left:.75rem;border-left:4px solid var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-underline{padding-bottom:.5rem;border-bottom:2px solid var(--wp--preset--color--contrast)}
+.wp-block-heading.is-style-wt-underline{padding-bottom:.3em;border-bottom:2px solid var(--wp--preset--color--contrast)}
 
 /* 囲み */
 .wp-block-group.is-style-wt-note,.wp-block-group.is-style-wt-point,.wp-block-group.is-style-wt-warn{padding:1rem 1.25rem;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem}
@@ -58,6 +76,12 @@ img{height:auto;max-width:100%}
 .wp-block-table.is-style-wt-compare thead th{background:var(--wp--preset--color--surface);font-size:.8125rem;white-space:nowrap}
 .wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td:first-child{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line)}
 .wp-block-table figcaption{text-align:left}
+/* 2026-09-05 PO 反応: <table><caption> は tbody 等を display:block にカード化した際
+   table-caption ボックスの生成元（table 書式）が失われ、幅が確定せず 1 文字ずつ縦積みになる。
+   caption を明示的にブロック化・全幅化して初期整形へ戻す（PC の通常 table でも無害）。 */
+/* 2026-09-05 PO 反応 是正（Astra レビューで PC 回帰を指摘され、SP カード表示専用の max-width:599px
+   ブロック内へ移設。それ以前は無条件 display:block だったため、PC の通常 table でも
+   caption が table 書式の外に出て列見出しと価格行の間に紛れ込んでいた）。 */
 
 /* 記事 */
 .wt-article .wp-block-post-content>*+*{margin-block-start:0}
@@ -282,25 +306,48 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wt-toc a.is-current{color:var(--wp--preset--color--accent);font-weight:700}
 .wt-toc--collapsible .wt-toc__d{}
 /* float-side（PC のみ、1200px 以上でレール固定。狭い幅では box と同じ） */
+/* 2026-09-05 Astra レビュー是正: サイドカラム幅トークンを 240→280px（min）に上げた際、
+   1200px 幅では left = 600 − 340 − 16 − 280 = −36px（wide 側の sidebar-w-max 336px ではさらに −76px）
+   と画面左へ欠けていた。max() で左端 8px を下限にし、本文幅・サイド幅のプリセット組み合わせに関わらず
+   常に画面内に収まるようにする（狭い実効幅では本文列の直左に張り付く形になる）。 */
 @media (min-width:1200px){
-.wt-toc--float{position:fixed;left:calc(50% - 340px - 16px - 240px);top:calc(var(--wt-header-h) + 1.5rem);width:240px;max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
+.wt-toc--float{position:fixed;left:max(8px, calc(50% - (var(--wt-content-max) / 2) - 16px - var(--wt-sidebar-w)));top:calc(var(--wt-header-h) + 1.5rem);width:var(--wt-sidebar-w);max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
 .wt-toc--float .wt-toc__s::after{display:none}
 }
 @media (min-width:1200px){body.wt-toc-float .wp-block-post-content{}}
 
-/* ---------- 4. 見出し（block style、h2 6 型 / h3 3 型） ---------- */
+/* ---------- 4. 見出し（block style、h2 10 型 / h3 5 型） ---------- */
 .wp-block-heading.is-style-wt-plain{font-weight:800}
-.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:.6rem;border-bottom:2px solid var(--wp--preset--color--line)}
+/* 2026-09-05 PO 反応3回目: 下線系（2tone/underline/dotted/underline-thin）の文字下端〜下線の距離が遠すぎた。
+   padding-bottom を固定 rem から 0.3em（文字サイズに追従）へ変更し、概ね 4〜8px に収める。 */
+.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:.3em;border-bottom:2px solid var(--wp--preset--color--line)}
 .wp-block-heading.is-style-wt-2tone::after{content:"";position:absolute;left:0;bottom:-2px;width:5rem;height:2px;background:var(--wp--preset--color--accent)}
 .wp-block-heading.is-style-wt-icon{display:flex;align-items:center;gap:.6rem}
-.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:1.15em;height:1.15em;background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M8.5%2012.5l2.5%202.5%204.5-5%22/%3E%3C/svg%3E")}
+/* 2026-09-05 PO 反応2回目: 既定アイコンが check-circle（チェックマーク）で、リスト側の is-style-wt-check
+   （丸背景 + 白チェック）と見た目が被っていた。見出し側の既定は star（星）へ変更し、リストと区別する。 */
+.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:1.15em;height:1.15em;background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%203l2.8%205.9%206.4.8-4.7%204.4%201.2%206.4L12%2017.3%206.3%2020.5l1.2-6.4L2.8%209.7l6.4-.8z%22/%3E%3C/svg%3E")}
 .wp-block-heading.is-style-wt-icon[data-wt-icon="lightbulb"]::before{--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%2018h6M10%2021h4M12%203a6%206%200%200%201%203.5%2010.9c-.6.5-1%201.2-1%202.1h-5c0-.9-.4-1.6-1-2.1A6%206%200%200%201%2012%203z%22/%3E%3C/svg%3E")}
 .wp-block-heading.is-style-wt-band{background:var(--wp--preset--color--accent);color:#fff;padding:.55rem .9rem;border-radius:var(--wp--custom--radius-s)}
 .wp-block-heading.is-style-wt-bar-thin{padding-left:.6rem;border-left:3px solid var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-dotted{padding-bottom:.4rem;border-bottom:2px dotted var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-dotted{padding-bottom:.3em;border-bottom:2px dotted var(--wp--preset--color--line)}
 .wp-block-heading.is-style-wt-num{display:flex;align-items:baseline;gap:.5rem;counter-increment:wt-h3}
-.wp-block-post-content{counter-reset:wt-h3}
-.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-size:.9em}
+.wp-block-post-content{counter-reset:wt-h3 wt-h2num}
+/* 2026-09-05 PO 反応2回目是正: (1) 番号（::before）が比較表 caption と同種の理由で 1 文字ずつ縦積みになっていた
+   ——親が display:flex のとき、子は既定で flex-shrink:1 のため、行が窮屈だと自身の内容幅より縮んで折り返す。
+   flex:0 0 auto と white-space:nowrap で「縮まない・折り返さない」ことを明示して防ぐ。
+   (2) 番号の font-size は見出し本文（h3 テキスト）より大きくする指摘のため .9em → 1.5em（h3 文字基準の 1.5 倍）へ。 */
+.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-weight:800;font-size:1.5em;line-height:1}
+/* 2026-09-05 PO 反応2回目: h2 バリエーション +4（台帳 parts-pattern-taxonomy README §1 観察型から） */
+.wp-block-heading.is-style-wt-numbox{display:flex;align-items:center;gap:.75rem;counter-increment:wt-h2num}
+.wp-block-heading.is-style-wt-numbox::before{content:counter(wt-h2num,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;width:1.9em;height:1.9em;border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:#fff;font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:.7em}
+.wp-block-heading.is-style-wt-barbg{border-left:6px solid var(--wp--preset--color--accent);background:var(--wp--preset--color--surface);padding:.6rem .9rem;border-radius:0 var(--wp--custom--radius-s) var(--wp--custom--radius-s) 0}
+.wp-block-heading.is-style-wt-doubleline{padding-block:.4rem;border-top:1px solid var(--wp--preset--color--line);border-bottom:3px double var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-label{display:flex;flex-direction:column;gap:.3rem}
+.wp-block-heading.is-style-wt-label::before{content:"SECTION";order:-1;font-family:var(--wp--preset--font-family--latin);font-size:.55em;font-weight:700;letter-spacing:.12em;color:var(--wp--preset--color--accent)}
+/* 2026-09-05 PO 反応2回目: h3 バリエーション +2 */
+.wp-block-heading.is-style-wt-marker{display:flex;align-items:center;gap:.5rem}
+.wp-block-heading.is-style-wt-marker::before{content:"";flex:0 0 auto;width:.6em;height:.6em;background:var(--wp--preset--color--accent);border-radius:2px}
+.wp-block-heading.is-style-wt-underline-thin{padding-bottom:.3em;border-bottom:1px solid var(--wp--preset--color--line)}
 
 /* ---------- 5. 囲み（group block style 7 型 × 色 modifier .wt-c-*） ---------- */
 .wp-block-group[class*="is-style-wt-"]{--wt-box-accent:var(--wp--preset--color--accent);--wt-box-soft:var(--wp--preset--color--accent-soft);--wt-box-line:var(--wp--preset--color--line)}
@@ -320,6 +367,23 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wp-block-group.is-style-wt-label-title>:first-child{color:var(--wt-box-accent);font-weight:700;font-size:.9375rem;margin-bottom:.5rem}
 .wp-block-group.is-style-wt-card-shadow{background:var(--wp--preset--color--base);box-shadow:var(--wp--preset--shadow--depth-1)}
 .wp-block-group.is-style-wt-warn{background:var(--wp--preset--color--warn-soft)}
+/* 2026-09-05 PO 反応4回目: 囲みバリエーション +5（既存7型は変更なし）。
+   台帳 parts-pattern-taxonomy README §1「囲み」の観察型（引用 2%・タブ 3% 等）と PO 提案（Q&A・番号手順・warn 弱）から選定 */
+.wp-block-group.is-style-wt-quote,.wp-block-group.is-style-wt-dashed,.wp-block-group.is-style-wt-steps,.wp-block-group.is-style-wt-qa,.wp-block-group.is-style-wt-warn-soft{position:relative;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem;padding:1.1rem 1.25rem}
+.wp-block-group.is-style-wt-quote{background:var(--wp--preset--color--surface);padding-left:3rem}
+.wp-block-group.is-style-wt-quote::before{content:"\201C";position:absolute;left:1rem;top:.3rem;font-size:2.5rem;line-height:1;color:var(--wt-box-accent);font-family:Georgia,serif}
+.wp-block-group.is-style-wt-quote>:first-child{font-weight:700;font-style:italic}
+.wp-block-group.is-style-wt-dashed{border:2px dashed var(--wt-box-accent)}
+.wp-block-group.is-style-wt-steps{border:1px solid var(--wt-box-line);counter-reset:wt-box-step}
+.wp-block-group.is-style-wt-steps>*{position:relative;padding-left:2.4rem;margin-bottom:.6rem;counter-increment:wt-box-step}
+.wp-block-group.is-style-wt-steps>*:last-child{margin-bottom:0}
+.wp-block-group.is-style-wt-steps>*::before{content:counter(wt-box-step);position:absolute;left:0;top:0;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--wt-box-accent);color:#fff;font-weight:700;font-family:var(--wp--preset--font-family--latin);display:flex;align-items:center;justify-content:center;font-size:.875rem}
+.wp-block-group.is-style-wt-qa{border:1px solid var(--wt-box-line)}
+.wp-block-group.is-style-wt-qa>:first-child{position:relative;padding-left:2rem;font-weight:700}
+.wp-block-group.is-style-wt-qa>:first-child::before{content:"Q";position:absolute;left:0;top:0;color:#fff;background:var(--wt-box-accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-family:var(--wp--preset--font-family--latin)}
+.wp-block-group.is-style-wt-qa>:last-child:not(:first-child){position:relative;padding-left:2rem}
+.wp-block-group.is-style-wt-qa>:last-child:not(:first-child)::before{content:"A";position:absolute;left:0;top:0;color:var(--wt-box-accent);border:1px solid var(--wt-box-accent);width:1.5rem;height:1.5rem;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;font-family:var(--wp--preset--font-family--latin)}
+.wp-block-group.is-style-wt-warn-soft{background:var(--wp--preset--color--warn-soft);border-left:3px solid var(--wp--preset--color--mute)}
 /* リスト: check / badge / icon / pros / cons */
 .wp-block-list.is-style-wt-badge-list{list-style:none;padding-left:0;counter-reset:b}
 .wp-block-list.is-style-wt-badge-list li{position:relative;padding-left:2.4rem;margin-bottom:.6rem;counter-increment:b;min-height:1.75rem}
@@ -336,8 +400,20 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wt-prosc .wt-c-ok>:first-child{color:var(--wp--preset--color--ok)}
 
 /* ---------- 6. 記事内 CTA 4 型・比較表・リンクカード・PR ---------- */
+/* 2026-09-05 PO 反応5回目: 記事内 CTA +4（triple / rank-featured / price-tier / textlink）。既存4型は変更なし */
+.wt-cta-triple{margin-block:1.5rem}
+.wt-cta-rank{border:2px solid var(--wp--preset--color--accent);border-radius:var(--wp--custom--radius-l);padding:1.25rem;margin-block:1.5rem;text-align:center;background:var(--wp--preset--color--accent-soft)}
+.wt-cta-rank__badge{display:inline-block;background:var(--wp--preset--color--accent);color:#fff;font-weight:700;font-size:.8125rem;padding:.3rem 1rem;border-radius:999px;margin:0 0 .5rem}
+.wt-cta-tier__btn .wp-block-button__link{display:flex;flex-direction:column;gap:.15rem;line-height:1.3;padding-block:.6rem}
+.wt-cta-tier__price{font-size:1.125rem;font-weight:700}
+.wt-cta-tier__perk{font-size:.75rem;font-weight:400;opacity:.9}
+.wt-cta-textlink{margin-block:1.25rem}
+.wt-cta-textlink a{font-weight:700;color:var(--wp--preset--color--accent);text-decoration:underline;text-underline-offset:.2em}
 .wt-pr{font-size:.75rem;color:var(--wp--preset--color--mute);margin:0 0 1rem;display:flex;gap:.5rem;align-items:center;line-height:1.4}
-.wt-pr__tag{display:inline-block;border:1px solid var(--wp--preset--color--line);border-radius:3px;padding:0 .35rem;font-weight:700;font-size:.6875rem;letter-spacing:.05em}
+/* 2026-09-05 PO 反応6回目: 「PR」タグが P/R に縦積みになる不具合。.wt-pr が flex のため
+   flex-shrink:1 の既定でタグが自身の内容幅より縮み、inline-block 内部で折り返していた。
+   比較表 caption・h3 番号と同じ原因のため、flex:0 0 auto + white-space:nowrap で固定する。 */
+.wt-pr__tag{display:inline-block;flex:0 0 auto;white-space:nowrap;border:1px solid var(--wp--preset--color--line);border-radius:3px;padding:0 .35rem;font-weight:700;font-size:.6875rem;letter-spacing:.05em}
 /* product-card-bundle */
 .wp-block-group.is-style-wt-product{display:grid;grid-template-columns:140px minmax(0,1fr);gap:1.25rem;align-items:start;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-l);padding:1.25rem;margin-block:1.5rem;background:var(--wp--preset--color--base)}
 @media (max-width:479px){.wp-block-group.is-style-wt-product{grid-template-columns:1fr}}
@@ -376,9 +452,18 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 .wp-block-table.is-style-wt-compare-scroll tbody th,.wp-block-table.is-style-wt-compare tbody th{position:sticky;left:0;background:var(--wp--preset--color--base);font-weight:700;box-shadow:1px 0 0 var(--wp--preset--color--line);z-index:1}
 .wp-block-table.is-style-wt-compare-scroll thead th:first-child,.wp-block-table.is-style-wt-compare thead th:first-child{position:sticky;left:0;z-index:2}
 .wp-block-table.is-style-wt-compare td.wt-num,.wp-block-table.is-style-wt-compare-scroll td.wt-num{text-align:right;font-variant-numeric:tabular-nums}
+/* 2026-09-05 PO 反応: .wt-num は数字訴求セクション（LP hero 等）専用の hero サイズ（40px 級）。
+   比較表セルにも同じクラスが付いていたため価格だけ極端に大きく見えていた。
+   表内は本文サイズに戻し、強調は太字・アクセント色のみで担う（サイズでの強調をやめる）。 */
+.wp-block-table.is-style-wt-compare td.wt-num,.wp-block-table.is-style-wt-compare-scroll td.wt-num{font-family:inherit;font-size:var(--wp--preset--font-size--m);font-weight:700;letter-spacing:normal;line-height:inherit}
+.wp-block-table.is-style-wt-compare td.wt-num small,.wp-block-table.is-style-wt-compare-scroll td.wt-num small{font-size:.8em}
 .wp-block-table.is-style-wt-compare .wt-mark{font-weight:700}
 @media (max-width:599px){
 .wp-block-table.is-style-wt-compare table{min-width:0;display:block}
+/* caption は table 書式の外に出た瞬間、table-caption ボックスの生成元を失い幅が確定せず
+   1 文字ずつ縦積みになる（is-style-wt-compare-scroll は PC でも横スクロールの通常 table のままなので対象外）。
+   SP カード表示のときだけ明示的にブロック化・全幅化して初期整形へ戻す。 */
+.wp-block-table.is-style-wt-compare caption{caption-side:top;display:block;width:100%;text-align:left;font-weight:700;font-size:var(--wp--preset--font-size--m);line-height:1.4;margin:0 0 .75rem;color:var(--wp--preset--color--contrast)}
 .wp-block-table.is-style-wt-compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
 .wp-block-table.is-style-wt-compare tbody,.wp-block-table.is-style-wt-compare tr,.wp-block-table.is-style-wt-compare tbody th,.wp-block-table.is-style-wt-compare td{display:block}
 .wp-block-table.is-style-wt-compare tr{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);margin-bottom:.75rem;overflow:hidden;background:var(--wp--preset--color--base)}
@@ -453,7 +538,7 @@ body.wt-share-float .wt-share--float{display:flex;position:fixed;right:1rem;bott
 body.wt-share-float .wt-share--float .wt-share__label{display:none}
 body.wt-share-float .wt-share--float button{padding:0;width:48px;height:48px;justify-content:center;box-shadow:var(--wp--preset--shadow--depth-2)}
 body.wt-share-float .wt-share--float button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
-@media (min-width:1200px){body.wt-share-float .wt-share--float{right:auto;left:calc(50% + 340px + 24px);top:calc(var(--wt-header-h) + 2rem);bottom:auto}}
+@media (min-width:1200px){body.wt-share-float .wt-share--float{right:auto;left:calc(50% + (var(--wt-content-max) / 2) + 24px);top:calc(var(--wt-header-h) + 2rem);bottom:auto}}
 
 /* ---------- 8. 4 軸（motion / depth / density / de-text）: body class の opt-in ---------- */
 /* motion: 出現は body.wt-motion-on かつ html.wt-js のときだけ初期非表示。reduced-motion は常に表示 */
@@ -521,10 +606,16 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
 .wt-cv__item .wp-block-buttons{margin-top:.5rem}
 .wt-cv__item--cta{background:var(--wp--preset--color--accent-soft);border-color:transparent}
 /* header: logo-left-cta-right（文字ナビなし）は PC でもハンバーガー + CTA */
+/* 2026-09-05 PO 反応: CTA が画面中央に来ていた原因は wt-header__row の space-between を
+   ロゴ / 検索 / CTA / ナビ の 4 要素に等分していたこと。CTA を wt-header__nav の内側へ移し
+   （parts/header-cta.html）、行は justify-content:left、wt-header__nav 側の flex:1 1 auto と
+   justify-content:flex-end（既定 CSS）で「ロゴ左・残り全部右」に統一する。
+   order は旧構造（wt-header__row の直接子として cta / nav が並ぶ想定）の名残なので、
+   ネスト後も nav より前に出るよう order:0（ソース順）へ戻す。 */
 .wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
 .wt-header--cta .wp-block-navigation__responsive-container:not(.is-menu-open){display:none}
-@media (min-width:600px){.wt-header--cta .wt-header__cta{display:block;order:1}.wt-header--cta .wt-header__nav{flex:0 0 auto;order:2}}
-@media (max-width:599px){.wt-header--cta .wt-header__cta{display:block}.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
+.wt-header--cta .wt-header__cta{order:0}
+@media (max-width:599px){.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
 /* カタログ: cover 3 枚（コントラスト guard）*/
 .wt-lumgrid{display:grid;gap:1rem}@media (min-width:768px){.wt-lumgrid{grid-template-columns:repeat(3,1fr)}}
 .wt-lumgrid .wp-block-cover{margin:0;border-radius:var(--wp--custom--radius-m);overflow:hidden}
