@@ -3,7 +3,7 @@
 // density は同じ本文中盤を3値で比較し、detext は toc と本文を切り分け、
 // motion は同じ関連カードを別ページで3フレーム撮影する。
 // 通常実行では既存画像・既存 CATALOG-INDEX.json エントリを変更せず、新規ファイルだけを末尾へ追記する。
-// --motion-only true のときだけ、指定した motion 4 枚を削除して同名で再追加する。
+// --motion-only true のときだけ、motion 4 枚を一時ディレクトリへ撮影し、成功後に同名で置換する。
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -34,19 +34,13 @@ const motionRetakeFiles = new Set([
 ]);
 
 fs.mkdirSync(OUT, { recursive: true });
+const motionTmpDir = motionOnly ? fs.mkdtempSync(path.join(OUT, ".reaction4-motion-tmp-")) : null;
+const captureOut = motionTmpDir || OUT;
 const existingCatalog = JSON.parse(fs.readFileSync(CATALOG_FILE, "utf8"));
 const catalogEntries = motionOnly
   ? existingCatalog.filter((entry) => !motionRetakeFiles.has(entry.file))
   : existingCatalog;
 const existingFiles = new Set(catalogEntries.map((entry) => entry.file));
-if (motionOnly) {
-  for (const file of motionRetakeFiles) {
-    for (const extension of [".jpg", ".png"]) {
-      const target = path.join(OUT, file.replace(/\.jpg$/, extension));
-      if (fs.existsSync(target)) fs.unlinkSync(target);
-    }
-  }
-}
 const addedEntries = [];
 const addedFiles = new Set();
 const densityMeasurements = [];
@@ -54,7 +48,7 @@ const densityMeasurements = [];
 function assertNewFile(file) {
   if (existingFiles.has(file)) throw new Error(`既存 CATALOG-INDEX エントリと衝突: ${file}`);
   if (addedFiles.has(file)) throw new Error(`同一実行内でファイル名が重複: ${file}`);
-  const absolute = path.join(OUT, file);
+  const absolute = path.join(captureOut, file);
   if (fs.existsSync(absolute) || fs.existsSync(absolute.replace(/\.jpg$/, ".png"))) {
     throw new Error(`既存の撮影ファイルを上書きしないため中止: ${absolute}`);
   }
@@ -73,8 +67,8 @@ function toJpeg(png, jpg) {
 async function save(page, name, meta, options = {}) {
   const file = `${name}.jpg`;
   assertNewFile(file);
-  const png = path.join(OUT, `${name}.png`);
-  const jpg = path.join(OUT, file);
+  const png = path.join(captureOut, `${name}.png`);
+  const jpg = path.join(captureOut, file);
   if (options.selector) {
     const element = page.locator(options.selector).first();
     await element.waitFor({ state: "visible", timeout: 10000 });
@@ -299,6 +293,23 @@ if (!motionOnly) {
 
 const duplicateCatalogFile = addedEntries.find((entry) => existingFiles.has(entry.file));
 if (duplicateCatalogFile) throw new Error(`既存エントリを変更しようとしています: ${duplicateCatalogFile.file}`);
+
+function promoteMotionFiles() {
+  if (!motionOnly) return;
+  const promotions = [...motionRetakeFiles].map((file) => ({
+    source: path.join(captureOut, file),
+    target: path.join(OUT, file),
+  }));
+  for (const { source } of promotions) {
+    if (!fs.existsSync(source) || !fs.statSync(source).size) {
+      throw new Error(`一時ディレクトリ内の JPEG が見つからないか空です: ${source}`);
+    }
+  }
+  for (const { source, target } of promotions) fs.renameSync(source, target);
+  fs.rmSync(motionTmpDir, { recursive: true, force: true });
+}
+
+promoteMotionFiles();
 const replacementEntries = new Map(addedEntries.map((entry) => [entry.file, entry]));
 const outputCatalog = motionOnly
   ? existingCatalog.map((entry) => replacementEntries.get(entry.file) || entry)

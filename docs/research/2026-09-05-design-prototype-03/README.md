@@ -742,7 +742,7 @@ relatedは台帳 `recapture-v2/aggregate-v2.md` の `tail.related.layout` を再
 
 ### 対応
 
-新規スクリプト `scripts/shots-reaction4.mjs` では、既存画像・既存 `CATALOG-INDEX.json` エントリを変更せず、以下の比較を新しいファイル名で追加する設計にした。
+新規スクリプト `scripts/shots-reaction4.mjs` では、通常実行時は既存画像・既存 `CATALOG-INDEX.json` エントリを変更せず、以下の比較を新しいファイル名で追加する設計にした。`--motion-only true` は既存 motion 4 枚の再撮影専用で、一時ディレクトリへ出力して成功後に同名で置換する。
 
 - `density` は `airy / normal / compact` の 3 値を SP/PC それぞれで同じ `#h-4` 付近から viewport 撮影する。各ページで h2 の `margin-top`、h2 後の段落の `margin-bottom`、連続する 2 段落間の実測距離を `page.evaluate` で取得し、`results/density-measure.json` に保存する。
 - `detext` は記事冒頭の `.wt-toc` を off/on で撮影する。SP では通常の box が閉じるため、番号バッジを読めるよう撮影時だけ details を開く。併せて `#h-4` 付近の本文を off/on で撮影し、h2 は 2tone などに追加ドットが出る一方、list/quote は既存意匠の除外で変わらないことを比較対象として明記する。
@@ -791,6 +791,11 @@ GLOSSARY と CATALOG-INDEX の機械照合結果は parts 49、axes 35、faces 5
 
 - detext:on の h2 セレクタに `is-style-wt-label` の除外を追加し、`SECTION` ラベルの `::before` をドットマーカーで上書きしないようにした。GLOSSARY の detext 説明も、icon / numbox / label だけを除外し、2tone など他の h2 style にはドットを付ける実態へ更新した。density の判別説明から、CSS で変更していない行間を削除した。
 - `verify.mjs` の `detextVisualDiff` は off/on 双方の h2・ol・quote の存在を `elementsPresent` として必須化し、欠損時は無条件で fail になるようにした。
-- `shots-reaction4.mjs --motion-only true` で motion の4枚を再撮影した。4枚とも 740×1600 の非空 JPEG（f0 100743 bytes、f1 118964 bytes、on f2 133803 bytes、off f2 151010 bytes）で、対象 `.wt-rcard` の四隅が切れず画面内に収まることを目視確認した。f2 と off f2 の `page.evaluate` 取得値は、ともに `opacity=1` / `transform=none` だった。
+- `shots-reaction4.mjs --motion-only true` で motion の4枚を再撮影した。4枚とも 740×1600 の非空 JPEG（f0 95619 bytes、f1 117275 bytes、on f2 133803 bytes、off f2 151010 bytes）で、対象 `.wt-rcard` の四隅が切れず画面内に収まることを目視確認した。f2 と off f2 の `page.evaluate` 取得値は、ともに `opacity=1` / `transform=none` だった。
 - 機械照合は parts 49、axes 35、faces 5、variant 合計 217、欠け0件。テーマ Version は 0.3.6 に更新した。
 - 実機 `verify.mjs` は `summary.pass=58`、`summary.fail=0`、`skipped=[]`、`detextVisualDiff.elementsPresent=true`、`detextVisualDiff.pass=true` となった。
+
+### 追加是正5: Astra 再レビュー「merge 不可」改善1件の是正
+
+- `shots-reaction4.mjs --motion-only true` は、撮影前に既存 motion 画像を削除しない。各 JPEG を実行ごとの一時ディレクトリへ保存し、4 枚すべての撮影・完了フレーム判定・非空検査を通過した後、`fs.renameSync` で `results/` の本来のファイル名へ置換する。一時ファイルの移動が完了してから一時ディレクトリを削除し、最後に `CATALOG-INDEX.json` を更新するため、撮影途中の失敗では既存 4 枚を保持する。
+- h2 の block style は **既存6型 + 追加4型 = 10型**（`plain` / `2tone` / `icon` / `bar` / `underline` / `band` / `numbox` / `barbg` / `doubleline` / `label`）である。このうち `::before` を使うのは `icon` / `numbox` / `label` の **3型**で、型数と既存意匠の除外条件を一致させた。
