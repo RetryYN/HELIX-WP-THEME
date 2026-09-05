@@ -800,3 +800,16 @@ GLOSSARY と CATALOG-INDEX の機械照合結果は parts 49、axes 35、faces 5
 - `shots-reaction4.mjs --motion-only true` は、撮影前に既存 motion 画像を削除しない。各 JPEG を実行ごとの一時ディレクトリへ保存し、4 枚すべての撮影・完了フレーム判定・非空検査を通過した後、`fs.renameSync` で `results/` の本来のファイル名へ置換する。一時ファイルの移動が完了してから一時ディレクトリを削除し、最後に `CATALOG-INDEX.json` を更新するため、撮影途中の失敗では既存 4 枚を保持する。
 - motion 画像の置換は、旧画像を退避してから新画像を配置し、途中で失敗した場合は退避先から復元して元の例外を再送出する。配置成功後の退避ディレクトリ削除は復元処理と分離し、削除に失敗しても配置済みの新画像には触れず警告のみ残す（Astra 4 巡目の是正）。
 - h2 の block style は **既存6型 + 追加4型 = 10型**（`plain` / `2tone` / `icon` / `bar` / `underline` / `band` / `numbox` / `barbg` / `doubleline` / `label`）である。このうち `::before` を使うのは `icon` / `numbox` / `label` の **3型**で、型数と既存意匠の除外条件を一致させた。
+
+## 2.19 段5 — PO 反応 13 回目（WT-EVT-0254）の是正
+
+PO 反応（原文）: 「PRが残ってるけど？」（更新後カタログの記事内 CTA・banner 型の画像を指して。キャプションが「PR: 3 分の無料診断で、…」と PR 表記を含んでいた）。
+
+反応 2 回目「記事本文に入っているからPRの記載は不要。」は PR #146 で `pr:auto`（本文に PR 表記があれば自動挿入を抑止）として是正したが、CTA バナー pattern（`patterns/cta-banner.php`）のキャプション文言自体に「PR: 」が残っていた。PR 表記は pr 軸（記事側）で出す方針のため、CTA パーツの文言には持たせない。
+
+是正:
+1. `patterns/cta-banner.php` のキャプション先頭「PR: 」を除去（文言は「3 分の無料診断で、この記事の 3 製品から合うものを提案します。」）。テーマ内に他の「PR: 」文言は無いことを `grep` で確認（0 件）。商品カード束の PR バッジ（`.is-style-wt-product` の PR 表示）は提携商品の明示であり別物として維持（変更なし。要否は PO 判断）。
+2. `verify.mjs` に `ctaBannerNoPrPrefix` を追加: catalog の `#cat-cta-banner figcaption` と実記事本文の `.is-style-wt-banner figcaption` の両方を取得し、先頭が PR / 広告 / アフィリエイト / 【PR】 / [PR] で始まらないこと（かつ両方に要素が存在すること）を判定。
+3. 再撮影 `scripts/shots-reaction5.mjs`: catalog の `cta-banner-{sp,pc}` と、同 pattern を本文に含む記事 `article-full-{sp,pc}` / `article-screen-*-{sp,pc}` の計 26 枚を同名置換（新規エントリなし。撮影前にキャプションへ PR 表記が残っていれば例外で停止し、既存 JPEG は変換成功時にだけ上書き）。`CATALOG-INDEX.json` は 443 のまま。
+4. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 59 / fail 0**（skipped: なし。58 項目 + 新規 `ctaBannerNoPrPrefix`）、総合 `pass: true`。`ctaBannerNoPrPrefix`: catalog 1 件・article 1 件とも PR 表記なし。`prAutoFixtures` 12 件すべて期待どおり、一時記事の後片付けエラーなし。
+5. `style.css` 0.3.6 → 0.3.7。手順: `docker cp` でテーマ配置 → `NODE_PATH=$HOME/dev/poc-wp/node_modules node scripts/shots-reaction5.mjs --out results` → `node scripts/verify.mjs --out results/verify.json --wpclidir <docker compose project dir>`。
