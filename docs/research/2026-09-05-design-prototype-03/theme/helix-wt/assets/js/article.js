@@ -26,15 +26,49 @@
     }
   }
 
-  // 関連カルーセル: 前後ボタン（自動送りは実装しない）
-  document.querySelectorAll('.wt-related .wp-block-post-template').forEach(function(track){
-    if (!document.body.classList.contains('wt-related-carousel')) return;
+  // 関連カルーセル / スライダー: 前後ボタン（自動送りは実装しない）。slider はページ送り + ドット（PO 反応 16 回目 WT-EVT-0261、Claude 案）
+  document.querySelectorAll('.wt-related:not(.wt-next) .wp-block-post-template').forEach(function(track){
+    var isCarousel = document.body.classList.contains('wt-related-carousel'), isSlider = document.body.classList.contains('wt-related-slider');
+    if (!isCarousel && !isSlider) return;
     var nav = document.createElement('div'); nav.className = 'wt-carousel__nav';
-    var mk = function(dir, label){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = '<i class="wt-i wt-i--chevron-' + (dir < 0 ? 'right" style="transform:scaleX(-1)' : 'right"') + '" aria-hidden="true"></i>'; b.addEventListener('click', function(){ track.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }); }); return b; };
+    var page = function(){ return isSlider ? track.clientWidth : track.clientWidth * 0.8; };
+    var mk = function(dir, label){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = '<i class="wt-i wt-i--chevron-' + (dir < 0 ? 'right" style="transform:scaleX(-1)' : 'right"') + '" aria-hidden="true"></i>'; b.addEventListener('click', function(){ track.scrollBy({ left: dir * page(), behavior: reduce ? 'auto' : 'smooth' }); }); return b; };
     var prev = mk(-1, '前へ'), next = mk(1, '次へ');
-    nav.appendChild(prev); nav.appendChild(next);
+    nav.appendChild(prev);
+    var dots = null, dotBtns = [];
+    var pageCount = function(){ var first = track.firstElementChild; if (!first) return 1; var per = Math.max(1, Math.round(track.clientWidth / (first.getBoundingClientRect().width + 16))); return Math.max(1, Math.ceil(track.children.length / per)); };
+    var goTo = function(idx){ track.scrollTo({ left: idx * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); };
+    var buildDots = function(){
+      if (!dots) return;
+      dots.innerHTML = ''; dotBtns = [];
+      var pages = pageCount();
+      for (var i = 0; i < pages; i++) {
+        var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', (i + 1) + ' / ' + pages + ' ページ');
+        (function(idx, btn){
+          btn.addEventListener('click', function(){ goTo(idx); });
+          // 左右キーで隣のドットへ（フォーカスも移す）、Home / End で両端へ
+          btn.addEventListener('keydown', function(e){
+            var n = null;
+            if (e.key === 'ArrowRight') n = Math.min(dotBtns.length - 1, idx + 1);
+            else if (e.key === 'ArrowLeft') n = Math.max(0, idx - 1);
+            else if (e.key === 'Home') n = 0; else if (e.key === 'End') n = dotBtns.length - 1;
+            if (n === null) return; e.preventDefault(); dotBtns[n].focus(); goTo(n);
+          });
+        })(i, d);
+        dots.appendChild(d); dotBtns.push(d);
+      }
+      upd();
+    };
+    if (isSlider) { dots = document.createElement('div'); dots.className = 'wt-slider__dots'; dots.setAttribute('aria-label', 'ページ送り'); nav.appendChild(dots); }
+    nav.appendChild(next);
     track.parentNode.insertBefore(nav, track.nextSibling);
-    var upd = function(){ prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2; };
+    var upd = function(){
+      prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      if (dotBtns.length) { var cur = Math.min(dotBtns.length - 1, Math.round(track.scrollLeft / track.clientWidth)); dotBtns.forEach(function(d, i){ if (i === cur) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); }); }
+    };
+    buildDots();
+    // 画面幅が変わるとページ数（1 画面あたりの枚数）が変わるため、ドットを作り直す（Astra 是正）
+    var rt = null; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ if (dots && dotBtns.length !== pageCount()) buildDots(); else upd(); }, 150); });
     track.addEventListener('scroll', upd, { passive: true }); upd();
   });
 

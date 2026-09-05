@@ -542,7 +542,7 @@ body.wt-related-carousel .wt-related .wp-block-post-template>li{flex:0 0 min(70%
 .wt-carousel__nav{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
 .wt-carousel__nav button{width:44px;height:44px;border:1px solid var(--wp--preset--color--line);border-radius:50%;background:var(--wp--preset--color--base);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--wp--preset--color--contrast)}
 .wt-carousel__nav button:disabled{opacity:.35;cursor:default}
-body:not(.wt-related-carousel) .wt-carousel__nav{display:none}
+body:not(.wt-related-carousel):not(.wt-related-slider) .wt-carousel__nav{display:none}
 /* 記事末 CTA・著者 */
 .wt-tail__cta{margin-top:var(--wp--preset--spacing--60)}
 .wt-author-box{margin-top:var(--wp--preset--spacing--60)}
@@ -1087,3 +1087,52 @@ body.wt-related-carousel .wt-related:not(.wt-next) .wp-block-post-template>li{fl
 /* 2026-09-05 PO 反応 15 回目（WT-EVT-0259「metrics がスマホでの配置がよくない」）: SP で 3 指標を縦積みにせず 3 列のまま並べ、
    数字を小さくして区切り線を入れる（Claude 案。上の @media で 1 列にしていた指定を上書き） */
 @media (max-width:599px){.wp-block-group.is-style-wt-detext-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding:.9rem .5rem}.wt-detext__metric{padding:0 .25rem}.wt-detext__metric+.wt-detext__metric{border-left:1px solid var(--wp--preset--color--line)}.wt-detext__metric .wt-num{font-size:clamp(1.5rem,7.5vw,2rem)}.wt-detext__metric>small{display:block;font-size:.75rem;line-height:1.3;margin-top:.25rem}}
+
+/* 2026-09-06 PO 反応 16 回目 */
+/* WT-EVT-0261「relatedにスライダーを追加。」: related:slider（Claude 案）。1 画面 1 枚（PC は 2 枚）のページ送り + ドット。自動送りなし。JS 無効時は横スクロールのみ */
+body.wt-related-slider .wt-related:not(.wt-next) .wp-block-post-template{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-bottom:.25rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+body.wt-related-slider .wt-related:not(.wt-next) .wp-block-post-template::-webkit-scrollbar{display:none}
+body.wt-related-slider .wt-related:not(.wt-next) .wp-block-post-template>li{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always}
+@media (min-width:600px){body.wt-related-slider .wt-related:not(.wt-next) .wp-block-post-template>li{flex:0 0 calc(50% - .5rem)}}
+body.wt-related-slider .wt-related:not(.wt-next) .wt-rcard{border:1px solid var(--wp--preset--color--line);padding:.75rem}
+body.wt-related-slider .wt-carousel__nav{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.5rem}
+.wt-slider__dots{display:flex;gap:.25rem}
+.wt-slider__dots button{width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.wt-slider__dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--wp--preset--color--line);transition:transform var(--wp--custom--motion-base),background var(--wp--custom--motion-base)}
+.wt-slider__dots button[aria-current="true"]::before{background:var(--wp--preset--color--accent);transform:scale(1.4)}
+.wt-slider__dots button:focus-visible{outline:2px solid var(--wp--preset--color--accent);outline-offset:-6px;border-radius:50%}
+/* WT-EVT-0262「shareにSNS系のシェアを追加。」「icons-rowSNSアイコンつけるってことでOK？」: 記事末尾 icons-row を SNS 3 サービス + コピーに（Facebook は PO 判断待ち）。href はパターン（PHP）で生成し JS 無効でも動く */
+.wt-tail-icons a.wt-sns{font-family:var(--wp--preset--font-family--latin);font-size:.9375rem;letter-spacing:-.02em}
+.wt-tail-icons a.wt-sns--line{font-size:.6875rem}
+.wt-tail-icons a.wt-sns:hover,.wt-tail-icons button:hover{background:var(--wp--preset--color--accent)}
+/* WT-EVT-0263「axis-depthこれはフロート演出できるか？」: depth:float（Claude 案）。depth-2 の影に加え、hover で大きく浮き、motion:on では商品カードがゆっくり上下に浮遊。reduced-motion では静止 */
+body.wt-depth-float .wp-block-group.is-style-wt-product,body.wt-depth-float .wp-block-group.is-style-wt-linkcard,body.wt-depth-float .wp-block-group.is-style-wt-card,body.wt-depth-float .wt-related .wt-rcard,body.wt-depth-float .wt-toc,body.wt-depth-float .wt-graph{box-shadow:var(--wp--preset--shadow--depth-2);border-color:transparent}
+body.wt-depth-float .wt-related .wt-rcard{padding:.6rem}
+body.wt-depth-float .wp-block-group.is-style-wt-product,body.wt-depth-float .wp-block-group.is-style-wt-linkcard,body.wt-depth-float .wt-related .wt-rcard{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s cubic-bezier(.2,.7,.2,1)}
+/* reveal（html.wt-js body.wt-motion-on .wt-reveal.is-in{transform:none}）より高い特異性にするため html を前置し class を 1 つ足す */
+html body.wt-depth-float .wp-block-group.is-style-wt-linkcard.wp-block-group:hover,html body.wt-depth-float .wt-related .wt-rcard.wt-rcard:hover,html body.wt-depth-float .wp-block-group.is-style-wt-product.wp-block-group:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 28px 48px -20px rgba(23,28,34,.35),0 10px 20px -12px rgba(23,28,34,.2)}
+@keyframes wt-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+body.wt-depth-float.wt-motion-on .wp-block-group.is-style-wt-product:not(:hover){animation:wt-float 4s ease-in-out infinite}
+body.wt-depth-float .wp-block-button__link.has-cta-background-color{box-shadow:0 4px 0 #7c2d12,0 10px 18px -8px rgba(23,28,34,.35);transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){body.wt-depth-float .wp-block-group.is-style-wt-product{animation:none!important}html body.wt-depth-float .wp-block-group.is-style-wt-linkcard.wp-block-group:hover,html body.wt-depth-float .wt-related .wt-rcard.wt-rcard:hover,html body.wt-depth-float .wp-block-group.is-style-wt-product.wp-block-group:hover{transform:none}}
+/* WT-EVT-0264 / 0265「テーブルは画像挿入やアイコン挿入ができるようにできる？」「そして購入リンクとか入れられるように。」: 比較表 rich 型（Claude 案） */
+.wp-block-table.is-style-wt-compare-rich{overflow-x:auto}
+.wp-block-table.is-style-wt-compare-rich table{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;font-size:.9375rem}
+.wp-block-table.is-style-wt-compare-rich th,.wp-block-table.is-style-wt-compare-rich td{padding:.7rem .75rem;border-bottom:1px solid var(--wp--preset--color--line);text-align:center;vertical-align:middle}
+.wp-block-table.is-style-wt-compare-rich thead th{background:var(--wp--preset--color--contrast);color:#fff;font-weight:700}
+.wp-block-table.is-style-wt-compare-rich thead th:first-child{border-radius:var(--wp--custom--radius-s) 0 0 0}.wp-block-table.is-style-wt-compare-rich thead th:last-child{border-radius:0 var(--wp--custom--radius-s) 0 0}
+.wp-block-table.is-style-wt-compare-rich tbody th:first-child,.wp-block-table.is-style-wt-compare-rich tbody td:first-child{text-align:left;font-weight:700;background:var(--wp--preset--color--surface);position:sticky;left:0;z-index:1;min-width:6em} /* 先頭セルは functions.php で th[scope=row] に変換されるため th も対象にする（Astra 是正） */
+.wp-block-table.is-style-wt-compare-rich tr.wt-row-image td{padding-top:1rem}
+.wp-block-table.is-style-wt-compare-rich .wt-tcell__img{display:block;width:96px;height:96px;object-fit:cover;margin:0 auto;border-radius:var(--wp--custom--radius-s);border:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base)}
+.wp-block-table.is-style-wt-compare-rich .wt-tcell__icon{display:inline-flex;align-items:center;gap:.3rem;font-variant-numeric:tabular-nums}
+.wp-block-table.is-style-wt-compare-rich .wt-tcell__icon .wt-i{color:var(--wp--preset--color--mute)}
+.wp-block-table.is-style-wt-compare-rich .wt-tcell__icon--ok .wt-i{color:var(--wp--preset--color--ok)}
+.wp-block-table.is-style-wt-compare-rich .wt-tcell__icon--ng .wt-i{color:var(--wp--preset--color--cta)}
+.wp-block-table.is-style-wt-compare-rich tr.wt-row-buy td{border-bottom:0;padding-bottom:1rem}
+.wp-block-table.is-style-wt-compare-rich .wt-tbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:7.5em;padding:.5rem 1rem;border-radius:999px;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);font-weight:700;text-decoration:none;font-size:.875rem}
+.wp-block-table.is-style-wt-compare-rich .wt-tbtn:hover{filter:brightness(1.08)}
+@media (max-width:599px){.wp-block-table.is-style-wt-compare-rich table{font-size:.875rem}.wp-block-table.is-style-wt-compare-rich th,.wp-block-table.is-style-wt-compare-rich td{padding:.6rem .5rem}.wp-block-table.is-style-wt-compare-rich .wt-tcell__img{width:72px;height:72px}}
+/* WT-EVT-0266「フッターに宣伝用のテーマ名を入れない？（笑）」: footer_credit（Claude 案、既定 none）。法的表記の下に 1 行 */
+.wt-footer__credit{display:none;margin:.5rem 0 0;font-size:.6875rem;color:var(--wp--preset--color--mute);text-align:right}
+.wt-footer__credit a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
+body.wt-footer-credit-text .wt-footer__credit{display:block}

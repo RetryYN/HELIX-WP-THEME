@@ -12,10 +12,10 @@ function wt_axes() {
 		'sp'       => array( 'search', array( 'search', 'right', 'left' ) ),           // SP ヘッダー: hamburger+search / hamburger-right / hamburger-left
 		'eyecatch' => array( 'title-image', array( 'title-image', 'image-title', 'hero', 'side', 'none' ) ),
 		'toc'      => array( 'box', array( 'box', 'float', 'collapsible', 'none' ) ),
-		'related'  => array( 'grid', array( 'grid', 'list', 'rank', 'carousel', 'featured', 'ranking-numbers' ) ),
+		'related'  => array( 'grid', array( 'grid', 'list', 'rank', 'carousel', 'featured', 'ranking-numbers', 'slider' ) ), // slider: PO 反応 16 回目 WT-EVT-0261
 		'share'    => array( 'topbottom', array( 'topbottom', 'float', 'none' ) ),
 		'motion'   => array( 'off', array( 'off', 'on' ) ),
-		'depth'    => array( '0', array( '0', '1', '2' ) ),
+		'depth'    => array( '0', array( '0', '1', '2', 'float' ) ), // float: PO 反応 16 回目 WT-EVT-0263（浮遊演出、Claude 案）
 		'density'  => array( 'normal', array( 'airy', 'normal', 'compact' ) ),
 		'detext'   => array( 'off', array( 'off', 'on' ) ),
 		'nf'       => array( 'popular', array( 'popular', 'cta', 'suggest' ) ),    // 404 変種
@@ -31,6 +31,7 @@ function wt_axes() {
 		'footer_legal'  => array( 'copyright-links', array( 'copyright-links', 'copyright-only' ) ),
 		'footer_extra'  => array( 'sns', array( 'none', 'sns', 'sites', 'badges', 'address', 'sns-sites', 'sns-badges', 'sns-address', 'sites-badges', 'sites-address', 'badges-address', 'sns-sites-badges', 'sns-sites-address', 'sns-badges-address', 'sites-badges-address', 'all' ) ),
 		'footer_totop'  => array( 'off', array( 'off', 'button' ) ),
+		'footer_credit' => array( 'none', array( 'none', 'text' ) ), // PO 反応 16 回目 WT-EVT-0266（テーマ名クレジット、Claude 案・既定 none）
 		'tail_order'    => array( 'related-author-share-cta', array( 'related-author-share-cta', 'cta-related-author-share', 'related-cta-author' ) ),
 		'tail_share'    => array( 'none', array( 'none', 'icons-row' ) ),
 		'tail_author'   => array( 'none', array( 'none', 'avatar-bio', 'avatar-bio-sns', 'supervisor' ) ),
@@ -94,13 +95,13 @@ add_action( 'after_setup_theme', function () {
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.2' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.9' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.10' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-contrast', get_theme_file_uri( 'assets/js/contrast.js' ), array(), '0.3.2', $defer );
 	if ( is_singular() || is_page() ) {
-		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.2', $defer );
+		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
@@ -226,6 +227,7 @@ add_action( 'init', function () {
 		array( 'core/table', 'wt-compare-evaluation', '比較表: 評価セル強調' ),
 		array( 'core/table', 'wt-compare-price', '比較表: 価格行ハイライト' ),
 		array( 'core/table', 'wt-compare-showdown', '比較表: 2 製品対決' ),
+		array( 'core/table', 'wt-compare-rich', '比較表: 画像・アイコン・購入リンク' ), // PO 反応 16 回目 WT-EVT-0264 / 0265
 		// 画像・カバー
 		array( 'core/image', 'wt-banner', 'バナー画像 CTA' ),
 		array( 'core/cover', 'wt-scrim', '自動コントラスト（スクリム）' ),
@@ -344,7 +346,7 @@ function wt_insert_pr( $content ) {
 	if ( 'auto' === $mode && wt_content_has_pr_disclosure( $content ) ) {
 		return $content;
 	}
-	return '<p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p>' . $content;
+	return '<p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはプロモーションが含まれます。</p>' . $content;
 }
 
 // 2026-09-05 PO反応5回目 Astraレビュー是正: 「PR」「広告」等の単純な部分一致だと
@@ -371,7 +373,7 @@ function wt_content_has_pr_disclosure( $content ) {
 	$plain = mb_substr( $plain, 0, 600 );
 	$sentences = preg_split( '/(?<=[。！？])|\n+/u', $plain, -1, PREG_SPLIT_NO_EMPTY );
 	$topic    = '/(?<![A-Za-z])PR(?![A-Za-z])|広告|アフィリエイト|プロモーション/u';
-	$verb     = '/含み(ます)?|含む|掲載|表記/u';
+	$verb     = '/含まれ(ます|る|て)?|含み(ます)?|含む|掲載|表記/u'; // 「含まれます」（PO 決定の既定文言）も述語に含める（Astra 是正）
 	$negation = '/ない|なし|ません|ありません|ございません/u';
 	foreach ( $sentences as $s ) {
 		if ( preg_match( $topic, $s ) && preg_match( $verb, $s ) && ! preg_match( $negation, $s ) ) {

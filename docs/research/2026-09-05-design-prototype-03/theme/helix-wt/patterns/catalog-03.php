@@ -66,7 +66,7 @@ $box( 'warn-soft', '', 'ご注意（軽微）', '型番により電源プラグ�
 <!-- wp:group {"anchor":"cat-prosc","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-prosc"><!-- wp:columns {"className":"wt-prosc"} --><div class="wp-block-columns wt-prosc"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"is-style-wt-label-title wt-c-ok","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-label-title wt-c-ok"><!-- wp:paragraph --><p>メリット</p><!-- /wp:paragraph --><!-- wp:list {"className":"is-style-wt-pros"} --><ul class="wp-block-list is-style-wt-pros"><li>62cm まで下がる</li><li>昇降が静か</li><li>5 年保証</li></ul><!-- /wp:list --></div><!-- /wp:group --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"is-style-wt-label-title wt-c-warn","layout":{"type":"flow"}} --><div class="wp-block-group is-style-wt-label-title wt-c-warn"><!-- wp:paragraph --><p>デメリット</p><!-- /wp:paragraph --><!-- wp:list {"className":"is-style-wt-cons"} --><ul class="wp-block-list is-style-wt-cons"><li>天板は 2 サイズのみ</li><li>最高位置で少し揺れる</li></ul><!-- /wp:list --></div><!-- /wp:group --></div><!-- /wp:column --></div><!-- /wp:columns --></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-rate","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-rate"><!-- wp:html --><div class="wt-rate"><span>昇降範囲</span><i style="--v:94%"></i><b>4.7</b></div><div class="wt-rate"><span>静音性</span><i style="--v:90%"></i><b>4.5</b></div><div class="wt-rate"><span>価格・保証</span><i style="--v:84%"></i><b>4.2</b></div><!-- /wp:html --></div><!-- /wp:group -->
 <!-- wp:group {"anchor":"cat-linkcard","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-linkcard"><!-- wp:pattern {"slug":"helix-wt/linkcard"} /--></div><!-- /wp:group -->
-<!-- wp:group {"anchor":"cat-pr","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-pr"><!-- wp:html --><p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはアフィリエイト広告を含みます。評価・掲載順は報酬額で決めていません。</p><!-- /wp:html --></div><!-- /wp:group -->
+<!-- wp:group {"anchor":"cat-pr","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-pr"><!-- wp:html --><p class="wt-pr is-style-wt-pr"><span class="wt-pr__tag">PR</span>本記事にはプロモーションが含まれます。</p><!-- /wp:html --></div><!-- /wp:group -->
 <!-- wp:heading --><h2 class="wp-block-heading">de-text: 番号バッジ・アイコンリスト・引用符・数字</h2><!-- /wp:heading -->
 <!-- wp:group {"anchor":"cat-detext","layout":{"type":"flow"}} --><div class="wp-block-group" id="cat-detext"><!-- wp:list {"className":"is-style-wt-badge-list"} --><ol class="wp-block-list is-style-wt-badge-list"><li>無料登録して身長と机の高さを入力する</li><li>2 週間、座り・立ちを交互に試す</li><li>合わなければ 30 日以内に返品する</li></ol><!-- /wp:list --><!-- wp:list {"className":"is-style-wt-icon-list"} --><ul class="wp-block-list is-style-wt-icon-list"><li>迷ったら → リフトワン L1</li><li>予算優先 → スタンド・ライト S2</li></ul><!-- /wp:list --><!-- wp:quote {"className":"is-style-wt-quote-mark"} --><blockquote class="wp-block-quote is-style-wt-quote-mark"><p>「最初の 1 台としては十分でした」</p><cite>読者アンケートより（架空）</cite></blockquote><!-- /wp:quote --><!-- wp:paragraph {"align":"center"} --><p class="has-text-align-center"><span class="wt-num"><span class="wt-count" data-to="1284">1,284</span><small>件の実測</small></span></p><!-- /wp:paragraph --></div><!-- /wp:group -->
 <!-- wp:heading --><h2 class="wp-block-heading">自動コントラスト guard（3 輝度）</h2><!-- /wp:heading -->
@@ -104,6 +104,18 @@ $reaction_rows = array(
 	array( '静音性', array( '<span class="wt-mark">◎</span> 42 dB', '<span class="wt-mark">○</span> 48 dB', '<span class="wt-mark">◎</span> 41 dB' ) ),
 	array( '保証', array( '5 年', '2 年', '7 年' ) ),
 );
+// PO 反応 16 回目（WT-EVT-0264 / 0265）: 画像・アイコン・購入リンクを入れられる比較表（Claude 案）
+$img = function ( $file, $alt ) { return '<img class="wt-tcell__img" src="' . esc_url( get_theme_file_uri( 'assets/img/' . $file ) ) . '" alt="' . $alt . '" width="96" height="96" loading="lazy">'; };
+$ico = function ( $icon, $text ) { return '<span class="wt-tcell__icon wt-tcell__icon--' . $icon . '"><i class="wt-i wt-i--s wt-i--' . ( 'ok' === $icon ? 'check-circle' : ( 'ng' === $icon ? 'close' : 'info' ) ) . '" aria-hidden="true"></i>' . $text . '</span>'; };
+$buy = function ( $label ) { return '<a class="wt-tbtn" href="#" rel="sponsored nofollow">' . $label . '</a>'; };
+$reaction_table( 'compare-rich', 'cat-table-rich', '画像・アイコン・購入リンク: 表の中で見て選んで買える', $reaction_heads, array(
+	array( '製品', array( $img( 'product-a.png', 'リフトワン L1' ), $img( 'media-pickup-1.jpg', 'スタンド・ライト S2' ), $img( 'media-pickup-2.jpg', 'フレックス・プロ F3' ) ), 'wt-row-image' ),
+	array( '価格', array( '<strong>59,800 円</strong>', '39,800 円', '84,800 円' ) ),
+	array( '静音性', array( $ico( 'ok', '42 dB' ), $ico( 'mid', '48 dB' ), $ico( 'ok', '41 dB' ) ) ),
+	array( 'メモリー機能', array( $ico( 'ok', 'あり' ), $ico( 'ng', 'なし' ), $ico( 'ok', 'あり' ) ) ),
+	array( '保証', array( '5 年', '2 年', '7 年' ) ),
+	array( '購入', array( $buy( '公式サイト' ), $buy( '公式サイト' ), $buy( '公式サイト' ) ), 'wt-row-buy' ),
+) );
 $reaction_table( 'compare-striped', 'cat-table-striped', 'シンプル縞: 3製品を行ごとに追う', $reaction_heads, $reaction_rows );
 $reaction_table( 'compare-evaluation', 'cat-table-evaluation', '評価セル強調: ◎○△で差を先に読む', $reaction_heads, array(
 	array( '静音性', array( '<span class="wt-mark">◎</span> とても静か', '<span class="wt-mark">○</span> 静か', '<span class="wt-mark">◎</span> とても静か' ) ),
