@@ -17,7 +17,7 @@
     incoming.forEach(function(item){ list.appendChild(document.importNode(item, true)); });
     var following = doc.querySelector('.wt-cat-pagination a.wp-block-query-pagination-next');
     if (following) { next = following; button.disabled = false; button.textContent = 'さらに読む'; }
-    else { button.hidden = true; }
+    else { next = null; button.hidden = true; button.style.display = 'none'; button.setAttribute('aria-hidden', 'true'); } // 最終ページ: [hidden] は CSS の display:flex に負けるため CSS 側の [hidden] ルールと合わせて明示的に消す
   };
   button.addEventListener('click', function(){
     if (busy || !next) return;
