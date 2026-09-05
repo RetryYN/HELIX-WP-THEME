@@ -29,8 +29,18 @@ async function save(page, name, meta, opts = {}) {
     const el = page.locator(opts.selector).first();
     await el.waitFor({ state: "visible", timeout: 8000 });
     if (opts.clipHeight) {
+      // viewport 外の要素（footer・記事末尾）は lazy 画像が未読込のまま写るため、要素までスクロールして画像の読込を待つ
+      await el.scrollIntoViewIfNeeded();
+      await page.evaluate(async (sel) => { const root = document.querySelector(sel); const imgs = Array.from(root ? root.querySelectorAll("img") : []); imgs.forEach((i) => { i.loading = "eager"; }); await Promise.all(imgs.map((i) => i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 3000); }))); }, opts.selector);
+      await page.waitForTimeout(200);
       const b = await el.boundingBox();
-      await page.screenshot({ path: png, clip: { x: b.x, y: b.y, width: b.width, height: Math.min(opts.clipHeight, b.height) } });
+      const sy = await page.evaluate(() => window.scrollY); // 要素が viewport 外（footer 等）でも切り出せるよう、ページ座標 + fullPage で clip する
+      const clip = { x: b.x, y: b.y + sy, width: b.width, height: Math.min(opts.clipHeight, b.height) };
+      // fullPage 撮影は viewport を一時拡大するため srcset の候補が切り替わり再読込が走る。1 回目は捨て、画像の読込完了を待って撮り直す
+      await page.screenshot({ path: png, fullPage: true, clip });
+      await page.evaluate(async (sel) => { const root = document.querySelector(sel); await Promise.all(Array.from(root ? root.querySelectorAll("img") : []).map((i) => i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 3000); }))); }, opts.selector);
+      await page.waitForTimeout(300);
+      await page.screenshot({ path: png, fullPage: true, clip });
     } else await el.screenshot({ path: png });
   } else if (opts.viewportOnly) await page.screenshot({ path: png });
   else await page.screenshot({ path: png, fullPage: true });
@@ -45,6 +55,68 @@ async function open(ctx, url, opts = {}) {
   return page;
 }
 const wt = (q) => `?wt=${q}`;
+
+// 段 3 の追加撮影。既存151枚は読んでから保持し、同名の段3ファイルだけ再実行時に置換する。
+if (args.stage3 === "true") {
+  const browserStage3 = await chromium.launch();
+  const CATEGORY = "/category/topic-index/";
+  const categoryAxes = [
+    ["header", ["name-only", "name-desc", "hero"], ".wt-cat-head"],
+    ["children", ["none", "chips", "cards", "steps"], ".wt-category"],
+    ["list", ["grid", "thumb-list", "featured-grid"], ".wt-cat-primary"],
+    ["pagination", ["numbers", "load-more", "prev-next"], ".wt-cat-primary"],
+    ["ranking", ["none", "sidebar", "bottom"], ".wt-cat-primary"],
+    ["minihome", ["off", "on"], ".wt-category"],
+  ];
+  const footerAxes = [
+    ["layout", ["sitemap", "single-row", "columns-3"]],
+    ["above", ["none", "cta-band", "banner-row", "newsletter"]],
+    ["legal", ["copyright-links", "copyright-only"]],
+    ["extra", ["none", "sns", "sites", "badges", "address", "sns-sites", "sns-badges", "sns-address", "sites-badges", "sites-address", "badges-address", "sns-sites-badges", "sns-sites-address", "sns-badges-address", "sites-badges-address", "all"]],
+    ["totop", ["off", "button"]],
+  ];
+  const tailAxes = [
+    ["order", ["related-author-share-cta", "cta-related-author-share", "related-cta-author"]],
+    ["share", ["none", "icons-row"]],
+    ["author", ["none", "avatar-bio", "avatar-bio-sns", "supervisor"]],
+    ["prevnext", ["off", "thumb"]],
+  ];
+  for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
+    const ctx = await browserStage3.newContext(cfg);
+    for (const [part, variants, defaultSelector] of categoryAxes) {
+      for (const variant of variants) {
+        const p = await open(ctx, CATEGORY + wt(`cat_${part}:${variant}`));
+        const selector = part === "children" && variant !== "none" ? ".wt-cat-children" : part === "header" ? ".wt-cat-head" : part === "ranking" && variant !== "none" ? ".wt-cat-ranking" : part === "minihome" && variant === "on" ? ".wt-cat-minihome" : defaultSelector;
+        await save(p, `category-${part}-${variant}-${dev}`, { face: "category", part: `category-${part}`, variant, dev }, { selector, clipHeight: part === "minihome" ? 1600 : undefined });
+        await p.close();
+      }
+    }
+    for (const [part, variants] of footerAxes) {
+      for (const variant of variants) {
+        const p = await open(ctx, ARTICLE + wt(`footer_${part}:${variant}`));
+        await save(p, `footer-${part}-${variant}-${dev}`, { face: "footer", part: `footer-${part}`, variant, dev }, { selector: ".wt-footer", clipHeight: 1600 });
+        await p.close();
+      }
+    }
+    for (const [part, variants] of tailAxes) {
+      for (const variant of variants) {
+        const p = await open(ctx, ARTICLE + wt(`tail_${part}:${variant}`));
+        // order は末尾全体、author / share / prevnext の表示 variant は該当 slot だけを切り出す（末尾全体では 1600px の clip に入らないことがある）
+        const tailSelector = part === "order" || variant === "none" || variant === "off" ? ".wt-tail" : `.wt-tail__slot--${part}`;
+        await save(p, `tail-${part}-${variant}-${dev}`, { face: "article", part: `article-tail-${part}`, variant, dev }, { selector: tailSelector, clipHeight: 1600 });
+        await p.close();
+      }
+    }
+    await ctx.close();
+  }
+  await browserStage3.close();
+  const catalogFile = path.join(OUT, "..", "CATALOG-INDEX.json");
+  const existing = fs.existsSync(catalogFile) ? JSON.parse(fs.readFileSync(catalogFile, "utf8")) : [];
+  const newFiles = new Set(index.map((entry) => entry.file));
+  fs.writeFileSync(catalogFile, JSON.stringify(existing.filter((entry) => !newFiles.has(entry.file)).concat(index), null, 1));
+  console.log("stage3 done", index.length);
+  process.exit(0);
+}
 
 const browser = await chromium.launch();
 for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {

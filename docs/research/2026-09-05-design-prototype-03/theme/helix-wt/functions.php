@@ -1,6 +1,6 @@
 <?php
 /**
- * HELIX WT prototype 03 — 比較媒体の記事面・404。選択軸は theme_mod（サイト既定）→ post meta（記事上書き）→ ?wt= プレビュー の順で解決する。
+ * HELIX WT prototype 03 — 比較媒体の記事面・404・カテゴリ面。選択軸は ?wt= プレビュー → post meta（記事上書き）→ theme_mod（サイト既定）→ 既定値の順で解決する。
  * PoC 証跡。実装時はプレビュー引数を管理者限定にし、選択 UI（サイトエディター / 記事サイドバー）を付ける。
  */
 
@@ -19,6 +19,21 @@ function wt_axes() {
 		'detext'   => array( 'off', array( 'off', 'on' ) ),
 		'nf'       => array( 'popular', array( 'popular', 'cta', 'suggest' ) ),    // 404 変種
 		'pr'       => array( 'on', array( 'on', 'off' ) ),                          // PR 表記の自動挿入
+		'cat_header'    => array( 'name-only', array( 'name-only', 'name-desc', 'hero' ) ),
+		'cat_children' => array( 'chips', array( 'none', 'chips', 'cards', 'steps' ) ),
+		'cat_list'     => array( 'grid', array( 'grid', 'thumb-list', 'featured-grid' ) ),
+		'cat_pagination' => array( 'numbers', array( 'numbers', 'load-more', 'prev-next' ) ),
+		'cat_ranking'  => array( 'none', array( 'none', 'sidebar', 'bottom' ) ),
+		'cat_minihome' => array( 'off', array( 'off', 'on' ) ),
+		'footer_layout' => array( 'sitemap', array( 'sitemap', 'single-row', 'columns-3' ) ),
+		'footer_above'  => array( 'none', array( 'none', 'cta-band', 'banner-row', 'newsletter' ) ),
+		'footer_legal'  => array( 'copyright-links', array( 'copyright-links', 'copyright-only' ) ),
+		'footer_extra'  => array( 'sns', array( 'none', 'sns', 'sites', 'badges', 'address', 'sns-sites', 'sns-badges', 'sns-address', 'sites-badges', 'sites-address', 'badges-address', 'sns-sites-badges', 'sns-sites-address', 'sns-badges-address', 'sites-badges-address', 'all' ) ),
+		'footer_totop'  => array( 'off', array( 'off', 'button' ) ),
+		'tail_order'    => array( 'related-author-share-cta', array( 'related-author-share-cta', 'cta-related-author-share', 'related-cta-author' ) ),
+		'tail_share'    => array( 'none', array( 'none', 'icons-row' ) ),
+		'tail_author'   => array( 'none', array( 'none', 'avatar-bio', 'avatar-bio-sns', 'supervisor' ) ),
+		'tail_prevnext' => array( 'off', array( 'off', 'thumb' ) ),
 	);
 }
 
@@ -73,12 +88,26 @@ add_action( 'wp_enqueue_scripts', function () {
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.0', $defer );
 	}
+	wp_enqueue_script( 'helix-wt-footer', get_theme_file_uri( 'assets/js/footer.js' ), array(), '0.3.0', $defer );
+	if ( is_category() || is_archive() ) {
+		wp_enqueue_script( 'helix-wt-category', get_theme_file_uri( 'assets/js/category.js' ), array(), '0.3.0', $defer );
+	}
 } );
 
 // ---------- body class: 選択軸を class へ ----------
 add_filter( 'body_class', function ( $classes ) {
 	foreach ( wt_axes() as $key => $def ) {
 		$classes[] = 'wt-' . $key . '-' . wt_opt( $key );
+		$class_key = str_replace( '_', '-', $key );
+		if ( $class_key !== $key ) {
+			$classes[] = 'wt-' . $class_key . '-' . wt_opt( $key );
+		}
+	}
+	$extra = wt_opt( 'footer_extra' );
+	foreach ( array( 'sns', 'sites', 'badges', 'address' ) as $slot ) {
+		if ( 'all' === $extra || $extra === $slot || str_contains( $extra, $slot . '-' ) || str_contains( $extra, '-' . $slot ) ) {
+			$classes[] = 'wt-footer-extra-' . $slot;
+		}
 	}
 	return $classes;
 } );
@@ -164,6 +193,11 @@ add_action( 'init', function () {
 			'show_in_rest'      => array( 'schema' => array( 'type' => 'string', 'enum' => array_merge( array( '' ), $allowed ), 'default' => '' ) ),
 		) );
 	}
+	register_block_type( 'helix-wt/category-children', array( 'render_callback' => 'wt_render_category_children' ) );
+	register_block_type( 'helix-wt/category-minihome', array( 'render_callback' => 'wt_render_category_minihome' ) );
+	register_block_type( 'helix-wt/category-ranking', array( 'render_callback' => 'wt_render_category_ranking' ) );
+	register_block_type( 'helix-wt/tail-prevnext', array( 'render_callback' => 'wt_render_tail_prevnext' ) );
+	register_block_type( 'helix-wt/tail-author', array( 'render_callback' => 'wt_render_tail_author' ) );
 } );
 
 // ---------- 目次: h2/h3 機械導出、h2 ≥ 3 で挿入、記事上書き wt_toc=none で非表示 ----------
@@ -319,3 +353,198 @@ add_filter( 'wp_get_attachment_image_attributes', function ( $attr ) {
 	}
 	return $attr;
 } );
+
+// ---------- 段 3 の表示用動的ブロック（取得・表示のみ。判定や外部 API は持たない） ----------
+function wt_current_category_term() {
+	$term = get_queried_object();
+	return ( $term instanceof WP_Term && 'category' === $term->taxonomy ) ? $term : null;
+}
+
+function wt_category_card_image( $post, $size = 'medium_large' ) {
+	$image = get_the_post_thumbnail( $post, $size, array( 'class' => 'wt-data-card__image' ) );
+	return $image ? wp_kses_post( $image ) : '<span class="wt-data-card__image wt-data-card__image--empty" aria-hidden="true">画像</span>';
+}
+
+function wt_category_card_markup( $post, $term_name = '' ) {
+	$title = get_the_title( $post );
+	$link  = get_permalink( $post );
+	$date  = get_the_date( 'Y.m.d', $post );
+	$terms = get_the_category( $post );
+	$chip  = $term_name;
+	if ( '' === $chip && $terms ) {
+		$chip = $terms[0]->name;
+	}
+	$chip_link = $terms ? get_category_link( $terms[0]->term_id ) : '#';
+	if ( is_wp_error( $chip_link ) ) {
+		$chip_link = '#';
+	}
+	$out = '<article class="wt-data-card">';
+	$out .= '<a class="wt-data-card__media" href="' . esc_url( $link ) . '">' . wt_category_card_image( $post ) . '</a>';
+	$out .= '<div class="wt-data-card__body">';
+	if ( '' !== $chip ) {
+		$out .= '<a class="wt-data-card__chip" href="' . esc_url( $chip_link ) . '">' . esc_html( $chip ) . '</a>';
+	}
+	$out .= '<h3 class="wt-data-card__title"><a href="' . esc_url( $link ) . '">' . esc_html( $title ) . '</a></h3>';
+	$out .= '<time class="wt-data-card__date" datetime="' . esc_attr( get_the_date( 'c', $post ) ) . '">' . esc_html( $date ) . '</time>';
+	$out .= '<p class="wt-data-card__excerpt">' . esc_html( wp_trim_words( get_the_excerpt( $post ), 28, '…' ) ) . '</p>';
+	$out .= '</div></article>';
+	return $out;
+}
+
+function wt_render_category_children() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$children = get_terms( array(
+		'taxonomy'   => 'category',
+		'parent'     => (int) $term->term_id,
+		'hide_empty' => false,
+		'orderby'    => 'term_id',
+		'order'      => 'ASC',
+	) );
+	if ( is_wp_error( $children ) || ! $children ) {
+		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="子カテゴリ"></nav>';
+	}
+	$variant = wt_opt( 'cat_children' );
+	if ( 'none' === $variant ) {
+		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="子カテゴリ"></nav>';
+	}
+	$out = '<nav class="wt-cat-children wt-cat-children--' . esc_attr( $variant ) . '" aria-label="子カテゴリ"><ul>';
+	foreach ( $children as $child ) {
+		$url   = get_term_link( $child );
+		$count = number_format_i18n( (int) $child->count );
+		if ( is_wp_error( $url ) ) {
+			continue;
+		}
+		$label = '<span class="wt-cat-child__name">' . esc_html( $child->name ) . '</span><span class="wt-cat-child__count">' . esc_html( $count ) . '件</span>';
+		$out  .= '<li><a href="' . esc_url( $url ) . '">' . $label . '</a>';
+		if ( 'cards' === $variant ) {
+			$out .= '<span class="wt-cat-child__desc">' . esc_html( wp_trim_words( $child->description, 12, '…' ) ) . '</span>';
+		}
+		$out .= '</li>';
+	}
+	return $out . '</ul></nav>';
+}
+
+function wt_render_category_ranking() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$posts = get_posts( array(
+		'category'       => (int) $term->term_id,
+		'posts_per_page' => 3,
+		'post_status'    => 'publish',
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	) );
+	if ( ! $posts ) {
+		return '';
+	}
+	$out = '<aside class="wt-cat-ranking" aria-labelledby="wt-cat-ranking-title"><h2 id="wt-cat-ranking-title">このカテゴリのランキング</h2><ol>';
+	foreach ( $posts as $index => $post ) {
+		$out .= '<li><a href="' . esc_url( get_permalink( $post ) ) . '"><span class="wt-cat-ranking__num">' . esc_html( (string) ( $index + 1 ) ) . '</span><span>' . esc_html( get_the_title( $post ) ) . '</span></a></li>';
+	}
+	return $out . '</ol></aside>';
+}
+
+function wt_render_category_minihome() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$children = get_terms( array(
+		'taxonomy'   => 'category',
+		'parent'     => (int) $term->term_id,
+		'hide_empty' => false,
+		'orderby'    => 'term_id',
+		'order'      => 'ASC',
+	) );
+	if ( is_wp_error( $children ) || ! $children ) {
+		return '<section class="wt-cat-minihome" aria-label="カテゴリ ミニ HOME"><p>子カテゴリの一覧は準備中です。</p></section>';
+	}
+	$out = '<section class="wt-cat-minihome" aria-labelledby="wt-cat-minihome-title"><div class="wt-cat-minihome__intro"><p class="wt-eyebrow">CATEGORY GUIDE</p><h2 id="wt-cat-minihome-title">読む順番</h2><ol class="wt-cat-reading-order">';
+	foreach ( $children as $child ) {
+		$url = get_term_link( $child );
+		if ( is_wp_error( $url ) ) {
+			continue;
+		}
+		$out .= '<li><a href="' . esc_url( $url ) . '">' . esc_html( $child->name ) . '</a></li>';
+	}
+	$out .= '</ol></div><div class="wt-cat-minihome__sections">';
+	foreach ( $children as $child ) {
+		$url   = get_term_link( $child );
+		$posts = get_posts( array(
+			'category'       => (int) $child->term_id,
+			'posts_per_page' => 4,
+			'post_status'    => 'publish',
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		) );
+		if ( is_wp_error( $url ) || ! $posts ) {
+			continue;
+		}
+		$out .= '<section class="wt-cat-mini-section"><header><div><p class="wt-eyebrow">SECTION</p><h2>' . esc_html( $child->name ) . '</h2></div><a class="wt-cat-mini-section__more" href="' . esc_url( $url ) . '">一覧へ</a></header><div class="wt-cat-mini-grid">';
+		foreach ( $posts as $post ) {
+			$out .= wt_category_card_markup( $post, $child->name );
+		}
+		$out .= '</div></section>';
+	}
+	$out .= '</div><div class="wt-cat-minihome__rank"><h2>このカテゴリのランキング</h2><ol>';
+	$rank = get_posts( array(
+		'category'       => (int) $term->term_id,
+		'posts_per_page' => 3,
+		'post_status'    => 'publish',
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	) );
+	foreach ( $rank as $index => $post ) {
+		$out .= '<li><a href="' . esc_url( get_permalink( $post ) ) . '"><b>' . esc_html( (string) ( $index + 1 ) ) . '</b>' . esc_html( get_the_title( $post ) ) . '</a></li>';
+	}
+	return $out . '</ol></div></section>';
+}
+
+function wt_render_tail_prevnext() {
+	$previous = get_previous_post();
+	$next     = get_next_post();
+	if ( ! $previous && ! $next ) {
+		return '';
+	}
+	$out = '<nav class="wt-tail__prevnext" aria-label="前後の記事">';
+	foreach ( array( 'previous' => $previous, 'next' => $next ) as $direction => $post ) {
+		if ( ! $post ) {
+			continue;
+		}
+		$label = 'previous' === $direction ? '前の記事' : '次の記事';
+		$out  .= '<a class="wt-tail__prevnext-link wt-tail__prevnext-link--' . esc_attr( $direction ) . '" href="' . esc_url( get_permalink( $post ) ) . '"><span class="wt-tail__prevnext-label">' . esc_html( $label ) . '</span>' . wt_category_card_image( $post, 'thumbnail' ) . '<strong>' . esc_html( get_the_title( $post ) ) . '</strong></a>';
+	}
+	return $out . '</nav>';
+}
+
+// 著者ボックス 3 型（avatar-bio / avatar-bio-sns / supervisor）。template part 内では core の post-author 系ブロックが postId context を持たず空になるため、
+// 記事 ID から PHP で描く。アバターは外部サービスへ問い合わせず、表示名の頭文字を丸く出す（第三者ロゴ・外部 API なし）。
+function wt_render_tail_author() {
+	$post_id = get_queried_object_id();
+	if ( ! $post_id || 'post' !== get_post_type( $post_id ) ) {
+		return '';
+	}
+	$author_id = (int) get_post_field( 'post_author', $post_id );
+	$name      = get_the_author_meta( 'display_name', $author_id );
+	$bio       = get_the_author_meta( 'description', $author_id );
+	$initial   = function_exists( 'mb_substr' ) ? mb_substr( $name, 0, 1 ) : substr( $name, 0, 1 );
+	$avatar    = '<div class="wt-author-box__avatar"><span class="wt-author-box__initial" aria-hidden="true">' . esc_html( $initial ) . '</span></div>';
+	$name_html = '<p class="wt-author-box__name">' . esc_html( $name ) . '</p>';
+	$bio_html  = $bio ? '<p class="wt-author-box__bio">' . esc_html( $bio ) . '</p>' : '';
+	$sns       = '<div class="wt-author-sns" aria-label="著者の共有先"><a href="#" aria-label="共有先 1">1</a><a href="#" aria-label="共有先 2">2</a><a href="#" aria-label="共有先 3">3</a></div>';
+	$variants  = array(
+		'avatar-bio'     => $avatar . '<div><p class="wt-author-box__label">この記事を書いた人</p>' . $name_html . $bio_html . '</div>',
+		'avatar-bio-sns' => $avatar . '<div><p class="wt-author-box__label">この記事を書いた人</p>' . $name_html . $bio_html . $sns . '</div>',
+		'supervisor'     => $avatar . '<div><p class="wt-author-box__label">監修者</p>' . $name_html . '<p class="wt-author-box__bio">内容を確認した担当者の紹介です。</p></div>',
+	);
+	$out = '';
+	foreach ( $variants as $key => $inner ) {
+		$out .= '<div class="wt-author-variant wt-author-variant--' . esc_attr( $key ) . '"><div class="wt-author-box">' . $inner . '</div></div>';
+	}
+	return $out;
+}

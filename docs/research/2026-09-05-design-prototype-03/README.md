@@ -1,14 +1,14 @@
-# デザイン試作 03 — 比較・アフィリエイト媒体の記事面・404（選べる型として実装）
+# デザイン試作 03 — 比較・アフィリエイト媒体の記事面・404・カテゴリ面・footer（選べる型として実装）
 
 - 実施日: 2026-09-05。計画は `PLAN.md`（段 1 = 記事面 + 404 が本書の範囲）
-- 位置づけ: PoC 証跡。要求の確定・設計の決定ではない。PO 決定 2026-09-05「フロント先行」（試作 02 は殺風景・変化が少ないという PO 判定を受け、1 サイトパターン = 比較・アフィリエイト媒体に絞り、記事面と 404 を先に作る）に基づく。カテゴリ ミニ HOME・フッター・LP は再撮影の完了待ちで本タスクの範囲外。
+- 位置づけ: PoC 証跡。要求の確定・設計の決定ではない。PO 決定 2026-09-05「フロント先行」（試作 02 は殺風景・変化が少ないという PO 判定を受け、1 サイトパターン = 比較・アフィリエイト媒体に絞る）に基づく。段3ではカテゴリ ミニ HOME・footer・記事末尾 slot の型を選択可能な状態にする。
 - 方針: 見た目の差はすべて**テーマの実コード**（theme.json / block style / pattern / template part / CSS / 小さな JS）で、選択軸は body class・block style・pattern として実際に切り替えられる（DOM 注入のモックではない）。
 - 入力: 型の棚卸し `../2026-09-05-parts-pattern-taxonomy/by-purpose.md` §1「比較・アフィリエイト媒体」と §2（比較媒体・全用途共通）、語彙 `../2026-09-05-parts-pattern-taxonomy/PARTS-VOCAB.md`、既定値 `../2026-09-05-cro-usability-evidence/README.md` §2 P01–P33、パーツ一覧 `../2026-09-04-parts-inventory/README.md`（#98 / #107 / #110 / #122 / #126 / #127 / #130 / #132 / #134）。
 - テーマ本体（`themes/`）・`plugins/` は未編集。`theme/helix-wt/` は試作 02 の複製に上書きした試作テーマ。
 
 ## 1. 選択軸の仕組み
 
-選択は `functions.php` の `wt_axes()` に列挙した 12 軸。解決順は **プレビュー引数 `?wt=key:value,...`（PoC 用）→ 記事の post meta `wt_<key>`（eyecatch / toc / pr / share のみ、「この記事では目次を隠す」等）→ `theme_mod` `wt_<key>`（サイト既定）→ 既定値**。結果は `body.wt-<key>-<value>` の class になり、CSS が切り替える。ヘッダーだけは `render_block_data` で template part の slug を `header-<variant>` に差し替える。実装時はプレビュー引数を管理者限定にし、サイトエディター / 記事サイドバーの選択 UI を付ける。
+選択は `functions.php` の `wt_axes()` に列挙した 27 軸。解決順は **プレビュー引数 `?wt=key:value,...`（PoC 用）→ 記事の post meta `wt_<key>`（eyecatch / toc / pr / share のみ、「この記事では目次を隠す」等）→ `theme_mod` `wt_<key>`（サイト既定）→ 既定値**。結果は `body.wt-<key>-<value>` の class になり、段3の `_` を含むキーには互換用の正規化 class（例: `wt-cat_header-hero` と `wt-cat-header-hero`）も付く。CSS がその class を切り替える。ヘッダーだけは `render_block_data` で template part の slug を `header-<variant>` に差し替える。実装時はプレビュー引数を管理者限定にし、サイトエディター / 記事サイドバーの選択 UI を付ける。
 
 | 軸 | 値（既定を太字） | 切替の実体 |
 |---|---|---|
@@ -24,6 +24,21 @@
 | detext | **off** / on | `body.wt-detext-on` |
 | nf（404） | **popular** / cta / suggest | `body.wt-nf-*` |
 | pr | **on** / off | 本文先頭に PR 表記を自動挿入 |
+| cat_header | **name-only** / name-desc / hero | `templates/category.html` / `.wt-cat-head`（`core/term-description` を name-desc / hero で表示） |
+| cat_children | none / **chips** / cards / steps | `helix-wt/category-children`（chips / card-grid / numbered-steps） |
+| cat_list | **grid** / thumb-list / featured-grid | `.wt-cat-list`（PC grid、SP は画像左の thumb-list へ自動適用） |
+| cat_pagination | **numbers** / load-more / prev-next | `.wt-cat-pagination` + `category.js`（load-more は JS 有効時に `a.wp-block-query-pagination-next` の href を fetch して `.wt-cat-list` へ追記、no-JS では numbers） |
+| cat_ranking | **none** / sidebar / bottom | `helix-wt/category-ranking`（sidebar は PC、SP では下部） |
+| cat_minihome | **off** / on | `helix-wt/category-minihome`（子カテゴリごとの4件、読む順番、ランキング） |
+| footer_layout | **sitemap** / single-row / columns-3 | `parts/footer.html` の3 layout slot。sitemap の `details` は SP アコーディオン |
+| footer_above | **none** / cta-band / banner-row / newsletter | `.wt-footer__above-slot--*` |
+| footer_legal | **copyright-links** / copyright-only | `.wt-footer__legal--links` / `--only` |
+| footer_extra | **sns** / none / sites / badges / address / 組み合わせ / all | SNS・関連サイト・認証バッジ・住所を slot ごとに body class で表示 |
+| footer_totop | **off** / button | `.wt-totop`（`footer.js`、JS無効時も `href="#"` が上部へ戻る） |
+| tail_order | **related-author-share-cta** / cta-related-author-share / related-cta-author | `.wt-tail__slot` の CSS order |
+| tail_share | **none** / icons-row | `.wt-tail__slot--share` > `.wt-tail-icons`（既存 share 軸の bottom / float 共有は `.wt-tail` の外に据え置き、両立） |
+| tail_author | **none** / avatar-bio / avatar-bio-sns / supervisor | `.wt-author-variant--*` |
+| tail_prevnext | **off** / thumb | `helix-wt/tail-prevnext` / `.wt-tail__prevnext` |
 
 ## 2. 作ったもの（変種ごとのセレクタ・型名・根拠）
 
@@ -154,6 +169,85 @@
 
 本文 17px 固定（P01）、lh SP 1.6 / PC 1.7、contentSize 680px（= 17px で 40 字、P02）、gutter `clamp(16px,4vw,24px)`、ボタン高 48px（P05）、リンクは下線 + アクセント色（P21）、`:focus-visible` 2px アクセント + 白 4px（P31）、CTA 色 #c2410c は CTA 以外に使わない（P07。ランクバッジと注意色のみ同系色を使用 = 要検討）、画像 `alt` 未設定は `alt=""` を保証（P27 の一部）、自動送りなし（P11）。
 
+## 2.12 段3 — カテゴリ面・footer・記事末尾 slot
+
+段3は `category.html` をカテゴリ面の専用テンプレートとして追加し、`archive.html` にも同じ構造を反映した。カテゴリの子カテゴリ・ミニ HOME・ランキング・記事末尾の前後記事は、WordPress の投稿・タームを取得して表示する dynamic block であり、AI判定・外部API・人気度の推定は行わない。`cat_ranking` とミニ HOME のランキングは、既存404/関連記事と同じくPoCでは日付順をランキング表示へ投影する。
+
+観察根拠は台帳 v2 の `aggregate-v2.md` / 親 `README.md §1b` / 親 `by-purpose.md §2b`。値は `cat/pc` / `cat/sp` または `top/pc` / `top/sp` の n 比をそのまま記載した。`tail_order` は台帳が要素の出現頻度のみを集計して順序を集計していないため、既定順は `by-purpose §2b` の案であることを明記する。
+
+### カテゴリ面
+
+| 軸 / variant | セレクタ・実体 | 型名 | 台帳 v2 の根拠（PC / SP） |
+|---|---|---|---|
+| `cat_header: name-only` | `body.wt-cat-header-name-only .wt-cat-head` | category.header: name-only | 42% / 46%（多数派） |
+| `cat_header: name-desc` | `.wt-cat-head__desc` | category.header: name+description | 26% / 24% |
+| `cat_header: hero` | `body.wt-cat-header-hero .wt-cat-head` + `::before` | category.header: hero-style | 5% / 5%（少数派） |
+| `cat_children: none` | `.wt-cat-children--none` | category.children: none | 56% / 55%（最多） |
+| `cat_children: chips` | `.wt-cat-children--chips` | category.children: chips | 29% / 25%（既定として選択） |
+| `cat_children: cards` | `.wt-cat-children--cards` | category.children: cards | 2% / 2%（少数派） |
+| `cat_children: steps` | `.wt-cat-children--steps` | category.children: numbered-steps | 画像バナー 1% / 1% や cards 2% / 2% の稀な導線を、比較媒体の「読む順番」用に選択肢化（#129） |
+| `cat_list: grid` | `.wt-cat-list` / `body.wt-cat-list-grid` | list.layout: grid | 44% / 14% |
+| `cat_list: thumb-list` | `body.wt-cat-list-thumb-list` | list.layout: thumb-list | 14% / 35% |
+| `cat_list: featured-grid` | `body.wt-cat-list-featured-grid` | list.layout: featured+grid | 4% / 8%（少数派） |
+| `cat_pagination: numbers` | `.wt-cat-pagination` | pagination: numbers | 27% / 19%（既定） |
+| `cat_pagination: load-more` | `.wt-load-more` + `assets/js/category.js` | pagination: load-more | 9% / 6% |
+| `cat_pagination: prev-next` | `.wp-block-query-pagination-previous/next` | pagination: prev-next | 3% / 3% |
+| `cat_ranking: none` | `body.wt-cat-ranking-none` | ranking.in-category: none | 85% / 88%（多数派） |
+| `cat_ranking: sidebar` | `.wt-cat-ranking`（PC側欄、SP下部） | ranking.in-category: sidebar+bottom | 8% / 1% |
+| `cat_ranking: bottom` | `.wt-cat-ranking`（下部） | ranking.in-category: bottom | 1% / 4% |
+| `cat_minihome: off` | `.wt-cat-primary` | category.mini-home: none | 86% / 87%（多数派） |
+| `cat_minihome: on` | `.wt-cat-minihome`（子別4件 + 一覧へ + 読む順番 + ランキング） | category.mini-home: sections per child | 8% / 7%（少数派。比較媒体の回遊用） |
+| カード共通 | `.wt-cat-card` | list.card: image-top + date + category-chip | image-top 25% / 25%、date 24% / 23%、category-chip 16% / 17%。抜粋は12% / 12%のため `thumb-list` と先頭featuredで表示 |
+
+既定の `grid` は PC では3列、SPではCSSで画像左の1行サムネリストへ畳む。カテゴリデータは親 `topic-index` と子 `topic-one` / `topic-two` / `topic-three`、ダミー記事14件以上を想定し、タイトル・説明は固有名を使わない。
+
+### footer
+
+| 軸 / variant | セレクタ・実体 | 型名 | 台帳 v2 の根拠（PC / SP） |
+|---|---|---|---|
+| `footer_layout: sitemap` | `.wt-footer__layout--sitemap` / `.wt-footer__sitemap details` | footer.layout: mega(sitemap) + accordion(sp) | cat 40% / 28%（多数派寄り） |
+| `footer_layout: single-row` | `.wt-footer__layout--single-row` | footer.layout: single-row | cat 23% / 25% |
+| `footer_layout: columns-3` | `.wt-footer__layout--columns-3` | footer.layout: columns-3 / stacked-centered(sp) | cat 12% / SPは中央積みへ畳む |
+| `footer_above: none` | `.wt-footer__above-slot--none` | footer.above: none | cat 47% / 49%（最多） |
+| `footer_above: cta-band` | `.wt-footer__above-slot--cta-band` | footer.above: cta-band | cat 19% / 16% |
+| `footer_above: banner-row` | `.wt-footer__above-slot--banner-row` | footer.above: banner-row | cat 14% / 17%。比較媒体PCでは48%で用途依存の多数派 |
+| `footer_above: newsletter` | `.wt-footer__above-slot--newsletter` | footer.above: newsletter | cat 8% / 6%（少数派） |
+| `footer_legal: copyright-links` | `.wt-footer__legal--links` | footer.legal: copyright+links | cat 47% / 42% |
+| `footer_legal: copyright-only` | `.wt-footer__legal--only` | footer.legal: copyright-only | cat 36% / 40% |
+| `footer_extra` | `.wt-footer-extra-slot--sns/sites/badges/address` | footer.extra: slot ON/OFF | SNS 38% / 36%、関連サイト5% / 10%、認証バッジ8% / 7%、住所4% / 6%。既定はSNSのみON、値 `sns-sites` 等で組み合わせる |
+| `footer_totop: off` | `.wt-totop` 非表示 | footer.back-to-top: none | cat 61% / 65%（多数派） |
+| `footer_totop: button` | `.wt-totop` | footer.back-to-top: button-fixed | cat 22% / 12% |
+
+SPのsitemapはHTML側で全 `details` に `open` を付け、`footer.js` がJS有効時だけ閉じる。したがってJS無効時は全項目を読める。SNSの丸アイコンは数字の汎用記号だけで、第三者ロゴ画像・固有名・外部URLを置かない。
+
+### 記事末尾
+
+| 軸 / variant | セレクタ・実体 | 型名 | 台帳 v2 の根拠（PC / SP） |
+|---|---|---|---|
+| `tail_order: related-author-share-cta` | `.wt-tail__slot--related/author/share/cta` のCSS order | related → author → share → CTA | 台帳は順序を未集計。by-purpose §2b の既定案。要素頻度は related 29% / 22%、author 12% / 14%、share 12% / 9%、CTA 9% / 11% |
+| `tail_order: cta-related-author-share` | 同上 | CTA → related → author → share | slot順入替 |
+| `tail_order: related-cta-author` | 同上 | related → CTA → author（shareは末尾） | slot順入替 |
+| `tail_share: none` | `.wt-tail__slot--share` 非表示 | tail.share: none | 60% / 71%（多数派） |
+| `tail_share: icons-row` | `.wt-tail__slot--share` > `.wt-tail-icons`（汎用の丸アイコン 3 + リンクコピー、各 44px） | tail.share: icons-row | 30% / 13% |
+| `tail_author: none` | `.wt-author-variant` 非表示 | tail.author: none | 60% / 65%（多数派） |
+| `tail_author: avatar-bio` | `.wt-author-variant--avatar-bio` | avatar+bio | 14% / 9% |
+| `tail_author: avatar-bio-sns` | `.wt-author-variant--avatar-bio-sns` | avatar+bio+sns | 14% / 12% |
+| `tail_author: supervisor` | `.wt-author-variant--supervisor` | supervisor-separate | SP 1%（少数派。PCは集計値なし） |
+| `tail_prevnext: off` | `.wt-tail__prevnext` 非表示 | tail.prev-next: none | 78% / 89%（多数派） |
+| `tail_prevnext: thumb` | `helix-wt/tail-prevnext` / `.wt-tail__prevnext` | tail.prev-next: with-thumb | 11% / 4% |
+
+既存の関連記事Query Loop、CTA pattern、共有軸は流用し、段3では末尾側のslot順と表示選択だけを追加した。新しい動的ブロックも投稿・ターム・前後記事・著者情報の表示に限定している。著者ボックス 3 型は `helix-wt/tail-author`（PHP）で描く: template part 内では core の `post-author-name` / `post-author-biography` / `avatar` が postId context を持たず空になる（実機で確認）ため。アバターは外部サービスへ問い合わせず、表示名の頭文字を丸く出す `.wt-author-box__initial`。
+
+### 段3のguardと証跡
+
+`verify.mjs` §8 は既存のSP監査に加えて、カテゴリ面とfooterのSP/PC 44px・24px監査、footerの表示色、hero見出しコントラスト、footer sitemap の no-JS 全展開、load-more の no-JS numbers退避、カテゴリページ送りリンクのHTTP 200、カテゴリ/footerの reduced-motion を記録する。`shots.mjs --stage3 true` は既存151枚を保持し、カテゴリ18 variant×SP/PC、footer27 variant×SP/PC、記事末尾11 variant×SP/PCの計112枚を追加する（実機実行済み。`CATALOG-INDEX.json` は 151 → 263 エントリ、`results/*.jpg` 263 枚）。実機結果（`results/verify.json`、WP 7.1 ローカル）: `summary` **pass 26 / fail 0**（段 1/2 の 12 項目 + 段 3 の 14 項目。総合 `pass` は全検査の AND）。段3分の内訳 — タップ監査 カテゴリ面 SP 34/34・PC 34/34、footer（`footer_extra:all,footer_totop:button`）SP 26/26・PC 26/26、著者 SNS（`tail_author:avatar-bio-sns`、`.wt-author-sns a` 44px）SP 3/3・PC 3/3（44px・24px とも未達 0、inline 除外 0）。footer 表示色 34 要素すべて 4.5:1 以上（最小 5.25:1 = 法的表記・extra 見出しの mute 色。丸アイコン・to-top は自前の背景（contrast 色）との比 17.13:1 で判定。初回実行では footer 背景と比べて 1.08:1 と誤判定したため、guard を「要素自身の実効背景（最も近い不透明な祖先）」で測る形に直した）。hero 見出し（段 1 の guard と同じ方式: 文字矩形 4 隅を 115deg の gradient 軸へ射影した実効 α の最小値、`hero.png` を cover 写像で canvas から採った文字位置の平均輝度 L、実色、合成 Lc = L×(1−α) + Lscrim×α）: h1 40px bold α .635・L .395 → **5.21:1**（要 3:1、最大輝度画素では 2.49）、説明文 17px α .627・L .438 → **4.76:1**（要 4.5:1、最大輝度画素 2.44）。スクリムなしでは 2.36 / 2.15 で不合格。最大輝度画素比は段 1 と同じく参考値として併記（判定は平均輝度）。**この値は近似式による評価であり、実描画ピクセルの直接測定ではない**（段 1 の guard と同じ方式）: 測定矩形は文字グリフではなく h1 / 説明文コンテナの矩形全体、画像輝度は矩形内の平均、α は矩形 4 隅の最小値、合成は RGB 画素の alpha 合成ではなく輝度同士の線形混合。gradient 補間も線形近似。したがって「実際の文字コントラスト」の証跡ではなく、スクリム設計が下限を満たすかの目安として読む。footer sitemap no-JS: `details` 4/4 が open・内容可視。load-more no-JS: ボタン非表示・numbers 2 件表示。load-more JS 有効（PC）: ボタン表示・番号送り非表示・`a.wp-block-query-pagination-next` あり → クリックで 10 件 → 17 件（+7、2 ページ目の全件）、次ページなし → ボタンは computed で非表示（`display: none`、矩形 0×0。`[hidden]` を `display:none!important` で明示し、JS もインライン display を落とす。以前は CSS の `display:flex` が `[hidden]` に勝って「読み込み中…」の無効ボタンが残っていた）。固定ボタンの併用（`share:float,footer_totop:button`、最下部までスクロール）: SP は to-top を float 共有の上へ退避（bottom 8.25rem 相当）し、float 共有 48×104（右下）と to-top 48×48 が交差せず、3 ボタンとも中心点で elementFromPoint が自身。PC（≥1200px）は float 共有が本文右レール上部にあり交差なし。ページ送りリンク 2 件とも HTTP 200（`/page/2/`）。reduced-motion: カード・to-top・footer の transition `none`。
+
+撮影スクリプトの修正: footer / 記事末尾は viewport 外に位置するため、`save()` の clip をページ座標 + `fullPage` で切り出す形に直した（初回は「Clipped area is outside」で footer の 1 枚目に失敗）。あわせて、要素までスクロールして lazy 画像を eager 化し読込を待つこと、`fullPage` 撮影で srcset 候補が切り替わり再読込が走るため 1 回目を捨てて撮り直すこと、を追加した（それ以前の撮影では関連カードの画像が空だった）。記事末尾の author / share / prevnext は該当 slot（`.wt-tail__slot--*`）だけを切り出し、order 3 型と none / off は末尾全体 `.wt-tail` を撮る。実機で見つけて直した表示不具合: footer SP で `.wt-footer__legal` の両型が同時表示（SP の `display:block` が型別の非表示を打ち消していた）、記事末尾 author slot の core ブロックが空描画（→ `helix-wt/tail-author`）、記事 554 の `post_author` が 0（→ 1 を設定）。
+
+Astra レビュー（PR #141 1 巡目）の是正: (1) `category.js` の「次のページ」セレクタが `.wp-block-query-pagination-next a` で、core は a 要素自身にそのクラスを付けるため JS 有効時も常に numbers へ退避していた → `a.wp-block-query-pagination-next` に修正し、verify に JS 有効時の実動検査 `loadMoreJs` を追加。(2) 段 1 の `share:float` 用 `.wt-share--float` が `article-tail.html` から消えていた → bottom / float 共有を `.wt-tail` の外へ復元（share 軸で制御）し、`tail_share` slot は `.wt-tail-icons` 専用に。(3) hero コントラストを固定 α・固定 RGB の概算から段 1 と同じ実描画方式へ。(4) 総合 `pass` に `contrast` / `contrastGuard` / `headline` / 段 1 タップ 4 画面 / footer transition を反映。(5) `.wt-author-sns a` 32px → 44px、監査対象に追加。(6) §4 の数値を verify.json と再同期。
+
+Astra レビュー（PR #141 2 巡目）の是正: (1) load-more 最終ページ後にボタンが残る（`[hidden]` が CSS の `display:flex` に負ける）→ `.wt-load-more:not([hidden])` に表示を限定し `[hidden]{display:none!important}` を明示、JS もインライン display:none を設定、verify `loadMoreJs` は属性でなく computed 可視性（矩形・display）で「最終ページ後に非表示」を assert。(2) `share:float` と `footer_totop:button` が 1200px 未満で同じ右下に重なる → 併用時は to-top を float 共有の上へオフセット、verify に `fixedOverlapSp` / `fixedOverlapPc`（矩形交差なし・中心点のクリック到達）を追加。(3) hero コントラストが近似式である旨を明記（上記）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
@@ -167,15 +261,17 @@
 
 ## 4. 検証結果（`results/verify.json`、`scripts/verify.mjs`。Astra レビュー PR #139 の指摘 8 件を反映して再実行）
 
+下表は段1/2の検査項目（段 3 の再実行後の値。段 3 で共有 float の復元・著者ボックス・末尾 slot が加わったため、記事のタップ総数と no-JS の本文字数が段 1 時点から変わっている）。段3で追加した 14 項目（categoryTapSp / categoryTapPc / footerTapSp / footerTapPc / authorSnsTapSp / authorSnsTapPc / footerContrast / footerNoJs / loadMoreNoJs / loadMoreJs / categoryPagination / categoryHeroContrast / fixedOverlapSp / fixedOverlapPc）の結果は §2.12「段3のguardと証跡」に記載。`summary` は 26 項目 pass 26 / fail 0。段 1/2 の項目も `contrast` / `contrastGuard` / `headline` / タップ 4 画面に合否を持たせ、総合 `pass` は全項目の AND。
+
 | 項目 | 結果 |
 |---|---|
-| JS 無効描画（SP、`motion:on,header:announce`） | `html.wt-js` なし、お知らせ帯 存在・可視、目次 表示・開・リンク 12、`.wt-reveal` 10 件すべて opacity 1、商品カード・比較表・関連カード 7 件 表示、本文 3,052 字表示。`pass: true` |
+| JS 無効描画（SP、`motion:on,header:announce`） | `html.wt-js` なし、お知らせ帯 存在・可視、目次 表示・開・リンク 12、`.wt-reveal` 10 件すべて opacity 1、商品カード・比較表・関連カード 7 件 表示、本文 3,048 字表示。`pass: true` |
 | reduced-motion（SP、`motion:on`） | `.wt-reveal` 10/10 が初期表示、ヘッダー・ボタンの transition `none`、count-up は最終値「1,284」。比較: 通常設定では読み込み直後 10/10 が非表示 → スクロールで出現 |
 | コントラスト（PC、算出） | CTA ボタン 白/#c2410c **5.18:1**、本文段落内リンク（`.wp-block-post-content > p > a`、#1d4ed8/白）6.7:1、補助文字 mute 5.69:1、PR 表記 5.69:1、目次リンク 6.19:1、帯タイトル 6.7:1、ランクバッジ 5.18:1、アウトラインボタン 6.7:1、価格単位 5.69:1、リンクカードラベル 5.69:1、カード日付 5.69:1。11 項目すべて 4.5:1 以上 |
-| 自動コントラスト guard（実描画、§2.9 の算式、文字は実色 #fff） | dark 画像（`dark`、文字位置の画像 L 0.025 / α .371）本文 15.98:1・h3 16.74:1 / mid（`mid`、L 0.246 / α .66）本文 7.86:1・h3 6.17:1 / light（`light`、L 0.882 / α .933）本文 9.62:1・h3 5.48:1。スクリムなしでは mid 3.55、light 1.13 で不合格。記事 hero アイキャッチ（生成写真、`mid`）h1 11.21:1（最大輝度画素 3.38、要 3:1）、パンくず「ホーム」10.39:1、カテゴリ 7.38:1、日付 17.35:1（いずれも実色 rgb(255,255,255)。著者名・更新日はこの記事では非描画）。10 判定すべて合格 |
+| 自動コントラスト guard（実描画、§2.9 の算式、文字は実色 #fff） | dark 画像（`dark`、文字位置の画像 L 0.025 / α .371）本文 15.98:1・h3 16.74:1 / mid（`mid`、L 0.246 / α .66）本文 7.86:1・h3 6.17:1 / light（`light`、L 0.882 / α .933）本文 9.62:1・h3 5.48:1。スクリムなしでは mid 3.55、light 1.13 で不合格。記事 hero アイキャッチ（生成写真、`mid`）h1 11.21:1（最大輝度画素 3.38、要 3:1）、パンくず「ホーム」10.39:1、カテゴリ 7.38:1、著者名 17.61:1、日付 11.95:1、更新日 10.74:1（いずれも実色 rgb(255,255,255)）。12 判定すべて合格 |
 | 比較表（記事 554 の描画 HTML） | `<thead>` 無傷、`th` 4 / `scope="col"` 4、行 8 / 行見出し `tbody th[scope=row]` 8（`td[scope=row]` 0）、`data-th` 24（データセル td のみ。行見出し th の `data-th` 0）、`tfoot` 行は変換対象外（本記事に tfoot なし、変換件数 0）、`caption` あり。`pass: true` |
 | 404 | 素の URL・3 変種すべて **HTTP 404**、robots meta 全件 `["max-image-preview:large","noindex"]` → noindex あり、謝意・原因・検索（ボタン付き）・人気 3 件・カテゴリ・ホーム・CV slot 3 枠・検索語提案 4 件 |
-| タップ領域監査（SP） | 除外は p / li 直下の display:inline リンクだけ（記事 2・カタログ 1・404 0）。core の skip-link（1×1、フォーカス時のみ表示）は SR 用として別掲。**44px（P05）**: 記事 50/50、帯 + カルーセル + float 共有 54/54、404 23/23、カタログ 13/13。**24px（WCAG 2.5.8）**: 同じく全件。サイト名・パンくず・カテゴリターム・カードタイトルは inline-flex + 負マージンで 44px 化（行送りは据え置き） |
+| タップ領域監査（SP） | 除外は p / li 直下の display:inline リンクだけ（記事 2・カタログ 1・404 0）。core の skip-link（1×1、フォーカス時のみ表示）は SR 用として別掲。**44px（P05）**: 記事 68/68、帯 + カルーセル + float 共有 72/72、404 45/45、カタログ 31/31。**24px（WCAG 2.5.8）**: 同じく全件。サイト名・パンくず・カテゴリターム・カードタイトルは inline-flex + 負マージンで 44px 化（行送りは据え置き） |
 | 見出し 1 行 | h2 18.5px、18 字、358px、1 行（19.3 字まで） |
 | 目次しきい値 | h2 5 / h3 7 → 目次 5 / 7、`scroll-margin-top` 76px、SP は JS で閉 |
 | 動作（別スクリプト） | お知らせ帯: 閉 → 再読込後も非表示（localStorage キー 1 件）。ヘッダー: 下スクロールで隠れ、上で再表示、背景不透明。目次: `#h-3` 到達で「3 製品の比較表」が current。カルーセル前後ボタン 2 組。比較表 SP: 行が block（カード）。横スクロールなし |
@@ -184,25 +280,26 @@
 
 ## 5. 描画証跡
 
-`results/` に 151 枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用。
+`results/` には既存151枚（JPEG q75、長辺 1600 以下。`CATALOG-INDEX.json` に {file, face, part, variant, dev}）を保持する。内訳: 記事全長 SP/PC 2 + 画面単位 20、ヘッダー 8（PC 4・SP 3・帯）、アイキャッチ 10、目次 9、h2 12、h3 6、囲み 16、CTA 8、比較表 2、メリデメ 2、評価バー 2、リンクカード 2、PR 2、de-text 部品 2、関連 8、共有 4、4 軸 on/off 24（depth 8・density 4・detext 8・motion 4）、コントラスト guard 6、404 6（計 151）。段3で 112 枚を追加（カテゴリ面 18 variant × SP/PC = 36、footer 27 variant × SP/PC = 54、記事末尾 11 variant × SP/PC = 22。`category-*`, `footer-*`, `tail-*`）、計 263。既存 151 枚のファイル名・内容は変更していない。全長画像は縮小で判読しにくいため `article-screen-NN-*.jpg` を併用する。
 
 ## 6. 手順（再現）
 
 1. `docker cp theme/helix-wt/. agent-neo-wp:/var/www/html/wp-content/themes/helix-wt/`（helix-wt は試作 02 から有効のまま）
 2. 記事: `wp post create --post_type=post --post_content='<!-- wp:pattern {"slug":"helix-wt/compare-article"} /-->' ...`、アイキャッチは `wp media import <theme>/assets/img/media-pickup-1.jpg` → `_thumbnail_id`。関連一覧用に短い架空記事 5 件 + カタログ固定ページ（`helix-wt/catalog-03`、テンプレ page-canvas）
-3. 変種の確認: `?wt=header:cta,sp:left,eyecatch:hero,toc:float,related:rank,share:float,motion:on,depth:2,density:airy,detext:on,nf:suggest` のように付ける。サイト既定は `wp theme mod set wt_<key> <value>`、記事単位は `wp post meta set <ID> wt_eyecatch|wt_toc|wt_pr|wt_share <value>`
-4. 撮影 `NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --base <site> --out results`、検証 `node scripts/verify.mjs --base <site> --out results/verify.json`、計測 `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
-5. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
+3. 段3データ: WP-CLIで親カテゴリ `topic-index` を作成し、子カテゴリ `topic-one` / `topic-two` / `topic-three` を `--parent=<親term_id>` で作成する。各子へダミー記事を5件ずつ、親へ横断記事を2件以上 `wp post create --post_type=post --post_status=publish --post_category=<term_id> --post_content='<!-- wp:paragraph --><p>ダミー本文です。</p><!-- /wp:paragraph -->' --post_title='読みもの <連番>'` で登録し、合計14件以上にする。カテゴリ説明は `wp term update category <term_id> --description='カテゴリの説明文です。'` で設定する。固有名・実在URL・第三者ロゴは使わない。
+4. 変種の確認: 既存軸は `?wt=header:cta,sp:left,eyecatch:hero,toc:float,related:rank,share:float,motion:on,depth:2,density:airy,detext:on,nf:suggest`、段3は `?wt=cat_header:hero,cat_children:steps,cat_list:featured-grid,cat_pagination:load-more,cat_ranking:sidebar,cat_minihome:on,footer_layout:columns-3,footer_above:banner-row,footer_legal:copyright-only,footer_extra:sns-sites,footer_totop:button,tail_order:cta-related-author-share,tail_share:icons-row,tail_author:avatar-bio-sns,tail_prevnext:thumb` のように付ける。サイト既定は `wp theme mod set wt_<key> <value>`、記事単位は `wp post meta set <ID> wt_eyecatch|wt_toc|wt_pr|wt_share <value>`
+5. 撮影は既存を上書きせず、`NODE_PATH=<playwright の node_modules> node scripts/shots.mjs --stage3 true --base <site> --out results`。検証は `node scripts/verify.mjs --base <site> --out results/verify.json`、計測は `node ../2026-09-04-site-survey/scripts/measure.mjs --url <記事 URL> --out <dir> --playwright <playwright パス>`
+6. 輝度テスト画像 3 枚（`assets/img/lum-{dark,mid,light}.jpg`）は PHP GD で生成した無文字のグラデーション（手順はコンテナ内 eval、リポには成果物のみ）
 
 ## 7. 終了時状態（意図的に残置）
 
-- テーマ `helix-wt`（試作 03 版）が有効。投稿: 記事 **554**（`/standing-desk-compare/`）、関連用 555–559、カタログ固定ページ 560（`/catalog-03/`）、添付 548–553、カテゴリ term 7（desk）。試作 02 の 518 / 519 / 520 / 533 と `wp_global_styles` 525 はそのまま。519 にアイキャッチ（添付 551）を付与。
+- テーマ `helix-wt`（試作 03 版）が有効。投稿: 記事 **554**（`/standing-desk-compare/`）、関連用 555–559、カタログ固定ページ 560（`/catalog-03/`）、添付 548–553、カテゴリ term 7（desk）。段3: カテゴリ term 8 `topic-index`（説明あり）、子 9 `topic-one` / 10 `topic-two` / 11 `topic-three`（各 5 件）、ダミー記事 561–577（17 件、親直下 2 件、アイキャッチは 548–553 を再利用、日付 2026-08-01〜17）。554–559 と 561–577 の `post_author` を 1 に設定（WP-CLI 作成時は 0 で、著者ボックスが空になる）。試作 02 の 518 / 519 / 520 / 533 と `wp_global_styles` 525 はそのまま。519 にアイキャッチ（添付 551）を付与。
 - サイト名・キャッチフレーズ・ユーザー 1 の表示名と紹介文を架空値へ変更（試作 02 時の値から）。
-- 撤去: `wp post delete 554 555 556 557 558 559 560 --force`、`wp post delete 548 549 550 551 552 553 --force`、`wp term delete category 7`、試作 02 の README §5 の手順。
+- 撤去: `wp post delete 554 555 556 557 558 559 560 --force`、`wp post delete 548 549 550 551 552 553 --force`、`wp term delete category 7`、段3: `wp post delete $(seq 561 577) --force`、`wp term delete category 9 10 11 8`、試作 02 の README §5 の手順。
 
 ## 8. 未実装・次タスク
 
-- カテゴリ ミニ HOME、フッター変種、LP: 再撮影の完了待ち（次タスク）。
+- LP: 段4で実装する。
 - 人気記事の集計方式（404 の人気・関連の「人気」は新着順で代替、#110）。
 - 選択 UI（サイトエディターの variation / 記事サイドバー）。現状は theme_mod・post meta・プレビュー引数。
 - 目次の float は 1200px 以上のみ（本文 680 + レール 240 + 余白）。1024–1199px では box にフォールバック。

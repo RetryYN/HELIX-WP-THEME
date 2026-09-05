@@ -4,6 +4,13 @@
 <!-- /wp:html -->
 <!-- wp:group {"className":"wt-tail","layout":{"type":"default"}} -->
 <div class="wp-block-group wt-tail">
+<!-- wp:group {"className":"wt-tail__slot wt-tail__slot--share","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-tail__slot wt-tail__slot--share">
+<!-- wp:html --><div class="wt-tail-icons" aria-label="共有先"><p class="wt-tail-icons__label">この記事を共有</p><a href="#" aria-label="共有先 1">1</a><a href="#" aria-label="共有先 2">2</a><a href="#" aria-label="共有先 3">3</a><button type="button" data-wt-share="copy" aria-label="リンクをコピー">⧉</button></div><!-- /wp:html -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"wt-tail__slot wt-tail__slot--related","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-tail__slot wt-tail__slot--related">
 <!-- wp:heading {"level":2,"className":"wt-tail__h"} --><h2 class="wp-block-heading wt-tail__h">次に読む</h2><!-- /wp:heading -->
 <!-- wp:query {"queryId":901,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"className":"wt-related wt-next"} -->
 <div class="wp-block-query wt-related wt-next"><!-- wp:post-template {"layout":{"type":"default"}} -->
@@ -15,7 +22,7 @@
 <!-- /wp:group -->
 <!-- /wp:post-template --></div>
 <!-- /wp:query -->
-<!-- wp:heading {"level":2,"className":"wt-tail__h","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} --><h2 class="wp-block-heading wt-tail__h" style="margin-top:var(--wp--preset--spacing--60)">関連記事</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":2,"className":"wt-tail__h"} --><h2 class="wp-block-heading wt-tail__h">関連記事</h2><!-- /wp:heading -->
 <!-- wp:query {"queryId":902,"query":{"perPage":6,"pages":0,"offset":1,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"className":"wt-related wt-related--list"} -->
 <div class="wp-block-query wt-related wt-related--list"><!-- wp:post-template {"layout":{"type":"default"}} -->
 <!-- wp:group {"className":"wt-rcard wt-reveal","layout":{"type":"default"}} -->
@@ -26,14 +33,16 @@
 <!-- /wp:group -->
 <!-- /wp:post-template --></div>
 <!-- /wp:query -->
-<!-- wp:group {"className":"wt-tail__cta","layout":{"type":"default"}} -->
-<div class="wp-block-group wt-tail__cta"><!-- wp:pattern {"slug":"helix-wt/cta-box"} /--></div>
+</div>
 <!-- /wp:group -->
-<!-- wp:group {"className":"wt-author-box","backgroundColor":"surface","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"},"style":{"spacing":{"padding":{"top":"1.25rem","bottom":"1.25rem","left":"1.25rem","right":"1.25rem"},"blockGap":"1rem"},"border":{"radius":"6px"}}} -->
-<div class="wp-block-group wt-author-box has-surface-background-color has-background" style="border-radius:6px;padding:1.25rem"><!-- wp:avatar {"size":56,"style":{"border":{"radius":"50%"}}} /-->
-<!-- wp:group {"layout":{"type":"flow"},"style":{"spacing":{"blockGap":"0.25rem"}}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"fontSize":"xs","textColor":"mute"} --><p class="has-mute-color has-text-color has-xs-font-size">この記事を書いた人</p><!-- /wp:paragraph --><!-- wp:post-author-name {"fontSize":"s","style":{"typography":{"fontWeight":"700"}}} /--><!-- wp:post-author-biography {"fontSize":"s","textColor":"mute"} /--></div>
-<!-- /wp:group --></div>
+<!-- wp:group {"className":"wt-tail__slot wt-tail__slot--cta","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-tail__slot wt-tail__slot--cta"><!-- wp:pattern {"slug":"helix-wt/cta-box"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"wt-tail__slot wt-tail__slot--author","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-tail__slot wt-tail__slot--author"><!-- wp:helix-wt/tail-author /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"wt-tail__slot wt-tail__slot--prevnext","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-tail__slot wt-tail__slot--prevnext"><!-- wp:helix-wt/tail-prevnext /--></div>
 <!-- /wp:group -->
 </div>
 <!-- /wp:group -->

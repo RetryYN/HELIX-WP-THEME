@@ -10,6 +10,7 @@ const args = Object.fromEntries(process.argv.slice(2).map((a, i, arr) => a.start
 const BASE = args.base || "http://localhost:8086";
 const OUT = path.resolve(args.out || "../results/verify.json");
 const ARTICLE = "/standing-desk-compare/";
+const CATEGORY = "/category/topic-index/";
 const SP = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const PC = { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
 const out = {};
@@ -163,6 +164,202 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   out.toc = await p.evaluate(() => ({ h2Count: document.querySelectorAll(".wp-block-post-content h2").length, h3Count: document.querySelectorAll(".wp-block-post-content h3").length, tocH2: document.querySelectorAll(".wt-toc__list > li").length, tocH3: document.querySelectorAll(".wt-toc__list ol li").length, scrollMarginTop: getComputedStyle(document.querySelector("h2[id]")).scrollMarginTop, spClosedByJs: !document.querySelector(".wt-toc details").open }));
   await ctx.close();
 }
+// 8. 段 3 guard: カテゴリ面の SP / PC タップ監査、著者 SNS タップ、hero コントラスト（実描画）、footer の no-JS 展開、load-more の no-JS 退避と JS 実動、ページ送り 200
+{
+  const audit = async (page, rootSelector) => page.evaluate((selector) => {
+    const root = selector ? document.querySelector(selector) : document;
+    if (!root) return { total: 0, ok44: 0, ok24: 0, inlineText: 0, below44: [], below24: [], pass: false, missing: true };
+    const els = Array.from(root.querySelectorAll("a[href], button, input, summary, [role=button]"));
+    const res = { total: 0, ok44: 0, ok24: 0, inlineText: 0, below44: [], below24: [] };
+    for (const el of els) {
+      const r = el.getBoundingClientRect(); const s = getComputedStyle(el);
+      if (r.width === 0 || r.height === 0 || s.visibility === "hidden" || s.display === "none") continue;
+      const desc = el.tagName.toLowerCase() + " '" + (el.getAttribute("aria-label") || el.textContent || el.value || "").trim().slice(0, 24) + "' " + Math.round(r.width) + "x" + Math.round(r.height);
+      const inline = el.tagName === "A" && s.display === "inline" && el.parentElement && /^(P|LI)$/.test(el.parentElement.tagName);
+      if (inline) { res.inlineText++; continue; }
+      res.total++;
+      if (r.width >= 44 && r.height >= 44) res.ok44++; else res.below44.push(desc);
+      if (r.width >= 24 && r.height >= 24) res.ok24++; else res.below24.push(desc);
+    }
+    res.pass = res.below44.length === 0 && res.below24.length === 0;
+    return res;
+  }, rootSelector);
+  const sp = await browser.newContext(SP); const spPage = await sp.newPage();
+  await spPage.goto(BASE + CATEGORY, { waitUntil: "networkidle" }); await spPage.waitForTimeout(300);
+  out.tap.categorySp = await audit(spPage, ".wt-category");
+  const pc = await browser.newContext(PC); const pcPage = await pc.newPage();
+  await pcPage.goto(BASE + CATEGORY, { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  out.tap.categoryPc = await audit(pcPage, ".wt-category");
+  const paginationLinks = await pcPage.$$eval(".wt-cat-pagination a[href]", (links) => links.map((a) => a.href));
+  const paginationStatuses = await pcPage.evaluate(async (hrefs) => Promise.all(hrefs.map(async (href) => { try { const r = await fetch(href, { credentials: "same-origin" }); return { href, status: r.status }; } catch (e) { return { href, status: 0 }; } })), paginationLinks);
+  out.categoryPagination = { links: paginationStatuses, pass: paginationStatuses.length > 0 && paginationStatuses.every((x) => x.status === 200) };
+
+  // 著者ボックス avatar-bio-sns の SNS リンク（44px 基準、SP / PC）
+  const authorUrl = ARTICLE + "?wt=tail_author:avatar-bio-sns";
+  await spPage.goto(BASE + authorUrl, { waitUntil: "networkidle" }); await spPage.waitForTimeout(300);
+  out.tap.authorSnsSp = await audit(spPage, ".wt-tail__slot--author");
+  await pcPage.goto(BASE + authorUrl, { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  out.tap.authorSnsPc = await audit(pcPage, ".wt-tail__slot--author");
+  // JS 有効時の load-more 実動: ボタン表示・番号送り非表示 → クリックで次ページの記事が追記される
+  await pcPage.goto(BASE + CATEGORY + "?wt=cat_pagination:load-more", { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  {
+    const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && !el.hidden; };
+    const before = await pcPage.evaluate(() => ({ items: document.querySelectorAll(".wt-cat-list > li").length, buttonVisible: (() => { const b = document.querySelector(".wt-load-more"); if (!b) return false; const r = b.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(b).display !== "none" && !b.hidden; })(), paginationVisible: (() => { const p = document.querySelector(".wt-cat-pagination"); if (!p) return false; const r = p.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(p).display !== "none"; })(), nextHref: document.querySelector(".wt-cat-pagination a.wp-block-query-pagination-next")?.href || null }));
+    let after = { items: before.items, error: null };
+    if (before.buttonVisible) {
+      await pcPage.click(".wt-load-more");
+      try { await pcPage.waitForFunction((n) => document.querySelectorAll(".wt-cat-list > li").length > n, before.items, { timeout: 8000 }); } catch (e) { after.error = "timeout"; }
+      await pcPage.waitForTimeout(300);
+      after = { ...after, ...(await pcPage.evaluate(() => { const b = document.querySelector(".wt-load-more"); const r = b ? b.getBoundingClientRect() : null; const s = b ? getComputedStyle(b) : null; return { items: document.querySelectorAll(".wt-cat-list > li").length, buttonText: b?.textContent.trim(), buttonHidden: !!b?.hidden, buttonDisplay: s?.display, buttonRect: r ? [Math.round(r.width), Math.round(r.height)] : null, buttonVisible: !!(b && r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"), nextLinkRemains: !!document.querySelector(".wt-cat-pagination a.wp-block-query-pagination-next"), bodyStillLoadMore: document.body.classList.contains("wt-cat-pagination-load-more") }; })) };
+    }
+    // 総件数 = カテゴリの投稿数（一覧 1 ページ目 + 追記）。本 PoC データは 17 件・1 ページ 10 件 → 1 回で最終ページ。最終ページ後はボタンが computed で非表示であること
+    out.loadMoreJs = { before, after, added: after.items - before.items, pass: before.buttonVisible && !before.paginationVisible && !!before.nextHref && after.items > before.items && after.bodyStillLoadMore === true && after.error === null && after.buttonVisible === false };
+  }
+
+  // share:float と footer_totop:button の併用で固定ボタンが重ならない（SP / PC）。両方とも position:fixed なので最下部へスクロールしてから矩形を比較
+  out.fixedOverlap = {};
+  for (const [dev, page] of [["sp", spPage], ["pc", pcPage]]) {
+    await page.goto(BASE + ARTICLE + "?wt=share:float,footer_totop:button", { waitUntil: "networkidle" }); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(400);
+    out.fixedOverlap[dev] = await page.evaluate(() => {
+      const rect = (el) => { const r = el.getBoundingClientRect(); return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) }; };
+      const share = document.querySelector(".wt-share--float"); const top = document.querySelector(".wt-totop");
+      if (!share || !top) return { missing: true, pass: false };
+      const a = rect(share), b = rect(top); const visible = (r) => r.w > 0 && r.h > 0;
+      const intersects = a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+      const buttons = Array.from(share.querySelectorAll("button")).map(rect);
+      const vw = innerWidth, vh = innerHeight; const inViewport = (r) => r.x >= 0 && r.y >= 0 && r.x + r.w <= vw && r.y + r.h <= vh;
+      // クリック到達: 各ボタンの中心点で elementFromPoint がそのボタン（または子孫）であること
+      const reach = (el) => { const r = el.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!hit && (hit === el || el.contains(hit)); };
+      const reachable = [...share.querySelectorAll("button"), top].map(reach);
+      return { share: a, shareButtons: buttons, totop: b, intersects, reachable, inViewport: inViewport(a) && inViewport(b), pass: visible(a) && visible(b) && !intersects && reachable.every(Boolean) };
+    });
+  }
+
+  const footerUrl = ARTICLE + "?wt=footer_extra:all,footer_totop:button";
+  await spPage.goto(BASE + footerUrl, { waitUntil: "networkidle" }); await spPage.waitForTimeout(300);
+  out.tap.footerSp = await audit(spPage, ".wt-footer");
+  await pcPage.goto(BASE + footerUrl, { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  out.tap.footerPc = await audit(pcPage, ".wt-footer");
+  out.footerContrast = await pcPage.evaluate(() => {
+    const root = document.querySelector(".wt-footer");
+    if (!root) return { items: [], pass: false, missing: true };
+    const parse = (s) => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(",").map(Number); return { rgb: p.slice(0, 3), a: p[3] ?? 1 }; };
+    const lum = (rgb) => { const f = (c) => { c /= 255; return c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); }; return .2126 * f(rgb[0]) + .7152 * f(rgb[1]) + .0722 * f(rgb[2]); };
+    const ratio = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+    const bg = parse(getComputedStyle(root).backgroundColor);
+    if (!bg) return { items: [], pass: false, missing: true };
+    const selectors = [
+      [".wt-footer__brand .wp-block-site-title", "brand"],
+      [".wt-footer__sitemap summary", "sitemap summary"],
+      [".wt-footer__sitemap a", "sitemap link"],
+      [".wt-footer__legal--links p", "legal copyright"],
+      [".wt-footer__legal--links a", "legal link"],
+      [".wt-footer-extra-slot--sns h2, .wt-footer-extra-slot--sites h2, .wt-footer-extra-slot--badges h2, .wt-footer-extra-slot--address h2", "extra heading"],
+      [".wt-footer-extra-slot--sns a", "social icon"],
+      [".wt-footer-extra-slot--sites a", "related site"],
+      [".wt-footer-extra-slot--badges span", "badge"],
+      [".wt-footer-extra-slot--address address", "address"],
+      [".wt-totop", "to top"],
+    ];
+    // 要素自身の実効背景（丸アイコン・to-top ボタンのように自前の背景色を持つ要素は footer 背景でなくそれと比較する）
+    const effectiveBg = (el) => { for (let n = el; n && n !== root.parentElement; n = n.parentElement) { const b = parse(getComputedStyle(n).backgroundColor); if (b && b.a > 0) return b; } return bg; };
+    const items = [];
+    for (const [selector, label] of selectors) for (const el of root.querySelectorAll(selector)) {
+      const s = getComputedStyle(el), c = parse(s.color); if (!c) continue;
+      const r = ratio(lum(c.rgb), lum(effectiveBg(el).rgb)); const large = parseFloat(s.fontSize) >= 24 || (parseFloat(s.fontSize) >= 18.67 && parseInt(s.fontWeight) >= 700);
+      items.push({ label, selector, ratio: Math.round(r * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) });
+    }
+    return { background: getComputedStyle(root).backgroundColor, items, pass: items.length > 0 && items.every((item) => item.pass) };
+  });
+
+  const noJsFooter = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJsFooterPage = await noJsFooter.newPage();
+  await noJsFooterPage.goto(BASE + ARTICLE, { waitUntil: "load" });
+  out.footerNoJs = await noJsFooterPage.evaluate(() => {
+    const details = Array.from(document.querySelectorAll(".wt-footer__sitemap details"));
+    const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none"; };
+    const contentsVisible = details.every((d) => visible(d.querySelector("ul")));
+    return { details: details.length, open: details.filter((d) => d.open).length, contentsVisible, pass: details.length > 0 && details.every((d) => d.open) && contentsVisible };
+  });
+  await noJsFooter.close(); await noJsFooterPage.close().catch(() => {});
+
+  const noJsLoadMore = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJsLoadMorePage = await noJsLoadMore.newPage();
+  await noJsLoadMorePage.goto(BASE + CATEGORY + "?wt=cat_pagination:load-more", { waitUntil: "load" });
+  out.loadMoreNoJs = await noJsLoadMorePage.evaluate(() => {
+    const pagination = document.querySelector(".wt-cat-pagination"); const button = document.querySelector(".wt-load-more");
+    const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none"; };
+    const numbers = document.querySelectorAll(".wt-cat-pagination .wp-block-query-pagination-numbers a, .wt-cat-pagination .wp-block-query-pagination-numbers span").length;
+    return { paginationVisible: visible(pagination), buttonVisible: visible(button), numbers, pass: visible(pagination) && !visible(button) && numbers > 0 };
+  });
+  await noJsLoadMore.close(); await noJsLoadMorePage.close().catch(() => {});
+
+  await pcPage.goto(BASE + CATEGORY + "?wt=cat_header:hero", { waitUntil: "networkidle" }); await pcPage.waitForTimeout(300);
+  // hero: 段 1 の guard と同じ方式。文字矩形ごとに (a) ::before の linear-gradient（角度付き）を gradient 軸へ射影して実効 α（矩形 4 隅の最小）、
+  // (b) 背景画像（background-size: cover）を canvas に描いて文字矩形の平均 / 最大輝度、(c) 実色の輝度 Lt を取り、合成 Lc = L×(1−α) + Lscrim×α との比で判定
+  out.categoryHeroContrast = await pcPage.evaluate(async () => {
+    const head = document.querySelector(".wt-cat-head"); if (!head) return { missing: true, pass: false };
+    const parse = (str) => { const m = str.match(/rgba?\(([^)]+)\)/); if (!m) return null; const c = m[1].split(",").map(Number); return { rgb: c.slice(0, 3), a: c[3] ?? 1 }; };
+    const f = (v) => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+    const lum = (rgb) => .2126 * f(rgb[0]) + .7152 * f(rgb[1]) + .0722 * f(rgb[2]);
+    const ratio = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+    const hs = getComputedStyle(head); const url = (hs.backgroundImage.match(/url\("?([^")]+)"?\)/) || [])[1] || null;
+    const scrim = getComputedStyle(head, "::before").backgroundImage;
+    const stops = Array.from(scrim.matchAll(/rgba?\(([^)]+)\)(?:\s+([\d.]+)%)?/g)).map((m) => { const c = m[1].split(",").map(Number); return { rgb: c.slice(0, 3), a: c[3] ?? 1, pos: m[2] != null ? parseFloat(m[2]) / 100 : null }; });
+    if (!stops.length || !url) return { missing: true, scrim, url, pass: false };
+    if (stops[0].pos == null) stops[0].pos = 0; if (stops[stops.length - 1].pos == null) stops[stops.length - 1].pos = 1;
+    for (let i = 1; i < stops.length - 1; i++) if (stops[i].pos == null) stops[i].pos = stops[i - 1].pos + (1 - stops[i - 1].pos) / (stops.length - i); // 位置省略は等分
+    const angle = parseFloat((scrim.match(/linear-gradient\(\s*(-?[\d.]+)deg/) || [])[1] ?? "180");
+    const er = head.getBoundingClientRect(); const th = angle * Math.PI / 180; const dx = Math.sin(th), dy = -Math.cos(th);
+    const len = Math.abs(er.width * dx) + Math.abs(er.height * dy); const cx0 = er.left + er.width / 2, cy0 = er.top + er.height / 2;
+    const frac = (x, y) => ((x - cx0) * dx + (y - cy0) * dy) / len + .5;
+    const alphaAt = (p) => { if (p <= stops[0].pos) return stops[0].a; for (let i = 1; i < stops.length; i++) if (p <= stops[i].pos) { const s0 = stops[i - 1], s1 = stops[i]; return s0.a + (s1.a - s0.a) * ((p - s0.pos) / (s1.pos - s0.pos)); } return stops[stops.length - 1].a; };
+    const img = new Image(); img.src = url; try { await img.decode(); } catch (e) { return { missing: true, url, error: "image decode", pass: false }; }
+    const cv = document.createElement("canvas"); cv.width = img.naturalWidth; cv.height = img.naturalHeight; const cx = cv.getContext("2d"); cx.drawImage(img, 0, 0);
+    const scale = Math.max(er.width / img.naturalWidth, er.height / img.naturalHeight); const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale, ox = er.left + (er.width - dw) / 2, oy = er.top + (er.height - dh) / 2; // cover・center
+    const scrimL = lum(stops[0].rgb);
+    const measure = (t, label) => {
+      const tr = t.getBoundingClientRect(); const ts = getComputedStyle(t); const tc = parse(ts.color);
+      const alphas = [[tr.left, tr.top], [tr.right, tr.top], [tr.left, tr.bottom], [tr.right, tr.bottom]].map(([x, y]) => alphaAt(frac(x, y))); const alpha = Math.min(...alphas);
+      const sx = Math.max(0, (tr.left - ox) / scale), sy = Math.max(0, (tr.top - oy) / scale), sw = Math.min(img.naturalWidth - sx, tr.width / scale), sh = Math.min(img.naturalHeight - sy, tr.height / scale);
+      const d = cx.getImageData(Math.floor(sx), Math.floor(sy), Math.max(1, Math.floor(sw)), Math.max(1, Math.floor(sh))).data;
+      let sum = 0, n = 0, lmax = 0; for (let i = 0; i < d.length; i += 4) { const L = lum([d[i], d[i + 1], d[i + 2]]); sum += L; n++; lmax = Math.max(lmax, L); }
+      const L = sum / n, Lt = lum(tc.rgb), Lc = L * (1 - alpha) + scrimL * alpha, LcMax = lmax * (1 - alpha) + scrimL * alpha;
+      const large = parseFloat(ts.fontSize) >= 24 || (parseFloat(ts.fontSize) >= 18.67 && parseInt(ts.fontWeight) >= 700); const r = ratio(Lt, Lc);
+      return { label, textColor: ts.color, fontSize: parseFloat(ts.fontSize), fontWeight: ts.fontWeight, alphaAtText: Math.round(alpha * 1000) / 1000, imageLAtText: Math.round(L * 1000) / 1000, imageLMaxAtText: Math.round(lmax * 1000) / 1000, compositeL: Math.round(Lc * 1000) / 1000, textL: Math.round(Lt * 1000) / 1000, ratioText: Math.round(r * 100) / 100, ratioWorstPixel: Math.round(ratio(Lt, LcMax) * 100) / 100, ratioWithoutScrim: Math.round(ratio(Lt, L) * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) };
+    };
+    const items = [measure(head.querySelector("h1"), "h1")]; const desc = head.querySelector(".wt-cat-head__desc"); if (desc) items.push(measure(desc, "description"));
+    return { image: url.split("/").slice(-2).join("/"), gradient: scrim.slice(0, 140), angle, scrimRgb: stops[0].rgb, items, pass: items.every((i) => i.pass) };
+  });
+  const reduce = await browser.newContext({ ...SP, reducedMotion: "reduce" }); const reducePage = await reduce.newPage();
+  await reducePage.goto(BASE + CATEGORY + "?wt=footer_totop:button", { waitUntil: "networkidle" }); await reducePage.waitForTimeout(300);
+  out.reducedMotion.categoryFooter = await reducePage.evaluate(() => {
+    const card = document.querySelector(".wt-cat-card"); const top = document.querySelector(".wt-totop"); const footer = document.querySelector(".wt-footer");
+    if (!card || !top || !footer) return { missing: true, pass: false };
+    const cardStyle = getComputedStyle(card); const topStyle = getComputedStyle(top); const footerStyle = getComputedStyle(footer);
+    const noTransition = (style) => style.transitionProperty === "none" || style.transitionDuration === "0s";
+    return { cardTransition: cardStyle.transitionProperty, topTransition: topStyle.transitionProperty, footerTransition: footerStyle.transitionProperty, pass: noTransition(cardStyle) && noTransition(topStyle) && noTransition(footerStyle) };
+  });
+  await reduce.close();
+  await sp.close(); await pc.close();
+}
+
+// 9. 結果の集計（既存 gate と段 3 gate を同じ verify.json に固定する）
+out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
+out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
+out.reducedMotion.pass = out.reducedMotion.revealHidden === 0 && out.reducedMotion.categoryFooter.pass;
+// 段 1/2 の検査も合否を持たせる（コントラスト 11 項目、guard 12 判定、タップ監査 4 画面、見出し 1 行）
+out.contrastPass = out.contrast.length > 0 && out.contrast.every((x) => !x.missing && x.pass);
+out.contrastGuardPass = out.contrastGuard.length > 0 && out.contrastGuard.every((x) => x.pass === true);
+for (const k of ["article", "article-announce", "404", "catalog"]) out.tap[k].pass = out.tap[k].below44.length === 0 && out.tap[k].below24.length === 0;
+out.headline.pass = out.headline.lines === 1;
+const checkList = [
+  ["noJs", out.noJs.pass], ["reducedMotion", out.reducedMotion.pass], ["status404", out.status404.pass], ["table", out.table.pass], ["toc", out.toc.pass],
+  ["contrast", out.contrastPass], ["contrastGuard", out.contrastGuardPass], ["headline", out.headline.pass],
+  ["articleTapSp", out.tap.article.pass], ["articleAnnounceTapSp", out.tap["article-announce"].pass], ["notFoundTapSp", out.tap["404"].pass], ["catalogTapSp", out.tap.catalog.pass],
+  ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["authorSnsTapSp", out.tap.authorSnsSp.pass], ["authorSnsTapPc", out.tap.authorSnsPc.pass],
+  ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],
+];
+out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
+out.pass = out.summary.fail === 0;
 await browser.close();
 fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
 console.log(JSON.stringify(out, null, 1));
