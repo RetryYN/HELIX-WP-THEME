@@ -318,8 +318,8 @@ LP は「サービス / SaaS LP」向けの型を主に採り、比較媒体の 
 
 | フィールド | total | ok44 | ok24 | inlineText | pass |
 |---|---|---|---|---|---|
-| `tap.lpSp` | 36 | 36 | 36 | 1 | true |
-| `tap.lpPc` | 36 | 36 | 36 | 1 | true |
+| `tap.lpSp` | 24 | 24 | 24 | 1 | true |
+| `tap.lpPc` | 24 | 24 | 24 | 1 | true |
 
 表示色（`lpContrast`）: 下表は各 `styles[].items[]` の記録順で、index は 0 起点。同じ label の要素も省略せず、文字の実色 `color` と実効背景 `background`、`ratio`、判定しきい値 `required` を項目ごとに記載した。比は `:1`、各 style と `lpContrast` 全体も `pass: true`。
 
@@ -462,6 +462,14 @@ LCP の目安（`lpLcpHero`）: hero の可視性と画像の `attrs` は次の�
 - 軽微: `patterns/lp.php:112` の比較セクション内 `.wt-lp-section-inner` の閉じ `</div>` 欠落を追加した。`php -l` 通過、レンダリング後の DOM で当該 `<div class="wp-block-group wt-lp-section-inner">` が正しく `</section>` の前で閉じることを確認した。
 
 是正後の実機再実行（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**（既存 37 + 新規 3）、総合 `pass: true`。`shots.mjs --stage4` の再撮影は既存 311 枚と一致し、差分 0 枚だった（本是正は body class の追加条件と CSS セレクタ限定・PHP マークアップの閉じタグ追加のみで、既定描画・見た目には変化がないため）。
+
+### Astra 2巡目是正（head 5d3bb62 に対するレビュー、指摘 改善2・軽微1。重大なし・merge可の判定を維持）
+
+- 改善: `lpVisibleAnchors` は「表示中の全リンクが href 先を持つ」ことしか検査しておらず、副 CTA そのものが1本も表示されていない・別 variant の href のまま残っている、といった消失を検出できなかった（保存済みリンク集合から副 CTA だけを除いても同じ判定なら合格してしまう）。`scripts/verify.mjs` の `lpVisibleAnchors` に `.wt-lp-cta-action--secondary[data-lp-cta-target]` を直接クエリする検査を追加し、構成ごとに「可視な副 CTA が **ちょうど1本**」かつ「その `href` が期待値（full→`#comparison` / short→`#pricing` / trust→`#voices`）と一致」することを合格条件に加えた（`secondaryButtons` / `expectedHref` / `secondaryPass` を記録）。
+- 改善: `lpFaceScopedTotop` は非 null・前後一致のみを見ており、両方が同じ非既定値（例 68px）でも合格し、かつ `share:float` を明示回避していなかったため、サイト既定（`share` の既定値）次第で問題の CSS 分岐を踏まずに合格できる余地があった。記事面の計測を `share:topbottom`（float ではない）に固定し、判定を「`baseline` と `withLpFixed` がともに `"16px"`（`theme.css:631` の `.wt-totop{bottom:1rem}` = 16px という既定値そのもの）と一致」に変更した。
+- 軽微: README §2.13 のタップ数（`tap.lpSp` / `tap.lpPc`）が「36 / 36 / 36」のまま古く、`results/verify.json` の実データ（total 24・ok44 24・ok24 24）と不一致だった。表を実データへ修正し、他の掲載数値（`lpContrast` 各 style 21 件、`lpFullbleedContrast`、`lpAnchorNav`、`lpSections`、`lpFixedOverlap.sp`/`.pc`、`lpLcpHero`）も `results/verify.json` と全件照合し、一致を確認した（不一致はタップ数のみ）。
+
+是正後の実機再実行（`results/verify.json`）: `summary` 40 項目 **pass 40 / fail 0**、総合 `pass: true`（項目数は前回是正から変わらず、検査条件のみ強化）。`shots.mjs --stage4` の再撮影は既存 311 枚の MD5 と一致し、差分 0 枚だった（本是正は `verify.mjs` の検査条件強化と README の数値修正のみで、テーマの PHP / CSS には変更がないため）。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 

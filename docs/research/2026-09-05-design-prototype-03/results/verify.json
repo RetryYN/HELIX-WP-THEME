@@ -2108,6 +2108,11 @@
       "targetVisible": true
      }
     ],
+    "secondaryButtons": [
+     "#comparison"
+    ],
+    "expectedHref": "#comparison",
+    "secondaryPass": true,
     "pass": true
    },
    {
@@ -2168,6 +2173,11 @@
       "targetVisible": true
      }
     ],
+    "secondaryButtons": [
+     "#pricing"
+    ],
+    "expectedHref": "#pricing",
+    "secondaryPass": true,
     "pass": true
    },
    {
@@ -2210,6 +2220,11 @@
       "targetVisible": true
      }
     ],
+    "secondaryButtons": [
+     "#voices"
+    ],
+    "expectedHref": "#voices",
+    "secondaryPass": true,
     "pass": true
    }
   ],
@@ -2218,6 +2233,7 @@
  "lpFaceScopedTotop": {
   "baseline": "16px",
   "withLpFixed": "16px",
+  "expected": "16px",
   "pass": true
  },
  "contrastPass": true,

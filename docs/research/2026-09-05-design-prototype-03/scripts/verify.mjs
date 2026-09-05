@@ -528,10 +528,12 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   out.lpFooterFaceDefault.pass = out.lpFooterFaceDefault.lpHasFace && out.lpFooterFaceDefault.lpHasSingleRow && !out.lpFooterFaceDefault.articleHasFace && !out.lpFooterFaceDefault.articleHasSingleRow && out.lpFooterFaceDefault.articleHasSitemap;
 
   // double CTA の副ボタン: short / trust で比較セクションが非表示になる組み合わせでも、表示中の全アンカー（hero CTA を含む）の遷移先が存在し可視であること。
+  // 構成ごとの期待遷移先（副 CTA は full → 比較表 / short → 料金 / trust → 声、のはずが消失していないかを検査する）
+  const expectedSecondaryHref = { full: "#comparison", short: "#pricing", trust: "#voices" };
   out.lpVisibleAnchors = { variants: [] };
   for (const variant of ["full", "short", "trust"]) {
     await lpPcPage.goto(BASE + LP + `?wt=lp_hero_cta:double,lp_sections:${variant}`, { waitUntil: "networkidle" }); await lpPcPage.waitForTimeout(300);
-    const result = await lpPcPage.evaluate(() => {
+    const result = await lpPcPage.evaluate((expectedHref) => {
       const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"; };
       // href="#"（フラグメント空）は共有アイコン等の placeholder リンクで、ページ内遷移を意図しないため対象外。実際にセクションを指すリンクだけを検査する。
       const links = Array.from(document.querySelectorAll("a[href^='#']")).filter((a) => a.getAttribute("href") !== "#").filter(visible).map((a) => {
@@ -539,22 +541,28 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
         const target = document.getElementById(targetId);
         return { href: a.getAttribute("href"), targetId, targetExists: !!target, targetVisible: visible(target) };
       });
-      return { links, pass: links.length > 0 && links.every((l) => l.targetExists && l.targetVisible) };
-    });
+      // double CTA の副ボタン自体が消失していないか（可視本数・href）を直接検査する。可視リンク全体の存在チェックだけでは、
+      // 副ボタンを除いた集合でも他のリンクが揃っていれば合格してしまうため、ここを分けて明示的に assert する。
+      const secondaryButtons = Array.from(document.querySelectorAll(".wt-lp-cta-action--secondary[data-lp-cta-target]")).filter(visible).map((a) => a.getAttribute("href"));
+      const secondaryPass = secondaryButtons.length === 1 && secondaryButtons[0] === expectedHref;
+      return { links, secondaryButtons, expectedHref, secondaryPass, pass: links.length > 0 && links.every((l) => l.targetExists && l.targetVisible) && secondaryPass };
+    }, expectedSecondaryHref[variant]);
     out.lpVisibleAnchors.variants.push({ variant, ...result });
   }
   out.lpVisibleAnchors.pass = out.lpVisibleAnchors.variants.length === 3 && out.lpVisibleAnchors.variants.every((item) => item.pass);
 
   await lpSpCtx.close(); await lpPcCtx.close();
 
-  // LP 面限定の to-top 配置: 非 LP 面（記事）で lp_fixed:sp-bottom-bar を指定しても .wt-totop の bottom が既定から変わらない（SP）。
+  // LP 面限定の to-top 配置: 非 LP 面（記事）で lp_fixed:sp-bottom-bar を指定しても .wt-totop の bottom が既定（16px = 1rem、
+  // theme.css:631 の .wt-totop{bottom:1rem}）から変わらないことを、SP・share:topbottom（float ではない）固定で確認する。
   {
     const totopCtx = await browser.newContext(SP); const totopPage = await totopCtx.newPage();
-    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button", { waitUntil: "networkidle" });
+    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button,share:topbottom", { waitUntil: "networkidle" });
     const baseline = await totopPage.evaluate(() => { const el = document.querySelector(".wt-totop"); return el ? getComputedStyle(el).bottom : null; });
-    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button,lp_fixed:sp-bottom-bar", { waitUntil: "networkidle" });
+    await totopPage.goto(BASE + ARTICLE + "?wt=footer_totop:button,share:topbottom,lp_fixed:sp-bottom-bar", { waitUntil: "networkidle" });
     const withLpFixed = await totopPage.evaluate(() => { const el = document.querySelector(".wt-totop"); return el ? getComputedStyle(el).bottom : null; });
-    out.lpFaceScopedTotop = { baseline, withLpFixed, pass: baseline !== null && baseline === withLpFixed };
+    const expected = "16px";
+    out.lpFaceScopedTotop = { baseline, withLpFixed, expected, pass: baseline === expected && withLpFixed === expected };
     await totopCtx.close();
   }
 }
