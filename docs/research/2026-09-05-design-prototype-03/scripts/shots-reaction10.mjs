@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // shots-reaction10.mjs — 2026-09-06 PO 反応 17 回目（WT-EVT-0270〜0276）の撮影。
 // 新規 22 枚: ヘッダー PC 5 型（center / two-rows / tel / band / overlay）+ SP 5 型（band / overlay / hamburger-cta / text-nav / center-logo）+ h2 numbox×h3 num 連動 ×2 + グラフ 5 型 ×2。
-// 同名置換 100 枚: announce ×2（全幅化）、lp-line 2 型 ×2 + line-sticky ×2（アイコン）、tail-share-icons-row ×2 と footer 29 型 ×2（SNS グリフ）、
+// 同名置換 98 枚（合計 120）: announce ×2（全幅化）、lp-line 2 型 ×2 + line-sticky ×2（アイコン）、tail-share-icons-row ×2 と footer 28 型 ×2（SNS グリフ）、
 //   関連グリッドを含む shot（related 5 型・tail-order 3 型・tail-prevnext 2 型・tail-share-none・tail-author-none・axis-depth-tail 2 状態・axis-motion 2 状態 ×2 = 32 枚。fixture 投稿の除外）。
 // 撮影は一時 dir → 予定集合との完全一致 → 退避 → 配置 → INDEX を try 内で原子的に置換 → 失敗時復元 → finally 清掃（reaction7〜9 と同方式）。
 import fs from "node:fs";
@@ -27,9 +27,21 @@ function toJpeg(png, jpg) {
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", png, "-vf", "scale='if(gte(iw,ih),min(1600,iw),-2)':'if(gte(iw,ih),-2,min(1600,ih))'", "-q:v", "5", jpg]);
   fs.unlinkSync(png);
 }
+// 同時実行保護（Astra 是正）: 同じ results/ に対する置換が並走しないよう O_EXCL でロックファイルを作る。
+// 残っていれば前回が強制終了したと見なし、退避ディレクトリ（.reaction10-backup-*）の有無を確認してから手で消す運用にする。
+const LOCK = path.join(OUT, ".reaction10.lock");
+let lockFd = null;
+try { lockFd = fs.openSync(LOCK, "wx"); fs.writeSync(lockFd, String(process.pid)); } catch (e) { throw new Error(`ロックファイルが存在します（別の撮影が実行中か、前回が強制終了）。退避 dir を確認してから削除してください: ${LOCK}`); }
 const TMP = fs.mkdtempSync(path.join(OUT, ".reaction10-capture-"));
+// 画像の読込を待ち、読込失敗（complete だが naturalWidth 0）や 3 秒のタイムアウトは撮影失敗として例外にする（Astra 是正: 成功扱いにしない）
 const waitImgs = async (page, sel) => {
-  await page.evaluate(async (sel) => { const root = document.querySelector(sel); const imgs = Array.from(root ? root.querySelectorAll("img") : []); imgs.forEach((i) => { i.loading = "eager"; }); await Promise.all(imgs.map((i) => i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 3000); }))); }, sel);
+  const bad = await page.evaluate(async (sel) => {
+    const root = sel ? document.querySelector(sel) : document; const imgs = Array.from(root ? root.querySelectorAll("img") : []);
+    imgs.forEach((i) => { i.loading = "eager"; });
+    const results = await Promise.all(imgs.map((i) => i.complete ? Promise.resolve(i.naturalWidth > 0 ? "ok" : "error") : new Promise((r) => { i.onload = () => r("ok"); i.onerror = () => r("error"); setTimeout(() => r("timeout"), 3000); })));
+    return results.map((state, idx) => ({ state, src: (imgs[idx].currentSrc || imgs[idx].src || "").split("/").pop() })).filter((x) => x.state !== "ok");
+  }, sel || null);
+  if (bad.length) throw new Error(`画像の読込に失敗または待機超過: ${bad.map((b) => `${b.src}(${b.state})`).join(", ")}`);
 };
 async function save(page, name, meta, opts = {}) {
   const png = path.join(TMP, name + ".png"), jpg = path.join(TMP, name + ".jpg");
@@ -54,8 +66,8 @@ async function save(page, name, meta, opts = {}) {
       await page.waitForTimeout(150);
       await el.screenshot({ path: png });
     }
-  } else if (opts.viewportOnly) await page.screenshot({ path: png });
-  else await page.screenshot({ path: png, fullPage: true });
+  } else if (opts.viewportOnly) { await waitImgs(page, null); await page.screenshot({ path: png }); }
+  else { await waitImgs(page, null); await page.screenshot({ path: png, fullPage: true }); }
   toJpeg(png, jpg);
   if (!fs.statSync(jpg).size) throw new Error(`空の JPEG: ${jpg}`);
   index.push({ file: name + ".jpg", ...meta });
@@ -193,8 +205,10 @@ const planned = new Set([...NEW_FILES, ...REPLACE_FILES]);
 if (planned.size !== NEW_FILES.length + REPLACE_FILES.length) throw new Error("予定集合に重複があります");
 const known = new Set(existing.map((entry) => entry.file));
 const notKnown = REPLACE_FILES.filter((f) => !known.has(f));
+// 新規予定は初回は未登録、再実行（Astra 是正後の撮り直し）では登録済みになる。どちらも許容し、置換予定の未登録だけを前提違反とする
 const alreadyKnown = NEW_FILES.filter((f) => known.has(f));
-if (notKnown.length || alreadyKnown.length) throw new Error(`INDEX との前提が違います。置換予定だが未登録: ${notKnown.join(", ") || "なし"} / 新規予定だが登録済み: ${alreadyKnown.join(", ") || "なし"}`);
+if (notKnown.length) throw new Error(`INDEX との前提が違います。置換予定だが未登録: ${notKnown.join(", ")}`);
+console.log(`新規予定 ${NEW_FILES.length} 枚のうち登録済み（再実行）: ${alreadyKnown.length}`);
 const captured = new Set(index.map((entry) => entry.file));
 const missing = [...planned].filter((f) => !captured.has(f));
 const unknown = [...captured].filter((f) => !planned.has(f));
@@ -246,4 +260,5 @@ try {
   await main();
 } finally {
   try { fs.rmSync(TMP, { recursive: true, force: true }); } catch (cleanupError) { console.error(`一時ディレクトリの削除に失敗しました: ${TMP}`, cleanupError); }
+  try { if (lockFd !== null) fs.closeSync(lockFd); fs.rmSync(LOCK, { force: true }); } catch (lockError) { console.error(`ロックファイルの削除に失敗しました: ${LOCK}`, lockError); }
 }

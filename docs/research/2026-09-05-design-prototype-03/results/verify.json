@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.833883)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884633)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -11638,6 +11638,7 @@
   "results": [
    {
     "dev": "pc",
+    "js": true,
     "variant": "center",
     "body": true,
     "headerVisible": true,
@@ -11647,21 +11648,39 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(255, 255, 255)",
     "visibleLinks": 4,
-    "taps": 5,
+    "controls": 5,
     "below44": [],
     "titleCenterDx": 0,
     "hamburgerVisible": false,
     "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": true,
+    "navlineLinks": 4,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 327,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "pc",
+    "js": true,
     "variant": "two-rows",
     "body": true,
     "headerVisible": true,
@@ -11671,21 +11690,41 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(244, 246, 249)",
     "visibleLinks": 6,
-    "taps": 10,
+    "controls": 10,
     "below44": [],
     "titleCenterDx": -623,
     "hamburgerVisible": false,
     "searchVisible": false,
+    "pcSearchVisible": true,
+    "ctaVisible": true,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": true,
+    "navlineLinks": 6,
+    "navbandVisible": true,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 326,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "pc",
+    "js": true,
     "variant": "tel",
     "body": true,
     "headerVisible": true,
@@ -11695,26 +11734,39 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(255, 255, 255)",
-    "visibleLinks": 4,
-    "taps": 7,
-    "below44": [
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content"
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
     ],
+    "linkBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "controls": 7,
+    "below44": [],
     "titleCenterDx": -623,
     "hamburgerVisible": false,
     "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": true,
+    "telVisible": true,
+    "telHref": "tel:0000000000",
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 265,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "pc",
+    "js": true,
     "variant": "band",
     "body": true,
     "headerVisible": true,
@@ -11724,26 +11776,39 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(29, 78, 216)",
-    "visibleLinks": 4,
-    "taps": 7,
-    "below44": [
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content"
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)"
     ],
+    "linkBg": "rgb(29, 78, 216)",
+    "visibleLinks": 4,
+    "controls": 7,
+    "below44": [],
     "titleCenterDx": -623,
     "hamburgerVisible": false,
     "searchVisible": false,
+    "pcSearchVisible": true,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 265,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "pc",
+    "js": true,
     "variant": "overlay",
     "body": true,
     "headerVisible": true,
@@ -11753,26 +11818,39 @@
     "titleShadow": "rgba(0, 0, 0, 0.45) 0px 1px 2px",
     "position": "absolute",
     "headerBg": "rgba(0, 0, 0, 0)",
-    "visibleLinks": 4,
-    "taps": 5,
-    "below44": [
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content",
-     "wp-block-navigation-item__content"
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)"
     ],
+    "linkBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "controls": 5,
+    "below44": [],
     "titleCenterDx": -623,
     "hamburgerVisible": false,
     "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
-    "heroTop": 16,
+    "announce": null,
+    "heroTop": 0,
+    "scrim": "linear-gradient(rgba(0, 0, 0, 0.82) 0px, rgba(0, 0, 0, 0.82) 72px, rgba(0, 0, 0, 0) 40%), linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.15) 100%)",
+    "textOnHero": true,
     "pass": true
    },
    {
     "dev": "sp",
+    "js": true,
     "variant": "band",
     "body": true,
     "headerVisible": true,
@@ -11782,21 +11860,34 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(29, 78, 216)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
     "visibleLinks": 0,
-    "taps": 3,
+    "controls": 3,
     "below44": [],
     "titleCenterDx": -120,
     "hamburgerVisible": true,
     "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 279,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "sp",
+    "js": true,
     "variant": "overlay",
     "body": true,
     "headerVisible": true,
@@ -11806,21 +11897,34 @@
     "titleShadow": "rgba(0, 0, 0, 0.45) 0px 1px 2px",
     "position": "absolute",
     "headerBg": "rgba(0, 0, 0, 0)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
     "visibleLinks": 0,
-    "taps": 3,
+    "controls": 3,
     "below44": [],
     "titleCenterDx": -120,
     "hamburgerVisible": true,
     "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
-    "heroTop": 16,
+    "announce": null,
+    "heroTop": 0,
+    "scrim": "linear-gradient(rgba(0, 0, 0, 0.82) 0px, rgba(0, 0, 0, 0.82) 72px, rgba(0, 0, 0, 0) 40%), linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.15) 100%)",
+    "textOnHero": true,
     "pass": true
    },
    {
     "dev": "sp",
+    "js": true,
     "variant": "hamburger-cta",
     "body": true,
     "headerVisible": true,
@@ -11830,21 +11934,34 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
     "visibleLinks": 0,
-    "taps": 3,
+    "controls": 3,
     "below44": [],
     "titleCenterDx": -120,
     "hamburgerVisible": true,
     "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": true,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 279,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "sp",
+    "js": true,
     "variant": "text-nav",
     "body": true,
     "headerVisible": true,
@@ -11854,21 +11971,39 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(255, 255, 255)",
     "visibleLinks": 4,
-    "taps": 6,
+    "controls": 6,
     "below44": [],
     "titleCenterDx": -120,
     "hamburgerVisible": false,
     "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": true,
     "textNavLinks": 4,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 312,
+    "scrim": "none",
+    "textOnHero": false,
     "pass": true
    },
    {
     "dev": "sp",
+    "js": true,
     "variant": "center-logo",
     "body": true,
     "headerVisible": true,
@@ -11878,30 +12013,490 @@
     "titleShadow": "none",
     "position": "sticky",
     "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
     "visibleLinks": 0,
-    "taps": 3,
+    "controls": 3,
     "below44": [],
     "titleCenterDx": 2,
     "hamburgerVisible": true,
     "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
     "spCtaVisible": false,
     "textNavVisible": false,
     "textNavLinks": 0,
-    "announceInWidth": null,
+    "announce": null,
     "heroTop": 279,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": false,
+    "variant": "center",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "controls": 5,
+    "below44": [],
+    "titleCenterDx": 0,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": true,
+    "navlineLinks": 4,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 327,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": false,
+    "variant": "two-rows",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(244, 246, 249)",
+    "visibleLinks": 6,
+    "controls": 10,
+    "below44": [],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "pcSearchVisible": true,
+    "ctaVisible": true,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": true,
+    "navlineLinks": 6,
+    "navbandVisible": true,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 326,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": false,
+    "variant": "tel",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "controls": 7,
+    "below44": [],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": true,
+    "telVisible": true,
+    "telHref": "tel:0000000000",
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 265,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": false,
+    "variant": "band",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(29, 78, 216)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(29, 78, 216)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)"
+    ],
+    "linkBg": "rgb(29, 78, 216)",
+    "visibleLinks": 4,
+    "controls": 7,
+    "below44": [],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "pcSearchVisible": true,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 265,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": false,
+    "variant": "overlay",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "rgba(0, 0, 0, 0.45) 0px 1px 2px",
+    "position": "absolute",
+    "headerBg": "rgba(0, 0, 0, 0)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)",
+     "rgb(255, 255, 255)"
+    ],
+    "linkBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "controls": 5,
+    "below44": [],
+    "titleCenterDx": -623,
+    "hamburgerVisible": false,
+    "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 0,
+    "scrim": "linear-gradient(rgba(0, 0, 0, 0.82) 0px, rgba(0, 0, 0, 0.82) 72px, rgba(0, 0, 0, 0) 40%), linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.84) 40%, rgba(0, 0, 0, 0.3) 100%)",
+    "textOnHero": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "variant": "band",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(29, 78, 216)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(29, 78, 216)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
+    "visibleLinks": 0,
+    "controls": 3,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": true,
+    "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 279,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "variant": "overlay",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(255, 255, 255)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "rgba(0, 0, 0, 0.45) 0px 1px 2px",
+    "position": "absolute",
+    "headerBg": "rgba(0, 0, 0, 0)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
+    "visibleLinks": 0,
+    "controls": 3,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": true,
+    "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 0,
+    "scrim": "linear-gradient(rgba(0, 0, 0, 0.82) 0px, rgba(0, 0, 0, 0.82) 72px, rgba(0, 0, 0, 0) 40%), linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.84) 40%, rgba(0, 0, 0, 0.3) 100%)",
+    "textOnHero": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "variant": "hamburger-cta",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
+    "visibleLinks": 0,
+    "controls": 3,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": true,
+    "searchVisible": false,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": true,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 279,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "variant": "text-nav",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)",
+     "rgb(23, 28, 34)"
+    ],
+    "linkBg": "rgb(255, 255, 255)",
+    "visibleLinks": 4,
+    "controls": 6,
+    "below44": [],
+    "titleCenterDx": -120,
+    "hamburgerVisible": false,
+    "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": true,
+    "textNavLinks": 4,
+    "announce": null,
+    "heroTop": 312,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "variant": "center-logo",
+    "body": true,
+    "headerVisible": true,
+    "titleVisible": true,
+    "titleColor": "rgb(23, 28, 34)",
+    "titleBg": "rgb(255, 255, 255)",
+    "titleShadow": "none",
+    "position": "sticky",
+    "headerBg": "rgb(255, 255, 255)",
+    "accent": "rgb(29, 78, 216)",
+    "linkColors": [],
+    "linkBg": null,
+    "visibleLinks": 0,
+    "controls": 3,
+    "below44": [],
+    "titleCenterDx": 2,
+    "hamburgerVisible": true,
+    "searchVisible": true,
+    "pcSearchVisible": false,
+    "ctaVisible": false,
+    "telVisible": false,
+    "telHref": null,
+    "navlineVisible": false,
+    "navlineLinks": 0,
+    "navbandVisible": false,
+    "spCtaVisible": false,
+    "textNavVisible": false,
+    "textNavLinks": 0,
+    "announce": null,
+    "heroTop": 279,
+    "scrim": "none",
+    "textOnHero": false,
+    "pass": true
+   }
+  ],
+  "sameNoJs": true,
+  "pass": true
+ },
+ "announceFullWidth": {
+  "results": [
+   {
+    "dev": "pc",
+    "visible": true,
+    "left": 24,
+    "right": 1416,
+    "width": 1392,
+    "viewport": 1440,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "visible": true,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "viewport": 390,
     "pass": true
    }
   ],
   "pass": true
  },
- "announceFullWidth": {
-  "sp": 358,
-  "pc": 1392,
-  "pass": true
- },
  "numboxNum": {
   "h2Count": 2,
-  "h3Count": 3,
+  "rows": [
+   {
+    "text": "評価軸は 5 点",
+    "expected": "01-1",
+    "beforeWidth": 46.8,
+    "expectedWidth": 46.8,
+    "content": "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+   },
+   {
+    "text": "測り方と条件",
+    "expected": "01-2",
+    "beforeWidth": 46.8,
+    "expectedWidth": 46.8,
+    "content": "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+   },
+   {
+    "text": "価格と保証",
+    "expected": "02-1",
+    "beforeWidth": 46.8,
+    "expectedWidth": 46.8,
+    "content": "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+   }
+  ],
+  "plainRow": {
+   "beforeWidth": 33.8,
+   "expectedWidth": 33.8,
+   "content": "counter(wt-h3, decimal-leading-zero)"
+  },
   "counterSet": [
    "wt-h3 0",
    "wt-h3 0"
@@ -11910,18 +12505,6 @@
    "wt-h2num 1",
    "wt-h2num 1"
   ],
-  "h3Content": [
-   "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)",
-   "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)",
-   "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
-  ],
-  "plainContent": "counter(wt-h3, decimal-leading-zero)",
-  "linkedWidth": [
-   46.8438,
-   46.8438,
-   46.8438
-  ],
-  "plainWidth": 33.7812,
   "pass": true
  },
  "graphsMore": {
@@ -11929,154 +12512,736 @@
    {
     "k": "grouped",
     "rows": 3,
-    "vis": 6,
     "caption": true,
     "ariaImgs": 0,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 680
+    "width": 680,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     [
+      {
+       "v": 67,
+       "label": 7.5,
+       "vis": true,
+       "w": 296.015625,
+       "track": 441.828125
+      },
+      {
+       "v": 53,
+       "label": 5.9,
+       "vis": true,
+       "w": 234.15625,
+       "track": 441.828125
+      }
+     ],
+     [
+      {
+       "v": 44,
+       "label": 4.9,
+       "vis": true,
+       "w": 194.390625,
+       "track": 441.828125
+      },
+      {
+       "v": 35,
+       "label": 3.9,
+       "vis": true,
+       "w": 154.625,
+       "track": 441.828125
+      }
+     ],
+     [
+      {
+       "v": 88,
+       "label": 9.8,
+       "vis": true,
+       "w": 388.796875,
+       "track": 441.828125
+      },
+      {
+       "v": 80,
+       "label": 8.9,
+       "vis": true,
+       "w": 353.453125,
+       "track": 441.828125
+      }
+     ]
+    ]
    },
    {
     "k": "column",
     "rows": 5,
-    "vis": 5,
     "caption": true,
     "ariaImgs": 1,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 680
+    "width": 680,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 100,
+      "label": 184,
+      "vis": true,
+      "h": 180,
+      "box": 180
+     },
+     {
+      "v": 72,
+      "label": 132,
+      "vis": true,
+      "h": 129.59375,
+      "box": 180
+     },
+     {
+      "v": 53,
+      "label": 97,
+      "vis": true,
+      "h": 95.390625,
+      "box": 180
+     },
+     {
+      "v": 33,
+      "label": 61,
+      "vis": true,
+      "h": 59.390625,
+      "box": 180
+     },
+     {
+      "v": 21,
+      "label": 38,
+      "vis": true,
+      "h": 37.796875,
+      "box": 180
+     }
+    ]
    },
    {
     "k": "score",
     "rows": 5,
-    "vis": 25,
     "caption": true,
     "ariaImgs": 0,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 680
+    "width": 680,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 5,
+      "cells": 5,
+      "filled": 5,
+      "vis": true,
+      "shown": 5
+     },
+     {
+      "v": 4,
+      "cells": 5,
+      "filled": 4,
+      "vis": true,
+      "shown": 4
+     },
+     {
+      "v": 4,
+      "cells": 5,
+      "filled": 4,
+      "vis": true,
+      "shown": 4
+     },
+     {
+      "v": 3,
+      "cells": 5,
+      "filled": 3,
+      "vis": true,
+      "shown": 3
+     },
+     {
+      "v": 2,
+      "cells": 5,
+      "filled": 2,
+      "vis": true,
+      "shown": 2
+     }
+    ]
    },
    {
     "k": "gauge",
     "rows": 3,
-    "vis": 3,
     "caption": true,
     "ariaImgs": 3,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 680
+    "width": 680,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 92,
+      "shown": 92,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     },
+     {
+      "v": 78,
+      "shown": 78,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     },
+     {
+      "v": 64,
+      "shown": 64,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     }
+    ]
    },
    {
     "k": "radar",
     "rows": 5,
-    "vis": 1,
     "caption": true,
     "ariaImgs": 1,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 680
+    "width": 680,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": {
+     "polys": [
+      {
+       "points": 5,
+       "vis": true,
+       "fill": "0.22"
+      },
+      {
+       "points": 5,
+       "vis": true,
+       "fill": "0.16"
+      }
+     ],
+     "legend": 2,
+     "labels": 5
+    }
    }
   ],
   "sp": [
    {
     "k": "grouped",
     "rows": 3,
-    "vis": 6,
     "caption": true,
     "ariaImgs": 0,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 358
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     [
+      {
+       "v": 67,
+       "label": 7.5,
+       "vis": true,
+       "w": 108.75,
+       "track": 162.328125
+      },
+      {
+       "v": 53,
+       "label": 5.9,
+       "vis": true,
+       "w": 86.03125,
+       "track": 162.328125
+      }
+     ],
+     [
+      {
+       "v": 44,
+       "label": 4.9,
+       "vis": true,
+       "w": 71.421875,
+       "track": 162.328125
+      },
+      {
+       "v": 35,
+       "label": 3.9,
+       "vis": true,
+       "w": 56.8125,
+       "track": 162.328125
+      }
+     ],
+     [
+      {
+       "v": 88,
+       "label": 9.8,
+       "vis": true,
+       "w": 142.84375,
+       "track": 162.328125
+      },
+      {
+       "v": 80,
+       "label": 8.9,
+       "vis": true,
+       "w": 129.859375,
+       "track": 162.328125
+      }
+     ]
+    ]
    },
    {
     "k": "column",
     "rows": 5,
-    "vis": 5,
     "caption": true,
     "ariaImgs": 1,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 358
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 100,
+      "label": 184,
+      "vis": true,
+      "h": 150,
+      "box": 150
+     },
+     {
+      "v": 72,
+      "label": 132,
+      "vis": true,
+      "h": 108,
+      "box": 150
+     },
+     {
+      "v": 53,
+      "label": 97,
+      "vis": true,
+      "h": 79.5,
+      "box": 150
+     },
+     {
+      "v": 33,
+      "label": 61,
+      "vis": true,
+      "h": 49.5,
+      "box": 150
+     },
+     {
+      "v": 21,
+      "label": 38,
+      "vis": true,
+      "h": 31.5,
+      "box": 150
+     }
+    ]
    },
    {
     "k": "score",
     "rows": 5,
-    "vis": 25,
     "caption": true,
     "ariaImgs": 0,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 358
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 5,
+      "cells": 5,
+      "filled": 5,
+      "vis": true,
+      "shown": 5
+     },
+     {
+      "v": 4,
+      "cells": 5,
+      "filled": 4,
+      "vis": true,
+      "shown": 4
+     },
+     {
+      "v": 4,
+      "cells": 5,
+      "filled": 4,
+      "vis": true,
+      "shown": 4
+     },
+     {
+      "v": 3,
+      "cells": 5,
+      "filled": 3,
+      "vis": true,
+      "shown": 3
+     },
+     {
+      "v": 2,
+      "cells": 5,
+      "filled": 2,
+      "vis": true,
+      "shown": 2
+     }
+    ]
    },
    {
     "k": "gauge",
     "rows": 3,
-    "vis": 3,
     "caption": true,
     "ariaImgs": 3,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 358
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 92,
+      "shown": 92,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     },
+     {
+      "v": 78,
+      "shown": 78,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     },
+     {
+      "v": 64,
+      "shown": 64,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     }
+    ]
    },
    {
     "k": "radar",
     "rows": 5,
-    "vis": 1,
     "caption": true,
     "ariaImgs": 1,
     "ariaLabelled": true,
     "overflow": 0,
-    "width": 358
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": {
+     "polys": [
+      {
+       "points": 5,
+       "vis": true,
+       "fill": "0.22"
+      },
+      {
+       "points": 5,
+       "vis": true,
+       "fill": "0.16"
+      }
+     ],
+     "legend": 2,
+     "labels": 5
+    }
    }
   ],
+  "spNoJs": [
+   {
+    "k": "grouped",
+    "rows": 3,
+    "caption": true,
+    "ariaImgs": 0,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     [
+      {
+       "v": 67,
+       "label": 7.5,
+       "vis": true,
+       "w": 108.75,
+       "track": 162.328125
+      },
+      {
+       "v": 53,
+       "label": 5.9,
+       "vis": true,
+       "w": 86.03125,
+       "track": 162.328125
+      }
+     ],
+     [
+      {
+       "v": 44,
+       "label": 4.9,
+       "vis": true,
+       "w": 71.421875,
+       "track": 162.328125
+      },
+      {
+       "v": 35,
+       "label": 3.9,
+       "vis": true,
+       "w": 56.8125,
+       "track": 162.328125
+      }
+     ],
+     [
+      {
+       "v": 88,
+       "label": 9.8,
+       "vis": true,
+       "w": 142.84375,
+       "track": 162.328125
+      },
+      {
+       "v": 80,
+       "label": 8.9,
+       "vis": true,
+       "w": 129.859375,
+       "track": 162.328125
+      }
+     ]
+    ]
+   },
+   {
+    "k": "column",
+    "rows": 5,
+    "caption": true,
+    "ariaImgs": 1,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 100,
+      "label": 184,
+      "vis": true,
+      "h": 150,
+      "box": 150
+     },
+     {
+      "v": 72,
+      "label": 132,
+      "vis": true,
+      "h": 108,
+      "box": 150
+     },
+     {
+      "v": 53,
+      "label": 97,
+      "vis": true,
+      "h": 79.5,
+      "box": 150
+     },
+     {
+      "v": 33,
+      "label": 61,
+      "vis": true,
+      "h": 49.5,
+      "box": 150
+     },
+     {
+      "v": 21,
+      "label": 38,
+      "vis": true,
+      "h": 31.5,
+      "box": 150
+     }
+    ]
+   },
+   {
+    "k": "score",
+    "rows": 5,
+    "caption": true,
+    "ariaImgs": 0,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 5,
+      "cells": 5,
+      "filled": 5,
+      "vis": true,
+      "shown": 5
+     },
+     {
+      "v": 4,
+      "cells": 5,
+      "filled": 4,
+      "vis": true,
+      "shown": 4
+     },
+     {
+      "v": 4,
+      "cells": 5,
+      "filled": 4,
+      "vis": true,
+      "shown": 4
+     },
+     {
+      "v": 3,
+      "cells": 5,
+      "filled": 3,
+      "vis": true,
+      "shown": 3
+     },
+     {
+      "v": 2,
+      "cells": 5,
+      "filled": 2,
+      "vis": true,
+      "shown": 2
+     }
+    ]
+   },
+   {
+    "k": "gauge",
+    "rows": 3,
+    "caption": true,
+    "ariaImgs": 3,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": [
+     {
+      "v": 92,
+      "shown": 92,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     },
+     {
+      "v": 78,
+      "shown": 78,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     },
+     {
+      "v": 64,
+      "shown": 64,
+      "vis": true,
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+     }
+    ]
+   },
+   {
+    "k": "radar",
+    "rows": 5,
+    "caption": true,
+    "ariaImgs": 1,
+    "ariaLabelled": true,
+    "overflow": 0,
+    "width": 358,
+    "figVisible": true,
+    "valuesOk": true,
+    "visibleOk": true,
+    "detail": {
+     "polys": [
+      {
+       "points": 5,
+       "vis": true,
+       "fill": "0.22"
+      },
+      {
+       "points": 5,
+       "vis": true,
+       "fill": "0.16"
+      }
+     ],
+     "legend": 2,
+     "labels": 5
+    }
+   }
+  ],
+  "sameNoJs": true,
   "pass": true
  },
  "relatedNoFixture": {
+  "defaultCat": "Uncategorized",
+  "source": "wp-cli:default_category=1",
   "pc": {
    "count": 6,
-   "nextCount": 1,
    "cards": [
     {
      "terms": [
       "デスク・家具"
      ],
      "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 192
+     }
     },
     {
      "terms": [
       "デスク・家具"
      ],
      "title": "昇降デスクのケーブル整理。トレー・スパイラル・マグネットの比較",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 192
+     }
     },
     {
      "terms": [
       "読みもの目次"
      ],
      "title": "読みもの 17: 横断まとめ 2",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 192
+     }
     },
     {
      "terms": [
       "デスク・家具"
      ],
      "title": "在宅ワークの椅子 5 脚を 1 か月比較。腰痛持ちが選ぶ 1 脚",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 192
+     }
     },
     {
      "terms": [
       "読みもの目次"
      ],
      "title": "読みもの 16: 横断まとめ 1",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 192
+     }
     },
     {
      "terms": [
       "テーマ 3"
      ],
      "title": "読みもの 15: 運用編 5",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 192
+     }
     }
    ],
    "next": [
@@ -12085,56 +13250,76 @@
       "デスク・家具"
      ],
      "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 160
+     }
     }
    ],
    "self": "電動昇降デスク 3 製品を 2 週間ずつ比較。予算 6 万円なら L1、4 万円以下なら S2 が結論"
   },
   "sp": {
    "count": 6,
-   "nextCount": 1,
    "cards": [
     {
      "terms": [
       "デスク・家具"
      ],
      "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 149
+     }
     },
     {
      "terms": [
       "デスク・家具"
      ],
      "title": "昇降デスクのケーブル整理。トレー・スパイラル・マグネットの比較",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 149
+     }
     },
     {
      "terms": [
       "読みもの目次"
      ],
      "title": "読みもの 17: 横断まとめ 2",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 149
+     }
     },
     {
      "terms": [
       "デスク・家具"
      ],
      "title": "在宅ワークの椅子 5 脚を 1 か月比較。腰痛持ちが選ぶ 1 脚",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 149
+     }
     },
     {
      "terms": [
       "読みもの目次"
      ],
      "title": "読みもの 16: 横断まとめ 1",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 149
+     }
     },
     {
      "terms": [
       "テーマ 3"
      ],
      "title": "読みもの 15: 運用編 5",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 149
+     }
     }
    ],
    "next": [
@@ -12143,7 +13328,10 @@
       "デスク・家具"
      ],
      "title": "6 畳の部屋にデスクを置く。120cm と 140cm どちらを選ぶか",
-     "img": true
+     "img": {
+      "complete": true,
+      "naturalWidth": 110
+     }
     }
    ],
    "self": "電動昇降デスク 3 製品を 2 週間ずつ比較。予算 6 万円なら L1、4 万円以下なら S2 が結論"
@@ -12153,8 +13341,8 @@
  "lineIcon": {
   "pc": {
    "dev": "pc",
-   "marks": 3,
-   "marksWithGlyph": 3,
+   "marks": 1,
+   "marksWithGlyph": 1,
    "marksWithText": 0,
    "pcTextVisible": [
     true,
@@ -12173,8 +13361,8 @@
   },
   "sp": {
    "dev": "sp",
-   "marks": 3,
-   "marksWithGlyph": 3,
+   "marks": 2,
+   "marksWithGlyph": 2,
    "marksWithText": 0,
    "pcTextVisible": [
     false,
@@ -12198,6 +13386,7 @@
   "spJs": {
    "footer": [
     {
+     "visible": true,
      "label": "X（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12205,9 +13394,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "Instagram（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12215,9 +13407,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "YouTube（公式チャンネル）",
      "glyph": true,
      "digits": false,
@@ -12225,9 +13420,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "LINE（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12235,12 +13433,16 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     }
    ],
    "tail": [
     {
+     "visible": true,
      "label": "X でポスト",
+     "key": "x",
      "glyph": true,
      "size": [
       44,
@@ -12248,7 +13450,9 @@
      ]
     },
     {
+     "visible": true,
      "label": "LINE で送る",
+     "key": "line",
      "glyph": true,
      "size": [
       44,
@@ -12256,7 +13460,9 @@
      ]
     },
     {
+     "visible": true,
      "label": "はてなブックマークに追加",
+     "key": "hatena",
      "glyph": true,
      "size": [
       44,
@@ -12268,6 +13474,7 @@
   "pcJs": {
    "footer": [
     {
+     "visible": true,
      "label": "X（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12275,9 +13482,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "Instagram（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12285,9 +13495,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "YouTube（公式チャンネル）",
      "glyph": true,
      "digits": false,
@@ -12295,9 +13508,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "LINE（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12305,12 +13521,16 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     }
    ],
    "tail": [
     {
+     "visible": true,
      "label": "X でポスト",
+     "key": "x",
      "glyph": true,
      "size": [
       44,
@@ -12318,7 +13538,9 @@
      ]
     },
     {
+     "visible": true,
      "label": "LINE で送る",
+     "key": "line",
      "glyph": true,
      "size": [
       44,
@@ -12326,7 +13548,9 @@
      ]
     },
     {
+     "visible": true,
      "label": "はてなブックマークに追加",
+     "key": "hatena",
      "glyph": true,
      "size": [
       44,
@@ -12338,6 +13562,7 @@
   "spNoJs": {
    "footer": [
     {
+     "visible": true,
      "label": "X（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12345,9 +13570,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "Instagram（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12355,9 +13583,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "YouTube（公式チャンネル）",
      "glyph": true,
      "digits": false,
@@ -12365,9 +13596,12 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     },
     {
+     "visible": true,
      "label": "LINE（公式アカウント）",
      "glyph": true,
      "digits": false,
@@ -12375,12 +13609,16 @@
       44,
       44
      ],
-     "rel": "nofollow"
+     "rel": [
+      "nofollow"
+     ]
     }
    ],
    "tail": [
     {
+     "visible": true,
      "label": "X でポスト",
+     "key": "x",
      "glyph": true,
      "size": [
       44,
@@ -12388,7 +13626,9 @@
      ]
     },
     {
+     "visible": true,
      "label": "LINE で送る",
+     "key": "line",
      "glyph": true,
      "size": [
       44,
@@ -12396,7 +13636,9 @@
      ]
     },
     {
+     "visible": true,
      "label": "はてなブックマークに追加",
+     "key": "hatena",
      "glyph": true,
      "size": [
       44,

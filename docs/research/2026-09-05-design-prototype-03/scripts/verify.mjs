@@ -1187,131 +1187,214 @@ if (WPCLIDIR) {
   out.lpParts.pass = sp.results.length === 15 && pc.results.length === 15 && noJs.results.length === 15 && sp.results.every(okItem) && pc.results.every(okItem) && noJs.results.every(okItem) && okSticky(sp.sticky) && okSticky(pc.sticky) && okSticky(noJs.sticky) && sameNoJs;
 }
 
-// 2026-09-06 PO 反応 17 回目（WT-EVT-0270〜0276）の検査
-// (a) headerVariants: PC 5 型 / SP 3 型 + band / overlay の SP。body の軸 class、部品の描画、ナビの可視、44px、band / overlay の文字色コントラスト
+// 2026-09-06 PO 反応 17 回目（WT-EVT-0270〜0276）の検査（Astra 是正 1 巡目を反映: 可視性・型固有部品・値の照合・JS 無効・コントラストを判定に含める）
+const VIS_SRC = `(el) => { if (!el) return false; const r = el.getBoundingClientRect(); if (!(r.width > 0 && r.height > 0)) return false; for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.display === "none" || s.visibility === "hidden" || parseFloat(s.opacity) === 0) return false; } return true; }`;
+// CSS mask で描くグリフ（.wt-i）が実際に描かれているか: 可視・16px 以上・mask-image が none でない・currentColor が透明でない
+const GLYPH_SRC = `(el) => { const vis = ${VIS_SRC}; if (!el || !vis(el)) return false; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); const mask = s.maskImage && s.maskImage !== "none" ? s.maskImage : (s.webkitMaskImage && s.webkitMaskImage !== "none" ? s.webkitMaskImage : ""); const c = s.backgroundColor.match(/rgba?\\(([^)]+)\\)/); const a = c ? (c[1].split(",")[3] ?? "1") : "1"; return r.width >= 16 && r.height >= 16 && /url\\(/.test(mask) && parseFloat(a) > 0; }`;
+const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
+  const vis = ${VIS_SRC};
+  const header = document.querySelector(".wt-header");
+  const title = header && header.querySelector(".wp-block-site-title a");
+  const links = header ? Array.from(header.querySelectorAll(".wp-block-navigation-item__content, .wt-header__textnav a")).filter(vis) : [];
+  const controls = header ? Array.from(header.querySelectorAll("a, button, input, [role=button]")).filter(vis).filter((el) => !el.closest(".wp-block-navigation__responsive-container.is-menu-open")) : [];
+  // SP は全操作要素 44×44 以上。PC はナビ文字リンク（インライン扱い）を除いた操作要素（CTA・電話・検索）が 44×44 以上
+  const sized = controls.filter((el) => dev === "sp" || !el.classList.contains("wp-block-navigation-item__content"));
+  const below44 = sized.filter((el) => { const r = el.getBoundingClientRect(); return r.width < 44 || r.height < 44; }).map((el) => (el.className || el.tagName).toString().slice(0, 60));
+  const bg = (el) => { for (let e = el; e; e = e.parentElement) { const c = getComputedStyle(e).backgroundColor; if (c && !/rgba\\(0, 0, 0, 0\\)|transparent/.test(c)) return c; } return "rgb(255, 255, 255)"; };
+  const hs = header ? getComputedStyle(header) : null;
+  const probe = document.createElement("span"); probe.style.color = "var(--wp--preset--color--accent)"; document.body.appendChild(probe); const accent = getComputedStyle(probe).color; probe.remove();
+  const tel = header && header.querySelector(".wt-header__tel");
+  const scrim = document.querySelector(".wt-posthead__img") ? getComputedStyle(document.querySelector(".wt-posthead__img"), "::after").backgroundImage : null;
+  return {
+    body: document.body.classList.contains(expectBody), headerVisible: vis(header), titleVisible: vis(title), titleColor: title ? getComputedStyle(title).color : null, titleBg: title ? bg(title) : null,
+    titleShadow: title ? getComputedStyle(title).textShadow : null, position: hs ? hs.position : null, headerBg: hs ? hs.backgroundColor : null, accent,
+    linkColors: links.map((a) => getComputedStyle(a).color), linkBg: links.length ? bg(links[0]) : null,
+    visibleLinks: links.length, controls: controls.length, below44, titleCenterDx: title ? Math.round((title.getBoundingClientRect().left + title.getBoundingClientRect().width / 2) - innerWidth / 2) : null,
+    hamburgerVisible: vis(header && header.querySelector(".wp-block-navigation__responsive-container-open")), searchVisible: vis(header && header.querySelector(".wt-header__search--sp")), pcSearchVisible: vis(header && header.querySelector(".wt-header__search.wt-only-pc")),
+    ctaVisible: vis(header && header.querySelector(".wt-header__cta .wp-block-button__link")), telVisible: vis(tel), telHref: tel ? tel.getAttribute("href") : null,
+    navlineVisible: vis(header && header.querySelector(".wt-header__row--navline")), navlineLinks: header ? Array.from(header.querySelectorAll(".wt-header__row--navline .wp-block-navigation-item__content")).filter(vis).length : 0, navbandVisible: vis(header && header.querySelector(".wt-header__navband")),
+    spCtaVisible: vis(header && header.querySelector(".wt-header__spcta")), textNavVisible: vis(header && header.querySelector(".wt-header__textnav")), textNavLinks: header ? Array.from(header.querySelectorAll(".wt-header__textnav a")).filter(vis).length : 0,
+    announce: (() => { const a = document.querySelector(".wt-announce__in"); if (!a) return null; const r = a.getBoundingClientRect(); return { visible: vis(a), left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width), viewport: innerWidth }; })(),
+    heroTop: (() => { const img = document.querySelector(".wt-posthead__img img"); return img ? Math.round(img.getBoundingClientRect().top + scrollY) : null; })(), scrim,
+    textOnHero: (() => { const img = document.querySelector(".wt-posthead__img img"); if (!img) return null; const h = img.getBoundingClientRect(); const els = [title, ...links, header && header.querySelector(".wp-block-navigation__responsive-container-open")].filter(vis); return els.length > 0 && els.every((el) => { const r = el.getBoundingClientRect(); return r.left >= h.left - 1 && r.right <= h.right + 1 && r.top >= h.top - 1 && r.bottom <= h.bottom + 1; }); })(),
+  };
+}`;
 {
-  const vis = `(el) => { if (!el) return false; const r = el.getBoundingClientRect(); if (!(r.width > 0 && r.height > 0)) return false; for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.display === "none" || s.visibility === "hidden") return false; } return true; }`;
-  const audit = async (p, expectBody) => p.evaluate(([expectBody, visSrc]) => {
-    const vis = eval(visSrc);
-    const header = document.querySelector(".wt-header");
-    const title = header && header.querySelector(".wp-block-site-title a");
-    const links = header ? Array.from(header.querySelectorAll(".wp-block-navigation-item__content, .wt-header__textnav a")).filter(vis) : [];
-    const taps = header ? Array.from(header.querySelectorAll("a, button, input, [role=button]")).filter(vis).filter((el) => !el.closest(".wp-block-navigation__responsive-container.is-menu-open")) : [];
-    const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); return Math.max(r.width, r.height) < 44 || Math.min(r.width, r.height) < 24; }).map((el) => (el.className || el.tagName).toString().slice(0, 60));
-    const bg = (el) => { for (let e = el; e; e = e.parentElement) { const c = getComputedStyle(e).backgroundColor; if (c && !/rgba\(0, 0, 0, 0\)|transparent/.test(c)) return c; } return "rgb(255, 255, 255)"; };
-    const hs = header ? getComputedStyle(header) : null;
-    return {
-      body: document.body.classList.contains(expectBody), headerVisible: vis(header), titleVisible: vis(title), titleColor: title ? getComputedStyle(title).color : null, titleBg: title ? bg(title) : null,
-      titleShadow: title ? getComputedStyle(title).textShadow : null, position: hs ? hs.position : null, headerBg: hs ? hs.backgroundColor : null,
-      visibleLinks: links.length, taps: taps.length, below44, titleCenterDx: title ? Math.round((title.getBoundingClientRect().left + title.getBoundingClientRect().width / 2) - innerWidth / 2) : null,
-      hamburgerVisible: vis(header && header.querySelector(".wp-block-navigation__responsive-container-open")), searchVisible: vis(header && header.querySelector(".wt-header__search--sp")),
-      spCtaVisible: vis(header && header.querySelector(".wt-header__spcta")), textNavVisible: vis(header && header.querySelector(".wt-header__textnav")), textNavLinks: header ? Array.from(header.querySelectorAll(".wt-header__textnav a")).filter(vis).length : 0,
-      announceInWidth: (() => { const a = document.querySelector(".wt-announce__in"); return a ? Math.round(a.getBoundingClientRect().width) : null; })(),
-      heroTop: (() => { const img = document.querySelector(".wt-posthead__img img"); return img ? Math.round(img.getBoundingClientRect().top + scrollY) : null; })(),
-    };
-  }, [expectBody, vis]);
   const contrastOk = (fg, bgc, min) => { const c = parse(fg), b = parse(bgc); return c && b ? ratio(lum(c.rgb), lum(b.rgb)) >= min : false; };
-  const results = [];
-  const ctxPc = await browser.newContext(PC); const pc = await ctxPc.newPage();
-  for (const v of ["center", "two-rows", "tel", "band", "overlay"]) {
-    await pc.goto(BASE + ARTICLE + `?wt=header:${v}` + (v === "overlay" ? ",eyecatch:hero" : ""), { waitUntil: "networkidle" });
-    const a = await audit(pc, `wt-header-${v}`);
-    // PC のナビ文字リンクは既存の tap 監査（SP のみ）と同じくインライン扱いで 44px の対象外。それ以外（CTA・電話・検索）は 44px を要求
-    const below44Pc = a.below44.filter((c) => !/wp-block-navigation-item__content/.test(c));
-    let pass = a.body && a.headerVisible && a.titleVisible && a.visibleLinks >= 4 && below44Pc.length === 0;
-    if (v === "band") pass = pass && contrastOk(a.titleColor, a.titleBg, 4.5);
-    // overlay: hero 画像の上端がヘッダー高（60px）より上にあり、ヘッダーが画像に重なっていること
-    if (v === "overlay") pass = pass && a.position === "absolute" && /rgba\(0, 0, 0, 0\)|transparent/.test(a.headerBg) && /rgb\(255, 255, 255\)/.test(a.titleColor) && a.titleShadow !== "none" && a.heroTop !== null && a.heroTop < 60;
-    if (v === "center") pass = pass && Math.abs(a.titleCenterDx) <= 8;
-    results.push({ dev: "pc", variant: v, ...a, pass });
-  }
-  await ctxPc.close();
-  const ctxSp = await browser.newContext(SP); const sp = await ctxSp.newPage();
-  for (const [v, q, expectBody] of [["band", "header:band", "wt-header-band"], ["overlay", "header:overlay,eyecatch:hero", "wt-header-overlay"], ["hamburger-cta", "sp:cta", "wt-sp-cta"], ["text-nav", "sp:text-nav", "wt-sp-text-nav"], ["center-logo", "sp:center-logo", "wt-sp-center-logo"]]) {
-    await sp.goto(BASE + ARTICLE + `?wt=${q}`, { waitUntil: "networkidle" });
-    const a = await audit(sp, expectBody);
+  // overlay の上端スクリム: "linear-gradient(rgba(0, 0, 0, α) 0px, rgba(0, 0, 0, α) 72px, …" の 2 番目の停止点（72px まで一定）の α を読む（computed style は既定方向 "to bottom" を省略する）。
+  // 白背景の画像を最悪ケースとし、白文字とのコントラスト = 1.05 / ((1-α)+0.05) ≥ 4.5 を要求（α ≥ .82）
+  const scrimTopAlpha = (bgImage) => { if (!bgImage) return null; const m = bgImage.match(/linear-gradient\((?:to bottom,\s*)?rgba\(0, 0, 0, ([\d.]+)\) 0(?:px)?,\s*rgba\(0, 0, 0, ([\d.]+)\) 72px/); return m ? Math.min(parseFloat(m[1]), parseFloat(m[2])) : null; };
+  const overlayContrastOk = (a) => { const alpha = scrimTopAlpha(a.scrim); if (alpha === null) return false; const bgLum = 1 - alpha; return (1.05) / (bgLum + 0.05) >= 4.5; };
+  const HEADER_AUDIT_FN = new Function("args", "return (" + HEADER_AUDIT_SRC + ")(args);");
+  const audit = (p, expectBody, dev) => p.evaluate(HEADER_AUDIT_FN, [expectBody, dev]);
+  const PC_TYPES = ["center", "two-rows", "tel", "band", "overlay"];
+  const SP_TYPES = [["band", "header:band", "wt-header-band"], ["overlay", "header:overlay,eyecatch:hero", "wt-header-overlay"], ["hamburger-cta", "sp:cta", "wt-sp-cta"], ["text-nav", "sp:text-nav", "wt-sp-text-nav"], ["center-logo", "sp:center-logo", "wt-sp-center-logo"]];
+  const judgePc = (v, a) => {
+    let pass = a.body && a.headerVisible && a.titleVisible && a.visibleLinks >= 4 && a.below44.length === 0 && !a.hamburgerVisible;
+    if (v === "center") pass = pass && Math.abs(a.titleCenterDx) <= 8 && a.navlineVisible && a.navlineLinks >= 4;
+    if (v === "two-rows") pass = pass && a.navbandVisible && a.navlineLinks >= 6 && a.ctaVisible && a.pcSearchVisible;
+    if (v === "tel") pass = pass && a.telVisible && /^tel:/.test(a.telHref || "") && a.ctaVisible;
+    if (v === "band") pass = pass && a.headerBg === a.accent && contrastOk(a.titleColor, a.titleBg, 4.5) && a.linkColors.length > 0 && a.linkColors.every((c) => contrastOk(c, a.linkBg, 4.5));
+    if (v === "overlay") pass = pass && a.position === "absolute" && /rgba\(0, 0, 0, 0\)|transparent/.test(a.headerBg) && a.titleColor === "rgb(255, 255, 255)" && a.titleShadow !== "none" && a.heroTop !== null && a.heroTop < 60 && overlayContrastOk(a) && a.linkColors.every((c) => c === "rgb(255, 255, 255)") && a.textOnHero === true;
+    return pass;
+  };
+  const judgeSp = (v, a) => {
     let pass = a.body && a.headerVisible && a.titleVisible && a.below44.length === 0;
-    if (v === "band") pass = pass && a.hamburgerVisible && contrastOk(a.titleColor, a.titleBg, 4.5);
-    if (v === "overlay") pass = pass && a.hamburgerVisible && a.position === "absolute" && a.heroTop !== null && a.heroTop < 60;
+    if (v === "band") pass = pass && a.hamburgerVisible && a.headerBg === a.accent && contrastOk(a.titleColor, a.titleBg, 4.5);
+    if (v === "overlay") pass = pass && a.hamburgerVisible && a.position === "absolute" && /rgba\(0, 0, 0, 0\)|transparent/.test(a.headerBg) && a.titleColor === "rgb(255, 255, 255)" && a.titleShadow !== "none" && a.heroTop !== null && a.heroTop < 60 && overlayContrastOk(a) && a.textOnHero === true;
     if (v === "hamburger-cta") pass = pass && a.hamburgerVisible && a.spCtaVisible && !a.searchVisible;
     if (v === "text-nav") pass = pass && !a.hamburgerVisible && a.textNavVisible && a.textNavLinks >= 4;
     if (v === "center-logo") pass = pass && a.hamburgerVisible && a.searchVisible && Math.abs(a.titleCenterDx) <= 8;
-    results.push({ dev: "sp", variant: v, ...a, pass });
+    return pass;
+  };
+  const results = [];
+  const run = async (cfg, dev, js) => {
+    const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
+    const list = dev === "pc" ? PC_TYPES.map((v) => [v, `header:${v}` + (v === "overlay" ? ",eyecatch:hero" : ""), `wt-header-${v}`]) : SP_TYPES;
+    for (const [v, q, expectBody] of list) {
+      await p.goto(BASE + ARTICLE + `?wt=${q}`, { waitUntil: js ? "networkidle" : "load" });
+      const a = await audit(p, expectBody, dev);
+      results.push({ dev, js, variant: v, ...a, pass: dev === "pc" ? judgePc(v, a) : judgeSp(v, a) });
+    }
+    await ctx.close();
+  };
+  await run(PC, "pc", true); await run(SP, "sp", true); await run(PC, "pc", false); await run(SP, "sp", false);
+  // JS 無効でも同じ型が同じ要素数で見えること（ヘッダーは JS に依存しない）
+  const sameNoJs = results.filter((r) => r.js).every((r) => { const n = results.find((x) => !x.js && x.dev === r.dev && x.variant === r.variant); return n && n.visibleLinks === r.visibleLinks && n.controls === r.controls && n.spCtaVisible === r.spCtaVisible && n.textNavVisible === r.textNavVisible; });
+  out.headerVariants = { results, sameNoJs, pass: results.length === 20 && results.every((r) => r.pass) && sameNoJs };
+  // (b) announceFullWidth: 可視・左端 0 以上・右端 viewport 以下・幅が viewport − gutter×2 以上（PC は 1120 の旧上限を超える）
+  const ann = [];
+  for (const [cfg, dev, gutter] of [[PC, "pc", 40], [SP, "sp", 24]]) {
+    const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); await p.goto(BASE + ARTICLE + "?wt=header:announce", { waitUntil: "networkidle" });
+    const a = await audit(p, "wt-header-announce", dev); await ctx.close();
+    const x = a.announce; ann.push({ dev, ...x, pass: !!x && x.visible && x.left >= 0 && x.right <= x.viewport && x.width >= x.viewport - gutter * 2 && x.width <= x.viewport && (dev !== "pc" || x.width > 1120) });
   }
-  // (b) announceFullWidth: お知らせ帯の内側幅が viewport 幅 − gutter ×2 以上（PC 1440 で 1120 上限が外れていること）
-  await sp.goto(BASE + ARTICLE + "?wt=header:announce", { waitUntil: "networkidle" });
-  const annSp = await audit(sp, "wt-header-announce");
-  await ctxSp.close();
-  const ctxPc2 = await browser.newContext(PC); const pc2 = await ctxPc2.newPage();
-  await pc2.goto(BASE + ARTICLE + "?wt=header:announce", { waitUntil: "networkidle" });
-  const annPc = await audit(pc2, "wt-header-announce");
-  await ctxPc2.close();
-  out.headerVariants = { results, pass: results.length === 10 && results.every((r) => r.pass) };
-  out.announceFullWidth = { sp: annSp.announceInWidth, pc: annPc.announceInWidth, pass: annPc.announceInWidth !== null && annPc.announceInWidth >= 1440 - 2 * 40 && annPc.announceInWidth > 1120 && annSp.announceInWidth !== null && annSp.announceInWidth >= 390 - 2 * 24 };
+  out.announceFullWidth = { results: ann, pass: ann.length === 2 && ann.every((x) => x.pass) };
 }
-// (c) numboxNum: h2 numbox の counter-set と h3 num の ::before content（親番号 + 連番）。counter の解決値は DOM から読めないため、
-//     content 式と counter-set の computed 値、および数字幅（"01-1" は "01" より広い = ::before の幅が単独連番の h3 より広い）で判定する
+// (c) numboxNum: 期待する番号を DOM から組み立て（numbox h2 = 01, 02 …、配下 h3 = 親-連番、通常 h2 で連番を振り直す）、
+//     同じフォントの span で期待文字列を描いて ::before の幅と ±1.5px で一致させる（counter の解決値は DOM から読めないため、幅の一致で番号を検証する）
 {
   const ctx = await browser.newContext(PC); const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
   out.numboxNum = await p.evaluate(() => {
+    const measure = (refEl, text) => { const ps = getComputedStyle(refEl, "::before"); const sp = document.createElement("span"); sp.textContent = text; sp.style.cssText = `position:absolute;visibility:hidden;white-space:nowrap;font-family:${ps.fontFamily};font-size:${ps.fontSize};font-weight:${ps.fontWeight};letter-spacing:${ps.letterSpacing};font-variant-numeric:${ps.fontVariantNumeric}`; document.body.appendChild(sp); const w = sp.getBoundingClientRect().width; sp.remove(); return w; };
+    const pad2 = (n) => String(n).padStart(2, "0");
     const demo = document.querySelector("#cat-h2-numbox-h3num");
-    const h2s = demo ? Array.from(demo.querySelectorAll("h2.is-style-wt-numbox")) : [];
-    const h3s = demo ? Array.from(demo.querySelectorAll("h3.is-style-wt-num")) : [];
+    const rows = []; let h2n = 0, h3n = 0;
+    for (const el of Array.from(demo ? demo.querySelectorAll("h2, h3") : [])) {
+      if (el.tagName === "H2") { if (el.classList.contains("is-style-wt-numbox")) h2n++; h3n = 0; continue; }
+      if (!el.classList.contains("is-style-wt-num")) continue;
+      h3n++;
+      const expected = `${pad2(h2n)}-${h3n}`;
+      const before = parseFloat(getComputedStyle(el, "::before").width) || 0;
+      rows.push({ text: el.textContent.trim(), expected, beforeWidth: Math.round(before * 10) / 10, expectedWidth: Math.round(measure(el, expected) * 10) / 10, content: getComputedStyle(el, "::before").content });
+    }
     const plain = document.querySelector("#cat-h3-num h3.is-style-wt-num");
-    const w = (el) => { const s = getComputedStyle(el, "::before"); return parseFloat(s.width) || 0; };
-    return {
-      h2Count: h2s.length, h3Count: h3s.length,
-      counterSet: h2s.map((h) => getComputedStyle(h).counterSet), h2Increment: h2s.map((h) => getComputedStyle(h).counterIncrement),
-      h3Content: h3s.map((h) => getComputedStyle(h, "::before").content), plainContent: plain ? getComputedStyle(plain, "::before").content : null,
-      linkedWidth: h3s.map(w), plainWidth: plain ? w(plain) : null,
-    };
+    const plainRow = plain ? { beforeWidth: Math.round((parseFloat(getComputedStyle(plain, "::before").width) || 0) * 10) / 10, expectedWidth: Math.round(measure(plain, "01") * 10) / 10, content: getComputedStyle(plain, "::before").content } : null;
+    const h2s = Array.from(demo ? demo.querySelectorAll("h2.is-style-wt-numbox") : []);
+    return { h2Count: h2s.length, rows, plainRow, counterSet: h2s.map((h) => getComputedStyle(h).counterSet), h2Increment: h2s.map((h) => getComputedStyle(h).counterIncrement) };
   });
   const n = out.numboxNum;
-  n.pass = n.h2Count === 2 && n.h3Count === 3 && n.counterSet.every((v) => /wt-h3 0/.test(v)) && n.h2Increment.every((v) => /wt-h2num/.test(v)) && n.h3Content.every((c) => /counter\(wt-h2num, decimal-leading-zero\) "-" counter\(wt-h3\)/.test(c)) && n.plainContent !== null && !/wt-h2num/.test(n.plainContent) && n.plainWidth > 0 && n.linkedWidth.every((w) => w > n.plainWidth * 1.25);
+  const close = (a, b) => Math.abs(a - b) <= 1.5;
+  n.pass = n.h2Count === 2 && n.rows.length === 3 && n.rows.map((r) => r.expected).join(",") === "01-1,01-2,02-1" && n.rows.every((r) => r.beforeWidth > 0 && close(r.beforeWidth, r.expectedWidth) && /counter\(wt-h2num, decimal-leading-zero\) "-" counter\(wt-h3\)/.test(r.content))
+    && n.counterSet.every((v) => v === "wt-h3 0") && n.h2Increment.every((v) => v === "wt-h2num 1") && !!n.plainRow && n.plainRow.beforeWidth > 0 && close(n.plainRow.beforeWidth, n.plainRow.expectedWidth) && !/wt-h2num/.test(n.plainRow.content);
   await ctx.close();
 }
-// (d) graphsMore: 追加 5 型。figure / figcaption / 読み上げ用の表 / 視覚要素 / role=img の aria-label / SP で横はみ出しなし
+// (d) graphsMore: 追加 5 型。視覚要素が実際に見える（矩形・display・visibility・opacity）、表の値と視覚値（--v / data-v / 座標）が一致、role=img の数と aria-label、
+//     figcaption、SP で横はみ出しなし、JS 無効でも同じ
 {
-  const NEED = { grouped: ".wt-graph__pair .wt-graph__bar i", column: ".wt-graph__col i", score: ".wt-graph__score i", gauge: ".wt-graph__gauge", radar: ".wt-graph__radar-a" };
-  const run = async (cfg) => { const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
-    const r = await p.evaluate((NEED) => Object.entries(NEED).map(([k, sel]) => { const f = document.querySelector(`#cat-graph-${k} figure.wt-graph`); if (!f) return { k, missing: true }; const rows = f.querySelectorAll("table.wt-graph__data tbody tr").length; const vis = f.querySelectorAll(sel).length; const imgs = Array.from(f.querySelectorAll("[role=img]")); return { k, rows, vis, caption: !!f.querySelector("figcaption") && f.querySelector("figcaption").textContent.trim().length > 0, ariaImgs: imgs.length, ariaLabelled: imgs.every((el) => (el.getAttribute("aria-label") || "").length > 0), overflow: f.scrollWidth - f.clientWidth, width: Math.round(f.getBoundingClientRect().width) }; }), NEED);
+  const read = async (cfg, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: js ? "networkidle" : "load" });
+    const r = await p.evaluate((visSrc) => {
+      const vis = eval(visSrc);
+      const num = (t) => parseFloat(String(t).replace(/[^\d.]/g, ""));
+      const cssVar = (el, name) => { const m = (el.getAttribute("style") || "").match(new RegExp(name + ":\\s*([\\d.]+)")); return m ? parseFloat(m[1]) : null; };
+      const out = [];
+      for (const k of ["grouped", "column", "score", "gauge", "radar"]) {
+        const f = document.querySelector(`#cat-graph-${k} figure.wt-graph`); if (!f) { out.push({ k, missing: true }); continue; }
+        const tds = Array.from(f.querySelectorAll("table.wt-graph__data tbody tr")).map((tr) => Array.from(tr.querySelectorAll("td")).map((td) => num(td.textContent)));
+        const imgs = Array.from(f.querySelectorAll("[role=img]"));
+        const g = { k, rows: tds.length, caption: !!f.querySelector("figcaption") && f.querySelector("figcaption").textContent.trim().length > 0, ariaImgs: imgs.length, ariaLabelled: imgs.every((el) => (el.getAttribute("aria-label") || "").length > 5), overflow: f.scrollWidth - f.clientWidth, width: Math.round(f.getBoundingClientRect().width), figVisible: vis(f), valuesOk: false, visibleOk: false, detail: null };
+        if (k === "grouped") {
+          const rows = Array.from(f.querySelectorAll(".wt-graph__row"));
+          const pairs = rows.map((row) => Array.from(row.querySelectorAll(".wt-graph__bar")).map((b) => ({ v: cssVar(b, "--v"), label: num(b.getAttribute("data-v")), vis: vis(b.querySelector("i")), w: b.querySelector("i").getBoundingClientRect().width, track: b.getBoundingClientRect().width })));
+          const maxLabel = Math.max(...tds.flat()); const maxV = Math.max(...pairs.flat().map((x) => x.v));
+          g.valuesOk = rows.length === tds.length && pairs.every((pr, i) => pr.length === 2 && pr.every((x, j) => x.label === tds[i][j] && Math.abs(x.v / maxV - x.label / maxLabel) < 0.02 && Math.abs(x.w / x.track - x.v / 100) < 0.03));
+          g.visibleOk = pairs.flat().every((x) => x.vis && x.w > 0); g.detail = pairs;
+        } else if (k === "column") {
+          const cols = Array.from(f.querySelectorAll(".wt-graph__col")).map((c) => ({ v: cssVar(c, "--v"), label: num(c.querySelector("b").textContent), vis: vis(c.querySelector("i")), h: c.querySelector("i").getBoundingClientRect().height, box: c.getBoundingClientRect().height }));
+          const maxLabel = Math.max(...tds.map((r) => r[0]));
+          g.valuesOk = cols.length === tds.length && cols.every((c, i) => c.label === tds[i][0] && Math.abs(c.v - Math.round(c.label / maxLabel * 100)) <= 1 && Math.abs(c.h / c.box - c.v / 100) < 0.03) && f.querySelectorAll(".wt-graph__collabels span").length === cols.length;
+          g.visibleOk = cols.every((c) => c.vis && c.h > 0); g.detail = cols;
+        } else if (k === "score") {
+          const scores = Array.from(f.querySelectorAll(".wt-graph__score")).map((sc) => { const cells = Array.from(sc.querySelectorAll("i")); const filled = cells.filter((i) => getComputedStyle(i).backgroundColor !== getComputedStyle(cells[4]).backgroundColor || num(sc.getAttribute("data-v")) === 5).length; return { v: num(sc.getAttribute("data-v")), cells: cells.length, filled, vis: cells.every(vis), shown: num(sc.parentElement.querySelector(".wt-graph__val").textContent) }; });
+          g.valuesOk = scores.length === tds.length && scores.every((sc, i) => sc.cells === 5 && sc.v === tds[i][0] && sc.shown === tds[i][0] && sc.filled === sc.v);
+          g.visibleOk = scores.every((sc) => sc.vis); g.detail = scores;
+        } else if (k === "gauge") {
+          const gauges = Array.from(f.querySelectorAll(".wt-graph__gauge")).map((ga) => ({ v: cssVar(ga, "--v"), shown: num(ga.querySelector("b").textContent), vis: vis(ga), bg: getComputedStyle(ga).backgroundImage }));
+          g.valuesOk = gauges.length === tds.length && gauges.every((ga, i) => ga.v === tds[i][0] && ga.shown === tds[i][0] && /conic-gradient/.test(ga.bg));
+          g.visibleOk = gauges.every((ga) => ga.vis); g.detail = gauges;
+        } else if (k === "radar") {
+          const polys = ["a", "b"].map((s) => f.querySelector(`.wt-graph__radar-${s}`)).map((pl) => ({ points: pl ? pl.getAttribute("points").trim().split(/\s+/).length : 0, vis: vis(pl), fill: pl ? getComputedStyle(pl).fillOpacity : null }));
+          const legend = f.querySelectorAll(".wt-graph__legend li").length; const labels = f.querySelectorAll(".wt-graph__radar-labels text").length;
+          g.valuesOk = tds.length === 5 && tds.every((r) => r.length === 2) && polys.every((pl) => pl.points === 5) && legend === 2 && labels === 5;
+          g.visibleOk = polys.every((pl) => pl.vis && parseFloat(pl.fill) > 0); g.detail = { polys, legend, labels };
+        }
+        out.push(g);
+      }
+      return out;
+    }, VIS_SRC);
     await ctx.close(); return r; };
-  const pc = await run(PC), sp = await run(SP);
-  const ok = (r) => r.length === 5 && r.every((x) => !x.missing && x.rows >= 3 && x.vis >= 1 && x.caption && x.ariaLabelled && x.overflow <= 0 && x.width > 0) && r.filter((x) => ["column", "gauge", "radar"].includes(x.k)).every((x) => x.ariaImgs >= 1);
-  out.graphsMore = { pc, sp, pass: ok(pc) && ok(sp) };
+  const EXPECT_ARIA = { grouped: 0, column: 1, score: 0, gauge: 3, radar: 1 };
+  const ok = (r) => r.length === 5 && r.every((x) => !x.missing && x.rows >= 3 && x.caption && x.ariaImgs === EXPECT_ARIA[x.k] && x.ariaLabelled && x.overflow <= 0 && x.width > 0 && x.figVisible && x.valuesOk && x.visibleOk);
+  const pc = await read(PC, true), sp = await read(SP, true), spNoJs = await read(SP, false);
+  const key = (g) => JSON.stringify([g.k, g.rows, g.caption, g.ariaImgs, g.valuesOk, g.visibleOk]);
+  const sameNoJs = spNoJs.length === sp.length && spNoJs.every((g, i) => key(g) === key(sp[i]));
+  out.graphsMore = { pc, sp, spNoJs, sameNoJs, pass: ok(pc) && ok(sp) && ok(spNoJs) && sameNoJs };
 }
-// (e) relatedNoFixture: 関連 6 件に既定カテゴリの投稿・自記事が入らず、件数は 6 のまま（SP / PC）
+// (e) relatedNoFixture: 関連 6 件 + 次に読む 1 件に、既定カテゴリ（wp option default_category の名前。--wpclidir が無いときは "Uncategorized" で代用し source に記録）の投稿と
+//     自記事が入らず、各カードのカテゴリが 1 つ以上・画像が読込済み（naturalWidth > 0）
 {
+  let defaultCat = "Uncategorized", source = "fallback:Uncategorized";
+  if (WPCLIDIR) {
+    try {
+      const wp = (cmdArgs) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...cmdArgs], { cwd: WPCLIDIR, encoding: "utf8" });
+      const id = wp(["option", "get", "default_category"]).trim();
+      defaultCat = wp(["term", "get", "category", id, "--field=name"]).trim(); source = `wp-cli:default_category=${id}`;
+    } catch (e) { source = `wp-cli failed (${String(e).slice(0, 80)}); fallback:Uncategorized`; }
+  }
   const run = async (cfg) => { const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); await p.goto(BASE + ARTICLE, { waitUntil: "networkidle" });
-    const r = await p.evaluate(() => { const self = document.querySelector("h1").textContent.trim(); const cards = Array.from(document.querySelectorAll(".wt-related:not(.wt-next) .wt-rcard")); const next = Array.from(document.querySelectorAll(".wt-related.wt-next .wt-rcard")); const info = (c) => ({ terms: Array.from(c.querySelectorAll(".wp-block-post-terms a")).map((a) => a.textContent.trim()), title: (c.querySelector(".wt-rcard__title") || {}).textContent?.trim(), img: !!c.querySelector("img") }); return { count: cards.length, nextCount: next.length, cards: cards.map(info), next: next.map(info), self }; });
+    await p.evaluate(async () => { const imgs = Array.from(document.querySelectorAll(".wt-related img")); imgs.forEach((i) => { i.loading = "eager"; }); await Promise.all(imgs.map((i) => i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 3000); }))); });
+    const r = await p.evaluate(() => { const self = document.querySelector("h1").textContent.trim(); const info = (c) => ({ terms: Array.from(c.querySelectorAll(".wp-block-post-terms a")).map((a) => a.textContent.trim()), title: (c.querySelector(".wt-rcard__title") || {}).textContent?.trim(), img: (() => { const i = c.querySelector("img"); return i ? { complete: i.complete, naturalWidth: i.naturalWidth } : null; })() });
+      return { count: document.querySelectorAll(".wt-related:not(.wt-next) .wt-rcard").length, cards: Array.from(document.querySelectorAll(".wt-related:not(.wt-next) .wt-rcard")).map(info), next: Array.from(document.querySelectorAll(".wt-related.wt-next .wt-rcard")).map(info), self }; });
     await ctx.close(); return r; };
   const pc = await run(PC), sp = await run(SP);
-  const ok = (r) => r.count === 6 && r.nextCount === 1 && [...r.cards, ...r.next].every((c) => !c.terms.includes("Uncategorized") && c.terms.length > 0 && c.title !== r.self && c.img);
-  out.relatedNoFixture = { pc, sp, pass: ok(pc) && ok(sp) };
+  const ok = (r) => r.count === 6 && r.next.length === 1 && [...r.cards, ...r.next].every((c) => !c.terms.includes(defaultCat) && c.terms.length > 0 && c.title && c.title !== r.self && c.img && c.img.complete && c.img.naturalWidth > 0);
+  out.relatedNoFixture = { defaultCat, source, pc, sp, pass: ok(pc) && ok(sp) };
 }
-// (f) lineIcon: LINE 導線の mark が吹き出しグリフ（文字 "LINE" を含まない）で、qr 型の説明文が PC / SP で切り替わる。追尾ボタンも同じ mark
+// (f) lineIcon: LINE 導線の mark が描かれた吹き出しグリフ（mask あり・可視・16px 以上）で文字 "LINE" を含まない。qr 型の説明文が PC / SP で切り替わる。追尾ボタンも同じ mark
 {
   const run = async (cfg, dev) => { const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); await p.goto(BASE + LP + "?wt=lp_sections:extended,lp_line:qr,lp_fixed:line-sticky", { waitUntil: "networkidle" });
-    const r = await p.evaluate(() => { const vis = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); if (!(r.width > 0 && r.height > 0)) return false; for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.display === "none" || s.visibility === "hidden") return false; } return true; };
-      const marks = Array.from(document.querySelectorAll(".wt-lp-line__mark")); const wrap = document.querySelector(".wt-lp-line__qrwrap");
-      return { marks: marks.length, marksWithGlyph: marks.filter((m) => m.querySelector(".wt-i--bubble")).length, marksWithText: marks.filter((m) => /LINE/.test(m.textContent)).length,
+    const r = await p.evaluate(([visSrc, glyphSrc]) => { const vis = eval(visSrc), glyph = eval(glyphSrc);
+      const marks = Array.from(document.querySelectorAll(".wt-lp-line__mark")).filter(vis); const wrap = document.querySelector(".wt-lp-line__qrwrap");
+      return { marks: marks.length, marksWithGlyph: marks.filter((m) => glyph(m.querySelector(".wt-i--bubble"))).length, marksWithText: marks.filter((m) => /LINE/.test(m.textContent)).length,
         pcTextVisible: Array.from(wrap.querySelectorAll(".wt-only-pc")).map(vis), spTextVisible: Array.from(wrap.querySelectorAll(".wt-only-sp")).map(vis), qrVisible: vis(wrap.querySelector(".wt-lp-line__qr")), spBtnVisible: vis(wrap.querySelector(".wt-lp-line__btn--sp")),
-        stickyGlyph: !!document.querySelector(".wt-lp-fixed--line-sticky .wt-i--bubble"), btnTexts: Array.from(document.querySelectorAll(".wt-lp-line__btn")).filter(vis).map((a) => (a.getAttribute("aria-label") || "") + " " + a.textContent.trim()) }; });
+        stickyGlyph: glyph(document.querySelector(".wt-lp-fixed--line-sticky .wt-i--bubble")), btnTexts: Array.from(document.querySelectorAll(".wt-lp-line__btn")).filter(vis).map((a) => (a.getAttribute("aria-label") || "") + " " + a.textContent.trim()) }; }, [VIS_SRC, GLYPH_SRC]);
     await ctx.close(); return { dev, ...r }; };
   const pc = await run(PC, "pc"), sp = await run(SP, "sp");
-  const base = (r) => r.marks >= 3 && r.marksWithGlyph === r.marks && r.marksWithText === 0 && r.stickyGlyph && r.btnTexts.length >= 1 && r.btnTexts.every((t) => /LINE/.test(t));
-  out.lineIcon = { pc, sp, pass: base(pc) && base(sp) && pc.pcTextVisible.length === 2 && pc.pcTextVisible.every(Boolean) && pc.spTextVisible.every((v) => !v) && pc.qrVisible && !pc.spBtnVisible && sp.spTextVisible.length === 2 && sp.spTextVisible.every(Boolean) && sp.pcTextVisible.every((v) => !v) && !sp.qrVisible && sp.spBtnVisible };
+  // qr 型: PC は追尾ボタンの mark のみ（QR 枠内の SP ボタンは非表示）= 1、SP は QR 枠内ボタン + 追尾 = 2
+  const expectMarks = (r) => (r.dev === "pc" ? 1 : 2);
+  const base = (r) => r.marks === expectMarks(r) && r.marksWithGlyph === r.marks && r.marksWithText === 0 && r.stickyGlyph && r.btnTexts.length === expectMarks(r) && r.btnTexts.every((t) => /LINE/.test(t));
+  out.lineIcon = { pc, sp, pass: base(pc) && base(sp) && pc.pcTextVisible.length === 2 && pc.pcTextVisible.every(Boolean) && pc.spTextVisible.length === 2 && pc.spTextVisible.every((v) => !v) && pc.qrVisible && !pc.spBtnVisible && sp.spTextVisible.length === 2 && sp.spTextVisible.every(Boolean) && sp.pcTextVisible.every((v) => !v) && !sp.qrVisible && sp.spBtnVisible };
 }
-// (g) snsIcons: footer の SNS 4 導線と記事末 icons-row がグリフ付き・aria-label あり・44px 以上（SP / PC、JS 無効でも同じ）
+// (g) snsIcons: footer の SNS 4 導線と記事末 icons-row 3 導線。グリフが描かれている（はてなは文字 "B!"）・aria-label・44×44・rel に nofollow（footer）・JS 無効でも同じ
 {
   const run = async (cfg, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); await p.goto(BASE + ARTICLE + "?wt=tail_share:icons-row", { waitUntil: js ? "networkidle" : "load" });
-    const r = await p.evaluate(() => { const box = (el) => { const r = el.getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height)]; };
-      const f = Array.from(document.querySelectorAll(".wt-footer .wt-social a")).map((a) => ({ label: a.getAttribute("aria-label") || "", glyph: !!a.querySelector(".wt-i"), digits: /^\s*\d\s*$/.test(a.textContent), size: box(a), rel: a.getAttribute("rel") || "" }));
-      const t = Array.from(document.querySelectorAll(".wt-tail-icons a")).map((a) => ({ label: a.getAttribute("aria-label") || "", glyph: !!a.querySelector(".wt-i") || a.textContent.trim().length > 0, size: box(a) }));
-      return { footer: f, tail: t }; });
+    const r = await p.evaluate(([visSrc, glyphSrc]) => { const vis = eval(visSrc), glyph = eval(glyphSrc); const box = (el) => { const r = el.getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height)]; };
+      const f = Array.from(document.querySelectorAll(".wt-footer .wt-social a")).map((a) => ({ visible: vis(a), label: a.getAttribute("aria-label") || "", glyph: glyph(a.querySelector(".wt-i")), digits: /^\s*\d\s*$/.test(a.textContent), size: box(a), rel: (a.getAttribute("rel") || "").split(/\s+/) }));
+      const t = Array.from(document.querySelectorAll(".wt-tail-icons a")).map((a) => ({ visible: vis(a), label: a.getAttribute("aria-label") || "", key: a.getAttribute("data-wt-sns"), glyph: a.querySelector(".wt-i") ? glyph(a.querySelector(".wt-i")) : a.textContent.trim() === "B!", size: box(a) }));
+      return { footer: f, tail: t }; }, [VIS_SRC, GLYPH_SRC]);
     await ctx.close(); return r; };
   const res = { spJs: await run(SP, true), pcJs: await run(PC, true), spNoJs: await run(SP, false) };
-  const ok = (r) => r.footer.length === 4 && r.footer.every((a) => a.label.length > 0 && a.glyph && !a.digits && a.size[0] >= 44 && a.size[1] >= 44 && /nofollow/.test(a.rel)) && r.tail.length === 3 && r.tail.every((a) => a.label.length > 0 && a.glyph && a.size[0] >= 44 && a.size[1] >= 44);
+  const ok = (r) => r.footer.length === 4 && r.footer.every((a) => a.visible && a.label.length > 0 && a.glyph && !a.digits && a.size[0] >= 44 && a.size[1] >= 44 && a.rel.includes("nofollow")) && r.tail.length === 3 && r.tail.map((a) => a.key).join(",") === "x,line,hatena" && r.tail.every((a) => a.visible && a.label.length > 0 && a.glyph && a.size[0] >= 44 && a.size[1] >= 44);
   out.snsIcons = { ...res, pass: ok(res.spJs) && ok(res.pcJs) && ok(res.spNoJs) };
 }
 
