@@ -39,7 +39,7 @@
   });
 
   // 共有: Web Share API があれば共有、無ければリンクコピー
-  document.querySelectorAll('.wt-share [data-wt-share]').forEach(function(b){
+  document.querySelectorAll('.wt-share [data-wt-share], .wt-tail-icons [data-wt-share]').forEach(function(b){
     b.addEventListener('click', function(){
       var data = { title: document.title, url: location.href };
       if (b.getAttribute('data-wt-share') === 'share' && navigator.share) { navigator.share(data).catch(function(){}); return; }
