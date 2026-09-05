@@ -823,3 +823,201 @@ body.wt-lp-fixed-float-cta .wt-lp-fixed--float-cta{display:inline-flex;position:
   body.wt-face-lp.wt-lp-fixed-sp-bottom-bar.wt-footer-totop-button:not(.wt-share-float) .wt-totop{bottom:calc(56px + .75rem)}
 }
 @media (prefers-reduced-motion:reduce){.wt-lp *,.wt-lp-header *,.wt-lp-legal *,.wt-lp-fixed,.wt-lp-fixed *{animation:none!important;transition:none!important;transform:none!important}.wt-lp-cta-action:hover{transform:none}}
+
+/* ---------- PO 反応6・7: 記事内語彙の追加型（Claude 案） ---------- */
+
+/* 比較表: 既存の compare / compare-scroll はそのまま。追加4型だけを装飾する。 */
+.wp-block-table.is-style-wt-compare-striped,.wp-block-table.is-style-wt-compare-evaluation,.wp-block-table.is-style-wt-compare-price,.wp-block-table.is-style-wt-compare-showdown{overflow-x:auto}
+.wp-block-table.is-style-wt-compare-striped table,.wp-block-table.is-style-wt-compare-evaluation table,.wp-block-table.is-style-wt-compare-price table,.wp-block-table.is-style-wt-compare-showdown table{width:100%;min-width:520px;border-collapse:separate;border-spacing:0;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);overflow:hidden}
+.wp-block-table.is-style-wt-compare-striped th,.wp-block-table.is-style-wt-compare-striped td,.wp-block-table.is-style-wt-compare-evaluation th,.wp-block-table.is-style-wt-compare-evaluation td,.wp-block-table.is-style-wt-compare-price th,.wp-block-table.is-style-wt-compare-price td,.wp-block-table.is-style-wt-compare-showdown th,.wp-block-table.is-style-wt-compare-showdown td{padding:.7rem .75rem;border:0;border-bottom:1px solid var(--wp--preset--color--line);vertical-align:top;text-align:left}
+.wp-block-table.is-style-wt-compare-striped thead th,.wp-block-table.is-style-wt-compare-evaluation thead th,.wp-block-table.is-style-wt-compare-price thead th,.wp-block-table.is-style-wt-compare-showdown thead th{background:var(--wp--preset--color--contrast);color:var(--wp--preset--color--base);font-size:.8125rem;white-space:nowrap}
+.wp-block-table.is-style-wt-compare-striped tbody tr:nth-child(even){background:var(--wp--preset--color--surface)}
+.wp-block-table.is-style-wt-compare-striped tbody tr:last-child td,.wp-block-table.is-style-wt-compare-evaluation tbody tr:last-child td,.wp-block-table.is-style-wt-compare-price tbody tr:last-child td,.wp-block-table.is-style-wt-compare-showdown tbody tr:last-child td{border-bottom:0}
+.wp-block-table.is-style-wt-compare-evaluation .wt-mark{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;min-height:2rem;padding:0 .35rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);font-weight:800;font-family:var(--wp--preset--font-family--latin)}
+.wp-block-table.is-style-wt-compare-evaluation td:has(.wt-mark){font-weight:700}
+.wp-block-table.is-style-wt-compare-price tbody tr.wt-compare__price-row{background:var(--wp--preset--color--accent-soft);box-shadow:inset 4px 0 0 var(--wp--preset--color--accent)}
+.wp-block-table.is-style-wt-compare-price tbody tr.wt-compare__price-row td{font-weight:700;color:var(--wp--preset--color--contrast)}
+.wp-block-table.is-style-wt-compare-showdown tbody td:not(:first-child),.wp-block-table.is-style-wt-compare-showdown thead th:not(:first-child){text-align:center}
+.wp-block-table.is-style-wt-compare-showdown tbody td:nth-child(2){background:color-mix(in srgb,var(--wp--preset--color--accent-soft) 58%,transparent)}
+.wp-block-table.is-style-wt-compare-showdown tbody td:nth-child(3){background:color-mix(in srgb,var(--wp--preset--color--surface) 82%,transparent)}
+@media (max-width:599px){
+  .wp-block-table.is-style-wt-compare-striped table,.wp-block-table.is-style-wt-compare-evaluation table,.wp-block-table.is-style-wt-compare-price table,.wp-block-table.is-style-wt-compare-showdown table{min-width:480px}
+  .wp-block-table.is-style-wt-compare-evaluation .wt-mark{min-width:1.75rem;min-height:1.75rem}
+}
+
+/* pros-cons: 追加型は全て SP で1列へ畳む。 */
+.wp-block-group.is-style-wt-pros-contrast,.wp-block-group.is-style-wt-pros-icons,.wp-block-group.is-style-wt-pros-band{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-block:1.5rem}
+.wp-block-group.is-style-wt-pros-contrast .wt-prosc__item,.wp-block-group.is-style-wt-pros-icons .wt-prosc__item,.wp-block-group.is-style-wt-pros-band .wt-prosc__item{min-width:0;margin:0;padding:1rem 1.1rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wp-block-group.is-style-wt-pros-contrast .wt-prosc__item--good{border-top:4px solid var(--wp--preset--color--ok);background:var(--wp--preset--color--ok-soft)}
+.wp-block-group.is-style-wt-pros-contrast .wt-prosc__item--bad{border-top:4px solid var(--wp--preset--color--cta);background:var(--wp--preset--color--warn-soft)}
+.wp-block-group.is-style-wt-pros-contrast .wt-prosc__title,.wp-block-group.is-style-wt-pros-icons .wt-prosc__title,.wp-block-group.is-style-wt-pros-band .wt-prosc__title{margin:0 0 .6rem;font-weight:800}
+.wp-block-group.is-style-wt-pros-contrast .wt-prosc__item--good .wt-prosc__title{color:var(--wp--preset--color--ok)}
+.wp-block-group.is-style-wt-pros-contrast .wt-prosc__item--bad .wt-prosc__title{color:var(--wp--preset--color--cta)}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__item{padding-top:.8rem}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__list{list-style:none;margin:0;padding:0}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__list li{position:relative;padding:.55rem .5rem .55rem 2.1rem;border-bottom:1px solid var(--wp--preset--color--line)}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__list li:last-child{border-bottom:0}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__item--good li::before,.wp-block-group.is-style-wt-pros-icons .wt-prosc__item--bad li::before{position:absolute;left:0;top:.48rem;display:inline-flex;align-items:center;justify-content:center;width:1.35rem;height:1.35rem;border-radius:50%;font-weight:800;font-family:var(--wp--preset--font-family--latin)}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__item--good li::before{content:"○";background:var(--wp--preset--color--ok-soft);color:var(--wp--preset--color--ok)}
+.wp-block-group.is-style-wt-pros-icons .wt-prosc__item--bad li::before{content:"×";background:var(--wp--preset--color--warn-soft);color:var(--wp--preset--color--cta)}
+.wp-block-group.is-style-wt-pros-band{gap:.75rem}
+.wp-block-group.is-style-wt-pros-band .wt-prosc__item{padding:0 1rem 1rem;overflow:hidden}
+.wp-block-group.is-style-wt-pros-band .wt-prosc__title{margin:0 -1rem .75rem;padding:.6rem 1rem;background:var(--wp--preset--color--contrast);color:#fff}
+.wp-block-group.is-style-wt-pros-band .wt-prosc__item--good .wt-prosc__title{background:var(--wp--preset--color--ok)}
+.wp-block-group.is-style-wt-pros-band .wt-prosc__item--bad .wt-prosc__title{background:var(--wp--preset--color--cta)}
+.wp-block-group.is-style-wt-pros-band ul{margin:0;padding-left:1.25rem}
+@media (max-width:599px){.wp-block-group.is-style-wt-pros-contrast,.wp-block-group.is-style-wt-pros-icons,.wp-block-group.is-style-wt-pros-band{grid-template-columns:1fr}}
+
+/* review-bar: 星+数値 / 項目別5本 / 円形総合スコア。 */
+.wp-block-group.is-style-wt-review-stars,.wp-block-group.is-style-wt-review-bars,.wp-block-group.is-style-wt-review-score{margin-block:1.5rem;padding:1rem 1.1rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-review__row{display:flex;align-items:center;gap:.75rem;min-height:44px;border-bottom:1px solid var(--wp--preset--color--line)}
+.wt-review__row:last-child{border-bottom:0}
+.wt-review__label{flex:1 1 auto;min-width:0;font-weight:700}
+.wt-review__stars{color:#b45309;letter-spacing:.08em;white-space:nowrap}
+.wt-review__score{font-family:var(--wp--preset--font-family--latin);font-weight:800;white-space:nowrap}
+.wp-block-group.is-style-wt-review-stars .wt-review__row{justify-content:space-between}
+.wp-block-group.is-style-wt-review-bars .wt-rate{grid-template-columns:minmax(5em,7em) 1fr 2.5em;margin:0;width:100%}
+.wp-block-group.is-style-wt-review-bars .wt-rate i{height:9px}
+.wp-block-group.is-style-wt-review-score{display:grid;grid-template-columns:9rem 1fr;align-items:center;gap:1.25rem}
+.wt-review__circle{width:8rem;height:8rem;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--wp--preset--color--accent) 0 86%,var(--wp--preset--color--accent-soft) 86% 100%);position:relative;isolation:isolate}
+.wt-review__circle::before{content:"";position:absolute;inset:.6rem;border-radius:50%;background:var(--wp--preset--color--base);z-index:-1}
+.wt-review__circle strong{font-family:var(--wp--preset--font-family--latin);font-size:1.8rem;color:var(--wp--preset--color--contrast)}
+.wt-review__comment{margin:0;color:var(--wp--preset--color--mute);font-size:.875rem}
+@media (max-width:599px){.wp-block-group.is-style-wt-review-score{grid-template-columns:1fr;justify-items:start}.wt-review__circle{width:7rem;height:7rem}.wt-review__circle::before{inset:.55rem}}
+
+/* ブログカード（表示名のみ変更。互換の is-style-wt-linkcard / wt-linkcard は残置） */
+.wp-block-group.is-style-wt-blogcard-top,.wp-block-group.is-style-wt-blogcard-band,.wp-block-group.is-style-wt-blogcard-ogp{position:relative;margin-block:1.5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);overflow:hidden;background:var(--wp--preset--color--base);transition:box-shadow var(--wp--custom--motion-fast),transform var(--wp--custom--motion-fast)}
+.wp-block-group.is-style-wt-blogcard-top:hover,.wp-block-group.is-style-wt-blogcard-band:hover,.wp-block-group.is-style-wt-blogcard-ogp:hover{box-shadow:var(--wp--preset--shadow--depth-1);transform:translateY(-2px)}
+.wp-block-group.is-style-wt-blogcard-top .wp-block-image,.wp-block-group.is-style-wt-blogcard-ogp .wp-block-image{margin:0}
+.wp-block-group.is-style-wt-blogcard-top .wp-block-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.wp-block-group.is-style-wt-blogcard-top .wt-blogcard__body,.wp-block-group.is-style-wt-blogcard-ogp .wt-blogcard__body{padding:1rem 1.1rem}
+.wt-blogcard__label{margin:0 0 .25rem;font-size:.6875rem;color:var(--wp--preset--color--mute);letter-spacing:.05em}
+.wt-blogcard__title{margin:0;font-weight:800;line-height:1.45}
+.wt-blogcard__title a{position:static;color:inherit;text-decoration:none}
+.wt-blogcard__title a::after{content:"";position:absolute;inset:0}
+.wt-blogcard__desc{margin:.35rem 0 0;color:var(--wp--preset--color--mute);font-size:.8125rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wp-block-group.is-style-wt-blogcard-band{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;border-left:4px solid var(--wp--preset--color--accent)}
+.wp-block-group.is-style-wt-blogcard-band .wt-blogcard__body{min-width:0}
+.wp-block-group.is-style-wt-blogcard-band .wt-blogcard__desc{display:none}
+.wp-block-group.is-style-wt-blogcard-ogp{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0;align-items:stretch}
+.wp-block-group.is-style-wt-blogcard-ogp .wp-block-image img{height:100%;min-height:120px;aspect-ratio:1/1;object-fit:cover}
+.wp-block-group.is-style-wt-blogcard-ogp .wt-blogcard__body{display:flex;flex-direction:column;justify-content:center}
+.wp-block-group.is-style-wt-blogcard-ogp .wt-blogcard__label::before{content:"↗ ";font-family:var(--wp--preset--font-family--latin);font-weight:800}
+@media (max-width:479px){.wp-block-group.is-style-wt-blogcard-ogp{grid-template-columns:104px minmax(0,1fr)}.wp-block-group.is-style-wt-blogcard-ogp .wt-blogcard__body{padding:.75rem}.wp-block-group.is-style-wt-blogcard-top .wt-blogcard__body{padding:.85rem}.wp-block-group.is-style-wt-blogcard-band{padding:.8rem}}
+
+/* PR 表記: 全てのタグは flex item として縮まず、P/R に縦積みされない。 */
+.wp-block-group.is-style-wt-pr-intro,.wp-block-group.is-style-wt-pr-inline,.wp-block-group.is-style-wt-pr-double,.wp-block-group.is-style-wt-pr-band{margin-block:1.5rem}
+.wt-pr.is-style-wt-pr-intro{align-items:flex-start;padding:.8rem 1rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--surface);margin:0}
+.wt-pr.is-style-wt-pr-intro .wt-pr__tag,.wt-pr.is-style-wt-pr-double .wt-pr__tag,.wt-pr.is-style-wt-pr-band .wt-pr__tag{flex:0 0 auto;white-space:nowrap}
+.wp-block-group.is-style-wt-pr-inline{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;padding-bottom:.5rem;border-bottom:1px solid var(--wp--preset--color--line)}
+.wp-block-group.is-style-wt-pr-inline .wt-pr__tag{flex:0 0 auto;white-space:nowrap}
+.wp-block-group.is-style-wt-pr-inline h3{margin:0;font-size:var(--wp--preset--font-size--l)}
+.wp-block-group.is-style-wt-pr-double{display:grid;gap:.6rem}
+.wp-block-group.is-style-wt-pr-double .wt-pr{margin:0;padding:.35rem 0}
+.wp-block-group.is-style-wt-pr-band{padding:.8rem 1rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--contrast);color:#fff}
+.wt-pr.is-style-wt-pr-band{margin:0;color:#fff}
+.wt-pr.is-style-wt-pr-band .wt-pr__icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:1.5rem;height:1.5rem;border:1px solid currentColor;border-radius:50%;font-family:var(--wp--preset--font-family--latin);font-size:.75rem;font-weight:800}
+.wt-pr.is-style-wt-pr-band .wt-pr__tag{border-color:rgba(255,255,255,.55);color:#fff}
+@media (max-width:479px){.wt-pr.is-style-wt-pr-intro,.wt-pr.is-style-wt-pr-band{align-items:flex-start}.wp-block-group.is-style-wt-pr-inline{align-items:center}}
+
+/* detext: 本文を短く見せる補助レイアウト。 */
+.wp-block-group.is-style-wt-detext-takeaways,.wp-block-group.is-style-wt-detext-metrics,.wp-block-group.is-style-wt-detext-diagram,.wp-block-group.is-style-wt-detext-quote{margin-block:1.5rem}
+.wp-block-group.is-style-wt-detext-takeaways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.wt-detext__item{height:100%;padding:1rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-detext__item::before{content:"✓";display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;margin-bottom:.5rem;border-radius:50%;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);font-weight:800}
+.wt-detext__item strong{display:block;margin-bottom:.25rem}
+.wt-detext__item p{margin:0;font-size:.875rem;color:var(--wp--preset--color--mute)}
+.wp-block-group.is-style-wt-detext-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;padding:1rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--surface)}
+.wt-detext__metric{text-align:center}.wt-detext__metric .wt-num{display:block;font-size:clamp(2rem,6vw,3rem)}.wt-detext__metric small{color:var(--wp--preset--color--mute)}
+.wp-block-group.is-style-wt-detext-diagram{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.75rem;padding:1rem;border:1px dashed var(--wp--preset--color--accent);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--accent-soft)}
+.wt-detext__diagram-box{padding:.75rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--base);text-align:center;font-weight:700}
+.wt-detext__diagram-arrow{font-size:1.5rem;color:var(--wp--preset--color--accent)}
+.wp-block-group.is-style-wt-detext-quote{padding:1.25rem 1.5rem;border-left:5px solid var(--wp--preset--color--accent);background:var(--wp--preset--color--surface)}
+.wp-block-group.is-style-wt-detext-quote blockquote{margin:0;border:0;padding:0;font-size:clamp(1.25rem,3vw,1.7rem);font-weight:800;line-height:1.5}
+.wp-block-group.is-style-wt-detext-quote cite{display:block;margin-top:.75rem;color:var(--wp--preset--color--mute);font-size:.8125rem;font-style:normal;font-weight:400}
+@media (max-width:599px){.wp-block-group.is-style-wt-detext-takeaways,.wp-block-group.is-style-wt-detext-metrics{grid-template-columns:1fr}.wp-block-group.is-style-wt-detext-diagram{grid-template-columns:1fr}.wt-detext__diagram-arrow{transform:rotate(90deg);justify-self:center}}
+
+/* contrast-guard: 自動輝度判定の上に「画像の見せ方」を重ねる。5つの概念型、overlay は3色を具体化。 */
+.wp-block-cover[class*="is-style-wt-contrast-"]{isolation:isolate;overflow:hidden}
+.wp-block-cover[class*="is-style-wt-contrast-"] .wp-block-cover__image-background{z-index:0;transition:filter var(--wp--custom--motion-base),transform var(--wp--custom--motion-base)}
+.wp-block-cover[class*="is-style-wt-contrast-"] .wp-block-cover__inner-container{z-index:2;position:relative}
+/* 反応7 Astra 是正: 7 型は is-style-wt-scrim を含意する（型 class 単独で擬似要素・背景 dim 無効化・計測対象が成立）。
+   強度の順序は「属性なし（JS 無効・別オリジン・canvas 失敗）= 強（light 相当）」→ data-wt-lum=mid で中 → dark で弱。
+   [data-wt-lum]（値不問）を default と同じ強に置き、mid / dark だけを後段で弱める */
+.wp-block-cover[class*="is-style-wt-contrast-"]::before{content:"";position:absolute;inset:0;z-index:1}
+.wp-block-cover[class*="is-style-wt-contrast-"] .wp-block-cover__background{opacity:0!important}
+.wp-block-cover.is-style-wt-contrast-white-fade::before,.wp-block-cover.is-style-wt-contrast-white-fade[data-wt-lum]::before{background:linear-gradient(to top,rgba(255,255,255,.95) 0%,rgba(255,255,255,.86) 58%,rgba(255,255,255,.62) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-white-fade .wp-block-cover__inner-container,.wp-block-cover.is-style-wt-contrast-white-fade .wp-block-heading,.wp-block-cover.is-style-wt-contrast-white-fade p{color:var(--wp--preset--color--contrast)!important;text-shadow:none}
+.wp-block-cover.is-style-wt-contrast-overlay-warm::before,.wp-block-cover.is-style-wt-contrast-overlay-warm[data-wt-lum]::before{background:linear-gradient(to top,rgba(117,42,18,.94) 0%,rgba(117,42,18,.92) 58%,rgba(117,42,18,.90) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-warm[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(117,42,18,.90) 0%,rgba(150,60,10,.82) 58%,rgba(180,83,9,.72) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-warm[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(117,42,18,.88) 0%,rgba(180,83,9,.70) 58%,rgba(251,146,60,.42) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-cool::before,.wp-block-cover.is-style-wt-contrast-overlay-cool[data-wt-lum]::before{background:linear-gradient(to top,rgba(15,55,92,.94) 0%,rgba(15,55,92,.92) 58%,rgba(15,55,92,.90) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-cool[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(15,55,92,.90) 0%,rgba(22,66,105,.82) 58%,rgba(29,78,121,.72) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-cool[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(15,55,92,.90) 0%,rgba(29,78,121,.72) 58%,rgba(96,165,250,.40) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-brand::before,.wp-block-cover.is-style-wt-contrast-overlay-brand[data-wt-lum]::before{background:linear-gradient(to top,rgba(30,58,138,.94) 0%,rgba(30,58,138,.92) 58%,rgba(30,58,138,.90) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-brand[data-wt-lum="mid"]::before{background:linear-gradient(to top,rgba(30,58,138,.90) 0%,rgba(30,58,138,.82) 58%,rgba(29,78,216,.72) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-overlay-brand[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(30,58,138,.90) 0%,rgba(29,78,216,.72) 58%,rgba(96,165,250,.42) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-bottom-gradient::before,.wp-block-cover.is-style-wt-contrast-bottom-gradient[data-wt-lum]::before{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.88) 58%,rgba(0,0,0,.80) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-bottom-gradient[data-wt-lum="mid"]::before,.wp-block-cover.is-style-wt-contrast-bottom-gradient[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.08) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-cover__image-background{filter:blur(2px) brightness(.55) saturate(.9);transform:scale(1.04)}
+.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="mid"] .wp-block-cover__image-background,.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="dark"] .wp-block-cover__image-background{filter:blur(2px) brightness(.72) saturate(.9)}
+.wp-block-cover.is-style-wt-contrast-blur-bright::before,.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum]::before{background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.80) 58%,rgba(0,0,0,.62) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="mid"]::before,.wp-block-cover.is-style-wt-contrast-blur-bright[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(0,0,0,.90) 0%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.20) 100%)!important}
+.wp-block-cover.is-style-wt-contrast-duotone .wp-block-cover__image-background{filter:grayscale(1) contrast(1.12);transform:scale(1.02)}
+.wp-block-cover.is-style-wt-contrast-duotone::before,.wp-block-cover.is-style-wt-contrast-duotone[data-wt-lum]::before{background:linear-gradient(to top,rgba(30,58,138,.94) 0%,rgba(30,58,138,.90) 58%,rgba(30,58,138,.86) 100%)!important;mix-blend-mode:multiply}
+.wp-block-cover.is-style-wt-contrast-duotone[data-wt-lum="mid"]::before,.wp-block-cover.is-style-wt-contrast-duotone[data-wt-lum="dark"]::before{background:linear-gradient(to top,rgba(30,58,138,.92) 0%,rgba(29,78,216,.72) 58%,rgba(23,28,34,.28) 100%)!important;mix-blend-mode:multiply}
+.wp-block-cover.is-style-wt-contrast-overlay-warm .wp-block-heading,.wp-block-cover.is-style-wt-contrast-overlay-warm p,.wp-block-cover.is-style-wt-contrast-overlay-cool .wp-block-heading,.wp-block-cover.is-style-wt-contrast-overlay-cool p,.wp-block-cover.is-style-wt-contrast-overlay-brand .wp-block-heading,.wp-block-cover.is-style-wt-contrast-overlay-brand p,.wp-block-cover.is-style-wt-contrast-bottom-gradient .wp-block-heading,.wp-block-cover.is-style-wt-contrast-bottom-gradient p,.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-heading,.wp-block-cover.is-style-wt-contrast-blur-bright p,.wp-block-cover.is-style-wt-contrast-duotone .wp-block-heading,.wp-block-cover.is-style-wt-contrast-duotone p{color:#fff!important}
+@media (prefers-reduced-motion:reduce){.wp-block-cover[class*="is-style-wt-contrast-"] *{transition:none!important}.wp-block-cover.is-style-wt-contrast-blur-bright .wp-block-cover__image-background,.wp-block-cover.is-style-wt-contrast-duotone .wp-block-cover__image-background{transform:none}}
+
+/* 関連記事: 共通の品質基準（16:9 / 角丸 / 影・枠 / 2行タイトル / メタ） */
+.wt-related:not(.wt-next) .wp-block-post-template>li{display:flex;min-width:0}
+.wt-related:not(.wt-next) .wt-rcard{width:100%;grid-template-rows:auto 1fr;gap:.7rem;padding:.7rem;border:1px solid var(--wp--preset--color--line);box-shadow:var(--wp--preset--shadow--soft);transition:transform var(--wp--custom--motion-fast),box-shadow var(--wp--custom--motion-fast),border-color var(--wp--custom--motion-fast)}
+.wt-related:not(.wt-next) .wt-rcard:hover{transform:translateY(-2px);border-color:var(--wp--preset--color--accent);box-shadow:var(--wp--preset--shadow--depth-1)}
+.wt-related:not(.wt-next) .wt-rcard .wp-block-post-featured-image{min-width:0}
+.wt-related:not(.wt-next) .wt-rcard .wp-block-post-featured-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-s)}
+.wt-related:not(.wt-next) .wt-rcard__body{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;min-width:0}
+.wt-related:not(.wt-next) .wt-rcard__body .wp-block-post-terms{display:flex;flex-wrap:wrap;gap:.25rem;margin:0;min-height:1.35rem}
+/* 当たり判定 44px は維持（見た目のピルは ::before で 1.35rem に描き、行送りは負マージンで据え置き） */
+.wt-related:not(.wt-next) .wt-rcard__body .wp-block-post-terms a{position:relative;z-index:1;display:inline-flex;align-items:center;min-height:44px;margin:0;margin-block:calc((1.35rem - 44px) / 2);padding:0 .45rem;border-radius:0;background:none;color:var(--wp--preset--color--accent);font-size:.6875rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.wt-related:not(.wt-next) .wt-rcard__body .wp-block-post-terms a::before{content:"";position:absolute;inset:calc((44px - 1.35rem) / 2) 0;border-radius:999px;background:var(--wp--preset--color--accent-soft);z-index:-1}
+.wt-related:not(.wt-next) .wt-rcard__title,.wt-related:not(.wt-next) .wt-rcard .wp-block-post-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:calc(1.45em * 2);font-size:.9375rem;line-height:1.45;margin:0;font-weight:800}
+.wt-related:not(.wt-next) .wt-rcard__title a,.wt-related:not(.wt-next) .wt-rcard .wp-block-post-title a{display:block;min-height:44px;color:inherit;text-decoration:none}
+.wt-related:not(.wt-next) .wt-rcard__date,.wt-related:not(.wt-next) .wt-rcard .wp-block-post-date{margin:0;color:var(--wp--preset--color--mute);font-size:.75rem;line-height:1.4}
+/* 次に読むは既存の横長型を維持し、画像だけ共通の16:9へ寄せる。 */
+.wt-next .wt-rcard .wp-block-post-featured-image img{aspect-ratio:16/9}
+/* thumb-list-1line: PC は横長リスト、SP は画像20%前後の密度。 */
+body.wt-related-list .wt-related:not(.wt-next) .wp-block-post-template{grid-template-columns:1fr;gap:0}
+body.wt-related-list .wt-related:not(.wt-next) .wt-rcard{grid-template-columns:clamp(104px,20%,160px) minmax(0,1fr);grid-template-rows:1fr;align-items:center;gap:.9rem;padding:.75rem 0;border-width:0 0 1px;border-radius:0;box-shadow:none}
+body.wt-related-list .wt-related:not(.wt-next) .wt-rcard:hover{transform:none;box-shadow:none;border-color:var(--wp--preset--color--accent)}
+body.wt-related-list .wt-related:not(.wt-next) .wt-rcard .wp-block-post-featured-image img{aspect-ratio:16/9}
+body.wt-related-list .wt-related:not(.wt-next) .wt-rcard__body{gap:.2rem}
+/* ranking-numbers 旧値 rank は互換。新値はより明確な名前で同じ表示型を公開する。 */
+body.wt-related-rank .wt-related:not(.wt-next) .wp-block-post-template,body.wt-related-ranking-numbers .wt-related:not(.wt-next) .wp-block-post-template{grid-template-columns:1fr;gap:0;counter-reset:wt-related-rank}
+body.wt-related-rank .wt-related:not(.wt-next) .wp-block-post-template>li,body.wt-related-ranking-numbers .wt-related:not(.wt-next) .wp-block-post-template>li{counter-increment:wt-related-rank;position:relative}
+body.wt-related-rank .wt-related:not(.wt-next) .wt-rcard,body.wt-related-ranking-numbers .wt-related:not(.wt-next) .wt-rcard{grid-template-columns:2.25rem clamp(104px,20%,140px) minmax(0,1fr);grid-template-rows:1fr;align-items:center;gap:.75rem;padding:.75rem 0;border-width:0 0 1px;border-radius:0;box-shadow:none}
+body.wt-related-rank .wt-related:not(.wt-next) .wt-rcard::before,body.wt-related-ranking-numbers .wt-related:not(.wt-next) .wt-rcard::before{content:counter(wt-related-rank);font-family:var(--wp--preset--font-family--latin);font-weight:800;font-size:1.5rem;color:var(--wp--preset--color--accent);text-align:center;line-height:1}
+body.wt-related-rank .wt-related:not(.wt-next) li:nth-child(1) .wt-rcard::before,body.wt-related-ranking-numbers .wt-related:not(.wt-next) li:nth-child(1) .wt-rcard::before{color:#b8860b}
+body.wt-related-rank .wt-related:not(.wt-next) li:nth-child(2) .wt-rcard::before,body.wt-related-ranking-numbers .wt-related:not(.wt-next) li:nth-child(2) .wt-rcard::before{color:#7d8590}
+body.wt-related-rank .wt-related:not(.wt-next) li:nth-child(3) .wt-rcard::before,body.wt-related-ranking-numbers .wt-related:not(.wt-next) li:nth-child(3) .wt-rcard::before{color:#a0623d}
+/* featured-big+small: 先頭を大きく、残りは小カード。 */
+/* 反応7是正（再設計 2 巡目）: featured-big+small は「左に大カード 1、右に横サムネの小リスト 5」の型（台帳の観察形）。
+   初回の 3 列 + 2 行スパンは大カード内に空白が残り 6 件目が幅広で折り返したため置き換えた */
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:0 1.25rem}
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:first-child{grid-row:1 / span 5;align-self:start}
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:first-child .wt-rcard{padding:.85rem;gap:.85rem}
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:first-child .wt-rcard__title{font-size:1.125rem}
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:not(:first-child) .wt-rcard{grid-template-columns:34% minmax(0,1fr);grid-template-rows:1fr;align-items:center;gap:.75rem;padding:.6rem 0;border-width:0 0 1px;border-radius:0;box-shadow:none}
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:not(:first-child) .wt-rcard:hover{transform:none;box-shadow:none}
+body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:nth-child(2) .wt-rcard{padding-top:0}
+/* carousel: 自動送りなし、カードの比率とタイトル品質は共通化。 */
+body.wt-related-carousel .wt-related:not(.wt-next) .wp-block-post-template{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-bottom:.5rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+body.wt-related-carousel .wt-related:not(.wt-next) .wp-block-post-template>li{flex:0 0 min(70%,280px);scroll-snap-align:start}
+@media (max-width:599px){
+  .wt-related:not(.wt-next) .wp-block-post-template{grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem .7rem}
+  body.wt-related-list .wt-related:not(.wt-next) .wt-rcard{grid-template-columns:20% minmax(0,1fr);gap:.7rem}
+  body.wt-related-rank .wt-related:not(.wt-next) .wt-rcard,body.wt-related-ranking-numbers .wt-related:not(.wt-next) .wt-rcard{grid-template-columns:1.8rem 20% minmax(0,1fr);gap:.55rem}
+  body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;grid-auto-rows:auto;gap:.75rem}
+  body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:first-child{grid-row:auto}
+  body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:not(:first-child) .wt-rcard{grid-template-columns:20% minmax(0,1fr);grid-template-rows:1fr;align-items:center;gap:.7rem;padding:.6rem 0;border-width:0 0 1px;border-radius:0;box-shadow:none}
+  body.wt-related-featured .wt-related:not(.wt-next) .wp-block-post-template>li:not(:first-child) .wt-rcard .wp-block-post-featured-image img{aspect-ratio:16/9}
+}

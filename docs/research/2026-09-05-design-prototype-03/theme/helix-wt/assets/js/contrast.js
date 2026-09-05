@@ -3,7 +3,7 @@
    同一オリジンでない・読めない画像は属性を付けず（= 最強スクリムの既定）安全側に倒す。
    ゲート検査: 文字色 #fff と「画像輝度 × (1 − スクリム不透明度) + 0 × 不透明度」の合成輝度からコントラスト比を計算し 4.5:1（大文字 3:1）を判定する。 */
 (function(){
-  var targets = document.querySelectorAll('body.wt-eyecatch-hero .wt-posthead__img, .wp-block-cover.is-style-wt-scrim, [data-wt-scrim]');
+  var targets = document.querySelectorAll('body.wt-eyecatch-hero .wt-posthead__img, .wp-block-cover.is-style-wt-scrim, .wp-block-cover[class*="is-style-wt-contrast-"], [data-wt-scrim]');
   if (!targets.length) return;
   var lum = function(r,g,b){ var f = function(c){ c/=255; return c<=0.03928? c/12.92 : Math.pow((c+0.055)/1.055,2.4); }; return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b); };
   targets.forEach(function(el){
