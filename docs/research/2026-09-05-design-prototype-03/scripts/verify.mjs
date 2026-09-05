@@ -110,8 +110,8 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   }
   await ctx.close();
 }
-// 6. 自動コントラスト guard（実描画から算出）: 文字要素の矩形位置で (a) スクリム擬似要素の linear-gradient を解析して実効 alpha を線形補間、
-//    (b) 画像を canvas に描き文字矩形の平均輝度を測り、合成輝度 L×(1−α)（黒スクリム）と白文字の比を出す。gradient の補間は線形近似（概算）
+// 6. 自動コントラスト guard（実描画から算出）: 文字要素の矩形位置で (a) スクリム擬似要素の linear-gradient を解析して実効 alpha / 色を線形補間、
+//    (b) 画像を canvas に描き文字矩形の平均輝度を測り、合成輝度と文字色の比を出す。gradient・filter の補間は線形近似（概算）
 {
   const ctx = await browser.newContext(PC); const p = await ctx.newPage();
   const measure = async (sel, pseudo, textSel) => p.evaluate(([sel, pseudo, textSel]) => {
@@ -120,11 +120,13 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     const er = el.getBoundingClientRect(), tr = txt.getBoundingClientRect();
     // (a) gradient の実効 alpha（to top: 0% = 下端）
     const bgi = getComputedStyle(el, pseudo).backgroundImage;
-    const stops = Array.from(bgi.matchAll(/rgba?\(([^)]+)\)\s*([\d.]+)%/g)).map((m) => { const c = m[1].split(",").map(Number); return { a: c[3] ?? 1, pos: parseFloat(m[2]) / 100 }; });
+    const stops = Array.from(bgi.matchAll(/rgba?\(([^)]+)\)\s*([\d.]+)%/g)).map((m) => { const c = m[1].split(",").map(Number); return { rgb: c.slice(0, 3), a: c[3] ?? 1, pos: parseFloat(m[2]) / 100 }; });
     const fracFromBottom = (y) => (er.bottom - y) / er.height;
     const alphaAt = (f) => { if (!stops.length) return null; if (f <= stops[0].pos) return stops[0].a; for (let i = 1; i < stops.length; i++) if (f <= stops[i].pos) { const s0 = stops[i - 1], s1 = stops[i]; return s0.a + (s1.a - s0.a) * ((f - s0.pos) / (s1.pos - s0.pos)); } return stops[stops.length - 1].a; };
+    const colorAt = (f) => { if (!stops.length) return null; if (f <= stops[0].pos) return stops[0].rgb; for (let i = 1; i < stops.length; i++) if (f <= stops[i].pos) { const s0 = stops[i - 1], s1 = stops[i], t = (f - s0.pos) / (s1.pos - s0.pos); return s0.rgb.map((v, i) => v + (s1.rgb[i] - v) * t); } return stops[stops.length - 1].rgb; };
     const aTop = alphaAt(fracFromBottom(tr.top)), aBottom = alphaAt(fracFromBottom(tr.bottom));
     const alpha = aTop == null ? null : Math.min(aTop, aBottom); // 文字矩形内で最も薄い位置（最悪値）
+    const overlayAt = aTop == null ? null : (aTop <= aBottom ? colorAt(fracFromBottom(tr.top)) : colorAt(fracFromBottom(tr.bottom)));
     // (b) 画像の文字矩形の平均輝度
     const c = document.createElement("canvas"); c.width = img.naturalWidth; c.height = img.naturalHeight; const cx = c.getContext("2d"); cx.drawImage(img, 0, 0);
     // object-fit: cover の写像（中央基準）
@@ -136,9 +138,11 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     let sum = 0, n = 0, lmin = 1, lmax = 0; for (let i = 0; i < d.length; i += 4) { const L = 0.2126 * f(d[i]) + 0.7152 * f(d[i + 1]) + 0.0722 * f(d[i + 2]); sum += L; n++; lmin = Math.min(lmin, L); lmax = Math.max(lmax, L); }
     const ts = getComputedStyle(txt);
     const tc = ts.color.match(/[\d.]+/g).map(Number);
-    return { sel, textLum: tc, lum: el.getAttribute("data-wt-lum"), sampledL: parseFloat(el.getAttribute("data-wt-lum-value")), gradient: bgi.slice(0, 120), alphaAtText: alpha == null ? null : Math.round(alpha * 1000) / 1000, imageLAtText: Math.round((sum / n) * 1000) / 1000, imageLMaxAtText: Math.round(lmax * 1000) / 1000, textColor: ts.color, fontSize: parseFloat(ts.fontSize), fontWeight: ts.fontWeight };
+    const filter = getComputedStyle(img).filter;
+    const brightnessMatch = filter.match(/brightness\(([\d.]+)\)/);
+    return { sel, textLum: tc, lum: el.getAttribute("data-wt-lum"), sampledL: parseFloat(el.getAttribute("data-wt-lum-value")), gradient: bgi.slice(0, 160), overlayColor: overlayAt, filterBrightness: brightnessMatch ? parseFloat(brightnessMatch[1]) : 1, alphaAtText: alpha == null ? null : Math.round(alpha * 1000) / 1000, imageLAtText: Math.round((sum / n) * 1000) / 1000, imageLMaxAtText: Math.round(lmax * 1000) / 1000, textColor: ts.color, fontSize: parseFloat(ts.fontSize), fontWeight: ts.fontWeight };
   }, [sel, pseudo, textSel]);
-  const finish = (x) => { if (x.missing || x.alphaAtText == null) return { ...x, note: "スクリム未検出" }; const Lt = Array.isArray(x.textLum) ? lum(x.textLum.slice(0, 3)) : 1; const Lc = x.imageLAtText * (1 - x.alphaAtText), LcMax = x.imageLMaxAtText * (1 - x.alphaAtText); const r = ratio(Lt, Lc), rWorst = ratio(Lt, LcMax); const large = x.fontSize >= 24 || (x.fontSize >= 18.67 && parseInt(x.fontWeight) >= 700); return { ...x, compositeL: Math.round(Lc * 1000) / 1000, textL: Math.round(Lt * 1000) / 1000, ratioText: Math.round(r * 100) / 100, ratioWorstPixel: Math.round(rWorst * 100) / 100, ratioWithoutScrim: Math.round(ratio(Lt, x.imageLAtText) * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) }; };
+  const finish = (x) => { if (x.missing || x.alphaAtText == null) return { ...x, note: "スクリム未検出" }; const Lt = Array.isArray(x.textLum) ? lum(x.textLum.slice(0, 3)) : 1; const overlayL = Array.isArray(x.overlayColor) ? lum(x.overlayColor.slice(0, 3)) : 0; const factor = Number.isFinite(x.filterBrightness) ? x.filterBrightness : 1; const imageL = x.imageLAtText * factor, imageLMax = x.imageLMaxAtText * factor; const Lc = imageL * (1 - x.alphaAtText) + overlayL * x.alphaAtText, LcMax = imageLMax * (1 - x.alphaAtText) + overlayL * x.alphaAtText; const r = ratio(Lt, Lc), rWorst = ratio(Lt, LcMax); const large = x.fontSize >= 24 || (x.fontSize >= 18.67 && parseInt(x.fontWeight) >= 700); return { ...x, compositeL: Math.round(Lc * 1000) / 1000, textL: Math.round(Lt * 1000) / 1000, ratioText: Math.round(r * 100) / 100, ratioWorstPixel: Math.round(rWorst * 100) / 100, ratioWithoutScrim: Math.round(ratio(Lt, x.imageLAtText) * 100) / 100, required: large ? 3 : 4.5, pass: r >= (large ? 3 : 4.5) }; };
   await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p.waitForTimeout(600);
   out.contrastGuard = [];
   for (const k of ["dark", "mid", "light"]) { out.contrastGuard.push(finish(await measure("#cat-contrast-" + k, "::before", "p"))); out.contrastGuard.push(finish(await measure("#cat-contrast-" + k, "::before", "h3"))); }
@@ -157,6 +161,14 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     return [res(document.querySelector(".wt-posthead__text h1"), "h1"), ...metaKids];
   });
   hero.forEach((h) => out.contrastGuard.push(finish(h)));
+  await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" }); await p.waitForTimeout(600);
+  out.contrastVariants = [];
+  const contrastVariants = ["white-fade", "overlay-warm", "overlay-cool", "overlay-brand", "bottom-gradient", "blur-bright", "duotone"];
+  for (const variant of contrastVariants) for (const image of ["dark", "mid", "light"]) {
+    const id = `#cat-contrast-${variant}-${image}`;
+    const body = finish(await measure(id, "::before", "p")); body.variant = variant; body.image = image; body.text = "body"; out.contrastVariants.push(body);
+    const heading = finish(await measure(id, "::before", "h3")); heading.variant = variant; heading.image = image; heading.text = "heading"; out.contrastVariants.push(heading);
+  }
   await ctx.close();
 }
 // 7. 見出し 1 行収まり（SP 390、20 字）と本文列幅・目次しきい値
@@ -778,6 +790,44 @@ if (WPCLIDIR) {
   out.prAutoFixtures.pass = null; // 集計からは除外（下記 checkList に含めない）
 }
 
+// 14. 関連記事品質（PC / SP、既存4型の再設計 + featured-big+small / ranking-numbers）
+{
+  const variants = ["grid", "list", "rank", "carousel", "featured", "ranking-numbers"];
+  out.relatedQuality = { variants: [] };
+  for (const [dev, config] of [["sp", SP], ["pc", PC]]) {
+    const ctx = await browser.newContext(config); const page = await ctx.newPage();
+    for (const variant of variants) {
+      await page.goto(BASE + ARTICLE + `?wt=related:${variant}`, { waitUntil: "networkidle" }); await page.waitForTimeout(350);
+      const audit = await page.evaluate((variant) => {
+        const cards = Array.from(document.querySelectorAll(".wt-related:not(.wt-next) .wt-rcard"));
+        const cardData = cards.map((card) => {
+          const r = card.getBoundingClientRect();
+          const title = card.querySelector(".wt-rcard__title, .wp-block-post-title");
+          const image = card.querySelector(".wp-block-post-featured-image img");
+          const ts = title ? getComputedStyle(title) : null;
+          const ir = image ? image.getBoundingClientRect() : null;
+          return { top: r.top, height: r.height, titleClamp: ts ? ts.webkitLineClamp : null, titleDisplay: ts ? ts.display : null, ratio: ir && ir.height ? ir.width / ir.height : null };
+        });
+        const comparable = variant === "featured" ? cardData.slice(1) : cardData;
+        const rows = [];
+        for (const card of comparable) {
+          let row = rows.find((candidate) => Math.abs(candidate.top - card.top) <= 2);
+          if (!row) { row = { top: card.top, heights: [] }; rows.push(row); }
+          row.heights.push(card.height);
+        }
+        const rowDiffs = rows.map((row) => Math.max(...row.heights) - Math.min(...row.heights));
+        const sameRow = comparable.length > 0 && rowDiffs.every((diff) => diff <= 2);
+        const titleClamp = cardData.length > 0 && cardData.every((card) => card.titleClamp === "2" && /box/i.test(card.titleDisplay || ""));
+        const thumbnailRatio = cardData.length > 0 && cardData.every((card) => card.ratio !== null && Math.abs(card.ratio - 16 / 9) / (16 / 9) <= .01);
+        return { cardCount: cardData.length, rowDiffs, sameRow, titleClamp, thumbnailRatio, cards: cardData, pass: sameRow && titleClamp && thumbnailRatio };
+      }, variant);
+      out.relatedQuality.variants.push({ dev, variant, ...audit });
+    }
+    await ctx.close();
+  }
+  out.relatedQuality.pass = out.relatedQuality.variants.length === 12 && out.relatedQuality.variants.every((item) => item.pass);
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -785,11 +835,12 @@ out.reducedMotion.pass = out.reducedMotion.revealHidden === 0 && out.reducedMoti
 // 段 1/2 の検査も合否を持たせる（コントラスト 11 項目、guard 12 判定、タップ監査 4 画面、見出し 1 行）
 out.contrastPass = out.contrast.length > 0 && out.contrast.every((x) => !x.missing && x.pass);
 out.contrastGuardPass = out.contrastGuard.length > 0 && out.contrastGuard.every((x) => x.pass === true);
+out.contrastVariantsPass = out.contrastVariants.length === 42 && out.contrastVariants.every((x) => x.pass === true && x.required >= 3);
 for (const k of ["article", "article-announce", "404", "catalog"]) out.tap[k].pass = out.tap[k].below44.length === 0 && out.tap[k].below24.length === 0;
 out.headline.pass = out.headline.lines === 1;
 const checkList = [
   ["noJs", out.noJs.pass], ["reducedMotion", out.reducedMotion.pass], ["status404", out.status404.pass], ["table", out.table.pass], ["toc", out.toc.pass],
-  ["contrast", out.contrastPass], ["contrastGuard", out.contrastGuardPass], ["headline", out.headline.pass],
+  ["contrast", out.contrastPass], ["contrastGuard", out.contrastGuardPass], ["contrastVariants", out.contrastVariantsPass], ["relatedQuality", out.relatedQuality.pass], ["headline", out.headline.pass],
   ["articleTapSp", out.tap.article.pass], ["articleAnnounceTapSp", out.tap["article-announce"].pass], ["notFoundTapSp", out.tap["404"].pass], ["catalogTapSp", out.tap.catalog.pass],
   ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["authorSnsTapSp", out.tap.authorSnsSp.pass], ["authorSnsTapPc", out.tap.authorSnsPc.pass],
   ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],

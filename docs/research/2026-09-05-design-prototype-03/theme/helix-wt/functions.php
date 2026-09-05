@@ -12,7 +12,7 @@ function wt_axes() {
 		'sp'       => array( 'search', array( 'search', 'right', 'left' ) ),           // SP ヘッダー: hamburger+search / hamburger-right / hamburger-left
 		'eyecatch' => array( 'title-image', array( 'title-image', 'image-title', 'hero', 'side', 'none' ) ),
 		'toc'      => array( 'box', array( 'box', 'float', 'collapsible', 'none' ) ),
-		'related'  => array( 'grid', array( 'grid', 'list', 'rank', 'carousel' ) ),
+		'related'  => array( 'grid', array( 'grid', 'list', 'rank', 'carousel', 'featured', 'ranking-numbers' ) ),
 		'share'    => array( 'topbottom', array( 'topbottom', 'float', 'none' ) ),
 		'motion'   => array( 'off', array( 'off', 'on' ) ),
 		'depth'    => array( '0', array( '0', '1', '2' ) ),
@@ -93,21 +93,21 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.0' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.0' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.2' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.2' );
 	$defer = array( 'strategy' => 'defer' );
-	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.0', $defer );
-	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.0', $defer );
-	wp_enqueue_script( 'helix-wt-contrast', get_theme_file_uri( 'assets/js/contrast.js' ), array(), '0.3.0', $defer );
+	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
+	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
+	wp_enqueue_script( 'helix-wt-contrast', get_theme_file_uri( 'assets/js/contrast.js' ), array(), '0.3.2', $defer );
 	if ( is_singular() || is_page() ) {
-		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.0', $defer );
+		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.2', $defer );
 	}
 	if ( is_404() ) {
-		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.0', $defer );
+		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
 	}
-	wp_enqueue_script( 'helix-wt-footer', get_theme_file_uri( 'assets/js/footer.js' ), array(), '0.3.0', $defer );
+	wp_enqueue_script( 'helix-wt-footer', get_theme_file_uri( 'assets/js/footer.js' ), array(), '0.3.2', $defer );
 	if ( is_category() || is_archive() ) {
-		wp_enqueue_script( 'helix-wt-category', get_theme_file_uri( 'assets/js/category.js' ), array(), '0.3.0', $defer );
+		wp_enqueue_script( 'helix-wt-category', get_theme_file_uri( 'assets/js/category.js' ), array(), '0.3.2', $defer );
 	}
 } );
 
@@ -185,16 +185,33 @@ add_action( 'init', function () {
 		array( 'core/group', 'wt-point', 'ポイント（囲み）' ),
 		array( 'core/group', 'wt-warn', '注意（囲み）' ),
 		array( 'core/group', 'wt-card', 'カード（罫線）' ),
-		array( 'core/group', 'wt-linkcard', 'リンクカード（内部）' ),
+		array( 'core/group', 'wt-linkcard', 'ブログカード（内部）' ),
+		array( 'core/group', 'wt-blogcard-top', 'ブログカード: 画像上' ),
+		array( 'core/group', 'wt-blogcard-band', 'ブログカード: テキスト帯' ),
+		array( 'core/group', 'wt-blogcard-ogp', 'ブログカード: 外部 OGP 風' ),
 		array( 'core/group', 'wt-product', '商品カード束' ),
 		array( 'core/group', 'wt-cta-box', 'CTA ボックス（コピー付き）' ),
 		array( 'core/group', 'wt-pr', 'PR 表記（控えめ 1 行）' ),
+		array( 'core/group', 'wt-pr-intro', 'PR 表記: 記事上部ラベル' ),
+		array( 'core/group', 'wt-pr-inline', 'PR 表記: 見出し横ラベル' ),
+		array( 'core/group', 'wt-pr-double', 'PR 表記: 上下 2 箇所' ),
+		array( 'core/group', 'wt-pr-band', 'PR 表記: アイコン帯' ),
 		// リスト
 		array( 'core/list', 'wt-check', 'チェックリスト' ),
 		array( 'core/list', 'wt-badge-list', '番号バッジリスト' ),
 		array( 'core/list', 'wt-icon-list', 'アイコンリスト' ),
 		array( 'core/list', 'wt-pros', 'メリット（○）' ),
 		array( 'core/list', 'wt-cons', 'デメリット（×）' ),
+		array( 'core/group', 'wt-pros-contrast', 'メリデメ: 2 カラム対比' ),
+		array( 'core/group', 'wt-pros-icons', 'メリデメ: ○×アイコン' ),
+		array( 'core/group', 'wt-pros-band', 'メリデメ: 帯タイトル箱' ),
+		array( 'core/group', 'wt-review-stars', 'レビューバー: 星 + 数値' ),
+		array( 'core/group', 'wt-review-bars', 'レビューバー: 項目別 5 本' ),
+		array( 'core/group', 'wt-review-score', 'レビューバー: 総合スコア円' ),
+		array( 'core/group', 'wt-detext-takeaways', 'detext: 要点 3 カード' ),
+		array( 'core/group', 'wt-detext-metrics', 'detext: 数字強調' ),
+		array( 'core/group', 'wt-detext-diagram', 'detext: 図解プレースホルダ' ),
+		array( 'core/group', 'wt-detext-quote', 'detext: 引用大文字' ),
 		// ボタン
 		array( 'core/button', 'wt-pill', 'ピル' ),
 		array( 'core/button', 'wt-raised', '立体（raised）' ),
@@ -202,9 +219,20 @@ add_action( 'init', function () {
 		// 表
 		array( 'core/table', 'wt-compare', '比較表（先頭列固定・SP カード）' ),
 		array( 'core/table', 'wt-compare-scroll', '比較表（先頭列固定・SP も横スクロール）' ),
+		array( 'core/table', 'wt-compare-striped', '比較表: シンプル縞' ),
+		array( 'core/table', 'wt-compare-evaluation', '比較表: 評価セル強調' ),
+		array( 'core/table', 'wt-compare-price', '比較表: 価格行ハイライト' ),
+		array( 'core/table', 'wt-compare-showdown', '比較表: 2 製品対決' ),
 		// 画像・カバー
 		array( 'core/image', 'wt-banner', 'バナー画像 CTA' ),
 		array( 'core/cover', 'wt-scrim', '自動コントラスト（スクリム）' ),
+		array( 'core/cover', 'wt-contrast-white-fade', 'contrast-guard: 白フェード' ),
+		array( 'core/cover', 'wt-contrast-overlay-warm', 'contrast-guard: 暖色オーバーレイ' ),
+		array( 'core/cover', 'wt-contrast-overlay-cool', 'contrast-guard: 寒色オーバーレイ' ),
+		array( 'core/cover', 'wt-contrast-overlay-brand', 'contrast-guard: ブランド色オーバーレイ' ),
+		array( 'core/cover', 'wt-contrast-bottom-gradient', 'contrast-guard: 下部グラデーション' ),
+		array( 'core/cover', 'wt-contrast-blur-bright', 'contrast-guard: ぼかし + 明度調整' ),
+		array( 'core/cover', 'wt-contrast-duotone', 'contrast-guard: デュオトーン風' ),
 		array( 'core/quote', 'wt-quote-mark', '引用符つき' ),
 	);
 	foreach ( $styles as $s ) {

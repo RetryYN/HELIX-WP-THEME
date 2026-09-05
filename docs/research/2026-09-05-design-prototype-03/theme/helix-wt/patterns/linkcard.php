@@ -1,9 +1,9 @@
 <?php
 /**
- * Title: リンクカード（内部・全面クリック）
+ * Title: ブログカード（内部・全面クリック）
  * Slug: helix-wt/linkcard
  * Categories: helix-wt
- * Description: internal-thumb-left 型
+ * Description: blogcard: internal-thumb-left 型
  */
 $u = get_theme_file_uri( 'assets/img' );
 ?>
