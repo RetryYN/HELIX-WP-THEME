@@ -9955,9 +9955,9 @@
   "js": {
    "count": 3,
    "tops": [
-    15472,
-    15472,
-    15472
+    15819,
+    15819,
+    15819
    ],
    "rights": [
     132.65625,
@@ -9977,9 +9977,9 @@
   "noJs": {
    "count": 3,
    "tops": [
-    15564,
-    15564,
-    15564
+    15911,
+    15911,
+    15911
    ],
    "rights": [
     132.65625,
@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884834)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884763)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -12606,6 +12606,26 @@
     "heading": "連番検証 N（入れ子 Group の外へ出た単独 num）",
     "expected": "01",
     "actual": "01"
+   },
+   {
+    "heading": "連番検証 D（入れ子 Group、直後は段落）",
+    "expected": "05",
+    "actual": "05"
+   },
+   {
+    "heading": "連番検証 D-1",
+    "expected": "05-1",
+    "actual": "05-1"
+   },
+   {
+    "heading": "連番検証 P-1（段落の後の単独 num）",
+    "expected": "01",
+    "actual": "01"
+   },
+   {
+    "heading": "連番検証 P-2（後続への継承）",
+    "expected": "02",
+    "actual": "02"
    }
   ],
   "numboxBeforeA": 1,

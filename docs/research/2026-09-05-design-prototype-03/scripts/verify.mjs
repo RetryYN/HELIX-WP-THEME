@@ -1298,7 +1298,7 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
   // h2 番号（wt-h2num）は本文全体で続くため、A の番号 = A より前にある（.wt-numbox-demo の入れ子スコープ外の）numbox h2 の数 + 1
   const nBefore = await p.evaluate(() => { const all = Array.from(document.querySelectorAll(".wp-block-post-content h2.is-style-wt-numbox")).filter((h) => !h.closest(".wt-numbox-demo")); const a = all.findIndex((h) => h.textContent.trim().startsWith("連番検証 A")); return a; });
   const pad2 = (v) => String(v).padStart(2, "0");
-  const PLAIN_EXPECT = [["連番検証 A（専用 class なしの Group）", pad2(nBefore + 1)], ["連番検証 A-1", `${pad2(nBefore + 1)}-1`], ["連番検証 A-2", `${pad2(nBefore + 1)}-2`], ["連番検証 L（post-content 直下の単独 num）", "01"], ["連番検証 B（後続の別 Group）", pad2(nBefore + 2)], ["連番検証 B-1", `${pad2(nBefore + 2)}-1`], ["連番検証 M（B の後の単独 num）", "01"], ["連番検証 C（入れ子 Group の内側）", pad2(nBefore + 3)], ["連番検証 C-1", `${pad2(nBefore + 3)}-1`], ["連番検証 N（入れ子 Group の外へ出た単独 num）", "01"]];
+  const PLAIN_EXPECT = [["連番検証 A（専用 class なしの Group）", pad2(nBefore + 1)], ["連番検証 A-1", `${pad2(nBefore + 1)}-1`], ["連番検証 A-2", `${pad2(nBefore + 1)}-2`], ["連番検証 L（post-content 直下の単独 num）", "01"], ["連番検証 B（後続の別 Group）", pad2(nBefore + 2)], ["連番検証 B-1", `${pad2(nBefore + 2)}-1`], ["連番検証 M（B の後の単独 num）", "01"], ["連番検証 C（入れ子 Group の内側）", pad2(nBefore + 3)], ["連番検証 C-1", `${pad2(nBefore + 3)}-1`], ["連番検証 N（入れ子 Group の外へ出た単独 num）", "01"], ["連番検証 D（入れ子 Group、直後は段落）", pad2(nBefore + 4)], ["連番検証 D-1", `${pad2(nBefore + 4)}-1`], ["連番検証 P-1（段落の後の単独 num）", "01"], ["連番検証 P-2（後続への継承）", "02"]];
   const plainGroup = PLAIN_EXPECT.map(([heading, label]) => { const f = allLabels.find((x) => x.heading === heading); return { heading, expected: label, actual: f ? f.label : null }; });
   await p.addStyleTag({ content: ".wt-numbox-demo h3.is-style-wt-num{counter-increment:wt-h3 2}" });
   const mutated = await readLabels("cat-h2-numbox-h3num");
@@ -1310,7 +1310,7 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
     && mutated.length === expected.list.length && h3Idx.length === 3 && h3Idx.every((i) => mutated[i].label !== expected.list[i].label) && mutated.filter((x) => x.tag === "H2").every((x, j) => x.label === expected.list.filter((e) => e.tag === "H2")[j].label)
     && n.counterSet.length === 2 && n.counterSet.every((v) => v === "wt-h3 0") && n.h2Increment.every((v) => v === "wt-h2num 1") && n.h3Increment.length === 3 && n.h3Increment.every((v) => v === "wt-h3 1")
     && plain.length >= 1 && plain[0].tag === "H3" && plain[0].label === "01" && plain.every((x) => !/-/.test(x.label))
-    && nBefore >= 0 && plainGroup.length === 10 && plainGroup.every((x) => x.actual === x.expected);
+    && nBefore >= 0 && plainGroup.length === 14 && plainGroup.every((x) => x.actual === x.expected);
   out.numboxNum = n;
   await ctx.close();
 }
