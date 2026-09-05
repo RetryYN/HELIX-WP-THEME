@@ -209,9 +209,30 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     if (before.buttonVisible) {
       await pcPage.click(".wt-load-more");
       try { await pcPage.waitForFunction((n) => document.querySelectorAll(".wt-cat-list > li").length > n, before.items, { timeout: 8000 }); } catch (e) { after.error = "timeout"; }
-      after = { ...after, ...(await pcPage.evaluate(() => ({ items: document.querySelectorAll(".wt-cat-list > li").length, buttonText: document.querySelector(".wt-load-more")?.textContent.trim(), buttonHidden: !!document.querySelector(".wt-load-more")?.hidden, bodyStillLoadMore: document.body.classList.contains("wt-cat-pagination-load-more") }))) };
+      await pcPage.waitForTimeout(300);
+      after = { ...after, ...(await pcPage.evaluate(() => { const b = document.querySelector(".wt-load-more"); const r = b ? b.getBoundingClientRect() : null; const s = b ? getComputedStyle(b) : null; return { items: document.querySelectorAll(".wt-cat-list > li").length, buttonText: b?.textContent.trim(), buttonHidden: !!b?.hidden, buttonDisplay: s?.display, buttonRect: r ? [Math.round(r.width), Math.round(r.height)] : null, buttonVisible: !!(b && r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden"), nextLinkRemains: !!document.querySelector(".wt-cat-pagination a.wp-block-query-pagination-next"), bodyStillLoadMore: document.body.classList.contains("wt-cat-pagination-load-more") }; })) };
     }
-    out.loadMoreJs = { before, after, added: after.items - before.items, pass: before.buttonVisible && !before.paginationVisible && !!before.nextHref && after.items > before.items && after.bodyStillLoadMore === true };
+    // 総件数 = カテゴリの投稿数（一覧 1 ページ目 + 追記）。本 PoC データは 17 件・1 ページ 10 件 → 1 回で最終ページ。最終ページ後はボタンが computed で非表示であること
+    out.loadMoreJs = { before, after, added: after.items - before.items, pass: before.buttonVisible && !before.paginationVisible && !!before.nextHref && after.items > before.items && after.bodyStillLoadMore === true && after.error === null && after.buttonVisible === false };
+  }
+
+  // share:float と footer_totop:button の併用で固定ボタンが重ならない（SP / PC）。両方とも position:fixed なので最下部へスクロールしてから矩形を比較
+  out.fixedOverlap = {};
+  for (const [dev, page] of [["sp", spPage], ["pc", pcPage]]) {
+    await page.goto(BASE + ARTICLE + "?wt=share:float,footer_totop:button", { waitUntil: "networkidle" }); await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(400);
+    out.fixedOverlap[dev] = await page.evaluate(() => {
+      const rect = (el) => { const r = el.getBoundingClientRect(); return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) }; };
+      const share = document.querySelector(".wt-share--float"); const top = document.querySelector(".wt-totop");
+      if (!share || !top) return { missing: true, pass: false };
+      const a = rect(share), b = rect(top); const visible = (r) => r.w > 0 && r.h > 0;
+      const intersects = a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+      const buttons = Array.from(share.querySelectorAll("button")).map(rect);
+      const vw = innerWidth, vh = innerHeight; const inViewport = (r) => r.x >= 0 && r.y >= 0 && r.x + r.w <= vw && r.y + r.h <= vh;
+      // クリック到達: 各ボタンの中心点で elementFromPoint がそのボタン（または子孫）であること
+      const reach = (el) => { const r = el.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!hit && (hit === el || el.contains(hit)); };
+      const reachable = [...share.querySelectorAll("button"), top].map(reach);
+      return { share: a, shareButtons: buttons, totop: b, intersects, reachable, inViewport: inViewport(a) && inViewport(b), pass: visible(a) && visible(b) && !intersects && reachable.every(Boolean) };
+    });
   }
 
   const footerUrl = ARTICLE + "?wt=footer_extra:all,footer_totop:button";
@@ -335,7 +356,7 @@ const checkList = [
   ["contrast", out.contrastPass], ["contrastGuard", out.contrastGuardPass], ["headline", out.headline.pass],
   ["articleTapSp", out.tap.article.pass], ["articleAnnounceTapSp", out.tap["article-announce"].pass], ["notFoundTapSp", out.tap["404"].pass], ["catalogTapSp", out.tap.catalog.pass],
   ["categoryTapSp", out.tap.categorySp.pass], ["categoryTapPc", out.tap.categoryPc.pass], ["footerTapSp", out.tap.footerSp.pass], ["footerTapPc", out.tap.footerPc.pass], ["authorSnsTapSp", out.tap.authorSnsSp.pass], ["authorSnsTapPc", out.tap.authorSnsPc.pass],
-  ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass],
+  ["footerContrast", out.footerContrast.pass], ["footerNoJs", out.footerNoJs.pass], ["loadMoreNoJs", out.loadMoreNoJs.pass], ["loadMoreJs", out.loadMoreJs.pass], ["categoryPagination", out.categoryPagination.pass], ["categoryHeroContrast", out.categoryHeroContrast.pass], ["fixedOverlapSp", out.fixedOverlap.sp.pass], ["fixedOverlapPc", out.fixedOverlap.pc.pass],
 ];
 out.summary = { pass: checkList.filter(([, pass]) => pass).length, fail: checkList.filter(([, pass]) => !pass).length, checks: Object.fromEntries(checkList.map(([name, pass]) => [name, pass])) };
 out.pass = out.summary.fail === 0;
