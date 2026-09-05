@@ -873,6 +873,22 @@ if (WPCLIDIR) {
   out.detextVisualDiff.pass = elementsPresent && (off.h2Before !== on.h2Before || off.olListStyle !== on.olListStyle || off.bqBefore !== on.bqBefore);
 }
 
+// 9.6. CTA バナーのキャプションに PR 表記が残っていないか（PO 反応 13 回目 WT-EVT-0254「PRが残ってるけど？」。
+// PR 表記は pr 軸（記事側）で出す方針のため、CTA パーツ自体の文言には持たせない）。catalog と実記事本文の両方を見る。
+{
+  const ctx = await browser.newContext(PC);
+  const p = await ctx.newPage();
+  const read = async (url, sel) => {
+    await p.goto(BASE + url, { waitUntil: "networkidle" });
+    return p.evaluate((sel) => Array.from(document.querySelectorAll(sel)).map((el) => el.textContent.trim()), sel);
+  };
+  const catalog = await read("/catalog-03/", "#cat-cta-banner figcaption");
+  const article = await read(ARTICLE, ".wp-block-post-content .is-style-wt-banner figcaption");
+  await ctx.close();
+  const re = /^(PR|広告|アフィリエイト|【PR】|\[PR\])/;
+  out.ctaBannerNoPrPrefix = { catalog, article, pass: catalog.length > 0 && article.length > 0 && [...catalog, ...article].every((t) => !re.test(t)) };
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -898,7 +914,7 @@ const checkList = [
   ["tableCaptionSp", out.tableCaptionSp.pass], ["tableNumFontSize", out.tableNumFontSize.pass], ["headerInnerWidth", out.headerInnerWidth.pass], ["headerCtaOffCenter", out.headerCtaOffCenter.pass],
   ["headingNumberPc", out.headingNumberPc.pass], ["headingNumberSp", out.headingNumberSp.pass], ["underlineGap", out.underlineGap.pass], ["prTagNotStackedPc", out.prTagNotStackedPc.pass], ["prTagNotStackedSp", out.prTagNotStackedSp.pass],
   ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
-  ["detextVisualDiff", out.detextVisualDiff.pass],
+  ["detextVisualDiff", out.detextVisualDiff.pass], ["ctaBannerNoPrPrefix", out.ctaBannerNoPrPrefix.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

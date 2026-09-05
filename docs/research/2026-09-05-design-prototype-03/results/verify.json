@@ -9,7 +9,7 @@
   "productVisible": true,
   "tableVisible": true,
   "relatedCards": 7,
-  "textChars": 3154,
+  "textChars": 3151,
   "headerVisible": true,
   "announceExists": true,
   "announceVisible": true,
@@ -9373,6 +9373,15 @@
   "elementsPresent": true,
   "pass": true
  },
+ "ctaBannerNoPrPrefix": {
+  "catalog": [
+   "3 分の無料診断で、この記事の 3 製品から合うものを提案します。"
+  ],
+  "article": [
+   "3 分の無料診断で、この記事の 3 製品から合うものを提案します。"
+  ],
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "contrastVariantsPass": true,
@@ -9380,7 +9389,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 58,
+  "pass": 59,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -9441,6 +9450,7 @@
    "tocFloatLeft": true,
    "tableCaptionPcPosition": true,
    "detextVisualDiff": true,
+   "ctaBannerNoPrPrefix": true,
    "prAutoFixtures": true
   }
  },
