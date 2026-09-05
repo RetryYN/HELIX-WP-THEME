@@ -9427,6 +9427,186 @@
   },
   "pass": true
  },
+ "graphs": {
+  "count": 4,
+  "sp": [
+   {
+    "type": "bar",
+    "caption": "最低高さの比較（cm、低いほど良い）",
+    "tableRows": 3,
+    "marks": 3,
+    "vals": [
+     62,
+     71,
+     58
+    ],
+    "valsOk": true,
+    "series": [
+     "rgb(29, 78, 216)",
+     "rgb(21, 128, 61)",
+     "rgb(194, 65, 12)"
+    ],
+    "bg": "rgb(255, 255, 255)",
+    "track": "rgb(244, 246, 249)",
+    "donutAria": null,
+    "width": 358
+   },
+   {
+    "type": "stack",
+    "caption": "購入者の用途の内訳（編集部アンケート、n=120）",
+    "tableRows": 3,
+    "marks": 6,
+    "vals": [
+     54,
+     28,
+     18
+    ],
+    "valsOk": true,
+    "series": [
+     "rgb(29, 78, 216)",
+     "rgb(21, 128, 61)",
+     "rgb(194, 65, 12)"
+    ],
+    "bg": "rgb(255, 255, 255)",
+    "track": "rgb(244, 246, 249)",
+    "donutAria": null,
+    "width": 358
+   },
+   {
+    "type": "donut",
+    "caption": "購入後 3 か月の満足度（編集部アンケート、n=120）",
+    "tableRows": 3,
+    "marks": 3,
+    "vals": [],
+    "valsOk": true,
+    "series": [
+     "rgb(29, 78, 216)",
+     "rgb(21, 128, 61)",
+     "rgb(194, 65, 12)"
+    ],
+    "bg": "rgb(255, 255, 255)",
+    "track": null,
+    "donutAria": "満足度: 満足 54%、ふつう 28%、不満 18%",
+    "width": 358
+   },
+   {
+    "type": "line",
+    "caption": "リフトワン L1 の実売価格の推移（万円、編集部調べ）",
+    "tableRows": 6,
+    "marks": 6,
+    "vals": [],
+    "valsOk": true,
+    "series": [
+     "rgb(29, 78, 216)"
+    ],
+    "bg": "rgb(255, 255, 255)",
+    "track": null,
+    "donutAria": null,
+    "width": 358
+   }
+  ],
+  "pc": [
+   {
+    "type": "bar",
+    "width": 680
+   },
+   {
+    "type": "stack",
+    "width": 680
+   },
+   {
+    "type": "donut",
+    "width": 680
+   },
+   {
+    "type": "line",
+    "width": 680
+   }
+  ],
+  "contrast": [
+   [
+    {
+     "color": "rgb(29, 78, 216)",
+     "vsBg": 6.7,
+     "vsTrack": 6.19
+    },
+    {
+     "color": "rgb(21, 128, 61)",
+     "vsBg": 5.02,
+     "vsTrack": 4.63
+    },
+    {
+     "color": "rgb(194, 65, 12)",
+     "vsBg": 5.18,
+     "vsTrack": 4.78
+    }
+   ],
+   [
+    {
+     "color": "rgb(29, 78, 216)",
+     "vsBg": 6.7,
+     "vsTrack": 6.19
+    },
+    {
+     "color": "rgb(21, 128, 61)",
+     "vsBg": 5.02,
+     "vsTrack": 4.63
+    },
+    {
+     "color": "rgb(194, 65, 12)",
+     "vsBg": 5.18,
+     "vsTrack": 4.78
+    }
+   ],
+   [
+    {
+     "color": "rgb(29, 78, 216)",
+     "vsBg": 6.7,
+     "vsTrack": null
+    },
+    {
+     "color": "rgb(21, 128, 61)",
+     "vsBg": 5.02,
+     "vsTrack": null
+    },
+    {
+     "color": "rgb(194, 65, 12)",
+     "vsBg": 5.18,
+     "vsTrack": null
+    }
+   ],
+   [
+    {
+     "color": "rgb(29, 78, 216)",
+     "vsBg": 6.7,
+     "vsTrack": null
+    }
+   ]
+  ],
+  "typesOk": true,
+  "each": true,
+  "contrastOk": true,
+  "sameNoJs": true,
+  "spNoOverflow": true,
+  "pass": true
+ },
+ "metricsSp": {
+  "count": 3,
+  "tops": [
+   13936,
+   13936,
+   13936
+  ],
+  "rights": [
+   132.65625,
+   249.328125,
+   365.984375
+  ],
+  "boxRight": 374,
+  "boxWidth": 358,
+  "numOverflow": 0,
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "contrastVariantsPass": true,
@@ -9434,7 +9614,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 61,
+  "pass": 63,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -9498,6 +9678,8 @@
    "ctaBannerNoPrPrefix": true,
    "productCardNoPrBadge": true,
    "qaModal": true,
+   "graphs": true,
+   "metricsSp": true,
    "prAutoFixtures": true
   }
  },

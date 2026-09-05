@@ -921,6 +921,49 @@ if (WPCLIDIR) {
     && closed.open === false && closed.focusOnOpenBtn;
 }
 
+// 9.9. データグラフ 4 型（PO 反応 15 回目 WT-EVT-0257、Claude 案）: figure ごとに figcaption・読み上げ用データ表・値の範囲（0〜100%）を確認し、
+//      系列色（accent / ok / cta）と面（base / surface）の非テキストコントラスト 3:1 以上、JS 無効でも同じ DOM であることを見る。
+{
+  const lum = (rgb) => { const [r, g, b] = rgb.match(/\d+/g).slice(0, 3).map((v) => { v = +v / 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const ratio = (a, b) => { const la = lum(a), lb = lum(b); return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05); };
+  const read = async (ctx) => {
+    const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+    const data = await p.evaluate(() => Array.from(document.querySelectorAll("figure.wt-graph")).map((f) => {
+      const cs = getComputedStyle(f);
+      const vals = Array.from(f.querySelectorAll("[style*='--v']")).map((el) => parseFloat(getComputedStyle(el).getPropertyValue("--v")));
+      const seriesEls = Array.from(f.querySelectorAll(".wt-graph__bar i, .wt-graph__seg, .wt-graph__sw"));
+      const series = [...new Set(seriesEls.map((el) => getComputedStyle(el).backgroundColor))];
+      const svgLine = f.querySelector(".wt-graph__line"); if (svgLine) series.push(getComputedStyle(svgLine).stroke);
+      const donut = f.querySelector(".wt-graph__donut");
+      const rows = f.querySelectorAll("table.wt-graph__data tbody tr").length;
+      const marks = f.querySelectorAll(".wt-graph__row, .wt-graph__seg, .wt-graph__legend li, .wt-graph__dots circle").length;
+      return { type: f.dataset.wtGraph, caption: (f.querySelector("figcaption") || {}).textContent?.trim() || "", tableRows: rows, marks, vals, valsOk: vals.every((v) => v >= 0 && v <= 100), series, bg: cs.backgroundColor, track: f.querySelector(".wt-graph__bar, .wt-graph__stack") ? getComputedStyle(f.querySelector(".wt-graph__bar, .wt-graph__stack")).backgroundColor : null, donutAria: donut ? donut.getAttribute("aria-label") : null, width: f.getBoundingClientRect().width };
+    }));
+    await p.close(); return data;
+  };
+  const ctxJs = await browser.newContext(SP); const withJs = await read(ctxJs); await ctxJs.close();
+  const ctxNoJs = await browser.newContext({ ...SP, javaScriptEnabled: false }); const noJs = await read(ctxNoJs); await ctxNoJs.close();
+  const ctxPc = await browser.newContext(PC); const pc = await read(ctxPc); await ctxPc.close();
+  const contrast = withJs.map((g) => g.series.map((c) => ({ color: c, vsBg: +ratio(c, g.bg).toFixed(2), vsTrack: g.track ? +ratio(c, g.track).toFixed(2) : null })));
+  const typesOk = ["bar", "stack", "donut", "line"].every((t) => withJs.some((g) => g.type === t));
+  const each = withJs.every((g) => g.caption.length > 0 && g.tableRows >= 3 && g.valsOk && g.width > 0 && (g.type !== "donut" || (g.donutAria && g.donutAria.length > 0)));
+  const contrastOk = contrast.every((rows) => rows.length > 0 && rows.every((r) => r.vsBg >= 3 && (r.vsTrack === null || r.vsTrack >= 3)));
+  const sameNoJs = JSON.stringify(noJs.map((g) => [g.type, g.tableRows, g.marks, g.vals])) === JSON.stringify(withJs.map((g) => [g.type, g.tableRows, g.marks, g.vals]));
+  const spNoOverflow = withJs.every((g) => g.width <= 390);
+  out.graphs = { count: withJs.length, sp: withJs, pc: pc.map((g) => ({ type: g.type, width: g.width })), contrast, typesOk, each, contrastOk, sameNoJs, spNoOverflow };
+  out.graphs.pass = withJs.length === 4 && typesOk && each && contrastOk && sameNoJs && spNoOverflow;
+}
+
+// 9.10. detext metrics の SP 配置（PO 反応 15 回目 WT-EVT-0259）: 3 指標が 1 行（同じ top）に並び、はみ出しがなく、数字が 44px 以下の幅に収まる。
+{
+  const ctx = await browser.newContext(SP); const p = await ctx.newPage();
+  await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
+  const m = await p.evaluate(() => { const box = document.querySelector("#cat-detext-metrics"); const items = Array.from(box.querySelectorAll(".wt-detext__metric")); const br = box.getBoundingClientRect(); return { count: items.length, tops: items.map((el) => Math.round(el.getBoundingClientRect().top)), rights: items.map((el) => el.getBoundingClientRect().right), boxRight: br.right, boxWidth: br.width, numOverflow: items.filter((el) => el.querySelector(".wt-num").scrollWidth > el.clientWidth).length }; });
+  await ctx.close();
+  out.metricsSp = m;
+  out.metricsSp.pass = m.count === 3 && new Set(m.tops).size === 1 && m.rights.every((r) => r <= m.boxRight + 1) && m.numOverflow === 0;
+}
+
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -948,6 +991,7 @@ const checkList = [
   ["tocFloatLeft", out.tocFloatLeft.pass], ["tableCaptionPcPosition", out.tableCaptionPcPosition.pass],
   ["detextVisualDiff", out.detextVisualDiff.pass], ["ctaBannerNoPrPrefix", out.ctaBannerNoPrPrefix.pass],
   ["productCardNoPrBadge", out.productCardNoPrBadge.pass], ["qaModal", out.qaModal.pass],
+  ["graphs", out.graphs.pass], ["metricsSp", out.metricsSp.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

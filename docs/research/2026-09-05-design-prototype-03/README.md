@@ -826,3 +826,16 @@ PO 発言（原文）: 「不要。そしてボックスのQAにモーダルウ�
    - Astra レビュー 1 巡目の是正（改善 4 件）: 新規 4 枚が既に INDEX にあれば同名置換として扱い再実行可能に／配置途中の失敗時は退避のない新規分を取り除いてから旧画像を復元／一時 dir は成否に関わらず `finally` で削除（退避 dir は復元失敗時だけ保持）／`qaModal` の回答可視判定に祖先までの `display` / `visibility` / `opacity` と文字サイズ・文字色と背景色の一致を追加。
 4. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 61 / fail 0**（59 + `productCardNoPrBadge` + `qaModal`、skipped なし）、総合 `pass: true`。`qaModal`: ボタン 128×44、× 44×44、Esc 後フォーカス復帰 true。
 5. `style.css` 0.3.7 → 0.3.8、`theme.css` / `qa-modal.js` の enqueue version 0.3.8。手順: `docker cp` でテーマ配置 → `node scripts/shots-reaction6.mjs --out results` → `node scripts/verify.mjs --out results/verify.json --wpclidir <docker compose project dir>`。
+
+## 2.21 段5 — PO 反応 15 回目（WT-EVT-0257〜0260）の反映
+
+PO 発言（原文、いずれもカタログ 447 型を見て）: 「データグラフいれない？」／「linkcardあとこれのパターンが増えてない。」／「metricsがスマホでの配置がよくない。」／「tableのパターン増えてなくない？」
+
+1. **データグラフ 4 型（WT-EVT-0257、疑問形の示唆 → Claude 案として実装）**: 台帳（parts-pattern-taxonomy）にグラフの観察はなく（参照サイトの棒グラフ「アイコン」1 件のみ）、要求にも無い。比較媒体の本文で数値を見せる用途として Claude 案 4 型を置いた: `graph-bar`（横棒比較。ラベル・棒・数値の 3 列）、`graph-stack`（100% 積み上げの割合バー + 凡例）、`graph-donut`（conic-gradient のドーナツ + 中央主値 + 凡例）、`graph-line`（inline SVG の折れ線、目盛り・月ラベル）。すべて JS なし（CSS / SVG）、値は `--v`（%）と data 属性、系列色は accent / ok / cta の 3 色。各 figure に figcaption と同じ値の表（`table.wt-graph__data`、`screen-reader-text`）を併置し、ドーナツ・割合バー・折れ線は `role="img"` + `aria-label` に値を書く。パターン `helix-wt/graphs`（bar）・`graph-stack`・`graph-donut`・`graph-line`、catalog `#cat-graph-{bar,stack,donut,line}`。
+   - `verify.mjs` `graphs`: 4 型の存在、figcaption 非空、表 3 行以上、`--v` が 0〜100、系列色と面（base）/ トラック（surface）の非テキストコントラスト 3:1 以上（実測 accent 6.70 / 6.19、ok 5.02 / 4.63、cta 5.18 / 4.78）、JS 無効時の DOM 同一、SP 幅 390 以内。
+   - 型の是非・種類（レーダー、散布、ヒストグラム等）・値の持ち方（表ブロックから自動描画するか）は PO 判断。台帳への追加観察も未実施。
+2. **linkcard の表示統合（WT-EVT-0258）**: PO 反応 2 回目で追加した 3 型（image-top / text-band / external-ogp、PR #146）は INDEX 上で別パーツ `blogcard` として登録されていたため、カタログでは `linkcard` が 1 型のまま見えていた。INDEX の part を `linkcard` に統一（ファイル名は変更なし）し、用語集を「ブログカード（linkcard）」1 項目に統合（既定 internal + 3 型 = 4 型）。撮影・テーマの変更なし。
+3. **metrics の SP 配置（WT-EVT-0259）**: `is-style-wt-detext-metrics` は SP で 1 列に落としていたため 3 指標が縦に並び間延びしていた。Claude 案として SP でも 3 列のまま並べ、数字を `clamp(1.5rem,7.5vw,2rem)` に縮め、指標間に縦の区切り線を入れた（`@media (max-width:599px)` の上書き）。`verify.mjs` `metricsSp`: 3 指標の top が同一・右端が枠内・数字のはみ出し 0。再撮影 `reaction6-detext-metrics-{sp,pc}`（同名置換）。
+4. **table の表示統合（WT-EVT-0260）**: 2 と同じ原因。PR #146 で追加した 4 型（striped / evaluation / price / showdown）が別パーツ `compare-table` だったため `table` が 1 型に見えていた。INDEX の part を `table` に統一し、用語集を「比較表（table）」に統合（既定 compare + 4 型 = 5 型）。
+5. 撮影 `scripts/shots-reaction7.mjs`（reaction6 と同じ方式）: 同名置換 2 + 新規 8、`CATALOG-INDEX.json` 447 → **455**。実機結果（`results/verify.json`、`--wpclidir` 指定）: `summary` **pass 63 / fail 0**（61 + `graphs` + `metricsSp`、skipped なし）、総合 `pass: true`。`style.css` 0.3.8 → 0.3.9。
+6. 同じ「別パーツ名で登録されて増えて見えない」事象が他に無いか INDEX の (face, part) 別 variant 数を一覧して確認: 該当は linkcard / table の 2 件のみ（一覧は本 PR の作業ログ。`share` 2 型と `article-tail-share` 2 型は別パーツ（本文位置の共有ボタンと記事末尾の共有先アイコン）で意図どおり）。
