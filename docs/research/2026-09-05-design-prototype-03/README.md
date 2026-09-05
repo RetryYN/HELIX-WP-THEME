@@ -798,5 +798,5 @@ GLOSSARY と CATALOG-INDEX の機械照合結果は parts 49、axes 35、faces 5
 ### 追加是正5: Astra 再レビュー「merge 不可」改善1件の是正
 
 - `shots-reaction4.mjs --motion-only true` は、撮影前に既存 motion 画像を削除しない。各 JPEG を実行ごとの一時ディレクトリへ保存し、4 枚すべての撮影・完了フレーム判定・非空検査を通過した後、`fs.renameSync` で `results/` の本来のファイル名へ置換する。一時ファイルの移動が完了してから一時ディレクトリを削除し、最後に `CATALOG-INDEX.json` を更新するため、撮影途中の失敗では既存 4 枚を保持する。
-- motion 画像の置換は、旧画像を退避してから新画像を配置し、途中で失敗した場合は退避先から復元して元の例外を再送出する。
+- motion 画像の置換は、旧画像を退避してから新画像を配置し、途中で失敗した場合は退避先から復元して元の例外を再送出する。配置成功後の退避ディレクトリ削除は復元処理と分離し、削除に失敗しても配置済みの新画像には触れず警告のみ残す（Astra 4 巡目の是正）。
 - h2 の block style は **既存6型 + 追加4型 = 10型**（`plain` / `2tone` / `icon` / `bar` / `underline` / `band` / `numbox` / `barbg` / `doubleline` / `label`）である。このうち `::before` を使うのは `icon` / `numbox` / `label` の **3型**で、型数と既存意匠の除外条件を一致させた。

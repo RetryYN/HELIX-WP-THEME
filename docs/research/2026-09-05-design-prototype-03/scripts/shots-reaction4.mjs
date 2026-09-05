@@ -316,7 +316,6 @@ function promoteMotionFiles() {
       }
     }
     for (const { source, target } of promotions) fs.renameSync(source, target);
-    fs.rmSync(backupDir, { recursive: true, force: true });
   } catch (error) {
     const restoreFailures = [];
     for (const file of backedUp) {
@@ -342,7 +341,17 @@ function promoteMotionFiles() {
     }
     throw error;
   }
-  fs.rmSync(motionTmpDir, { recursive: true, force: true });
+  // 配置成功が確定した後の清掃。ここでの失敗は復元へ入らず（新画像を旧画像で上書きしない）、警告のみ残す。
+  try {
+    fs.rmSync(backupDir, { recursive: true, force: true });
+  } catch (cleanupError) {
+    console.error(`motion画像の退避ディレクトリ削除に失敗しました（配置済みの新画像はそのまま）: ${backupDir}`, cleanupError);
+  }
+  try {
+    fs.rmSync(motionTmpDir, { recursive: true, force: true });
+  } catch (cleanupError) {
+    console.error(`motion画像の一時ディレクトリ削除に失敗しました: ${motionTmpDir}`, cleanupError);
+  }
 }
 
 promoteMotionFiles();
