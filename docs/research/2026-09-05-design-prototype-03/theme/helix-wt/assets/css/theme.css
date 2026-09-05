@@ -1241,10 +1241,10 @@ body.wt-sp-center-logo .wt-header__nav .wp-block-navigation{min-width:44px}
 /* WT-EVT-0272「numbox と num は対応したら？」（Claude 解釈）: 本文に numbox の h2 があるとき、h3 の num を「親番号-連番」にし、h2 ごとに連番を振り直す */
 /* 親（post-content）に wt-h3 の counter-reset があるため、h2 側は counter-reset ではなく counter-set で 0 に戻す（Chromium 151 で counter-reset は後続兄弟に伝わらないことを実測） */
 .wp-block-heading.is-style-wt-numbox{counter-set:wt-h3 0}
-/* 適用範囲（Astra 是正）: :has() は本文単位の判定なので、numbox の h2 を 1 つでも使う本文では num の h3 がすべて「直前の numbox 番号-連番」になる。
+/* 適用範囲（Astra 是正 2 巡目）: 「numbox の h2 と同じ親コンテナ（post-content 直下でも Group 内でも）に置かれた num の h3」だけを親番号付きにする。Group に入れた numbox も対象で、別コンテナの h3 には波及しない（同一本文内の別セクションの単独 num は従来の連番のまま）。同じ親コンテナ内では、numbox の h2 を 1 つでも使う本文では num の h3 がすべて「直前の numbox 番号-連番」になる。
    通常 h2 が混在する場合も h2 ごとに連番は振り直す（通常 h2 は親番号を進めない）。「numbox 以外の h2 の配下だけ単独連番」は CSS では判定できないため、混在は想定外として README に明記 */
-.wp-block-post-content:has(> .is-style-wt-numbox) > h2:not(.is-style-wt-numbox),.wt-numbox-demo:has(.is-style-wt-numbox) h2:not(.is-style-wt-numbox){counter-set:wt-h3 0}
-.wp-block-post-content:has(> .is-style-wt-numbox) .wp-block-heading.is-style-wt-num::before,.wt-numbox-demo:has(.is-style-wt-numbox) .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:1.15em}
+:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > h2:not(.is-style-wt-numbox){counter-set:wt-h3 0}
+:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:1.15em}
 .wt-numbox-demo{counter-reset:wt-h3 wt-h2num}
 
 /* WT-EVT-0276 LINE 導線: 白丸の中を「LINE」の文字から吹き出しグリフへ。色は LINE ブランド緑（装飾のみ、文字は使わない） */

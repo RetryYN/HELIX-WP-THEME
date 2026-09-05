@@ -1272,31 +1272,38 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
   out.announceFullWidth = { results: ann, pass: ann.length === 2 && ann.every((x) => x.pass) };
 }
 // (c) numboxNum: 期待する番号を DOM から組み立て（numbox h2 = 01, 02 …、配下 h3 = 親-連番、通常 h2 で連番を振り直す）、
-//     同じフォントの span で期待文字列を描いて ::before の幅と ±1.5px で一致させる（counter の解決値は DOM から読めないため、幅の一致で番号を検証する）
+//     CDP DOMSnapshot で ::before の**実描画文字列**（counter の解決値）を読み、見出しごとに完全一致で照合する（幅の照合では同桁の誤番号を排除できないため置換。Astra 2 巡目）。
+//     さらに変異テスト: h3 の counter-increment を 2 にした状態で読み直し、h3 のラベルがすべて期待と不一致になる（= 判定が誤番号を検出できる）ことを合格条件に含める。
+//     demo は post-content 内の Group（wt-numbox-demo）に入っており、実記事で numbox を Group に入れた構造と同じ（:has() は子孫判定）。
 {
   const ctx = await browser.newContext(PC); const p = await ctx.newPage(); await p.goto(BASE + "/catalog-03/", { waitUntil: "networkidle" });
-  out.numboxNum = await p.evaluate(() => {
-    const measure = (refEl, text) => { const ps = getComputedStyle(refEl, "::before"); const sp = document.createElement("span"); sp.textContent = text; sp.style.cssText = `position:absolute;visibility:hidden;white-space:nowrap;font-family:${ps.fontFamily};font-size:${ps.fontSize};font-weight:${ps.fontWeight};letter-spacing:${ps.letterSpacing};font-variant-numeric:${ps.fontVariantNumeric}`; document.body.appendChild(sp); const w = sp.getBoundingClientRect().width; sp.remove(); return w; };
-    const pad2 = (n) => String(n).padStart(2, "0");
-    const demo = document.querySelector("#cat-h2-numbox-h3num");
-    const rows = []; let h2n = 0, h3n = 0;
-    for (const el of Array.from(demo ? demo.querySelectorAll("h2, h3") : [])) {
-      if (el.tagName === "H2") { if (el.classList.contains("is-style-wt-numbox")) h2n++; h3n = 0; continue; }
-      if (!el.classList.contains("is-style-wt-num")) continue;
-      h3n++;
-      const expected = `${pad2(h2n)}-${h3n}`;
-      const before = parseFloat(getComputedStyle(el, "::before").width) || 0;
-      rows.push({ text: el.textContent.trim(), expected, beforeWidth: Math.round(before * 10) / 10, expectedWidth: Math.round(measure(el, expected) * 10) / 10, content: getComputedStyle(el, "::before").content });
-    }
-    const plain = document.querySelector("#cat-h3-num h3.is-style-wt-num");
-    const plainRow = plain ? { beforeWidth: Math.round((parseFloat(getComputedStyle(plain, "::before").width) || 0) * 10) / 10, expectedWidth: Math.round(measure(plain, "01") * 10) / 10, content: getComputedStyle(plain, "::before").content } : null;
+  const readLabels = async (rootId) => {
+    const cdp = await ctx.newCDPSession(p); const snap = await cdp.send("DOMSnapshot.captureSnapshot", { computedStyles: [] }); await cdp.detach();
+    const doc = snap.documents[0], S = snap.strings, N = doc.nodes, L = doc.layout;
+    const ids = {}; for (let i = 0; i < N.nodeName.length; i++) { const at = N.attributes[i] || []; for (let k = 0; k < at.length; k += 2) if (S[at[k]] === "id") ids[i] = S[at[k + 1]]; }
+    const childText = {}; for (let i = 0; i < N.nodeName.length; i++) if (S[N.nodeName[i]] === "#text") childText[N.parentIndex[i]] = (childText[N.parentIndex[i]] || "") + S[N.nodeValue[i]];
+    const inRoot = (ni) => { let guard = 0; for (let x = ni; x >= 0 && guard < 200; x = N.parentIndex[x], guard++) { if (ids[x] === rootId) return true; if (N.parentIndex[x] === x) break; } return false; };
+    const per = new Map();
+    for (let i = 0; i < L.nodeIndex.length; i++) { const ni = L.nodeIndex[i]; if (S[N.nodeName[ni]] !== "::before") continue; const par = N.parentIndex[ni]; const pn = S[N.nodeName[par]]; if (pn !== "H2" && pn !== "H3") continue; if (!inRoot(par)) continue; const t = L.text[i]; if (t === undefined || t < 0) continue; per.set(par, (per.get(par) || "") + S[t]); }
+    return Array.from(per.entries()).sort((x, y) => x[0] - y[0]).map(([par, label]) => ({ tag: S[N.nodeName[par]], heading: (childText[par] || "").trim(), label }));
+  };
+  const expected = await p.evaluate(() => { const demo = document.querySelector("#cat-h2-numbox-h3num"); const pad2 = (n) => String(n).padStart(2, "0"); const out = []; let h2n = 0, h3n = 0;
+    for (const el of Array.from(demo ? demo.querySelectorAll("h2, h3") : [])) { if (el.tagName === "H2") { if (el.classList.contains("is-style-wt-numbox")) { h2n++; out.push({ tag: "H2", heading: el.textContent.trim(), label: pad2(h2n) }); } h3n = 0; continue; } if (!el.classList.contains("is-style-wt-num")) continue; h3n++; out.push({ tag: "H3", heading: el.textContent.trim(), label: `${pad2(h2n)}-${h3n}` }); }
     const h2s = Array.from(demo ? demo.querySelectorAll("h2.is-style-wt-numbox") : []);
-    return { h2Count: h2s.length, rows, plainRow, counterSet: h2s.map((h) => getComputedStyle(h).counterSet), h2Increment: h2s.map((h) => getComputedStyle(h).counterIncrement) };
-  });
-  const n = out.numboxNum;
-  const close = (a, b) => Math.abs(a - b) <= 1.5;
-  n.pass = n.h2Count === 2 && n.rows.length === 3 && n.rows.map((r) => r.expected).join(",") === "01-1,01-2,02-1" && n.rows.every((r) => r.beforeWidth > 0 && close(r.beforeWidth, r.expectedWidth) && /counter\(wt-h2num, decimal-leading-zero\) "-" counter\(wt-h3\)/.test(r.content))
-    && n.counterSet.every((v) => v === "wt-h3 0") && n.h2Increment.every((v) => v === "wt-h2num 1") && !!n.plainRow && n.plainRow.beforeWidth > 0 && close(n.plainRow.beforeWidth, n.plainRow.expectedWidth) && !/wt-h2num/.test(n.plainRow.content);
+    return { list: out, counterSet: h2s.map((h) => getComputedStyle(h).counterSet), h2Increment: h2s.map((h) => getComputedStyle(h).counterIncrement), h3Increment: Array.from(demo.querySelectorAll("h3.is-style-wt-num")).map((h) => getComputedStyle(h).counterIncrement) }; });
+  const actual = await readLabels("cat-h2-numbox-h3num");
+  const plain = await readLabels("cat-h3-num");
+  await p.addStyleTag({ content: ".wt-numbox-demo h3.is-style-wt-num{counter-increment:wt-h3 2}" });
+  const mutated = await readLabels("cat-h2-numbox-h3num");
+  const same = (x, y) => x.tag === y.tag && x.heading === y.heading && x.label === y.label;
+  const h3Idx = expected.list.map((e, i) => (e.tag === "H3" ? i : -1)).filter((i) => i >= 0);
+  const n = { expected: expected.list, actual, mutated, plain, counterSet: expected.counterSet, h2Increment: expected.h2Increment, h3Increment: expected.h3Increment };
+  n.pass = expected.list.length === 5 && expected.list.map((e) => e.label).join(",") === "01,01-1,01-2,02,02-1"
+    && actual.length === expected.list.length && actual.every((x, i) => same(x, expected.list[i]))
+    && mutated.length === expected.list.length && h3Idx.length === 3 && h3Idx.every((i) => mutated[i].label !== expected.list[i].label) && mutated.filter((x) => x.tag === "H2").every((x, j) => x.label === expected.list.filter((e) => e.tag === "H2")[j].label)
+    && n.counterSet.length === 2 && n.counterSet.every((v) => v === "wt-h3 0") && n.h2Increment.every((v) => v === "wt-h2num 1") && n.h3Increment.length === 3 && n.h3Increment.every((v) => v === "wt-h3 1")
+    && plain.length >= 1 && plain[0].tag === "H3" && plain[0].label === "01" && plain.every((x) => !/-/.test(x.label));
+  out.numboxNum = n;
   await ctx.close();
 }
 // (d) graphsMore: 追加 5 型。視覚要素が実際に見える（矩形・display・visibility・opacity）、表の値と視覚値（--v / data-v / 座標）が一致、role=img の数と aria-label、
@@ -1329,14 +1336,22 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
           g.valuesOk = scores.length === tds.length && scores.every((sc, i) => sc.cells === 5 && sc.v === tds[i][0] && sc.shown === tds[i][0] && sc.filled === sc.v);
           g.visibleOk = scores.every((sc) => sc.vis); g.detail = scores;
         } else if (k === "gauge") {
-          const gauges = Array.from(f.querySelectorAll(".wt-graph__gauge")).map((ga) => ({ v: cssVar(ga, "--v"), shown: num(ga.querySelector("b").textContent), vis: vis(ga), bg: getComputedStyle(ga).backgroundImage }));
-          g.valuesOk = gauges.length === tds.length && gauges.every((ga, i) => ga.v === tds[i][0] && ga.shown === tds[i][0] && /conic-gradient/.test(ga.bg));
+          // 描画値の照合: computed の conic-gradient は calc が解決済み（"from -90deg at 50% 100%, 塗 0deg, 塗 X%, 軌道 X%, 軌道 50%, 透明 50%"）。X = v × 0.5 を ±0.05 で要求し、塗色 ≠ 軌道色
+          const gauges = Array.from(f.querySelectorAll(".wt-graph__gauge")).map((ga) => { const bg = getComputedStyle(ga).backgroundImage; const m = bg.match(/^conic-gradient\(from -90deg at 50% 100%, (rgba?\([^)]*\)) 0deg, \1 ([\d.]+)%, (rgba?\([^)]*\)) \2%, \3 50%, rgba\(0, 0, 0, 0\) 50%\)$/); return { v: cssVar(ga, "--v"), shown: num(ga.querySelector("b").textContent), vis: vis(ga), bg, stopPct: m ? parseFloat(m[2]) : null, fill: m ? m[1] : null, track: m ? m[3] : null }; });
+          g.valuesOk = gauges.length === tds.length && gauges.every((ga, i) => ga.v === tds[i][0] && ga.shown === tds[i][0] && ga.stopPct !== null && Math.abs(ga.stopPct - ga.v * 0.5) <= 0.05 && ga.fill !== ga.track);
           g.visibleOk = gauges.every((ga) => ga.vis); g.detail = gauges;
         } else if (k === "radar") {
-          const polys = ["a", "b"].map((s) => f.querySelector(`.wt-graph__radar-${s}`)).map((pl) => ({ points: pl ? pl.getAttribute("points").trim().split(/\s+/).length : 0, vis: vis(pl), fill: pl ? getComputedStyle(pl).fillOpacity : null }));
+          // 座標の照合: 中心は軸線の始点、満点半径 R は格子の最外周（中心からの最大距離）。系列 s の点 i = 中心 + (v/5)·R·(sin θ, −cos θ)、θ = i·72°。各座標 ±0.6px（SVG は 0.1 刻み）
+          const parsePts = (el) => (el && el.getAttribute("points") ? el.getAttribute("points").trim().split(/\s+/).map((pr) => pr.split(",").map(Number)) : []);
+          const axes = Array.from(f.querySelectorAll("line")); const cx = axes.length ? parseFloat(axes[0].getAttribute("x1")) : NaN, cy = axes.length ? parseFloat(axes[0].getAttribute("y1")) : NaN;
+          const gridPts = Array.from(f.querySelectorAll(".wt-graph__radar-grid")).flatMap(parsePts); const R = gridPts.length ? Math.max(...gridPts.map(([x, y]) => Math.hypot(x - cx, y - cy))) : NaN;
+          const maxScore = 5;
+          const polys = ["a", "b"].map((s, si) => { const pl = f.querySelector(`.wt-graph__radar-${s}`); const pts = parsePts(pl); const exp = tds.map((r, i) => { const th = (i * 72) * Math.PI / 180; const rr = r[si] / maxScore * R; return [cx + rr * Math.sin(th), cy - rr * Math.cos(th)]; });
+            const dev = pts.length === exp.length ? Math.max(...pts.map(([x, y], i) => Math.max(Math.abs(x - exp[i][0]), Math.abs(y - exp[i][1])))) : Infinity;
+            return { points: pts.length, vis: vis(pl), fill: pl ? getComputedStyle(pl).fillOpacity : null, maxDev: Math.round(dev * 100) / 100 }; });
           const legend = f.querySelectorAll(".wt-graph__legend li").length; const labels = f.querySelectorAll(".wt-graph__radar-labels text").length;
-          g.valuesOk = tds.length === 5 && tds.every((r) => r.length === 2) && polys.every((pl) => pl.points === 5) && legend === 2 && labels === 5;
-          g.visibleOk = polys.every((pl) => pl.vis && parseFloat(pl.fill) > 0); g.detail = { polys, legend, labels };
+          g.valuesOk = tds.length === 5 && tds.every((r) => r.length === 2) && Number.isFinite(cx) && Number.isFinite(R) && R > 50 && axes.length === 5 && polys.every((pl) => pl.points === 5 && pl.maxDev <= 0.6) && legend === 2 && labels === 5;
+          g.visibleOk = polys.every((pl) => pl.vis && parseFloat(pl.fill) > 0); g.detail = { polys, legend, labels, cx, cy, R };
         }
         out.push(g);
       }
@@ -1350,7 +1365,7 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
   const sameNoJs = spNoJs.length === sp.length && spNoJs.every((g, i) => key(g) === key(sp[i]));
   out.graphsMore = { pc, sp, spNoJs, sameNoJs, pass: ok(pc) && ok(sp) && ok(spNoJs) && sameNoJs };
 }
-// (e) relatedNoFixture: 関連 6 件 + 次に読む 1 件に、既定カテゴリ（wp option default_category の名前。--wpclidir が無いときは "Uncategorized" で代用し source に記録）の投稿と
+// (e) relatedNoFixture: 関連 6 件 + 次に読む 1 件に、既定カテゴリ（wp option default_category の名前。wp-cli で取れないときは fail にし source に理由を記録）の投稿と
 //     自記事が入らず、各カードのカテゴリが 1 つ以上・画像が読込済み（naturalWidth > 0）
 {
   let defaultCat = "Uncategorized", source = "fallback:Uncategorized";
@@ -1368,22 +1383,28 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
     await ctx.close(); return r; };
   const pc = await run(PC), sp = await run(SP);
   const ok = (r) => r.count === 6 && r.next.length === 1 && [...r.cards, ...r.next].every((c) => !c.terms.includes(defaultCat) && c.terms.length > 0 && c.title && c.title !== r.self && c.img && c.img.complete && c.img.naturalWidth > 0);
-  out.relatedNoFixture = { defaultCat, source, pc, sp, pass: ok(pc) && ok(sp) };
+  // 既定カテゴリ名は wp-cli から取れたときだけ合格にする（取得失敗・--wpclidir 未指定は fail。代用名での合格を許さない。Astra 2 巡目）
+  out.relatedNoFixture = { defaultCat, source, pc, sp, pass: source.startsWith("wp-cli:") && ok(pc) && ok(sp) };
 }
-// (f) lineIcon: LINE 導線の mark が描かれた吹き出しグリフ（mask あり・可視・16px 以上）で文字 "LINE" を含まない。qr 型の説明文が PC / SP で切り替わる。追尾ボタンも同じ mark
+// (f) lineIcon: LINE 導線の mark が描かれた吹き出しグリフ（mask あり・可視・16px 以上）で文字 "LINE" を含まない。qr 型・button 型の両方を PC / SP で検証（qr 型は PC = 追尾 1 / SP = QR 枠内ボタン + 追尾 2、button 型は PC / SP とも ボタン + 追尾 2）。
+//     qr 型の説明文は PC / SP で切り替わる（要素数 2 ずつを要求し、空配列の every を許さない）
 {
-  const run = async (cfg, dev) => { const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); await p.goto(BASE + LP + "?wt=lp_sections:extended,lp_line:qr,lp_fixed:line-sticky", { waitUntil: "networkidle" });
+  const run = async (cfg, dev, variant) => { const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); await p.goto(BASE + LP + `?wt=lp_sections:extended,lp_line:${variant},lp_fixed:line-sticky`, { waitUntil: "networkidle" });
     const r = await p.evaluate(([visSrc, glyphSrc]) => { const vis = eval(visSrc), glyph = eval(glyphSrc);
       const marks = Array.from(document.querySelectorAll(".wt-lp-line__mark")).filter(vis); const wrap = document.querySelector(".wt-lp-line__qrwrap");
       return { marks: marks.length, marksWithGlyph: marks.filter((m) => glyph(m.querySelector(".wt-i--bubble"))).length, marksWithText: marks.filter((m) => /LINE/.test(m.textContent)).length,
-        pcTextVisible: Array.from(wrap.querySelectorAll(".wt-only-pc")).map(vis), spTextVisible: Array.from(wrap.querySelectorAll(".wt-only-sp")).map(vis), qrVisible: vis(wrap.querySelector(".wt-lp-line__qr")), spBtnVisible: vis(wrap.querySelector(".wt-lp-line__btn--sp")),
+        pcTextVisible: wrap ? Array.from(wrap.querySelectorAll(".wt-only-pc")).map(vis) : [], spTextVisible: wrap ? Array.from(wrap.querySelectorAll(".wt-only-sp")).map(vis) : [], qrVisible: vis(wrap && wrap.querySelector(".wt-lp-line__qr")), spBtnVisible: vis(wrap && wrap.querySelector(".wt-lp-line__btn--sp")),
+        buttonBlockVisible: vis(document.querySelector(".wt-lp-line--button")), qrBlockVisible: vis(wrap),
         stickyGlyph: glyph(document.querySelector(".wt-lp-fixed--line-sticky .wt-i--bubble")), btnTexts: Array.from(document.querySelectorAll(".wt-lp-line__btn")).filter(vis).map((a) => (a.getAttribute("aria-label") || "") + " " + a.textContent.trim()) }; }, [VIS_SRC, GLYPH_SRC]);
-    await ctx.close(); return { dev, ...r }; };
-  const pc = await run(PC, "pc"), sp = await run(SP, "sp");
-  // qr 型: PC は追尾ボタンの mark のみ（QR 枠内の SP ボタンは非表示）= 1、SP は QR 枠内ボタン + 追尾 = 2
-  const expectMarks = (r) => (r.dev === "pc" ? 1 : 2);
+    await ctx.close(); return { dev, variant, ...r }; };
+  const qrPc = await run(PC, "pc", "qr"), qrSp = await run(SP, "sp", "qr"), btnPc = await run(PC, "pc", "button"), btnSp = await run(SP, "sp", "button");
+  const expectMarks = (r) => (r.variant === "qr" && r.dev === "pc" ? 1 : 2);
   const base = (r) => r.marks === expectMarks(r) && r.marksWithGlyph === r.marks && r.marksWithText === 0 && r.stickyGlyph && r.btnTexts.length === expectMarks(r) && r.btnTexts.every((t) => /LINE/.test(t));
-  out.lineIcon = { pc, sp, pass: base(pc) && base(sp) && pc.pcTextVisible.length === 2 && pc.pcTextVisible.every(Boolean) && pc.spTextVisible.length === 2 && pc.spTextVisible.every((v) => !v) && pc.qrVisible && !pc.spBtnVisible && sp.spTextVisible.length === 2 && sp.spTextVisible.every(Boolean) && sp.pcTextVisible.every((v) => !v) && !sp.qrVisible && sp.spBtnVisible };
+  const qrOk = qrPc.qrBlockVisible && !qrPc.buttonBlockVisible && qrSp.qrBlockVisible && !qrSp.buttonBlockVisible
+    && qrPc.pcTextVisible.length === 2 && qrPc.pcTextVisible.every(Boolean) && qrPc.spTextVisible.length === 2 && qrPc.spTextVisible.every((v) => !v) && qrPc.qrVisible && !qrPc.spBtnVisible
+    && qrSp.spTextVisible.length === 2 && qrSp.spTextVisible.every(Boolean) && qrSp.pcTextVisible.length === 2 && qrSp.pcTextVisible.every((v) => !v) && !qrSp.qrVisible && qrSp.spBtnVisible;
+  const btnOk = btnPc.buttonBlockVisible && !btnPc.qrBlockVisible && btnSp.buttonBlockVisible && !btnSp.qrBlockVisible;
+  out.lineIcon = { qrPc, qrSp, btnPc, btnSp, pass: [qrPc, qrSp, btnPc, btnSp].every(base) && qrOk && btnOk };
 }
 // (g) snsIcons: footer の SNS 4 導線と記事末 icons-row 3 導線。グリフが描かれている（はてなは文字 "B!"）・aria-label・44×44・rel に nofollow（footer）・JS 無効でも同じ
 {

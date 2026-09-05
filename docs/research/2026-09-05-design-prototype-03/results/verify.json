@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884633)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.833991)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -12468,35 +12468,94 @@
   "pass": true
  },
  "numboxNum": {
-  "h2Count": 2,
-  "rows": [
+  "expected": [
    {
-    "text": "評価軸は 5 点",
-    "expected": "01-1",
-    "beforeWidth": 46.8,
-    "expectedWidth": 46.8,
-    "content": "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+    "tag": "H2",
+    "heading": "比較の前提と評価軸",
+    "label": "01"
    },
    {
-    "text": "測り方と条件",
-    "expected": "01-2",
-    "beforeWidth": 46.8,
-    "expectedWidth": 46.8,
-    "content": "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+    "tag": "H3",
+    "heading": "評価軸は 5 点",
+    "label": "01-1"
    },
    {
-    "text": "価格と保証",
-    "expected": "02-1",
-    "beforeWidth": 46.8,
-    "expectedWidth": 46.8,
-    "content": "counter(wt-h2num, decimal-leading-zero) \"-\" counter(wt-h3)"
+    "tag": "H3",
+    "heading": "測り方と条件",
+    "label": "01-2"
+   },
+   {
+    "tag": "H2",
+    "heading": "3 製品の比較表",
+    "label": "02"
+   },
+   {
+    "tag": "H3",
+    "heading": "価格と保証",
+    "label": "02-1"
    }
   ],
-  "plainRow": {
-   "beforeWidth": 33.8,
-   "expectedWidth": 33.8,
-   "content": "counter(wt-h3, decimal-leading-zero)"
-  },
+  "actual": [
+   {
+    "tag": "H2",
+    "heading": "比較の前提と評価軸",
+    "label": "01"
+   },
+   {
+    "tag": "H3",
+    "heading": "評価軸は 5 点",
+    "label": "01-1"
+   },
+   {
+    "tag": "H3",
+    "heading": "測り方と条件",
+    "label": "01-2"
+   },
+   {
+    "tag": "H2",
+    "heading": "3 製品の比較表",
+    "label": "02"
+   },
+   {
+    "tag": "H3",
+    "heading": "価格と保証",
+    "label": "02-1"
+   }
+  ],
+  "mutated": [
+   {
+    "tag": "H2",
+    "heading": "比較の前提と評価軸",
+    "label": "01"
+   },
+   {
+    "tag": "H3",
+    "heading": "評価軸は 5 点",
+    "label": "01-2"
+   },
+   {
+    "tag": "H3",
+    "heading": "測り方と条件",
+    "label": "01-4"
+   },
+   {
+    "tag": "H2",
+    "heading": "3 製品の比較表",
+    "label": "02"
+   },
+   {
+    "tag": "H3",
+    "heading": "価格と保証",
+    "label": "02-2"
+   }
+  ],
+  "plain": [
+   {
+    "tag": "H3",
+    "heading": "リフトワン L1：静かで低い位置まで下がる",
+    "label": "01"
+   }
+  ],
   "counterSet": [
    "wt-h3 0",
    "wt-h3 0"
@@ -12504,6 +12563,11 @@
   "h2Increment": [
    "wt-h2num 1",
    "wt-h2num 1"
+  ],
+  "h3Increment": [
+   "wt-h3 1",
+   "wt-h3 1",
+   "wt-h3 1"
   ],
   "pass": true
  },
@@ -12685,19 +12749,28 @@
       "v": 92,
       "shown": 92,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 46,
+      "fill": "rgb(29, 78, 216)",
+      "track": "rgb(244, 246, 249)"
      },
      {
       "v": 78,
       "shown": 78,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 39,
+      "fill": "rgb(21, 128, 61)",
+      "track": "rgb(244, 246, 249)"
      },
      {
       "v": 64,
       "shown": 64,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 32,
+      "fill": "rgb(194, 65, 12)",
+      "track": "rgb(244, 246, 249)"
      }
     ]
    },
@@ -12717,16 +12790,21 @@
       {
        "points": 5,
        "vis": true,
-       "fill": "0.22"
+       "fill": "0.22",
+       "maxDev": 0.05
       },
       {
        "points": 5,
        "vis": true,
-       "fill": "0.16"
+       "fill": "0.16",
+       "maxDev": 0.05
       }
      ],
      "legend": 2,
-     "labels": 5
+     "labels": 5,
+     "cx": 160,
+     "cy": 150,
+     "R": 100.01124936725869
     }
    }
   ],
@@ -12907,19 +12985,28 @@
       "v": 92,
       "shown": 92,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 46,
+      "fill": "rgb(29, 78, 216)",
+      "track": "rgb(244, 246, 249)"
      },
      {
       "v": 78,
       "shown": 78,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 39,
+      "fill": "rgb(21, 128, 61)",
+      "track": "rgb(244, 246, 249)"
      },
      {
       "v": 64,
       "shown": 64,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 32,
+      "fill": "rgb(194, 65, 12)",
+      "track": "rgb(244, 246, 249)"
      }
     ]
    },
@@ -12939,16 +13026,21 @@
       {
        "points": 5,
        "vis": true,
-       "fill": "0.22"
+       "fill": "0.22",
+       "maxDev": 0.05
       },
       {
        "points": 5,
        "vis": true,
-       "fill": "0.16"
+       "fill": "0.16",
+       "maxDev": 0.05
       }
      ],
      "legend": 2,
-     "labels": 5
+     "labels": 5,
+     "cx": 160,
+     "cy": 150,
+     "R": 100.01124936725869
     }
    }
   ],
@@ -13129,19 +13221,28 @@
       "v": 92,
       "shown": 92,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(29, 78, 216) 0deg, rgb(29, 78, 216) 46%, rgb(244, 246, 249) 46%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 46,
+      "fill": "rgb(29, 78, 216)",
+      "track": "rgb(244, 246, 249)"
      },
      {
       "v": 78,
       "shown": 78,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(21, 128, 61) 0deg, rgb(21, 128, 61) 39%, rgb(244, 246, 249) 39%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 39,
+      "fill": "rgb(21, 128, 61)",
+      "track": "rgb(244, 246, 249)"
      },
      {
       "v": 64,
       "shown": 64,
       "vis": true,
-      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)"
+      "bg": "conic-gradient(from -90deg at 50% 100%, rgb(194, 65, 12) 0deg, rgb(194, 65, 12) 32%, rgb(244, 246, 249) 32%, rgb(244, 246, 249) 50%, rgba(0, 0, 0, 0) 50%)",
+      "stopPct": 32,
+      "fill": "rgb(194, 65, 12)",
+      "track": "rgb(244, 246, 249)"
      }
     ]
    },
@@ -13161,16 +13262,21 @@
       {
        "points": 5,
        "vis": true,
-       "fill": "0.22"
+       "fill": "0.22",
+       "maxDev": 0.05
       },
       {
        "points": 5,
        "vis": true,
-       "fill": "0.16"
+       "fill": "0.16",
+       "maxDev": 0.05
       }
      ],
      "legend": 2,
-     "labels": 5
+     "labels": 5,
+     "cx": 160,
+     "cy": 150,
+     "R": 100.01124936725869
     }
    }
   ],
@@ -13339,8 +13445,9 @@
   "pass": true
  },
  "lineIcon": {
-  "pc": {
+  "qrPc": {
    "dev": "pc",
+   "variant": "qr",
    "marks": 1,
    "marksWithGlyph": 1,
    "marksWithText": 0,
@@ -13354,13 +13461,16 @@
    ],
    "qrVisible": true,
    "spBtnVisible": false,
+   "buttonBlockVisible": false,
+   "qrBlockVisible": true,
    "stickyGlyph": true,
    "btnTexts": [
     "LINE で相談する（追尾ボタン。PoC ではお問い合わせ帯へのアンカー） 相談する"
    ]
   },
-  "sp": {
+  "qrSp": {
    "dev": "sp",
+   "variant": "qr",
    "marks": 2,
    "marksWithGlyph": 2,
    "marksWithText": 0,
@@ -13374,6 +13484,56 @@
    ],
    "qrVisible": false,
    "spBtnVisible": true,
+   "buttonBlockVisible": false,
+   "qrBlockVisible": true,
+   "stickyGlyph": true,
+   "btnTexts": [
+    " LINE で友だち追加",
+    "LINE で相談する（追尾ボタン。PoC ではお問い合わせ帯へのアンカー） 相談する"
+   ]
+  },
+  "btnPc": {
+   "dev": "pc",
+   "variant": "button",
+   "marks": 2,
+   "marksWithGlyph": 2,
+   "marksWithText": 0,
+   "pcTextVisible": [
+    false,
+    false
+   ],
+   "spTextVisible": [
+    false,
+    false
+   ],
+   "qrVisible": false,
+   "spBtnVisible": false,
+   "buttonBlockVisible": true,
+   "qrBlockVisible": false,
+   "stickyGlyph": true,
+   "btnTexts": [
+    " LINE で友だち追加",
+    "LINE で相談する（追尾ボタン。PoC ではお問い合わせ帯へのアンカー） 相談する"
+   ]
+  },
+  "btnSp": {
+   "dev": "sp",
+   "variant": "button",
+   "marks": 2,
+   "marksWithGlyph": 2,
+   "marksWithText": 0,
+   "pcTextVisible": [
+    false,
+    false
+   ],
+   "spTextVisible": [
+    false,
+    false
+   ],
+   "qrVisible": false,
+   "spBtnVisible": false,
+   "buttonBlockVisible": true,
+   "qrBlockVisible": false,
    "stickyGlyph": true,
    "btnTexts": [
     " LINE で友だち追加",
@@ -13400,7 +13560,7 @@
     },
     {
      "visible": true,
-     "label": "Instagram（公式アカウント）",
+     "label": "写真共有（公式アカウント）",
      "glyph": true,
      "digits": false,
      "size": [
@@ -13413,7 +13573,7 @@
     },
     {
      "visible": true,
-     "label": "YouTube（公式チャンネル）",
+     "label": "動画（公式チャンネル）",
      "glyph": true,
      "digits": false,
      "size": [
@@ -13488,7 +13648,7 @@
     },
     {
      "visible": true,
-     "label": "Instagram（公式アカウント）",
+     "label": "写真共有（公式アカウント）",
      "glyph": true,
      "digits": false,
      "size": [
@@ -13501,7 +13661,7 @@
     },
     {
      "visible": true,
-     "label": "YouTube（公式チャンネル）",
+     "label": "動画（公式チャンネル）",
      "glyph": true,
      "digits": false,
      "size": [
@@ -13576,7 +13736,7 @@
     },
     {
      "visible": true,
-     "label": "Instagram（公式アカウント）",
+     "label": "写真共有（公式アカウント）",
      "glyph": true,
      "digits": false,
      "size": [
@@ -13589,7 +13749,7 @@
     },
     {
      "visible": true,
-     "label": "YouTube（公式チャンネル）",
+     "label": "動画（公式チャンネル）",
      "glyph": true,
      "digits": false,
      "size": [
