@@ -77,7 +77,7 @@ async function chunked(browser, cfg, dev, url, key, meta, expectSections) {
 }
 const HOME_HERO = ["text-only", "slider", "fullbleed", "split", "article-grid", "video"];
 const HOME_CTA = ["double", "single", "tel-button"];
-const HOME_SECTIONS = [["corporate", 8], ["service", 8], ["media", 6]];
+const HOME_SECTIONS = [["corporate", 8], ["service", 8], ["media", 7]];
 const HOME_NEWS = ["list-with-date", "tabs", "cards"];
 const HOME_CONTACT = ["tel-form", "form-only", "tel-only", "line"];
 const EV_HERO = ["photo-overlay", "key-visual", "date-place-block", "text-only"];

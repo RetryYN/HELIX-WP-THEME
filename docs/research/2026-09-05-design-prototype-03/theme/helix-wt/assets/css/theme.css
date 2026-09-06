@@ -1316,7 +1316,7 @@ body.wt-home-hero-article-grid .wt-home-hero--article-grid{display:block}
 /* 白文字は下半分（α ≥ .84 の帯）に置く: 文字を下寄せにし、verify は文字矩形の上端位置の α を gradient から補間して 4.5:1 を要求 */
 
 .wt-home-hero--fullbleed .wt-eyebrow,.wt-home-hero--fullbleed .wt-home-hero__lead,.wt-home-hero--fullbleed h1{color:#fff}
-.wt-home-hero--fullbleed .wt-lp-cta-action--secondary{border-color:#fff;color:#fff}
+.wt-home-hero--fullbleed .wt-lp-cta-action--secondary,.wt-home-hero--slider .wt-lp-cta-action--secondary{border-color:#fff;color:#fff}
 /* slider: scroll-snap（JS 無効でも横スクロール可）、JS でドット / 前後ボタン */
 .wt-home-slider__track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}.wt-home-slider__track::-webkit-scrollbar{display:none}
 .wt-home-slider__slide{position:relative;isolation:isolate;flex:0 0 100%;scroll-snap-align:start;min-height:420px;color:#fff;background:var(--wp--preset--color--contrast)}
@@ -1325,7 +1325,7 @@ body.wt-home-hero-article-grid .wt-home-hero--article-grid{display:block}
 .wt-home-slider__caption{position:relative;max-width:1120px;margin:0 auto;padding:clamp(3rem,8vw,6rem) var(--wp--custom--gutter) 4rem}
 .wt-home-slider__caption h1,.wt-home-slider__caption h2,.wt-home-slider__caption p,.wt-home-slider__caption .wt-eyebrow{color:#fff}
 .wt-home-slider__caption h2{font-size:clamp(1.5rem,3.5vw,2.25rem);margin:.25rem 0 .5rem}
-.wt-home-slider__nav{position:absolute;left:0;right:0;bottom:.75rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.wt-home-slider__nav:not([hidden]){position:absolute;left:0;right:0;bottom:.75rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
 .wt-home-slider__nav button{width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:var(--wp--preset--color--contrast);font-size:1.5rem;line-height:1;cursor:pointer}
 .wt-home-slider__dots{display:flex;gap:.25rem}.wt-home-slider__dots button{width:44px;height:44px;background:transparent;position:relative}
 .wt-home-slider__dots button::before{content:"";position:absolute;inset:0;margin:auto;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.55)}
@@ -1354,8 +1354,9 @@ body.wt-home-sections-corporate :is(.wt-home__section--news,.wt-home__section--s
 body.wt-home-sections-corporate .wt-home__section--news{order:10}body.wt-home-sections-corporate .wt-home__section--service-cards{order:20}body.wt-home-sections-corporate .wt-home__section--features{order:30}body.wt-home-sections-corporate .wt-home__section--numbers{order:40}body.wt-home-sections-corporate .wt-home__section--cases{order:50}body.wt-home-sections-corporate .wt-home__section--company{order:60}body.wt-home-sections-corporate .wt-home__section--access{order:70}body.wt-home-sections-corporate .wt-home__section--contact{order:80}
 body.wt-home-sections-service :is(.wt-home__section--service-cards,.wt-home__section--features,.wt-home__section--numbers,.wt-home__section--cases,.wt-home__section--price,.wt-home__section--faq,.wt-home__section--cta-band,.wt-home__section--contact){display:block!important}
 body.wt-home-sections-service .wt-home__section--service-cards{order:10}body.wt-home-sections-service .wt-home__section--features{order:20}body.wt-home-sections-service .wt-home__section--numbers{order:30}body.wt-home-sections-service .wt-home__section--cases{order:40}body.wt-home-sections-service .wt-home__section--price{order:50}body.wt-home-sections-service .wt-home__section--faq{order:60}body.wt-home-sections-service .wt-home__section--cta-band{order:70}body.wt-home-sections-service .wt-home__section--contact{order:80}
-body.wt-home-sections-media :is(.wt-home__section--article-grid,.wt-home__section--category-cards,.wt-home__section--ranking,.wt-home__section--banner-row,.wt-home__section--news,.wt-home__section--cta-band){display:block!important}
-body.wt-home-sections-media .wt-home__section--article-grid{order:10}body.wt-home-sections-media .wt-home__section--category-cards{order:20}body.wt-home-sections-media .wt-home__section--ranking{order:30}body.wt-home-sections-media .wt-home__section--banner-row{order:40}body.wt-home-sections-media .wt-home__section--news{order:50}body.wt-home-sections-media .wt-home__section--cta-band{order:60}
+body.wt-home-sections-media :is(.wt-home__section--article-grid,.wt-home__section--category-cards,.wt-home__section--ranking,.wt-home__section--banner-row,.wt-home__section--news,.wt-home__section--cta-band,.wt-home__section--contact){display:block!important}
+body.wt-home-sections-media .wt-home-cta .wt-lp-cta-action--secondary[href="#service"]{display:none} /* media セットにサービス区間が無いため、届かない導線を出さない */
+body.wt-home-sections-media .wt-home__section--article-grid{order:10}body.wt-home-sections-media .wt-home__section--category-cards{order:20}body.wt-home-sections-media .wt-home__section--ranking{order:30}body.wt-home-sections-media .wt-home__section--banner-row{order:40}body.wt-home-sections-media .wt-home__section--news{order:50}body.wt-home-sections-media .wt-home__section--cta-band{order:60}body.wt-home-sections-media .wt-home__section--contact{order:70}
 body.wt-home-news-none .wt-home__section--news{display:none!important}
 body.wt-home-contact-none .wt-home__section--contact{display:none!important}
 .wt-home__section:nth-child(even):not(.wt-lp-cta-band){background:var(--wp--preset--color--surface)}
