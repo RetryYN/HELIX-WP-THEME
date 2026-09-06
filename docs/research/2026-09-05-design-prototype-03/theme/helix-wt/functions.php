@@ -22,12 +22,20 @@ function wt_axes() {
 		'detext'   => array( 'off', array( 'off', 'on' ) ),
 		'nf'       => array( 'popular', array( 'popular', 'cta', 'suggest' ) ),    // 404 変種
 		'pr'       => array( 'auto', array( 'auto', 'on', 'off' ) ),                // PR 表記の自動挿入。auto は本文先頭の重複表記を検出して抑止する（2026-09-05 PO 反応5回目）
-		'cat_header'    => array( 'name-only', array( 'name-only', 'name-desc', 'hero' ) ),
-		'cat_children' => array( 'chips', array( 'none', 'chips', 'cards', 'steps' ) ),
-		'cat_list'     => array( 'grid', array( 'grid', 'thumb-list', 'featured-grid' ) ),
-		'cat_pagination' => array( 'numbers', array( 'numbers', 'load-more', 'prev-next' ) ),
-		'cat_ranking'  => array( 'none', array( 'none', 'sidebar', 'bottom' ) ),
-		'cat_minihome' => array( 'off', array( 'off', 'on' ) ),
+		// 2026-09-06 PO 反応 18 回目 WT-EVT-0283「強化してくれ」（カテゴリ面）。既定と型は台帳 category-recapture 主集計 n=54（Astra レビュー済み）の観察値
+		'cat_header'    => array( 'name-count', array( 'name-count', 'name-only', 'name-desc', 'hero' ) ), // name-count 68% / name-only 17% / name-desc 9% / name-desc-image 6%（= hero）
+		'cat_lead'      => array( 'none', array( 'none', 'lead-text', 'editorial' ) ), // none 78% / lead-text 13% / editorial-article 9%
+		'cat_children'  => array( 'chips', array( 'none', 'chips', 'cards', 'steps', 'sidebar-tree', 'image-banners' ) ), // chips 40% / none 38% / sidebar-tree 15% / cards 6% / image-banners 2%（steps は試作 02 の型）
+		'cat_columns'   => array( 'sidebar-right', array( 'sidebar-right', '1col' ) ), // 2col-sidebar-right 69% / 1col 31%
+		'cat_sidebar'   => array( 'standard', array( 'standard', 'with-cta', 'full' ) ), // sidebar 内容: categories 67% / popular 57%（standard）+ cta-banner 33%（with-cta）+ archive 20% / search 19% / new-posts 15% / profile 13% / tags 13%（full）
+		'cat_list'      => array( 'grid', array( 'grid', 'text-list', 'featured-grid', 'grid-2', 'thumb-list', 'timeline' ) ), // grid-3 43% / text-list 39% / featured-plus-grid 7% / grid-2 6% / thumb-list 4% / timeline 2%
+		'cat_card'      => array( 'standard', array( 'standard', 'minimal', 'rich' ) ), // 要素: date 76% / category-chip 63% / excerpt 59% / image 59%（standard）。author / new-badge / tags 各 11%（rich）
+		'cat_filter'    => array( 'none', array( 'none', 'tabs', 'year', 'tag', 'sort' ) ), // none 63% / tabs 15% / year-filter 11% / tag-filter 9% / sort-select 2%
+		'cat_pagination' => array( 'numbers', array( 'numbers', 'none', 'load-more', 'prev-next' ) ), // numbers 43% / none 39% / load-more 9% / prev-next 9%
+		'cat_ranking'   => array( 'none', array( 'none', 'sidebar', 'bottom', 'top' ) ), // sidebar 44% / none 43% / top 13%。既定 none は sidebar の popular（cat_sidebar）が sidebar 型の多数派を担うため
+		'cat_pickup'    => array( 'none', array( 'none', 'top-featured', 'editor-pick-box' ) ), // none 52% / top-featured 35% / editor-pick-box 13%
+		'cat_cta'       => array( 'none', array( 'none', 'lp-banner', 'newsletter', 'line' ) ), // none 54% / lp-banner 22% / newsletter 11% / line 7%。app-download 6% は第三者ストアのバッジ画像が要るため置かない
+		'cat_minihome'  => array( 'off', array( 'off', 'on' ) ), // yes 60%（na 7 除外）は「子カテゴリ別の小一覧」の有無。既定 off は試作 02 からの継続（PO 未決）
 		'footer_layout' => array( 'sitemap', array( 'sitemap', 'single-row', 'columns-3' ) ),
 		'footer_above'  => array( 'none', array( 'none', 'cta-band', 'banner-row', 'newsletter' ) ),
 		'footer_legal'  => array( 'copyright-links', array( 'copyright-links', 'copyright-only' ) ),
@@ -128,8 +136,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.13' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.13' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.14' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.14' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -138,7 +146,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_front_page() ) {
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.13', $defer );
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.14', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
@@ -307,7 +315,14 @@ add_action( 'init', function () {
 	}
 	register_block_type( 'helix-wt/category-children', array( 'render_callback' => 'wt_render_category_children' ) );
 	register_block_type( 'helix-wt/category-minihome', array( 'render_callback' => 'wt_render_category_minihome' ) );
-	register_block_type( 'helix-wt/category-ranking', array( 'render_callback' => 'wt_render_category_ranking' ) );
+	register_block_type( 'helix-wt/category-ranking', array( 'render_callback' => 'wt_render_category_ranking', 'attributes' => array( 'slot' => array( 'type' => 'string', 'default' => 'aside' ) ) ) );
+	register_block_type( 'helix-wt/category-count', array( 'render_callback' => 'wt_render_category_count' ) );
+	register_block_type( 'helix-wt/category-lead', array( 'render_callback' => 'wt_render_category_lead' ) );
+	register_block_type( 'helix-wt/category-filter', array( 'render_callback' => 'wt_render_category_filter' ) );
+	register_block_type( 'helix-wt/category-sidebar', array( 'render_callback' => 'wt_render_category_sidebar' ) );
+	register_block_type( 'helix-wt/category-pickup', array( 'render_callback' => 'wt_render_category_pickup' ) );
+	register_block_type( 'helix-wt/category-cta', array( 'render_callback' => 'wt_render_category_cta' ) );
+	register_block_type( 'helix-wt/card-badges', array( 'render_callback' => 'wt_render_card_badges', 'uses_context' => array( 'postId' ) ) );
 	register_block_type( 'helix-wt/tail-prevnext', array( 'render_callback' => 'wt_render_tail_prevnext' ) );
 	register_block_type( 'helix-wt/tail-author', array( 'render_callback' => 'wt_render_tail_author' ) );
 } );
@@ -562,17 +577,21 @@ function wt_render_category_children() {
 		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="子カテゴリ"></nav>';
 	}
 	$variant = wt_opt( 'cat_children' );
-	if ( 'none' === $variant ) {
+	if ( 'none' === $variant || 'sidebar-tree' === $variant ) { // sidebar-tree は wt_render_category_sidebar() 側（右カラム）で描く
 		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="子カテゴリ"></nav>';
 	}
 	$out = '<nav class="wt-cat-children wt-cat-children--' . esc_attr( $variant ) . '" aria-label="子カテゴリ"><ul>';
-	foreach ( $children as $child ) {
+	$img = get_theme_file_uri( 'assets/img' );
+	foreach ( $children as $i => $child ) {
 		$url   = get_term_link( $child );
 		$count = number_format_i18n( (int) $child->count );
 		if ( is_wp_error( $url ) ) {
 			continue;
 		}
 		$label = '<span class="wt-cat-child__name">' . esc_html( $child->name ) . '</span><span class="wt-cat-child__count">' . esc_html( $count ) . '件</span>';
+		if ( 'image-banners' === $variant ) { // PoC: 子カテゴリの画像は生成写真を順に割り当てる（実運用はタームのメタ画像）
+			$label = '<img src="' . esc_url( $img . '/media-pickup-' . ( ( $i % 6 ) + 1 ) . '.jpg' ) . '" alt="" width="600" height="338" loading="lazy" decoding="async">' . $label;
+		}
 		$out  .= '<li><a href="' . esc_url( $url ) . '">' . $label . '</a>';
 		if ( 'cards' === $variant ) {
 			$out .= '<span class="wt-cat-child__desc">' . esc_html( wp_trim_words( $child->description, 12, '…' ) ) . '</span>';
@@ -582,9 +601,16 @@ function wt_render_category_children() {
 	return $out . '</ul></nav>';
 }
 
-function wt_render_category_ranking() {
+function wt_render_category_ranking( $attributes = array() ) {
 	$term = wt_current_category_term();
 	if ( ! $term ) {
+		return '';
+	}
+	// 置き場所（top / bottom / aside）ごとに template に 1 つずつ置き、選択された cat_ranking と一致する slot だけ描く
+	$slot   = isset( $attributes['slot'] ) ? (string) $attributes['slot'] : 'aside';
+	$choice = wt_opt( 'cat_ranking' );
+	$want   = 'sidebar' === $choice ? 'aside' : $choice;
+	if ( $want !== $slot ) {
 		return '';
 	}
 	$posts = get_posts( array(
@@ -597,11 +623,240 @@ function wt_render_category_ranking() {
 	if ( ! $posts ) {
 		return '';
 	}
-	$out = '<aside class="wt-cat-ranking" aria-labelledby="wt-cat-ranking-title"><h2 id="wt-cat-ranking-title">このカテゴリのランキング</h2><ol>';
+	$out = '<aside class="wt-cat-ranking wt-cat-ranking--' . esc_attr( $slot ) . '" aria-labelledby="wt-cat-ranking-title"><h2 id="wt-cat-ranking-title">このカテゴリのランキング</h2><ol>';
 	foreach ( $posts as $index => $post ) {
 		$out .= '<li><a href="' . esc_url( get_permalink( $post ) ) . '"><span class="wt-cat-ranking__num">' . esc_html( (string) ( $index + 1 ) ) . '</span><span>' . esc_html( get_the_title( $post ) ) . '</span></a></li>';
 	}
 	return $out . '</ol></aside>';
+}
+
+// 段 6: カテゴリ面の年フィルタ（?year=YYYY）。redirect_canonical は年付きのカテゴリ一覧を年アーカイブへ飛ばしカテゴリを落とすため、カテゴリ面でだけ止める
+add_filter( 'redirect_canonical', function ( $redirect ) {
+	if ( is_category() && get_query_var( 'year' ) ) {
+		return false;
+	}
+	return $redirect;
+} );
+// ---------- 段 6: カテゴリ面の強化（WT-EVT-0283、台帳 category-recapture n=54） ----------
+function wt_category_posts( $term, $n, $offset = 0 ) {
+	return get_posts( array( 'category' => (int) $term->term_id, 'posts_per_page' => $n, 'offset' => $offset, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC' ) );
+}
+
+function wt_render_category_count() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$total = isset( $GLOBALS['wp_query'] ) ? (int) $GLOBALS['wp_query']->found_posts : 0; // 子カテゴリを含む一覧の件数（見出しの件数は一覧と同じ分母）
+	return '<p class="wt-cat-head__count"><b>' . esc_html( number_format_i18n( $total ) ) . '</b> 件</p>';
+}
+
+function wt_render_category_lead() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$desc = $term->description ? $term->description : 'このカテゴリの記事は、読む順番に迷わないよう基礎から順に並べています。';
+	$out  = '<p class="wt-cat-lead wt-cat-lead--lead-text">' . esc_html( $desc ) . '</p>';
+	$out .= '<div class="wt-cat-lead wt-cat-lead--editorial"><p class="wt-eyebrow">EDITOR\'S NOTE</p><h2>' . esc_html( $term->name ) . ' の歩き方</h2>';
+	$out .= '<p>' . esc_html( $desc ) . '</p><p>まず「基礎」の記事で全体像をつかみ、次に「比較」で選び方の軸を決め、最後に「運用」で日々の使い方を確認する流れを勧めています。迷ったら一覧の先頭から順に読んでください。</p>';
+	$out .= '<a class="wt-cat-lead__link" href="#list">記事一覧へ</a></div>';
+	return $out;
+}
+
+function wt_render_category_filter() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$base = get_term_link( $term );
+	if ( is_wp_error( $base ) ) {
+		return '';
+	}
+	$variant = wt_opt( 'cat_filter' );
+	if ( 'none' === $variant ) {
+		return '';
+	}
+	$out = '<div class="wt-cat-filter wt-cat-filter--' . esc_attr( $variant ) . '">';
+	if ( 'tabs' === $variant ) {
+		$children = get_terms( array( 'taxonomy' => 'category', 'parent' => (int) $term->term_id, 'hide_empty' => false, 'orderby' => 'term_id', 'order' => 'ASC' ) );
+		$out     .= '<nav aria-label="絞り込み"><ul><li><a href="' . esc_url( $base ) . '" aria-current="page">すべて</a></li>';
+		foreach ( is_wp_error( $children ) ? array() : $children as $child ) {
+			$link = get_term_link( $child );
+			if ( ! is_wp_error( $link ) ) {
+				$out .= '<li><a href="' . esc_url( $link ) . '">' . esc_html( $child->name ) . '</a></li>';
+			}
+		}
+		$out .= '</ul></nav>';
+	} elseif ( 'year' === $variant ) {
+		$years = array();
+		foreach ( wt_category_posts( $term, -1 ) as $p ) {
+			$years[ get_the_date( 'Y', $p ) ] = true;
+		}
+		krsort( $years );
+		$current = get_query_var( 'year' );
+		$out    .= '<nav aria-label="年で絞り込み"><ul><li><a href="' . esc_url( $base ) . '"' . ( $current ? '' : ' aria-current="page"' ) . '>すべて</a></li>';
+		foreach ( array_keys( $years ) as $y ) {
+			$out .= '<li><a href="' . esc_url( add_query_arg( 'year', $y, $base ) ) . '"' . ( (string) $current === (string) $y ? ' aria-current="page"' : '' ) . '>' . esc_html( $y ) . '年</a></li>';
+		}
+		$out .= '</ul></nav>';
+	} elseif ( 'tag' === $variant ) {
+		$tags    = get_terms( array( 'taxonomy' => 'post_tag', 'hide_empty' => true, 'number' => 12 ) );
+		$current = get_query_var( 'tag' );
+		$out    .= '<nav aria-label="タグで絞り込み"><ul><li><a href="' . esc_url( $base ) . '"' . ( $current ? '' : ' aria-current="page"' ) . '>すべて</a></li>';
+		foreach ( is_wp_error( $tags ) ? array() : $tags as $t ) {
+			$out .= '<li><a href="' . esc_url( add_query_arg( 'tag', $t->slug, $base ) ) . '"' . ( $current === $t->slug ? ' aria-current="page"' : '' ) . '>#' . esc_html( $t->name ) . '</a></li>';
+		}
+		$out .= '</ul></nav>';
+	} else { // sort: 同一サイト内の一覧の並べ替え（WP の公開 query var orderby / order）。問い合わせフォームではないので送信する
+		$orderby = (string) get_query_var( 'orderby' );
+		$order   = strtolower( (string) get_query_var( 'order' ) );
+		$opts    = array( 'date' => '新しい順', 'modified' => '更新順', 'title' => 'タイトル順' );
+		$out    .= '<form class="wt-cat-sort" method="get" action="' . esc_url( $base ) . '"><label for="wt-cat-orderby">並べ替え</label><select id="wt-cat-orderby" name="orderby">';
+		foreach ( $opts as $k => $label ) {
+			$out .= '<option value="' . esc_attr( $k ) . '"' . selected( $orderby ?: 'date', $k, false ) . '>' . esc_html( $label ) . '</option>';
+		}
+		$out .= '</select><input type="hidden" name="order" value="' . esc_attr( 'asc' === $order ? 'asc' : 'desc' ) . '"><button type="submit">適用</button></form>';
+	}
+	return $out . '</div>';
+}
+
+function wt_render_category_sidebar() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$out = '<div class="wt-cat-side">';
+	if ( 'sidebar-tree' === wt_opt( 'cat_children' ) ) { // 子カテゴリの木（右カラム型）
+		$children = get_terms( array( 'taxonomy' => 'category', 'parent' => (int) $term->term_id, 'hide_empty' => false, 'orderby' => 'term_id', 'order' => 'ASC' ) );
+		$out     .= '<nav class="wt-cat-widget wt-cat-widget--tree wt-cat-children--sidebar-tree" aria-labelledby="wt-cat-tree-title"><h2 id="wt-cat-tree-title">' . esc_html( $term->name ) . '</h2><ul>';
+		foreach ( is_wp_error( $children ) ? array() : $children as $child ) {
+			$link = get_term_link( $child );
+			if ( ! is_wp_error( $link ) ) {
+				$out .= '<li><a href="' . esc_url( $link ) . '"><span class="wt-cat-child__name">' . esc_html( $child->name ) . '</span><span class="wt-cat-child__count">' . esc_html( number_format_i18n( (int) $child->count ) ) . '件</span></a></li>';
+			}
+		}
+		$out .= '</ul></nav>';
+	}
+	// categories（67%）
+	$cats = get_terms( array( 'taxonomy' => 'category', 'parent' => 0, 'hide_empty' => false, 'orderby' => 'term_id', 'order' => 'ASC', 'number' => 8 ) );
+	$out .= '<section class="wt-cat-widget wt-cat-widget--categories" aria-labelledby="wt-cat-w-categories"><h2 id="wt-cat-w-categories">カテゴリ</h2><ul>';
+	foreach ( is_wp_error( $cats ) ? array() : $cats as $c ) {
+		$link = get_term_link( $c );
+		if ( ! is_wp_error( $link ) ) {
+			$out .= '<li><a href="' . esc_url( $link ) . '"' . ( (int) $c->term_id === (int) $term->term_id ? ' aria-current="page"' : '' ) . '>' . esc_html( $c->name ) . '<span class="wt-cat-child__count">' . esc_html( number_format_i18n( (int) $c->count ) ) . '</span></a></li>';
+		}
+	}
+	$out .= '</ul></section>';
+	// popular-ranking（57%）。PoC は閲覧数を持たないため日付順の上位 5 件を「人気」の代わりに並べる（見出しに明記）
+	$out .= '<section class="wt-cat-widget wt-cat-widget--popular" aria-labelledby="wt-cat-w-popular"><h2 id="wt-cat-w-popular">人気記事<small>（PoC: 日付順）</small></h2><ol>';
+	foreach ( wt_category_posts( $term, 5 ) as $i => $p ) {
+		$out .= '<li><a href="' . esc_url( get_permalink( $p ) ) . '"><b>' . esc_html( (string) ( $i + 1 ) ) . '</b><span>' . esc_html( get_the_title( $p ) ) . '</span></a></li>';
+	}
+	$out .= '</ol></section>';
+	// cta-banner（33%）
+	$lp   = get_page_by_path( 'lp' );
+	$out .= '<section class="wt-cat-widget wt-cat-widget--cta" aria-label="案内"><a class="wt-cat-widget__banner" href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>はじめての方へ</b><span>選び方の全体像を 1 ページで</span></a></section>';
+	// full: search / archive-month / new-posts / profile / tags
+	$out .= '<section class="wt-cat-widget wt-cat-widget--search" aria-labelledby="wt-cat-w-search"><h2 id="wt-cat-w-search">検索</h2><form role="search" method="get" action="' . esc_url( home_url( '/' ) ) . '"><label class="screen-reader-text" for="wt-cat-s">キーワード</label><input id="wt-cat-s" type="search" name="s" placeholder="キーワード"><button type="submit" aria-label="検索"><i class="wt-i wt-i--search" aria-hidden="true"></i></button></form></section>';
+	$months = array();
+	foreach ( wt_category_posts( $term, -1 ) as $p ) {
+		$months[ get_the_date( 'Y-m', $p ) ] = array( (int) get_the_date( 'Y', $p ), (int) get_the_date( 'n', $p ) );
+	}
+	krsort( $months );
+	$out .= '<section class="wt-cat-widget wt-cat-widget--archive" aria-labelledby="wt-cat-w-archive"><h2 id="wt-cat-w-archive">月別</h2><ul>';
+	foreach ( array_slice( $months, 0, 6, true ) as $ym => $pair ) {
+		$out .= '<li><a href="' . esc_url( get_month_link( $pair[0], $pair[1] ) ) . '">' . esc_html( $pair[0] . '年' . $pair[1] . '月' ) . '</a></li>';
+	}
+	$out .= '</ul></section>';
+	$out .= '<section class="wt-cat-widget wt-cat-widget--new" aria-labelledby="wt-cat-w-new"><h2 id="wt-cat-w-new">新着記事</h2><ul>';
+	foreach ( wt_category_posts( $term, 3 ) as $p ) {
+		$out .= '<li><a href="' . esc_url( get_permalink( $p ) ) . '"><time datetime="' . esc_attr( get_the_date( 'c', $p ) ) . '">' . esc_html( get_the_date( 'Y.m.d', $p ) ) . '</time><span>' . esc_html( get_the_title( $p ) ) . '</span></a></li>';
+	}
+	$out .= '</ul></section>';
+	$out .= '<section class="wt-cat-widget wt-cat-widget--profile" aria-labelledby="wt-cat-w-profile"><h2 id="wt-cat-w-profile">この媒体について</h2><div class="wt-cat-widget__profile"><img src="' . esc_url( get_theme_file_uri( 'assets/img/avatar.png' ) ) . '" alt="" width="64" height="64" loading="lazy"><p><b>編集部</b><br>選び方を数字で比べる比較媒体。</p></div></section>';
+	$tags = get_terms( array( 'taxonomy' => 'post_tag', 'hide_empty' => true, 'number' => 12 ) );
+	$out .= '<section class="wt-cat-widget wt-cat-widget--tags" aria-labelledby="wt-cat-w-tags"><h2 id="wt-cat-w-tags">タグ</h2><ul>';
+	foreach ( is_wp_error( $tags ) ? array() : $tags as $t ) {
+		$link = get_term_link( $t );
+		if ( ! is_wp_error( $link ) ) {
+			$out .= '<li><a href="' . esc_url( $link ) . '">#' . esc_html( $t->name ) . '</a></li>';
+		}
+	}
+	return $out . '</ul></section></div>';
+}
+
+function wt_render_category_pickup() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$variant = wt_opt( 'cat_pickup' );
+	if ( 'none' === $variant ) {
+		return '';
+	}
+	if ( 'top-featured' === $variant ) {
+		$posts = wt_category_posts( $term, 1 );
+		if ( ! $posts ) {
+			return '';
+		}
+		$p    = $posts[0];
+		$img  = get_the_post_thumbnail( $p, 'large', array( 'loading' => 'eager', 'decoding' => 'async' ) );
+		$cats = get_the_category( $p );
+		$out  = '<section class="wt-cat-pickup wt-cat-pickup--top-featured" aria-labelledby="wt-cat-pickup-title"><a class="wt-cat-pickup__media" href="' . esc_url( get_permalink( $p ) ) . '" tabindex="-1" aria-hidden="true">' . $img . '</a><div class="wt-cat-pickup__body"><p class="wt-eyebrow">FEATURED</p>';
+		if ( $cats ) {
+			$out .= '<a class="wt-data-card__chip" href="' . esc_url( get_category_link( $cats[0] ) ) . '">' . esc_html( $cats[0]->name ) . '</a>';
+		}
+		$out .= '<h2 id="wt-cat-pickup-title"><a href="' . esc_url( get_permalink( $p ) ) . '">' . esc_html( get_the_title( $p ) ) . '</a></h2><time datetime="' . esc_attr( get_the_date( 'c', $p ) ) . '">' . esc_html( get_the_date( 'Y.m.d', $p ) ) . '</time><p>' . esc_html( wp_trim_words( get_the_excerpt( $p ), 40, '…' ) ) . '</p></div></section>';
+		return $out;
+	}
+	$out = '<section class="wt-cat-pickup wt-cat-pickup--editor-pick-box" aria-labelledby="wt-cat-pickup-title"><h2 id="wt-cat-pickup-title">編集部のおすすめ</h2><ol>';
+	foreach ( wt_category_posts( $term, 3, 1 ) as $p ) {
+		$out .= '<li><a href="' . esc_url( get_permalink( $p ) ) . '">' . get_the_post_thumbnail( $p, 'medium', array( 'loading' => 'lazy', 'decoding' => 'async' ) ) . '<span>' . esc_html( get_the_title( $p ) ) . '</span></a></li>';
+	}
+	return $out . '</ol></section>';
+}
+
+function wt_render_category_cta() {
+	$term = wt_current_category_term();
+	if ( ! $term ) {
+		return '';
+	}
+	$variant = wt_opt( 'cat_cta' );
+	if ( 'none' === $variant ) {
+		return '';
+	}
+	if ( 'lp-banner' === $variant ) {
+		$lp = get_page_by_path( 'lp' );
+		return '<aside class="wt-cat-cta wt-cat-cta--lp-banner" aria-label="案内"><a href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>' . esc_html( $term->name ) . ' の選び方ガイド</b><span>比較の軸と失敗しない順番を 1 ページにまとめました</span><span class="wt-lp-cta-action">ガイドを読む</span></a></aside>';
+	}
+	if ( 'newsletter' === $variant ) { // PoC: 送信しない（外部の配信サービスへ接続しない）。form 要素を使わない: 文字入力 1 つの form は送信ボタンが無くても Enter で暗黙送信される
+		return '<aside class="wt-cat-cta wt-cat-cta--newsletter" id="cat-newsletter" aria-labelledby="wt-cat-nl-title"><h2 id="wt-cat-nl-title">新着記事をメールで受け取る</h2><div class="wt-cat-cta__fields" role="group" aria-labelledby="wt-cat-nl-title" data-wt-poc-form="no-submit"><label for="wt-cat-nl-email">メールアドレス</label><input id="wt-cat-nl-email" type="email" name="email" autocomplete="email" placeholder="you@example.com"><button type="button">登録する（PoC: 送信しない）</button></div></aside>';
+	}
+	return '<aside class="wt-cat-cta wt-cat-cta--line" id="cat-line" aria-label="LINE 案内"><p>新着と限定情報を LINE でお届け</p><a class="wt-lp-cta-action" href="#cat-line" aria-label="LINE で友だち追加"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>LINE で友だち追加</a></aside>';
+}
+
+function wt_render_card_badges( $attributes = array(), $content = '', $block = null ) {
+	$post_id = ( $block && isset( $block->context['postId'] ) ) ? (int) $block->context['postId'] : get_the_ID();
+	if ( ! $post_id ) {
+		return '';
+	}
+	$out = '<div class="wt-cat-card__badges">';
+	if ( ( time() - get_post_time( 'U', true, $post_id ) ) < 30 * DAY_IN_SECONDS ) {
+		$out .= '<span class="wt-cat-card__new">NEW</span>';
+	}
+	$tags = get_the_tags( $post_id );
+	if ( $tags ) {
+		$out .= '<ul class="wt-cat-card__tags">';
+		foreach ( array_slice( $tags, 0, 3 ) as $t ) {
+			$link = get_term_link( $t );
+			if ( ! is_wp_error( $link ) ) {
+				$out .= '<li><a href="' . esc_url( $link ) . '">#' . esc_html( $t->name ) . '</a></li>';
+			}
+		}
+		$out .= '</ul>';
+	}
+	return $out . '</div>';
 }
 
 function wt_render_category_minihome() {

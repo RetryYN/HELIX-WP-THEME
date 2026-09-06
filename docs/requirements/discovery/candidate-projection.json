@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0278",
-  "event_count": 278,
+  "event_head": "WT-EVT-0283",
+  "event_count": 283,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -894,6 +894,30 @@
       "requirement_ids": [
         "WT-FR-RECO-01"
       ]
+    },
+    {
+      "candidate_id": "WT-CAND-HOME",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0269",
+        "WT-EVT-0277",
+        "WT-EVT-0279",
+        "WT-EVT-0280"
+      ],
+      "requirement_ids": []
+    },
+    {
+      "candidate_id": "WT-CAND-EVENT",
+      "state": "accepted",
+      "source_event_ids": [
+        "WT-EVT-0269",
+        "WT-EVT-0277",
+        "WT-EVT-0279",
+        "WT-EVT-0280",
+        "WT-EVT-0281",
+        "WT-EVT-0282"
+      ],
+      "requirement_ids": []
     }
   ],
   "question_ids": [
@@ -977,7 +1001,10 @@
     "WT-Q-PARTS-03",
     "WT-Q-EVID-01",
     "WT-Q-G3-01",
-    "WT-Q-STYLE-01"
+    "WT-Q-STYLE-01",
+    "WT-Q-PAGE-HOME-EVENT-01",
+    "WT-Q-EVENT-MAP-01",
+    "WT-Q-SHARE-FB-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -1058,7 +1085,9 @@
     "WT-Q-LOOK-05",
     "WT-Q-LOOK-06",
     "WT-Q-PARTS-03",
-    "WT-Q-EVID-01"
+    "WT-Q-EVID-01",
+    "WT-Q-PAGE-HOME-EVENT-01",
+    "WT-Q-SHARE-FB-01"
   ],
   "prototype_revision_ids": [
     "WT-PROT-UI-01-r1"
@@ -1118,6 +1147,16 @@
         "WT-CAND-CORE"
       ],
       "reentry": "authority.md の development style を candidate から agreed へ"
+    },
+    {
+      "id": "WT-Q-EVENT-MAP-01",
+      "owner": "PO",
+      "form": "variant_adoption",
+      "question": "イベントページの地図を外部地図サービスの埋め込み型（選べる型、既定は静止画像 / 文字）として追加するか",
+      "affected_candidate_ids": [
+        "WT-CAND-EVENT"
+      ],
+      "reentry": "採用なら試作 03 に event_map:embed を追加（URL は設定 JSON、公開リポにドメインを書かない）→ compile で WT-FR-EVENT-01 に反映"
     }
   ],
   "agreement": {
