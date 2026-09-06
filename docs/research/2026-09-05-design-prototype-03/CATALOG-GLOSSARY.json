@@ -790,7 +790,7 @@
   },
   "category-sidebar": {
    "label": "右 sidebar の中身",
-   "desc": "sidebar に置く部品の組。台帳の出現率: categories 67% / popular-ranking 57% / cta-banner 33% / archive-month 20% / search 19% / new-posts 15% / profile 13% / tags 13%。",
+   "desc": "sidebar に置く部品の組。台帳の出現率: categories 67% / popular-ranking 57% / cta-banner 33% / archive-month 20% / search 19% / new-posts 15% / profile 13% / tags 13%。 段 10c: cat_side=classic のときの独自 aside。既定 cat_side=article では記事側の共通サイドバーが出る。",
    "variants": {
     "standard": "カテゴリ一覧 + 人気記事（既定。PoC は閲覧数を持たないため日付順を「人気」の代わりに置き見出しに明記）。",
     "with-cta": "standard + 案内バナー。",
@@ -891,6 +891,26 @@
    "variants": {
     "below-hero": "hero（first view）を全幅で見せ、その下から本文列 + サイドバーを始める（既定、PO 反応）。",
     "top": "hero を本文列に入れ、サイドバーは hero の横（ページ最上部）から始める。"
+   }
+  },
+  "side-owner": {
+   "label": "サイドバーの所属（面ごと）",
+   "desc": "段 10c（PO 階層整理 WT-EVT-0296、指示 WT-EVT-0297「合わせろ」、決定 WT-EVT-0299「継承しない = 非表示にしない。継承・独自設定・非表示を分離」）。継承セット（束）は台帳 wt_side_bundles() に登録: 記事側 side-*、HP 側 home-side-*、独自設定 own-side-*（後続の 5 セット化はここに追加）。面ごとに束を選ぶ: HOME = HP 側（home_side_layout=none で OFF）、記事 = 記事側、カテゴリ = cat_side、イベント = event_side、固定ページ = page_side、LP = 持たない。既定のうちカテゴリ = 記事側継承とイベント = 非表示は PO 原文由来、HOME の ON・固定ページ = HP 側・HP 側セット corporate・独自設定セット minimal は Claude 案の暫定。",
+   "variants": {
+    "cat_side:article": "カテゴリ面に記事側の束を継承（既定、PO 原文「記事側を継承するケースが多い」）。段 6 の独自 aside は隠れる。",
+    "cat_side:home": "HP 側の束を継承。",
+    "cat_side:own": "独自設定（面専用の束 own_category_side_*。同じ own でも面ごとに別の設定）。",
+    "cat_side:classic": "段 6 の独自 aside（cat_columns / cat_sidebar 3 型 / ランキング sidebar / 子分類 sidebar-tree）。",
+    "cat_side:off": "非表示（1 カラム）。",
+    "event_side:off": "非表示（既定。PO 原文「LP に近い場合は不要」）。",
+    "event_side:home": "HP 側の束を継承（主 CV 重視）。",
+    "event_side:article": "記事側の束を継承（回遊導線型）。",
+    "event_side:own": "独自設定（面専用の束 own_event_side_*）。",
+    "page_side:home": "固定ページは HP 側の束を継承（既定、Claude 暫定）。",
+    "page_side:article": "記事側の束を継承。",
+    "page_side:own": "独自設定（面専用の束 own_page_side_*）。",
+    "page_side:off": "非表示。",
+    "home_side_layout:none": "HOME のサイドバー OFF（個別設定）。"
    }
   },
   "side-sticky": {

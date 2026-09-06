@@ -6,7 +6,7 @@
 
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {
-	return array(
+	$axes = array(
 		// 2026-09-06 PO 反応 17 回目 WT-EVT-0270「ヘッダーバリエーション増やそうか」: 台帳 §1 header レイアウトの観察型から +5（Claude 案）
 		// center = logo-center-nav-below / two-rows / overlay = transparent-over-hero（eyecatch:hero と併用）/ tel = with-tel / band = テーマ A/B の帯色型
 		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce', 'center', 'two-rows', 'overlay', 'tel', 'band' ) ),
@@ -85,8 +85,65 @@ function wt_axes() {
 		'side_sp'     => array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) ), // 要約では判定できないため 3 型を持つ（前回台帳 article/sp は none 93%）
 		'side_set'    => array( 'media', array( 'media', 'blog', 'owned', 'corporate', 'minimal', 'full' ) ), // 区分別の上位ウィジェット順（C / P / B / 固定ページ・HP / 最小 / 全種）
 		'side_nav'    => array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) ),
-		'side_from'   => array( 'below-hero', array( 'below-hero', 'top' ) ), // HP のみ: サイドバーを first view（hero）の下から始める（既定、WT-EVT-0292「ファーストview以下にサイドバーを設けることも多いはず」）/ hero の横から始める。記事・固定ページは見出し部の下から始まる構造で固定 // mega-menu 35% / none 35% / toc-side 23% / 他 2% ずつ // 主集計 n=8: none 62% / icons 38%。add-to-calendar は観察に無い Claude 案
+		'side_from'   => array( 'below-hero', array( 'below-hero', 'top' ) ), // HP のみ: サイドバーを first view（hero）の下から始める（既定、WT-EVT-0292「ファーストview以下にサイドバーを設けることも多いはず」）/ hero の横から始める。記事・固定ページは見出し部の下から始まる構造で固定
+		// 段 10c（2026-09-07 PO 階層整理 WT-EVT-0296 + 指示 WT-EVT-0297「合わせろ」）: サイドバーの所属を面ごとに。設定の束は 2 つ（記事側 = side_*、HP 側 = home_side_*）。
+		// 面ごとの所属: HOME = HP 側の束（home_side_layout=none で OFF）、記事 = 記事側、カテゴリ = cat_side（記事側を継承 / 独自 aside（段 6）/ OFF）、イベント = event_side（OFF / HP 側 / 記事側）、固定ページ = page_side（HP 側 / 記事側 / OFF）、LP = 持たない。
+		// 既定: カテゴリ = 記事側継承（WT-EVT-0296「サイドバーは記事側を継承するケースが多い」）、イベント = OFF（同「LP に近い場合は不要」を既定に。HP 側 / 記事側継承は選択）。HOME の ON と固定ページ = HP 側は原文に無い Claude 案の暫定値
+		'home_side_layout' => array( 'right', array( 'none', 'right', 'left', 'both' ) ),
+		'home_side_sticky' => array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) ),
+		'home_side_sp'     => array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) ),
+		'home_side_set'    => array( 'corporate', array( 'media', 'blog', 'owned', 'corporate', 'minimal', 'full' ) ), // HP 側の束の既定セットは corporate（固定ページ・HP 向け。Claude 暫定）
+		'home_side_nav'    => array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) ),
+		// PO 決定 2026-09-07（WT-EVT-0299）: 「継承しない = 非表示」にしない。継承（article / home）・独自設定（own = 面専用の束 own_side_*）・非表示（off）を分ける。カテゴリの classic は段 6 の独自 aside（cat_columns / cat_sidebar / cat_ranking:sidebar / cat_children:sidebar-tree）
+		// own の束は面ごとに別の軸（own_<face>_side_*）。同じ own を選んでも面をまたいで設定が混ざらない（Astra 1 巡目: 共通の own_side_* は第 3 の共通設定になる）
+		// 継承セットの追加 = wt_side_bundles() に 1 行 + 軸 5 本（許可値は台帳から導出するので面の所属軸は触らない）
 	);
+	foreach ( array( 'category', 'event', 'page' ) as $face ) { // 独自設定の束（面専用）。既定セット minimal は Claude 暫定
+		$axes[ 'own_' . $face . '_side_layout' ] = array( 'right', array( 'none', 'right', 'left', 'both' ) );
+		$axes[ 'own_' . $face . '_side_sticky' ] = array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) );
+		$axes[ 'own_' . $face . '_side_sp' ]     = array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) );
+		$axes[ 'own_' . $face . '_side_set' ]    = array( 'minimal', array( 'media', 'blog', 'owned', 'corporate', 'minimal', 'full' ) );
+		$axes[ 'own_' . $face . '_side_nav' ]    = array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) );
+	}
+	$bundles = array_keys( wt_side_bundles() ); // 面の所属軸の許可値は束の台帳から導出（台帳に足した束はそのまま選べる）
+	$axes['cat_side']   = array( 'article', array_merge( $bundles, array( 'classic', 'off' ) ) ); // 既定 = 記事側継承（PO 原文）。classic = 段 6 の独自 aside
+	$axes['event_side'] = array( 'off', array_merge( array( 'off' ), $bundles ) ); // 既定 = OFF（PO 原文「LP に近い場合は不要」）
+	$axes['page_side']  = array( 'home', array_merge( $bundles, array( 'off' ) ) ); // 既定 = HP 側継承（Claude 暫定）
+	return $axes;
+}
+
+// 段 10c: 面の判定と、その面が使うサイドバー設定の束（home / article / null = 無し）
+function wt_side_face() {
+	if ( wt_is_lp_page() ) { return 'lp'; }
+	if ( is_front_page() ) { return 'home'; }
+	if ( wt_is_event_page() ) { return 'event'; }
+	if ( is_category() ) { return 'category'; }
+	if ( is_page() ) { return 'page'; }
+	if ( is_singular( 'post' ) ) { return 'article'; }
+	return 'other';
+}
+// 継承セットの台帳: 束の名前 → 軸の接頭辞。後続でセットを足すときはここに 1 行と軸 5 本を足す（WT-EVT-0299「後続の継承セット追加にも対応できるか確認」）
+function wt_side_bundles() {
+	return array( 'home' => 'home_side_', 'article' => 'side_', 'own' => 'own_{face}_side_' ); // {face} は面の名前に置換（own は面専用）
+}
+function wt_side_bundle() {
+	$bundles = wt_side_bundles();
+	switch ( wt_side_face() ) {
+		case 'home': return 'home';
+		case 'article': return 'article';
+		case 'category': $s = wt_opt( 'cat_side' ); return isset( $bundles[ $s ] ) ? $s : null; // classic / off は共通サイドバーを使わない
+		case 'event': $s = wt_opt( 'event_side' ); return isset( $bundles[ $s ] ) ? $s : null;
+		case 'page': $s = wt_opt( 'page_side' ); return isset( $bundles[ $s ] ) ? $s : null;
+		default: return null;
+	}
+}
+function wt_side_eff( $k ) { // $k: layout / sticky / sp / set / nav。面の束から実効値を返す
+	$b = wt_side_bundle();
+	if ( null === $b ) { // 束なし（off / classic / LP / other）= 非表示。配置だけでなくサイドナビ・追尾・SP ドロワーも切る（Astra 1 巡目: side_nav:drawer-pc で記事側のセットがドロワーから出ていた）
+		$off = array( 'layout' => 'none', 'nav' => 'none', 'sticky' => 'none', 'sp' => 'hidden' );
+		return $off[ $k ] ?? wt_opt( 'side_' . $k );
+	}
+	return wt_opt( str_replace( '{face}', wt_side_face(), wt_side_bundles()[ $b ] ) . $k );
 }
 
 function wt_is_event_page() {
@@ -145,8 +202,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.17' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.17' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.18' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.18' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -155,10 +212,10 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_front_page() || is_page() ) { // 段 8: 固定ページ用パーツ（カルーセル・カウントダウン）でも使う
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.17', $defer );
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.18', $defer );
 	}
-	if ( is_singular() || is_page() || is_front_page() ) { // 段 10: サイドバー（ドロワー / メガメニュー）
-		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.17', $defer );
+	if ( is_singular() || is_page() || is_front_page() || is_category() ) { // 段 10: サイドバー（ドロワー / メガメニュー）。段 10c: カテゴリ面も共通サイドバーを継承する
+		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.18', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
@@ -182,11 +239,17 @@ add_filter( 'body_class', function ( $classes ) {
 	if ( wt_is_event_page() ) {
 		$classes[] = 'wt-face-event';
 	}
+	$classes[] = 'wt-face-' . wt_side_face();
+	$bundle    = wt_side_bundle();
+	$classes[] = 'wt-side-bundle-' . ( null === $bundle ? 'none' : $bundle );
 	foreach ( wt_axes() as $key => $def ) {
-		$classes[] = 'wt-' . $key . '-' . wt_opt( $key );
+		// 段 10c: side_layout 等の class は面の束の実効値（CSS / JS はこの class だけを見る）。生の軸値は wt-raw-side-* に残す
+		$eff = ( str_starts_with( $key, 'side_' ) && 'side_from' !== $key ) ? wt_side_eff( substr( $key, 5 ) ) : wt_opt( $key );
+		if ( $eff !== wt_opt( $key ) ) { $classes[] = 'wt-raw-' . str_replace( '_', '-', $key ) . '-' . wt_opt( $key ); }
+		$classes[] = 'wt-' . $key . '-' . $eff;
 		$class_key = str_replace( '_', '-', $key );
 		if ( $class_key !== $key ) {
-			$classes[] = 'wt-' . $class_key . '-' . wt_opt( $key );
+			$classes[] = 'wt-' . $class_key . '-' . $eff;
 		}
 	}
 	$extra = wt_opt( 'footer_extra' );
@@ -514,6 +577,8 @@ add_filter( 'query_loop_block_query_vars', function ( $query, $block ) {
 
 // ---------- 404: HTTP 404 は WP 既定（template 404.html）。noindex を明示 ----------
 add_action( 'wp_head', function () {
+	echo '<meta name="wt-side-bundles" content="' . esc_attr( implode( ',', array_keys( wt_side_bundles() ) ) ) . '">' . "\n"; // 段 10c: 束の台帳を verify が読む（面の所属軸の許可値と一致すること）
+
 	if ( is_404() ) {
 		echo '<meta name="robots" content="noindex">' . "\n";
 	}
@@ -796,7 +861,7 @@ function wt_side_widget( $key, $sfx = '' ) { // $sfx: 左カラム用の id 接�
 }
 function wt_render_sidebar( $attrs = array() ) {
 	$sets = wt_side_sets();
-	$set  = wt_opt( 'side_set' );
+	$set  = wt_side_eff( 'set' ); // 段 10c: 面の束（HP 側 / 記事側）の実効セット
 	$keys = isset( $sets[ $set ] ) ? $sets[ $set ] : $sets['media'];
 	$out  = '';
 	foreach ( $keys as $k ) { $out .= wt_side_widget( $k ); }
