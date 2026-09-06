@@ -84,15 +84,15 @@ const HOME_HERO = ["cards-carousel", "product-shot", "search-box"];
 const EVENT_APPLY = ["receipt-upload", "postcard", "messaging-app"];
 const PART_NAMES = ["greeting", "logos-row", "stores", "event-list", "gallery", "sns-feed", "timeline", "countdown", "target-audience", "organizer", "tickets", "prizes", "entry-steps", "judges", "target-products"];
 // 区間セット: 表示区間数（verify の SETS / ESETS と同じ）
-const HOME_SETS = { corporate: 8, service: 8, media: 7, "shop-school": 11, "school-org": 12 };
-const EVENT_SETS = { seminar: 11, "seminar-v2": 11, conference: 11, festival: 12, campaign: 9 };
+const HOME_SETS = { corporate: 9, service: 9, media: 7, "shop-school": 11, "school-org": 12 };
+const EVENT_SETS = { seminar: 11, "seminar-classic": 11, conference: 11, festival: 12, campaign: 9 };
 let browser = null;
 async function main() {
 try {
 for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
   if (browser) await browser.close();
   browser = await chromium.launch();
-  // 全長（分割）: HP 区間セット 5 種（corporate / service / media は同名置換）、イベント区間セット 5 種、パーツ一覧ページ
+  // 全長（分割）: HP 区間セット 5 種（corporate / service / media は同名置換。段 9: corporate に greeting、service に logos）、イベント区間セット 5 種、パーツ一覧ページ
   for (const [set, n] of Object.entries(HOME_SETS)) await chunked(browser, cfg, dev, HOME + wt(`home_sections:${set}`), `home-sections-${set}`, { face: "home", part: "home-sections", variant: set }, ".wt-home__sections", ":scope > .wt-home__section", n);
   for (const [set, n] of Object.entries(EVENT_SETS)) await chunked(browser, cfg, dev, EVENT + wt(`event_sections:${set},event_schedule:table,event_speakers:cards-photo,event_map:static-image`), `event-sections-${set}`, { face: "event", part: "event-sections", variant: set }, ".wt-event", ".wt-event__sections > .wt-event__section", n);
   await chunked(browser, cfg, dev, PARTS, "page-parts-full", { face: "page", part: "page-parts", variant: "15 パーツを並べた固定ページ" }, ".wt-page-parts", ":scope > .wt-part", 15);
@@ -138,7 +138,7 @@ const replacement = new Map(index.map((e) => [e.file, e]));
 const added = index.filter((e) => !known.has(e.file));
 // 分割数が減った再実行では旧チャンクを INDEX から外し画像も退避する（reaction9 方式）
 // 分割数が変わった同名置換（home-sections-corporate / service）では旧チャンクを INDEX から外し画像も退避する。event-page-full-* は区間セット導入で並びが変わったため event-sections-seminar に置き換え、旧写真も退避する
-const stale = existing.filter((e) => (/^home-sections-(corporate|service|media|shop-school|school-org)-\d+-(sp|pc)\.jpg$/.test(e.file) || /^event-sections-(seminar|seminar-v2|conference|festival|campaign)-\d+-(sp|pc)\.jpg$/.test(e.file) || /^page-parts-full-\d+-(sp|pc)\.jpg$/.test(e.file) || /^event-page-full-\d+-(sp|pc)\.jpg$/.test(e.file)) && !planned.has(e.file)).map((e) => e.file); // 今回撮る全分割系列を対象にする（分割数が減ったとき旧末尾を残さない）
+const stale = existing.filter((e) => (/^home-sections-(corporate|service|media|shop-school|school-org)-\d+-(sp|pc)\.jpg$/.test(e.file) || /^event-sections-(seminar|seminar-v2|seminar-classic|conference|festival|campaign)-\d+-(sp|pc)\.jpg$/.test(e.file) || /^page-parts-full-\d+-(sp|pc)\.jpg$/.test(e.file) || /^event-page-full-\d+-(sp|pc)\.jpg$/.test(e.file)) && !planned.has(e.file)).map((e) => e.file); // 今回撮る全分割系列を対象にする（分割数が減ったとき旧末尾を残さない）
 const nextIndex = JSON.stringify(existing.filter((e) => !stale.includes(e.file)).map((e) => replacement.get(e.file) || e).concat(added), null, 1) + "\n";
 const indexTmp = catalogFile + ".reaction13.tmp";
 try {

@@ -713,6 +713,18 @@ PO 反応 18 回目（2026-09-06）の 5 件目「強化してくれ。その間
 10. Astra 1 巡目（PR #164）「merge 不可」の是正: 【重大】SNS フィードを PHP の直接出力にしていたため、パターンを挿入・保存すると option の変更が効かなくなる → 動的ブロック `helix-wt/sns-feed-embed` に変更し、verify に展開保存ページの検査を追加。【改善】cards-carousel hero の導線が区間セットによっては非表示区間（#service / #cases）を指す → 実在ページ（/lp/ とカテゴリ）へ変更し、hero × セットの交差検査を追加。既定表示の構成を PO 決定なしに変えていた（seminar から sponsors / past が消え、corporate に greeting が入る）→ 既存セットの構成を据え置き、v2 観察に合わせた案は `seminar-v2` と第 11 項の未決に分離。撮影の旧チャンク除去対象に event-sections / page-parts-full が無かった → 追加。台帳と README / 用語集の数値の不一致（double 46→44%、form-only 32→31%、float-tel 51→52%、icon-list 52→55%、external-form 46→45%、greeting 21→40%）→ 生成値に揃えた。SNS 導線の aria-label に第三者サービス名 → 汎用表記へ。【軽微】helper とパターン外枠の id 重複 → helper 側を外した。用語集の corporate / service の並び説明 → 実装に揃えた。
 11. 未決（PO 判断待ち）: date-place-block をイベント hero の暫定既定値へ上げるか（§5 の規則「両台帳で最多」の例外提案）、other:* 3 語の語彙への正式採用、gallery / countdown（未観察の追加提案）を残すか、既定セットの構成を v2 観察に合わせるか（corporate に greeting、service に logos、seminar を seminar-v2 の構成にする）。
 
+## 2.29 段9 — PO 反応 20 回目（WT-EVT-0288「全部追加。最大数を取りにいけばいい。」）の反映
+
+§2.28 第 11 項の未決 4 件を PO がすべて採用した（WT-EVT-0288、WT-PROT-REACTION-40）。
+
+1. **既定の区間セット構成を台帳 v2 の観察に合わせる**: corporate に greeting（news の次、A 65%）、service に logos（cases の次、B 44%）。イベント既定 `seminar` を対象者・主催を含む v2 構成（旧 seminar-v2）にし、段 7 までの従来構成は `seminar-classic` として残す（型は減らさない）。
+2. **イベント hero の既定を date-place-block へ**（台帳 v2 主集計 n=40 の 62%。台帳 §5「両台帳で最多」の例外を PO が承認）。
+3. **応募方法 3 語の語彙採用**: receipt-upload / postcard / messaging-app を other:* 接頭辞なしの語彙とし、台帳 v2（リポ内・リポ外の両方）の observations と summary を再生成した。
+4. **gallery / countdown は存置**（未観察の追加提案として明記は残す）。
+5. 「最大数を取りにいけばいい」は、観察した型・提案した型を絞らず全部入れる方針として扱う。
+6. verify: SETS / ESETS / expectParts を新既定に合わせた。撮影は `shots-reaction13.mjs` を再実行（corporate / service / seminar の全長を同名置換、seminar-v2 の写真は seminar-classic に置き換え）。用語集は既定と変更理由を追記。
+7. 実機結果（`results/verify.json`）: `summary` **pass 84 / fail 0**、総合 `pass: true`（homeFace 234 行・eventFace 126 行 + embedSet・pageParts 3 行 + feedSet を新既定で再実行）。INDEX **783**（件数は変わらず。corporate / service / seminar の全長を同名置換、seminar-v2 の 6 枚を seminar-classic に置換）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
