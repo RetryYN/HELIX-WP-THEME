@@ -4,7 +4,7 @@
 
 ## 0. 用語・分母・ラベルの定義
 
-語彙コードの注記: contact_band=messaging-app・fixed=float-tel 等は導線の種類を表す語彙コードで、第三者サービス名としての記述ではない。`other:*` は語彙外の観察で、集計の分母には含める。原則として型の候補にはしないが、§6 で語彙への正式採用を提案する場合はその旨を明示する（本台帳では応募方法 3 語）。**apply は複数選択**（複数の応募経路があるページは全経路を列挙し、代表経路を選ばない）。header/footer の語彙統合: signin→login、badge / cert-badges→badges、cert-logo→cert。footer の hours-table は営業時間・診療時間を**表**で示すもの、hours は 1〜2 行の文字表記。
+語彙コードの注記: contact_band=messaging-app・fixed=float-tel 等は導線の種類を表す語彙コードで、第三者サービス名としての記述ではない。`other:*` は語彙外の観察で、集計の分母には含める。原則として型の候補にはしない。応募方法の 3 語（receipt-upload / postcard / messaging-app）は当初 other:* で記録したが、PO 決定 WT-EVT-0288（2026-09-06「全部追加」）で語彙へ正式採用したため、本台帳では other: 接頭辞なしで集計する。**apply は複数選択**（複数の応募経路があるページは全経路を列挙し、代表経路を選ばない）。header/footer の語彙統合: signin→login、badge / cert-badges→badges、cert-logo→cert。footer の hours-table は営業時間・診療時間を**表**で示すもの、hours は 1〜2 行の文字表記。
 
 - **na**: 取得できた（fetched:true）が、その項目の値を本文要約から判定できない。**fetched:false**: 取得失敗（どの集計にも含めない。HTTP 403/404・名前解決失敗・証明書不一致・本文空）。
 - 分母: HP は取得件数から prev_dup を除いた集計対象、イベントは主集計（page_kind = `individual-event-or-campaign`）。na がある項目は欠測除外後の分母を行内に明記する。
@@ -63,7 +63,7 @@
 
 - **hero**（主集計 n=40）: date-place-block 25/40(62%) / text-only 8/40(20%) / key-visual-only 4/40(10%) / photo-overlay 3/40(8%)
 - **info_block**（主集計 n=40）: icon-list 22/40(55%) / inline-text 9/40(22%) / table 9/40(22%)
-- **apply**（複数選択。主集計 n=40、apply=na 0 件を除いた分母 40）: external-form 18/40(45%) / closed-notice 13/40(32%) / ticket-service-link 6/40(15%) / other:postcard 3/40(8%) / other:receipt-upload 3/40(8%) / other:messaging-app 2/40(5%)
+- **apply**（複数選択。主集計 n=40、apply=na 0 件を除いた分母 40）: external-form 18/40(45%) / closed-notice 13/40(32%) / ticket-service-link 6/40(15%) / postcard 3/40(8%) / receipt-upload 3/40(8%) / messaging-app 2/40(5%)
 - **schedule**（主集計 n=40）: date-place-block 32/40(80%) / date-place-block-in-hero 4/40(10%) / table 3/40(8%) / accordion 1/40(2%)
 - **status_badge**（主集計 n=40）: open 26/40(65%) / ended 13/40(32%) / none 1/40(2%)
 - **speakers**（主集計 n=40）: list 12/40(30%) / single-profile 11/40(28%) / cards-photo 9/40(22%) / none 8/40(20%)
@@ -78,14 +78,14 @@
 
 - **hero**（取得件数 n=46）: date-place-block 26/46(57%) / text-only 11/46(24%) / photo-overlay 5/46(11%) / key-visual-only 4/46(9%)
 - **info_block**（取得件数 n=46）: icon-list 25/46(54%) / table 11/46(24%) / inline-text 10/46(22%)
-- **apply**（複数選択。取得件数 n=46、apply=na 0 件を除いた分母 46）: external-form 24/46(52%) / closed-notice 13/46(28%) / ticket-service-link 6/46(13%) / other:postcard 3/46(7%) / other:receipt-upload 3/46(7%) / other:messaging-app 2/46(4%)
+- **apply**（複数選択。取得件数 n=46、apply=na 0 件を除いた分母 46）: external-form 24/46(52%) / closed-notice 13/46(28%) / ticket-service-link 6/46(13%) / postcard 3/46(7%) / receipt-upload 3/46(7%) / messaging-app 2/46(4%)
 
 ### 3c. 区分別（主集計内、観察事実。区分 n が 2〜26。n≤5 の区分は断定しない）
 
 - A（n=26）: hero 上位 3 語 date-place-block 20/26(77%) / text-only 6/26(23%)。apply（複数選択、全語） external-form 12/26(46%) / closed-notice 11/26(42%) / ticket-service-link 3/26(12%)。status 上位 3 語 open 15/26(58%) / ended 10/26(38%) / none 1/26(4%)。セクション上位 overview 26/26(100%) / notes/terms 24/26(92%) / speakers 24/26(92%) / organizer 22/26(85%) / program-detail 22/26(85%) / apply/register 20/26(77%) / schedule 18/26(69%) / target-audience 18/26(69%)。
 - B（n=4）: hero 上位 3 語 date-place-block 4/4(100%)。apply（複数選択、全語） ticket-service-link 2/4(50%) / external-form 1/4(25%) / closed-notice 1/4(25%)。status 上位 3 語 open 3/4(75%) / ended 1/4(25%)。セクション上位 organizer 4/4(100%) / overview 4/4(100%) / schedule 4/4(100%) / access/map 3/4(75%) / program-detail 3/4(75%) / speakers 3/4(75%) / sponsors 3/4(75%) / tickets/price 3/4(75%)。
 - C（n=2）: hero 上位 3 語 text-only 1/2(50%) / photo-overlay 1/2(50%)。apply（複数選択、全語） closed-notice 1/2(50%) / ticket-service-link 1/2(50%)。status 上位 3 語 ended 2/2(100%)。セクション上位 access/map 2/2(100%) / faq 2/2(100%) / notes/terms 2/2(100%) / overview 2/2(100%) / program-detail 2/2(100%) / sponsors 2/2(100%) / info 1/2(50%) / news 1/2(50%)。
-- D（n=8）: hero 上位 3 語 key-visual-only 4/8(50%) / photo-overlay 2/8(25%) / text-only 1/8(12%)。apply（複数選択、全語） external-form 5/8(62%) / other:receipt-upload 3/8(38%) / other:postcard 3/8(38%) / other:messaging-app 2/8(25%)。status 上位 3 語 open 8/8(100%)。セクション上位 overview 8/8(100%) / organizer 7/8(88%) / notes/terms 6/8(75%) / schedule 6/8(75%) / apply/register 5/8(62%) / entry-steps 5/8(62%) / prizes 5/8(62%) / target-products 4/8(50%)。
+- D（n=8）: hero 上位 3 語 key-visual-only 4/8(50%) / photo-overlay 2/8(25%) / text-only 1/8(12%)。apply（複数選択、全語） external-form 5/8(62%) / receipt-upload 3/8(38%) / postcard 3/8(38%) / messaging-app 2/8(25%)。status 上位 3 語 open 8/8(100%)。セクション上位 overview 8/8(100%) / organizer 7/8(88%) / notes/terms 6/8(75%) / schedule 6/8(75%) / apply/register 5/8(62%) / entry-steps 5/8(62%) / prizes 5/8(62%) / target-products 4/8(50%)。
 
 ## 4. 固定ページ用パーツの棚卸し（観察事実 + Claude 案）
 
@@ -163,5 +163,5 @@ PO 指示「固定ページ継投で使えるパーツをしっかりと作り�
 
 - HP hero: 本台帳（欠測除外 n=61）では fullbleed-photo-overlay 21/61(34%) / slider 17/61(28%) / cards-carousel 7/61(11%) / text-only 6/61(10%)。前回台帳（前回台帳 home-event-recapture, 欠測除外 n=39）は text-only 13/39(33%) / slider 10/39(26%) / fullbleed-photo-overlay 8/39(21%) で最多型が一致しないため、暫定既定値は現行（試作 03 の既定）を据え置き、fullbleed / slider / cards-carousel / product-shot を選べる型として揃える。cards-carousel（製品・コースをカードで横送り）と product-shot（製品画像の hero）が新規の型。
 - HP セクション: 出現ページ数上位の区間を固定ページ用パーツにし（§4）、区間セットは「観察された並び」の代表 3〜4 本（企業 / サービス / メディア / 店舗・スクール）として持つ。先頭セクションの最多は banner-row 11/62(18%) / news 11/62(18%) / greeting 10/62(16%)。
-- イベント: hero は date-place-block が主集計 25/40(62%) で、前回台帳（前回台帳 home-event-recapture, 主集計 n=8）の key-visual-only 4/8(50%) / photo-overlay 2/8(25%) と食い違う。両台帳の合算で判断せず、§5 の規則（両台帳で最多の型のみ暫定既定値候補）では候補にならない。date-place-block を暫定既定値へ上げるなら**規則の例外**（前回 n=8 の小標本より本台帳 n を優先する）になるため、例外提案として PO への問いに留める。info_block は icon-list が 22/40(55%)。apply は external-form / closed-notice が多く、inline-form は観察 0 件（0/40）。target-audience（対象者）・tickets/price・organizer が高頻度で、試作 03 の 11 区間に無い「対象者」「主催」「参加費」を区間として加える。
-- キャンペーン / コンテスト（D）: prizes / entry-steps / target-products / judges の区間と、応募方法（`other:receipt-upload` / `other:postcard` / `other:messaging-app`、主集計での出現 other:receipt-upload 3/40(8%) / other:postcard 3/40(8%) / other:messaging-app 2/40(5%)）を **語彙 receipt-upload / postcard / messaging-app として正式採用し** event_apply の追加型として持つことを提案する（Claude 案。§0 の other:* 原則の明示的な例外）。
+- イベント: hero は date-place-block が主集計 25/40(62%) で、前回台帳（前回台帳 home-event-recapture, 主集計 n=8）の key-visual-only 4/8(50%) / photo-overlay 2/8(25%) と食い違う。両台帳の合算で判断せず、§5 の規則（両台帳で最多の型のみ暫定既定値候補）では候補にならない。date-place-block を暫定既定値へ上げるのは**規則の例外**（前回 n=8 の小標本より本台帳 n を優先する）で、PO 決定 WT-EVT-0288（2026-09-06「全部追加」）により既定値へ採用した。info_block は icon-list が 22/40(55%)。apply は external-form / closed-notice が多く、inline-form は観察 0 件（0/40）。target-audience（対象者）・tickets/price・organizer が高頻度で、試作 03 の 11 区間に無い「対象者」「主催」「参加費」を区間として加える。
+- キャンペーン / コンテスト（D）: prizes / entry-steps / target-products / judges の区間と、応募方法（`receipt-upload` / `postcard` / `messaging-app`、主集計での出現 receipt-upload 3/40(8%) / postcard 3/40(8%) / messaging-app 2/40(5%)）を語彙 receipt-upload / postcard / messaging-app として正式採用し event_apply の追加型として持つ（PO 決定 WT-EVT-0288 で採用済み）。

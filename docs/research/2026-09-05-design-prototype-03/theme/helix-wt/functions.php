@@ -64,15 +64,15 @@ function wt_axes() {
 		// 既定は台帳 research-r17（HP 39 件 / イベント個別募集ページ 8 件（取得 20 件から page_kind 除外後）、Astra レビュー済み）の最多型。n が小さい区分の型は「選べる型」として置く
 		'home_hero'     => array( 'text-only', array( 'text-only', 'slider', 'fullbleed', 'split', 'article-grid', 'video', 'cards-carousel', 'product-shot', 'search-box' ) ), // HP n=39: text-only 33% / slider 26% / fullbleed 21%（台帳 home-event-recapture）。段8（WT-EVT-0287、台帳 home-event-recapture-v2 n=61）: fullbleed 34% / slider 28% / cards-carousel 11% / product-shot 7% / search-box 2% を追加。既定は据え置き（両台帳で最多型が一致しないため）
 		'home_hero_cta' => array( 'double', array( 'double', 'single', 'none', 'tel-button', 'search' ) ), // double 62%（CTA 2 つ。用途は home_contact）。段8: search（検索欄。v2 で 2 件）
-		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media', 'shop-school', 'school-org' ) ), // 用途別の区間セット。段8: shop-school（店舗・スクール D）/ school-org（学校法人・団体 E）を v2 の区分別上位区間から追加。既存 3 セットの構成は据え置き（corporate に greeting / service に logos を足すかは PO 判断待ち）
+		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media', 'shop-school', 'school-org' ) ), // 用途別の区間セット。段8: shop-school（店舗・スクール D）/ school-org（学校法人・団体 E）を v2 の区分別上位区間から追加。段9（WT-EVT-0288「全部追加」）: corporate に greeting（A 65%）、service に logos（B 44%）を追加
 		'home_news'     => array( 'list-with-date', array( 'list-with-date', 'tabs', 'cards', 'none' ) ), // list-with-date 46%
 		'home_contact'  => array( 'tel-form', array( 'tel-form', 'form-only', 'tel-only', 'line', 'none', 'double-cta' ) ), // tel+form 36%。段8: double-cta（問い合わせ + 資料請求の 2 面。v2 hero_cta=double 44% の受け皿）
 		'home_fixed'    => array( 'none', array( 'none', 'float-cta', 'sp-bottom-bar', 'float-tel' ) ), // sticky-header はヘッダー既定で常時
-		'event_hero'     => array( 'key-visual', array( 'key-visual', 'photo-overlay', 'date-place-block', 'text-only' ) ), // 主集計 n=8: key-visual 50% / photo-overlay 25%（参考: 取得全体 n=20 では photo-overlay 55%）
+		'event_hero'     => array( 'date-place-block', array( 'key-visual', 'photo-overlay', 'date-place-block', 'text-only' ) ), // 主集計 n=8: key-visual 50% / photo-overlay 25%（参考: 取得全体 n=20 では photo-overlay 55%）。段9（WT-EVT-0288「全部追加」）: 既定を台帳 v2 主集計 n=40 の最多型 date-place-block（62%）へ変更（台帳 §5 規則の例外を PO が承認）
 		'event_info'     => array( 'inline-text', array( 'inline-text', 'table', 'icon-list', 'none' ) ), // 主集計 n=8: inline-text 62%
 		'event_schedule' => array( 'none', array( 'none', 'table', 'timeline', 'accordion' ) ), // 主集計 n=8: none 38% / table 25% / timeline 12%
 		'event_speakers' => array( 'none', array( 'none', 'cards-photo', 'list', 'single-profile' ) ), // 主集計 n=8: none 50% / cards-photo 25%
-		'event_sections' => array( 'seminar', array( 'seminar', 'seminar-v2', 'conference', 'festival', 'campaign' ) ), // 段8: 区間セット 5 種。seminar は従来構成（既定、据え置き）、seminar-v2 は v2 主集計 A の上位区間案（PO 判断待ち）、B・C は小標本のため「選べる型」
+		'event_sections' => array( 'seminar', array( 'seminar', 'seminar-classic', 'conference', 'festival', 'campaign' ) ), // 段8: 区間セット 5 種。段9（WT-EVT-0288）: seminar（既定）は v2 主集計 A の上位区間構成（対象者・主催あり）、seminar-classic は段 7 までの従来構成。B・C は小標本のため「選べる型」
 		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice', 'receipt-upload', 'postcard', 'messaging-app' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%。段8: receipt-upload / postcard / messaging-app（v2 の other:* 3 語、キャンペーン D の応募経路）
 		'event_status'   => array( 'open', array( 'open', 'none', 'few-seats', 'ended' ) ), // 主集計 n=8: open 62% / ended 25% / none 12%。few-seats の実例は 0（観測不足）
 		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only', 'embed' ) ), // 主集計 n=8: none 50% / text-only 50%。embed は外部地図の埋め込み（WT-EVT-0284: WT-CAND-SNS の埋め込み方針＝遅延読込・URL は option・鍵はテーマに置かない）

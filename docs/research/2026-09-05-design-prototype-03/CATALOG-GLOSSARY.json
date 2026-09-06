@@ -632,10 +632,10 @@
   },
   "home-sections": {
    "label": "HP の区間セット",
-   "desc": "用途別に置く区間の集合と順序。全区間をテンプレートに持ち、セットで表示と順序を切り替える。全長を分割撮影。段 8: shop-school / school-org を新設（既存 3 セットの構成は据え置き。corporate への greeting 追加・service への logos 追加は PO 判断待ち）。区間の多くは固定ページ用パーツ helix-wt-page/* を転用。",
+   "desc": "用途別に置く区間の集合と順序。全区間をテンプレートに持ち、セットで表示と順序を切り替える。全長を分割撮影。段 8: shop-school / school-org を新設。段 9（WT-EVT-0288「全部追加」）: corporate に greeting（news の次）、service に logos（cases の次）を追加。区間の多くは固定ページ用パーツ helix-wt-page/* を転用。",
    "variants": {
-    "corporate": "企業 HP: お知らせ → サービス → 特長 → 数字 → 事例 → 会社概要 → アクセス → 問い合わせ（台帳 A 区分で news / service-cards / company-info が上位）。",
-    "service": "サービスサイト: サービス → 特長 → 数字 → 事例 → 料金 → FAQ → CTA 帯 → 問い合わせ。",
+    "corporate": "企業 HP: お知らせ → ご挨拶 → サービス → 特長 → 数字 → 事例 → 会社概要 → アクセス → 問い合わせ（台帳 A 区分で news / service-cards / company-info が上位。段 9 WT-EVT-0288 で greeting（A 65%）を news の次に追加）。",
+    "service": "サービスサイト: サービス → 特長 → 数字 → 事例 → 取引先ロゴ枠 → 料金 → FAQ → CTA 帯 → 問い合わせ（段 9 WT-EVT-0288 で logos（B 44%）を cases の次に追加）。",
     "media": "メディア: 新着記事グリッド → カテゴリカード → ランキング → バナー列 → お知らせ → CTA 帯 → 問い合わせ（CTA 帯・hero の問い合わせ導線の到達先。サービス区間が無いので hero の「サービスを見る」は出さない）。",
     "shop-school": "店舗・スクール（v2 区分 D n=12）: news → service-cards → features → stores → events → price → faq → recruit → banner-row → access → contact。",
     "school-org": "学校法人・団体（v2 区分 E n=8）: greeting → news → features → service-cards → events → gallery → sns → history → logos → banner-row → cta-band → contact。"
@@ -675,11 +675,11 @@
   },
   "event-hero": {
    "label": "イベント hero",
-   "desc": "イベントページ最上部。台帳の主集計（個別募集ページ n=8）の最多型 key-visual 50% を既定（photo-overlay 25% / date-place-block 12% / text-only 12%）。",
+   "desc": "イベントページ最上部。台帳の主集計（個別募集ページ n=8）の最多型 key-visual 50% を既定（photo-overlay 25% / date-place-block 12% / text-only 12%）。段 9（WT-EVT-0288）: 既定を date-place-block（台帳 v2 主集計 n=40 の 62%）へ変更。",
    "variants": {
     "photo-overlay": "写真にスクリムを重ね、タイトル・日時・会場・申込ボタンを白文字で置く型。",
-    "key-visual": "キービジュアル画像の下にタイトルと日時を置く型（既定）。",
-    "date-place-block": "日付を大きな箱で見せ、右に見出しと会場・定員を置く型（少数派）。",
+    "key-visual": "キービジュアル画像の下にタイトルと日時を置く型（段 8 までの既定。前回台帳 n=8 の最多型）。",
+    "date-place-block": "日付を大きな箱で見せ、右に見出しと会場・定員を置く型（既定。段 9 WT-EVT-0288 で台帳 v2 主集計 n=40 の 62% を根拠に既定へ）。",
     "text-only": "写真なしで見出しとリードと申込ボタン。"
    }
   },
@@ -715,7 +715,7 @@
   },
   "event-apply": {
    "label": "申込",
-   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。段 8（台帳 v2 主集計 n=40、複数選択）: external-form 45% / closed-notice 32% / ticket 15% / postcard 8% / receipt-upload 8% / messaging-app 5%。other:* 3 語を語彙へ正式採用する提案（Claude 案）。",
+   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。段 8（台帳 v2 主集計 n=40、複数選択）: external-form 45% / closed-notice 32% / ticket 15% / postcard 8% / receipt-upload 8% / messaging-app 5%。段 9（WT-EVT-0288）で receipt-upload / postcard / messaging-app を語彙へ正式採用。",
    "variants": {
     "inline-form": "ページ内フォーム（氏名 / 会社 / メール / 区分 / 同意）（既定）。",
     "external-form": "別ページのフォームへ遷移（リンク先はダミー）。",
@@ -838,10 +838,10 @@
   },
   "event-sections": {
    "label": "区間セット",
-   "desc": "イベントページの区間の集合と順序（段 8、既定 seminar は従来構成のまま。台帳 v2 主集計 n=40 の区分別上位区間。B 展示会 n=4 / C フェス n=2 は小標本のため「選べる型」）。区間の一部は固定ページ用パーツ helix-wt-page/* を転用。",
+   "desc": "イベントページの区間の集合と順序（段 8、既定 seminar は段 9 で v2 観察の構成（従来構成は seminar-classic）。台帳 v2 主集計 n=40 の区分別上位区間。B 展示会 n=4 / C フェス n=2 は小標本のため「選べる型」）。区間の一部は固定ページ用パーツ helix-wt-page/* を転用。",
    "variants": {
-    "seminar": "既定。従来構成を据え置き: info → overview → schedule → speakers → tickets → apply → access → faq → sponsors → past → notes。",
-    "seminar-v2": "台帳 v2 の A（セミナー n=26）上位区間に合わせた案（PO 判断待ち）: info → overview → 対象者 → schedule → speakers → tickets → apply → access → faq → 主催 → notes。",
+    "seminar": "既定（段 9 WT-EVT-0288 で v2 観察の構成へ）: info → overview → 対象者 → schedule → speakers → tickets → apply → access → faq → 主催 → notes。",
+    "seminar-classic": "段 7 までの従来構成: info → overview → schedule → speakers → tickets → apply → access → faq → sponsors → past → notes。",
     "conference": "展示会 / カンファレンス（B）: info → overview → schedule → speakers → tickets → sponsors → apply → access → past → 主催 → notes。",
     "festival": "地域フェス / 祭り（C）: info → overview → カウントダウン → schedule → gallery → apply → access → faq → sponsors → past → 主催 → notes。",
     "campaign": "キャンペーン / コンテスト（D n=8）: info → overview → 賞品 → 対象商品 → 応募の流れ → apply → 審査員 → 主催 → notes。"
@@ -855,10 +855,10 @@
     "logos-row": "取引先・提携ロゴ枠 10 個（第三者ロゴは使わずダミー枠）。",
     "stores": "店舗・拠点カード 3 + 検索欄（非送信）。",
     "event-list": "イベント一覧（日付ブロック + 受付状態 + 場所）。v2 E で 88%。",
-    "gallery": "画像グリッド 6 枚 + 説明。未観察の追加提案。",
+    "gallery": "画像グリッド 6 枚 + 説明。未観察の追加提案（段 9 WT-EVT-0288 で存置を決定）。",
     "sns-feed": "SNS フィードの遅延埋め込み（動的ブロック helix-wt/sns-feed-embed。挿入・保存後も option の変更が効く）。URL は option、未設定なら外部へ接続しない。v2 E で 62%。",
     "timeline": "沿革の縦タイムライン（イベントの schedule timeline を転用）。",
-    "countdown": "開催日までの残り日・時・分（JS）。JS 無効時は開催日の文字だけ。未観察の追加提案。",
+    "countdown": "開催日までの残り日・時・分（JS）。JS 無効時は開催日の文字だけ。未観察の追加提案（段 9 WT-EVT-0288 で存置を決定）。",
     "target-audience": "対象者（チェック付き 2 列）。v2 イベント A で 69%。",
     "organizer": "主催・共催・後援・問い合わせ先の表。v2 イベントで 85%。",
     "tickets": "参加区分・料金 3 枚（イベントの tickets を再登録）。",
@@ -883,7 +883,7 @@
   "footer": "フッター面: フッターの配置、補助情報、法定表示を確認する面。",
   "lp": "LP 面: ヒーロー、説明区画、CTA、固定導線を確認する面。",
   "home": "HP 面（ホーム / トップページ）: hero、区間セット（企業 HP / サービス / メディア）、お知らせ、問い合わせ帯、固定導線を確認する面（WT-EVT-0277、Claude 案。既定は台帳 research-r17 の最多型）。段 8 で hero 3 型・検索 CTA・区間セット 2 種・問い合わせ帯 1 型と、固定ページ用パーツを転用した区間 8 種を追加。",
-  "event": "イベント面: セミナー / 展示会 / 地域イベント / キャンペーンのページ。hero、開催情報、スケジュール、登壇者、申込、受付状態、地図、共有、固定導線を確認する面（WT-EVT-0277、Claude 案）。段 8 で区間セット 5 種（seminar / seminar-v2 / conference / festival / campaign）と申込 3 型、区間 8 種（固定ページ用パーツの転用）を追加。",
+  "event": "イベント面: セミナー / 展示会 / 地域イベント / キャンペーンのページ。hero、開催情報、スケジュール、登壇者、申込、受付状態、地図、共有、固定導線を確認する面（WT-EVT-0277、Claude 案）。段 8 で区間セット 5 種（seminar / seminar-classic / conference / festival / campaign）と申込 3 型、区間 8 種（固定ページ用パーツの転用）を追加。",
   "page": "固定ページ面: 通常の固定ページ（page.html）。固定ページ用パーツ（helix-wt-page/*）を並べた /parts/ で、パーツ単体と全長を確認する面（段 8、WT-EVT-0287）。"
  },
  "axes": {

@@ -1442,8 +1442,8 @@ const EVENT = "/event/";
     home_contact: ["tel-form", "form-only", "tel-only", "line", "none", "double-cta"], // 段 8: +double-cta（フォームなし）
     home_fixed: ["none", "float-cta", "sp-bottom-bar", "float-tel"],
   };
-  // 段 8: shop-school / school-org を新設（台帳 v2 の区分別上位区間）。既存 3 セットは据え置き
-  const SETS = { corporate: ["news", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"], "shop-school": ["news", "service-cards", "features", "stores", "events", "price", "faq", "recruit", "banner-row", "access", "contact"], "school-org": ["greeting", "news", "features", "service-cards", "events", "gallery", "sns", "history", "logos", "banner-row", "cta-band", "contact"] };
+  // 段 8: shop-school / school-org を新設（台帳 v2 の区分別上位区間）。段 9（WT-EVT-0288）: corporate に greeting、service に logos
+  const SETS = { corporate: ["news", "greeting", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "logos", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"], "shop-school": ["news", "service-cards", "features", "stores", "events", "price", "faq", "recruit", "banner-row", "access", "contact"], "school-org": ["greeting", "news", "features", "service-cards", "events", "gallery", "sns", "history", "logos", "banner-row", "cta-band", "contact"] };
   const read = async (cfg, dev, js) => {
     const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
     for (const [axis, values] of Object.entries(AX)) {
@@ -1477,7 +1477,7 @@ const EVENT = "/event/";
       const deadAnchors = anchors.filter((a) => !a.targetVisible);
       // 段 8: 区間内の固定ページ用パーツ（wt-part）が可視で、見出し h2 を持つこと。可視の画像に読込失敗（complete かつ naturalWidth 0）がないこと
       const parts = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home__section .wt-part")).filter(vis).map((el) => ({ part: Array.from(el.classList).find((c) => c.startsWith("wt-part--")), h2: !!el.querySelector("h2") && vis(el.querySelector("h2")), broken: Array.from(el.querySelectorAll("img")).filter((i) => vis(i) && i.complete && i.naturalWidth === 0).length })); }, VIS_SRC);
-      const expectParts = { corporate: 0, service: 0, media: 0, "shop-school": 2, "school-org": 6 }[set];
+      const expectParts = { corporate: 1, service: 1, media: 0, "shop-school": 2, "school-org": 6 }[set];
       sets.push({ dev, js, set, order, anchors: anchors.length, deadAnchors, parts, pass: JSON.stringify(order) === JSON.stringify(expect) && anchors.length >= 2 && deadAnchors.length === 0 && parts.length === expectParts && parts.every((x) => x.h2 && x.broken === 0) });
     }
     // 段 8 Astra 是正: hero × 区間セットの交差（hero 内の導線がセットで非表示の区間を指さない）。9 hero × 5 セット
@@ -1523,9 +1523,9 @@ const EVENT = "/event/";
 }
 // (k) eventFace: 各軸の全型（hero 4 / info 4 / schedule 4 / speakers 4 / apply 4 / status 4 / map 3 / fixed 3 / share 3）で軸 class・当該型だけ可視、closed-notice で申込導線が消える、フォームは非送信、44px。SP/PC/SP JS 無効
 {
-  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "seminar-v2", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 5 種（seminar は従来構成を据え置き）
+  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "seminar-classic", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 5 種。段 9: seminar = v2 構成（既定）、seminar-classic = 従来構成
   // 段 8: 区間セットごとの表示区間と順序（CSS の order と一致させる）
-  const ESETS = { seminar: ["info", "overview", "schedule", "speakers", "tickets", "apply", "access", "faq", "sponsors", "past", "notes"], "seminar-v2": ["info", "overview", "audience", "schedule", "speakers", "tickets", "apply", "access", "faq", "organizer", "notes"], conference: ["info", "overview", "schedule", "speakers", "tickets", "sponsors", "apply", "access", "past", "organizer", "notes"], festival: ["info", "overview", "countdown", "schedule", "gallery", "apply", "access", "faq", "sponsors", "past", "organizer", "notes"], campaign: ["info", "overview", "prizes", "products", "entry", "apply", "judges", "organizer", "notes"] };
+  const ESETS = { seminar: ["info", "overview", "audience", "schedule", "speakers", "tickets", "apply", "access", "faq", "organizer", "notes"], "seminar-classic": ["info", "overview", "schedule", "speakers", "tickets", "apply", "access", "faq", "sponsors", "past", "notes"], conference: ["info", "overview", "schedule", "speakers", "tickets", "sponsors", "apply", "access", "past", "organizer", "notes"], festival: ["info", "overview", "countdown", "schedule", "gallery", "apply", "access", "faq", "sponsors", "past", "organizer", "notes"], campaign: ["info", "overview", "prizes", "products", "entry", "apply", "judges", "organizer", "notes"] };
   const PREFIX = { event_sections: ".wt-event-sections--",  event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
   // embed の未設定状態を先に用意する（wp-cli 必須。option を消し、消えたことを確認。取れなければ eventFace は fail）
   const wpE = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }) : null;
@@ -1561,6 +1561,13 @@ const EVENT = "/event/";
     }
     await ctx.close(); return results; };
   const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
+  // 段 9（WT-EVT-0288、Astra 是正）: 既定値そのものの検査。?wt 指定なしの /event/ で hero が date-place-block、区間セットが seminar（v2 構成）であること（PC / SP / SP JS 無効）
+  const defaults = [];
+  for (const [cfg, dev, js] of [[PC, "pc", true], [SP, "sp", true], [SP, "sp", false]]) { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); await p.goto(BASE + EVENT, { waitUntil: js ? "networkidle" : "load" });
+    const r = await p.evaluate((visSrc) => { const vis = eval(visSrc); const heroes = Array.from(document.querySelectorAll(".wt-event-hero")).filter(vis).map((e) => Array.from(e.classList).find((c) => c.startsWith("wt-event-hero--")).replace("wt-event-hero--", "")); const order = Array.from(document.querySelectorAll(".wt-event__sections > .wt-event__section")).filter(vis).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top).map((s) => Array.from(s.classList).find((c) => c.startsWith("wt-event__section--")).replace("wt-event__section--", "")); return { heroes, bodyHero: document.body.classList.contains("wt-event-hero-date-place-block"), bodySet: document.body.classList.contains("wt-event-sections-seminar"), order, dateBox: !!document.querySelector(".wt-event-hero--date-place-block .wt-event-date") && vis(document.querySelector(".wt-event-hero--date-place-block .wt-event-date")) }; }, VIS_SRC);
+    await ctx.close();
+    const expectOrder = ESETS.seminar.filter((sec) => !["schedule", "speakers", "access"].includes(sec)); // 既定軸 none で隠れる区間を除く
+    defaults.push({ dev, js, ...r, expectOrder, pass: JSON.stringify(r.heroes) === JSON.stringify(["date-place-block"]) && r.bodyHero && r.bodySet && r.dateBox && JSON.stringify(r.order) === JSON.stringify(expectOrder) }); }
   // embed の「設定あり」状態: option に同一ホストの URL を入れて iframe が遅延読込・title 付き・同一ホストで出ること（wp-cli 必須。取れなければ fail）。終了時に option を消す
   let embedSet = { source: "unavailable", unsetPrepared, pass: false };
   if (wpE) {
@@ -1582,7 +1589,7 @@ const EVENT = "/event/";
     }
   }
   const all = [...sp, ...pc, ...spNoJs];
-  out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 42 * 3 && all.every((x) => x.pass) && embedSet.pass };
+  out.eventFace = { sp, pc, spNoJs, defaults, embedSet, pass: all.length === 42 * 3 && all.every((x) => x.pass) && defaults.length === 3 && defaults.every((x) => x.pass) && embedSet.pass };
 }
 // (l) eventHeroContrast: photo-overlay のスクリム α（下端 .88）と白文字、他 3 型の文字色 4.5:1、受付状態バッジ 3 型の文字コントラスト
 {
