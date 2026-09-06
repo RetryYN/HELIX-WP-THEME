@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // shots-reaction15.mjs — 2026-09-07 PO 反応 22 回目 WT-EVT-0292「サイドバーは普通置く」（段 10b: 既定 side_layout=right、HP は hero の下からサイドバー）の撮り直し + 新規撮影。
 // 撮り直し（既定が変わって写真が変わるもの、同名置換）: 記事全長 article-full / 画面単位 article-screen-NN / 幅 width-* / HP 区間セット 5 種 home-sections-* / 固定ページ一覧 page-parts-full-* / HP owned セット side-home-owned-*。部品単体の写真（要素撮影）は本文列幅が同じ（--wt-content-max）ため撮り直さない。
-// 新規（PC）: side-from（below-hero / top / top + left）、side-default（記事・固定ページの既定 first view）。
+// 記事の画面単位は全高から枚数を決める（旧 10 画面上限を撤廃）。新規（PC）: side-from（below-hero / top / top + left）、side-default（記事・固定ページの既定 first view）。
 // 方式は reaction13（分割撮影・dev ごとにブラウザ再起動・ロック・予定集合照合・退避と原子的 INDEX 置換）。SP の全長は deviceScaleFactor 1（16384px 制限）。
 import fs from "node:fs";
 import path from "node:path";
@@ -101,10 +101,10 @@ for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
   await waitImgs(p, null); { const png = path.join(TMP, `article-full-${dev}.png`), jpg = path.join(TMP, `article-full-${dev}.jpg`); await p.screenshot({ path: png, fullPage: true }); toJpeg(png, jpg); if (!fs.statSync(jpg).size) throw new Error(`空の JPEG: ${jpg}`); index.push({ file: `article-full-${dev}.jpg`, face: "article", part: "full", variant: "default", dev }); console.log("shot", `article-full-${dev}`); }
   await p.close(); await fullCtx.close();
   const ctx = await browser.newContext(cfg);
-  // 画面単位（reaction1 と同じ: viewport ごと、最大 10 画面）
+  // 画面単位（viewport ごと。reaction1 の 10 画面上限は外し、全高から枚数を決める = Astra 1 巡目【重大】末尾の欠落）
   p = await open(ctx, ARTICLE);
   const vh = cfg.viewport.height, total = await p.evaluate(() => document.documentElement.scrollHeight); let n = 0;
-  for (let i = 0, y = 0; y < total && i < 10; i++, y += vh) { await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(150); await save(p, `article-screen-${String(i + 1).padStart(2, "0")}-${dev}`, { face: "article", part: "full-screens", variant: `default screen ${i + 1}`, dev }); n++; }
+  for (let i = 0, y = 0; y < total; i++, y += vh) { await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(150); await save(p, `article-screen-${String(i + 1).padStart(2, "0")}-${dev}`, { face: "article", part: "full-screens", variant: `default screen ${i + 1}`, dev }); n++; }
   SCREENS[dev] = n; await p.close();
   for (const preset of WIDTHS) { p = await open(ctx, ARTICLE + wt(`width:${preset}`)); await assertBody(p, `wt-width-${preset}`); await save(p, `width-${preset}-${dev}`, { face: "article", part: "width", variant: preset, dev }); await p.close(); }
   if (dev === "pc") {
