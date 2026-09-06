@@ -85,9 +85,9 @@ const HOME_SETS = { corporate: 9, service: 9, media: 7, "shop-school": 11, "scho
 const CAT_COLUMNS = [["sidebar-right", 2], ["1col", 1]]; // 値は .wt-cat-layout の直下で可視の要素数（primary + aside / primary）。cat_side:own のとき共通サイドバーは display:none
 const CAT_SIDEBAR = ["standard", "with-cta", "full"];
 const SIDE_FROM = [["side-from-below-hero", "side_from:below-hero", "below-hero（既定。hero の下からサイドバー）"], ["side-from-top", "side_from:top", "top（hero の横からサイドバー）"], ["side-from-top-left", "side_from:top,home_side_layout:left", "top + left（CV 狙いの左配置）"]];
-const CAT_SIDE = [["article", "記事側の束を継承（既定。PO 原文「記事側を継承するケースが多い」）"], ["home", "HP 側の束を継承"], ["own", "独自設定（面専用の束 own_side_*、既定セット minimal）"], ["classic", "段 6 の独自 aside（cat_sidebar 3 型など）"], ["off", "非表示（1 カラム）"]];
-const EVENT_SIDE = [["off", "非表示（既定。PO 原文「LP に近い場合は不要」）"], ["home", "HP 側の束を継承（主 CV 重視）"], ["article", "記事側の束を継承（回遊導線型）"], ["own", "独自設定（own_side_*）"]];
-const PAGE_SIDE = [["home", "HP 側の束を継承（既定、Claude 暫定）"], ["article", "記事側の束を継承"], ["own", "独自設定（own_side_*）"], ["off", "非表示"]];
+const CAT_SIDE = [["article", "記事側の束を継承（既定。PO 原文「記事側を継承するケースが多い」）"], ["home", "HP 側の束を継承"], ["own", "独自設定（面専用の束 own_category_side_*、既定セット minimal）"], ["classic", "段 6 の独自 aside（cat_sidebar 3 型など）"], ["off", "非表示（1 カラム）"]];
+const EVENT_SIDE = [["off", "非表示（既定。PO 原文「LP に近い場合は不要」）"], ["home", "HP 側の束を継承（主 CV 重視）"], ["article", "記事側の束を継承（回遊導線型）"], ["own", "独自設定（面専用の束 own_event_side_*）"]];
+const PAGE_SIDE = [["home", "HP 側の束を継承（既定、Claude 暫定）"], ["article", "記事側の束を継承"], ["own", "独自設定（面専用の束 own_page_side_*）"], ["off", "非表示"]];
 let browser = null;
 async function main() {
 try {

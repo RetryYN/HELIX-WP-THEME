@@ -1766,35 +1766,44 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
   }
   out.sideDefaults = { rows, pass: rows.length === 2 * (5 + 8) && rows.every((x) => x.pass) };
 }
-// (q) sideOwner（段 10c、WT-EVT-0296 / 0297「合わせろ」）: サイドバーの所属が面ごとに決まること。カテゴリ cat_side 3 型（article = 共通サイドバー（記事側の束）が 2 列目、段 6 の aside は隠れる / own = 段 6 の aside だけ / off = 1 カラム）、イベント event_side 3 型と固定ページ page_side 3 型（off = 無し / home = HP 側の束のセット / article = 記事側の束のセット）、HOME の OFF（home_side_layout:none）、束の分離（HP で side_set を変えても変わらず、記事で home_side_set を変えても変わらない）。PC / SP
+// (q) sideOwner（段 10c、WT-EVT-0296 / 0297「合わせろ」、PO 決定 WT-EVT-0299「継承・独自設定・非表示を分離、後続の継承セット追加に対応」）: サイドバーの所属が面ごとに決まること。束の台帳は <meta name="wt-side-bundles">（functions.php wt_side_bundles）から読み、面の所属軸の値をそこから組み立てる（台帳に束を足せば行が増える = 追加への対応の検査）。カテゴリ cat_side = 束の名前（共通サイドバーが .wt-cat-layout の 2 列目、段 6 の aside は隠れる）/ classic（段 6 の aside だけ、PC 2 列）/ off（1 カラム）、イベント event_side = off / 束、固定ページ page_side = 束 / off。own は面専用の軸 own_<face>_side_*（面をまたいで混ざらない）。HOME の OFF（home_side_layout:none）。束の分離（HP で side_set を変えても変わらず、記事で home_side_set を変えても変わらない）。非表示（off / classic）はサイドナビ・ドロワーも出ない（side_nav:drawer-pc / fixed-right-icons / side_sp:drawer を当てても）。SP の JS 無効でも継承した aside は本文の下に見える。PC / SP
 {
   const rows = [];
   const SETS2 = { media: ["search", "categories", "popular-ranking", "cta-banner", "ad", "related-posts"], corporate: ["contact-box", "tel-box", "new-posts", "event-list", "banner-stack"], blog: ["search", "profile", "categories", "popular-ranking", "new-posts", "archive", "tags", "sns-follow"], minimal: ["popular-ranking", "related-posts", "banner-stack"] }; // 記事以外の面は toc-* を除いた並び。own の既定セットは minimal
+  const SETOF = { article: "media", home: "corporate", own: "minimal" }; // 束ごとの既定セット（継承 = 束の既定、own = own_<face>_side_set の既定）
+  const ctx0 = await browser.newContext(PC); const p0 = await ctx0.newPage(); await p0.goto(BASE + HOME, { waitUntil: "load" });
+  const bundles = await p0.evaluate(() => (document.querySelector('meta[name="wt-side-bundles"]')?.getAttribute("content") || "").split(",").filter(Boolean)); await ctx0.close();
+  const registryOk = bundles.length >= 3 && ["home", "article", "own"].every((b) => bundles.includes(b)) && bundles.every((b) => b in SETOF); // 台帳に home / article / own があり、既定セットが分かる束だけ
+  const FACES2 = [["category", CATEGORY, "cat_side", ["classic", "off"]], ["event", "/event/", "event_side", ["off"]], ["page", "/parts/", "page_side", ["off"]]];
   const CASES = [];
-  const SETOF = { article: "media", home: "corporate", own: "minimal" }; // 束ごとの既定セット（継承 = 束のセット、独自 = own_side_set）
-  for (const v of ["article", "home", "own", "classic", "off"]) CASES.push({ face: "category", path: CATEGORY, q: `cat_side:${v}`, v, bundle: SETOF[v] ? v : "none", catAside: v === "classic", set: SETOF[v] || null });
-  for (const v of ["off", "home", "article", "own"]) CASES.push({ face: "event", path: "/event/", q: `event_side:${v}`, v, bundle: SETOF[v] ? v : "none", catAside: false, set: SETOF[v] || null });
-  for (const v of ["home", "article", "own", "off"]) CASES.push({ face: "page", path: "/parts/", q: `page_side:${v}`, v, bundle: SETOF[v] ? v : "none", catAside: false, set: SETOF[v] || null });
-  CASES.push({ face: "page", path: "/parts/", q: "page_side:own,own_side_set:blog,side_set:corporate,home_side_set:media", v: "own uses own_side_*", bundle: "own", catAside: false, set: "blog" }); // 独自設定は own_side_* だけを見る
+  for (const [face, path, axis, extra] of FACES2) {
+    for (const v of [...bundles, ...extra]) CASES.push({ face, path, q: `${axis}:${v}`, v, bundle: bundles.includes(v) ? v : "none", catAside: v === "classic", set: SETOF[v] || null });
+    for (const v of extra) CASES.push({ face, path, q: `${axis}:${v},side_nav:drawer-pc,side_sp:drawer,home_side_nav:fixed-right-icons,own_${face}_side_nav:drawer-pc`, v: `${v}+nav`, bundle: "none", catAside: v === "classic", set: null, noNav: true }); // 非表示はサイドナビ・ドロワーも切れる
+    CASES.push({ face, path, q: `${axis}:own,own_${face}_side_set:blog,side_set:corporate,home_side_set:media,${FACES2.filter((f) => f[0] !== face).map((f) => `own_${f[0]}_side_set:corporate`).join(",")}`, v: "own uses own_<face>_side_*", bundle: "own", catAside: false, set: "blog" }); // own は自面の軸だけを見る（他面の own と記事側 / HP 側を変えても変わらない）
+  }
   CASES.push({ face: "home", path: HOME, q: "home_side_layout:none", v: "none", bundle: "home", catAside: false, set: null });
+  CASES.push({ face: "home", path: HOME, q: "home_side_layout:none,side_nav:drawer-pc,home_side_nav:fixed-right-icons", v: "none+nav", bundle: "home", catAside: false, set: null, noNav: false }); // HOME の OFF は配置だけ（HP 側のサイドナビは HP 側の軸のまま生きる）
   CASES.push({ face: "home", path: HOME, q: "side_set:blog", v: "isolation(side_set on home)", bundle: "home", catAside: false, set: "corporate" }); // 記事側の束を変えても HP は変わらない
-  CASES.push({ face: "article", path: ARTICLE, q: "home_side_set:blog", v: "isolation(home_side_set on article)", bundle: "article", catAside: false, set: "media", article: true });
-  CASES.push({ face: "lp", path: "/lp/", q: "page_side:home,event_side:home,cat_side:article", v: "lp has none", bundle: "none", catAside: false, set: null, lp: true });
-  for (const [dev, cfg] of [["pc", PC], ["sp", SP]]) {
-    const ctx = await browser.newContext(cfg); const p = await ctx.newPage();
+  CASES.push({ face: "article", path: ARTICLE, q: "home_side_set:blog,own_page_side_set:blog", v: "isolation(home_side_set on article)", bundle: "article", catAside: false, set: "media", article: true });
+  CASES.push({ face: "lp", path: "/lp/", q: "page_side:home,event_side:home,cat_side:article,side_nav:drawer-pc", v: "lp has none", bundle: "none", catAside: false, set: null, lp: true });
+  const READ = ([visSrc]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const layout = $(".wt-face-category") ? $(".wt-cat-layout") : $(".wt-side-layout"); const bl = Array.from(document.body.classList).find((x) => x.startsWith("wt-side-bundle-")); const right = $(".wt-side--right"); const main = $(".wt-side-main"); return { bundle: bl ? bl.replace("wt-side-bundle-", "") : null, face: (Array.from(document.body.classList).find((x) => x.startsWith("wt-face-")) || "").replace("wt-face-", ""), tracks: layout ? getComputedStyle(layout).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0, rightVis: vis(right), catAsideVis: vis($(".wt-cat-aside")), widgets: right ? Array.from(right.querySelectorAll(":scope > .wt-side-widget")).filter(vis).map((w) => w.getAttribute("data-wt-widget")).filter((w) => !/^toc-/.test(w)) : [], mainTop: main ? main.getBoundingClientRect().top + scrollY : null, mainBottom: main ? main.getBoundingClientRect().bottom + scrollY : null, rightTop: vis(right) ? right.getBoundingClientRect().top + scrollY : null, h1: Array.from(document.querySelectorAll("h1")).filter(vis).length, sideEl: !!right, openBtnVis: vis($(".wt-side-drawer__open")), navVis: Array.from(document.querySelectorAll(".wt-sidenav, .wt-megamenu__trigger")).filter(vis).length, drawerOpen: !!$("#wt-side-drawer") && !$("#wt-side-drawer").hidden }; };
+  for (const [dev, cfg, js] of [["pc", PC, true], ["sp", SP, true], ["sp", SP, false]]) {
+    const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
     for (const c of CASES) {
-      await p.goto(BASE + c.path + "?wt=" + c.q, { waitUntil: "networkidle" });
-      const r = await p.evaluate(([visSrc]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const layout = $(".wt-face-category") ? $(".wt-cat-layout") : $(".wt-side-layout"); const bl = Array.from(document.body.classList).find((x) => x.startsWith("wt-side-bundle-")); const right = $(".wt-side--right"); const main = $(".wt-side-main"); return { bundle: bl ? bl.replace("wt-side-bundle-", "") : null, face: (Array.from(document.body.classList).find((x) => x.startsWith("wt-face-")) || "").replace("wt-face-", ""), tracks: layout ? getComputedStyle(layout).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0, rightVis: vis(right), catAsideVis: vis($(".wt-cat-aside")), widgets: right ? Array.from(right.querySelectorAll(":scope > .wt-side-widget")).filter(vis).map((w) => w.getAttribute("data-wt-widget")).filter((w) => !/^toc-/.test(w)) : [], mainTop: main ? main.getBoundingClientRect().top + scrollY : null, mainBottom: main ? main.getBoundingClientRect().bottom + scrollY : null, rightTop: vis(right) ? right.getBoundingClientRect().top + scrollY : null, h1: Array.from(document.querySelectorAll("h1")).filter(vis).length, sideEl: !!right }; }, [VIS_SRC]);
+      if (!js && !(c.face === "category" || c.face === "event") ) continue; // JS 無効は段 10c で共通サイドバーを新たに持った面（カテゴリ / イベント）だけ
+      await p.goto(BASE + c.path + "?wt=" + c.q, { waitUntil: js ? "networkidle" : "load" });
+      const r = await p.evaluate(READ, [VIS_SRC]);
       const isPc = dev === "pc"; const expectRight = c.set !== null; /* home_side_layout:none は束 home のまま非表示 */
-      let pass = r.bundle === c.bundle && r.face === c.face && r.h1 === 1 && r.rightVis === (expectRight) && r.catAsideVis === (c.catAside && (isPc || true));
-      if (c.lp) pass = r.bundle === "none" && r.face === "lp" && !r.sideEl && !r.rightVis && r.h1 === 1;
-      else if (expectRight) { pass = pass && JSON.stringify(r.widgets) === JSON.stringify(SETS2[c.set]) && (isPc ? r.tracks === 2 : r.tracks === 1 && r.rightTop >= r.mainBottom - 1); }
-      else pass = pass && r.tracks === (c.catAside && isPc ? 2 : 1); /* classic は段 6 の aside が PC で 2 列目 */
-      rows.push({ dev, ...c, ...r, pass });
+      let pass = r.bundle === c.bundle && r.face === c.face && r.h1 === 1 && r.rightVis === expectRight && r.catAsideVis === c.catAside && !r.drawerOpen;
+      if (c.lp) pass = r.bundle === "none" && r.face === "lp" && !r.sideEl && !r.rightVis && r.h1 === 1 && !r.openBtnVis && r.navVis === 0;
+      else if (expectRight) { pass = pass && JSON.stringify(r.widgets) === JSON.stringify(SETS2[c.set]) && (isPc ? r.tracks === 2 : r.tracks === 1 && r.rightTop >= r.mainBottom - 1) && !r.openBtnVis; }
+      else pass = pass && r.tracks === (c.catAside && isPc ? 2 : 1) && (c.noNav === false ? r.navVis === 1 && !r.openBtnVis : (!r.openBtnVis && r.navVis === 0)); /* classic は段 6 の aside が PC で 2 列目。非表示はドロワーのボタンもサイドナビも出ない。HOME の OFF は HP 側の fixed-right-icons が出る */
+      rows.push({ dev, js, ...c, ...r, pass });
     }
     await ctx.close();
   }
-  out.sideOwner = { rows, pass: rows.length === 2 * 18 && rows.every((x) => x.pass) };
+  const expectRows = 2 * CASES.length + CASES.filter((c) => c.face === "category" || c.face === "event").length;
+  out.sideOwner = { bundles, registryOk, rows, pass: registryOk && CASES.length === FACES2.reduce((n, f) => n + bundles.length + 2 * f[3].length + 1, 0) + 5 && rows.length === expectRows && rows.every((x) => x.pass) };
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {

@@ -899,16 +899,16 @@
    "variants": {
     "cat_side:article": "カテゴリ面に記事側の束を継承（既定、PO 原文「記事側を継承するケースが多い」）。段 6 の独自 aside は隠れる。",
     "cat_side:home": "HP 側の束を継承。",
-    "cat_side:own": "独自設定（面専用の束 own_side_*）。",
+    "cat_side:own": "独自設定（面専用の束 own_category_side_*。同じ own でも面ごとに別の設定）。",
     "cat_side:classic": "段 6 の独自 aside（cat_columns / cat_sidebar 3 型 / ランキング sidebar / 子分類 sidebar-tree）。",
     "cat_side:off": "非表示（1 カラム）。",
     "event_side:off": "非表示（既定。PO 原文「LP に近い場合は不要」）。",
     "event_side:home": "HP 側の束を継承（主 CV 重視）。",
     "event_side:article": "記事側の束を継承（回遊導線型）。",
-    "event_side:own": "独自設定（own_side_*）。",
+    "event_side:own": "独自設定（面専用の束 own_event_side_*）。",
     "page_side:home": "固定ページは HP 側の束を継承（既定、Claude 暫定）。",
     "page_side:article": "記事側の束を継承。",
-    "page_side:own": "独自設定（own_side_*）。",
+    "page_side:own": "独自設定（面専用の束 own_page_side_*）。",
     "page_side:off": "非表示。",
     "home_side_layout:none": "HOME のサイドバー OFF（個別設定）。"
    }

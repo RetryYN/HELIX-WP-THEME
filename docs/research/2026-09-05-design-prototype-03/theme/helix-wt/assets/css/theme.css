@@ -1785,14 +1785,14 @@ body.wt-side-from-top.wt-side-layout-both .wt-home .wt-side-layout>.wt-side--rig
 }
 
 /* ===== 段 10c（2026-09-07 PO 階層整理 WT-EVT-0296 / 指示 WT-EVT-0297「合わせろ」）: サイドバーの所属を面ごとに。body.wt-side-* は面の束の実効値（functions.php wt_side_eff）なので、配置・追尾・SP・サイドナビの規則は段 10 のまま使う ===== */
-/* カテゴリ: cat_side=article / home / own は共通サイドバー（各束）を .wt-cat-layout の 2 列目に置き、段 6 の独自 aside は隠す。classic は段 6 の独自 aside のまま（共通サイドバーは隠す）。own は面専用の束 own_side_*。off は 1 カラム */
+/* カテゴリ: cat_side が束の名前（台帳 wt_side_bundles の home / article / own …。束を足しても CSS は変えない）のとき共通サイドバーを .wt-cat-layout の 2 列目に置き、段 6 の独自 aside は隠す。classic は段 6 の独自 aside のまま（共通サイドバーは隠す）。own は面専用の束 own_side_*。off は 1 カラム */
 body.wt-face-category:not(.wt-cat-side-classic) .wt-cat-aside{display:none!important}
 body.wt-face-category:not(.wt-cat-side-classic) .wt-cat-layout{grid-template-columns:minmax(0,1fr)}
 body.wt-face-category.wt-cat-side-classic .wt-side,body.wt-face-category.wt-cat-side-classic .wt-side-drawer__open,body.wt-face-category.wt-cat-side-classic .wt-sidenav,body.wt-face-category.wt-cat-side-classic .wt-megamenu{display:none!important}
 @media (min-width:1024px){
-body.wt-face-category:is(.wt-cat-side-article,.wt-cat-side-home,.wt-cat-side-own).wt-side-layout-right .wt-cat-layout{grid-template-columns:minmax(0,1fr) var(--wt-sidebar-w,300px)}
-body.wt-face-category:is(.wt-cat-side-article,.wt-cat-side-home,.wt-cat-side-own).wt-side-layout-left .wt-cat-layout{grid-template-columns:var(--wt-sidebar-w,300px) minmax(0,1fr)}
-body.wt-face-category:is(.wt-cat-side-article,.wt-cat-side-home,.wt-cat-side-own).wt-side-layout-both .wt-cat-layout{grid-template-columns:200px minmax(0,1fr) var(--wt-sidebar-w,300px)}
+body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-layout-right .wt-cat-layout{grid-template-columns:minmax(0,1fr) var(--wt-sidebar-w,300px)}
+body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-layout-left .wt-cat-layout{grid-template-columns:var(--wt-sidebar-w,300px) minmax(0,1fr)}
+body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-layout-both .wt-cat-layout{grid-template-columns:200px minmax(0,1fr) var(--wt-sidebar-w,300px)}
 }
 @media (max-width:1023px){body.wt-face-category:not(.wt-cat-side-classic) .wt-cat-layout{grid-template-columns:minmax(0,1fr)!important}}
 /* イベント: 面全体（hero を含む）を本文列に入れる（HP の side_from は使わない）。event_side=off は実効 none なので段 10 以前と同じ 1 カラム */
