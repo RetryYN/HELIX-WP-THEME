@@ -1678,3 +1678,88 @@ body.wt-event-apply-receipt-upload .wt-event-apply--receipt-upload,body.wt-event
 .wt-part-timeline::before{left:4.9rem}.wt-part-organizer th{width:6em;white-space:normal}.wt-event-apply__qr{margin:0 auto}
 .wt-part-greeting__photo img{max-width:200px}
 }
+
+/* ===== 段 10（2026-09-06 PO 反応 21 回目 WT-EVT-0289「進めて」）: 記事・固定ページ・HP に共通のサイドバーとサイドナビ。台帳 research-r21 sidebar n=47（Astra レビュー）。Claude 案、既定 side_layout=none は据え置き（PO 判断待ち） ===== */
+.wt-side-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--wp--preset--spacing--70);align-items:start;max-width:none}
+.wt-side-main{min-width:0}
+/* 包みは alignfull（main の余白の外へ。負の margin は WP の constrained 規則に任せる）。wt-side-main は constrained なので中の alignfull は列の幅いっぱいに出る */
+.wt-side-main>:where(.alignfull){max-width:none}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-side-layout.alignfull{padding-inline:var(--wp--custom--gutter)} /* サイドバーありでは端に余白 */
+.wt-side{display:none;min-width:0}
+.wt-side,.wt-side *{box-sizing:border-box}
+/* 配置 4 型 */
+@media (min-width:1024px){
+body.wt-side-layout-right .wt-side-layout{grid-template-columns:minmax(0,1fr) var(--wt-sidebar-w,300px)}
+body.wt-side-layout-left .wt-side-layout{grid-template-columns:var(--wt-sidebar-w,300px) minmax(0,1fr)}
+body.wt-side-layout-left .wt-side--right{order:-1}
+body.wt-side-layout-both .wt-side-layout{grid-template-columns:200px minmax(0,1fr) var(--wt-sidebar-w,300px)}
+body.wt-side-layout-both .wt-side--left{order:-1}
+body.wt-side-layout-right .wt-side--right,body.wt-side-layout-left .wt-side--right,body.wt-side-layout-both .wt-side--right,body.wt-side-layout-both .wt-side--left{display:block}
+/* 追尾 4 型 */
+body.wt-side-sticky-whole .wt-side{position:sticky;top:calc(var(--wt-header-h,64px) + 1rem);max-height:calc(100vh - var(--wt-header-h,64px) - 2rem);overflow:auto}
+body.wt-side-sticky-last-widget .wt-side--right>.wt-side-widget:last-child{position:sticky;top:calc(var(--wt-header-h,64px) + 1rem)}
+body.wt-side-sticky-toc-only .wt-side-widget--toc-sticky{position:sticky;top:calc(var(--wt-header-h,64px) + 1rem)}
+}
+/* 記事面: サイドバーありでは本文幅の制約を解き、main の幅を広げる */
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-article > :where(.wt-side-layout){max-width:none}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-side-main .wp-block-post-content{--wp--style--global--content-size:var(--wt-content-max,680px)}
+/* ウィジェット共通 */
+.wt-side-widget{margin:0 0 var(--wp--preset--spacing--50);padding:1rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-side-widget h2{margin:0 0 .75rem;font-size:var(--wp--preset--font-size--m)}.wt-side-widget h2 small{font-weight:400;color:var(--wp--preset--color--mute);font-size:.75rem;margin-left:.25rem}
+.wt-side-widget ul,.wt-side-widget ol{list-style:none;padding:0;margin:0}.wt-side-widget li{border-top:1px solid var(--wp--preset--color--line)}.wt-side-widget li:first-child{border-top:0}
+.wt-side-widget a{display:flex;align-items:center;justify-content:space-between;gap:.5rem;min-height:44px;color:inherit;text-decoration:none}.wt-side-widget a:hover{color:var(--wp--preset--color--accent)}
+.wt-side-count{color:var(--wp--preset--color--mute);font-size:.8125rem}
+.wt-side-widget--search form{display:flex;gap:.5rem}.wt-side-widget--search input{flex:1 1 auto;min-width:0;min-height:44px;padding:0 .75rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);font:inherit}.wt-side-widget--search button{flex:0 0 44px;width:44px;min-width:44px;height:44px;border:0;border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:#fff;cursor:pointer}
+.wt-side-profile{display:flex;gap:.75rem;align-items:flex-start}.wt-side-profile img{width:64px;height:64px;border-radius:50%;flex:0 0 auto}.wt-side-profile p{margin:0;font-size:var(--wp--preset--font-size--s);line-height:1.6}
+.wt-side-rank a{justify-content:flex-start}.wt-side-rank b{font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);min-width:1.5rem;font-size:1.25rem}
+.wt-side-widget--new-posts a{flex-direction:column;align-items:flex-start;gap:.15rem;padding:.4rem 0}.wt-side-widget--new-posts time{font-family:var(--wp--preset--font-family--latin);font-size:.75rem;color:var(--wp--preset--color--mute)}
+.wt-side-tags{display:flex;flex-wrap:wrap;gap:.35rem}.wt-side-tags li{border:0}.wt-side-tags a{min-height:44px;padding:0 .8rem;border-radius:999px;background:var(--wp--preset--color--surface);font-size:var(--wp--preset--font-size--s)}
+.wt-side-banner{display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:.25rem;min-height:96px;padding:1rem;border-radius:var(--wp--custom--radius-m);background:linear-gradient(135deg,var(--wp--preset--color--accent),var(--wp--preset--color--contrast));color:#fff!important}.wt-side-banner .wt-eyebrow{color:rgba(255,255,255,.8);margin:0}.wt-side-banner b{font-size:var(--wp--preset--font-size--l)}.wt-side-banner>span:last-child{font-size:var(--wp--preset--font-size--s)}
+.wt-side-banner--recruit{padding:0;overflow:hidden;background:var(--wp--preset--color--contrast)}.wt-side-banner--recruit img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;opacity:.7}.wt-side-banner--recruit b{padding:0 1rem 1rem}
+.wt-side-toc ol ol{padding-left:1rem}.wt-side-toc a{justify-content:flex-start;min-height:44px;font-size:var(--wp--preset--font-size--s)}
+.wt-side-newsletter p{margin:0 0 .5rem;font-size:var(--wp--preset--font-size--s)}.wt-side-newsletter input{width:100%;min-height:44px;padding:0 .75rem;margin-bottom:.5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);font:inherit}.wt-side-newsletter .wt-lp-cta-action{width:100%;margin:0}
+.wt-side-sns{display:flex;gap:.5rem}.wt-side-sns li{border:0}.wt-side-sns a{width:44px;height:44px;justify-content:center;border-radius:50%;background:var(--wp--preset--color--contrast);color:#fff}
+.wt-side-calendar table{width:100%;border-collapse:collapse;font-size:var(--wp--preset--font-size--s)}.wt-side-calendar caption{font-weight:700;padding:.25rem 0}.wt-side-calendar th,.wt-side-calendar td{text-align:center;padding:.25rem 0}.wt-side-calendar td a{display:inline-flex;justify-content:center;min-width:44px;min-height:44px;align-items:center;color:var(--wp--preset--color--accent);font-weight:700}.wt-side-calendar .wp-calendar-nav{display:flex;justify-content:space-between;margin-top:.25rem}.wt-side-calendar .wp-calendar-nav a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:0 .5rem}
+.wt-side-ad{display:grid;place-items:center;width:100%;max-width:300px;aspect-ratio:300/250;margin:0 auto;border:1px dashed var(--wp--preset--color--line);background:repeating-linear-gradient(45deg,var(--wp--preset--color--surface) 0 12px,var(--wp--preset--color--base) 12px 24px);color:var(--wp--preset--color--mute);font-family:var(--wp--preset--font-family--latin);font-weight:800;letter-spacing:.1em}
+.wt-side-related a{justify-content:flex-start;gap:.75rem;padding:.4rem 0}.wt-side-related img{width:72px;height:54px;object-fit:cover;border-radius:var(--wp--custom--radius-s);flex:0 0 auto}.wt-side-related span{font-size:var(--wp--preset--font-size--s);line-height:1.45}
+.wt-side-events a{justify-content:flex-start;gap:.75rem;padding:.4rem 0}.wt-side-events__date{display:flex;flex-direction:column;align-items:center;justify-content:center;width:3.75rem;padding:.35rem 0;border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:#fff;flex:0 0 auto}.wt-side-events__date b{font-family:var(--wp--preset--font-family--latin);line-height:1}.wt-side-events__date small{font-size:.7rem;font-weight:700}
+.wt-side-contact p{margin:0 0 .75rem;font-size:var(--wp--preset--font-size--s)}.wt-side-contact .wt-lp-cta-action{width:100%;margin:0}
+.wt-side-tel{justify-content:flex-start;gap:.5rem}.wt-side-tel .wt-i{width:1.6em;height:1.6em;color:var(--wp--preset--color--accent);flex:0 0 auto}.wt-side-tel b{display:block;font-family:var(--wp--preset--font-family--latin);font-size:1.25rem}.wt-side-tel small{display:block;font-size:.7rem;color:var(--wp--preset--color--mute)}
+.wt-side-banners li{border:0;margin-bottom:.5rem}.wt-side-banners a{flex-direction:column;align-items:flex-start;justify-content:center;gap:.15rem;min-height:72px;padding:.75rem 1rem;border-radius:var(--wp--custom--radius-m);background:linear-gradient(135deg,var(--wp--preset--color--accent),var(--wp--preset--color--contrast));color:#fff}.wt-side-banners .wt-eyebrow{color:rgba(255,255,255,.8);margin:0}
+/* SP 3 型: below-content（既定。1 カラムで本文の下）/ drawer（ボタンで開く）/ hidden */
+@media (max-width:1023px){
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both).wt-side-sp-below-content .wt-side--right{display:block}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both).wt-side-sp-below-content .wt-side--left{display:none}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both).wt-side-sp-drawer:not(.wt-side-drawer-ready) .wt-side--right{display:block} /* JS 無効時は本文下 */
+body.wt-side-sp-drawer.wt-side-drawer-ready .wt-side--right{display:none}
+body.wt-side-sp-hidden .wt-side{display:none!important}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both).wt-side-sp-drawer.wt-side-drawer-ready .wt-side-drawer__open{display:inline-flex}
+}
+/* ドロワー（SP drawer / PC drawer-pc 共通） */
+.wt-side-drawer__open{display:none;align-items:center;gap:.4rem;min-height:44px;padding:0 1rem;margin:0 0 var(--wp--preset--spacing--50);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);font:inherit;font-weight:700;cursor:pointer}
+.wt-side-drawer__open[hidden]{display:none!important}
+.wt-side-drawer{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.45)}
+.wt-side-drawer[hidden]{display:none}
+.wt-side-drawer__panel{position:absolute;top:0;right:0;bottom:0;width:min(360px,88vw);overflow:auto;padding:1rem;background:var(--wp--preset--color--surface);box-shadow:var(--wp--preset--shadow--depth-2)}
+.wt-side-drawer__close{width:44px;height:44px;margin:0 0 .5rem auto;display:grid;place-items:center;border:0;border-radius:50%;background:var(--wp--preset--color--base);cursor:pointer}
+body.wt-side-drawer-open{overflow:hidden}
+body.wt-side-nav-drawer-pc.wt-side-drawer-ready .wt-side-drawer__open{display:inline-flex}
+/* サイドナビ 5 型 */
+.wt-sidenav{display:none}
+@media (min-width:1200px){
+body.wt-side-nav-fixed-left-nav .wt-sidenav--fixed-left{display:block;position:fixed;left:0;top:var(--wt-header-h,64px);bottom:0;width:200px;padding:1.5rem 1rem;overflow:auto;border-right:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base);z-index:40}
+body.wt-side-nav-fixed-left-nav .wt-article,body.wt-side-nav-fixed-left-nav main{padding-left:200px}
+}
+.wt-sidenav--fixed-left ul{list-style:none;padding:0;margin:0}.wt-sidenav--fixed-left a{display:flex;align-items:center;min-height:44px;color:inherit;text-decoration:none;border-bottom:1px solid var(--wp--preset--color--line)}
+body.wt-side-nav-fixed-right-icons .wt-sidenav--fixed-right{display:flex;flex-direction:column;position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:45;border-radius:var(--wp--custom--radius-m) 0 0 var(--wp--custom--radius-m);overflow:hidden;box-shadow:var(--wp--preset--shadow--depth-2)}
+.wt-sidenav--fixed-right a,.wt-sidenav--fixed-right button{font:inherit;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;width:56px;min-height:56px;background:var(--wp--preset--color--contrast);color:#fff;text-decoration:none;font-size:.65rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.15)}.wt-sidenav--fixed-right a:first-child,.wt-sidenav--fixed-right button{background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast)}
+/* toc-side: 左に追尾する目次（既存の toc float を左固定に流用） */
+@media (min-width:1200px){body.wt-side-nav-toc-side .wt-toc{position:fixed;left:8px;top:calc(var(--wt-header-h,64px) + 1.5rem);width:220px;max-height:calc(100vh - var(--wt-header-h,64px) - 3rem);overflow:auto;z-index:40}}
+/* メガメニュー: ヘッダー直下のパネル（JS が trigger を挿入） */
+.wt-megamenu{position:absolute;left:0;right:0;top:100%;z-index:49;border-bottom:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base);box-shadow:var(--wp--preset--shadow--depth-2)}
+.wt-megamenu[hidden]{display:none}
+.wt-megamenu__inner{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;max-width:1120px;margin:0 auto;padding:1.5rem var(--wp--custom--gutter)}
+.wt-megamenu ul{list-style:none;padding:0;margin:0}.wt-megamenu a{display:flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}.wt-megamenu a:hover{color:var(--wp--preset--color--accent)}
+.wt-megamenu__trigger{display:inline-flex;align-items:center;min-height:44px;padding:0 .9rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);font:inherit;font-weight:700;cursor:pointer}
+body.wt-side-nav-mega-menu .wt-header{position:sticky}
+@media (max-width:599px){.wt-megamenu__inner{grid-template-columns:1fr;gap:1rem}.wt-side-drawer__panel{width:88vw}}

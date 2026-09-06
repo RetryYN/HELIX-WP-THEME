@@ -1662,6 +1662,59 @@ const EVENT = "/event/";
       feedSet.cleanupOk = cleanupOk; feedSet.pass = feedSet.pass && cleanupOk; } }
   out.pageParts = { pageSource, rows, feedSet, pass: rows.length === 3 && rows.every((r) => r.pass) && feedSet.pass };
 }
+// (o) sideFace（段 10、WT-EVT-0289）: 共通サイドバーの全軸 × 全値を記事 / 固定ページ / HP で検査。配置（grid の実トラック数と aside の可視）、追尾（computed position: sticky の実体と対象要素）、セット（可視ウィジェットの順序 = wt_side_sets）、SP 3 型（below-content = 本文の下で可視、drawer = JS ありでボタン→開閉、JS 無効は本文下に表示、hidden = 非表示）、サイドナビ 5 型（要素の可視と position: fixed、メガメニューは trigger の aria-expanded と Escape で閉じる）。44px、# 導線の到達先、フォームは検索のみ（GET、home_url）、外部 http(s) 要求なし
+{
+  const AX = { side_layout: ["none", "right", "left", "both"], side_sticky: ["none", "whole", "last-widget", "toc-only"], side_sp: ["below-content", "drawer", "hidden"], side_set: ["media", "blog", "owned", "corporate", "minimal", "full"], side_nav: ["none", "mega-menu", "fixed-left-nav", "fixed-right-icons", "drawer-pc", "toc-side"] };
+  const SETS = { media: ["search", "categories", "popular-ranking", "toc-sticky", "cta-banner", "ad", "related-posts"], blog: ["search", "profile", "categories", "popular-ranking", "new-posts", "archive", "tags", "sns-follow"], owned: ["search", "categories", "popular-ranking", "new-posts", "tags", "newsletter", "recruit", "cta-banner"], corporate: ["contact-box", "tel-box", "new-posts", "event-list", "banner-stack"], minimal: ["popular-ranking", "related-posts", "banner-stack"], full: ["search", "profile", "categories", "popular-ranking", "new-posts", "tags", "cta-banner", "toc-sticky", "newsletter", "sns-follow", "archive", "calendar", "ad", "related-posts", "event-list", "contact-box", "tel-box", "banner-stack", "recruit"] };
+  const FACES = [["article", ARTICLE], ["page", "/parts/"], ["home", HOME]];
+  const baseHost = new URL(BASE).host;
+  const read = async (cfg, dev, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const rows = []; let external = []; p.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) external.push(u.host); } catch (_) { /* data: */ } });
+    for (const [face, path] of FACES) for (const [axis, values] of Object.entries(AX)) for (const v of values) {
+      external = [];
+      const q = axis === "side_layout" ? `side_layout:${v}` : `side_layout:right,${axis}:${v}`; // 配置以外の軸は right で検査
+      await p.goto(BASE + path + `?wt=${q}`, { waitUntil: js ? "networkidle" : "load" });
+      const r = await p.evaluate(([axis, v, face, visSrc, sets]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const $$ = (s) => Array.from(document.querySelectorAll(s));
+        const cls = axis.replace(/_/g, "-"); const body = document.body.classList.contains(`wt-${cls}-${v}`);
+        const layout = $(".wt-side-layout"); const tracks = layout ? getComputedStyle(layout).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0;
+        const right = $(".wt-side--right"), left = $(".wt-side--left"); const rightVis = vis(right), leftVis = vis(left);
+        const widgets = right ? Array.from(right.querySelectorAll(":scope > .wt-side-widget")).filter(vis).map((w) => w.getAttribute("data-wt-widget")) : [];
+        const sticky = (el) => !!el && getComputedStyle(el).position === "sticky";
+        const stickyWhole = sticky(right), stickyLast = right ? sticky(right.querySelector(":scope > .wt-side-widget:last-child")) : false, stickyToc = sticky($(".wt-side-widget--toc-sticky"));
+        const mainTop = $(".wt-side-main") ? $(".wt-side-main").getBoundingClientRect().top + scrollY : null; const rightTop = rightVis ? right.getBoundingClientRect().top + scrollY : null; const rightLeft = rightVis ? right.getBoundingClientRect().left : null; const mainLeft = $(".wt-side-main") ? $(".wt-side-main").getBoundingClientRect().left : null;
+        const openBtn = $(".wt-side-drawer__open"); const drawer = $("#wt-side-drawer");
+        const nav = { fixedLeft: vis($(".wt-sidenav--fixed-left")) && getComputedStyle($(".wt-sidenav--fixed-left")).position === "fixed", fixedRight: vis($(".wt-sidenav--fixed-right")) && getComputedStyle($(".wt-sidenav--fixed-right")).position === "fixed", megaTrigger: vis($(".wt-megamenu__trigger")), megaOpen: !!$("#wt-megamenu") && !$("#wt-megamenu").hidden, tocFixed: !!$(".wt-toc") && getComputedStyle($(".wt-toc")).position === "fixed" };
+        const taps = $$(".wt-side a, .wt-side button, .wt-side input, .wt-sidenav a, .wt-sidenav button, .wt-side-drawer__open, .wt-megamenu a, .wt-megamenu__trigger").filter(vis);
+        const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); const inline = el.tagName === "A" && getComputedStyle(el).display === "inline" && el.parentElement && /^(P|LI|TD|B|SPAN)$/.test(el.parentElement.tagName); return !inline && Math.min(r.width, r.height) < 44; }).map((el) => (el.className || el.tagName) + " " + Math.round(el.getBoundingClientRect().width) + "x" + Math.round(el.getBoundingClientRect().height));
+        const anchors = $$(".wt-side a[href^='#'], .wt-sidenav a[href^='#']").filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, ok: !!t && vis(t) }; }); const deadAnchors = anchors.filter((a) => !a.ok).map((a) => a.href);
+        const forms = $$(".wt-side form").filter(vis).map((f) => ({ method: (f.getAttribute("method") || "get").toLowerCase(), action: f.getAttribute("action") || "", role: f.getAttribute("role"), sameHost: new URL(f.getAttribute("action") || "/", location.href).host === location.host }));
+        const brokenImgs = $$(".wt-side img").filter((i) => vis(i) && i.complete && i.naturalWidth === 0).length;
+        return { body, tracks, rightVis, leftVis, widgets, stickyWhole, stickyLast, stickyToc, mainTop, rightTop, rightLeft, mainLeft, openBtnVis: vis(openBtn), drawerHidden: !drawer || drawer.hidden, nav, below44, deadAnchors, forms, brokenImgs, h1: $$("h1").filter(vis).length, viewport: innerWidth };
+      }, [axis, v, face, VIS_SRC, SETS]);
+      // ドロワー: JS ありでボタン→開く→Escape で閉じる
+      let drawerRun = null;
+      if (js && r.openBtnVis) { await p.click(".wt-side-drawer__open"); await p.waitForTimeout(150); drawerRun = await p.evaluate(() => { const d = document.getElementById("wt-side-drawer"); const n = d ? d.querySelectorAll(".wt-side-drawer__body .wt-side-widget").length : 0; const dup = Array.from(document.querySelectorAll("[id]")).map((e) => e.id).filter((id, i, a) => a.indexOf(id) !== i);  return { open: !!d && !d.hidden, widgets: n, expanded: document.querySelector(".wt-side-drawer__open").getAttribute("aria-expanded"), dupIds: dup.length, dupList: dup.slice(0, 5), bodyLocked: document.body.classList.contains("wt-side-drawer-open") }; }); await p.keyboard.press("Escape"); await p.waitForTimeout(100); drawerRun.closed = await p.evaluate(() => document.getElementById("wt-side-drawer").hidden && document.querySelector(".wt-side-drawer__open").getAttribute("aria-expanded") === "false"); }
+      let megaRun = null;
+      if (js && axis === "side_nav" && v === "mega-menu") { await p.click(".wt-megamenu__trigger"); await p.waitForTimeout(100); megaRun = await p.evaluate(() => ({ open: !document.getElementById("wt-megamenu").hidden, expanded: document.querySelector(".wt-megamenu__trigger").getAttribute("aria-expanded"), links: Array.from(document.querySelectorAll("#wt-megamenu a")).length })); await p.keyboard.press("Escape"); await p.waitForTimeout(100); megaRun.closed = await p.evaluate(() => document.getElementById("wt-megamenu").hidden); }
+      r.externalRequests = Array.from(new Set(external));
+      const layoutV = axis === "side_layout" ? v : "right"; const isPc = dev === "pc"; const hasSide = layoutV !== "none";
+      const spMode = axis === "side_sp" ? v : "below-content"; const spShown = isPc ? true : (spMode === "below-content" || (spMode === "drawer" && !js));
+      const expectRight = hasSide && spShown; const expectLeft = isPc && layoutV === "both";
+      const expectTracks = !isPc ? 1 : layoutV === "none" ? 1 : layoutV === "both" ? 3 : 2;
+      const setV = axis === "side_set" ? v : "media"; let expectWidgets = SETS[setV]; if (face !== "article") expectWidgets = expectWidgets.filter((w) => w !== "toc-sticky"); // 見出しの無い面では目次ウィジェットを出さない
+      const stickyV = axis === "side_sticky" ? v : "last-widget"; const hasToc = expectWidgets.includes("toc-sticky");
+      let pass = r.body && r.tracks === expectTracks && r.rightVis === expectRight && r.leftVis === expectLeft && r.below44.length === 0 && r.deadAnchors.length === 0 && r.brokenImgs === 0 && r.h1 === 1 && r.externalRequests.length === 0 && r.forms.every((f) => f.method === "get" && f.role === "search" && f.sameHost);
+      if (expectRight) { pass = pass && JSON.stringify(r.widgets) === JSON.stringify(expectWidgets) && r.forms.length === (expectWidgets.includes("search") ? 1 : 0) + (expectLeft ? 1 : 0); /* 左カラム（both）にも検索フォームが 1 つ */ if (isPc) pass = pass && r.stickyWhole === (stickyV === "whole") && r.stickyLast === (stickyV === "last-widget" || (stickyV === "whole" ? r.stickyLast : false)) && r.stickyToc === (stickyV === "toc-only" && hasToc); }
+      if (isPc && expectRight) pass = pass && (layoutV === "left" ? r.rightLeft < r.mainLeft : r.rightLeft > r.mainLeft); // 左右の実配置
+      if (!isPc && expectRight) pass = pass && r.rightTop > r.mainTop; // SP は本文の下
+      if (!isPc && hasSide && spMode === "drawer" && js) pass = pass && r.openBtnVis && drawerRun && drawerRun.open && drawerRun.widgets === expectWidgets.length && drawerRun.expanded === "true" && drawerRun.dupIds === 0 && drawerRun.bodyLocked && drawerRun.closed; else if (!(axis === "side_nav" && v === "drawer-pc" && js)) pass = pass && !r.openBtnVis;
+      if (axis === "side_nav") { const n = r.nav; pass = pass && n.fixedLeft === (v === "fixed-left-nav" && isPc && r.viewport >= 1200) && n.fixedRight === (v === "fixed-right-icons") && n.megaTrigger === (v === "mega-menu" && js) && (v !== "mega-menu" || !js || (megaRun && megaRun.open && megaRun.expanded === "true" && megaRun.links >= 5 && megaRun.closed)) && n.tocFixed === (v === "toc-side" && isPc && face === "article"); if (v === "drawer-pc" && js) pass = pass && r.openBtnVis && drawerRun && drawerRun.open && drawerRun.closed; } else pass = pass && !r.nav.fixedLeft && !r.nav.fixedRight && !r.nav.megaTrigger && !r.nav.tocFixed;
+      rows.push({ dev, js, face, axis, v, expectTracks, expectRight, expectLeft, expectWidgets, ...r, drawerRun, megaRun, pass });
+    }
+    await ctx.close(); return rows; };
+  const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
+  const all = [...sp, ...pc, ...spNoJs];
+  out.sideFace = { sp, pc, spNoJs, pass: all.length === 23 * 3 * 3 && all.every((x) => x.pass) };
+}
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
   const AX = { cat_header: ["name-count", "name-only", "name-desc", "hero"], cat_lead: ["none", "lead-text", "editorial"], cat_children: ["none", "chips", "cards", "steps", "sidebar-tree", "image-banners"], cat_columns: ["sidebar-right", "1col"], cat_sidebar: ["standard", "with-cta", "full"], cat_list: ["grid", "text-list", "featured-grid", "grid-2", "thumb-list", "timeline"], cat_card: ["standard", "minimal", "rich"], cat_filter: ["none", "tabs", "year", "tag", "sort"], cat_pagination: ["numbers", "none", "load-more", "prev-next"], cat_ranking: ["none", "sidebar", "bottom", "top"], cat_pickup: ["none", "top-featured", "editor-pick-box"], cat_cta: ["none", "lp-banner", "newsletter", "line"] };
@@ -1764,7 +1817,7 @@ const checkList = [
   ["lpParts", out.lpParts.pass],
   ["headerVariants", out.headerVariants.pass], ["announceFullWidth", out.announceFullWidth.pass], ["numboxNum", out.numboxNum.pass], ["graphsMore", out.graphsMore.pass], ["relatedNoFixture", out.relatedNoFixture.pass], ["lineIcon", out.lineIcon.pass], ["snsIcons", out.snsIcons.pass],
   ["homeFace", out.homeFace.pass], ["homeHeroContrast", out.homeHeroContrast.pass], ["homeFixedOverlap", out.homeFixedOverlap.pass], ["eventFace", out.eventFace.pass], ["eventHeroContrast", out.eventHeroContrast.pass],
-  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass],
+  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

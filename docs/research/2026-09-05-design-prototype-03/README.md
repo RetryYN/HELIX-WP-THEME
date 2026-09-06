@@ -726,6 +726,19 @@ PO 反応 18 回目（2026-09-06）の 5 件目「強化してくれ。その間
 7. 実機結果（`results/verify.json`）: `summary` **pass 84 / fail 0**、総合 `pass: true`（homeFace 234 行・eventFace 126 行 + defaults 3 行 + embedSet・pageParts 3 行 + feedSet を新既定で再実行）。INDEX **783**（件数は変わらず。corporate / service / seminar の全長を同名置換、seminar-v2 の 6 枚を seminar-classic に置換）。
 8. Astra 1 巡目（PR #165、merge 可）の是正: 【改善】verify が既定値そのものを見ていなかった（event_hero の検査は値を明示指定）→ `eventFace.defaults` を追加し、?wt 指定なしの /event/ で hero が date-place-block（日付の箱が可視）・区間セットが seminar（v2 構成の並び）であることを PC / SP / SP JS 無効で判定。【軽微】用語集の corporate / service の並び説明と event-hero の既定表記を更新。
 
+## 2.30 段10 — サイドバー / サイドナビ（PO 反応 21 回目 WT-EVT-0289「進めて。あとフォームの項目追加とかの項目調査。ほかのサイト見て抜け漏れがないか徹底的に調べて。」）
+
+1. **外部調査（台帳 `../2026-09-05-parts-pattern-taxonomy/sidebar-forms-gap-survey/`、research-r21）**: 3 系統を同時に収集。サイドバー / サイドナビ 50 件（取得 48、サイドバーあり 47）、フォーム 51 件（取得 42、本体を観察 31 / 無いと確認 5 / 判定できない 6）、抜け漏れ（面・パーツ）45 件。summary は `gen_summary.py` で全生成。codex-astra 14 巡（第 9 項）。
+2. **観察の要点（サイドバー、n=47）**: 配置 right 85% / both 10% / left 2%。追尾 last-widget 48% / toc-only 34% / none 14% / whole 5%。ウィジェットは popular-ranking 87% / categories 79% / search 70% / new-posts 60% / cta-banner 57% / related-posts 45% / ad 38% / tags 32% / toc-sticky 32% / profile 21%、先頭は search 68%。ウィジェット数の中央値 6。サイドナビは mega-menu 35% / none 35% / toc-side 23%。SP の扱いは要約で判定できず。
+3. **実装**: 軸 `side_layout`（none 既定 / right / left / both）、`side_sticky`（none / whole / last-widget 既定 / toc-only）、`side_sp`（below-content 既定 / drawer / hidden）、`side_set`（media 既定 / blog / owned / corporate / minimal / full）、`side_nav`（none 既定 / mega-menu / fixed-left-nav / fixed-right-icons / drawer-pc / toc-side）。動的ブロック `helix-wt/sidebar`（ウィジェット 19 種を `wt_side_widget()` で描画。目次ウィジェットは本文と同じ id 付与 helper `wt_toc_assign_ids` / `wt_toc_items` を使う）と `helix-wt/side-nav`。single / page / front-page の 3 テンプレートを `.wt-side-layout`（grid）で包み、`side.js`（ドロワー: 右サイドバーの複製、id 接頭辞、フォーカス移動、Escape / 背景クリックで閉じる。メガメニュー: ナビに trigger を挿入、aria-expanded、Escape / 外側クリック）。JS 無効: ドロワーは本文下に表示、メガメニューは出ない。検索ウィジェットだけ実フォーム（GET、同一ホスト）、ニュースレターは form を使わない。広告枠はダミー。
+4. **既定の据え置き**: `side_layout` の既定は none（記事の観察は right 92% だが、記事面の既定変更は全記事写真に影響するため PO 判断待ち。第 10 項）。
+5. **verify `sideFace`**: 5 軸 23 値 × 記事 / 固定ページ / HP × PC / SP / SP JS 無効 = 207 行。grid の実トラック数、aside の可視と左右の実配置（矩形の left 比較）、SP は本文の下（矩形の top 比較）、追尾は computed position の実体（whole / last-widget / toc-only）、セットの可視ウィジェット順序 = `wt_side_sets`（記事以外は toc-sticky を除く）、ドロワーは JS ありでクリック→開く（複製ウィジェット数 = セット数、id 重複 0、body ロック、aria-expanded）→ Escape で閉じる、メガメニューは trigger → パネル（リンク 5 以上）→ Escape、固定ナビは position: fixed、44px、# 導線、フォームは role=search の GET のみ、外部 http(s) 要求なし。
+6. **撮影 `scripts/shots-reaction14.mjs`**: 全長分割（記事 × 配置 3、固定ページ corporate、HP owned）、セット 6 × SP / PC、追尾 3（PC、1600px スクロール後）、サイドナビ 5（PC。メガメニュー / ドロワーは開いた状態）、SP ドロワー（開 / 閉）/ hidden / 右アイコン。
+7. `style.css` / スクリプト版 0.3.15 → 0.3.16。用語集に side-layout / side-sticky / side-sp / side-set / side-nav を追加。
+8. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 85 / fail 0**（84 + `sideFace`、skipped なし）、総合 `pass: true`。`sideFace` 207 行。INDEX 783 → **851**（新規 68: 全長分割 5 系列 + セット 6 × 2 + 追尾 3 + サイドナビ 5 + SP 4）。初回〜4 回目の実行で落ちた是正: 目次ウィジェットが空（本文が pattern 参照で raw content に見出しが無い → `do_blocks` で展開してから id を付与）、固定ページ用パーツが本文幅に閉じ込められる（包みの group を alignfull にし wt-side-main を constrained に。HP は default のまま）、左右カラムで同じウィジェットを出すと id が重複（左に接尾辞 -l）、右端アイコンの # 導線が到達しない（実在ページと JS ボタンへ）、目次リンク 40px・タグ 36px・カレンダー日付 32px・左カラムの検索ボタン 29px が 44px 未満、both の検索フォームは左右で 2 つ（期待値を修正）。
+9. 台帳の Astra レビューは 14 巡（1〜13 巡目「不可」→ 14 巡目「可」。taxonomy README §1g）。1 巡目で第三者サービスを指す語（messaging-app に統一）、6〜13 巡目は notes にだけある観察の符号化漏れ・機械付与の過剰・面 / 区間 / 導線の区別・追尾判定とウィジェットの対応が続いた。
+10. 未決（PO 判断待ち）: 記事面の `side_layout` 既定を right（観察 92%）にするか。カテゴリ面の `cat_sidebar` 3 型を共通サイドバーへ統合するか。フォーム（段 11）と抜け漏れ（段 12 以降）は台帳 §5 の順で続ける。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
