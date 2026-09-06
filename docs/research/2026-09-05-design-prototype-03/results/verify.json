@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.88459)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884652)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -14090,7 +14090,7 @@
      "h1": 9,
      "h1Visible": 1,
      "sliderNavVisible": null,
-     "anchors": 17,
+     "anchors": 13,
      "deadAnchors": [],
      "pass": true
     },
@@ -14671,7 +14671,6 @@
      "set": "corporate",
      "order": [
       "news",
-      "greeting",
       "service-cards",
       "features",
       "numbers",
@@ -14682,13 +14681,7 @@
      ],
      "anchors": 13,
      "deadAnchors": [],
-     "parts": [
-      {
-       "part": "wt-part--greeting",
-       "h2": true,
-       "broken": 0
-      }
-     ],
+     "parts": [],
      "pass": true
     },
     {
@@ -14700,7 +14693,6 @@
       "features",
       "numbers",
       "cases",
-      "logos",
       "price",
       "faq",
       "cta-band",
@@ -14708,13 +14700,7 @@
      ],
      "anchors": 9,
      "deadAnchors": [],
-     "parts": [
-      {
-       "part": "wt-part--logos-row",
-       "h2": true,
-       "broken": 0
-      }
-     ],
+     "parts": [],
      "pass": true
     },
     {
@@ -14820,6 +14806,458 @@
        "broken": 0
       }
      ],
+     "pass": true
+    }
+   ],
+   "cross": [
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "text-only",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "text-only",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "text-only",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "text-only",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "text-only",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "slider",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "slider",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "slider",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "slider",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "slider",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "split",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "split",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "split",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "split",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "split",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "article-grid",
+     "set": "corporate",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "article-grid",
+     "set": "service",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "article-grid",
+     "set": "media",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "article-grid",
+     "set": "shop-school",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "article-grid",
+     "set": "school-org",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "video",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "video",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "video",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "video",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "video",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "product-shot",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "product-shot",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "product-shot",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "product-shot",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "product-shot",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "search-box",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "search-box",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "search-box",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 5,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "search-box",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": true,
+     "hero": "search-box",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
      "pass": true
     }
    ]
@@ -15025,7 +15463,7 @@
      "h1": 9,
      "h1Visible": 1,
      "sliderNavVisible": null,
-     "anchors": 17,
+     "anchors": 13,
      "deadAnchors": [],
      "pass": true
     },
@@ -15602,7 +16040,6 @@
      "set": "corporate",
      "order": [
       "news",
-      "greeting",
       "service-cards",
       "features",
       "numbers",
@@ -15613,13 +16050,7 @@
      ],
      "anchors": 13,
      "deadAnchors": [],
-     "parts": [
-      {
-       "part": "wt-part--greeting",
-       "h2": true,
-       "broken": 0
-      }
-     ],
+     "parts": [],
      "pass": true
     },
     {
@@ -15631,7 +16062,6 @@
       "features",
       "numbers",
       "cases",
-      "logos",
       "price",
       "faq",
       "cta-band",
@@ -15639,13 +16069,7 @@
      ],
      "anchors": 9,
      "deadAnchors": [],
-     "parts": [
-      {
-       "part": "wt-part--logos-row",
-       "h2": true,
-       "broken": 0
-      }
-     ],
+     "parts": [],
      "pass": true
     },
     {
@@ -15751,6 +16175,458 @@
        "broken": 0
       }
      ],
+     "pass": true
+    }
+   ],
+   "cross": [
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "text-only",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "text-only",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "text-only",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "text-only",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "text-only",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "slider",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "slider",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "slider",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "slider",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "slider",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "fullbleed",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "split",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "split",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "split",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "split",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "split",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "article-grid",
+     "set": "corporate",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "article-grid",
+     "set": "service",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "article-grid",
+     "set": "media",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "article-grid",
+     "set": "shop-school",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "article-grid",
+     "set": "school-org",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "video",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "video",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "video",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "video",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "video",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "cards-carousel",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "product-shot",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "product-shot",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "product-shot",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "product-shot",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "product-shot",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "search-box",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "search-box",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "search-box",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 5,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "search-box",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "pc",
+     "js": true,
+     "hero": "search-box",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
      "pass": true
     }
    ]
@@ -15956,7 +16832,7 @@
      "h1": 9,
      "h1Visible": 1,
      "sliderNavVisible": null,
-     "anchors": 17,
+     "anchors": 13,
      "deadAnchors": [],
      "pass": true
     },
@@ -16537,7 +17413,6 @@
      "set": "corporate",
      "order": [
       "news",
-      "greeting",
       "service-cards",
       "features",
       "numbers",
@@ -16548,13 +17423,7 @@
      ],
      "anchors": 13,
      "deadAnchors": [],
-     "parts": [
-      {
-       "part": "wt-part--greeting",
-       "h2": true,
-       "broken": 0
-      }
-     ],
+     "parts": [],
      "pass": true
     },
     {
@@ -16566,7 +17435,6 @@
       "features",
       "numbers",
       "cases",
-      "logos",
       "price",
       "faq",
       "cta-band",
@@ -16574,13 +17442,7 @@
      ],
      "anchors": 9,
      "deadAnchors": [],
-     "parts": [
-      {
-       "part": "wt-part--logos-row",
-       "h2": true,
-       "broken": 0
-      }
-     ],
+     "parts": [],
      "pass": true
     },
     {
@@ -16686,6 +17548,458 @@
        "broken": 0
       }
      ],
+     "pass": true
+    }
+   ],
+   "cross": [
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "text-only",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "text-only",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "text-only",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "text-only",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "text-only",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "slider",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "slider",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "slider",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "slider",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "slider",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "fullbleed",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "fullbleed",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "fullbleed",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "fullbleed",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "fullbleed",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "split",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "split",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "split",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "split",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "split",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "article-grid",
+     "set": "corporate",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "article-grid",
+     "set": "service",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "article-grid",
+     "set": "media",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "article-grid",
+     "set": "shop-school",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "article-grid",
+     "set": "school-org",
+     "anchors": 0,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "video",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "video",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "video",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "video",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "video",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "cards-carousel",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "cards-carousel",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "cards-carousel",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "cards-carousel",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "cards-carousel",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 7,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "product-shot",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "product-shot",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "product-shot",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 1,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "product-shot",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "product-shot",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 2,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "search-box",
+     "set": "corporate",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "search-box",
+     "set": "service",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "search-box",
+     "set": "media",
+     "anchors": 1,
+     "dead": [],
+     "links": 5,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "search-box",
+     "set": "shop-school",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
+     "pass": true
+    },
+    {
+     "dev": "sp",
+     "js": false,
+     "hero": "search-box",
+     "set": "school-org",
+     "anchors": 2,
+     "dead": [],
+     "links": 6,
      "pass": true
     }
    ]
@@ -17137,11 +18451,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17151,25 +18465,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17185,7 +18488,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17199,11 +18502,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17213,25 +18516,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17247,7 +18539,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17261,11 +18553,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17275,25 +18567,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17309,7 +18590,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17323,11 +18604,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17337,25 +18618,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17371,7 +18641,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17385,11 +18655,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17399,25 +18669,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17433,7 +18692,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17447,11 +18706,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17461,25 +18720,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17495,7 +18743,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17509,11 +18757,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17523,25 +18771,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17557,7 +18794,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17570,36 +18807,25 @@
     "expectForms": 1,
     "expectOrder": [
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
     "shown": [],
     "sectionOrder": [
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17615,7 +18841,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17629,11 +18855,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17641,25 +18867,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17675,7 +18890,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17689,12 +18904,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17704,26 +18919,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17739,7 +18943,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17753,12 +18957,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17768,26 +18972,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17803,7 +18996,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17817,12 +19010,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17832,26 +19025,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17867,7 +19049,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17881,11 +19063,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17893,25 +19075,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17927,7 +19098,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -17941,12 +19112,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -17956,26 +19127,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -17991,7 +19151,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18005,12 +19165,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18020,26 +19180,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18055,7 +19204,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18069,12 +19218,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18084,26 +19233,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18119,7 +19257,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18133,11 +19271,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18147,25 +19285,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18181,7 +19308,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18195,11 +19322,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18209,25 +19336,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18235,7 +19351,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18249,11 +19365,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18263,25 +19379,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18289,7 +19394,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18303,11 +19408,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18317,25 +19422,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18343,7 +19437,7 @@
     "applyLinks": 0,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 2,
+    "anchors": 4,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18357,11 +19451,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18371,25 +19465,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18397,7 +19480,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18411,11 +19494,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18425,25 +19508,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18451,7 +19523,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18465,11 +19537,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18479,25 +19551,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18505,7 +19566,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18519,11 +19580,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18531,25 +19592,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18565,7 +19615,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18579,11 +19629,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18593,25 +19643,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18627,7 +19666,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18641,11 +19680,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18655,25 +19694,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18689,7 +19717,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18703,11 +19731,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18717,25 +19745,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18751,7 +19768,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18765,11 +19782,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18777,25 +19794,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18811,7 +19817,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18825,12 +19831,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18840,26 +19846,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18875,7 +19870,7 @@
     "applyLinks": 1,
     "hasImgRole": true,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18889,12 +19884,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18904,26 +19899,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -18939,7 +19923,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -18953,12 +19937,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -18968,26 +19952,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19012,7 +19985,7 @@
      "unsetNote": true,
      "externalHosts": []
     },
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19026,11 +19999,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19038,25 +20011,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19072,7 +20034,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19086,11 +20048,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19100,25 +20062,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19134,7 +20085,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19148,11 +20099,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19162,25 +20113,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19196,7 +20136,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19210,11 +20150,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19222,87 +20162,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
-    "heroVisible": 1,
-    "h1Visible": 1,
-    "below44": [],
-    "forms": [
-     {
-      "method": "get",
-      "action": "#apply",
-      "submit": 0,
-      "inputs": 5,
-      "labelled": true
-     }
-    ],
-    "applyLinks": 1,
-    "hasImgRole": null,
-    "embed": null,
-    "anchors": 3,
-    "deadAnchors": [],
-    "externalRequests": [],
-    "pass": true
-   },
-   {
-    "dev": "sp",
-    "js": true,
-    "axis": "event_share",
-    "v": "icons",
-    "expectForms": 1,
-    "expectOrder": [
-     "info",
-     "overview",
-     "audience",
-     "tickets",
-     "apply",
-     "faq",
-     "organizer",
-     "notes"
-    ],
-    "body": true,
-    "shown": [
-     "icons"
-    ],
-    "sectionOrder": [
-     "info",
-     "overview",
-     "audience",
-     "tickets",
-     "apply",
-     "faq",
-     "organizer",
-     "notes"
-    ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19327,44 +20194,33 @@
     "dev": "sp",
     "js": true,
     "axis": "event_share",
-    "v": "add-to-calendar",
+    "v": "icons",
     "expectForms": 1,
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
     "shown": [
-     "add-to-calendar"
+     "icons"
     ],
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19380,7 +20236,58 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 7,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "event_share",
+    "v": "add-to-calendar",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "body": true,
+    "shown": [
+     "add-to-calendar"
+    ],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "parts": [],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "get",
+      "action": "#apply",
+      "submit": 0,
+      "inputs": 5,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19390,6 +20297,55 @@
     "js": true,
     "axis": "event_sections",
     "v": "seminar",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "body": true,
+    "shown": [],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "parts": [],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "get",
+      "action": "#apply",
+      "submit": 0,
+      "inputs": 5,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 5,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "event_sections",
+    "v": "seminar-v2",
     "expectForms": 1,
     "expectOrder": [
      "info",
@@ -19657,11 +20613,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19671,25 +20627,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19705,7 +20650,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19719,11 +20664,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19733,25 +20678,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19767,7 +20701,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19781,11 +20715,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19795,25 +20729,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19829,7 +20752,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19843,11 +20766,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19857,25 +20780,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19891,7 +20803,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19905,11 +20817,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19919,25 +20831,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -19953,7 +20854,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -19967,11 +20868,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -19981,25 +20882,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20015,7 +20905,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20029,11 +20919,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20043,25 +20933,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20077,7 +20956,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20090,36 +20969,25 @@
     "expectForms": 1,
     "expectOrder": [
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
     "shown": [],
     "sectionOrder": [
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20135,7 +21003,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20149,11 +21017,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20161,25 +21029,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20195,7 +21052,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20209,12 +21066,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20224,26 +21081,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20259,7 +21105,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20273,12 +21119,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20288,26 +21134,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20323,7 +21158,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20337,12 +21172,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20352,26 +21187,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20387,7 +21211,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20401,11 +21225,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20413,25 +21237,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20447,7 +21260,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20461,12 +21274,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20476,26 +21289,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20511,7 +21313,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20525,12 +21327,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20540,26 +21342,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20575,7 +21366,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20589,12 +21380,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20604,26 +21395,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20639,7 +21419,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20653,11 +21433,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20667,25 +21447,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20701,7 +21470,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20715,11 +21484,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20729,25 +21498,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20755,7 +21513,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20769,11 +21527,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20783,25 +21541,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20809,7 +21556,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20823,11 +21570,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20837,25 +21584,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20863,7 +21599,7 @@
     "applyLinks": 0,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 2,
+    "anchors": 4,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20877,11 +21613,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20891,25 +21627,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20917,7 +21642,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20931,11 +21656,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20945,25 +21670,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -20971,7 +21685,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -20985,11 +21699,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -20999,25 +21713,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21025,7 +21728,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21039,11 +21742,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21051,25 +21754,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21085,7 +21777,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21099,11 +21791,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21113,25 +21805,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21147,7 +21828,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21161,11 +21842,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21175,25 +21856,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21209,7 +21879,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21223,11 +21893,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21237,25 +21907,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21271,7 +21930,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21285,11 +21944,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21297,25 +21956,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21331,7 +21979,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21345,12 +21993,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21360,26 +22008,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21395,7 +22032,7 @@
     "applyLinks": 1,
     "hasImgRole": true,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21409,12 +22046,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21424,26 +22061,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21459,7 +22085,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21473,12 +22099,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21488,26 +22114,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21532,7 +22147,7 @@
      "unsetNote": true,
      "externalHosts": []
     },
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21546,11 +22161,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21558,25 +22173,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21592,7 +22196,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21606,11 +22210,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21618,25 +22222,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21652,7 +22245,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21666,11 +22259,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21680,25 +22273,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21714,7 +22296,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21728,11 +22310,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -21740,87 +22322,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
-    "heroVisible": 1,
-    "h1Visible": 1,
-    "below44": [],
-    "forms": [
-     {
-      "method": "get",
-      "action": "#apply",
-      "submit": 0,
-      "inputs": 5,
-      "labelled": true
-     }
-    ],
-    "applyLinks": 1,
-    "hasImgRole": null,
-    "embed": null,
-    "anchors": 3,
-    "deadAnchors": [],
-    "externalRequests": [],
-    "pass": true
-   },
-   {
-    "dev": "pc",
-    "js": true,
-    "axis": "event_share",
-    "v": "icons",
-    "expectForms": 1,
-    "expectOrder": [
-     "info",
-     "overview",
-     "audience",
-     "tickets",
-     "apply",
-     "faq",
-     "organizer",
-     "notes"
-    ],
-    "body": true,
-    "shown": [
-     "icons"
-    ],
-    "sectionOrder": [
-     "info",
-     "overview",
-     "audience",
-     "tickets",
-     "apply",
-     "faq",
-     "organizer",
-     "notes"
-    ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21845,44 +22354,33 @@
     "dev": "pc",
     "js": true,
     "axis": "event_share",
-    "v": "add-to-calendar",
+    "v": "icons",
     "expectForms": 1,
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
     "shown": [
-     "add-to-calendar"
+     "icons"
     ],
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -21898,7 +22396,58 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 7,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "event_share",
+    "v": "add-to-calendar",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "body": true,
+    "shown": [
+     "add-to-calendar"
+    ],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "parts": [],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "get",
+      "action": "#apply",
+      "submit": 0,
+      "inputs": 5,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -21908,6 +22457,55 @@
     "js": true,
     "axis": "event_sections",
     "v": "seminar",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "body": true,
+    "shown": [],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "parts": [],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "get",
+      "action": "#apply",
+      "submit": 0,
+      "inputs": 5,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 5,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "event_sections",
+    "v": "seminar-v2",
     "expectForms": 1,
     "expectOrder": [
      "info",
@@ -22175,11 +22773,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22189,25 +22787,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22223,7 +22810,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22237,11 +22824,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22251,25 +22838,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22285,7 +22861,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22299,11 +22875,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22313,25 +22889,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22347,7 +22912,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22361,11 +22926,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22375,25 +22940,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22409,7 +22963,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22423,11 +22977,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22437,25 +22991,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22471,7 +23014,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22485,11 +23028,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22499,25 +23042,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22533,7 +23065,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22547,11 +23079,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22561,25 +23093,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22595,7 +23116,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22608,36 +23129,25 @@
     "expectForms": 1,
     "expectOrder": [
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
     "shown": [],
     "sectionOrder": [
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22653,7 +23163,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22667,11 +23177,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22679,25 +23189,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22713,7 +23212,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22727,12 +23226,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22742,26 +23241,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22777,7 +23265,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22791,12 +23279,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22806,26 +23294,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22841,7 +23318,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22855,12 +23332,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22870,26 +23347,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "schedule",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22905,7 +23371,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22919,11 +23385,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22931,25 +23397,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -22965,7 +23420,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -22979,12 +23434,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -22994,26 +23449,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23029,7 +23473,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23043,12 +23487,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23058,26 +23502,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23093,7 +23526,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23107,12 +23540,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23122,26 +23555,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "speakers",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23157,7 +23579,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23171,11 +23593,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23185,25 +23607,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23219,7 +23630,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23233,11 +23644,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23247,25 +23658,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23273,7 +23673,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23287,11 +23687,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23301,25 +23701,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23327,7 +23716,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23341,11 +23730,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23355,25 +23744,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23381,7 +23759,7 @@
     "applyLinks": 0,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 2,
+    "anchors": 4,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23395,11 +23773,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23409,25 +23787,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23435,7 +23802,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23449,11 +23816,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23463,25 +23830,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23489,7 +23845,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23503,11 +23859,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23517,25 +23873,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23543,7 +23888,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23557,11 +23902,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23569,25 +23914,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23603,7 +23937,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23617,11 +23951,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23631,25 +23965,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23665,7 +23988,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23679,11 +24002,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23693,25 +24016,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23727,7 +24039,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23741,11 +24053,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23755,25 +24067,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23789,7 +24090,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23803,11 +24104,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23815,25 +24116,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23849,7 +24139,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23863,12 +24153,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23878,26 +24168,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23913,7 +24192,7 @@
     "applyLinks": 1,
     "hasImgRole": true,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23927,12 +24206,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -23942,26 +24221,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -23977,7 +24245,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -23991,12 +24259,12 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -24006,26 +24274,15 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "access",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -24050,7 +24307,7 @@
      "unsetNote": true,
      "externalHosts": []
     },
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -24064,11 +24321,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -24076,25 +24333,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -24110,7 +24356,7 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 3,
+    "anchors": 5,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -24124,11 +24370,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -24138,25 +24384,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -24172,7 +24407,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -24186,11 +24421,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -24200,25 +24435,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -24234,7 +24458,7 @@
     "applyLinks": 2,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -24248,11 +24472,11 @@
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
@@ -24260,87 +24484,14 @@
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
-    "heroVisible": 1,
-    "h1Visible": 1,
-    "below44": [],
-    "forms": [
-     {
-      "method": "get",
-      "action": "#apply",
-      "submit": 0,
-      "inputs": 5,
-      "labelled": true
-     }
-    ],
-    "applyLinks": 1,
-    "hasImgRole": null,
-    "embed": null,
-    "anchors": 3,
-    "deadAnchors": [],
-    "externalRequests": [],
-    "pass": true
-   },
-   {
-    "dev": "sp",
-    "js": false,
-    "axis": "event_share",
-    "v": "icons",
-    "expectForms": 1,
-    "expectOrder": [
-     "info",
-     "overview",
-     "audience",
-     "tickets",
-     "apply",
-     "faq",
-     "organizer",
-     "notes"
-    ],
-    "body": true,
-    "shown": [
-     "icons"
-    ],
-    "sectionOrder": [
-     "info",
-     "overview",
-     "audience",
-     "tickets",
-     "apply",
-     "faq",
-     "organizer",
-     "notes"
-    ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -24365,44 +24516,33 @@
     "dev": "sp",
     "js": false,
     "axis": "event_share",
-    "v": "add-to-calendar",
+    "v": "icons",
     "expectForms": 1,
     "expectOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
     "body": true,
     "shown": [
-     "add-to-calendar"
+     "icons"
     ],
     "sectionOrder": [
      "info",
      "overview",
-     "audience",
      "tickets",
      "apply",
      "faq",
-     "organizer",
+     "sponsors",
+     "past",
      "notes"
     ],
-    "parts": [
-     {
-      "part": "wt-part--target-audience",
-      "h2": true,
-      "broken": 0
-     },
-     {
-      "part": "wt-part--organizer",
-      "h2": true,
-      "broken": 0
-     }
-    ],
+    "parts": [],
     "heroVisible": 1,
     "h1Visible": 1,
     "below44": [],
@@ -24418,7 +24558,58 @@
     "applyLinks": 1,
     "hasImgRole": null,
     "embed": null,
-    "anchors": 4,
+    "anchors": 7,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "event_share",
+    "v": "add-to-calendar",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "body": true,
+    "shown": [
+     "add-to-calendar"
+    ],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "parts": [],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "get",
+      "action": "#apply",
+      "submit": 0,
+      "inputs": 5,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 6,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -24428,6 +24619,55 @@
     "js": false,
     "axis": "event_sections",
     "v": "seminar",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "body": true,
+    "shown": [],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "tickets",
+     "apply",
+     "faq",
+     "sponsors",
+     "past",
+     "notes"
+    ],
+    "parts": [],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "get",
+      "action": "#apply",
+      "submit": 0,
+      "inputs": 5,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 5,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "event_sections",
+    "v": "seminar-v2",
     "expectForms": 1,
     "expectOrder": [
      "info",
@@ -25099,7 +25339,7 @@
     "digits": [
      "38",
      "16",
-     "27"
+     "3"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -25247,7 +25487,7 @@
     "digits": [
      "38",
      "16",
-     "27"
+     "3"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -25418,7 +25658,28 @@
    "title": true,
    "sameHost": true,
    "visible": true,
+   "ids": 1,
    "externalRequests": [],
+   "expandedUnset": {
+    "state": "unset",
+    "iframe": false,
+    "lazy": false,
+    "title": false,
+    "sameHost": false,
+    "visible": false,
+    "ids": 1,
+    "externalRequests": []
+   },
+   "expandedSet": {
+    "state": "set",
+    "iframe": true,
+    "lazy": true,
+    "title": true,
+    "sameHost": true,
+    "visible": true,
+    "ids": 1,
+    "externalRequests": []
+   },
    "pass": true,
    "cleanupOk": true
   },

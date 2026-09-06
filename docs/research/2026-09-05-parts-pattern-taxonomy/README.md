@@ -92,7 +92,7 @@ PO 反応 17 回目「HPページは？イベントとかが組めるページ�
 
 - 収集: HP 76 件（取得 71。前回と同一 URL の 9 件を `prev_dup` で除外 → 集計対象 62。A 26 / B 9 / C 7 / D 12 / E 8）、イベント 54 件（取得 46、page_kind 除外 6 → 主集計 40。A 26 / B 4 / C 2 / D 8）。
 - 主集計の採用条件: 来場者・参加希望者がそのページから申込むページ。終了ページは申込位置または同一ページの終了表示を `closed_evidence` で根拠付け（同一ページの status バッジも認める = 前回条件の拡張）。出店者・出演者向けは除外。apply は複数選択。語彙統合（signin→login、badge→badges 等）は summary §0。
-- 多数派（観察事実、`summary.md` §2・§3）: HP hero fullbleed 34% / slider 28% / cards-carousel 11% / product-shot 7%（欠測除外 n=61）、hero_cta double 46%、contact form-only 32%、float-tel 51%、先頭セクションは banner-row / news / greeting。イベント hero date-place-block 62%、info icon-list 52%、apply external-form 46% / closed-notice 32%、target-audience・organizer・tickets/price・prizes・entry-steps が高頻度。
+- 多数派（観察事実、`summary.md` §2・§3）: HP hero fullbleed 34% / slider 28% / cards-carousel 11% / product-shot 7%（欠測除外 n=61）、hero_cta double 44%、contact form-only 31%、float-tel 52%、先頭セクションは banner-row / news / greeting。イベント hero date-place-block 62%、info icon-list 55%、apply external-form 45% / closed-notice 32%、target-audience・organizer・tickets/price・prizes・entry-steps が高頻度。
 - 固定ページ用パーツの棚卸し（`summary.md` §4）: 区間コードごとの出現ページ数と、試作 03 の既存部品からの転用先（Claude 案）。gallery / countdown は未観察の追加提案として分離。
 - レビュー: codex-astra 3 巡（1・2 巡目「不可」→ 3 巡目「可」）。1 巡目の「前回と重複なし」は誤りで、URL 照合で 9 件を除外した。
 - 限界（`summary.md` §5）: B 展示会 n=4 / C フェス n=2 は小標本。WebFetch の本文要約経由で SP は未検証。既定値は「両台帳で最多の型」のみ暫定既定値候補とし、片方だけの最多型は選べる型に留める（date-place-block は規則の例外提案として PO への問い）。

@@ -3,7 +3,7 @@
  * Title: ご挨拶（写真 + 挨拶文）
  * Slug: helix-wt-page/greeting
  * Categories: helix-wt-page
- * Description: 段8（2026-09-06 PO 反応 19 回目 WT-EVT-0287「固定ページ継投で使えるパーツ」）の Claude 案。HP 集計対象 n=62 で greeting 21%（A 65%）。写真 + 見出し + 本文 + 署名。 文言・数値は PoC 用の架空。
+ * Description: 段8（2026-09-06 PO 反応 19 回目 WT-EVT-0287「固定ページ継投で使えるパーツ」）の Claude 案。HP 集計対象 n=62 で greeting 40%（A 65%）。写真 + 見出し + 本文 + 署名。 文言・数値は PoC 用の架空。
  */
 $u = get_theme_file_uri( 'assets/img' );
 ?>

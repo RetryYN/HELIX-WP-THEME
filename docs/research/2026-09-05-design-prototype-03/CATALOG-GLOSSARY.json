@@ -632,7 +632,7 @@
   },
   "home-sections": {
    "label": "HP の区間セット",
-   "desc": "用途別に置く区間の集合と順序。全区間をテンプレートに持ち、セットで表示と順序を切り替える。全長を分割撮影。段 8: corporate に greeting（A 65%）、service に logos（B 44%）を追加し、shop-school / school-org を新設。区間の多くは固定ページ用パーツ helix-wt-page/* を転用。",
+   "desc": "用途別に置く区間の集合と順序。全区間をテンプレートに持ち、セットで表示と順序を切り替える。全長を分割撮影。段 8: shop-school / school-org を新設（既存 3 セットの構成は据え置き。corporate への greeting 追加・service への logos 追加は PO 判断待ち）。区間の多くは固定ページ用パーツ helix-wt-page/* を転用。",
    "variants": {
     "corporate": "企業 HP: お知らせ → サービス → 特長 → 数字 → 事例 → 会社概要 → アクセス → 問い合わせ（台帳 A 区分で news / service-cards / company-info が上位）。",
     "service": "サービスサイト: サービス → 特長 → 数字 → 事例 → 料金 → FAQ → CTA 帯 → 問い合わせ。",
@@ -660,7 +660,7 @@
     "tel-only": "電話番号のみ。",
     "line": "LINE 導線（自作グリフ）。",
     "none": "問い合わせ帯を置かない。",
-    "double-cta": "問い合わせ + 資料請求の 2 面（v2 hero_cta=double 46% の受け皿）。フォームなし。"
+    "double-cta": "問い合わせ + 資料請求の 2 面（v2 hero_cta=double 44% の受け皿）。フォームなし。"
    }
   },
   "home-fixed": {
@@ -715,7 +715,7 @@
   },
   "event-apply": {
    "label": "申込",
-   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。段 8（台帳 v2 主集計 n=40、複数選択）: external-form 46% / closed-notice 32% / ticket 15% / postcard 7% / receipt-upload 7% / messaging-app 5%。other:* 3 語を語彙へ正式採用する提案（Claude 案）。",
+   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。段 8（台帳 v2 主集計 n=40、複数選択）: external-form 45% / closed-notice 32% / ticket 15% / postcard 8% / receipt-upload 8% / messaging-app 5%。other:* 3 語を語彙へ正式採用する提案（Claude 案）。",
    "variants": {
     "inline-form": "ページ内フォーム（氏名 / 会社 / メール / 区分 / 同意）（既定）。",
     "external-form": "別ページのフォームへ遷移（リンク先はダミー）。",
@@ -838,9 +838,10 @@
   },
   "event-sections": {
    "label": "区間セット",
-   "desc": "イベントページの区間の集合と順序（段 8、台帳 v2 主集計 n=40 の区分別上位区間。B 展示会 n=4 / C フェス n=2 は小標本のため「選べる型」）。区間の一部は固定ページ用パーツ helix-wt-page/* を転用。",
+   "desc": "イベントページの区間の集合と順序（段 8、既定 seminar は従来構成のまま。台帳 v2 主集計 n=40 の区分別上位区間。B 展示会 n=4 / C フェス n=2 は小標本のため「選べる型」）。区間の一部は固定ページ用パーツ helix-wt-page/* を転用。",
    "variants": {
-    "seminar": "セミナー / ウェビナー（A n=26、既定）: info → overview → 対象者 → schedule → speakers → tickets → apply → access → faq → 主催 → notes。",
+    "seminar": "既定。従来構成を据え置き: info → overview → schedule → speakers → tickets → apply → access → faq → sponsors → past → notes。",
+    "seminar-v2": "台帳 v2 の A（セミナー n=26）上位区間に合わせた案（PO 判断待ち）: info → overview → 対象者 → schedule → speakers → tickets → apply → access → faq → 主催 → notes。",
     "conference": "展示会 / カンファレンス（B）: info → overview → schedule → speakers → tickets → sponsors → apply → access → past → 主催 → notes。",
     "festival": "地域フェス / 祭り（C）: info → overview → カウントダウン → schedule → gallery → apply → access → faq → sponsors → past → 主催 → notes。",
     "campaign": "キャンペーン / コンテスト（D n=8）: info → overview → 賞品 → 対象商品 → 応募の流れ → apply → 審査員 → 主催 → notes。"
@@ -850,12 +851,12 @@
    "label": "固定ページ用パーツ",
    "desc": "どの固定ページにも挿せる区間パーツ（pattern category「HELIX WT 固定ページ用パーツ」helix-wt-page/*）。段 8（WT-EVT-0287「固定ページ継投で使えるパーツ」「記事パーツからの転用でも可」）。HP・イベントの区間としても同じ pattern を転用。既存の features / numbers / cases / faq / steps / pricing / cta-banner / cta-box / product-bundle も同 category に再登録。写真は通常の固定ページ /parts/ で撮ったもの。",
    "variants": {
-    "greeting": "ご挨拶（写真 + 見出し + 本文 + 署名）。v2 HP で 21%。",
+    "greeting": "ご挨拶（写真 + 見出し + 本文 + 署名）。v2 HP で 40%。",
     "logos-row": "取引先・提携ロゴ枠 10 個（第三者ロゴは使わずダミー枠）。",
     "stores": "店舗・拠点カード 3 + 検索欄（非送信）。",
     "event-list": "イベント一覧（日付ブロック + 受付状態 + 場所）。v2 E で 88%。",
     "gallery": "画像グリッド 6 枚 + 説明。未観察の追加提案。",
-    "sns-feed": "SNS フィードの遅延埋め込み。URL は option、未設定なら外部へ接続しない。v2 E で 62%。",
+    "sns-feed": "SNS フィードの遅延埋め込み（動的ブロック helix-wt/sns-feed-embed。挿入・保存後も option の変更が効く）。URL は option、未設定なら外部へ接続しない。v2 E で 62%。",
     "timeline": "沿革の縦タイムライン（イベントの schedule timeline を転用）。",
     "countdown": "開催日までの残り日・時・分（JS）。JS 無効時は開催日の文字だけ。未観察の追加提案。",
     "target-audience": "対象者（チェック付き 2 列）。v2 イベント A で 69%。",

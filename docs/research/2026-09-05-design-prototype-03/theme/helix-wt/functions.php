@@ -64,15 +64,15 @@ function wt_axes() {
 		// 既定は台帳 research-r17（HP 39 件 / イベント個別募集ページ 8 件（取得 20 件から page_kind 除外後）、Astra レビュー済み）の最多型。n が小さい区分の型は「選べる型」として置く
 		'home_hero'     => array( 'text-only', array( 'text-only', 'slider', 'fullbleed', 'split', 'article-grid', 'video', 'cards-carousel', 'product-shot', 'search-box' ) ), // HP n=39: text-only 33% / slider 26% / fullbleed 21%（台帳 home-event-recapture）。段8（WT-EVT-0287、台帳 home-event-recapture-v2 n=61）: fullbleed 34% / slider 28% / cards-carousel 11% / product-shot 7% / search-box 2% を追加。既定は据え置き（両台帳で最多型が一致しないため）
 		'home_hero_cta' => array( 'double', array( 'double', 'single', 'none', 'tel-button', 'search' ) ), // double 62%（CTA 2 つ。用途は home_contact）。段8: search（検索欄。v2 で 2 件）
-		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media', 'shop-school', 'school-org' ) ), // 用途別の区間セット。段8: shop-school（店舗・スクール D）/ school-org（学校法人・団体 E）を v2 の区分別上位区間から追加
+		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media', 'shop-school', 'school-org' ) ), // 用途別の区間セット。段8: shop-school（店舗・スクール D）/ school-org（学校法人・団体 E）を v2 の区分別上位区間から追加。既存 3 セットの構成は据え置き（corporate に greeting / service に logos を足すかは PO 判断待ち）
 		'home_news'     => array( 'list-with-date', array( 'list-with-date', 'tabs', 'cards', 'none' ) ), // list-with-date 46%
-		'home_contact'  => array( 'tel-form', array( 'tel-form', 'form-only', 'tel-only', 'line', 'none', 'double-cta' ) ), // tel+form 36%。段8: double-cta（問い合わせ + 資料請求の 2 面。v2 hero_cta=double 46% の受け皿）
+		'home_contact'  => array( 'tel-form', array( 'tel-form', 'form-only', 'tel-only', 'line', 'none', 'double-cta' ) ), // tel+form 36%。段8: double-cta（問い合わせ + 資料請求の 2 面。v2 hero_cta=double 44% の受け皿）
 		'home_fixed'    => array( 'none', array( 'none', 'float-cta', 'sp-bottom-bar', 'float-tel' ) ), // sticky-header はヘッダー既定で常時
 		'event_hero'     => array( 'key-visual', array( 'key-visual', 'photo-overlay', 'date-place-block', 'text-only' ) ), // 主集計 n=8: key-visual 50% / photo-overlay 25%（参考: 取得全体 n=20 では photo-overlay 55%）
 		'event_info'     => array( 'inline-text', array( 'inline-text', 'table', 'icon-list', 'none' ) ), // 主集計 n=8: inline-text 62%
 		'event_schedule' => array( 'none', array( 'none', 'table', 'timeline', 'accordion' ) ), // 主集計 n=8: none 38% / table 25% / timeline 12%
 		'event_speakers' => array( 'none', array( 'none', 'cards-photo', 'list', 'single-profile' ) ), // 主集計 n=8: none 50% / cards-photo 25%
-		'event_sections' => array( 'seminar', array( 'seminar', 'conference', 'festival', 'campaign' ) ), // 段8: 区間セット 4 種（v2 主集計 n=40 の区分 A/B/C/D 別上位区間。B・C は小標本のため「選べる型」）
+		'event_sections' => array( 'seminar', array( 'seminar', 'seminar-v2', 'conference', 'festival', 'campaign' ) ), // 段8: 区間セット 5 種。seminar は従来構成（既定、据え置き）、seminar-v2 は v2 主集計 A の上位区間案（PO 判断待ち）、B・C は小標本のため「選べる型」
 		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice', 'receipt-upload', 'postcard', 'messaging-app' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%。段8: receipt-upload / postcard / messaging-app（v2 の other:* 3 語、キャンペーン D の応募経路）
 		'event_status'   => array( 'open', array( 'open', 'none', 'few-seats', 'ended' ) ), // 主集計 n=8: open 62% / ended 25% / none 12%。few-seats の実例は 0（観測不足）
 		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only', 'embed' ) ), // 主集計 n=8: none 50% / text-only 50%。embed は外部地図の埋め込み（WT-EVT-0284: WT-CAND-SNS の埋め込み方針＝遅延読込・URL は option・鍵はテーマに置かない）
@@ -667,7 +667,7 @@ function wt_sns_feed_embed_url() {
 }
 function wt_render_sns_feed_embed() {
 	$url = wt_sns_feed_embed_url();
-	$out = '<div class="wt-part-sns__feed" id="part-sns-feed" data-wt-embed="' . ( $url ? 'set' : 'unset' ) . '">';
+	$out = '<div class="wt-part-sns__feed" data-wt-embed="' . ( $url ? 'set' : 'unset' ) . '">';
 	if ( $url ) {
 		$out .= '<iframe class="wt-part-sns__frame" src="' . esc_url( $url ) . '" title="SNS の最新投稿（外部サービスの埋め込み）" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="1200" height="480"></iframe>';
 	} else {
@@ -675,6 +675,7 @@ function wt_render_sns_feed_embed() {
 	}
 	return $out . '</div>';
 }
+register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
 // ---------- 段 6: カテゴリ面の強化（WT-EVT-0283、台帳 category-recapture n=54） ----------
 function wt_category_posts( $term, $n, $offset = 0 ) {
@@ -759,6 +760,7 @@ function wt_render_category_filter() {
 	}
 	return $out . '</div>';
 }
+register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
 function wt_render_category_sidebar() {
 	$term = wt_current_category_term();
@@ -897,6 +899,7 @@ function wt_render_card_badges( $attributes = array(), $content = '', $block = n
 	}
 	return $out . '</div>';
 }
+register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
 function wt_render_category_minihome() {
 	$term = wt_current_category_term();

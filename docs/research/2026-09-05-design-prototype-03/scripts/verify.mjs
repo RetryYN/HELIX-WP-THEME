@@ -1442,8 +1442,8 @@ const EVENT = "/event/";
     home_contact: ["tel-form", "form-only", "tel-only", "line", "none", "double-cta"], // 段 8: +double-cta（フォームなし）
     home_fixed: ["none", "float-cta", "sp-bottom-bar", "float-tel"],
   };
-  // 段 8: corporate に greeting、service に logos を追加、shop-school / school-org を新設（台帳 v2 の区分別上位区間）
-  const SETS = { corporate: ["news", "greeting", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "logos", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"], "shop-school": ["news", "service-cards", "features", "stores", "events", "price", "faq", "recruit", "banner-row", "access", "contact"], "school-org": ["greeting", "news", "features", "service-cards", "events", "gallery", "sns", "history", "logos", "banner-row", "cta-band", "contact"] };
+  // 段 8: shop-school / school-org を新設（台帳 v2 の区分別上位区間）。既存 3 セットは据え置き
+  const SETS = { corporate: ["news", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"], "shop-school": ["news", "service-cards", "features", "stores", "events", "price", "faq", "recruit", "banner-row", "access", "contact"], "school-org": ["greeting", "news", "features", "service-cards", "events", "gallery", "sns", "history", "logos", "banner-row", "cta-band", "contact"] };
   const read = async (cfg, dev, js) => {
     const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
     for (const [axis, values] of Object.entries(AX)) {
@@ -1477,14 +1477,21 @@ const EVENT = "/event/";
       const deadAnchors = anchors.filter((a) => !a.targetVisible);
       // 段 8: 区間内の固定ページ用パーツ（wt-part）が可視で、見出し h2 を持つこと。可視の画像に読込失敗（complete かつ naturalWidth 0）がないこと
       const parts = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home__section .wt-part")).filter(vis).map((el) => ({ part: Array.from(el.classList).find((c) => c.startsWith("wt-part--")), h2: !!el.querySelector("h2") && vis(el.querySelector("h2")), broken: Array.from(el.querySelectorAll("img")).filter((i) => vis(i) && i.complete && i.naturalWidth === 0).length })); }, VIS_SRC);
-      const expectParts = { corporate: 1, service: 1, media: 0, "shop-school": 2, "school-org": 6 }[set];
+      const expectParts = { corporate: 0, service: 0, media: 0, "shop-school": 2, "school-org": 6 }[set];
       sets.push({ dev, js, set, order, anchors: anchors.length, deadAnchors, parts, pass: JSON.stringify(order) === JSON.stringify(expect) && anchors.length >= 2 && deadAnchors.length === 0 && parts.length === expectParts && parts.every((x) => x.h2 && x.broken === 0) });
     }
-    await ctx.close(); return { results, sets };
+    // 段 8 Astra 是正: hero × 区間セットの交差（hero 内の導線がセットで非表示の区間を指さない）。9 hero × 5 セット
+    const cross = [];
+    for (const hero of AX.home_hero) for (const set of Object.keys(SETS)) {
+      await p.goto(BASE + HOME + `?wt=home_hero:${hero},home_sections:${set}`, { waitUntil: js ? "networkidle" : "load" });
+      const r = await p.evaluate((visSrc) => { const vis = eval(visSrc); const anchors = Array.from(document.querySelectorAll(".wt-home-hero a[href^='#']")).filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, ok: !!t && vis(t) }; }); const links = Array.from(document.querySelectorAll(".wt-home-hero a[href]")).filter(vis).length; return { anchors: anchors.length, dead: anchors.filter((a) => !a.ok).map((a) => a.href), links }; }, VIS_SRC);
+      cross.push({ dev, js, hero, set, ...r, pass: r.dead.length === 0 && r.links >= 1 });
+    }
+    await ctx.close(); return { results, sets, cross };
   };
   const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
-  const all = [...sp.results, ...pc.results, ...spNoJs.results, ...sp.sets, ...pc.sets, ...spNoJs.sets];
-  out.homeFace = { sp, pc, spNoJs, pass: all.length === (28 * 3 + 15) && all.every((x) => x.pass) };
+  const all = [...sp.results, ...pc.results, ...spNoJs.results, ...sp.sets, ...pc.sets, ...spNoJs.sets, ...sp.cross, ...pc.cross, ...spNoJs.cross];
+  out.homeFace = { sp, pc, spNoJs, pass: all.length === (28 * 3 + 15 + 45 * 3) && all.every((x) => x.pass) };
 }
 // (i) homeHeroContrast: 白文字を置く hero（fullbleed / slider）は ::before の gradient を stop ごとに解析し、文字矩形の上端位置（下端からの %）の α を線形補間して白背景でも 4.5:1（α ≥ .82）を要求。文字は hero 矩形内。テキスト hero は文字色コントラスト
 {
@@ -1516,9 +1523,9 @@ const EVENT = "/event/";
 }
 // (k) eventFace: 各軸の全型（hero 4 / info 4 / schedule 4 / speakers 4 / apply 4 / status 4 / map 3 / fixed 3 / share 3）で軸 class・当該型だけ可視、closed-notice で申込導線が消える、フォームは非送信、44px。SP/PC/SP JS 無効
 {
-  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 4 種
+  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "seminar-v2", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 5 種（seminar は従来構成を据え置き）
   // 段 8: 区間セットごとの表示区間と順序（CSS の order と一致させる）
-  const ESETS = { seminar: ["info", "overview", "audience", "schedule", "speakers", "tickets", "apply", "access", "faq", "organizer", "notes"], conference: ["info", "overview", "schedule", "speakers", "tickets", "sponsors", "apply", "access", "past", "organizer", "notes"], festival: ["info", "overview", "countdown", "schedule", "gallery", "apply", "access", "faq", "sponsors", "past", "organizer", "notes"], campaign: ["info", "overview", "prizes", "products", "entry", "apply", "judges", "organizer", "notes"] };
+  const ESETS = { seminar: ["info", "overview", "schedule", "speakers", "tickets", "apply", "access", "faq", "sponsors", "past", "notes"], "seminar-v2": ["info", "overview", "audience", "schedule", "speakers", "tickets", "apply", "access", "faq", "organizer", "notes"], conference: ["info", "overview", "schedule", "speakers", "tickets", "sponsors", "apply", "access", "past", "organizer", "notes"], festival: ["info", "overview", "countdown", "schedule", "gallery", "apply", "access", "faq", "sponsors", "past", "organizer", "notes"], campaign: ["info", "overview", "prizes", "products", "entry", "apply", "judges", "organizer", "notes"] };
   const PREFIX = { event_sections: ".wt-event-sections--",  event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
   // embed の未設定状態を先に用意する（wp-cli 必須。option を消し、消えたことを確認。取れなければ eventFace は fail）
   const wpE = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }) : null;
@@ -1575,7 +1582,7 @@ const EVENT = "/event/";
     }
   }
   const all = [...sp, ...pc, ...spNoJs];
-  out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 41 * 3 && all.every((x) => x.pass) && embedSet.pass };
+  out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 42 * 3 && all.every((x) => x.pass) && embedSet.pass };
 }
 // (l) eventHeroContrast: photo-overlay のスクリム α（下端 .88）と白文字、他 3 型の文字色 4.5:1、受付状態バッジ 3 型の文字コントラスト
 {
@@ -1626,16 +1633,25 @@ const EVENT = "/event/";
   const rows = [await read(PC, "pc", true), await read(SP, "sp", true), await read(SP, "sp", false)];
   let feedSet = { source: "unavailable", unsetPrepared, pass: false };
   if (wpP) { let cleanupOk = false;
-    try { wpP(["option", "update", "helix_wt_sns_feed_embed_url", BASE + "/lp/"]);
-      const ctx2 = await browser.newContext(PC); const p2 = await ctx2.newPage(); const ext2 = []; p2.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) ext2.push(u.host); } catch (_) { /* data: */ } });
-      await p2.goto(BASE + "/parts/", { waitUntil: "networkidle" });
-      const r = await p2.evaluate(() => { const f = document.querySelector(".wt-part-sns__feed"); const i = f ? f.querySelector("iframe") : null; return { state: f && f.getAttribute("data-wt-embed"), iframe: !!i, lazy: !!i && i.getAttribute("loading") === "lazy", title: !!i && !!i.getAttribute("title"), sameHost: !!i && new URL(i.src, location.href).host === location.host, visible: !!i && i.getBoundingClientRect().width > 0 }; });
-      r.externalRequests = Array.from(new Set(ext2)); await ctx2.close();
-      feedSet = { source: "wp-cli:option helix_wt_sns_feed_embed_url", unsetPrepared, ...r, pass: unsetPrepared && r.state === "set" && r.iframe && r.lazy && r.title && r.sameHost && r.visible && r.externalRequests.length === 0 };
+    try {
+      // Astra 是正（PR #164）: パターンは挿入・保存後に静的化するため、登録済みパターンの展開後 markup（wp:pattern 参照ではなく中身）を固定ページ /parts-expanded/ に保存し、動的ブロック helix-wt/sns-feed-embed が option の変更に追従することを確かめる
+      const expanded = wpP(["eval", "echo WP_Block_Patterns_Registry::get_instance()->get_registered(\"helix-wt-page/sns-feed\")[\"content\"];"]);
+      if (!/<!-- wp:helix-wt\/sns-feed-embed \/-->/.test(expanded) || /<iframe|wt-part-sns__feed/.test(expanded)) throw new Error("展開後の pattern に動的ブロックが無いか、静的な埋め込み markup を含む");
+      const eid = wpP(["post", "list", "--post_type=page", "--name=parts-expanded", "--post_status=publish", "--field=ID"]).trim();
+      if (eid) wpP(["post", "update", eid, `--post_content=${expanded}`]); else wpP(["post", "create", "--post_type=page", "--post_status=publish", "--post_name=parts-expanded", "--post_title=SNS フィード（展開保存の検証用 PoC）", `--post_content=${expanded}`, "--porcelain"]);
+      const readFeed = async (url) => { const ctx2 = await browser.newContext(PC); const p2 = await ctx2.newPage(); const ext2 = []; p2.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) ext2.push(u.host); } catch (_) { /* data: */ } });
+        await p2.goto(BASE + url, { waitUntil: "networkidle" });
+        const r = await p2.evaluate(() => { const f = document.querySelector(".wt-part-sns__feed"); const i = f ? f.querySelector("iframe") : null; return { state: f && f.getAttribute("data-wt-embed"), iframe: !!i, lazy: !!i && i.getAttribute("loading") === "lazy", title: !!i && !!i.getAttribute("title"), sameHost: !!i && new URL(i.src, location.href).host === location.host, visible: !!i && i.getBoundingClientRect().width > 0, ids: document.querySelectorAll("#part-sns-feed").length }; });
+        r.externalRequests = Array.from(new Set(ext2)); await ctx2.close(); return r; };
+      const expandedUnset = await readFeed("/parts-expanded/"); // option 未設定のうちに展開保存ページを読む
+      wpP(["option", "update", "helix_wt_sns_feed_embed_url", BASE + "/lp/"]);
+      const r = await readFeed("/parts/"); const r2 = await readFeed("/parts-expanded/");
+      const okSet = (x) => x.state === "set" && x.iframe && x.lazy && x.title && x.sameHost && x.visible && x.externalRequests.length === 0 && x.ids === 1;
+      feedSet = { source: "wp-cli:option helix_wt_sns_feed_embed_url", unsetPrepared, ...r, expandedUnset, expandedSet: r2, pass: unsetPrepared && okSet(r) && okSet(r2) && expandedUnset.state === "unset" && !expandedUnset.iframe && expandedUnset.externalRequests.length === 0 && expandedUnset.ids === 1 };
     } catch (e) { feedSet = { source: `wp-cli failed: ${String(e).slice(0, 120)}`, unsetPrepared, pass: false }; }
     finally { try { wpP(["option", "delete", "helix_wt_sns_feed_embed_url"]); } catch (_) { /* 既に無ければ失敗 */ }
       cleanupOk = snsUnset();
-      if (cleanupOk) { const ctx3 = await browser.newContext(PC); const p3 = await ctx3.newPage(); await p3.goto(BASE + "/parts/", { waitUntil: "load" }); cleanupOk = await p3.evaluate(() => { const f = document.querySelector(".wt-part-sns__feed"); return !!f && f.getAttribute("data-wt-embed") === "unset" && !f.querySelector("iframe"); }); await ctx3.close(); }
+      if (cleanupOk) { const ctx3 = await browser.newContext(PC); const p3 = await ctx3.newPage(); const chk = async (u) => { await p3.goto(BASE + u, { waitUntil: "load" }); return p3.evaluate(() => { const f = document.querySelector(".wt-part-sns__feed"); return !!f && f.getAttribute("data-wt-embed") === "unset" && !f.querySelector("iframe"); }); }; cleanupOk = (await chk("/parts/")) && (await chk("/parts-expanded/")); await ctx3.close(); } // 展開保存ページでも未設定表示へ戻ること
       feedSet.cleanupOk = cleanupOk; feedSet.pass = feedSet.pass && cleanupOk; } }
   out.pageParts = { pageSource, rows, feedSet, pass: rows.length === 3 && rows.every((r) => r.pass) && feedSet.pass };
 }
