@@ -107,30 +107,36 @@
   },
   "category-children": {
    "label": "カテゴリの子分類導線",
-   "desc": "カテゴリ面で子カテゴリへの入り口をまとめる部品。チップ、カード、手順のどれで回遊させるかを見る。",
+   "desc": "カテゴリ面で子カテゴリへの入り口をまとめる部品。台帳 chips 40% / none 38% / sidebar-tree 15% / cards 6% / image-banners 2%（steps は試作 02 の型）。",
    "variants": {
     "none": "子カテゴリ導線を表示しない型。",
     "chips": "子カテゴリを小さなチップで並べる型。",
     "cards": "子カテゴリを画像や説明付きカードで並べる型。",
-    "steps": "読む順番を意識した番号付きの子カテゴリ導線。"
+    "steps": "読む順番を意識した番号付きの子カテゴリ導線。",
+    "sidebar-tree": "右カラムに子カテゴリの木（名前と件数）を置く型。",
+    "image-banners": "子カテゴリを写真バナーで並べる型（PoC は生成写真）。"
    }
   },
   "category-header": {
    "label": "カテゴリ見出し",
-   "desc": "カテゴリ名と説明を表示する面上部。説明文や背景表現を加えるかを見る。",
+   "desc": "カテゴリ名と説明を表示する面上部。台帳（主集計 n=54）name-count 68% / name-only 17% / name-desc 9% / name-desc-image 6%（hero）。",
    "variants": {
+    "name-count": "カテゴリ名の下に記事件数を置く型（既定、台帳の最多型）。",
     "name-only": "カテゴリ名だけを簡潔に表示する型。",
     "name-desc": "カテゴリ名に説明文を添える型。",
-    "hero": "カテゴリ見出しを背景付きのヒーロー風に見せる型。"
+    "hero": "カテゴリ見出しを背景付きのヒーロー風に見せる型（台帳の name-desc-image）。"
    }
   },
   "category-list": {
    "label": "カテゴリ記事一覧",
-   "desc": "カテゴリ内の記事カードを並べる主領域。PC と SP で画像・本文の配置がどう変わるかを見る。",
+   "desc": "カテゴリ内の記事カードを並べる主領域。台帳 grid-3 43% / text-list 39% / featured-plus-grid 7% / grid-2 6% / thumb-list 4% / timeline 2%。",
    "variants": {
     "grid": "記事カードを均等なグリッドに並べる型。",
     "thumb-list": "サムネイルと本文を横並びにする一覧型。",
-    "featured-grid": "先頭記事を強調し、残りをグリッドにする型。"
+    "featured-grid": "先頭記事を強調し、残りをグリッドにする型。",
+    "text-list": "画像なしで日付とタイトルを 1 行に並べる型。",
+    "grid-2": "2 列のカードグリッド。",
+    "timeline": "左の時間軸に沿って日付順に並べる型。"
    }
   },
   "category-minihome": {
@@ -143,20 +149,22 @@
   },
   "category-pagination": {
    "label": "カテゴリのページ送り",
-   "desc": "記事一覧の続きを取得する導線。ページ番号、追加読み込み、前後移動の操作感を見る。",
+   "desc": "記事一覧の続きを取得する導線。台帳 numbers 43% / none 39% / load-more 9% / prev-next 9%。",
    "variants": {
     "numbers": "ページ番号を並べる型。",
     "load-more": "ボタンで次の記事を一覧へ追加する型。",
-    "prev-next": "前の記事・次の記事へ移動する型。"
+    "prev-next": "前の記事・次の記事へ移動する型。",
+    "none": "ページ送りを置かない型（一覧の件数で完結）。"
    }
   },
   "category-ranking": {
    "label": "カテゴリ内ランキング",
-   "desc": "カテゴリ記事の人気導線を置く位置。表示しない、側欄、下部の違いを見る。",
+   "desc": "カテゴリ内ランキングの置き場所。台帳 sidebar 44% / none 43% / top 13%。既定 none は sidebar の人気記事（category-sidebar）が担うため。",
    "variants": {
     "none": "カテゴリ内ランキングを表示しない型。",
     "sidebar": "PC では側欄、SP では下部にランキングを置く型。",
-    "bottom": "面の下部にランキングを置く型。"
+    "bottom": "面の下部にランキングを置く型。",
+    "top": "一覧の上にランキングを置く型。"
    }
   },
   "contrast-guard": {
@@ -751,12 +759,77 @@
    "variants": {
     "full": "開催情報 → 概要 → スケジュール → 登壇者 → 参加区分 → 申込 → アクセス → FAQ → 協賛 → 過去の開催 → 注意事項の順。"
    }
+  },
+  "category-lead": {
+   "label": "カテゴリのリード文",
+   "desc": "見出しの下に置く導入文。台帳 none 78% / lead-text 13% / editorial-article 9%。",
+   "variants": {
+    "none": "リード文なし（既定）。",
+    "lead-text": "説明文を 1 段落で置く型。",
+    "editorial": "編集部の案内として見出し付きの短い記事を置く型（読む順番の案内と一覧への導線）。"
+   }
+  },
+  "category-columns": {
+   "label": "カテゴリ面のカラム",
+   "desc": "PC の段組。台帳 2col-sidebar-right 69% / 1col 31%。SP は常に 1 カラムで右カラムは一覧の下に積む。",
+   "variants": {
+    "sidebar-right": "一覧の右に sidebar を置く 2 カラム（既定）。",
+    "1col": "sidebar なしの 1 カラム。"
+   }
+  },
+  "category-sidebar": {
+   "label": "右 sidebar の中身",
+   "desc": "sidebar に置く部品の組。台帳の出現率: categories 67% / popular-ranking 57% / cta-banner 33% / archive-month 20% / search 19% / new-posts 15% / profile 13% / tags 13%。",
+   "variants": {
+    "standard": "カテゴリ一覧 + 人気記事（既定。PoC は閲覧数を持たないため日付順を「人気」の代わりに置き見出しに明記）。",
+    "with-cta": "standard + 案内バナー。",
+    "full": "standard + 案内バナー + 検索 + 月別 + 新着 + 媒体プロフィール + タグ。"
+   }
+  },
+  "category-card": {
+   "label": "記事カードの要素",
+   "desc": "カードに出す要素の組。台帳の出現率: date 76% / category-chip 63% / excerpt 59% / image 59% / author 11% / new-badge 11% / tags 11%。",
+   "variants": {
+    "standard": "画像 + カテゴリ chip + タイトル + 日付 + 抜粋（既定。SP の圧縮カードは抜粋を出さない）。",
+    "minimal": "タイトル + 日付のみ。",
+    "rich": "standard + 著者名 + NEW バッジ（30 日以内）+ タグ。"
+   }
+  },
+  "category-filter": {
+   "label": "絞り込み・並べ替え",
+   "desc": "一覧の上に置く絞り込み。台帳 none 63% / tabs 15% / year-filter 11% / tag-filter 9% / sort-select 2%。",
+   "variants": {
+    "none": "絞り込みなし（既定）。",
+    "tabs": "「すべて」と子カテゴリのタブ。",
+    "year": "年で絞るリンク（同じカテゴリ面に留まる）。",
+    "tag": "タグで絞るリンク。",
+    "sort": "新しい順 / 更新順 / タイトル順の並べ替え（同一サイト内の一覧の並べ替えなので送信する）。"
+   }
+  },
+  "category-pickup": {
+   "label": "ピックアップ",
+   "desc": "一覧の上に置く注目記事。台帳 none 52% / top-featured 35% / editor-pick-box 13%。",
+   "variants": {
+    "none": "なし（既定）。",
+    "top-featured": "最新 1 件を大きなカードで見せる型。",
+    "editor-pick-box": "編集部のおすすめ 3 件を箱で見せる型。"
+   }
+  },
+  "category-cta": {
+   "label": "カテゴリ面の CTA",
+   "desc": "一覧の下に置く導線。台帳 none 54% / lp-banner 22% / newsletter 11% / line 7%。app-download 6% は第三者ストアのバッジ画像が要るため置かない。",
+   "variants": {
+    "none": "なし（既定）。",
+    "lp-banner": "ガイド LP へのバナー。",
+    "newsletter": "メール登録フォーム（PoC は送信しない）。",
+    "line": "LINE 友だち追加の導線（自作グリフ、リンク先はダミー）。"
+   }
   }
  },
  "faces": {
   "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
   "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。",
-  "category": "カテゴリ面: カテゴリ見出し、記事一覧、子分類、ランキングを確認する面。",
+  "category": "カテゴリ面: カテゴリ見出し、リード、絞り込み、記事一覧、右 sidebar、子分類、ランキング、ピックアップ、CTA を確認する面。",
   "footer": "フッター面: フッターの配置、補助情報、法定表示を確認する面。",
   "lp": "LP 面: ヒーロー、説明区画、CTA、固定導線を確認する面。",
   "home": "HP 面（ホーム / トップページ）: hero、区間セット（企業 HP / サービス / メディア）、お知らせ、問い合わせ帯、固定導線を確認する面（WT-EVT-0277、Claude 案。既定は台帳 research-r17 の最多型）。",

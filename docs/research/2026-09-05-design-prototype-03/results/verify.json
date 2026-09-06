@@ -215,18 +215,18 @@
    "pass": true
   },
   "categorySp": {
-   "total": 34,
-   "ok44": 34,
-   "ok24": 34,
+   "total": 43,
+   "ok44": 43,
+   "ok24": 43,
    "inlineText": 0,
    "below44": [],
    "below24": [],
    "pass": true
   },
   "categoryPc": {
-   "total": 34,
-   "ok44": 34,
-   "ok24": 34,
+   "total": 43,
+   "ok44": 43,
+   "ok24": 43,
    "inlineText": 0,
    "below44": [],
    "below24": [],
@@ -6928,14 +6928,14 @@
     "textColor": "rgb(255, 255, 255)",
     "fontSize": 40,
     "fontWeight": "700",
-    "alphaAtText": 0.635,
-    "imageLAtText": 0.395,
+    "alphaAtText": 0.617,
+    "imageLAtText": 0.402,
     "imageLMaxAtText": 1,
-    "compositeL": 0.152,
+    "compositeL": 0.161,
     "textL": 1,
-    "ratioText": 5.21,
-    "ratioWorstPixel": 2.49,
-    "ratioWithoutScrim": 2.36,
+    "ratioText": 4.98,
+    "ratioWorstPixel": 2.39,
+    "ratioWithoutScrim": 2.32,
     "required": 3,
     "pass": true
    },
@@ -6944,14 +6944,14 @@
     "textColor": "rgb(255, 255, 255)",
     "fontSize": 17,
     "fontWeight": "400",
-    "alphaAtText": 0.627,
-    "imageLAtText": 0.438,
+    "alphaAtText": 0.666,
+    "imageLAtText": 0.505,
     "imageLMaxAtText": 1,
-    "compositeL": 0.171,
+    "compositeL": 0.176,
     "textL": 1,
-    "ratioText": 4.76,
-    "ratioWorstPixel": 2.44,
-    "ratioWithoutScrim": 2.15,
+    "ratioText": 4.64,
+    "ratioWorstPixel": 2.68,
+    "ratioWithoutScrim": 1.89,
     "required": 4.5,
     "pass": true
    }
@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.88492)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.834069)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -19328,6 +19328,2850 @@
   ],
   "pass": true
  },
+ "categoryVariants": {
+  "expectedCount": 17,
+  "countSource": "wp-cli:cat=8",
+  "sp": [
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_header",
+    "v": "name-count",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": true,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": false,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_header",
+    "v": "name-only",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": false,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_header",
+    "v": "name-desc",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": true,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_header",
+    "v": "hero",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": true,
+    "heroWhite": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_lead",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_lead",
+    "v": "lead-text",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [
+     "lead-text"
+    ],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_lead",
+    "v": "editorial",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [
+     "editorial"
+    ],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_children",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [],
+    "links": 0,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_children",
+    "v": "chips",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "chips"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_children",
+    "v": "cards",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "cards"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_children",
+    "v": "steps",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "steps"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_children",
+    "v": "sidebar-tree",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "sidebar-tree"
+    ],
+    "links": 3,
+    "inAside": true,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_children",
+    "v": "image-banners",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "image-banners"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [
+     true,
+     true,
+     true
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_columns",
+    "v": "sidebar-right",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_columns",
+    "v": "1col",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": false,
+    "tracks": 1,
+    "widgets": [],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_sidebar",
+    "v": "standard",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_sidebar",
+    "v": "with-cta",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular",
+     "cta"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_sidebar",
+    "v": "full",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular",
+     "cta",
+     "search",
+     "archive",
+     "new",
+     "profile",
+     "tags"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_list",
+    "v": "grid",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_list",
+    "v": "text-list",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": false,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_list",
+    "v": "featured-grid",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "-1",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_list",
+    "v": "grid-2",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_list",
+    "v": "thumb-list",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_list",
+    "v": "timeline",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_card",
+    "v": "standard",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": true,
+     "terms": true,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": false,
+     "badges": false,
+     "tags": 0,
+     "newBadges": 0
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_card",
+    "v": "minimal",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": false,
+     "terms": false,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": false,
+     "badges": false,
+     "tags": 0,
+     "newBadges": 0
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_card",
+    "v": "rich",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": true,
+     "terms": true,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": true,
+     "badges": true,
+     "tags": 10,
+     "newBadges": 10
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [],
+    "links": [],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "tabs",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "tabs"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-one/",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-two/",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-three/",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "year",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "year"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?year=2026",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "tag",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "tag"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e5%88%9d%e5%bf%83%e8%80%85%e5%90%91%e3%81%91",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e5%b0%8e%e5%85%a5%e4%ba%8b%e4%be%8b",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e6%af%94%e8%bc%83",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "sort",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "sort"
+    ],
+    "links": [],
+    "sort": {
+     "method": "get",
+     "action": "http://localhost:8086/category/topic-index/",
+     "select": true,
+     "label": true,
+     "submit": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "numbers",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": true,
+    "next": false,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": false,
+    "pagination": false,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "load-more",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": false,
+    "pagination": false,
+    "loadMore": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "prev-next",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": true,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [],
+    "rankTop": null,
+    "listTop": 325.1875,
+    "rankInAside": null,
+    "rankItems": 0,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "sidebar",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "aside"
+    ],
+    "rankTop": 1646.828125,
+    "listTop": 325.1875,
+    "rankInAside": true,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "bottom",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "bottom"
+    ],
+    "rankTop": 1556.75,
+    "listTop": 325.1875,
+    "rankInAside": false,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "top",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "top"
+    ],
+    "rankTop": 361.1875,
+    "listTop": 638.109375,
+    "rankInAside": false,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pickup",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [],
+    "pickImgs": [],
+    "pickLinks": 0,
+    "pickAboveList": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pickup",
+    "v": "top-featured",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [
+     "top-featured"
+    ],
+    "pickImgs": [
+     true
+    ],
+    "pickLinks": 3,
+    "pickAboveList": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_pickup",
+    "v": "editor-pick-box",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [
+     "editor-pick-box"
+    ],
+    "pickImgs": [
+     true,
+     true,
+     true
+    ],
+    "pickLinks": 3,
+    "pickAboveList": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [],
+    "ctaHref": null,
+    "nlForm": null,
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "lp-banner",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "lp-banner"
+    ],
+    "ctaHref": "http://localhost:8086/lp/",
+    "nlForm": null,
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "newsletter",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "newsletter"
+    ],
+    "ctaHref": null,
+    "nlForm": {
+     "method": "get",
+     "action": "#cat-newsletter",
+     "submit": 0,
+     "labelled": true,
+     "poc": "no-submit"
+    },
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "line",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "line"
+    ],
+    "ctaHref": "http://localhost:8086/category/topic-index/?wt=cat_cta:line#cat-line",
+    "nlForm": null,
+    "lineGlyph": {
+     "vis": true,
+     "size": 20,
+     "mask": true,
+     "color": "rgb(255, 255, 255)",
+     "aria": "LINE で友だち追加"
+    },
+    "pass": true
+   }
+  ],
+  "pc": [
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_header",
+    "v": "name-count",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": true,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": false,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_header",
+    "v": "name-only",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": false,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_header",
+    "v": "name-desc",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": true,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_header",
+    "v": "hero",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": true,
+    "heroWhite": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_lead",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_lead",
+    "v": "lead-text",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [
+     "lead-text"
+    ],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_lead",
+    "v": "editorial",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [
+     "editorial"
+    ],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_children",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [],
+    "links": 0,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_children",
+    "v": "chips",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "chips"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_children",
+    "v": "cards",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "cards"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_children",
+    "v": "steps",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "steps"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_children",
+    "v": "sidebar-tree",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "sidebar-tree"
+    ],
+    "links": 3,
+    "inAside": true,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_children",
+    "v": "image-banners",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "image-banners"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [
+     true,
+     true,
+     true
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_columns",
+    "v": "sidebar-right",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 2,
+    "widgets": [
+     "categories",
+     "popular"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_columns",
+    "v": "1col",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": false,
+    "tracks": 1,
+    "widgets": [],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_sidebar",
+    "v": "standard",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 2,
+    "widgets": [
+     "categories",
+     "popular"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_sidebar",
+    "v": "with-cta",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 2,
+    "widgets": [
+     "categories",
+     "popular",
+     "cta"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_sidebar",
+    "v": "full",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 2,
+    "widgets": [
+     "categories",
+     "popular",
+     "cta",
+     "search",
+     "archive",
+     "new",
+     "profile",
+     "tags"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_list",
+    "v": "grid",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 3,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_list",
+    "v": "text-list",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": false,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_list",
+    "v": "featured-grid",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 3,
+    "firstSpan": "-1",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_list",
+    "v": "grid-2",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 2,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_list",
+    "v": "thumb-list",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_list",
+    "v": "timeline",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_card",
+    "v": "standard",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": true,
+     "terms": true,
+     "title": true,
+     "date": true,
+     "excerpt": true,
+     "author": false,
+     "badges": false,
+     "tags": 0,
+     "newBadges": 0
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_card",
+    "v": "minimal",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": false,
+     "terms": false,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": false,
+     "badges": false,
+     "tags": 0,
+     "newBadges": 0
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_card",
+    "v": "rich",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": true,
+     "terms": true,
+     "title": true,
+     "date": true,
+     "excerpt": true,
+     "author": true,
+     "badges": true,
+     "tags": 10,
+     "newBadges": 10
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [],
+    "links": [],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "tabs",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "tabs"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-one/",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-two/",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-three/",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "year",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "year"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?year=2026",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "tag",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "tag"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e5%88%9d%e5%bf%83%e8%80%85%e5%90%91%e3%81%91",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e5%b0%8e%e5%85%a5%e4%ba%8b%e4%be%8b",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e6%af%94%e8%bc%83",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_filter",
+    "v": "sort",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "sort"
+    ],
+    "links": [],
+    "sort": {
+     "method": "get",
+     "action": "http://localhost:8086/category/topic-index/",
+     "select": true,
+     "label": true,
+     "submit": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "numbers",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": true,
+    "next": false,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": false,
+    "pagination": false,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "load-more",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": false,
+    "pagination": false,
+    "loadMore": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pagination",
+    "v": "prev-next",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": true,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [],
+    "rankTop": null,
+    "listTop": 285.796875,
+    "rankInAside": null,
+    "rankItems": 0,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "sidebar",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "aside"
+    ],
+    "rankTop": 301.796875,
+    "listTop": 285.796875,
+    "rankInAside": true,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "bottom",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "bottom"
+    ],
+    "rankTop": 1748.46875,
+    "listTop": 285.796875,
+    "rankInAside": false,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_ranking",
+    "v": "top",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "top"
+    ],
+    "rankTop": 285.796875,
+    "listTop": 563.984375,
+    "rankInAside": false,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pickup",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [],
+    "pickImgs": [],
+    "pickLinks": 0,
+    "pickAboveList": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pickup",
+    "v": "top-featured",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [
+     "top-featured"
+    ],
+    "pickImgs": [
+     true
+    ],
+    "pickLinks": 3,
+    "pickAboveList": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_pickup",
+    "v": "editor-pick-box",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [
+     "editor-pick-box"
+    ],
+    "pickImgs": [
+     true,
+     true,
+     true
+    ],
+    "pickLinks": 3,
+    "pickAboveList": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [],
+    "ctaHref": null,
+    "nlForm": null,
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "lp-banner",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "lp-banner"
+    ],
+    "ctaHref": "http://localhost:8086/lp/",
+    "nlForm": null,
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "newsletter",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "newsletter"
+    ],
+    "ctaHref": null,
+    "nlForm": {
+     "method": "get",
+     "action": "#cat-newsletter",
+     "submit": 0,
+     "labelled": true,
+     "poc": "no-submit"
+    },
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "cat_cta",
+    "v": "line",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "line"
+    ],
+    "ctaHref": "http://localhost:8086/category/topic-index/?wt=cat_cta:line#cat-line",
+    "nlForm": null,
+    "lineGlyph": {
+     "vis": true,
+     "size": 20,
+     "mask": true,
+     "color": "rgb(255, 255, 255)",
+     "aria": "LINE で友だち追加"
+    },
+    "pass": true
+   }
+  ],
+  "spNoJs": [
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_header",
+    "v": "name-count",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": true,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": false,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_header",
+    "v": "name-only",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": false,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_header",
+    "v": "name-desc",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": true,
+    "heroWhite": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_header",
+    "v": "hero",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "countVisible": false,
+    "countText": "17件",
+    "countNum": 17,
+    "descVisible": true,
+    "heroWhite": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_lead",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_lead",
+    "v": "lead-text",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [
+     "lead-text"
+    ],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_lead",
+    "v": "editorial",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "leadShown": [
+     "editorial"
+    ],
+    "editorialH2": true,
+    "editorialLen": 142,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_children",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [],
+    "links": 0,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_children",
+    "v": "chips",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "chips"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_children",
+    "v": "cards",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "cards"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_children",
+    "v": "steps",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "steps"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_children",
+    "v": "sidebar-tree",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "sidebar-tree"
+    ],
+    "links": 3,
+    "inAside": true,
+    "imgs": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_children",
+    "v": "image-banners",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "navShown": [
+     "image-banners"
+    ],
+    "links": 3,
+    "inAside": false,
+    "imgs": [
+     true,
+     true,
+     true
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_columns",
+    "v": "sidebar-right",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_columns",
+    "v": "1col",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": false,
+    "tracks": 1,
+    "widgets": [],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_sidebar",
+    "v": "standard",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_sidebar",
+    "v": "with-cta",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular",
+     "cta"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_sidebar",
+    "v": "full",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "asideVisible": true,
+    "tracks": 1,
+    "widgets": [
+     "categories",
+     "popular",
+     "cta",
+     "search",
+     "archive",
+     "new",
+     "profile",
+     "tags"
+    ],
+    "search": {
+     "role": "search",
+     "method": "get",
+     "submit": 1,
+     "labelled": true
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_list",
+    "v": "grid",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_list",
+    "v": "text-list",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": false,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_list",
+    "v": "featured-grid",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "-1",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_list",
+    "v": "grid-2",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_list",
+    "v": "thumb-list",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_list",
+    "v": "timeline",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "listTracks": 1,
+    "firstSpan": "auto",
+    "imgVisible": true,
+    "cardsVisible": 10,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_card",
+    "v": "standard",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": true,
+     "terms": true,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": false,
+     "badges": false,
+     "tags": 0,
+     "newBadges": 0
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_card",
+    "v": "minimal",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": false,
+     "terms": false,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": false,
+     "badges": false,
+     "tags": 0,
+     "newBadges": 0
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_card",
+    "v": "rich",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "card": {
+     "img": true,
+     "terms": true,
+     "title": true,
+     "date": true,
+     "excerpt": false,
+     "author": true,
+     "badges": true,
+     "tags": 10,
+     "newBadges": 10
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_filter",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [],
+    "links": [],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_filter",
+    "v": "tabs",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "tabs"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-one/",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-two/",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/topic-three/",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_filter",
+    "v": "year",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "year"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?year=2026",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_filter",
+    "v": "tag",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "tag"
+    ],
+    "links": [
+     {
+      "href": "http://localhost:8086/category/topic-index/",
+      "current": "page"
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e5%88%9d%e5%bf%83%e8%80%85%e5%90%91%e3%81%91",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e5%b0%8e%e5%85%a5%e4%ba%8b%e4%be%8b",
+      "current": null
+     },
+     {
+      "href": "http://localhost:8086/category/topic-index/?tag=%e6%af%94%e8%bc%83",
+      "current": null
+     }
+    ],
+    "sort": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_filter",
+    "v": "sort",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "filterShown": [
+     "sort"
+    ],
+    "links": [],
+    "sort": {
+     "method": "get",
+     "action": "http://localhost:8086/category/topic-index/",
+     "select": true,
+     "label": true,
+     "submit": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pagination",
+    "v": "numbers",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": true,
+    "next": false,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pagination",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": false,
+    "pagination": false,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pagination",
+    "v": "load-more",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": true,
+    "next": true,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pagination",
+    "v": "prev-next",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "numbers": false,
+    "next": true,
+    "pagination": true,
+    "loadMore": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_ranking",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [],
+    "rankTop": null,
+    "listTop": 325.1875,
+    "rankInAside": null,
+    "rankItems": 0,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_ranking",
+    "v": "sidebar",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "aside"
+    ],
+    "rankTop": 1646.828125,
+    "listTop": 325.1875,
+    "rankInAside": true,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_ranking",
+    "v": "bottom",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "bottom"
+    ],
+    "rankTop": 1556.75,
+    "listTop": 325.1875,
+    "rankInAside": false,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_ranking",
+    "v": "top",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "rankShown": [
+     "top"
+    ],
+    "rankTop": 361.1875,
+    "listTop": 638.109375,
+    "rankInAside": false,
+    "rankItems": 3,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pickup",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [],
+    "pickImgs": [],
+    "pickLinks": 0,
+    "pickAboveList": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pickup",
+    "v": "top-featured",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [
+     "top-featured"
+    ],
+    "pickImgs": [
+     true
+    ],
+    "pickLinks": 3,
+    "pickAboveList": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_pickup",
+    "v": "editor-pick-box",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "pickShown": [
+     "editor-pick-box"
+    ],
+    "pickImgs": [
+     true,
+     true,
+     true
+    ],
+    "pickLinks": 3,
+    "pickAboveList": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_cta",
+    "v": "none",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [],
+    "ctaHref": null,
+    "nlForm": null,
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_cta",
+    "v": "lp-banner",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "lp-banner"
+    ],
+    "ctaHref": "http://localhost:8086/lp/",
+    "nlForm": null,
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_cta",
+    "v": "newsletter",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "newsletter"
+    ],
+    "ctaHref": null,
+    "nlForm": {
+     "method": "get",
+     "action": "#cat-newsletter",
+     "submit": 0,
+     "labelled": true,
+     "poc": "no-submit"
+    },
+    "lineGlyph": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "cat_cta",
+    "v": "line",
+    "body": true,
+    "h1Visible": 1,
+    "below44": [],
+    "deadAnchors": [],
+    "txt": {},
+    "ctaShown": [
+     "line"
+    ],
+    "ctaHref": "http://localhost:8086/category/topic-index/?wt=cat_cta:line#cat-line",
+    "nlForm": null,
+    "lineGlyph": {
+     "vis": true,
+     "size": 20,
+     "mask": true,
+     "color": "rgb(255, 255, 255)",
+     "aria": "LINE で友だち追加"
+    },
+    "pass": true
+   }
+  ],
+  "http": {
+   "links": [
+    {
+     "url": "/category/topic-index/",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/topic-one/",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/topic-two/",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/topic-three/",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/?year=2026",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/?tag=%e5%88%9d%e5%bf%83%e8%80%85%e5%90%91%e3%81%91",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/?tag=%e5%b0%8e%e5%85%a5%e4%ba%8b%e4%be%8b",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/category/topic-index/?tag=%e6%af%94%e8%bc%83",
+     "status": 200,
+     "ok": true
+    },
+    {
+     "url": "/lp/",
+     "status": 200,
+     "ok": true
+    }
+   ],
+   "sort": {
+    "defaultFirst": "読みもの 17: 横断まとめ 2",
+    "titleAscFirst": "読みもの 1: 基礎編 1",
+    "yearFirst": "読みもの 17: 横断まとめ 2",
+    "pass": true
+   }
+  },
+  "pass": true
+ },
  "contrastPass": true,
  "contrastGuardPass": true,
  "contrastVariantsPass": true,
@@ -19335,7 +22179,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 82,
+  "pass": 83,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -19420,6 +22264,7 @@
    "homeFixedOverlap": true,
    "eventFace": true,
    "eventHeroContrast": true,
+   "categoryVariants": true,
    "prAutoFixtures": true
   }
  },

@@ -4,22 +4,31 @@
 <!-- wp:group {"className":"wt-cat-head","layout":{"type":"flow"}} -->
 <div class="wp-block-group wt-cat-head">
 <!-- wp:query-title {"type":"archive","level":1,"showPrefix":false} /-->
+<!-- wp:helix-wt/category-count /-->
 <!-- wp:term-description {"className":"wt-cat-head__desc"} /-->
 </div>
 <!-- /wp:group -->
+<!-- wp:helix-wt/category-lead /-->
 <!-- wp:helix-wt/category-children /-->
+<!-- wp:helix-wt/category-filter /-->
 <!-- wp:group {"className":"wt-cat-layout","layout":{"type":"default"}} -->
 <div class="wp-block-group wt-cat-layout">
 <!-- wp:group {"className":"wt-cat-primary","layout":{"type":"flow"}} -->
 <div class="wp-block-group wt-cat-primary">
+<!-- wp:helix-wt/category-ranking {"slot":"top"} /-->
+<!-- wp:helix-wt/category-pickup /-->
 <!-- wp:query {"queryId":11,"query":{"perPage":6,"inherit":true}} -->
-<div class="wp-block-query wt-cat-primary-list">
+<div class="wp-block-query wt-cat-primary-list" id="list">
 <!-- wp:post-template {"className":"wt-cat-list","layout":{"type":"grid","columnCount":3}} -->
 <!-- wp:group {"className":"wt-cat-card","layout":{"type":"flow"}} -->
 <div class="wp-block-group wt-cat-card"><!-- wp:post-featured-image {"aspectRatio":"16/9","isLink":true} /-->
 <!-- wp:post-terms {"term":"category","className":"wt-cat-card__terms","fontSize":"xs"} /-->
 <!-- wp:post-title {"level":2,"isLink":true,"fontSize":"l"} /-->
-<!-- wp:post-date {"fontSize":"xs"} /-->
+<!-- wp:group {"className":"wt-cat-card__meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group wt-cat-card__meta"><!-- wp:post-date {"fontSize":"xs"} /-->
+<!-- wp:post-author-name {"className":"wt-cat-card__author","fontSize":"xs"} /-->
+<!-- wp:helix-wt/card-badges /--></div>
+<!-- /wp:group -->
 <!-- wp:post-excerpt {"className":"wt-cat-card__excerpt","moreText":""} /--></div>
 <!-- /wp:group -->
 <!-- /wp:post-template -->
@@ -29,9 +38,16 @@
 <!-- wp:html --><button class="wt-load-more" type="button" data-wt-load-more>さらに読む</button><!-- /wp:html -->
 </div>
 <!-- /wp:query -->
+<!-- wp:helix-wt/category-ranking {"slot":"bottom"} /-->
+<!-- wp:helix-wt/category-cta /-->
 </div>
 <!-- /wp:group -->
-<!-- wp:helix-wt/category-ranking /-->
+<!-- wp:group {"tagName":"aside","className":"wt-cat-aside","layout":{"type":"flow"}} -->
+<aside class="wp-block-group wt-cat-aside">
+<!-- wp:helix-wt/category-ranking {"slot":"aside"} /-->
+<!-- wp:helix-wt/category-sidebar /-->
+</aside>
+<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 <!-- wp:helix-wt/category-minihome /-->
