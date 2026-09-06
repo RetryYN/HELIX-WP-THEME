@@ -1696,7 +1696,9 @@ body.wt-side-layout-both .wt-side-layout{grid-template-columns:200px minmax(0,1f
 body.wt-side-layout-both .wt-side--left{order:-1}
 body.wt-side-layout-right .wt-side--right,body.wt-side-layout-left .wt-side--right,body.wt-side-layout-both .wt-side--right,body.wt-side-layout-both .wt-side--left{display:block}
 /* 追尾 4 型 */
-body.wt-side-sticky-whole .wt-side{position:sticky;top:calc(var(--wt-header-h,64px) + 1rem);max-height:calc(100vh - var(--wt-header-h,64px) - 2rem);overflow:auto}
+body.wt-side-sticky-whole .wt-side{align-self:start;position:sticky;top:calc(var(--wt-header-h,64px) + 1rem);max-height:calc(100vh - var(--wt-header-h,64px) - 2rem);overflow:auto}
+/* last-widget / toc-only: aside を本文の高さまで伸ばさないと sticky の子が動く余地が無い（Astra 是正: align-items:start の grid では aside が内容高で止まる） */
+body.wt-side-sticky-last-widget .wt-side--right,body.wt-side-sticky-toc-only .wt-side--right{align-self:stretch}
 body.wt-side-sticky-last-widget .wt-side--right>.wt-side-widget:last-child{position:sticky;top:calc(var(--wt-header-h,64px) + 1rem)}
 body.wt-side-sticky-toc-only .wt-side-widget--toc-sticky{position:sticky;top:calc(var(--wt-header-h,64px) + 1rem)}
 }
@@ -1716,7 +1718,7 @@ body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-sid
 .wt-side-tags{display:flex;flex-wrap:wrap;gap:.35rem}.wt-side-tags li{border:0}.wt-side-tags a{min-height:44px;padding:0 .8rem;border-radius:999px;background:var(--wp--preset--color--surface);font-size:var(--wp--preset--font-size--s)}
 .wt-side-banner{display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:.25rem;min-height:96px;padding:1rem;border-radius:var(--wp--custom--radius-m);background:linear-gradient(135deg,var(--wp--preset--color--accent),var(--wp--preset--color--contrast));color:#fff!important}.wt-side-banner .wt-eyebrow{color:rgba(255,255,255,.8);margin:0}.wt-side-banner b{font-size:var(--wp--preset--font-size--l)}.wt-side-banner>span:last-child{font-size:var(--wp--preset--font-size--s)}
 .wt-side-banner--recruit{padding:0;overflow:hidden;background:var(--wp--preset--color--contrast)}.wt-side-banner--recruit img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;opacity:.7}.wt-side-banner--recruit b{padding:0 1rem 1rem}
-.wt-side-toc ol ol{padding-left:1rem}.wt-side-toc a{justify-content:flex-start;min-height:44px;font-size:var(--wp--preset--font-size--s)}
+.wt-side-toc ol ol{padding-left:1rem}.wt-side-tocdd summary{display:flex;align-items:center;min-height:44px;font-weight:700;cursor:pointer}.wt-side-tocdd ol{margin-top:.25rem}.wt-side-toc a{justify-content:flex-start;min-height:44px;font-size:var(--wp--preset--font-size--s)}
 .wt-side-newsletter p{margin:0 0 .5rem;font-size:var(--wp--preset--font-size--s)}.wt-side-newsletter input{width:100%;min-height:44px;padding:0 .75rem;margin-bottom:.5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);font:inherit}.wt-side-newsletter .wt-lp-cta-action{width:100%;margin:0}
 .wt-side-sns{display:flex;gap:.5rem}.wt-side-sns li{border:0}.wt-side-sns a{width:44px;height:44px;justify-content:center;border-radius:50%;background:var(--wp--preset--color--contrast);color:#fff}
 .wt-side-calendar table{width:100%;border-collapse:collapse;font-size:var(--wp--preset--font-size--s)}.wt-side-calendar caption{font-weight:700;padding:.25rem 0}.wt-side-calendar th,.wt-side-calendar td{text-align:center;padding:.25rem 0}.wt-side-calendar td a{display:inline-flex;justify-content:center;min-width:44px;min-height:44px;align-items:center;color:var(--wp--preset--color--accent);font-weight:700}.wt-side-calendar .wp-calendar-nav{display:flex;justify-content:space-between;margin-top:.25rem}.wt-side-calendar .wp-calendar-nav a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:0 .5rem}

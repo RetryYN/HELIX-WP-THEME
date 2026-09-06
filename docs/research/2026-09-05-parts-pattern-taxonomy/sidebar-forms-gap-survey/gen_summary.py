@@ -79,7 +79,7 @@ s, n = multi(GF, 'faces_present'); w(f"- **faces_present**（複数選択、n={n
 s, n = multi(GF, 'parts_present'); w(f"- **parts_present**（複数選択、n={n}）: " + s + "。")
 w("- 語彙外（other:*）は notes から行ごとに手で符号化したもので、上の 2 行に含めて数えている（page- = 独立ページ、sec- = 区間、link- = 導線、接頭辞なし = 部品）。§3 末尾の集約はこの other:* を Claude がまとめたもの。")
 w("")
-w("### 3a. 試作 03 との突き合わせ（左 = 観察の出現率、右 = 試作 03 の現状。現状の列は Claude が試作の軸 / pattern / template から転記した固定表）")
+w("### 3a. 試作 03 との突き合わせ（左 = 観察の出現率、右 = 試作 03 の現状 = **段 10 着手前**の状態。現状の列は Claude が試作の軸 / pattern / template から転記した固定表で、段 10 で共通サイドバーとメガメニュー等を追加した後は変わる）")
 w("")
 fc = Counter(); [fc.update(set(split(e['faces_present']))) for e in GF]
 pc = Counter(); [pc.update(set(split(e['parts_present']))) for e in GF]

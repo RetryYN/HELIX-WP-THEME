@@ -887,7 +887,7 @@
   },
   "side-sticky": {
    "label": "サイドバー追尾",
-   "desc": "PC でのサイドバーの追尾（台帳: last-widget 48% / toc-only 34% / none 14% / whole 5%）。",
+   "desc": "PC でのサイドバーの追尾（台帳、欠測除外 n=42: toc-only 43% / last-widget 40% / none 12% / whole 5%）。last-widget / toc-only では aside を本文の高さまで伸ばす（伸ばさないと sticky が動けない）。",
    "variants": {
     "none": "追尾なし。",
     "whole": "サイドバー全体が追尾（高さは viewport 内でスクロール）。",
@@ -906,14 +906,14 @@
   },
   "side-set": {
    "label": "サイドバーのウィジェットセット",
-   "desc": "区分別の観察順（台帳 §1）。ウィジェット 19 種: search / profile / categories / popular-ranking（PoC は日付順）/ new-posts / tags / cta-banner / toc-sticky（記事の見出しから生成。見出しの無い面では出さない）/ newsletter（form を使わず送信しない）/ sns-follow / archive / calendar / ad（ダミー枠）/ related-posts / event-list / contact-box / tel-box / banner-stack / recruit。",
+   "desc": "区分別の観察順（台帳 §1）。ウィジェット 20 種 = 観察 18 種（search / profile / categories / popular-ranking（PoC は日付順）/ new-posts / tags / cta-banner / toc-sticky（記事の見出しから生成。見出しの無い面では出さない）/ toc-dropdown（折りたたみ目次。台帳 other:toc-dropdown）/ newsletter（form を使わず送信しない）/ sns-follow / archive / ad（ダミー枠）/ related-posts / event-list / contact-box / banner-stack / recruit）+ 未観察 2 種（calendar / tel-box、Claude 案）。",
    "variants": {
     "media": "比較メディア（C n=18）: 検索 → カテゴリ → 人気 → 目次 → CTA → 広告枠 → 関連（既定）。",
     "blog": "個人 / ポータル（P n=23）: 検索 → プロフィール → カテゴリ → 人気 → 新着 → 月別 → タグ → SNS。",
     "owned": "オウンドメディア（B n=7）: 検索 → カテゴリ → 人気 → 新着 → タグ → ニュースレター → 採用 → CTA。",
     "corporate": "固定ページ / HP 向け（Claude 案。観察は少数）: 問い合わせ → 電話 → 新着 → イベント → バナー。",
     "minimal": "ポータル記事の最小: 人気 → 関連 → バナー。",
-    "full": "全 19 種。"
+    "full": "全 20 種。"
    }
   },
   "side-nav": {

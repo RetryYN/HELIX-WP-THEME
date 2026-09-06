@@ -81,7 +81,7 @@ function wt_axes() {
 		// 段 10（2026-09-06 PO 反応 21 回目 WT-EVT-0289「進めて」、台帳 research-r21 sidebar n=48）: 記事・固定ページ・HP に共通のサイドバーとサイドナビ。
 		// 既定 side_layout=none は据え置き（観察は記事で right 92% だが、記事面の既定変更は PO 判断待ち。README §2.30）
 		'side_layout' => array( 'none', array( 'none', 'right', 'left', 'both' ) ), // right 85% / both 10% / left 2% / none 2%
-		'side_sticky' => array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) ), // last-widget 48% / toc-only 34% / none 14% / whole 5%
+		'side_sticky' => array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) ), // 台帳（欠測除外 n=42）: toc-only 43% / last-widget 40% / none 12% / whole 5%。既定 last-widget は暫定（toc-only は記事以外で目次が無い）
 		'side_sp'     => array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) ), // 要約では判定できないため 3 型を持つ（前回台帳 article/sp は none 93%）
 		'side_set'    => array( 'media', array( 'media', 'blog', 'owned', 'corporate', 'minimal', 'full' ) ), // 区分別の上位ウィジェット順（C / P / B / 固定ページ・HP / 最小 / 全種）
 		'side_nav'    => array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) ), // mega-menu 35% / none 35% / toc-side 23% / 他 2% ずつ // 主集計 n=8: none 62% / icons 38%。add-to-calendar は観察に無い Claude 案
@@ -687,7 +687,7 @@ function wt_render_sns_feed_embed() {
 register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
 // ---------- 段 10: 共通サイドバー（記事 / 固定ページ / HP。WT-EVT-0289、台帳 research-r21 sidebar n=48） ----------
-// ウィジェット 18 種は観察の全種（WT-EVT-0288「最大数」）。セットは区分別の上位順。カテゴリ面の cat_sidebar 3 型は段 6 のまま残す（統合は次段）
+// ウィジェット 20 種 = 台帳の観察 18 種（other:toc-dropdown を含む）+ 未観察 2 種（calendar / tel-box、語彙にあり Claude 案）。セットは区分別の上位順。カテゴリ面の cat_sidebar 3 型は段 6 のまま残す（統合は次段）
 function wt_side_sets() {
 	return array(
 		'media'     => array( 'search', 'categories', 'popular-ranking', 'toc-sticky', 'cta-banner', 'ad', 'related-posts' ), // C 比較メディア n=18 の上位
@@ -695,7 +695,7 @@ function wt_side_sets() {
 		'owned'     => array( 'search', 'categories', 'popular-ranking', 'new-posts', 'tags', 'newsletter', 'recruit', 'cta-banner' ), // B オウンドメディア n=7
 		'corporate' => array( 'contact-box', 'tel-box', 'new-posts', 'event-list', 'banner-stack' ), // 固定ページ / HP 向け（観察の corporate 系は少数。Claude 案）
 		'minimal'   => array( 'popular-ranking', 'related-posts', 'banner-stack' ), // ポータル記事の最小構成
-		'full'      => array( 'search', 'profile', 'categories', 'popular-ranking', 'new-posts', 'tags', 'cta-banner', 'toc-sticky', 'newsletter', 'sns-follow', 'archive', 'calendar', 'ad', 'related-posts', 'event-list', 'contact-box', 'tel-box', 'banner-stack', 'recruit' ), // 全種
+		'full'      => array( 'search', 'profile', 'categories', 'popular-ranking', 'new-posts', 'tags', 'cta-banner', 'toc-sticky', 'toc-dropdown', 'newsletter', 'sns-follow', 'archive', 'calendar', 'ad', 'related-posts', 'event-list', 'contact-box', 'tel-box', 'banner-stack', 'recruit' ), // 全種（20）
 	);
 }
 function wt_side_widget( $key, $sfx = '' ) { // $sfx: 左カラム用の id 接尾辞（右と同じウィジェットを出すときの id 重複を避ける）
@@ -741,6 +741,12 @@ function wt_side_widget( $key, $sfx = '' ) { // $sfx: 左カラム用の id 接�
 			if ( is_singular( 'post' ) ) { list( $h2, $items ) = wt_toc_items( wt_toc_assign_ids( do_blocks( get_post_field( 'post_content', get_queried_object_id() ) ) ) ); } // 本文は pattern 参照のことがあるので block を展開してから（the_content の filter は do_blocks（9）→ 目次（12）の順で、id の付与順は同じ）
 			if ( $h2 < 1 ) { return ''; } // 見出しが無い面では出さない（届かない導線を作らない）
 			$o .= $h( '目次' ) . '<nav class="wt-side-toc" aria-label="目次（サイド）"><ol>' . $items . '</ol></nav>';
+			break;
+		case 'toc-dropdown': // 台帳 other:toc-dropdown（サイドの折りたたみ目次）
+			$items = ''; $h2 = 0;
+			if ( is_singular( 'post' ) ) { list( $h2, $items ) = wt_toc_items( wt_toc_assign_ids( do_blocks( get_post_field( 'post_content', get_queried_object_id() ) ) ) ); }
+			if ( $h2 < 1 ) { return ''; }
+			$o .= $h( '目次', '（開閉）' ) . '<details class="wt-side-tocdd"><summary>この記事の内容</summary><nav class="wt-side-toc" aria-label="目次（サイド・開閉）"><ol>' . $items . '</ol></nav></details>';
 			break;
 		case 'newsletter':
 			$o .= $h( 'ニュースレター' ) . '<div class="wt-side-newsletter" role="group" aria-labelledby="wt-side-h-newsletter"><p>週 1 回、新着と比較の更新をお届け。</p><label class="screen-reader-text" for="wt-side-nl">メールアドレス</label><input id="wt-side-nl" type="email" name="email" placeholder="email@example.invalid" autocomplete="email"><button type="button" class="wt-lp-cta-action" aria-describedby="wt-side-nl-note">登録する</button><p id="wt-side-nl-note" class="wt-lp-form__note">PoC のため送信しない（form 要素を使わない）。</p></div>';

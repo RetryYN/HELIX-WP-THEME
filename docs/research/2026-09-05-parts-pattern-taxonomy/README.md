@@ -101,7 +101,7 @@ PO 反応 17 回目「HPページは？イベントとかが組めるページ�
 
 「進めて。あとフォームの項目追加とかの項目調査。ほかのサイト見て抜け漏れがないか徹底的に調べて。」を受けた 3 系統の同時収集。固有名・URL は書かない（対応表はリポ外）。summary は `gen_summary.py` で 3 つの observations.json から全生成。
 
-- サイドバー / サイドナビ: 50 件（取得 48、サイドバーあり 47。記事 39 / トップ 6 / カテゴリ 2 / 固定 1）。配置 right 85% / both 10%、追尾 last-widget 48% / toc-only 34%、ウィジェット上位 popular-ranking 87% / categories 79% / search 70% / new-posts 60% / cta-banner 57%、先頭は search 68%、サイドナビ mega-menu 35% / none 35% / toc-side 23%。SP の扱いは要約で判定できず（drawer 1 件）。
+- サイドバー / サイドナビ: 50 件（取得 48、サイドバーあり 47。記事 39 / トップ 6 / カテゴリ 2 / 固定 1）。配置 right 85% / both 10%、追尾（欠測除外 n=42）toc-only 43% / last-widget 40%、ウィジェット上位 popular-ranking 87% / categories 79% / search 70% / new-posts 60% / cta-banner 57%、先頭は search 68%、サイドナビ mega-menu 35% / none 35% / toc-side 23%。SP の扱いは要約で判定できず（drawer 1 件）。
 - フォーム: 51 件（取得 42、本体を観察 31 / 無いと確認 5 / 判定できない 6）。種別 contact 43% / download 21% / reservation 12%、項目は name 97% / email 94% / message・tel 77% / address・consent-checkbox 61% / privacy-link 58% / postal 52%、必須表示 asterisk 81%、1col 77% / steps 19%、確認画面あり 9/10、外部フォームサービスへの依存が学校・クリニック・SaaS に多い。
 - 抜け漏れ（HP から見えた面・パーツ）: 45 件。試作 03 に無い面 = 検索結果 / タグ / 著者 / 日付アーカイブ / 完了 / プライバシー・規約 / サイトマップ / FAQ / 採用 / 会社概要 / 問い合わせ / 用語集、無いパーツ = パンくず / メガメニュー / cookie 同意 / 言語切替 / チャット枠 / ポップアップ / 無限スクロール / コメント / ライトボックス / 読了プログレス / 検索サジェスト（§3a の対照表）。語彙外は notes から行ごとに手で other:* に符号化（page- / sec- / link- の区別）。
 - レビュー: codex-astra 14 巡（1〜13 巡目「不可」: 分母、未観察と不在の分離、第三者サービスを指す語、語彙の異表記、notes にだけある観察の符号化漏れ、機械付与の過剰、面 / 区間 / 導線の区別、追尾判定とウィジェットの対応 → 14 巡目「可」）。

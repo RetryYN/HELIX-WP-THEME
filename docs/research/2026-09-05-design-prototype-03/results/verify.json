@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.936758)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.88475)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26696,8 +26696,8 @@
     "viewport": 1440,
     "digits": [
      "38",
-     "13",
-     "3"
+     "11",
+     "48"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26844,8 +26844,8 @@
     "viewport": 390,
     "digits": [
      "38",
-     "13",
-     "3"
+     "11",
+     "48"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -27091,6 +27091,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27156,6 +27157,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27221,6 +27223,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27286,6 +27289,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27351,6 +27355,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27416,6 +27421,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27481,6 +27487,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27546,6 +27553,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27611,6 +27619,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27661,14 +27670,36 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": {
      "open": true,
-     "widgets": 7,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "toc-sticky",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -27719,6 +27750,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27784,6 +27816,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27851,6 +27884,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27918,6 +27952,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -27972,6 +28007,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28022,6 +28058,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28044,6 +28081,7 @@
      "tags",
      "cta-banner",
      "toc-sticky",
+     "toc-dropdown",
      "newsletter",
      "sns-follow",
      "archive",
@@ -28069,6 +28107,7 @@
      "tags",
      "cta-banner",
      "toc-sticky",
+     "toc-dropdown",
      "newsletter",
      "sns-follow",
      "archive",
@@ -28111,6 +28150,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28176,6 +28216,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28241,11 +28282,13 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": {
      "open": true,
      "expanded": "true",
      "links": 9,
+     "panelVisible": true,
      "closed": true
     },
     "pass": true
@@ -28311,6 +28354,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28376,6 +28420,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28441,14 +28486,36 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": {
      "open": true,
-     "widgets": 7,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "toc-sticky",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -28514,6 +28581,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28563,6 +28631,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28626,6 +28695,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28689,6 +28759,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28752,6 +28823,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28815,6 +28887,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28878,6 +28951,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -28941,6 +29015,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29004,6 +29079,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29067,6 +29143,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29116,14 +29193,35 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": {
      "open": true,
-     "widgets": 6,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -29173,6 +29271,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29236,6 +29335,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29303,6 +29403,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29370,6 +29471,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29424,6 +29526,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29474,6 +29577,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29561,6 +29665,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29624,6 +29729,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29687,11 +29793,13 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": {
      "open": true,
      "expanded": "true",
      "links": 9,
+     "panelVisible": true,
      "closed": true
     },
     "pass": true
@@ -29755,6 +29863,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29818,6 +29927,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -29881,14 +29991,35 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": {
      "open": true,
-     "widgets": 6,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -29952,6 +30083,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30001,6 +30133,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30064,6 +30197,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30127,6 +30261,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30190,6 +30325,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30253,6 +30389,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30316,6 +30453,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30379,6 +30517,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30442,6 +30581,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30505,6 +30645,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30554,14 +30695,35 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": {
      "open": true,
-     "widgets": 6,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -30611,6 +30773,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30674,6 +30837,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30741,6 +30905,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30808,6 +30973,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30862,6 +31028,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30912,6 +31079,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -30999,6 +31167,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31062,6 +31231,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31125,11 +31295,13 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": {
      "open": true,
      "expanded": "true",
      "links": 9,
+     "panelVisible": true,
      "closed": true
     },
     "pass": true
@@ -31193,6 +31365,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31256,6 +31429,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31319,14 +31493,35 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": {
      "open": true,
-     "widgets": 6,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -31390,6 +31585,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31442,6 +31638,7 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31507,6 +31704,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31572,6 +31785,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31643,6 +31872,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31708,6 +31953,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "none",
+     "hasTarget": false,
+     "before": {
+      "t": null,
+      "f": 747.890625,
+      "asideH": 2359.71875,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": null,
+      "f": -752.109375
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31773,6 +32034,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "whole",
+     "hasTarget": true,
+     "before": {
+      "t": 747.890625,
+      "f": 747.890625,
+      "asideH": 808,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": 76
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31838,6 +32115,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31903,6 +32196,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "toc-only",
+     "hasTarget": true,
+     "before": {
+      "t": 1646.96875,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -1222.109375
+     },
+     "scrolledTo": 1969.96875,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -31968,6 +32277,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32033,6 +32358,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32098,6 +32439,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32163,6 +32520,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32230,6 +32603,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2555.640625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2131.109375
+     },
+     "scrolledTo": 2878.640625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32297,6 +32686,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2778.125,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2353.109375
+     },
+     "scrolledTo": 3101.125,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32351,6 +32756,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1698.390625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -1273.109375
+     },
+     "scrolledTo": 2021.390625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32401,6 +32822,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1503.21875,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -1078.109375
+     },
+     "scrolledTo": 1826.21875,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32423,6 +32860,7 @@
      "tags",
      "cta-banner",
      "toc-sticky",
+     "toc-dropdown",
      "newsletter",
      "sns-follow",
      "archive",
@@ -32448,6 +32886,7 @@
      "tags",
      "cta-banner",
      "toc-sticky",
+     "toc-dropdown",
      "newsletter",
      "sns-follow",
      "archive",
@@ -32490,6 +32929,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 5848.234375,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -5423.109375
+     },
+     "scrolledTo": 6171.234375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32555,6 +33010,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32620,11 +33091,28 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": {
      "open": true,
      "expanded": "true",
      "links": 9,
+     "panelVisible": true,
      "closed": true
     },
     "pass": true
@@ -32690,6 +33178,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32755,6 +33259,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32820,14 +33340,51 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 7315.109375,
+      "mainH": 7331.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": {
      "open": true,
-     "widgets": 7,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "toc-sticky",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -32893,6 +33450,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2840.765625,
+      "f": 747.890625,
+      "asideH": 6683.109375,
+      "mainH": 6699.109375
+     },
+     "after": {
+      "t": 76,
+      "f": -2416.109375
+     },
+     "scrolledTo": 3163.765625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -32942,6 +33515,7 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33005,6 +33579,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33068,6 +33658,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33137,6 +33743,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8314.515625,
+      "mainH": 8330.515625
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33200,6 +33822,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "none",
+     "hasTarget": false,
+     "before": {
+      "t": null,
+      "f": 182.796875,
+      "asideH": 1711.953125,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": null,
+      "f": -1317.203125
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33263,6 +33901,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "whole",
+     "hasTarget": true,
+     "before": {
+      "t": 182.796875,
+      "f": 182.796875,
+      "asideH": 808,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": 76
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33326,6 +33980,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33389,6 +34059,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "toc-only",
+     "hasTarget": false,
+     "before": {
+      "t": null,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": null,
+      "f": -1317.203125
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33452,6 +34138,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33515,6 +34217,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33578,6 +34296,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33641,6 +34375,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33708,6 +34458,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1990.546875,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -2131.203125
+     },
+     "scrolledTo": 2313.546875,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33775,6 +34541,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2213.03125,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -2353.203125
+     },
+     "scrolledTo": 2536.03125,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33829,6 +34611,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1133.296875,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1317.203125
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33879,6 +34677,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 938.125,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1317.203125
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -33966,6 +34780,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 4497.578125,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -4638.203125
+     },
+     "scrolledTo": 4820.578125,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34029,6 +34859,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34092,11 +34938,28 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": {
      "open": true,
      "expanded": "true",
      "links": 9,
+     "panelVisible": true,
      "closed": true
     },
     "pass": true
@@ -34160,6 +35023,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8276.484375,
+      "mainH": 8292.484375
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34223,6 +35102,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34286,14 +35181,50 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": {
      "open": true,
-     "widgets": 6,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -34357,6 +35288,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1627.90625,
+      "f": 182.796875,
+      "asideH": 8355.1875,
+      "mainH": 8371.1875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768.203125
+     },
+     "scrolledTo": 1950.90625,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34406,6 +35353,7 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34469,6 +35417,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34532,6 +35496,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34601,6 +35581,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5223.671875,
+      "mainH": 5239.671875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34664,6 +35660,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "none",
+     "hasTarget": false,
+     "before": {
+      "t": null,
+      "f": 93,
+      "asideH": 1711.953125,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": null,
+      "f": -1407
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34727,6 +35739,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "whole",
+     "hasTarget": true,
+     "before": {
+      "t": 93,
+      "f": 93,
+      "asideH": 808,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": 76
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34790,6 +35818,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34853,6 +35897,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "toc-only",
+     "hasTarget": false,
+     "before": {
+      "t": null,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": null,
+      "f": -1407
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34916,6 +35976,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -34979,6 +36055,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35042,6 +36134,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35105,6 +36213,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35172,6 +36296,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1900.75,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -2131
+     },
+     "scrolledTo": 2223.75,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35239,6 +36379,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 2123.234375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -2353
+     },
+     "scrolledTo": 2446.234375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35293,6 +36449,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1043.5,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1407
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35343,6 +36515,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 848.328125,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1407
+     },
+     "scrolledTo": 1500,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35430,6 +36618,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 4407.78125,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -4638
+     },
+     "scrolledTo": 4730.78125,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35493,6 +36697,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35556,11 +36776,28 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": {
      "open": true,
      "expanded": "true",
      "links": 9,
+     "panelVisible": true,
      "closed": true
     },
     "pass": true
@@ -35624,6 +36861,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5223.8125,
+      "mainH": 5239.8125
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35687,6 +36940,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35750,14 +37019,50 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": {
      "open": true,
-     "widgets": 6,
+     "widgets": [
+      "search",
+      "categories",
+      "popular-ranking",
+      "cta-banner",
+      "ad",
+      "related-posts"
+     ],
      "expanded": "true",
      "dupIds": 0,
      "dupList": [],
      "bodyLocked": true,
-     "closed": true
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "badAnchors": [],
+     "inertOutside": true,
+     "focusInside": true,
+     "focusAfterShiftTab": true,
+     "closed": true,
+     "focusRestored": true
     },
     "megaRun": null,
     "pass": true
@@ -35821,6 +37126,22 @@
     "h1": 1,
     "viewport": 1440,
     "externalRequests": [],
+    "stickyRun": {
+     "stickyV": "last-widget",
+     "hasTarget": true,
+     "before": {
+      "t": 1538.109375,
+      "f": 93,
+      "asideH": 5189.421875,
+      "mainH": 5205.421875
+     },
+     "after": {
+      "t": 76,
+      "f": -1768
+     },
+     "scrolledTo": 1861.109375,
+     "headerH": 61
+    },
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35873,6 +37194,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -35938,6 +37260,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36003,6 +37326,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36068,6 +37392,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36133,6 +37458,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36198,6 +37524,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36263,6 +37590,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36328,6 +37656,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36393,6 +37722,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36458,6 +37788,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36508,6 +37839,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36573,6 +37905,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36640,6 +37973,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36707,6 +38041,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36761,6 +38096,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36811,6 +38147,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36833,6 +38170,7 @@
      "tags",
      "cta-banner",
      "toc-sticky",
+     "toc-dropdown",
      "newsletter",
      "sns-follow",
      "archive",
@@ -36858,6 +38196,7 @@
      "tags",
      "cta-banner",
      "toc-sticky",
+     "toc-dropdown",
      "newsletter",
      "sns-follow",
      "archive",
@@ -36900,6 +38239,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -36965,6 +38305,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37030,6 +38371,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37095,6 +38437,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37160,6 +38503,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37225,6 +38569,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37290,6 +38635,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37339,6 +38685,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37402,6 +38749,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37465,6 +38813,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37528,6 +38877,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37591,6 +38941,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37654,6 +39005,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37717,6 +39069,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37780,6 +39133,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37843,6 +39197,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37906,6 +39261,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -37955,6 +39311,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38018,6 +39375,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38085,6 +39443,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38152,6 +39511,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38206,6 +39566,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38256,6 +39617,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38343,6 +39705,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38406,6 +39769,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38469,6 +39833,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38532,6 +39897,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38595,6 +39961,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38658,6 +40025,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38721,6 +40089,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38770,6 +40139,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38833,6 +40203,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38896,6 +40267,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -38959,6 +40331,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39022,6 +40395,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39085,6 +40459,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39148,6 +40523,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39211,6 +40587,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39274,6 +40651,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39337,6 +40715,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39386,6 +40765,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39449,6 +40829,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39516,6 +40897,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39583,6 +40965,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39637,6 +41020,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39687,6 +41071,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39774,6 +41159,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39837,6 +41223,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39900,6 +41287,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -39963,6 +41351,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -40026,6 +41415,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -40089,6 +41479,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
@@ -40152,6 +41543,7 @@
     "h1": 1,
     "viewport": 390,
     "externalRequests": [],
+    "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
     "pass": true
