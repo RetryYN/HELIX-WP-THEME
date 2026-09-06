@@ -2,7 +2,7 @@
 /**
  * Title: バナー画像 CTA
  * Slug: helix-wt/cta-banner
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: banner-image 型。画像全面リンク + キャプション
  */
 $u = get_theme_file_uri( 'assets/img' );

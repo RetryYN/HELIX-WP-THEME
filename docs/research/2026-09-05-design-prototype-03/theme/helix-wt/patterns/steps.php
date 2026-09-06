@@ -2,7 +2,7 @@
 /**
  * Title: 流れ 3 ステップ
  * Slug: helix-wt/steps
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: 番号付きの流れ
  */
 ?>

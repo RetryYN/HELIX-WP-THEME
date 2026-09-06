@@ -62,17 +62,18 @@ function wt_axes() {
 		'lp_legal'     => array( 'on', array( 'on', 'off' ) ),
 		// 2026-09-06 PO 反応 17 回目 WT-EVT-0277「HP ページは？イベントとかが組めるページは？」（Claude 案）。
 		// 既定は台帳 research-r17（HP 39 件 / イベント個別募集ページ 8 件（取得 20 件から page_kind 除外後）、Astra レビュー済み）の最多型。n が小さい区分の型は「選べる型」として置く
-		'home_hero'     => array( 'text-only', array( 'text-only', 'slider', 'fullbleed', 'split', 'article-grid', 'video' ) ), // HP n=39: text-only 33% / slider 26% / fullbleed 21%（台帳 home-event-recapture）
-		'home_hero_cta' => array( 'double', array( 'double', 'single', 'none', 'tel-button' ) ), // double 62%（CTA 2 つ。用途は home_contact）
-		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media' ) ), // 用途別の区間セット
+		'home_hero'     => array( 'text-only', array( 'text-only', 'slider', 'fullbleed', 'split', 'article-grid', 'video', 'cards-carousel', 'product-shot', 'search-box' ) ), // HP n=39: text-only 33% / slider 26% / fullbleed 21%（台帳 home-event-recapture）。段8（WT-EVT-0287、台帳 home-event-recapture-v2 n=61）: fullbleed 34% / slider 28% / cards-carousel 11% / product-shot 7% / search-box 2% を追加。既定は据え置き（両台帳で最多型が一致しないため）
+		'home_hero_cta' => array( 'double', array( 'double', 'single', 'none', 'tel-button', 'search' ) ), // double 62%（CTA 2 つ。用途は home_contact）。段8: search（検索欄。v2 で 2 件）
+		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media', 'shop-school', 'school-org' ) ), // 用途別の区間セット。段8: shop-school（店舗・スクール D）/ school-org（学校法人・団体 E）を v2 の区分別上位区間から追加
 		'home_news'     => array( 'list-with-date', array( 'list-with-date', 'tabs', 'cards', 'none' ) ), // list-with-date 46%
-		'home_contact'  => array( 'tel-form', array( 'tel-form', 'form-only', 'tel-only', 'line', 'none' ) ), // tel+form 36%
+		'home_contact'  => array( 'tel-form', array( 'tel-form', 'form-only', 'tel-only', 'line', 'none', 'double-cta' ) ), // tel+form 36%。段8: double-cta（問い合わせ + 資料請求の 2 面。v2 hero_cta=double 46% の受け皿）
 		'home_fixed'    => array( 'none', array( 'none', 'float-cta', 'sp-bottom-bar', 'float-tel' ) ), // sticky-header はヘッダー既定で常時
 		'event_hero'     => array( 'key-visual', array( 'key-visual', 'photo-overlay', 'date-place-block', 'text-only' ) ), // 主集計 n=8: key-visual 50% / photo-overlay 25%（参考: 取得全体 n=20 では photo-overlay 55%）
 		'event_info'     => array( 'inline-text', array( 'inline-text', 'table', 'icon-list', 'none' ) ), // 主集計 n=8: inline-text 62%
 		'event_schedule' => array( 'none', array( 'none', 'table', 'timeline', 'accordion' ) ), // 主集計 n=8: none 38% / table 25% / timeline 12%
 		'event_speakers' => array( 'none', array( 'none', 'cards-photo', 'list', 'single-profile' ) ), // 主集計 n=8: none 50% / cards-photo 25%
-		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%
+		'event_sections' => array( 'seminar', array( 'seminar', 'conference', 'festival', 'campaign' ) ), // 段8: 区間セット 4 種（v2 主集計 n=40 の区分 A/B/C/D 別上位区間。B・C は小標本のため「選べる型」）
+		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice', 'receipt-upload', 'postcard', 'messaging-app' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%。段8: receipt-upload / postcard / messaging-app（v2 の other:* 3 語、キャンペーン D の応募経路）
 		'event_status'   => array( 'open', array( 'open', 'none', 'few-seats', 'ended' ) ), // 主集計 n=8: open 62% / ended 25% / none 12%。few-seats の実例は 0（観測不足）
 		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only', 'embed' ) ), // 主集計 n=8: none 50% / text-only 50%。embed は外部地図の埋め込み（WT-EVT-0284: WT-CAND-SNS の埋め込み方針＝遅延読込・URL は option・鍵はテーマに置かない）
 		'event_fixed'    => array( 'none', array( 'none', 'sp-bottom-bar', 'float-apply' ) ), // 主集計 n=8: none 100%（観察に無い型を Claude 案として追加）
@@ -136,8 +137,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.14' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.14' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.15' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.15' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -145,8 +146,8 @@ add_action( 'wp_enqueue_scripts', function () {
 	if ( is_singular() || is_page() ) {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
-	if ( is_front_page() ) {
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.14', $defer );
+	if ( is_front_page() || is_page() ) { // 段 8: 固定ページ用パーツ（カルーセル・カウントダウン）でも使う
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.15', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
@@ -200,6 +201,7 @@ add_filter( 'render_block_data', function ( $block ) {
 // ---------- block style ----------
 add_action( 'init', function () {
 	register_block_pattern_category( 'helix-wt', array( 'label' => 'HELIX WT' ) );
+	register_block_pattern_category( 'helix-wt-page', array( 'label' => 'HELIX WT 固定ページ用パーツ' ) ); // 段8（WT-EVT-0287「固定ページ継投で使えるパーツ」）: どの固定ページにも挿せる区間パーツ
 	$styles = array(
 		// 見出し h2（観察: plain-bold / bottom-border-2tone / icon-prefix / bar-left / underline / band-fill）
 		array( 'core/heading', 'wt-plain', '無装飾（太字）' ),
@@ -656,6 +658,23 @@ function wt_render_event_map_embed() {
 	return $out . '<address><b>サンプルホール 3F</b><br>設定された所在地<br>最寄り駅から徒歩 5 分（PoC 用の文言）</address></div>';
 }
 register_block_type( 'helix-wt/event-map-embed', array( 'render_callback' => 'wt_render_event_map_embed' ) );
+
+// ---------- 段 8: SNS フィードの外部埋め込み（固定ページ用パーツ helix-wt-page/sns-feed。地図埋め込みと同じ方針: URL は option、未設定なら外部へ接続しない、鍵はテーマに置かない） ----------
+function wt_sns_feed_embed_url() {
+	$url = get_option( 'helix_wt_sns_feed_embed_url', '' );
+	$url = is_string( $url ) ? trim( $url ) : '';
+	return ( '' !== $url && in_array( wp_parse_url( $url, PHP_URL_SCHEME ), array( 'http', 'https' ), true ) ) ? $url : '';
+}
+function wt_render_sns_feed_embed() {
+	$url = wt_sns_feed_embed_url();
+	$out = '<div class="wt-part-sns__feed" id="part-sns-feed" data-wt-embed="' . ( $url ? 'set' : 'unset' ) . '">';
+	if ( $url ) {
+		$out .= '<iframe class="wt-part-sns__frame" src="' . esc_url( $url ) . '" title="SNS の最新投稿（外部サービスの埋め込み）" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="1200" height="480"></iframe>';
+	} else {
+		$out .= '<p class="wt-part-sns__unset">SNS フィードの埋め込み URL が未設定です（option <code>helix_wt_sns_feed_embed_url</code>）。設定するまで外部の SNS サービスへは接続しません。</p>';
+	}
+	return $out . '</div>';
+}
 
 // ---------- 段 6: カテゴリ面の強化（WT-EVT-0283、台帳 category-recapture n=54） ----------
 function wt_category_posts( $term, $n, $offset = 0 ) {

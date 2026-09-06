@@ -2,7 +2,7 @@
 /**
  * Title: 料金 3 プラン
  * Slug: helix-wt/pricing
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: 中央を推奨プラン
  */
 ?>

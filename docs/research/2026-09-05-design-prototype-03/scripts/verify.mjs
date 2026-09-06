@@ -1436,13 +1436,14 @@ const EVENT = "/event/";
 // (h) homeFace: 各軸の全型で「body に軸 class・当該型だけ可視・他型は非可視」。hero は 6 型、CTA 4 型（none は hero 内の CTA が 0）、区間セット 3 種の表示区間と順序、news 4 型、contact 5 型、fixed 4 型（SP/PC の出し分け）。SP/PC/SP JS 無効
 {
   const AX = {
-    home_hero: ["text-only", "slider", "fullbleed", "split", "article-grid", "video"],
-    home_hero_cta: ["double", "single", "none", "tel-button"],
+    home_hero: ["text-only", "slider", "fullbleed", "split", "article-grid", "video", "cards-carousel", "product-shot", "search-box"], // 段 8: +3
+    home_hero_cta: ["double", "single", "none", "tel-button", "search"], // 段 8: +search（form ではなく role=search の div。暗黙送信なし）
     home_news: ["list-with-date", "tabs", "cards", "none"],
-    home_contact: ["tel-form", "form-only", "tel-only", "line", "none"],
+    home_contact: ["tel-form", "form-only", "tel-only", "line", "none", "double-cta"], // 段 8: +double-cta（フォームなし）
     home_fixed: ["none", "float-cta", "sp-bottom-bar", "float-tel"],
   };
-  const SETS = { corporate: ["news", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"] };
+  // 段 8: corporate に greeting、service に logos を追加、shop-school / school-org を新設（台帳 v2 の区分別上位区間）
+  const SETS = { corporate: ["news", "greeting", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "logos", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"], "shop-school": ["news", "service-cards", "features", "stores", "events", "price", "faq", "recruit", "banner-row", "access", "contact"], "school-org": ["greeting", "news", "features", "service-cards", "events", "gallery", "sns", "history", "logos", "banner-row", "cta-band", "contact"] };
   const read = async (cfg, dev, js) => {
     const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
     for (const [axis, values] of Object.entries(AX)) {
@@ -1474,13 +1475,16 @@ const EVENT = "/event/";
       const order = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home__sections > .wt-home__section")).filter(vis).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top).map((s) => Array.from(s.classList).find((c) => c.startsWith("wt-home__section--")).replace("wt-home__section--", "")); }, VIS_SRC);
       const anchors = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home a[href^='#'], .wt-home-fixed[href^='#']")).filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, text: a.textContent.trim().slice(0, 20), targetVisible: !!t && vis(t) }; }); }, VIS_SRC);
       const deadAnchors = anchors.filter((a) => !a.targetVisible);
-      sets.push({ dev, js, set, order, anchors: anchors.length, deadAnchors, pass: JSON.stringify(order) === JSON.stringify(expect) && anchors.length >= 2 && deadAnchors.length === 0 });
+      // 段 8: 区間内の固定ページ用パーツ（wt-part）が可視で、見出し h2 を持つこと。可視の画像に読込失敗（complete かつ naturalWidth 0）がないこと
+      const parts = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home__section .wt-part")).filter(vis).map((el) => ({ part: Array.from(el.classList).find((c) => c.startsWith("wt-part--")), h2: !!el.querySelector("h2") && vis(el.querySelector("h2")), broken: Array.from(el.querySelectorAll("img")).filter((i) => vis(i) && i.complete && i.naturalWidth === 0).length })); }, VIS_SRC);
+      const expectParts = { corporate: 1, service: 1, media: 0, "shop-school": 2, "school-org": 6 }[set];
+      sets.push({ dev, js, set, order, anchors: anchors.length, deadAnchors, parts, pass: JSON.stringify(order) === JSON.stringify(expect) && anchors.length >= 2 && deadAnchors.length === 0 && parts.length === expectParts && parts.every((x) => x.h2 && x.broken === 0) });
     }
     await ctx.close(); return { results, sets };
   };
   const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
   const all = [...sp.results, ...pc.results, ...spNoJs.results, ...sp.sets, ...pc.sets, ...spNoJs.sets];
-  out.homeFace = { sp, pc, spNoJs, pass: all.length === (23 * 3 + 9) && all.every((x) => x.pass) };
+  out.homeFace = { sp, pc, spNoJs, pass: all.length === (28 * 3 + 15) && all.every((x) => x.pass) };
 }
 // (i) homeHeroContrast: 白文字を置く hero（fullbleed / slider）は ::before の gradient を stop ごとに解析し、文字矩形の上端位置（下端からの %）の α を線形補間して白背景でも 4.5:1（α ≥ .82）を要求。文字は hero 矩形内。テキスト hero は文字色コントラスト
 {
@@ -1512,8 +1516,10 @@ const EVENT = "/event/";
 }
 // (k) eventFace: 各軸の全型（hero 4 / info 4 / schedule 4 / speakers 4 / apply 4 / status 4 / map 3 / fixed 3 / share 3）で軸 class・当該型だけ可視、closed-notice で申込導線が消える、フォームは非送信、44px。SP/PC/SP JS 無効
 {
-  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"] };
-  const PREFIX = { event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
+  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 4 種
+  // 段 8: 区間セットごとの表示区間と順序（CSS の order と一致させる）
+  const ESETS = { seminar: ["info", "overview", "audience", "schedule", "speakers", "tickets", "apply", "access", "faq", "organizer", "notes"], conference: ["info", "overview", "schedule", "speakers", "tickets", "sponsors", "apply", "access", "past", "organizer", "notes"], festival: ["info", "overview", "countdown", "schedule", "gallery", "apply", "access", "faq", "sponsors", "past", "organizer", "notes"], campaign: ["info", "overview", "prizes", "products", "entry", "apply", "judges", "organizer", "notes"] };
+  const PREFIX = { event_sections: ".wt-event-sections--",  event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
   // embed の未設定状態を先に用意する（wp-cli 必須。option を消し、消えたことを確認。取れなければ eventFace は fail）
   const wpE = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }) : null;
   const optionUnset = () => { try { wpE(["option", "get", "helix_wt_event_map_embed_url"]); return false; } catch (_) { return true; } };
@@ -1531,14 +1537,20 @@ const EVENT = "/event/";
         const forms = Array.from(document.querySelectorAll(".wt-event form")).filter(vis).map((f) => ({ method: (f.getAttribute("method") || "get").toLowerCase(), action: f.getAttribute("action") || "", submit: f.querySelectorAll("button:not([type]), button[type=submit], input[type=submit], input[type=image]").length, inputs: f.querySelectorAll("input:not([type=hidden]), select, textarea").length, labelled: Array.from(f.querySelectorAll("input:not([type=hidden]):not([type=checkbox]), select")).every((i) => i.id && f.querySelector(`label[for="${i.id}"]`)) }));
         const applyLinks = Array.from(document.querySelectorAll(".wt-event-apply-link, .wt-event-fixed")).filter(vis).length;
         const anchors = Array.from(document.querySelectorAll(".wt-event a[href^='#'], .wt-event-fixed a[href^='#'], a.wt-event-fixed[href^='#']")).filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, targetVisible: !!t && vis(t) }; }); const deadAnchors = anchors.filter((a) => !a.targetVisible).map((a) => a.href);
-        return { body: document.body.classList.contains(`wt-${cls}-${v}`), shown, heroVisible: Array.from(document.querySelectorAll(".wt-event-hero")).filter(vis).length, h1Visible: Array.from(document.querySelectorAll("h1")).filter(vis).length, below44, forms, applyLinks, hasImgRole: axis === "event_map" && v === "static-image" ? !!document.querySelector(".wt-event-map--static-image img[alt]") : null, embed: axis === "event_map" && v === "embed" ? (() => { const box = document.querySelector(".wt-event-map--embed"); const f = box ? box.querySelector("iframe") : null; const ext = Array.from(document.querySelectorAll("iframe, script[src], img[src]")).map((e) => e.src || "").filter((s) => s && new URL(s, location.href).host !== location.host); return { state: box ? box.getAttribute("data-wt-embed") : null, iframe: !!f, lazy: f ? f.getAttribute("loading") === "lazy" : null, title: f ? (f.getAttribute("title") || "").length > 0 : null, srcHost: f ? new URL(f.src).host : null, sameHost: f ? new URL(f.src).host === location.host : null, unsetNote: !f && !!(box && box.querySelector(".wt-event-map__unset")), externalHosts: ext.slice(0, 5) }; })() : null, anchors: anchors.length, deadAnchors }; }, [axis, v, values, PREFIX[axis], VIS_SRC]);
-      let expectShown = v === "none" ? [] : [v];
+        const sectionOrder = Array.from(document.querySelectorAll(".wt-event__sections > .wt-event__section")).filter(vis).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top).map((s) => Array.from(s.classList).find((c) => c.startsWith("wt-event__section--")).replace("wt-event__section--", ""));
+        const parts = Array.from(document.querySelectorAll(".wt-event__section .wt-part")).filter(vis).map((el) => ({ part: Array.from(el.classList).find((c) => c.startsWith("wt-part--")), h2: !!el.querySelector("h2") && vis(el.querySelector("h2")), broken: Array.from(el.querySelectorAll("img")).filter((i) => vis(i) && i.complete && i.naturalWidth === 0).length }));
+        return { body: document.body.classList.contains(`wt-${cls}-${v}`), shown, sectionOrder, parts, heroVisible: Array.from(document.querySelectorAll(".wt-event-hero")).filter(vis).length, h1Visible: Array.from(document.querySelectorAll("h1")).filter(vis).length, below44, forms, applyLinks, hasImgRole: axis === "event_map" && v === "static-image" ? !!document.querySelector(".wt-event-map--static-image img[alt]") : null, embed: axis === "event_map" && v === "embed" ? (() => { const box = document.querySelector(".wt-event-map--embed"); const f = box ? box.querySelector("iframe") : null; const ext = Array.from(document.querySelectorAll("iframe, script[src], img[src]")).map((e) => e.src || "").filter((s) => s && new URL(s, location.href).host !== location.host); return { state: box ? box.getAttribute("data-wt-embed") : null, iframe: !!f, lazy: f ? f.getAttribute("loading") === "lazy" : null, title: f ? (f.getAttribute("title") || "").length > 0 : null, srcHost: f ? new URL(f.src).host : null, sameHost: f ? new URL(f.src).host === location.host : null, unsetNote: !f && !!(box && box.querySelector(".wt-event-map__unset")), externalHosts: ext.slice(0, 5) }; })() : null, anchors: anchors.length, deadAnchors }; }, [axis, v, values, PREFIX[axis], VIS_SRC]);
+      let expectShown = v === "none" || axis === "event_sections" ? [] : [v];
       if (axis === "event_fixed" && dev === "pc" && v === "sp-bottom-bar") expectShown = [];
+      // 既定は event_info=inline-text / event_schedule=none / event_speakers=none / event_map=none。軸 none で隠れる区間はセットの並びから除く（当該軸の行はその値、他の行は既定）
+      const hiddenBy = { info: "event_info", schedule: "event_schedule", speakers: "event_speakers", access: "event_map" }; const axisDefault = { event_info: "inline-text", event_schedule: "none", event_speakers: "none", event_map: "none" };
+      const expectOrder = ESETS[axis === "event_sections" ? v : "seminar"].filter((sec) => { const ax = hiddenBy[sec]; if (!ax) return true; const val = axis === ax ? v : axisDefault[ax]; return val !== "none"; });
       const expectForms = axis === "event_apply" ? (v === "inline-form" ? 1 : 0) : 1; // 既定 event_apply=inline-form はフォーム 1 つ
       r.externalRequests = Array.from(new Set(external)); // DOM の src 列挙ではなく実際に出た要求
       let pass = r.body && r.externalRequests.length === 0 && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.hasImgRole === null || r.hasImgRole === true) && r.deadAnchors.length === 0 && (r.embed === null || (unsetPrepared && r.embed.state === "unset" && r.embed.externalHosts.length === 0 && r.embed.unsetNote && !r.embed.iframe)); // 未設定状態を明示判定（設定済みでは通さない）
       if (axis === "event_apply") pass = pass && (v === "closed-notice" ? r.applyLinks === 0 : r.applyLinks >= 1);
-      results.push({ dev, js, axis, v, expectForms, ...r, pass });
+      pass = pass && JSON.stringify(r.sectionOrder) === JSON.stringify(expectOrder) && r.parts.every((x) => x.h2 && x.broken === 0) && r.parts.length === expectOrder.filter((x) => ["audience", "organizer", "prizes", "products", "entry", "judges", "gallery", "countdown"].includes(x)).length; // 段 8: 区間の集合と順序、パーツ区間の見出し・画像
+      results.push({ dev, js, axis, v, expectForms, expectOrder, ...r, pass });
     }
     await ctx.close(); return results; };
   const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
@@ -1563,7 +1575,7 @@ const EVENT = "/event/";
     }
   }
   const all = [...sp, ...pc, ...spNoJs];
-  out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 34 * 3 && all.every((x) => x.pass) && embedSet.pass };
+  out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 41 * 3 && all.every((x) => x.pass) && embedSet.pass };
 }
 // (l) eventHeroContrast: photo-overlay のスクリム α（下端 .88）と白文字、他 3 型の文字色 4.5:1、受付状態バッジ 3 型の文字コントラスト
 {
@@ -1580,6 +1592,52 @@ const EVENT = "/event/";
   }
   await ctx.close(); }
   out.eventHeroContrast = { rows: rows.map((r, i) => ({ dev: ["pc", "sp", "sp"][Math.floor(i / 4)], js: i < 8, ...r })), pass: rows.length === 12 && rows.every((r) => r.pass) };
+}
+// (n) pageParts（段 8、WT-EVT-0287「固定ページ継投で使えるパーツ」）: 通常の固定ページ（/parts/、page.html）に helix-wt-page/* を 15 個並べた実ページで、各パーツが可視・h2 あり・幅 1120px 内側で全幅（本文幅 680px に閉じ込められない）・可視画像に読込失敗なし・操作要素 44px・form なし（検索欄は role=search の div）・#導線の到達先が可視・外部 http(s) 要求なし。
+// カウントダウンは JS ありで数字、JS 無効で "--" と開催日の文字。SNS フィードは未設定で外部接続なし、option（同一ホスト URL）設定で遅延 iframe、終了時に option を消して未設定へ戻る（地図埋め込みと同じ手順）
+{
+  const PARTS = ["greeting", "logos-row", "stores", "event-list", "gallery", "sns-feed", "timeline", "countdown", "target-audience", "organizer", "tickets", "prizes", "entry-steps", "judges", "target-products"];
+  const wpP = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }) : null;
+  const snsUnset = () => { try { wpP(["option", "get", "helix_wt_sns_feed_embed_url"]); return false; } catch (_) { return true; } };
+  let unsetPrepared = false; if (wpP) { try { wpP(["option", "delete", "helix_wt_sns_feed_embed_url"]); } catch (_) { /* 未設定なら失敗 */ } unsetPrepared = snsUnset(); }
+  // 固定ページ /parts/（slug parts、page.html）が無ければ wp-cli で作る。本文は helix-wt-page/* の pattern block 15 個（alignfull の group で包む）。既にあれば本文を同じ内容に更新する（冪等）
+  let pageSource = "unavailable";
+  if (wpP) { try { const content = '<!-- wp:group {"className":"wt-page-parts","align":"full","layout":{"type":"default"}} --><div class="wp-block-group alignfull wt-page-parts">' + PARTS.map((k) => `<!-- wp:pattern {"slug":"helix-wt-page/${k}"} /-->`).join("") + "</div><!-- /wp:group -->";
+    const id = wpP(["post", "list", "--post_type=page", "--name=parts", "--post_status=publish", "--field=ID"]).trim();
+    if (id) { wpP(["post", "update", id, `--post_content=${content}`]); pageSource = `wp-cli:updated ${id}`; } else { const nid = wpP(["post", "create", "--post_type=page", "--post_status=publish", "--post_name=parts", "--post_title=固定ページ用パーツ一覧（PoC）", `--post_content=${content}`, "--porcelain"]).trim(); pageSource = `wp-cli:created ${nid}`; } } catch (e) { pageSource = `wp-cli failed: ${String(e).slice(0, 120)}`; } }
+  const baseHost = new URL(BASE).host;
+  const read = async (cfg, dev, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const external = []; p.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) external.push(u.host); } catch (_) { /* data: */ } });
+    const res = await p.goto(BASE + "/parts/", { waitUntil: js ? "networkidle" : "load" });
+    await p.evaluate(async () => { document.querySelectorAll("img").forEach((i) => { i.loading = "eager"; }); await Promise.all(Array.from(document.querySelectorAll("img")).map((i) => i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 4000); }))); });
+    const r = await p.evaluate(([parts, visSrc]) => { const vis = eval(visSrc); const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const found = $$(".wt-page-parts .wt-part").filter(vis).map((el) => ({ part: Array.from(el.classList).find((c) => c.startsWith("wt-part--")).replace("wt-part--", ""), h2: !!el.querySelector("h2") && vis(el.querySelector("h2")), width: Math.round(el.getBoundingClientRect().width), inner: Math.round(el.querySelector(".wt-lp-section-inner").getBoundingClientRect().width), imgs: el.querySelectorAll("img").length, broken: Array.from(el.querySelectorAll("img")).filter((i) => i.naturalWidth === 0).length }));
+      const taps = $$(".wt-page-parts a, .wt-page-parts button, .wt-page-parts input").filter(vis);
+      const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); const inline = el.tagName === "A" && getComputedStyle(el).display === "inline" && el.parentElement && /^(P|LI|TD|B|SPAN)$/.test(el.parentElement.tagName); return !inline && Math.min(r.width, r.height) < 44; }).map((el) => (el.className || el.tagName) + " " + Math.round(el.getBoundingClientRect().width) + "x" + Math.round(el.getBoundingClientRect().height));
+      const anchors = $$(".wt-page-parts a[href^='#']").filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, ok: !!t && vis(t) }; });
+      const cd = document.querySelector(".wt-part-countdown"); const digits = cd ? Array.from(cd.querySelectorAll("[data-wt-cd]")).map((b) => b.textContent.trim()) : [];
+      const feed = document.querySelector(".wt-part-sns__feed");
+      return { status: null, parts: found, count: found.length, forms: $$(".wt-page-parts form").length, below44, deadAnchors: anchors.filter((a) => !a.ok).map((a) => a.href), anchors: anchors.length, viewport: innerWidth, digits, cdDateVisible: !!cd && vis(cd.querySelector(".wt-part-countdown__date")), feed: feed ? { state: feed.getAttribute("data-wt-embed"), iframe: !!feed.querySelector("iframe"), note: !!feed.querySelector(".wt-part-sns__unset") && vis(feed.querySelector(".wt-part-sns__unset")) } : null, searchInputs: $$(".wt-page-parts [role=search] input").length, h1: $$("h1").filter(vis).length };
+    }, [PARTS, VIS_SRC]);
+    r.status = res ? res.status() : null; r.externalRequests = Array.from(new Set(external)); await ctx.close();
+    const names = r.parts.map((x) => x.part);
+    const numeric = r.digits.length === 3 && r.digits.every((d) => /^\d+$/.test(d)); const dashes = r.digits.length === 3 && r.digits.every((d) => d === "--");
+    const pass = r.status === 200 && JSON.stringify(names) === JSON.stringify(PARTS) && r.parts.every((x) => x.h2 && x.broken === 0 && x.width === r.viewport && x.inner <= 1120 && x.inner >= Math.min(1120, r.viewport) - 48) && r.forms === 0 && r.searchInputs === 1 && r.below44.length === 0 && r.deadAnchors.length === 0 && r.anchors >= 2 && r.h1 === 1 && r.externalRequests.length === 0 && (js ? numeric : dashes) && r.cdDateVisible && unsetPrepared && r.feed && r.feed.state === "unset" && !r.feed.iframe && r.feed.note;
+    return { dev, js, ...r, pass }; };
+  const rows = [await read(PC, "pc", true), await read(SP, "sp", true), await read(SP, "sp", false)];
+  let feedSet = { source: "unavailable", unsetPrepared, pass: false };
+  if (wpP) { let cleanupOk = false;
+    try { wpP(["option", "update", "helix_wt_sns_feed_embed_url", BASE + "/lp/"]);
+      const ctx2 = await browser.newContext(PC); const p2 = await ctx2.newPage(); const ext2 = []; p2.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) ext2.push(u.host); } catch (_) { /* data: */ } });
+      await p2.goto(BASE + "/parts/", { waitUntil: "networkidle" });
+      const r = await p2.evaluate(() => { const f = document.querySelector(".wt-part-sns__feed"); const i = f ? f.querySelector("iframe") : null; return { state: f && f.getAttribute("data-wt-embed"), iframe: !!i, lazy: !!i && i.getAttribute("loading") === "lazy", title: !!i && !!i.getAttribute("title"), sameHost: !!i && new URL(i.src, location.href).host === location.host, visible: !!i && i.getBoundingClientRect().width > 0 }; });
+      r.externalRequests = Array.from(new Set(ext2)); await ctx2.close();
+      feedSet = { source: "wp-cli:option helix_wt_sns_feed_embed_url", unsetPrepared, ...r, pass: unsetPrepared && r.state === "set" && r.iframe && r.lazy && r.title && r.sameHost && r.visible && r.externalRequests.length === 0 };
+    } catch (e) { feedSet = { source: `wp-cli failed: ${String(e).slice(0, 120)}`, unsetPrepared, pass: false }; }
+    finally { try { wpP(["option", "delete", "helix_wt_sns_feed_embed_url"]); } catch (_) { /* 既に無ければ失敗 */ }
+      cleanupOk = snsUnset();
+      if (cleanupOk) { const ctx3 = await browser.newContext(PC); const p3 = await ctx3.newPage(); await p3.goto(BASE + "/parts/", { waitUntil: "load" }); cleanupOk = await p3.evaluate(() => { const f = document.querySelector(".wt-part-sns__feed"); return !!f && f.getAttribute("data-wt-embed") === "unset" && !f.querySelector("iframe"); }); await ctx3.close(); }
+      feedSet.cleanupOk = cleanupOk; feedSet.pass = feedSet.pass && cleanupOk; } }
+  out.pageParts = { pageSource, rows, feedSet, pass: rows.length === 3 && rows.every((r) => r.pass) && feedSet.pass };
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
@@ -1683,7 +1741,7 @@ const checkList = [
   ["lpParts", out.lpParts.pass],
   ["headerVariants", out.headerVariants.pass], ["announceFullWidth", out.announceFullWidth.pass], ["numboxNum", out.numboxNum.pass], ["graphsMore", out.graphsMore.pass], ["relatedNoFixture", out.relatedNoFixture.pass], ["lineIcon", out.lineIcon.pass], ["snsIcons", out.snsIcons.pass],
   ["homeFace", out.homeFace.pass], ["homeHeroContrast", out.homeHeroContrast.pass], ["homeFixedOverlap", out.homeFixedOverlap.pass], ["eventFace", out.eventFace.pass], ["eventHeroContrast", out.eventHeroContrast.pass],
-  ["categoryVariants", out.categoryVariants.pass],
+  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
