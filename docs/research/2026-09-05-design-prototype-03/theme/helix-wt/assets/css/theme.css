@@ -1359,6 +1359,7 @@ body.wt-home-sections-media .wt-home-cta .wt-lp-cta-action--secondary[href="#ser
 body.wt-home-sections-media .wt-home__section--article-grid{order:10}body.wt-home-sections-media .wt-home__section--category-cards{order:20}body.wt-home-sections-media .wt-home__section--ranking{order:30}body.wt-home-sections-media .wt-home__section--banner-row{order:40}body.wt-home-sections-media .wt-home__section--news{order:50}body.wt-home-sections-media .wt-home__section--cta-band{order:60}body.wt-home-sections-media .wt-home__section--contact{order:70}
 body.wt-home-news-none .wt-home__section--news{display:none!important}
 body.wt-home-contact-none .wt-home__section--contact{display:none!important}
+body.wt-home-contact-none :is(.wt-home-cta,.wt-home__section--cta-band,.wt-home-fixed--sp-bottom-bar) a[href="#contact"],body.wt-home-contact-none .wt-home-fixed--float-cta[href="#contact"]{display:none!important} /* 問い合わせ区間が無いとき、届かない #contact 導線を出さない */
 .wt-home__section:nth-child(even):not(.wt-lp-cta-band){background:var(--wp--preset--color--surface)}
 .wt-home__section h2{margin:0 0 1.25rem;font-size:clamp(1.5rem,3vw,2rem)}
 /* news 4 型 */
