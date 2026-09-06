@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.88475)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.936742)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26188,6 +26188,101 @@
     "pass": true
    }
   ],
+  "defaults": [
+   {
+    "dev": "pc",
+    "js": true,
+    "heroes": [
+     "date-place-block"
+    ],
+    "bodyHero": true,
+    "bodySet": true,
+    "order": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "dateBox": true,
+    "expectOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "heroes": [
+     "date-place-block"
+    ],
+    "bodyHero": true,
+    "bodySet": true,
+    "order": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "dateBox": true,
+    "expectOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "heroes": [
+     "date-place-block"
+    ],
+    "bodyHero": true,
+    "bodySet": true,
+    "order": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "dateBox": true,
+    "expectOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "pass": true
+   }
+  ],
   "embedSet": {
    "source": "wp-cli:option helix_wt_event_map_embed_url",
    "unsetPrepared": true,
@@ -26602,7 +26697,7 @@
     "digits": [
      "38",
      "15",
-     "25"
+     "10"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26750,7 +26845,7 @@
     "digits": [
      "38",
      "15",
-     "25"
+     "10"
     ],
     "cdDateVisible": true,
     "feed": {

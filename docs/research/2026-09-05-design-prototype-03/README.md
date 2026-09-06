@@ -723,7 +723,8 @@ PO 反応 18 回目（2026-09-06）の 5 件目「強化してくれ。その間
 4. **gallery / countdown は存置**（未観察の追加提案として明記は残す）。
 5. 「最大数を取りにいけばいい」は、観察した型・提案した型を絞らず全部入れる方針として扱う。
 6. verify: SETS / ESETS / expectParts を新既定に合わせた。撮影は `shots-reaction13.mjs` を再実行（corporate / service / seminar の全長を同名置換、seminar-v2 の写真は seminar-classic に置き換え）。用語集は既定と変更理由を追記。
-7. 実機結果（`results/verify.json`）: `summary` **pass 84 / fail 0**、総合 `pass: true`（homeFace 234 行・eventFace 126 行 + embedSet・pageParts 3 行 + feedSet を新既定で再実行）。INDEX **783**（件数は変わらず。corporate / service / seminar の全長を同名置換、seminar-v2 の 6 枚を seminar-classic に置換）。
+8. Astra 1 巡目（PR #165、merge 可）の是正: 【改善】verify が既定値そのものを見ていなかった（event_hero の検査は値を明示指定）→ `eventFace.defaults` を追加し、?wt 指定なしの /event/ で hero が date-place-block（日付の箱が可視）・区間セットが seminar（v2 構成の並び）であることを PC / SP / SP JS 無効で判定。【軽微】用語集の corporate / service の並び説明と event-hero の既定表記を更新。
+7. 実機結果（`results/verify.json`）: `summary` **pass 84 / fail 0**、総合 `pass: true`（homeFace 234 行・eventFace 126 行 + defaults 3 行 + embedSet・pageParts 3 行 + feedSet を新既定で再実行）。INDEX **783**（件数は変わらず。corporate / service / seminar の全長を同名置換、seminar-v2 の 6 枚を seminar-classic に置換）。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 

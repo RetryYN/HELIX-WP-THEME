@@ -1561,6 +1561,13 @@ const EVENT = "/event/";
     }
     await ctx.close(); return results; };
   const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
+  // 段 9（WT-EVT-0288、Astra 是正）: 既定値そのものの検査。?wt 指定なしの /event/ で hero が date-place-block、区間セットが seminar（v2 構成）であること（PC / SP / SP JS 無効）
+  const defaults = [];
+  for (const [cfg, dev, js] of [[PC, "pc", true], [SP, "sp", true], [SP, "sp", false]]) { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); await p.goto(BASE + EVENT, { waitUntil: js ? "networkidle" : "load" });
+    const r = await p.evaluate((visSrc) => { const vis = eval(visSrc); const heroes = Array.from(document.querySelectorAll(".wt-event-hero")).filter(vis).map((e) => Array.from(e.classList).find((c) => c.startsWith("wt-event-hero--")).replace("wt-event-hero--", "")); const order = Array.from(document.querySelectorAll(".wt-event__sections > .wt-event__section")).filter(vis).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top).map((s) => Array.from(s.classList).find((c) => c.startsWith("wt-event__section--")).replace("wt-event__section--", "")); return { heroes, bodyHero: document.body.classList.contains("wt-event-hero-date-place-block"), bodySet: document.body.classList.contains("wt-event-sections-seminar"), order, dateBox: !!document.querySelector(".wt-event-hero--date-place-block .wt-event-date") && vis(document.querySelector(".wt-event-hero--date-place-block .wt-event-date")) }; }, VIS_SRC);
+    await ctx.close();
+    const expectOrder = ESETS.seminar.filter((sec) => !["schedule", "speakers", "access"].includes(sec)); // 既定軸 none で隠れる区間を除く
+    defaults.push({ dev, js, ...r, expectOrder, pass: JSON.stringify(r.heroes) === JSON.stringify(["date-place-block"]) && r.bodyHero && r.bodySet && r.dateBox && JSON.stringify(r.order) === JSON.stringify(expectOrder) }); }
   // embed の「設定あり」状態: option に同一ホストの URL を入れて iframe が遅延読込・title 付き・同一ホストで出ること（wp-cli 必須。取れなければ fail）。終了時に option を消す
   let embedSet = { source: "unavailable", unsetPrepared, pass: false };
   if (wpE) {
@@ -1582,7 +1589,7 @@ const EVENT = "/event/";
     }
   }
   const all = [...sp, ...pc, ...spNoJs];
-  out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 42 * 3 && all.every((x) => x.pass) && embedSet.pass };
+  out.eventFace = { sp, pc, spNoJs, defaults, embedSet, pass: all.length === 42 * 3 && all.every((x) => x.pass) && defaults.length === 3 && defaults.every((x) => x.pass) && embedSet.pass };
 }
 // (l) eventHeroContrast: photo-overlay のスクリム α（下端 .88）と白文字、他 3 型の文字色 4.5:1、受付状態バッジ 3 型の文字コントラスト
 {

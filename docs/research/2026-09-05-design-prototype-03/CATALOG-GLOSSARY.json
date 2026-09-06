@@ -634,8 +634,8 @@
    "label": "HP の区間セット",
    "desc": "用途別に置く区間の集合と順序。全区間をテンプレートに持ち、セットで表示と順序を切り替える。全長を分割撮影。段 8: shop-school / school-org を新設。段 9（WT-EVT-0288「全部追加」）: corporate に greeting（news の次）、service に logos（cases の次）を追加。区間の多くは固定ページ用パーツ helix-wt-page/* を転用。",
    "variants": {
-    "corporate": "企業 HP: お知らせ → サービス → 特長 → 数字 → 事例 → 会社概要 → アクセス → 問い合わせ（台帳 A 区分で news / service-cards / company-info が上位）。",
-    "service": "サービスサイト: サービス → 特長 → 数字 → 事例 → 料金 → FAQ → CTA 帯 → 問い合わせ。",
+    "corporate": "企業 HP: お知らせ → ご挨拶 → サービス → 特長 → 数字 → 事例 → 会社概要 → アクセス → 問い合わせ（台帳 A 区分で news / service-cards / company-info が上位。段 9 WT-EVT-0288 で greeting（A 65%）を news の次に追加）。",
+    "service": "サービスサイト: サービス → 特長 → 数字 → 事例 → 取引先ロゴ枠 → 料金 → FAQ → CTA 帯 → 問い合わせ（段 9 WT-EVT-0288 で logos（B 44%）を cases の次に追加）。",
     "media": "メディア: 新着記事グリッド → カテゴリカード → ランキング → バナー列 → お知らせ → CTA 帯 → 問い合わせ（CTA 帯・hero の問い合わせ導線の到達先。サービス区間が無いので hero の「サービスを見る」は出さない）。",
     "shop-school": "店舗・スクール（v2 区分 D n=12）: news → service-cards → features → stores → events → price → faq → recruit → banner-row → access → contact。",
     "school-org": "学校法人・団体（v2 区分 E n=8）: greeting → news → features → service-cards → events → gallery → sns → history → logos → banner-row → cta-band → contact。"
@@ -678,8 +678,8 @@
    "desc": "イベントページ最上部。台帳の主集計（個別募集ページ n=8）の最多型 key-visual 50% を既定（photo-overlay 25% / date-place-block 12% / text-only 12%）。段 9（WT-EVT-0288）: 既定を date-place-block（台帳 v2 主集計 n=40 の 62%）へ変更。",
    "variants": {
     "photo-overlay": "写真にスクリムを重ね、タイトル・日時・会場・申込ボタンを白文字で置く型。",
-    "key-visual": "キービジュアル画像の下にタイトルと日時を置く型（既定）。",
-    "date-place-block": "日付を大きな箱で見せ、右に見出しと会場・定員を置く型（少数派）。",
+    "key-visual": "キービジュアル画像の下にタイトルと日時を置く型（段 8 までの既定。前回台帳 n=8 の最多型）。",
+    "date-place-block": "日付を大きな箱で見せ、右に見出しと会場・定員を置く型（既定。段 9 WT-EVT-0288 で台帳 v2 主集計 n=40 の 62% を根拠に既定へ）。",
     "text-only": "写真なしで見出しとリードと申込ボタン。"
    }
   },
