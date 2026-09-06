@@ -13,6 +13,7 @@ const args = Object.fromEntries(process.argv.slice(2).map((a, i, arr) => a.start
 const BASE = args.base || "http://localhost:8086";
 const OUT = path.resolve(args.out || "../results");
 const CATEGORY = "/category/topic-index/";
+const EVENT = "/event/";
 fs.mkdirSync(OUT, { recursive: true });
 const index = [];
 const SP = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
@@ -142,6 +143,9 @@ for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
     else await save(p, `category-${part}-${variant}-${dev}`, { face: "category", part: `category-${part}`, variant, dev }, { selector });
     await p.close();
   }
+  // 段 7: 地図の外部埋め込み（撮影前に option helix_wt_event_map_embed_url を同一ホストの URL に設定し、撮影後に消す。README §2.27）
+  p = await open(ctx, EVENT + wt("event_map:embed")); await assertBody(p, "wt-event-map-embed"); await assertVisible(p, ".wt-event-map--embed iframe");
+  await save(p, `event-map-embed-${dev}`, { face: "event", part: "event-map", variant: "embed", dev }, { selector: ".wt-event__section--access" }); await p.close();
   await ctx.close();
 }
 } finally { if (browser) await browser.close(); }
@@ -152,7 +156,7 @@ const perDev = (dev) => [
   "category-header-name-count", ...CAT_LEAD.map((v) => `category-lead-${v}`), ...CAT_CHILDREN.map((v) => `category-children-${v}`), ...CAT_SIDEBAR.map((v) => `category-sidebar-${v}`),
   ...CAT_LIST.map((v) => `category-list-${v}`), ...CAT_CARD.map((v) => `category-card-${v}`), ...CAT_FILTER.map((v) => `category-filter-${v}`), "category-pagination-none", "category-ranking-top",
   ...CAT_PICKUP.map((v) => `category-pickup-${v}`), ...CAT_CTA.map((v) => `category-cta-${v}`),
-  ...OLD_CATEGORY.flatMap(([part, variants]) => variants.map((v) => `category-${part}-${v}`)),
+  ...OLD_CATEGORY.flatMap(([part, variants]) => variants.map((v) => `category-${part}-${v}`)), "event-map-embed",
 ].map((k) => `${k}-${dev}.jpg`).concat(...CAT_COLUMNS.map(([v]) => `category-columns-${v}`).map((key) => Array.from({ length: CHUNKS[`${key}-${dev}`] || 0 }, (_, i) => `${key}-${i + 1}-${dev}.jpg`)));
 const NEW_FILES = [...perDev("sp"), ...perDev("pc")];
 for (const k of Object.keys(CHUNKS)) if (!CHUNKS[k]) throw new Error(`分割数が決まっていません: ${k}`);

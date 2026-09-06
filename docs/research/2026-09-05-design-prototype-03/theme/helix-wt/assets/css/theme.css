@@ -723,7 +723,7 @@ html.wt-js body.wt-cat-pagination-load-more .wt-load-more:not([hidden]){display:
 body.wt-cat-ranking-sidebar .wt-cat-ranking,body.wt-cat-ranking-bottom .wt-cat-ranking{display:block}
 /* 段 6: 2 カラム化の条件は末尾の段 6 ブロックへ移した */
 .wt-cat-minihome{display:none;margin-top:var(--wp--preset--spacing--70)}
-body.wt-cat-minihome-on .wt-cat-primary{display:none}body.wt-cat-minihome-on .wt-cat-minihome{display:block}
+body.wt-cat-minihome-on .wt-cat-minihome{display:block} /* 段 7: 一覧と共存（WT-EVT-0284。試作 02 の「一覧を置き換える」をやめた） */
 .wt-cat-minihome__intro{padding:1.25rem;background:var(--wp--preset--color--accent-soft);border-radius:var(--wp--custom--radius-m);margin-bottom:var(--wp--preset--spacing--60)}
 .wt-cat-minihome__intro h2{margin:.25rem 0 .75rem}.wt-cat-reading-order{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;list-style:none;padding:0;margin:0;counter-reset:reading}
 .wt-cat-reading-order li{counter-increment:reading}.wt-cat-reading-order a{display:flex;align-items:center;min-height:48px;gap:.5rem;color:inherit;text-decoration:none;font-weight:700}.wt-cat-reading-order a::before{content:counter(reading,decimal-leading-zero);font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent)}
@@ -1481,6 +1481,7 @@ body.wt-event-apply-closed-notice .wt-event-apply-link,body.wt-event-apply-close
 .wt-event-map{display:none}
 body.wt-event-map-static-image .wt-event-map--static-image{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.5rem;align-items:start}.wt-event-map--static-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m);border:1px solid var(--wp--preset--color--line)}
 body.wt-event-map-text-only .wt-event-map--text-only{display:block}.wt-event-map address{font-style:normal;line-height:1.8}
+body.wt-event-map-embed .wt-event-map--embed{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.5rem;align-items:start}.wt-event-map__frame{display:block;width:100%;aspect-ratio:5/2;height:auto;border:0;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--surface)}.wt-event-map__unset{margin:0;padding:1.25rem;border:1px dashed var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);color:var(--wp--preset--color--mute)}
 .wt-event-notes{margin:0 0 1rem;padding-left:1.25rem;color:var(--wp--preset--color--mute);line-height:1.8}.wt-event-organizer{margin:0 0 1.5rem}.wt-event-organizer b{color:var(--wp--preset--color--accent);margin-right:.25rem}.wt-event-organizer a{display:inline-flex;align-items:center;min-height:44px}
 .wt-event-share{display:none}
 body.wt-event-share-icons .wt-event-share--icons{display:flex;align-items:center;gap:.5rem}.wt-event-share--icons span{font-size:.8125rem;color:var(--wp--preset--color--mute);margin-right:.25rem}.wt-event-share--icons a,.wt-event-share--icons button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:50%;background:var(--wp--preset--color--contrast);color:#fff;text-decoration:none;cursor:pointer;font-size:1rem}.wt-event-share--icons .wt-i{width:1.35rem;height:1.35rem}
@@ -1495,7 +1496,7 @@ body.wt-face-event.wt-event-fixed-sp-bottom-bar .wt-footer{padding-bottom:calc(6
 .wt-event-hero__grid{grid-template-columns:1fr;gap:1.5rem}.wt-event-date{min-width:0;width:100%}.wt-event-hero--photo-overlay{min-height:440px}
 body.wt-event-info-icon-list .wt-event-info--icon-list{grid-template-columns:repeat(2,minmax(0,1fr))}.wt-event-highlights{grid-template-columns:1fr}
 body.wt-event-speakers-cards-photo .wt-event-speakers--cards-photo{grid-template-columns:1fr}body.wt-event-speakers-single-profile .wt-event-speakers--single-profile{grid-template-columns:1fr}.wt-event-speakers--single-profile img{width:120px;height:120px}
-body.wt-event-map-static-image .wt-event-map--static-image{grid-template-columns:1fr}
+body.wt-event-map-static-image .wt-event-map--static-image,body.wt-event-map-embed .wt-event-map--embed{grid-template-columns:1fr}
 .wt-event-schedule--timeline::before{left:4.9rem}body.wt-event-schedule-table .wt-event-schedule--table{display:block;overflow-x:auto}
 .wt-event-info--table th{width:5em;white-space:normal}
 }

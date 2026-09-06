@@ -53,6 +53,7 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <section class="wt-event__section wt-event__section--access" id="access" aria-labelledby="event-access-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">ACCESS</p><h2 id="event-access-title">会場アクセス</h2>
 <div class="wt-event-map wt-event-map--static-image"><img src="<?php echo esc_url( $u ); ?>/lum-light.jpg" alt="会場周辺の地図（PoC 用のダミー画像。実運用では地図画像を置く）" width="1200" height="600" loading="lazy" decoding="async"><address><b>サンプルホール 3F</b><br>設定された所在地<br>最寄り駅から徒歩 5 分</address></div>
 <address class="wt-event-map wt-event-map--text-only"><b>サンプルホール 3F</b><br>設定された所在地<br>最寄り駅から徒歩 5 分（PoC 用の文言）</address>
+<?php echo wt_render_event_map_embed(); ?>
 </div></section>
 
 <section class="wt-event__section wt-event__section--faq" id="faq" aria-labelledby="event-faq-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">FAQ</p><h2 id="event-faq-title">よくある質問</h2><div class="wt-home-faq"><details><summary>途中参加・途中退出はできますか</summary><p>できます。オンラインは録画を後日視聴できます。</p></details><details><summary>資料はもらえますか</summary><p>参加者全員に PDF で配布します。</p></details><details><summary>同業の参加はできますか</summary><p>同業のコンサルティング事業者の参加はお断りする場合があります。</p></details></div></div></section>

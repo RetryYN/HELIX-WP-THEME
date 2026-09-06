@@ -687,7 +687,15 @@ PO 反応 18 回目（2026-09-06）の 5 件目「強化してくれ。その間
 5. **verify +1 `categoryVariants`**（12 軸 47 型 + 組合せ 6 × PC / SP / SP JS 無効 = 159 行 + 実 HTTP）: 軸 class・当該型だけ可視・h1 1 つ・操作要素 44px（縦横）・到達先なしのページ内リンク 0 に加え、型固有の実体を判定する。件数見出しの数 = wp-cli の `post list --cat` 件数（取れないときは fail）、hero は白文字、editorial は h2 + 80 文字以上、子分類は 3 リンク以上（image-banners は画像の読込済み、sidebar-tree は右カラム内）、columns は PC の実トラック数（2 / 1）と右カラムの可視・widget 数、sidebar は可視 widget の組が型どおり（full は検索フォーム role=search / get / 送信 1 / label）、list は PC の実カラム数（3 / 2 / 1）と text-list の画像非表示、card は要素の可視組合せ（rich は著者 + バッジ + タグ 1 以上）、filter は型ごとのリンク数と先頭 aria-current、sort は get + select + label + 送信 1 + action がカテゴリ面、pagination は型ごとの可視部品（load-more は JS 有効でボタン・無効で番号）、ranking は置き場所（top は一覧より上、bottom は下、sidebar は右カラム内）、pickup は画像読込済み + 一覧より上、cta は newsletter の form 要素を使わない非送信入力グループ（Enter でも URL が変わらない）/ line のグリフ実描画 + aria-label。実 HTTP: 絞り込みリンクと CTA の到達先（重複除去）をリダイレクト不可で取得して 200 かつカテゴリ面に留まること、`?orderby=title&order=asc` で先頭記事が既定と変わること、`?year=2026` が 200 で記事を返すこと。
 6. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 83 / fail 0**（82 + 1）、総合 `pass: true`。初回実行で落ちた 3 件の是正: SP の圧縮カードで抜粋が出ない（試作 02 の SP 規則。standard の判定を SP では抜粋なしに）、rich のタグリンクが幅 36px（min-width 44）、メール登録の入力欄が幅 26px（constrained layout の 680px に加え、フォームの grid が縮んでいた。幅 100% と 160px 下限）。2 回目: 2 カラム時の一覧が 346px に潰れていた（上記 2 の max-width 是正）。
 7. Astra 1 巡目（PR #162）の是正: メール登録が `form` 要素で、文字入力 1 つの form は送信ボタンが無くても Enter で暗黙送信される（HTML 仕様）ため、`form` を使わず `role="group"` の枠に入力とボタンを置いた（verify は form 要素 0・入力が form に属さないこと・実際に Enter を押して URL が変わらないことを PC / SP / SP JS 無効で判定）。`cat_card:minimal` の抜粋非表示が thumb-list / featured-grid 先頭の表示規則（詳細度）に負けていた（`!important` で優先し、verify に minimal × 一覧 6 型の組合せ 18 行を追加、合計 159 行）。到達先の検査を HTML の部分文字列一致から DOM（最終 URL のパス・WP の body class・`main.wt-category`・カード 1 件以上）に置き換え、並べ替え / 年フィルタも最終到達先を判定。README の「多数派」を「最多型を参考にした試作候補」に、軸の内訳を既存 5 + 新規 7 に訂正。
-8. 未決（PO 判断待ち）: `cat_minihome` の既定（台帳 yes 60% だが試作 02 からの off を継続）、人気記事の実装（閲覧数の取得元）、`cat_sidebar` の widget 追加（SNS フォロー 6% は不採用のまま）。
+8. 未決（PO 判断待ち）: 人気記事の実装（閲覧数の取得元）、`cat_sidebar` の widget 追加（SNS フォロー 6% は不採用のまま）。`cat_minihome` の既定は §2.27 で on に確定（PO 回答済み）。
+
+## 2.27 段7 — 地図の外部埋め込みとミニ HOME 既定 on（WT-EVT-0284「両方過去に回答した」）
+
+§2.26 末尾で Claude が「未決」と並べた 2 件は PO が回答済みだった（Claude の見落とし。WT-EVT-0284 / 0285 に記録）。
+
+1. **地図の外部埋め込み**: 外部埋め込みの方針は WT-CAND-SNS（WT-EVT-0073: 投稿埋め込みは遅延読込で速度予算内、鍵はテーマに置かない）を WT-EVT-0229「採用で」で採用済み。地図も同じ扱いで `event_map: embed` を追加した。URL は option `helix_wt_event_map_embed_url`（設定側）に持ち、テーマ・公開リポには第三者サービスのドメインも鍵も書かない。未設定なら iframe を出さず「未設定」と枠に表示して外部へ接続しない。設定時は `loading="lazy"`・title・referrerpolicy 付きの iframe。verify（`eventFace`）は未設定状態（iframe なし・外部ホストへの読込 0）と、wp-cli で option に同一ホストの URL を入れた設定状態（iframe が遅延読込・title・同一ホスト・可視・外部ホスト 0）の両方を判定し、終了時に option を消す。撮影も同じ手順で option を入れて撮り、撮影後に消した（`event-map-embed` PC / SP の 2 枚）。
+2. **カテゴリ ミニ HOME の既定 on**: WT-Q-PARTS-03 を WT-EVT-0228「採用で」で採用済み。既定を on にし、試作 02 の「一覧を置き換える」をやめて一覧の下に共存させた（`cat_minihome:off` は残る）。カテゴリ面の既定が変わるため、段 6 のカテゴリ写真 90 枚を同名で撮り直した。
+3. 実機結果: `summary` **pass 83 / fail 0**（項目数は変わらず。`eventFace` は 34 型 × 3 = 102 行 + 設定状態 1 件）、INDEX 688 → **690**。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 

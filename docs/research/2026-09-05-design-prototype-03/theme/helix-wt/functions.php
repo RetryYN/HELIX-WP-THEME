@@ -35,7 +35,7 @@ function wt_axes() {
 		'cat_ranking'   => array( 'none', array( 'none', 'sidebar', 'bottom', 'top' ) ), // sidebar 44% / none 43% / top 13%。既定 none は sidebar の popular（cat_sidebar）が sidebar 型の多数派を担うため
 		'cat_pickup'    => array( 'none', array( 'none', 'top-featured', 'editor-pick-box' ) ), // none 52% / top-featured 35% / editor-pick-box 13%
 		'cat_cta'       => array( 'none', array( 'none', 'lp-banner', 'newsletter', 'line' ) ), // none 54% / lp-banner 22% / newsletter 11% / line 7%。app-download 6% は第三者ストアのバッジ画像が要るため置かない
-		'cat_minihome'  => array( 'off', array( 'off', 'on' ) ), // yes 60%（na 7 除外）は「子カテゴリ別の小一覧」の有無。既定 off は試作 02 からの継続（PO 未決）
+		'cat_minihome'  => array( 'on', array( 'off', 'on' ) ), // yes 60%（na 7 除外）。PO 採用済み（WT-EVT-0228 / 0284）→ 既定 on。一覧の下に共存（置き換えない）
 		'footer_layout' => array( 'sitemap', array( 'sitemap', 'single-row', 'columns-3' ) ),
 		'footer_above'  => array( 'none', array( 'none', 'cta-band', 'banner-row', 'newsletter' ) ),
 		'footer_legal'  => array( 'copyright-links', array( 'copyright-links', 'copyright-only' ) ),
@@ -74,7 +74,7 @@ function wt_axes() {
 		'event_speakers' => array( 'none', array( 'none', 'cards-photo', 'list', 'single-profile' ) ), // 主集計 n=8: none 50% / cards-photo 25%
 		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%
 		'event_status'   => array( 'open', array( 'open', 'none', 'few-seats', 'ended' ) ), // 主集計 n=8: open 62% / ended 25% / none 12%。few-seats の実例は 0（観測不足）
-		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only' ) ), // 主集計 n=8: none 50% / text-only 50%。埋め込み地図（外部）は使わない
+		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only', 'embed' ) ), // 主集計 n=8: none 50% / text-only 50%。embed は外部地図の埋め込み（WT-EVT-0284: WT-CAND-SNS の埋め込み方針＝遅延読込・URL は option・鍵はテーマに置かない）
 		'event_fixed'    => array( 'none', array( 'none', 'sp-bottom-bar', 'float-apply' ) ), // 主集計 n=8: none 100%（観察に無い型を Claude 案として追加）
 		'event_share'    => array( 'none', array( 'none', 'icons', 'add-to-calendar' ) ), // 主集計 n=8: none 62% / icons 38%。add-to-calendar は観察に無い Claude 案
 	);
@@ -637,6 +637,26 @@ add_filter( 'redirect_canonical', function ( $redirect ) {
 	}
 	return $redirect;
 } );
+// ---------- 段 7: 地図の外部埋め込み（event_map:embed、WT-EVT-0284） ----------
+// 埋め込み先 URL は option（wp option / 設定 JSON 側）に持ち、テーマ・公開リポには第三者サービスのドメインも鍵も書かない。
+// URL が未設定なら埋め込まず、その旨を枠に表示する（外部へ勝手に接続しない）。iframe は loading="lazy"・title 付き・referrerpolicy 指定。
+function wt_event_map_embed_url() {
+	$url = get_option( 'helix_wt_event_map_embed_url', '' );
+	$url = is_string( $url ) ? trim( $url ) : '';
+	return ( '' !== $url && in_array( wp_parse_url( $url, PHP_URL_SCHEME ), array( 'http', 'https' ), true ) ) ? $url : '';
+}
+function wt_render_event_map_embed() {
+	$url = wt_event_map_embed_url();
+	$out = '<div class="wt-event-map wt-event-map--embed" data-wt-embed="' . ( $url ? 'set' : 'unset' ) . '">';
+	if ( $url ) {
+		$out .= '<iframe class="wt-event-map__frame" src="' . esc_url( $url ) . '" title="会場周辺の地図（外部の地図サービス）" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen width="1200" height="480"></iframe>';
+	} else {
+		$out .= '<p class="wt-event-map__unset">地図の埋め込み URL が未設定です（option <code>helix_wt_event_map_embed_url</code>）。設定するまで外部の地図サービスへは接続しません。</p>';
+	}
+	return $out . '<address><b>サンプルホール 3F</b><br>設定された所在地<br>最寄り駅から徒歩 5 分（PoC 用の文言）</address></div>';
+}
+register_block_type( 'helix-wt/event-map-embed', array( 'render_callback' => 'wt_render_event_map_embed' ) );
+
 // ---------- 段 6: カテゴリ面の強化（WT-EVT-0283、台帳 category-recapture n=54） ----------
 function wt_category_posts( $term, $n, $offset = 0 ) {
 	return get_posts( array( 'category' => (int) $term->term_id, 'posts_per_page' => $n, 'offset' => $offset, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC' ) );
