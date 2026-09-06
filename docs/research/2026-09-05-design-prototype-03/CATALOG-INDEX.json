@@ -2051,20 +2051,6 @@
   "dev": "sp"
  },
  {
-  "file": "article-screen-11-sp.jpg",
-  "face": "article",
-  "part": "full-screens",
-  "variant": "default screen 11",
-  "dev": "sp"
- },
- {
-  "file": "article-screen-12-sp.jpg",
-  "face": "article",
-  "part": "full-screens",
-  "variant": "default screen 12",
-  "dev": "sp"
- },
- {
   "file": "h2-icon-sp.jpg",
   "face": "article",
   "part": "h2",
@@ -5954,6 +5940,41 @@
   "face": "article",
   "part": "side-nav",
   "variant": "toc-side",
+  "dev": "pc"
+ },
+ {
+  "file": "side-from-below-hero-pc.jpg",
+  "face": "home",
+  "part": "side-from",
+  "variant": "below-hero（既定。hero の下からサイドバー）",
+  "dev": "pc"
+ },
+ {
+  "file": "side-from-top-pc.jpg",
+  "face": "home",
+  "part": "side-from",
+  "variant": "top（hero の横からサイドバー）",
+  "dev": "pc"
+ },
+ {
+  "file": "side-from-top-left-pc.jpg",
+  "face": "home",
+  "part": "side-from",
+  "variant": "top + left（CV 狙いの左配置）",
+  "dev": "pc"
+ },
+ {
+  "file": "side-default-article-pc.jpg",
+  "face": "article",
+  "part": "side-layout",
+  "variant": "既定 right（?wt なし、見出し部の下から）",
+  "dev": "pc"
+ },
+ {
+  "file": "side-default-page-pc.jpg",
+  "face": "page",
+  "part": "side-layout",
+  "variant": "既定 right（固定ページ、?wt なし）",
   "dev": "pc"
  }
 ]

@@ -1684,7 +1684,8 @@ body.wt-event-apply-receipt-upload .wt-event-apply--receipt-upload,body.wt-event
 .wt-side-main{min-width:0}
 /* 包みは alignfull（main の余白の外へ。負の margin は WP の constrained 規則に任せる）。wt-side-main は constrained なので中の alignfull は列の幅いっぱいに出る */
 .wt-side-main>:where(.alignfull){max-width:none}
-body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-side-layout.alignfull{padding-inline:var(--wp--custom--gutter)} /* サイドバーありでは端に余白 */
+@media (min-width:1024px){body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-side-layout.alignfull{padding-inline:var(--wp--custom--gutter)}} /* サイドバーありでは端に余白（PC）。SP は 1 カラムなので本文列は端まで、aside だけ内側に余白（段 10b） */
+@media (max-width:1023px){body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-side{padding-inline:var(--wp--custom--gutter)}}
 .wt-side{display:none;min-width:0}
 .wt-side,.wt-side *{box-sizing:border-box}
 /* 配置 4 型 */
@@ -1765,3 +1766,20 @@ body.wt-side-nav-fixed-right-icons .wt-sidenav--fixed-right{display:flex;flex-di
 .wt-megamenu__trigger{display:inline-flex;align-items:center;min-height:44px;padding:0 .9rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);font:inherit;font-weight:700;cursor:pointer}
 body.wt-side-nav-mega-menu .wt-header{position:sticky}
 @media (max-width:599px){.wt-megamenu__inner{grid-template-columns:1fr;gap:1rem}.wt-side-drawer__panel{width:88vw}}
+
+/* ===== 段 10b（2026-09-07 PO 反応 22 回目 WT-EVT-0292「サイドバーは普通置く」）: 既定 side_layout=right（記事・固定ページ・HP。LP とカテゴリ面は対象外）。HP は hero を wt-side-layout の直下に置き、side_from で「hero の下から」（既定）/「hero の横から」を切り替える ===== */
+.wt-home .wt-side-layout>.wt-home-hero-slot{min-width:0}
+@media (min-width:1024px){body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-home .wt-side-layout>.wt-home-hero-slot{margin-inline:calc(-1 * var(--wp--custom--gutter))}} /* below-hero: hero は端まで（SP は余白が無いので不要） */
+@media (min-width:1024px){
+body.wt-side-from-below-hero:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-home .wt-side-layout>.wt-home-hero-slot{grid-column:1/-1;grid-row:1}
+/* top: hero を本文列に入れ、aside は hero の高さから始める（行 1〜2 を貫く） */
+body.wt-side-from-top:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-home .wt-side-layout>.wt-home-hero-slot{grid-row:1;margin-inline:0}
+body.wt-side-from-top:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-home .wt-side-layout>.wt-side-main{grid-row:2}
+body.wt-side-from-top.wt-side-layout-right .wt-home .wt-side-layout>:is(.wt-home-hero-slot,.wt-side-main){grid-column:1}
+body.wt-side-from-top.wt-side-layout-right .wt-home .wt-side-layout>.wt-side--right{grid-column:2;grid-row:1/span 2}
+body.wt-side-from-top.wt-side-layout-left .wt-home .wt-side-layout>:is(.wt-home-hero-slot,.wt-side-main){grid-column:2}
+body.wt-side-from-top.wt-side-layout-left .wt-home .wt-side-layout>.wt-side--right{grid-column:1;grid-row:1/span 2}
+body.wt-side-from-top.wt-side-layout-both .wt-home .wt-side-layout>:is(.wt-home-hero-slot,.wt-side-main){grid-column:2}
+body.wt-side-from-top.wt-side-layout-both .wt-home .wt-side-layout>.wt-side--left{grid-column:1;grid-row:1/span 2}
+body.wt-side-from-top.wt-side-layout-both .wt-home .wt-side-layout>.wt-side--right{grid-column:3;grid-row:1/span 2}
+}
