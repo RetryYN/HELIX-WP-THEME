@@ -1294,3 +1294,221 @@ body.wt-sp-center-logo .wt-header__nav .wp-block-navigation{min-width:44px}
 .wt-graph__radar-b{fill:var(--wt-g-b);fill-opacity:.16;stroke:var(--wt-g-b);stroke-width:2}
 .wt-graph__radar-labels text{fill:var(--wp--preset--color--contrast);font-size:11px;font-weight:700;text-anchor:middle}
 @media (max-width:599px){.wt-graph--grouped .wt-graph__row{grid-template-columns:minmax(5em,6.5em) 1fr}.wt-graph__cols{height:150px}.wt-graph__gauges{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}.wt-graph__gauge b{font-size:1.15rem}.wt-graph--score .wt-graph__row{grid-template-columns:minmax(4.5em,6em) 1fr 2.2em}}
+
+/* ===== 2026-09-06 PO 反応 17 回目 WT-EVT-0277: HP 面（front-page）とイベントページ（page-event）。Claude 案、既定は台帳 research-r17 の最多型 ===== */
+.wt-home,.wt-home *,.wt-event,.wt-event *{box-sizing:border-box}
+.wt-home,.wt-event{width:100%}
+/* --- HP hero 6 型: body.wt-home-hero-* で 1 つだけ表示 --- */
+.wt-home-hero{display:none;position:relative;overflow:hidden;color:var(--wp--preset--color--contrast)}
+body.wt-home-hero-text-only .wt-home-hero--text-only,body.wt-home-hero-slider .wt-home-hero--slider,body.wt-home-hero-fullbleed .wt-home-hero--fullbleed,body.wt-home-hero-split .wt-home-hero--split,body.wt-home-hero-video .wt-home-hero--video{display:block}
+body.wt-home-hero-article-grid .wt-home-hero--article-grid{display:block}
+.wt-home-hero__inner{max-width:1120px;margin:0 auto;padding:clamp(3rem,8vw,6rem) var(--wp--custom--gutter)}
+.wt-home-hero h1{margin:.25rem 0 .75rem;font-size:clamp(1.75rem,4.2vw,2.75rem);line-height:1.25;text-wrap:balance}
+.wt-home-hero__lead{max-width:36em;margin:0 0 1.5rem;font-size:var(--wp--preset--font-size--m);color:var(--wp--preset--color--mute)}
+.wt-home-hero--text-only{background:var(--wp--preset--color--accent-soft);text-align:center}.wt-home-hero--text-only .wt-home-hero__lead{margin-inline:auto}
+.wt-home-hero__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2.5rem;align-items:center}
+.wt-home-hero__media img{display:block;width:100%;height:auto;border-radius:var(--wp--custom--radius-l)}
+.wt-home-hero__poster{position:relative}.wt-home-hero__poster img{aspect-ratio:16/9;object-fit:cover}
+.wt-home-hero__play{position:absolute;inset:0;margin:auto;width:72px;height:72px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--wp--preset--color--accent);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--wp--preset--shadow--depth-2)}
+.wt-home-hero--fullbleed{isolation:isolate;min-height:520px;color:#fff;background:var(--wp--preset--color--contrast)}
+.wt-home-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.wt-home-hero--fullbleed::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.84) 50%,rgba(0,0,0,.35) 100%)}
+/* 白文字は下半分（α ≥ .84 の帯）に置く: 文字を下寄せにし、verify は文字矩形の上端位置の α を gradient から補間して 4.5:1 を要求 */
+
+.wt-home-hero--fullbleed .wt-eyebrow,.wt-home-hero--fullbleed .wt-home-hero__lead,.wt-home-hero--fullbleed h1{color:#fff}
+.wt-home-hero--fullbleed .wt-lp-cta-action--secondary,.wt-home-hero--slider .wt-lp-cta-action--secondary{border-color:#fff;color:#fff}
+/* slider: scroll-snap（JS 無効でも横スクロール可）、JS でドット / 前後ボタン */
+.wt-home-slider__track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}.wt-home-slider__track::-webkit-scrollbar{display:none}
+.wt-home-slider__slide{position:relative;isolation:isolate;flex:0 0 100%;scroll-snap-align:start;min-height:420px;color:#fff;background:var(--wp--preset--color--contrast)}
+.wt-home-slider__slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.wt-home-slider__slide::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.15) 100%)}
+.wt-home-slider__caption{position:relative;max-width:1120px;margin:0 auto;padding:clamp(3rem,8vw,6rem) var(--wp--custom--gutter) 4rem}
+.wt-home-slider__caption h1,.wt-home-slider__caption h2,.wt-home-slider__caption p,.wt-home-slider__caption .wt-eyebrow{color:#fff}
+.wt-home-slider__caption h2{font-size:clamp(1.5rem,3.5vw,2.25rem);margin:.25rem 0 .5rem}
+.wt-home-slider__nav:not([hidden]){position:absolute;left:0;right:0;bottom:.75rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.wt-home-slider__nav button{width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:var(--wp--preset--color--contrast);font-size:1.5rem;line-height:1;cursor:pointer}
+.wt-home-slider__dots{display:flex;gap:.25rem}.wt-home-slider__dots button{width:44px;height:44px;background:transparent;position:relative}
+.wt-home-slider__dots button::before{content:"";position:absolute;inset:0;margin:auto;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.55)}
+.wt-home-slider__dots button[aria-current="true"]::before{background:#fff;width:14px;height:14px}
+/* hero CTA 4 型 */
+.wt-home-cta{display:none;gap:.75rem;flex-wrap:wrap;align-items:center}
+body.wt-home-hero-cta-double .wt-home-cta--double,body.wt-home-hero-cta-single .wt-home-cta--single,body.wt-home-hero-cta-tel-button .wt-home-cta--tel-button{display:flex}
+.wt-home-hero--text-only .wt-home-cta{justify-content:center}
+.wt-home-tel{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;color:inherit;text-decoration:none;line-height:1.1}
+.wt-home-tel .wt-i{width:1.6em;height:1.6em;color:var(--wp--preset--color--accent)}.wt-home-tel b{display:block;font-family:var(--wp--preset--font-family--latin);font-size:1.35rem}.wt-home-tel small{display:block;font-size:.75rem;color:var(--wp--preset--color--mute)}
+.wt-home-tel--big b{font-size:1.9rem}
+.wt-home-hero--fullbleed .wt-home-tel,.wt-home-hero--fullbleed .wt-home-tel small{color:#fff}
+/* article-grid hero */
+.wt-home-hero--article-grid .wt-home-hero__inner{padding-top:2rem;padding-bottom:1rem}
+.wt-home-grid .wp-block-post-template{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;list-style:none;padding:0;margin:0}
+.wt-home-grid--hero .wp-block-post-template>li:first-child{grid-column:1 / span 2;grid-row:1 / span 2}
+.wt-home-grid--hero .wp-block-post-template>li:first-child .wp-block-post-title{font-size:var(--wp--preset--font-size--xl)}
+.wt-home-card{display:flex;flex-direction:column;gap:.35rem;height:100%}
+.wt-home-card .wp-block-post-featured-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m)}
+.wt-home-card .wp-block-post-title{margin:0;line-height:1.4}.wt-home-card .wp-block-post-title a{display:block;min-height:44px;color:inherit;text-decoration:none}
+.wt-home-card .wp-block-post-terms{margin:0;font-weight:700}.wt-home-card .wp-block-post-terms a{display:inline-flex;align-items:center;min-height:44px;margin-block:calc((1.2em - 44px)/2)}
+.wt-home-card .wp-block-post-date{margin:0;color:var(--wp--preset--color--mute)}
+/* --- 区間セット 3 種: body.wt-home-sections-* で表示と順序 --- */
+.wt-home__sections{display:flex;flex-direction:column;width:100%}.wt-home__section{display:none!important;order:50}
+body.wt-home-sections-corporate :is(.wt-home__section--news,.wt-home__section--service-cards,.wt-home__section--features,.wt-home__section--numbers,.wt-home__section--cases,.wt-home__section--company,.wt-home__section--access,.wt-home__section--contact){display:block!important}
+body.wt-home-sections-corporate .wt-home__section--news{order:10}body.wt-home-sections-corporate .wt-home__section--service-cards{order:20}body.wt-home-sections-corporate .wt-home__section--features{order:30}body.wt-home-sections-corporate .wt-home__section--numbers{order:40}body.wt-home-sections-corporate .wt-home__section--cases{order:50}body.wt-home-sections-corporate .wt-home__section--company{order:60}body.wt-home-sections-corporate .wt-home__section--access{order:70}body.wt-home-sections-corporate .wt-home__section--contact{order:80}
+body.wt-home-sections-service :is(.wt-home__section--service-cards,.wt-home__section--features,.wt-home__section--numbers,.wt-home__section--cases,.wt-home__section--price,.wt-home__section--faq,.wt-home__section--cta-band,.wt-home__section--contact){display:block!important}
+body.wt-home-sections-service .wt-home__section--service-cards{order:10}body.wt-home-sections-service .wt-home__section--features{order:20}body.wt-home-sections-service .wt-home__section--numbers{order:30}body.wt-home-sections-service .wt-home__section--cases{order:40}body.wt-home-sections-service .wt-home__section--price{order:50}body.wt-home-sections-service .wt-home__section--faq{order:60}body.wt-home-sections-service .wt-home__section--cta-band{order:70}body.wt-home-sections-service .wt-home__section--contact{order:80}
+body.wt-home-sections-media :is(.wt-home__section--article-grid,.wt-home__section--category-cards,.wt-home__section--ranking,.wt-home__section--banner-row,.wt-home__section--news,.wt-home__section--cta-band,.wt-home__section--contact){display:block!important}
+body.wt-home-sections-media .wt-home-cta .wt-lp-cta-action--secondary[href="#service"]{display:none} /* media セットにサービス区間が無いため、届かない導線を出さない */
+body.wt-home-sections-media .wt-home__section--article-grid{order:10}body.wt-home-sections-media .wt-home__section--category-cards{order:20}body.wt-home-sections-media .wt-home__section--ranking{order:30}body.wt-home-sections-media .wt-home__section--banner-row{order:40}body.wt-home-sections-media .wt-home__section--news{order:50}body.wt-home-sections-media .wt-home__section--cta-band{order:60}body.wt-home-sections-media .wt-home__section--contact{order:70}
+body.wt-home-news-none .wt-home__section--news{display:none!important}
+body.wt-home-contact-none .wt-home__section--contact{display:none!important}
+body.wt-home-contact-none :is(.wt-home-cta,.wt-home__section--cta-band,.wt-home-fixed--sp-bottom-bar) a[href="#contact"],body.wt-home-contact-none .wt-home-fixed--float-cta[href="#contact"]{display:none!important} /* 問い合わせ区間が無いとき、届かない #contact 導線を出さない */
+.wt-home__section:nth-child(even):not(.wt-lp-cta-band){background:var(--wp--preset--color--surface)}
+.wt-home__section h2{margin:0 0 1.25rem;font-size:clamp(1.5rem,3vw,2rem)}
+/* news 4 型 */
+.wt-home-news{display:none}
+body.wt-home-news-list-with-date .wt-home-news--list-with-date,body.wt-home-news-tabs .wt-home-news--tabs{display:block}
+body.wt-home-news-cards .wt-home-news--cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;list-style:none;padding:0;margin:0}
+.wt-home-news--list-with-date,.wt-home-news--tabs ul{list-style:none;padding:0;margin:0}
+.wt-home-news--list-with-date li,.wt-home-news--tabs li{display:grid;grid-template-columns:7em auto minmax(0,1fr);gap:1rem;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--wp--preset--color--line)}
+.wt-home-news--tabs li{grid-template-columns:7em minmax(0,1fr)}
+.wt-home-news time{font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--mute);font-size:.875rem}
+.wt-home-news__cat{display:inline-flex;align-items:center;min-height:24px;padding:0 .6rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);font-size:.75rem;font-weight:700;white-space:nowrap}
+.wt-home-news a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}.wt-home-news a:hover{color:var(--wp--preset--color--accent)}
+.wt-home-tabs{display:flex;gap:.25rem;border-bottom:2px solid var(--wp--preset--color--line);margin-bottom:.5rem}
+.wt-home-tabs [role=tab]{min-height:44px;padding:0 1rem;border:0;background:transparent;font-weight:700;color:var(--wp--preset--color--mute);cursor:pointer;margin-bottom:-2px;border-bottom:2px solid transparent}
+.wt-home-tabs [role=tab][aria-selected="true"]{color:var(--wp--preset--color--accent);border-bottom-color:var(--wp--preset--color--accent)}
+.wt-home-news--cards a{display:flex;flex-direction:column;gap:.35rem;min-height:44px}.wt-home-news--cards img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m)}.wt-home-news--cards b{line-height:1.45}
+.wt-home-news__more{margin:1rem 0 0;text-align:right}.wt-home-news__more a{display:inline-flex;align-items:center;gap:.25rem;min-height:44px;font-weight:700;color:var(--wp--preset--color--accent);text-decoration:none}
+/* cards / features / numbers / cases / price / faq / company / access */
+.wt-home-cards{list-style:none;padding:0;margin:0;display:grid;gap:1.25rem}.wt-home-cards--3{grid-template-columns:repeat(3,minmax(0,1fr))}.wt-home-cards--4{grid-template-columns:repeat(4,minmax(0,1fr))}.wt-home-cards--cases{grid-template-columns:repeat(3,minmax(0,1fr))}
+.wt-home-cards a{display:flex;flex-direction:column;gap:.5rem;height:100%;padding:1.25rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);color:inherit;text-decoration:none;transition:transform var(--wp--custom--motion-fast),box-shadow var(--wp--custom--motion-fast)}
+.wt-home-cards a:hover{transform:translateY(-2px);box-shadow:var(--wp--preset--shadow--depth-1);border-color:var(--wp--preset--color--accent)}
+.wt-home-cards .wt-i{color:var(--wp--preset--color--accent)}.wt-home-cards b{font-size:var(--wp--preset--font-size--l);line-height:1.35}.wt-home-cards span{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s);line-height:1.6}
+.wt-home-cards--cases a{padding:0;overflow:hidden}.wt-home-cards--cases img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}.wt-home-cards--cases small{padding:.9rem 1.1rem 0;color:var(--wp--preset--color--mute);font-size:.75rem}.wt-home-cards--cases b{padding:0 1.1rem 1.1rem;font-size:var(--wp--preset--font-size--m)}
+.wt-home-cards--4 a{align-items:center;text-align:center}
+.wt-home-features{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}.wt-home-features li{display:flex;flex-direction:column;gap:.5rem}.wt-home-features img{width:96px;height:96px}.wt-home-features b{font-size:var(--wp--preset--font-size--l)}.wt-home-features span{color:var(--wp--preset--color--mute);line-height:1.7}
+.wt-home-numbers{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;text-align:center}.wt-home-numbers li{padding:1.25rem 1rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);border:1px solid var(--wp--preset--color--line)}
+.wt-home-numbers b{display:block;font-family:var(--wp--preset--font-family--latin);font-size:clamp(2rem,4vw,2.75rem);line-height:1;color:var(--wp--preset--color--accent)}.wt-home-numbers b small{font-size:.45em;margin-left:.15em}.wt-home-numbers span{display:block;margin-top:.5rem;color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s)}
+.wt-home-price,.wt-event-tickets{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.wt-home-price li,.wt-event-tickets li{display:flex;flex-direction:column;gap:.5rem;padding:1.5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);text-align:center}
+.wt-home-price li.is-featured,.wt-event-tickets li.is-featured{border-color:var(--wp--preset--color--accent);box-shadow:var(--wp--preset--shadow--depth-1)}
+.wt-home-price b,.wt-event-tickets b{font-size:var(--wp--preset--font-size--l)}.wt-home-price__num,.wt-event-tickets__price{margin:0;font-family:var(--wp--preset--font-family--latin);font-size:2rem;font-weight:800;color:var(--wp--preset--color--accent)}.wt-home-price__num small{font-size:.5em}
+.wt-home-price span,.wt-event-tickets span{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s)}
+.wt-home-faq details{border-bottom:1px solid var(--wp--preset--color--line)}.wt-home-faq summary{display:flex;align-items:center;min-height:52px;padding:.5rem 0;font-weight:700;cursor:pointer;list-style:none}.wt-home-faq summary::before{content:"Q";flex:0 0 auto;margin-right:.75rem;font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent)}.wt-home-faq p{margin:0 0 1rem 1.9rem;color:var(--wp--preset--color--mute)}
+.wt-home-company{width:100%;border-collapse:collapse}.wt-home-company th,.wt-home-company td{padding:.85rem 1rem;border-bottom:1px solid var(--wp--preset--color--line);text-align:left;vertical-align:top}.wt-home-company th{width:9em;color:var(--wp--preset--color--mute);font-weight:700;white-space:nowrap}
+.wt-home-access{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.5rem;align-items:start}.wt-home-map{display:grid;place-items:center;aspect-ratio:16/9;border-radius:var(--wp--custom--radius-m);background:repeating-linear-gradient(45deg,var(--wp--preset--color--surface) 0 12px,var(--wp--preset--color--accent-soft) 12px 24px);color:var(--wp--preset--color--mute);font-family:var(--wp--preset--font-family--latin);font-weight:800;letter-spacing:.2em}
+.wt-home-access address{font-style:normal;line-height:1.8}
+/* contact 5 型 */
+.wt-home-contact{display:none}
+body.wt-home-contact-tel-form .wt-home-contact--tel-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:2rem;align-items:start}
+body.wt-home-contact-form-only .wt-home-contact--form-only,body.wt-home-contact-tel-only .wt-home-contact--tel-only,body.wt-home-contact-line .wt-home-contact--line{display:block}
+.wt-home-contact h2{margin-top:0}.wt-home-form .is-wide{grid-column:1 / -1}.wt-home-form textarea{width:100%;min-height:96px;padding:.6rem .75rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);font:inherit}
+.wt-home-form .wt-lp-cta-action{margin-top:1rem}
+/* banners */
+.wt-home-banners{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.wt-home-banners a{display:flex;flex-direction:column;justify-content:center;gap:.25rem;min-height:96px;padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:linear-gradient(135deg,var(--wp--preset--color--accent),var(--wp--preset--color--contrast));color:#fff;text-decoration:none}.wt-home-banners .wt-eyebrow{color:rgba(255,255,255,.8);margin:0}.wt-home-banners b{font-size:var(--wp--preset--font-size--l)}
+/* ranking */
+.wt-home-rank .wp-block-post-template{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;counter-reset:hr}
+.wt-home-rank .wp-block-post-template>li{counter-increment:hr;position:relative}
+.wt-home-rank__item{display:flex;flex-direction:column;gap:.35rem}.wt-home-rank__item::before{content:counter(hr);position:absolute;top:.4rem;left:.4rem;z-index:1;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--wp--preset--color--contrast);color:#fff;font-family:var(--wp--preset--font-family--latin);font-weight:800;font-size:.875rem}
+.wt-home-rank .wp-block-post-template>li:first-child .wt-home-rank__item::before{background:#b8860b}
+.wt-home-rank__item .wp-block-post-featured-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m)}.wt-home-rank__item .wp-block-post-title{margin:0;font-size:var(--wp--preset--font-size--s);line-height:1.45}.wt-home-rank__item .wp-block-post-title a{display:block;min-height:44px;color:inherit;text-decoration:none}
+/* fixed 4 型 */
+.wt-home-fixed{display:none}
+body.wt-home-fixed-float-cta .wt-home-fixed--float-cta{display:inline-flex;position:fixed;left:1rem;bottom:1rem;z-index:45;max-width:calc(100vw - 2rem);box-sizing:border-box;box-shadow:var(--wp--preset--shadow--depth-2)}
+body.wt-home-fixed-float-tel .wt-home-fixed--float-tel{display:inline-flex;align-items:center;justify-content:center;position:fixed;right:1rem;bottom:1rem;z-index:45;width:56px;height:56px;border-radius:50%;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);box-shadow:var(--wp--preset--shadow--depth-2)}
+body.wt-home-fixed-sp-bottom-bar .wt-home-fixed--sp-bottom-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:fixed;right:0;bottom:0;left:0;z-index:45;padding:.25rem var(--wp--custom--gutter) max(.25rem,env(safe-area-inset-bottom));border-top:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base)}
+.wt-home-fixed--sp-bottom-bar a{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:48px;color:var(--wp--preset--color--contrast);font-size:var(--wp--preset--font-size--s);font-weight:700;text-decoration:none}.wt-home-fixed--sp-bottom-bar a:first-child{border-right:1px solid var(--wp--preset--color--line)}
+@media (min-width:600px){.wt-home-fixed--sp-bottom-bar,.wt-home-fixed--float-tel{display:none!important}}
+body.wt-face-home.wt-home-fixed-sp-bottom-bar .wt-footer{padding-bottom:calc(56px + var(--wp--preset--spacing--60))}
+/* --- HP SP --- */
+@media (max-width:599px){
+.wt-home-hero__grid{grid-template-columns:1fr;gap:1.5rem}.wt-home-hero--fullbleed{min-height:440px}.wt-home-slider__slide{min-height:380px}
+.wt-home-grid .wp-block-post-template,.wt-home-cards--3,.wt-home-cards--cases,.wt-home-features,.wt-home-price,.wt-event-tickets,.wt-home-banners{grid-template-columns:1fr}
+.wt-home-grid--hero .wp-block-post-template>li:first-child{grid-column:auto;grid-row:auto}
+.wt-home-cards--4{grid-template-columns:repeat(2,minmax(0,1fr))}.wt-home-numbers{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}.wt-home-numbers li{padding:.9rem .4rem}.wt-home-numbers b{font-size:1.5rem}
+body.wt-home-news-cards .wt-home-news--cards{grid-template-columns:1fr}.wt-home-news--list-with-date li{grid-template-columns:1fr;gap:.25rem;padding:.75rem 0}.wt-home-news--list-with-date li a{min-height:44px}
+.wt-home-access{grid-template-columns:1fr}body.wt-home-contact-tel-form .wt-home-contact--tel-form{grid-template-columns:1fr}
+.wt-home-rank .wp-block-post-template{grid-template-columns:1fr;gap:.75rem}.wt-home-rank__item{display:grid;grid-template-columns:40% minmax(0,1fr);gap:.75rem;align-items:center}
+.wt-home-company th{width:6em;white-space:normal}
+}
+/* ===== イベントページ ===== */
+.wt-event-hero{display:none;position:relative;overflow:hidden;color:var(--wp--preset--color--contrast)}
+body.wt-event-hero-photo-overlay .wt-event-hero--photo-overlay,body.wt-event-hero-key-visual .wt-event-hero--key-visual,body.wt-event-hero-date-place-block .wt-event-hero--date-place-block,body.wt-event-hero-text-only .wt-event-hero--text-only{display:block}
+.wt-event-hero__inner{max-width:1120px;margin:0 auto;padding:clamp(3rem,8vw,6rem) var(--wp--custom--gutter)}
+.wt-event-hero h1{margin:.25rem 0 .75rem;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.25;text-wrap:balance}
+.wt-event-hero__meta{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin:0 0 1.5rem;font-weight:700}.wt-event-hero__meta span{display:inline-flex;align-items:center;gap:.25rem}
+.wt-event-hero__lead{max-width:36em;margin:0 0 1.5rem;color:var(--wp--preset--color--mute)}
+.wt-event-hero--photo-overlay{isolation:isolate;min-height:520px;color:#fff;background:var(--wp--preset--color--contrast)}
+.wt-event-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.wt-event-hero--photo-overlay::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.84) 50%,rgba(0,0,0,.35) 100%)}
+.wt-event-hero--photo-overlay .wt-eyebrow,.wt-event-hero--photo-overlay h1,.wt-event-hero--photo-overlay .wt-event-hero__meta{color:#fff}
+.wt-event-hero--key-visual .wt-event-hero__kv{display:block;width:100%;max-height:480px;object-fit:cover}.wt-event-hero--key-visual .wt-event-hero__inner{padding-top:2rem;padding-bottom:2.5rem}
+.wt-event-hero--date-place-block{background:var(--wp--preset--color--accent-soft)}
+.wt-event-hero__grid{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2.5rem;align-items:center}
+.wt-event-date{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:200px;padding:1.5rem;border-radius:var(--wp--custom--radius-l);background:var(--wp--preset--color--accent);color:#fff;text-align:center}
+.wt-event-date b{font-family:var(--wp--preset--font-family--latin);font-size:3.5rem;line-height:1}.wt-event-date b small{font-size:.5em;margin:0 .1em}.wt-event-date span{font-weight:700;margin-top:.35rem}
+.wt-event-hero--text-only{background:var(--wp--preset--color--surface);text-align:center}.wt-event-hero--text-only .wt-event-hero__lead{margin-inline:auto}
+/* 受付状態 4 型（none は非表示） */
+.wt-event-status{display:none;align-items:center;min-height:28px;padding:0 .8rem;border-radius:999px;font-size:.8125rem;font-weight:700;margin-bottom:.75rem}
+body.wt-event-status-open .wt-event-status--open{display:inline-flex;background:var(--wp--preset--color--ok);color:#fff}
+body.wt-event-status-few-seats .wt-event-status--few-seats{display:inline-flex;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast)}
+body.wt-event-status-ended .wt-event-status--ended{display:inline-flex;background:var(--wp--preset--color--mute);color:#fff}
+/* 区間: info / schedule / speakers / access / share は軸 none で非表示 */
+.wt-event__sections{display:flex;flex-direction:column;width:100%}.wt-event__section:nth-child(even):not(.wt-lp-cta-band){background:var(--wp--preset--color--surface)}
+.wt-event__section h2{margin:0 0 1.25rem;font-size:clamp(1.5rem,3vw,2rem)}
+body.wt-event-info-none .wt-event__section--info,body.wt-event-schedule-none .wt-event__section--schedule,body.wt-event-speakers-none .wt-event__section--speakers,body.wt-event-map-none .wt-event__section--access{display:none}
+.wt-event__section--info .wt-lp-section-inner{padding-top:1.5rem;padding-bottom:1.5rem}
+.wt-event-info{display:none}
+body.wt-event-info-inline-text .wt-event-info--inline-text{display:block;margin:0;line-height:2}.wt-event-info--inline-text b{color:var(--wp--preset--color--accent);margin-right:.25rem}
+body.wt-event-info-table .wt-event-info--table{display:table;width:100%;border-collapse:collapse}.wt-event-info--table th,.wt-event-info--table td{padding:.85rem 1rem;border-bottom:1px solid var(--wp--preset--color--line);text-align:left}.wt-event-info--table th{width:8em;color:var(--wp--preset--color--mute);white-space:nowrap}
+body.wt-event-info-icon-list .wt-event-info--icon-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;list-style:none;padding:0;margin:0}.wt-event-info--icon-list li{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:1rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);text-align:center}.wt-event-info--icon-list .wt-i{color:var(--wp--preset--color--accent)}.wt-event-info--icon-list span{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s)}
+.wt-event-highlights{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.wt-event-highlights li{display:flex;flex-direction:column;gap:.25rem;padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--accent-soft)}.wt-event-highlights .wt-i{color:var(--wp--preset--color--accent)}.wt-event-highlights span{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s)}
+.wt-event-schedule{display:none}
+body.wt-event-schedule-table .wt-event-schedule--table{display:table;width:100%;border-collapse:collapse}.wt-event-schedule--table th,.wt-event-schedule--table td{padding:.75rem 1rem;border-bottom:1px solid var(--wp--preset--color--line);text-align:left}.wt-event-schedule--table thead th{background:var(--wp--preset--color--surface);font-size:var(--wp--preset--font-size--s)}.wt-event-schedule--table td:first-child{font-family:var(--wp--preset--font-family--latin);font-weight:700;white-space:nowrap}
+body.wt-event-schedule-timeline .wt-event-schedule--timeline{display:block;list-style:none;padding:0;margin:0;position:relative}.wt-event-schedule--timeline::before{content:"";position:absolute;top:.5rem;bottom:.5rem;left:5.5rem;border-left:2px solid var(--wp--preset--color--line)}
+.wt-event-schedule--timeline li{display:grid;grid-template-columns:4.5rem 1.5rem minmax(0,1fr);gap:.5rem;align-items:start;padding:.6rem 0}.wt-event-schedule--timeline time{font-family:var(--wp--preset--font-family--latin);font-weight:700}.wt-event-schedule--timeline li::before{content:"";grid-column:2;width:12px;height:12px;margin:.3rem auto 0;border-radius:50%;background:var(--wp--preset--color--accent);position:relative;z-index:1}.wt-event-schedule--timeline div{grid-column:3}.wt-event-schedule--timeline b{display:block}.wt-event-schedule--timeline span{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s)}
+body.wt-event-schedule-accordion .wt-event-schedule--accordion{display:block}.wt-event-schedule--accordion details{border-bottom:1px solid var(--wp--preset--color--line)}.wt-event-schedule--accordion summary{display:flex;align-items:center;gap:.75rem;min-height:52px;font-weight:700;cursor:pointer;list-style:none}.wt-event-schedule--accordion time{font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent)}.wt-event-schedule--accordion p{margin:0 0 1rem 4rem;color:var(--wp--preset--color--mute)}
+.wt-event-speakers{display:none}
+body.wt-event-speakers-cards-photo .wt-event-speakers--cards-photo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;list-style:none;padding:0;margin:0}.wt-event-speakers--cards-photo li{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:1.5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);text-align:center}.wt-event-speakers--cards-photo img{width:96px;height:96px;border-radius:50%;object-fit:cover}.wt-event-speakers b{font-size:var(--wp--preset--font-size--l)}.wt-event-speakers small{color:var(--wp--preset--color--accent);font-weight:700}.wt-event-speakers span,.wt-event-speakers p{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--s);line-height:1.7}
+body.wt-event-speakers-list .wt-event-speakers--list{display:block;list-style:none;padding:0;margin:0}.wt-event-speakers--list li{display:flex;gap:1rem;align-items:baseline;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line)}.wt-event-speakers--list span{font-size:var(--wp--preset--font-size--s)}
+body.wt-event-speakers-single-profile .wt-event-speakers--single-profile{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.5rem;align-items:start}.wt-event-speakers--single-profile img{width:160px;height:160px;border-radius:var(--wp--custom--radius-m);object-fit:cover}.wt-event-speakers--single-profile p{margin:.5rem 0 0}
+.wt-event-apply{display:none}
+body.wt-event-apply-inline-form .wt-event-apply--inline-form,body.wt-event-apply-external-form .wt-event-apply--external-form,body.wt-event-apply-ticket-link .wt-event-apply--ticket-link{display:block}
+body.wt-event-apply-closed-notice .wt-event-apply--closed-notice{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}.wt-event-apply--closed-notice .wt-i{color:var(--wp--preset--color--mute);flex:0 0 auto}.wt-event-apply--closed-notice p{margin:.25rem 0 0;color:var(--wp--preset--color--mute)}.wt-event-apply--closed-notice a{display:inline-flex;align-items:center;min-height:44px}
+.wt-event-apply select{width:100%;min-height:44px;padding:.5rem .75rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s);font:inherit;background:var(--wp--preset--color--base)}
+.wt-event-apply__consent{display:flex;align-items:center;gap:.5rem;min-height:44px;margin:.75rem 0}.wt-event-apply__consent input{width:20px;height:20px}
+.wt-event-apply .wt-lp-cta-action{margin-top:.5rem}
+/* 受付終了のとき、hero の申込ボタンと固定導線は出さない */
+body.wt-event-apply-closed-notice .wt-event-apply-link,body.wt-event-apply-closed-notice .wt-event-fixed{display:none!important}
+.wt-event-map{display:none}
+body.wt-event-map-static-image .wt-event-map--static-image{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.5rem;align-items:start}.wt-event-map--static-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--wp--custom--radius-m);border:1px solid var(--wp--preset--color--line)}
+body.wt-event-map-text-only .wt-event-map--text-only{display:block}.wt-event-map address{font-style:normal;line-height:1.8}
+.wt-event-notes{margin:0 0 1rem;padding-left:1.25rem;color:var(--wp--preset--color--mute);line-height:1.8}.wt-event-organizer{margin:0 0 1.5rem}.wt-event-organizer b{color:var(--wp--preset--color--accent);margin-right:.25rem}.wt-event-organizer a{display:inline-flex;align-items:center;min-height:44px}
+.wt-event-share{display:none}
+body.wt-event-share-icons .wt-event-share--icons{display:flex;align-items:center;gap:.5rem}.wt-event-share--icons span{font-size:.8125rem;color:var(--wp--preset--color--mute);margin-right:.25rem}.wt-event-share--icons a,.wt-event-share--icons button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:50%;background:var(--wp--preset--color--contrast);color:#fff;text-decoration:none;cursor:pointer;font-size:1rem}.wt-event-share--icons .wt-i{width:1.35rem;height:1.35rem}
+body.wt-event-share-add-to-calendar .wt-event-share--add-to-calendar{display:block}
+.wt-event-fixed{display:none}
+body.wt-event-fixed-float-apply .wt-event-fixed--float-apply{display:inline-flex;position:fixed;right:1rem;bottom:1rem;z-index:45;max-width:calc(100vw - 2rem);box-sizing:border-box;box-shadow:var(--wp--preset--shadow--depth-2)}
+body.wt-event-fixed-sp-bottom-bar .wt-event-fixed--sp-bottom-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.75rem;align-items:center;position:fixed;right:0;bottom:0;left:0;z-index:45;padding:.4rem var(--wp--custom--gutter) max(.4rem,env(safe-area-inset-bottom));border-top:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base)}
+.wt-event-fixed__date{font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:var(--wp--preset--font-size--s)}.wt-event-fixed--sp-bottom-bar a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 1.25rem;border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);font-weight:700;text-decoration:none}
+@media (min-width:600px){.wt-event-fixed--sp-bottom-bar{display:none!important}}
+body.wt-face-event.wt-event-fixed-sp-bottom-bar .wt-footer{padding-bottom:calc(64px + var(--wp--preset--spacing--60))}
+@media (max-width:599px){
+.wt-event-hero__grid{grid-template-columns:1fr;gap:1.5rem}.wt-event-date{min-width:0;width:100%}.wt-event-hero--photo-overlay{min-height:440px}
+body.wt-event-info-icon-list .wt-event-info--icon-list{grid-template-columns:repeat(2,minmax(0,1fr))}.wt-event-highlights{grid-template-columns:1fr}
+body.wt-event-speakers-cards-photo .wt-event-speakers--cards-photo{grid-template-columns:1fr}body.wt-event-speakers-single-profile .wt-event-speakers--single-profile{grid-template-columns:1fr}.wt-event-speakers--single-profile img{width:120px;height:120px}
+body.wt-event-map-static-image .wt-event-map--static-image{grid-template-columns:1fr}
+.wt-event-schedule--timeline::before{left:4.9rem}body.wt-event-schedule-table .wt-event-schedule--table{display:block;overflow-x:auto}
+.wt-event-info--table th{width:5em;white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){.wt-home *,.wt-event *{animation:none!important;transition:none!important;transform:none!important}.wt-home-slider__track{scroll-behavior:auto}}
+/* 固定導線と footer の干渉（Astra 前の実機是正）: 固定導線がある面では追尾の totop を出さず、footer 下端に固定導線ぶんの余白を足して法定リンクと重ならないようにする */
+body.wt-face-home:is(.wt-home-fixed-float-cta,.wt-home-fixed-float-tel,.wt-home-fixed-sp-bottom-bar) .wt-totop,body.wt-face-event:is(.wt-event-fixed-float-apply,.wt-event-fixed-sp-bottom-bar) .wt-totop{display:none!important}
+body.wt-face-home:is(.wt-home-fixed-float-cta,.wt-home-fixed-float-tel,.wt-home-fixed-sp-bottom-bar) .wt-footer,body.wt-face-event:is(.wt-event-fixed-float-apply,.wt-event-fixed-sp-bottom-bar) .wt-footer{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+/* チェックボックスの操作領域: 24px 以上（SP の min(w,h) ≥ 24 監査）、ラベルは 44px 行 */
+.wt-lp-form-inline input[type=checkbox]{width:24px;height:24px;margin:0 .5rem 0 0;vertical-align:middle;accent-color:var(--wp--preset--color--accent)}
+.wt-lp-form-inline label:has(> input[type=checkbox]){display:inline-flex;align-items:center;gap:.25rem;min-height:44px;margin:.25rem 0}
+.wt-home-hero__title--grid{font-size:var(--wp--preset--font-size--l);margin:0 0 1rem}
+/* 白文字 hero（fullbleed / slider / photo-overlay）: 文字を下寄せにし、スクリムは下 78% を α ≥ .84 に保つ（文字矩形の上端が下端から 7 割前後に来るため）。表示型の切替（body 軸 class）を壊さないよう body class で限定 */
+body.wt-home-hero-fullbleed .wt-home-hero--fullbleed{display:flex;flex-direction:column;justify-content:flex-end}
+body.wt-event-hero-photo-overlay .wt-event-hero--photo-overlay{display:flex;flex-direction:column;justify-content:flex-end}
+.wt-home-hero--fullbleed::before,.wt-home-slider__slide::before,.wt-event-hero--photo-overlay::before{background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.84) 78%,rgba(0,0,0,.40) 100%)}
+.wt-home-slider__caption{position:absolute;left:0;right:0;bottom:0}

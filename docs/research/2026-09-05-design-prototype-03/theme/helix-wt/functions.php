@@ -52,7 +52,32 @@ function wt_axes() {
 		'lp_form'      => array( 'external', array( 'external', 'inline' ) ),
 		'lp_line'      => array( 'button', array( 'button', 'qr' ) ),
 		'lp_legal'     => array( 'on', array( 'on', 'off' ) ),
+		// 2026-09-06 PO 反応 17 回目 WT-EVT-0277「HP ページは？イベントとかが組めるページは？」（Claude 案）。
+		// 既定は台帳 research-r17（HP 39 件 / イベント個別募集ページ 8 件（取得 20 件から page_kind 除外後）、Astra レビュー済み）の最多型。n が小さい区分の型は「選べる型」として置く
+		'home_hero'     => array( 'text-only', array( 'text-only', 'slider', 'fullbleed', 'split', 'article-grid', 'video' ) ), // HP n=39: text-only 33% / slider 26% / fullbleed 21%（台帳 home-event-recapture）
+		'home_hero_cta' => array( 'double', array( 'double', 'single', 'none', 'tel-button' ) ), // double 62%（CTA 2 つ。用途は home_contact）
+		'home_sections' => array( 'corporate', array( 'corporate', 'service', 'media' ) ), // 用途別の区間セット
+		'home_news'     => array( 'list-with-date', array( 'list-with-date', 'tabs', 'cards', 'none' ) ), // list-with-date 46%
+		'home_contact'  => array( 'tel-form', array( 'tel-form', 'form-only', 'tel-only', 'line', 'none' ) ), // tel+form 36%
+		'home_fixed'    => array( 'none', array( 'none', 'float-cta', 'sp-bottom-bar', 'float-tel' ) ), // sticky-header はヘッダー既定で常時
+		'event_hero'     => array( 'key-visual', array( 'key-visual', 'photo-overlay', 'date-place-block', 'text-only' ) ), // 主集計 n=8: key-visual 50% / photo-overlay 25%（参考: 取得全体 n=20 では photo-overlay 55%）
+		'event_info'     => array( 'inline-text', array( 'inline-text', 'table', 'icon-list', 'none' ) ), // 主集計 n=8: inline-text 62%
+		'event_schedule' => array( 'none', array( 'none', 'table', 'timeline', 'accordion' ) ), // 主集計 n=8: none 38% / table 25% / timeline 12%
+		'event_speakers' => array( 'none', array( 'none', 'cards-photo', 'list', 'single-profile' ) ), // 主集計 n=8: none 50% / cards-photo 25%
+		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%
+		'event_status'   => array( 'open', array( 'open', 'none', 'few-seats', 'ended' ) ), // 主集計 n=8: open 62% / ended 25% / none 12%。few-seats の実例は 0（観測不足）
+		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only' ) ), // 主集計 n=8: none 50% / text-only 50%。埋め込み地図（外部）は使わない
+		'event_fixed'    => array( 'none', array( 'none', 'sp-bottom-bar', 'float-apply' ) ), // 主集計 n=8: none 100%（観察に無い型を Claude 案として追加）
+		'event_share'    => array( 'none', array( 'none', 'icons', 'add-to-calendar' ) ), // 主集計 n=8: none 62% / icons 38%。add-to-calendar は観察に無い Claude 案
 	);
+}
+
+function wt_is_event_page() {
+	// 固定ページの template meta が空でも、block テーマの階層（page-{slug}.html）で page-event が解決されることがある
+	// （ローカル検証台で確認）。その場合 is_page_template() は false になるため、実際に解決した template id も見る。
+	global $_wp_current_template_id;
+	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-event' );
+	return $resolved || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
 }
 
 function wt_is_lp_page() {
@@ -103,14 +128,17 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.12' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.12' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.13' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.13' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-contrast', get_theme_file_uri( 'assets/js/contrast.js' ), array(), '0.3.2', $defer );
 	if ( is_singular() || is_page() ) {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
+	}
+	if ( is_front_page() ) {
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.13', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
@@ -127,6 +155,12 @@ add_filter( 'body_class', function ( $classes ) {
 	// LP 面限定の CSS 分岐（to-top 位置など）が非 LP 面へ漏れないよう、面クラスを別枠で付与する。
 	if ( wt_is_lp_page() ) {
 		$classes[] = 'wt-face-lp';
+	}
+	if ( is_front_page() ) {
+		$classes[] = 'wt-face-home';
+	}
+	if ( wt_is_event_page() ) {
+		$classes[] = 'wt-face-event';
 	}
 	foreach ( wt_axes() as $key => $def ) {
 		$classes[] = 'wt-' . $key . '-' . wt_opt( $key );

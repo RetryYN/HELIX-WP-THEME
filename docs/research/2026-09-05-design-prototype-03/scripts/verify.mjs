@@ -1430,6 +1430,129 @@ const HEADER_AUDIT_SRC = `([expectBody, dev]) => {
   out.snsIcons = { ...res, pass: ok(res.spJs) && ok(res.pcJs) && ok(res.spNoJs) };
 }
 
+// 2026-09-06 PO 反応 17 回目 WT-EVT-0277: HP 面 / イベントページの検査（Claude 案）
+const HOME = "/";
+const EVENT = "/event/";
+// (h) homeFace: 各軸の全型で「body に軸 class・当該型だけ可視・他型は非可視」。hero は 6 型、CTA 4 型（none は hero 内の CTA が 0）、区間セット 3 種の表示区間と順序、news 4 型、contact 5 型、fixed 4 型（SP/PC の出し分け）。SP/PC/SP JS 無効
+{
+  const AX = {
+    home_hero: ["text-only", "slider", "fullbleed", "split", "article-grid", "video"],
+    home_hero_cta: ["double", "single", "none", "tel-button"],
+    home_news: ["list-with-date", "tabs", "cards", "none"],
+    home_contact: ["tel-form", "form-only", "tel-only", "line", "none"],
+    home_fixed: ["none", "float-cta", "sp-bottom-bar", "float-tel"],
+  };
+  const SETS = { corporate: ["news", "service-cards", "features", "numbers", "cases", "company", "access", "contact"], service: ["service-cards", "features", "numbers", "cases", "price", "faq", "cta-band", "contact"], media: ["article-grid", "category-cards", "ranking", "banner-row", "news", "cta-band", "contact"] };
+  const read = async (cfg, dev, js) => {
+    const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
+    for (const [axis, values] of Object.entries(AX)) {
+      for (const v of values) {
+        await p.goto(BASE + HOME + `?wt=${axis}:${v}`, { waitUntil: js ? "networkidle" : "load" });
+        const r = await p.evaluate(([axis, v, values, visSrc]) => {
+          const vis = eval(visSrc); const cls = axis.replace(/_/g, "-");
+          const body = document.body.classList.contains(`wt-${cls}-${v}`);
+          const prefix = { home_hero: ".wt-home-hero--", home_hero_cta: ".wt-home-hero .wt-home-cta--", home_news: ".wt-home-news--", home_contact: ".wt-home-contact--", home_fixed: ".wt-home-fixed--" }[axis];
+          const shown = values.filter((x) => Array.from(document.querySelectorAll(prefix + x)).some(vis));
+          const heroVisible = Array.from(document.querySelectorAll(".wt-home-hero")).filter(vis).length;
+          const taps = Array.from(document.querySelectorAll(".wt-home a, .wt-home button, .wt-home input, .wt-home select, .wt-home textarea, .wt-home-fixed")).filter(vis);
+          const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); const inline = el.tagName === "A" && getComputedStyle(el).display === "inline" && el.parentElement && /^(P|LI|TD|B|SPAN)$/.test(el.parentElement.tagName); const lab = el.tagName === "INPUT" && /^(checkbox|radio)$/.test(el.type) ? el.closest("label") : null; const labOk = !!lab && lab.getBoundingClientRect().height >= 44 && lab.getBoundingClientRect().width >= 44 && Math.min(r.width, r.height) >= 24; return !inline && !labOk && Math.min(r.width, r.height) < 44; }).map((el) => (el.className || el.tagName).toString().slice(0, 60));
+          const forms = Array.from(document.querySelectorAll(".wt-home form")).filter(vis).map((f) => ({ method: (f.getAttribute("method") || "get").toLowerCase(), action: f.getAttribute("action") || "", submit: f.querySelectorAll("button:not([type]), button[type=submit], input[type=submit], input[type=image]").length, inputs: f.querySelectorAll("input:not([type=hidden]), textarea, select").length, labelled: Array.from(f.querySelectorAll("input:not([type=hidden]), textarea, select")).every((i) => i.id && f.querySelector(`label[for="${i.id}"]`)) }));
+          const anchors = Array.from(document.querySelectorAll(".wt-home a[href^='#'], .wt-home-fixed[href^='#']")).filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, targetVisible: !!t && vis(t) }; }); const deadAnchors = anchors.filter((a) => !a.targetVisible).map((a) => a.href);
+          const sliderNav = document.querySelector(".wt-home-hero--slider .wt-home-slider__nav"); const sliderNavVisible = axis === "home_hero" && v === "slider" ? vis(sliderNav) && sliderNav.querySelectorAll("button").length >= 4 : null;
+          return { body, shown, heroVisible, taps: taps.length, below44, forms, h1: document.querySelectorAll("h1").length, h1Visible: Array.from(document.querySelectorAll("h1")).filter(vis).length, sliderNavVisible, anchors: anchors.length, deadAnchors };
+        }, [axis, v, values, VIS_SRC]);
+        const expectShown = v === "none" ? [] : (axis === "home_fixed" && dev === "pc" && v !== "float-cta" ? [] : [v]);
+        const expectForms = axis === "home_contact" ? (v === "tel-form" || v === "form-only" ? 1 : 0) : 1; // 既定 home_contact=tel-form はフォーム 1 つ
+        const pass = r.body && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.sliderNavVisible === null || r.sliderNavVisible === js) && r.anchors >= 1 && r.deadAnchors.length === 0;
+        results.push({ dev, js, axis, v, expectForms, ...r, pass });
+      }
+    }
+    // 区間セット: 表示区間の集合と順序
+    const sets = [];
+    for (const [set, expect] of Object.entries(SETS)) {
+      await p.goto(BASE + HOME + `?wt=home_sections:${set}`, { waitUntil: js ? "networkidle" : "load" });
+      const order = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home__sections > .wt-home__section")).filter(vis).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top).map((s) => Array.from(s.classList).find((c) => c.startsWith("wt-home__section--")).replace("wt-home__section--", "")); }, VIS_SRC);
+      const anchors = await p.evaluate((visSrc) => { const vis = eval(visSrc); return Array.from(document.querySelectorAll(".wt-home a[href^='#'], .wt-home-fixed[href^='#']")).filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, text: a.textContent.trim().slice(0, 20), targetVisible: !!t && vis(t) }; }); }, VIS_SRC);
+      const deadAnchors = anchors.filter((a) => !a.targetVisible);
+      sets.push({ dev, js, set, order, anchors: anchors.length, deadAnchors, pass: JSON.stringify(order) === JSON.stringify(expect) && anchors.length >= 2 && deadAnchors.length === 0 });
+    }
+    await ctx.close(); return { results, sets };
+  };
+  const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
+  const all = [...sp.results, ...pc.results, ...spNoJs.results, ...sp.sets, ...pc.sets, ...spNoJs.sets];
+  out.homeFace = { sp, pc, spNoJs, pass: all.length === (23 * 3 + 9) && all.every((x) => x.pass) };
+}
+// (i) homeHeroContrast: 白文字を置く hero（fullbleed / slider）は ::before の gradient を stop ごとに解析し、文字矩形の上端位置（下端からの %）の α を線形補間して白背景でも 4.5:1（α ≥ .82）を要求。文字は hero 矩形内。テキスト hero は文字色コントラスト
+{
+  const rows = [];
+  for (const [cfg, dev, js] of [[PC, "pc", true], [SP, "sp", true], [SP, "sp", false]]) { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
+  for (const v of ["fullbleed", "slider"]) {
+    await p.goto(BASE + HOME + `?wt=home_hero:${v}`, { waitUntil: js ? "networkidle" : "load" });
+    rows.push(await p.evaluate((v) => { const el = document.querySelector(v === "slider" ? ".wt-home-slider__slide" : ".wt-home-hero--fullbleed"); const bg = getComputedStyle(el, "::before").backgroundImage; const stops = Array.from(bg.matchAll(/rgba\(0, 0, 0, ([\d.]+)\) ([\d.]+)%/g)).map((x) => [parseFloat(x[2]), parseFloat(x[1])]); const alphaAt = (pct) => { if (!stops.length) return null; if (pct <= stops[0][0]) return stops[0][1]; for (let i = 1; i < stops.length; i++) { if (pct <= stops[i][0]) { const [p0, a0] = stops[i - 1], [p1, a1] = stops[i]; return a0 + (a1 - a0) * ((pct - p0) / (p1 - p0)); } } return stops[stops.length - 1][1]; }; const title = el.querySelector("h1, h2"); const tr = title.getBoundingClientRect(); const er = el.getBoundingClientRect(); const topPct = (er.bottom - tr.top) / er.height * 100; const alpha = alphaAt(topPct); const img = el.querySelector("img"); const zi = (e, ps) => { const z = getComputedStyle(e, ps).zIndex; return z === "auto" ? 0 : parseInt(z, 10); }; const scrimAboveImg = !!img && zi(el, "::before") > zi(img) && getComputedStyle(el).isolation === "isolate"; const cx = tr.left + Math.min(20, tr.width / 2), cy = tr.top + Math.min(10, tr.height / 2); const hit = document.elementFromPoint(cx, cy); const hitInTitle = !!hit && (hit === title || title.contains(hit)); const ctas = Array.from(el.querySelectorAll(".wt-home-cta a")).filter((a) => a.getBoundingClientRect().width > 0 && getComputedStyle(a).display !== "none").map((a) => { const cs = getComputedStyle(a); return { text: a.textContent.trim().slice(0, 12), color: cs.color, bg: cs.backgroundColor, border: cs.borderTopColor }; }); return { v, stops, ctas, titleTopPctFromBottom: Math.round(topPct * 10) / 10, alphaAtTitleTop: alpha === null ? null : Math.round(alpha * 1000) / 1000, titleColor: getComputedStyle(title).color, scrimAboveImg, hitInTitle, pass: alpha !== null && (1.05 / ((1 - alpha) + 0.05)) >= 4.5 && getComputedStyle(title).color === "rgb(255, 255, 255)" && tr.top >= er.top && tr.bottom <= er.bottom && scrimAboveImg && hitInTitle }; }, v));
+    // CTA: 塗りボタンは文字 / 背景 4.5:1、透明ボタンはスクリム（α 補間後の実効背景 = 黒 α）上で文字 4.5:1 かつ枠線が文字色
+    { const row = rows[rows.length - 1]; const a = row.alphaAtTitleTop ?? 0; const scrimLum = (1 - a) * 1.0; const ctaOk = row.ctas.length >= 1 && row.ctas.every((c) => { const fg = lum(parse(c.color).rgb); const filled = !/rgba\(0, 0, 0, 0\)|transparent/.test(c.bg); return filled ? ratio(fg, lum(parse(c.bg).rgb)) >= 4.5 : ratio(fg, scrimLum) >= 4.5 && c.border === c.color; }); row.ctaOk = ctaOk; row.pass = row.pass && ctaOk; }
+  }
+  for (const v of ["text-only", "split", "video"]) {
+    await p.goto(BASE + HOME + `?wt=home_hero:${v}`, { waitUntil: js ? "networkidle" : "load" });
+    const r = await p.evaluate((v) => { const el = document.querySelector(`.wt-home-hero--${v}`); const bg = (e) => { for (; e; e = e.parentElement) { const c = getComputedStyle(e).backgroundColor; if (c && !/rgba\(0, 0, 0, 0\)|transparent/.test(c)) return c; } return "rgb(255, 255, 255)"; }; const t = el.querySelector("h1"), l = el.querySelector(".wt-home-hero__lead"); return { v, title: [getComputedStyle(t).color, bg(t)], lead: [getComputedStyle(l).color, bg(l)] }; }, v);
+    const ok = ([fg, b]) => { const c = parse(fg), bb = parse(b); return ratio(lum(c.rgb), lum(bb.rgb)) >= 4.5; };
+    rows.push({ ...r, pass: ok(r.title) && ok(r.lead) });
+  }
+  await ctx.close(); }
+  out.homeHeroContrast = { rows: rows.map((r, i) => ({ dev: ["pc", "sp", "sp"][Math.floor(i / 5)], js: i < 10, ...r })), pass: rows.length === 15 && rows.every((r) => r.pass) };
+}
+// (j) homeFixedOverlap: 固定導線がフッターの操作要素・追尾要素と重ならず viewport 内（SP: sp-bottom-bar / float-cta / float-tel、PC: float-cta）
+{
+  const check = async (cfg, dev, variants, face = "home") => { const ctx = await browser.newContext(cfg); const p = await ctx.newPage(); const rows = [];
+    for (const v of variants) { await p.goto(BASE + (face === "home" ? HOME : EVENT) + `?wt=${face}_fixed:${v},footer_totop:button`, { waitUntil: "networkidle" }); await p.evaluate(() => scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(300);
+      rows.push(await p.evaluate(([v, face]) => { const vis = (el) => el && el.getBoundingClientRect().width > 0 && getComputedStyle(el).display !== "none"; const el = document.querySelector(`.wt-${face}-fixed--${v}`); if (!vis(el)) return { face, v, visible: false, pass: false }; const r = el.getBoundingClientRect(); const others = Array.from(document.querySelectorAll(".wt-totop, .wt-share--float, .wt-footer a, .wt-footer button")).filter(vis).filter((o) => o !== el && !el.contains(o)); const overlaps = others.filter((o) => { const q = o.getBoundingClientRect(); return !(q.right <= r.left || q.left >= r.right || q.bottom <= r.top || q.top >= r.bottom); }).map((o) => o.className.toString().slice(0, 50)); return { face, v, visible: true, inViewport: r.top >= 0 && r.bottom <= innerHeight && r.left >= 0 && r.right <= innerWidth, overlaps, pass: r.top >= 0 && r.bottom <= innerHeight && r.left >= 0 && r.right <= innerWidth && overlaps.length === 0 }; }, [v, face])); }
+    await ctx.close(); return rows; };
+  const sp = [...await check(SP, "sp", ["float-cta", "sp-bottom-bar", "float-tel"]), ...await check(SP, "sp", ["sp-bottom-bar", "float-apply"], "event")], pc = [...await check(PC, "pc", ["float-cta"]), ...await check(PC, "pc", ["float-apply"], "event")];
+  out.homeFixedOverlap = { sp, pc, pass: sp.length === 5 && pc.length === 2 && [...sp, ...pc].every((r) => r.pass) };
+}
+// (k) eventFace: 各軸の全型（hero 4 / info 4 / schedule 4 / speakers 4 / apply 4 / status 4 / map 3 / fixed 3 / share 3）で軸 class・当該型だけ可視、closed-notice で申込導線が消える、フォームは非送信、44px。SP/PC/SP JS 無効
+{
+  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"] };
+  const PREFIX = { event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
+  const read = async (cfg, dev, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
+    for (const [axis, values] of Object.entries(AX)) for (const v of values) {
+      await p.goto(BASE + EVENT + `?wt=${axis}:${v}`, { waitUntil: js ? "networkidle" : "load" });
+      const r = await p.evaluate(([axis, v, values, prefix, visSrc]) => { const vis = eval(visSrc); const cls = axis.replace(/_/g, "-");
+        const shown = values.filter((x) => Array.from(document.querySelectorAll(prefix + x)).some(vis));
+        const taps = Array.from(document.querySelectorAll(".wt-event a, .wt-event button, .wt-event input, .wt-event select, .wt-event-fixed")).filter(vis);
+        const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); const inline = el.tagName === "A" && getComputedStyle(el).display === "inline" && el.parentElement && /^(P|LI|TD|B|SPAN)$/.test(el.parentElement.tagName); const lab = el.tagName === "INPUT" && /^(checkbox|radio)$/.test(el.type) ? el.closest("label") : null; const labOk = !!lab && lab.getBoundingClientRect().height >= 44 && lab.getBoundingClientRect().width >= 44 && Math.min(r.width, r.height) >= 24; return !inline && !labOk && Math.min(r.width, r.height) < 44; }).map((el) => (el.className || el.tagName).toString().slice(0, 60));
+        const forms = Array.from(document.querySelectorAll(".wt-event form")).filter(vis).map((f) => ({ method: (f.getAttribute("method") || "get").toLowerCase(), action: f.getAttribute("action") || "", submit: f.querySelectorAll("button:not([type]), button[type=submit], input[type=submit], input[type=image]").length, inputs: f.querySelectorAll("input:not([type=hidden]), select, textarea").length, labelled: Array.from(f.querySelectorAll("input:not([type=hidden]):not([type=checkbox]), select")).every((i) => i.id && f.querySelector(`label[for="${i.id}"]`)) }));
+        const applyLinks = Array.from(document.querySelectorAll(".wt-event-apply-link, .wt-event-fixed")).filter(vis).length;
+        const anchors = Array.from(document.querySelectorAll(".wt-event a[href^='#'], .wt-event-fixed a[href^='#'], a.wt-event-fixed[href^='#']")).filter(vis).map((a) => { const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null; return { href: "#" + id, targetVisible: !!t && vis(t) }; }); const deadAnchors = anchors.filter((a) => !a.targetVisible).map((a) => a.href);
+        return { body: document.body.classList.contains(`wt-${cls}-${v}`), shown, heroVisible: Array.from(document.querySelectorAll(".wt-event-hero")).filter(vis).length, h1Visible: Array.from(document.querySelectorAll("h1")).filter(vis).length, below44, forms, applyLinks, hasImgRole: axis === "event_map" && v === "static-image" ? !!document.querySelector(".wt-event-map--static-image img[alt]") : null, anchors: anchors.length, deadAnchors }; }, [axis, v, values, PREFIX[axis], VIS_SRC]);
+      let expectShown = v === "none" ? [] : [v];
+      if (axis === "event_fixed" && dev === "pc" && v === "sp-bottom-bar") expectShown = [];
+      const expectForms = axis === "event_apply" ? (v === "inline-form" ? 1 : 0) : 1; // 既定 event_apply=inline-form はフォーム 1 つ
+      let pass = r.body && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.hasImgRole === null || r.hasImgRole === true) && r.deadAnchors.length === 0;
+      if (axis === "event_apply") pass = pass && (v === "closed-notice" ? r.applyLinks === 0 : r.applyLinks >= 1);
+      results.push({ dev, js, axis, v, expectForms, ...r, pass });
+    }
+    await ctx.close(); return results; };
+  const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
+  const all = [...sp, ...pc, ...spNoJs];
+  out.eventFace = { sp, pc, spNoJs, pass: all.length === 33 * 3 && all.every((x) => x.pass) };
+}
+// (l) eventHeroContrast: photo-overlay のスクリム α（下端 .88）と白文字、他 3 型の文字色 4.5:1、受付状態バッジ 3 型の文字コントラスト
+{
+  const rows = [];
+  for (const [cfg, dev, js] of [[PC, "pc", true], [SP, "sp", true], [SP, "sp", false]]) { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
+  await p.goto(BASE + EVENT + "?wt=event_hero:photo-overlay,event_status:open", { waitUntil: js ? "networkidle" : "load" });
+  rows.push(await p.evaluate(() => { const el = document.querySelector(".wt-event-hero--photo-overlay"); const bg = getComputedStyle(el, "::before").backgroundImage; const stops = Array.from(bg.matchAll(/rgba\(0, 0, 0, ([\d.]+)\) ([\d.]+)%/g)).map((x) => [parseFloat(x[2]), parseFloat(x[1])]); const alphaAt = (pct) => { if (!stops.length) return null; if (pct <= stops[0][0]) return stops[0][1]; for (let i = 1; i < stops.length; i++) { if (pct <= stops[i][0]) { const [p0, a0] = stops[i - 1], [p1, a1] = stops[i]; return a0 + (a1 - a0) * ((pct - p0) / (p1 - p0)); } } return stops[stops.length - 1][1]; }; const t = el.querySelector("h1"); const title = t; const tr = t.getBoundingClientRect(), er = el.getBoundingClientRect(); const topPct = (er.bottom - tr.top) / er.height * 100; const a = alphaAt(topPct); const img = el.querySelector("img"); const zi = (e, ps) => { const z = getComputedStyle(e, ps).zIndex; return z === "auto" ? 0 : parseInt(z, 10); }; const scrimAboveImg = !!img && zi(el, "::before") > zi(img) && getComputedStyle(el).isolation === "isolate"; const cx = tr.left + Math.min(20, tr.width / 2), cy = tr.top + Math.min(10, tr.height / 2); const hit = document.elementFromPoint(cx, cy); const hitInTitle = !!hit && (hit === title || title.contains(hit)); return { v: "photo-overlay", stops, titleTopPctFromBottom: Math.round(topPct * 10) / 10, alphaAtTitleTop: a === null ? null : Math.round(a * 1000) / 1000, titleColor: getComputedStyle(t).color, scrimAboveImg, hitInTitle, pass: a !== null && 1.05 / ((1 - a) + 0.05) >= 4.5 && getComputedStyle(t).color === "rgb(255, 255, 255)" && tr.top >= er.top && tr.bottom <= er.bottom && scrimAboveImg && hitInTitle }; }));
+  const bgOf = `(e) => { for (; e; e = e.parentElement) { const c = getComputedStyle(e).backgroundColor; if (c && !/rgba\\(0, 0, 0, 0\\)|transparent/.test(c)) return c; } return "rgb(255, 255, 255)"; }`;
+  for (const [v, st] of [["key-visual", "few-seats"], ["date-place-block", "ended"], ["text-only", "open"]]) {
+    await p.goto(BASE + EVENT + `?wt=event_hero:${v},event_status:${st}`, { waitUntil: js ? "networkidle" : "load" });
+    const r = await p.evaluate(([v, st, bgSrc]) => { const bg = eval(bgSrc); const el = document.querySelector(`.wt-event-hero--${v}`); const t = el.querySelector("h1"); const badge = el.querySelector(`.wt-event-status--${st}`); const meta = el.querySelector(".wt-event-hero__meta, .wt-event-hero__lead"); return { v, st, title: [getComputedStyle(t).color, bg(t)], badge: [getComputedStyle(badge).color, bg(badge)], badgeSize: parseFloat(getComputedStyle(badge).fontSize), meta: [getComputedStyle(meta).color, bg(meta)] }; }, [v, st, bgOf]);
+    const ok = ([fg, b], min = 4.5) => { const c = parse(fg), bb = parse(b); return ratio(lum(c.rgb), lum(bb.rgb)) >= min; };
+    rows.push({ ...r, pass: ok(r.title) && ok(r.meta) && ok(r.badge) });
+  }
+  await ctx.close(); }
+  out.eventHeroContrast = { rows: rows.map((r, i) => ({ dev: ["pc", "sp", "sp"][Math.floor(i / 4)], js: i < 8, ...r })), pass: rows.length === 12 && rows.every((r) => r.pass) };
+}
 // 10. 結果の集計（既存 gate と段 3 / 段 4 gate を同じ verify.json に固定する）
 out.status404.pass = Object.entries(out.status404).filter(([key]) => key.startsWith("/")).every(([, status]) => status === 404) && out.status404.noindex;
 out.toc.pass = out.toc.tocH2 === out.toc.h2Count && out.toc.tocH3 === out.toc.h3Count && out.toc.scrollMarginTop !== "0px";
@@ -1461,6 +1584,7 @@ const checkList = [
   ["prNoticeText", out.prNoticeText.pass], ["relatedSlider", out.relatedSlider.pass], ["shareSns", out.shareSns.pass], ["depthFloat", out.depthFloat.pass], ["tableRich", out.tableRich.pass], ["footerCredit", out.footerCredit.pass],
   ["lpParts", out.lpParts.pass],
   ["headerVariants", out.headerVariants.pass], ["announceFullWidth", out.announceFullWidth.pass], ["numboxNum", out.numboxNum.pass], ["graphsMore", out.graphsMore.pass], ["relatedNoFixture", out.relatedNoFixture.pass], ["lineIcon", out.lineIcon.pass], ["snsIcons", out.snsIcons.pass],
+  ["homeFace", out.homeFace.pass], ["homeHeroContrast", out.homeHeroContrast.pass], ["homeFixedOverlap", out.homeFixedOverlap.pass], ["eventFace", out.eventFace.pass], ["eventHeroContrast", out.eventHeroContrast.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
