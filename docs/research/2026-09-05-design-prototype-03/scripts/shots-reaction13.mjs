@@ -92,7 +92,7 @@ try {
 for (const [dev, cfg] of [["sp", SP], ["pc", PC]]) {
   if (browser) await browser.close();
   browser = await chromium.launch();
-  // 全長（分割）: HP 区間セット 5 種（corporate / service / media は同名置換）、イベント区間セット 4 種、パーツ一覧ページ
+  // 全長（分割）: HP 区間セット 5 種（corporate / service / media は同名置換）、イベント区間セット 5 種、パーツ一覧ページ
   for (const [set, n] of Object.entries(HOME_SETS)) await chunked(browser, cfg, dev, HOME + wt(`home_sections:${set}`), `home-sections-${set}`, { face: "home", part: "home-sections", variant: set }, ".wt-home__sections", ":scope > .wt-home__section", n);
   for (const [set, n] of Object.entries(EVENT_SETS)) await chunked(browser, cfg, dev, EVENT + wt(`event_sections:${set},event_schedule:table,event_speakers:cards-photo,event_map:static-image`), `event-sections-${set}`, { face: "event", part: "event-sections", variant: set }, ".wt-event", ".wt-event__sections > .wt-event__section", n);
   await chunked(browser, cfg, dev, PARTS, "page-parts-full", { face: "page", part: "page-parts", variant: "15 パーツを並べた固定ページ" }, ".wt-page-parts", ":scope > .wt-part", 15);
