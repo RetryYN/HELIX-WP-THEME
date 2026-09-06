@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // shots-reaction16.mjs — 2026-09-07 PO 階層整理 WT-EVT-0296 + 指示 WT-EVT-0297「合わせろ」（段 10c: サイドバーの所属を面ごとに）の撮り直し + 新規撮影。
-// 撮り直し（同名置換）: 段 6 の独自 aside を写す写真は cat_side:own を明示（category-columns-* 全長 / category-sidebar 3 型 / category-children-sidebar-tree / category-ranking-sidebar）。HP と固定ページは HP 側の束（home_side_set=corporate 既定）に変わるので home-sections-* / page-parts-full / side-home-owned（home_side_set:owned）/ side-page-corporate（page_side:home,home_side_set:corporate）/ side-from 3 / side-default-page を撮り直す。
+// 撮り直し（同名置換）: 段 6 の独自 aside を写す写真は cat_side:classic を明示（category-columns-* 全長 / category-sidebar 3 型 / category-children-sidebar-tree / category-ranking-sidebar）。HP と固定ページは HP 側の束（home_side_set=corporate 既定）に変わるので home-sections-* / page-parts-full / side-home-owned（home_side_set:owned）/ side-page-corporate（page_side:home,home_side_set:corporate）/ side-from 3 / side-default-page を撮り直す。
 // 新規: cat-side 3 型（PC / SP）、event-side 3 型（PC）、page-side 3 型（PC）、HOME の OFF（PC）。
 // 方式は reaction13 / 15（分割撮影・dev ごとにブラウザ再起動・ロック・予定集合照合・退避と原子的 INDEX 置換）。
 import fs from "node:fs";
@@ -82,7 +82,7 @@ async function chunked(browser, cfg, dev, url, key, meta, rootSel, sectionSel, e
 const HOME = "/";
 const PARTS = "/parts/";
 const HOME_SETS = { corporate: 9, service: 9, media: 7, "shop-school": 11, "school-org": 12 };
-const CAT_COLUMNS = [["sidebar-right", 2], ["1col", 1]]; // 値は .wt-cat-layout の直下で可視の要素数（primary + aside / primary）。cat_side:own のとき共通サイドバーは display:none
+const CAT_COLUMNS = [["sidebar-right", 2], ["1col", 1]]; // 値は .wt-cat-layout の直下で可視の要素数（primary + aside / primary）。cat_side:classic のとき共通サイドバーは display:none
 const CAT_SIDEBAR = ["standard", "with-cta", "full"];
 const SIDE_FROM = [["side-from-below-hero", "side_from:below-hero", "below-hero（既定。hero の下からサイドバー）"], ["side-from-top", "side_from:top", "top（hero の横からサイドバー）"], ["side-from-top-left", "side_from:top,home_side_layout:left", "top + left（CV 狙いの左配置）"]];
 const CAT_SIDE = [["article", "記事側の束を継承（既定。PO 原文「記事側を継承するケースが多い」）"], ["home", "HP 側の束を継承"], ["own", "独自設定（面専用の束 own_category_side_*、既定セット minimal）"], ["classic", "段 6 の独自 aside（cat_sidebar 3 型など）"], ["off", "非表示（1 カラム）"]];

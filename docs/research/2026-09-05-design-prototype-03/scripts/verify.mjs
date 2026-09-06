@@ -1781,6 +1781,7 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
     for (const v of extra) CASES.push({ face, path, q: `${axis}:${v},side_nav:drawer-pc,side_sp:drawer,home_side_nav:fixed-right-icons,own_${face}_side_nav:drawer-pc`, v: `${v}+nav`, bundle: "none", catAside: v === "classic", set: null, noNav: true }); // 非表示はサイドナビ・ドロワーも切れる
     CASES.push({ face, path, q: `${axis}:own,own_${face}_side_set:blog,side_set:corporate,home_side_set:media,${FACES2.filter((f) => f[0] !== face).map((f) => `own_${f[0]}_side_set:corporate`).join(",")}`, v: "own uses own_<face>_side_*", bundle: "own", catAside: false, set: "blog" }); // own は自面の軸だけを見る（他面の own と記事側 / HP 側を変えても変わらない）
   }
+  for (const [face, path, axis] of FACES2.filter((f) => f[0] !== "page")) CASES.push({ face, path, q: `${axis}:article,side_sp:drawer`, v: "article+drawer", bundle: "article", catAside: false, set: "media", drawer: true }); // 継承した束の SP ドロワー: PC は aside、SP JS ありはボタンだけ、SP JS 無効は本文の下に aside（Astra 2 巡目）
   CASES.push({ face: "home", path: HOME, q: "home_side_layout:none", v: "none", bundle: "home", catAside: false, set: null });
   CASES.push({ face: "home", path: HOME, q: "home_side_layout:none,side_nav:drawer-pc,home_side_nav:fixed-right-icons", v: "none+nav", bundle: "home", catAside: false, set: null, noNav: false }); // HOME の OFF は配置だけ（HP 側のサイドナビは HP 側の軸のまま生きる）
   CASES.push({ face: "home", path: HOME, q: "side_set:blog", v: "isolation(side_set on home)", bundle: "home", catAside: false, set: "corporate" }); // 記事側の束を変えても HP は変わらない
@@ -1794,8 +1795,10 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       await p.goto(BASE + c.path + "?wt=" + c.q, { waitUntil: js ? "networkidle" : "load" });
       const r = await p.evaluate(READ, [VIS_SRC]);
       const isPc = dev === "pc"; const expectRight = c.set !== null; /* home_side_layout:none は束 home のまま非表示 */
-      let pass = r.bundle === c.bundle && r.face === c.face && r.h1 === 1 && r.rightVis === expectRight && r.catAsideVis === c.catAside && !r.drawerOpen;
+      const spDrawer = !!c.drawer && !isPc && js; // SP・JS あり・drawer → aside は隠れボタンだけ出る
+      let pass = r.bundle === c.bundle && r.face === c.face && r.h1 === 1 && r.rightVis === (expectRight && !spDrawer) && r.catAsideVis === c.catAside && !r.drawerOpen;
       if (c.lp) pass = r.bundle === "none" && r.face === "lp" && !r.sideEl && !r.rightVis && r.h1 === 1 && !r.openBtnVis && r.navVis === 0;
+      else if (spDrawer) pass = pass && r.tracks === 1 && r.openBtnVis && r.navVis === 0;
       else if (expectRight) { pass = pass && JSON.stringify(r.widgets) === JSON.stringify(SETS2[c.set]) && (isPc ? r.tracks === 2 : r.tracks === 1 && r.rightTop >= r.mainBottom - 1) && !r.openBtnVis; }
       else pass = pass && r.tracks === (c.catAside && isPc ? 2 : 1) && (c.noNav === false ? r.navVis === 1 && !r.openBtnVis : (!r.openBtnVis && r.navVis === 0)); /* classic は段 6 の aside が PC で 2 列目。非表示はドロワーのボタンもサイドナビも出ない。HOME の OFF は HP 側の fixed-right-icons が出る */
       rows.push({ dev, js, ...c, ...r, pass });
@@ -1803,7 +1806,7 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
     await ctx.close();
   }
   const expectRows = 2 * CASES.length + CASES.filter((c) => c.face === "category" || c.face === "event").length;
-  out.sideOwner = { bundles, registryOk, rows, pass: registryOk && CASES.length === FACES2.reduce((n, f) => n + bundles.length + 2 * f[3].length + 1, 0) + 5 && rows.length === expectRows && rows.every((x) => x.pass) };
+  out.sideOwner = { bundles, registryOk, rows, pass: registryOk && CASES.length === FACES2.reduce((n, f) => n + bundles.length + 2 * f[3].length + 1, 0) + 2 + 5 && rows.length === expectRows && rows.every((x) => x.pass) };
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
