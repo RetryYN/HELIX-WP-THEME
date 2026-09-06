@@ -830,8 +830,8 @@ function wt_render_category_cta() {
 		$lp = get_page_by_path( 'lp' );
 		return '<aside class="wt-cat-cta wt-cat-cta--lp-banner" aria-label="案内"><a href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>' . esc_html( $term->name ) . ' の選び方ガイド</b><span>比較の軸と失敗しない順番を 1 ページにまとめました</span><span class="wt-lp-cta-action">ガイドを読む</span></a></aside>';
 	}
-	if ( 'newsletter' === $variant ) { // PoC: 送信しない（外部の配信サービスへ接続しない）
-		return '<aside class="wt-cat-cta wt-cat-cta--newsletter" id="cat-newsletter" aria-labelledby="wt-cat-nl-title"><h2 id="wt-cat-nl-title">新着記事をメールで受け取る</h2><form method="get" action="#cat-newsletter" data-wt-poc-form="no-submit"><label for="wt-cat-nl-email">メールアドレス</label><input id="wt-cat-nl-email" type="email" name="email" autocomplete="email" placeholder="you@example.com"><button type="button">登録する（PoC: 送信しない）</button></form></aside>';
+	if ( 'newsletter' === $variant ) { // PoC: 送信しない（外部の配信サービスへ接続しない）。form 要素を使わない: 文字入力 1 つの form は送信ボタンが無くても Enter で暗黙送信される
+		return '<aside class="wt-cat-cta wt-cat-cta--newsletter" id="cat-newsletter" aria-labelledby="wt-cat-nl-title"><h2 id="wt-cat-nl-title">新着記事をメールで受け取る</h2><div class="wt-cat-cta__fields" role="group" aria-labelledby="wt-cat-nl-title" data-wt-poc-form="no-submit"><label for="wt-cat-nl-email">メールアドレス</label><input id="wt-cat-nl-email" type="email" name="email" autocomplete="email" placeholder="you@example.com"><button type="button">登録する（PoC: 送信しない）</button></div></aside>';
 	}
 	return '<aside class="wt-cat-cta wt-cat-cta--line" id="cat-line" aria-label="LINE 案内"><p>新着と限定情報を LINE でお届け</p><a class="wt-lp-cta-action" href="#cat-line" aria-label="LINE で友だち追加"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>LINE で友だち追加</a></aside>';
 }

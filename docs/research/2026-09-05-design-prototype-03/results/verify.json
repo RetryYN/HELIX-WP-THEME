@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.834069)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.834302)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -20225,13 +20225,14 @@
     ],
     "ctaHref": null,
     "nlForm": {
-     "method": "get",
-     "action": "#cat-newsletter",
+     "forms": 0,
+     "inputInForm": false,
      "submit": 0,
      "labelled": true,
      "poc": "no-submit"
     },
     "lineGlyph": null,
+    "enterUrlUnchanged": true,
     "pass": true
    },
    {
@@ -20256,6 +20257,486 @@
      "color": "rgb(255, 255, 255)",
      "aria": "LINE で友だち追加"
     },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+grid",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+text-list",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+featured-grid",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+grid-2",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+thumb-list",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+timeline",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
     "pass": true
    }
   ],
@@ -21153,13 +21634,14 @@
     ],
     "ctaHref": null,
     "nlForm": {
-     "method": "get",
-     "action": "#cat-newsletter",
+     "forms": 0,
+     "inputInForm": false,
      "submit": 0,
      "labelled": true,
      "poc": "no-submit"
     },
     "lineGlyph": null,
+    "enterUrlUnchanged": true,
     "pass": true
    },
    {
@@ -21184,6 +21666,486 @@
      "color": "rgb(255, 255, 255)",
      "aria": "LINE で友だち追加"
     },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+grid",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+text-list",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+featured-grid",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+grid-2",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+thumb-list",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "combo",
+    "v": "minimal+timeline",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
     "pass": true
    }
   ],
@@ -22081,13 +23043,14 @@
     ],
     "ctaHref": null,
     "nlForm": {
-     "method": "get",
-     "action": "#cat-newsletter",
+     "forms": 0,
+     "inputInForm": false,
      "submit": 0,
      "labelled": true,
      "poc": "no-submit"
     },
     "lineGlyph": null,
+    "enterUrlUnchanged": true,
     "pass": true
    },
    {
@@ -22113,6 +23076,486 @@
      "aria": "LINE で友だち追加"
     },
     "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "combo",
+    "v": "minimal+grid",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "combo",
+    "v": "minimal+text-list",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "combo",
+    "v": "minimal+featured-grid",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "combo",
+    "v": "minimal+grid-2",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "combo",
+    "v": "minimal+thumb-list",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "combo",
+    "v": "minimal+timeline",
+    "cards": 10,
+    "shown": [
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ],
+     [
+      false,
+      false,
+      false,
+      true,
+      true
+     ]
+    ],
+    "pass": true
    }
   ],
   "http": {
@@ -22120,46 +23563,119 @@
     {
      "url": "/category/topic-index/",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/",
+      "cat": true,
+      "self": true,
+      "main": true,
+      "first": "読みもの 17: 横断まとめ 2",
+      "cards": 10
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/topic-one/",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/topic-one/",
+      "cat": true,
+      "self": false,
+      "main": true,
+      "first": "読みもの 5: 基礎編 5",
+      "cards": 5
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/topic-two/",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/topic-two/",
+      "cat": true,
+      "self": false,
+      "main": true,
+      "first": "読みもの 10: 比較編 5",
+      "cards": 5
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/topic-three/",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/topic-three/",
+      "cat": true,
+      "self": false,
+      "main": true,
+      "first": "読みもの 15: 運用編 5",
+      "cards": 5
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/?year=2026",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/",
+      "cat": true,
+      "self": true,
+      "main": true,
+      "first": "読みもの 17: 横断まとめ 2",
+      "cards": 10
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/?tag=%e5%88%9d%e5%bf%83%e8%80%85%e5%90%91%e3%81%91",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/",
+      "cat": true,
+      "self": true,
+      "main": true,
+      "first": "読みもの 17: 横断まとめ 2",
+      "cards": 6
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/?tag=%e5%b0%8e%e5%85%a5%e4%ba%8b%e4%be%8b",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/",
+      "cat": true,
+      "self": true,
+      "main": true,
+      "first": "読みもの 15: 運用編 5",
+      "cards": 5
+     },
      "ok": true
     },
     {
      "url": "/category/topic-index/?tag=%e6%af%94%e8%bc%83",
      "status": 200,
+     "dom": {
+      "status": 200,
+      "path": "/category/topic-index/",
+      "cat": true,
+      "self": true,
+      "main": true,
+      "first": "読みもの 16: 横断まとめ 1",
+      "cards": 6
+     },
      "ok": true
     },
     {
      "url": "/lp/",
      "status": 200,
+     "dom": null,
      "ok": true
     }
    ],
