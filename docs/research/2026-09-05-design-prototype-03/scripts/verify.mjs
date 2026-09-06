@@ -1662,6 +1662,8 @@ const EVENT = "/event/";
       feedSet.cleanupOk = cleanupOk; feedSet.pass = feedSet.pass && cleanupOk; } }
   out.pageParts = { pageSource, rows, feedSet, pass: rows.length === 3 && rows.every((r) => r.pass) && feedSet.pass };
 }
+// 段 10c: 面ごとの束へ ?wt を変換（HP = home_side_*、固定ページは記事側の束を明示）
+const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky|sp|set|nav):/g, "$1home_side_$2:") : face === "page" ? "page_side:article," + q : q;
 // (o) sideFace（段 10、WT-EVT-0289）: 共通サイドバーの全軸 × 全値を記事 / 固定ページ / HP で検査。配置（grid の実トラック数と aside の可視）、追尾（computed position: sticky の実体と対象要素）、セット（可視ウィジェットの順序 = wt_side_sets）、SP 3 型（below-content = 本文の下で可視、drawer = JS ありでボタン→開閉、JS 無効は本文下に表示、hidden = 非表示）、サイドナビ 5 型（要素の可視と position: fixed、メガメニューは trigger の aria-expanded と Escape で閉じる）。44px、# 導線の到達先、フォームは検索のみ（GET、home_url）、外部 http(s) 要求なし
 {
   const AX = { side_layout: ["none", "right", "left", "both"], side_sticky: ["none", "whole", "last-widget", "toc-only"], side_sp: ["below-content", "drawer", "hidden"], side_set: ["media", "blog", "owned", "corporate", "minimal", "full"], side_nav: ["none", "mega-menu", "fixed-left-nav", "fixed-right-icons", "drawer-pc", "toc-side"] };
@@ -1671,7 +1673,8 @@ const EVENT = "/event/";
   const read = async (cfg, dev, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const rows = []; let external = []; p.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) external.push(u.host); } catch (_) { /* data: */ } });
     for (const [face, path] of FACES) for (const [axis, values] of Object.entries(AX)) for (const v of values) {
       external = [];
-      const q = axis === "side_layout" ? `side_layout:${v}` : `side_layout:right,${axis}:${v}`; // 配置以外の軸は right で検査
+      const q0 = axis === "side_layout" ? `side_layout:${v}` : `side_layout:right,${axis}:${v}`; // 配置以外の軸は right で検査
+      const q = sideQ(face, q0); // 段 10c: HP は HP 側の束（home_side_*）、固定ページは page_side:article で記事側の束を当てる
       await p.goto(BASE + path + `?wt=${q}`, { waitUntil: js ? "networkidle" : "load" });
       const r = await p.evaluate(([axis, v, face, visSrc, sets]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const $$ = (s) => Array.from(document.querySelectorAll(s));
         const cls = axis.replace(/_/g, "-"); const body = document.body.classList.contains(`wt-${cls}-${v}`);
@@ -1705,7 +1708,7 @@ const EVENT = "/event/";
       const spMode = axis === "side_sp" ? v : "below-content"; const spShown = isPc ? true : (spMode === "below-content" || (spMode === "drawer" && !js));
       const expectRight = hasSide && spShown; const expectLeft = isPc && layoutV === "both";
       const expectTracks = !isPc ? 1 : layoutV === "none" ? 1 : layoutV === "both" ? 3 : 2;
-      const setV = axis === "side_set" ? v : "media"; let expectWidgets = SETS[setV]; if (face !== "article") expectWidgets = expectWidgets.filter((w) => w !== "toc-sticky" && w !== "toc-dropdown"); // 見出しの無い面では目次ウィジェットを出さない
+      const setV = axis === "side_set" ? v : (face === "home" ? "corporate" : "media"); /* 段 10c: HP 側の束の既定セットは corporate */ let expectWidgets = SETS[setV]; if (face !== "article") expectWidgets = expectWidgets.filter((w) => w !== "toc-sticky" && w !== "toc-dropdown"); // 見出しの無い面では目次ウィジェットを出さない
       const stickyV = axis === "side_sticky" ? v : "last-widget"; const hasToc = expectWidgets.includes("toc-sticky");
       let pass = r.body && r.tracks === expectTracks && r.rightVis === expectRight && r.leftVis === expectLeft && r.below44.length === 0 && r.deadAnchors.length === 0 && r.brokenImgs === 0 && r.h1 === 1 && r.externalRequests.length === 0 && r.forms.every((f) => f.method === "get" && f.role === "search" && f.sameHost);
       if (expectRight) { pass = pass && JSON.stringify(r.widgets) === JSON.stringify(expectWidgets) && r.forms.length === (expectWidgets.includes("search") ? 1 : 0) + (expectLeft ? 1 : 0); /* 左カラム（both）にも検索フォームが 1 つ */ if (isPc) pass = pass && r.stickyWhole === (stickyV === "whole") && r.stickyLast === (stickyV === "last-widget" || (stickyV === "whole" ? r.stickyLast : false)) && r.stickyToc === (stickyV === "toc-only" && hasToc); }
@@ -1720,7 +1723,7 @@ const EVENT = "/event/";
     // 追加行（SP・JS あり）: drawer × full セット（newsletter / toc-dropdown を含む複製の参照先を実測）と、記事ではドロワー内の目次リンク → 閉じて inert が外れ、対象見出しへ移動すること（Astra 2 巡目）
     if (dev !== "pc" && js) for (const [face, path] of FACES) {
       external = [];
-      await p.goto(BASE + path + "?wt=side_layout:right,side_sp:drawer,side_set:full", { waitUntil: "networkidle" });
+      await p.goto(BASE + path + "?wt=" + sideQ(face, "side_layout:right,side_sp:drawer,side_set:full"), { waitUntil: "networkidle" });
       let expectWidgets = SETS.full; if (face !== "article") expectWidgets = expectWidgets.filter((w) => w !== "toc-sticky" && w !== "toc-dropdown");
       await p.click(".wt-side-drawer__open"); await p.waitForTimeout(150);
       const d = await p.evaluate((visSrc) => { const vis = eval(visSrc); const d = document.getElementById("wt-side-drawer"); const body = d.querySelector(".wt-side-drawer__body"); const ws = Array.from(body.querySelectorAll(".wt-side-widget")).filter(vis).map((w) => w.getAttribute("data-wt-widget")); const dup = Array.from(document.querySelectorAll("[id]")).map((e) => e.id).filter((id, i, a) => a.indexOf(id) !== i); const forms = Array.from(body.querySelectorAll("form")).filter(vis).map((f) => ({ method: (f.getAttribute("method") || "get").toLowerCase(), role: f.getAttribute("role") })); const taps = Array.from(body.querySelectorAll("a, button, input")).filter(vis); const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); const inline = el.tagName === "A" && getComputedStyle(el).display === "inline"; return !inline && Math.min(r.width, r.height) < 44; }).length; const badRefs = []; ["for", "aria-labelledby", "aria-describedby"].forEach((attr) => body.querySelectorAll("[" + attr + "]").forEach((el) => el.getAttribute(attr).split(/\s+/).forEach((id) => { const t = document.getElementById(id); if (!t || !body.contains(t)) badRefs.push(attr + "=" + id); }))); const refCount = body.querySelectorAll("[for],[aria-labelledby],[aria-describedby]").length; const refByWidget = { searchFor: !!body.querySelector(".wt-side-widget--search label[for]") && !!body.querySelector("#" + CSS.escape(body.querySelector(".wt-side-widget--search label[for]").getAttribute("for"))), newsletterFor: !!body.querySelector(".wt-side-widget--newsletter label[for]") && !!body.querySelector("#" + CSS.escape(body.querySelector(".wt-side-widget--newsletter label[for]").getAttribute("for"))), newsletterDescribedby: !!body.querySelector(".wt-side-widget--newsletter [aria-describedby]") && !!body.querySelector("#" + CSS.escape(body.querySelector(".wt-side-widget--newsletter [aria-describedby]").getAttribute("aria-describedby"))), widgetLabelledby: Array.from(body.querySelectorAll(".wt-side-widget")).every((w) => w.getAttribute("aria-labelledby") && body.querySelector("#" + CSS.escape(w.getAttribute("aria-labelledby")))) }; const tocLink = body.querySelector(".wt-side-widget--toc-sticky .wt-side-toc a"); const inertOutside = Array.from(document.body.children).filter((c) => c !== d).every((c) => c.hasAttribute("inert")); return { open: !d.hidden, widgets: ws, dupIds: dup.length, forms, below44, badRefs, refCount, refByWidget, hasTocLink: !!tocLink, tocHref: tocLink ? tocLink.getAttribute("href") : null, inertOutside, focusInside: d.contains(document.activeElement) }; }, VIS_SRC);
@@ -1735,20 +1738,21 @@ const EVENT = "/event/";
   const all = [...sp, ...pc, ...spNoJs];
   out.sideFace = { sp, pc, spNoJs, pass: all.length === 23 * 3 * 3 + 3 && all.every((x) => x.pass) };
 }
-// (p) sideDefaults（段 10b、WT-EVT-0292 PO 反応 22 回目「サイドバーは普通置く」「置かないケースは LP ぐらい」）: 既定（?wt なし）で記事 / 固定ページ / HP に右サイドバーが出ること（PC = 2 トラック・aside 可視、SP = 1 トラックで本文の下）、LP とカテゴリ面には共通サイドバーが無いこと、HP の side_from 2 型 × 配置 4 型で hero と aside の位置関係（below-hero: hero が端まで全幅で本文・aside は hero の下、top: hero は本文列の幅で aside の上端が hero の上端に揃う。SP と none は常に hero 全幅 → 本文 → aside）
+// (p) sideDefaults（段 10b、WT-EVT-0292 PO 反応 22 回目「サイドバーは普通置く」「置かないケースは LP ぐらい」）: 既定（?wt なし）で記事 / 固定ページ / HP に右サイドバーが出ること（PC = 2 トラック・aside 可視、SP = 1 トラックで本文の下）、カテゴリ面は記事側の束を継承して 2 列目に出ること、LP には共通サイドバーが無いこと（束 none・実効 none）、HP の side_from 2 型 × 配置 4 型で hero と aside の位置関係（below-hero: hero が端まで全幅で本文・aside は hero の下、top: hero は本文列の幅で aside の上端が hero の上端に揃う。SP と none は常に hero 全幅 → 本文 → aside）
 {
   const rows = [];
   for (const [dev, cfg] of [["pc", PC], ["sp", SP]]) {
     const ctx = await browser.newContext(cfg); const p = await ctx.newPage();
     for (const [face, path] of [["article", ARTICLE], ["page", "/parts/"], ["home", HOME], ["lp", "/lp/"], ["category", CATEGORY]]) {
       await p.goto(BASE + path, { waitUntil: "networkidle" });
-      const r = await p.evaluate((visSrc) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const layout = $(".wt-side-layout"); const right = $(".wt-side--right"); const main = $(".wt-side-main"); return { bodyRight: document.body.classList.contains("wt-side-layout-right"), bodyFrom: document.body.classList.contains("wt-side-from-below-hero"), hasLayout: !!layout, hasSideEl: !!right, tracks: layout ? getComputedStyle(layout).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0, rightVis: vis(right), mainTop: main ? main.getBoundingClientRect().top + scrollY : null, rightTop: vis(right) ? right.getBoundingClientRect().top + scrollY : null, mainBottom: main ? main.getBoundingClientRect().bottom + scrollY : null, h1: Array.from(document.querySelectorAll("h1")).filter(vis).length }; }, VIS_SRC);
-      const common = face === "article" || face === "page" || face === "home";
-      const pass = r.bodyRight && r.bodyFrom && r.hasLayout === common && r.hasSideEl === common && r.h1 === 1 && (common ? (dev === "pc" ? r.tracks === 2 && r.rightVis : r.tracks === 1 && r.rightVis && r.rightTop >= r.mainBottom - 1) : !r.rightVis && r.tracks === 0);
+      const r = await p.evaluate((visSrc) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const layout = $(".wt-face-category") ? $(".wt-cat-layout") : $(".wt-side-layout"); const right = $(".wt-side--right"); const main = $(".wt-side-main"); return { bundle: (Array.from(document.body.classList).find((x) => x.startsWith("wt-side-bundle-")) || "").replace("wt-side-bundle-", ""), bodyNone: document.body.classList.contains("wt-side-layout-none"), bodyRight: document.body.classList.contains("wt-side-layout-right"), bodyFrom: document.body.classList.contains("wt-side-from-below-hero"), hasLayout: !!layout, hasSideEl: !!right, tracks: layout ? getComputedStyle(layout).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0, rightVis: vis(right), mainTop: main ? main.getBoundingClientRect().top + scrollY : null, rightTop: vis(right) ? right.getBoundingClientRect().top + scrollY : null, mainBottom: main ? main.getBoundingClientRect().bottom + scrollY : null, h1: Array.from(document.querySelectorAll("h1")).filter(vis).length }; }, VIS_SRC);
+      const common = face !== "lp"; // 段 10c: カテゴリも既定で記事側の束（cat_side:article）を継承。LP だけ実効 none（束 none）
+      const expectBundle = { article: "article", page: "home", home: "home", category: "article", lp: "none" }[face];
+      const pass = r.bundle === expectBundle && r.bodyFrom && r.hasLayout === common && r.hasSideEl === common && r.h1 === 1 && (common ? r.bodyRight && (dev === "pc" ? r.tracks === 2 && r.rightVis : r.tracks === 1 && r.rightVis && r.rightTop >= r.mainBottom - 1) : r.bodyNone && !r.bodyRight && !r.rightVis && r.tracks === 0);
       rows.push({ dev, face, axis: "default", ...r, pass });
     }
     for (const from of ["below-hero", "top"]) for (const layout of ["right", "left", "both", "none"]) {
-      await p.goto(BASE + HOME + `?wt=side_from:${from},side_layout:${layout}`, { waitUntil: "networkidle" });
+      await p.goto(BASE + HOME + `?wt=side_from:${from},home_side_layout:${layout}`, { waitUntil: "networkidle" }); // 段 10c: HP は HP 側の束
       const r = await p.evaluate(([from, layout, visSrc]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const rect = (s) => { const e = $(s); if (!e || !vis(e)) return null; const b = e.getBoundingClientRect(); return { l: b.left, r: b.right, t: b.top + scrollY, b: b.bottom + scrollY }; }; const slot = $(".wt-home-hero-slot"); return { body: document.body.classList.contains(`wt-side-from-${from}`) && document.body.classList.contains(`wt-side-layout-${layout}`), slotParentIsLayout: !!slot && slot.parentElement.classList.contains("wt-side-layout"), hero: rect(".wt-home-hero-slot"), main: rect(".wt-side-main"), right: rect(".wt-side--right"), left: rect(".wt-side--left"), vw: document.documentElement.clientWidth, heroVisible: Array.from(document.querySelectorAll(".wt-home-hero")).filter(vis).length, heroInner: rect(".wt-home-hero-slot .wt-home-hero__inner") }; }, [from, layout, VIS_SRC]);
       const isPc = dev === "pc"; const has = layout !== "none"; const near = (a, b, tol = 1) => a !== null && b !== null && Math.abs(a - b) <= tol;
       let pass = r.body && r.slotParentIsLayout && !!r.hero && !!r.main && !!r.heroInner && r.heroVisible === 1 && r.main.t >= r.hero.b - 1 && (has === !!r.right || !isPc) && r.heroInner.l >= r.hero.l && r.heroInner.r <= r.hero.r;
@@ -1762,6 +1766,36 @@ const EVENT = "/event/";
   }
   out.sideDefaults = { rows, pass: rows.length === 2 * (5 + 8) && rows.every((x) => x.pass) };
 }
+// (q) sideOwner（段 10c、WT-EVT-0296 / 0297「合わせろ」）: サイドバーの所属が面ごとに決まること。カテゴリ cat_side 3 型（article = 共通サイドバー（記事側の束）が 2 列目、段 6 の aside は隠れる / own = 段 6 の aside だけ / off = 1 カラム）、イベント event_side 3 型と固定ページ page_side 3 型（off = 無し / home = HP 側の束のセット / article = 記事側の束のセット）、HOME の OFF（home_side_layout:none）、束の分離（HP で side_set を変えても変わらず、記事で home_side_set を変えても変わらない）。PC / SP
+{
+  const rows = [];
+  const SETS2 = { media: ["search", "categories", "popular-ranking", "cta-banner", "ad", "related-posts"], corporate: ["contact-box", "tel-box", "new-posts", "event-list", "banner-stack"], blog: ["search", "profile", "categories", "popular-ranking", "new-posts", "archive", "tags", "sns-follow"], minimal: ["popular-ranking", "related-posts", "banner-stack"] }; // 記事以外の面は toc-* を除いた並び。own の既定セットは minimal
+  const CASES = [];
+  const SETOF = { article: "media", home: "corporate", own: "minimal" }; // 束ごとの既定セット（継承 = 束のセット、独自 = own_side_set）
+  for (const v of ["article", "home", "own", "classic", "off"]) CASES.push({ face: "category", path: CATEGORY, q: `cat_side:${v}`, v, bundle: SETOF[v] ? v : "none", catAside: v === "classic", set: SETOF[v] || null });
+  for (const v of ["off", "home", "article", "own"]) CASES.push({ face: "event", path: "/event/", q: `event_side:${v}`, v, bundle: SETOF[v] ? v : "none", catAside: false, set: SETOF[v] || null });
+  for (const v of ["home", "article", "own", "off"]) CASES.push({ face: "page", path: "/parts/", q: `page_side:${v}`, v, bundle: SETOF[v] ? v : "none", catAside: false, set: SETOF[v] || null });
+  CASES.push({ face: "page", path: "/parts/", q: "page_side:own,own_side_set:blog,side_set:corporate,home_side_set:media", v: "own uses own_side_*", bundle: "own", catAside: false, set: "blog" }); // 独自設定は own_side_* だけを見る
+  CASES.push({ face: "home", path: HOME, q: "home_side_layout:none", v: "none", bundle: "home", catAside: false, set: null });
+  CASES.push({ face: "home", path: HOME, q: "side_set:blog", v: "isolation(side_set on home)", bundle: "home", catAside: false, set: "corporate" }); // 記事側の束を変えても HP は変わらない
+  CASES.push({ face: "article", path: ARTICLE, q: "home_side_set:blog", v: "isolation(home_side_set on article)", bundle: "article", catAside: false, set: "media", article: true });
+  CASES.push({ face: "lp", path: "/lp/", q: "page_side:home,event_side:home,cat_side:article", v: "lp has none", bundle: "none", catAside: false, set: null, lp: true });
+  for (const [dev, cfg] of [["pc", PC], ["sp", SP]]) {
+    const ctx = await browser.newContext(cfg); const p = await ctx.newPage();
+    for (const c of CASES) {
+      await p.goto(BASE + c.path + "?wt=" + c.q, { waitUntil: "networkidle" });
+      const r = await p.evaluate(([visSrc]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const layout = $(".wt-face-category") ? $(".wt-cat-layout") : $(".wt-side-layout"); const bl = Array.from(document.body.classList).find((x) => x.startsWith("wt-side-bundle-")); const right = $(".wt-side--right"); const main = $(".wt-side-main"); return { bundle: bl ? bl.replace("wt-side-bundle-", "") : null, face: (Array.from(document.body.classList).find((x) => x.startsWith("wt-face-")) || "").replace("wt-face-", ""), tracks: layout ? getComputedStyle(layout).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0, rightVis: vis(right), catAsideVis: vis($(".wt-cat-aside")), widgets: right ? Array.from(right.querySelectorAll(":scope > .wt-side-widget")).filter(vis).map((w) => w.getAttribute("data-wt-widget")).filter((w) => !/^toc-/.test(w)) : [], mainTop: main ? main.getBoundingClientRect().top + scrollY : null, mainBottom: main ? main.getBoundingClientRect().bottom + scrollY : null, rightTop: vis(right) ? right.getBoundingClientRect().top + scrollY : null, h1: Array.from(document.querySelectorAll("h1")).filter(vis).length, sideEl: !!right }; }, [VIS_SRC]);
+      const isPc = dev === "pc"; const expectRight = c.set !== null; /* home_side_layout:none は束 home のまま非表示 */
+      let pass = r.bundle === c.bundle && r.face === c.face && r.h1 === 1 && r.rightVis === (expectRight) && r.catAsideVis === (c.catAside && (isPc || true));
+      if (c.lp) pass = r.bundle === "none" && r.face === "lp" && !r.sideEl && !r.rightVis && r.h1 === 1;
+      else if (expectRight) { pass = pass && JSON.stringify(r.widgets) === JSON.stringify(SETS2[c.set]) && (isPc ? r.tracks === 2 : r.tracks === 1 && r.rightTop >= r.mainBottom - 1); }
+      else pass = pass && r.tracks === (c.catAside && isPc ? 2 : 1); /* classic は段 6 の aside が PC で 2 列目 */
+      rows.push({ dev, ...c, ...r, pass });
+    }
+    await ctx.close();
+  }
+  out.sideOwner = { rows, pass: rows.length === 2 * 18 && rows.every((x) => x.pass) };
+}
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
   const AX = { cat_header: ["name-count", "name-only", "name-desc", "hero"], cat_lead: ["none", "lead-text", "editorial"], cat_children: ["none", "chips", "cards", "steps", "sidebar-tree", "image-banners"], cat_columns: ["sidebar-right", "1col"], cat_sidebar: ["standard", "with-cta", "full"], cat_list: ["grid", "text-list", "featured-grid", "grid-2", "thumb-list", "timeline"], cat_card: ["standard", "minimal", "rich"], cat_filter: ["none", "tabs", "year", "tag", "sort"], cat_pagination: ["numbers", "none", "load-more", "prev-next"], cat_ranking: ["none", "sidebar", "bottom", "top"], cat_pickup: ["none", "top-featured", "editor-pick-box"], cat_cta: ["none", "lp-banner", "newsletter", "line"] };
@@ -1771,7 +1805,7 @@ const EVENT = "/event/";
   }
   const read = async (cfg, dev, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
     for (const [axis, values] of Object.entries(AX)) for (const v of values) {
-      await p.goto(BASE + CATEGORY + `?wt=${axis}:${v}`, { waitUntil: js ? "networkidle" : "load" });
+      for (let tryN = 0; ; tryN++) { try { await p.goto(BASE + CATEGORY + `?wt=cat_side:classic,${axis}:${v}`, { waitUntil: js ? "networkidle" : "load" }); break; } catch (e) { if (tryN >= 1 || !/ERR_ABORTED/.test(String(e))) throw e; await p.waitForTimeout(500); } } // 段 10c 初回実行で前行（load-more）の残り処理が次の遷移を中断した（ERR_ABORTED）→ 1 回だけ再試行 // 段 10c: 段 6 の独自 aside の検査は cat_side:classic で
       const r = await p.evaluate(([axis, v, dev, js, visSrc]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const $$ = (s) => Array.from(document.querySelectorAll(s)); const visN = (s) => $$(s).filter(vis).length; const tracks = (el) => el ? getComputedStyle(el).gridTemplateColumns.split(" ").filter((x) => x && x !== "none").length : 0;
         const cls = axis.replace(/_/g, "-"); const body = document.body.classList.contains(`wt-${cls}-${v}`);
         const taps = $$(".wt-category a, .wt-category button, .wt-category input, .wt-category select").filter(vis);
@@ -1811,7 +1845,7 @@ const EVENT = "/event/";
     }
     // 組合せ: cat_card:minimal × 一覧 6 型（一覧型の表示規則が minimal の非表示に勝たないこと）
     for (const l of AX.cat_list) {
-      await p.goto(BASE + CATEGORY + `?wt=cat_card:minimal,cat_list:${l}`, { waitUntil: js ? "networkidle" : "load" });
+      await p.goto(BASE + CATEGORY + `?wt=cat_side:classic,cat_card:minimal,cat_list:${l}`, { waitUntil: js ? "networkidle" : "load" });
       const r = await p.evaluate(([visSrc]) => { const vis = eval(visSrc); const cards = Array.from(document.querySelectorAll(".wt-cat-list .wt-cat-card")); return { cards: cards.length, shown: cards.map((c) => [vis(c.querySelector(".wp-block-post-featured-image")), vis(c.querySelector(".wp-block-post-terms")), vis(c.querySelector(".wt-cat-card__excerpt")), vis(c.querySelector(".wp-block-post-title")), vis(c.querySelector(".wp-block-post-date"))]) }; }, [VIS_SRC]);
       results.push({ dev, js, axis: "combo", v: `minimal+${l}`, ...r, pass: r.cards >= 6 && r.shown.every(([img, terms, ex, title, date]) => !img && !terms && !ex && title && date) });
     }
@@ -1864,7 +1898,7 @@ const checkList = [
   ["lpParts", out.lpParts.pass],
   ["headerVariants", out.headerVariants.pass], ["announceFullWidth", out.announceFullWidth.pass], ["numboxNum", out.numboxNum.pass], ["graphsMore", out.graphsMore.pass], ["relatedNoFixture", out.relatedNoFixture.pass], ["lineIcon", out.lineIcon.pass], ["snsIcons", out.snsIcons.pass],
   ["homeFace", out.homeFace.pass], ["homeHeroContrast", out.homeHeroContrast.pass], ["homeFixedOverlap", out.homeFixedOverlap.pass], ["eventFace", out.eventFace.pass], ["eventHeroContrast", out.eventHeroContrast.pass],
-  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass], ["sideDefaults", out.sideDefaults.pass],
+  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass], ["sideDefaults", out.sideDefaults.pass], ["sideOwner", out.sideOwner.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。
