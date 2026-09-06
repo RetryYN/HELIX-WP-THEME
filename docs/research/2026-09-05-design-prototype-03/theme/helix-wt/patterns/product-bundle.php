@@ -2,7 +2,7 @@
 /**
  * Title: 商品カード束（画像・名前・星・価格・CTA ×2）
  * Slug: helix-wt/product-bundle
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: product-card-bundle 型。比較媒体の記事内 CTA 既定
  */
 $u = get_theme_file_uri( 'assets/img' );

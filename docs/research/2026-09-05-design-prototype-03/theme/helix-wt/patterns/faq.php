@@ -2,7 +2,7 @@
 /**
  * Title: FAQ
  * Slug: helix-wt/faq
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: details 4 件
  */
 ?>

@@ -3,7 +3,7 @@
  * Title: イベント / セミナー / キャンペーンページ（選択可能）
  * Slug: helix-wt/event
  * Categories: helix-wt
- * Description: 2026-09-06 PO 反応 17 回目 WT-EVT-0277「イベントとかが組めるページは？」の Claude 案。hero 4 型・開催情報 4 型・スケジュール 4 型・登壇者 4 型・申込 4 型・受付状態 4 型・地図 3 型・固定導線 3 型・共有 3 型。
+ * Description: 2026-09-06 PO 反応 17 回目 WT-EVT-0277「イベントとかが組めるページは？」の Claude 案。hero 4 型・開催情報 4 型・スケジュール 4 型・登壇者 4 型・申込 4 型・受付状態 4 型・地図 3 型・固定導線 3 型・共有 3 型。段8（WT-EVT-0287、台帳 home-event-recapture-v2 主集計 n=40）: 区間セット 4 種（seminar / conference / festival / campaign）・申込 +3（receipt-upload / postcard / messaging-app）・区間 +8（対象者 / 主催 / 賞品 / 対象商品 / 応募の流れ / 審査員 / ギャラリー / カウントダウン。固定ページ用パーツ helix-wt-page/* を転用）。
  *              既定は台帳 research-r17（イベント個別募集ページ 8 件、取得 20 件から page_kind 除外後）の最多型。日時・会場・人物は PoC 用の架空。フォームは送信しない。埋め込み地図・外部チケットサービスへは接続しない（リンク先はダミー）。
  */
 $u = get_theme_file_uri( 'assets/img' );
@@ -17,8 +17,11 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <section class="wt-event-hero wt-event-hero--date-place-block" aria-labelledby="event-hero-date-title"><div class="wt-event-hero__inner wt-event-hero__grid"><div class="wt-event-date"><b>10<small>/</small>15</b><span>2026 年（木）</span><span>14:00〜16:00</span></div><div><?php echo $status; ?><p class="wt-eyebrow">SEMINAR</p><h1 id="event-hero-date-title">中小企業のための業務改善セミナー 2026 秋</h1><p class="wt-event-hero__meta"><span><i class="wt-i wt-i--s wt-i--pin" aria-hidden="true"></i>オンライン + 会場（サンプルホール）</span><span><i class="wt-i wt-i--s wt-i--user" aria-hidden="true"></i>定員 50 名・参加無料</span></p><?php echo $apply_btn; ?></div></div></section>
 <section class="wt-event-hero wt-event-hero--text-only" aria-labelledby="event-hero-text-title"><div class="wt-event-hero__inner"><?php echo $status; ?><p class="wt-eyebrow">SEMINAR</p><h1 id="event-hero-text-title">中小企業のための業務改善セミナー 2026 秋</h1><p class="wt-event-hero__lead">現場の手戻りを減らす「見える化」の始め方を、3 業種の事例とともに 2 時間で解説します（PoC 用の文言）。</p><?php echo $apply_btn; ?></div></section>
 </div>
+<!-- /wp:html -->
 
-<div class="wt-event__sections">
+<!-- wp:group {"className":"wt-event__sections","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__sections">
+<!-- wp:html -->
 <section class="wt-event__section wt-event__section--info" id="info" aria-label="開催情報"><div class="wt-lp-section-inner">
 <p class="wt-event-info wt-event-info--inline-text"><b>日時</b> 2026 年 10 月 15 日（木）14:00〜16:00（開場 13:30）／ <b>会場</b> サンプルホール 3F + オンライン配信 ／ <b>定員</b> 会場 50 名・オンライン 300 名 ／ <b>参加費</b> 無料（事前申込制）／ <b>対象</b> 中小企業の経営者・管理部門の方</p>
 <table class="wt-event-info wt-event-info--table"><caption class="screen-reader-text">開催情報</caption><tbody><tr><th scope="row">日時</th><td>2026 年 10 月 15 日（木）14:00〜16:00（開場 13:30）</td></tr><tr><th scope="row">会場</th><td>サンプルホール 3F + オンライン配信</td></tr><tr><th scope="row">定員</th><td>会場 50 名・オンライン 300 名</td></tr><tr><th scope="row">参加費</th><td>無料（事前申込制）</td></tr><tr><th scope="row">対象</th><td>中小企業の経営者・管理部門の方</td></tr></tbody></table>
@@ -47,6 +50,9 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <form class="wt-event-apply wt-event-apply--inline-form wt-lp-form-inline" action="#apply" method="get" data-wt-poc-form="no-submit"><div class="wt-lp-form__grid"><div><label for="ev-name">お名前</label><input id="ev-name" name="name" type="text" autocomplete="name" required></div><div><label for="ev-company">会社名</label><input id="ev-company" name="company" type="text" autocomplete="organization"></div><div><label for="ev-email">メールアドレス</label><input id="ev-email" name="email" type="email" autocomplete="email" required></div><div><label for="ev-type">参加区分</label><select id="ev-type" name="type"><option>会場参加</option><option>オンライン参加</option><option>録画のみ</option></select></div></div><label class="wt-event-apply__consent"><input type="checkbox" name="consent" required> 個人情報の取り扱いに同意する</label><button class="wt-lp-cta-action" type="button" aria-describedby="ev-note">申し込む</button><p id="ev-note" class="wt-lp-form__note">PoC のため送信されません。</p></form>
 <div class="wt-event-apply wt-event-apply--external-form"><p>申込フォームは別ページで開きます（所要 2 分）。</p><a class="wt-lp-cta-action" href="#apply" rel="nofollow">申込フォームへ進む <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a><p class="wt-lp-form__note">遷移先は PoC のためダミーのアンカー。</p></div>
 <div class="wt-event-apply wt-event-apply--ticket-link"><p>チケットは外部のチケットサービスで受け付けています。</p><a class="wt-lp-cta-action" href="#apply" rel="nofollow">チケットサービスで申し込む <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a><p class="wt-lp-form__note">サービス名・遷移先は PoC のため置かない。</p></div>
+<div class="wt-event-apply wt-event-apply--receipt-upload"><ol class="wt-event-apply__steps"><li><i class="wt-i wt-i--l wt-i--cart" aria-hidden="true"></i><b>買う</b><span>対象商品を 1,000 円以上</span></li><li><i class="wt-i wt-i--l wt-i--edit" aria-hidden="true"></i><b>撮る</b><span>レシート全体が写るように</span></li><li><i class="wt-i wt-i--l wt-i--check-circle" aria-hidden="true"></i><b>送る</b><span>下のボタンから画像を送信</span></li></ol><div class="wt-event-apply__upload" role="group" aria-labelledby="ev-upload-title"><b id="ev-upload-title">レシート画像を選ぶ</b><p>JPEG / PNG、5MB まで。購入日・店名・商品名が読めるもの。</p><button class="wt-lp-cta-action wt-event-apply-link" type="button" aria-describedby="ev-upload-note">画像を選んで応募する</button><p id="ev-upload-note" class="wt-lp-form__note">PoC のため画像は選択・送信されない（台帳 v2: other:receipt-upload、D で 38%）。</p></div></div>
+<div class="wt-event-apply wt-event-apply--postcard"><div class="wt-event-apply__postcard"><div class="wt-event-apply__addr"><p class="wt-eyebrow">宛先</p><p><b>〒000-0000</b><br>設定された所在地<br>サンプル株式会社「秋のキャンペーン」係（架空）</p></div><div><p class="wt-eyebrow">必要事項</p><ol><li>郵便番号・住所・氏名・電話番号</li><li>希望の賞品（A 賞 / B 賞）</li><li>レシート原本（コピー不可）を貼付</li></ol><p class="wt-lp-form__note">当日消印有効。はがき応募（台帳 v2: other:postcard、D で 38%）。web 応募は <a class="wt-event-apply-link" href="#apply">フォーム</a> からも可（PoC のダミー）。</p></div></div></div>
+<div class="wt-event-apply wt-event-apply--messaging-app"><div class="wt-event-apply__app"><div><p>公式アカウントを友だち追加し、トーク画面からレシート画像を送って応募（台帳 v2: other:messaging-app、D で 25%）。</p><a class="wt-lp-cta-action wt-event-apply-link" href="#apply" rel="nofollow"><i class="wt-i wt-i--s wt-i--bubble" aria-hidden="true"></i> 友だち追加して応募</a><p class="wt-lp-form__note">サービス名・実 URL・QR は PoC のため置かない（ダミー模様）。</p></div><svg class="wt-event-apply__qr" viewBox="0 0 21 21" role="img" aria-label="QR コードのダミー模様（実コードではない）" width="120" height="120"><path fill="currentColor" d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0zM2 2h3v3H2zM16 2h3v3h-3zM2 16h3v3H2zM9 1h1v2H9zM11 0h1v3h-1zM9 5h3v1H9zM8 8h2v2H8zM11 8h1v1h-1zM13 9h2v1h-2zM16 8h1v3h-1zM18 9h3v1h-3zM9 11h1v3H9zM11 12h3v1h-3zM15 12h1v2h-1zM17 12h2v2h-2zM20 11h1v3h-1zM9 15h2v1H9zM12 15h1v3h-1zM14 16h3v1h-3zM18 15h1v2h-1zM20 16h1v2h-1zM9 18h1v3H9zM11 19h2v2h-2zM14 18h1v3h-1zM16 19h3v1h-3zM20 19h1v2h-1z"/></svg></div></div>
 <div class="wt-event-apply wt-event-apply--closed-notice" role="status"><i class="wt-i wt-i--l wt-i--info" aria-hidden="true"></i><div><b>本イベントの受付は終了しました。</b><p>次回開催のご案内はお知らせでお伝えします。<a href="/">お知らせを見る</a></p></div></div>
 </div></section>
 
@@ -62,12 +68,39 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 
 <section class="wt-event__section wt-event__section--past" id="past" aria-labelledby="event-past-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">REPORT</p><h2 id="event-past-title">過去の開催</h2><ul class="wt-home-cards wt-home-cards--cases"><li><a href="#past"><img src="<?php echo esc_url( $u ); ?>/media-pickup-5.jpg" alt="" width="640" height="360" loading="lazy" decoding="async"><small>2026 年 6 月・参加 180 名</small><b>春の業務改善セミナー レポート</b></a></li><li><a href="#past"><img src="<?php echo esc_url( $u ); ?>/media-pickup-6.jpg" alt="" width="640" height="360" loading="lazy" decoding="async"><small>2026 年 2 月・参加 140 名</small><b>冬の事例共有会 レポート</b></a></li><li><a href="#past"><img src="<?php echo esc_url( $u ); ?>/media-pickup-1.jpg" alt="" width="640" height="360" loading="lazy" decoding="async"><small>2025 年 10 月・参加 120 名</small><b>秋の業務改善セミナー レポート</b></a></li></ul></div></section>
 
-<section class="wt-event__section wt-event__section--notes" id="notes" aria-labelledby="event-notes-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">NOTES</p><h2 id="event-notes-title">注意事項・主催</h2><ul class="wt-event-notes"><li>申込多数の場合は抽選となることがあります。</li><li>会場での撮影・録音はご遠慮ください。</li><li>内容・登壇者は予告なく変更になる場合があります。</li></ul><p class="wt-event-organizer"><b>主催</b> サンプル株式会社（架空）　<b>お問い合わせ</b> <a href="#notes">event@example.invalid</a></p>
+<section class="wt-event__section wt-event__section--notes" id="notes" aria-labelledby="event-notes-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">NOTES</p><h2 id="event-notes-title">注意事項</h2><ul class="wt-event-notes"><li>申込多数の場合は抽選となることがあります。</li><li>会場での撮影・録音はご遠慮ください。</li><li>内容・登壇者は予告なく変更になる場合があります。</li></ul><p class="wt-event-organizer"><b>主催</b> サンプル株式会社（架空）　<b>お問い合わせ</b> <a href="#notes">event@example.invalid</a></p>
 <div class="wt-event-share wt-event-share--icons" id="share" aria-label="このイベントを共有" data-wt-poc-dummy="share-targets"><span>共有</span><a class="wt-sns" href="#share" rel="nofollow" aria-label="X でポスト"><i class="wt-i wt-i--sns-x" aria-hidden="true"></i></a><a class="wt-sns" href="#share" rel="nofollow" aria-label="LINE で送る"><i class="wt-i wt-i--bubble" aria-hidden="true"></i></a><button type="button" data-wt-share="copy" aria-label="リンクをコピー">⧉</button></div>
 <div class="wt-event-share wt-event-share--add-to-calendar" id="calendar" data-wt-poc-dummy="ics"><a class="wt-lp-cta-action wt-lp-cta-action--secondary" href="#calendar" rel="nofollow"><i class="wt-i wt-i--s wt-i--calendar" aria-hidden="true"></i> カレンダーに追加</a><p class="wt-lp-form__note">実運用では .ics を配布する。PoC ではダミーのアンカー。</p></div>
 </div></section>
+<!-- /wp:html -->
+<!-- wp:group {"anchor":"audience","className":"wt-event__section wt-event__section--audience","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--audience" id="audience"><!-- wp:pattern {"slug":"helix-wt-page/target-audience"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"organizer","className":"wt-event__section wt-event__section--organizer","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--organizer" id="organizer"><!-- wp:pattern {"slug":"helix-wt-page/organizer"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"prizes","className":"wt-event__section wt-event__section--prizes","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--prizes" id="prizes"><!-- wp:pattern {"slug":"helix-wt-page/prizes"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"products","className":"wt-event__section wt-event__section--products","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--products" id="products"><!-- wp:pattern {"slug":"helix-wt-page/target-products"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"entry","className":"wt-event__section wt-event__section--entry","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--entry" id="entry"><!-- wp:pattern {"slug":"helix-wt-page/entry-steps"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"judges","className":"wt-event__section wt-event__section--judges","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--judges" id="judges"><!-- wp:pattern {"slug":"helix-wt-page/judges"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"gallery","className":"wt-event__section wt-event__section--gallery","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--gallery" id="gallery"><!-- wp:pattern {"slug":"helix-wt-page/gallery"} /--></div>
+<!-- /wp:group -->
+<!-- wp:group {"anchor":"countdown","className":"wt-event__section wt-event__section--countdown","layout":{"type":"default"}} -->
+<div class="wp-block-group wt-event__section wt-event__section--countdown" id="countdown"><!-- wp:pattern {"slug":"helix-wt-page/countdown"} /--></div>
+<!-- /wp:group -->
 </div>
+<!-- /wp:group -->
 
+<!-- wp:html -->
 <nav class="wt-event-fixed wt-event-fixed--sp-bottom-bar" aria-label="固定導線"><span class="wt-event-fixed__date"><time datetime="2026-10-15">10/15（木）14:00</time></span><a href="#apply">参加を申し込む</a></nav>
 <a class="wt-event-fixed wt-event-fixed--float-apply wt-lp-cta-action" href="#apply">参加を申し込む</a>
 <!-- /wp:html -->

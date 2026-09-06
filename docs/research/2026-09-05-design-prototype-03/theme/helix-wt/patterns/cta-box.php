@@ -2,7 +2,7 @@
 /**
  * Title: CTA ボックス（コピー付き）
  * Slug: helix-wt/cta-box
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: box-with-copy 型。見出し・一言・CTA 1 つ・補足
  */
 ?>

@@ -2,7 +2,7 @@
 /**
  * Title: 数字訴求
  * Slug: helix-wt/numbers
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: 実績の数字 3〜4 個
  */
 ?>

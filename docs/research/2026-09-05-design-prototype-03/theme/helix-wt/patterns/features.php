@@ -2,7 +2,7 @@
 /**
  * Title: 特徴 3 つ
  * Slug: helix-wt/features
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: カード 3 列（SP 1 列）
  */
 $u = get_theme_file_uri( "assets/img" );

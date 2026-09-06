@@ -2,7 +2,7 @@
 /**
  * Title: 事例（カード 3）
  * Slug: helix-wt/cases
- * Categories: helix-wt
+ * Categories: helix-wt, helix-wt-page
  * Description: 導入事例カード
  */
 $u = get_theme_file_uri( "assets/img" );

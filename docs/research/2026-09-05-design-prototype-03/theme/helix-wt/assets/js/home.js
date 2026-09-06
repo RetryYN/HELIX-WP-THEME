@@ -26,3 +26,40 @@
   if (nav) nav.hidden = false;
   update();
 })();
+
+/* 段 8: 汎用カルーセル（[data-wt-carousel]: hero cards-carousel 等）。前後ボタンで 1 枚ずつ送る。自動送りなし。JS 無効時は横スクロール（scroll-snap）のみ */
+(function(){
+  Array.prototype.forEach.call(document.querySelectorAll('[data-wt-carousel]'), function(root){
+    var track = root.querySelector('.wt-hcar__track'); if (!track) return;
+    var items = Array.prototype.slice.call(track.children); if (items.length < 2) return;
+    var nav = root.querySelector('.wt-hcar__nav');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function step(dir){
+      var w = items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
+      track.scrollBy({ left: dir * w, behavior: reduced ? 'auto' : 'smooth' });
+    }
+    if (nav) {
+      var prev = nav.querySelector('[data-wt-slide="prev"]'), next = nav.querySelector('[data-wt-slide="next"]');
+      if (prev) prev.addEventListener('click', function(){ step(-1); });
+      if (next) next.addEventListener('click', function(){ step(1); });
+      nav.hidden = false;
+    }
+    track.addEventListener('keydown', function(e){ if (e.key === 'ArrowRight') { e.preventDefault(); step(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); } });
+  });
+})();
+
+/* 段 8: カウントダウン（[data-wt-countdown]）。残り日・時・分を 1 分ごとに更新。開催後は「開催しました」。JS 無効時は開催日の文字だけ */
+(function(){
+  var els = document.querySelectorAll('[data-wt-countdown]'); if (!els.length) return;
+  function tick(){
+    Array.prototype.forEach.call(els, function(el){
+      var t = Date.parse(el.getAttribute('data-wt-countdown')); if (isNaN(t)) return;
+      var diff = t - Date.now(); var d = el.querySelector('[data-wt-cd="d"]'), h = el.querySelector('[data-wt-cd="h"]'), m = el.querySelector('[data-wt-cd="m"]');
+      if (diff <= 0) { el.classList.add('is-past'); if (d) d.textContent = '0'; if (h) h.textContent = '0'; if (m) m.textContent = '0'; var done = el.querySelector('.wt-part-countdown__done'); if (!done) { done = document.createElement('p'); done.className = 'wt-part-countdown__done'; done.textContent = '開催しました'; el.appendChild(done); } return; }
+      var mins = Math.floor(diff / 60000);
+      if (d) d.textContent = String(Math.floor(mins / 1440)); if (h) h.textContent = String(Math.floor((mins % 1440) / 60)); if (m) m.textContent = String(mins % 60);
+      el.classList.add('is-live');
+    });
+  }
+  tick(); setInterval(tick, 60000);
+})();
