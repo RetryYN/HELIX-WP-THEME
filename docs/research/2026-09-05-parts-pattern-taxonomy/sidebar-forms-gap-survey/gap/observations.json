@@ -1,0 +1,407 @@
+[
+ {
+  "faces_present": "company-page,recruit-page,contact-page,privacy,faq-page,news-archive",
+  "parts_present": "back-to-top,slider,other:sec-info-cards,other:link-recruit-buttons,other:footer-link-groups",
+  "fetched": true,
+  "notes": "採用エントリーボタン複数配置、3 工場の概要カード、フッターの階層リンク群",
+  "id": "site-G01",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,faq-page,company-page,recruit-page,privacy,news-archive",
+  "parts_present": "breadcrumb,mega-menu,back-to-top,slider,tabs,accordion,other:calculator,other:sec-media-coverage,other:sec-books",
+  "fetched": true,
+  "notes": "料金シミュレータ / 計算ツール（給与・役員報酬・源泉・最低賃金）、メディア掲載実績、書籍紹介",
+  "id": "site-G02",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,company-page,recruit-page,privacy,news-archive,glossary,other:page-blog-diary,other:page-landing-specialized",
+  "parts_present": "mega-menu,breadcrumb,sticky-bar,pagination-numbers,image-lightbox,sns-embed,other:map-locations",
+  "fetched": true,
+  "notes": "スタッフブログ（日記型）、複数拠点の地図、専門特化 LP（相続）",
+  "id": "site-G03",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,faq-page,company-page,privacy,terms,news-archive,comparison-page",
+  "parts_present": "mega-menu,slider,accordion,sticky-bar,announce-bar,back-to-top,other:package-selector,other:sec-client-logos,other:sec-cta-repeat",
+  "fetched": true,
+  "notes": "課題別パッケージセレクター、導入事例ロゴギャラリー、CTA の重複配置",
+  "id": "site-G04",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "recruit-page,news-archive,company-page,other:page-blog-medical",
+  "parts_present": "mega-menu,map-embed,breadcrumb,other:hours-table,other:sec-partner-list,other:link-reservation-external",
+  "fetched": true,
+  "notes": "診療時間表、医療情報ブログの分類、連携病院リスト。予約は外部サービスへ",
+  "id": "site-G05",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "company-page,contact-page,news-archive,privacy",
+  "parts_present": "back-to-top,map-embed,other:calendar-monthly,other:sec-messaging-app-guide,other:link-reservation-external,other:link-auto-phone-reception",
+  "fetched": true,
+  "notes": "診療カレンダー（月間）、メッセージアプリ登録案内、自動電話受付。予約は外部サービス 2 種（一般 / 企業健診）",
+  "id": "site-G06",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "news-archive,contact-page",
+  "parts_present": "mega-menu,accordion,lang-switch,sticky-bar,sns-embed,image-lightbox,slider,other:hours-table,other:sec-doctor-intro,other:sec-features,other:link-reservation-external,other:link-reservation-messaging-app",
+  "fetched": true,
+  "notes": "診療時間表、医師紹介、特徴 5 点。予約は外部サービス + メッセージアプリ",
+  "id": "site-G07",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "news-archive,company-page,contact-page,other:page-blog-medical",
+  "parts_present": "breadcrumb,mega-menu,accordion,slider,map-embed,sns-embed,back-to-top,sticky-bar,tabs,other:hours-table,other:link-reservation-messaging-app",
+  "fetched": true,
+  "notes": "「症状・疾患から探す」アコーディオン、診療時間のタブ、メッセージアプリ予約の追尾ボタン、医療コラム（追尾する予約ボタンは sticky-bar + other:link-reservation-messaging-app で表す）",
+  "id": "site-G08",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,recruit-page,company-page,news-archive,privacy,other:page-blog-column",
+  "parts_present": "lang-switch,breadcrumb,back-to-top,image-lightbox,slider",
+  "fetched": true,
+  "notes": "コラムのアーカイブ（技術情報 / 取り組みの分類）",
+  "id": "site-G09",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,privacy,terms,company-page,news-archive",
+  "parts_present": "lang-switch,breadcrumb,slider,accordion,sns-embed,back-to-top,other:filter-size,other:link-bulk-purchase,other:nav-numbered",
+  "fetched": true,
+  "notes": "サイズで絞る製品探索、大量購入の導線、番号付きナビ 01-08",
+  "id": "site-G10",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,privacy,company-page,other:page-download",
+  "parts_present": "slider,other:nav-product-hierarchy,other:sec-series",
+  "fetched": true,
+  "notes": "製品カテゴリの階層ナビ、シリーズ分類。資料請求ページあり（要約が URL をダミー化したため実 URL 未取得）",
+  "id": "site-G11",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,recruit-page,company-page,privacy,news-archive",
+  "parts_present": "lang-switch,mega-menu,slider,map-embed,sns-embed,modal,other:link-pdf-catalog,other:sec-product-grid,other:link-csr-nav",
+  "fetched": true,
+  "notes": "PDF カタログの直リンク、製品カテゴリのグリッド、CSR をナビに",
+  "id": "site-G12",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "company-page,terms,privacy,contact-page,faq-page,comparison-page,glossary,news-archive",
+  "parts_present": "breadcrumb,tabs,accordion,modal,rating-stars,slider,sticky-bar,back-to-top,other:sec-reviews-expert,other:sec-campaign-banners,other:sec-cta-repeat,other:filter-panel",
+  "fetched": true,
+  "notes": "ユーザーレビュー + 専門家評価、キャンペーンバナー群、申込 CTA の複数配置、左のフィルター検索パネル",
+  "id": "site-G13",
+  "site_pattern": "C",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "search-results,tag-archive,author-page,terms,privacy,sitemap-page,company-page,contact-page",
+  "parts_present": "mega-menu,accordion,pagination-numbers,sticky-bar,back-to-top,other:newsletter-form,other:sec-pickup,other:sec-download,other:sec-events,other:sec-feature-collection",
+  "fetched": true,
+  "notes": "メルマガ登録フォーム（サイド・フッター）、ピックアップ、資料 DL 区間、イベント区間、特集コレクション",
+  "id": "site-G14",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "privacy,contact-page,company-page,date-archive,tag-archive,news-archive",
+  "parts_present": "breadcrumb,pagination-numbers,sns-embed,back-to-top,other:tag-cloud,other:archive-monthly,other:sec-author-profile,other:sec-ad-info",
+  "fetched": true,
+  "notes": "タグクラウド、月別アーカイブ（2009〜）、著者プロフィール、広告枠の案内",
+  "id": "site-G15",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "sitemap-page,author-page,privacy,terms,date-archive",
+  "parts_present": "pagination-numbers,back-to-top,sns-embed,other:archive-monthly,other:sec-category-menu,other:sec-popular-fixed",
+  "fetched": true,
+  "notes": "月別アーカイブ、カテゴリメニュー、人気記事の固定表示",
+  "id": "site-G16",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "privacy,company-page,contact-page,glossary,news-archive,recruit-page,sitemap-page",
+  "parts_present": "announce-bar,mega-menu,sticky-bar,pagination-numbers,sns-embed,other:newsletter-form,other:sec-supporter-banner,other:sec-related-service,other:sec-feature,other:sec-podcast",
+  "fetched": true,
+  "notes": "ニュースレター登録、サポーター募集バナー、関連サービス区間、特集、ポッドキャスト紹介",
+  "id": "site-G17",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,faq-page,privacy,news-archive,company-page,other:page-download-contact,other:page-reservation-opencampus,other:page-application-ao",
+  "parts_present": "sticky-bar,announce-bar,slider,sns-embed,accordion,other:gallery-scroll",
+  "fetched": true,
+  "notes": "出願期限の告知帯、横スクロールの学生作品ギャラリー。フォーム: 資料請求兼問い合わせ、OC 申込、AO エントリー",
+  "id": "site-G18",
+  "site_pattern": "E",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "news-archive,recruit-page,privacy,terms,contact-page,sitemap-page",
+  "parts_present": "mega-menu,tabs,breadcrumb,pagination-numbers,slider,sns-embed,sticky-bar,other:sec-news-by-department,other:link-reservation-external,other:link-application-external",
+  "fetched": true,
+  "notes": "学科別ニュースフィード。OC 予約とネット出願は外部サービス",
+  "id": "site-G19",
+  "site_pattern": "E",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,recruit-page,sitemap-page,news-archive,privacy,terms",
+  "parts_present": "breadcrumb,mega-menu,lang-switch,back-to-top,sns-embed,announce-bar,pagination-numbers,other:calendar-yearly,other:sec-pickup-cards,other:sec-program-compare",
+  "fetched": true,
+  "notes": "年間行事カレンダー、ピックアップニュースのカード、教育プログラムの比較レイアウト",
+  "id": "site-G20",
+  "site_pattern": "E",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,news-archive,sitemap-page,privacy,recruit-page,terms,faq-page",
+  "parts_present": "breadcrumb,mega-menu,slider,accordion,back-to-top,video-embed,sns-embed,pagination-numbers,other:video-controls,other:filter-news-category,other:sec-stats-cards,other:link-hashtag-nav",
+  "fetched": true,
+  "notes": "メインビジュアルの再生 / 停止ボタン、ニュースのカテゴリ絞り込み、数字カード（大学データ）、ハッシュタグでのマガジン導線",
+  "id": "site-G21",
+  "site_pattern": "E",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,faq-page,recruit-page,company-page,news-archive,privacy",
+  "parts_present": "breadcrumb,mega-menu,accordion,announce-bar,sticky-bar,back-to-top,slider,sns-embed,other:link-video-channel,other:link-ebook-external",
+  "fetched": true,
+  "notes": "SNS フィード埋め込み（複数投稿）、動画チャンネル導線、デジタルパンフ（外部 ebook）",
+  "id": "site-G22",
+  "site_pattern": "E",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "news-archive,comparison-page,tag-archive,terms,privacy,faq-page,contact-page,company-page,recruit-page",
+  "parts_present": "mega-menu,slider,back-to-top,modal,sticky-bar,sns-embed,popup,other:sec-ranking-original,other:sponsored-label,other:sec-supervisor-profile,other:sec-event-banners",
+  "fetched": true,
+  "notes": "資料請求のポップアップと最下部の追尾バー、独自ランキング、PR 記事のマーク、監修者プロフィール、イベント宣伝バナー群",
+  "id": "site-G23",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "privacy,contact-page,company-page,news-archive",
+  "parts_present": "tabs,pagination-numbers,sticky-bar,sns-embed,other:sec-ranking-access,other:newsletter-form,other:link-rss,other:sec-category-menu",
+  "fetched": true,
+  "notes": "アクセス数ランキング、メルマガ登録、RSS、10 以上のカテゴリ分類",
+  "id": "site-G24",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "privacy,contact-page,news-archive,recruit-page,company-page",
+  "parts_present": "announce-bar,sticky-bar,tabs,back-to-top,sns-embed,accordion,other:sec-school-notice,other:newsletter-form,other:sec-membership-donation,other:sec-jobs-site",
+  "fetched": true,
+  "notes": "寄付会員制度の区間、スクール告知、求人サイトの独立区間。メルマガ登録が固定配置",
+  "id": "site-G25",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,faq-page,company-page,terms,privacy,news-archive,recruit-page,other:page-download,other:page-reservation-demo,other:page-seminar,other:page-quote,other:page-trial",
+  "parts_present": "mega-menu,accordion,sticky-bar,pagination-numbers,breadcrumb,tabs,announce-bar,back-to-top,video-embed,slider,other:filter-industry,other:calculator,other:link-community,other:sec-partner-list",
+  "fetched": true,
+  "notes": "業種で絞る事例ギャラリー、料金シミュレータ、ユーザーコミュニティ導線、連携パートナー一覧。フォーム: 問い合わせ / 資料 / デモ予約 / セミナー / 見積 / トライアル",
+  "id": "site-G26",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "company-page,recruit-page,privacy,terms,contact-page,news-archive",
+  "parts_present": "mega-menu,accordion,sticky-bar,sns-embed,cookie-banner,other:login-selector,other:link-helpcenter-external",
+  "fetched": true,
+  "notes": "複数製品のログイン一覧セレクター。問い合わせはヘルプセンター（外部）",
+  "id": "site-G27",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,recruit-page,other:page-download,other:page-seminar,other:page-trial",
+  "parts_present": "slider,video-embed,other:sec-enterprise,other:sec-client-logos",
+  "fetched": true,
+  "notes": "エンタープライズ向け専用区間、顧客ロゴカルーセル。資料 / セミナー / トライアルの導線。資料 / セミナー / トライアルは要約が別 URL のリンクとして列挙したため独立ページと判断（ページ本体は未取得）",
+  "id": "site-G28",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "faq-page,contact-page,company-page,recruit-page,privacy,terms,news-archive,comparison-page",
+  "parts_present": "breadcrumb,mega-menu,accordion,modal,lang-switch,sticky-bar,back-to-top,slider,other:sec-client-logos,other:sec-case-cards,other:sec-download-cards",
+  "fetched": true,
+  "notes": "顧客ロゴスライダー、導入事例カード、資料 DL カード。リンクに計測パラメータ",
+  "id": "site-G29",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "sitemap-page,privacy,contact-page,company-page,news-archive",
+  "parts_present": "lang-switch,back-to-top,other:sec-value-proposition,other:link-blogs-multi",
+  "fetched": true,
+  "notes": "複数ブログへの導線、ワンストップの価値提案",
+  "id": "site-G30",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,company-page,faq-page,news-archive",
+  "parts_present": "lang-switch,sns-embed,slider,accordion,other:sec-story-character,other:nav-product-category,other:sec-video-demo",
+  "fetched": true,
+  "notes": "キャラクターを使ったストーリー区間、製品カテゴリナビ、実験・動画デモ区間",
+  "id": "site-G31",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,company-page,privacy,news-archive,recruit-page,other:page-reservation-visit,other:page-quote,other:page-cases,other:page-technology",
+  "parts_present": "mega-menu,slider,tabs,back-to-top,sns-embed,accordion,other:sec-program-tabs",
+  "fetched": true,
+  "notes": "工場見学予約ページ、見積フォーム、体験プログラムの特設区間（タブ切替）、加工事例、技術ページ",
+  "id": "site-G32",
+  "site_pattern": "A",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "faq-page,contact-page,company-page,news-archive,recruit-page",
+  "parts_present": "breadcrumb,accordion,slider,sticky-bar,back-to-top,sns-embed,tabs,announce-bar,other:guarantee-flow-diagram,other:sec-stats-results,other:sec-studio-select",
+  "fetched": true,
+  "notes": "返金保証のフロー図、受講生の成果の数値表示、スタジオ / オンラインの選択",
+  "id": "site-G33",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "faq-page,company-page,contact-page,news-archive,privacy",
+  "parts_present": "mega-menu,accordion,tabs,sticky-bar,slider,announce-bar,other:score-graph,other:sec-progressive-disclosure,other:link-reservation-external",
+  "fetched": true,
+  "notes": "スコア推移グラフ、段階的に開くセクション UI。カウンセリング予約は外部フォームサービス",
+  "id": "site-G34",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "faq-page,recruit-page,company-page,contact-page,news-archive,privacy,other:page-brand-promise,other:page-program",
+  "parts_present": "mega-menu,accordion,slider,sticky-bar,other:sec-guarantee,other:link-press-mail",
+  "fetched": true,
+  "notes": "ブランドプロミスページ、プログラム別ページ、返金保証の説明区間、取材申込はメールリンク",
+  "id": "site-G35",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "sitemap-page,faq-page,privacy,terms,news-archive,contact-page,recruit-page,company-page",
+  "parts_present": "sticky-bar,back-to-top,accordion,slider,mega-menu,other:store-search,other:sec-testimonial-slider,other:link-recruit-external",
+  "fetched": true,
+  "notes": "教室検索（郵便番号 / フリーワード / エリア）、合格体験談スライダー、講師 / 教室長の採用は別サイト",
+  "id": "site-G36",
+  "site_pattern": "D",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "company-page,recruit-page,news-archive,contact-page,privacy,terms,comparison-page",
+  "parts_present": "slider,mega-menu,other:sec-product-catalog,other:link-external-sites",
+  "fetched": true,
+  "notes": "人気プロダクトのカタログ区間、出版 / 採用の外部サイト導線",
+  "id": "site-G37",
+  "site_pattern": "C",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "company-page,privacy,terms,contact-page,comparison-page",
+  "parts_present": "mega-menu,breadcrumb,rating-stars,image-lightbox,slider,back-to-top,other:sec-creator-picks,other:sec-magazine,other:sec-expert-profile,other:sec-reviews",
+  "fetched": true,
+  "notes": "クリエイターの愛用品リスト、マガジン、専門家プロフィール、実使用レビュー",
+  "id": "site-G38",
+  "site_pattern": "C",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "news-archive,contact-page,faq-page,sitemap-page,terms,privacy,glossary,comparison-page,recruit-page,other:page-award",
+  "parts_present": "mega-menu,tabs,rating-stars,slider,accordion,sns-embed,other:sec-campaign-banners,other:sec-ranking-weekly",
+  "fetched": true,
+  "notes": "アワード特設ページ、キャンペーンバナー、週間ランキング（レビュー数 / アクセス数）",
+  "id": "site-G39",
+  "site_pattern": "C",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "recruit-page,company-page,contact-page,terms,news-archive",
+  "parts_present": "announce-bar,modal,sticky-bar,pagination-numbers,popup,other:sec-member-tier-categories,other:sec-donation-options",
+  "fetched": true,
+  "notes": "有料 / 無料メンバー区分のカテゴリ、支援（寄付・月額）の複数オプション、寄付リマインダーのポップアップ",
+  "id": "site-G40",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,privacy,terms,sitemap-page,company-page,date-archive,tag-archive",
+  "parts_present": "breadcrumb,table-of-contents,pagination-numbers,sns-embed,back-to-top,search-suggest,other:sec-owner-profile,other:sec-new-posts,other:nav-category-multilevel,other:archive-select",
+  "fetched": true,
+  "notes": "運営者プロフィール区間、新着、多層カテゴリ、アーカイブのドロップダウン",
+  "id": "site-G41",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "contact-page,recruit-page,company-page,privacy,sitemap-page,other:page-members-staff",
+  "parts_present": "mega-menu,video-embed,map-embed,back-to-top,sns-embed,other:sec-culture,other:link-newsletter-external",
+  "fetched": true,
+  "notes": "スタッフ紹介ページ、企業文化区間。メルマガ登録は外部",
+  "id": "site-G42",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "news-archive,search-results,tag-archive,author-page,recruit-page,company-page",
+  "parts_present": "breadcrumb,tabs,sns-embed,video-embed,pagination-numbers,back-to-top,other:tag-cloud,other:sec-feature-series,other:sec-editorial-members",
+  "fetched": true,
+  "notes": "タグクラウド、特集・連載、編集部メンバー紹介",
+  "id": "site-G43",
+  "site_pattern": "B",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "privacy,terms,recruit-page,company-page,contact-page,news-archive",
+  "parts_present": "mega-menu,breadcrumb,tabs,sticky-bar,pagination-numbers,sns-embed,video-embed,other:newsletter-form,other:sponsored-label,other:sec-jobs-promo",
+  "fetched": true,
+  "notes": "ニュースレター購読、スポンサード区間の明示、関連求人サイトのプロモ",
+  "id": "site-G44",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ },
+ {
+  "faces_present": "company-page,privacy,terms,contact-page,news-archive,author-page,date-archive,faq-page",
+  "parts_present": "slider,pagination-numbers,back-to-top,sticky-bar,breadcrumb,rating-stars,sns-embed,other:sec-new-products,other:sec-ranking-top10,other:sec-writer-profile,other:tags-multi",
+  "fetched": true,
+  "notes": "新着商品（価格付き）、人気 TOP10、顔写真付きライター紹介、複数タグ付け",
+  "id": "site-G45",
+  "site_pattern": "P",
+  "observed_at": "2026-09-06"
+ }
+]

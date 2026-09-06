@@ -874,17 +874,70 @@
    "variants": {
     "15 パーツを並べた固定ページ": "greeting → logos-row → stores → event-list → gallery → sns-feed → timeline → countdown → target-audience → organizer → tickets → prizes → entry-steps → judges → target-products。"
    }
+  },
+  "side-layout": {
+   "label": "サイドバー配置",
+   "desc": "記事・固定ページ・HP に共通のサイドバー（段 10、WT-EVT-0289、台帳 research-r21 sidebar n=47: right 85% / both 10% / left 2% / none 2%）。既定 none は据え置き（記事の既定を right にするかは PO 判断待ち）。1024px 未満は 1 カラム（side_sp で扱いを決める）。",
+   "variants": {
+    "none": "サイドバーなし（既定）。",
+    "right": "右カラム（幅は sidebar-w トークン 300px）。",
+    "left": "左カラム。",
+    "both": "左 200px（カテゴリ + 検索）+ 右カラム。"
+   }
+  },
+  "side-sticky": {
+   "label": "サイドバー追尾",
+   "desc": "PC でのサイドバーの追尾（台帳、欠測除外 n=42: toc-only 43% / last-widget 40% / none 12% / whole 5%）。last-widget / toc-only では aside を本文の高さまで伸ばす（伸ばさないと sticky が動けない）。",
+   "variants": {
+    "none": "追尾なし。",
+    "whole": "サイドバー全体が追尾（高さは viewport 内でスクロール）。",
+    "last-widget": "最後のウィジェットだけ追尾（既定）。",
+    "toc-only": "目次ウィジェットだけ追尾。"
+   }
+  },
+  "side-sp": {
+   "label": "サイドバーの SP 扱い",
+   "desc": "1024px 未満での扱い。台帳の要約では判定できず（drawer 1 件のみ観察）、前回台帳 article/sp none 93% を根拠に 3 型を持つ（Claude 案）。",
+   "variants": {
+    "below-content": "本文の下に 1 カラムで表示（既定）。",
+    "drawer": "「メニュー」ボタンで右からドロワーを開く（中身は右サイドバーの複製、id は接頭辞で重複回避、Escape で閉じる）。JS 無効時は本文の下に表示。",
+    "hidden": "非表示。"
+   }
+  },
+  "side-set": {
+   "label": "サイドバーのウィジェットセット",
+   "desc": "区分別の観察順（台帳 §1）。ウィジェット 20 種 = 観察 18 種（search / profile / categories / popular-ranking（PoC は日付順）/ new-posts / tags / cta-banner / toc-sticky（記事の見出しから生成。見出しの無い面では出さない）/ toc-dropdown（折りたたみ目次。台帳 other:toc-dropdown）/ newsletter（form を使わず送信しない）/ sns-follow / archive / ad（ダミー枠）/ related-posts / event-list / contact-box / banner-stack / recruit）+ 未観察 2 種（calendar / tel-box、Claude 案）。",
+   "variants": {
+    "media": "比較メディア（C n=18）: 検索 → カテゴリ → 人気 → 目次 → CTA → 広告枠 → 関連（既定）。",
+    "blog": "個人 / ポータル（P n=23）: 検索 → プロフィール → カテゴリ → 人気 → 新着 → 月別 → タグ → SNS。",
+    "owned": "オウンドメディア（B n=7）: 検索 → カテゴリ → 人気 → 新着 → タグ → ニュースレター → 採用 → CTA。",
+    "corporate": "固定ページ / HP 向け（Claude 案。観察は少数）: 問い合わせ → 電話 → 新着 → イベント → バナー。",
+    "minimal": "ポータル記事の最小: 人気 → 関連 → バナー。",
+    "full": "全 20 種。"
+   }
+  },
+  "side-nav": {
+   "label": "サイドナビ",
+   "desc": "画面端の固定メニュー等（台帳: mega-menu 35% / none 35% / toc-side 23% / fixed-left-nav・fixed-right-icons・drawer 各 2%）。",
+   "variants": {
+    "none": "なし（既定）。",
+    "mega-menu": "ヘッダーのナビに「すべて」ボタンを足し、直下に 3 列のパネルを開く（JS。Escape / 外側クリックで閉じる）。",
+    "fixed-left-nav": "1200px 以上で左端に固定のカテゴリナビ（本文は 200px 右へ）。",
+    "fixed-right-icons": "右端中央に固定のアイコン導線（資料 / 電話 / 相談 / TOP）。",
+    "drawer-pc": "PC でも「メニュー」ボタンからドロワーを開く。",
+    "toc-side": "記事の目次を左端に固定して追尾（1200px 以上）。"
+   }
   }
  },
  "faces": {
   "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
-  "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。",
+  "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
   "category": "カテゴリ面: カテゴリ見出し、リード、絞り込み、記事一覧、右 sidebar、子分類、ランキング、ピックアップ、CTA を確認する面。",
   "footer": "フッター面: フッターの配置、補助情報、法定表示を確認する面。",
   "lp": "LP 面: ヒーロー、説明区画、CTA、固定導線を確認する面。",
   "home": "HP 面（ホーム / トップページ）: hero、区間セット（企業 HP / サービス / メディア）、お知らせ、問い合わせ帯、固定導線を確認する面（WT-EVT-0277、Claude 案。既定は台帳 research-r17 の最多型）。段 8 で hero 3 型・検索 CTA・区間セット 2 種・問い合わせ帯 1 型と、固定ページ用パーツを転用した区間 8 種を追加。",
   "event": "イベント面: セミナー / 展示会 / 地域イベント / キャンペーンのページ。hero、開催情報、スケジュール、登壇者、申込、受付状態、地図、共有、固定導線を確認する面（WT-EVT-0277、Claude 案）。段 8 で区間セット 5 種（seminar / seminar-classic / conference / festival / campaign）と申込 3 型、区間 8 種（固定ページ用パーツの転用）を追加。",
-  "page": "固定ページ面: 通常の固定ページ（page.html）。固定ページ用パーツ（helix-wt-page/*）を並べた /parts/ で、パーツ単体と全長を確認する面（段 8、WT-EVT-0287）。"
+  "page": "固定ページ面: 通常の固定ページ（page.html）。固定ページ用パーツ（helix-wt-page/*）を並べた /parts/ で、パーツ単体と全長を確認する面（段 8、WT-EVT-0287）。段 10 でサイドバー（corporate セット等）を追加。"
  },
  "axes": {
   "header": {
