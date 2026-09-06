@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.88475)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.834155)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26697,7 +26697,7 @@
     "digits": [
      "38",
      "11",
-     "48"
+     "22"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26845,7 +26845,7 @@
     "digits": [
      "38",
      "11",
-     "48"
+     "22"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -31588,6 +31588,216 @@
     "stickyRun": null,
     "drawerRun": null,
     "megaRun": null,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "face": "article",
+    "axis": "combo",
+    "v": "drawer+full",
+    "expectWidgets": [
+     "search",
+     "profile",
+     "categories",
+     "popular-ranking",
+     "new-posts",
+     "tags",
+     "cta-banner",
+     "toc-sticky",
+     "toc-dropdown",
+     "newsletter",
+     "sns-follow",
+     "archive",
+     "calendar",
+     "ad",
+     "related-posts",
+     "event-list",
+     "contact-box",
+     "tel-box",
+     "banner-stack",
+     "recruit"
+    ],
+    "drawer": {
+     "open": true,
+     "widgets": [
+      "search",
+      "profile",
+      "categories",
+      "popular-ranking",
+      "new-posts",
+      "tags",
+      "cta-banner",
+      "toc-sticky",
+      "toc-dropdown",
+      "newsletter",
+      "sns-follow",
+      "archive",
+      "calendar",
+      "ad",
+      "related-posts",
+      "event-list",
+      "contact-box",
+      "tel-box",
+      "banner-stack",
+      "recruit"
+     ],
+     "dupIds": 0,
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "refCount": 24,
+     "hasTocLink": true,
+     "tocHref": "#h-1",
+     "inertOutside": true,
+     "focusInside": true
+    },
+    "tocRun": {
+     "closed": true,
+     "inertCleared": true,
+     "hash": "#h-1",
+     "targetInView": true
+    },
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "face": "page",
+    "axis": "combo",
+    "v": "drawer+full",
+    "expectWidgets": [
+     "search",
+     "profile",
+     "categories",
+     "popular-ranking",
+     "new-posts",
+     "tags",
+     "cta-banner",
+     "newsletter",
+     "sns-follow",
+     "archive",
+     "calendar",
+     "ad",
+     "related-posts",
+     "event-list",
+     "contact-box",
+     "tel-box",
+     "banner-stack",
+     "recruit"
+    ],
+    "drawer": {
+     "open": true,
+     "widgets": [
+      "search",
+      "profile",
+      "categories",
+      "popular-ranking",
+      "new-posts",
+      "tags",
+      "cta-banner",
+      "newsletter",
+      "sns-follow",
+      "archive",
+      "calendar",
+      "ad",
+      "related-posts",
+      "event-list",
+      "contact-box",
+      "tel-box",
+      "banner-stack",
+      "recruit"
+     ],
+     "dupIds": 0,
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "refCount": 22,
+     "hasTocLink": false,
+     "tocHref": null,
+     "inertOutside": true,
+     "focusInside": true
+    },
+    "tocRun": null,
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "face": "home",
+    "axis": "combo",
+    "v": "drawer+full",
+    "expectWidgets": [
+     "search",
+     "profile",
+     "categories",
+     "popular-ranking",
+     "new-posts",
+     "tags",
+     "cta-banner",
+     "newsletter",
+     "sns-follow",
+     "archive",
+     "calendar",
+     "ad",
+     "related-posts",
+     "event-list",
+     "contact-box",
+     "tel-box",
+     "banner-stack",
+     "recruit"
+    ],
+    "drawer": {
+     "open": true,
+     "widgets": [
+      "search",
+      "profile",
+      "categories",
+      "popular-ranking",
+      "new-posts",
+      "tags",
+      "cta-banner",
+      "newsletter",
+      "sns-follow",
+      "archive",
+      "calendar",
+      "ad",
+      "related-posts",
+      "event-list",
+      "contact-box",
+      "tel-box",
+      "banner-stack",
+      "recruit"
+     ],
+     "dupIds": 0,
+     "forms": [
+      {
+       "method": "get",
+       "role": "search"
+      }
+     ],
+     "below44": 0,
+     "badRefs": [],
+     "refCount": 22,
+     "hasTocLink": false,
+     "tocHref": null,
+     "inertOutside": true,
+     "focusInside": true
+    },
+    "tocRun": null,
+    "externalRequests": [],
     "pass": true
    }
   ],

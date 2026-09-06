@@ -29,6 +29,8 @@
     openBtn.addEventListener('click', open);
     closeBtn.addEventListener('click', close);
     drawer.addEventListener('click', function(e){ if (e.target === drawer) close(); });
+    // ドロワー内の # リンク（本文の目次など）はドロワーを閉じてから移動する（閉じないと本文が inert のまま覆われる）
+    drawer.addEventListener('click', function(e){ var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return; var t = document.getElementById(a.getAttribute('href').slice(1)); if (t && !drawer.contains(t)) { last = null; close(); } });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !drawer.hidden) close(); });
     // Tab / Shift+Tab をドロワー内で循環（inert だけでは document へ抜ける）
     drawer.addEventListener('keydown', function(e){ if (e.key !== 'Tab' || drawer.hidden) return; var f = Array.prototype.filter.call(drawer.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'), function(el){ return !el.disabled && el.getBoundingClientRect().width > 0; }); if (!f.length) return; var first = f[0], lastEl = f[f.length - 1]; if (e.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) { e.preventDefault(); lastEl.focus(); } else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); } });
