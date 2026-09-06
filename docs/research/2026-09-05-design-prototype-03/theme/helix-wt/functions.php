@@ -80,11 +80,12 @@ function wt_axes() {
 		'event_share'    => array( 'none', array( 'none', 'icons', 'add-to-calendar' ) ),
 		// 段 10（2026-09-06 PO 反応 21 回目 WT-EVT-0289「進めて」、台帳 research-r21 sidebar n=48）: 記事・固定ページ・HP に共通のサイドバーとサイドナビ。
 		// 既定 side_layout=none は据え置き（観察は記事で right 92% だが、記事面の既定変更は PO 判断待ち。README §2.30）
-		'side_layout' => array( 'none', array( 'none', 'right', 'left', 'both' ) ), // right 85% / both 10% / left 2% / none 2%
+		'side_layout' => array( 'right', array( 'none', 'right', 'left', 'both' ) ), // right 85% / both 10% / left 2% / none 2%。既定 right（段 10b、PO 反応 22 回目 WT-EVT-0292「サイドバーは普通置く」。LP・カテゴリ面は共通サイドバーを持たない）
 		'side_sticky' => array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) ), // 台帳（欠測除外 n=42）: toc-only 43% / last-widget 40% / none 12% / whole 5%。既定 last-widget は暫定（toc-only は記事以外で目次が無い）
 		'side_sp'     => array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) ), // 要約では判定できないため 3 型を持つ（前回台帳 article/sp は none 93%）
 		'side_set'    => array( 'media', array( 'media', 'blog', 'owned', 'corporate', 'minimal', 'full' ) ), // 区分別の上位ウィジェット順（C / P / B / 固定ページ・HP / 最小 / 全種）
-		'side_nav'    => array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) ), // mega-menu 35% / none 35% / toc-side 23% / 他 2% ずつ // 主集計 n=8: none 62% / icons 38%。add-to-calendar は観察に無い Claude 案
+		'side_nav'    => array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) ),
+		'side_from'   => array( 'below-hero', array( 'below-hero', 'top' ) ), // HP のみ: サイドバーを first view（hero）の下から始める（既定、WT-EVT-0292「ファーストview以下にサイドバーを設けることも多いはず」）/ hero の横から始める。記事・固定ページは見出し部の下から始まる構造で固定 // mega-menu 35% / none 35% / toc-side 23% / 他 2% ずつ // 主集計 n=8: none 62% / icons 38%。add-to-calendar は観察に無い Claude 案
 	);
 }
 
@@ -144,8 +145,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.16' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.16' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.17' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.17' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -154,10 +155,10 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_front_page() || is_page() ) { // 段 8: 固定ページ用パーツ（カルーセル・カウントダウン）でも使う
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.16', $defer );
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.17', $defer );
 	}
 	if ( is_singular() || is_page() || is_front_page() ) { // 段 10: サイドバー（ドロワー / メガメニュー）
-		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.16', $defer );
+		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.17', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );

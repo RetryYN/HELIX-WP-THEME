@@ -334,8 +334,8 @@
    }
   },
   "header": {
-   "label": "記事ヘッダー",
-   "desc": "サイト名、ナビゲーション、検索、CTA を含む上部の共通部品。PC と SP の優先順位を見る。2026-09-06 PO 反応 17 回目（WT-EVT-0270）で PC 5 型・SP 3 型を追加（台帳 §1 header レイアウトの観察型、Claude 案）。",
+   "label": "ヘッダー（全面共通）",
+   "desc": "サイト名、ナビゲーション、検索、CTA を含む上部の共通部品。記事・カテゴリ・固定ページ・HP・イベントで同じヘッダーを使う（LP だけ専用の lp-header）。撮影は記事面で行ったため記事の項に並ぶ。PC と SP の優先順位を見る。2026-09-06 PO 反応 17 回目（WT-EVT-0270）で PC 5 型・SP 3 型を追加（台帳 §1 header レイアウトの観察型、Claude 案）。",
    "variants": {
     "hamburger-search": "SP でハンバーガーと検索を併置する型。",
     "hamburger-right": "SP でハンバーガーを右側に置く型。",
@@ -877,12 +877,20 @@
   },
   "side-layout": {
    "label": "サイドバー配置",
-   "desc": "記事・固定ページ・HP に共通のサイドバー（段 10、WT-EVT-0289、台帳 research-r21 sidebar n=47: right 85% / both 10% / left 2% / none 2%）。既定 none は据え置き（記事の既定を right にするかは PO 判断待ち）。1024px 未満は 1 カラム（side_sp で扱いを決める）。",
+   "desc": "記事・固定ページ・HP に共通のサイドバー（段 10、WT-EVT-0289、台帳 research-r21 sidebar n=47: right 85% / both 10% / left 2% / none 2%）。既定 right（段 10b、PO 反応 22 回目 WT-EVT-0292「サイドバーは普通置く」「置かないケースは LP ぐらい」）。LP とカテゴリ面は共通サイドバーを持たない。1024px 未満は 1 カラム（side_sp で扱いを決める。既定は本文の下）。",
    "variants": {
-    "none": "サイドバーなし（既定）。",
-    "right": "右カラム（幅は sidebar-w トークン 300px）。",
-    "left": "左カラム。",
+    "none": "サイドバーなし。",
+    "right": "右カラム（既定。幅は sidebar-w トークン 300px）。",
+    "left": "左カラム（WT-EVT-0292: CV を狙うときの選択肢）。",
     "both": "左 200px（カテゴリ + 検索）+ 右カラム。"
+   }
+  },
+  "side-from": {
+   "label": "HP のサイドバー開始位置",
+   "desc": "HP でサイドバーをどこから始めるか（段 10b、WT-EVT-0292「HP などの固定ページ側も first view 以下にサイドバーを設けることも多いはず」）。記事・固定ページは見出し部の下から始まる構造で固定。",
+   "variants": {
+    "below-hero": "hero（first view）を全幅で見せ、その下から本文列 + サイドバーを始める（既定、PO 反応）。",
+    "top": "hero を本文列に入れ、サイドバーは hero の横（ページ最上部）から始める。"
    }
   },
   "side-sticky": {
