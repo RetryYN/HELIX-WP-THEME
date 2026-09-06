@@ -696,6 +696,8 @@ PO 反応 18 回目（2026-09-06）の 5 件目「強化してくれ。その間
 1. **地図の外部埋め込み**: 外部埋め込みの方針は WT-CAND-SNS（WT-EVT-0073: 投稿埋め込みは遅延読込で速度予算内、鍵はテーマに置かない）を WT-EVT-0229「採用で」で採用済み。地図も同じ扱いで `event_map: embed` を追加した。URL は option `helix_wt_event_map_embed_url`（設定側）に持ち、テーマ・公開リポには第三者サービスのドメインも鍵も書かない。未設定なら iframe を出さず「未設定」と枠に表示して外部へ接続しない。設定時は `loading="lazy"`・title・referrerpolicy 付きの iframe。verify（`eventFace`）は未設定状態（iframe なし・外部ホストへの読込 0）と、wp-cli で option に同一ホストの URL を入れた設定状態（iframe が遅延読込・title・同一ホスト・可視・外部ホスト 0）の両方を判定し、終了時に option を消す。撮影も同じ手順で option を入れて撮り、撮影後に消した（`event-map-embed` PC / SP の 2 枚）。
 2. **カテゴリ ミニ HOME の既定 on**: WT-Q-PARTS-03 を WT-EVT-0228「採用で」で採用済み。既定を on にし、試作 02 の「一覧を置き換える」をやめて一覧の下に共存させた（`cat_minihome:off` は残る）。カテゴリ面の既定が変わるため、段 6 のカテゴリ写真 90 枚を同名で撮り直した。
 3. 実機結果: `summary` **pass 83 / fail 0**（項目数は変わらず。`eventFace` は 34 型 × 3 = 102 行 + 設定状態 1 件）、INDEX 688 → **690**。
+4. Astra 1 巡目（PR #163）の是正: 過去決定の引用誤り（WT-CAND-SNS の採用は WT-EVT-0229 ではなく WT-Q-SNS-01 への回答 WT-EVT-0075「採用。…」。WT-EVT-0286 で訂正、PO の決定内容は変わらない）。verify は (a) 未設定状態を wp-cli で先に用意して（option delete → get が失敗することを確認）embed の 3 行は「未設定」を明示判定（設定済みでは通さない）、(b) 実通信として `page.on("request")` で同一ホスト以外への http(s) 要求を eventFace の全 102 行と設定状態で数えて 0 を要求（DOM の src 列挙は補助）、(c) 後始末は option 削除後に `wp option get` が失敗し画面が未設定表示に戻ることを `cleanupOk` として合否に含める。
+5. PO 反応 19 回目（WT-EVT-0287「homeとイベントはもっとバリエーションを出して。調査不足じゃない？…固定ページ継投で使えるパーツをしっかりと作りこむこと。記事パーツからの転用でも可。リサーチはアストラにも一緒に見てもらうこと。」）を記録。対応は §2.28 以降（外部調査の拡張 → Astra レビュー → 固定ページ用パーツの作り込み）。
 
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 

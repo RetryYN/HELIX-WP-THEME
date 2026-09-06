@@ -1514,8 +1514,15 @@ const EVENT = "/event/";
 {
   const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"] };
   const PREFIX = { event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
+  // embed の未設定状態を先に用意する（wp-cli 必須。option を消し、消えたことを確認。取れなければ eventFace は fail）
+  const wpE = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }) : null;
+  const optionUnset = () => { try { wpE(["option", "get", "helix_wt_event_map_embed_url"]); return false; } catch (_) { return true; } };
+  let unsetPrepared = false; if (wpE) { try { wpE(["option", "delete", "helix_wt_event_map_embed_url"]); } catch (_) { /* 未設定なら delete は失敗する */ } unsetPrepared = optionUnset(); }
+  const baseHost = new URL(BASE).host;
   const read = async (cfg, dev, js) => { const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); const results = [];
+    let external = []; p.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) external.push(u.host); } catch (_) { /* data: 等 */ } }); // 実通信: 同一ホスト以外への要求を全行で数える
     for (const [axis, values] of Object.entries(AX)) for (const v of values) {
+      external = [];
       await p.goto(BASE + EVENT + `?wt=${axis}:${v}`, { waitUntil: js ? "networkidle" : "load" });
       const r = await p.evaluate(([axis, v, values, prefix, visSrc]) => { const vis = eval(visSrc); const cls = axis.replace(/_/g, "-");
         const shown = values.filter((x) => Array.from(document.querySelectorAll(prefix + x)).some(vis));
@@ -1528,24 +1535,32 @@ const EVENT = "/event/";
       let expectShown = v === "none" ? [] : [v];
       if (axis === "event_fixed" && dev === "pc" && v === "sp-bottom-bar") expectShown = [];
       const expectForms = axis === "event_apply" ? (v === "inline-form" ? 1 : 0) : 1; // 既定 event_apply=inline-form はフォーム 1 つ
-      let pass = r.body && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.hasImgRole === null || r.hasImgRole === true) && r.deadAnchors.length === 0 && (r.embed === null || (r.embed.externalHosts.length === 0 && (r.embed.state === "set" ? r.embed.iframe && r.embed.lazy && r.embed.title && r.embed.sameHost : r.embed.unsetNote && !r.embed.iframe)));
+      r.externalRequests = Array.from(new Set(external)); // DOM の src 列挙ではなく実際に出た要求
+      let pass = r.body && r.externalRequests.length === 0 && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.hasImgRole === null || r.hasImgRole === true) && r.deadAnchors.length === 0 && (r.embed === null || (unsetPrepared && r.embed.state === "unset" && r.embed.externalHosts.length === 0 && r.embed.unsetNote && !r.embed.iframe)); // 未設定状態を明示判定（設定済みでは通さない）
       if (axis === "event_apply") pass = pass && (v === "closed-notice" ? r.applyLinks === 0 : r.applyLinks >= 1);
       results.push({ dev, js, axis, v, expectForms, ...r, pass });
     }
     await ctx.close(); return results; };
   const sp = await read(SP, "sp", true), pc = await read(PC, "pc", true), spNoJs = await read(SP, "sp", false);
   // embed の「設定あり」状態: option に同一ホストの URL を入れて iframe が遅延読込・title 付き・同一ホストで出ること（wp-cli 必須。取れなければ fail）。終了時に option を消す
-  let embedSet = { source: "unavailable", pass: false };
-  if (WPCLIDIR) {
-    const wp = (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" });
+  let embedSet = { source: "unavailable", unsetPrepared, pass: false };
+  if (wpE) {
+    const wp = wpE; let cleanupOk = false;
     try {
       wp(["option", "update", "helix_wt_event_map_embed_url", BASE + "/lp/"]);
-      const ctx2 = await browser.newContext(PC); const p2 = await ctx2.newPage(); await p2.goto(BASE + EVENT + "?wt=event_map:embed", { waitUntil: "networkidle" });
+      const ctx2 = await browser.newContext(PC); const p2 = await ctx2.newPage(); const ext2 = []; p2.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) ext2.push(u.host); } catch (_) { /* data: */ } });
+      await p2.goto(BASE + EVENT + "?wt=event_map:embed", { waitUntil: "networkidle" });
       const r = await p2.evaluate(() => { const box = document.querySelector(".wt-event-map--embed"); const f = box ? box.querySelector("iframe") : null; const ext = Array.from(document.querySelectorAll("iframe, script[src], img[src]")).map((e) => e.src || "").filter((s) => s && new URL(s, location.href).host !== location.host); return { state: box ? box.getAttribute("data-wt-embed") : null, iframe: !!f, lazy: f ? f.getAttribute("loading") === "lazy" : null, title: f ? (f.getAttribute("title") || "").length > 0 : null, sameHost: f ? new URL(f.src).host === location.host : null, visible: f ? f.getBoundingClientRect().width > 200 : false, externalHosts: ext.slice(0, 5) }; });
-      await ctx2.close();
-      embedSet = { source: "wp-cli:option helix_wt_event_map_embed_url", ...r, pass: r.state === "set" && r.iframe && r.lazy && r.title && r.sameHost && r.visible && r.externalHosts.length === 0 };
-    } catch (e) { embedSet = { source: `wp-cli failed: ${String(e).slice(0, 120)}`, pass: false }; }
-    finally { try { wp(["option", "delete", "helix_wt_event_map_embed_url"]); } catch (_) { /* 未設定なら delete は失敗してよい */ } }
+      r.externalRequests = Array.from(new Set(ext2)); await ctx2.close();
+      embedSet = { source: "wp-cli:option helix_wt_event_map_embed_url", unsetPrepared, ...r, pass: unsetPrepared && r.state === "set" && r.iframe && r.lazy && r.title && r.sameHost && r.visible && r.externalHosts.length === 0 && r.externalRequests.length === 0 };
+    } catch (e) { embedSet = { source: `wp-cli failed: ${String(e).slice(0, 120)}`, unsetPrepared, pass: false }; }
+    finally {
+      // 後始末: option を消し、消えたこと（wp option get が失敗）と画面が未設定表示に戻ることを確認。失敗なら不合格
+      try { wp(["option", "delete", "helix_wt_event_map_embed_url"]); } catch (_) { /* 既に無ければ失敗する */ }
+      cleanupOk = optionUnset();
+      if (cleanupOk) { const ctx3 = await browser.newContext(PC); const p3 = await ctx3.newPage(); await p3.goto(BASE + EVENT + "?wt=event_map:embed", { waitUntil: "load" }); cleanupOk = await p3.evaluate(() => { const b = document.querySelector(".wt-event-map--embed"); return !!b && b.getAttribute("data-wt-embed") === "unset" && !b.querySelector("iframe"); }); await ctx3.close(); }
+      embedSet.cleanupOk = cleanupOk; embedSet.pass = embedSet.pass && cleanupOk;
+    }
   }
   const all = [...sp, ...pc, ...spNoJs];
   out.eventFace = { sp, pc, spNoJs, embedSet, pass: all.length === 34 * 3 && all.every((x) => x.pass) && embedSet.pass };
