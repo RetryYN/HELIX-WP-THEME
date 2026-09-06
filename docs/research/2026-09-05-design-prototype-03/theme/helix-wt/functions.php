@@ -760,7 +760,6 @@ function wt_render_category_filter() {
 	}
 	return $out . '</div>';
 }
-register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
 function wt_render_category_sidebar() {
 	$term = wt_current_category_term();
@@ -899,7 +898,6 @@ function wt_render_card_badges( $attributes = array(), $content = '', $block = n
 	}
 	return $out . '</div>';
 }
-register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
 function wt_render_category_minihome() {
 	$term = wt_current_category_term();
