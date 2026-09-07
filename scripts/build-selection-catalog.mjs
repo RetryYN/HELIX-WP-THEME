@@ -146,6 +146,22 @@ if (fs.existsSync(path.join(root, searchPath))) {
     entries.set(id, entry);
   }
 }
+const searchLocalePath = 'docs/research/2026-09-08-site-search/results/locale.json';
+if (fs.existsSync(path.join(root, searchLocalePath))) {
+  const evidence = read(searchLocalePath);
+  if (!evidence.completed || evidence.locale !== 'ja' || evidence.rows.some(r => !r.pass)) throw Error('Japanese search evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale localized search evidence: ${file}`);
+  }
+  for (const shot of evidence.shots) {
+    if (!['results', 'empty'].includes(shot.state) || !['pc', 'sp'].includes(shot.device) || !/^ja-[a-z-]+\.jpg$/.test(shot.file)) throw Error('Invalid localized search screenshot');
+    if (!fs.existsSync(path.join(root, path.dirname(searchLocalePath), shot.file))) throw Error('Missing localized search screenshot');
+    const entry = entries.get(`search:${shot.state}`);
+    if (!entry) throw Error('Missing source search candidate');
+    entry.images[shot.device] = `../2026-09-08-site-search/results/${shot.file}`;
+    entry.description = '日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。空欄専用状態、全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。';
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

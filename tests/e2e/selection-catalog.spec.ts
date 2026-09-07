@@ -165,7 +165,8 @@ test('site search states expose scoped evidence and a live query', async ({ page
   await page.locator('[data-face="search"]').click();
   await expect(page.locator('.tile-open')).toHaveCount(3);
   await page.locator('.tile-open').first().click();
-  await expect(page.locator('#detail')).toContainText('公開範囲');
+  await expect(page.locator('#detail')).toContainText('全権限行列');
   await expect(page.locator('#detail')).toContainText('WT-FR-SEARCH-01');
+  await expect(page.locator('#detail img').first()).toHaveAttribute('src', /ja-(results|empty)-/);
   await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', /\?s=/);
 });

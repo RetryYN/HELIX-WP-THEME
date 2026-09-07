@@ -1,7 +1,7 @@
 {
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-site-search-boundaries.mjs": "105ce5d42fa0b8e3dd90929e40a1cd1af96d2ff87361f35986651f10b1758bac",
+    "scripts/verify-site-search-boundaries.mjs": "f6bf8e70c1c5af044bfb0ef2f6f48a046e1e848261667a43a9f574392ea41c05",
     "docs/research/2026-09-08-content-faces/plugin/search.php": "b6f73624d1e2a8dcf1907961b6c81173ea7b5e102ac07919ec8fb07b4e8c6e8d",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174",
@@ -25,6 +25,10 @@
       "pass": true
     },
     {
+      "name": "keyboard-link:next:pc:js-true",
+      "pass": true
+    },
+    {
       "name": "query-preserved:pc:js-true",
       "pass": true
     },
@@ -34,6 +38,10 @@
     },
     {
       "name": "last-page-private-excluded:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-link:previous:pc:js-true",
       "pass": true
     },
     {
@@ -73,6 +81,10 @@
       "pass": true
     },
     {
+      "name": "keyboard-link:next:pc:js-false",
+      "pass": true
+    },
+    {
       "name": "query-preserved:pc:js-false",
       "pass": true
     },
@@ -82,6 +94,10 @@
     },
     {
       "name": "last-page-private-excluded:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-link:previous:pc:js-false",
       "pass": true
     },
     {
@@ -121,6 +137,10 @@
       "pass": true
     },
     {
+      "name": "keyboard-link:next:sp:js-true",
+      "pass": true
+    },
+    {
       "name": "query-preserved:sp:js-true",
       "pass": true
     },
@@ -130,6 +150,10 @@
     },
     {
       "name": "last-page-private-excluded:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-link:previous:sp:js-true",
       "pass": true
     },
     {
@@ -169,6 +193,10 @@
       "pass": true
     },
     {
+      "name": "keyboard-link:next:sp:js-false",
+      "pass": true
+    },
+    {
       "name": "query-preserved:sp:js-false",
       "pass": true
     },
@@ -178,6 +206,10 @@
     },
     {
       "name": "last-page-private-excluded:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-link:previous:sp:js-false",
       "pass": true
     },
     {

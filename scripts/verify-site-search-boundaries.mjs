@@ -15,6 +15,11 @@ const size=Number(wp(['option','get','posts_per_page']));if(!Number.isInteger(si
 const sources=['scripts/verify-site-search-boundaries.mjs','docs/research/2026-09-08-content-faces/plugin/search.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html','docs/research/2026-09-08-content-faces/plugin/content-faces.php'];
 const digests=()=>Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests(), rows=[];const check=(name,pass)=>rows.push({name,pass:!!pass});
+async function keyboardLink(page,link,label){
+ let focused=false;for(let step=0;step<60;step++){await page.keyboard.press('Tab');focused=await link.evaluate(e=>e===document.activeElement);if(focused)break;}
+ check(`keyboard-link:${label}`,focused);if(!focused)throw Error('Pagination unreachable by keyboard');
+ const href=await link.getAttribute('href');await page.keyboard.press('Enter');await page.waitForURL(href);
+}
 const base='http://127.0.0.1:8098';let ids=[],completed=false;
 const browser=await chromium.launch();
 try {
@@ -29,10 +34,10 @@ try {
   const html=await page.content();check(`private-excluded:${label}`,!html.includes(marker+' draft')&&!html.includes(marker+' private')&&!html.includes(marker+' protected')&&!html.includes('HiddenSearchFixtureText')&&!html.includes('PurchaseBodyOnlyFixture'));
   const next=page.locator('main .wp-block-query-pagination-next');check(`next-link:${label}`,await next.count()===1);
   if(await next.count()){
-   await next.click();check(`query-preserved:${label}`,new URL(page.url()).searchParams.get('s')===marker);
+   await keyboardLink(page,next,'next:'+label);check(`query-preserved:${label}`,new URL(page.url()).searchParams.get('s')===marker);
    check(`last-page:${label}`,await count()===total&&await page.locator('main .wp-block-post-title').count()===2);
    const content=await page.content();check(`last-page-private-excluded:${label}`,!content.includes('HiddenSearchFixtureText')&&!content.includes('PurchaseBodyOnlyFixture'));
-   await page.locator('main .wp-block-query-pagination-previous').click();check(`previous:${label}`,await page.locator('main .wp-block-post-title').count()===size);
+   await keyboardLink(page,page.locator('main .wp-block-query-pagination-previous'),'previous:'+label);check(`previous:${label}`,await page.locator('main .wp-block-post-title').count()===size);
   }
   for(const term of['HiddenSearchFixtureText','PurchaseBodyOnlyFixture']){
    await page.goto(base+'/?s='+term);check(`private-body-query:${term}:${label}`,await count()===0&&await page.locator('main .wp-block-post-title').count()===0);

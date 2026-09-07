@@ -1,0 +1,687 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-search-input.mjs": "5bdb64ebb2eb2597a7ca640207a1e46c1028e97a3bcd15fa799e1c4d2af3c51a",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "b6f73624d1e2a8dcf1907961b6c81173ea7b5e102ac07919ec8fb07b4e8c6e8d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
+  },
+  "rows": [
+    {
+      "name": "response:query-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:query-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:query-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:query-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:query-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:query-array:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-array:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-array:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-negative:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-negative:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-negative:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-negative:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-negative:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-negative:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-text:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-text:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-text:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-text:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-text:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-text:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-huge:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-huge:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-huge:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-huge:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-huge:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-huge:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:html:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:html:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:html:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:html:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:html:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:html:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:long-word:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:long-word:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:long-word:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:long-word:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:long-word:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:long-word:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:query-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:query-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:query-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:query-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:query-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:query-array:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-array:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-array:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-negative:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-negative:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-negative:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-negative:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-negative:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-negative:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-text:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-text:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-text:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-text:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-text:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-text:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-huge:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-huge:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-huge:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-huge:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-huge:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-huge:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:html:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:html:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:html:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:html:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:html:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:html:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:long-word:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:long-word:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:long-word:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:long-word:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:long-word:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:long-word:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:query-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:query-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:query-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:query-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:query-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:query-array:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-array:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-array:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-negative:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-negative:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-negative:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-negative:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-negative:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-negative:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-text:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-text:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-text:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-text:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-text:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-text:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:page-huge:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-huge:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-huge:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-huge:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-huge:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-huge:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:html:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:html:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:html:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:html:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:html:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:html:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:long-word:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-available:long-word:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:long-word:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-injection:long-word:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:long-word:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:long-word:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "response:query-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:query-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:query-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:query-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:query-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:query-array:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-array:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-array:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-negative:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-negative:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-negative:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-negative:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-negative:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-negative:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-text:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-text:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-text:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-text:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-text:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-text:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:page-huge:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:page-huge:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:page-huge:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:page-huge:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:page-huge:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:page-huge:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:html:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:html:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:html:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:html:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:html:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:html:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "response:long-word:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-available:long-word:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:long-word:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-injection:long-word:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-submit-focus:long-word:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-recovery:long-word:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

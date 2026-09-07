@@ -1,0 +1,238 @@
+{
+  "completed": true,
+  "locale": "ja",
+  "languageDigest": "791e116e2dae725468a8c7ac64a97c6531e21ea167feef3185fe9563039cdd8d",
+  "sourceDigests": {
+    "scripts/verify-site-search-locale.mjs": "ccd1ba9d729df8c972265b03bf3d77c043cd4b083b27e328aa10a3241cc63e9c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
+  },
+  "rows": [
+    {
+      "name": "locale:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-title:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-total:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "query:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "locale:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-title:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-total:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "query:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "locale:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-title:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-total:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "query:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "locale:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-title:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-total:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "query:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "locale:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-title:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-total:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "query:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "locale:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-title:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-total:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "query:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "locale:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-title:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-total:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "query:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "locale:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-title:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-total:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "query:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "locale-restored",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "ja-results-pc.jpg",
+      "device": "pc",
+      "state": "results",
+      "query": "判断"
+    },
+    {
+      "file": "ja-empty-pc.jpg",
+      "device": "pc",
+      "state": "empty",
+      "query": "no-match-search-fixture-20260908"
+    },
+    {
+      "file": "ja-results-sp.jpg",
+      "device": "sp",
+      "state": "results",
+      "query": "判断"
+    },
+    {
+      "file": "ja-empty-sp.jpg",
+      "device": "sp",
+      "state": "empty",
+      "query": "no-match-search-fixture-20260908"
+    }
+  ]
+}
