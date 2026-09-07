@@ -4,7 +4,7 @@ sub_doc: screen-list
 status: candidate_projection
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
 source_authority: docs/requirements/l2/screen-list.md
-source_sha256: 2a65b838d0a1f77296311dc5daefcb90837b3b8433c8e6b6027412c3265a4619
+source_sha256: f3499ff52d50928af1903e8d294d7f1a309c69b70012423d285372f983347ff1
 pair_artifact: docs/design/harness/L2-screen/wireframe.md
 next_pair_freeze: L10
 implemented_screens: ""

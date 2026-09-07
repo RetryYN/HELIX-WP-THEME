@@ -8,6 +8,9 @@ authority: docs/requirements/authority.md
 
 # L1 Non-functional Requirements
 
+> 2026-09-08 注記: 本文は WT-AGREE-01（event head 0231、9月5日）の承認済み基準。後続のPO判断・候補改定は [最新整理](../current-alignment.md) と L2 events / L3 IR を併読する。`g1_approved` は追加8件や改定6件の再承認を意味しない。本文内の問い件数・「現行」・対象制限は当時の記録として読む。
+
+
 | ID | 品質要求 | 測定方向 |
 | --- | --- | --- |
 | WT-NFRL1-01 | 4 層一貫性（トークン→骨格→部品→内容）を静的ゲートで守る。層 1 だけが尺度を持ち、下位は名前で参照する | G-T1 / T1b / T2 / T3 / S1 / S2 FAIL=0 |
