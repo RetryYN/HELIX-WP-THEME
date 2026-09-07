@@ -973,12 +973,12 @@
     },
     "form-fields": {
       "label": "項目セット",
-      "desc": "項目の組（台帳 fields: name 97% / email 94% / message 77% / tel 77% / address 61% / consent 61% …）。既定 by-kind = 種別ごとの観察セット。",
+      "desc": "項目の組（台帳 fields: name 97% / email 94% / message 77% / tel 77% / address 61% / consent 61% …）。既定 by-kind = 種別ごとの観察セット。full は定義した 47 項目全部（台帳の観察トークン 46 種を漏れなく含む。対応表は inc/form.php の obs）。",
       "variants": {
         "by-kind": "種別ごとの並び（既定）。",
         "minimal": "名前・メール・本文。",
         "standard": "+ 会社・電話・種別。",
-        "full": "+ かな・部署・確認メール・郵便番号・住所・URL・添付・きっかけ・メルマガ受信（符号化項目数の最大 24 に近い）。"
+        "full": "定義した項目を全部（47。かな・部署・役職・確認メール・FAX・郵便番号・住所・URL・件名・添付・希望日・時間帯・人数・業種・取引形態・従業員数・年商・設立年月・予算・対象製品・注文番号・利用頻度・きっかけ・性別・生年月日・職業・申込者・保護者・学年・学校種別・学校名・学部・教室・講師・希望形式・興味（複数）・yes/no 質問・メルマガ・非表示の流入元）。"
       }
     },
     "form-required": {
@@ -1020,11 +1020,13 @@
     },
     "form-submit": {
       "label": "送信文言",
-      "desc": "送信ボタンの文言（台帳 submit_text n=15 は分散: 送信する / 確認する / 確認画面へ / 同意して送信 / ダウンロード / 次へ進む …）。",
+      "desc": "送信ボタンの文言（台帳 submit_text n=15 は分散: 送信する 2 / 確認する 2 / 同意して、入力内容を確認する 2 / 個人情報の取り扱いに同意して送信する 2 / 送信 1 / 確認画面へ 1 / 次へ進む 1 / ダウンロード 1 …）。auto の「入力内容を確認する」は台帳の最多文言ではない Claude 暫定。",
       "variants": {
-        "auto": "確認ありなら「入力内容を確認する」、なしなら種別の文言（既定）。",
+        "auto": "確認ありなら「入力内容を確認する」（Claude 暫定）、なしなら種別の文言（既定）。",
         "send": "送信する。",
+        "send-plain": "送信。",
         "confirm": "確認画面へ。",
+        "check": "確認する。",
         "apply": "申し込む。",
         "register": "登録する。",
         "download": "ダウンロード。",
@@ -1036,7 +1038,7 @@
       "desc": "不備の出し方（台帳 error_display n=3: top-summary 2 / inline 1。少数観察）。空送信で必須項目だけがエラーになり、最初の不備へフォーカス。",
       "variants": {
         "inline": "項目の下に赤字 + aria-invalid（既定）。",
-        "top-summary": "上部に件数と項目へのリンクのまとめ（role=alert）。",
+        "top-summary": "上部に件数と項目へのリンクのまとめ（role=alert、リンク先は実在する入力。aria-describedby はまとめを指す）。",
         "both": "両方。"
       }
     },
@@ -1053,11 +1055,11 @@
       "label": "代替導線",
       "desc": "フォーム横の別の連絡手段（台帳 cta_side: tel 67% / none 26% / email 10% / chat 7% / messaging-app 5%）。PC は右に 260px、SP は下。",
       "variants": {
-        "tel": "電話番号（既定）。",
+        "tel": "電話番号（既定）。発信リンクにしない表示モック（番号は架空の例）。",
         "none": "なし。",
         "email": "メールアドレス。",
         "chat": "チャットを開くボタン（PoC では開かない）。",
-        "messaging-app": "メッセージアプリの友だち追加（LP の LINE 区画へ）。"
+        "messaging-app": "メッセージアプリの友だち追加（LP のメッセージアプリ区画へ）。"
       }
     },
     "form-thanks": {
@@ -1065,7 +1067,7 @@
       "desc": "完了の出し方（台帳 thanks_page: separate 2 件のみ観察）。種別ごとの次の導線（資料 DL / 記事 / イベント）。",
       "variants": {
         "separate": "完了ページ /thanks/ へ redirect（?wt= を引き継ぐ。既定）。",
-        "inline": "同じページに完了表示。"
+        "inline": "同じページに完了表示（台帳では未観察。Claude 案）。"
       }
     },
     "form-validate": {

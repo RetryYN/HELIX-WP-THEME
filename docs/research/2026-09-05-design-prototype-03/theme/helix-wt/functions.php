@@ -112,7 +112,7 @@ function wt_axes() {
 	$axes['form_layout']   = array( '1col', array( '1col', '2col', 'label-left', 'placeholder-only', 'steps' ) );
 	$axes['form_confirm']  = array( 'yes', array( 'yes', 'no', 'inline-review' ) );
 	$axes['form_consent']  = array( 'checkbox', array( 'checkbox', 'link-only', 'in-submit' ) );
-	$axes['form_submit']   = array( 'auto', array( 'auto', 'send', 'confirm', 'apply', 'register', 'download', 'next' ) );
+	$axes['form_submit']   = array( 'auto', array( 'auto', 'send', 'send-plain', 'confirm', 'check', 'apply', 'register', 'download', 'next' ) ); // 台帳 §5 の文言: 送信する / 送信 / 確認画面へ / 確認する / 同意して送信（form_consent:in-submit）/ ダウンロード / 次へ進む。auto は Claude 暫定
 	$axes['form_error']    = array( 'inline', array( 'inline', 'top-summary', 'both' ) );
 	$axes['form_captcha']  = array( 'none', array( 'none', 'question', 'external-slot' ) );
 	$axes['form_side']     = array( 'tel', array( 'tel', 'none', 'email', 'chat', 'messaging-app' ) );
