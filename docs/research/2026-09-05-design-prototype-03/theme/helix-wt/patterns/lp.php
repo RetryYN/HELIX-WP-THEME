@@ -180,6 +180,9 @@ $u = get_theme_file_uri( 'assets/img' );
 <div class="wt-lp-form wt-lp-form--external"><div class="wt-lp-form__external"><p>申込フォームは別ページで開きます（所要 2 分・5 項目）。</p><a class="wt-lp-cta-action" href="#lp-form" rel="nofollow">申込フォームへ進む <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a><p class="wt-lp-form__note">遷移先は PoC のためダミーのアンカーです。</p></div></div>
 <form class="wt-lp-form wt-lp-form--inline wt-lp-form-inline" action="#lp-form" method="get" data-wt-poc-form="no-submit"><div class="wt-lp-form__grid"><div><label for="lp-f-name">お名前</label><input id="lp-f-name" name="name" type="text" autocomplete="name" required></div><div><label for="lp-f-company">会社名（任意）</label><input id="lp-f-company" name="company" type="text" autocomplete="organization"></div><div><label for="lp-f-email">メールアドレス</label><input id="lp-f-email" name="email" type="email" autocomplete="email" required></div><div><label for="lp-f-tel">電話番号（任意）</label><input id="lp-f-tel" name="tel" type="tel" autocomplete="tel"></div><div class="wt-lp-form__full"><label for="lp-f-note">相談したいこと</label><textarea id="lp-f-note" name="note" rows="3"></textarea></div></div><label class="wt-lp-form__agree"><input type="checkbox" name="agree" required> <span>プライバシーポリシーに同意する</span></label><button class="wt-lp-cta-action" type="button" aria-describedby="lp-f-note-poc">この内容で申し込む</button><p class="wt-lp-form__note" id="lp-f-note-poc">PoC のため送信ボタンは無効（type=button）で、入力内容はどこにも送られません。実装時に送信先を設定します。</p></form></div>
 <!-- /wp:html -->
+<!-- wp:group {"className":"wt-lp-form wt-lp-form--block","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wt-lp-form wt-lp-form--block"><!-- wp:helix-wt/form {"hideTitle":true} /--></div>
+<!-- /wp:group -->
 </section>
 <!-- /wp:group -->
 

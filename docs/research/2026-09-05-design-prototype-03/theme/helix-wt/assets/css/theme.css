@@ -1877,3 +1877,8 @@ body:is(.wt-fixed-eff-float-cta,.wt-fixed-eff-float-tel,.wt-fixed-eff-sp-bottom-
 }
 /* LP: ヘッダーの所属が lp 以外（共通 / 独自 / 非表示）のときはテンプレート内の LP ヘッダー 3 種を出さない */
 body.wt-face-lp:not(.wt-head-bundle-lp) .wt-lp-header{display:none!important}
+
+/* 段 13（WT-EVT-0303）: LP の lp_form:block とイベントの event_apply:block-form = 段 11 のフォームブロックを区間に置く（既存の型は残す） */
+body.wt-lp-form-block .wt-lp-form--block{display:block;margin-top:2rem}
+body.wt-event-apply-block-form .wt-event-apply--block-form{display:block;margin-top:1rem}
+.wt-lp-form--block .wt-form,.wt-event-apply--block-form .wt-form{padding:0}

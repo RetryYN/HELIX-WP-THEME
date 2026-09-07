@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.936973)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.936793)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -19869,6 +19869,68 @@
    {
     "dev": "sp",
     "js": true,
+    "axis": "event_apply",
+    "v": "block-form",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "body": true,
+    "shown": [
+     "block-form"
+    ],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "parts": [
+     {
+      "part": "wt-part--target-audience",
+      "h2": true,
+      "broken": 0
+     },
+     {
+      "part": "wt-part--organizer",
+      "h2": true,
+      "broken": 0
+     }
+    ],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "post",
+      "action": "/event/?wt=event_apply%3Ablock-form",
+      "submit": 1,
+      "inputs": 10,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 3,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
     "axis": "event_status",
     "v": "none",
     "expectForms": 1,
@@ -22431,6 +22493,68 @@
     "hasImgRole": null,
     "embed": null,
     "anchors": 4,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "event_apply",
+    "v": "block-form",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "body": true,
+    "shown": [
+     "block-form"
+    ],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "parts": [
+     {
+      "part": "wt-part--target-audience",
+      "h2": true,
+      "broken": 0
+     },
+     {
+      "part": "wt-part--organizer",
+      "h2": true,
+      "broken": 0
+     }
+    ],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "post",
+      "action": "/event/?wt=event_apply%3Ablock-form",
+      "submit": 1,
+      "inputs": 10,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 3,
     "deadAnchors": [],
     "externalRequests": [],
     "pass": true
@@ -25005,6 +25129,68 @@
    {
     "dev": "sp",
     "js": false,
+    "axis": "event_apply",
+    "v": "block-form",
+    "expectForms": 1,
+    "expectOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "body": true,
+    "shown": [
+     "block-form"
+    ],
+    "sectionOrder": [
+     "info",
+     "overview",
+     "audience",
+     "tickets",
+     "apply",
+     "faq",
+     "organizer",
+     "notes"
+    ],
+    "parts": [
+     {
+      "part": "wt-part--target-audience",
+      "h2": true,
+      "broken": 0
+     },
+     {
+      "part": "wt-part--organizer",
+      "h2": true,
+      "broken": 0
+     }
+    ],
+    "heroVisible": 1,
+    "h1Visible": 1,
+    "below44": [],
+    "forms": [
+     {
+      "method": "post",
+      "action": "/event/?wt=event_apply%3Ablock-form",
+      "submit": 1,
+      "inputs": 10,
+      "labelled": true
+     }
+    ],
+    "applyLinks": 1,
+    "hasImgRole": null,
+    "embed": null,
+    "anchors": 3,
+    "deadAnchors": [],
+    "externalRequests": [],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
     "axis": "event_status",
     "v": "none",
     "expectForms": 1,
@@ -26696,9 +26882,9 @@
     "viewport": 1440,
     "mainW": 1021,
     "digits": [
-     "38",
-     "0",
-     "29"
+     "37",
+     "23",
+     "40"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26845,9 +27031,9 @@
     "viewport": 390,
     "mainW": 390,
     "digits": [
-     "38",
-     "0",
-     "29"
+     "37",
+     "23",
+     "40"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -85200,6 +85386,214 @@
   ],
   "pass": true
  },
+ "formSlots": {
+  "rows": [
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "lp",
+    "v": "block",
+    "formVis": true,
+    "kind": "contact",
+    "othersVis": [],
+    "method": "post",
+    "sameHost": true,
+    "nonce": true,
+    "blockTitle": false,
+    "sectionH2": 1,
+    "fields": [
+     "name",
+     "name-kana",
+     "company",
+     "email",
+     "tel",
+     "subject-select",
+     "message",
+     "consent"
+    ],
+    "applyLinks": 0,
+    "h1": 1,
+    "anyForm": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "lp",
+    "v": "default-no-block",
+    "anyForm": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "lp",
+    "v": "flow",
+    "confirmVis": true,
+    "path": "/thanks/",
+    "wt": "lp_form:block,lp_sections:extended",
+    "thanks": "contact",
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "event",
+    "v": "block",
+    "formVis": true,
+    "kind": "apply",
+    "othersVis": [],
+    "method": "post",
+    "sameHost": true,
+    "nonce": true,
+    "blockTitle": false,
+    "sectionH2": 1,
+    "fields": [
+     "name",
+     "email",
+     "tel",
+     "subject-radio",
+     "people-count",
+     "message",
+     "consent"
+    ],
+    "applyLinks": 1,
+    "h1": 1,
+    "anyForm": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "event",
+    "v": "default-no-block",
+    "anyForm": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "event",
+    "v": "flow",
+    "confirmVis": true,
+    "path": "/thanks/",
+    "wt": "event_apply:block-form,form_kind:apply",
+    "thanks": "apply",
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "face": "lp",
+    "v": "block",
+    "formVis": true,
+    "kind": "contact",
+    "othersVis": [],
+    "method": "post",
+    "sameHost": true,
+    "nonce": true,
+    "blockTitle": false,
+    "sectionH2": 1,
+    "fields": [
+     "name",
+     "name-kana",
+     "company",
+     "email",
+     "tel",
+     "subject-select",
+     "message",
+     "consent"
+    ],
+    "applyLinks": 0,
+    "h1": 1,
+    "anyForm": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "face": "event",
+    "v": "block",
+    "formVis": true,
+    "kind": "apply",
+    "othersVis": [],
+    "method": "post",
+    "sameHost": true,
+    "nonce": true,
+    "blockTitle": false,
+    "sectionH2": 1,
+    "fields": [
+     "name",
+     "email",
+     "tel",
+     "subject-radio",
+     "people-count",
+     "message",
+     "consent"
+    ],
+    "applyLinks": 1,
+    "h1": 1,
+    "anyForm": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "face": "lp",
+    "v": "block",
+    "formVis": true,
+    "kind": "contact",
+    "othersVis": [],
+    "method": "post",
+    "sameHost": true,
+    "nonce": true,
+    "blockTitle": false,
+    "sectionH2": 1,
+    "fields": [
+     "name",
+     "name-kana",
+     "company",
+     "email",
+     "tel",
+     "subject-select",
+     "message",
+     "consent"
+    ],
+    "applyLinks": 0,
+    "h1": 1,
+    "anyForm": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "face": "event",
+    "v": "block",
+    "formVis": true,
+    "kind": "apply",
+    "othersVis": [],
+    "method": "post",
+    "sameHost": true,
+    "nonce": true,
+    "blockTitle": false,
+    "sectionH2": 1,
+    "fields": [
+     "name",
+     "email",
+     "tel",
+     "subject-radio",
+     "people-count",
+     "message",
+     "consent"
+    ],
+    "applyLinks": 1,
+    "h1": 1,
+    "anyForm": true,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
  "categoryVariants": {
   "expectedCount": 17,
   "countSource": "wp-cli:cat=8",
@@ -89567,7 +89961,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 89,
+  "pass": 90,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -89658,6 +90052,7 @@
    "sideDefaults": true,
    "sideOwner": true,
    "chromeOwner": true,
+   "formSlots": true,
    "formFace": true,
    "prAutoFixtures": true
   }

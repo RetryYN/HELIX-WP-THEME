@@ -86,8 +86,14 @@ function wt_form_field_defs() {
 	);
 }
 
+// 段 13（WT-EVT-0303「OK」= 置き換えず選択肢を足す）: フォームの種別は置いた面の文脈で決まる。イベント面の event_apply:block-form は apply、LP の lp_form:block と固定ページは form_kind（?wt= で切替）
+function wt_form_kind() {
+	if ( function_exists( 'wt_is_event_page' ) && wt_is_event_page() && 'block-form' === wt_opt( 'event_apply' ) ) { return 'apply'; }
+	return wt_opt( 'form_kind' );
+}
+
 function wt_form_fields( $kind = null, $set = null ) {
-	$kind = $kind ?: wt_opt( 'form_kind' );
+	$kind = $kind ?: wt_form_kind();
 	$set  = $set ?: wt_opt( 'form_fields' );
 	$kinds = wt_form_kinds(); $defs = wt_form_field_defs();
 	$special = array( 'consent', 'privacy-link', 'captcha' );
@@ -105,7 +111,7 @@ function wt_form_fields( $kind = null, $set = null ) {
 }
 
 function wt_form_submit_text( $kind = null ) {
-	$kind = $kind ?: wt_opt( 'form_kind' );
+	$kind = $kind ?: wt_form_kind();
 	$v    = wt_opt( 'form_submit' );
 	// 台帳 submit_text（n=15、分散）: 送信する 2 / 確認する 2 / 同意して、入力内容を確認する 2 / 個人情報の取り扱いに同意して送信する 2 / 送信 1 / 確認画面へ 1 / 次へ進む 1 / ダウンロード 1 …
 	$map  = array( 'send' => '送信する', 'send-plain' => '送信', 'confirm' => '確認画面へ', 'check' => '確認する', 'apply' => '申し込む', 'register' => '登録する', 'download' => 'ダウンロード', 'next' => '次へ進む' );
@@ -177,7 +183,9 @@ add_action( 'template_redirect', function () {
 	if ( 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) || ! isset( $_POST['wt_form'] ) ) { return; }
 	$st = wt_form_state();
 	if ( 'done' === $st['step'] && 'separate' === wt_opt( 'form_thanks' ) ) {
-		$q = isset( $_GET['wt'] ) ? '?wt=' . rawurlencode( sanitize_text_field( wp_unslash( $_GET['wt'] ) ) ) : '';
+		$wt = isset( $_GET['wt'] ) ? sanitize_text_field( wp_unslash( $_GET['wt'] ) ) : '';
+		if ( wt_form_kind() !== wt_opt( 'form_kind' ) ) { $wt = ( $wt ? $wt . ',' : '' ) . 'form_kind:' . wt_form_kind(); } // 段 13: 面の文脈で決めた種別（イベントの apply）を /thanks/ へ引き継ぐ
+		$q = '' !== $wt ? '?wt=' . rawurlencode( $wt ) : '';
 		wp_safe_redirect( home_url( '/thanks/' . $q ) ); exit;
 	}
 } );
@@ -223,7 +231,9 @@ function wt_form_step_of( $f ) { // steps レイアウトの段: 1 = 基本情�
 }
 
 function wt_render_form( $attrs = array() ) {
-	$kind = wt_opt( 'form_kind' ); $k = wt_form_kinds()[ $kind ]; $st = wt_form_state(); $defs = wt_form_field_defs(); $fields = wt_form_fields();
+	if ( wt_is_lp_page() && 'block' !== wt_opt( 'lp_form' ) ) { return ''; } // 段 13: LP / イベントでは軸で選んだときだけ描く（隠しフォームを DOM に残さない）
+	if ( wt_is_event_page() && 'block-form' !== wt_opt( 'event_apply' ) ) { return ''; }
+	$kind = wt_form_kind(); $k = wt_form_kinds()[ $kind ]; $st = wt_form_state(); $defs = wt_form_field_defs(); $fields = wt_form_fields();
 	$layout = wt_opt( 'form_layout' ); $errmode = wt_opt( 'form_error' ); $side = wt_opt( 'form_side' );
 	$cls = 'wt-form wt-form--' . esc_attr( $kind ) . ' wt-form--layout-' . esc_attr( $layout ) . ' wt-form--side-' . esc_attr( $side );
 	$action = esc_url( add_query_arg( array() ) ); // 同じ URL（?wt= を保つ）
@@ -242,7 +252,7 @@ function wt_render_form( $attrs = array() ) {
 		if ( 'question' === wt_opt( 'form_captcha' ) ) { $o .= '<input type="hidden" name="wt_form[captcha]" value="7">'; }
 		$o .= '</dl><div class="wt-form__actions"><button type="submit" class="wt-form__back" name="wt_step" value="back">修正する</button><button type="submit" class="wt-form__submit" name="wt_step" value="confirm">' . esc_html( $k['submit'] ) . '</button></div></form>';
 	} else {
-		$o .= '<h2 class="wt-form__title">' . esc_html( $k['label'] ) . '</h2><p class="wt-form__lead">' . esc_html( $k['lead'] ) . '</p>';
+		if ( empty( $attrs['hideTitle'] ) ) { $o .= '<h2 class="wt-form__title">' . esc_html( $k['label'] ) . '</h2><p class="wt-form__lead">' . esc_html( $k['lead'] ) . '</p>'; } // 段 13: 区間に置くとき（LP / イベント）は区間の見出しがあるのでブロックの見出しを省く（hideTitle）
 		if ( isset( $st['errors']['_form'] ) ) { $o .= '<div class="wt-form__summary" role="alert" tabindex="-1" autofocus><p>' . esc_html( $st['errors']['_form'] ) . '</p></div>'; }
 		elseif ( $st['errors'] && in_array( $errmode, array( 'top-summary', 'both' ), true ) ) { $o .= '<div class="wt-form__summary" role="alert" id="wt-form-summary" tabindex="-1" autofocus><p>入力内容に ' . count( $st['errors'] ) . ' 件の不備があります。</p><ul>'; foreach ( $st['errors'] as $f => $m ) { $o .= '<li><a href="#' . esc_attr( wt_form_focus_id( $f ) ) . '">' . esc_html( $m ) . '</a></li>'; } $o .= '</ul></div>'; }
 		$steps = 'steps' === $layout;
@@ -302,6 +312,6 @@ function wt_render_form_thanks( $attrs = array() ) {
 }
 
 add_action( 'init', function () {
-	register_block_type( 'helix-wt/form', array( 'render_callback' => 'wt_render_form' ) );
+	register_block_type( 'helix-wt/form', array( 'render_callback' => 'wt_render_form', 'attributes' => array( 'hideTitle' => array( 'type' => 'boolean', 'default' => false ) ) ) );
 	register_block_type( 'helix-wt/form-thanks', array( 'render_callback' => 'wt_render_form_thanks' ) );
 } );

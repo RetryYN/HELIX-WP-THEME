@@ -1523,7 +1523,7 @@ const EVENT = "/event/";
 }
 // (k) eventFace: 各軸の全型（hero 4 / info 4 / schedule 4 / speakers 4 / apply 4 / status 4 / map 3 / fixed 3 / share 3）で軸 class・当該型だけ可視、closed-notice で申込導線が消える、フォームは非送信、44px。SP/PC/SP JS 無効
 {
-  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "seminar-classic", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 5 種。段 9: seminar = v2 構成（既定）、seminar-classic = 従来構成
+  const AX = { event_hero: ["photo-overlay", "key-visual", "date-place-block", "text-only"], event_info: ["inline-text", "table", "icon-list", "none"], event_schedule: ["none", "table", "timeline", "accordion"], event_speakers: ["none", "cards-photo", "list", "single-profile"], event_apply: ["inline-form", "external-form", "ticket-link", "closed-notice", "receipt-upload", "postcard", "messaging-app", "block-form"], event_status: ["none", "open", "few-seats", "ended"], event_map: ["none", "static-image", "text-only", "embed"], event_fixed: ["none", "sp-bottom-bar", "float-apply"], event_share: ["none", "icons", "add-to-calendar"], event_sections: ["seminar", "seminar-classic", "conference", "festival", "campaign"] }; // 段 8: apply +3、区間セット 5 種。段 9: seminar = v2 構成（既定）、seminar-classic = 従来構成
   // 段 8: 区間セットごとの表示区間と順序（CSS の order と一致させる）
   const ESETS = { seminar: ["info", "overview", "audience", "schedule", "speakers", "tickets", "apply", "access", "faq", "organizer", "notes"], "seminar-classic": ["info", "overview", "schedule", "speakers", "tickets", "apply", "access", "faq", "sponsors", "past", "notes"], conference: ["info", "overview", "schedule", "speakers", "tickets", "sponsors", "apply", "access", "past", "organizer", "notes"], festival: ["info", "overview", "countdown", "schedule", "gallery", "apply", "access", "faq", "sponsors", "past", "organizer", "notes"], campaign: ["info", "overview", "prizes", "products", "entry", "apply", "judges", "organizer", "notes"] };
   const PREFIX = { event_sections: ".wt-event-sections--",  event_hero: ".wt-event-hero--", event_info: ".wt-event-info--", event_schedule: ".wt-event-schedule--", event_speakers: ".wt-event-speakers--", event_apply: ".wt-event-apply--", event_status: ".wt-event-status--", event_map: ".wt-event-map--", event_fixed: ".wt-event-fixed--", event_share: ".wt-event-share--" };
@@ -1539,7 +1539,7 @@ const EVENT = "/event/";
       await p.goto(BASE + EVENT + `?wt=${axis}:${v}`, { waitUntil: js ? "networkidle" : "load" });
       const r = await p.evaluate(([axis, v, values, prefix, visSrc]) => { const vis = eval(visSrc); const cls = axis.replace(/_/g, "-");
         const shown = values.filter((x) => Array.from(document.querySelectorAll(prefix + x)).some(vis));
-        const taps = Array.from(document.querySelectorAll(".wt-event a, .wt-event button, .wt-event input, .wt-event select, .wt-event-fixed")).filter(vis);
+        const taps = Array.from(document.querySelectorAll(".wt-event a, .wt-event button, .wt-event input, .wt-event select, .wt-event-fixed")).filter(vis).filter((el) => !el.closest(".wt-form__hp")); /* 段 13: フォームブロックの honeypot は画面外の罠（formFace と同じ除外） */
         const below44 = taps.filter((el) => { const r = el.getBoundingClientRect(); const inline = el.tagName === "A" && getComputedStyle(el).display === "inline" && el.parentElement && /^(P|LI|TD|B|SPAN)$/.test(el.parentElement.tagName); const lab = el.tagName === "INPUT" && /^(checkbox|radio)$/.test(el.type) ? el.closest("label") : null; const labOk = !!lab && lab.getBoundingClientRect().height >= 44 && lab.getBoundingClientRect().width >= 44 && Math.min(r.width, r.height) >= 24; return !inline && !labOk && Math.min(r.width, r.height) < 44; }).map((el) => (el.className || el.tagName).toString().slice(0, 60));
         const forms = Array.from(document.querySelectorAll(".wt-event form")).filter(vis).map((f) => ({ method: (f.getAttribute("method") || "get").toLowerCase(), action: f.getAttribute("action") || "", submit: f.querySelectorAll("button:not([type]), button[type=submit], input[type=submit], input[type=image]").length, inputs: f.querySelectorAll("input:not([type=hidden]), select, textarea").length, labelled: Array.from(f.querySelectorAll("input:not([type=hidden]):not([type=checkbox]), select")).every((i) => i.id && f.querySelector(`label[for="${i.id}"]`)) }));
         const applyLinks = Array.from(document.querySelectorAll(".wt-event-apply-link, .wt-event-fixed")).filter(vis).length;
@@ -1552,9 +1552,10 @@ const EVENT = "/event/";
       // 既定は event_info=inline-text / event_schedule=none / event_speakers=none / event_map=none。軸 none で隠れる区間はセットの並びから除く（当該軸の行はその値、他の行は既定）
       const hiddenBy = { info: "event_info", schedule: "event_schedule", speakers: "event_speakers", access: "event_map" }; const axisDefault = { event_info: "inline-text", event_schedule: "none", event_speakers: "none", event_map: "none" };
       const expectOrder = ESETS[axis === "event_sections" ? v : "seminar"].filter((sec) => { const ax = hiddenBy[sec]; if (!ax) return true; const val = axis === ax ? v : axisDefault[ax]; return val !== "none"; });
-      const expectForms = axis === "event_apply" ? (v === "inline-form" ? 1 : 0) : 1; // 既定 event_apply=inline-form はフォーム 1 つ
+      const blockForm = axis === "event_apply" && v === "block-form"; // 段 13: 段 11 のフォームブロック（POST・送信ボタンあり・同一 URL。中身は formFace で検査）
+      const expectForms = axis === "event_apply" ? ((v === "inline-form" || blockForm) ? 1 : 0) : 1; // 既定 event_apply=inline-form はフォーム 1 つ
       r.externalRequests = Array.from(new Set(external)); // DOM の src 列挙ではなく実際に出た要求
-      let pass = r.body && r.externalRequests.length === 0 && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.hasImgRole === null || r.hasImgRole === true) && r.deadAnchors.length === 0 && (r.embed === null || (unsetPrepared && r.embed.state === "unset" && r.embed.externalHosts.length === 0 && r.embed.unsetNote && !r.embed.iframe)); // 未設定状態を明示判定（設定済みでは通さない）
+      let pass = r.body && r.externalRequests.length === 0 && JSON.stringify(r.shown) === JSON.stringify(expectShown) && r.heroVisible === 1 && r.h1Visible === 1 && r.below44.length === 0 && r.forms.length === expectForms && r.forms.every((f) => blockForm ? (f.submit >= 1 && f.inputs >= 2 && f.method === "post" && (f.action.startsWith("/") || f.action.startsWith(BASE))) : f.submit === 0 && f.inputs >= 2 && f.method === "get" && /^#/.test(f.action) && f.labelled) && (r.hasImgRole === null || r.hasImgRole === true) && r.deadAnchors.length === 0 && (r.embed === null || (unsetPrepared && r.embed.state === "unset" && r.embed.externalHosts.length === 0 && r.embed.unsetNote && !r.embed.iframe)); // 未設定状態を明示判定（設定済みでは通さない）
       if (axis === "event_apply") pass = pass && (v === "closed-notice" ? r.applyLinks === 0 : r.applyLinks >= 1);
       pass = pass && JSON.stringify(r.sectionOrder) === JSON.stringify(expectOrder) && r.parts.every((x) => x.h2 && x.broken === 0) && r.parts.length === expectOrder.filter((x) => ["audience", "organizer", "prizes", "products", "entry", "judges", "gallery", "countdown"].includes(x)).length; // 段 8: 区間の集合と順序、パーツ区間の見出し・画像
       results.push({ dev, js, axis, v, expectForms, expectOrder, ...r, pass });
@@ -1589,7 +1590,7 @@ const EVENT = "/event/";
     }
   }
   const all = [...sp, ...pc, ...spNoJs];
-  out.eventFace = { sp, pc, spNoJs, defaults, embedSet, pass: all.length === 42 * 3 && all.every((x) => x.pass) && defaults.length === 3 && defaults.every((x) => x.pass) && embedSet.pass };
+  out.eventFace = { sp, pc, spNoJs, defaults, embedSet, pass: all.length === 43 * 3 && all.every((x) => x.pass) && defaults.length === 3 && defaults.every((x) => x.pass) && embedSet.pass };
 }
 // (l) eventHeroContrast: photo-overlay のスクリム α（下端 .88）と白文字、他 3 型の文字色 4.5:1、受付状態バッジ 3 型の文字コントラスト
 {
@@ -1999,6 +2000,35 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
   }
   out.chromeOwner = { reg, registryOk, rows, pass: registryOk && CASES.length === 67 && rows.length === 176 && rows.every((x) => x.pass) }; // 面 6 × (head 3 + foot 3 + fix 3 + off+sidenav 1 + isolation 1) + LP の lp 1 = 67 ケース。行 = head 25 × 3 + foot 18 × 2 + fix 18 × 3 + off+sidenav 6（PC）+ 重なり 4 + 404 1 = 176（固定値）
 }
+// (t) formSlots（段 13、PO 反応 26 回目 WT-EVT-0303「OK」= WT-EVT-0302「増やす方向で」の解釈 = 置き換えず選択肢を足す）: LP の lp_form:block とイベントの event_apply:block-form で段 11 のフォームブロック（helix-wt/form）が区間に出る。
+// 既定（external / inline-form）では DOM にフォームブロックが無い（隠しフォームを残さない）。block では他の型は見えず、種別は面の文脈（LP = form_kind の既定 contact、イベント = apply）、フォームは POST・同一 URL・nonce、入力 → 確認 → 完了で /thanks/ へ redirect し種別を引き継ぐ。PC / SP / SP JS 無効
+{
+  const rows = []; const baseHost = new URL(BASE).host;
+  const SLOTS = [["lp", LP, "lp_form:block,lp_sections:extended", "contact", [".wt-lp-form--external", ".wt-lp-form--inline"], ".wt-lp-form--block"], ["event", "/event/", "event_apply:block-form", "apply", [".wt-event-apply--inline-form", ".wt-event-apply--external-form", ".wt-event-apply--ticket-link", ".wt-event-apply--closed-notice", ".wt-event-apply--receipt-upload", ".wt-event-apply--postcard", ".wt-event-apply--messaging-app"], ".wt-event-apply--block-form"]];
+  const READ = ([visSrc, others, wrap]) => { const vis = eval(visSrc); const $ = (s) => document.querySelector(s); const form = $(wrap + " .wt-form__form"); const el = $(wrap + " .wt-form");
+    return { formVis: vis(form), kind: el ? el.getAttribute("data-wt-form") : null, othersVis: others.filter((s) => vis($(s))), method: form ? (form.getAttribute("method") || "").toLowerCase() : null, sameHost: form ? new URL(form.getAttribute("action"), location.href).host === location.host : false, nonce: !!(form && form.querySelector("input[name=wt_form_nonce]")), blockTitle: !!$(wrap + " .wt-form__title"), sectionH2: Array.from(document.querySelectorAll(wrap.startsWith(".wt-lp") ? ".wt-lp__section--form h2" : ".wt-event__section--apply h2")).filter(vis).length, fields: Array.from(document.querySelectorAll(wrap + " .wt-form__row")).filter(vis).map((r) => r.getAttribute("data-wt-field")), applyLinks: Array.from(document.querySelectorAll(".wt-event-apply-link")).filter(vis).length, h1: Array.from(document.querySelectorAll("h1")).filter((h) => h.offsetHeight).length, anyForm: !!$(".wt-form__form") }; };
+  const KIND_FIELDS = { contact: ["name", "name-kana", "company", "email", "tel", "subject-select", "message", "consent"], apply: ["name", "email", "tel", "subject-radio", "people-count", "message", "consent"] };
+  for (const [dev, cfg, js] of [["pc", PC, true], ["sp", SP, true], ["sp", SP, false]]) {
+    const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
+    for (const [face, path, q, kind, others, wrap] of SLOTS) {
+      const reveal = async () => { await p.evaluate(([w]) => { const el = document.querySelector(w); if (el) el.scrollIntoView({ block: "start" }); }, [wrap]); await p.waitForTimeout(600); }; /* LP / イベントの区間はスクロールで現れる（motion）ので区間まで送る */
+      await p.goto(BASE + path + "?wt=" + q, { waitUntil: js ? "networkidle" : "load" }); await reveal(); const r = await p.evaluate(READ, [VIS_SRC, others, wrap]);
+      rows.push({ dev, js, face, v: "block", ...r, pass: r.formVis && r.kind === kind && r.othersVis.length === 0 && r.method === "post" && r.sameHost && r.nonce && JSON.stringify(r.fields) === JSON.stringify(KIND_FIELDS[kind]) && r.h1 === 1 && (face !== "event" || r.applyLinks >= 1) && !r.blockTitle && r.sectionH2 === 1 }); /* 区間の見出しは 1 つ（ブロックの見出しは hideTitle で省く） */
+      if (dev === "pc") { await p.goto(BASE + path, { waitUntil: "networkidle" }); const d = await p.evaluate(READ, [VIS_SRC, others, wrap]); rows.push({ dev, js, face, v: "default-no-block", anyForm: d.anyForm, pass: !d.anyForm }); } // 既定では DOM に無い
+      if (dev === "pc") { // 入力 → 確認 → 完了（separate）: /thanks/ へ redirect し種別を引き継ぐ
+        await p.goto(BASE + path + "?wt=" + q, { waitUntil: "networkidle" }); await reveal();
+        await p.fill(wrap + " #wt-f-name", "山田 太郎"); await p.fill(wrap + " #wt-f-email", "taro@example.com"); await p.fill(wrap + " #wt-f-tel", "03-1234-5678"); await p.fill(wrap + " #wt-f-message", "本文"); await p.check(wrap + " #wt-f-consent");
+        if (kind === "contact") { await p.fill(wrap + " #wt-f-name-kana", "やまだ たろう"); await p.selectOption(wrap + " #wt-f-subject-select", { index: 1 }); } else { await p.check(wrap + " #wt-f-subject-radio-0"); await p.fill(wrap + " #wt-f-people-count", "2"); }
+        await p.click(wrap + " .wt-form__submit"); await p.waitForTimeout(600); const confirmVis = await p.evaluate(([w]) => { const c = document.querySelector(w + " .wt-form__confirm"); return !!c && c.getBoundingClientRect().height > 0; }, [wrap]);
+        await p.click(wrap + " .wt-form__confirm .wt-form__submit"); await p.waitForTimeout(1000);
+        const t = await p.evaluate(() => ({ path: location.pathname, wt: new URLSearchParams(location.search).get("wt") || "", thanks: (document.querySelector(".wt-form-thanks") || { getAttribute: () => null }).getAttribute("data-wt-thanks") }));
+        rows.push({ dev, js, face, v: "flow", confirmVis, ...t, pass: confirmVis && t.path === "/thanks/" && t.thanks === kind && q.split(",").every((x) => t.wt.split(",").includes(x)) && t.wt.split(",").every((x) => q.split(",").includes(x) || x === "form_kind:" + kind) }); /* ?wt= を引き継ぎ、面の文脈の種別だけ足す */
+      }
+    }
+    await ctx.close();
+  }
+  out.formSlots = { rows, pass: rows.length === 10 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + 遷移 2 = 10（固定値）
+}
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
   const AX = { cat_header: ["name-count", "name-only", "name-desc", "hero"], cat_lead: ["none", "lead-text", "editorial"], cat_children: ["none", "chips", "cards", "steps", "sidebar-tree", "image-banners"], cat_columns: ["sidebar-right", "1col"], cat_sidebar: ["standard", "with-cta", "full"], cat_list: ["grid", "text-list", "featured-grid", "grid-2", "thumb-list", "timeline"], cat_card: ["standard", "minimal", "rich"], cat_filter: ["none", "tabs", "year", "tag", "sort"], cat_pagination: ["numbers", "none", "load-more", "prev-next"], cat_ranking: ["none", "sidebar", "bottom", "top"], cat_pickup: ["none", "top-featured", "editor-pick-box"], cat_cta: ["none", "lp-banner", "newsletter", "line"] };
@@ -2101,7 +2131,7 @@ const checkList = [
   ["lpParts", out.lpParts.pass],
   ["headerVariants", out.headerVariants.pass], ["announceFullWidth", out.announceFullWidth.pass], ["numboxNum", out.numboxNum.pass], ["graphsMore", out.graphsMore.pass], ["relatedNoFixture", out.relatedNoFixture.pass], ["lineIcon", out.lineIcon.pass], ["snsIcons", out.snsIcons.pass],
   ["homeFace", out.homeFace.pass], ["homeHeroContrast", out.homeHeroContrast.pass], ["homeFixedOverlap", out.homeFixedOverlap.pass], ["eventFace", out.eventFace.pass], ["eventHeroContrast", out.eventHeroContrast.pass],
-  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass], ["sideDefaults", out.sideDefaults.pass], ["sideOwner", out.sideOwner.pass], ["chromeOwner", out.chromeOwner.pass], ["formFace", out.formFace.pass],
+  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass], ["sideDefaults", out.sideDefaults.pass], ["sideOwner", out.sideOwner.pass], ["chromeOwner", out.chromeOwner.pass], ["formSlots", out.formSlots.pass], ["formFace", out.formFace.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

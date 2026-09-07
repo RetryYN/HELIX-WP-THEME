@@ -57,7 +57,7 @@ function wt_axes() {
 		'lp_review'    => array( 'quote-photo', array( 'quote-photo', 'stars-count', 'satisfaction-number' ) ),
 		'lp_rating'    => array( 'certification', array( 'certification', 'client-logos', 'award-badge' ) ),
 		'lp_download'  => array( 'button-to-form', array( 'button-to-form', 'form-inline' ) ),
-		'lp_form'      => array( 'external', array( 'external', 'inline' ) ),
+		'lp_form'      => array( 'external', array( 'external', 'inline', 'block' ) ), // 段 13（WT-EVT-0303）: block = 段 11 のフォームブロック（helix-wt/form）を選択肢として追加（既存 2 型は残す）
 		'lp_line'      => array( 'button', array( 'button', 'qr' ) ),
 		'lp_legal'     => array( 'on', array( 'on', 'off' ) ),
 		// 2026-09-06 PO 反応 17 回目 WT-EVT-0277「HP ページは？イベントとかが組めるページは？」（Claude 案）。
@@ -73,7 +73,7 @@ function wt_axes() {
 		'event_schedule' => array( 'none', array( 'none', 'table', 'timeline', 'accordion' ) ), // 主集計 n=8: none 38% / table 25% / timeline 12%
 		'event_speakers' => array( 'none', array( 'none', 'cards-photo', 'list', 'single-profile' ) ), // 主集計 n=8: none 50% / cards-photo 25%
 		'event_sections' => array( 'seminar', array( 'seminar', 'seminar-classic', 'conference', 'festival', 'campaign' ) ), // 段8: 区間セット 5 種。段9（WT-EVT-0288）: seminar（既定）は v2 主集計 A の上位区間構成（対象者・主催あり）、seminar-classic は段 7 までの従来構成。B・C は小標本のため「選べる型」
-		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice', 'receipt-upload', 'postcard', 'messaging-app' ) ), // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%。段8: receipt-upload / postcard / messaging-app（v2 の other:* 3 語、キャンペーン D の応募経路）
+		'event_apply'    => array( 'inline-form', array( 'inline-form', 'external-form', 'ticket-link', 'closed-notice', 'receipt-upload', 'postcard', 'messaging-app', 'block-form' ) ), // 段 13: block-form = 段 11 のフォームブロック（種別 apply）を選択肢として追加 // 主集計 n=8: inline-form 38% / external-form 25% / closed-notice 25% / ticket 12%。段8: receipt-upload / postcard / messaging-app（v2 の other:* 3 語、キャンペーン D の応募経路）
 		'event_status'   => array( 'open', array( 'open', 'none', 'few-seats', 'ended' ) ), // 主集計 n=8: open 62% / ended 25% / none 12%。few-seats の実例は 0（観測不足）
 		'event_map'      => array( 'none', array( 'none', 'static-image', 'text-only', 'embed' ) ), // 主集計 n=8: none 50% / text-only 50%。embed は外部地図の埋め込み（WT-EVT-0284: WT-CAND-SNS の埋め込み方針＝遅延読込・URL は option・鍵はテーマに置かない）
 		'event_fixed'    => array( 'none', array( 'none', 'sp-bottom-bar', 'float-apply' ) ), // 主集計 n=8: none 100%（観察に無い型を Claude 案として追加）
@@ -215,7 +215,9 @@ function wt_is_event_page() {
 	// （ローカル検証台で確認）。その場合 is_page_template() は false になるため、実際に解決した template id も見る。
 	global $_wp_current_template_id;
 	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-event' );
-	return $resolved || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
+	// 段 13: template_redirect（テンプレート解決前。フォームの POST 処理）でも同じ答えになるよう、block 階層の規則（template meta が空なら page-{slug}.html）を自前で当てる
+	$by_slug = is_page() && '' === (string) get_page_template_slug( get_queried_object_id() ) && 'event' === get_post_field( 'post_name', get_queried_object_id() ) && file_exists( get_theme_file_path( 'templates/page-event.html' ) );
+	return $resolved || $by_slug || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
 }
 
 function wt_is_lp_page() {
@@ -266,8 +268,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.20' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.20' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.21' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.21' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -276,11 +278,11 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_front_page() || is_page() ) { // 段 8: 固定ページ用パーツ（カルーセル・カウントダウン）でも使う
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.20', $defer );
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.21', $defer );
 	}
 	if ( is_singular() || is_page() || is_front_page() || is_category() ) { // 段 10: サイドバー（ドロワー / メガメニュー）。段 10c: カテゴリ面も共通サイドバーを継承する
-	if ( is_page() ) { wp_enqueue_script( 'helix-wt-form', get_theme_file_uri( 'assets/js/form.js' ), array(), '0.3.20', $defer ); } // 段 11: フォーム（固定ページに置く）
-		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.20', $defer );
+	if ( is_page() ) { wp_enqueue_script( 'helix-wt-form', get_theme_file_uri( 'assets/js/form.js' ), array(), '0.3.21', $defer ); } // 段 11: フォーム（固定ページに置く）
+		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.21', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
