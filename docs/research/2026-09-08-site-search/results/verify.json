@@ -1,10 +1,11 @@
 {
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-site-search.mjs": "bc251899d848abf2f86daccbcd47420dfd70ceaf32db6b1619f28a3c4ebaac9e",
+    "scripts/verify-site-search.mjs": "f23252e41456fff89a1e8fbead2a0258f38e6ef8cc1e72ce949e19e092cd3e63",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21",
     "docs/research/2026-09-08-content-faces/plugin/search.php": "b6f73624d1e2a8dcf1907961b6c81173ea7b5e102ac07919ec8fb07b4e8c6e8d",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174"
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "f374d12d9f85da2efe92ceb0b5576dceef00482706cbd0a369867f06cff1a977"
   },
   "rows": [
     {
@@ -69,6 +70,38 @@
     },
     {
       "name": "reflow:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:pc:js-true",
       "pass": true
     },
     {
@@ -144,6 +177,38 @@
       "pass": true
     },
     {
+      "name": "unentered:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
       "name": "recover:pc:js-false",
       "pass": true
     },
@@ -216,6 +281,38 @@
       "pass": true
     },
     {
+      "name": "unentered:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
       "name": "recover:sp:js-true",
       "pass": true
     },
@@ -285,6 +382,38 @@
     },
     {
       "name": "reflow:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:sp:js-false",
       "pass": true
     },
     {

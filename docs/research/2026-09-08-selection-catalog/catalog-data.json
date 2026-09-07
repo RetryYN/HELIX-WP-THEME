@@ -11746,7 +11746,7 @@
         "WT-FR-SEARCH-01"
       ],
       "demoRoute": "/?s=%E5%88%A4%E6%96%AD",
-      "description": "日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。空欄専用状態、全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。",
+      "description": "日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。",
       "evidence": "../2026-09-08-site-search/results/verify.json"
     },
     {
@@ -11767,20 +11767,20 @@
         "WT-FR-SEARCH-01"
       ],
       "demoRoute": "/?s=no-match-search-fixture-20260908",
-      "description": "日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。空欄専用状態、全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。",
+      "description": "日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。",
       "evidence": "../2026-09-08-site-search/results/verify.json"
     },
     {
       "id": "search:blank",
       "face": "search",
       "part": "site-search",
-      "label": "未入力（改善対象）",
+      "label": "検索を始める",
       "variant": "blank",
       "purpose": "情報を探し直す",
       "group": "ページ・本文",
       "images": {
-        "pc": "../2026-09-08-site-search/results/after-blank-pc.jpg",
-        "sp": "../2026-09-08-site-search/results/after-blank-sp.jpg"
+        "pc": "../2026-09-08-site-search/results/ja-blank-pc.jpg",
+        "sp": "../2026-09-08-site-search/results/ja-blank-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-PAGE-01",
@@ -11788,7 +11788,7 @@
         "WT-FR-SEARCH-01"
       ],
       "demoRoute": "/?s=",
-      "description": "標準Query Loopの検索結果・再検索・結果移動の代表再現。空欄の専用状態、公開範囲の行列、ページ送り異常系、絞り込みは未完了。",
+      "description": "日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。",
       "evidence": "../2026-09-08-site-search/results/verify.json"
     }
   ],
@@ -12742,7 +12742,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "97daae7d21166a05e2dd65c560fa914ec0ce5f63390c8061f9b6977d6a3a1361",
+              "sha256": "efa71f0ba5b68fc94079e6df0b526b0dbb6db89811b0fd2fd4bbbafbf0cca1b9",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -12824,7 +12824,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "97daae7d21166a05e2dd65c560fa914ec0ce5f63390c8061f9b6977d6a3a1361",
+              "sha256": "efa71f0ba5b68fc94079e6df0b526b0dbb6db89811b0fd2fd4bbbafbf0cca1b9",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -21507,7 +21507,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "25817901850f0aa3200a6daa90de780c9d3f866860fca14d2fdcc2cebbf01704",
+              "sha256": "9746739c298958c47cead636d8a7742439cebc81fecf374345d8e03a57758611",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -21955,7 +21955,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "25817901850f0aa3200a6daa90de780c9d3f866860fca14d2fdcc2cebbf01704",
+              "sha256": "9746739c298958c47cead636d8a7742439cebc81fecf374345d8e03a57758611",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -22939,15 +22939,13 @@
           "requirement_id": "WT-FR-SEARCH-01",
           "oracle": "検索対象・検索語・実件数・結果リンクを表示し、ゼロ件と未入力を区別する。語を修正して再検索し、結果へ到達できる。",
           "polarity": "positive",
-          "status": "partial",
-          "scope": "PC/SP・JS有無の検索語保持、件数、ゼロ件、再検索と結果移動を確認。",
-          "remaining": [
-            "未入力専用状態と検索対象の明示"
-          ],
+          "status": "verified_in_poc",
+          "scope": "専用labのPC/SP・JS有無で検索対象の案内、検索語保持、件数、結果リンクと再検索を確認。空文字と半角/全角空白は入力案内へ切り替え、通常のゼロ件と区別し、結果一覧や件数を出さない。105検査と検索テンプレートの表示を照合。",
+          "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "a784b9e64bf1706e56132ff1f0531f731c659a3a8a06fc2e65bdad30cfbce122",
+              "sha256": "1565eae539c2a8ade7dc1b19ba486974efa92c5ef2484ba5a3c402cc8ef27133",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -22965,6 +22963,14 @@
                 "search-heading:blank:pc:js-true",
                 "editable-query:blank:pc:js-true",
                 "reflow:blank:pc:js-true",
+                "unentered:blank:pc:js-true",
+                "not-zero:blank:pc:js-true",
+                "response:whitespace:pc:js-true",
+                "search-heading:whitespace:pc:js-true",
+                "editable-query:whitespace:pc:js-true",
+                "reflow:whitespace:pc:js-true",
+                "unentered:whitespace:pc:js-true",
+                "not-zero:whitespace:pc:js-true",
                 "recover:pc:js-true",
                 "result-navigation:pc:js-true",
                 "response:results:pc:js-false",
@@ -22983,6 +22989,14 @@
                 "search-heading:blank:pc:js-false",
                 "editable-query:blank:pc:js-false",
                 "reflow:blank:pc:js-false",
+                "unentered:blank:pc:js-false",
+                "not-zero:blank:pc:js-false",
+                "response:whitespace:pc:js-false",
+                "search-heading:whitespace:pc:js-false",
+                "editable-query:whitespace:pc:js-false",
+                "reflow:whitespace:pc:js-false",
+                "unentered:whitespace:pc:js-false",
+                "not-zero:whitespace:pc:js-false",
                 "recover:pc:js-false",
                 "result-navigation:pc:js-false",
                 "response:results:sp:js-true",
@@ -23001,6 +23015,14 @@
                 "search-heading:blank:sp:js-true",
                 "editable-query:blank:sp:js-true",
                 "reflow:blank:sp:js-true",
+                "unentered:blank:sp:js-true",
+                "not-zero:blank:sp:js-true",
+                "response:whitespace:sp:js-true",
+                "search-heading:whitespace:sp:js-true",
+                "editable-query:whitespace:sp:js-true",
+                "reflow:whitespace:sp:js-true",
+                "unentered:whitespace:sp:js-true",
+                "not-zero:whitespace:sp:js-true",
                 "recover:sp:js-true",
                 "result-navigation:sp:js-true",
                 "response:results:sp:js-false",
@@ -23019,6 +23041,14 @@
                 "search-heading:blank:sp:js-false",
                 "editable-query:blank:sp:js-false",
                 "reflow:blank:sp:js-false",
+                "unentered:blank:sp:js-false",
+                "not-zero:blank:sp:js-false",
+                "response:whitespace:sp:js-false",
+                "search-heading:whitespace:sp:js-false",
+                "editable-query:whitespace:sp:js-false",
+                "reflow:whitespace:sp:js-false",
+                "unentered:whitespace:sp:js-false",
+                "not-zero:whitespace:sp:js-false",
                 "recover:sp:js-false",
                 "result-navigation:sp:js-false",
                 "sources-unchanged"
@@ -23039,7 +23069,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "def51148f4205035ce2c7876101ad1be3f09c24152d53efdefa3ed1c3285d5f4",
+              "sha256": "0906a4d0779c68d6377fcdacb990d29939ca4424e21cda5000f91071565f5321",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -23078,7 +23108,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "def51148f4205035ce2c7876101ad1be3f09c24152d53efdefa3ed1c3285d5f4",
+              "sha256": "0906a4d0779c68d6377fcdacb990d29939ca4424e21cda5000f91071565f5321",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -23122,7 +23152,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "0d862f323a93625171e608d12b0c6eceb3d2421129e8dab48a539e12cf77f520",
+              "sha256": "8c0815b1bac42722a685231c4fddae88ac4801a4ed9c436bb27b0ce4776ec7d0",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -23156,7 +23186,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "a784b9e64bf1706e56132ff1f0531f731c659a3a8a06fc2e65bdad30cfbce122",
+              "sha256": "1565eae539c2a8ade7dc1b19ba486974efa92c5ef2484ba5a3c402cc8ef27133",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -23235,7 +23265,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "def51148f4205035ce2c7876101ad1be3f09c24152d53efdefa3ed1c3285d5f4",
+              "sha256": "0906a4d0779c68d6377fcdacb990d29939ca4424e21cda5000f91071565f5321",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -23303,7 +23333,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "0d862f323a93625171e608d12b0c6eceb3d2421129e8dab48a539e12cf77f520",
+              "sha256": "8c0815b1bac42722a685231c4fddae88ac4801a4ed9c436bb27b0ce4776ec7d0",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -23606,7 +23636,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "c657698c708d6f1c62a7ba9d4c987b959540192a9ca041e97c714dc95570f4b1",
+              "sha256": "1960dfa55b0b815231bf261c6652dff557e89a38020a2e00caabc383ebea13ab",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -23676,8 +23706,8 @@
   ],
   "acceptanceAudit": {
     "missing": 269,
-    "partial": 13,
-    "verified_in_poc": 12,
+    "partial": 12,
+    "verified_in_poc": 13,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

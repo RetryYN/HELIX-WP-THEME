@@ -5,6 +5,7 @@
  */
 
 require_once __DIR__ . '/inc/content-chrome.php';
+require_once __DIR__ . '/inc/search.php';
 
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {

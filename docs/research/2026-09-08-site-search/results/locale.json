@@ -3,8 +3,9 @@
   "locale": "ja",
   "languageDigest": "791e116e2dae725468a8c7ac64a97c6531e21ea167feef3185fe9563039cdd8d",
   "sourceDigests": {
-    "scripts/verify-site-search-locale.mjs": "ccd1ba9d729df8c972265b03bf3d77c043cd4b083b27e328aa10a3241cc63e9c",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21",
+    "scripts/verify-site-search-locale.mjs": "52129d8543fac4b950bd76dfd00447592c5be07cbc92189849c3440aa1a9e4d4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "f374d12d9f85da2efe92ceb0b5576dceef00482706cbd0a369867f06cff1a977",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
   },
   "rows": [
@@ -57,6 +58,30 @@
       "pass": true
     },
     {
+      "name": "locale:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-title:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-total:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "query:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:pc:js-true",
+      "pass": true
+    },
+    {
       "name": "locale:results:pc:js-false",
       "pass": true
     },
@@ -102,6 +127,30 @@
     },
     {
       "name": "reflow:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "locale:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-title:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-total:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "query:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:pc:js-false",
       "pass": true
     },
     {
@@ -153,6 +202,30 @@
       "pass": true
     },
     {
+      "name": "locale:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-title:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "translated-total:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "query:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:sp:js-true",
+      "pass": true
+    },
+    {
       "name": "locale:results:sp:js-false",
       "pass": true
     },
@@ -201,6 +274,30 @@
       "pass": true
     },
     {
+      "name": "locale:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-title:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "translated-total:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-english-core-copy:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "query:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:sp:js-false",
+      "pass": true
+    },
+    {
       "name": "locale-restored",
       "pass": true
     },
@@ -223,6 +320,12 @@
       "query": "no-match-search-fixture-20260908"
     },
     {
+      "file": "ja-blank-pc.jpg",
+      "device": "pc",
+      "state": "blank",
+      "query": ""
+    },
+    {
       "file": "ja-results-sp.jpg",
       "device": "sp",
       "state": "results",
@@ -233,6 +336,12 @@
       "device": "sp",
       "state": "empty",
       "query": "no-match-search-fixture-20260908"
+    },
+    {
+      "file": "ja-blank-sp.jpg",
+      "device": "sp",
+      "state": "blank",
+      "query": ""
     }
   ]
 }

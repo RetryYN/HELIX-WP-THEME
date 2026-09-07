@@ -12,7 +12,7 @@ const original=wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',
 const items=[{label:'記事を読む',url:base+'/library/'},{label:'人を知る',url:base+'/voices/'},{label:'学習・ヘルプ',url:base+'/learn/'},{label:'会社案内',url:base+'/site-company/'}];
 const content=links=>links.map(attrs=>'<!-- wp:navigation-link '+JSON.stringify({...attrs,kind:'custom'})+' /-->').join('\n');
 const rows=[],shots=[];let id,completed=false;const check=(name,pass)=>rows.push({name,pass:!!pass});
-const sources=['scripts/verify-header-navigation.mjs',...['functions.php','inc/content-chrome.php','inc/content-navigation.php','assets/css/content-chrome.css','parts/header.html','parts/header-band.html','patterns/header-sp-extras.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
+const sources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-header-navigation.mjs',...['functions.php','inc/content-chrome.php','inc/content-navigation.php','assets/css/content-chrome.css','parts/header.html','parts/header-band.html','patterns/header-sp-extras.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 const getDigests=()=>Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));const sourceDigests=getDigests();
 const browser=await chromium.launch();
 try{

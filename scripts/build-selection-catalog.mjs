@@ -133,14 +133,14 @@ if (fs.existsSync(path.join(root, searchPath))) {
   for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
     if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale search evidence: ${file}`);
   }
-  const labels = { results: '検索結果', empty: 'ゼロ件と再検索', blank: '未入力（改善対象）' };
+  const labels = { results: '検索結果', empty: 'ゼロ件と再検索', blank: '検索を始める' };
   for (const shot of evidence.shots) {
     if (!labels[shot.state] || !['pc', 'sp'].includes(shot.device) || !/^[a-z0-9-]+\.jpg$/.test(shot.file)) throw Error('Invalid search screenshot');
     if (!fs.existsSync(path.join(root, path.dirname(searchPath), shot.file))) throw Error('Missing search screenshot');
     const id = `search:${shot.state}`;
     const entry = entries.get(id) || { id, face: 'search', part: 'site-search', label: labels[shot.state], variant: shot.state,
       purpose: '情報を探し直す', group: 'ページ・本文', images: {}, requirementIds: [], demoRoute: '/?s=' + encodeURIComponent(shot.query),
-      description: '標準Query Loopの検索結果・再検索・結果移動の代表再現。空欄の専用状態、公開範囲の行列、ページ送り異常系、絞り込みは未完了。',
+      description: '標準Query Loopの検索結果・再検索・結果移動の代表再現。公開範囲の全権限行列、絞り込みは未完了。',
       evidence: '../2026-09-08-site-search/results/verify.json' };
     entry.images[shot.device] = `../2026-09-08-site-search/results/${shot.file}`;
     entries.set(id, entry);
@@ -154,12 +154,12 @@ if (fs.existsSync(path.join(root, searchLocalePath))) {
     if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale localized search evidence: ${file}`);
   }
   for (const shot of evidence.shots) {
-    if (!['results', 'empty'].includes(shot.state) || !['pc', 'sp'].includes(shot.device) || !/^ja-[a-z-]+\.jpg$/.test(shot.file)) throw Error('Invalid localized search screenshot');
+    if (!['results', 'empty', 'blank'].includes(shot.state) || !['pc', 'sp'].includes(shot.device) || !/^ja-[a-z-]+\.jpg$/.test(shot.file)) throw Error('Invalid localized search screenshot');
     if (!fs.existsSync(path.join(root, path.dirname(searchLocalePath), shot.file))) throw Error('Missing localized search screenshot');
     const entry = entries.get(`search:${shot.state}`);
     if (!entry) throw Error('Missing source search candidate');
     entry.images[shot.device] = `../2026-09-08-site-search/results/${shot.file}`;
-    entry.description = '日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。空欄専用状態、全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。';
+    entry.description = '日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。';
   }
 }
 const requirements = ir.requirements.map(r => {

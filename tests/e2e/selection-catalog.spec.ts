@@ -170,3 +170,18 @@ test('site search states expose scoped evidence and a live query', async ({ page
   await expect(page.locator('#detail img').first()).toHaveAttribute('src', /ja-(results|empty)-/);
   await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', /\?s=/);
 });
+
+
+test('search start comparison retains before and after evidence', async ({ page }) => {
+  await page.getByRole('link', { name: '検索開始画面を、変更前後で比較する →' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('次の操作を伝える');
+  await expect(page.locator('figure')).toHaveCount(4);
+  for (const image of await page.locator('img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((e: HTMLImageElement) => e.complete && e.naturalWidth > 0)).toBe(true);
+  }
+  await page.setViewportSize({ width: 375, height: 812 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole('link', { name: '← 選択カタログへ' }).click();
+  await expect(page.locator('[data-face="search"]')).toBeVisible();
+});
