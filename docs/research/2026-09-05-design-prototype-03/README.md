@@ -771,6 +771,19 @@ PO 反応 18 回目（2026-09-06）の 5 件目「強化してくれ。その間
 11. verify 初回（段 10c 前の期待値のまま）の不一致 3 件と是正: `sideFace` = HP の既定セットが HP 側の束の corporate に変わったのに期待値が media のまま → 面別の既定セットに変更。`sideDefaults` = カテゴリが記事側の束を継承して共通サイドバーを持つようになったのに「無い」を期待していた、LP は実効 none（`wt-side-layout-none` + 束 none）を期待するよう変更、カテゴリの列数は `.wt-cat-layout` で測る。`sideOwner` = `cat_side` home / own の列規則が article だけに書かれていた（CSS 側の実バグ、`:is(article,home,own)` へ）、classic は PC で段 6 の aside が 2 列目（期待 2 列）、`home_side_layout:none` は束 home のまま非表示（可視の期待は「セットあり」で判定）。
 9. 制約・未決: カテゴリ面の幅（1072px）は段 6 のまま（記事 / HP の全幅 + 余白とは異なる）。cat_ranking:sidebar と cat_children:sidebar-tree は cat_side=classic のときだけ意味を持つ。イベントで HP 側の束を継承しても hero は本文列に入る。⑤ 有料記事 / ⑥ インタビュー / BLP は試作に無い面（段 12 以降の抜け漏れ一覧へ）。
 
+## 2.33 段11 — フォーム面（PO 反応 21 回目 WT-EVT-0289「あとフォームの項目追加とかの項目調査」、24 回目 WT-EVT-0301「進めて」）
+
+1. 入力: 台帳 `../2026-09-05-parts-pattern-taxonomy/sidebar-forms-gap-survey/summary.md` §2（フォーム本体 n=31 / 取得 n=42）と §5「フォーム（段 11）」の持ち込み案。PO 決定 WT-EVT-0299 の着手順 A（共通設定とフォームを先に）。WT-EVT-0288「最大数を取りにいく」に従い観察した型は全部入れ、語彙にあるが観察 0 の型（apply / label-left / placeholder-only / inline-review）は Claude 案として区別する。
+2. 範囲（WT-EVT-0300 の境界）: 表示・入力検証・確認 → 完了 / 失敗の遷移まで。送信内容は保存も送信もしない（メール・外部サービス・DB 書き込みなし）。外部認証は枠の描画だけ。
+3. 実装: `theme/helix-wt/inc/form.php`（functions.php から require）。動的ブロック `helix-wt/form`（固定ページ /contact/ に alignfull の group で置く）と `helix-wt/form-thanks`（/thanks/）。軸 11 本: `form_kind`（9 種別）/ `form_fields`（by-kind / minimal / standard / full）/ `form_required`（asterisk / label）/ `form_layout`（1col / 2col / label-left / placeholder-only / steps）/ `form_confirm`（yes / no / inline-review）/ `form_consent`（checkbox / link-only / in-submit）/ `form_submit`（auto + 6 文言）/ `form_error`（inline / top-summary / both）/ `form_captcha`（none / question / external-slot）/ `form_side`（tel / none / email / chat / messaging-app）/ `form_thanks`（separate / inline）。既定は各項目の観察最多型（項目下エラーは観察 n=3 の少数派だが Claude 暫定で既定。top-summary 2 件は型として持つ）。
+4. 遷移はサーバ側で完結（JS 無効でも同じ）: 同 URL へ POST（nonce + honeypot）→ 検証 NG は入力へ戻し最初の不備へ autofocus / OK なら確認画面（値は hidden、「修正する」で値が戻る）→ 完了（separate は `/thanks/` へ redirect し `?wt=` を引き継ぐ、inline は同 URL に完了表示）。JS ありは同じ規則でクライアント検証（エラーの出し方は `form_error` と同じ、フォーカス先も同じ）、steps は段ごとに検証して送る、inline-review は同一ページで見直し。
+5. 検証規則（サーバ / JS 共通）: 必須、メール形式、確認メール一致、電話（8〜20 桁）、郵便番号 7 桁、ふりがな（ひらがな）、人数 1 以上、URL は https://、captcha の答え、同意チェック。
+6. verify `formFace` 新設: /contact/ と /thanks/ を wp-cli で作る（冪等）。11 軸の全値（既定は contact 行で兼ねる）× PC / SP / SP JS 無効 = 33 × 3 行（項目の並び、必須印、レイアウトの列数・ラベルの可視性・placeholder、同意、送信文言、captcha、代替導線、空送信のエラー = 必須項目だけ・出し方・フォーカス先、44px、h1、POST・同一ホスト・nonce・honeypot、外部要求なし）+ 形式検査 3 行 + 遷移 confirm 3 × thanks 2 × JS あり / なし = 18 行（値の一致、修正するで戻る、完了ページの URL と `?wt=`）+ steps の段階送り 2 行。
+7. 撮影 `scripts/shots-reaction17.mjs`（scripts/ から実行）: 種別 9 × SP / PC、確認・完了・項目下エラー × SP / PC、PC でセット 3・必須ラベル・レイアウト 4 + steps 段 2・同意 2・送信文言 6・エラー 2・captcha 2・代替導線 4・inline-review・inline 完了・形式検査 = 52 枚。用語集 face `form` + parts 12 種。カタログ（build.py）に面 `form` を追加。
+8. 実機結果（`results/verify.json`、WP 7.1 ローカル、`--wpclidir` 指定）: `summary` **pass 88 / fail 0**（87 + `formFace`、skipped なし）、総合 `pass: true`。`formFace` 122 行（軸 33 × 3 = 99、形式検査 3、遷移 18、steps 2）全 pass。INDEX 879 → **931**（reaction17: 52 枚すべて新規、stale 0）。
+9. 初回検査で見つけた実バグ（是正済み）: inline-review で「修正する」の後に再送信すると見直しを飛ばして送信された（reviewed フラグと wt_step を戻す）。steps は JS 無効で送信ボタンが hidden のまま送れなかった（次へ / 戻る を JS が出し、送信は常に出す）。固定ページ本文幅 680px にフォームが閉じ込められ PC の 2 列で入力欄が 334px になった（alignfull の group、内側 1120px）。同意ラベル内のリンクが 29px（44px に）。
+10. 制約・未決: 共通設定の残り（ヘッダー・フッター・CTA の束化）は段 11 に含めていない（次段）。フォームの外部サービス埋め込み（台帳 embedded-form-service 27%）は枠の描画のみ。添付は送信しないので受け付けだけ。LP の `lp_form` / イベントの `event_apply` は段 5 のままで、段 11 のブロックに置き換えるかは未決。/privacy/ は未作成（リンク先は 404 = 段 12 以降の抜け漏れ台帳の対象）。
+
 ## 3. 実測（`results/metrics.json`、調査スクリプト `../2026-09-04-site-survey/scripts/measure.mjs`）
 
 | | 本文 | lh | h1 | h2 | h3 | ヘッダー高 | ボタン高 | 本文列幅 | 小タップ率 |
