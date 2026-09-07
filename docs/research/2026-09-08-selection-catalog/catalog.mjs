@@ -45,10 +45,10 @@ async function start() {
   const memoFor = id => memos[id] || { status: 'unreviewed', note: '' };
   let face = 'common', device = 'pc', limit = 36, linkedIds = null;
   const comparison = new Set();
-  let activeTab = 0, detailId = null;
+  let activeTab = 0, detailId = null, imageMode = 'overview';
   const focusWorkspace = () => $(activeTab === 1 ? 'req-search' : 'search').focus();
   function saveWorkspace() {
-    try { localStorage.setItem(workspaceKey, JSON.stringify({ schema: workspaceKey, face, device, limit, linkedIds: linkedIds ? [...linkedIds] : null, comparison: [...comparison], activeTab, search: $('search').value, purpose: $('purpose').value, decision: $('decision').value, reqSearch: $('req-search').value, evidenceState: $('evidence-state').value })); }
+    try { localStorage.setItem(workspaceKey, JSON.stringify({ schema: workspaceKey, face, device, limit, linkedIds: linkedIds ? [...linkedIds] : null, comparison: [...comparison], activeTab, imageMode, search: $('search').value, purpose: $('purpose').value, decision: $('decision').value, reqSearch: $('req-search').value, evidenceState: $('evidence-state').value })); }
     catch { notify('絞り込みと比較候補を保存できません。選択メモは書出して保管してください。'); }
   }
   $('total').textContent = data.entries.length;
@@ -70,6 +70,28 @@ async function start() {
       wrapper.append(img);
     } else wrapper.append(el('p', `${device.toUpperCase()}の撮影記録はありません`, 'missing-shot'));
     return wrapper;
+  }
+  function inspectImage(entry) {
+    const view = imageFor(entry, 'large-preview');
+    view.classList.add('image-viewer'); view.dataset.mode = imageMode;
+    view.tabIndex = 0; view.setAttribute('role', 'region');
+    view.setAttribute('aria-label', `${entry.label} ${entry.variant}の画像。拡大時は矢印キーで移動`);
+    return view;
+  }
+  function imageControls() {
+    const controls = el('div', undefined, 'image-controls');
+    controls.setAttribute('role', 'group'); controls.setAttribute('aria-label', '画像の表示倍率');
+    for (const [mode, label] of [['overview', '全体を見る'], ['width', '幅に合わせる'], ['native', '原寸で読む']]) {
+      const b = button(label, () => {
+        imageMode = mode;
+        for (const view of document.querySelectorAll('.image-viewer')) { view.dataset.mode = mode; view.scrollTop = 0; view.scrollLeft = 0; }
+        for (const control of document.querySelectorAll('[data-image-mode]')) control.setAttribute('aria-pressed', String(control.dataset.imageMode === mode));
+        saveWorkspace();
+      });
+      b.dataset.imageMode = mode; b.setAttribute('aria-pressed', String(mode === imageMode)); controls.append(b);
+    }
+    controls.append(el('p', '幅合わせ・原寸では画像内をスクロールできます。画像へTabで移動すると矢印キーも使えます。'));
+    return controls;
   }
   function compareToggle(entry) {
     const label = el('label', undefined, 'compare-pick');
@@ -153,8 +175,8 @@ async function start() {
   }
   function detail(entry) {
     detailId = entry.id;
-    const layout = el('div', undefined, 'detail-layout'); layout.append(imageFor(entry, 'large-preview'), editor(entry));
-    $('detail-content').replaceChildren(layout); $('detail').showModal();
+    const layout = el('div', undefined, 'detail-layout'); layout.append(inspectImage(entry), editor(entry));
+    $('detail-content').replaceChildren(imageControls(), layout); $('detail').showModal();
   }
   for (const dialog of document.querySelectorAll('dialog')) {
     dialog.querySelector('.close').addEventListener('click', () => dialog.close());
@@ -176,8 +198,9 @@ async function start() {
   $('clear-compare').addEventListener('click', () => { comparison.clear(); render(); focusWorkspace(); });
   $('open-compare').addEventListener('click', () => {
     const grid = el('div', undefined, 'compare-grid');
-    for (const id of comparison) { const entry = byId.get(id); const column = el('section'); column.append(imageFor(entry, 'large-preview'), editor(entry)); grid.append(column); }
-    $('compare-content').replaceChildren(grid); $('compare').showModal();
+    grid.style.setProperty('--compare-columns', comparison.size);
+    for (const id of comparison) { const entry = byId.get(id); const column = el('section'); column.append(inspectImage(entry), editor(entry)); grid.append(column); }
+    $('compare-content').replaceChildren(imageControls(), grid); $('compare').showModal();
   });
   for (const name of ['search', 'purpose', 'decision']) $(name).addEventListener(name === 'search' ? 'input' : 'change', () => { limit = 36; render(); });
   for (const b of document.querySelectorAll('[data-device]')) b.addEventListener('click', () => {
@@ -273,6 +296,7 @@ async function start() {
       if (Array.isArray(saved.linkedIds)) linkedIds = new Set(saved.linkedIds.filter(id => byId.has(id)));
       if (Array.isArray(saved.comparison)) for (const id of saved.comparison) { if (byId.has(id) && comparison.size < 3) comparison.add(id); }
       if (saved.activeTab === 1) activeTab = 1;
+      if (['overview', 'width', 'native'].includes(saved.imageMode)) imageMode = saved.imageMode;
       for (const [id, key] of [['search', 'search'], ['req-search', 'reqSearch']]) if (typeof saved[key] === 'string' && saved[key].length <= 4000) $(id).value = saved[key];
       for (const [id, key] of [['purpose', 'purpose'], ['decision', 'decision'], ['evidence-state', 'evidenceState']]) if ([...$(id).options].some(o => o.value === saved[key])) $(id).value = saved[key];
       for (const b of document.querySelectorAll('[data-device]')) b.setAttribute('aria-pressed', String(b.dataset.device === device));

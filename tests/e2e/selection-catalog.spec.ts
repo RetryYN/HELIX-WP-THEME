@@ -313,3 +313,49 @@ test('related candidates and expanded results resume, and removing the last comp
   await page.locator('#clear-compare').click();
   await expect(page.locator('#search')).toBeFocused();
 });
+
+test('comparison images offer overview, fitted width and keyboard-scrollable native pixels', async ({ page }, testInfo) => {
+  await page.locator('[data-face="paid"]').click();
+  for (let i = 0; i < 2; i++) await page.locator('.compare-pick input').nth(i).check();
+  await page.locator('#open-compare').click();
+  for (const [device, width] of [['pc', 1440], ['sp', 375]] as const) {
+    await page.setViewportSize({ width, height: 900 });
+    const viewer = page.locator('#compare .image-viewer').first();
+    const img = viewer.locator('img');
+    await img.evaluate((n: HTMLImageElement) => n.decode());
+    await page.locator('#compare').getByRole('button', { name: '原寸で読む', exact: true }).click();
+    await expect.poll(() => img.evaluate((n: HTMLImageElement) => Math.abs(n.getBoundingClientRect().width - n.naturalWidth))).toBeLessThan(1);
+    await viewer.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect.poll(() => viewer.evaluate(n => n.scrollTop)).toBeGreaterThan(0);
+    await page.keyboard.press('ArrowRight');
+    await expect.poll(() => viewer.evaluate(n => n.scrollLeft)).toBeGreaterThan(0);
+    await page.screenshot({ path: testInfo.outputPath(`image-native-${device}.png`), fullPage: false });
+    await page.locator('#compare').getByRole('button', { name: '幅に合わせる', exact: true }).click();
+    await expect.poll(() => viewer.evaluate(n => Math.abs(n.querySelector('img')!.getBoundingClientRect().width - (n.clientWidth - 24)))).toBeLessThan(2);
+    await expect.poll(() => viewer.evaluate(n => n.scrollLeft + n.scrollTop)).toBe(0);
+    await page.locator('#compare').getByRole('button', { name: '全体を見る', exact: true }).click();
+    expect(await img.evaluate(n => n.getBoundingClientRect().height <= n.parentElement!.clientHeight)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  await page.locator('#compare').getByRole('button', { name: '原寸で読む', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await page.reload();
+  await page.locator('#open-compare').click();
+  await expect(page.locator('#compare [data-image-mode="native"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#compare .image-viewer').first()).toHaveAttribute('data-mode', 'native');
+});
+
+test('detail image modes preserve decision editing and restore focus when closed', async ({ page }) => {
+  await page.locator('[data-face="paid"]').click();
+  await page.locator('.tile-open').first().click();
+  await page.locator('#detail').getByRole('button', { name: '幅に合わせる', exact: true }).click();
+  await expect(page.locator('#detail .image-viewer')).toHaveAttribute('data-mode', 'width');
+  await page.locator('#detail textarea').fill('本文の行間を原寸で確認');
+  await page.locator('#detail').getByRole('button', { name: '保留', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.tile-open').first()).toBeFocused();
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail textarea')).toHaveValue('本文の行間を原寸で確認');
+  await expect(page.locator('#detail [data-image-mode="width"]')).toHaveAttribute('aria-pressed', 'true');
+});

@@ -10,3 +10,12 @@
 #compare-picks button{white-space:normal;overflow-wrap:anywhere;text-align:left;max-width:100%;min-width:0;line-height:1.5}
 main{padding-bottom:max(140px,var(--compare-clearance,0px))}html{scroll-padding-bottom:var(--compare-clearance,0px)}
 @media(max-width:700px){.compare-bar{gap:8px;width:calc(100% - 20px)}#compare-picks{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding:8px}#compare-picks button{flex:0 0 230px;max-width:230px}.compare-bar strong{font-size:12px}}
+
+.image-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.image-controls button{font-size:12px}.image-controls button[aria-pressed=true]{background:var(--green);color:white}.image-controls p{flex-basis:100%;font-size:12px;line-height:1.7;margin:2px 0;color:var(--muted)}
+.large-preview.image-viewer{height:60vh;min-height:0;overflow:auto;overscroll-behavior:contain;padding:12px;scrollbar-gutter:stable}
+.image-viewer img{display:block;margin:0 auto;height:auto}
+.image-viewer[data-mode=overview] img{width:auto;max-width:100%;max-height:100%}
+.image-viewer[data-mode=width] img{width:100%;max-width:none;max-height:none}
+.image-viewer[data-mode=native] img{width:auto;max-width:none;max-height:none;margin:0}
+
+.compare-grid{grid-template-columns:repeat(var(--compare-columns,3),minmax(0,1fr))}@media(max-width:700px){.compare-grid{grid-template-columns:repeat(var(--compare-columns,3),minmax(220px,1fr))}}
