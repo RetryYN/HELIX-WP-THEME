@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.937176)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884957)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26883,8 +26883,8 @@
     "mainW": 1021,
     "digits": [
      "37",
-     "22",
-     "13"
+     "21",
+     "44"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -27032,8 +27032,8 @@
     "mainW": 390,
     "digits": [
      "37",
-     "22",
-     "13"
+     "21",
+     "44"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -85668,6 +85668,20 @@
      "showOnFront": "posts",
      "pageOnFront": "0"
     },
+    "beforeOk": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "wp",
+    "v": "restore-explicit-assignment",
+    "steps": [
+     "page-event",
+     "page-canvas",
+     "page-event",
+     ""
+    ],
     "pass": true
    },
    {
