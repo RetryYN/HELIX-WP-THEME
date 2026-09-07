@@ -1859,3 +1859,15 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 .wt-form-thanks__next{display:flex;flex-direction:column;align-items:center;gap:.75rem}
 .wt-form__thanks-btn{display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1.75rem;border-radius:999px;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);font-weight:700;text-decoration:none}
 .wt-form__thanks-link{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+
+/* 段 12（WT-EVT-0302）: ヘッダー・フッター・固定 CTA の所属を面ごとに。共通の固定 CTA と own_<face>_fixed の generic 描画（HP の home_fixed と同じ見た目）。所属は body.wt-head-bundle-* / wt-foot-bundle-* / wt-fix-bundle-*、描画する型は wt-fixed-eff-* */
+.wt-fixed{display:none}
+body.wt-fixed-eff-float-cta .wt-fixed--float-cta{display:inline-flex;position:fixed;left:1rem;bottom:1rem;z-index:45;max-width:calc(100vw - 2rem);box-sizing:border-box;box-shadow:var(--wp--preset--shadow--depth-2)}
+body.wt-fixed-eff-float-tel .wt-fixed--float-tel{display:inline-flex;align-items:center;justify-content:center;position:fixed;right:1rem;bottom:1rem;z-index:45;width:56px;height:56px;border-radius:50%;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);box-shadow:var(--wp--preset--shadow--depth-2)}
+body.wt-fixed-eff-sp-bottom-bar .wt-fixed--sp-bottom-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:fixed;right:0;bottom:0;left:0;z-index:45;padding:.25rem var(--wp--custom--gutter) max(.25rem,env(safe-area-inset-bottom));border-top:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base)}
+.wt-fixed--sp-bottom-bar a{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:48px;color:var(--wp--preset--color--contrast);font-size:var(--wp--preset--font-size--s);font-weight:700;text-decoration:none}.wt-fixed--sp-bottom-bar a:first-child{border-right:1px solid var(--wp--preset--color--line)}
+@media (min-width:600px){.wt-fixed--sp-bottom-bar,.wt-fixed--float-tel{display:none!important}}
+body.wt-fixed-eff-sp-bottom-bar .wt-footer{padding-bottom:calc(56px + var(--wp--preset--spacing--60))}
+@media (max-width:599px){body.wt-fixed-eff-sp-bottom-bar.wt-footer-totop-button .wt-totop{bottom:calc(56px + .75rem)}}
+/* LP: ヘッダーの所属が lp 以外（共通 / 独自 / 非表示）のときはテンプレート内の LP ヘッダー 3 種を出さない */
+body.wt-face-lp:not(.wt-head-bundle-lp) .wt-lp-header{display:none!important}
