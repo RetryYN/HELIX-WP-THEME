@@ -17754,14 +17754,15 @@
           "oracle": "固定ページ群のパターンと事業者情報の自動充填が設定 JSON から生成され、自前フォームなしの譲渡境界が表示される",
           "polarity": "positive",
           "status": "partial",
-          "scope": "11面のJSON宣言→パターン登録→通常固定ページ保存を照合。共通事業者情報の更新が全11面へ反映し、自前フォームなしで別オリジンの受付例へ移動・戻る。",
+          "scope": "11面のJSON宣言→パターン登録→通常固定ページ保存を照合。共通事業者情報の更新が全11面へ反映し、自前フォームなしで別オリジンの受付例へ移動・戻る。 編集画面のパターン一覧から会社案内を挿入し、専用テンプレートを明示適用。11種の選択肢・プレビュー・保存後再読込・公開表示を42検査で照合。",
           "remaining": [
-            "編集画面での挿入・編集UIの成立、実在する第三者フォームへの引き渡し契約は未検証。"
+            "本文・料金等の個別編集、共通事業者設定の管理UI、実在する第三者フォームへの引き渡し契約は未検証。",
+            "パターン一覧からの挿入は会社案内1種。全11パターンの個別挿入は未検証。"
           ],
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "2500bc6745fdb554ba5ffa0e0aaaf943c5e6980fc7f0708d383114617d0312b8",
+              "sha256": "36cdd14e6546b85be257585a29494f4f2e119f50d082c2145b2494d6d9d4b3ec",
               "row_names": [
                 "pattern-and-independent-page:company",
                 "pattern-and-independent-page:service",
@@ -18161,6 +18162,54 @@
                 "destinations:empty",
                 "central-settings-restored"
               ]
+            },
+            {
+              "path": "docs/research/2026-09-08-content-faces/results/site-pages/editor.json",
+              "sha256": "a416a3fc2a32aa89b9e603c62ce9f9d705fa47af63699636667b3e52e113e392",
+              "row_names": [
+                "pattern:ui-inserted",
+                "template:explicit-apply",
+                "preview:pricing",
+                "saved:reload",
+                "saved:public-view",
+                "changed:public-view",
+                "editor:all-kind-options",
+                "preview:company:heading",
+                "saved:company:reload",
+                "saved:company:public",
+                "preview:service:heading",
+                "saved:service:reload",
+                "saved:service:public",
+                "preview:pricing:heading",
+                "saved:pricing:reload",
+                "saved:pricing:public",
+                "preview:careers:heading",
+                "saved:careers:reload",
+                "saved:careers:public",
+                "preview:contact:heading",
+                "saved:contact:reload",
+                "saved:contact:public",
+                "preview:privacy:heading",
+                "saved:privacy:reload",
+                "saved:privacy:public",
+                "preview:commerce:heading",
+                "saved:commerce:reload",
+                "saved:commerce:public",
+                "preview:transmissions:heading",
+                "saved:transmissions:reload",
+                "saved:transmissions:public",
+                "preview:accessibility:heading",
+                "saved:accessibility:reload",
+                "saved:accessibility:public",
+                "preview:locations:heading",
+                "saved:locations:reload",
+                "saved:locations:public",
+                "preview:terms:heading",
+                "saved:terms:reload",
+                "saved:terms:public",
+                "editor:sources-unchanged",
+                "editor:no-runtime-error"
+              ]
             }
           ]
         },
@@ -18177,7 +18226,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "2500bc6745fdb554ba5ffa0e0aaaf943c5e6980fc7f0708d383114617d0312b8",
+              "sha256": "36cdd14e6546b85be257585a29494f4f2e119f50d082c2145b2494d6d9d4b3ec",
               "row_names": [
                 "pattern-and-independent-page:company",
                 "pattern-and-independent-page:service",
@@ -18591,7 +18640,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "2500bc6745fdb554ba5ffa0e0aaaf943c5e6980fc7f0708d383114617d0312b8",
+              "sha256": "36cdd14e6546b85be257585a29494f4f2e119f50d082c2145b2494d6d9d4b3ec",
               "row_names": [
                 "pattern-and-independent-page:company",
                 "pattern-and-independent-page:service",

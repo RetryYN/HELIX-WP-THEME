@@ -1043,23 +1043,28 @@
         "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "327c297d445385489a956e2e9e48997c2329d2600f352b1b23f23bb5ee743469",
         "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
         "docs/research/2026-09-08-content-faces/seed-site-pages.php": "211ed6dda8b20e24d76e16a73cf16df250895bfd13e8ac04de347241c13a940b",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "6dbf85cf6b080f8d47d9f38eb6ded83c2c3a947f43449614d5c482aa355b5ed1",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "aa34c70aaed927625a7a4602350145ff67f6a2e9c77247ecfc6cf6016b9977cb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "7cc5f31dcede23e5bd0a6ed2f810f4f9f2b6164855f33ab4a20aa691ef4778b4",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7",
         "docs/research/2026-09-08-content-faces/provider/index.html": "f0c533674cfa176425e6cf0f015e1991aa0167c18f420b831f989c86ea93764e",
         "docs/research/2026-09-08-content-faces/provider/complete.html": "cc827252a1cf51f986f3f65e5d21f554b63d2bcc56d2712660fe8ae10138dda9",
         "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "81898e70ba61814333ef6165472dfc80f1e21f7e6315b3293d846dc6e7cca173",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "10853ae09cea3b0d2b71ecb8c738439262194c0c598d626faa0b1c885ca17e64",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/block.json": "e5722d8c745c96a206a9943a8bb88fe588d7f40d4f494be7306f1aff9f98d319",
+        "scripts/verify-site-page-editor.mjs": "b783eb3e9e763a55b441b568c3bc703eec916ad4a92192ca8c02045b43c28ebd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/editor.js": "4b43232541baa5c296ddc5404c52f1e6811ffee736cbefdc3ab028446f087295",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/editor.css": "05220e1ced96589473b637c79a634474567d02b93c4a7982b9f7516e892c85d1"
       },
-      "scope": "11面のJSON宣言→パターン登録→通常固定ページ保存を照合。共通事業者情報の更新が全11面へ反映し、自前フォームなしで別オリジンの受付例へ移動・戻る。",
+      "scope": "11面のJSON宣言→パターン登録→通常固定ページ保存を照合。共通事業者情報の更新が全11面へ反映し、自前フォームなしで別オリジンの受付例へ移動・戻る。 編集画面のパターン一覧から会社案内を挿入し、専用テンプレートを明示適用。11種の選択肢・プレビュー・保存後再読込・公開表示を42検査で照合。",
       "remaining": [
-        "編集画面での挿入・編集UIの成立、実在する第三者フォームへの引き渡し契約は未検証。"
+        "本文・料金等の個別編集、共通事業者設定の管理UI、実在する第三者フォームへの引き渡し契約は未検証。",
+        "パターン一覧からの挿入は会社案内1種。全11パターンの個別挿入は未検証。"
       ],
       "proofs": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-          "sha256": "2500bc6745fdb554ba5ffa0e0aaaf943c5e6980fc7f0708d383114617d0312b8",
+          "sha256": "36cdd14e6546b85be257585a29494f4f2e119f50d082c2145b2494d6d9d4b3ec",
           "row_names": [
             "pattern-and-independent-page:company",
             "pattern-and-independent-page:service",
@@ -1459,6 +1464,54 @@
             "destinations:empty",
             "central-settings-restored"
           ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/editor.json",
+          "sha256": "a416a3fc2a32aa89b9e603c62ce9f9d705fa47af63699636667b3e52e113e392",
+          "row_names": [
+            "pattern:ui-inserted",
+            "template:explicit-apply",
+            "preview:pricing",
+            "saved:reload",
+            "saved:public-view",
+            "changed:public-view",
+            "editor:all-kind-options",
+            "preview:company:heading",
+            "saved:company:reload",
+            "saved:company:public",
+            "preview:service:heading",
+            "saved:service:reload",
+            "saved:service:public",
+            "preview:pricing:heading",
+            "saved:pricing:reload",
+            "saved:pricing:public",
+            "preview:careers:heading",
+            "saved:careers:reload",
+            "saved:careers:public",
+            "preview:contact:heading",
+            "saved:contact:reload",
+            "saved:contact:public",
+            "preview:privacy:heading",
+            "saved:privacy:reload",
+            "saved:privacy:public",
+            "preview:commerce:heading",
+            "saved:commerce:reload",
+            "saved:commerce:public",
+            "preview:transmissions:heading",
+            "saved:transmissions:reload",
+            "saved:transmissions:public",
+            "preview:accessibility:heading",
+            "saved:accessibility:reload",
+            "saved:accessibility:public",
+            "preview:locations:heading",
+            "saved:locations:reload",
+            "saved:locations:public",
+            "preview:terms:heading",
+            "saved:terms:reload",
+            "saved:terms:public",
+            "editor:sources-unchanged",
+            "editor:no-runtime-error"
+          ]
         }
       ]
     },
@@ -1471,14 +1524,15 @@
         "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "327c297d445385489a956e2e9e48997c2329d2600f352b1b23f23bb5ee743469",
         "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
         "docs/research/2026-09-08-content-faces/seed-site-pages.php": "211ed6dda8b20e24d76e16a73cf16df250895bfd13e8ac04de347241c13a940b",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "6dbf85cf6b080f8d47d9f38eb6ded83c2c3a947f43449614d5c482aa355b5ed1",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "aa34c70aaed927625a7a4602350145ff67f6a2e9c77247ecfc6cf6016b9977cb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "7cc5f31dcede23e5bd0a6ed2f810f4f9f2b6164855f33ab4a20aa691ef4778b4",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7",
         "docs/research/2026-09-08-content-faces/provider/index.html": "f0c533674cfa176425e6cf0f015e1991aa0167c18f420b831f989c86ea93764e",
         "docs/research/2026-09-08-content-faces/provider/complete.html": "cc827252a1cf51f986f3f65e5d21f554b63d2bcc56d2712660fe8ae10138dda9",
         "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "81898e70ba61814333ef6165472dfc80f1e21f7e6315b3293d846dc6e7cca173",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "10853ae09cea3b0d2b71ecb8c738439262194c0c598d626faa0b1c885ca17e64",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/block.json": "e5722d8c745c96a206a9943a8bb88fe588d7f40d4f494be7306f1aff9f98d319"
       },
       "scope": "事業者情報と外部送信先を共通設定から読み、設定変更/空とHTML非実行を実測。テーマにフォームを置かずローカル受付例のGET遷移を検証。",
       "remaining": [
@@ -1487,7 +1541,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-          "sha256": "2500bc6745fdb554ba5ffa0e0aaaf943c5e6980fc7f0708d383114617d0312b8",
+          "sha256": "36cdd14e6546b85be257585a29494f4f2e119f50d082c2145b2494d6d9d4b3ec",
           "row_names": [
             "pattern-and-independent-page:company",
             "pattern-and-independent-page:service",
@@ -1899,21 +1953,22 @@
         "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "327c297d445385489a956e2e9e48997c2329d2600f352b1b23f23bb5ee743469",
         "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
         "docs/research/2026-09-08-content-faces/seed-site-pages.php": "211ed6dda8b20e24d76e16a73cf16df250895bfd13e8ac04de347241c13a940b",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "6dbf85cf6b080f8d47d9f38eb6ded83c2c3a947f43449614d5c482aa355b5ed1",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "aa34c70aaed927625a7a4602350145ff67f6a2e9c77247ecfc6cf6016b9977cb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "7cc5f31dcede23e5bd0a6ed2f810f4f9f2b6164855f33ab4a20aa691ef4778b4",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7",
         "docs/research/2026-09-08-content-faces/provider/index.html": "f0c533674cfa176425e6cf0f015e1991aa0167c18f420b831f989c86ea93764e",
         "docs/research/2026-09-08-content-faces/provider/complete.html": "cc827252a1cf51f986f3f65e5d21f554b63d2bcc56d2712660fe8ae10138dda9",
         "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "81898e70ba61814333ef6165472dfc80f1e21f7e6315b3293d846dc6e7cca173",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "10853ae09cea3b0d2b71ecb8c738439262194c0c598d626faa0b1c885ca17e64",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/block.json": "e5722d8c745c96a206a9943a8bb88fe588d7f40d4f494be7306f1aff9f98d319"
       },
       "scope": "会社/サービス/料金/拠点/採用の独立固定ページ、目的別本文、3料金案の単位/範囲/対象外と比較項目整列、訪問条件・募集終了表示、相互案内と問い合わせをPC/SP・JS有効/無効で確認。架空データの代表PoCであり全募集状態や法務適合は対象外。",
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-          "sha256": "2500bc6745fdb554ba5ffa0e0aaaf943c5e6980fc7f0708d383114617d0312b8",
+          "sha256": "36cdd14e6546b85be257585a29494f4f2e119f50d082c2145b2494d6d9d4b3ec",
           "row_names": [
             "pattern-and-independent-page:company",
             "pattern-and-independent-page:service",
