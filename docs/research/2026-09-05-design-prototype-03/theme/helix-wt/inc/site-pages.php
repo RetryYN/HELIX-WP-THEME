@@ -30,11 +30,19 @@ function wtcf_render_site_page( $attributes ) {
 	<?php return ob_get_clean();
 }
 add_action( 'init', function () {
-	register_block_type( 'helix-wt/site-page', array( 'attributes' => array( 'pageKey' => array( 'type' => 'string' ) ), 'render_callback' => 'wtcf_render_site_page' ) );
+	wp_register_script( 'helix-wt-site-page-editor', get_theme_file_uri( 'blocks/site-page/editor.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render', 'wp-data' ), filemtime( get_theme_file_path( 'blocks/site-page/editor.js' ) ), true );
+	register_block_type( get_theme_file_path( 'blocks/site-page' ), array( 'render_callback' => 'wtcf_render_site_page' ) );
 	if ( ! function_exists( 'wtcf_site_manifest' ) ) { return; }
+	$options = array();
+	foreach ( wtcf_site_manifest()['pages'] as $key => $page ) { $options[] = array( 'value' => $key, 'label' => $page['label'] ); }
+	wp_add_inline_script( 'helix-wt-site-page-editor', 'window.helixSitePageEditor = ' . wp_json_encode( array( 'pages' => $options ) ) . ';', 'before' );
 	register_block_pattern_category( 'helix-site-pages', array( 'label' => '常設案内・規約' ) );
 	foreach ( wtcf_site_manifest()['pages'] as $key => $page ) { register_block_pattern( 'helix-wt/site-' . $key, array( 'title' => $page['label'], 'categories' => array( 'helix-site-pages' ), 'content' => '<!-- wp:helix-wt/site-page ' . wp_json_encode( array( 'pageKey' => $key ) ) . ' /-->' ) ); }
 } );
 add_action( 'wp_enqueue_scripts', function () {
 	if ( is_page() && has_block( 'helix-wt/site-page', get_post() ) ) { wp_enqueue_style( 'wt-site-pages', get_theme_file_uri( 'assets/css/site-pages.css' ), array( 'helix-wt' ), '0.1.0' ); }
+} );
+
+add_action( 'enqueue_block_assets', function () {
+	if ( is_admin() ) { wp_enqueue_style( 'wt-site-pages-editor-preview', get_theme_file_uri( 'assets/css/site-pages.css' ), array(), filemtime( get_theme_file_path( 'assets/css/site-pages.css' ) ) ); }
 } );
