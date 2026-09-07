@@ -1796,3 +1796,66 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 }
 @media (max-width:1023px){body.wt-face-category:not(.wt-cat-side-classic) .wt-cat-layout{grid-template-columns:minmax(0,1fr)!important}}
 /* イベント: 面全体（hero を含む）を本文列に入れる（HP の side_from は使わない）。event_side=off は実効 none なので段 10 以前と同じ 1 カラム */
+/* ===== 段 11（2026-09-07 WT-EVT-0289 / 0301）: フォーム面。種別 9 × 項目セット 4 × 必須表示 2 × レイアウト 5 × 確認 3 × 同意 3 × 送信文言 7 × エラー 3 × captcha 3 × 代替導線 5 × 完了 2 ===== */
+.wt-form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--wp--preset--spacing--60);margin:0 0 var(--wp--preset--spacing--70)}
+.wt-form--side-tel,.wt-form--side-email,.wt-form--side-chat,.wt-form--side-messaging-app{grid-template-columns:minmax(0,1fr)}
+@media (min-width:1024px){.wt-form--side-tel,.wt-form--side-email,.wt-form--side-chat,.wt-form--side-messaging-app{grid-template-columns:minmax(0,1fr) 260px;align-items:start}}
+.wt-form__title{margin:0 0 .5rem;font-size:1.5rem}.wt-form__lead{margin:0 0 1.5rem;color:var(--wp--preset--color--mute)}
+.wt-form__form,.wt-form__confirm{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;padding:1.5rem;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-form__row{display:grid;gap:.35rem}
+.wt-form__label{font-weight:700;font-size:.9375rem}
+.wt-form__req{margin-left:.35rem;font-size:.75rem;font-weight:700;color:var(--wp--preset--color--cta)}
+.wt-form__req--label{display:inline-block;padding:.05rem .4rem;border-radius:3px;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast)}
+.wt-form__req--asterisk{font-size:1rem;line-height:1}
+.wt-form__control input:not([type=checkbox]):not([type=radio]):not([type=file]),.wt-form__control select,.wt-form__control textarea{width:100%;min-height:48px;padding:.6rem .8rem;font:inherit;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-s,6px);background:var(--wp--preset--color--surface,#fff);color:var(--wp--preset--color--contrast)}
+.wt-form__control textarea{min-height:9rem;resize:vertical}
+.wt-form__control input:focus-visible,.wt-form__control select:focus-visible,.wt-form__control textarea:focus-visible{outline:3px solid var(--wp--preset--color--accent);outline-offset:1px}
+.wt-form__control input[type=file]{padding:.5rem 0;min-height:44px}
+.wt-form__control input[type=checkbox],.wt-form__control input[type=radio]{width:24px;height:24px;margin:0 .5rem 0 0;accent-color:var(--wp--preset--color--accent);flex:none}
+.wt-form__check,.wt-form__radio,.wt-form__yesno label{display:inline-flex;flex-wrap:wrap;align-items:center;min-height:44px;gap:.1rem;cursor:pointer}.wt-form__check a{display:inline-flex;align-items:center;min-height:44px;padding:0 .25rem}.wt-form__check-link{white-space:nowrap}
+.wt-form__radios{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem}
+.wt-form__dates{display:grid;gap:.5rem}.wt-form__date{display:grid;grid-template-columns:5.5rem minmax(0,1fr);align-items:center;gap:.5rem;font-size:.875rem}
+.wt-form__unit{display:inline-flex;align-items:center;gap:.5rem}.wt-form__unit input{max-width:8rem}
+.wt-form__yesno{display:grid;gap:.25rem;padding:.75rem 0;border-top:1px solid var(--wp--preset--color--line)}.wt-form__yesno:first-child{border-top:0;padding-top:0}.wt-form__yesno>span{font-weight:700}
+.wt-form__yesnos .wt-form__yesno label{margin-right:1rem}
+.wt-form__note{display:block;margin-top:.25rem;font-size:.75rem;color:var(--wp--preset--color--mute)}
+.wt-form__privacy{margin:.5rem 0 0;font-size:.875rem;color:var(--wp--preset--color--mute)}
+.wt-form__captcha-q{display:inline-block;margin-right:.75rem;padding:.4rem .75rem;border-radius:6px;background:var(--wp--preset--color--soft);font-weight:700;font-family:var(--wp--preset--font-family--mono,monospace)}
+.wt-form__row--captcha .wt-form__control{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}.wt-form__row--captcha input{max-width:6rem!important}
+.wt-form__captcha-slot{display:grid;place-items:center;height:78px;max-width:304px;border:1px dashed var(--wp--preset--color--line);border-radius:6px;color:var(--wp--preset--color--mute);font-size:.875rem;background:var(--wp--preset--color--soft)}
+.wt-form__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.wt-form__actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:.5rem}
+.wt-form__submit,.wt-form__next,.wt-form__back{min-height:48px;padding:.75rem 1.75rem;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer}
+.wt-form__submit,.wt-form__next{background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast)}
+.wt-form__back{background:transparent;color:var(--wp--preset--color--contrast);border:1px solid var(--wp--preset--color--line)}
+.wt-form__submit:focus-visible,.wt-form__next:focus-visible,.wt-form__back:focus-visible{outline:3px solid var(--wp--preset--color--accent);outline-offset:2px}
+/* エラー: 項目下 / 上部まとめ / 両方 */
+.wt-form__row.is-error input,.wt-form__row.is-error select,.wt-form__row.is-error textarea{border-color:var(--wp--preset--color--cta);background:var(--wp--preset--color--warn-soft)}
+.wt-form__error{margin:.25rem 0 0;font-size:.875rem;font-weight:700;color:var(--wp--preset--color--cta)}.wt-form__error::before{content:"";display:inline-block;width:.9em;height:.9em;margin:0 .3em -.1em 0;border-radius:50%;background:var(--wp--preset--color--cta)}
+.wt-form__summary{padding:1rem 1.25rem;margin:0 0 1rem;border:2px solid var(--wp--preset--color--cta);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--warn-soft)}.wt-form__summary p{margin:0 0 .5rem;font-weight:700}.wt-form__summary ul{margin:0;padding-left:1.25rem}.wt-form__summary a{color:var(--wp--preset--color--cta)}
+/* レイアウト: 2col（PC で 2 列、長文は全幅）/ label-left（PC でラベル左）/ placeholder-only（ラベルは読み上げのみ）/ steps（段階） */
+@media (min-width:768px){.wt-form--layout-2col .wt-form__form{grid-template-columns:repeat(2,minmax(0,1fr))}.wt-form--layout-2col .wt-form__row--wide,.wt-form--layout-2col .wt-form__row--checkbox,.wt-form--layout-2col .wt-form__row--privacy,.wt-form--layout-2col .wt-form__row--captcha,.wt-form--layout-2col .wt-form__actions,.wt-form--layout-2col .wt-form__summary,.wt-form--layout-2col .wt-form__hp,.wt-form--layout-2col .wt-form__captcha-slot,.wt-form--layout-2col .wt-form__inline-review{grid-column:1/-1}
+.wt-form--layout-label-left .wt-form__row{grid-template-columns:11rem minmax(0,1fr);align-items:start}.wt-form--layout-label-left .wt-form__label{padding-top:.75rem}.wt-form--layout-label-left .wt-form__row--checkbox,.wt-form--layout-label-left .wt-form__row--privacy{grid-template-columns:minmax(0,1fr)}}
+.wt-form--layout-placeholder-only .wt-form__row:not(.wt-form__row--radio):not(.wt-form__row--yesno):not(.wt-form__row--date3):not(.wt-form__row--captcha):not(.wt-form__row--file) .wt-form__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wt-form--layout-placeholder-only .wt-form__row{position:relative}
+.wt-form__steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.25rem;margin:0 0 .5rem;padding:0;list-style:none;counter-reset:wt-step}
+.wt-form__steps li{counter-increment:wt-step;padding:.5rem .25rem;text-align:center;font-size:.8125rem;font-weight:700;color:var(--wp--preset--color--mute);border-bottom:3px solid var(--wp--preset--color--line)}.wt-form__steps li::before{content:counter(wt-step) ". "}.wt-form__steps li.is-current{color:var(--wp--preset--color--accent);border-color:var(--wp--preset--color--accent)}.wt-form__steps li.is-done{color:var(--wp--preset--color--contrast);border-color:var(--wp--preset--color--accent)}
+.wt-form__step{display:grid;gap:1rem;margin:0;padding:0;border:0;min-width:0}.wt-form__step[hidden]{display:none}
+/* 確認画面 / 同一ページ見直し */
+.wt-form__review{margin:0;display:grid;gap:0}.wt-form__review>div{display:grid;grid-template-columns:minmax(0,1fr);gap:.15rem;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line)}.wt-form__review dt{font-size:.8125rem;font-weight:700;color:var(--wp--preset--color--mute)}.wt-form__review dd{margin:0;overflow-wrap:anywhere}
+@media (min-width:768px){.wt-form__review>div{grid-template-columns:11rem minmax(0,1fr)}}
+.wt-form__inline-review{padding:1.25rem;border:2px solid var(--wp--preset--color--accent);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--accent-soft)}.wt-form__inline-review h3{margin:0 0 .5rem;font-size:1.0625rem}
+.wt-form__form.is-reviewing>:not(.wt-form__inline-review):not(input[type=hidden]):not(.wt-form__hp){display:none}
+/* 代替導線 */
+.wt-form__side{padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--soft);text-align:center}
+.wt-form__side-lead{margin:0 0 .5rem;font-weight:700}.wt-form__side-note{margin:.5rem 0 0;font-size:.8125rem;color:var(--wp--preset--color--mute)}
+.wt-form__side-tel{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;font-size:1.5rem;font-weight:700;color:var(--wp--preset--color--contrast);text-decoration:none}
+.wt-form__side-link{display:inline-flex;align-items:center;min-height:44px;font-weight:700;overflow-wrap:anywhere}
+.wt-form__side-btn{display:inline-flex;align-items:center;gap:.4rem;min-height:48px;padding:.6rem 1.25rem;border:0;border-radius:999px;background:var(--wp--preset--color--accent);color:#fff;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}.wt-form__side-btn--app{background:var(--wp--preset--color--ok)}
+/* 完了 */
+.wt-form-thanks{padding:2rem 1.5rem;text-align:center;border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-form-thanks__icon{display:block;margin:0 auto .75rem;font-size:3rem;color:var(--wp--preset--color--ok)}
+.wt-form-thanks__title{margin:0 0 .5rem;font-size:1.375rem;font-weight:700}.wt-form-thanks__lead{margin:0 auto 1.25rem;max-width:36em;color:var(--wp--preset--color--mute)}
+.wt-form-thanks__next{display:flex;flex-direction:column;align-items:center;gap:.75rem}
+.wt-form__thanks-btn{display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1.75rem;border-radius:999px;background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);font-weight:700;text-decoration:none}
+.wt-form__thanks-link{display:inline-flex;align-items:center;min-height:44px;font-weight:700}

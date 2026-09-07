@@ -105,12 +105,26 @@ function wt_axes() {
 		$axes[ 'own_' . $face . '_side_set' ]    = array( 'minimal', array( 'media', 'blog', 'owned', 'corporate', 'minimal', 'full' ) );
 		$axes[ 'own_' . $face . '_side_nav' ]    = array( 'none', array( 'none', 'mega-menu', 'fixed-left-nav', 'fixed-right-icons', 'drawer-pc', 'toc-side' ) );
 	}
+	// 段 11（WT-EVT-0289 / 0301）: フォーム。台帳 sidebar-forms-gap-survey §2 の観察由来。既定は各項目の最多型（種別 contact 43% / 必須 asterisk 81% / 1col 77% / 確認あり 90% / チェックボックス同意 61% / 電話の代替導線 67%）。項目下エラーは観察 n=3 の少数派だが top-summary（2 件）と両方を持つ。inline-review・apply・label-left は未観察の Claude 案
+	$axes['form_kind']     = array( 'contact', array( 'contact', 'apply', 'download', 'reservation', 'newsletter', 'recruit', 'quote', 'trial', 'diagnosis' ) );
+	$axes['form_fields']   = array( 'by-kind', array( 'by-kind', 'minimal', 'standard', 'full' ) );
+	$axes['form_required'] = array( 'asterisk', array( 'asterisk', 'label' ) );
+	$axes['form_layout']   = array( '1col', array( '1col', '2col', 'label-left', 'placeholder-only', 'steps' ) );
+	$axes['form_confirm']  = array( 'yes', array( 'yes', 'no', 'inline-review' ) );
+	$axes['form_consent']  = array( 'checkbox', array( 'checkbox', 'link-only', 'in-submit' ) );
+	$axes['form_submit']   = array( 'auto', array( 'auto', 'send', 'send-plain', 'confirm', 'check', 'apply', 'register', 'download', 'next' ) ); // 台帳 §5 の文言: 送信する / 送信 / 確認画面へ / 確認する / 同意して送信（form_consent:in-submit）/ ダウンロード / 次へ進む。auto は Claude 暫定
+	$axes['form_error']    = array( 'inline', array( 'inline', 'top-summary', 'both' ) );
+	$axes['form_captcha']  = array( 'none', array( 'none', 'question', 'external-slot' ) );
+	$axes['form_side']     = array( 'tel', array( 'tel', 'none', 'email', 'chat', 'messaging-app' ) );
+	$axes['form_thanks']   = array( 'separate', array( 'separate', 'inline' ) );
 	$bundles = array_keys( wt_side_bundles() ); // 面の所属軸の許可値は束の台帳から導出（台帳に足した束はそのまま選べる）
 	$axes['cat_side']   = array( 'article', array_merge( $bundles, array( 'classic', 'off' ) ) ); // 既定 = 記事側継承（PO 原文）。classic = 段 6 の独自 aside
 	$axes['event_side'] = array( 'off', array_merge( array( 'off' ), $bundles ) ); // 既定 = OFF（PO 原文「LP に近い場合は不要」）
 	$axes['page_side']  = array( 'home', array_merge( $bundles, array( 'off' ) ) ); // 既定 = HP 側継承（Claude 暫定）
 	return $axes;
 }
+
+require_once __DIR__ . '/inc/form.php'; // 段 11: フォーム（種別 / 項目 / 検証 / 確認 → 完了の遷移）
 
 // 段 10c: 面の判定と、その面が使うサイドバー設定の束（home / article / null = 無し）
 function wt_side_face() {
@@ -202,8 +216,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.18' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.18' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.19' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.19' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -212,10 +226,11 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_front_page() || is_page() ) { // 段 8: 固定ページ用パーツ（カルーセル・カウントダウン）でも使う
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.18', $defer );
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.19', $defer );
 	}
 	if ( is_singular() || is_page() || is_front_page() || is_category() ) { // 段 10: サイドバー（ドロワー / メガメニュー）。段 10c: カテゴリ面も共通サイドバーを継承する
-		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.18', $defer );
+	if ( is_page() ) { wp_enqueue_script( 'helix-wt-form', get_theme_file_uri( 'assets/js/form.js' ), array(), '0.3.19', $defer ); } // 段 11: フォーム（固定ページに置く）
+		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.19', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
