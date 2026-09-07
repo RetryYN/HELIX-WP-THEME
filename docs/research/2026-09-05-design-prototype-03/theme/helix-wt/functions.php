@@ -352,10 +352,11 @@ add_filter( 'render_block', function ( $html, $block ) {
 add_action( 'wp_footer', function () {
 	$t = wt_chrome_fixed_type();
 	if ( 'none' === $t ) { return; }
+	$from = ' data-wt-from="' . esc_attr( wt_chrome_bundle( 'fix' ) ) . '"'; // どの束（site / own）から描いたか（verify が読む）
 	$m = array(
-		'sp-bottom-bar' => '<nav class="wt-fixed wt-fixed--sp-bottom-bar" aria-label="固定導線"><a href="tel:0000000000"><i class="wt-i wt-i--s wt-i--phone" aria-hidden="true"></i>電話する</a><a href="/contact/"><i class="wt-i wt-i--s wt-i--mail" aria-hidden="true"></i>問い合わせ</a></nav>',
-		'float-cta'     => '<a class="wt-fixed wt-fixed--float-cta wt-lp-cta-action" href="/contact/">無料で相談する</a>',
-		'float-tel'     => '<a class="wt-fixed wt-fixed--float-tel" href="tel:0000000000" aria-label="電話する（PoC 用のダミー番号）"><i class="wt-i wt-i--l wt-i--phone" aria-hidden="true"></i></a>',
+		'sp-bottom-bar' => '<nav class="wt-fixed wt-fixed--sp-bottom-bar"' . $from . ' aria-label="固定導線"><a href="tel:0000000000"><i class="wt-i wt-i--s wt-i--phone" aria-hidden="true"></i>電話する</a><a href="/contact/"><i class="wt-i wt-i--s wt-i--mail" aria-hidden="true"></i>問い合わせ</a></nav>',
+		'float-cta'     => '<a class="wt-fixed wt-fixed--float-cta wt-lp-cta-action"' . $from . ' href="/contact/">無料で相談する</a>',
+		'float-tel'     => '<a class="wt-fixed wt-fixed--float-tel"' . $from . ' href="tel:0000000000" aria-label="電話する（PoC 用のダミー番号）"><i class="wt-i wt-i--l wt-i--phone" aria-hidden="true"></i></a>',
 	);
 	echo $m[ $t ] ?? '';
 }, 5 );

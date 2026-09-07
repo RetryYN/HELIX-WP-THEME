@@ -1956,20 +1956,22 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
     for (const v of [...reg.bundles, "off", ...(face === "lp" ? ["lp"] : [])]) CASES.push({ part: "head", face, v, q: `${pre(face)}_head:${v},header:cta,sp:search,own_${face}_header:tel,own_${face}_sp:cta,lp_header:logo-only` });
     CASES.push({ part: "head", face, v: "own-isolation", q: `${pre(face)}_head:own,own_${face}_header:tel,own_${face}_sp:cta,header:cta,sp:search,${others.map((f) => `own_${f}_header:band,own_${f}_sp:left`).join(",")}` }); // own は自面の軸だけ
     for (const v of [...reg.bundles, "off"]) CASES.push({ part: "foot", face, v, q: `${pre(face)}_foot:${v},footer_layout:columns-3,footer_above:none,own_${face}_footer_layout:single-row,own_${face}_footer_above:cta-band,${others.map((f) => `own_${f}_footer_layout:sitemap,own_${f}_footer_above:newsletter`).join(",")}` });
-    for (const v of [...reg.bundles, "off"]) { const of = OWNFIX[face] || [`own_${face}_fixed`, "float-cta", "wt-fixed--float-cta"]; CASES.push({ part: "fix", face, v, q: `${pre(face)}_fix:${v},fixed:float-cta,${of[0]}:${of[1]},${others.map((f) => `${(OWNFIX[f] || [`own_${f}_fixed`])[0]}:sp-bottom-bar`).join(",")}`, ownSel: of[2] }); }
+    for (const v of [...reg.bundles, "off"]) { const of = OWNFIX[face] || [`own_${face}_fixed`, "float-cta", "wt-fixed--float-cta"]; CASES.push({ part: "fix", face, v, q: `${pre(face)}_fix:${v},fixed:__SITEFIX__,${of[0]}:${of[1]},${others.map((f) => `${(OWNFIX[f] || [`own_${f}_fixed`])[0]}:sp-bottom-bar`).join(",")}`, ownSel: of[2] }); } // 共通は SP = float-tel / PC = float-cta（own と別の型。PC は generic の data-wt-from でも区別）
+    CASES.push({ part: "fix", face, v: "off+sidenav", q: `${pre(face)}_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home`, sidenav: true }); // 所属境界: サイドナビ（段 10c のサイドバーの束）は固定 CTA の off で消えない（PC。LP はサイドバーの束を持たないので 0）
   }
   const READ = ([visSrc]) => { const vis = eval(visSrc); const $$ = (s) => Array.from(document.querySelectorAll(s)); const cls = (el, pfx) => (Array.from(el.classList).find((c) => c.startsWith(pfx) && c !== pfx.slice(0, -2)) || "").slice(pfx.length);
     const heads = $$(".wt-header"); const headVis = heads.filter(vis); const lpHeads = $$(".wt-lp-header").filter(vis);
     const b = (p) => (Array.from(document.body.classList).find((c) => c.startsWith(`wt-${p}-bundle-`)) || "").slice(`wt-${p}-bundle-`.length);
     return { faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), bundles: { head: b("head"), foot: b("foot"), fix: b("fix") }, headCount: heads.length, headVis: headVis.length, headVar: headVis.length ? (cls(headVis[0], "wt-header--") || "search") : null, lpHead: lpHeads.length ? lpHeads.map((e) => cls(e, "wt-lp-header--")) : [],
-      spCta: $$(".wt-header__spcta").filter(vis).length, footerEl: !!document.querySelector(".wt-footer"), footAbove: $$(".wt-footer__above-slot").filter(vis).map((e) => cls(e, "wt-footer__above-slot--")), footLayout: $$(".wt-footer__layout").filter(vis).map((e) => cls(e, "wt-footer__layout--")), fixedVis: $$(".wt-fixed, .wt-home-fixed, .wt-event-fixed, .wt-lp-fixed").filter(vis).map((e) => Array.from(e.classList).find((c) => c.includes("-fixed--"))), h1: $$("h1").filter((h) => h.offsetHeight).length }; };
+      spCta: $$(".wt-header__spcta").filter(vis).length, footerEl: !!document.querySelector(".wt-footer"), footAbove: $$(".wt-footer__above-slot").filter(vis).map((e) => cls(e, "wt-footer__above-slot--")), footLayout: $$(".wt-footer__layout").filter(vis).map((e) => cls(e, "wt-footer__layout--")), fixedVis: $$(".wt-fixed, .wt-home-fixed, .wt-event-fixed, .wt-lp-fixed").filter(vis).map((e) => [Array.from(e.classList).find((c) => c.includes("-fixed--")), e.getAttribute("data-wt-from")]), sidenavVis: $$(".wt-sidenav--fixed-right").filter(vis).length, h1: $$("h1").filter((h) => h.offsetHeight).length }; };
   for (const [dev, cfg, js] of [["pc", PC, true], ["sp", SP, true], ["sp", SP, false]]) {
     const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
     for (const c of CASES) {
-      if (!js && c.part !== "head") continue; // JS 無効はヘッダー（サーバ描画の有無）だけ
-      await p.goto(BASE + PATHS[c.face] + "?wt=" + c.q, { waitUntil: js ? "networkidle" : "load" });
+      if (!js && c.part === "foot") continue; // JS 無効はヘッダーと固定 CTA（サーバ描画の有無）。フッターは JS に依らない
+      if (c.sidenav && dev !== "pc") continue;
+      await p.goto(BASE + PATHS[c.face] + "?wt=" + c.q.replace("__SITEFIX__", dev === "sp" ? "float-tel" : "float-cta"), { waitUntil: js ? "networkidle" : "load" });
       const r = await p.evaluate(READ, [VIS_SRC]);
-      const eb = c.v === "own-isolation" ? "own" : c.v === "off" ? "none" : c.v; // 期待する束 class
+      const eb = c.v === "own-isolation" ? "own" : (c.v === "off" || c.v === "off+sidenav") ? "none" : c.v; // 期待する束 class
       let pass = r.faces.includes("wt-face-" + c.face) && r.h1 === 1 && r.bundles[c.part] === eb;
       if (c.part === "head") {
         if (c.v === "site") pass = pass && r.headCount === 1 && r.headVis === 1 && r.headVar === "cta" && r.lpHead.length === 0 && r.spCta === 0; /* 共通の sp:search */
@@ -1980,15 +1982,22 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
         if (c.v === "off") pass = pass && !r.footerEl;
         else pass = pass && r.footerEl && JSON.stringify(r.footLayout) === JSON.stringify([c.v === "site" ? "columns-3" : "single-row"]) && JSON.stringify(r.footAbove) === JSON.stringify(c.v === "site" ? [] : ["cta-band"]); /* own は footer_above も own_<face>_ を見る */
       } else {
-        const expect = c.v === "site" ? ["wt-fixed--float-cta"] : c.v === "own" ? [c.ownSel] : [];
-        pass = pass && JSON.stringify(r.fixedVis) === JSON.stringify(expect);
+        const expect = c.v === "site" ? [[dev === "sp" ? "wt-fixed--float-tel" : "wt-fixed--float-cta", "site"]] : c.v === "own" ? [[c.ownSel, c.ownSel.startsWith("wt-fixed--") ? "own" : null]] : []; // own は自面の型だけ（generic は data-wt-from=own、HOME / イベント / LP はパターンの要素）
+        pass = pass && JSON.stringify(r.fixedVis) === JSON.stringify(expect) && (!c.sidenav || r.sidenavVis === (c.face === "lp" ? 0 : 1));
       }
       rows.push({ dev, js, ...c, ...r, pass });
     }
+    // 既存の固定ボタン（共有 float / totop）・フッターの操作要素と重ならない（Astra 1 巡目）: 記事で共通の固定 CTA 3 型（PC は float-cta）× share:float + footer_totop:button。ページ末尾で矩形交差 0、共有ボタンは viewport 内
+    for (const t of dev === "sp" ? ["float-cta", "float-tel", "sp-bottom-bar"] : ["float-cta"]) { if (!js) continue;
+      await p.goto(BASE + ARTICLE + `?wt=article_fix:site,fixed:${t},share:float,footer_totop:button`, { waitUntil: "networkidle" }); await p.evaluate(() => scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(300);
+      const r = await p.evaluate(([visSrc, t]) => { const vis = eval(visSrc); const el = document.querySelector(`.wt-fixed--${t}`); if (!vis(el)) return { visible: false }; const r = el.getBoundingClientRect(); const others = Array.from(document.querySelectorAll(".wt-totop, .wt-share--float, .wt-footer a, .wt-footer button, .wt-sidenav a")).filter(vis).filter((o) => o !== el && !el.contains(o));
+        const overlaps = others.filter((o) => { const q = o.getBoundingClientRect(); return !(q.right <= r.left || q.left >= r.right || q.bottom <= r.top || q.top >= r.bottom); }).map((o) => o.className.toString().slice(0, 40)); const share = document.querySelector(".wt-share--float"); const sb = share && vis(share) ? share.getBoundingClientRect() : null;
+        return { visible: true, inView: r.top >= 0 && r.bottom <= innerHeight, overlaps, shareVis: !!sb, shareInView: !!sb && sb.top >= 0 && sb.bottom <= innerHeight, totopVis: vis(document.querySelector(".wt-totop")) }; }, [VIS_SRC, t]);
+      rows.push({ dev, js, part: "fix-overlap", face: "article", v: t, ...r, pass: r.visible && r.inView && r.overlaps.length === 0 && r.shareVis && r.shareInView && !r.totopVis }); }
     if (dev === "pc") { await p.goto(BASE + "/no-such-page-wt-404/?wt=header:band,footer_layout:single-row", { waitUntil: "networkidle" }); const r = await p.evaluate(READ, [VIS_SRC]); rows.push({ dev, js, part: "other", face: "other", v: "site", ...r, pass: r.faces.includes("wt-face-other") && r.bundles.head === "site" && r.bundles.foot === "site" && r.headVar === "band" && JSON.stringify(r.footLayout) === JSON.stringify(["single-row"]) && r.h1 === 1 }); } // 他面（404）は共通
     await ctx.close();
   }
-  out.chromeOwner = { reg, registryOk, rows, pass: registryOk && CASES.length === 61 && rows.length === 148 && rows.every((x) => x.pass) }; // 面 6 × (head 3 + foot 3 + fix 3 + isolation 1) + LP の lp 1 = 61 ケース。行 = head 25 × 3 + foot 18 × 2 + fix 18 × 2 + 404 1 = 148（固定値）
+  out.chromeOwner = { reg, registryOk, rows, pass: registryOk && CASES.length === 67 && rows.length === 176 && rows.every((x) => x.pass) }; // 面 6 × (head 3 + foot 3 + fix 3 + off+sidenav 1 + isolation 1) + LP の lp 1 = 67 ケース。行 = head 25 × 3 + foot 18 × 2 + fix 18 × 3 + off+sidenav 6（PC）+ 重なり 4 + 404 1 = 176（固定値）
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {

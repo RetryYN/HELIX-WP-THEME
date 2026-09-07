@@ -1867,7 +1867,13 @@ body.wt-fixed-eff-float-tel .wt-fixed--float-tel{display:inline-flex;align-items
 body.wt-fixed-eff-sp-bottom-bar .wt-fixed--sp-bottom-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:fixed;right:0;bottom:0;left:0;z-index:45;padding:.25rem var(--wp--custom--gutter) max(.25rem,env(safe-area-inset-bottom));border-top:1px solid var(--wp--preset--color--line);background:var(--wp--preset--color--base)}
 .wt-fixed--sp-bottom-bar a{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-height:48px;color:var(--wp--preset--color--contrast);font-size:var(--wp--preset--font-size--s);font-weight:700;text-decoration:none}.wt-fixed--sp-bottom-bar a:first-child{border-right:1px solid var(--wp--preset--color--line)}
 @media (min-width:600px){.wt-fixed--sp-bottom-bar,.wt-fixed--float-tel{display:none!important}}
-body.wt-fixed-eff-sp-bottom-bar .wt-footer{padding-bottom:calc(56px + var(--wp--preset--spacing--60))}
-@media (max-width:599px){body.wt-fixed-eff-sp-bottom-bar.wt-footer-totop-button .wt-totop{bottom:calc(56px + .75rem)}}
+/* 既存の固定ボタンとの干渉（Astra 1 巡目）: generic の固定 CTA がある面では HP / イベントと同じく追尾の totop を出さず、footer 下端に余白を足す。共有の浮遊ボタン（SP は右下）は下部バー / 電話ボタンの上へ退避し、左下の float-cta は共有ボタンぶん幅を詰める */
+body:is(.wt-fixed-eff-float-cta,.wt-fixed-eff-float-tel,.wt-fixed-eff-sp-bottom-bar) .wt-totop{display:none!important}
+body:is(.wt-fixed-eff-float-cta,.wt-fixed-eff-float-tel,.wt-fixed-eff-sp-bottom-bar) .wt-footer{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+@media (max-width:1199px){
+  body.wt-fixed-eff-sp-bottom-bar.wt-share-float .wt-share--float{bottom:calc(56px + .75rem)}
+  body.wt-fixed-eff-float-tel.wt-share-float .wt-share--float{bottom:calc(56px + 1.5rem)}
+  body.wt-fixed-eff-float-cta.wt-share-float .wt-fixed--float-cta{max-width:calc(100vw - 2rem - 48px - .75rem)}
+}
 /* LP: ヘッダーの所属が lp 以外（共通 / 独自 / 非表示）のときはテンプレート内の LP ヘッダー 3 種を出さない */
 body.wt-face-lp:not(.wt-head-bundle-lp) .wt-lp-header{display:none!important}
