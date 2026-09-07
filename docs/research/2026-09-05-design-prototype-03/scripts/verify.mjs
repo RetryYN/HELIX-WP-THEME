@@ -2015,19 +2015,52 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       await p.goto(BASE + path + "?wt=" + q, { waitUntil: js ? "networkidle" : "load" }); await reveal(); const r = await p.evaluate(READ, [VIS_SRC, others, wrap]);
       rows.push({ dev, js, face, v: "block", ...r, pass: r.formVis && r.kind === kind && r.othersVis.length === 0 && r.method === "post" && r.sameHost && r.nonce && JSON.stringify(r.fields) === JSON.stringify(KIND_FIELDS[kind]) && r.h1 === 1 && (face !== "event" || r.applyLinks >= 1) && !r.blockTitle && r.sectionH2 === 1 }); /* 区間の見出しは 1 つ（ブロックの見出しは hideTitle で省く） */
       if (dev === "pc") { await p.goto(BASE + path, { waitUntil: "networkidle" }); const d = await p.evaluate(READ, [VIS_SRC, others, wrap]); rows.push({ dev, js, face, v: "default-no-block", anyForm: d.anyForm, pass: !d.anyForm }); } // 既定では DOM に無い
+      if (!js) { // JS 無効: サーバ検証が面の種別の項目で走る（イベントは参加形式なし + 人数 0、LP はメール形式）→ 入力に戻り当該項目だけエラー
+        await p.goto(BASE + path + "?wt=" + q, { waitUntil: "load" }); await reveal();
+        await p.fill(wrap + " #wt-f-name", "山田 太郎"); await p.fill(wrap + " #wt-f-message", "本文"); await p.check(wrap + " #wt-f-consent");
+        if (kind === "contact") { await p.fill(wrap + " #wt-f-name-kana", "やまだ たろう"); await p.fill(wrap + " #wt-f-email", "a@.example.com"); await p.selectOption(wrap + " #wt-f-subject-select", { index: 1 }); } else { await p.fill(wrap + " #wt-f-email", "taro@example.com"); await p.fill(wrap + " #wt-f-people-count", "0"); }
+        await p.click(wrap + " .wt-form__submit"); await p.waitForTimeout(800);
+        const e = await p.evaluate(([w]) => ({ step: (document.querySelector(w + " .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-step"), kind: (document.querySelector(w + " .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form"), errs: Array.from(document.querySelectorAll(w + " .wt-form__row.is-error")).map((r) => r.getAttribute("data-wt-field")).sort(), name: (document.querySelector(w + " #wt-f-name") || {}).value }), [wrap]);
+        rows.push({ dev, js, face, v: "nojs-invalid", ...e, pass: e.step === "input" && e.kind === kind && JSON.stringify(e.errs) === JSON.stringify(kind === "contact" ? ["email"] : ["people-count", "subject-radio"]) && e.name === "山田 太郎" }); }
       if (dev === "pc") { // 入力 → 確認 → 完了（separate）: /thanks/ へ redirect し種別を引き継ぐ
         await p.goto(BASE + path + "?wt=" + q, { waitUntil: "networkidle" }); await reveal();
         await p.fill(wrap + " #wt-f-name", "山田 太郎"); await p.fill(wrap + " #wt-f-email", "taro@example.com"); await p.fill(wrap + " #wt-f-tel", "03-1234-5678"); await p.fill(wrap + " #wt-f-message", "本文"); await p.check(wrap + " #wt-f-consent");
         if (kind === "contact") { await p.fill(wrap + " #wt-f-name-kana", "やまだ たろう"); await p.selectOption(wrap + " #wt-f-subject-select", { index: 1 }); } else { await p.check(wrap + " #wt-f-subject-radio-0"); await p.fill(wrap + " #wt-f-people-count", "2"); }
-        await p.click(wrap + " .wt-form__submit"); await p.waitForTimeout(600); const confirmVis = await p.evaluate(([w]) => { const c = document.querySelector(w + " .wt-form__confirm"); return !!c && c.getBoundingClientRect().height > 0; }, [wrap]);
+        await p.click(wrap + " .wt-form__submit"); await p.waitForTimeout(600); const c = await p.evaluate(([w]) => { const c = document.querySelector(w + " .wt-form__confirm"); return { vis: !!c && c.getBoundingClientRect().height > 0, kind: (document.querySelector(w + " .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form"), review: Object.fromEntries(Array.from(document.querySelectorAll(w + " .wt-form__review dd[data-wt-field]")).map((d) => [d.getAttribute("data-wt-field"), d.textContent.trim()])) }; }, [wrap]);
+        const expectReview = kind === "contact" ? { name: "山田 太郎", "name-kana": "やまだ たろう", email: "taro@example.com", tel: "03-1234-5678", message: "本文", consent: "同意する" } : { name: "山田 太郎", email: "taro@example.com", tel: "03-1234-5678", "subject-radio": "会場参加", "people-count": "2", message: "本文", consent: "同意する" }; // 確認画面に面の種別の項目と入力値がそのまま出る（subject-select は選んだ項目名なので照合しない）
+        const reviewOk = Object.entries(expectReview).every(([k, x]) => c.review[k] === x) && (kind !== "contact" || "subject-select" in c.review) && !("subject-radio" in c.review && kind === "contact") && !("name-kana" in c.review && kind === "apply");
         await p.click(wrap + " .wt-form__confirm .wt-form__submit"); await p.waitForTimeout(1000);
         const t = await p.evaluate(() => ({ path: location.pathname, wt: new URLSearchParams(location.search).get("wt") || "", thanks: (document.querySelector(".wt-form-thanks") || { getAttribute: () => null }).getAttribute("data-wt-thanks") }));
-        rows.push({ dev, js, face, v: "flow", confirmVis, ...t, pass: confirmVis && t.path === "/thanks/" && t.thanks === kind && q.split(",").every((x) => t.wt.split(",").includes(x)) && t.wt.split(",").every((x) => q.split(",").includes(x) || x === "form_kind:" + kind) }); /* ?wt= を引き継ぎ、面の文脈の種別だけ足す */
+        rows.push({ dev, js, face, v: "flow", confirm: c, reviewOk, ...t, pass: c.vis && c.kind === kind && reviewOk && t.path === "/thanks/" && t.thanks === kind && q.split(",").every((x) => t.wt.split(",").includes(x)) && t.wt.split(",").every((x) => q.split(",").includes(x) || x === "form_kind:" + kind) }); /* 確認画面の種別・項目・値、?wt= を引き継ぎ面の文脈の種別だけ足す */
       }
     }
+    if (dev === "pc") { // 境界: slug が event / lp でない固定ページ（template meta 空）は面 page のまま（/contact/）。lp_form / event_apply の値を当てても LP / イベントにならずフォーム面のブロックが出る
+      await p.goto(BASE + "/contact/?wt=lp_form:block,event_apply:block-form", { waitUntil: "networkidle" }); const b = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), kind: (document.querySelector(".wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form"), title: !!document.querySelector(".wt-form__title") }));
+      rows.push({ dev, js, face: "page", v: "boundary-other-slug", ...b, pass: b.faces.includes("wt-face-page") && !b.faces.includes("wt-face-event") && !b.faces.includes("wt-face-lp") && b.kind === "contact" && b.title }); }
     await ctx.close();
   }
-  out.formSlots = { rows, pass: rows.length === 10 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + 遷移 2 = 10（固定値）
+  // block 階層の規則（template meta が空なら page-{slug}.html、静的フロントページは front-page.html が優先）を wp-cli で状態を変えて検査し、必ず元に戻す（Astra 1 巡目）
+  const wpS = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }).trim() : null;
+  if (wpS) {
+    const ctx = await browser.newContext(PC); const p = await ctx.newPage();
+    const lpId = wpS(["post", "list", "--post_type=page", "--name=lp", "--field=ID", "--post_status=publish"]).split("\n")[0]; const evId = wpS(["post", "list", "--post_type=page", "--name=event", "--field=ID", "--post_status=publish"]).split("\n")[0];
+    const lpMeta = wpS(["post", "meta", "get", lpId, "_wp_page_template"]); const showOnFront = wpS(["option", "get", "show_on_front"]); let pageOnFront = "0"; try { pageOnFront = wpS(["option", "get", "page_on_front"]); } catch (_) { /* 未設定 */ }
+    try {
+      wpS(["post", "meta", "delete", lpId, "_wp_page_template"]); // LP の template meta を外す → slug 解決（page-lp.html）
+      await p.goto(BASE + LP, { waitUntil: "networkidle" }); const d = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), anyForm: !!document.querySelector(".wt-form__form"), lpHero: !!document.querySelector(".wt-lp") }));
+      rows.push({ dev: "pc", js: true, face: "lp", v: "slug-resolved-default-no-block", ...d, pass: d.faces.includes("wt-face-lp") && !d.anyForm && d.lpHero });
+      await p.goto(BASE + LP + "?wt=lp_form:block,lp_sections:extended", { waitUntil: "networkidle" }); await p.evaluate(() => { const el = document.querySelector(".wt-lp-form--block"); if (el) el.scrollIntoView(); }); await p.waitForTimeout(600);
+      const s2 = await p.evaluate(([visSrc]) => { const vis = eval(visSrc); return { faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), formVis: vis(document.querySelector(".wt-lp-form--block .wt-form__form")), kind: (document.querySelector(".wt-lp-form--block .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form") }; }, [VIS_SRC]);
+      rows.push({ dev: "pc", js: true, face: "lp", v: "slug-resolved-block", ...s2, pass: s2.faces.includes("wt-face-lp") && s2.formVis && s2.kind === "contact" });
+    } finally { wpS(["post", "meta", "update", lpId, "_wp_page_template", lpMeta]); }
+    try {
+      wpS(["option", "update", "show_on_front", "page"]); wpS(["option", "update", "page_on_front", evId]); // イベントページ（template meta 空）を静的フロントページに → front-page.html が優先し、面は home
+      await p.goto(BASE + HOME + "?wt=event_apply:block-form", { waitUntil: "networkidle" }); const f = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), anyForm: !!document.querySelector(".wt-form__form"), home: !!document.querySelector(".wt-home") }));
+      rows.push({ dev: "pc", js: true, face: "home", v: "front-page-wins-over-slug", ...f, pass: f.faces.includes("wt-face-home") && !f.faces.includes("wt-face-event") && !f.anyForm && f.home });
+    } finally { wpS(["option", "update", "show_on_front", showOnFront]); wpS(["option", "update", "page_on_front", pageOnFront]); }
+    await ctx.close();
+  }
+  out.formSlots = { rows, wpcli: !!wpS, pass: !!wpS && rows.length === 16 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + JS 無効の不正値 2 + 遷移 2 + 境界（別 slug）1 + slug 解決 2 + フロントページ優先 1 = 16（固定値）
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {

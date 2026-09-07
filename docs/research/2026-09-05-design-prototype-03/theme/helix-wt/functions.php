@@ -216,14 +216,22 @@ function wt_is_event_page() {
 	global $_wp_current_template_id;
 	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-event' );
 	// 段 13: template_redirect（テンプレート解決前。フォームの POST 処理）でも同じ答えになるよう、block 階層の規則（template meta が空なら page-{slug}.html）を自前で当てる
-	$by_slug = is_page() && '' === (string) get_page_template_slug( get_queried_object_id() ) && 'event' === get_post_field( 'post_name', get_queried_object_id() ) && file_exists( get_theme_file_path( 'templates/page-event.html' ) );
-	return $resolved || $by_slug || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
+	return $resolved || wt_page_template_by_slug( 'event' ) || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
 }
 
+// 段 13（Astra 1 巡目）: block 階層の規則を自前で当てる（template meta が空なら page-{slug}.html。ただし静的フロントページは front-page.html が優先するので除く）。
+// POST 処理（template_redirect）はテンプレート解決前で $_wp_current_template_id が無いため、この判定で同じ答えにする
+function wt_page_template_by_slug( $slug ) {
+	if ( ! is_page() || is_front_page() ) { return false; }
+	$id = get_queried_object_id();
+	return '' === (string) get_page_template_slug( $id ) && $slug === get_post_field( 'post_name', $id ) && file_exists( get_theme_file_path( 'templates/page-' . $slug . '.html' ) );
+}
 function wt_is_lp_page() {
 	// customTemplates は theme.json に登録した slug（拡張子なし）で core に保存される。
 	// is_page_template() は保存値との完全一致判定のため、slug 表記・旧 .html 表記の両方を許容する。
-	return function_exists( 'is_page_template' ) && is_page_template( array( 'page-lp', 'page-lp.html' ) );
+	global $_wp_current_template_id;
+	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-lp' );
+	return $resolved || wt_page_template_by_slug( 'lp' ) || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-lp', 'page-lp.html' ) ) );
 }
 
 function wt_opt( $key ) {

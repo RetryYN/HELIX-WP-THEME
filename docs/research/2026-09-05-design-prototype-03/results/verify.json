@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.936793)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.936869)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26884,7 +26884,7 @@
     "digits": [
      "37",
      "23",
-     "40"
+     "14"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -27033,7 +27033,7 @@
     "digits": [
      "37",
      "23",
-     "40"
+     "14"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -85429,7 +85429,21 @@
     "js": true,
     "face": "lp",
     "v": "flow",
-    "confirmVis": true,
+    "confirm": {
+     "vis": true,
+     "kind": "contact",
+     "review": {
+      "name": "山田 太郎",
+      "name-kana": "やまだ たろう",
+      "company": "—",
+      "email": "taro@example.com",
+      "tel": "03-1234-5678",
+      "subject-select": "サービスについて",
+      "message": "本文",
+      "consent": "同意する"
+     }
+    },
+    "reviewOk": true,
     "path": "/thanks/",
     "wt": "lp_form:block,lp_sections:extended",
     "thanks": "contact",
@@ -85475,13 +85489,38 @@
     "js": true,
     "face": "event",
     "v": "flow",
-    "confirmVis": true,
+    "confirm": {
+     "vis": true,
+     "kind": "apply",
+     "review": {
+      "name": "山田 太郎",
+      "email": "taro@example.com",
+      "tel": "03-1234-5678",
+      "subject-radio": "会場参加",
+      "people-count": "2",
+      "message": "本文",
+      "consent": "同意する"
+     }
+    },
+    "reviewOk": true,
     "path": "/thanks/",
     "wt": "event_apply:block-form,form_kind:apply",
     "thanks": "apply",
     "pass": true
    },
    {
+    "dev": "pc",
+    "js": true,
+    "face": "page",
+    "v": "boundary-other-slug",
+    "faces": [
+     "wt-face-page"
+    ],
+    "kind": "contact",
+    "title": true,
+    "pass": true
+   },
+   {
     "dev": "sp",
     "js": true,
     "face": "lp",
@@ -85567,6 +85606,19 @@
    {
     "dev": "sp",
     "js": false,
+    "face": "lp",
+    "v": "nojs-invalid",
+    "step": "input",
+    "kind": "contact",
+    "errs": [
+     "email"
+    ],
+    "name": "山田 太郎",
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
     "face": "event",
     "v": "block",
     "formVis": true,
@@ -85589,9 +85641,60 @@
     "applyLinks": 1,
     "h1": 1,
     "anyForm": true,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "face": "event",
+    "v": "nojs-invalid",
+    "step": "input",
+    "kind": "apply",
+    "errs": [
+     "people-count",
+     "subject-radio"
+    ],
+    "name": "山田 太郎",
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "lp",
+    "v": "slug-resolved-default-no-block",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "anyForm": false,
+    "lpHero": true,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "lp",
+    "v": "slug-resolved-block",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "formVis": true,
+    "kind": "contact",
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "home",
+    "v": "front-page-wins-over-slug",
+    "faces": [
+     "wt-face-home"
+    ],
+    "anyForm": false,
+    "home": true,
     "pass": true
    }
   ],
+  "wpcli": true,
   "pass": true
  },
  "categoryVariants": {
