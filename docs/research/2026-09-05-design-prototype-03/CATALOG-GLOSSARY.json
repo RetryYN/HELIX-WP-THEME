@@ -973,7 +973,7 @@
     },
     "form-fields": {
       "label": "項目セット",
-      "desc": "項目の組（台帳 fields: name 97% / email 94% / message 77% / tel 77% / address 61% / consent 61% …）。既定 by-kind = 種別ごとの観察セット。full は定義した 47 項目全部（台帳の観察トークン 46 種を漏れなく含む。対応表は inc/form.php の obs）。",
+      "desc": "項目の組（台帳 fields: name 97% / email 94% / message 77% / tel 77% / address 61% / consent 61% …）。既定 by-kind = 種別ごとの観察セット。full は基本 47 項目全部 + 同意 + captcha（台帳の観察トークン 47 種を漏れなく含む。対応表は inc/form.php の obs）。",
       "variants": {
         "by-kind": "種別ごとの並び（既定）。",
         "minimal": "名前・メール・本文。",

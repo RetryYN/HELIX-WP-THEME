@@ -151,8 +151,8 @@ function wt_form_validate( $vals ) {
 		$multi = in_array( $d['type'], array( 'date3', 'yesno', 'checks' ), true );
 		if ( '' !== $v && is_array( $v ) !== $multi ) { $errors[ $f ] = $d['label'] . 'の形式が正しくありません。'; continue; } // 入力の形（配列 / 単値）が違う異常 POST は通常のエラーへ
 		if ( 'checkbox' === $d['type'] ) { if ( $d['req'] && ! $v ) { $errors[ $f ] = '同意が必要です。'; } continue; }
-		if ( 'yesno' === $d['type'] ) { $answered = is_array( $v ) ? count( array_filter( $v, fn( $x ) => '' !== $x ) ) : 0; if ( $d['req'] && $answered < count( $d['questions'] ) ) { $errors[ $f ] = count( $d['questions'] ) . ' つの質問すべてに答えてください。'; } continue; }
-		if ( 'checks' === $d['type'] ) { continue; }
+		if ( 'yesno' === $d['type'] ) { $ok = true; foreach ( array_keys( $d['questions'] ) as $qi ) { if ( ! in_array( $v[ $qi ] ?? '', array( 'はい', 'いいえ' ), true ) ) { $ok = false; } } if ( ! $ok && ( $d['req'] || count( array_filter( (array) $v, fn( $x ) => '' !== $x ) ) ) ) { $errors[ $f ] = count( $d['questions'] ) . ' つの質問すべてに答えてください。'; } continue; } // 質問キー 0..n-1 それぞれに はい / いいえ（別キーや別値は通さない）
+		if ( 'checks' === $d['type'] ) { foreach ( (array) $v as $x ) { if ( '' !== $x && ! in_array( $x, $d['options'], true ) ) { $errors[ $f ] = $d['label'] . 'の選択肢にありません。'; } } continue; }
 		if ( 'date3' === $d['type'] ) { if ( $d['req'] && '' === trim( (string) ( is_array( $v ) ? ( $v[0] ?? '' ) : '' ) ) ) { $errors[ $f ] = '第 1 希望日を入力してください。'; } continue; } // JS と同じ: 第 1 希望が必須
 		$v = trim( (string) $v ); $empty = '' === $v;
 		if ( $d['req'] && $empty ) { $errors[ $f ] = $d['label'] . ( in_array( $d['type'], array( 'select', 'radio' ), true ) ? 'を選択してください。' : 'を入力してください。' ); continue; }

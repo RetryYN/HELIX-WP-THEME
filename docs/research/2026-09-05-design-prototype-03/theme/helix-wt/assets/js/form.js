@@ -3,7 +3,8 @@
   var form = document.querySelector('.wt-form__form'); if (!form) return;
   var root = form.closest('.wt-form'); var mode = form.getAttribute('data-wt-error') || 'inline';
   var rows = function(){ return Array.prototype.slice.call(form.querySelectorAll('.wt-form__row')); };
-  var EMAIL = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/; /* is_email() 相当: ローカル部・ドメイン各ラベル・連続ドットなし */
+  /* WordPress is_email() と同じ規則: 6 文字以上、@ は 1 つ、ローカル部は許可文字のみ、ドメインは '..' なし・ラベル 2 つ以上・各ラベルは英数字とハイフンでハイフン始まり/終わりでない */
+  function isEmail(v){ if (v.length < 6 || v.indexOf('@', 1) === -1) return false; var at = v.lastIndexOf('@'); if (v.indexOf('@') !== at) return false; var local = v.slice(0, at), domain = v.slice(at + 1); if (!/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+$/.test(local)) return false; if (/\.\./.test(domain)) return false; var subs = domain.replace(/^\.+|\.+$/g, '').split('.'); if (subs.length < 2) return false; return subs.every(function(x){ return /^[a-z0-9-]+$/i.test(x) && !/^-|-$/.test(x); }); }
   function labelOf(row){ var l = row.querySelector('.wt-form__label'); return l ? l.textContent.replace(/[*＊]|必須|（必須）/g, '').trim() : ''; }
   function focusId(row){ var f = row.getAttribute('data-wt-field'); var t = row.className.match(/wt-form__row--([a-z0-9]+)/)[1]; if (t === 'date3') return 'wt-f-' + f + '-1'; if (t === 'radio' || t === 'checks') return 'wt-f-' + f + '-0'; if (t === 'yesno') return 'wt-f-' + f + '-0-y'; return 'wt-f-' + f; }
   function validateRow(row){
@@ -16,7 +17,7 @@
     if (t === 'radio') return req && !inputs.some(function(i){ return i.checked; }) ? label + 'を選択してください。' : '';
     var v = (inputs[0].value || '').trim();
     if (!v) return req ? label + (t === 'select' ? 'を選択してください。' : 'を入力してください。') : '';
-    if (t === 'email') { if (!EMAIL.test(v)) return 'メールアドレスの形式が正しくありません。'; if (f === 'email-confirm') { var e = form.querySelector('#wt-f-email'); if (e && e.value.trim() !== v) return 'メールアドレスが一致しません。'; } }
+    if (t === 'email') { if (!isEmail(v)) return 'メールアドレスの形式が正しくありません。'; if (f === 'email-confirm') { var e = form.querySelector('#wt-f-email'); if (e && e.value.trim() !== v) return 'メールアドレスが一致しません。'; } }
     if (t === 'tel' && !/^[0-9０-９+\-() ]{8,20}$/.test(v)) return label + 'の形式が正しくありません。';
     if (t === 'postal' && !/^\d{3}-?\d{4}$/.test(v)) return '郵便番号は 7 桁で入力してください。';
     if (t === 'kana' && !/^[ぁ-ゖー\s　]+$/.test(v)) return 'ひらがなで入力してください。';

@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884834)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884892)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26697,8 +26697,8 @@
     "mainW": 1021,
     "digits": [
      "38",
-     "3",
-     "5"
+     "2",
+     "25"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26846,8 +26846,8 @@
     "mainW": 390,
     "digits": [
      "38",
-     "3",
-     "5"
+     "2",
+     "25"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -55510,6 +55510,154 @@
    {
     "dev": "pc",
     "js": true,
+    "axis": "tamper",
+    "v": "array-type",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "tel",
+       "電話番号の形式が正しくありません。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "tamper",
+    "v": "question-keys",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "eligibility-questions",
+       "3 つの質問すべてに答えてください。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "tamper",
+    "v": "choice-outside",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "subject-select",
+       "お問い合わせ種別の選択肢にありません。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "summary-kind",
+    "v": "diagnosis",
+    "r1": {
+     "errRows": [
+      "name",
+      "email",
+      "industry-select",
+      "subject-radio",
+      "eligibility-questions",
+      "consent"
+     ],
+     "invalid": [
+      "name",
+      "email",
+      "industry-select",
+      "subject-radio",
+      "eligibility-questions",
+      "consent"
+     ],
+     "links": [
+      "#wt-f-name",
+      "#wt-f-email",
+      "#wt-f-industry-select",
+      "#wt-f-subject-radio-0",
+      "#wt-f-eligibility-questions-0-y",
+      "#wt-f-consent"
+     ],
+     "targetsOk": true,
+     "describedBy": [
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary"
+     ],
+     "focused": "wt-form-summary"
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "summary-kind",
+    "v": "reservation",
+    "r1": {
+     "errRows": [
+      "name",
+      "name-kana",
+      "email",
+      "date-pref",
+      "time-pref",
+      "people-count",
+      "message",
+      "consent"
+     ],
+     "invalid": [
+      "name",
+      "name-kana",
+      "email",
+      "date-pref",
+      "time-pref",
+      "people-count",
+      "message",
+      "consent"
+     ],
+     "links": [
+      "#wt-f-name",
+      "#wt-f-name-kana",
+      "#wt-f-email",
+      "#wt-f-date-pref-1",
+      "#wt-f-time-pref",
+      "#wt-f-people-count",
+      "#wt-f-message",
+      "#wt-f-consent"
+     ],
+     "targetsOk": true,
+     "describedBy": [
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary"
+     ],
+     "focused": "wt-form-summary"
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
     "axis": "flow",
     "v": "form_confirm:yes,form_thanks:separate",
     "step1": {
@@ -67145,6 +67293,154 @@
    {
     "dev": "sp",
     "js": true,
+    "axis": "tamper",
+    "v": "array-type",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "tel",
+       "電話番号の形式が正しくありません。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "tamper",
+    "v": "question-keys",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "eligibility-questions",
+       "3 つの質問すべてに答えてください。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "tamper",
+    "v": "choice-outside",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "subject-select",
+       "お問い合わせ種別の選択肢にありません。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "summary-kind",
+    "v": "diagnosis",
+    "r1": {
+     "errRows": [
+      "name",
+      "email",
+      "industry-select",
+      "subject-radio",
+      "eligibility-questions",
+      "consent"
+     ],
+     "invalid": [
+      "name",
+      "email",
+      "industry-select",
+      "subject-radio",
+      "eligibility-questions",
+      "consent"
+     ],
+     "links": [
+      "#wt-f-name",
+      "#wt-f-email",
+      "#wt-f-industry-select",
+      "#wt-f-subject-radio-0",
+      "#wt-f-eligibility-questions-0-y",
+      "#wt-f-consent"
+     ],
+     "targetsOk": true,
+     "describedBy": [
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary"
+     ],
+     "focused": "wt-form-summary"
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "summary-kind",
+    "v": "reservation",
+    "r1": {
+     "errRows": [
+      "name",
+      "name-kana",
+      "email",
+      "date-pref",
+      "time-pref",
+      "people-count",
+      "message",
+      "consent"
+     ],
+     "invalid": [
+      "name",
+      "name-kana",
+      "email",
+      "date-pref",
+      "time-pref",
+      "people-count",
+      "message",
+      "consent"
+     ],
+     "links": [
+      "#wt-f-name",
+      "#wt-f-name-kana",
+      "#wt-f-email",
+      "#wt-f-date-pref-1",
+      "#wt-f-time-pref",
+      "#wt-f-people-count",
+      "#wt-f-message",
+      "#wt-f-consent"
+     ],
+     "targetsOk": true,
+     "describedBy": [
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary"
+     ],
+     "focused": "wt-form-summary"
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
     "axis": "flow",
     "v": "form_confirm:yes,form_thanks:separate",
     "step1": {
@@ -78808,6 +79104,154 @@
      "name": "山田 太郎",
      "focused": "wt-form__summary",
      "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "tamper",
+    "v": "array-type",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "tel",
+       "電話番号の形式が正しくありません。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "tamper",
+    "v": "question-keys",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "eligibility-questions",
+       "3 つの質問すべてに答えてください。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "tamper",
+    "v": "choice-outside",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "subject-select",
+       "お問い合わせ種別の選択肢にありません。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "summary-kind",
+    "v": "diagnosis",
+    "r1": {
+     "errRows": [
+      "name",
+      "email",
+      "industry-select",
+      "subject-radio",
+      "eligibility-questions",
+      "consent"
+     ],
+     "invalid": [
+      "name",
+      "email",
+      "industry-select",
+      "subject-radio",
+      "eligibility-questions",
+      "consent"
+     ],
+     "links": [
+      "#wt-f-name",
+      "#wt-f-email",
+      "#wt-f-industry-select",
+      "#wt-f-subject-radio-0",
+      "#wt-f-eligibility-questions-0-y",
+      "#wt-f-consent"
+     ],
+     "targetsOk": true,
+     "describedBy": [
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary"
+     ],
+     "focused": "wt-form-summary"
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "summary-kind",
+    "v": "reservation",
+    "r1": {
+     "errRows": [
+      "name",
+      "name-kana",
+      "email",
+      "date-pref",
+      "time-pref",
+      "people-count",
+      "message",
+      "consent"
+     ],
+     "invalid": [
+      "name",
+      "name-kana",
+      "email",
+      "date-pref",
+      "time-pref",
+      "people-count",
+      "message",
+      "consent"
+     ],
+     "links": [
+      "#wt-f-name",
+      "#wt-f-name-kana",
+      "#wt-f-email",
+      "#wt-f-date-pref-1",
+      "#wt-f-time-pref",
+      "#wt-f-people-count",
+      "#wt-f-message",
+      "#wt-f-consent"
+     ],
+     "targetsOk": true,
+     "describedBy": [
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary",
+      "wt-form-summary"
+     ],
+     "focused": "wt-form-summary"
     },
     "pass": true
    },

@@ -1843,7 +1843,7 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
     const unmapped = tokens.filter((t) => !(t in OBS)); const ctx = await browser.newContext(PC); const p = await ctx.newPage(); await goto(p, FORM + "?wt=form_fields:full,form_captcha:question", true);
     const present = await p.$$eval(".wt-form__row", (a) => a.map((x) => x.getAttribute("data-wt-field"))); await ctx.close();
     const missing = tokens.filter((t) => OBS[t] && !present.includes(OBS[t]) && OBS[t] !== "privacy-link"); // privacy-link は form_consent:link-only の行で出る（同じ検査の consent 軸）
-    rows.push({ dev: "pc", js: true, axis: "coverage", v: "ledger-fields", tokens: tokens.length, unmapped, missing, present: present.length, pass: tokens.length >= 40 && unmapped.length === 0 && missing.length === 0 && present.length === FULL.length + 2 }); }
+    rows.push({ dev: "pc", js: true, axis: "coverage", v: "ledger-fields", tokens: tokens.length, unmapped, missing, present: present.length, pass: tokens.length >= 40 && unmapped.length === 0 && missing.length === 0 && present.length === FULL.length + 2 /* full 47 + captcha + consent = 49 */ }); }
   for (const [dev, cfg, js] of [["pc", PC, true], ["sp", SP, true], ["sp", SP, false]]) {
     const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage(); let external = []; p.on("request", (req) => { try { const u = new URL(req.url()); if (/^https?:$/.test(u.protocol) && u.host !== baseHost) external.push(u.host); } catch (_) { /* data: */ } });
     for (const [axis, values] of Object.entries(AX)) for (const v of values) {
@@ -1881,6 +1881,25 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       const r = await p.evaluate(() => ({ step: (document.querySelector(".wt-form") || { getAttribute: () => null }).getAttribute("data-wt-step"), thanks: !!document.querySelector(".wt-form-thanks"), summary: (document.querySelector(".wt-form__summary") || {}).textContent || "", name: (document.querySelector("#wt-f-name") || {}).value, focused: document.activeElement.className, h1: Array.from(document.querySelectorAll("h1")).filter((h) => h.offsetHeight).length }));
       rows.push({ dev, js, axis: "tamper", v: what, r, pass: r.step === "input" && !r.thanks && r.summary.includes(text) && r.name === "山田 太郎" && r.focused.includes("wt-form__summary") && r.h1 === 1 });
     }
+    // 異常 POST（項目単位）: 単値の欄を配列で送る / yes-no を別の質問キーで送る / select の選択肢外 → その項目のエラーで入力へ戻る（確認・完了へ進まない）。JS ありでもフォームの DOM を書き換えてから送るので JS 検証を素通りしうる = サーバの検査
+    for (const [what, q, tamper, expectErr, text] of [
+      ["array-type", "form_confirm:yes", (f) => { f.querySelector("#wt-f-tel").name = "wt_form[tel][]"; f.querySelector("#wt-f-tel").value = "0312345678"; }, "tel", "電話番号の形式が正しくありません。"],
+      ["question-keys", "form_confirm:yes,form_kind:diagnosis", (f) => { f.querySelectorAll(".wt-form__yesno input").forEach((i, k) => { i.name = "wt_form[eligibility_questions][" + (3 + Math.floor(k / 2)) + "]"; }); }, "eligibility-questions", "3 つの質問すべてに答えてください。"],
+      ["choice-outside", "form_confirm:yes", (f) => { const o = f.querySelector("#wt-f-subject-select option:checked"); o.value = "不正な値"; }, "subject-select", "お問い合わせ種別の選択肢にありません。"],
+    ]) {
+      await goto(p, FORM + "?wt=" + q, js); const kind = q.includes("diagnosis") ? "diagnosis" : "contact";
+      await p.fill("#wt-f-name", "山田 太郎"); await p.fill("#wt-f-email", "taro@example.com"); await p.fill("#wt-f-tel", "03-1234-5678"); await p.check("#wt-f-consent");
+      if (kind === "contact") { await p.fill("#wt-f-name-kana", "やまだ たろう"); await p.selectOption("#wt-f-subject-select", { index: 1 }); await p.fill("#wt-f-message", "本文"); } else { await p.selectOption("#wt-f-industry-select", { index: 1 }); await p.check("#wt-f-subject-radio-0"); for (const i of [0, 1, 2]) await p.check(`#wt-f-eligibility-questions-${i}-y`); }
+      await p.$eval(".wt-form__form", tamper); await p.$eval(".wt-form__form", (f) => f.submit()); /* HTMLFormElement.submit() は submit イベントを起こさない = JS 検証を通さず素の POST */ await p.waitForTimeout(800);
+      const r = await p.evaluate(() => ({ step: (document.querySelector(".wt-form") || { getAttribute: () => null }).getAttribute("data-wt-step"), thanks: !!document.querySelector(".wt-form-thanks"), err: Array.from(document.querySelectorAll(".wt-form__row.is-error")).map((x) => [x.getAttribute("data-wt-field"), (x.querySelector(".wt-form__error") || {}).textContent || ""]), h1: Array.from(document.querySelectorAll("h1")).filter((h) => h.offsetHeight).length }));
+      rows.push({ dev, js, axis: "tamper", v: what, r, pass: r.step === "input" && !r.thanks && r.err.length === 1 && r.err[0][0] === expectErr && r.err[0][1] === text && r.h1 === 1 });
+    }
+    // top-summary × ラジオ / 希望日 / yes-no を持つ種別（diagnosis / reservation）: まとめのリンク先が実在する入力で、aria-describedby がまとめを指す
+    for (const kind of ["diagnosis", "reservation"]) {
+      await goto(p, FORM + `?wt=form_error:top-summary,form_kind:${kind}`, js); await clickSubmit(p); const r1 = await p.evaluate(READ, [VIS_SRC]);
+      const reqF = expectFields(kind, "by-kind", "checkbox", "none").filter((f) => REQ.has(f));
+      rows.push({ dev, js, axis: "summary-kind", v: kind, r1: { errRows: r1.errRows, invalid: r1.invalid, links: r1.summaryLinks, targetsOk: r1.summaryTargetsOk, describedBy: r1.describedBy, focused: r1.focused }, pass: JSON.stringify(r1.errRows) === JSON.stringify(reqF) && JSON.stringify(r1.invalid) === JSON.stringify(reqF) && r1.summary && JSON.stringify(r1.summaryLinks) === JSON.stringify(reqF.map((f) => "#" + focusIdOf(f))) && r1.summaryTargetsOk && r1.describedBy.every((d) => d === "wt-form-summary") && r1.descOk && r1.focused === "wt-form-summary" && r1.errInline === 0 });
+    }
     // 遷移: confirm 3 型 × thanks 2 型（JS あり / なし）
     for (const confirm of ["yes", "no", "inline-review"]) for (const thanks of ["separate", "inline"]) {
       external = []; const q = `form_confirm:${confirm},form_thanks:${thanks}`; await goto(p, FORM + "?wt=" + q, js);
@@ -1912,7 +1931,7 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       rows.push({ dev, js, axis: "flow", v: `steps:${kind}`, steps: ps, s1, seen, s4, pass }); }
     await ctx.close();
   }
-  out.formFace = { pageSource, rows, pass: pageSource === "wp-cli" && rows.length === 139 && rows.every((x) => x.pass) }; // 1（網羅性）+ 3 × (35 軸行 + 1 形式 + 2 改ざん + 6 遷移) + 2 × 3 steps = 139。件数は固定（軸の削除で減れば fail）
+  out.formFace = { pageSource, rows, pass: pageSource === "wp-cli" && rows.length === 154 && rows.every((x) => x.pass) }; // 1（網羅性）+ 3 × (35 軸行 + 1 形式 + 2 改ざん + 3 異常 POST + 2 まとめ × 種別 + 6 遷移) + 2 × 3 steps = 154。件数は固定（軸の削除で減れば fail）
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
