@@ -1692,6 +1692,24 @@
       "requirement_id": "WT-FR-VOCAB-03",
       "polarity": "positive",
       "oracle": "既定文言は「本記事にはプロモーションが含まれます。」で、CTA・商品カード束の不要な PR バッジを出さない。本文表記との重複抑止と欠落防止の両立は pending_resolution 解決後に判定する"
+    },
+    {
+      "id": "WT-AC-PAID-01C",
+      "requirement_id": "WT-FR-PAID-01",
+      "polarity": "boundary",
+      "oracle": "無料会員・別商品購入済み・購読失効の閲覧者には購入本文を返さず、対象購入済み・有効購読で対象本文を返す。公開HTML・REST・検索・feed・一覧とキャッシュ設定を確認する。"
+    },
+    {
+      "id": "WT-AC-INTERVIEW-01C",
+      "requirement_id": "WT-FR-INTERVIEW-01",
+      "polarity": "boundary",
+      "oracle": "掲載確認前のインタビューを公開せず、確認済みだけを詳細と埋め込みで参照する。テーマ変更後も独立管理単位と保存データが残る。"
+    },
+    {
+      "id": "WT-AC-BLP-01C",
+      "requirement_id": "WT-FR-BLP-01",
+      "polarity": "positive",
+      "oracle": "BLPの理解・適否判断から、別管理の獲得LPと入力操作へ到達する。PC/SP・JavaScript無効でも本文と次の導線が成立する。"
     }
   ]
 }

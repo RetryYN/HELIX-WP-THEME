@@ -1,0 +1,14 @@
+{
+  "schema": "wt-content-faces-poc.v1",
+  "types": {
+    "wt_paid": {"label": "有料記事", "slug": "library", "requirement": "WT-FR-PAID-01"},
+    "wt_interview": {"label": "インタビュー", "slug": "voices", "requirement": "WT-FR-INTERVIEW-01"},
+    "wt_blp": {"label": "理解・比較ページ", "slug": "guides", "requirement": "WT-FR-BLP-01"},
+    "wt_lp": {"label": "獲得LP", "slug": "start", "requirement": "WT-FR-LP-01"}
+  },
+  "views": ["preview", "sales", "body"],
+  "designs": ["standard", "editorial"],
+  "ownership": ["inherit", "own", "off"],
+  "entitlements": ["none", "oneoff", "subscription", "expired", "other_product"],
+  "boundary": "Local fixtures stand in for an external entitlement provider. No payment or subscription transaction is executed."
+}

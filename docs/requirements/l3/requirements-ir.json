@@ -3924,7 +3924,8 @@
         "WT-CAND-PAID",
         "WT-EVT-0296",
         "WT-EVT-0299",
-        "WT-EVT-0300"
+        "WT-EVT-0300",
+        "WT-EVT-0305"
       ],
       "statement": "有料記事は無料記事のオプションに内包せず独立管理する。買い切り / 定期購読について、一覧・販売案内・試し読み・購入者向け本文を表示用途と閲覧権限の組み合わせで検証する。決済・購読・会員の業務処理は外部機能へ委ね、テーマは接続・権限別表示・遷移を担当する。",
       "priority": "P1",
@@ -3939,14 +3940,15 @@
       ],
       "acceptance_ids": [
         "WT-AC-PAID-01A",
-        "WT-AC-PAID-01B"
+        "WT-AC-PAID-01B",
+        "WT-AC-PAID-01C"
       ],
       "test_ids": [
         "WT-AT-PAID-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "635c8d3ba30306a6"
+      "semantic_digest": "b76d06f78ef8703c"
     },
     {
       "id": "WT-FR-INTERVIEW-01",
@@ -3958,7 +3960,8 @@
         "WT-CAND-INTERVIEW",
         "WT-EVT-0296",
         "WT-EVT-0299",
-        "WT-EVT-0300"
+        "WT-EVT-0300",
+        "WT-EVT-0305"
       ],
       "statement": "インタビューは通常記事へ内包せず独立管理し、人物・所属・発言・掲載確認を扱う面と、企業 / サービス / LP への要約・カード埋め込みを持つ。信頼形成を目的とし、一覧・詳細・埋め込みの関係を早期の代表モックで確認する。",
       "priority": "P1",
@@ -3973,14 +3976,15 @@
       ],
       "acceptance_ids": [
         "WT-AC-INTERVIEW-01A",
-        "WT-AC-INTERVIEW-01B"
+        "WT-AC-INTERVIEW-01B",
+        "WT-AC-INTERVIEW-01C"
       ],
       "test_ids": [
         "WT-AT-INTERVIEW-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "816382db6ea10f32"
+      "semantic_digest": "7a9ef4b0d8a19218"
     },
     {
       "id": "WT-FR-BLP-01",
@@ -3992,7 +3996,8 @@
         "WT-CAND-BLP",
         "WT-EVT-0296",
         "WT-EVT-0299",
-        "WT-EVT-0300"
+        "WT-EVT-0300",
+        "WT-EVT-0305"
       ],
       "statement": "BLP は理解・納得を促して LP への移動を支える面として、CV 獲得を目的とする LP と意味・管理を区別する。比較ページは目的により BLP / 比較記事等へ位置付け、LP への導線と本文・根拠を代表モックで確認する。共通部品の継承・独自設定・非表示を目的に応じて選ぶ。",
       "priority": "P1",
@@ -4007,14 +4012,15 @@
       ],
       "acceptance_ids": [
         "WT-AC-BLP-01A",
-        "WT-AC-BLP-01B"
+        "WT-AC-BLP-01B",
+        "WT-AC-BLP-01C"
       ],
       "test_ids": [
         "WT-AT-BLP-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "dbe0f29139bab429"
+      "semantic_digest": "848386cf1651a07e"
     },
     {
       "id": "WT-FR-FORM-01",

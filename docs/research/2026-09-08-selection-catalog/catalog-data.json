@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 131,
-  "screenshotCount": 978,
+  "screenshotCount": 1008,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -10652,6 +10652,293 @@
         "WT-FR-EVENT-01",
         "WT-FR-FORM-01"
       ]
+    },
+    {
+      "id": "content:oneoff-standard",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "oneoff / standard / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/oneoff-standard-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/oneoff-standard-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/decision-design/?design=standard",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:oneoff-editorial",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "oneoff / editorial / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/oneoff-editorial-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/oneoff-editorial-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/decision-design/?design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:subscription-standard",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "subscription / standard / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/subscription-standard-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/subscription-standard-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/monthly-notes/?design=standard",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:subscription-editorial",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "subscription / editorial / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/subscription-editorial-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/subscription-editorial-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/monthly-notes/?design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:interview-standard",
+      "face": "interview",
+      "part": "content-interview",
+      "label": "インタビュー",
+      "variant": "interview / standard / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/interview-standard-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/interview-standard-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-INTERVIEW-01"
+      ],
+      "demoRoute": "/voices/making-room/?design=standard",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:interview-editorial",
+      "face": "interview",
+      "part": "content-interview",
+      "label": "インタビュー",
+      "variant": "interview / editorial / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/interview-editorial-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/interview-editorial-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-INTERVIEW-01"
+      ],
+      "demoRoute": "/voices/making-room/?design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:blp-standard",
+      "face": "blp",
+      "part": "content-blp",
+      "label": "理解から相談へ進むBLP",
+      "variant": "blp / standard / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/blp-standard-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/blp-standard-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-BLP-01"
+      ],
+      "demoRoute": "/guides/before-redesign/?design=standard",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:blp-editorial",
+      "face": "blp",
+      "part": "content-blp",
+      "label": "理解から相談へ進むBLP",
+      "variant": "blp / editorial / preview / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/blp-editorial-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/blp-editorial-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-BLP-01"
+      ],
+      "demoRoute": "/guides/before-redesign/?design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:lp-standard",
+      "face": "lp",
+      "part": "content-lp",
+      "label": "相談を受け付けるLP",
+      "variant": "lp / standard / preview / anonymous",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/lp-standard-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/lp-standard-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
+      ],
+      "demoRoute": "/start/editorial-session/?design=standard",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:lp-editorial",
+      "face": "lp",
+      "part": "content-lp",
+      "label": "相談を受け付けるLP",
+      "variant": "lp / editorial / preview / anonymous",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/lp-editorial-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/lp-editorial-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
+      ],
+      "demoRoute": "/start/editorial-session/?design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:paid-list",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "paid / editorial / list / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/paid-list-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/paid-list-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/?design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:oneoff-sales",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "oneoff / editorial / sales / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/oneoff-sales-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/oneoff-sales-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/decision-design/?view=sales&design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:subscription-sales",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "subscription / editorial / sales / anonymous",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/subscription-sales-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/subscription-sales-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/monthly-notes/?view=sales&design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:oneoff-granted",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "oneoff / editorial / body / oneoff",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/oneoff-granted-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/oneoff-granted-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/decision-design/?view=body&design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
+    },
+    {
+      "id": "content:subscription-granted",
+      "face": "paid",
+      "part": "content-paid",
+      "label": "有料記事",
+      "variant": "subscription / editorial / body / subscription",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "description": "独立したWordPress検証環境で描画した代表モック。standardとeditorialは同じ本文・画面幅で比較します。購入者本文は対象権限のある検証アカウントでのみ表示されます。",
+      "images": {
+        "pc": "../2026-09-08-content-faces/results/subscription-granted-pc.jpg",
+        "sp": "../2026-09-08-content-faces/results/subscription-granted-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAID-01"
+      ],
+      "demoRoute": "/library/monthly-notes/?view=body&design=editorial",
+      "evidence": "../2026-09-08-content-faces/results/verify.json"
     }
   ],
   "requirements": [
@@ -10677,6 +10964,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -10702,6 +10990,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -10727,6 +11016,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -10752,6 +11042,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -10777,6 +11068,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -10802,6 +11094,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -10924,6 +11217,7 @@
         "lp:chrome-foot-off-lp",
         "lp:chrome-head-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11046,6 +11340,7 @@
         "lp:chrome-foot-off-lp",
         "lp:chrome-head-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11180,6 +11475,7 @@
         "lp:chrome-foot-off-lp",
         "lp:chrome-head-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11360,6 +11656,7 @@
         "lp:chrome-foot-off-lp",
         "lp:chrome-head-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11534,6 +11831,7 @@
         "lp:chrome-foot-off-lp",
         "lp:chrome-head-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11617,6 +11915,7 @@
         "article:box-qa-modal-open",
         "article:table-rich"
       ],
+      "evidence": null,
       "pending": [
         "「最大数」と新規ブロック上限 7 の関係を整理する。表現の型数と登録ブロック数は別であり、PoC の動的ブロック数で製品の上限遵守を判定しない。上限撤廃を PO 決定とみなさない。"
       ],
@@ -11696,6 +11995,7 @@
         "article:box-qa-modal-open",
         "article:table-rich"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11779,6 +12079,7 @@
         "article:box-qa-modal-open",
         "article:table-rich"
       ],
+      "evidence": null,
       "pending": [
         "本文の表記がある場合の重複抑止と「本文編集により消せない」条件の両立を確定する。PoC の先頭文字列検出は広告リンク有無の機械判定を代替しない。"
       ],
@@ -11858,6 +12159,7 @@
         "article:box-qa-modal-open",
         "article:table-rich"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -11883,6 +12185,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -11908,6 +12211,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12041,6 +12345,7 @@
         "article:graph-gauge",
         "article:graph-radar"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -12156,6 +12461,7 @@
         "article:graph-gauge",
         "article:graph-radar"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -12277,6 +12583,7 @@
         "article:graph-gauge",
         "article:graph-radar"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -12382,6 +12689,7 @@
         "page:page-side-off",
         "home:home-side-off"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -12419,6 +12727,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12496,8 +12805,11 @@
         "lp:lp-sections-extended-4",
         "lp:lp-sections-extended-5",
         "lp:lp-sections-extended-6",
-        "lp:lp-form-block"
+        "lp:lp-form-block",
+        "content:lp-standard",
+        "content:lp-editorial"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -12569,8 +12881,11 @@
         "lp:lp-sections-extended-4",
         "lp:lp-sections-extended-5",
         "lp:lp-sections-extended-6",
-        "lp:lp-form-block"
+        "lp:lp-form-block",
+        "content:lp-standard",
+        "content:lp-editorial"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -12596,6 +12911,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12621,6 +12937,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12646,6 +12963,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12671,6 +12989,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12696,6 +13015,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12721,6 +13041,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12746,6 +13067,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12771,6 +13093,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12796,6 +13119,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12821,6 +13145,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12846,6 +13171,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12871,6 +13197,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12902,6 +13229,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12927,6 +13255,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12952,6 +13281,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -12977,6 +13307,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13002,6 +13333,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13027,6 +13359,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13052,6 +13385,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13077,6 +13411,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13102,6 +13437,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13127,6 +13463,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13152,6 +13489,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13177,6 +13515,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13202,6 +13541,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13227,6 +13567,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13252,6 +13593,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13277,6 +13619,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13302,6 +13645,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13327,6 +13671,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13352,6 +13697,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13377,6 +13723,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13402,6 +13749,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13427,6 +13775,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13452,6 +13801,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13477,6 +13827,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13502,6 +13853,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13527,6 +13879,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13552,6 +13905,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13577,6 +13931,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13602,6 +13957,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13627,6 +13983,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13652,6 +14009,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13677,6 +14035,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13702,6 +14061,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13727,6 +14087,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13752,6 +14113,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13777,6 +14139,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13802,6 +14165,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13827,6 +14191,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13852,6 +14217,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13877,6 +14243,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -13925,6 +14292,7 @@
         "lp:lp-line-button",
         "lp:lp-line-qr"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -13973,6 +14341,7 @@
         "lp:lp-line-button",
         "lp:lp-line-qr"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -13998,6 +14367,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14023,6 +14393,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14048,6 +14419,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14073,6 +14445,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14137,6 +14510,7 @@
         "page:side-page-corporate-6",
         "home:side-home-owned-4"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14183,6 +14557,7 @@
         "page:side-page-corporate-6",
         "home:side-home-owned-4"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14208,6 +14583,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14233,6 +14609,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14289,6 +14666,7 @@
         "page:chrome-fix-site-page",
         "lp:chrome-fix-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14345,6 +14723,7 @@
         "page:chrome-fix-site-page",
         "lp:chrome-fix-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14401,6 +14780,7 @@
         "page:chrome-fix-site-page",
         "lp:chrome-fix-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14457,6 +14837,7 @@
         "page:chrome-fix-site-page",
         "lp:chrome-fix-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14513,6 +14894,7 @@
         "page:chrome-fix-site-page",
         "lp:chrome-fix-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14538,6 +14920,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14563,6 +14946,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14588,6 +14972,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14613,6 +14998,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14638,6 +15024,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14663,6 +15050,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14693,6 +15081,7 @@
         "article:tail-author-avatar-bio-sns",
         "article:tail-author-supervisor"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14723,6 +15112,7 @@
         "article:tail-author-avatar-bio-sns",
         "article:tail-author-supervisor"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14748,6 +15138,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14795,6 +15186,7 @@
         "article:related-slider",
         "category:category-ranking-top"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -14820,6 +15212,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14845,6 +15238,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14870,6 +15264,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -14985,6 +15380,7 @@
         "article:graph-gauge",
         "article:graph-radar"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -15010,6 +15406,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15035,6 +15432,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15060,6 +15458,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15085,6 +15484,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15110,6 +15510,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15135,6 +15536,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15160,6 +15562,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15185,6 +15588,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15210,6 +15614,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15235,6 +15640,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15260,6 +15666,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15291,6 +15698,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15316,6 +15724,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15341,6 +15750,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15366,6 +15776,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15401,6 +15812,7 @@
         "404:404-cta",
         "404:404-suggest"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -15489,6 +15901,7 @@
         "page:page-parts-full-5",
         "page:page-parts-full-6"
       ],
+      "evidence": null,
       "pending": [
         "旧「自前フォームは保持せず」と新しいフォーム表示試作の境界を分離した。実送信・保存の担当と第三者フォームへの譲渡契約を設計・受入条件で確定する。"
       ],
@@ -15516,6 +15929,7 @@
       ],
       "status": "not_verified",
       "relatedEntryIds": [],
+      "evidence": null,
       "pending": [],
       "next": "操作・状態・契約を含む再現デモと証跡を追加する"
     },
@@ -15604,6 +16018,7 @@
         "page:page-parts-full-5",
         "page:page-parts-full-6"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -15671,6 +16086,7 @@
         "home:home-sections-school-org-3",
         "home:home-sections-school-org-4"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -15749,6 +16165,7 @@
         "event:event-sections-seminar-classic-4",
         "event:event-apply-block-form"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -15757,7 +16174,7 @@
       "family": "PAID",
       "statement": "有料記事は無料記事のオプションに内包せず独立管理する。買い切り / 定期購読について、一覧・販売案内・試し読み・購入者向け本文を表示用途と閲覧権限の組み合わせで検証する。決済・購読・会員の業務処理は外部機能へ委ね、テーマは接続・権限別表示・遷移を担当する。",
       "priority": "P1",
-      "revision": 1,
+      "revision": 2,
       "acceptance": [
         {
           "id": "WT-AC-PAID-01A",
@@ -15770,19 +16187,36 @@
           "requirement_id": "WT-FR-PAID-01",
           "polarity": "negative",
           "oracle": "未購入者へ購入者本文が露出する、無料記事への内包だけで済ませる、または課金・購読処理をテーマへ持ち込めば FAIL"
+        },
+        {
+          "id": "WT-AC-PAID-01C",
+          "requirement_id": "WT-FR-PAID-01",
+          "polarity": "boundary",
+          "oracle": "無料会員・別商品購入済み・購読失効の閲覧者には購入本文を返さず、対象購入済み・有効購読で対象本文を返す。公開HTML・REST・検索・feed・一覧とキャッシュ設定を確認する。"
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "content:oneoff-standard",
+        "content:oneoff-editorial",
+        "content:subscription-standard",
+        "content:subscription-editorial",
+        "content:paid-list",
+        "content:oneoff-sales",
+        "content:subscription-sales",
+        "content:oneoff-granted",
+        "content:subscription-granted"
+      ],
+      "evidence": "../2026-09-08-content-faces/results/verify.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
     {
       "id": "WT-FR-INTERVIEW-01",
       "family": "INTERVIEW",
       "statement": "インタビューは通常記事へ内包せず独立管理し、人物・所属・発言・掲載確認を扱う面と、企業 / サービス / LP への要約・カード埋め込みを持つ。信頼形成を目的とし、一覧・詳細・埋め込みの関係を早期の代表モックで確認する。",
       "priority": "P1",
-      "revision": 1,
+      "revision": 2,
       "acceptance": [
         {
           "id": "WT-AC-INTERVIEW-01A",
@@ -15795,19 +16229,29 @@
           "requirement_id": "WT-FR-INTERVIEW-01",
           "polarity": "negative",
           "oracle": "LP のカードだけで独立管理や詳細面を実証した扱いにする、または人物・発言の対応が崩れれば FAIL"
+        },
+        {
+          "id": "WT-AC-INTERVIEW-01C",
+          "requirement_id": "WT-FR-INTERVIEW-01",
+          "polarity": "boundary",
+          "oracle": "掲載確認前のインタビューを公開せず、確認済みだけを詳細と埋め込みで参照する。テーマ変更後も独立管理単位と保存データが残る。"
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "content:interview-standard",
+        "content:interview-editorial"
+      ],
+      "evidence": "../2026-09-08-content-faces/results/verify.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
     {
       "id": "WT-FR-BLP-01",
       "family": "BLP",
       "statement": "BLP は理解・納得を促して LP への移動を支える面として、CV 獲得を目的とする LP と意味・管理を区別する。比較ページは目的により BLP / 比較記事等へ位置付け、LP への導線と本文・根拠を代表モックで確認する。共通部品の継承・独自設定・非表示を目的に応じて選ぶ。",
       "priority": "P1",
-      "revision": 1,
+      "revision": 2,
       "acceptance": [
         {
           "id": "WT-AC-BLP-01A",
@@ -15820,12 +16264,22 @@
           "requirement_id": "WT-FR-BLP-01",
           "polarity": "negative",
           "oracle": "LP の名称変更だけで済ませる、目的差・送客先がない、または継承解除を常に非表示へ短絡すれば FAIL"
+        },
+        {
+          "id": "WT-AC-BLP-01C",
+          "requirement_id": "WT-FR-BLP-01",
+          "polarity": "positive",
+          "oracle": "BLPの理解・適否判断から、別管理の獲得LPと入力操作へ到達する。PC/SP・JavaScript無効でも本文と次の導線が成立する。"
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "content:blp-standard",
+        "content:blp-editorial"
+      ],
+      "evidence": "../2026-09-08-content-faces/results/verify.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
     {
       "id": "WT-FR-FORM-01",
@@ -15901,6 +16355,7 @@
         "lp:lp-form-block",
         "event:event-apply-block-form"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     },
@@ -16075,6 +16530,7 @@
         "lp:chrome-foot-off-lp",
         "lp:chrome-head-site-lp"
       ],
+      "evidence": null,
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する"
     }

@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0304",
-  "event_count": 304,
+  "event_head": "WT-EVT-0305",
+  "event_count": 305,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -969,7 +969,8 @@
         "WT-EVT-0296",
         "WT-EVT-0299",
         "WT-EVT-0300",
-        "WT-EVT-0304"
+        "WT-EVT-0304",
+        "WT-EVT-0305"
       ],
       "requirement_ids": [
         "WT-FR-PAID-01"
@@ -982,7 +983,8 @@
         "WT-EVT-0296",
         "WT-EVT-0299",
         "WT-EVT-0300",
-        "WT-EVT-0304"
+        "WT-EVT-0304",
+        "WT-EVT-0305"
       ],
       "requirement_ids": [
         "WT-FR-INTERVIEW-01"
@@ -995,7 +997,8 @@
         "WT-EVT-0296",
         "WT-EVT-0299",
         "WT-EVT-0300",
-        "WT-EVT-0304"
+        "WT-EVT-0304",
+        "WT-EVT-0305"
       ],
       "requirement_ids": [
         "WT-FR-BLP-01"
@@ -1335,6 +1338,6 @@
       "latest_revision_agreement",
       "pending_resolution"
     ],
-    "reentry": "WT-EVT-0304 の候補改定・新規 8 件と pending_resolution を確認し、PO 反応・最新 revision の合意・優先度安定を記録してから再 compile。WT-AGREE-01 は event head 0231 に対する過去合意として維持。"
+    "reentry": "WT-EVT-0304 の候補改定・新規 8 件、WT-EVT-0305 の追加3 ACと pending_resolution を確認し、PO 反応・最新 revision の合意・優先度安定を記録してから再 compile。WT-AGREE-01 は event head 0231 に対する過去合意として維持。"
   }
 }

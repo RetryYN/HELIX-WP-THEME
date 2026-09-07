@@ -10,7 +10,7 @@ const button = (text, action) => {
   node.type = 'button'; node.addEventListener('click', action); return node;
 };
 const labels = { unreviewed: '未選択', adopt: '採用候補', hold: '保留', reject: '除外' };
-const faceLabels = { article: '記事', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
+const faceLabels = { article: '記事', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
 const storageKey = 'helix-selection-memos.v1';
 let noticeTimer;
 function notify(message) {
@@ -46,7 +46,7 @@ async function start() {
   const comparison = new Set();
   $('total').textContent = data.entries.length;
   $('req-total').textContent = data.requirementCount;
-  const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['home', 'article', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
+  const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['home', 'article', 'paid', 'interview', 'blp', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
   for (const [key, label] of collections) {
     const b = button(label, () => { face = key; linkedIds = null; limit = 36; render(); });
     b.dataset.face = key; $('faces').append(b);
@@ -122,6 +122,10 @@ async function start() {
     const note = el('textarea'); note.maxLength = 4000; note.rows = 4; note.value = memoFor(entry.id).note;
     note.addEventListener('input', () => { memos[entry.id] = { ...memoFor(entry.id), note: note.value }; save(); }); label.append(note);
     panel.append(choices, label);
+    if (entry.demoRoute && ['127.0.0.1', 'localhost'].includes(location.hostname)) {
+      const live = el('a', 'ローカルの実機で操作する ↗', 'open-image');
+      live.href = `http://${location.hostname}:8098${entry.demoRoute}`; live.target = '_blank'; live.rel = 'noopener'; panel.append(live);
+    }
     if (entry.images[device]) {
       const link = el('a', '画像を原寸で開く ↗', 'open-image'); link.href = entry.images[device]; link.target = '_blank'; link.rel = 'noopener'; panel.append(link);
     }
@@ -163,8 +167,9 @@ async function start() {
     const exact = data.requirements.find(r => r.id.toLocaleLowerCase() === query);
     for (const req of data.requirements.filter(r => exact ? r === exact : `${r.id} ${r.statement}`.toLocaleLowerCase().includes(query))) {
       const row = el('details', undefined, 'req-row');
-      const summary = el('summary'); summary.append(el('strong', req.id), el('span', '未検証', 'status-label'), el('p', req.statement));
+      const summary = el('summary'); summary.append(el('strong', req.id), el('span', req.status === 'partial_poc' ? '代表PoC検証あり・全条件未完了' : '未検証', 'status-label'), el('p', req.statement));
       const body = el('div'); body.append(el('p', req.next));
+      if (req.evidence) { const proof = el('a', '代表PoCの実測結果を見る'); proof.href = req.evidence; body.append(proof); }
       for (const ac of req.acceptance) body.append(el('p', `${ac.id} — ${ac.oracle}`));
       if (req.pending?.length) body.append(el('p', `未決事項: ${typeof req.pending === 'string' ? req.pending : JSON.stringify(req.pending)}`));
       if (req.relatedEntryIds.length) body.append(button(`関連する${req.relatedEntryIds.length}候補を見る`, () => {

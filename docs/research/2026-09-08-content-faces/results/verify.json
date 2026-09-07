@@ -1,0 +1,1087 @@
+{
+  "schema": "wt-content-faces-verification.v1",
+  "completed": true,
+  "scope": "Dedicated WordPress PoC with local entitlement fixtures; not production service integration",
+  "pass": 185,
+  "fail": 0,
+  "rows": [
+    {
+      "name": "access:anonymous:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:anonymous:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "access:anonymous:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:anonymous:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "access:anonymous:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "cache:anonymous:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "access:anonymous:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:anonymous:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "access:anonymous:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:anonymous:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "access:anonymous:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "cache:anonymous:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "public-surface:/wp-json/wp/v2/wt_paid",
+      "pass": true
+    },
+    {
+      "name": "public-surface:/?s=実践編",
+      "pass": true
+    },
+    {
+      "name": "public-surface:/?feed=rss2&post_type=wt_paid",
+      "pass": true
+    },
+    {
+      "name": "public-surface:/library/",
+      "pass": true
+    },
+    {
+      "name": "public-surface:/library/decision-design/?view=body&wtcf_access=granted&ownership=off",
+      "pass": true
+    },
+    {
+      "name": "unconfirmed-interview:not-public",
+      "pass": true
+    },
+    {
+      "name": "interview:embedded-reference",
+      "pass": true
+    },
+    {
+      "name": "interview:people-speech",
+      "pass": true
+    },
+    {
+      "name": "interview:confirmation",
+      "pass": true
+    },
+    {
+      "name": "blp:reasoning",
+      "pass": true
+    },
+    {
+      "name": "blp:lp-target",
+      "pass": true
+    },
+    {
+      "name": "blp:ownership:inherit",
+      "pass": true
+    },
+    {
+      "name": "blp:ownership:own",
+      "pass": true
+    },
+    {
+      "name": "blp:ownership:off",
+      "pass": true
+    },
+    {
+      "name": "login:none",
+      "pass": true
+    },
+    {
+      "name": "access:none:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:none:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "access:none:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:none:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "access:none:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "cache:none:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "access:none:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:none:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "access:none:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:none:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "access:none:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "cache:none:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "access:oneoff:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:oneoff:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "access:oneoff:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:oneoff:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "access:oneoff:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "cache:oneoff:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "access:oneoff:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:oneoff:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "access:oneoff:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:oneoff:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "access:oneoff:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "cache:oneoff:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "access:subscription:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:subscription:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "access:subscription:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:subscription:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "access:subscription:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "cache:subscription:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "access:subscription:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:subscription:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "access:subscription:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:subscription:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "access:subscription:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "cache:subscription:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "login:expired",
+      "pass": true
+    },
+    {
+      "name": "access:expired:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:expired:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "access:expired:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:expired:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "access:expired:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "cache:expired:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "access:expired:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:expired:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "access:expired:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:expired:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "access:expired:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "cache:expired:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "login:other_product",
+      "pass": true
+    },
+    {
+      "name": "access:other_product:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:other_product:oneoff:sales",
+      "pass": true
+    },
+    {
+      "name": "access:other_product:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:other_product:oneoff:preview",
+      "pass": true
+    },
+    {
+      "name": "access:other_product:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "cache:other_product:oneoff:body",
+      "pass": true
+    },
+    {
+      "name": "access:other_product:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "cache:other_product:subscription:sales",
+      "pass": true
+    },
+    {
+      "name": "access:other_product:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "cache:other_product:subscription:preview",
+      "pass": true
+    },
+    {
+      "name": "access:other_product:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "cache:other_product:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:standard:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:editorial:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:standard:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:editorial:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "display-purpose:paid:list:pc",
+      "pass": true
+    },
+    {
+      "name": "display-purpose:oneoff:sales:pc",
+      "pass": true
+    },
+    {
+      "name": "display-purpose:subscription:sales:pc",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "granted-render:oneoff:pc",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "granted-render:subscription:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:standard:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:editorial:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:oneoff:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:oneoff:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:subscription:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:subscription:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:interview:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:interview:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blp:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:blp:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:standard:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:lp:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:lp:editorial:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "display-purpose:paid:list:sp",
+      "pass": true
+    },
+    {
+      "name": "display-purpose:oneoff:sales:sp",
+      "pass": true
+    },
+    {
+      "name": "display-purpose:subscription:sales:sp",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "granted-render:oneoff:sp",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "granted-render:subscription:sp",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "oneoff-standard-pc.jpg",
+      "face": "oneoff",
+      "design": "standard",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/decision-design/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-editorial-pc.jpg",
+      "face": "oneoff",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/decision-design/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-standard-pc.jpg",
+      "face": "subscription",
+      "design": "standard",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/monthly-notes/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-editorial-pc.jpg",
+      "face": "subscription",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/monthly-notes/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "interview-standard-pc.jpg",
+      "face": "interview",
+      "design": "standard",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/voices/making-room/",
+      "requirement_ids": [
+        "WT-FR-INTERVIEW-01"
+      ]
+    },
+    {
+      "file": "interview-editorial-pc.jpg",
+      "face": "interview",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/voices/making-room/",
+      "requirement_ids": [
+        "WT-FR-INTERVIEW-01"
+      ]
+    },
+    {
+      "file": "blp-standard-pc.jpg",
+      "face": "blp",
+      "design": "standard",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/guides/before-redesign/",
+      "requirement_ids": [
+        "WT-FR-BLP-01"
+      ]
+    },
+    {
+      "file": "blp-editorial-pc.jpg",
+      "face": "blp",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/guides/before-redesign/",
+      "requirement_ids": [
+        "WT-FR-BLP-01"
+      ]
+    },
+    {
+      "file": "lp-standard-pc.jpg",
+      "face": "lp",
+      "design": "standard",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/start/editorial-session/",
+      "requirement_ids": [
+        "WT-FR-LP-01"
+      ]
+    },
+    {
+      "file": "lp-editorial-pc.jpg",
+      "face": "lp",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/start/editorial-session/",
+      "requirement_ids": [
+        "WT-FR-LP-01"
+      ]
+    },
+    {
+      "file": "paid-list-pc.jpg",
+      "face": "paid",
+      "view": "list",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-sales-pc.jpg",
+      "face": "oneoff",
+      "view": "sales",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/decision-design/?view=sales",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-sales-pc.jpg",
+      "face": "subscription",
+      "view": "sales",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "anonymous",
+      "route": "/library/monthly-notes/?view=sales",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-granted-pc.jpg",
+      "face": "oneoff",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "oneoff",
+      "route": "/library/decision-design/?view=body",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-granted-pc.jpg",
+      "face": "subscription",
+      "design": "editorial",
+      "dev": "pc",
+      "role": "subscription",
+      "route": "/library/monthly-notes/?view=body",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-standard-sp.jpg",
+      "face": "oneoff",
+      "design": "standard",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/decision-design/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-editorial-sp.jpg",
+      "face": "oneoff",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/decision-design/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-standard-sp.jpg",
+      "face": "subscription",
+      "design": "standard",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/monthly-notes/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-editorial-sp.jpg",
+      "face": "subscription",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/monthly-notes/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "interview-standard-sp.jpg",
+      "face": "interview",
+      "design": "standard",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/voices/making-room/",
+      "requirement_ids": [
+        "WT-FR-INTERVIEW-01"
+      ]
+    },
+    {
+      "file": "interview-editorial-sp.jpg",
+      "face": "interview",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/voices/making-room/",
+      "requirement_ids": [
+        "WT-FR-INTERVIEW-01"
+      ]
+    },
+    {
+      "file": "blp-standard-sp.jpg",
+      "face": "blp",
+      "design": "standard",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/guides/before-redesign/",
+      "requirement_ids": [
+        "WT-FR-BLP-01"
+      ]
+    },
+    {
+      "file": "blp-editorial-sp.jpg",
+      "face": "blp",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/guides/before-redesign/",
+      "requirement_ids": [
+        "WT-FR-BLP-01"
+      ]
+    },
+    {
+      "file": "lp-standard-sp.jpg",
+      "face": "lp",
+      "design": "standard",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/start/editorial-session/",
+      "requirement_ids": [
+        "WT-FR-LP-01"
+      ]
+    },
+    {
+      "file": "lp-editorial-sp.jpg",
+      "face": "lp",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/start/editorial-session/",
+      "requirement_ids": [
+        "WT-FR-LP-01"
+      ]
+    },
+    {
+      "file": "paid-list-sp.jpg",
+      "face": "paid",
+      "view": "list",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-sales-sp.jpg",
+      "face": "oneoff",
+      "view": "sales",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/decision-design/?view=sales",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-sales-sp.jpg",
+      "face": "subscription",
+      "view": "sales",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "anonymous",
+      "route": "/library/monthly-notes/?view=sales",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "oneoff-granted-sp.jpg",
+      "face": "oneoff",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "oneoff",
+      "route": "/library/decision-design/?view=body",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "file": "subscription-granted-sp.jpg",
+      "face": "subscription",
+      "design": "editorial",
+      "dev": "sp",
+      "role": "subscription",
+      "route": "/library/monthly-notes/?view=body",
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    }
+  ]
+}

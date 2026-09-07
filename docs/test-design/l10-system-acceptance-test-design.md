@@ -139,3 +139,13 @@ pair freeze と G3 到達は主張しない。
 | WT-AT-BLP-01 | WT-FR-BLP-01 | 理解のための本文・根拠から LP への導線を持つ BLP の代表モックを、獲得 LP と対で照合する | LP の名称変更だけで済ませる、目的差・送客先がない、または継承解除を常に非表示へ短絡すれば FAIL | 未実行（条件定義）。試作の部分証跡は current-alignment.md 参照 |
 | WT-AT-FORM-01 | WT-FR-FORM-01 | PC / SP / JS 無効で項目・検証・確認値・修正・完了と失敗を照合し、LP / イベントの既定型が残り、選択時のみフォームが出て種別を引き継ぐ | nonce / 不正値を受理する、非選択フォームが DOM に残る、イベントが問い合わせ種別になる、または PoC で入力を保存・外部送信すれば FAIL | 未実行（条件定義）。試作の部分証跡は current-alignment.md 参照 |
 | WT-AT-PARTS-03 | WT-FR-PARTS-03 | 各面で継承・独自・非表示を切り替え、別面の独自設定が混入せず、束追加の代表モックと PC / SP の導線重なりを確認できる | 継承解除を非表示に固定する、束の追加で既存値が壊れる、または見た目の off で共通認可・同意を解除すれば FAIL | 未実行（条件定義）。試作の部分証跡は current-alignment.md 参照 |
+
+## 2026-09-08 追調査に伴う境界条件の追加
+
+既存条件を保持し、WT-EVT-0305により以下を追加。全131要求・285 AC。代表PoCの通過だけで製品受入完了とはしない。
+
+| test ID | 追加AC | 検査対象 | 証跡 |
+| --- | --- | --- | --- |
+| WT-AT-PAID-01 | WT-AC-PAID-01C | 無料会員・別商品・失効・対象購入・有効購読、HTML/REST/検索/feed/一覧・cache | scripts/verify-content-faces.mjs、content-faces/results/verify.json |
+| WT-AT-INTERVIEW-01 | WT-AC-INTERVIEW-01C | 掲載確認前draft、テーマ変更後の独立CPTと保存データ保持 | content-faces/results/verify.json、management.json |
+| WT-AT-BLP-01 | WT-AC-BLP-01C | 理解・適否→別管理LP→入力到達、PC/SP・JS無効 | scripts/verify-content-faces.mjs |

@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('553');
+  await expect(page.locator('#total')).toHaveText('568');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {

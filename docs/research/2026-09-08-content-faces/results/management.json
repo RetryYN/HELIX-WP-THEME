@@ -1,0 +1,23 @@
+{
+  "schema": "wt-content-management-evidence.v1",
+  "completed": true,
+  "checks": [
+    {
+      "name": "four-independent-admin-and-rest-types",
+      "pass": true
+    },
+    {
+      "name": "unconfirmed-interview-remains-draft",
+      "pass": true
+    },
+    {
+      "name": "theme-switch-preserves-types-record-identities-and-content",
+      "pass": true
+    },
+    {
+      "name": "original-theme-restored",
+      "pass": true
+    }
+  ],
+  "fixture_count": 7
+}

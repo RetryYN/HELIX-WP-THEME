@@ -1,0 +1,46 @@
+# 独立コンテンツの実機カタログ
+
+試作テーマに有料記事・インタビュー・BLP・獲得LPを追加。コンテンツの保存と管理は別の試作プラグインの4CPTに置く。[比較カタログ](../2026-09-08-selection-catalog/index.html)から画像比較・メモ保存・ローカル実機へ移動できる。
+
+## 再現
+
+Docker・Node.js・Pythonを用意し、リポジトリのルートで実行する。既存環境とは別名のコンテナ・DB・volumeを使い、HTTPはloopbackの8098番だけで公開する。
+
+```sh
+python3 scripts/start-content-lab.py
+npx playwright install chromium
+WTCF_LAB_CREDENTIALS="${TMPDIR:-/tmp}/helix-content-lab/credentials.json" node scripts/verify-content-faces.mjs
+python3 scripts/verify-content-management.py
+node scripts/build-selection-catalog.mjs
+```
+
+管理検査は一時的に専用labのテーマを切り替えて戻すため、撮影と同時実行しない。
+
+`WTCF_STATE_DIR`を指定した場合は、そのディレクトリの`credentials.json`を検証スクリプトへ渡す。資格情報はリポジトリ外で生成・保持し、ログや公開成果物に含めない。起動スクリプトは既存labを再利用し、専用fixtureだけを再投入する。異なるcheckoutをマウントした同名コンテナは変更せず停止する。
+
+| 用途 | ローカルURLのパス | 確認内容 |
+| --- | --- | --- |
+| 有料記事一覧 | `/library/` | 買い切り・購読の記事と価格、詳細への参照 |
+| 買い切り | `/library/decision-design/` | `?view=sales` / `preview` / `body`。権限がなければ本文を返さない |
+| 購読 | `/library/monthly-notes/` | 有効購読だけ全文。失効・買い切り権限では試し読み |
+| インタビュー | `/voices/making-room/` | 2人物・所属・3発言・掲載確認 |
+| 参照カード | `/voices-in-context/` | 同じ独立投稿への参照。確認前投稿は公開しない |
+| BLP | `/guides/before-redesign/` | 理解・適否判断からLPへ送客 |
+| 獲得LP | `/start/editorial-session/` | 提供内容から入力へ到達。実送信・保存なし |
+
+ログイン済みの購入者本文は検証用アカウントのWordPressセッションで確認する。URLやブラウザストレージの値を変更して認可を迂回する仕組みは設けていない。
+
+## 見た目の比較
+
+`?design=standard`と`?design=editorial`を同じ本文・PC1440px/SP375pxで撮影。標準案は詰めた本文行間・小さい見出し、編集重視案は見出し階層・本文の行間・章間・淡い紙面色・補助欄の分離を試す。人物の発言は丸い識別子と同じ人物IDで追う。
+
+これは**新規面での2案比較**であり、既存の全ページに対する変更前後の改善実績ではない。画像に頼らない組版の案として追加した。既存記事・HOME・LPの改善、写真を含む比較、読者評価、全面のアクセシビリティ・速度検証は残る。
+
+## 証拠と限界
+
+- [表示・アクセス検査](results/verify.json): 6閲覧者状態×2課金方式×3表示用途、no-store、公開HTML/REST/検索/feed/一覧、掲載確認、参照カード、BLP→LP、PC/SP・JS無効、横溢れ、h1。各実行の完了フラグ・全行・撮影索引を保持する。
+- [管理とテーマ変更](results/management.json): 4CPTの管理UI/REST、確認前draft、別テーマへ切替後の同一レコード保持、試作テーマ復元を独立したWP-CLIプロセスで照合した。
+- 初期の権限は外部認可サービスを置き換える**ローカルfixture**。実決済・購読契約・外部認可サービス障害・CDN・実データ移行の検証ではない。
+- テーマは表示projectionだけを受け取る。保護本文は公開post_contentや公開RESTメタに保存しない。配送経路の追加時には新しい経路の検査が必要。
+- インタビュー編集用の専用入力UI、全CPTの管理権限行列、全継承セットへの接続は今後の作業。現状の3状態のヘッダーは代表表示であり、既存の共通設定束全体の実証ではない。
+- [追調査差分](research-delta.md)で3 ACを追加。全131要求の再現は継続中。
