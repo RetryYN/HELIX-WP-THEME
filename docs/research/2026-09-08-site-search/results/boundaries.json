@@ -1,0 +1,228 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-search-boundaries.mjs": "105ce5d42fa0b8e3dd90929e40a1cd1af96d2ff87361f35986651f10b1758bac",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "b6f73624d1e2a8dcf1907961b6c81173ea7b5e102ac07919ec8fb07b4e8c6e8d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174",
+    "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "980be23e03737f934dd81626508470edb23e26f060396115a6d26bb692f97121"
+  },
+  "rows": [
+    {
+      "name": "public-count:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "first-page:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-excluded:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "next-link:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "query-preserved:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "last-page:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "last-page-private-excluded:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "previous:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:HiddenSearchFixtureText:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:PurchaseBodyOnlyFixture:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-count:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-recovery:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "public-count:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "first-page:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "private-excluded:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "next-link:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "query-preserved:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "last-page:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "last-page-private-excluded:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "previous:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:HiddenSearchFixtureText:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:PurchaseBodyOnlyFixture:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-count:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-recovery:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "public-count:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "first-page:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-excluded:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "next-link:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "query-preserved:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "last-page:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "last-page-private-excluded:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "previous:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:HiddenSearchFixtureText:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:PurchaseBodyOnlyFixture:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-count:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-recovery:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "public-count:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "first-page:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "private-excluded:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "next-link:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "query-preserved:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "last-page:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "last-page-private-excluded:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "previous:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:HiddenSearchFixtureText:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "private-body-query:PurchaseBodyOnlyFixture:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-count:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "out-of-range-recovery:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "publication-recovery:pc",
+      "pass": true
+    },
+    {
+      "name": "new-query-clears-page:pc",
+      "pass": true
+    },
+    {
+      "name": "publication-recovery:sp",
+      "pass": true
+    },
+    {
+      "name": "new-query-clears-page:sp",
+      "pass": true
+    },
+    {
+      "name": "owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

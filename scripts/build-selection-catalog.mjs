@@ -15,7 +15,7 @@ const audit = read('docs/research/2026-09-08-selection-catalog/acceptance-audit.
 
 // Association is for discovery only. It is never an acceptance or completeness claim.
 const families = {
-  HOME: ['home-'], EVENT: ['event-'], FORM: ['form-', 'lp-form', 'event-apply'],
+  SEARCH: ['site-search'], HOME: ['home-'], EVENT: ['event-'], FORM: ['form-', 'lp-form', 'event-apply'],
   PARTS: ['header', 'footer-', 'side-', 'chrome-', 'home-hero'],
   LOOK: ['h2', 'h3', 'box', 'cta', 'axis-', 'contrast-guard', 'width', 'graph'],
   VOCAB: ['box', 'cta', 'table', 'toc', 'pr-notice', 'linkcard', 'pros-cons', 'review-bar'],

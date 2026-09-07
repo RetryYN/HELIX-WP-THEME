@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'docs/research/2026-09-08-site-search/results');
 fs.mkdirSync(out,{recursive:true});
-const sources=['scripts/verify-site-search.mjs','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html'];
+const sources=['scripts/verify-site-search.mjs','docs/research/2026-09-08-content-faces/plugin/search.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html'];
 const digests=()=>Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests(), rows=[], shots=[];
 const check=(name,pass)=>rows.push({name,pass:!!pass});

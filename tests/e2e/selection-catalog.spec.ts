@@ -22,7 +22,7 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await page.locator('[data-device="sp"]').click();
   await expect(page.locator('#count')).toContainText('SP');
   await page.locator('#tab-requirements').click();
-  await expect(page.locator('.req-row')).toHaveCount(132);
+  await expect(page.locator('.req-row')).toHaveCount(133);
   await page.locator('#req-search').fill('WT-FR-FORM-01');
   await expect(page.locator('.req-row')).toHaveCount(1);
   await page.locator('.req-row > summary').click();
@@ -73,7 +73,7 @@ test('mobile fits viewport and tabs support keyboard; images load', async ({ pag
 
 test('acceptance ID, remaining text and evidence status filters preserve scope and recover from zero', async ({ page }) => {
   await page.locator('#tab-requirements').click();
-  await expect(page.locator('#requirements-count')).toContainText('132要求 / 290受入条件');
+  await expect(page.locator('#requirements-count')).toContainText('133要求 / 294受入条件');
   await page.locator('#req-search').fill('WT-AC-INTERVIEW-01C');
   await expect(page.locator('.req-row')).toHaveCount(1);
   await expect(page.locator('.acceptance-row')).toHaveCount(1);
@@ -83,7 +83,7 @@ test('acceptance ID, remaining text and evidence status filters preserve scope a
   await expect(page.locator('#requirements-empty')).toBeVisible();
   await page.locator('#reset-requirements').click();
   await expect(page.locator('#req-search')).toBeFocused();
-  await expect(page.locator('.req-row')).toHaveCount(132);
+  await expect(page.locator('.req-row')).toHaveCount(133);
   await page.locator('#evidence-state').selectOption('partial');
   expect(await page.locator('.acceptance-row').count()).toBeGreaterThan(0);
   await expect(page.locator('.acceptance-row:not([data-evidence-state="partial"])')).toHaveCount(0);
@@ -166,5 +166,6 @@ test('site search states expose scoped evidence and a live query', async ({ page
   await expect(page.locator('.tile-open')).toHaveCount(3);
   await page.locator('.tile-open').first().click();
   await expect(page.locator('#detail')).toContainText('公開範囲');
+  await expect(page.locator('#detail')).toContainText('WT-FR-SEARCH-01');
   await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', /\?s=/);
 });
