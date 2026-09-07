@@ -113,3 +113,7 @@ HELIX runtime は `npm run helix -- status` で確認する。2026-09-08 の確�
 ## WT-EVT-0308: 学習検索の復帰
 
 範囲外ページを0件と誤表示する問題を実測し、WT-FR-LEARN-01 revision 2 / WT-AC-LEARN-01Cへ件数保持・有効ページ復帰・検索条件の扱いを明記。[実測と再現手順](../research/2026-09-08-content-faces/learning-plan.md)を参照。全132要求・289 ACの範囲を維持する。
+
+## WT-EVT-0309: 常設案内・規約の代表再現
+
+会社・サービス・料金・採用・問い合わせ・プライバシー・販売表示・外部送信先・アクセシビリティ・拠点・利用案内の11面を追加。事業者情報と外部送信先を共通JSONから表示し、外部受付例へ移動する。PAGE-01 revision 3 / AC-01C追加で132要求・290 AC。専用編集UI、実サービスの送信契約、法務確認、全継承は未完了。[計画と範囲](../research/2026-09-08-content-faces/site-pages-plan.md)。

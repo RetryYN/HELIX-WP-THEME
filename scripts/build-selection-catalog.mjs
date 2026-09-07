@@ -21,7 +21,7 @@ const families = {
   VOCAB: ['box', 'cta', 'table', 'toc', 'pr-notice', 'linkcard', 'pros-cons', 'review-bar'],
   LP: ['lp-', 'content-lp'], RECO: ['related', 'category-ranking'], META: ['eyecatch', 'toc', 'share', 'side-'],
   ZONE: ['chrome-', 'side-', 'footer-above'], SP: ['side-sp', 'header', 'table', 'chrome-fix'],
-  PAGE: ['page-', 'home-'], BANNER: ['footer-above', 'side-set'],
+  PAGE: ['page-', 'home-', 'site-'], BANNER: ['footer-above', 'side-set'],
   SNS: ['share', 'article-tail-share', 'footer-extra', 'lp-line'],
   AUTHOR: ['article-tail-author'], TPL: ['404'],
   PAID: ['content-paid'], INTERVIEW: ['content-interview'], BLP: ['content-blp'],
@@ -85,6 +85,26 @@ if (fs.existsSync(path.join(root, learningPath))) {
     entries.set(id, entry);
   }
 }
+const sitePath = 'docs/research/2026-09-08-content-faces/results/site-pages/verify.json';
+let siteEvidence = null;
+if (fs.existsSync(path.join(root, sitePath))) {
+  siteEvidence = read(sitePath);
+  if (!siteEvidence.completed || siteEvidence.rows.some(r => !r.pass)) throw Error('Site page evidence incomplete');
+  for (const [file, hash] of Object.entries(siteEvidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale site evidence: ${file}`);
+  }
+  for (const shot of siteEvidence.shots) {
+    if (!/^[a-z0-9-]+\.jpg$/.test(shot.file) || !['pc', 'sp'].includes(shot.dev)) throw Error('Invalid site screenshot');
+    if (!fs.existsSync(path.join(root, path.dirname(sitePath), shot.file))) throw Error('Missing site screenshot');
+    const id = `site:${shot.key}`;
+    const entry = entries.get(id) || { id, face: 'site', part: `site-${shot.key}`, label: shot.label, variant: shot.key,
+      purpose: '事業と利用条件を伝える', group: 'ページ・本文', images: {}, requirementIds: [], demoRoute: shot.route,
+      description: '常設案内と規約の代表面。共通事業者設定、目的別の説明、料金の条件、外部受付への引き渡しを確認します。',
+      evidence: '../2026-09-08-content-faces/results/site-pages/verify.json' };
+    entry.images[shot.dev] = `../2026-09-08-content-faces/results/site-pages/${shot.file}`;
+    entries.set(id, entry);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
@@ -98,7 +118,7 @@ const requirements = ir.requirements.map(r => {
     next: related.length ? '関連画像を起点に全受入条件の再現・実測を確認する' : '操作・状態・契約を含む再現デモと証跡を追加する' };
 });
 const result = { schema: 'wt-selection-catalog.v1', source: prototype, requirementCount: requirements.length,
-  screenshotCount: index.length + (contentEvidence?.shots.length || 0) + (learningEvidence?.shots.length || 0), faces: glossary.faces, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
+  screenshotCount: index.length + (contentEvidence?.shots.length || 0) + (learningEvidence?.shots.length || 0) + (siteEvidence?.shots.length || 0), faces: glossary.faces, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
   evidenceNote: '関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。' };
 const out = path.join(root, 'docs/research/2026-09-08-selection-catalog/catalog-data.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });

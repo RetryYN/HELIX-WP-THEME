@@ -62,3 +62,11 @@ node scripts/build-selection-catalog.mjs
 [状態遷移の手順と範囲](interview-lifecycle-plan.md)、[修正前の不成立記録](results/interview-lifecycle-before.json)、[現行の検証結果](results/interview-lifecycle.json)。`node scripts/verify-interview-lifecycle.mjs`で専用の一時投稿を使い、確認取り消し・人物参照破損・公開中の確認文書削除を検査する。他のWP検査と同時実行しない。公開不可となった投稿は下書きに戻り、確認を戻しただけでは再公開しない。
 
 学習検索の範囲外ページからの復帰もPC/SP画像で比較できる。`node scripts/verify-learning-publication.mjs`は専用の一時投稿を作り、同じ検索URLを再読込して公開件数の減少・非公開本文の除外・全件非公開後の一覧復帰を検証する。他のWP検査と同時実行せず、終了時に作成した投稿だけを削除する。
+
+## 常設案内・規約の追加
+
+[11面の宣言](plugin/site-pages.json)をプラグインから読み、テーマがブロックパターンとHTMLを生成する。通常の固定ページとして保存し、`page-site-guide`テンプレートで表示する。起動時に`seed-site-pages.php`も実行する。会社・サービス・料金・採用・問い合わせ・プライバシー・販売表示・外部送信先・アクセシビリティ・拠点・利用案内は、それぞれ`/site-<key>/`で開ける。
+
+`node scripts/verify-site-pages.mjs`で専用labの事業者設定を一時変更・復元し、全ページの追従と外部送信先の変更/空、パスワード保護、別オリジンの受付例へのGET遷移を検証する。静的カタログ用8099サーバーも起動しておく。他のWP検査と同時実行しない。22画像と結果は`results/site-pages/`。受付例は架空の分類だけを選び、送信・保存・通知の業務処理は行わない。
+
+編集画面での挿入・編集UI、共通継承全体、実在する第三者フォームとの接続契約は未完了。規約面は構造の例であり、実運用の法的な十分性を示すものではない。新しい面のデザインであり、既存全面の改善実績とは別に扱う。

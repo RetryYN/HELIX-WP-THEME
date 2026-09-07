@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('575');
+  await expect(page.locator('#total')).toHaveText('586');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -73,7 +73,7 @@ test('mobile fits viewport and tabs support keyboard; images load', async ({ pag
 
 test('acceptance ID, remaining text and evidence status filters preserve scope and recover from zero', async ({ page }) => {
   await page.locator('#tab-requirements').click();
-  await expect(page.locator('#requirements-count')).toContainText('132要求 / 289受入条件');
+  await expect(page.locator('#requirements-count')).toContainText('132要求 / 290受入条件');
   await page.locator('#req-search').fill('WT-AC-INTERVIEW-01C');
   await expect(page.locator('.req-row')).toHaveCount(1);
   await expect(page.locator('.acceptance-row')).toHaveCount(1);
@@ -94,4 +94,16 @@ test('acceptance ID, remaining text and evidence status filters preserve scope a
   expect(await page.locator('.acceptance-row').count()).toBeGreaterThan(0);
   await page.setViewportSize({ width: 375, height: 812 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('site guide collection exposes eleven paired pages and the live pricing route', async ({ page }) => {
+  await page.locator('[data-face="site"]').click();
+  await expect(page.locator('.tile-open')).toHaveCount(11);
+  await page.locator('#search').fill('site-pricing');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await page.locator('[data-device="sp"]').click();
+  await page.locator('.tile-open').click();
+  await expect(page.locator('#detail .large-preview img')).toHaveAttribute('src', /site-pages\/pricing-sp\.jpg$/);
+  await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', 'http://127.0.0.1:8098/site-pricing/');
+  await expect(page.locator('#detail')).toContainText('WT-FR-PAGE-01');
 });

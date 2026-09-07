@@ -98,3 +98,5 @@ foreach ( array( 'added_post_meta', 'updated_post_meta', 'deleted_post_meta' ) a
 }
 
 require_once __DIR__ . '/learning.php';
+
+require_once __DIR__ . '/site-pages.php';

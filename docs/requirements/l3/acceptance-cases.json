@@ -1734,6 +1734,12 @@
       "requirement_id": "WT-FR-LEARN-01",
       "polarity": "boundary",
       "oracle": "学習用の階層と前後ナビを共通継承/独自設定/非表示へ接続し、見た目の変更で公開範囲や認可を解除しない。"
+    },
+    {
+      "id": "WT-AC-PAGE-01C",
+      "requirement_id": "WT-FR-PAGE-01",
+      "polarity": "positive",
+      "oracle": "会社・サービス・料金・拠点・採用を常設案内の独立ページとして持ち、提供範囲・料金単位と対象外・訪問条件・募集状況を目的別に示す。相互の案内と問い合わせへの移動をPC/SP・JavaScript無効でも確認する。"
     }
   ]
 }

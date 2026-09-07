@@ -94,3 +94,5 @@ add_shortcode( 'wtcf_interview_card', function ( $attributes ) {
 	if ( ! $data || ! $data['confirmed'] ) { return ''; }
 	return '<aside class="wtcf-reference"><p>VOICE / 制作の現場から</p><h2><a href="' . esc_url( $data['url'] ) . '">' . esc_html( $data['title'] ) . '</a></h2><p>' . esc_html( $data['summary'] ) . '</p></aside>';
 } );
+
+require_once __DIR__ . '/site-pages.php';
