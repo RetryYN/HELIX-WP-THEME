@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884892)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884945)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26697,8 +26697,8 @@
     "mainW": 1021,
     "digits": [
      "38",
-     "2",
-     "25"
+     "1",
+     "58"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26846,8 +26846,8 @@
     "mainW": 390,
     "digits": [
      "38",
-     "2",
-     "25"
+     "1",
+     "58"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -55564,6 +55564,57 @@
    {
     "dev": "pc",
     "js": true,
+    "axis": "tamper",
+    "v": "question-extra",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "eligibility-questions",
+       "3 つの質問すべてに答えてください。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "axis": "validate",
+    "v": "email-rules",
+    "got": [
+     [
+      "o'hara@example.com",
+      false
+     ],
+     [
+      "a@-example.com",
+      true
+     ],
+     [
+      "a@.example.com",
+      true
+     ],
+     [
+      "a@example.com.",
+      true
+     ],
+     [
+      "a@example..com",
+      true
+     ],
+     [
+      "a@example",
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
     "axis": "summary-kind",
     "v": "diagnosis",
     "r1": {
@@ -67347,6 +67398,57 @@
    {
     "dev": "sp",
     "js": true,
+    "axis": "tamper",
+    "v": "question-extra",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "eligibility-questions",
+       "3 つの質問すべてに答えてください。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "axis": "validate",
+    "v": "email-rules",
+    "got": [
+     [
+      "o'hara@example.com",
+      false
+     ],
+     [
+      "a@-example.com",
+      true
+     ],
+     [
+      "a@.example.com",
+      true
+     ],
+     [
+      "a@example.com.",
+      true
+     ],
+     [
+      "a@example..com",
+      true
+     ],
+     [
+      "a@example",
+      true
+     ]
+    ],
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
     "axis": "summary-kind",
     "v": "diagnosis",
     "r1": {
@@ -79159,6 +79261,57 @@
      ],
      "h1": 1
     },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "tamper",
+    "v": "question-extra",
+    "r": {
+     "step": "input",
+     "thanks": false,
+     "err": [
+      [
+       "eligibility-questions",
+       "3 つの質問すべてに答えてください。"
+      ]
+     ],
+     "h1": 1
+    },
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "axis": "validate",
+    "v": "email-rules",
+    "got": [
+     [
+      "o'hara@example.com",
+      false
+     ],
+     [
+      "a@-example.com",
+      true
+     ],
+     [
+      "a@.example.com",
+      true
+     ],
+     [
+      "a@example.com.",
+      true
+     ],
+     [
+      "a@example..com",
+      true
+     ],
+     [
+      "a@example",
+      true
+     ]
+    ],
     "pass": true
    },
    {

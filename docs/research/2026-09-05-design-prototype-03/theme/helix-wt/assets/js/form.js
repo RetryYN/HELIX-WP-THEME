@@ -3,8 +3,8 @@
   var form = document.querySelector('.wt-form__form'); if (!form) return;
   var root = form.closest('.wt-form'); var mode = form.getAttribute('data-wt-error') || 'inline';
   var rows = function(){ return Array.prototype.slice.call(form.querySelectorAll('.wt-form__row')); };
-  /* WordPress is_email() と同じ規則: 6 文字以上、@ は 1 つ、ローカル部は許可文字のみ、ドメインは '..' なし・ラベル 2 つ以上・各ラベルは英数字とハイフンでハイフン始まり/終わりでない */
-  function isEmail(v){ if (v.length < 6 || v.indexOf('@', 1) === -1) return false; var at = v.lastIndexOf('@'); if (v.indexOf('@') !== at) return false; var local = v.slice(0, at), domain = v.slice(at + 1); if (!/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+$/.test(local)) return false; if (/\.\./.test(domain)) return false; var subs = domain.replace(/^\.+|\.+$/g, '').split('.'); if (subs.length < 2) return false; return subs.every(function(x){ return /^[a-z0-9-]+$/i.test(x) && !/^-|-$/.test(x); }); }
+  /* WordPress is_email() と同じ規則: 6 文字以上、@ は 1 つ、ローカル部は許可文字のみ、ドメインは '..' なし・'.' 始まり / 終わりでない（除去せず拒否）・ラベル 2 つ以上・各ラベルは英数字とハイフンでハイフン始まり/終わりでない */
+  function isEmail(v){ if (v.length < 6 || v.indexOf('@', 1) === -1) return false; var at = v.lastIndexOf('@'); if (v.indexOf('@') !== at) return false; var local = v.slice(0, at), domain = v.slice(at + 1); if (!/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+$/.test(local)) return false; if (/\.\./.test(domain) || /^\.|\.$/.test(domain)) return false; var subs = domain.split('.'); if (subs.length < 2) return false; return subs.every(function(x){ return /^[a-z0-9-]+$/i.test(x) && !/^-|-$/.test(x); }); }
   function labelOf(row){ var l = row.querySelector('.wt-form__label'); return l ? l.textContent.replace(/[*＊]|必須|（必須）/g, '').trim() : ''; }
   function focusId(row){ var f = row.getAttribute('data-wt-field'); var t = row.className.match(/wt-form__row--([a-z0-9]+)/)[1]; if (t === 'date3') return 'wt-f-' + f + '-1'; if (t === 'radio' || t === 'checks') return 'wt-f-' + f + '-0'; if (t === 'yesno') return 'wt-f-' + f + '-0-y'; return 'wt-f-' + f; }
   function validateRow(row){

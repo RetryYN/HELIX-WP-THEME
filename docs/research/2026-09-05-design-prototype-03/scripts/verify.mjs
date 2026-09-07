@@ -1886,6 +1886,7 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       ["array-type", "form_confirm:yes", (f) => { f.querySelector("#wt-f-tel").name = "wt_form[tel][]"; f.querySelector("#wt-f-tel").value = "0312345678"; }, "tel", "電話番号の形式が正しくありません。"],
       ["question-keys", "form_confirm:yes,form_kind:diagnosis", (f) => { f.querySelectorAll(".wt-form__yesno input").forEach((i, k) => { i.name = "wt_form[eligibility_questions][" + (3 + Math.floor(k / 2)) + "]"; }); }, "eligibility-questions", "3 つの質問すべてに答えてください。"],
       ["choice-outside", "form_confirm:yes", (f) => { const o = f.querySelector("#wt-f-subject-select option:checked"); o.value = "不正な値"; }, "subject-select", "お問い合わせ種別の選択肢にありません。"],
+      ["question-extra", "form_confirm:yes,form_kind:diagnosis", (f) => { const i = document.createElement("input"); i.type = "hidden"; i.name = "wt_form[eligibility_questions][3]"; i.value = "不正な値"; f.appendChild(i); }, "eligibility-questions", "3 つの質問すべてに答えてください。"], /* 3 問すべて答えた上で余分なキーを足す → 拒否 */
     ]) {
       await goto(p, FORM + "?wt=" + q, js); const kind = q.includes("diagnosis") ? "diagnosis" : "contact";
       await p.fill("#wt-f-name", "山田 太郎"); await p.fill("#wt-f-email", "taro@example.com"); await p.fill("#wt-f-tel", "03-1234-5678"); await p.check("#wt-f-consent");
@@ -1894,6 +1895,11 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       const r = await p.evaluate(() => ({ step: (document.querySelector(".wt-form") || { getAttribute: () => null }).getAttribute("data-wt-step"), thanks: !!document.querySelector(".wt-form-thanks"), err: Array.from(document.querySelectorAll(".wt-form__row.is-error")).map((x) => [x.getAttribute("data-wt-field"), (x.querySelector(".wt-form__error") || {}).textContent || ""]), h1: Array.from(document.querySelectorAll("h1")).filter((h) => h.offsetHeight).length }));
       rows.push({ dev, js, axis: "tamper", v: what, r, pass: r.step === "input" && !r.thanks && r.err.length === 1 && r.err[0][0] === expectErr && r.err[0][1] === text && r.h1 === 1 });
     }
+    // メールの規則（JS = isEmail / サーバ = is_email）が同じ: 許可 o'hara@example.com、拒否 a@-example.com / a@.example.com / a@example.com. / a@example..com / a@example
+    { const cases = [["o'hara@example.com", false], ["a@-example.com", true], ["a@.example.com", true], ["a@example.com.", true], ["a@example..com", true], ["a@example", true]]; const got = [];
+      for (const [mail] of cases) { await goto(p, FORM + "?wt=form_confirm:no,form_thanks:inline", js); await p.fill("#wt-f-name", "山田 太郎"); await p.fill("#wt-f-name-kana", "やまだ たろう"); await p.fill("#wt-f-email", mail); if (await p.$("#wt-f-email-confirm")) await p.fill("#wt-f-email-confirm", mail); await p.selectOption("#wt-f-subject-select", { index: 1 }); await p.fill("#wt-f-message", "本文"); await p.check("#wt-f-consent"); await clickSubmit(p); await p.waitForTimeout(300);
+        got.push([mail, await p.evaluate(() => !!document.querySelector('.wt-form__row[data-wt-field="email"].is-error'))]); }
+      rows.push({ dev, js, axis: "validate", v: "email-rules", got, pass: JSON.stringify(got) === JSON.stringify(cases) }); }
     // top-summary × ラジオ / 希望日 / yes-no を持つ種別（diagnosis / reservation）: まとめのリンク先が実在する入力で、aria-describedby がまとめを指す
     for (const kind of ["diagnosis", "reservation"]) {
       await goto(p, FORM + `?wt=form_error:top-summary,form_kind:${kind}`, js); await clickSubmit(p); const r1 = await p.evaluate(READ, [VIS_SRC]);
@@ -1931,7 +1937,7 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       rows.push({ dev, js, axis: "flow", v: `steps:${kind}`, steps: ps, s1, seen, s4, pass }); }
     await ctx.close();
   }
-  out.formFace = { pageSource, rows, pass: pageSource === "wp-cli" && rows.length === 154 && rows.every((x) => x.pass) }; // 1（網羅性）+ 3 × (35 軸行 + 1 形式 + 2 改ざん + 3 異常 POST + 2 まとめ × 種別 + 6 遷移) + 2 × 3 steps = 154。件数は固定（軸の削除で減れば fail）
+  out.formFace = { pageSource, rows, pass: pageSource === "wp-cli" && rows.length === 160 && rows.every((x) => x.pass) }; // 1（網羅性）+ 3 × (35 軸行 + 1 形式 + 1 メール規則 + 2 改ざん + 4 異常 POST + 2 まとめ × 種別 + 6 遷移) + 2 × 3 steps = 160。件数は固定（軸の削除で減れば fail）
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
