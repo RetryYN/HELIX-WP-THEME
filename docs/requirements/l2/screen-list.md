@@ -23,6 +23,10 @@ pair_artifact: docs/test-design/l11-user-acceptance-test-design.md
 
 `N/A` は公開面（read-only）に取消がなく、編集面には timeout を伴う外部呼び出しがないため。CLI ゲートは docker 起動待ち、制御面は dry-run の timeout を持つ。
 
-## S3 画面数の維持
+## S3 時点の互換画面ID（当時の記録）
 
 S3 の追加要求は既存 11 画面のタブ・要素・検査項目へ投影する。新規画面や新規 route は作らない。WT-UI-10 は設定・読み戻し・運用警告、WT-UI-11 はクローラー台帳・生ログ・集約を担当する。
+
+## 2026-09-08: ページ種別拡張との関係
+
+上記11 IDはHELIXへの互換投影であり、公開ページ種別の上限ではない。新しい候補（HOME / イベント / BLP / フォーム、有料記事 / インタビュー）は現時点で WT-UI-06 / WT-UI-05 と編集側 WT-UI-10 へ関連付ける。これは同一ページ・同一CPTへの内包を決めるものではない。独立管理と固有の状態・導線は [種別台帳](../discovery/page-type-ledger.md) と新規要求で保持し、詳細route・管理UI・screen flowの拡張は代表モックとL1改定時に確定する。

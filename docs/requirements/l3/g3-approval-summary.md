@@ -1,336 +1,165 @@
 ---
 layer: L3
 sub_doc: g3-approval-summary
-status: claude_proposal
+status: candidate_revision_review
 authority: docs/requirements/authority.md
 iteration: 2
 ---
 
-# G3 承認用 要件要約（iteration 2、Claude 案）
+# G3 再開前の候補要件一覧（2026-09-08）
 
-PO が要件 123 件の全文を読まずに G3（凍結）を判断できるようにした要約。正本は `requirements-ir.json` で、本書は生成ビューに過ぎない（statement は先頭を機械的に切り出したもの）。
-HELIX の規律（RDJ-FR-007）では、直近 2 iteration で優先度が安定していることが収束条件になる。iteration 1 は問い 79 件の採否で閉じた。本書の確認が iteration 2 で、**優先度の変更がなければ収束 → compile → `specified`、PO 承認で `frozen`** となる。
+正本は `requirements-ir.json`。現時点はフロント先行の L2 往復中で、compile は backflow_required、G3 は未実施。
+既存 123 件を維持して 8 件を追加し、6 件を改定した。追加分の P1 は整理上の暫定値で PO 合意ではない。
+G1 / G2 の合意 WT-AGREE-01 は event head WT-EVT-0231 に対するもの。新しい revision へ自動適用しない。
+最新の方針・試作証跡・未決・着手順は [現在の足並み](../current-alignment.md)、全種別は [ページ種別台帳](../discovery/page-type-ledger.md)。
 
-## 0. PO に判断してもらうこと
+## 再開条件
 
-| 問い | 内容 | 形 |
-| --- | --- | --- |
-| WT-Q-G3-01 | §2〜§3 の要件 123 件（P0 67 / P1 47 / P2 9）と非目標を、設計・実装・テストを拘束する要件として承認する。優先度に変更があれば ID と新しい優先度を指定 | 承認 / 変更あり |
-| WT-Q-STYLE-01 | 開発スタイルを `V_DESIGN_SCRUM_IMPLEMENTATION`（L4 基本設計 → L5 詳細設計 + 先行テスト設計を V 字で固め、L6 実装以降を Scrum で反復）にする。採用するか | 採用 / 不採用 |
+- WT-Q-G3-01: 旧 123 件から最新 131 件へ確認対象を更新。pending_resolution、追加要求、優先度、PO 反応を照合して最新 revision の合意を記録する。フロント先行の間は保留。
+- WT-Q-STYLE-01: V_DESIGN_SCRUM_IMPLEMENTATION の採否は保留。
+- 件数や validator 成功だけで収束とせず、直近 2 iteration の優先度安定と改定範囲の合意を確認 → 再 compile → specified → G3 承認で frozen。
+- 非目標: 決済・購読・会員等の業務処理、CRM / MA・配信そのもの、AI 判定のテーマ内実装。外部機能の表示・接続・権限別遷移を検証する範囲は残す。
 
-## 1. 企画との接続（WT-BR、5 件）
+## 要件・受入条件の全件索引
 
+要求 131 件（P0 67 / P1 55 / P2 9）、受入条件 282 件。以下の状態は要求の整理状態であり実装完了状態ではない。
 
-- **WT-BR-01** 機械可読性を維持する。面・部品・値・変種を追加しても、すべてが JSON 宣言（theme.json / config / schema / openapi）から列挙できる（判定: capability manifest の列挙率 100%。PHP にしか存在する面・部品が 0）
-- **WT-BR-02** テーマA / B が示す一般想定水準に到達する。12 種別の必須パーツ充足に加え、未整備 16 項目と S3 追加 26 問（採用 24・reject 2）の受け皿を持つ（判定: `web-patterns` 12 種別で本テーマだけに欠ける必須パーツ 0。未整備項目と採用候補の受け皿有無が台帳化）
-- **WT-BR-03** エージェント制御下でバリエーションを生成できる。面・部品・値・変種・テンプレ・CV の選択が JSON 経由で完結し、破壊域へ落ちない（判定: AI 経路の変更のうち JSON 外の操作を要した件数 0。破壊域停止の誤警告 0）
-- **WT-BR-04** 実証済みパターンを証跡付きで記録し、他プロダクト（GRAPHIX-NEO 等）は記録を読んで採否を自分で決める。依存を作らない（判定: 記録行の証跡付き率 100%。他リポへの参照・書き込み 0）
-- **WT-BR-05** AI 判定ロジックをテーマ・プラグインに持ち込まない（判定: 静的検出（判定ロジック・モデル呼び出し）0）
+| ID | rev | 優先度 | 状態 | 要求（全文） | 受入条件 |
+| --- | --- | --- | --- | --- | --- |
+| WT-TR-CORE-01 | 1 | P0 | candidate_inventory | 面・部品・変種・値の尺度は theme.json / config / schema / openapi の JSON 宣言から列挙でき、PHP にしか存在する面を作らない | WT-AC-TR-CORE-01A, WT-AC-TR-CORE-01B |
+| WT-TR-CORE-02 | 1 | P0 | candidate_inventory | health() は起動 step と module に加え、登録済みの slot・パターン・パーツ・variation・テンプレ変種・hook を自己申告する | WT-AC-TR-CORE-02A, WT-AC-TR-CORE-02B |
+| WT-TR-CORE-03 | 1 | P0 | candidate_inventory | AI 判定ロジック（variant 生成・統計判定・リスクスコア・モデル呼び出し）をテーマ・プラグインに持ち込まず、boundary guard を維持する | WT-AC-TR-CORE-03A, WT-AC-TR-CORE-03B |
+| WT-NFR-GATE-01 | 1 | P0 | candidate_inventory | 静的 6 ゲート（G-T1 / T1b / T2 / T3 / S1 / S2）と実機 G-E1（invalid=0）を、パターン・パーツ・テンプレ・styles を触る PR の完了条件にする | WT-AC-NFR-GATE-01A, WT-AC-NFR-GATE-01B |
+| WT-TR-PLUGIN-01 | 1 | P0 | candidate_inventory | 運用中の AI はテーマファイルを触らず、WordPress が DB に持つ「サイトの選択」（ヘッダー / サイドバー / hero の案、variation、テンプレ変種、ナビ、尺度内の値、slot のパターン、記事メタ・区間・ゾーン）だけを変える。その経路は Core プラグインの API 1 本で、中では WP コアの保存経路（Site Editor が使うもの）を呼び、前後に manifest（選べるもの一覧）・dry-run と差分・尺度外 / 参照欠落の停止・rollback・監査ログを付ける。人は同じ結果を管理画面と Site Editor から得る。責務分担: テーマ = 表示（ファイル）、Core プラグイン = 選択を安全に DB へ入れる薄い層 + データ（設定 JSON・投稿メタ・section ID・ゾーン・再利用パーツ・計測・ログ）で表示も判定も持たない、Embed = ブロック、判定 = HELIX。（実装方針、PO 決定ではない: 既存 34 コントローラは 1 つのサービス層 + 薄い顔（REST / MCP / CLI / 管理画面）に畳む。）新しい部品（パターン・尺度）は運用の外でリポジトリ → ゲート → 配備。Update URI、署名・digest、選択セットの staging dry-run → production apply はハーネス責務として扱う。 | WT-AC-TR-PLUGIN-01A, WT-AC-TR-PLUGIN-01B |
+| WT-TR-PLUGIN-02 | 1 | P1 | candidate_inventory | 第三者プラグインとの共存規約: 出力が重なる領域（JSON-LD、meta / OGP、目次、サイトマップ、llms.txt、キャッシュ、フォーム、同意管理・計測）ごとに「本テーマが出す / 検出して譲る / 設定で選ぶ」を決め、テーマ設定画面で切り替えられる。既定は二重出力を起こさない側。互換の第一対象は実運用 2 サイトで稼働する種類（SEO・サイトマップ・llms.txt・フォーム・画像最適化・キャッシュ・目次）で、全プラグイン互換は非対象。フォームは LP のフォーム制御と接続する。第三者の同意管理・計測が検出された場合は本テーマが同意バーや計測出力を重ねず、同意信号とデータ層契約へ譲る。テーマA / B からの写像（MIGRATE）はハーネスがサーバーファイルとテーマ情報を直接書き換えて行い、テーマ側に移行プラグイン・移行コード・互換固有名を持たない。IndexNow、robots、SEO / 同意 / フォームの譲渡領域を検出結果とともに manifest へ載せる。 | WT-AC-TR-PLUGIN-02A, WT-AC-TR-PLUGIN-02B |
+| WT-FR-ZONE-01 | 1 | P0 | candidate_inventory | 共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持つ。共通宣言を fluid で適用し、専用面・並び順・表示形などの device 別差分を宣言して Site Editor と AI の双方から個別編集できる。主たる配信面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を検査する。空なら描画せず、重い面の出し分けは slot の条件描画で行う | WT-AC-ZONE-01A, WT-AC-ZONE-01B |
+| WT-FR-ZONE-02 | 1 | P1 | candidate_inventory | ゾーン語彙 23 種を JSON schema で宣言し、creative は参照（ID）、overrides は first-match-wins の配列で持つ | WT-AC-ZONE-02A, WT-AC-ZONE-02B |
+| WT-FR-ZONE-03 | 1 | P2 | candidate_inventory | SP 下部固定領域の積層は 同意バー（位置を下部固定に選んだ場合のみ）> メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページトップは footer 内。ビューポート内で広告・バナーが占める面積の上限をゾーン割当に宣言し（値は PoC でテーマA / テーマB の実測から確定）、初回表示のモーダルは同意バーを除き禁止する。LP は LP 単位の設定で例外を許容する。いずれも G-E1 で検査する（PO 2026-09-03、WT-Q-ZONE-02） | WT-AC-ZONE-03A, WT-AC-ZONE-03B, WT-AC-ZONE-03C, WT-AC-ZONE-03D |
+| WT-FR-PARTS-01 | 1 | P0 | candidate_inventory | header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする。footer にサイトマップ枠と関連サイト / ページ枠を選べる（PO 2026-09-05、WT-Q-PARTS-03） | WT-AC-PARTS-01A, WT-AC-PARTS-01B, WT-AC-PARTS-01C |
+| WT-FR-PARTS-02 | 1 | P1 | candidate_inventory | テンプレ変種（single-2col / single-1col）と footer のカラム可変を「テンプレ名」で表し、属性で幅や余白を変えない。ナビは wp_navigation を ref で参照する | WT-AC-PARTS-02A, WT-AC-PARTS-02B |
+| WT-FR-VOCAB-01 | 2 | P0 | human_decision_required | 記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 6 種 + 空き 1 枠（上限 7）に限定する。SP 幅では比較を横スクロール / カード、タブをアコーディオン、目次を開閉ボタン、ギャラリーをスワイプ、CTA を全幅 / sticky として選べる。比較専用テーブルは本文中の手組み比較表とは別語彙とする。タブはコア Tabs + block style を使い、pros-cons / timeline は core + block style、料金表は比較専用テーブルの variant として受ける。カード・箇条書き・手順のメディア枠は自前 SVG アイコン・アップロード画像・写真・番号・なしから選べる（PO 2026-09-05、WT-Q-PARTS-03） | WT-AC-VOCAB-01A, WT-AC-VOCAB-01B, WT-AC-VOCAB-01C |
+| WT-FR-VOCAB-02 | 1 | P1 | candidate_inventory | 目次はテーマ内蔵とし、実体は本文の h2/h3 からレンダラが機械導出する（保存 HTML に固定しない）。編集者と AI が選べるのは (a) 配置方式: 固定埋め込み（既定は最初の h2 直前）/ フロート追従（サイドまたは画面端に追従）/ 開閉ボタン化（折りたたみ）、(b) 表示条件: ページ種別（投稿 / 固定ページ / LP / 一覧）ごとの表示・非表示と投稿単位の上書き、(c) 見た目: block style（尺度はプリセット参照）。目次本文の内容は選択対象にしない。機能は第三者の目次プラグインの一般水準（階層表示・折りたたみ・現在位置追従・見出し数閾値・除外指定）を下限とする（PO 2026-09-05、WT-Q-LOOK-05） | WT-AC-VOCAB-02A, WT-AC-VOCAB-02B |
+| WT-FR-VOCAB-03 | 2 | P0 | human_decision_required | PR 表記は表示内容全体から広告であることが不明瞭にならない自己基準を満たし、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所とする。既定は他サイトで一般的な控えめな記事上部一文とし、ボタン・バナーのすぐ近くには置かない。表示の要否は記事内の広告パーツ・アフィリエイトリンク・商品リンク（affiliation ブロック / 広告ゾーンの creative 参照を含む）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない。法令上の数値基準を主張せず、テーマA / テーマB の PR 表記水準の再読を後続 PoC 課題とし、ASP 規約の上乗せは運用側設定で扱う。出典: https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/（参照日: 2026-09-03）。PR の調査主体・時期・対象・方法または編集部基準と、affiliation / creative / 商品リンクの根拠を保持する。 既定の表記文言は「本記事にはプロモーションが含まれます。」（WT-EVT-0267）。本文の既存表記と重複させず、CTA・商品カード束へ不要な PR バッジを追加しない（WT-EVT-0246 / 0254 / 0255）。 | WT-AC-VOCAB-03A, WT-AC-VOCAB-03B, WT-AC-VOCAB-03C |
+| WT-FR-VOCAB-04 | 1 | P1 | candidate_inventory | ブログカード（内部リンク）は REST を経由せず url_to_postid() 直呼びで解決し、外部 URL は検証付き HTTP のみ | WT-AC-VOCAB-04A, WT-AC-VOCAB-04B |
+| WT-FR-SECTION-01 | 1 | P0 | candidate_inventory | 見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3 区間を持つ階層とする（H4 以下は区間にしない、PO 2026-09-02）。ID は親子で安定させ（h2-id/h3-id）、見出し文言の変更でずれない。中間 JSON に section 境界と ID が出て、既存の sections API / section-registry をこの規約に合わせる | WT-AC-SECTION-01A, WT-AC-SECTION-01B |
+| WT-FR-SECTION-02 | 1 | P0 | candidate_inventory | H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ）。section ID・variant ID・目標 CV ID・device type も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側。max-snippet / nosnippet / data-nosnippet と section × actor × version の rewrite history を記事メタへ記録する。 | WT-AC-SECTION-02A, WT-AC-SECTION-02B |
+| WT-FR-LOOK-01 | 2 | P0 | candidate_inventory | 見た目の型は、機械可読性と品質を維持して異なる目的・面・部品・状態・導線の選択肢と成立する組み合わせを最大化する（WT-EVT-0288 / 0300）。名前だけ違う型の水増しは成果としない。用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サイト・テーマA / B・参照サイトの観察由来）を入力にする。h3 を h2 より 1 段下げ、h2 / h3 の block style とボタン variant は台帳由来の型数とし、h2 ×3 / h3 ×2 / ボタン ×3 は下限（Claude 案）。同じ列のカードは高さを自動で揃え、見出し文字は 1 行に収める寸法を既定とし、補助文は抑えた無彩色にする。hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする（PO 2026-09-05、WT-Q-LOOK-05）見た目の選択軸に動き（LP / HP の出現・スクロール連動・hero 演出・マイクロ）、奥行き（カードの浮き・立体ボタン）、空間（余白密度・配置・グリッド・リズム）、脱テキスト感（見出し・箇条書きの装飾型）を加え、動きは reduced-motion と JS 無効時の表示を保証し、写真・色地上の文字は自動コントラスト guard（4.5:1、大文字 3:1）で守る（PO 2026-09-05、WT-Q-LOOK-06）。 PO の試作反応（WT-EVT-0242〜0276）による見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4 軸の拡張を受入検証に含め、各型の用途説明を用意する。 | WT-AC-LOOK-01A, WT-AC-LOOK-01B, WT-AC-LOOK-01C, WT-AC-LOOK-01D, WT-AC-LOOK-01E |
+| WT-FR-LOOK-02 | 1 | P2 | candidate_inventory | デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける。写像の対象範囲は WT-FR-LOOK-03 のサイトパターン調査で広げる | WT-AC-LOOK-02A, WT-AC-LOOK-02B |
+| WT-FR-LOOK-03 | 2 | P1 | candidate_inventory | variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンも要求範囲の調査対象として残す。9 系統は検証の抜け漏れを探す開かれた索引であり上限ではない。未検証を対応済みとはしない（WT-EVT-0299 / 0300）。調査対象には 3D アニメーション / ゲーミング系のサイトパターンも含める（PO 問い 2026-09-02）。ただし配色・タイポ・部品は variation / block style で届くが、3D・常時アニメーションは値差し替えの外にあり、動きの資産層（JS / アセット）を持つかは調査結果を見て別提案として出す | WT-AC-LOOK-03A, WT-AC-LOOK-03B, WT-AC-LOOK-03C |
+| WT-FR-META-01 | 1 | P1 | candidate_inventory | 投稿メタ 5 キー（sidebar / toc / share / pr / eyecatch）を登録し、テンプレ側の条件描画で記事単位の表示切替を持つ。eyecatch は位置（本文上 / タイトル上 / 全幅 hero / サイドバー寄せ）と有無を持ち、サイト既定は設定 JSON、記事単位はメタで上書きする。option による不可視上書きは使わない（PO 2026-09-05、WT-Q-META-02） | WT-AC-META-01A, WT-AC-META-01B, WT-AC-META-01C |
+| WT-FR-ADMIN-01 | 1 | P0 | candidate_inventory | テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）を各項目の所有先の初期値にする: 設定 JSON が持つ項目はサイト既定セットの初期値、theme.json / block style が持つ項目（本文幅・書体など）はテーマ既定、選択なしの guard 項目（44px・コントラスト等）は検査で強制し設定にしない。選択を持つ項目だけ個別に変更でき、証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。 | WT-AC-ADMIN-01A, WT-AC-ADMIN-01B, WT-AC-ADMIN-01C, WT-AC-ADMIN-01D |
+| WT-FR-LP-01 | 2 | P0 | candidate_inventory | LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページがディレクトリ階層の配下に置かれるのに対し、LP はディレクトリに依存しない構造（階層を持たないスラッグ）とする。LP は購入意思の高い利用者の CV 獲得、BLP は理解・納得を促して LP へ送る目的として区別する。イベントと比較ページも目的に応じて独立した管理上の種別として JSON で列挙し、LP の一種へ一律に内包しない（WT-EVT-0296 / 0299）。追加種別の物理的な CPT / template の構成は設計で決める。既存の page template + lp パターン 12 本は LP 種別の初期パターン群として引き継ぐ。LP の初回モーダル例外は LP 単位設定で扱い、固定ページ群や外部フォームは自前実装と混同しない。 | WT-AC-LP-01A, WT-AC-LP-01B, WT-AC-LP-01C |
+| WT-FR-LP-02 | 1 | P0 | candidate_inventory | LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクションパターン）、イベント計測（表示・スクロール・CTA クリック・フォーム送信のイベントを WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ送る）を持つ。LP ごとに目標 CV ID と A/B variant ID を選択し、必須 ID として計測へ渡す。計測の判定・最適化ロジックはテーマの外（HELIX 側）に置く | WT-AC-LP-02A, WT-AC-LP-02B |
+| WT-FR-MIGRATE-01 | 1 | P1 | candidate_inventory | 移行の実行（移行元サイトの取得、サーバーファイルとテーマ情報の書き換え）はテーマの責務ではなく HELIX-WP-HARNESS の責務（PO 2026-09-02）。テーマが持つのは (1) 取得項目定義（移行元から何を採るかの項目と採取方法。ハーネスが読む仕様）と (2) マッピングフォーマット（項目ごとの写像先を宣言する JSON: 4 分類 = 有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群、写像不能は理由付きで明示）の 2 つで、いずれもテーマの JSON 資産の一部として公開する。テーマ側に変換器・移行プラグイン・移行 UI は持たない。状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とし、option の不可視上書きは使わない | WT-AC-MIGRATE-01A, WT-AC-MIGRATE-01B |
+| WT-FR-MIGRATE-02 | 1 | P1 | candidate_inventory | マッピングフォーマットは、ウィジェット領域 → template part / slot、コアウィジェット → コアブロック、独自ブロック → 受け皿対応表、プリセット → variation の写像規則を含み、写像不能候補（アニメーション・グラデーション角度・スライダー等）を理由付きで列挙する。変換の実行と記録はハーネス側 | WT-AC-MIGRATE-02A, WT-AC-MIGRATE-02B |
+| WT-FR-MIGRATE-03 | 1 | P2 | candidate_inventory | 移管対象の推奨はサイト固有（意味に属する 60〜80 キー）に絞り、見た目は本テーマで作り直す方針をマッピングフォーマットに明記する。互換 meta キーの固有名は公開本体に置かず、ハーネス側の非公開設定から注入する | WT-AC-MIGRATE-03A, WT-AC-MIGRATE-03B |
+| WT-FR-AGENT-01 | 1 | P0 | candidate_inventory | エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variation・テンプレ変種・値の尺度・投稿メタ・LP 種別・hook）上の操作を用途別に束ねた複合 ability で、細粒度 API を個別に晒すのではなく、設定（JSON）でパックを構築・入れ替えできる。各パックは dry-run → apply → rollback を内包し、manifest 外の指定は拒否理由付きで返す。REST / CLI は同じ manifest とパック定義を読む従属経路とし、経路ごとに別の語彙を持たない。目的はエージェントのコンテキスト効率（1 パック呼び出しで 1 作業単位が完結する）。Abilities API の登録から MCP / REST / WP-CLI の能力集合を導出し、各操作の annotations と destructive の dry-run receipt を manifest へ含める。 | WT-AC-AGENT-01A, WT-AC-AGENT-01B |
+| WT-FR-AGENT-02 | 1 | P1 | candidate_inventory | 本文の中間 JSON 抽出器を純関数（副作用なし、render_block 非依存、参照解決に深さ上限と訪問済み集合）として持ち、CLI / REST から呼べる | WT-AC-AGENT-02A, WT-AC-AGENT-02B |
+| WT-FR-AGENT-03 | 1 | P2 | candidate_inventory | 主要パーツ前後の do_action 10 箇所と出力の apply_filters 10 箇所を持ち、hook 一覧を manifest に含める | WT-AC-AGENT-03A, WT-AC-AGENT-03B |
+| WT-FR-AGENT-04 | 1 | P2 | candidate_inventory | 再利用パーツは参照（ID）で持ち、解決に使った版と digest を記録する。展開して保存しない | WT-AC-AGENT-04A, WT-AC-AGENT-04B |
+| WT-TR-AGENT-05 | 1 | P1 | candidate_inventory | REST は自前名前空間で WP コアに相乗りしない。本文変換は生成時 / レンダリング時 / 表示時の 3 層で、テーマ語彙のショートコードは意図ノードへ、プラグイン語彙は不透明ノードで原文保持、インライン書式は marks 配列で持つ。自前 REST 名前空間は Abilities API で扱えない範囲だけに限定する。 | WT-AC-TR-AGENT-05A, WT-AC-TR-AGENT-05B |
+| WT-FR-AGENT-06 | 1 | P1 | candidate_inventory | カスタムパーツの自己開発経路を持つ: 編集者または AI がブロックを組んで再利用パーツとして登録（参照 + 版 + digest、manifest に出る）→ 実機ゲート（invalid 0、生値なし、参照整合）を通してテーマのパターンへ昇格 → 実証記録台帳に載せる。パーツはトークンをスラッグ名でのみ参照し、トークン契約が同じであれば他テーマでも描画できる形にする（他プロダクトへの依存は作らない）。生値を含むパーツは昇格させない | WT-AC-AGENT-06A, WT-AC-AGENT-06B |
+| WT-FR-VALUE-01 | 1 | P0 | candidate_inventory | 値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、ブロック単位・記事単位の任意 CSS（WP 7.0 のコア機能を含む）も同じ値域判定を通して任意 CSS による迂回を許さない。破壊域は保存を止めて規則・値・境界を示す。境界値は PoC で実物を崩して確定する。dimension preset と minWidth / gradient を安全域の宣言値として列挙する。 | WT-AC-VALUE-01A, WT-AC-VALUE-01B |
+| WT-FR-VALUE-02 | 1 | P1 | candidate_inventory | 生値は許容リスト方式（尺度系はプリセット参照へ、意匠値は許容リスト）へ移し、baseline 438 を段階的に 0 にする。ブロック単位・記事単位の任意 CSS も同じ値域・許容リスト判定を通し、判定を迂回できない。未対応表示機能は fallback とし、生値・破壊域の境界を超えない。 | WT-AC-VALUE-02A, WT-AC-VALUE-02B |
+| WT-NFR-VALUE-03 | 1 | P0 | candidate_inventory | bridge 投影・子テーマ・user global styles は同スラッグへの値差し替えだけができ、段の増減・スラッグ変更・settings 上書きはスキーマ検査で拒否する。dimension preset、minWidth、background.gradient は宣言済み尺度・安全域として扱う。 | WT-AC-NFR-VALUE-03A, WT-AC-NFR-VALUE-03B |
+| WT-FR-SEO-01 | 1 | P1 | candidate_inventory | 構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）を追加する。WebSite は site name 用の name / alternateName / url のみを出し、WebSite.potentialAction（SearchAction）は出さない。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）。Organization・site name・favicon・BreadcrumbList を root / 構造の正本から出し、対象外の merchant feed 経路を持たない。カテゴリ一覧テンプレはミニ HOME 型（親・子・孫の階層、読む順、記事数、カテゴリ内人気、新着）を選べ、CollectionPage は同じ出力元から出す（PO 2026-09-05、WT-Q-PARTS-03） | WT-AC-SEO-01A, WT-AC-SEO-01B, WT-AC-SEO-01C |
+| WT-FR-SEO-02 | 1 | P2 | candidate_inventory | FAQ・手順の語彙と本文を残しつつ、FAQPage / HowTo の JSON-LD は既定で出力せず、任意 ON 設定も持たない。ItemList は語彙から自動生成し、本文と一致させる。Google 公式 updates に基づく対象外・非推奨型を出さない。出典: https://developers.google.com/search/updates、https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-03）。初期 HTML に主コンテンツと ItemList を含め、廃止型 FAQPage / HowTo / SearchAction を既定出力しない。 | WT-AC-SEO-02A, WT-AC-SEO-02B |
+| WT-FR-SEO-03 | 1 | P1 | candidate_inventory | title / meta description / canonical / robots / sitemap / OGP を全ページ種別で出し、hreflang は多言語構成時だけ自己参照・相互参照を検査して出す。主たる確認面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を確認対象にする。llms.txt・crawl-map・LLMO summary の既定出力は同一正本から維持するが、Google の AI 機能への効果や他 AI 事業者の読込を断定せず、WT-FR-CRAWL-02 のアクセス計測で実証する。第三者 SEO プラグインが検出された場合は重複する meta / OGP / sitemap の出力を検出して譲る。Google 検索セントラルの検索の基本・canonical 化・多言語ページのガイド・AI 最適化ガイドに準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls、https://developers.google.com/search/docs/specialty/international/localized-versions、https://developers.google.com/search/docs/fundamentals/ai-optimization-guide（参照日: 2026-09-03）。公開日・更新日・sitemap lastmod を同一ソースから出し、自己 canonical と多言語時だけの hreflang を検査する。 | WT-AC-SEO-03A, WT-AC-SEO-03B |
+| WT-FR-INTAKE-01 | 1 | P2 | candidate_inventory | 実証記録台帳を本テーマ内で完結する append-only の JSON Lines として持つ。1 行 = パターン ID・参照元 commit・証跡パス・ゲート結果（静的 6 種 + 実機 invalid 0 が同一 HEAD に束縛）。他プロダクト（GRAPHIX-NEO 等）はこの記録を読んで採否を自分で決めるだけで、台帳は取り込み先の識別子・状態・検証を持たず、他リポへの参照や書き込みを要求しない（依存を作らない）。本テーマ側から他プロダクトの成果物を取り込む行は持たない。フォント・アイコン・画像の出所とライセンスを JSON 資産台帳へ記録し、台帳外をゲートで赤にする。 | WT-AC-INTAKE-01A, WT-AC-INTAKE-01B |
+| WT-NFR-SEC-01 | 1 | P0 | candidate_inventory | 未認証 REST（permission_callback __return_true）を持たず、外部 URL 取得は wp_safe_remote_get 等の検証付き経路のみ。公開面に PHP Warning を出さない。ability の公開フラグと実行許可を分け、全操作の permission callback、Application Passwords 境界、既定 security headers を検査する。 | WT-AC-NFR-SEC-01A, WT-AC-NFR-SEC-01B |
+| WT-NFR-REL-01 | 1 | P0 | candidate_inventory | 描画パスで set_theme_mod / update_option を呼ばない。redirect_canonical の全面停止や全ページ session_regenerate_id のようなグローバル改変を持ち込まない | WT-AC-NFR-REL-01A, WT-AC-NFR-REL-01B |
+| WT-NFR-PRIV-01 | 1 | P1 | candidate_inventory | 計測・広告・外部コードの正本はテーマ外（HELIX / プラグイン側）。テーマ内に計測 ID・広告コードを持たない。人気の自前集計を選んだ場合に限り、IP を持たない日次集約のみを「人の閲覧を記録しない」原則の例外とする。 | WT-AC-NFR-PRIV-01A, WT-AC-NFR-PRIV-01B |
+| WT-NFR-PERM-01 | 1 | P0 | candidate_inventory | 破壊域停止は権限で解除できず、write 系 API は capability と dry-run receipt を要求する。ability 単位の認可と Application Passwords の read / write 分離で破壊域停止の迂回を防ぐ。 | WT-AC-NFR-PERM-01A, WT-AC-NFR-PERM-01B |
+| WT-NFR-COST-01 | 1 | P2 | candidate_inventory | ゲート・PoC はローカル docker で完結し、無料枠制限や課金を伴う外部 API に依存しない | WT-AC-NFR-COST-01A, WT-AC-NFR-COST-01B |
+| WT-NFR-LEGAL-01 | 1 | P0 | candidate_inventory | PR 表記の法令要件と GPL 配布要件（ライセンス表記・第三者資産の許諾）を満たす。OFL 全文、Reserved Font Name、asset ledger、SECURITY.md、semver / CHANGELOG / child theme 方針を配布ゲートに含める。 | WT-AC-NFR-LEGAL-01A, WT-AC-NFR-LEGAL-01B |
+| WT-NFR-OBS-01 | 1 | P1 | candidate_inventory | health / gate / 台帳 / 抽出器の出力は JSON で、HEAD と digest に束縛される | WT-AC-NFR-OBS-01A, WT-AC-NFR-OBS-01B |
+| WT-NFR-A11Y-01 | 1 | P1 | candidate_inventory | 域の判定・状態表示は label と icon を伴い色だけに依存しない。img alt 欠落 0、AA コントラスト、横スクロール 0。WCAG 2.2 AA を到達目標とし、APG の role / aria-expanded / キーボード契約、focus 可視、reflow、text-spacing、24px 下限を検査する。 | WT-AC-NFR-A11Y-01A, WT-AC-NFR-A11Y-01B |
+| WT-NFR-REC-01 | 1 | P0 | candidate_inventory | 構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の digest に戻る | WT-AC-NFR-REC-01A, WT-AC-NFR-REC-01B |
+| WT-NFR-CRED-01 | 1 | P0 | candidate_inventory | credential・実サイト固有名・第三者製品名を公開リポジトリへ書かない。接続情報は環境変数と gitignore 済み local 設定 | WT-AC-NFR-CRED-01A, WT-AC-NFR-CRED-01B |
+| WT-NFR-PERF-01 | 1 | P1 | candidate_inventory | 記事・LP・一覧・商品比較は主たる描画・計測面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を検査し、JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）。Baseline fallback、speculative loading、bfcache、reduced-motion と JS / CSS の遅延境界を検査する。 | WT-AC-NFR-PERF-01A, WT-AC-NFR-PERF-01B |
+| WT-FR-SELL-01 | 1 | P0 | candidate_inventory | 商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア / 自社 EC URL）を保持する。複数記事から同じ正本を参照して一括反映し、商品表示と構造化データの入力を分散させない。決済・カート・会員はテーマ外とする。外部 EC / ASP API クライアントと認証情報を持たず、商品正本の取得元・時刻・鮮度を保持し、アフィリエイト用 merchant feed と ProductGroup を要求対象外にする。 | WT-AC-SELL-01A, WT-AC-SELL-01B |
+| WT-FR-SELL-02 | 1 | P0 | candidate_inventory | 同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・返品ポリシー付きの merchant listing 形を出し分け、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする。出典: https://developers.google.com/search/docs/appearance/structured-data/product-snippet、https://developers.google.com/search/docs/appearance/structured-data/merchant-listing（参照日: 2026-09-03）。pros-cons、ランキング根拠、料金表 variant、先頭列固定を扱い、打消し表示は CTA と同視野・同サイズにする。 | WT-AC-SELL-02A, WT-AC-SELL-02B |
+| WT-FR-SELL-03 | 1 | P1 | candidate_inventory | 管理画面（WT-UI-10）に商品一覧・編集を置き、AI を介さず価格・リンクを直せる。MCP 常用パックに商品の追加・更新・記事への差し込みを載せ、商品リンクのクリック計測を WT-FR-LP-02 の計測経路へ流す。購入完了の計測は外部側責務とする | WT-AC-SELL-03A, WT-AC-SELL-03B |
+| WT-FR-SEO-04 | 1 | P0 | candidate_inventory | SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティ、FAQPage / HowTo / SearchAction など対象外・非推奨型を出さないこと、代表画像の OGP / 構造化データ image 一致）、検索の基本（title / meta / canonical / robots / sitemap、hreflang は多言語構成時のみ自己参照・相互参照、robots meta max-image-preview:large）、ページエクスペリエンス（Core Web Vitals、モバイル）、幅 1200px 以上の Discover 代表画像、リンク rel 属性、クローキングにならない A/B 配信を準拠項目として機械検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を確認する。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox、https://developers.google.com/search/docs/specialty/international/localized-versions（参照日: 2026-09-03）。max-snippet / nosnippet / data-nosnippet をページ種別・section で設定し、既定は許可する。 | WT-AC-SEO-04A, WT-AC-SEO-04B |
+| WT-NFR-SEO-01 | 1 | P0 | candidate_inventory | schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane を持ち、必須プロパティ欠落と非推奨型を赤として扱う。FAQPage / HowTo / SearchAction ほか Google 公式 updates に基づく廃止型リストを JSON 正本として保持し、各型の出典 URL と参照日を記録して改定差分を追う。出典: https://developers.google.com/search/updates、https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）。廃止型・schema 更新を docs updates RSS から監視し、robots / favicon / 日付 / canonical の公式出典と参照日を保持する。 | WT-AC-NFR-SEO-01A, WT-AC-NFR-SEO-01B |
+| WT-FR-SEO-05 | 1 | P1 | candidate_inventory | アフィリエイトリンクと商品 CTA へ rel="sponsored" を機械付与し、リンクの種類に応じた rel 属性を同じ出力経路で保つ。出典: https://developers.google.com/search/docs/crawling-indexing/links-crawlable（参照日: 2026-09-02） | WT-AC-SEO-05A, WT-AC-SEO-05B |
+| WT-FR-CRAWL-01 | 1 | P1 | candidate_inventory | プラグイン側で UA と逆引き / 公開 IP レンジ照合により検索エンジン系・AI 系クローラーを識別し、URL・時刻・ステータス・応答時間・ページ種別を専用テーブルへ記録する。bot 判定外（人の閲覧）は記録せず捨てる。取れるのは WP が応答したリクエストだけである。公式 IP レンジの endpoint と最終版を保持し、生ログ・cache 応答・集約ログの出所と IP 廃棄を区別する。人気の自前集計を選んだ場合に限り、IP を持たない日次集約のみを「人の閲覧を記録しない」原則の例外とする。 | WT-AC-CRAWL-01A, WT-AC-CRAWL-01B |
+| WT-FR-CRAWL-02 | 1 | P1 | candidate_inventory | 管理画面 WT-UI-11 にクローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無を表示する。llms.txt の既定出力の効果を断定せず、アクセス有無と時系列を効果実証の計測として追跡する。AI 利用許諾信号とクローラー endpoint の鮮度・参照日・効果実証用アクセスを表示する。 | WT-AC-CRAWL-02A, WT-AC-CRAWL-02B |
+| WT-FR-CRAWL-03 | 1 | P1 | candidate_inventory | robots.txt と AI クローラーの許可 / 拒否を WT-UI-11 から設定し、設定 JSON へ保存する。同じデータを MCP 常用パックと REST から取得できる。判定・順位計測・Search Console 連携は HELIX 側（テーマ外）とする。Google-Extended と Googlebot を分離し、robots 200 fallback、500KiB 検査、RFC 9309 一元生成、非準拠・未検証表示を持つ。 | WT-AC-CRAWL-03A, WT-AC-CRAWL-03B |
+| WT-NFR-CRAWL-01 | 1 | P1 | candidate_inventory | クロールログの保持期間と間引きは既定 90 日とし、bot 判定外の個人閲覧を記録しない。対象は WP が応答したリクエストだけで、キャッシュ / CDN 応答は見えない限界をダッシュボードと運用文書に明記する。Search Console 突合と順位計測はテーマ外とする。WP 応答の直接ログと cache / CDN 由来ログを区別し、人の行と IP を取り込まず、生行短期・日次集約長期・容量上限を守る。 | WT-AC-NFR-CRAWL-01A, WT-AC-NFR-CRAWL-01B |
+| WT-FR-AB-01 | 1 | P0 | candidate_inventory | H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、共通の配信定義に device 別差分を持たせ、主たる確認面はサイト設定で選び、SP / PC の両幅で配信と計測を検査し、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す。同一 URL + cookie を既定とし、cookie 無しは既定案にする。cache 対応の variant 別方式と、非対応時の除外 URL 方式を選ぶ。 | WT-AC-AB-01A, WT-AC-AB-01B |
+| WT-FR-AB-02 | 1 | P0 | candidate_inventory | A/B の impression / click / CV を variant ID・section ID・CV ID・device type 付きで WT-FR-TAG-02 の version 付きデータ層契約から tracking 経路へ送り、section・LP・商品テーブル単位のイベントを集計可能にする。集計と判定は HELIX 側で行う。A/B 対象と LP を speculative loading から除外し、prerendering 中の計測を待つ。 | WT-AC-AB-02A, WT-AC-AB-02B |
+| WT-FR-AB-03 | 1 | P0 | candidate_inventory | A/B の承認・停止・rollback を WT-UI-10 と MCP 常用パックの双方から操作し、停止時は既定案へ即時復帰する。A/B の判定ロジックはテーマ・プラグインに置かない | WT-AC-AB-03A, WT-AC-AB-03B |
+| WT-FR-IMG-01 | 1 | P0 | candidate_inventory | 全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。WP 7.1 のブラウザ側画像処理を第一経路とし、サーバー側は既存画像の再生成とブラウザを通らない CLI / REST / MCP 経路に限る。第三者画像最適化プラグインがサブサイズや WebP を生成している場合はテーマ側の生成を停止し、テーマは picture + srcset の配信だけを担う。hero の fetchpriority=high は `wp_get_loading_optimization_attributes()` の filter 経由で指定し、その他はコアの自動判定に任せる。出典: https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/、https://developer.wordpress.org/reference/functions/wp_get_loading_optimization_attributes/（参照日: 2026-09-03）。GD / Imagick の WebP / AVIF 能力を検出し、未対応時は WebP へ縮退して警告する。IPTC / XMP は再生成でも引き継ぐ。 | WT-AC-IMG-01A, WT-AC-IMG-01B |
+| WT-FR-IMG-02 | 1 | P1 | candidate_inventory | 5MB 超・一括画像処理のうちブラウザを通らない CLI / REST / MCP 経路と既存画像の再生成だけをサーバー側 WP-Cron の非同期ジョブにし、ブラウザ側との二重処理を避ける。WT-UI-10 と MCP から進行を確認でき、既存画像は管理画面 1 操作と CLI から dry-run（対象件数・削減見込み）付きで再生成できる。動画変換ツールが無い場合は HELIX 側への委譲または手動アップロードを使う。出典: https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/（参照日: 2026-09-03）。非同期ジョブは WP-Cron / system cron / WP-CLI の 3 駆動から選び、cache による cron 不成立を警告する。 | WT-AC-IMG-02A, WT-AC-IMG-02B |
+| WT-FR-IMG-03 | 1 | P1 | candidate_inventory | alt を必須として空の画像は公開前に警告し、AI 側が埋める導線と GIF の動画置換提案を持つ。Discover は幅 1200px 以上の代表画像、robots meta max-image-preview:large、OGP と構造化データ image の一致を検査し、未達を WT-UI-10 と MCP から警告する。第三者画像プラグインとの重複は WT-TR-PLUGIN-02 の設定で制御する | WT-AC-IMG-03A, WT-AC-IMG-03B |
+| WT-NFR-PERF-02 | 1 | P1 | candidate_inventory | CSS を語彙単位で分割して使用分だけ出し、共通定義は fluid、device 別差分は必要な幅だけ出す。ビルド工程で短縮化し、critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して SP / PC の両幅で検査する。和文フォントの自己ホスト・サブセット・font-display・size-adjust を速度予算内で検査する。 | WT-AC-NFR-PERF-02A, WT-AC-NFR-PERF-02B |
+| WT-NFR-PERF-03 | 1 | P0 | candidate_inventory | 記事・LP・一覧・商品比較で主たる測定面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を測定対象とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う。Lighthouse major と insight ID を固定し、unload 0、no-store 不使用、pagehide close を CI で確認する。 | WT-AC-NFR-PERF-03A, WT-AC-NFR-PERF-03B |
+| WT-TR-API-01 | 1 | P1 | candidate_inventory | HELIX 連携 API の全一覧読み取りに since / fields / ETag / Last-Modified を備え、差分取得を契約として保証する | WT-AC-API-01A, WT-AC-API-01B |
+| WT-TR-API-02 | 1 | P0 | candidate_inventory | HELIX 連携 API の書き込みを batch（全成功か全失敗）とし、dry-run / rollback に対応する。投稿公開・設定変更・クロール異常・A/B 停止は署名付き webhook で押し出す | WT-AC-API-02A, WT-AC-API-02B |
+| WT-TR-API-03 | 1 | P1 | candidate_inventory | HELIX 連携 API の応答に schema version を必須化し、破壊的変更時は旧版を併走させる。OpenAPI lint / 差分検査を CI に置き、MCP 常用パック・クローラー計測・A/B・商品正本の API を同契約の上に置く | WT-AC-API-03A, WT-AC-API-03B |
+| WT-FR-ADMIN-02 | 1 | P1 | candidate_inventory | WT-UI-10 の操作ログタブで AI と人の変更を時系列に表示し、対象・差分・実行者・結果で絞り込み、CSV / JSON export できる。ログ上限・日次集約、PR 根拠、privacy tools、外部送信公表、リンク警告、選択セットの結果を export する。 | WT-AC-ADMIN-02A, WT-AC-ADMIN-02B |
+| WT-FR-ADMIN-03 | 1 | P0 | candidate_inventory | WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する | WT-AC-ADMIN-03A, WT-AC-ADMIN-03B |
+| WT-FR-ADMIN-04 | 1 | P0 | candidate_inventory | WT-UI-10 の鍵管理タブで HELIX 接続用 API key を発行・失効し、鍵ごとに読み専用 / 書き込み可を設定する。鍵の値は一度だけ表示し、テーマ・プラグインの公開ファイルへ置かない。自前鍵ではなく専用ロールの Application Passwords を読み取り用 / 書き込み用に分けて薄く包む。 | WT-AC-ADMIN-04A, WT-AC-ADMIN-04B |
+| WT-TR-CLI-01 | 1 | P0 | candidate_inventory | MCP 常用パック・REST・WP-CLI の 3 面が、パック定義 JSON から生成された同じ能力集合を扱い、ずれたら契約テストで赤にする。Abilities API の同じ登録から 3 面を生成し、permission と annotations を含む能力集合の差分を検査する。 | WT-AC-CLI-01A, WT-AC-CLI-01B |
+| WT-FR-SNS-01 | 1 | P1 | candidate_inventory | SNS profile を設定 JSON の一か所に登録し、header / footer / 著者欄と構造化データ sameAs へ反映する。対象 SNS と記事上下・フロート・section 末尾の share 配置を選べ、クリックを計測する | WT-AC-SNS-01A, WT-AC-SNS-01B |
+| WT-FR-SNS-02 | 1 | P1 | candidate_inventory | SNS 投稿の feed 埋め込みをブロックとして提供し、埋め込みスクリプトを遅延読込して速度予算内にする。メッセージアプリ公式アカウントの友だち追加ボタンと QR を LP のフォーム代替 CTA パーツにし、配信そのものと API 資格情報はテーマ外に置く | WT-AC-SNS-02A, WT-AC-SNS-02B |
+| WT-FR-CV-01 | 1 | P0 | candidate_inventory | サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲覧・電話タップ）、補助指標（スクロール深度・滞在）を複数登録し、各 ID・種別・重み・計測イベント・到達条件を JSON で管理する。記事・LP・section ごとに目標 CV ID を選べ、WT-FR-TAG-02 の version 付きデータ層契約へ device type とともに渡す。同意カテゴリ・時刻・版・撤回と GPC 条件を CV 正本へ接続する。 | WT-AC-CV-01A, WT-AC-CV-01B |
+| WT-FR-CV-02 | 1 | P0 | candidate_inventory | 資料ダウンロードをフォーム入力からメール送付または即時ダウンロードの 2 経路で提供し、完了をマイクロ CV として WT-FR-TAG-02 の version 付きデータ層契約で計測する。第三者フォームが検出された場合は送信経路と同意確認を譲り受け、二重送信を起こさない。ファイルは非公開ディレクトリから署名付き期限 URL で配布する。フォーム宣言 JSON に利用目的・privacy link・同意を必須化し、認証 SMTP と同意なし保存禁止を検査する。 | WT-AC-CV-02A, WT-AC-CV-02B |
+| WT-FR-CV-03 | 1 | P1 | candidate_inventory | CTA ボタンに主文言と任意の microcopy を持たせ、候補から選べるようにする。microcopy は必須化せず、A/B と section の計測を CV ID で集計し、判定は HELIX 側で行う | WT-AC-CV-03A, WT-AC-CV-03B |
+| WT-NFR-CV-01 | 1 | P0 | candidate_inventory | リード情報の保存先・保持期間・consent を明示し、consent なしに保存しない。CRM / MA はテーマ内に持たず、外部連携は署名付き webhook で押し出すまでとする。同意記録を時刻・版・カテゴリ・保持期間とともに保存し、明示 opt-in と認証 SMTP の状態を検査する。 | WT-AC-NFR-CV-01A, WT-AC-NFR-CV-01B |
+| WT-FR-BANNER-01 | 1 | P1 | candidate_inventory | バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生する。ゾーンに割り当ててページ種別・カテゴリ・記事単位で固定またはローテーション表示し、速度予算に画像を含める。お知らせバーは本正本から派生し（有効期間・リンク・種別）、ZONE-03 のヘッダー直下 slot に置き、閉じた状態は端末側に記憶する（WT-Q-PARTS-02）。バナーと問い合わせボタンの枠は全面（header / footer / sidebar / 本文前後 / 一覧 / 404）のゾーンに置ける（PO 2026-09-05、WT-Q-PARTS-03） | WT-AC-BANNER-01A, WT-AC-BANNER-01B, WT-AC-BANNER-01C, WT-AC-BANNER-01D, WT-AC-BANNER-01E |
+| WT-FR-BANNER-02 | 1 | P1 | candidate_inventory | バナーの impression / click を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ送り、CV ID・A/B variant ID・section ID・device type 単位で扱う。WT-UI-10 と MCP 常用パックから登録・差し替え・停止し、期限切れ・リンク切れ・計測ゼロを警告する。アフィリエイト種別は rel="sponsored" と PR 表記判定へ接続し、広告配信タグはテーマ外に置く | WT-AC-BANNER-02A, WT-AC-BANNER-02B |
+| WT-FR-AUDIT-01 | 1 | P0 | candidate_inventory | HELIX 側の指摘（記事 / section / LP / バナー、種別、重さ、根拠、修正案）を Core プラグインが受け取り DB へ保持し、WT-UI-10 の監査タブと記事一覧の件数バッジから対象 section へ移動して適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通す | WT-AC-AUDIT-01A, WT-AC-AUDIT-01B |
+| WT-FR-AUDIT-02 | 1 | P1 | candidate_inventory | alt・速度予算・構造化データ・見出し階層は決定論的ルール検査に限定し、CTA 密度・証拠不足・PR 表記欠落・microcopy 未選択・Discover 画像要件未達などの監査結果は HELIX 側から受け取って表示する。サイト単位の集計を JSON / CSV export し、MCP から取得できる。健康表現・ランキング根拠・PR 根拠は HELIX の監査結果を表示し、テーマは判定ロジックを持たない。 | WT-AC-AUDIT-02A, WT-AC-AUDIT-02B |
+| WT-FR-SP-01 | 1 | P0 | candidate_inventory | 面・語彙・パーツの共通宣言を 1 本の fluid 定義で持ち、専用面・並び順・表示形などの device 別差分を WordPress 7.1 の `@mobile` / `@tablet` 上書きとして宣言する。Site Editor と AI の双方から SP / PC を device 別に個別編集でき、主たる確認面はサイト設定で選ぶ（既定は SP 幅）。ゲートは SP / PC の両幅で検査する。出典: https://make.wordpress.org/core/2026/08/05/responsive-block-styles-and-configurable-viewports-in-wordpress-7-1/（参照日: 2026-09-03） | WT-AC-SP-01A, WT-AC-SP-01B |
+| WT-FR-SP-02 | 1 | P0 | candidate_inventory | SP ヘッダー（ロゴ・ハンバーガー・検索・主要 CTA の配置と選択）、ドロワー（階層・CTA・SNS）、SP 下部固定（3〜5 タブ: 電話・メッセージアプリ・資料 DL・目次・トップへ。既存 SP 下部固定 slot の一部）、SP 専用広告面（本文中の SP だけに出す slot / SP のみのバナー）を device 別差分として選べ、PC 側にも同じ構造の差分・個別編集・検査を持つ。軽いブロックの device 別非表示は WordPress 7.0 Block Visibility（DOM に残る）を編集者に開放するが、広告面・CTA 束・バナー・商品テーブル等の重いブロックには使わせず静的ゲートで赤にし、面の出し分けは slot 条件描画で行う。出典: https://make.wordpress.org/core/2026/03/15/block-visibility-in-wordpress-7-0/（参照日: 2026-09-03）。重い SP 専用面は slot 条件描画とし、Block Visibility だけで転送量を増やさない。 | WT-AC-SP-02A, WT-AC-SP-02B |
+| WT-FR-SP-03 | 1 | P1 | candidate_inventory | 共通の語彙定義に対する device 別差分を JSON で宣言し、SP では比較テーブルは横スクロール / カード、タブはアコーディオン、目次はフロートから開閉ボタン、ギャラリーはスワイプ、CTA は全幅 / sticky として選ぶ。PC 側にも同じ項目の差分・個別編集・検査を持ち、AI の語彙選択は各 device の表示形まで選べる。管理画面と MCP から SP / PC のプレビューを確認できる。タブのアコーディオン化・比較表の代替操作でも初期 HTML に本文を含め、APG の操作契約を満たす。 | WT-AC-SP-03A, WT-AC-SP-03B |
+| WT-NFR-SP-01 | 1 | P0 | candidate_inventory | SP の操作はタップ対象 44px 以上、本文文字 16px 以上、横スクロール 0 とし、下部固定・ドロワー・同意バーは本文や CTA を隠さず、積層順を固定する。PC 側にも共通 + device 別差分の同構造と検査を持ち、SP / PC の両幅で固定要素の被覆と積層順を検査する。24px 下限、SP 44px 上限目標の二段、scroll-padding、focus ring、代替操作、固定要素の被覆 0 を検査する。 | WT-AC-NFR-SP-01A, WT-AC-NFR-SP-01B |
+| WT-NFR-SP-02 | 1 | P0 | candidate_inventory | 主たる測定面はサイト設定で選び、既定は SP 幅とする。代表ページ種別を Lighthouse の mobile / PC 幅と SP / PC の両幅のスクリーンショット比較で検査し、ローカル Docker の実機相当ゲート、管理画面 / MCP の両幅プレビュー、両幅の速度・CWV 計測、device type 別の A/B・CV 集計をそろえる。ゲートは両幅で検査する。テーマA / B の SP 固有パーツ実使用の再読は後続の PoC 課題とし、現時点の証跡に含めない | WT-AC-NFR-SP-02A, WT-AC-NFR-SP-02B |
+| WT-FR-TAG-01 | 1 | P0 | candidate_inventory | 計測タグの注入面を head・body 開始直後・body 終端の 3 slot に限定し、タグ管理コンテナ / 個別断片の登録・選択を WT-UI-10 と MCP から行える。タグ設定と計測 ID は DB の選択として保持し、テーマと config JSON に計測 ID を置かない。ページ・LP・同意状態別の routing はテーマが配置だけを担い、同意管理・計測プラグインの検出時は WT-TR-PLUGIN-02 の譲渡を適用する。Conversion Linker、server-side tagging の 1P サブドメイン、7 サブドメインの cookie 方針、A/B cookie namespace を選択契約へ載せる。 | WT-AC-TAG-01A, WT-AC-TAG-01B |
+| WT-FR-TAG-02 | 1 | P0 | candidate_inventory | 表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type を一つの version 付き JSON データ層契約で定義し、必須項目として CV ID・variant ID・section ID・device type を渡す。TAG-03 の必須・計測・広告の 3 カテゴリを Consent Mode v2 の ad_storage / analytics_storage / ad_user_data / ad_personalization / functionality_storage / personalization_storage / security_storage の 7 種へ写像する対応表を契約に含め、head slot の注入順は consent default を最初に固定する。3 カテゴリは運用者向け表示単位として残す。外部タグはこの契約を read-only で読む。出典: https://developers.google.com/tag-platform/security/guides/consent（参照日: 2026-09-03）。GA4 推奨イベントと items 写像を version 付きで持ち、AI 回答エンジン由来の参照元を device type と同列の必須項目にする。 | WT-AC-TAG-02A, WT-AC-TAG-02B |
+| WT-FR-TAG-03 | 1 | P0 | candidate_inventory | 同意状態を必須・計測・広告の 3 カテゴリで運用者向け表示単位としてデータ層へ出し、Consent Mode v2 の 7 種への写像表も契約に含める。head slot の注入順は consent default を最初に固定し、同意前は該当カテゴリのタグを発火せず、同意後は遅延発火する。サーバー側計測も同意確認を行い、同意なしイベントを保存しない。テーマの同意バーは VOCAB-01 の 7 ブロック上限に数えない既存パーツとして、core ブロック + block style で扱い、第三者同意管理が検出された場合は出力せず信号を読む。出典: https://developers.google.com/tag-platform/security/guides/consent（参照日: 2026-09-03）。GPC 信号、撤回常設、同意の時刻・版・カテゴリを保持し、日本だけを対象とする広告拒否の条件を明示する。 | WT-AC-TAG-03A, WT-AC-TAG-03B |
+| WT-NFR-TAG-01 | 1 | P0 | candidate_inventory | 計測の検査で、同意前の非発火、データ層の必須項目、Consent Mode v2 7 種への写像表、head slot の consent default 最初の注入順、3 slot 外へのスクリプト注入 0、同意なしイベントのサーバー保存 0、タグ転送の性能予算内を確認する。Consent Mode v2 7 種への写像、head の consent default 最初の注入、外部送信契約、タグ転送量を検査する。 | WT-AC-NFR-TAG-01A, WT-AC-NFR-TAG-01B |
+| WT-TR-PLUGIN-03 | 1 | P0 | candidate_inventory | 第三者プラグインの capability を領域別に検出し、フォームは送信イベントと同意確認をデータ層契約へ接続、キャッシュ / CDN は A/B cookie・同意 routing・crawl 計測の不成立を警告して人の cache 除外 URL / edge 割当を待ち、画像最適化はテーマの生成を止めて配信だけを行い、SEO は JSON-LD・meta / OGP・sitemap を検出して譲り、同意管理はテーマの同意バーを出さず信号を読む。代表構成は実運用 2 サイトで使うプラグイン種別に限り、全プラグイン互換は対象外とする。A/B cache の二方式、loopback cache 検査、画像・SEO・同意の検出時の譲渡を実施する。 | WT-AC-TR-PLUGIN-03A, WT-AC-TR-PLUGIN-03B |
+| WT-TR-PLUGIN-04 | 1 | P1 | candidate_inventory | 検出結果、領域ごとの既定（本テーマが出す / 検出して譲る / 設定で選ぶ）、現在の選択、警告、検査対象構成を capability manifest に載せ、WT-UI-10 と MCP で同じ一覧を返す。JSON-LD / meta / OGP の重複出力とフォーム二重送信は代表構成で赤にする。host capability、検出結果、現在の選択、警告、検査対象構成を UI / MCP で同じ manifest として返す。 | WT-AC-TR-PLUGIN-04A, WT-AC-TR-PLUGIN-04B |
+| WT-FR-AUTHOR-01 | 1 | P0 | candidate_inventory | 著者・監修者の正本（名前・経歴・資格・sameAs・画像）を設定 JSON に保持し、著者欄・監修者欄・著者アーカイブへ反映する。MCP 常用パックから付与・更新できるが、判定は HELIX 側で行う | WT-AC-AUTHOR-01A, WT-AC-AUTHOR-01B |
+| WT-FR-AUTHOR-02 | 1 | P0 | candidate_inventory | 著者を Article.author の url / sameAs、監修者を reviewedBy として構造化データへ反映し、著者ページは ProfilePage と代表画像を持つ | WT-AC-AUTHOR-02A, WT-AC-AUTHOR-02B |
+| WT-FR-NAV-01 | 1 | P0 | candidate_inventory | コア Breadcrumbs ブロックを表示し、BreadcrumbList 構造化データを同じ出力元から生成する。階層は投稿・固定ページ・LP の構造から機械導出し、保存 HTML に固定しない。LP のディレクトリ非依存 URL は設計課題として記録する | WT-AC-NAV-01A, WT-AC-NAV-01B |
+| WT-FR-RECO-01 | 1 | P0 | candidate_inventory | 記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選ぶ場合も bot・管理者を除外し、IP を保存せず日次で集約する。外部集計の読み戻しも選択できる。関連 / 人気 / おすすめの表示型（カード・リスト・ランキング番号付き・サムネイル大小・横スクロール）を用途別一覧から選べる（PO 2026-09-05、WT-Q-PARTS-03） | WT-AC-RECO-01A, WT-AC-RECO-01B, WT-AC-RECO-01C |
+| WT-FR-SELL-04 | 1 | P0 | candidate_inventory | 商品・バナーの /go/<id> 経路を 302 で提供し、rel=sponsored nofollow、robots 除外、商品 ID・時刻・参照元・device のサーバー側クリック記録を行う。IP は保存せず、保持・集約は CRAWL と同じ規則に従い、データ層との二重計上を防ぐ選択を持つ | WT-AC-SELL-04A, WT-AC-SELL-04B |
+| WT-FR-SEO-06 | 1 | P1 | candidate_inventory | 公開・更新・削除時に IndexNow へ送信し、鍵は DB に保持して公開面には検証用の鍵ファイルだけを出す。送信失敗は操作ログへ記録し、送信機構は Core プラグインの譲渡領域とする | WT-AC-SEO-06A, WT-AC-SEO-06B |
+| WT-FR-CRAWL-04 | 1 | P1 | candidate_inventory | search / ai-input / ai-train の利用許諾を1設定から Content Signals 行、aipref Content-Usage 行またはヘッダ、RSL link へ出力し、既定を search=yes、ai-input=yes、ai-train=no とする。標準仕様の確定状態・出典・参照日・草案追随を表示する | WT-AC-CRAWL-04A, WT-AC-CRAWL-04B |
+| WT-FR-LOOK-04 | 1 | P0 | candidate_inventory | 和文フォントをゴシック・明朝・丸ゴ・手書き / デザイン系など複数系統から選べ、unicode-range 分割サブセット、size-adjust、font-display: swap、OFL 表記を同じビルド工程で扱う。既定はシステムフォントとし、Font Library はテーマ提供コレクション限定とする | WT-AC-LOOK-04A, WT-AC-LOOK-04B |
+| WT-FR-CRAWL-05 | 1 | P0 | candidate_inventory | クローラーを training / search / user-triggered / ads-preview の4分類で台帳化し、公式 UA・IP endpoint・取得日時・鮮度・根拠を表示する。Google-Extended 等の control token を分離し、非 robots 準拠は遅延を含めて表示、UA 一致のみは未検証として別集計する | WT-AC-CRAWL-05A, WT-AC-CRAWL-05B |
+| WT-TR-HOST-01 | 1 | P0 | candidate_inventory | hosting capability manifest に PHP / DB 版、画像拡張、cron 駆動、cache / CDN、WAF、SMTP / DMARC、対応範囲を自己申告し、health・MCP・ハーネスが同じ一覧を読む | WT-AC-HOST-01A, WT-AC-HOST-01B |
+| WT-TR-HOST-02 | 1 | P1 | candidate_inventory | 対応範囲を WP 7.1 以上、PHP 8.2〜8.5、MySQL 8.4 / MariaDB 11 として対応表に固定し、iframed 投稿エディタでブロック JS / CSS が動く smoke を G-E1 に含める | WT-AC-HOST-02A, WT-AC-HOST-02B |
+| WT-FR-LOG-01 | 1 | P0 | candidate_inventory | ユーザー領域に保存された combined / gz のサーバー生ログを WP-Cron / WP-CLI で取り込み、cache 応答も crawl log へ response_origin 付きで記録する。取り込み時に人の行と IP を破棄し、外部 CDN の不可視範囲を区別する | WT-AC-LOG-01A, WT-AC-LOG-01B |
+| WT-NFR-LOG-01 | 1 | P0 | candidate_inventory | クロール・操作・監査ログに行数 / 容量上限を設け、URL × bot × 日の集約を日次で行う。生行は短期、集約は長期とし、容量逼迫を警告してサイト停止を招かない | WT-AC-LOG-NFR-01A, WT-AC-LOG-NFR-01B |
+| WT-FR-MAIL-01 | 1 | P0 | candidate_inventory | 認証 SMTP と From 整合、SPF / DKIM / DMARC の状態を検査し、未設定を警告する。wp_mail_failed を操作ログへ残し、第三者 SMTP プラグイン検出時は送信を譲る | WT-AC-MAIL-01A, WT-AC-MAIL-01B |
+| WT-FR-SYNC-01 | 1 | P0 | candidate_inventory | template part・global styles・設定 JSON・商品正本・zone 割当をスラッグ参照・URL 非依存の選択セットとして export / import し、staging dry-run から production apply へ進める | WT-AC-SYNC-01A, WT-AC-SYNC-01B |
+| WT-NFR-A11Y-02 | 1 | P1 | candidate_inventory | prefers-reduced-motion を検出した場合は動きと autoplay を停止または静的表示へ縮退し、アニメーションを操作完了の必須条件にしない | WT-AC-A11Y-02A, WT-AC-A11Y-02B |
+| WT-FR-TYPO-01 | 1 | P1 | candidate_inventory | 和文の既定 CSS に line-break: strict、overflow-wrap: anywhere、word-break: normal、text-autospace、text-spacing-trim、見出しの text-wrap: balance / pretty を宣言し、未対応環境では可読性を保つ fallback を使う | WT-AC-TYPO-01A, WT-AC-TYPO-01B |
+| WT-FR-LEGAL-02 | 1 | P0 | candidate_inventory | タグ正本に外部送信先事業者・送信情報・利用目的を必須メタとして持たせ、登録タグから外部送信先一覧ページを自動生成する | WT-AC-LEGAL-02A, WT-AC-LEGAL-02B |
+| WT-FR-LEGAL-03 | 1 | P0 | candidate_inventory | No.1・ランキング・比較の調査主体・時期・対象・方法または編集部基準を商品正本へ保持し、脚注を自動表示する。価格条件・定期購入条件・個人の感想の打消しは CTA と同視野・同サイズの block style で表示する | WT-AC-LEGAL-03A, WT-AC-LEGAL-03B |
+| WT-FR-CONSENT-01 | 1 | P0 | candidate_inventory | 同意記録へ時刻・ポリシー版・カテゴリ・保持期間を持たせ、撤回を常設する。明示 opt-in は既定オフとし、GPC 信号を検出した広告拒否は日本限定構成でのみ既定化し、非対象地域では設定を明示する。同意バーは既定 OFF とし、選択は ON/OFF と位置（先頭の非固定 = 既定 / 下部固定）の 2 つに限定する。日本の法令上の必須ではない（PO 2026-09-05、WT-Q-CONSENT-02） | WT-AC-CONSENT-01A, WT-AC-CONSENT-01B, WT-AC-CONSENT-01C |
+| WT-NFR-PRIV-02 | 1 | P0 | candidate_inventory | WordPress privacy tools の exporter / eraser と privacy policy content に、リード・同意記録・操作ログ・クロール集約の保存内容と削除・出力範囲を登録する | WT-AC-PRIV-02A, WT-AC-PRIV-02B |
+| WT-NFR-OSS-01 | 1 | P0 | candidate_inventory | OFL フォントと第三者資産の全文ライセンス・Reserved Font Name の扱い・出所を JSON 台帳と readme へ機械生成し、台帳外資産を静的ゲートで赤にする。SECURITY.md、semver、CHANGELOG、子テーマ方針も配布物へ含める | WT-AC-OSS-01A, WT-AC-OSS-01B |
+| WT-NFR-ENV-01 | 1 | P2 | candidate_inventory | Text Domain と翻訳関数を準拠させ、POT を CI で生成し、日本語・英語のソース言語を明示する。RTL は対応範囲外として記録する | WT-AC-ENV-01A, WT-AC-ENV-01B |
+| WT-FR-TPL-01 | 1 | P1 | candidate_inventory | 404 と検索結果に選べる複数のテンプレ変種（人気記事・CTA・検索語提案）を持ち、404 には LP・比較記事・問い合わせへの CV 導線 slot を置ける。検索結果は noindex を既定とし、404 は HTTP 404 を返す。検索語ログは bot を除外し IP を保存しない（PO 2026-09-05、WT-Q-LOOK-05） | WT-AC-TPL-01A, WT-AC-TPL-01B, WT-AC-TPL-01C |
+| WT-FR-PAGE-01 | 2 | P1 | human_decision_required | 会社概要・問い合わせ・採用・プライバシー・特商法・外部送信先一覧・アクセシビリティ方針の固定ページパターンを提供し、事業者情報 JSON を自動充填する。フォームの表示・入力検証・確認・完了 / 失敗の試作を WT-FR-FORM-01 として持つ。実送信・保存はこの PoC の範囲外で、第三者フォームとの共存・譲渡を維持する。製品での処理責務と接続契約は未確定 | WT-AC-PAGE-01A, WT-AC-PAGE-01B |
+| WT-FR-SELL-05 | 1 | P1 | candidate_inventory | 商品正本と本文の外部リンクを WP-Cron で HEAD 検査し、リンク切れ・期限切れ・到達不能を WT-UI-10 と MCP 常用パックへ警告する | WT-AC-SELL-05A, WT-AC-SELL-05B |
+| WT-FR-PAGE-02 | 1 | P1 | candidate_inventory | ページ種別は元の 7 分類との対応を保ち、9 系統を上限のない検証索引として管理する。管理単位・表示形式（一覧 / 詳細 / 埋め込み）・閲覧 / 受付状態・継承セットを別軸にし、各項目の出所（PO 明示要求 / 追加提案）、採否、証拠状態、着手順を分離する。未観察も調査対象に残し、未検証を対応済みとしない。製品区分・推奨構成は GRAPHIX-NEO が独立に決め、WP 側の意味・管理責務を先送りしない。 | WT-AC-PAGE-02A, WT-AC-PAGE-02B |
+| WT-FR-HOME-01 | 1 | P1 | candidate_inventory | HOME はサイトの目的を示す入口として、CV 獲得と案内の構成、hero・区間セット・お知らせ・固定導線・再利用できる固定ページパーツを選べる。PC サイドバーは first view より下から配置でき、共通 / 個別 / 非表示を区別する。型の拡張を既定値の決定だけに置き換えない。 | WT-AC-HOME-01A, WT-AC-HOME-01B |
+| WT-FR-EVENT-01 | 1 | P1 | candidate_inventory | イベントはセミナー・説明会・展示会・体験会・キャンペーン等の目的に応じた区間、申込導線、受付状態、地図を選べる。地図の外部埋め込みは選択時のみ遅延読込し、鍵はテーマに置かない。受付状態の表示と、期限・残席による状態遷移は別に検証する。サイドバーはなし / HP 側 / 記事側 / 独自を区別する。 | WT-AC-EVENT-01A, WT-AC-EVENT-01B |
+| WT-FR-PAID-01 | 1 | P1 | candidate_inventory | 有料記事は無料記事のオプションに内包せず独立管理する。買い切り / 定期購読について、一覧・販売案内・試し読み・購入者向け本文を表示用途と閲覧権限の組み合わせで検証する。決済・購読・会員の業務処理は外部機能へ委ね、テーマは接続・権限別表示・遷移を担当する。 | WT-AC-PAID-01A, WT-AC-PAID-01B |
+| WT-FR-INTERVIEW-01 | 1 | P1 | candidate_inventory | インタビューは通常記事へ内包せず独立管理し、人物・所属・発言・掲載確認を扱う面と、企業 / サービス / LP への要約・カード埋め込みを持つ。信頼形成を目的とし、一覧・詳細・埋め込みの関係を早期の代表モックで確認する。 | WT-AC-INTERVIEW-01A, WT-AC-INTERVIEW-01B |
+| WT-FR-BLP-01 | 1 | P1 | candidate_inventory | BLP は理解・納得を促して LP への移動を支える面として、CV 獲得を目的とする LP と意味・管理を区別する。比較ページは目的により BLP / 比較記事等へ位置付け、LP への導線と本文・根拠を代表モックで確認する。共通部品の継承・独自設定・非表示を目的に応じて選ぶ。 | WT-AC-BLP-01A, WT-AC-BLP-01B |
+| WT-FR-FORM-01 | 1 | P1 | candidate_inventory | フォームは調査した種別・項目・必須表示・レイアウト・確認・同意・送信文言・エラー・代替導線・完了表示を選べる。PC / SP と JS 無効で入力検証と入力→確認→完了 / 失敗、修正時の値の保持を検証する。LP / イベントには既存型を残してフォームブロックを選択肢として追加し、イベントは申込の文脈を保持する。PoC は入力を保存・実送信せず、業務処理の成立を主張しない。第三者フォームとの共存と実処理の責務は別途確定する。 | WT-AC-FORM-01A, WT-AC-FORM-01B |
+| WT-FR-PARTS-03 | 1 | P1 | candidate_inventory | ヘッダー・フッター・固定 CTA・サイドバーの共通設定について、面ごとに継承 / 独自設定 / 非表示を分離する。カテゴリは記事側、イベントは目的に応じ HP 側 / 記事側等を選び、SP サイドバーの扱いも選択肢を持つ。5 継承セットは固定上限ではなく拡張性を確かめる代表例として検証する。共通の認可・同意規則を見た目や導線の非表示で解除しない。 | WT-AC-PARTS-03A, WT-AC-PARTS-03B |
 
-**非目標**: 決済・カート・会員機能と購入完了の計測（テーマ外。必要なら外部側）、CRM / MA とメッセージ配信そのもの（テーマ外）、第三者テーマの是正、外部デザインツール取り込み経路、AI 判定ロジックのテーマ内実装
+## 要解決事項
 
-## 2. family 別の全体像
-
-| family | 件数 | P0 / P1 / P2 | 受入条件 | 要旨（P0 の先頭要件から抜粋。P0 が無い family は先頭要件） |
-| --- | --- | --- | --- | --- |
-| SEO | 7 | 2 / 4 / 1 | 15 | SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティ、FAQPa… |
-| AGENT | 6 | 1 / 3 / 2 | 12 | エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variati… |
-| CRAWL | 6 | 1 / 5 / 0 | 12 | クローラーを training / search / user-triggered / ads-preview の4分類で台帳化し、公式 U… |
-| SELL | 5 | 3 / 2 / 0 | 10 | 商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア /… |
-| SP | 5 | 4 / 1 / 0 | 10 | 面・語彙・パーツの共通宣言を 1 本の fluid 定義で持ち、専用面・並び順・表示形などの device 別差分を WordPress 7… |
-| ADMIN | 4 | 3 / 1 / 0 | 10 | テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot … |
-| CV | 4 | 3 / 1 / 0 | 8 | サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲… |
-| LOOK | 4 | 2 / 1 / 1 | 10 | 見た目の型は目標数を持たず、用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05… |
-| PLUGIN | 4 | 2 / 2 / 0 | 8 | 運用中の AI はテーマファイルを触らず、WordPress が DB に持つ「サイトの選択」（ヘッダー / サイドバー / hero の案… |
-| TAG | 4 | 4 / 0 / 0 | 8 | 計測タグの注入面を head・body 開始直後・body 終端の 3 slot に限定し、タグ管理コンテナ / 個別断片の登録・選択を W… |
-| VOCAB | 4 | 2 / 2 / 0 | 9 | 記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定… |
-| AB | 3 | 3 / 0 / 0 | 6 | H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、共通の配信… |
-| API | 3 | 1 / 2 / 0 | 6 | HELIX 連携 API の書き込みを batch（全成功か全失敗）とし、dry-run / rollback に対応する。投稿公開・設定変… |
-| CORE | 3 | 3 / 0 / 0 | 6 | 面・部品・変種・値の尺度は theme.json / config / schema / openapi の JSON 宣言から列挙でき、P… |
-| IMG | 3 | 1 / 2 / 0 | 6 | 全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、v… |
-| LEGAL | 3 | 3 / 0 / 0 | 6 | PR 表記の法令要件と GPL 配布要件（ライセンス表記・第三者資産の許諾）を満たす。OFL 全文、Reserved Font Name、a… |
-| MIGRATE | 3 | 0 / 2 / 1 | 6 | 移行の実行（移行元サイトの取得、サーバーファイルとテーマ情報の書き換え）はテーマの責務ではなく HELIX-WP-HARNESS の責務（P… |
-| PERF | 3 | 1 / 2 / 0 | 6 | 記事・LP・一覧・商品比較で主たる測定面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を測定対象とした Lighthouse… |
-| VALUE | 3 | 2 / 1 / 0 | 6 | 値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、ブロック単位・記事単位の任意 CSS（WP 7.0 の… |
-| ZONE | 3 | 1 / 1 / 1 | 8 | 共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入… |
-| A11Y | 2 | 0 / 2 / 0 | 4 | 域の判定・状態表示は label と icon を伴い色だけに依存しない。img alt 欠落 0、AA コントラスト、横スクロール 0。W… |
-| AUDIT | 2 | 1 / 1 / 0 | 4 | HELIX 側の指摘（記事 / section / LP / バナー、種別、重さ、根拠、修正案）を Core プラグインが受け取り DB へ… |
-| AUTHOR | 2 | 2 / 0 / 0 | 4 | 著者・監修者の正本（名前・経歴・資格・sameAs・画像）を設定 JSON に保持し、著者欄・監修者欄・著者アーカイブへ反映する。MCP 常… |
-| BANNER | 2 | 0 / 2 / 0 | 7 | バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登… |
-| HOST | 2 | 1 / 1 / 0 | 4 | hosting capability manifest に PHP / DB 版、画像拡張、cron 駆動、cache / CDN、WAF、… |
-| LOG | 2 | 2 / 0 / 0 | 4 | ユーザー領域に保存された combined / gz のサーバー生ログを WP-Cron / WP-CLI で取り込み、cache 応答も … |
-| LP | 2 | 2 / 0 / 0 | 4 | LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページが… |
-| PARTS | 2 | 1 / 1 / 0 | 5 | header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同… |
-| PRIV | 2 | 1 / 1 / 0 | 4 | WordPress privacy tools の exporter / eraser と privacy policy content に… |
-| SECTION | 2 | 2 / 0 / 0 | 4 | 見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3… |
-| SNS | 2 | 0 / 2 / 0 | 4 | SNS profile を設定 JSON の一か所に登録し、header / footer / 著者欄と構造化データ sameAs へ反映す… |
-| CLI | 1 | 1 / 0 / 0 | 2 | MCP 常用パック・REST・WP-CLI の 3 面が、パック定義 JSON から生成された同じ能力集合を扱い、ずれたら契約テストで赤にす… |
-| CONSENT | 1 | 1 / 0 / 0 | 3 | 同意記録へ時刻・ポリシー版・カテゴリ・保持期間を持たせ、撤回を常設する。明示 opt-in は既定オフとし、GPC 信号を検出した広告拒否は… |
-| COST | 1 | 0 / 0 / 1 | 2 | ゲート・PoC はローカル docker で完結し、無料枠制限や課金を伴う外部 API に依存しない |
-| CRED | 1 | 1 / 0 / 0 | 2 | credential・実サイト固有名・第三者製品名を公開リポジトリへ書かない。接続情報は環境変数と gitignore 済み local 設… |
-| ENV | 1 | 0 / 0 / 1 | 2 | Text Domain と翻訳関数を準拠させ、POT を CI で生成し、日本語・英語のソース言語を明示する。RTL は対応範囲外として記録… |
-| GATE | 1 | 1 / 0 / 0 | 2 | 静的 6 ゲート（G-T1 / T1b / T2 / T3 / S1 / S2）と実機 G-E1（invalid=0）を、パターン・パーツ・… |
-| INTAKE | 1 | 0 / 0 / 1 | 2 | 実証記録台帳を本テーマ内で完結する append-only の JSON Lines として持つ。1 行 = パターン ID・参照元 com… |
-| MAIL | 1 | 1 / 0 / 0 | 2 | 認証 SMTP と From 整合、SPF / DKIM / DMARC の状態を検査し、未設定を警告する。wp_mail_failed を… |
-| META | 1 | 0 / 1 / 0 | 3 | 投稿メタ 5 キー（sidebar / toc / share / pr / eyecatch）を登録し、テンプレ側の条件描画で記事単位の表… |
-| NAV | 1 | 1 / 0 / 0 | 2 | コア Breadcrumbs ブロックを表示し、BreadcrumbList 構造化データを同じ出力元から生成する。階層は投稿・固定ページ・… |
-| OBS | 1 | 0 / 1 / 0 | 2 | health / gate / 台帳 / 抽出器の出力は JSON で、HEAD と digest に束縛される |
-| OSS | 1 | 1 / 0 / 0 | 2 | OFL フォントと第三者資産の全文ライセンス・Reserved Font Name の扱い・出所を JSON 台帳と readme へ機械生… |
-| PAGE | 1 | 0 / 1 / 0 | 2 | 会社概要・問い合わせ・採用・プライバシー・特商法・外部送信先一覧・アクセシビリティ方針の固定ページパターンを提供し、事業者情報 JSON を… |
-| PERM | 1 | 1 / 0 / 0 | 2 | 破壊域停止は権限で解除できず、write 系 API は capability と dry-run receipt を要求する。abilit… |
-| REC | 1 | 1 / 0 / 0 | 2 | 構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の diges… |
-| RECO | 1 | 1 / 0 / 0 | 3 | 記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選… |
-| REL | 1 | 1 / 0 / 0 | 2 | 描画パスで set_theme_mod / update_option を呼ばない。redirect_canonical の全面停止や全ペー… |
-| SEC | 1 | 1 / 0 / 0 | 2 | 未認証 REST（permission_callback __return_true）を持たず、外部 URL 取得は wp_safe_rem… |
-| SYNC | 1 | 1 / 0 / 0 | 2 | template part・global styles・設定 JSON・商品正本・zone 割当をスラッグ参照・URL 非依存の選択セットと… |
-| TPL | 1 | 0 / 1 / 0 | 3 | 404 と検索結果に選べる複数のテンプレ変種（人気記事・CTA・検索語提案）を持ち、404 には LP・比較記事・問い合わせへの CV 導線… |
-| TYPO | 1 | 0 / 1 / 0 | 2 | 和文の既定 CSS に line-break: strict、overflow-wrap: anywhere、word-break: nor… |
-
-合計 123 件、受入条件 262 件、テスト 123 件。kind: functional 83 / non_functional 26 / technical 14。owner: functional・non_functional は PO、technical は TL。
-
-## 3. P0 要件の一覧（67 件）
-
-P0 は「これが無いと企画（L1）が成立しない」もの。全文は IR を参照。
-
-| ID | 要旨 | 受入 | 検証 evidence |
-| --- | --- | --- | --- |
-| WT-FR-AB-01 | H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、共通の配信定義に device 別差分を持たせ、主たる確認面はサイト設定で選び、SP / … | 2 | variant fixture + responsive render receipt |
-| WT-FR-AB-02 | A/B の impression / click / CV を variant ID・section ID・CV ID・device type 付きで WT-FR-TAG-02 の version 付きデータ層契約から … | 2 | data-layer receipt |
-| WT-FR-AB-03 | A/B の承認・停止・rollback を WT-UI-10 と MCP 常用パックの双方から操作し、停止時は既定案へ即時復帰する。A/B の判定ロジックはテーマ・プラグインに置かない | 2 | admin + MCP receipt |
-| WT-FR-ADMIN-01 | テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）… | 4 | Playwright + schema test + manifest parity |
-| WT-FR-ADMIN-03 | WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する | 2 | diff + rollback receipt |
-| WT-FR-ADMIN-04 | WT-UI-10 の鍵管理タブで HELIX 接続用 API key を発行・失効し、鍵ごとに読み専用 / 書き込み可を設定する。鍵の値は一度だけ表示し、テーマ・プラグインの公開ファイルへ置かない。自前鍵ではなく専用ロー… | 2 | key-management receipt |
-| WT-FR-AGENT-01 | エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variation・テンプレ変種・値の尺度・投稿メタ・LP 種別・hook）上の操作を用途別に… | 2 | MCP receipt + REST parity |
-| WT-FR-AUDIT-01 | HELIX 側の指摘（記事 / section / LP / バナー、種別、重さ、根拠、修正案）を Core プラグインが受け取り DB へ保持し、WT-UI-10 の監査タブと記事一覧の件数バッジから対象 sectio… | 2 | audit + diff receipt |
-| WT-FR-AUTHOR-01 | 著者・監修者の正本（名前・経歴・資格・sameAs・画像）を設定 JSON に保持し、著者欄・監修者欄・著者アーカイブへ反映する。MCP 常用パックから付与・更新できるが、判定は HELIX 側で行う | 2 | S3 receipt |
-| WT-FR-AUTHOR-02 | 著者を Article.author の url / sameAs、監修者を reviewedBy として構造化データへ反映し、著者ページは ProfilePage と代表画像を持つ | 2 | S3 receipt |
-| WT-FR-CONSENT-01 | 同意記録へ時刻・ポリシー版・カテゴリ・保持期間を持たせ、撤回を常設する。明示 opt-in は既定オフとし、GPC 信号を検出した広告拒否は日本限定構成でのみ既定化し、非対象地域では設定を明示する。同意バーは既定 OFF… | 3 | S3 receipt |
-| WT-FR-CRAWL-05 | クローラーを training / search / user-triggered / ads-preview の4分類で台帳化し、公式 UA・IP endpoint・取得日時・鮮度・根拠を表示する。Google-Ext… | 2 | S3 receipt |
-| WT-FR-CV-01 | サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲覧・電話タップ）、補助指標（スクロール深度・滞在）を複数登録し、各 ID・種別・… | 2 | CV schema + data-layer receipt |
-| WT-FR-CV-02 | 資料ダウンロードをフォーム入力からメール送付または即時ダウンロードの 2 経路で提供し、完了をマイクロ CV として WT-FR-TAG-02 の version 付きデータ層契約で計測する。第三者フォームが検出された場… | 2 | download + data-layer + plugin receipt |
-| WT-FR-IMG-01 | 全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として… | 2 | asset fixture + plugin matrix + render audit |
-| WT-FR-LEGAL-02 | タグ正本に外部送信先事業者・送信情報・利用目的を必須メタとして持たせ、登録タグから外部送信先一覧ページを自動生成する | 2 | S3 receipt |
-| WT-FR-LEGAL-03 | No.1・ランキング・比較の調査主体・時期・対象・方法または編集部基準を商品正本へ保持し、脚注を自動表示する。価格条件・定期購入条件・個人の感想の打消しは CTA と同視野・同サイズの block style で表示する | 2 | S3 receipt |
-| WT-FR-LOG-01 | ユーザー領域に保存された combined / gz のサーバー生ログを WP-Cron / WP-CLI で取り込み、cache 応答も crawl log へ response_origin 付きで記録する。取り込み… | 2 | S3 receipt |
-| WT-FR-LOOK-01 | 見た目の型は目標数を持たず、用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サ… | 4 | G-T3 + style list |
-| WT-FR-LOOK-04 | 和文フォントをゴシック・明朝・丸ゴ・手書き / デザイン系など複数系統から選べ、unicode-range 分割サブセット、size-adjust、font-display: swap、OFL 表記を同じビルド工程で扱う… | 2 | S3 receipt |
-| WT-FR-LP-01 | LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページがディレクトリ階層の配下に置かれるのに対し、LP はディレクトリに依存しない構造（… | 2 | Playwright + ledger |
-| WT-FR-LP-02 | LP 単独の改善が全体 CV に大きく影響するため、LP はフォーム制御（フォームの配置・項目・送信先の JSON 宣言）、デザイン面の拡張性（LP 専用の variation / block style / セクション… | 2 | data-layer receipt + Playwright |
-| WT-FR-MAIL-01 | 認証 SMTP と From 整合、SPF / DKIM / DMARC の状態を検査し、未設定を警告する。wp_mail_failed を操作ログへ残し、第三者 SMTP プラグイン検出時は送信を譲る | 2 | S3 receipt |
-| WT-FR-NAV-01 | コア Breadcrumbs ブロックを表示し、BreadcrumbList 構造化データを同じ出力元から生成する。階層は投稿・固定ページ・LP の構造から機械導出し、保存 HTML に固定しない。LP のディレクトリ非… | 2 | S3 receipt |
-| WT-FR-PARTS-01 | header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適… | 3 | Playwright + G-S2 |
-| WT-FR-RECO-01 | 記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選ぶ場合も bot・管理者を除外し、IP を保存せず日次で集約する。外部集計の読み… | 3 | S3 receipt |
-| WT-FR-SECTION-01 | 見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3 区間を持つ階層とする（H4 以下は区間にしない、PO 2026-09-02）。… | 2 | extractor fixture |
-| WT-FR-SECTION-02 | H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に… | 2 | REST receipt + Playwright + data-layer receipt |
-| WT-FR-SELL-01 | 商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア / 自社 EC URL）を保持する。複数記事から同じ正本を参照して一括反映し、商品… | 2 | product catalog fixture |
-| WT-FR-SELL-02 | 同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・… | 2 | render fixture + JSON-LD extract |
-| WT-FR-SELL-04 | 商品・バナーの /go/<id> 経路を 302 で提供し、rel=sponsored nofollow、robots 除外、商品 ID・時刻・参照元・device のサーバー側クリック記録を行う。IP は保存せず、保持… | 2 | S3 receipt |
-| WT-FR-SEO-04 | SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティ、FAQPage / HowTo / SearchAction など対象外・非推奨型を出さな… | 2 | source registry |
-| WT-FR-SP-01 | 面・語彙・パーツの共通宣言を 1 本の fluid 定義で持ち、専用面・並び順・表示形などの device 別差分を WordPress 7.1 の `@mobile` / `@tablet` 上書きとして宣言する。Si… | 2 | responsive fixture + theme token audit |
-| WT-FR-SP-02 | SP ヘッダー（ロゴ・ハンバーガー・検索・主要 CTA の配置と選択）、ドロワー（階層・CTA・SNS）、SP 下部固定（3〜5 タブ: 電話・メッセージアプリ・資料 DL・目次・トップへ。既存 SP 下部固定 slot… | 2 | responsive render + slot audit |
-| WT-FR-SYNC-01 | template part・global styles・設定 JSON・商品正本・zone 割当をスラッグ参照・URL 非依存の選択セットとして export / import し、staging dry-run から … | 2 | S3 receipt |
-| WT-FR-TAG-01 | 計測タグの注入面を head・body 開始直後・body 終端の 3 slot に限定し、タグ管理コンテナ / 個別断片の登録・選択を WT-UI-10 と MCP から行える。タグ設定と計測 ID は DB の選択と… | 2 | slot audit + config scan |
-| WT-FR-TAG-02 | 表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type を一つの version 付き JSON データ層契約で定義し、必… | 2 | schema contract + data-layer receipt |
-| WT-FR-TAG-03 | 同意状態を必須・計測・広告の 3 カテゴリで運用者向け表示単位としてデータ層へ出し、Consent Mode v2 の 7 種への写像表も契約に含める。head slot の注入順は consent default を最… | 2 | consent fixture + server receipt |
-| WT-FR-VALUE-01 | 値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、ブロック単位・記事単位の任意 CSS（WP 7.0 のコア機能を含む）も同じ値域判定を通して任意 CSS による迂回を許さない。破壊域… | 2 | editor + gate JSON |
-| WT-FR-VOCAB-01 | 記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新… | 3 | vocab fixture |
-| WT-FR-VOCAB-03 | PR 表記は表示内容全体から広告であることが不明瞭にならない自己基準を満たし、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所とする。既定は他サイトで一般的な控えめな記事上部一文とし、ボタン・バナ… | 2 | Playwright + fixture |
-| WT-FR-ZONE-01 | 共有 slot 6 種（本文前・関連前後・固定ページ上下・ヘッダー内・SP 下部固定・追尾サイドバー）をテンプレ / パーツ内のパターン挿入位置として持つ。共通宣言を fluid で適用し、専用面・並び順・表示形などの … | 2 | Playwright |
-| WT-NFR-CRED-01 | credential・実サイト固有名・第三者製品名を公開リポジトリへ書かない。接続情報は環境変数と gitignore 済み local 設定 | 2 | public-safety check |
-| WT-NFR-CV-01 | リード情報の保存先・保持期間・consent を明示し、consent なしに保存しない。CRM / MA はテーマ内に持たず、外部連携は署名付き webhook で押し出すまでとする。同意記録を時刻・版・カテゴリ・保持… | 2 | privacy + webhook receipt |
-| WT-NFR-GATE-01 | 静的 6 ゲート（G-T1 / T1b / T2 / T3 / S1 / S2）と実機 G-E1（invalid=0）を、パターン・パーツ・テンプレ・styles を触る PR の完了条件にする | 2 | gate JSON |
-| WT-NFR-LEGAL-01 | PR 表記の法令要件と GPL 配布要件（ライセンス表記・第三者資産の許諾）を満たす。OFL 全文、Reserved Font Name、asset ledger、SECURITY.md、semver / CHANGEL… | 2 | Playwright + license ledger |
-| WT-NFR-LOG-01 | クロール・操作・監査ログに行数 / 容量上限を設け、URL × bot × 日の集約を日次で行う。生行は短期、集約は長期とし、容量逼迫を警告してサイト停止を招かない | 2 | S3 receipt |
-| WT-NFR-OSS-01 | OFL フォントと第三者資産の全文ライセンス・Reserved Font Name の扱い・出所を JSON 台帳と readme へ機械生成し、台帳外資産を静的ゲートで赤にする。SECURITY.md、semver、C… | 2 | S3 receipt |
-| WT-NFR-PERF-03 | 記事・LP・一覧・商品比較で主たる測定面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を測定対象とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、… | 2 | Lighthouse receipt + CI receipt |
-| WT-NFR-PERM-01 | 破壊域停止は権限で解除できず、write 系 API は capability と dry-run receipt を要求する。ability 単位の認可と Application Passwords の read / … | 2 | capability test |
-| WT-NFR-PRIV-02 | WordPress privacy tools の exporter / eraser と privacy policy content に、リード・同意記録・操作ログ・クロール集約の保存内容と削除・出力範囲を登録する | 2 | S3 receipt |
-| WT-NFR-REC-01 | 構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の digest に戻る | 2 | rollback receipt |
-| WT-NFR-REL-01 | 描画パスで set_theme_mod / update_option を呼ばない。redirect_canonical の全面停止や全ページ session_regenerate_id のようなグローバル改変を持ち込ま… | 2 | option diff |
-| WT-NFR-SEC-01 | 未認証 REST（permission_callback __return_true）を持たず、外部 URL 取得は wp_safe_remote_get 等の検証付き経路のみ。公開面に PHP Warning を出さな… | 2 | REST audit |
-| WT-NFR-SEO-01 | schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane を持ち、必須プロパティ欠落と非推奨型を赤として扱う。FAQPage / HowTo / … | 2 | test-lane receipt |
-| WT-NFR-SP-01 | SP の操作はタップ対象 44px 以上、本文文字 16px 以上、横スクロール 0 とし、下部固定・ドロワー・同意バーは本文や CTA を隠さず、積層順を固定する。PC 側にも共通 + device 別差分の同構造と検… | 2 | responsive interaction audit |
-| WT-NFR-SP-02 | 主たる測定面はサイト設定で選び、既定は SP 幅とする。代表ページ種別を Lighthouse の mobile / PC 幅と SP / PC の両幅のスクリーンショット比較で検査し、ローカル Docker の実機相当… | 2 | responsive gate + preview + measurement receipt |
-| WT-NFR-TAG-01 | 計測の検査で、同意前の非発火、データ層の必須項目、Consent Mode v2 7 種への写像表、head slot の consent default 最初の注入順、3 slot 外へのスクリプト注入 0、同意なしイ… | 2 | tag gate + transfer budget |
-| WT-NFR-VALUE-03 | bridge 投影・子テーマ・user global styles は同スラッグへの値差し替えだけができ、段の増減・スラッグ変更・settings 上書きはスキーマ検査で拒否する。dimension preset、min… | 2 | projection fixture |
-| WT-TR-API-02 | HELIX 連携 API の書き込みを batch（全成功か全失敗）とし、dry-run / rollback に対応する。投稿公開・設定変更・クロール異常・A/B 停止は署名付き webhook で押し出す | 2 | API receipt + webhook receipt |
-| WT-TR-CLI-01 | MCP 常用パック・REST・WP-CLI の 3 面が、パック定義 JSON から生成された同じ能力集合を扱い、ずれたら契約テストで赤にする。Abilities API の同じ登録から 3 面を生成し、permissi… | 2 | capability parity receipt |
-| WT-TR-CORE-01 | 面・部品・変種・値の尺度は theme.json / config / schema / openapi の JSON 宣言から列挙でき、PHP にしか存在する面を作らない | 2 | manifest diff |
-| WT-TR-CORE-02 | health() は起動 step と module に加え、登録済みの slot・パターン・パーツ・variation・テンプレ変種・hook を自己申告する | 2 | health JSON |
-| WT-TR-CORE-03 | AI 判定ロジック（variant 生成・統計判定・リスクスコア・モデル呼び出し）をテーマ・プラグインに持ち込まず、boundary guard を維持する | 2 | static analysis |
-| WT-TR-HOST-01 | hosting capability manifest に PHP / DB 版、画像拡張、cron 駆動、cache / CDN、WAF、SMTP / DMARC、対応範囲を自己申告し、health・MCP・ハーネスが… | 2 | S3 receipt |
-| WT-TR-PLUGIN-01 | 運用中の AI はテーマファイルを触らず、WordPress が DB に持つ「サイトの選択」（ヘッダー / サイドバー / hero の案、variation、テンプレ変種、ナビ、尺度内の値、slot のパターン、記事… | 2 | file digest + DB fixture + theme-switch fixture |
-| WT-TR-PLUGIN-03 | 第三者プラグインの capability を領域別に検出し、フォームは送信イベントと同意確認をデータ層契約へ接続、キャッシュ / CDN は A/B cookie・同意 routing・crawl 計測の不成立を警告して… | 2 | plugin capability matrix + representative fixtures |
-
-## 4. P1 / P2 要件（56 件）
-
-| ID | 優先度 | 要旨 |
-| --- | --- | --- |
-| WT-FR-ADMIN-02 | P1 | WT-UI-10 の操作ログタブで AI と人の変更を時系列に表示し、対象・差分・実行者・結果で絞り込み、CSV / JSON export できる。ログ上限・日次集約、PR 根拠… |
-| WT-FR-AGENT-02 | P1 | 本文の中間 JSON 抽出器を純関数（副作用なし、render_block 非依存、参照解決に深さ上限と訪問済み集合）として持ち、CLI / REST から呼べる |
-| WT-FR-AGENT-06 | P1 | カスタムパーツの自己開発経路を持つ: 編集者または AI がブロックを組んで再利用パーツとして登録（参照 + 版 + digest、manifest に出る）→ 実機ゲート（inv… |
-| WT-FR-AUDIT-02 | P1 | alt・速度予算・構造化データ・見出し階層は決定論的ルール検査に限定し、CTA 密度・証拠不足・PR 表記欠落・microcopy 未選択・Discover 画像要件未達などの監査… |
-| WT-FR-BANNER-01 | P1 | バナー正本へ PC / SP 画像、リンク先、alt、種別（自社告知 / アフィリエイト / 広告 / 商品）、有効期間、PR 表記要否を登録し、商品バナーは商品 ID から派生す… |
-| WT-FR-BANNER-02 | P1 | バナーの impression / click を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ送り、CV ID・A/B varian… |
-| WT-FR-CRAWL-01 | P1 | プラグイン側で UA と逆引き / 公開 IP レンジ照合により検索エンジン系・AI 系クローラーを識別し、URL・時刻・ステータス・応答時間・ページ種別を専用テーブルへ記録する。… |
-| WT-FR-CRAWL-02 | P1 | 管理画面 WT-UI-11 にクローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / craw… |
-| WT-FR-CRAWL-03 | P1 | robots.txt と AI クローラーの許可 / 拒否を WT-UI-11 から設定し、設定 JSON へ保存する。同じデータを MCP 常用パックと REST から取得できる… |
-| WT-FR-CRAWL-04 | P1 | search / ai-input / ai-train の利用許諾を1設定から Content Signals 行、aipref Content-Usage 行またはヘッダ、RS… |
-| WT-FR-CV-03 | P1 | CTA ボタンに主文言と任意の microcopy を持たせ、候補から選べるようにする。microcopy は必須化せず、A/B と section の計測を CV ID で集計し… |
-| WT-FR-IMG-02 | P1 | 5MB 超・一括画像処理のうちブラウザを通らない CLI / REST / MCP 経路と既存画像の再生成だけをサーバー側 WP-Cron の非同期ジョブにし、ブラウザ側との二重処… |
-| WT-FR-IMG-03 | P1 | alt を必須として空の画像は公開前に警告し、AI 側が埋める導線と GIF の動画置換提案を持つ。Discover は幅 1200px 以上の代表画像、robots meta m… |
-| WT-FR-LOOK-03 | P1 | variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）… |
-| WT-FR-META-01 | P1 | 投稿メタ 5 キー（sidebar / toc / share / pr / eyecatch）を登録し、テンプレ側の条件描画で記事単位の表示切替を持つ。eyecatch は位置（… |
-| WT-FR-MIGRATE-01 | P1 | 移行の実行（移行元サイトの取得、サーバーファイルとテーマ情報の書き換え）はテーマの責務ではなく HELIX-WP-HARNESS の責務（PO 2026-09-02）。テーマが持つ… |
-| WT-FR-MIGRATE-02 | P1 | マッピングフォーマットは、ウィジェット領域 → template part / slot、コアウィジェット → コアブロック、独自ブロック → 受け皿対応表、プリセット → var… |
-| WT-FR-PAGE-01 | P1 | 会社概要・問い合わせ・採用・プライバシー・特商法・外部送信先一覧・アクセシビリティ方針の固定ページパターンを提供し、事業者情報 JSON を自動充填する。自前フォームは保持せず第三… |
-| WT-FR-PARTS-02 | P1 | テンプレ変種（single-2col / single-1col）と footer のカラム可変を「テンプレ名」で表し、属性で幅や余白を変えない。ナビは wp_navigation… |
-| WT-FR-SELL-03 | P1 | 管理画面（WT-UI-10）に商品一覧・編集を置き、AI を介さず価格・リンクを直せる。MCP 常用パックに商品の追加・更新・記事への差し込みを載せ、商品リンクのクリック計測を W… |
-| WT-FR-SELL-05 | P1 | 商品正本と本文の外部リンクを WP-Cron で HEAD 検査し、リンク切れ・期限切れ・到達不能を WT-UI-10 と MCP 常用パックへ警告する |
-| WT-FR-SEO-01 | P1 | 構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）を追加する。WebSite は site name 用の name / alternateNa… |
-| WT-FR-SEO-03 | P1 | title / meta description / canonical / robots / sitemap / OGP を全ページ種別で出し、hreflang は多言語構成時だ… |
-| WT-FR-SEO-05 | P1 | アフィリエイトリンクと商品 CTA へ rel="sponsored" を機械付与し、リンクの種類に応じた rel 属性を同じ出力経路で保つ。出典: https://develop… |
-| WT-FR-SEO-06 | P1 | 公開・更新・削除時に IndexNow へ送信し、鍵は DB に保持して公開面には検証用の鍵ファイルだけを出す。送信失敗は操作ログへ記録し、送信機構は Core プラグインの譲渡領… |
-| WT-FR-SNS-01 | P1 | SNS profile を設定 JSON の一か所に登録し、header / footer / 著者欄と構造化データ sameAs へ反映する。対象 SNS と記事上下・フロート・… |
-| WT-FR-SNS-02 | P1 | SNS 投稿の feed 埋め込みをブロックとして提供し、埋め込みスクリプトを遅延読込して速度予算内にする。メッセージアプリ公式アカウントの友だち追加ボタンと QR を LP のフ… |
-| WT-FR-SP-03 | P1 | 共通の語彙定義に対する device 別差分を JSON で宣言し、SP では比較テーブルは横スクロール / カード、タブはアコーディオン、目次はフロートから開閉ボタン、ギャラリー… |
-| WT-FR-TPL-01 | P1 | 404 と検索結果に選べる複数のテンプレ変種（人気記事・CTA・検索語提案）を持ち、404 には LP・比較記事・問い合わせへの CV 導線 slot を置ける。検索結果は noi… |
-| WT-FR-TYPO-01 | P1 | 和文の既定 CSS に line-break: strict、overflow-wrap: anywhere、word-break: normal、text-autospace、t… |
-| WT-FR-VALUE-02 | P1 | 生値は許容リスト方式（尺度系はプリセット参照へ、意匠値は許容リスト）へ移し、baseline 438 を段階的に 0 にする。ブロック単位・記事単位の任意 CSS も同じ値域・許容… |
-| WT-FR-VOCAB-02 | P1 | 目次はテーマ内蔵とし、実体は本文の h2/h3 からレンダラが機械導出する（保存 HTML に固定しない）。編集者と AI が選べるのは (a) 配置方式: 固定埋め込み（既定は最… |
-| WT-FR-VOCAB-04 | P1 | ブログカード（内部リンク）は REST を経由せず url_to_postid() 直呼びで解決し、外部 URL は検証付き HTTP のみ |
-| WT-FR-ZONE-02 | P1 | ゾーン語彙 23 種を JSON schema で宣言し、creative は参照（ID）、overrides は first-match-wins の配列で持つ |
-| WT-NFR-A11Y-01 | P1 | 域の判定・状態表示は label と icon を伴い色だけに依存しない。img alt 欠落 0、AA コントラスト、横スクロール 0。WCAG 2.2 AA を到達目標とし、A… |
-| WT-NFR-A11Y-02 | P1 | prefers-reduced-motion を検出した場合は動きと autoplay を停止または静的表示へ縮退し、アニメーションを操作完了の必須条件にしない |
-| WT-NFR-CRAWL-01 | P1 | クロールログの保持期間と間引きは既定 90 日とし、bot 判定外の個人閲覧を記録しない。対象は WP が応答したリクエストだけで、キャッシュ / CDN 応答は見えない限界をダッ… |
-| WT-NFR-OBS-01 | P1 | health / gate / 台帳 / 抽出器の出力は JSON で、HEAD と digest に束縛される |
-| WT-NFR-PERF-01 | P1 | 記事・LP・一覧・商品比較は主たる描画・計測面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を検査し、JS 無しで全表示が成立することを原則とし、動きは CSS /… |
-| WT-NFR-PERF-02 | P1 | CSS を語彙単位で分割して使用分だけ出し、共通定義は fluid、device 別差分は必要な幅だけ出す。ビルド工程で短縮化し、critical CSS は inline、残りは… |
-| WT-NFR-PRIV-01 | P1 | 計測・広告・外部コードの正本はテーマ外（HELIX / プラグイン側）。テーマ内に計測 ID・広告コードを持たない。人気の自前集計を選んだ場合に限り、IP を持たない日次集約のみを… |
-| WT-TR-AGENT-05 | P1 | REST は自前名前空間で WP コアに相乗りしない。本文変換は生成時 / レンダリング時 / 表示時の 3 層で、テーマ語彙のショートコードは意図ノードへ、プラグイン語彙は不透明… |
-| WT-TR-API-01 | P1 | HELIX 連携 API の全一覧読み取りに since / fields / ETag / Last-Modified を備え、差分取得を契約として保証する |
-| WT-TR-API-03 | P1 | HELIX 連携 API の応答に schema version を必須化し、破壊的変更時は旧版を併走させる。OpenAPI lint / 差分検査を CI に置き、MCP 常用パ… |
-| WT-TR-HOST-02 | P1 | 対応範囲を WP 7.1 以上、PHP 8.2〜8.5、MySQL 8.4 / MariaDB 11 として対応表に固定し、iframed 投稿エディタでブロック JS / CSS… |
-| WT-TR-PLUGIN-02 | P1 | 第三者プラグインとの共存規約: 出力が重なる領域（JSON-LD、meta / OGP、目次、サイトマップ、llms.txt、キャッシュ、フォーム、同意管理・計測）ごとに「本テーマ… |
-| WT-TR-PLUGIN-04 | P1 | 検出結果、領域ごとの既定（本テーマが出す / 検出して譲る / 設定で選ぶ）、現在の選択、警告、検査対象構成を capability manifest に載せ、WT-UI-10 と… |
-| WT-FR-AGENT-03 | P2 | 主要パーツ前後の do_action 10 箇所と出力の apply_filters 10 箇所を持ち、hook 一覧を manifest に含める |
-| WT-FR-AGENT-04 | P2 | 再利用パーツは参照（ID）で持ち、解決に使った版と digest を記録する。展開して保存しない |
-| WT-FR-INTAKE-01 | P2 | 実証記録台帳を本テーマ内で完結する append-only の JSON Lines として持つ。1 行 = パターン ID・参照元 commit・証跡パス・ゲート結果（静的 6 … |
-| WT-FR-LOOK-02 | P2 | デザインプリセット 1 個を style variation 1 本（色 8 スラッグの値差し替え）として写像し、部品別プリセットは block style で受ける。写像の対象範… |
-| WT-FR-MIGRATE-03 | P2 | 移管対象の推奨はサイト固有（意味に属する 60〜80 キー）に絞り、見た目は本テーマで作り直す方針をマッピングフォーマットに明記する。互換 meta キーの固有名は公開本体に置かず… |
-| WT-FR-SEO-02 | P2 | FAQ・手順の語彙と本文を残しつつ、FAQPage / HowTo の JSON-LD は既定で出力せず、任意 ON 設定も持たない。ItemList は語彙から自動生成し、本文と… |
-| WT-FR-ZONE-03 | P2 | SP 下部固定領域の積層は 同意バー（位置を下部固定に選んだ場合のみ）> メニュー > シェア の順で、本文最下部 CTA と重ねない。お知らせバーはヘッダー直下 slot、ページ… |
-| WT-NFR-COST-01 | P2 | ゲート・PoC はローカル docker で完結し、無料枠制限や課金を伴う外部 API に依存しない |
-| WT-NFR-ENV-01 | P2 | Text Domain と翻訳関数を準拠させ、POT を CI で生成し、日本語・英語のソース言語を明示する。RTL は対応範囲外として記録する |
-
-## 5. 検証方法の内訳（L10）
-
-| evidence | テスト数 |
-| --- | --- |
-| S3 receipt | 26 |
-| gate JSON | 2 |
-| Playwright | 2 |
-| REST audit | 2 |
-| extractor fixture | 2 |
-| public-safety check | 2 |
-| manifest diff | 1 |
-| health JSON | 1 |
-| static analysis | 1 |
-| file digest + DB fixture + theme-switch fixture | 1 |
-| plugin matrix（7 領域）+ consent fixture + static analysis | 1 |
-| schema test | 1 |
-| Playwright + G-S2 | 1 |
-| parts reference test | 1 |
-| vocab fixture | 1 |
-| render fixture + Playwright | 1 |
-| Playwright + fixture | 1 |
-| REST receipt + Playwright + data-layer receipt | 1 |
-| G-T3 + style list | 1 |
-| G-T1b JSON | 1 |
-| survey inventory + gate JSON | 1 |
-| REST + Playwright | 1 |
-| Playwright + schema test + manifest parity | 1 |
-| Playwright + ledger | 1 |
-| data-layer receipt + Playwright | 1 |
-| schema test + harness mapping receipt | 1 |
-| conversion receipt（ハーネス側）+ format schema test | 1 |
-| MCP receipt + REST parity | 1 |
-| hook audit | 1 |
-| digest diff | 1 |
-| OpenAPI diff | 1 |
-| G-E1 + ledger + cross-theme fixture | 1 |
-| editor + gate JSON | 1 |
-| projection fixture | 1 |
-| JSON-LD extract + plugin matrix + source receipt | 1 |
-| JSON-LD extract + source receipt | 1 |
-| crawl JSON + source receipt | 1 |
-| product catalog fixture | 1 |
-| render fixture + JSON-LD extract | 1 |
-| admin + MCP receipt + tracking receipt | 1 |
-| source registry | 1 |
-| test-lane receipt | 1 |
-| rendered-link audit | 1 |
-| crawl log fixture | 1 |
-| dashboard fixture | 1 |
-| settings + MCP / REST parity | 1 |
-| retention + boundary receipt | 1 |
-| ledger validation | 1 |
-| option diff | 1 |
-| static grep | 1 |
-| capability test | 1 |
-| dependency audit | 1 |
-| Playwright + license ledger | 1 |
-| CI artifact | 1 |
-| axe / contrast | 1 |
-| rollback receipt | 1 |
-| responsive transfer size report | 1 |
-| variant fixture + responsive render receipt | 1 |
-| data-layer receipt | 1 |
-| admin + MCP receipt | 1 |
-| asset fixture + plugin matrix + render audit | 1 |
-| async job receipt + CLI receipt | 1 |
-| SEO + asset audit | 1 |
-| build artifact + budget receipt | 1 |
-| Lighthouse receipt + CI receipt | 1 |
-| API contract fixture | 1 |
-| API receipt + webhook receipt | 1 |
-| OpenAPI lint + diff receipt | 1 |
-| admin + export receipt | 1 |
-| diff + rollback receipt | 1 |
-| key-management receipt | 1 |
-| capability parity receipt | 1 |
-| profile + render receipt | 1 |
-| render + script audit | 1 |
-| CV schema + data-layer receipt | 1 |
-| download + data-layer + plugin receipt | 1 |
-| CTA fixture + tracking receipt | 1 |
-| privacy + webhook receipt | 1 |
-| banner fixture + render receipt | 1 |
-| banner + data-layer receipt | 1 |
-| audit + diff receipt | 1 |
-| audit export + MCP receipt | 1 |
-| responsive fixture + theme token audit | 1 |
-| responsive render + slot audit | 1 |
-| vocab contract + preview parity | 1 |
-| responsive interaction audit | 1 |
-| responsive gate + preview + measurement receipt | 1 |
-| slot audit + config scan | 1 |
-| schema contract + data-layer receipt | 1 |
-| consent fixture + server receipt | 1 |
-| tag gate + transfer budget | 1 |
-| plugin capability matrix + representative fixtures | 1 |
-| manifest parity + conflict receipt | 1 |
-
-**弱点（Claude 所見）**: evidence が「S3 receipt」とだけ書かれたテストが 26 件ある。これは S3 反映時に oracle を仮置きしたもので、L5 の先行テスト設計で具体の evidence 種別（Playwright / schema test / static analysis 等）へ置き換える必要がある。Claude 案としては凍結の妨げにせず L5 で具体化する義務として記録する提案だが、凍結前に具体化を求めるかは PO の判断（WT-Q-G3-01 の回答に含めてよい）。
-
-## 6. 開発スタイル（WT-Q-STYLE-01）
-
-`V_DESIGN_SCRUM_IMPLEMENTATION`: 要件凍結後、L4 基本設計（責務分割: テーマ / Core プラグイン / 設定 JSON schema / MCP パック / ゲート）と L5 詳細設計 + 先行テスト設計を V 字で固め、L6 実装〜L9 結合を Scrum の反復で進める。反復ごとに L7 の Red → Green → Refactor 証跡と L8 / L9 を閉じ、L10 総合で本 IR の受入条件に照らす。要件変更は L2 へ戻し、影響する設計・テスト・証跡を digest で識別して再承認する。
-代替は `V_FULL`（全層を逐次）だが、パーツ数が用途別に増減する本テーマでは反復の方が合う（Claude 所見）。
-
-## 7. 承認後に起きること
-
-1. WT-Q-G3-01 / WT-Q-STYLE-01 の回答を `requirement_decision_recorded` として追記（iteration 2）
-2. 優先度変更なしなら `stable_priority_iterations` を true にし、compile を再実行して全件 `specified`
-3. PO 承認を `freeze_recorded`（G3）として追記し、IR を `canonical` / 全件 `frozen` に。以後の変更は revision を上げ digest 検査で追跡
-4. L4 基本設計へ引き渡す（各要件の design obligation を導出）
+- **WT-FR-VOCAB-01**: 「最大数」と新規ブロック上限 7 の関係を整理する。表現の型数と登録ブロック数は別であり、PoC の動的ブロック数で製品の上限遵守を判定しない。上限撤廃を PO 決定とみなさない。
+- **WT-FR-VOCAB-03**: 本文の表記がある場合の重複抑止と「本文編集により消せない」条件の両立を確定する。PoC の先頭文字列検出は広告リンク有無の機械判定を代替しない。
+- **WT-FR-PAGE-01**: 旧「自前フォームは保持せず」と新しいフォーム表示試作の境界を分離した。実送信・保存の担当と第三者フォームへの譲渡契約を設計・受入条件で確定する。

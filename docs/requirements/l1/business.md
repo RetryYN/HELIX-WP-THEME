@@ -8,6 +8,9 @@ authority: docs/requirements/authority.md
 
 # L1 Business Requirements
 
+> 2026-09-08 注記: 本文は WT-AGREE-01（event head 0231、9月5日）の承認済み基準。後続のPO判断・候補改定は [最新整理](../current-alignment.md) と L2 events / L3 IR を併読する。`g1_approved` は追加8件や改定6件の再承認を意味しない。本文内の問い件数・「現行」・対象制限は当時の記録として読む。
+
+
 | ID | 要求 | 成功判定 |
 | --- | --- | --- |
 | WT-BR-01 | 機械可読性を維持する。面・部品・値・変種を追加しても、すべてが JSON 宣言（theme.json / config / schema / openapi）から列挙できる | capability manifest の列挙率 100%。PHP にしか存在する面・部品が 0 |

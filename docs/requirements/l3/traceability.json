@@ -178,12 +178,16 @@
       "l3": [
         "WT-FR-PARTS-01",
         "WT-FR-PARTS-02",
-        "WT-FR-PAGE-01"
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
       ],
       "tests": [
         "WT-AT-PARTS-01",
         "WT-AT-PARTS-02",
-        "WT-AT-PAGE-01"
+        "WT-AT-PAGE-01",
+        "WT-AT-PAGE-02",
+        "WT-AT-PARTS-03"
       ]
     },
     {
@@ -191,21 +195,25 @@
       "l2": "WT-CAND-PARTS",
       "l3": [
         "WT-FR-PARTS-01",
-        "WT-FR-PARTS-02"
+        "WT-FR-PARTS-02",
+        "WT-FR-PARTS-03"
       ],
       "tests": [
         "WT-AT-PARTS-01",
-        "WT-AT-PARTS-02"
+        "WT-AT-PARTS-02",
+        "WT-AT-PARTS-03"
       ]
     },
     {
       "l1": "WT-BR-03",
       "l2": "WT-CAND-PARTS",
       "l3": [
-        "WT-FR-PARTS-01"
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-03"
       ],
       "tests": [
-        "WT-AT-PARTS-01"
+        "WT-AT-PARTS-01",
+        "WT-AT-PARTS-03"
       ]
     },
     {
@@ -2172,10 +2180,12 @@
       "l1": "WT-SCR-06",
       "l2": "WT-CAND-PARTS",
       "l3": [
-        "WT-FR-PAGE-01"
+        "WT-FR-PAGE-01",
+        "WT-FR-PARTS-03"
       ],
       "tests": [
-        "WT-AT-PAGE-01"
+        "WT-AT-PAGE-01",
+        "WT-AT-PARTS-03"
       ]
     },
     {
@@ -2186,6 +2196,176 @@
       ],
       "tests": [
         "WT-AT-PAGE-01"
+      ]
+    },
+    {
+      "l1": "WT-BR-01",
+      "l2": "WT-CAND-PARTS",
+      "l3": [
+        "WT-FR-PAGE-02"
+      ],
+      "tests": [
+        "WT-AT-PAGE-02"
+      ]
+    },
+    {
+      "l1": "WT-BR-02",
+      "l2": "WT-CAND-PARTS",
+      "l3": [
+        "WT-FR-PAGE-02"
+      ],
+      "tests": [
+        "WT-AT-PAGE-02"
+      ]
+    },
+    {
+      "l1": "WT-BR-04",
+      "l2": "WT-CAND-PARTS",
+      "l3": [
+        "WT-FR-PAGE-02"
+      ],
+      "tests": [
+        "WT-AT-PAGE-02"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-02",
+      "l2": "WT-CAND-HOME",
+      "l3": [
+        "WT-FR-HOME-01"
+      ],
+      "tests": [
+        "WT-AT-HOME-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-HOME",
+      "l3": [
+        "WT-FR-HOME-01"
+      ],
+      "tests": [
+        "WT-AT-HOME-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-02",
+      "l2": "WT-CAND-EVENT",
+      "l3": [
+        "WT-FR-EVENT-01"
+      ],
+      "tests": [
+        "WT-AT-EVENT-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-EVENT",
+      "l3": [
+        "WT-FR-EVENT-01"
+      ],
+      "tests": [
+        "WT-AT-EVENT-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-02",
+      "l2": "WT-CAND-PAID",
+      "l3": [
+        "WT-FR-PAID-01"
+      ],
+      "tests": [
+        "WT-AT-PAID-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-13",
+      "l2": "WT-CAND-PAID",
+      "l3": [
+        "WT-FR-PAID-01"
+      ],
+      "tests": [
+        "WT-AT-PAID-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-PAID",
+      "l3": [
+        "WT-FR-PAID-01"
+      ],
+      "tests": [
+        "WT-AT-PAID-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-02",
+      "l2": "WT-CAND-INTERVIEW",
+      "l3": [
+        "WT-FR-INTERVIEW-01"
+      ],
+      "tests": [
+        "WT-AT-INTERVIEW-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-05",
+      "l2": "WT-CAND-INTERVIEW",
+      "l3": [
+        "WT-FR-INTERVIEW-01"
+      ],
+      "tests": [
+        "WT-AT-INTERVIEW-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-02",
+      "l2": "WT-CAND-BLP",
+      "l3": [
+        "WT-FR-BLP-01"
+      ],
+      "tests": [
+        "WT-AT-BLP-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-BLP",
+      "l3": [
+        "WT-FR-BLP-01"
+      ],
+      "tests": [
+        "WT-AT-BLP-01"
+      ]
+    },
+    {
+      "l1": "WT-FRL1-02",
+      "l2": "WT-CAND-FORM",
+      "l3": [
+        "WT-FR-FORM-01"
+      ],
+      "tests": [
+        "WT-AT-FORM-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-06",
+      "l2": "WT-CAND-FORM",
+      "l3": [
+        "WT-FR-FORM-01"
+      ],
+      "tests": [
+        "WT-AT-FORM-01"
+      ]
+    },
+    {
+      "l1": "WT-SCR-10",
+      "l2": "WT-CAND-FORM",
+      "l3": [
+        "WT-FR-FORM-01"
+      ],
+      "tests": [
+        "WT-AT-FORM-01"
       ]
     }
   ]

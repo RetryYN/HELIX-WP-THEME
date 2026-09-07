@@ -7,7 +7,8 @@
     "l1": "docs/requirements/l1/",
     "l2_events": "docs/requirements/discovery/events.jsonl",
     "l2_projection": "docs/requirements/discovery/candidate-projection.json",
-    "poc_inventory": "docs/poc/wt-poc-inventory.json"
+    "poc_inventory": "docs/poc/wt-poc-inventory.json",
+    "alignment": "docs/requirements/current-alignment.md"
   },
   "compile_result": "backflow_required",
   "freeze": {
@@ -357,12 +358,14 @@
     {
       "id": "WT-FR-VOCAB-01",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
         "WT-FRL1-03",
         "WT-SCR-05",
         "WT-BR-02",
-        "WT-CAND-VOCAB"
+        "WT-CAND-VOCAB",
+        "WT-EVT-0288",
+        "WT-EVT-0300"
       ],
       "statement": "記事内語彙 14 種（囲み・ボタン・リンクカード・吹き出し・手順・記事一覧・アコーディオン・タブ・全幅・リッチメニュー・会員制限・比較表・定義リスト・FAQ）を core ブロック + block style で受け、新規ブロックは吹き出し・レビュー・商品カード・ランキング・比較専用テーブル・CTA 束の 6 種 + 空き 1 枠（上限 7）に限定する。SP 幅では比較を横スクロール / カード、タブをアコーディオン、目次を開閉ボタン、ギャラリーをスワイプ、CTA を全幅 / sticky として選べる。比較専用テーブルは本文中の手組み比較表とは別語彙とする。タブはコア Tabs + block style を使い、pros-cons / timeline は core + block style、料金表は比較専用テーブルの variant として受ける。カード・箇条書き・手順のメディア枠は自前 SVG アイコン・アップロード画像・写真・番号・なしから選べる（PO 2026-09-05、WT-Q-PARTS-03）",
       "priority": "P0",
@@ -381,9 +384,12 @@
       "test_ids": [
         "WT-AT-VOCAB-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "9c154e2a8a0c24e8"
+      "semantic_digest": "9c154e2a8a0c24e8",
+      "pending_resolution": [
+        "「最大数」と新規ブロック上限 7 の関係を整理する。表現の型数と登録ブロック数は別であり、PoC の動的ブロック数で製品の上限遵守を判定しない。上限撤廃を PO 決定とみなさない。"
+      ]
     },
     {
       "id": "WT-FR-VOCAB-02",
@@ -417,14 +423,18 @@
     {
       "id": "WT-FR-VOCAB-03",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
         "WT-FRL1-03",
         "WT-NFRL1-10",
         "WT-SCR-05",
-        "WT-CAND-VOCAB"
+        "WT-CAND-VOCAB",
+        "WT-EVT-0246",
+        "WT-EVT-0254",
+        "WT-EVT-0255",
+        "WT-EVT-0267"
       ],
-      "statement": "PR 表記は表示内容全体から広告であることが不明瞭にならない自己基準を満たし、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所とする。既定は他サイトで一般的な控えめな記事上部一文とし、ボタン・バナーのすぐ近くには置かない。表示の要否は記事内の広告パーツ・アフィリエイトリンク・商品リンク（affiliation ブロック / 広告ゾーンの creative 参照を含む）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない。法令上の数値基準を主張せず、テーマA / テーマB の PR 表記水準の再読を後続 PoC 課題とし、ASP 規約の上乗せは運用側設定で扱う。出典: https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/（参照日: 2026-09-03）。PR の調査主体・時期・対象・方法または編集部基準と、affiliation / creative / 商品リンクの根拠を保持する。",
+      "statement": "PR 表記は表示内容全体から広告であることが不明瞭にならない自己基準を満たし、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所とする。既定は他サイトで一般的な控えめな記事上部一文とし、ボタン・バナーのすぐ近くには置かない。表示の要否は記事内の広告パーツ・アフィリエイトリンク・商品リンク（affiliation ブロック / 広告ゾーンの creative 参照を含む）の有無から機械判定して該当ページだけに自動出力する。投稿メタは判定の上書きにのみ使う。編集者と AI が選べるのは表示デザイン（block style、控えめな既定）と表示ページの制御（ページ種別・投稿単位）だけで、対象記事で本文編集により消すことはできない。法令上の数値基準を主張せず、テーマA / テーマB の PR 表記水準の再読を後続 PoC 課題とし、ASP 規約の上乗せは運用側設定で扱う。出典: https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/（参照日: 2026-09-03）。PR の調査主体・時期・対象・方法または編集部基準と、affiliation / creative / 商品リンクの根拠を保持する。 既定の表記文言は「本記事にはプロモーションが含まれます。」（WT-EVT-0267）。本文の既存表記と重複させず、CTA・商品カード束へ不要な PR バッジを追加しない（WT-EVT-0246 / 0254 / 0255）。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -435,14 +445,18 @@
       ],
       "acceptance_ids": [
         "WT-AC-VOCAB-03A",
-        "WT-AC-VOCAB-03B"
+        "WT-AC-VOCAB-03B",
+        "WT-AC-VOCAB-03C"
       ],
       "test_ids": [
         "WT-AT-VOCAB-03"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "079dd56567039f22"
+      "semantic_digest": "6373025f0aa101f2",
+      "pending_resolution": [
+        "本文の表記がある場合の重複抑止と「本文編集により消せない」条件の両立を確定する。PoC の先頭文字列検出は広告リンク有無の機械判定を代替しない。"
+      ]
     },
     {
       "id": "WT-FR-VOCAB-04",
@@ -545,9 +559,11 @@
         "WT-SCR-02",
         "WT-SCR-05",
         "WT-BR-02",
-        "WT-CAND-LOOK"
+        "WT-CAND-LOOK",
+        "WT-EVT-0288",
+        "WT-EVT-0300"
       ],
-      "statement": "見た目の型は目標数を持たず、用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サイト・テーマA / B・参照サイトの観察由来）を入力にする。h3 を h2 より 1 段下げ、h2 / h3 の block style とボタン variant は台帳由来の型数とし、h2 ×3 / h3 ×2 / ボタン ×3 は下限（Claude 案）。同じ列のカードは高さを自動で揃え、見出し文字は 1 行に収める寸法を既定とし、補助文は抑えた無彩色にする。hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする（PO 2026-09-05、WT-Q-LOOK-05）見た目の選択軸に動き（LP / HP の出現・スクロール連動・hero 演出・マイクロ）、奥行き（カードの浮き・立体ボタン）、空間（余白密度・配置・グリッド・リズム）、脱テキスト感（見出し・箇条書きの装飾型）を加え、動きは reduced-motion と JS 無効時の表示を保証し、写真・色地上の文字は自動コントラスト guard（4.5:1、大文字 3:1）で守る（PO 2026-09-05、WT-Q-LOOK-06）。",
+      "statement": "見た目の型は、機械可読性と品質を維持して異なる目的・面・部品・状態・導線の選択肢と成立する組み合わせを最大化する（WT-EVT-0288 / 0300）。名前だけ違う型の水増しは成果としない。用途（サイトパターン × 面 × 目的）から必要な型を選ぶ台帳（docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md、実サイト・テーマA / B・参照サイトの観察由来）を入力にする。h3 を h2 より 1 段下げ、h2 / h3 の block style とボタン variant は台帳由来の型数とし、h2 ×3 / h3 ×2 / ボタン ×3 は下限（Claude 案）。同じ列のカードは高さを自動で揃え、見出し文字は 1 行に収める寸法を既定とし、補助文は抑えた無彩色にする。hover transition・影 1 段・出現 1 種、1200px 段、theme.json の alignWide / gradients / shadow / spacing 段の解放を持ち、共通尺度は fluid で定義し、device 別差分を個別に編集・検査する。pseudo / custom state は theme.json で宣言し、Baseline Newly available 未満の機能は CSS fallback とする（PO 2026-09-05、WT-Q-LOOK-05）見た目の選択軸に動き（LP / HP の出現・スクロール連動・hero 演出・マイクロ）、奥行き（カードの浮き・立体ボタン）、空間（余白密度・配置・グリッド・リズム）、脱テキスト感（見出し・箇条書きの装飾型）を加え、動きは reduced-motion と JS 無効時の表示を保証し、写真・色地上の文字は自動コントラスト guard（4.5:1、大文字 3:1）で守る（PO 2026-09-05、WT-Q-LOOK-06）。 PO の試作反応（WT-EVT-0242〜0276）による見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4 軸の拡張を受入検証に含め、各型の用途説明を用意する。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR"
@@ -560,14 +576,15 @@
         "WT-AC-LOOK-01A",
         "WT-AC-LOOK-01B",
         "WT-AC-LOOK-01C",
-        "WT-AC-LOOK-01D"
+        "WT-AC-LOOK-01D",
+        "WT-AC-LOOK-01E"
       ],
       "test_ids": [
         "WT-AT-LOOK-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "3dc51be4cdec4656"
+      "semantic_digest": "e5b535a0dbfeefc3"
     },
     {
       "id": "WT-FR-LOOK-02",
@@ -606,9 +623,11 @@
       "source_ids": [
         "WT-FRL1-04",
         "WT-BR-02",
-        "WT-CAND-LOOK"
+        "WT-CAND-LOOK",
+        "WT-EVT-0299",
+        "WT-EVT-0300"
       ],
-      "statement": "variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンは要求にしない。調査対象には 3D アニメーション / ゲーミング系のサイトパターンも含める（PO 問い 2026-09-02）。ただし配色・タイポ・部品は variation / block style で届くが、3D・常時アニメーションは値差し替えの外にあり、動きの資産層（JS / アセット）を持つかは調査結果を見て別提案として出す",
+      "statement": "variation と block style の写像対象をテーマA のプリセットに留めず、サイトパターン（コーポレート / サービス / ブランド / ポータル / 比較サイト）の品質水準までカバーする。前提として実在 Web ページの大量調査（パターン別の色・タイポ・部品・動きの分布）を PoC 証跡として取り、その分布から variation 群と block style 群を導出する。調査未実施のパターンも要求範囲の調査対象として残す。9 系統は検証の抜け漏れを探す開かれた索引であり上限ではない。未検証を対応済みとはしない（WT-EVT-0299 / 0300）。調査対象には 3D アニメーション / ゲーミング系のサイトパターンも含める（PO 問い 2026-09-02）。ただし配色・タイポ・部品は variation / block style で届くが、3D・常時アニメーションは値差し替えの外にあり、動きの資産層（JS / アセット）を持つかは調査結果を見て別提案として出す",
       "priority": "P1",
       "actor_ids": [
         "PO",
@@ -620,14 +639,15 @@
       ],
       "acceptance_ids": [
         "WT-AC-LOOK-03A",
-        "WT-AC-LOOK-03B"
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
       ],
       "test_ids": [
         "WT-AT-LOOK-03"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "547abe21a01b6e47"
+      "semantic_digest": "b7da614d40c463f0"
     },
     {
       "id": "WT-FR-META-01",
@@ -702,9 +722,11 @@
       "source_ids": [
         "WT-FRL1-02",
         "WT-SCR-06",
-        "WT-CAND-LP"
+        "WT-CAND-LP",
+        "WT-EVT-0296",
+        "WT-EVT-0299"
       ],
-      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページがディレクトリ階層の配下に置かれるのに対し、LP はディレクトリに依存しない構造（階層を持たないスラッグ）とする。LP の種別として通常 LP に加えイベントページ・比較用の特設ページを想定し、種別は JSON で列挙できる。既存の page template + lp パターン 12 本は LP 種別の初期パターン群として引き継ぐ。LP の初回モーダル例外は LP 単位設定で扱い、固定ページ群や外部フォームは自前実装と混同しない。",
+      "statement": "LP を投稿型（CPT、show_in_rest）として持ち、一覧・テンプレ割当・REST を固定ページから分離する。URL は固定ページがディレクトリ階層の配下に置かれるのに対し、LP はディレクトリに依存しない構造（階層を持たないスラッグ）とする。LP は購入意思の高い利用者の CV 獲得、BLP は理解・納得を促して LP へ送る目的として区別する。イベントと比較ページも目的に応じて独立した管理上の種別として JSON で列挙し、LP の一種へ一律に内包しない（WT-EVT-0296 / 0299）。追加種別の物理的な CPT / template の構成は設計で決める。既存の page template + lp パターン 12 本は LP 種別の初期パターン群として引き継ぐ。LP の初回モーダル例外は LP 単位設定で扱い、固定ページ群や外部フォームは自前実装と混同しない。",
       "priority": "P0",
       "actor_ids": [
         "EDITOR",
@@ -715,14 +737,15 @@
       ],
       "acceptance_ids": [
         "WT-AC-LP-01A",
-        "WT-AC-LP-01B"
+        "WT-AC-LP-01B",
+        "WT-AC-LP-01C"
       ],
       "test_ids": [
         "WT-AT-LP-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "e3de22cc4d07c9bb"
+      "semantic_digest": "acfc716705461420"
     },
     {
       "id": "WT-FR-LP-02",
@@ -3715,15 +3738,18 @@
     {
       "id": "WT-FR-PAGE-01",
       "kind": "functional",
-      "status": "candidate_inventory",
+      "status": "human_decision_required",
       "source_ids": [
         "WT-FRL1-02",
         "WT-FRL1-11",
         "WT-SCR-06",
         "WT-SCR-10",
-        "WT-CAND-PARTS"
+        "WT-CAND-PARTS",
+        "WT-EVT-0289",
+        "WT-EVT-0301",
+        "WT-EVT-0303"
       ],
-      "statement": "会社概要・問い合わせ・採用・プライバシー・特商法・外部送信先一覧・アクセシビリティ方針の固定ページパターンを提供し、事業者情報 JSON を自動充填する。自前フォームは保持せず第三者フォームへ譲る",
+      "statement": "会社概要・問い合わせ・採用・プライバシー・特商法・外部送信先一覧・アクセシビリティ方針の固定ページパターンを提供し、事業者情報 JSON を自動充填する。フォームの表示・入力検証・確認・完了 / 失敗の試作を WT-FR-FORM-01 として持つ。実送信・保存はこの PoC の範囲外で、第三者フォームとの共存・譲渡を維持する。製品での処理責務と接続契約は未確定",
       "priority": "P1",
       "actor_ids": [
         "EDITOR",
@@ -3740,9 +3766,12 @@
       "test_ids": [
         "WT-AT-PAGE-01"
       ],
-      "revision": 1,
+      "revision": 2,
       "owner": "PO",
-      "semantic_digest": "f5f1d7ee79650dc5"
+      "semantic_digest": "f2e8bb664646fe70",
+      "pending_resolution": [
+        "旧「自前フォームは保持せず」と新しいフォーム表示試作の境界を分離した。実送信・保存の担当と第三者フォームへの譲渡契約を設計・受入条件で確定する。"
+      ]
     },
     {
       "id": "WT-FR-SELL-05",
@@ -3776,6 +3805,290 @@
       "revision": 1,
       "owner": "PO",
       "semantic_digest": "e0bb9d1380fba273"
+    },
+    {
+      "id": "WT-FR-PAGE-02",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-BR-01",
+        "WT-BR-02",
+        "WT-BR-04",
+        "WT-FRL1-02",
+        "WT-CAND-PARTS",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300"
+      ],
+      "statement": "ページ種別は元の 7 分類との対応を保ち、9 系統を上限のない検証索引として管理する。管理単位・表示形式（一覧 / 詳細 / 埋め込み）・閲覧 / 受付状態・継承セットを別軸にし、各項目の出所（PO 明示要求 / 追加提案）、採否、証拠状態、着手順を分離する。未観察も調査対象に残し、未検証を対応済みとしない。製品区分・推奨構成は GRAPHIX-NEO が独立に決め、WP 側の意味・管理責務を先送りしない。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-PAGE-02A",
+        "WT-AC-PAGE-02B"
+      ],
+      "test_ids": [
+        "WT-AT-PAGE-02"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9491764a5a6503c7"
+    },
+    {
+      "id": "WT-FR-HOME-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-06",
+        "WT-CAND-HOME",
+        "WT-EVT-0277",
+        "WT-EVT-0287",
+        "WT-EVT-0288",
+        "WT-EVT-0296"
+      ],
+      "statement": "HOME はサイトの目的を示す入口として、CV 獲得と案内の構成、hero・区間セット・お知らせ・固定導線・再利用できる固定ページパーツを選べる。PC サイドバーは first view より下から配置でき、共通 / 個別 / 非表示を区別する。型の拡張を既定値の決定だけに置き換えない。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-HOME-01A",
+        "WT-AC-HOME-01B"
+      ],
+      "test_ids": [
+        "WT-AT-HOME-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "6dd8f35f39a6ff3c"
+    },
+    {
+      "id": "WT-FR-EVENT-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-06",
+        "WT-CAND-EVENT",
+        "WT-EVT-0277",
+        "WT-EVT-0284",
+        "WT-EVT-0286",
+        "WT-EVT-0288",
+        "WT-EVT-0296"
+      ],
+      "statement": "イベントはセミナー・説明会・展示会・体験会・キャンペーン等の目的に応じた区間、申込導線、受付状態、地図を選べる。地図の外部埋め込みは選択時のみ遅延読込し、鍵はテーマに置かない。受付状態の表示と、期限・残席による状態遷移は別に検証する。サイドバーはなし / HP 側 / 記事側 / 独自を区別する。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-EVENT-01A",
+        "WT-AC-EVENT-01B"
+      ],
+      "test_ids": [
+        "WT-AT-EVENT-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c5c221dd3de40604"
+    },
+    {
+      "id": "WT-FR-PAID-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-FRL1-13",
+        "WT-SCR-05",
+        "WT-CAND-PAID",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300"
+      ],
+      "statement": "有料記事は無料記事のオプションに内包せず独立管理する。買い切り / 定期購読について、一覧・販売案内・試し読み・購入者向け本文を表示用途と閲覧権限の組み合わせで検証する。決済・購読・会員の業務処理は外部機能へ委ね、テーマは接続・権限別表示・遷移を担当する。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-PAID-01A",
+        "WT-AC-PAID-01B"
+      ],
+      "test_ids": [
+        "WT-AT-PAID-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "635c8d3ba30306a6"
+    },
+    {
+      "id": "WT-FR-INTERVIEW-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-05",
+        "WT-CAND-INTERVIEW",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300"
+      ],
+      "statement": "インタビューは通常記事へ内包せず独立管理し、人物・所属・発言・掲載確認を扱う面と、企業 / サービス / LP への要約・カード埋め込みを持つ。信頼形成を目的とし、一覧・詳細・埋め込みの関係を早期の代表モックで確認する。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-05",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-INTERVIEW-01A",
+        "WT-AC-INTERVIEW-01B"
+      ],
+      "test_ids": [
+        "WT-AT-INTERVIEW-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "816382db6ea10f32"
+    },
+    {
+      "id": "WT-FR-BLP-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-06",
+        "WT-CAND-BLP",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300"
+      ],
+      "statement": "BLP は理解・納得を促して LP への移動を支える面として、CV 獲得を目的とする LP と意味・管理を区別する。比較ページは目的により BLP / 比較記事等へ位置付け、LP への導線と本文・根拠を代表モックで確認する。共通部品の継承・独自設定・非表示を目的に応じて選ぶ。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-BLP-01A",
+        "WT-AC-BLP-01B"
+      ],
+      "test_ids": [
+        "WT-AT-BLP-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "dbe0f29139bab429"
+    },
+    {
+      "id": "WT-FR-FORM-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-SCR-06",
+        "WT-SCR-10",
+        "WT-CAND-FORM",
+        "WT-EVT-0289",
+        "WT-EVT-0301",
+        "WT-EVT-0303"
+      ],
+      "statement": "フォームは調査した種別・項目・必須表示・レイアウト・確認・同意・送信文言・エラー・代替導線・完了表示を選べる。PC / SP と JS 無効で入力検証と入力→確認→完了 / 失敗、修正時の値の保持を検証する。LP / イベントには既存型を残してフォームブロックを選択肢として追加し、イベントは申込の文脈を保持する。PoC は入力を保存・実送信せず、業務処理の成立を主張しない。第三者フォームとの共存と実処理の責務は別途確定する。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-FORM-01A",
+        "WT-AC-FORM-01B"
+      ],
+      "test_ids": [
+        "WT-AT-FORM-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "16384bbbce8af1e7"
+    },
+    {
+      "id": "WT-FR-PARTS-03",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-BR-03",
+        "WT-SCR-01",
+        "WT-SCR-06",
+        "WT-CAND-PARTS",
+        "WT-EVT-0292",
+        "WT-EVT-0294",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0303"
+      ],
+      "statement": "ヘッダー・フッター・固定 CTA・サイドバーの共通設定について、面ごとに継承 / 独自設定 / 非表示を分離する。カテゴリは記事側、イベントは目的に応じ HP 側 / 記事側等を選び、SP サイドバーの扱いも選択肢を持つ。5 継承セットは固定上限ではなく拡張性を確かめる代表例として検証する。共通の認可・同意規則を見た目や導線の非表示で解除しない。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-PARTS-03A",
+        "WT-AC-PARTS-03B"
+      ],
+      "test_ids": [
+        "WT-AT-PARTS-03"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "c38f4878b97914c2"
     }
   ]
 }

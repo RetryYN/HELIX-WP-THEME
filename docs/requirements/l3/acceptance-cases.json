@@ -1572,6 +1572,126 @@
       "requirement_id": "WT-FR-ADMIN-01",
       "polarity": "positive",
       "oracle": "P01〜P33 の各項目が所有先（設定 JSON / theme.json・block style / guard）の初期値または検査として実現され、選択を持つ項目だけ個別に変更でき、guard 項目は設定に現れず、強度 C の項目に要自社検証の注記が出る"
+    },
+    {
+      "id": "WT-AC-PAGE-02A",
+      "requirement_id": "WT-FR-PAGE-02",
+      "polarity": "positive",
+      "oracle": "9 系統と元 7 分類の対応、別軸、出所・採否・証拠状態・着手順を列挙でき、追加種別を既存種別の削除なしで記録できる"
+    },
+    {
+      "id": "WT-AC-PAGE-02B",
+      "requirement_id": "WT-FR-PAGE-02",
+      "polarity": "negative",
+      "oracle": "未観察を範囲外へ落とす、骨格採用を個別設計の承認と扱う、または未検証を対応済みと表示すれば FAIL"
+    },
+    {
+      "id": "WT-AC-HOME-01A",
+      "requirement_id": "WT-FR-HOME-01",
+      "polarity": "positive",
+      "oracle": "HOME の hero・区間・導線を PC / SP で切り替え、サイドバー開始位置と共通部品の所属を確認できる"
+    },
+    {
+      "id": "WT-AC-HOME-01B",
+      "requirement_id": "WT-FR-HOME-01",
+      "polarity": "negative",
+      "oracle": "HOME を記事の代替表示だけで済ませる、first view をサイドバーが押し崩す、または他面の独自設定が漏れれば FAIL"
+    },
+    {
+      "id": "WT-AC-EVENT-01A",
+      "requirement_id": "WT-FR-EVENT-01",
+      "polarity": "positive",
+      "oracle": "PC / SP で区間・申込・受付状態を切り替え、地図とサイドバーの所属を確認し、期限・満席・受付前の遷移は専用 fixture で別途判定する"
+    },
+    {
+      "id": "WT-AC-EVENT-01B",
+      "requirement_id": "WT-FR-EVENT-01",
+      "polarity": "negative",
+      "oracle": "クエリでの状態表示だけを期限による遷移成功と扱う、無選択の外部埋め込みを読み込む、または申込導線が消失すれば FAIL"
+    },
+    {
+      "id": "WT-AC-PAID-01A",
+      "requirement_id": "WT-FR-PAID-01",
+      "polarity": "positive",
+      "oracle": "代表モックで無料記事と独立した管理単位を確認し、買い切り / 定期購読と 4 表示用途、未購入 / 購入済みの遷移を照合する"
+    },
+    {
+      "id": "WT-AC-PAID-01B",
+      "requirement_id": "WT-FR-PAID-01",
+      "polarity": "negative",
+      "oracle": "未購入者へ購入者本文が露出する、無料記事への内包だけで済ませる、または課金・購読処理をテーマへ持ち込めば FAIL"
+    },
+    {
+      "id": "WT-AC-INTERVIEW-01A",
+      "requirement_id": "WT-FR-INTERVIEW-01",
+      "polarity": "positive",
+      "oracle": "人物・所属・発言・掲載確認を持つ独立した管理単位と詳細面を、埋め込みカードの参照先と照合する"
+    },
+    {
+      "id": "WT-AC-INTERVIEW-01B",
+      "requirement_id": "WT-FR-INTERVIEW-01",
+      "polarity": "negative",
+      "oracle": "LP のカードだけで独立管理や詳細面を実証した扱いにする、または人物・発言の対応が崩れれば FAIL"
+    },
+    {
+      "id": "WT-AC-BLP-01A",
+      "requirement_id": "WT-FR-BLP-01",
+      "polarity": "positive",
+      "oracle": "理解のための本文・根拠から LP への導線を持つ BLP の代表モックを、獲得 LP と対で照合する"
+    },
+    {
+      "id": "WT-AC-BLP-01B",
+      "requirement_id": "WT-FR-BLP-01",
+      "polarity": "negative",
+      "oracle": "LP の名称変更だけで済ませる、目的差・送客先がない、または継承解除を常に非表示へ短絡すれば FAIL"
+    },
+    {
+      "id": "WT-AC-FORM-01A",
+      "requirement_id": "WT-FR-FORM-01",
+      "polarity": "positive",
+      "oracle": "PC / SP / JS 無効で項目・検証・確認値・修正・完了と失敗を照合し、LP / イベントの既定型が残り、選択時のみフォームが出て種別を引き継ぐ"
+    },
+    {
+      "id": "WT-AC-FORM-01B",
+      "requirement_id": "WT-FR-FORM-01",
+      "polarity": "negative",
+      "oracle": "nonce / 不正値を受理する、非選択フォームが DOM に残る、イベントが問い合わせ種別になる、または PoC で入力を保存・外部送信すれば FAIL"
+    },
+    {
+      "id": "WT-AC-PARTS-03A",
+      "requirement_id": "WT-FR-PARTS-03",
+      "polarity": "positive",
+      "oracle": "各面で継承・独自・非表示を切り替え、別面の独自設定が混入せず、束追加の代表モックと PC / SP の導線重なりを確認できる"
+    },
+    {
+      "id": "WT-AC-PARTS-03B",
+      "requirement_id": "WT-FR-PARTS-03",
+      "polarity": "negative",
+      "oracle": "継承解除を非表示に固定する、束の追加で既存値が壊れる、または見た目の off で共通認可・同意を解除すれば FAIL"
+    },
+    {
+      "id": "WT-AC-LOOK-01E",
+      "requirement_id": "WT-FR-LOOK-01",
+      "polarity": "positive",
+      "oracle": "型の用途説明と見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4 軸の拡張を台帳へ対応付け、PC / SP の表示不具合と無効 JS / reduced-motion を検査する"
+    },
+    {
+      "id": "WT-AC-LOOK-03C",
+      "requirement_id": "WT-FR-LOOK-03",
+      "polarity": "positive",
+      "oracle": "未観察パターンを調査対象として保持し、索引の追加が可能で、未検証を対応済みと数えない"
+    },
+    {
+      "id": "WT-AC-LP-01C",
+      "requirement_id": "WT-FR-LP-01",
+      "polarity": "positive",
+      "oracle": "LP / BLP の目的差、イベント / 比較の管理単位を JSON の種別で識別できる"
+    },
+    {
+      "id": "WT-AC-VOCAB-03C",
+      "requirement_id": "WT-FR-VOCAB-03",
+      "polarity": "positive",
+      "oracle": "既定文言は「本記事にはプロモーションが含まれます。」で、CTA・商品カード束の不要な PR バッジを出さない。本文表記との重複抑止と欠落防止の両立は pending_resolution 解決後に判定する"
     }
   ]
 }

@@ -4,30 +4,32 @@
 - canonical V-model: `L1-L12`
 - development style candidate: `V_DESIGN_SCRUM_IMPLEMENTATION`
 - case-driven model: `DISCOVERY_POC`（PoC 証跡は入力、S4 前に canonical 化しない）
-- lifecycle: `accepted`（G1 承認・G2 合意済み。compile は RDJ-FR-007 の 2 iteration 条件で backflow、iteration 2 で再実行）
+- lifecycle: `candidate_revision`（WT-AGREE-01 の G1 承認・G2 合意は event head 0231 へのもの。後続の改定・追加は未凍結。compile は backflow_required）
 - freeze: **G1 承認・G2 合意（PO 2026-09-05、WT-EVT-0232）。G3 未実施**
 - authority owner: PO
-- updated: 2026-09-05
+- updated: 2026-09-08
+- 最新整理: [`current-alignment.md`](current-alignment.md)（WT-EVT-0304、131候補 / 282 AC / 131 test ID。旧123件から6件改定・8件追加。実装完了件数ではない）
 
 ## 起点
 
 `docs/planning/L0-agent-controlled-variety.md`（PO 指示 2026-09-02 の書き起こし）。本テーマの JSON 中間言語による機械可読性を維持したまま、
 テーマA / B が示す一般想定水準の面・語彙・引き出しを取り込み、エージェント制御下でバリエーションを最大化する。
-要求は拡大の提案として並べ、PO は「X ができる。採用するか」だけを判断する。旧要求との比較は持たない。
+要求は拡大の提案として並べる。WT-EVT-0299 / 0300 の後続指示に従い、未観察も調査対象に残し、9系統・5継承セットを上限にしない。今回の新旧差分は現行 initiative 内の revision 比較であり、旧 AGENT NEO kit の工程を復活させるものではない。
 
 ## 正本境界
 
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
-| L1 | `docs/requirements/l1/` の 5 sub-doc | G1 approved（PO 2026-09-05） | 変更は改定として L2 問い → 再 compile |
-| L2 | `docs/requirements/discovery/events.jsonl` と同イベントから生成する `candidate-projection.json` | non-canonical candidate、agreement WT-AGREE-01 記録済み | 問い 0 件（現在 iteration 2 の未決 2 件。総数 81 件、採用 77 件、reject 2 件: WT-Q-AUDIT-02 / WT-Q-LOOK-04。WT-Q-DIRECT-08 は対象外境界の補助確認）と同数。prototype reaction、PO agreement |
-| L3 | `docs/requirements/l3/requirements-ir.json`（承認用ビュー: `l3/g3-approval-summary.md`） | non-canonical precompile inventory（revision / owner / semantic digest 付与済み、compile は backflow_required、iteration 2 の PO 確認中） | iteration 2（G3 承認用要件要約の PO 確認）で優先度安定を判定 → compile → `specified` → G3 承認で `frozen` |
+| L1 | `docs/requirements/l1/` の 5 sub-doc | 9月5日承認済み基準を保持。後続改定は current-alignment.md と events / L3 候補で明示 | 最新 revision の合意時に L1 改定・pair を照合。過去承認を後続改定へ自動適用しない |
+| L2 | `docs/requirements/discovery/events.jsonl` と `candidate-projection.json`、最新差分 `current-alignment.md` | フロント先行の画面プロト往復（WT-EVT-0239）。最新整理 WT-EVT-0304、過去の合意 WT-AGREE-01 は head 0231 のみ | 正式判断2件（G3 / 開発スタイル）は保留。後続のPO反応、改定範囲、優先度の合意を揃える |
+| L3 | `docs/requirements/l3/requirements-ir.json`（全件ビュー `l3/g3-approval-summary.md`） | 131候補、282 AC。compile は backflow_required、G3 未実施。追加8件のP1は暫定 | pending_resolution 3件、最新revisionの合意、直近2 iterationの優先度安定 → compile → specified → G3承認で frozen |
 
 ## 入力資産と扱い
 
 | 資産 | 扱い |
 | --- | --- |
 | `docs/planning/L0-agent-controlled-variety.md` | L0 企画。要求の起点 |
+| `docs/requirements/current-alignment.md` / `discovery/page-type-ledger.md` | 最新PO判断・候補改定・試作証跡・残件・着手順。元7分類を保持する開かれた9系統索引 |
 | 統合層 `docs/plans/2026-08-28-wp-theme-and-graphix-neo-plan.md` | WP-THEME と GRAPHIX-NEO の役割分担。一方向原則。本テーマは記録を残すだけで依存を作らない |
 | `docs/research/2026-08-26-theme-structure-audit/` | 3 テーマ構造監査・RE（INV-01〜17、差分レジスタ、機構比較、統合レポート）。拡大提案の根拠 |
 | `docs/research/2026-08-27-poc-browser-verification/`, `docs/research/2026-08-28-poc-conversion-and-variations/`, `docs/research/2026-08-28-poc-styles-parts-gates/`, `docs/research/2026-08-29-ge1-local/`, `docs/research/2026-08-31-poc-display-errors/` | PoC 証跡。`docs/poc/wt-poc-inventory.json` に digest 束縛 |
