@@ -1,4 +1,6 @@
 <!-- LP 面は header を 3 変種ともテンプレートに持ち、body.wt-lp-header-* で 1 つだけ表示する。 -->
+<!-- 段 12: lp_head が site / own のときは共通ヘッダー（template part）を描き、LP ヘッダー 3 種は隠す。lp（既定）/ off では template part を描画しない（functions.php render_block） -->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 <!-- wp:group {"tagName":"header","className":"wt-lp-header wt-lp-header--minimal","layout":{"type":"constrained","wideSize":"1120px"}} -->
 <header class="wp-block-group wt-lp-header wt-lp-header--minimal">
 <!-- wp:group {"align":"wide","className":"wt-lp-header__row","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->

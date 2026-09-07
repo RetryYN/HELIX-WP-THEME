@@ -1939,6 +1939,66 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
   }
   out.formFace = { pageSource, rows, pass: pageSource === "wp-cli" && rows.length === 160 && rows.every((x) => x.pass) }; // 1（網羅性）+ 3 × (35 軸行 + 1 形式 + 1 メール規則 + 2 改ざん + 4 異常 POST + 2 まとめ × 種別 + 6 遷移) + 2 × 3 steps = 160。件数は固定（軸の削除で減れば fail）
 }
+// (s) chromeOwner（段 12、PO 反応 25 回目 WT-EVT-0302「増やす方向で」、階層整理 WT-EVT-0296 ①「共通のヘッダー、フッターで全体制御」、決定 WT-EVT-0299「継承・独自設定・非表示を分離」）: ヘッダー・フッター・固定 CTA の所属が面ごとに決まること。束の台帳は <meta name="wt-chrome-bundles">（site / own）と面の一覧 <meta name="wt-chrome-faces"> から読む。
+// 面 6（HOME / 記事 / カテゴリ / イベント / 固定ページ / LP）× 部位 3 × 所属（site = 共通の軸をそのまま、own = own_<face>_* だけを見る、off = 描画しない、LP のヘッダーは lp = テンプレート内の LP ヘッダー）。
+// 検査: site は共通軸の値（header:cta / footer_layout:columns-3 / fixed:float-cta）が出る、own は own_<face>_*（tel / single-row / float-cta。HOME・イベント・LP の固定 CTA は home_fixed / event_fixed / lp_fixed）だけが出て他面の own を読まない、off は要素が無い（ヘッダー・フッター）/ 固定 CTA が 1 つも見えない、LP の lp は共通ヘッダー無し + LP ヘッダー 1 つ。他面（404）は共通。h1 は 1 つ
+{
+  const rows = [];
+  const ctx0 = await browser.newContext(PC); const p0 = await ctx0.newPage(); await p0.goto(BASE + HOME, { waitUntil: "load" });
+  const reg = await p0.evaluate(() => ({ bundles: (document.querySelector('meta[name="wt-chrome-bundles"]')?.getAttribute("content") || "").split(",").filter(Boolean), faces: (document.querySelector('meta[name="wt-chrome-faces"]')?.getAttribute("content") || "").split(",").filter(Boolean) })); await ctx0.close();
+  const PATHS = { home: HOME, article: ARTICLE, category: CATEGORY, event: "/event/", page: "/parts/", lp: LP };
+  const OWNFIX = { home: ["home_fixed", "float-cta", "wt-home-fixed--float-cta"], event: ["event_fixed", "float-apply", "wt-event-fixed--float-apply"], lp: ["lp_fixed", "float-cta", "wt-lp-fixed--float-cta"] }; // 既存軸を own の束として使う面
+  const registryOk = ["site", "own"].every((b) => reg.bundles.includes(b)) && reg.bundles.length === 2 && reg.faces.length === 6 && reg.faces.every((f) => f in PATHS);
+  const pre = (f) => f === "category" ? "cat" : f;
+  const CASES = [];
+  for (const face of reg.faces) {
+    const others = reg.faces.filter((f) => f !== face);
+    for (const v of [...reg.bundles, "off", ...(face === "lp" ? ["lp"] : [])]) CASES.push({ part: "head", face, v, q: `${pre(face)}_head:${v},header:cta,sp:search,own_${face}_header:tel,own_${face}_sp:cta,lp_header:logo-only` });
+    CASES.push({ part: "head", face, v: "own-isolation", q: `${pre(face)}_head:own,own_${face}_header:tel,own_${face}_sp:cta,header:cta,sp:search,${others.map((f) => `own_${f}_header:band,own_${f}_sp:left`).join(",")}` }); // own は自面の軸だけ
+    for (const v of [...reg.bundles, "off"]) CASES.push({ part: "foot", face, v, q: `${pre(face)}_foot:${v},footer_layout:columns-3,footer_above:none,own_${face}_footer_layout:single-row,own_${face}_footer_above:cta-band,${others.map((f) => `own_${f}_footer_layout:sitemap,own_${f}_footer_above:newsletter`).join(",")}` });
+    for (const v of [...reg.bundles, "off"]) { const of = OWNFIX[face] || [`own_${face}_fixed`, "float-cta", "wt-fixed--float-cta"]; CASES.push({ part: "fix", face, v, q: `${pre(face)}_fix:${v},fixed:__SITEFIX__,${of[0]}:${of[1]},${others.map((f) => `${(OWNFIX[f] || [`own_${f}_fixed`])[0]}:sp-bottom-bar`).join(",")}`, ownSel: of[2] }); } // 共通は SP = float-tel / PC = float-cta（own と別の型。PC は generic の data-wt-from でも区別）
+    CASES.push({ part: "fix", face, v: "off+sidenav", q: `${pre(face)}_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home`, sidenav: true }); // 所属境界: サイドナビ（段 10c のサイドバーの束）は固定 CTA の off で消えない（PC。LP はサイドバーの束を持たないので 0）
+  }
+  const READ = ([visSrc]) => { const vis = eval(visSrc); const $$ = (s) => Array.from(document.querySelectorAll(s)); const cls = (el, pfx) => (Array.from(el.classList).find((c) => c.startsWith(pfx) && c !== pfx.slice(0, -2)) || "").slice(pfx.length);
+    const heads = $$(".wt-header"); const headVis = heads.filter(vis); const lpHeads = $$(".wt-lp-header").filter(vis);
+    const b = (p) => (Array.from(document.body.classList).find((c) => c.startsWith(`wt-${p}-bundle-`)) || "").slice(`wt-${p}-bundle-`.length);
+    return { faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), bundles: { head: b("head"), foot: b("foot"), fix: b("fix") }, headCount: heads.length, headVis: headVis.length, headVar: headVis.length ? (cls(headVis[0], "wt-header--") || "search") : null, lpHead: lpHeads.length ? lpHeads.map((e) => cls(e, "wt-lp-header--")) : [],
+      spCta: $$(".wt-header__spcta").filter(vis).length, footerEl: !!document.querySelector(".wt-footer"), footAbove: $$(".wt-footer__above-slot").filter(vis).map((e) => cls(e, "wt-footer__above-slot--")), footLayout: $$(".wt-footer__layout").filter(vis).map((e) => cls(e, "wt-footer__layout--")), fixedVis: $$(".wt-fixed, .wt-home-fixed, .wt-event-fixed, .wt-lp-fixed").filter(vis).map((e) => [Array.from(e.classList).find((c) => c.includes("-fixed--")), e.getAttribute("data-wt-from")]), sidenavVis: $$(".wt-sidenav--fixed-right").filter(vis).length, h1: $$("h1").filter((h) => h.offsetHeight).length }; };
+  for (const [dev, cfg, js] of [["pc", PC, true], ["sp", SP, true], ["sp", SP, false]]) {
+    const ctx = await browser.newContext({ ...cfg, javaScriptEnabled: js }); const p = await ctx.newPage();
+    for (const c of CASES) {
+      if (!js && c.part === "foot") continue; // JS 無効はヘッダーと固定 CTA（サーバ描画の有無）。フッターは JS に依らない
+      if (c.sidenav && dev !== "pc") continue;
+      await p.goto(BASE + PATHS[c.face] + "?wt=" + c.q.replace("__SITEFIX__", dev === "sp" ? "float-tel" : "float-cta"), { waitUntil: js ? "networkidle" : "load" });
+      const r = await p.evaluate(READ, [VIS_SRC]);
+      const eb = c.v === "own-isolation" ? "own" : (c.v === "off" || c.v === "off+sidenav") ? "none" : c.v; // 期待する束 class
+      let pass = r.faces.includes("wt-face-" + c.face) && r.h1 === 1 && r.bundles[c.part] === eb;
+      if (c.part === "head") {
+        if (c.v === "site") pass = pass && r.headCount === 1 && r.headVis === 1 && r.headVar === "cta" && r.lpHead.length === 0 && r.spCta === 0; /* 共通の sp:search */
+        else if (c.v === "own" || c.v === "own-isolation") pass = pass && r.headCount === 1 && r.headVis === 1 && r.headVar === "tel" && r.lpHead.length === 0 && r.spCta === (dev === "sp" ? 1 : 0); /* own の sp:cta は SP で CTA が出る */
+        else if (c.v === "off") pass = pass && r.headCount === 0 && r.lpHead.length === 0;
+        else pass = pass && r.headCount === 0 && JSON.stringify(r.lpHead) === JSON.stringify(["logo-only"]); // lp
+      } else if (c.part === "foot") {
+        if (c.v === "off") pass = pass && !r.footerEl;
+        else pass = pass && r.footerEl && JSON.stringify(r.footLayout) === JSON.stringify([c.v === "site" ? "columns-3" : "single-row"]) && JSON.stringify(r.footAbove) === JSON.stringify(c.v === "site" ? [] : ["cta-band"]); /* own は footer_above も own_<face>_ を見る */
+      } else {
+        const expect = c.v === "site" ? [[dev === "sp" ? "wt-fixed--float-tel" : "wt-fixed--float-cta", "site"]] : c.v === "own" ? [[c.ownSel, c.ownSel.startsWith("wt-fixed--") ? "own" : null]] : []; // own は自面の型だけ（generic は data-wt-from=own、HOME / イベント / LP はパターンの要素）
+        pass = pass && JSON.stringify(r.fixedVis) === JSON.stringify(expect) && (!c.sidenav || r.sidenavVis === (c.face === "lp" ? 0 : 1));
+      }
+      rows.push({ dev, js, ...c, ...r, pass });
+    }
+    // 既存の固定ボタン（共有 float / totop）・フッターの操作要素と重ならない（Astra 1 巡目）: 記事で共通の固定 CTA 3 型（PC は float-cta）× share:float + footer_totop:button。ページ末尾で矩形交差 0、共有ボタンは viewport 内
+    for (const t of dev === "sp" ? ["float-cta", "float-tel", "sp-bottom-bar"] : ["float-cta"]) { if (!js) continue;
+      await p.goto(BASE + ARTICLE + `?wt=article_fix:site,fixed:${t},share:float,footer_totop:button`, { waitUntil: "networkidle" }); await p.evaluate(() => scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(300);
+      const r = await p.evaluate(([visSrc, t]) => { const vis = eval(visSrc); const el = document.querySelector(`.wt-fixed--${t}`); if (!vis(el)) return { visible: false }; const r = el.getBoundingClientRect(); const others = Array.from(document.querySelectorAll(".wt-totop, .wt-share--float, .wt-footer a, .wt-footer button, .wt-sidenav a")).filter(vis).filter((o) => o !== el && !el.contains(o));
+        const overlaps = others.filter((o) => { const q = o.getBoundingClientRect(); return !(q.right <= r.left || q.left >= r.right || q.bottom <= r.top || q.top >= r.bottom); }).map((o) => o.className.toString().slice(0, 40)); const share = document.querySelector(".wt-share--float"); const sb = share && vis(share) ? share.getBoundingClientRect() : null;
+        return { visible: true, inView: r.top >= 0 && r.bottom <= innerHeight, overlaps, shareVis: !!sb, shareInView: !!sb && sb.top >= 0 && sb.bottom <= innerHeight, totopVis: vis(document.querySelector(".wt-totop")) }; }, [VIS_SRC, t]);
+      rows.push({ dev, js, part: "fix-overlap", face: "article", v: t, ...r, pass: r.visible && r.inView && r.overlaps.length === 0 && r.shareVis && r.shareInView && !r.totopVis }); }
+    if (dev === "pc") { await p.goto(BASE + "/no-such-page-wt-404/?wt=header:band,footer_layout:single-row", { waitUntil: "networkidle" }); const r = await p.evaluate(READ, [VIS_SRC]); rows.push({ dev, js, part: "other", face: "other", v: "site", ...r, pass: r.faces.includes("wt-face-other") && r.bundles.head === "site" && r.bundles.foot === "site" && r.headVar === "band" && JSON.stringify(r.footLayout) === JSON.stringify(["single-row"]) && r.h1 === 1 }); } // 他面（404）は共通
+    await ctx.close();
+  }
+  out.chromeOwner = { reg, registryOk, rows, pass: registryOk && CASES.length === 67 && rows.length === 176 && rows.every((x) => x.pass) }; // 面 6 × (head 3 + foot 3 + fix 3 + off+sidenav 1 + isolation 1) + LP の lp 1 = 67 ケース。行 = head 25 × 3 + foot 18 × 2 + fix 18 × 3 + off+sidenav 6（PC）+ 重なり 4 + 404 1 = 176（固定値）
+}
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {
   const AX = { cat_header: ["name-count", "name-only", "name-desc", "hero"], cat_lead: ["none", "lead-text", "editorial"], cat_children: ["none", "chips", "cards", "steps", "sidebar-tree", "image-banners"], cat_columns: ["sidebar-right", "1col"], cat_sidebar: ["standard", "with-cta", "full"], cat_list: ["grid", "text-list", "featured-grid", "grid-2", "thumb-list", "timeline"], cat_card: ["standard", "minimal", "rich"], cat_filter: ["none", "tabs", "year", "tag", "sort"], cat_pagination: ["numbers", "none", "load-more", "prev-next"], cat_ranking: ["none", "sidebar", "bottom", "top"], cat_pickup: ["none", "top-featured", "editor-pick-box"], cat_cta: ["none", "lp-banner", "newsletter", "line"] };
@@ -2041,7 +2101,7 @@ const checkList = [
   ["lpParts", out.lpParts.pass],
   ["headerVariants", out.headerVariants.pass], ["announceFullWidth", out.announceFullWidth.pass], ["numboxNum", out.numboxNum.pass], ["graphsMore", out.graphsMore.pass], ["relatedNoFixture", out.relatedNoFixture.pass], ["lineIcon", out.lineIcon.pass], ["snsIcons", out.snsIcons.pass],
   ["homeFace", out.homeFace.pass], ["homeHeroContrast", out.homeHeroContrast.pass], ["homeFixedOverlap", out.homeFixedOverlap.pass], ["eventFace", out.eventFace.pass], ["eventHeroContrast", out.eventHeroContrast.pass],
-  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass], ["sideDefaults", out.sideDefaults.pass], ["sideOwner", out.sideOwner.pass], ["formFace", out.formFace.pass],
+  ["categoryVariants", out.categoryVariants.pass], ["pageParts", out.pageParts.pass], ["sideFace", out.sideFace.pass], ["sideDefaults", out.sideDefaults.pass], ["sideOwner", out.sideOwner.pass], ["chromeOwner", out.chromeOwner.pass], ["formFace", out.formFace.pass],
 ];
 // 2026-09-05 Astra 再レビュー是正（改善）: prAutoFixtures.pass===null（--wpclidir 未指定でスキップ）を
 // true に変換して合格件数へ加算していたのは、実行していない検査を「合格扱い」に見せてしまう不正確な集計だった。

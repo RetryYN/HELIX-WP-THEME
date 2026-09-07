@@ -117,6 +117,23 @@ function wt_axes() {
 	$axes['form_captcha']  = array( 'none', array( 'none', 'question', 'external-slot' ) );
 	$axes['form_side']     = array( 'tel', array( 'tel', 'none', 'email', 'chat', 'messaging-app' ) );
 	$axes['form_thanks']   = array( 'separate', array( 'separate', 'inline' ) );
+	// 段 12（PO 反応 25 回目 WT-EVT-0302「増やす方向で」、階層整理 WT-EVT-0296 ①「共通のヘッダー、フッターで全体制御」、決定 WT-EVT-0299「継承・独自設定・非表示を分離」）: ヘッダー・フッター・固定 CTA の所属を面ごとに。
+	// 束の台帳 wt_chrome_bundles(): 共通 site = 既存 header / sp（ヘッダー）、footer_*（フッター）、新設 fixed（固定 CTA）。独自設定 own = own_<face>_header / own_<face>_sp / own_<face>_footer_* / own_<face>_fixed
+	// （HOME・イベント・LP の固定 CTA は既存 home_fixed / event_fixed / lp_fixed がそのまま own の束）。非表示 off = 描画しない。LP のヘッダーは既存 lp_header（束 lp）を既定に残す。
+	// 面ごとの所属軸: <face>_head / <face>_foot / <face>_fix（category は cat_）。既定はすべて現状維持（ヘッダー・フッター = 共通、固定 CTA = HOME・イベント・LP は own、他は共通の none）。width は共通のまま（束にしない）
+	$axes['fixed'] = array( 'none', array( 'none', 'float-cta', 'sp-bottom-bar', 'float-tel' ) ); // 共通の固定 CTA（Claude 案、既定 none。HP の home_fixed と同じ 4 型）
+	foreach ( wt_chrome_faces() as $face ) {
+		foreach ( wt_chrome_keys( 'head' ) as $k ) { $axes[ 'own_' . $face . '_' . $k ] = $axes[ $k ]; }
+		foreach ( wt_chrome_keys( 'foot' ) as $k ) { $axes[ 'own_' . $face . '_' . $k ] = $axes[ $k ]; }
+		if ( ! isset( $axes[ wt_chrome_own_key( $face, 'fixed' ) ] ) ) { $axes[ 'own_' . $face . '_fixed' ] = $axes['fixed']; }
+	}
+	$cb = array_keys( wt_chrome_bundles() ); // site / own。所属軸の許可値は台帳から導出
+	foreach ( wt_chrome_faces() as $face ) {
+		$pre = wt_chrome_prefix( $face );
+		$axes[ $pre . '_head' ] = 'lp' === $face ? array( 'lp', array_merge( array( 'lp' ), $cb, array( 'off' ) ) ) : array( 'site', array_merge( $cb, array( 'off' ) ) );
+		$axes[ $pre . '_foot' ] = array( 'site', array_merge( $cb, array( 'off' ) ) );
+		$axes[ $pre . '_fix' ]  = array( in_array( $face, array( 'home', 'event', 'lp' ), true ) ? 'own' : 'site', array_merge( $cb, array( 'off' ) ) );
+	}
 	$bundles = array_keys( wt_side_bundles() ); // 面の所属軸の許可値は束の台帳から導出（台帳に足した束はそのまま選べる）
 	$axes['cat_side']   = array( 'article', array_merge( $bundles, array( 'classic', 'off' ) ) ); // 既定 = 記事側継承（PO 原文）。classic = 段 6 の独自 aside
 	$axes['event_side'] = array( 'off', array_merge( array( 'off' ), $bundles ) ); // 既定 = OFF（PO 原文「LP に近い場合は不要」）
@@ -158,6 +175,39 @@ function wt_side_eff( $k ) { // $k: layout / sticky / sp / set / nav。面の束
 		return $off[ $k ] ?? wt_opt( 'side_' . $k );
 	}
 	return wt_opt( str_replace( '{face}', wt_side_face(), wt_side_bundles()[ $b ] ) . $k );
+}
+
+// 段 12: ヘッダー・フッター・固定 CTA の束（wt_side_* と同じ形）
+function wt_chrome_faces() { return array( 'home', 'article', 'category', 'event', 'page', 'lp' ); }
+function wt_chrome_prefix( $face ) { return 'category' === $face ? 'cat' : $face; }
+function wt_chrome_bundles() { return array( 'site' => '', 'own' => 'own_{face}_' ); } // 名前 → 軸接頭辞（own は面名に置換）。継承セットの追加はここに 1 行 + 軸
+function wt_chrome_keys( $part ) { // 束を構成する軸
+	static $k = array( 'head' => array( 'header', 'sp' ), 'foot' => array( 'footer_layout', 'footer_above', 'footer_legal', 'footer_extra', 'footer_totop', 'footer_credit' ), 'fix' => array( 'fixed' ) );
+	return $k[ $part ];
+}
+function wt_chrome_part_of( $key ) { foreach ( array( 'head', 'foot', 'fix' ) as $part ) { if ( in_array( $key, wt_chrome_keys( $part ), true ) ) { return $part; } } return null; }
+function wt_chrome_own_key( $face, $k ) { // own の束の軸名。HOME・イベント・LP の固定 CTA は既存軸
+	static $fixed = array( 'home' => 'home_fixed', 'event' => 'event_fixed', 'lp' => 'lp_fixed' );
+	if ( 'fixed' === $k && isset( $fixed[ $face ] ) ) { return $fixed[ $face ]; }
+	return 'own_' . $face . '_' . $k;
+}
+function wt_chrome_bundle( $part ) { // head / foot / fix → site / own / lp / null（off）。404 等の他面は共通
+	$face = wt_side_face();
+	if ( ! in_array( $face, wt_chrome_faces(), true ) ) { return 'site'; }
+	$v = wt_opt( wt_chrome_prefix( $face ) . '_' . $part );
+	return 'off' === $v ? null : $v;
+}
+function wt_chrome_eff( $k ) { // 束の実効値。off はヘッダー・フッターを描画しない（値は共通の既定）、固定 CTA は none
+	$part = wt_chrome_part_of( $k ); $b = wt_chrome_bundle( $part );
+	if ( null === $b ) { return 'fixed' === $k ? 'none' : wt_axes()[ $k ][0]; }
+	if ( 'own' === $b ) { return wt_opt( wt_chrome_own_key( wt_side_face(), $k ) ); }
+	return wt_opt( $k ); // site / lp（lp はヘッダーを lp_header が描くので共通値は使われない）
+}
+function wt_chrome_fixed_type() { // 描画する固定 CTA の型（generic 描画 = 共通 site と、独自軸を持たない面の own）。HOME・イベント・LP の own は各面のパターンが描く
+	$b = wt_chrome_bundle( 'fix' );
+	if ( null === $b ) { return 'none'; }
+	if ( 'own' === $b && in_array( wt_side_face(), array( 'home', 'event', 'lp' ), true ) ) { return 'none'; }
+	return wt_chrome_eff( 'fixed' );
 }
 
 function wt_is_event_page() {
@@ -216,8 +266,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.19' );
-	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.19' );
+	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.20' );
+	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.20' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );
@@ -226,11 +276,11 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_enqueue_script( 'helix-wt-article', get_theme_file_uri( 'assets/js/article.js' ), array(), '0.3.10', $defer );
 	}
 	if ( is_front_page() || is_page() ) { // 段 8: 固定ページ用パーツ（カルーセル・カウントダウン）でも使う
-		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.19', $defer );
+		wp_enqueue_script( 'helix-wt-home', get_theme_file_uri( 'assets/js/home.js' ), array(), '0.3.20', $defer );
 	}
 	if ( is_singular() || is_page() || is_front_page() || is_category() ) { // 段 10: サイドバー（ドロワー / メガメニュー）。段 10c: カテゴリ面も共通サイドバーを継承する
-	if ( is_page() ) { wp_enqueue_script( 'helix-wt-form', get_theme_file_uri( 'assets/js/form.js' ), array(), '0.3.19', $defer ); } // 段 11: フォーム（固定ページに置く）
-		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.19', $defer );
+	if ( is_page() ) { wp_enqueue_script( 'helix-wt-form', get_theme_file_uri( 'assets/js/form.js' ), array(), '0.3.20', $defer ); } // 段 11: フォーム（固定ページに置く）
+		wp_enqueue_script( 'helix-wt-side', get_theme_file_uri( 'assets/js/side.js' ), array(), '0.3.20', $defer );
 	}
 	if ( is_404() ) {
 		wp_enqueue_script( 'helix-wt-404', get_theme_file_uri( 'assets/js/notfound.js' ), array(), '0.3.2', $defer );
@@ -259,7 +309,8 @@ add_filter( 'body_class', function ( $classes ) {
 	$classes[] = 'wt-side-bundle-' . ( null === $bundle ? 'none' : $bundle );
 	foreach ( wt_axes() as $key => $def ) {
 		// 段 10c: side_layout 等の class は面の束の実効値（CSS / JS はこの class だけを見る）。生の軸値は wt-raw-side-* に残す
-		$eff = ( str_starts_with( $key, 'side_' ) && 'side_from' !== $key ) ? wt_side_eff( substr( $key, 5 ) ) : wt_opt( $key );
+		$eff = ( str_starts_with( $key, 'side_' ) && 'side_from' !== $key ) ? wt_side_eff( substr( $key, 5 ) ) : ( null !== wt_chrome_part_of( $key ) ? wt_chrome_eff( $key ) : wt_opt( $key ) );
+		if ( in_array( $key, array( 'home_fixed', 'event_fixed', 'lp_fixed' ), true ) && ! ( 'own' === wt_chrome_bundle( 'fix' ) && wt_chrome_own_key( wt_side_face(), 'fixed' ) === $key ) ) { $eff = 'none'; } // 段 12: 面の固定 CTA は所属が own のときだけ（共通 / 非表示ではパターンの固定 CTA を出さない）
 		if ( $eff !== wt_opt( $key ) ) { $classes[] = 'wt-raw-' . str_replace( '_', '-', $key ) . '-' . wt_opt( $key ); }
 		$classes[] = 'wt-' . $key . '-' . $eff;
 		$class_key = str_replace( '_', '-', $key );
@@ -267,7 +318,9 @@ add_filter( 'body_class', function ( $classes ) {
 			$classes[] = 'wt-' . $class_key . '-' . $eff;
 		}
 	}
-	$extra = wt_opt( 'footer_extra' );
+	foreach ( array( 'head', 'foot', 'fix' ) as $part ) { $b = wt_chrome_bundle( $part ); $classes[] = 'wt-' . $part . '-bundle-' . ( null === $b ? 'none' : $b ); } // 段 12
+	$classes[] = 'wt-fixed-eff-' . wt_chrome_fixed_type();
+	$extra = wt_chrome_eff( 'footer_extra' );
 	foreach ( array( 'sns', 'sites', 'badges', 'address' ) as $slot ) {
 		if ( 'all' === $extra || $extra === $slot || str_contains( $extra, $slot . '-' ) || str_contains( $extra, '-' . $slot ) ) {
 			$classes[] = 'wt-footer-extra-' . $slot;
@@ -279,13 +332,34 @@ add_filter( 'body_class', function ( $classes ) {
 // ---------- ヘッダー template part の差し替え（header → header-<variant>） ----------
 add_filter( 'render_block_data', function ( $block ) {
 	if ( 'core/template-part' === $block['blockName'] && isset( $block['attrs']['slug'] ) && 'header' === $block['attrs']['slug'] ) {
-		$v = wt_opt( 'header' );
+		$v = wt_chrome_eff( 'header' ); // 段 12: 面の束の実効値
 		if ( 'search' !== $v && file_exists( get_theme_file_path( 'parts/header-' . $v . '.html' ) ) ) {
 			$block['attrs']['slug'] = 'header-' . $v;
 		}
 	}
 	return $block;
 } );
+
+// 段 12: ヘッダー / フッターの template part は面の所属が off（非表示）のとき描画しない。LP は所属 lp（既定）のとき共通ヘッダーを描画しない（テンプレート内の wt-lp-header が描く）
+add_filter( 'render_block', function ( $html, $block ) {
+	if ( 'core/template-part' !== $block['blockName'] || ! isset( $block['attrs']['slug'] ) ) { return $html; }
+	$slug = $block['attrs']['slug'];
+	if ( str_starts_with( $slug, 'header' ) ) { $b = wt_chrome_bundle( 'head' ); return ( null === $b || 'lp' === $b ) ? '' : $html; }
+	if ( 'footer' === $slug ) { return null === wt_chrome_bundle( 'foot' ) ? '' : $html; }
+	return $html;
+}, 10, 2 );
+// 段 12: 共通の固定 CTA（fixed）と、独自軸を持たない面（記事 / カテゴリ / 固定ページ）の own_<face>_fixed を描く。導線は実在ページ（/contact/）と PoC のダミー番号
+add_action( 'wp_footer', function () {
+	$t = wt_chrome_fixed_type();
+	if ( 'none' === $t ) { return; }
+	$from = ' data-wt-from="' . esc_attr( wt_chrome_bundle( 'fix' ) ) . '"'; // どの束（site / own）から描いたか（verify が読む）
+	$m = array(
+		'sp-bottom-bar' => '<nav class="wt-fixed wt-fixed--sp-bottom-bar"' . $from . ' aria-label="固定導線"><a href="tel:0000000000"><i class="wt-i wt-i--s wt-i--phone" aria-hidden="true"></i>電話する</a><a href="/contact/"><i class="wt-i wt-i--s wt-i--mail" aria-hidden="true"></i>問い合わせ</a></nav>',
+		'float-cta'     => '<a class="wt-fixed wt-fixed--float-cta wt-lp-cta-action"' . $from . ' href="/contact/">無料で相談する</a>',
+		'float-tel'     => '<a class="wt-fixed wt-fixed--float-tel"' . $from . ' href="tel:0000000000" aria-label="電話する（PoC 用のダミー番号）"><i class="wt-i wt-i--l wt-i--phone" aria-hidden="true"></i></a>',
+	);
+	echo $m[ $t ] ?? '';
+}, 5 );
 
 // ---------- block style ----------
 add_action( 'init', function () {
@@ -593,6 +667,8 @@ add_filter( 'query_loop_block_query_vars', function ( $query, $block ) {
 // ---------- 404: HTTP 404 は WP 既定（template 404.html）。noindex を明示 ----------
 add_action( 'wp_head', function () {
 	echo '<meta name="wt-side-bundles" content="' . esc_attr( implode( ',', array_keys( wt_side_bundles() ) ) ) . '">' . "\n"; // 段 10c: 束の台帳を verify が読む（面の所属軸の許可値と一致すること）
+	echo '<meta name="wt-chrome-bundles" content="' . esc_attr( implode( ',', array_keys( wt_chrome_bundles() ) ) ) . '">' . "\n"; // 段 12: ヘッダー・フッター・固定 CTA の束の台帳
+	echo '<meta name="wt-chrome-faces" content="' . esc_attr( implode( ',', wt_chrome_faces() ) ) . '">' . "\n";
 
 	if ( is_404() ) {
 		echo '<meta name="robots" content="noindex">' . "\n";

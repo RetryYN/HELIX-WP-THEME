@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884945)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.936973)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26697,8 +26697,8 @@
     "mainW": 1021,
     "digits": [
      "38",
-     "1",
-     "58"
+     "0",
+     "29"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -26846,8 +26846,8 @@
     "mainW": 390,
     "digits": [
      "38",
-     "1",
-     "58"
+     "0",
+     "29"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -79687,6 +79687,5519 @@
   ],
   "pass": true
  },
+ "chromeOwner": {
+  "reg": {
+   "bundles": [
+    "site",
+    "own"
+   ],
+   "faces": [
+    "home",
+    "article",
+    "category",
+    "event",
+    "page",
+    "lp"
+   ]
+  },
+  "registryOk": true,
+  "rows": [
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "site",
+    "q": "home_head:site,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "own",
+    "q": "home_head:own,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "off",
+    "q": "home_head:off,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "own-isolation",
+    "q": "home_head:own,own_home_header:tel,own_home_sp:cta,header:cta,sp:search,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "home",
+    "v": "site",
+    "q": "home_foot:site,footer_layout:columns-3,footer_above:none,own_home_footer_layout:single-row,own_home_footer_above:cta-band,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "home",
+    "v": "own",
+    "q": "home_foot:own,footer_layout:columns-3,footer_above:none,own_home_footer_layout:single-row,own_home_footer_above:cta-band,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "home",
+    "v": "off",
+    "q": "home_foot:off,footer_layout:columns-3,footer_above:none,own_home_footer_layout:single-row,own_home_footer_above:cta-band,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "site",
+    "q": "home_fix:site,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "own",
+    "q": "home_fix:own,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-home-fixed--float-cta",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "off",
+    "q": "home_fix:off,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "off+sidenav",
+    "q": "home_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home",
+    "sidenav": true,
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 1,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "site",
+    "q": "article_head:site,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "own",
+    "q": "article_head:own,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "off",
+    "q": "article_head:off,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "own-isolation",
+    "q": "article_head:own,own_article_header:tel,own_article_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "article",
+    "v": "site",
+    "q": "article_foot:site,footer_layout:columns-3,footer_above:none,own_article_footer_layout:single-row,own_article_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "article",
+    "v": "own",
+    "q": "article_foot:own,footer_layout:columns-3,footer_above:none,own_article_footer_layout:single-row,own_article_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "article",
+    "v": "off",
+    "q": "article_foot:off,footer_layout:columns-3,footer_above:none,own_article_footer_layout:single-row,own_article_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "site",
+    "q": "article_fix:site,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "own",
+    "q": "article_fix:own,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "off",
+    "q": "article_fix:off,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "off+sidenav",
+    "q": "article_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home",
+    "sidenav": true,
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 1,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "site",
+    "q": "cat_head:site,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "own",
+    "q": "cat_head:own,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "off",
+    "q": "cat_head:off,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "own-isolation",
+    "q": "cat_head:own,own_category_header:tel,own_category_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "category",
+    "v": "site",
+    "q": "cat_foot:site,footer_layout:columns-3,footer_above:none,own_category_footer_layout:single-row,own_category_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "category",
+    "v": "own",
+    "q": "cat_foot:own,footer_layout:columns-3,footer_above:none,own_category_footer_layout:single-row,own_category_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "category",
+    "v": "off",
+    "q": "cat_foot:off,footer_layout:columns-3,footer_above:none,own_category_footer_layout:single-row,own_category_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "site",
+    "q": "cat_fix:site,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "own",
+    "q": "cat_fix:own,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "off",
+    "q": "cat_fix:off,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "off+sidenav",
+    "q": "cat_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home",
+    "sidenav": true,
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 1,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "site",
+    "q": "event_head:site,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "own",
+    "q": "event_head:own,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "off",
+    "q": "event_head:off,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "own-isolation",
+    "q": "event_head:own,own_event_header:tel,own_event_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "event",
+    "v": "site",
+    "q": "event_foot:site,footer_layout:columns-3,footer_above:none,own_event_footer_layout:single-row,own_event_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "event",
+    "v": "own",
+    "q": "event_foot:own,footer_layout:columns-3,footer_above:none,own_event_footer_layout:single-row,own_event_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "event",
+    "v": "off",
+    "q": "event_foot:off,footer_layout:columns-3,footer_above:none,own_event_footer_layout:single-row,own_event_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "site",
+    "q": "event_fix:site,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "own",
+    "q": "event_fix:own,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-event-fixed--float-apply",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "off",
+    "q": "event_fix:off,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "off+sidenav",
+    "q": "event_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home",
+    "sidenav": true,
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 1,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "site",
+    "q": "page_head:site,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "own",
+    "q": "page_head:own,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "off",
+    "q": "page_head:off,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "own-isolation",
+    "q": "page_head:own,own_page_header:tel,own_page_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "page",
+    "v": "site",
+    "q": "page_foot:site,footer_layout:columns-3,footer_above:none,own_page_footer_layout:single-row,own_page_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "page",
+    "v": "own",
+    "q": "page_foot:own,footer_layout:columns-3,footer_above:none,own_page_footer_layout:single-row,own_page_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "page",
+    "v": "off",
+    "q": "page_foot:off,footer_layout:columns-3,footer_above:none,own_page_footer_layout:single-row,own_page_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "site",
+    "q": "page_fix:site,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "own",
+    "q": "page_fix:own,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "off",
+    "q": "page_fix:off,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "off+sidenav",
+    "q": "page_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home",
+    "sidenav": true,
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 1,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_head:site,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_head:own,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_head:off,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "lp",
+    "q": "lp_head:lp,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "logo-only"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "own-isolation",
+    "q": "lp_head:own,own_lp_header:tel,own_lp_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_foot:site,footer_layout:columns-3,footer_above:none,own_lp_footer_layout:single-row,own_lp_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_foot:own,footer_layout:columns-3,footer_above:none,own_lp_footer_layout:single-row,own_lp_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "own",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "foot",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_foot:off,footer_layout:columns-3,footer_above:none,own_lp_footer_layout:single-row,own_lp_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "none",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_fix:site,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_fix:own,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [
+     [
+      "wt-lp-fixed--float-cta",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_fix:off,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "off+sidenav",
+    "q": "lp_fix:off,fixed:float-cta,side_nav:fixed-right-icons,home_side_nav:fixed-right-icons,cat_side:article,event_side:article,page_side:home",
+    "sidenav": true,
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "fix-overlap",
+    "face": "article",
+    "v": "float-cta",
+    "visible": true,
+    "inView": true,
+    "overlaps": [],
+    "shareVis": true,
+    "shareInView": true,
+    "totopVis": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "part": "other",
+    "face": "other",
+    "v": "site",
+    "faces": [
+     "wt-face-other"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "band",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "site",
+    "q": "home_head:site,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "own",
+    "q": "home_head:own,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "off",
+    "q": "home_head:off,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "home",
+    "v": "own-isolation",
+    "q": "home_head:own,own_home_header:tel,own_home_sp:cta,header:cta,sp:search,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "home",
+    "v": "site",
+    "q": "home_foot:site,footer_layout:columns-3,footer_above:none,own_home_footer_layout:single-row,own_home_footer_above:cta-band,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "home",
+    "v": "own",
+    "q": "home_foot:own,footer_layout:columns-3,footer_above:none,own_home_footer_layout:single-row,own_home_footer_above:cta-band,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "home",
+    "v": "off",
+    "q": "home_foot:off,footer_layout:columns-3,footer_above:none,own_home_footer_layout:single-row,own_home_footer_above:cta-band,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "site",
+    "q": "home_fix:site,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "own",
+    "q": "home_fix:own,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-home-fixed--float-cta",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "home",
+    "v": "off",
+    "q": "home_fix:off,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "site",
+    "q": "article_head:site,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "own",
+    "q": "article_head:own,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "off",
+    "q": "article_head:off,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "article",
+    "v": "own-isolation",
+    "q": "article_head:own,own_article_header:tel,own_article_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "article",
+    "v": "site",
+    "q": "article_foot:site,footer_layout:columns-3,footer_above:none,own_article_footer_layout:single-row,own_article_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "article",
+    "v": "own",
+    "q": "article_foot:own,footer_layout:columns-3,footer_above:none,own_article_footer_layout:single-row,own_article_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "article",
+    "v": "off",
+    "q": "article_foot:off,footer_layout:columns-3,footer_above:none,own_article_footer_layout:single-row,own_article_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "site",
+    "q": "article_fix:site,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "own",
+    "q": "article_fix:own,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "article",
+    "v": "off",
+    "q": "article_fix:off,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "site",
+    "q": "cat_head:site,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "own",
+    "q": "cat_head:own,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "off",
+    "q": "cat_head:off,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "category",
+    "v": "own-isolation",
+    "q": "cat_head:own,own_category_header:tel,own_category_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "category",
+    "v": "site",
+    "q": "cat_foot:site,footer_layout:columns-3,footer_above:none,own_category_footer_layout:single-row,own_category_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "category",
+    "v": "own",
+    "q": "cat_foot:own,footer_layout:columns-3,footer_above:none,own_category_footer_layout:single-row,own_category_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "category",
+    "v": "off",
+    "q": "cat_foot:off,footer_layout:columns-3,footer_above:none,own_category_footer_layout:single-row,own_category_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "site",
+    "q": "cat_fix:site,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "own",
+    "q": "cat_fix:own,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "category",
+    "v": "off",
+    "q": "cat_fix:off,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "site",
+    "q": "event_head:site,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "own",
+    "q": "event_head:own,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "off",
+    "q": "event_head:off,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "event",
+    "v": "own-isolation",
+    "q": "event_head:own,own_event_header:tel,own_event_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "event",
+    "v": "site",
+    "q": "event_foot:site,footer_layout:columns-3,footer_above:none,own_event_footer_layout:single-row,own_event_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "event",
+    "v": "own",
+    "q": "event_foot:own,footer_layout:columns-3,footer_above:none,own_event_footer_layout:single-row,own_event_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "event",
+    "v": "off",
+    "q": "event_foot:off,footer_layout:columns-3,footer_above:none,own_event_footer_layout:single-row,own_event_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "site",
+    "q": "event_fix:site,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "own",
+    "q": "event_fix:own,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-event-fixed--float-apply",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "event",
+    "v": "off",
+    "q": "event_fix:off,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "site",
+    "q": "page_head:site,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "own",
+    "q": "page_head:own,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "off",
+    "q": "page_head:off,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "page",
+    "v": "own-isolation",
+    "q": "page_head:own,own_page_header:tel,own_page_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "page",
+    "v": "site",
+    "q": "page_foot:site,footer_layout:columns-3,footer_above:none,own_page_footer_layout:single-row,own_page_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "page",
+    "v": "own",
+    "q": "page_foot:own,footer_layout:columns-3,footer_above:none,own_page_footer_layout:single-row,own_page_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "own",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "page",
+    "v": "off",
+    "q": "page_foot:off,footer_layout:columns-3,footer_above:none,own_page_footer_layout:single-row,own_page_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_lp_footer_layout:sitemap,own_lp_footer_above:newsletter",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "none",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "site",
+    "q": "page_fix:site,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "own",
+    "q": "page_fix:own,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "page",
+    "v": "off",
+    "q": "page_fix:off,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_head:site,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_head:own,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_head:off,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "lp",
+    "q": "lp_head:lp,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "logo-only"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "head",
+    "face": "lp",
+    "v": "own-isolation",
+    "q": "lp_head:own,own_lp_header:tel,own_lp_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_foot:site,footer_layout:columns-3,footer_above:none,own_lp_footer_layout:single-row,own_lp_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "columns-3"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_foot:own,footer_layout:columns-3,footer_above:none,own_lp_footer_layout:single-row,own_lp_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "own",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [
+     "cta-band"
+    ],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "foot",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_foot:off,footer_layout:columns-3,footer_above:none,own_lp_footer_layout:single-row,own_lp_footer_above:cta-band,own_home_footer_layout:sitemap,own_home_footer_above:newsletter,own_article_footer_layout:sitemap,own_article_footer_above:newsletter,own_category_footer_layout:sitemap,own_category_footer_above:newsletter,own_event_footer_layout:sitemap,own_event_footer_above:newsletter,own_page_footer_layout:sitemap,own_page_footer_above:newsletter",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "none",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": false,
+    "footAbove": [],
+    "footLayout": [],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_fix:site,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_fix:own,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [
+     [
+      "wt-lp-fixed--float-cta",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_fix:off,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix-overlap",
+    "face": "article",
+    "v": "float-cta",
+    "visible": true,
+    "inView": true,
+    "overlaps": [],
+    "shareVis": true,
+    "shareInView": true,
+    "totopVis": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix-overlap",
+    "face": "article",
+    "v": "float-tel",
+    "visible": true,
+    "inView": true,
+    "overlaps": [],
+    "shareVis": true,
+    "shareInView": true,
+    "totopVis": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": true,
+    "part": "fix-overlap",
+    "face": "article",
+    "v": "sp-bottom-bar",
+    "visible": true,
+    "inView": true,
+    "overlaps": [],
+    "shareVis": true,
+    "shareInView": true,
+    "totopVis": false,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "home",
+    "v": "site",
+    "q": "home_head:site,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "home",
+    "v": "own",
+    "q": "home_head:own,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "home",
+    "v": "off",
+    "q": "home_head:off,header:cta,sp:search,own_home_header:tel,own_home_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "home",
+    "v": "own-isolation",
+    "q": "home_head:own,own_home_header:tel,own_home_sp:cta,header:cta,sp:search,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "home",
+    "v": "site",
+    "q": "home_fix:site,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "home",
+    "v": "own",
+    "q": "home_fix:own,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-home-fixed--float-cta",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "home",
+    "v": "off",
+    "q": "home_fix:off,fixed:__SITEFIX__,home_fixed:float-cta,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-home-fixed--float-cta",
+    "faces": [
+     "wt-face-home"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "article",
+    "v": "site",
+    "q": "article_head:site,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "article",
+    "v": "own",
+    "q": "article_head:own,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "article",
+    "v": "off",
+    "q": "article_head:off,header:cta,sp:search,own_article_header:tel,own_article_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "article",
+    "v": "own-isolation",
+    "q": "article_head:own,own_article_header:tel,own_article_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "article",
+    "v": "site",
+    "q": "article_fix:site,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "article",
+    "v": "own",
+    "q": "article_fix:own,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "article",
+    "v": "off",
+    "q": "article_fix:off,fixed:__SITEFIX__,own_article_fixed:float-cta,home_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-article"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "category",
+    "v": "site",
+    "q": "cat_head:site,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "category",
+    "v": "own",
+    "q": "cat_head:own,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "category",
+    "v": "off",
+    "q": "cat_head:off,header:cta,sp:search,own_category_header:tel,own_category_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "category",
+    "v": "own-isolation",
+    "q": "cat_head:own,own_category_header:tel,own_category_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "category",
+    "v": "site",
+    "q": "cat_fix:site,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "category",
+    "v": "own",
+    "q": "cat_fix:own,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "category",
+    "v": "off",
+    "q": "cat_fix:off,fixed:__SITEFIX__,own_category_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-category"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "event",
+    "v": "site",
+    "q": "event_head:site,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "event",
+    "v": "own",
+    "q": "event_head:own,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "event",
+    "v": "off",
+    "q": "event_head:off,header:cta,sp:search,own_event_header:tel,own_event_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "event",
+    "v": "own-isolation",
+    "q": "event_head:own,own_event_header:tel,own_event_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_page_header:band,own_page_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "event",
+    "v": "site",
+    "q": "event_fix:site,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "event",
+    "v": "own",
+    "q": "event_fix:own,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-event-fixed--float-apply",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "event",
+    "v": "off",
+    "q": "event_fix:off,fixed:__SITEFIX__,event_fixed:float-apply,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-event-fixed--float-apply",
+    "faces": [
+     "wt-face-event"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "page",
+    "v": "site",
+    "q": "page_head:site,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "page",
+    "v": "own",
+    "q": "page_head:own,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "page",
+    "v": "off",
+    "q": "page_head:off,header:cta,sp:search,own_page_header:tel,own_page_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "page",
+    "v": "own-isolation",
+    "q": "page_head:own,own_page_header:tel,own_page_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_lp_header:band,own_lp_sp:left",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "page",
+    "v": "site",
+    "q": "page_fix:site,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "page",
+    "v": "own",
+    "q": "page_fix:own,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-cta",
+      "own"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "page",
+    "v": "off",
+    "q": "page_fix:off,fixed:__SITEFIX__,own_page_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,lp_fixed:sp-bottom-bar",
+    "ownSel": "wt-fixed--float-cta",
+    "faces": [
+     "wt-face-page"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "search",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "sitemap"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_head:site,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "site",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "cta",
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_head:own,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_head:off,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "none",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "lp",
+    "v": "lp",
+    "q": "lp_head:lp,header:cta,sp:search,own_lp_header:tel,own_lp_sp:cta,lp_header:logo-only",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "logo-only"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "head",
+    "face": "lp",
+    "v": "own-isolation",
+    "q": "lp_head:own,own_lp_header:tel,own_lp_sp:cta,header:cta,sp:search,own_home_header:band,own_home_sp:left,own_article_header:band,own_article_sp:left,own_category_header:band,own_category_sp:left,own_event_header:band,own_event_sp:left,own_page_header:band,own_page_sp:left",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "own",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 1,
+    "headVis": 1,
+    "headVar": "tel",
+    "lpHead": [],
+    "spCta": 1,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "lp",
+    "v": "site",
+    "q": "lp_fix:site,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "site"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [
+     [
+      "wt-fixed--float-tel",
+      "site"
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "lp",
+    "v": "own",
+    "q": "lp_fix:own,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "own"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [
+     [
+      "wt-lp-fixed--float-cta",
+      null
+     ]
+    ],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   },
+   {
+    "dev": "sp",
+    "js": false,
+    "part": "fix",
+    "face": "lp",
+    "v": "off",
+    "q": "lp_fix:off,fixed:__SITEFIX__,lp_fixed:float-cta,home_fixed:sp-bottom-bar,own_article_fixed:sp-bottom-bar,own_category_fixed:sp-bottom-bar,event_fixed:sp-bottom-bar,own_page_fixed:sp-bottom-bar",
+    "ownSel": "wt-lp-fixed--float-cta",
+    "faces": [
+     "wt-face-lp"
+    ],
+    "bundles": {
+     "head": "lp",
+     "foot": "site",
+     "fix": "none"
+    },
+    "headCount": 0,
+    "headVis": 0,
+    "headVar": null,
+    "lpHead": [
+     "minimal"
+    ],
+    "spCta": 0,
+    "footerEl": true,
+    "footAbove": [],
+    "footLayout": [
+     "single-row"
+    ],
+    "fixedVis": [],
+    "sidenavVis": 0,
+    "h1": 1,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
  "categoryVariants": {
   "expectedCount": 17,
   "countSource": "wp-cli:cat=8",
@@ -84054,7 +89567,7 @@
  "contrastVariantsNoJsPass": true,
  "contrastVariantsNoJsSpPass": true,
  "summary": {
-  "pass": 88,
+  "pass": 89,
   "fail": 0,
   "skipped": [],
   "checks": {
@@ -84144,6 +89657,7 @@
    "sideFace": true,
    "sideDefaults": true,
    "sideOwner": true,
+   "chromeOwner": true,
    "formFace": true,
    "prAutoFixtures": true
   }

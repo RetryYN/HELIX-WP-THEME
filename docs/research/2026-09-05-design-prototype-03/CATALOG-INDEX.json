@@ -6515,5 +6515,306 @@
   "part": "form-validate",
   "variant": "形式検査（かな・メール・確認メール・電話・郵便番号・URL・captcha）",
   "dev": "pc"
+ },
+ {
+  "file": "chrome-head-own-home-sp.jpg",
+  "face": "home",
+  "part": "chrome-head",
+  "variant": "own 独自設定（HP。own_home_header:tel。共通は header:cta のまま）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-fix-site-home-sp.jpg",
+  "face": "home",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（HP。fixed:sp-bottom-bar。面の own（home_fixed:float-cta）は出ない）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-head-own-article-sp.jpg",
+  "face": "article",
+  "part": "chrome-head",
+  "variant": "own 独自設定（記事。own_article_header:tel。共通は header:cta のまま）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-fix-site-article-sp.jpg",
+  "face": "article",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（記事。fixed:sp-bottom-bar。面の own（own_article_fixed:float-cta）は出ない）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-head-own-category-sp.jpg",
+  "face": "category",
+  "part": "chrome-head",
+  "variant": "own 独自設定（カテゴリ。own_category_header:tel。共通は header:cta のまま）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-fix-site-category-sp.jpg",
+  "face": "category",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（カテゴリ。fixed:sp-bottom-bar。面の own（own_category_fixed:float-cta）は出ない）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-head-own-event-sp.jpg",
+  "face": "event",
+  "part": "chrome-head",
+  "variant": "own 独自設定（イベント。own_event_header:tel。共通は header:cta のまま）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-fix-site-event-sp.jpg",
+  "face": "event",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（イベント。fixed:sp-bottom-bar。面の own（event_fixed:float-apply）は出ない）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-head-own-page-sp.jpg",
+  "face": "page",
+  "part": "chrome-head",
+  "variant": "own 独自設定（固定ページ。own_page_header:tel。共通は header:cta のまま）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-fix-site-page-sp.jpg",
+  "face": "page",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（固定ページ。fixed:sp-bottom-bar。面の own（own_page_fixed:float-cta）は出ない）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-head-own-lp-sp.jpg",
+  "face": "lp",
+  "part": "chrome-head",
+  "variant": "own 独自設定（LP。own_lp_header:tel。共通は header:cta のまま）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-fix-site-lp-sp.jpg",
+  "face": "lp",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（LP。fixed:sp-bottom-bar。面の own（lp_fixed:float-cta）は出ない）",
+  "dev": "sp"
+ },
+ {
+  "file": "chrome-head-own-home-pc.jpg",
+  "face": "home",
+  "part": "chrome-head",
+  "variant": "own 独自設定（HP。own_home_header:tel。共通は header:cta のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-fix-site-home-pc.jpg",
+  "face": "home",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（HP。fixed:float-cta。面の own（home_fixed:float-cta）は出ない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-off-home-pc.jpg",
+  "face": "home",
+  "part": "chrome-head",
+  "variant": "off 非表示（HP。ヘッダーを描画しない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-own-home-pc.jpg",
+  "face": "home",
+  "part": "chrome-foot",
+  "variant": "own 独自設定（HP。own_home_footer_layout:single-row + footer_above:cta-band。共通は columns-3 のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-off-home-pc.jpg",
+  "face": "home",
+  "part": "chrome-foot",
+  "variant": "off 非表示（HP。フッターを描画しない。ページ末尾）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-own-article-pc.jpg",
+  "face": "article",
+  "part": "chrome-head",
+  "variant": "own 独自設定（記事。own_article_header:tel。共通は header:cta のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-fix-site-article-pc.jpg",
+  "face": "article",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（記事。fixed:float-cta。面の own（own_article_fixed:float-cta）は出ない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-off-article-pc.jpg",
+  "face": "article",
+  "part": "chrome-head",
+  "variant": "off 非表示（記事。ヘッダーを描画しない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-own-article-pc.jpg",
+  "face": "article",
+  "part": "chrome-foot",
+  "variant": "own 独自設定（記事。own_article_footer_layout:single-row + footer_above:cta-band。共通は columns-3 のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-off-article-pc.jpg",
+  "face": "article",
+  "part": "chrome-foot",
+  "variant": "off 非表示（記事。フッターを描画しない。ページ末尾）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-own-category-pc.jpg",
+  "face": "category",
+  "part": "chrome-head",
+  "variant": "own 独自設定（カテゴリ。own_category_header:tel。共通は header:cta のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-fix-site-category-pc.jpg",
+  "face": "category",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（カテゴリ。fixed:float-cta。面の own（own_category_fixed:float-cta）は出ない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-off-category-pc.jpg",
+  "face": "category",
+  "part": "chrome-head",
+  "variant": "off 非表示（カテゴリ。ヘッダーを描画しない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-own-category-pc.jpg",
+  "face": "category",
+  "part": "chrome-foot",
+  "variant": "own 独自設定（カテゴリ。own_category_footer_layout:single-row + footer_above:cta-band。共通は columns-3 のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-off-category-pc.jpg",
+  "face": "category",
+  "part": "chrome-foot",
+  "variant": "off 非表示（カテゴリ。フッターを描画しない。ページ末尾）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-own-event-pc.jpg",
+  "face": "event",
+  "part": "chrome-head",
+  "variant": "own 独自設定（イベント。own_event_header:tel。共通は header:cta のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-fix-site-event-pc.jpg",
+  "face": "event",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（イベント。fixed:float-cta。面の own（event_fixed:float-apply）は出ない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-off-event-pc.jpg",
+  "face": "event",
+  "part": "chrome-head",
+  "variant": "off 非表示（イベント。ヘッダーを描画しない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-own-event-pc.jpg",
+  "face": "event",
+  "part": "chrome-foot",
+  "variant": "own 独自設定（イベント。own_event_footer_layout:single-row + footer_above:cta-band。共通は columns-3 のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-off-event-pc.jpg",
+  "face": "event",
+  "part": "chrome-foot",
+  "variant": "off 非表示（イベント。フッターを描画しない。ページ末尾）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-own-page-pc.jpg",
+  "face": "page",
+  "part": "chrome-head",
+  "variant": "own 独自設定（固定ページ。own_page_header:tel。共通は header:cta のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-fix-site-page-pc.jpg",
+  "face": "page",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（固定ページ。fixed:float-cta。面の own（own_page_fixed:float-cta）は出ない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-off-page-pc.jpg",
+  "face": "page",
+  "part": "chrome-head",
+  "variant": "off 非表示（固定ページ。ヘッダーを描画しない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-own-page-pc.jpg",
+  "face": "page",
+  "part": "chrome-foot",
+  "variant": "own 独自設定（固定ページ。own_page_footer_layout:single-row + footer_above:cta-band。共通は columns-3 のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-off-page-pc.jpg",
+  "face": "page",
+  "part": "chrome-foot",
+  "variant": "off 非表示（固定ページ。フッターを描画しない。ページ末尾）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-own-lp-pc.jpg",
+  "face": "lp",
+  "part": "chrome-head",
+  "variant": "own 独自設定（LP。own_lp_header:tel。共通は header:cta のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-fix-site-lp-pc.jpg",
+  "face": "lp",
+  "part": "chrome-fix",
+  "variant": "site 共通の固定 CTA（LP。fixed:float-cta。面の own（lp_fixed:float-cta）は出ない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-off-lp-pc.jpg",
+  "face": "lp",
+  "part": "chrome-head",
+  "variant": "off 非表示（LP。ヘッダーを描画しない）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-own-lp-pc.jpg",
+  "face": "lp",
+  "part": "chrome-foot",
+  "variant": "own 独自設定（LP。own_lp_footer_layout:single-row + footer_above:cta-band。共通は columns-3 のまま）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-foot-off-lp-pc.jpg",
+  "face": "lp",
+  "part": "chrome-foot",
+  "variant": "off 非表示（LP。フッターを描画しない。ページ末尾）",
+  "dev": "pc"
+ },
+ {
+  "file": "chrome-head-site-lp-pc.jpg",
+  "face": "lp",
+  "part": "chrome-head",
+  "variant": "site 共通ヘッダーを LP に継承（lp_head:site。LP ヘッダー 3 種は隠れる。既定は lp = LP ヘッダー）",
+  "dev": "pc"
  }
 ]
