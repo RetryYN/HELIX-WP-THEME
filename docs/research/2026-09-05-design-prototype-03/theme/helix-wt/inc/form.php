@@ -137,7 +137,12 @@ function wt_form_state() {
 	$vals = array();
 	foreach ( (array) $_POST['wt_form'] as $k => $v ) { $k = sanitize_key( $k ); $vals[ $k ] = is_array( $v ) ? array_map( fn( $x ) => is_array( $x ) ? '' : sanitize_text_field( wp_unslash( $x ) ), $v ) : sanitize_textarea_field( wp_unslash( $v ) ); }
 	$state['values'] = $vals;
-	$step = sanitize_key( $_POST['wt_step'] ?? 'input' );
+	$step = $_POST['wt_step'] ?? 'input';
+	if ( ! is_string( $step ) || ! in_array( wp_unslash( $step ), array( 'input', 'back', 'confirm' ), true ) ) {
+		$state['errors']['_form'] = 'フォームの操作を確認できませんでした。入力内容を確認して、もう一度進んでください。';
+		return $state;
+	}
+	$step = wp_unslash( $step );
 	if ( ! isset( $_POST['wt_form_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wt_form_nonce'] ) ), 'wt_form' ) ) { $state['errors']['_form'] = 'フォームの有効期限が切れました。もう一度送信してください。'; return $state; }
 	if ( ! empty( $_POST['wt_hp'] ) ) { $state['errors']['_form'] = '送信を受け付けられませんでした。'; return $state; } // honeypot
 	$errors = wt_form_validate( $vals );
