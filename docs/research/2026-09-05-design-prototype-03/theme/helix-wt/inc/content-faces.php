@@ -91,6 +91,6 @@ add_shortcode( 'wtcf_interview_card', function ( $attributes ) {
 	$post = get_page_by_path( $slug, OBJECT, 'wt_interview' );
 	if ( ! $post || $post->post_status !== 'publish' || post_password_required( $post ) ) { return ''; }
 	$data = wtcf_display( $post->ID );
-	if ( ! $data['confirmed'] ) { return ''; }
+	if ( ! $data || ! $data['confirmed'] ) { return ''; }
 	return '<aside class="wtcf-reference"><p>VOICE / 制作の現場から</p><h2><a href="' . esc_url( $data['url'] ) . '">' . esc_html( $data['title'] ) . '</a></h2><p>' . esc_html( $data['summary'] ) . '</p></aside>';
 } );

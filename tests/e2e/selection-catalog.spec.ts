@@ -69,3 +69,29 @@ test('mobile fits viewport and tabs support keyboard; images load', async ({ pag
   await page.locator('[data-device="pc"]').click();
   await page.screenshot({ path: testInfo.outputPath('desktop.png'), fullPage: false });
 });
+
+
+test('acceptance ID, remaining text and evidence status filters preserve scope and recover from zero', async ({ page }) => {
+  await page.locator('#tab-requirements').click();
+  await expect(page.locator('#requirements-count')).toContainText('132要求 / 289受入条件');
+  await page.locator('#req-search').fill('WT-AC-INTERVIEW-01C');
+  await expect(page.locator('.req-row')).toHaveCount(1);
+  await expect(page.locator('.acceptance-row')).toHaveCount(1);
+  await expect(page.locator('.acceptance-row')).toHaveAttribute('open', '');
+  await expect(page.locator('.acceptance-row')).toContainText('確認取り消し');
+  await page.locator('#evidence-state').selectOption('missing');
+  await expect(page.locator('#requirements-empty')).toBeVisible();
+  await page.locator('#reset-requirements').click();
+  await expect(page.locator('#req-search')).toBeFocused();
+  await expect(page.locator('.req-row')).toHaveCount(132);
+  await page.locator('#evidence-state').selectOption('partial');
+  expect(await page.locator('.acceptance-row').count()).toBeGreaterThan(0);
+  await expect(page.locator('.acceptance-row:not([data-evidence-state="partial"])')).toHaveCount(0);
+  await page.locator('#req-search').fill('___no_matching_remaining___');
+  await expect(page.locator('#requirements-empty')).toBeVisible();
+  await page.locator('#reset-requirements').click();
+  await page.locator('#req-search').fill('専用');
+  expect(await page.locator('.acceptance-row').count()).toBeGreaterThan(0);
+  await page.setViewportSize({ width: 375, height: 812 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

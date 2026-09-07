@@ -164,14 +164,24 @@ async function start() {
   });
   function requirements() {
     const query = $('req-search').value.trim().toLocaleLowerCase(); $('requirements').replaceChildren();
+    const state = $('evidence-state').value;
     const exact = data.requirements.find(r => r.id.toLocaleLowerCase() === query);
-    for (const req of data.requirements.filter(r => exact ? r === exact : `${r.id} ${r.statement}`.toLocaleLowerCase().includes(query))) {
+    const exactCase = data.requirements.flatMap(r => r.acceptance).find(ac => ac.id.toLocaleLowerCase() === query);
+    let shownRequirements = 0, shownCases = 0;
+    for (const req of data.requirements) {
+      if (exact && req !== exact) continue;
+      const requirementMatches = `${req.id} ${req.statement}`.toLocaleLowerCase().includes(query);
+      const cases = req.acceptance.filter(ac => (!state || ac.status === state) && (exactCase ? ac.id === exactCase.id : requirementMatches || `${ac.id} ${ac.oracle} ${ac.scope} ${(ac.remaining || []).join(' ')}`.toLocaleLowerCase().includes(query)));
+      if (!cases.length) continue;
+      shownRequirements++; shownCases += cases.length;
+      const verified = req.acceptance.filter(ac => ac.status === 'verified_in_poc').length;
       const row = el('details', undefined, 'req-row');
-      const summary = el('summary'); summary.append(el('strong', req.id), el('span', req.status === 'partial_poc' ? '代表PoC検証あり・全条件未完了' : '未検証', 'status-label'), el('p', req.statement));
+      const summary = el('summary'); summary.append(el('strong', req.id), el('span', `PoC確認 ${verified}/${req.acceptance.length}条件`, 'status-label'), el('p', req.statement));
       const body = el('div'); body.append(el('p', req.next));
       if (req.evidence) { const proof = el('a', '全受入条件の証拠対応を見る'); proof.href = req.evidence; body.append(proof); }
-      for (const ac of req.acceptance) {
+      for (const ac of cases) {
         const caseRow = el('details', undefined, 'acceptance-row');
+        caseRow.dataset.evidenceState = ac.status;
         const states = { missing: '証拠の対応付けなし', partial: '部分確認', verified_in_poc: 'PoC確認済み', stale: '再検証が必要' };
         caseRow.append(el('summary', `${ac.id} · ${states[ac.status] || '未検証'}`), el('p', ac.oracle));
         if (ac.scope) caseRow.append(el('p', `確認した範囲: ${ac.scope}`));
@@ -189,9 +199,14 @@ async function start() {
         switchTab(0); render(); $('tab-gallery').focus();
       }));
       row.append(summary, body); $('requirements').append(row);
+      if (exactCase) { row.open = true; body.querySelector('.acceptance-row').open = true; }
     }
+    $('requirements-count').textContent = `${shownRequirements}要求 / ${shownCases}受入条件（全${data.requirementCount}要求）`;
+    $('requirements-empty').hidden = shownCases !== 0;
   }
   $('req-search').addEventListener('input', requirements);
+  $('evidence-state').addEventListener('change', requirements);
+  $('reset-requirements').addEventListener('click', () => { $('req-search').value = ''; $('evidence-state').value = ''; requirements(); $('req-search').focus(); });
   $('export').addEventListener('click', () => {
     const blob = new Blob([JSON.stringify({ schema: storageKey, memos }, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob); const a = el('a'); a.href = url; a.download = 'helix-selection-memos.json';

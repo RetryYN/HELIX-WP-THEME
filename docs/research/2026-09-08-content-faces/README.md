@@ -56,3 +56,7 @@ node scripts/build-selection-catalog.mjs
 ## 同期前の検証
 
 表示・アクセス191項目、学習180項目、管理5項目を確認。[標準パスワード保護](results/passwords.json)も5種別のHTML/REST計10項目を確認した。独自表示でも保護フォームへ分岐し、参照カードのHTML生成はテーマが担当する。パスワード検査は専用fixtureへ一時設定して復元するため、管理検査と同様に他のWP検査・撮影と同時実行しない。
+
+## インタビューの掲載状態
+
+[状態遷移の手順と範囲](interview-lifecycle-plan.md)、[修正前の不成立記録](results/interview-lifecycle-before.json)、[現行の検証結果](results/interview-lifecycle.json)。`node scripts/verify-interview-lifecycle.mjs`で専用の一時投稿を使い、確認取り消し・人物参照破損・公開中の確認文書削除を検査する。他のWP検査と同時実行しない。公開不可となった投稿は下書きに戻り、確認を戻しただけでは再公開しない。
