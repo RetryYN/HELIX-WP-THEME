@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('604');
+  await expect(page.locator('#total')).toHaveText('607');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -158,4 +158,13 @@ test('navigation comparison exposes paired images and scoped verification', asyn
   expect(result.completed).toBe(true);
   expect(result.rows).toHaveLength(62);
   expect(result.rows.every((row: { pass: boolean }) => row.pass)).toBe(true);
+});
+
+
+test('site search states expose scoped evidence and a live query', async ({ page }) => {
+  await page.locator('[data-face="search"]').click();
+  await expect(page.locator('.tile-open')).toHaveCount(3);
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail')).toContainText('公開範囲');
+  await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', /\?s=/);
 });

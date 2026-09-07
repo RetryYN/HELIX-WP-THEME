@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 132,
-  "screenshotCount": 1080,
+  "screenshotCount": 1086,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -11727,6 +11727,66 @@
       "demoRoute": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Aoff%2Ccontent_site_foot%3Aoff%2Ccontent_site_fix%3Aoff%2Ccontent_site_side%3Aoff%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal",
       "description": "既存の共通ヘッダー・フッター・固定CTA・サイドバーへ接続した代表表示です。共通は右、独自は左のサイドバーを使用し、SPでは本文の後へ置きます。導線の実在性・固定要素の被覆・全状態の同意と認可は未完了です。",
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json"
+    },
+    {
+      "id": "search:results",
+      "face": "search",
+      "part": "site-search",
+      "label": "検索結果",
+      "variant": "results",
+      "purpose": "情報を探し直す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-08-site-search/results/after-results-pc.jpg",
+        "sp": "../2026-09-08-site-search/results/after-results-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02"
+      ],
+      "demoRoute": "/?s=%E5%88%A4%E6%96%AD",
+      "description": "標準Query Loopの検索結果・再検索・結果移動の代表再現。空欄の専用状態、公開範囲の行列、ページ送り異常系、絞り込みは未完了。",
+      "evidence": "../2026-09-08-site-search/results/verify.json"
+    },
+    {
+      "id": "search:empty",
+      "face": "search",
+      "part": "site-search",
+      "label": "ゼロ件と再検索",
+      "variant": "empty",
+      "purpose": "情報を探し直す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-08-site-search/results/after-empty-pc.jpg",
+        "sp": "../2026-09-08-site-search/results/after-empty-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02"
+      ],
+      "demoRoute": "/?s=no-match-search-fixture-20260908",
+      "description": "標準Query Loopの検索結果・再検索・結果移動の代表再現。空欄の専用状態、公開範囲の行列、ページ送り異常系、絞り込みは未完了。",
+      "evidence": "../2026-09-08-site-search/results/verify.json"
+    },
+    {
+      "id": "search:blank",
+      "face": "search",
+      "part": "site-search",
+      "label": "未入力（改善対象）",
+      "variant": "blank",
+      "purpose": "情報を探し直す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-08-site-search/results/after-blank-pc.jpg",
+        "sp": "../2026-09-08-site-search/results/after-blank-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02"
+      ],
+      "demoRoute": "/?s=",
+      "description": "標準Query Loopの検索結果・再検索・結果移動の代表再現。空欄の専用状態、公開範囲の行列、ページ送り異常系、絞り込みは未完了。",
+      "evidence": "../2026-09-08-site-search/results/verify.json"
     }
   ],
   "requirements": [
@@ -20331,7 +20391,10 @@
         "site:transmissions",
         "site:accessibility",
         "site:locations",
-        "site:terms"
+        "site:terms",
+        "search:results",
+        "search:empty",
+        "search:blank"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [
@@ -20483,7 +20546,10 @@
         "site:transmissions",
         "site:accessibility",
         "site:locations",
-        "site:terms"
+        "site:terms",
+        "search:results",
+        "search:empty",
+        "search:blank"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],

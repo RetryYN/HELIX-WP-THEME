@@ -1,0 +1,40 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<!-- wp:group {"tagName":"main","className":"wt-site-search","layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|80"},"blockGap":"var:preset|spacing|40"}}} -->
+<main class="wp-block-group wt-site-search" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--80)">
+<!-- wp:heading {"level":1,"fontSize":"xxl"} -->
+<h1 class="wp-block-heading has-xxl-font-size">サイト内検索</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>キーワードを変えて、読みたい情報を探せます。</p>
+<!-- /wp:paragraph -->
+<!-- wp:search {"label":"検索語","showLabel":true,"buttonText":"検索する","buttonPosition":"button-outside"} /-->
+<!-- wp:query-title {"type":"search","level":2,"fontSize":"m"} /-->
+<!-- wp:query {"queryId":32,"query":{"inherit":true}} -->
+<div class="wp-block-query">
+<!-- wp:query-total /-->
+<!-- wp:post-template {"layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"article","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flow"}} -->
+<article class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
+<!-- wp:post-title {"level":3,"isLink":true,"fontSize":"l"} /-->
+<!-- wp:post-excerpt {"moreText":"","excerptLength":40} /-->
+</article>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+<!-- wp:query-no-results -->
+<!-- wp:heading {"level":3,"fontSize":"l"} -->
+<h3 class="wp-block-heading has-l-font-size">該当する情報が見つかりませんでした。</h3>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>表記を確認するか、短いキーワードで検索してください。上の検索欄からやり直せます。</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results -->
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+<!-- wp:query-pagination-previous {"label":"前のページ"} /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next {"label":"次のページ"} /-->
+<!-- /wp:query-pagination -->
+</div>
+<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

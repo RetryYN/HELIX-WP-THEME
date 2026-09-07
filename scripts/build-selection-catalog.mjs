@@ -126,6 +126,26 @@ if (fs.existsSync(path.join(root, inheritancePath))) {
     entries.set(id, entry);
   }
 }
+const searchPath = 'docs/research/2026-09-08-site-search/results/verify.json';
+if (fs.existsSync(path.join(root, searchPath))) {
+  const evidence = read(searchPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass)) throw Error('Site search evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale search evidence: ${file}`);
+  }
+  const labels = { results: '検索結果', empty: 'ゼロ件と再検索', blank: '未入力（改善対象）' };
+  for (const shot of evidence.shots) {
+    if (!labels[shot.state] || !['pc', 'sp'].includes(shot.device) || !/^[a-z0-9-]+\.jpg$/.test(shot.file)) throw Error('Invalid search screenshot');
+    if (!fs.existsSync(path.join(root, path.dirname(searchPath), shot.file))) throw Error('Missing search screenshot');
+    const id = `search:${shot.state}`;
+    const entry = entries.get(id) || { id, face: 'search', part: 'site-search', label: labels[shot.state], variant: shot.state,
+      purpose: '情報を探し直す', group: 'ページ・本文', images: {}, requirementIds: [], demoRoute: '/?s=' + encodeURIComponent(shot.query),
+      description: '標準Query Loopの検索結果・再検索・結果移動の代表再現。空欄の専用状態、公開範囲の行列、ページ送り異常系、絞り込みは未完了。',
+      evidence: '../2026-09-08-site-search/results/verify.json' };
+    entry.images[shot.device] = `../2026-09-08-site-search/results/${shot.file}`;
+    entries.set(id, entry);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
