@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.936869)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.884908)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26883,8 +26883,8 @@
     "mainW": 1021,
     "digits": [
      "37",
-     "23",
-     "14"
+     "22",
+     "46"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -27032,8 +27032,8 @@
     "mainW": 390,
     "digits": [
      "37",
-     "23",
-     "14"
+     "22",
+     "46"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -85435,7 +85435,7 @@
      "review": {
       "name": "山田 太郎",
       "name-kana": "やまだ たろう",
-      "company": "—",
+      "company": "株式会社サンプル",
       "email": "taro@example.com",
       "tel": "03-1234-5678",
       "subject-select": "サービスについて",
@@ -85684,13 +85684,64 @@
    {
     "dev": "pc",
     "js": true,
+    "face": "event",
+    "v": "other-template-assigned",
+    "faces": [
+     "wt-face-page"
+    ],
+    "faceEl": false,
+    "anyForm": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "lp",
+    "v": "other-template-assigned",
+    "faces": [
+     "wt-face-page"
+    ],
+    "faceEl": false,
+    "anyForm": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
     "face": "home",
-    "v": "front-page-wins-over-slug",
+    "v": "front-page-wins:event:slug",
     "faces": [
      "wt-face-home"
     ],
     "anyForm": false,
     "home": true,
+    "faceEl": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "home",
+    "v": "front-page-wins:event:page-event",
+    "faces": [
+     "wt-face-home"
+    ],
+    "anyForm": false,
+    "home": true,
+    "faceEl": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "home",
+    "v": "front-page-wins:lp:page-lp",
+    "faces": [
+     "wt-face-home"
+    ],
+    "anyForm": false,
+    "home": true,
+    "faceEl": false,
     "pass": true
    }
   ],

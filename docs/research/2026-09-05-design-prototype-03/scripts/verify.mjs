@@ -2025,10 +2025,10 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       if (dev === "pc") { // 入力 → 確認 → 完了（separate）: /thanks/ へ redirect し種別を引き継ぐ
         await p.goto(BASE + path + "?wt=" + q, { waitUntil: "networkidle" }); await reveal();
         await p.fill(wrap + " #wt-f-name", "山田 太郎"); await p.fill(wrap + " #wt-f-email", "taro@example.com"); await p.fill(wrap + " #wt-f-tel", "03-1234-5678"); await p.fill(wrap + " #wt-f-message", "本文"); await p.check(wrap + " #wt-f-consent");
-        if (kind === "contact") { await p.fill(wrap + " #wt-f-name-kana", "やまだ たろう"); await p.selectOption(wrap + " #wt-f-subject-select", { index: 1 }); } else { await p.check(wrap + " #wt-f-subject-radio-0"); await p.fill(wrap + " #wt-f-people-count", "2"); }
+        let subjectLabel = null; if (kind === "contact") { await p.fill(wrap + " #wt-f-name-kana", "やまだ たろう"); await p.fill(wrap + " #wt-f-company", "株式会社サンプル"); await p.selectOption(wrap + " #wt-f-subject-select", { index: 1 }); subjectLabel = await p.$eval(wrap + " #wt-f-subject-select", (e) => e.options[e.selectedIndex].textContent.trim()); } else { await p.check(wrap + " #wt-f-subject-radio-0"); await p.fill(wrap + " #wt-f-people-count", "2"); }
         await p.click(wrap + " .wt-form__submit"); await p.waitForTimeout(600); const c = await p.evaluate(([w]) => { const c = document.querySelector(w + " .wt-form__confirm"); return { vis: !!c && c.getBoundingClientRect().height > 0, kind: (document.querySelector(w + " .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form"), review: Object.fromEntries(Array.from(document.querySelectorAll(w + " .wt-form__review dd[data-wt-field]")).map((d) => [d.getAttribute("data-wt-field"), d.textContent.trim()])) }; }, [wrap]);
-        const expectReview = kind === "contact" ? { name: "山田 太郎", "name-kana": "やまだ たろう", email: "taro@example.com", tel: "03-1234-5678", message: "本文", consent: "同意する" } : { name: "山田 太郎", email: "taro@example.com", tel: "03-1234-5678", "subject-radio": "会場参加", "people-count": "2", message: "本文", consent: "同意する" }; // 確認画面に面の種別の項目と入力値がそのまま出る（subject-select は選んだ項目名なので照合しない）
-        const reviewOk = Object.entries(expectReview).every(([k, x]) => c.review[k] === x) && (kind !== "contact" || "subject-select" in c.review) && !("subject-radio" in c.review && kind === "contact") && !("name-kana" in c.review && kind === "apply");
+        const expectReview = kind === "contact" ? { name: "山田 太郎", "name-kana": "やまだ たろう", company: "株式会社サンプル", email: "taro@example.com", tel: "03-1234-5678", "subject-select": subjectLabel, message: "本文", consent: "同意する" } : { name: "山田 太郎", email: "taro@example.com", tel: "03-1234-5678", "subject-radio": "会場参加", "people-count": "2", message: "本文", consent: "同意する" }; // 確認画面に面の種別の項目集合（完全一致）と入力値がそのまま出る（select は選んだ項目名）
+        const reviewOk = JSON.stringify(Object.keys(c.review)) === JSON.stringify(Object.keys(expectReview)) && Object.entries(expectReview).every(([k, x]) => c.review[k] === x);
         await p.click(wrap + " .wt-form__confirm .wt-form__submit"); await p.waitForTimeout(1000);
         const t = await p.evaluate(() => ({ path: location.pathname, wt: new URLSearchParams(location.search).get("wt") || "", thanks: (document.querySelector(".wt-form-thanks") || { getAttribute: () => null }).getAttribute("data-wt-thanks") }));
         rows.push({ dev, js, face, v: "flow", confirm: c, reviewOk, ...t, pass: c.vis && c.kind === kind && reviewOk && t.path === "/thanks/" && t.thanks === kind && q.split(",").every((x) => t.wt.split(",").includes(x)) && t.wt.split(",").every((x) => q.split(",").includes(x) || x === "form_kind:" + kind) }); /* 確認画面の種別・項目・値、?wt= を引き継ぎ面の文脈の種別だけ足す */
@@ -2053,14 +2053,22 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       const s2 = await p.evaluate(([visSrc]) => { const vis = eval(visSrc); return { faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), formVis: vis(document.querySelector(".wt-lp-form--block .wt-form__form")), kind: (document.querySelector(".wt-lp-form--block .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form") }; }, [VIS_SRC]);
       rows.push({ dev: "pc", js: true, face: "lp", v: "slug-resolved-block", ...s2, pass: s2.faces.includes("wt-face-lp") && s2.formVis && s2.kind === "contact" });
     } finally { wpS(["post", "meta", "update", lpId, "_wp_page_template", lpMeta]); }
-    try {
-      wpS(["option", "update", "show_on_front", "page"]); wpS(["option", "update", "page_on_front", evId]); // イベントページ（template meta 空）を静的フロントページに → front-page.html が優先し、面は home
-      await p.goto(BASE + HOME + "?wt=event_apply:block-form", { waitUntil: "networkidle" }); const f = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), anyForm: !!document.querySelector(".wt-form__form"), home: !!document.querySelector(".wt-home") }));
-      rows.push({ dev: "pc", js: true, face: "home", v: "front-page-wins-over-slug", ...f, pass: f.faces.includes("wt-face-home") && !f.faces.includes("wt-face-event") && !f.anyForm && f.home });
-    } finally { wpS(["option", "update", "show_on_front", showOnFront]); wpS(["option", "update", "page_on_front", pageOnFront]); }
+    for (const [id, face, tpl, cls] of [[evId, "event", "page-event", ".wt-event"], [lpId, "lp", "page-lp", ".wt-lp"]]) { // 別テンプレートを明示割当した event / lp の slug → その面にならない（page-canvas で面 page）。戻す
+      const before = id === lpId ? lpMeta : ""; try {
+        wpS(["post", "meta", "update", id, "_wp_page_template", "page-canvas"]);
+        await p.goto(BASE + (face === "lp" ? LP : "/event/") + "?wt=lp_form:block,lp_sections:extended,event_apply:block-form", { waitUntil: "networkidle" }); const o = await p.evaluate(([cls]) => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), faceEl: !!document.querySelector(cls), anyForm: !!document.querySelector(".wt-form__form") }), [cls]);
+        rows.push({ dev: "pc", js: true, face, v: "other-template-assigned", ...o, pass: !o.faces.includes("wt-face-" + face) && o.faces.includes("wt-face-page") && !o.faceEl && !o.anyForm });
+      } finally { if (before) wpS(["post", "meta", "update", id, "_wp_page_template", before]); else { try { wpS(["post", "meta", "delete", id, "_wp_page_template"]); } catch (_) { /* 無ければ無い */ } } } }
+    for (const [id, face, tpl] of [[evId, "event", ""], [evId, "event", "page-event"], [lpId, "lp", "page-lp"]]) { // 静的フロントページに → front-page.html が優先し面は home（slug 解決でも明示割当でも）。戻す
+      const before = id === lpId ? lpMeta : ""; try {
+        if (tpl) wpS(["post", "meta", "update", id, "_wp_page_template", tpl]);
+        wpS(["option", "update", "show_on_front", "page"]); wpS(["option", "update", "page_on_front", id]);
+        await p.goto(BASE + HOME + "?wt=event_apply:block-form,lp_form:block,lp_sections:extended", { waitUntil: "networkidle" }); const f = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), anyForm: !!document.querySelector(".wt-form__form"), home: !!document.querySelector(".wt-home"), faceEl: !!document.querySelector(".wt-event, .wt-lp") }));
+        rows.push({ dev: "pc", js: true, face: "home", v: `front-page-wins:${face}${tpl ? ":" + tpl : ":slug"}`, ...f, pass: f.faces.includes("wt-face-home") && !f.faces.includes("wt-face-event") && !f.faces.includes("wt-face-lp") && !f.anyForm && f.home && !f.faceEl });
+      } finally { wpS(["option", "update", "show_on_front", showOnFront]); wpS(["option", "update", "page_on_front", pageOnFront]); if (before) wpS(["post", "meta", "update", id, "_wp_page_template", before]); else { try { wpS(["post", "meta", "delete", id, "_wp_page_template"]); } catch (_) { /* 無ければ無い */ } } } }
     await ctx.close();
   }
-  out.formSlots = { rows, wpcli: !!wpS, pass: !!wpS && rows.length === 16 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + JS 無効の不正値 2 + 遷移 2 + 境界（別 slug）1 + slug 解決 2 + フロントページ優先 1 = 16（固定値）
+  out.formSlots = { rows, wpcli: !!wpS, pass: !!wpS && rows.length === 20 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + JS 無効の不正値 2 + 遷移 2 + 境界（別 slug）1 + slug 解決 2 + 別テンプレート明示割当 2 + フロントページ優先 3 = 20（固定値）
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {

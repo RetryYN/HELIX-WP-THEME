@@ -216,6 +216,7 @@ function wt_is_event_page() {
 	global $_wp_current_template_id;
 	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-event' );
 	// 段 13: template_redirect（テンプレート解決前。フォームの POST 処理）でも同じ答えになるよう、block 階層の規則（template meta が空なら page-{slug}.html）を自前で当てる
+	if ( is_front_page() ) { return false; } // 静的フロントページは front-page.html が優先（明示割当でも）。Astra 2 巡目
 	return $resolved || wt_page_template_by_slug( 'event' ) || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-event', 'page-event.html' ) ) );
 }
 
@@ -231,6 +232,7 @@ function wt_is_lp_page() {
 	// is_page_template() は保存値との完全一致判定のため、slug 表記・旧 .html 表記の両方を許容する。
 	global $_wp_current_template_id;
 	$resolved = is_string( $_wp_current_template_id ) && str_ends_with( $_wp_current_template_id, '//page-lp' );
+	if ( is_front_page() ) { return false; } // 静的フロントページは front-page.html が優先（明示割当でも）
 	return $resolved || wt_page_template_by_slug( 'lp' ) || ( function_exists( 'is_page_template' ) && is_page_template( array( 'page-lp', 'page-lp.html' ) ) );
 }
 
