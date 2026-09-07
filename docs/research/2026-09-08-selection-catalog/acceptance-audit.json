@@ -5145,7 +5145,7 @@
       "oracle": "各面で継承・独自・非表示を切り替え、別面の独自設定が混入せず、束追加の代表モックと PC / SP の導線重なりを確認できる",
       "polarity": "positive",
       "status": "partial",
-      "scope": "独立6面の共通/独自/非表示を既存のヘッダー・フッター・固定CTA・サイドバーへ接続。PC/SP・JS無効で型と配置を確認。theme_mod保存と共通変更後の独自ヘッダー維持、設定復元、未購入本文の非配信、バナー見出しのコントラストを404検査で照合。",
+      "scope": "独立6面の共通/独自/非表示を既存のヘッダー・フッター・固定CTA・サイドバーへ接続。PC/SP・JS無効で型と配置を確認。theme_mod保存と共通変更後の独自ヘッダー維持、設定復元、未購入本文の非配信、バナー見出しのコントラストと保存ナビの日本語文言を428検査で照合。",
       "remaining": [
         "5継承セットの追加例、全既存面、JS有効のドロワー操作、固定要素の被覆、導線の実在性、全認可・同意状態は未検証。",
         "サイトエディターからの設定操作と、学習の階層/前後ナビ自体の継承設定は未完了。"
@@ -5153,7 +5153,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "43ada52f7a413b6c0638253a51714568386c1a2d8e7c03ad16c49f4e27828deb",
+          "sha256": "b7b3aae7950551bfe0c0b0ab12a5512677f399714dd1856f2a74760d71347143",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -5558,7 +5558,31 @@
             "shared-update-own-isolation:content_learning",
             "shared-update-own-isolation:content_site",
             "settings-restored",
-            "sources-unchanged"
+            "sources-unchanged",
+            "navigation-labels:content_paid:site:pc",
+            "navigation-labels:content_paid:own:pc",
+            "navigation-labels:content_interview:site:pc",
+            "navigation-labels:content_interview:own:pc",
+            "navigation-labels:content_blp:site:pc",
+            "navigation-labels:content_blp:own:pc",
+            "navigation-labels:content_lp:site:pc",
+            "navigation-labels:content_lp:own:pc",
+            "navigation-labels:content_learning:site:pc",
+            "navigation-labels:content_learning:own:pc",
+            "navigation-labels:content_site:site:pc",
+            "navigation-labels:content_site:own:pc",
+            "navigation-labels:content_paid:site:sp",
+            "navigation-labels:content_paid:own:sp",
+            "navigation-labels:content_interview:site:sp",
+            "navigation-labels:content_interview:own:sp",
+            "navigation-labels:content_blp:site:sp",
+            "navigation-labels:content_blp:own:sp",
+            "navigation-labels:content_lp:site:sp",
+            "navigation-labels:content_lp:own:sp",
+            "navigation-labels:content_learning:site:sp",
+            "navigation-labels:content_learning:own:sp",
+            "navigation-labels:content_site:site:sp",
+            "navigation-labels:content_site:own:sp"
           ]
         }
       ]
@@ -5569,7 +5593,7 @@
       "oracle": "継承解除を非表示に固定する、束の追加で既存値が壊れる、または見た目の off で共通認可・同意を解除すれば FAIL",
       "polarity": "negative",
       "status": "partial",
-      "scope": "独立6面の共通/独自/非表示を既存のヘッダー・フッター・固定CTA・サイドバーへ接続。PC/SP・JS無効で型と配置を確認。theme_mod保存と共通変更後の独自ヘッダー維持、設定復元、未購入本文の非配信、バナー見出しのコントラストを404検査で照合。",
+      "scope": "独立6面の共通/独自/非表示を既存のヘッダー・フッター・固定CTA・サイドバーへ接続。PC/SP・JS無効で型と配置を確認。theme_mod保存と共通変更後の独自ヘッダー維持、設定復元、未購入本文の非配信、バナー見出しのコントラストと保存ナビの日本語文言を428検査で照合。",
       "remaining": [
         "5継承セットの追加例、全既存面、JS有効のドロワー操作、固定要素の被覆、導線の実在性、全認可・同意状態は未検証。",
         "サイトエディターからの設定操作と、学習の階層/前後ナビ自体の継承設定は未完了。"
@@ -5577,7 +5601,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "43ada52f7a413b6c0638253a51714568386c1a2d8e7c03ad16c49f4e27828deb",
+          "sha256": "b7b3aae7950551bfe0c0b0ab12a5512677f399714dd1856f2a74760d71347143",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -5982,7 +6006,31 @@
             "shared-update-own-isolation:content_learning",
             "shared-update-own-isolation:content_site",
             "settings-restored",
-            "sources-unchanged"
+            "sources-unchanged",
+            "navigation-labels:content_paid:site:pc",
+            "navigation-labels:content_paid:own:pc",
+            "navigation-labels:content_interview:site:pc",
+            "navigation-labels:content_interview:own:pc",
+            "navigation-labels:content_blp:site:pc",
+            "navigation-labels:content_blp:own:pc",
+            "navigation-labels:content_lp:site:pc",
+            "navigation-labels:content_lp:own:pc",
+            "navigation-labels:content_learning:site:pc",
+            "navigation-labels:content_learning:own:pc",
+            "navigation-labels:content_site:site:pc",
+            "navigation-labels:content_site:own:pc",
+            "navigation-labels:content_paid:site:sp",
+            "navigation-labels:content_paid:own:sp",
+            "navigation-labels:content_interview:site:sp",
+            "navigation-labels:content_interview:own:sp",
+            "navigation-labels:content_blp:site:sp",
+            "navigation-labels:content_blp:own:sp",
+            "navigation-labels:content_lp:site:sp",
+            "navigation-labels:content_lp:own:sp",
+            "navigation-labels:content_learning:site:sp",
+            "navigation-labels:content_learning:own:sp",
+            "navigation-labels:content_site:site:sp",
+            "navigation-labels:content_site:own:sp"
           ]
         }
       ]

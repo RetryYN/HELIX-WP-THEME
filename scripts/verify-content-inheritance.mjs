@@ -40,6 +40,7 @@ try{
     const lum=v=>v.map(n=>n/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4).reduce((sum,n,i)=>sum+n*[.2126,.7152,.0722][i],0);
     return es.length>0&&es.every(e=>{const colors=(getComputedStyle(e).backgroundImage.match(/rgb\([^)]*\)/g)||[]).map(rgb);if(colors.length<2)return false;const brightest=[0,1,2].map(i=>Math.max(...colors.map(v=>v[i])));const text=lum(rgb(getComputedStyle(e.querySelector('b')).color));const back=lum(brightest);return (Math.max(text,back)+.05)/(Math.min(text,back)+.05)>=4.5;});
    }));
+   if(mode!=='off')check(`navigation-labels:${label}`,JSON.stringify([...new Set(await page.locator('.wt-header .wp-block-navigation-item__content').allTextContents())])===JSON.stringify(['記事を読む','人を知る','学習・ヘルプ','会社案内']));
    check(`native-removed:${label}`,await page.locator('.wtcf-header,.wtcf-footer,.wtsite-header,.wtsite-footer').count()===0);
    check(`reflow:${label}`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
    if(face==='content_paid')check(`access:${label}`,!(await page.content()).includes('この段落は購入者向けの検証本文です'));

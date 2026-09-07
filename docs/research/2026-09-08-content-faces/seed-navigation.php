@@ -9,7 +9,7 @@ if ( ! $navigation ) {
 	foreach ( $links as $label => $route ) {
 		$content .= '<!-- wp:navigation-link ' . wp_json_encode( array( 'label' => $label, 'url' => home_url( $route ), 'kind' => 'custom' ) ) . ' /-->' . "\n";
 	}
-	$id = wp_insert_post( array( 'post_type' => 'wp_navigation', 'post_status' => 'publish', 'post_name' => 'helix-content-navigation', 'post_title' => '共通ナビゲーション', 'post_content' => $content ), true );
+	$id = wp_insert_post( array( 'post_type' => 'wp_navigation', 'post_status' => 'publish', 'post_name' => 'helix-content-navigation', 'post_title' => '共通ナビゲーション', 'post_content' => wp_slash( $content ) ), true );
 	if ( is_wp_error( $id ) ) { throw new RuntimeException( $id->get_error_message() ); }
 	$navigation = get_post( $id );
 }
