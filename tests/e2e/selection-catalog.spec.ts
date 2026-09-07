@@ -107,3 +107,24 @@ test('site guide collection exposes eleven paired pages and the live pricing rou
   await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', 'http://127.0.0.1:8098/site-pricing/');
   await expect(page.locator('#detail')).toContainText('WT-FR-PAGE-01');
 });
+
+test('quality comparison opens from catalog with paired evidence and a return path', async ({ page }) => {
+  await page.getByRole('link', { name: '常設案内の改善を、変更前後で比較する →' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('押せる領域を広げる');
+  await expect(page.locator('figure')).toHaveCount(8);
+  await expect(page.locator('table')).toContainText('370');
+  for (const image of await page.locator('img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((e: HTMLImageElement) => e.complete && e.naturalWidth > 0)).toBe(true);
+  }
+  await page.setViewportSize({ width: 375, height: 812 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  for (const name of ['変更前の測定', '変更後の測定']) {
+    const href = await page.getByRole('link', { name, exact: true }).getAttribute('href');
+    const response = await page.request.get(new URL(href!, page.url()).href);
+    expect(response.ok()).toBe(true);
+    expect((await response.json()).completed).toBe(true);
+  }
+  await page.getByRole('link', { name: '← 選択カタログへ' }).click();
+  await expect(page.locator('.tile-open').first()).toBeVisible();
+});

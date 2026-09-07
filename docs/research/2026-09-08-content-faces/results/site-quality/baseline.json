@@ -1,0 +1,5030 @@
+{
+  "schema": "wt-site-quality.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-page-quality.mjs": "57f93a89429260a765ca1b496d02e2d259c84ce36924cb586c2b70acf93cced2",
+    "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "327c297d445385489a956e2e9e48997c2329d2600f352b1b23f23bb5ee743469",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "aa34c70aaed927625a7a4602350145ff67f6a2e9c77247ecfc6cf6016b9977cb",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "7cc5f31dcede23e5bd0a6ed2f810f4f9f2b6164855f33ab4a20aa691ef4778b4"
+  },
+  "summary": {
+    "checks": 265,
+    "failed": 44,
+    "undersizedTargets": 370
+  },
+  "rows": [
+    {
+      "name": "response:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:company:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:service:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:pricing:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:careers:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:contact:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:privacy:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:commerce:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:transmissions:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:accessibility:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:locations:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:terms:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:company:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:service:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:pricing:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:careers:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:contact:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:privacy:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:commerce:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:transmissions:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:accessibility:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:locations:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:terms:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:company:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:service:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:pricing:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:careers:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:contact:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:privacy:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:commerce:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:transmissions:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:accessibility:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:locations:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "target-size:terms:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "body-size:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:company:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:service:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:pricing:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:careers:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:contact:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:privacy:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:commerce:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:transmissions:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:accessibility:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:locations:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "target-size:terms:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "body-size:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-focus:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ],
+  "measurements": [
+    {
+      "label": "company:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "私たちが大切にすること",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "一緒に考え、確かめる",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "採用 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "拠点・アクセス →",
+          "width": 142.03125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "service:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "01 現状を読む",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "02 構造を組み立てる",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "03 試して見直す",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "対象外の作業",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "pricing:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "追加費用と契約前の確認",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "販売に関する表示 →",
+          "width": 160.21875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        24,
+        17,
+        17,
+        17,
+        24,
+        17,
+        17,
+        17,
+        24,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "careers:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "仕事の進め方",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "募集状況",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "contact:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "受付先の確認",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "受付例を開く →",
+          "width": 173.53125,
+          "height": 64.296875
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "privacy:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "対象となる情報",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "保管・照会の窓口",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先 →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "commerce:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "価格・追加費用",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "支払い・提供・変更の条件",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "transmissions:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "変更時の扱い",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "accessibility:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "確認する使い方",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "対象範囲と残る課題",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "locations:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "訪問の前に",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "オンラインでの相談",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "terms:pc:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "掲載内容の扱い",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "外部リンクと更新",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "company:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "私たちが大切にすること",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "一緒に考え、確かめる",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "採用 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "拠点・アクセス →",
+          "width": 142.03125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "service:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "01 現状を読む",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "02 構造を組み立てる",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "03 試して見直す",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "対象外の作業",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "pricing:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "追加費用と契約前の確認",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "販売に関する表示 →",
+          "width": 160.21875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        24,
+        17,
+        17,
+        17,
+        24,
+        17,
+        17,
+        17,
+        24,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "careers:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "仕事の進め方",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "募集状況",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "contact:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "受付先の確認",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "受付例を開く →",
+          "width": 173.53125,
+          "height": 64.296875
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "privacy:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "対象となる情報",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "保管・照会の窓口",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先 →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "commerce:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "価格・追加費用",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "支払い・提供・変更の条件",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "transmissions:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "変更時の扱い",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "accessibility:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "確認する使い方",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "対象範囲と残る課題",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "locations:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "訪問の前に",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "オンラインでの相談",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "terms:pc:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 46.78125
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "掲載内容の扱い",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "外部リンクと更新",
+          "width": 266.46875,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "company:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "私たちが大切にすること",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "一緒に考え、確かめる",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "採用 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "拠点・アクセス →",
+          "width": 142.03125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "service:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "01 現状を読む",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "02 構造を組み立てる",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "03 試して見直す",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "対象外の作業",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "pricing:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "追加費用と契約前の確認",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "販売に関する表示 →",
+          "width": 160.21875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        18.4125,
+        17,
+        17,
+        17,
+        18.4125,
+        17,
+        17,
+        17,
+        18.4125,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "careers:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "仕事の進め方",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "募集状況",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "contact:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "受付先の確認",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "受付例を開く →",
+          "width": 173.53125,
+          "height": 64.296875
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "privacy:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "対象となる情報",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "保管・照会の窓口",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先 →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "commerce:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "価格・追加費用",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "支払い・提供・変更の条件",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "transmissions:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "変更時の扱い",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "accessibility:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "確認する使い方",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "対象範囲と残る課題",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "locations:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "訪問の前に",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "オンラインでの相談",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "terms:sp:js-true",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "掲載内容の扱い",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "外部リンクと更新",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "company:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "私たちが大切にすること",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "一緒に考え、確かめる",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "採用 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "拠点・アクセス →",
+          "width": 142.03125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "service:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "01 現状を読む",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "02 構造を組み立てる",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "03 試して見直す",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "対象外の作業",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "pricing:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "追加費用と契約前の確認",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "販売に関する表示 →",
+          "width": 160.21875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        18.4125,
+        17,
+        17,
+        17,
+        18.4125,
+        17,
+        17,
+        17,
+        18.4125,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "careers:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "仕事の進め方",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "募集状況",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "contact:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "受付先の確認",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "受付例を開く →",
+          "width": 173.53125,
+          "height": 64.296875
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "サービス →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "privacy:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "対象となる情報",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "保管・照会の窓口",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先 →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "commerce:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "価格・追加費用",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "支払い・提供・変更の条件",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "料金 →",
+          "width": 56.171875,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "transmissions:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "変更時の扱い",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "accessibility:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "確認する使い方",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "対象範囲と残る課題",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "locations:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "訪問の前に",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "オンラインでの相談",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内 →",
+          "width": 90.859375,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    },
+    {
+      "label": "terms:sp:js-false",
+      "links": [
+        {
+          "text": "HELIXDESIGN & EDITORIAL",
+          "width": 141.953125,
+          "height": 39.515625
+        },
+        {
+          "text": "サービス",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "料金",
+          "width": 34.6875,
+          "height": 46.359375
+        },
+        {
+          "text": "会社案内",
+          "width": 69.375,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ",
+          "width": 86.703125,
+          "height": 46.359375
+        },
+        {
+          "text": "掲載内容の扱い",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "外部リンクと更新",
+          "width": 327,
+          "height": 40.65625
+        },
+        {
+          "text": "プライバシー →",
+          "width": 125.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "問い合わせ →",
+          "width": 108.203125,
+          "height": 46.359375
+        },
+        {
+          "text": "プライバシー",
+          "width": 85.765625,
+          "height": 40.65625
+        },
+        {
+          "text": "販売に関する表示",
+          "width": 114.734375,
+          "height": 40.65625
+        },
+        {
+          "text": "外部送信先",
+          "width": 71.703125,
+          "height": 40.65625
+        },
+        {
+          "text": "アクセシビリティ",
+          "width": 113.1875,
+          "height": 40.65625
+        },
+        {
+          "text": "利用案内",
+          "width": 57.375,
+          "height": 40.65625
+        }
+      ],
+      "body": [
+        17,
+        17,
+        17
+      ],
+      "overflow": 0,
+      "focus": {
+        "skip": true,
+        "width": 171.203125,
+        "height": 54,
+        "inside": true,
+        "outline": true
+      }
+    }
+  ],
+  "shots": [
+    {
+      "file": "before-company-pc.jpg",
+      "key": "company",
+      "device": "pc",
+      "width": 1440
+    },
+    {
+      "file": "before-pricing-pc.jpg",
+      "key": "pricing",
+      "device": "pc",
+      "width": 1440
+    },
+    {
+      "file": "before-company-sp.jpg",
+      "key": "company",
+      "device": "sp",
+      "width": 375
+    },
+    {
+      "file": "before-pricing-sp.jpg",
+      "key": "pricing",
+      "device": "sp",
+      "width": 375
+    }
+  ]
+}
