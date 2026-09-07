@@ -109,3 +109,7 @@ HELIX runtime は `npm run helix -- status` で確認する。2026-09-08 の確�
 ## WT-EVT-0307: 掲載状態の取りこぼし
 
 公開後に確認メタデータだけを変更した場合の公開継続を実測。WT-FR-INTERVIEW-01 revision 3とWT-AC-INTERVIEW-01Cへ、確認取り消し・不正人物参照・確認文書削除で公開解除し、再確認だけで自動再公開しない条件を追加した。検証前後と手順は[掲載状態の再確認](../research/2026-09-08-content-faces/interview-lifecycle-plan.md)。全132要求・289 ACの再現は継続中。
+
+## WT-EVT-0308: 学習検索の復帰
+
+範囲外ページを0件と誤表示する問題を実測し、WT-FR-LEARN-01 revision 2 / WT-AC-LEARN-01Cへ件数保持・有効ページ復帰・検索条件の扱いを明記。[実測と再現手順](../research/2026-09-08-content-faces/learning-plan.md)を参照。全132要求・289 ACの範囲を維持する。

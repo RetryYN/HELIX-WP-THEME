@@ -76,7 +76,7 @@ if (fs.existsSync(path.join(root, learningPath))) {
     if (!/^[a-z0-9-]+\.jpg$/.test(shot.file) || !['pc', 'sp'].includes(shot.dev)) throw Error('Invalid learning screenshot');
     if (!fs.existsSync(path.join(root, path.dirname(learningPath), shot.file))) throw Error('Missing learning screenshot');
     const id = `learning:${shot.file.replace(/-(?:pc|sp)\.jpg$/, '')}`;
-    const label = { 'learning-index': '学習・ヘルプの入口', course: '講座の全体像', lesson: 'レッスンと階層ナビ', glossary: '用語集と索引', help: 'FAQ・ヘルプ', 'learning-empty': '検索のゼロ件案内' }[shot.part];
+    const label = { 'learning-index': '学習・ヘルプの入口', course: '講座の全体像', lesson: 'レッスンと階層ナビ', glossary: '用語集と索引', help: 'FAQ・ヘルプ', 'learning-empty': '検索のゼロ件案内', 'learning-recovered': '存在しないページからの復帰' }[shot.part];
     const entry = entries.get(id) || { id, face: 'learning', part: 'content-learning', label, variant: shot.part,
       purpose: '学びを支える', group: 'ページ・本文', images: {}, requirementIds: [], demoRoute: shot.route,
       description: 'WordPressの公開学習投稿を表示。階層・前後のレッスン・ページ内目次を分け、用語索引・FAQ・検索とゼロ件からの案内を確認します。',

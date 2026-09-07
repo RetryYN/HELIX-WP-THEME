@@ -25,7 +25,9 @@ function wtcf_render_learning() {
 	<div class="wtlearn-results"><h2><?php echo $results['query'] !== '' ? '「' . esc_html( $results['query'] ) . '」の検索結果' : '学習・ヘルプ一覧'; ?></h2><p><?php echo (int) $results['count']; ?>件</p></div>
 	<?php if ( ! $results['items'] ) : ?><section class="wtlearn-empty"><h2>一致する内容が見つかりませんでした</h2><p>短い言葉で検索するか、一覧からテーマを選んでください。</p><?php echo wtcf_link( $archive, '一覧へ戻る' ); ?></section><?php endif; ?>
 	<div class="wtcf-list"><?php foreach ( $results['items'] as $item ) : ?><article><h2><?php echo wtcf_link( $item['url'], $item['title'] ); ?></h2><p><?php echo esc_html( $item['summary'] ); ?></p></article><?php endforeach; ?></div>
+	<?php if ( $results['adjusted'] && $results['pages'] ) : ?><p class="wtlearn-page-adjustment">指定されたページがないため、最後のページを表示しています。</p><?php endif; ?>
 	<nav class="wtlearn-pagination" aria-label="一覧のページ送り"><?php
+	if ( $results['pages'] ) { echo '<span aria-current="page">' . (int) $results['page'] . ' / ' . (int) $results['pages'] . ' ページ</span>'; }
 	if ( $results['page'] > 1 ) { echo wtcf_link( add_query_arg( array( 'learn_q' => $results['query'], 'learn_page' => $results['page'] - 1 ), $archive ), '前のページ' ); }
 	if ( $results['page'] < $results['pages'] ) { echo wtcf_link( add_query_arg( array( 'learn_q' => $results['query'], 'learn_page' => $results['page'] + 1 ), $archive ), '次のページ' ); }
 	?></nav>

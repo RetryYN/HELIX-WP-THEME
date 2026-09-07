@@ -49,14 +49,16 @@ node scripts/build-selection-catalog.mjs
 
 ## 学習・支援系の追加
 
-`seed.php`は学習データも投入する。起動済みlabで学習だけを更新する場合は同じ専用WP-CLIコンテナで`seed-learning.php`を実行する。`node scripts/verify-learning-faces.mjs`で講座/レッスン/目次/用語/FAQ/検索を検証し、結果と12画像を`results/learning/`へ保存する。本文は標準の見出し・段落ブロックを正本とし、目次と区画はその読み取り結果。メタに別の本文を保持しない。検索はタイトルだけでなく本文内の用語も対象にする。
+`seed.php`は学習データも投入する。起動済みlabで学習だけを更新する場合は同じ専用WP-CLIコンテナで`seed-learning.php`を実行する。`node scripts/verify-learning-faces.mjs`で講座/レッスン/目次/用語/FAQ/検索を検証し、結果と14画像を`results/learning/`へ保存する。本文は標準の見出し・段落ブロックを正本とし、目次と区画はその読み取り結果。メタに別の本文を保持しない。検索はタイトルだけでなく本文内の用語も対象にする。
 
 公開投稿7件・下書き1件、講座配下の3レッスンをfixtureとして持つ。専用環境の管理検査は学習投稿の親ID・順序・標準ブロック本文も照合する。共通継承/独自/非表示の束への接続は未完了。検索noindexはlab全体のnoindex設定と重なるため、製品SEO契約の単独達成証拠には使わない。
 
 ## 同期前の検証
 
-表示・アクセス191項目、学習180項目、管理5項目を確認。[標準パスワード保護](results/passwords.json)も5種別のHTML/REST計10項目を確認した。独自表示でも保護フォームへ分岐し、参照カードのHTML生成はテーマが担当する。パスワード検査は専用fixtureへ一時設定して復元するため、管理検査と同様に他のWP検査・撮影と同時実行しない。
+表示・アクセス191項目、学習252項目、公開状態変更15項目、管理5項目を確認。[標準パスワード保護](results/passwords.json)も5種別のHTML/REST計10項目を確認した。独自表示でも保護フォームへ分岐し、参照カードのHTML生成はテーマが担当する。パスワード検査は専用fixtureへ一時設定して復元するため、管理検査と同様に他のWP検査・撮影と同時実行しない。
 
 ## インタビューの掲載状態
 
 [状態遷移の手順と範囲](interview-lifecycle-plan.md)、[修正前の不成立記録](results/interview-lifecycle-before.json)、[現行の検証結果](results/interview-lifecycle.json)。`node scripts/verify-interview-lifecycle.mjs`で専用の一時投稿を使い、確認取り消し・人物参照破損・公開中の確認文書削除を検査する。他のWP検査と同時実行しない。公開不可となった投稿は下書きに戻り、確認を戻しただけでは再公開しない。
+
+学習検索の範囲外ページからの復帰もPC/SP画像で比較できる。`node scripts/verify-learning-publication.mjs`は専用の一時投稿を作り、同じ検索URLを再読込して公開件数の減少・非公開本文の除外・全件非公開後の一覧復帰を検証する。他のWP検査と同時実行せず、終了時に作成した投稿だけを削除する。

@@ -2,15 +2,15 @@
   "schema": "wt-learning-verification.v1",
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-learning-faces.mjs": "91a177b7cad86d248da924e28285a00bae86b91ea3eadf7077453f9afb96207e",
-    "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+    "scripts/verify-learning-faces.mjs": "c3285b5a5dfb8998d41e61596d2bf7e2e49c8632b1094e244e57c1de24dd18c6",
+    "docs/research/2026-09-08-content-faces/plugin/learning.php": "c7b2a602bf548376c03c1ba0a6cbbea3dc720388216329b19124aa3c7488295a",
     "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
     "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "b5d359a26d9fc25eaa0ef09d9de41a71b705d0cdee65b2dfe8a281800b44977f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "ee9f84d75cc065cd5a8123a2b02574897f09370610c92a1978147f95d206ea13",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e"
   },
   "scope": "Learning hierarchy, sequence, glossary, help and public search in the dedicated WordPress PoC",
-  "pass": 180,
+  "pass": 252,
   "fail": 0,
   "rows": [
     {
@@ -138,6 +138,70 @@
       "pass": true
     },
     {
+      "name": "recovery:zero-no-pagination:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:zero-to-list:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999999999999999999999999999999:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999999999999999999999999999999:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999999999999999999999999999999:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:0:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:-5:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:wrong:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1.5:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1e8:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:[]:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:preserve-query:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:query-resets-page:pc:js-true",
+      "pass": true
+    },
+    {
       "name": "reflow:learning-index:pc:js-true",
       "pass": true
     },
@@ -183,6 +247,14 @@
     },
     {
       "name": "heading:learning-empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-recovered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-recovered:pc:js-true",
       "pass": true
     },
     {
@@ -318,6 +390,70 @@
       "pass": true
     },
     {
+      "name": "recovery:zero-no-pagination:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:zero-to-list:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999999999999999999999999999999:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999999999999999999999999999999:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999999999999999999999999999999:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:0:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:-5:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:wrong:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1.5:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1e8:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:[]:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:preserve-query:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:query-resets-page:pc:js-false",
+      "pass": true
+    },
+    {
       "name": "reflow:learning-index:pc:js-false",
       "pass": true
     },
@@ -363,6 +499,14 @@
     },
     {
       "name": "heading:learning-empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-recovered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-recovered:pc:js-false",
       "pass": true
     },
     {
@@ -498,6 +642,70 @@
       "pass": true
     },
     {
+      "name": "recovery:zero-no-pagination:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:zero-to-list:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999999999999999999999999999999:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999999999999999999999999999999:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999999999999999999999999999999:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:0:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:-5:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:wrong:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1.5:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1e8:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:[]:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:preserve-query:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recovery:query-resets-page:sp:js-true",
+      "pass": true
+    },
+    {
       "name": "reflow:learning-index:sp:js-true",
       "pass": true
     },
@@ -543,6 +751,14 @@
     },
     {
       "name": "heading:learning-empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-recovered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-recovered:sp:js-true",
       "pass": true
     },
     {
@@ -678,6 +894,70 @@
       "pass": true
     },
     {
+      "name": "recovery:zero-no-pagination:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:zero-to-list:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-count:999999999999999999999999999999999999:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:clamped-last:999999999999999999999999999999999999:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:last-to-first:999999999999999999999999999999999999:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:0:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:-5:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:wrong:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1.5:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:1e8:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:invalid:[]:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:preserve-query:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recovery:query-resets-page:sp:js-false",
+      "pass": true
+    },
+    {
       "name": "reflow:learning-index:sp:js-false",
       "pass": true
     },
@@ -723,6 +1003,14 @@
     },
     {
       "name": "heading:learning-empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-recovered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-recovered:sp:js-false",
       "pass": true
     },
     {
@@ -820,6 +1108,20 @@
       ]
     },
     {
+      "file": "learning-recovered-pc.jpg",
+      "face": "learning",
+      "part": "learning-recovered",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/?learn_page=999999999",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
       "file": "learning-index-sp.jpg",
       "face": "learning",
       "part": "learning-index",
@@ -897,6 +1199,20 @@
       "role": "anonymous",
       "dev": "sp",
       "route": "/learn/?learn_q=not-found",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "learning-recovered-sp.jpg",
+      "face": "learning",
+      "part": "learning-recovered",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/?learn_page=999999999",
       "requirement_ids": [
         "WT-FR-LEARN-01",
         "WT-FR-PAGE-02",

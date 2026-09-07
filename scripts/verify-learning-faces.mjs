@@ -60,7 +60,28 @@ try {
       check(`search:noindex:${suffix}:${query.length}`, (await page.locator('meta[name="robots"]').getAttribute('content')).includes('noindex'));
       check(`search:no-injected-image:${suffix}:${query.length}`, await page.locator('.wtlearn img').count() === 0);
     }
-    const examples = [['learning-index', '/learn/'], ['course', course], ['lesson', new URL(lessons[1]).pathname], ['glossary', '/learn/glossary/'], ['help', '/learn/help/'], ['learning-empty', '/learn/?learn_q=not-found']];
+    // Recovery must be exercised by following links and submitting the form.
+    await page.goto(base + '/learn/?learn_q=not-found&learn_page=999999999');
+    check(`recovery:zero-no-pagination:${suffix}`, await page.locator('.wtlearn-empty').count() === 1 && await page.locator('[aria-label="一覧のページ送り"] a').count() === 0);
+    await page.locator('.wtlearn-empty a').click();
+    check(`recovery:zero-to-list:${suffix}`, new URL(page.url()).search === '' && await page.locator('.wtcf-list article').count() === 6);
+    for (const number of ['999999999', '999999999999999999999999999999999999']) {
+      await page.goto(base + '/learn/?learn_page=' + number);
+      check(`recovery:clamped-count:${number}:${suffix}`, (await page.locator('.wtlearn-results').innerText()).includes('7件') && await page.locator('.wtcf-list article').count() === 1);
+      check(`recovery:clamped-last:${number}:${suffix}`, await page.locator('[aria-current="page"]').innerText() === '2 / 2 ページ' && await page.locator('.wtlearn-page-adjustment').count() === 1);
+      await page.getByRole('link', { name: '前のページ', exact: true }).click();
+      check(`recovery:last-to-first:${number}:${suffix}`, await page.locator('.wtcf-list article').count() === 6);
+    }
+    for (const invalid of ['0', '-5', 'wrong', '1.5', '1e8', '[]']) {
+      const query = invalid === '[]' ? 'learn_page[]=2' : 'learn_page=' + invalid;
+      await page.goto(base + '/learn/?' + query);
+      check(`recovery:invalid:${invalid}:${suffix}`, await page.locator('.wtcf-list article').count() === 6 && await page.locator('[aria-current="page"]').innerText() === '1 / 2 ページ');
+    }
+    await page.goto(base + '/learn/?learn_q=' + encodeURIComponent('読み手') + '&learn_page=999999999');
+    check(`recovery:preserve-query:${suffix}`, await page.locator('#learn-query').inputValue() === '読み手' && await page.locator('.wtcf-list article').count() > 0 && (await page.locator('.wtlearn-results').innerText()).includes('「読み手」'));
+    await page.locator('#learn-query').fill('not-found'); await page.locator('.wtlearn-search button').click();
+    check(`recovery:query-resets-page:${suffix}`, !new URL(page.url()).searchParams.has('learn_page') && await page.locator('.wtlearn-empty').count() === 1);
+    const examples = [['learning-index', '/learn/'], ['course', course], ['lesson', new URL(lessons[1]).pathname], ['glossary', '/learn/glossary/'], ['help', '/learn/help/'], ['learning-empty', '/learn/?learn_q=not-found'], ['learning-recovered', '/learn/?learn_page=999999999']];
     for (const [face, route] of examples) {
       await page.goto(base + route);
       check(`reflow:${face}:${suffix}`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

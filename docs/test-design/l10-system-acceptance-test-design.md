@@ -159,3 +159,5 @@ pair freeze と G3 到達は主張しない。
 | WT-AT-LEARN-01 | WT-FR-LEARN-01 | WT-AC-LEARN-01A, WT-AC-LEARN-01B, WT-AC-LEARN-01C, WT-AC-LEARN-01D | scripts/verify-learning-faces.mjs、scripts/verify-content-management.py。講座/前後/目次/用語/FAQ/公開検索、PC/SP・JS無効 | 共通継承/独自/非表示への接続、全管理UIの検証 |
 
 WT-EVT-0307: WT-AT-INTERVIEW-01は公開→確認取り消し→再確認→明示再公開→人物参照破損→公開拒否→文書削除も対象とする。`scripts/verify-interview-lifecycle.mjs`で詳細/REST/一覧/検索/feed/参照カード/projectionを検査する。
+
+WT-EVT-0308: WT-AT-LEARN-01のAC-01Cはゼロ件からの復帰、巨大/不正/配列ページ番号、件数保持、最終→先頭のリンク、検索語の維持と新検索のページ解除をPC/SP・JS有効/無効で照合する。

@@ -5,11 +5,19 @@ defined( 'ABSPATH' ) || exit;
 function wtcf_learning_search() {
 	$query = isset( $_GET['learn_q'] ) && is_string( $_GET['learn_q'] ) ? sanitize_text_field( wp_unslash( $_GET['learn_q'] ) ) : '';
 	$query = mb_substr( $query, 0, 200 );
-	$page = isset( $_GET['learn_page'] ) && is_scalar( $_GET['learn_page'] ) ? max( 1, (int) $_GET['learn_page'] ) : 1;
-	$results = new WP_Query( array( 'post_type' => 'wt_learning', 'post_status' => 'publish', 's' => $query,
-		'posts_per_page' => 6, 'paged' => $page, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ) ) );
-	return array( 'query' => $query, 'page' => $page, 'pages' => (int) $results->max_num_pages,
-		'count' => (int) $results->found_posts, 'items' => array_map( 'wtcf_learning_item', $results->posts ) );
+	$raw_page = isset( $_GET['learn_page'] ) && is_string( $_GET['learn_page'] ) ? wp_unslash( $_GET['learn_page'] ) : '1';
+	$requested = ctype_digit( $raw_page ) ? max( 1, (int) $raw_page ) : 1;
+	$args = array( 'post_type' => 'wt_learning', 'post_status' => 'publish', 's' => $query,
+		'posts_per_page' => 6, 'paged' => 1, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ) );
+	// An empty, out-of-range WP_Query does not populate found_posts. Count from
+	// the first page before applying the requested offset, including huge inputs.
+	$first = new WP_Query( $args );
+	$pages = (int) $first->max_num_pages;
+	$page = min( $requested, max( 1, $pages ) );
+	$results = $first;
+	if ( $page > 1 ) { $args['paged'] = $page; $args['no_found_rows'] = true; $results = new WP_Query( $args ); }
+	return array( 'query' => $query, 'page' => $page, 'pages' => $pages, 'adjusted' => $requested !== $page,
+		'count' => (int) $first->found_posts, 'items' => array_map( 'wtcf_learning_item', $results->posts ) );
 }
 function wtcf_learning_item( $post ) {
 	return array( 'id' => $post->ID, 'title' => get_the_title( $post ), 'url' => get_permalink( $post ),
