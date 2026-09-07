@@ -1,7 +1,7 @@
 {
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-header-navigation.mjs": "cf69f0c9d5d14ed02da26fec1189ba9245f2452d9f249162097e5966746788bc",
+    "scripts/verify-header-navigation.mjs": "5423b07f8b616308db7cb0a5069b0a5ac3de6cd395fcd56f30613b5643f53b29",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "6b1e3c0d949e1cddf6b58bd31b3c2cb38a33f53634209ed2176817feb02fdf44",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "2bb2176d245a862ac2bc43fbad020830fd4992d21a121bc59b90c585f6974864",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "464838dcc303a9f847a58c2ddf1786e85d9afd418f14a550effb50072110abcb",
@@ -140,7 +140,19 @@
       "pass": true
     },
     {
+      "name": "layout-tokens-present",
+      "pass": true
+    },
+    {
+      "name": "layout-tokens:search",
+      "pass": true
+    },
+    {
       "name": "updated:search",
+      "pass": true
+    },
+    {
+      "name": "layout-tokens:nav",
       "pass": true
     },
     {
@@ -148,7 +160,15 @@
       "pass": true
     },
     {
+      "name": "layout-tokens:cta",
+      "pass": true
+    },
+    {
       "name": "updated:cta",
+      "pass": true
+    },
+    {
+      "name": "layout-tokens:announce",
       "pass": true
     },
     {
@@ -156,7 +176,15 @@
       "pass": true
     },
     {
+      "name": "layout-tokens:center",
+      "pass": true
+    },
+    {
       "name": "updated:center",
+      "pass": true
+    },
+    {
+      "name": "layout-tokens:two-rows",
       "pass": true
     },
     {
@@ -164,11 +192,23 @@
       "pass": true
     },
     {
+      "name": "layout-tokens:overlay",
+      "pass": true
+    },
+    {
       "name": "updated:overlay",
       "pass": true
     },
     {
+      "name": "layout-tokens:tel",
+      "pass": true
+    },
+    {
       "name": "updated:tel",
+      "pass": true
+    },
+    {
+      "name": "layout-tokens:band",
       "pass": true
     },
     {
@@ -181,6 +221,30 @@
     },
     {
       "name": "unpublished:trash",
+      "pass": true
+    },
+    {
+      "name": "empty:no-placeholder-links",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed",
+      "pass": true
+    },
+    {
+      "name": "invalid:array",
       "pass": true
     },
     {

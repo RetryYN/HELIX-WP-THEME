@@ -141,3 +141,21 @@ test('independent faces expose shared, own and off comparisons', async ({ page }
   await expect(page.locator('#detail')).toContainText('WT-FR-LEARN-01');
   await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', /content_chrome/);
 });
+
+
+test('navigation comparison exposes paired images and scoped verification', async ({ page }) => {
+  await page.getByRole('link', { name: '共通ナビの改善を、変更前後で比較する →' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('共通ヘッダーへ');
+  await expect(page.locator('figure')).toHaveCount(8);
+  for (const image of await page.locator('img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((e: HTMLImageElement) => e.complete && e.naturalWidth > 0)).toBe(true);
+  }
+  await page.setViewportSize({ width: 375, height: 812 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole('link', { name: '変更後の測定', exact: true }).click();
+  const result = await (await page.request.get(page.url())).json();
+  expect(result.completed).toBe(true);
+  expect(result.rows).toHaveLength(62);
+  expect(result.rows.every((row: { pass: boolean }) => row.pass)).toBe(true);
+});

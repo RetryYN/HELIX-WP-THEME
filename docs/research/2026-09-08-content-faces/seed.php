@@ -32,6 +32,7 @@ $ids['blp'] = wtcf_seed( 'wt_blp', 'before-redesign', '作り直す、その前�
 $ids['embedded'] = wtcf_seed( 'page', 'voices-in-context', '制作の考え方', '人物の詳細へつながる参照カード。', '[wtcf_interview_card slug="making-room"]', array() );
 require_once __DIR__ . '/seed-learning.php';
 require_once __DIR__ . '/seed-site-pages.php';
+require_once __DIR__ . '/seed-navigation.php';
 update_option( 'wtcf_fixture_ids', $ids, false );
 update_option( 'blog_public', 0 );
 update_option( 'permalink_structure', '/%postname%/' );

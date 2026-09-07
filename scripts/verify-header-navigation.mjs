@@ -25,7 +25,7 @@ try{
   await page.goto(base+route+',header:band');const label=`${device}:js-${js}`;
   const links=page.locator('.wt-header .wp-block-navigation:not(.wt-header__textnav) .wp-block-navigation-item__content');
   const labels=[...new Set(await links.allTextContents())];const matches=JSON.stringify(labels)===JSON.stringify(items.map(x=>x.label));
-  check(`stored-links:${label}`,matches);if(!matches)console.log('Observed navigation',label,labels);
+  check(`stored-links:${label}`,matches);
   if(matches){
    if(device==='sp'&&js){await page.locator('.wt-header .wp-block-navigation__responsive-container-open').click();await page.locator('.wt-header .is-menu-open').waitFor();}
    check(`visible:${label}`,await links.first().isVisible());
@@ -41,14 +41,29 @@ try{
  }
  wp(['post','update',String(id),'--post_content='+content([items[3],{...items[0],label:'最新の記事へ'}])]);
  const page=await browser.newPage();
+ await page.goto(base+route+',header:band');
+ const dimensions=()=>page.evaluate(()=>['--wp--style--global--content-size','--wp--style--global--wide-size'].map(key=>getComputedStyle(document.body).getPropertyValue(key).trim()));
+ const originalDimensions=await dimensions();
+ check('layout-tokens-present',originalDimensions.every(Boolean));
  for(const variant of ['search','nav','cta','announce','center','two-rows','overlay','tel','band']){
   await page.goto(base+route+',header:'+variant);
+  check(`layout-tokens:${variant}`,JSON.stringify(await dimensions())===JSON.stringify(originalDimensions));
   check(`updated:${variant}`,JSON.stringify([...new Set(await page.locator('.wt-header .wp-block-navigation:not(.wt-header__textnav) .wp-block-navigation-item__content').allTextContents())])===JSON.stringify(['会社案内','最新の記事へ']));
  }
  for(const status of ['draft','trash']){
   wp(['post','update',String(id),'--post_status='+status]);await page.goto(base+route+',header:band');
   check(`unpublished:${status}`,await page.locator('.wt-header .wp-block-navigation:not(.wt-header__textnav) .wp-block-navigation-item__content').count()===0);
  }
+ wp(['post','update',String(id),'--post_status=publish','--post_content=']);
+ await page.goto(base+route+',header:band');
+ check('empty:no-placeholder-links',await page.locator('.wt-header .wp-block-navigation-item__content').count()===0);
+ const wrongType=wp(['post','list','--post_type=wt_paid','--name=decision-design','--format=ids']);
+ for(const [label,value] of [['zero','0'],['missing','2147483647'],['wrong-type',wrongType],['malformed','invalid']]){
+  wp(['theme','mod','set','wt_content_navigation_ref',value]);await page.goto(base+route+',header:band');
+  check(`invalid:${label}`,await page.locator('.wt-header .wp-block-navigation-item__content').count()===0);
+ }
+ wp(['eval',"set_theme_mod('wt_content_navigation_ref',array(1));"]);await page.goto(base+route+',header:band');
+ check('invalid:array',await page.locator('.wt-header .wp-block-navigation-item__content').count()===0);
  wp(['theme','mod','remove','wt_content_navigation_ref']);await page.goto(base+route+',header:band');
  check('unset:no-placeholder-links',await page.locator('.wt-header .wp-block-navigation:not(.wt-header__textnav) .wp-block-navigation-item__content').count()===0);
  await page.close();completed=true;

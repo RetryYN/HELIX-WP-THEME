@@ -84,3 +84,7 @@ node scripts/build-selection-catalog.mjs
 個別デザインは`content_chrome:native`、既存の共通パーツは`content_chrome:shared`で選択する。例: 有料記事URLへ`?wt=content_chrome:shared,content_paid_head:own,own_content_paid_header:center,content_paid_side:article`を付ける。既存の`wt_opt`と同じtheme_modキー（例`wt_content_chrome`）へ保存できる。対象面の宣言はテーマの`config/content-chrome.json`。独自ヘッダー・フッター・固定CTA・サイドバーは面別の軸に分離し、共通設定のコピーを保持しない。
 
 `node scripts/verify-content-inheritance.mjs`は専用labの設定を一時変更・復元するため、他のWP検証と並行実行しない。6面の3状態をPC/SPで撮影し、404検査で共通/独自/非表示・保存設定の反映と面間の独立性を確認する。結果と画像は`results/inheritance/`、操作例は選択カタログの「共通設定の継承」。[確認範囲と残件](inheritance-plan.md)を参照。
+
+## 共通ヘッダーの保存ナビ
+
+[ナビ参照の確認範囲](header-navigation-plan.md)。`seed-navigation.php`でlabの初期ナビを作成する。再実行は編集済み選択を保持する。`node scripts/verify-header-navigation.mjs`は一時ナビの更新・非公開・空・不正参照とPC/SPの移動を実測し、終了時に設定を復元する。ほかの設定変更を伴うWP検証とは並行実行しない。
