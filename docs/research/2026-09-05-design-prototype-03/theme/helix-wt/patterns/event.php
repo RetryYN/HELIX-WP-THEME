@@ -54,6 +54,11 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <div class="wt-event-apply wt-event-apply--postcard"><div class="wt-event-apply__postcard"><div class="wt-event-apply__addr"><p class="wt-eyebrow">宛先</p><p><b>〒000-0000</b><br>設定された所在地<br>サンプル株式会社「秋のキャンペーン」係（架空）</p></div><div><p class="wt-eyebrow">必要事項</p><ol><li>郵便番号・住所・氏名・電話番号</li><li>希望の賞品（A 賞 / B 賞）</li><li>レシート原本（コピー不可）を貼付</li></ol><p class="wt-lp-form__note">当日消印有効。はがき応募（台帳 v2: other:postcard、D で 38%）。web 応募は <a class="wt-event-apply-link" href="#apply">フォーム</a> からも可（PoC のダミー）。</p></div></div></div>
 <div class="wt-event-apply wt-event-apply--messaging-app"><div class="wt-event-apply__app"><div><p>公式アカウントを友だち追加し、トーク画面からレシート画像を送って応募（台帳 v2: other:messaging-app、D で 25%）。</p><a class="wt-lp-cta-action wt-event-apply-link" href="#apply" rel="nofollow"><i class="wt-i wt-i--s wt-i--bubble" aria-hidden="true"></i> 友だち追加して応募</a><p class="wt-lp-form__note">サービス名・実 URL・QR は PoC のため置かない（ダミー模様）。</p></div><svg class="wt-event-apply__qr" viewBox="0 0 21 21" role="img" aria-label="QR コードのダミー模様（実コードではない）" width="120" height="120"><path fill="currentColor" d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0zM2 2h3v3H2zM16 2h3v3h-3zM2 16h3v3H2zM9 1h1v2H9zM11 0h1v3h-1zM9 5h3v1H9zM8 8h2v2H8zM11 8h1v1h-1zM13 9h2v1h-2zM16 8h1v3h-1zM18 9h3v1h-3zM9 11h1v3H9zM11 12h3v1h-3zM15 12h1v2h-1zM17 12h2v2h-2zM20 11h1v3h-1zM9 15h2v1H9zM12 15h1v3h-1zM14 16h3v1h-3zM18 15h1v2h-1zM20 16h1v2h-1zM9 18h1v3H9zM11 19h2v2h-2zM14 18h1v3h-1zM16 19h3v1h-3zM20 19h1v2h-1z"/></svg></div></div>
 <div class="wt-event-apply wt-event-apply--closed-notice" role="status"><i class="wt-i wt-i--l wt-i--info" aria-hidden="true"></i><div><b>本イベントの受付は終了しました。</b><p>次回開催のご案内はお知らせでお伝えします。<a href="/">お知らせを見る</a></p></div></div>
+<!-- /wp:html -->
+<!-- wp:group {"className":"wt-event-apply wt-event-apply--block-form","layout":{"type":"constrained"}} -->
+<div class="wp-block-group wt-event-apply wt-event-apply--block-form"><!-- wp:helix-wt/form {"hideTitle":true} /--></div>
+<!-- /wp:group -->
+<!-- wp:html -->
 </div></section>
 
 <section class="wt-event__section wt-event__section--access" id="access" aria-labelledby="event-access-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">ACCESS</p><h2 id="event-access-title">会場アクセス</h2>

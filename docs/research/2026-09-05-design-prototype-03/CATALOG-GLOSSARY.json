@@ -590,10 +590,11 @@
   },
   "lp-form": {
    "label": "LP 申込フォーム",
-   "desc": "相談・申込のフォーム区間（WT-EVT-0268、Claude 案）。既定は台帳の多数派 external。",
+   "desc": "相談・申込のフォーム区間（WT-EVT-0268、Claude 案）。既定は台帳の多数派 external。 段 13 で block（段 11 のフォームブロック）を追加。",
    "variants": {
     "external": "別ページのフォームへ遷移するボタン（所要時間・項目数を明示。台帳 7/14）。",
-    "inline": "ページ内に 5 項目（氏名・会社・メール・電話・相談内容）+ 同意チェックを埋め込む型。"
+    "inline": "ページ内に 5 項目（氏名・会社・メール・電話・相談内容）+ 同意チェックを埋め込む型。",
+    "block": "段 11 のフォームブロック（helix-wt/form）を区間に置く型（段 13、WT-EVT-0303「OK」= 置き換えず選択肢を足す）。種別は form_kind（既定 contact）、11 軸と入力 → 確認 → 完了の遷移はフォーム面と同じ。既存の external / inline は残す。"
    }
   },
   "lp-line": {
@@ -715,7 +716,7 @@
   },
   "event-apply": {
    "label": "申込",
-   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。段 8（台帳 v2 主集計 n=40、複数選択）: external-form 45% / closed-notice 32% / ticket 15% / postcard 8% / receipt-upload 8% / messaging-app 5%。段 9（WT-EVT-0288）で receipt-upload / postcard / messaging-app を語彙へ正式採用。",
+   "desc": "参加申込の型。台帳（主集計 n=8）inline-form 38% / closed-notice 25% / external-form 25% / ticket-link 12%。フォームは送信しない（PoC）。段 8（台帳 v2 主集計 n=40、複数選択）: external-form 45% / closed-notice 32% / ticket 15% / postcard 8% / receipt-upload 8% / messaging-app 5%。段 9（WT-EVT-0288）で receipt-upload / postcard / messaging-app を語彙へ正式採用。 段 13 で block-form（段 11 のフォームブロック）を追加。",
    "variants": {
     "inline-form": "ページ内フォーム（氏名 / 会社 / メール / 区分 / 同意）（既定）。",
     "external-form": "別ページのフォームへ遷移（リンク先はダミー）。",
@@ -723,7 +724,8 @@
     "closed-notice": "受付終了の告知。hero の申込ボタンと固定導線も消す。",
     "receipt-upload": "レシート撮影で応募（v2 D で 38%）。買う → 撮る → 送る の 3 段 + 画像選択ボタン（PoC のため選択・送信しない）。",
     "postcard": "はがき応募（v2 D で 38%）。宛先 + 必要事項。web 応募の導線も併記。",
-    "messaging-app": "メッセージアプリの公式アカウントから応募（v2 D で 25%）。サービス名・実 URL・QR は置かない（ダミー模様）。"
+    "messaging-app": "メッセージアプリの公式アカウントから応募（v2 D で 25%）。サービス名・実 URL・QR は置かない（ダミー模様）。",
+    "block-form": "段 11 のフォームブロック（helix-wt/form）を申込区間に置く型（段 13、WT-EVT-0303）。種別は面の文脈で apply（氏名 / メール / 電話 / 参加形式 / 人数 / 本文 / 同意）、完了は /thanks/ へ種別を引き継ぐ。既存の 7 型は残す。"
    }
   },
   "event-status": {
