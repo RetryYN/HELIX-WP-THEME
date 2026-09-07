@@ -1,0 +1,790 @@
+{
+  "schema": "wt-acceptance-evidence.v1",
+  "inspected_event_head": "WT-EVT-0306",
+  "policy": "受入条件本文を精読したPoC範囲の対応付け。既存試作の成功件数を自動達成へ換算しない。G3や製品全体の受入を主張しない。",
+  "cases": {
+    "WT-AC-PAID-01A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "b76d06f78ef8703c",
+      "oracle_sha256": "6d101858915e9139f624f28aad92d8f6ebdf220752359ac8ea801e1512a39dca",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe"
+      },
+      "scope": "独立CPT、買い切り/購読、一覧/販売/試読/本文、同一セッションの未ログイン→対象権限ログイン→終了をローカルfixtureで照合。実決済成立を検証した意味ではない。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "access:anonymous:oneoff:body",
+            "access:anonymous:oneoff:preview",
+            "access:anonymous:oneoff:sales",
+            "access:anonymous:subscription:body",
+            "access:anonymous:subscription:preview",
+            "access:anonymous:subscription:sales",
+            "access:expired:oneoff:body",
+            "access:expired:oneoff:preview",
+            "access:expired:oneoff:sales",
+            "access:expired:subscription:body",
+            "access:expired:subscription:preview",
+            "access:expired:subscription:sales",
+            "access:none:oneoff:body",
+            "access:none:oneoff:preview",
+            "access:none:oneoff:sales",
+            "access:none:subscription:body",
+            "access:none:subscription:preview",
+            "access:none:subscription:sales",
+            "access:oneoff:oneoff:body",
+            "access:oneoff:oneoff:preview",
+            "access:oneoff:oneoff:sales",
+            "access:oneoff:subscription:body",
+            "access:oneoff:subscription:preview",
+            "access:oneoff:subscription:sales",
+            "access:other_product:oneoff:body",
+            "access:other_product:oneoff:preview",
+            "access:other_product:oneoff:sales",
+            "access:other_product:subscription:body",
+            "access:other_product:subscription:preview",
+            "access:other_product:subscription:sales",
+            "access:subscription:oneoff:body",
+            "access:subscription:oneoff:preview",
+            "access:subscription:oneoff:sales",
+            "access:subscription:subscription:body",
+            "access:subscription:subscription:preview",
+            "access:subscription:subscription:sales",
+            "display-purpose:oneoff:sales:pc",
+            "display-purpose:oneoff:sales:sp",
+            "display-purpose:paid:list:pc",
+            "display-purpose:paid:list:sp",
+            "display-purpose:subscription:sales:pc",
+            "display-purpose:subscription:sales:sp",
+            "granted-render:oneoff:pc",
+            "granted-render:oneoff:sp",
+            "granted-render:subscription:pc",
+            "granted-render:subscription:sp",
+            "transition:oneoff:after-login",
+            "transition:oneoff:after-session-clear",
+            "transition:oneoff:before-login",
+            "transition:subscription:after-login",
+            "transition:subscription:after-session-clear",
+            "transition:subscription:before-login"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-PAID-01B": {
+      "status": "partial",
+      "requirement_digest": "b76d06f78ef8703c",
+      "oracle_sha256": "8776e99d1327d6c9cc44b1a7f83317527ef63a7598442cedcdeb99757a311236",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850"
+      },
+      "scope": "未購入・対象外・失効の本文非配信と、データ供給プラグイン/表示テーマの分離を確認。",
+      "remaining": [
+        "未検査の配信経路と追加連携先に対する本文露出の境界検査を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "access:anonymous:oneoff:body",
+            "access:anonymous:oneoff:preview",
+            "access:anonymous:oneoff:sales",
+            "access:anonymous:subscription:body",
+            "access:anonymous:subscription:preview",
+            "access:anonymous:subscription:sales",
+            "access:expired:oneoff:body",
+            "access:expired:oneoff:preview",
+            "access:expired:oneoff:sales",
+            "access:expired:subscription:body",
+            "access:expired:subscription:preview",
+            "access:expired:subscription:sales",
+            "access:none:oneoff:body",
+            "access:none:oneoff:preview",
+            "access:none:oneoff:sales",
+            "access:none:subscription:body",
+            "access:none:subscription:preview",
+            "access:none:subscription:sales",
+            "access:oneoff:oneoff:body",
+            "access:oneoff:oneoff:preview",
+            "access:oneoff:oneoff:sales",
+            "access:oneoff:subscription:body",
+            "access:oneoff:subscription:preview",
+            "access:oneoff:subscription:sales",
+            "access:other_product:oneoff:body",
+            "access:other_product:oneoff:preview",
+            "access:other_product:oneoff:sales",
+            "access:other_product:subscription:body",
+            "access:other_product:subscription:preview",
+            "access:other_product:subscription:sales",
+            "access:subscription:oneoff:body",
+            "access:subscription:oneoff:preview",
+            "access:subscription:oneoff:sales",
+            "access:subscription:subscription:body",
+            "access:subscription:subscription:preview",
+            "access:subscription:subscription:sales",
+            "public-surface:/?feed=rss2&post_type=wt_paid",
+            "public-surface:/?s=実践編",
+            "public-surface:/library/",
+            "public-surface:/library/decision-design/?view=body&wtcf_access=granted&ownership=off",
+            "public-surface:/wp-json/wp/v2/wt_paid"
+          ]
+        }
+      ]
+    },
+    "WT-AC-PAID-01C": {
+      "status": "partial",
+      "requirement_digest": "b76d06f78ef8703c",
+      "oracle_sha256": "d7cd0b7f97d6d0a1a40a4ad3a069a3904b84f5ac9c5599948a1a9bd4fc997945",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850"
+      },
+      "scope": "無料会員・別商品・失効・対象購入・有効購読と公開HTML/REST一覧/検索/feed/一覧/no-storeを確認。",
+      "remaining": [
+        "REST個別・埋め込み・認可更新遅延と実キャッシュを含む追加経路の検査を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "access:anonymous:oneoff:body",
+            "access:anonymous:oneoff:preview",
+            "access:anonymous:oneoff:sales",
+            "access:anonymous:subscription:body",
+            "access:anonymous:subscription:preview",
+            "access:anonymous:subscription:sales",
+            "access:expired:oneoff:body",
+            "access:expired:oneoff:preview",
+            "access:expired:oneoff:sales",
+            "access:expired:subscription:body",
+            "access:expired:subscription:preview",
+            "access:expired:subscription:sales",
+            "access:none:oneoff:body",
+            "access:none:oneoff:preview",
+            "access:none:oneoff:sales",
+            "access:none:subscription:body",
+            "access:none:subscription:preview",
+            "access:none:subscription:sales",
+            "access:oneoff:oneoff:body",
+            "access:oneoff:oneoff:preview",
+            "access:oneoff:oneoff:sales",
+            "access:oneoff:subscription:body",
+            "access:oneoff:subscription:preview",
+            "access:oneoff:subscription:sales",
+            "access:other_product:oneoff:body",
+            "access:other_product:oneoff:preview",
+            "access:other_product:oneoff:sales",
+            "access:other_product:subscription:body",
+            "access:other_product:subscription:preview",
+            "access:other_product:subscription:sales",
+            "access:subscription:oneoff:body",
+            "access:subscription:oneoff:preview",
+            "access:subscription:oneoff:sales",
+            "access:subscription:subscription:body",
+            "access:subscription:subscription:preview",
+            "access:subscription:subscription:sales",
+            "cache:anonymous:oneoff:body",
+            "cache:anonymous:oneoff:preview",
+            "cache:anonymous:oneoff:sales",
+            "cache:anonymous:subscription:body",
+            "cache:anonymous:subscription:preview",
+            "cache:anonymous:subscription:sales",
+            "cache:expired:oneoff:body",
+            "cache:expired:oneoff:preview",
+            "cache:expired:oneoff:sales",
+            "cache:expired:subscription:body",
+            "cache:expired:subscription:preview",
+            "cache:expired:subscription:sales",
+            "cache:none:oneoff:body",
+            "cache:none:oneoff:preview",
+            "cache:none:oneoff:sales",
+            "cache:none:subscription:body",
+            "cache:none:subscription:preview",
+            "cache:none:subscription:sales",
+            "cache:oneoff:oneoff:body",
+            "cache:oneoff:oneoff:preview",
+            "cache:oneoff:oneoff:sales",
+            "cache:oneoff:subscription:body",
+            "cache:oneoff:subscription:preview",
+            "cache:oneoff:subscription:sales",
+            "cache:other_product:oneoff:body",
+            "cache:other_product:oneoff:preview",
+            "cache:other_product:oneoff:sales",
+            "cache:other_product:subscription:body",
+            "cache:other_product:subscription:preview",
+            "cache:other_product:subscription:sales",
+            "cache:subscription:oneoff:body",
+            "cache:subscription:oneoff:preview",
+            "cache:subscription:oneoff:sales",
+            "cache:subscription:subscription:body",
+            "cache:subscription:subscription:preview",
+            "cache:subscription:subscription:sales",
+            "public-surface:/?feed=rss2&post_type=wt_paid",
+            "public-surface:/?s=実践編",
+            "public-surface:/library/",
+            "public-surface:/library/decision-design/?view=body&wtcf_access=granted&ownership=off",
+            "public-surface:/wp-json/wp/v2/wt_paid",
+            "transition:oneoff:after-login",
+            "transition:oneoff:after-session-clear",
+            "transition:oneoff:before-login",
+            "transition:subscription:after-login",
+            "transition:subscription:after-session-clear",
+            "transition:subscription:before-login"
+          ]
+        }
+      ]
+    },
+    "WT-AC-INTERVIEW-01A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "7a9ef4b0d8a19218",
+      "oracle_sha256": "615c31515bdc75911e0e0c021bf5c3a94ecb648d445c53fe7971f1f240d9689b",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe"
+      },
+      "scope": "独立CPTの人物2名・所属・発言3件・掲載確認と、同じ詳細面を指す参照カードを実測。PC/SP撮影とレンダラーの人物ID参照も照合した。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "interview:confirmation",
+            "interview:embedded-reference",
+            "interview:people-speech"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-INTERVIEW-01B": {
+      "status": "partial",
+      "requirement_digest": "7a9ef4b0d8a19218",
+      "oracle_sha256": "c3a3f6021b1fd67187a3dd32df09e708a0f6c0dcc852ec818b3524197366b0cd",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe"
+      },
+      "scope": "LPカードだけでなく独立管理と詳細面を確認した。",
+      "remaining": [
+        "人物ID欠落・発言参照切れを投入した異常系と、編集時の停止/警告は未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "interview:confirmation",
+            "interview:embedded-reference",
+            "interview:people-speech"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-INTERVIEW-01C": {
+      "status": "partial",
+      "requirement_digest": "7a9ef4b0d8a19218",
+      "oracle_sha256": "a086123547336d75a5320318d5eca12c52aff73a66fc0a2558d564475ee31c29",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe"
+      },
+      "scope": "確認前のdraftと公開404、確認済みのカード参照、テーマ変更後の管理単位/本文/メタ保持を確認。",
+      "remaining": [
+        "確認前の投稿を直接参照するカードの抑止を専用の負例として実行する。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "interview:confirmation",
+            "interview:embedded-reference",
+            "interview:people-speech",
+            "unconfirmed-interview:not-public"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BLP-01A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "848386cf1651a07e",
+      "oracle_sha256": "23412ff1d666b834c035dd6c36d0deb65b4d1e965d04c7a30034e9aba6ed20eb",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe"
+      },
+      "scope": "独立BLPの課題理解・判断材料・適否説明から、別管理LPの提供内容と入力へ到達。両面のPC/SP画像を対にして照合。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "blp:lp-target",
+            "blp:reasoning"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BLP-01B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "848386cf1651a07e",
+      "oracle_sha256": "67f81097e7b9a1632fbe74e99e97df47a216fbecb92758e5145d425da33f8139",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe"
+      },
+      "scope": "BLP/LPの別CPT・異なる目的/本文構成・実リンク、inherit/own/offでownを非表示にしない代表表示を照合。全継承束の条件はPARTS-03に残る。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "blp:lp-target",
+            "blp:ownership:inherit",
+            "blp:ownership:off",
+            "blp:ownership:own",
+            "blp:reasoning"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BLP-01C": {
+      "status": "partial",
+      "requirement_digest": "848386cf1651a07e",
+      "oracle_sha256": "b41a5bfbfb5bf78f61fca22cc02f3871d1e75034360a9fd3d85cb9623fdfe4f1",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "c12c683b1f7c308e79f1f9481551287a2407b3d81d97d9e303323552773ec0f9",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed.php": "4d32ccd532ac848239a32c3b2ab422ad510a9e7900246a20f518a4a0ee63605b",
+        "scripts/verify-content-faces.mjs": "9a7a015a21f7746ce5bc46bdfd08a84959423db7b1df766df8d7c8be10301850"
+      },
+      "scope": "BLPから別CPTのLPとフォームに到達し、両面をPC/SP・JS無効で表示した。",
+      "remaining": [
+        "JS無効の移動操作そのものと、CPT上の入力→確認→修正の操作を明示的な一連の検査にする。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+          "row_names": [
+            "blp:lp-target",
+            "heading:blp:editorial:pc:js-false",
+            "heading:blp:editorial:pc:js-true",
+            "heading:blp:editorial:sp:js-false",
+            "heading:blp:editorial:sp:js-true",
+            "heading:blp:standard:pc:js-false",
+            "heading:blp:standard:pc:js-true",
+            "heading:blp:standard:sp:js-false",
+            "heading:blp:standard:sp:js-true",
+            "heading:lp:editorial:pc:js-false",
+            "heading:lp:editorial:pc:js-true",
+            "heading:lp:editorial:sp:js-false",
+            "heading:lp:editorial:sp:js-true",
+            "heading:lp:standard:pc:js-false",
+            "heading:lp:standard:pc:js-true",
+            "heading:lp:standard:sp:js-false",
+            "heading:lp:standard:sp:js-true",
+            "reflow:blp:editorial:pc:js-false",
+            "reflow:blp:editorial:pc:js-true",
+            "reflow:blp:editorial:sp:js-false",
+            "reflow:blp:editorial:sp:js-true",
+            "reflow:blp:standard:pc:js-false",
+            "reflow:blp:standard:pc:js-true",
+            "reflow:blp:standard:sp:js-false",
+            "reflow:blp:standard:sp:js-true",
+            "reflow:lp:editorial:pc:js-false",
+            "reflow:lp:editorial:pc:js-true",
+            "reflow:lp:editorial:sp:js-false",
+            "reflow:lp:editorial:sp:js-true",
+            "reflow:lp:standard:pc:js-false",
+            "reflow:lp:standard:pc:js-true",
+            "reflow:lp:standard:sp:js-false",
+            "reflow:lp:standard:sp:js-true"
+          ]
+        }
+      ]
+    },
+    "WT-AC-LEARN-01A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "caaa7c209171d416",
+      "oracle_sha256": "40e8db7b507d3ff23729af1a89f4d61a687d137087a08804e9d6eccdc94bc919",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "b5d359a26d9fc25eaa0ef09d9de41a71b705d0cdee65b2dfe8a281800b44977f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe",
+        "scripts/verify-learning-faces.mjs": "91a177b7cad86d248da924e28285a00bae86b91ea3eadf7077453f9afb96207e",
+        "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "053c0199a12afd0f942d247b443bedc8c8b1174bb36b5c01367b3b443c623d40",
+        "scripts/verify-content-management.py": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc"
+      },
+      "scope": "階層型の独立CPT、実投稿の親ID/順序/標準ブロック本文を確認し、講座と3レッスンの親階層・現在位置・前後端・目次をPC/SP・JS有無で実操作した。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "sha256": "45d32dfdc6818a3e01f69fd4e53b01bd77465f6327d5681afdd53f19b573a8b3",
+          "row_names": [
+            "course:three-lessons:pc:js-false",
+            "course:three-lessons:pc:js-true",
+            "course:three-lessons:sp:js-false",
+            "course:three-lessons:sp:js-true",
+            "lesson:current:pc:js-false",
+            "lesson:current:pc:js-true",
+            "lesson:current:sp:js-false",
+            "lesson:current:sp:js-true",
+            "lesson:first-boundary:pc:js-false",
+            "lesson:first-boundary:pc:js-true",
+            "lesson:first-boundary:sp:js-false",
+            "lesson:first-boundary:sp:js-true",
+            "lesson:last-boundary:pc:js-false",
+            "lesson:last-boundary:pc:js-true",
+            "lesson:last-boundary:sp:js-false",
+            "lesson:last-boundary:sp:js-true",
+            "lesson:middle:pc:js-false",
+            "lesson:middle:pc:js-true",
+            "lesson:middle:sp:js-false",
+            "lesson:middle:sp:js-true",
+            "lesson:parent:pc:js-false",
+            "lesson:parent:pc:js-true",
+            "lesson:parent:sp:js-false",
+            "lesson:parent:sp:js-true",
+            "lesson:toc:pc:js-false",
+            "lesson:toc:pc:js-true",
+            "lesson:toc:sp:js-false",
+            "lesson:toc:sp:js-true"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "row_names": [
+            "all-declared-independent-admin-and-rest-types",
+            "learning-parent-order-and-standard-block-body",
+            "original-theme-restored",
+            "theme-switch-preserves-types-record-identities-and-content",
+            "unconfirmed-interview-remains-draft"
+          ]
+        }
+      ]
+    },
+    "WT-AC-LEARN-01B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "caaa7c209171d416",
+      "oracle_sha256": "40ad04c3bec459158a5feb98d6e3033c472ceb8a718e5f4dace3c413f5990d67",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "b5d359a26d9fc25eaa0ef09d9de41a71b705d0cdee65b2dfe8a281800b44977f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe",
+        "scripts/verify-learning-faces.mjs": "91a177b7cad86d248da924e28285a00bae86b91ea3eadf7077453f9afb96207e"
+      },
+      "scope": "用語索引で対象節に移動し、FAQをEnter/Spaceで開閉。PC/SP・JS無効で本文/目次/階層/前後/スキップ移動と本文へのフォーカスを実測した。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "sha256": "45d32dfdc6818a3e01f69fd4e53b01bd77465f6327d5681afdd53f19b573a8b3",
+          "row_names": [
+            "glossary:term-target:pc:js-false",
+            "glossary:term-target:pc:js-true",
+            "glossary:term-target:sp:js-false",
+            "glossary:term-target:sp:js-true",
+            "heading:course:pc:js-false",
+            "heading:course:pc:js-true",
+            "heading:course:sp:js-false",
+            "heading:course:sp:js-true",
+            "heading:glossary:pc:js-false",
+            "heading:glossary:pc:js-true",
+            "heading:glossary:sp:js-false",
+            "heading:glossary:sp:js-true",
+            "heading:help:pc:js-false",
+            "heading:help:pc:js-true",
+            "heading:help:sp:js-false",
+            "heading:help:sp:js-true",
+            "heading:learning-empty:pc:js-false",
+            "heading:learning-empty:pc:js-true",
+            "heading:learning-empty:sp:js-false",
+            "heading:learning-empty:sp:js-true",
+            "heading:learning-index:pc:js-false",
+            "heading:learning-index:pc:js-true",
+            "heading:learning-index:sp:js-false",
+            "heading:learning-index:sp:js-true",
+            "heading:lesson:pc:js-false",
+            "heading:lesson:pc:js-true",
+            "heading:lesson:sp:js-false",
+            "heading:lesson:sp:js-true",
+            "help:close:pc:js-false",
+            "help:close:pc:js-true",
+            "help:close:sp:js-false",
+            "help:close:sp:js-true",
+            "help:open:pc:js-false",
+            "help:open:pc:js-true",
+            "help:open:sp:js-false",
+            "help:open:sp:js-true",
+            "reflow:course:pc:js-false",
+            "reflow:course:pc:js-true",
+            "reflow:course:sp:js-false",
+            "reflow:course:sp:js-true",
+            "reflow:glossary:pc:js-false",
+            "reflow:glossary:pc:js-true",
+            "reflow:glossary:sp:js-false",
+            "reflow:glossary:sp:js-true",
+            "reflow:help:pc:js-false",
+            "reflow:help:pc:js-true",
+            "reflow:help:sp:js-false",
+            "reflow:help:sp:js-true",
+            "reflow:learning-empty:pc:js-false",
+            "reflow:learning-empty:pc:js-true",
+            "reflow:learning-empty:sp:js-false",
+            "reflow:learning-empty:sp:js-true",
+            "reflow:learning-index:pc:js-false",
+            "reflow:learning-index:pc:js-true",
+            "reflow:learning-index:sp:js-false",
+            "reflow:learning-index:sp:js-true",
+            "reflow:lesson:pc:js-false",
+            "reflow:lesson:pc:js-true",
+            "reflow:lesson:sp:js-false",
+            "reflow:lesson:sp:js-true",
+            "skip-link:pc:js-false",
+            "skip-link:pc:js-true",
+            "skip-link:sp:js-false",
+            "skip-link:sp:js-true",
+            "skip-target-focus:pc:js-false",
+            "skip-target-focus:pc:js-true",
+            "skip-target-focus:sp:js-false",
+            "skip-target-focus:sp:js-true"
+          ]
+        }
+      ]
+    },
+    "WT-AC-LEARN-01C": {
+      "status": "partial",
+      "requirement_digest": "caaa7c209171d416",
+      "oracle_sha256": "2974e1564fb8e8af747e8ba9ec9a78877b30de0a7a7b31fb1c5a6b0e8b453957",
+      "source_digests": {
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "b5d359a26d9fc25eaa0ef09d9de41a71b705d0cdee65b2dfe8a281800b44977f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e",
+        "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+        "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+        "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe",
+        "scripts/verify-learning-faces.mjs": "91a177b7cad86d248da924e28285a00bae86b91ea3eadf7077453f9afb96207e"
+      },
+      "scope": "本文語の検索、下書き・購入本文の非混入、ゼロ件、ページ送り、入力のHTML非実行を実測。",
+      "remaining": [
+        "ゼロ件の一覧復帰リンクを実際にたどる操作、ページ範囲外への直接アクセス、検索中の公開状態変更を負例として追加する。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "sha256": "45d32dfdc6818a3e01f69fd4e53b01bd77465f6327d5681afdd53f19b573a8b3",
+          "row_names": [
+            "archive:count:pc:js-false",
+            "archive:count:pc:js-true",
+            "archive:count:sp:js-false",
+            "archive:count:sp:js-true",
+            "archive:first-page:pc:js-false",
+            "archive:first-page:pc:js-true",
+            "archive:first-page:sp:js-false",
+            "archive:first-page:sp:js-true",
+            "archive:second-page:pc:js-false",
+            "archive:second-page:pc:js-true",
+            "archive:second-page:sp:js-false",
+            "archive:second-page:sp:js-true",
+            "search:escaped:pc:js-false",
+            "search:escaped:pc:js-true",
+            "search:escaped:sp:js-false",
+            "search:escaped:sp:js-true",
+            "search:no-injected-image:pc:js-false:10",
+            "search:no-injected-image:pc:js-false:13",
+            "search:no-injected-image:pc:js-false:3",
+            "search:no-injected-image:pc:js-false:38",
+            "search:no-injected-image:pc:js-false:8",
+            "search:no-injected-image:pc:js-true:10",
+            "search:no-injected-image:pc:js-true:13",
+            "search:no-injected-image:pc:js-true:3",
+            "search:no-injected-image:pc:js-true:38",
+            "search:no-injected-image:pc:js-true:8",
+            "search:no-injected-image:sp:js-false:10",
+            "search:no-injected-image:sp:js-false:13",
+            "search:no-injected-image:sp:js-false:3",
+            "search:no-injected-image:sp:js-false:38",
+            "search:no-injected-image:sp:js-false:8",
+            "search:no-injected-image:sp:js-true:10",
+            "search:no-injected-image:sp:js-true:13",
+            "search:no-injected-image:sp:js-true:3",
+            "search:no-injected-image:sp:js-true:38",
+            "search:no-injected-image:sp:js-true:8",
+            "search:noindex:pc:js-false:10",
+            "search:noindex:pc:js-false:13",
+            "search:noindex:pc:js-false:3",
+            "search:noindex:pc:js-false:38",
+            "search:noindex:pc:js-false:8",
+            "search:noindex:pc:js-true:10",
+            "search:noindex:pc:js-true:13",
+            "search:noindex:pc:js-true:3",
+            "search:noindex:pc:js-true:38",
+            "search:noindex:pc:js-true:8",
+            "search:noindex:sp:js-false:10",
+            "search:noindex:sp:js-false:13",
+            "search:noindex:sp:js-false:3",
+            "search:noindex:sp:js-false:38",
+            "search:noindex:sp:js-false:8",
+            "search:noindex:sp:js-true:10",
+            "search:noindex:sp:js-true:13",
+            "search:noindex:sp:js-true:3",
+            "search:noindex:sp:js-true:38",
+            "search:noindex:sp:js-true:8",
+            "search:アクセシビリティ:pc:js-false",
+            "search:アクセシビリティ:pc:js-true",
+            "search:アクセシビリティ:sp:js-false",
+            "search:アクセシビリティ:sp:js-true",
+            "search:存在しない検索語:pc:js-false",
+            "search:存在しない検索語:pc:js-true",
+            "search:存在しない検索語:sp:js-false",
+            "search:存在しない検索語:sp:js-true",
+            "search:未公開レッスンの内部確認語:pc:js-false",
+            "search:未公開レッスンの内部確認語:pc:js-true",
+            "search:未公開レッスンの内部確認語:sp:js-false",
+            "search:未公開レッスンの内部確認語:sp:js-true",
+            "search:読み手:pc:js-false",
+            "search:読み手:pc:js-true",
+            "search:読み手:sp:js-false",
+            "search:読み手:sp:js-true",
+            "search:購入者向けの検証本文:pc:js-false",
+            "search:購入者向けの検証本文:pc:js-true",
+            "search:購入者向けの検証本文:sp:js-false",
+            "search:購入者向けの検証本文:sp:js-true"
+          ]
+        }
+      ]
+    }
+  }
+}

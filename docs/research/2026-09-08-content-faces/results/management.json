@@ -3,7 +3,7 @@
   "completed": true,
   "checks": [
     {
-      "name": "four-independent-admin-and-rest-types",
+      "name": "all-declared-independent-admin-and-rest-types",
       "pass": true
     },
     {
@@ -15,9 +15,14 @@
       "pass": true
     },
     {
+      "name": "learning-parent-order-and-standard-block-body",
+      "pass": true
+    },
+    {
       "name": "original-theme-restored",
       "pass": true
     }
   ],
-  "fixture_count": 7
+  "fixture_count": 15,
+  "type_count": 5
 }

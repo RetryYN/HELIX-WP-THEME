@@ -62,6 +62,17 @@ try {
     }
     await context.close();
   }
+  for (const role of ['oneoff', 'subscription']) {
+    const context = await browser.newContext();
+    const route = `${base}${routes[role]}?view=body`;
+    check(`transition:${role}:before-login`, !(await (await context.request.get(route)).text()).includes(protectedText));
+    await context.request.get(`${base}/wp-login.php`);
+    await context.request.post(`${base}/wp-login.php`, { form: { log: `lab_${role}`, pwd: credentials[role], 'wp-submit': 'Log In', redirect_to: route, testcookie: '1' } });
+    check(`transition:${role}:after-login`, (await (await context.request.get(route)).text()).includes(protectedText));
+    await context.clearCookies();
+    check(`transition:${role}:after-session-clear`, !(await (await context.request.get(route)).text()).includes(protectedText));
+    await context.close();
+  }
   for (const dev of ['pc', 'sp']) {
     for (const js of [true, false]) {
       const context = await contextFor('anonymous', { viewport: dev === 'pc' ? { width: 1440, height: 1000 } : { width: 375, height: 812 }, javaScriptEnabled: js });

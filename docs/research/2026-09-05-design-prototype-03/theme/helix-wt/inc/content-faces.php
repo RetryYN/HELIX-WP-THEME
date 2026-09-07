@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 add_action( 'wp_enqueue_scripts', function () {
 	if ( is_singular( 'wt_lp' ) ) { wp_enqueue_script( 'helix-wt-form', get_theme_file_uri( 'assets/js/form.js' ), array(), '0.3.21', true ); }
-	if ( is_singular( array( 'wt_paid', 'wt_interview', 'wt_blp', 'wt_lp' ) ) || is_post_type_archive( array( 'wt_paid', 'wt_interview', 'wt_blp', 'wt_lp' ) ) ) {
+	if ( is_singular( array( 'wt_paid', 'wt_interview', 'wt_blp', 'wt_lp', 'wt_learning' ) ) || is_post_type_archive( array( 'wt_paid', 'wt_interview', 'wt_blp', 'wt_lp', 'wt_learning' ) ) ) {
 		wp_enqueue_style( 'wt-content-faces', get_theme_file_uri( 'assets/css/content-faces.css' ), array( 'helix-wt' ), '0.1.0' );
 	}
 } );
@@ -18,6 +18,7 @@ function wtcf_link( $url, $label, $class = '' ) {
 }
 
 function wtcf_render_face() {
+	if ( is_singular() && post_password_required() ) { return get_the_password_form(); }
 	if ( ! function_exists( 'wtcf_display' ) ) { return '<p>コンテンツの表示サービスに接続できません。</p>'; }
 	$manifest = wtcf_manifest();
 	$design = wtcf_choice( 'design', 'editorial', $manifest['designs'] );
@@ -34,7 +35,8 @@ function wtcf_render_face() {
 	<?php if ( is_post_type_archive() ) : ?>
 		<header class="wtcf-intro"><p class="wtcf-kicker">THE COLLECTION</p><h1><?php post_type_archive_title(); ?></h1><p>考え方を、次の一歩へ。テーマを選んでじっくり読む。</p></header>
 		<div class="wtcf-list">
-		<?php while ( have_posts() ) : the_post(); $item = wtcf_display( get_the_ID() ); ?>
+		<?php while ( have_posts() ) : the_post(); $item = wtcf_display( get_the_ID() );
+		if ( ! $item ) { $item = array( 'type' => get_post_type(), 'title' => get_the_title(), 'url' => get_permalink(), 'summary' => '閲覧にはパスワードが必要です。' ); } ?>
 		<article><p class="wtcf-kicker"><?php echo esc_html( $manifest['types'][ $item['type'] ]['label'] ); ?></p><h2><?php echo wtcf_link( $item['url'], $item['title'] ); ?></h2><p><?php echo esc_html( $item['summary'] ); ?></p><?php if ( isset( $item['price'] ) ) { echo '<p>' . esc_html( $item['price'] ) . '</p>'; } ?></article>
 		<?php endwhile; ?>
 		</div><?php the_posts_pagination(); ?>
@@ -79,3 +81,16 @@ function wtcf_render_face() {
 	<?php return ob_get_clean();
 }
 add_action( 'init', function () { register_block_type( 'helix-wt/content-face', array( 'render_callback' => 'wtcf_render_face' ) ); } );
+
+require_once __DIR__ . '/learning.php';
+
+// The reference card is theme presentation; the plugin supplies records only.
+add_shortcode( 'wtcf_interview_card', function ( $attributes ) {
+	if ( ! function_exists( 'wtcf_display' ) ) { return ''; }
+	$slug = sanitize_title( $attributes['slug'] ?? '' );
+	$post = get_page_by_path( $slug, OBJECT, 'wt_interview' );
+	if ( ! $post || $post->post_status !== 'publish' || post_password_required( $post ) ) { return ''; }
+	$data = wtcf_display( $post->ID );
+	if ( ! $data['confirmed'] ) { return ''; }
+	return '<aside class="wtcf-reference"><p>VOICE / 制作の現場から</p><h2><a href="' . esc_url( $data['url'] ) . '">' . esc_html( $data['title'] ) . '</a></h2><p>' . esc_html( $data['summary'] ) . '</p></aside>';
+} );

@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0305",
-  "event_count": 305,
+  "event_head": "WT-EVT-0306",
+  "event_count": 306,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -1015,6 +1015,18 @@
       ],
       "requirement_ids": [
         "WT-FR-FORM-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-LEARN",
+      "state": "proposed",
+      "source_event_ids": [
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0306"
+      ],
+      "requirement_ids": [
+        "WT-FR-LEARN-01"
       ]
     }
   ],

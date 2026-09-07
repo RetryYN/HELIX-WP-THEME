@@ -8,7 +8,7 @@
 - freeze: **G1 承認・G2 合意（PO 2026-09-05、WT-EVT-0232）。G3 未実施**
 - authority owner: PO
 - updated: 2026-09-08
-- 最新整理: [`current-alignment.md`](current-alignment.md)（WT-EVT-0304、131候補 / 282 AC / 131 test ID。旧123件から6件改定・8件追加。実装完了件数ではない）
+- 最新整理: [`current-alignment.md`](current-alignment.md)（WT-EVT-0306、132候補 / 289 AC / 132 test ID。旧123件から6件改定・9件追加。実装完了件数ではない）
 
 ## 起点
 
@@ -21,8 +21,8 @@
 | 層 | 正本 | 状態 | 次の昇格条件 |
 | --- | --- | --- | --- |
 | L1 | `docs/requirements/l1/` の 5 sub-doc | 9月5日承認済み基準を保持。後続改定は current-alignment.md と events / L3 候補で明示 | 最新 revision の合意時に L1 改定・pair を照合。過去承認を後続改定へ自動適用しない |
-| L2 | `docs/requirements/discovery/events.jsonl` と `candidate-projection.json`、最新差分 `current-alignment.md` | フロント先行の画面プロト往復（WT-EVT-0239）。最新整理 WT-EVT-0304、過去の合意 WT-AGREE-01 は head 0231 のみ | 正式判断2件（G3 / 開発スタイル）は保留。後続のPO反応、改定範囲、優先度の合意を揃える |
-| L3 | `docs/requirements/l3/requirements-ir.json`（全件ビュー `l3/g3-approval-summary.md`） | 131候補、282 AC。compile は backflow_required、G3 未実施。追加8件のP1は暫定 | pending_resolution 3件、最新revisionの合意、直近2 iterationの優先度安定 → compile → specified → G3承認で frozen |
+| L2 | `docs/requirements/discovery/events.jsonl` と `candidate-projection.json`、最新差分 `current-alignment.md` | フロント先行の画面プロト往復（WT-EVT-0239）。最新整理 WT-EVT-0306、過去の合意 WT-AGREE-01 は head 0231 のみ | 正式判断2件（G3 / 開発スタイル）は保留。後続のPO反応、改定範囲、優先度の合意を揃える |
+| L3 | `docs/requirements/l3/requirements-ir.json`（全件ビュー `l3/g3-approval-summary.md`） | 132候補、289 AC。compile は backflow_required、G3 未実施。追加9件のP1は暫定 | pending_resolution 3件、最新revisionの合意、直近2 iterationの優先度安定 → compile → specified → G3承認で frozen |
 
 ## 入力資産と扱い
 

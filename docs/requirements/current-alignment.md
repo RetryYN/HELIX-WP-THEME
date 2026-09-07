@@ -1,6 +1,6 @@
 # 最新要求と現在の足並み
 
-- 更新: 2026-09-08。根拠イベント: WT-EVT-0239〜0303、整理記録: WT-EVT-0304、追調査: WT-EVT-0305。
+- 更新: 2026-09-08。根拠イベント: WT-EVT-0239〜0303、整理記録: WT-EVT-0304、追調査: WT-EVT-0305〜0306。
 - 照合した実装・証跡: main `e76e7c7`（PR #172）。この文書は要求候補と証跡の対応表であり、G3 承認や全体完了の宣言ではない。
 - 読む順: 本書 → [種別台帳](discovery/page-type-ledger.md) → [候補全件一覧](l3/g3-approval-summary.md) → [IR](l3/requirements-ir.json) / [受入条件](l3/acceptance-cases.json)。正式な入口は [authority.md](authority.md)。
 
@@ -15,8 +15,8 @@ WP-THEME は、機械可読性・自己記述・契約・品質を維持して�
 | 層 | 現在 | 読み方 |
 | --- | --- | --- |
 | L1 | 9月5日の G1 承認済み基準を保持 | 後続の PO 判断は本書・L2 events と L3 候補へ反映。承認済み本文に新しい承認を仮装しない |
-| L2 | フロント先行の画面プロト往復。最新PO入力 WT-EVT-0303、整理 WT-EVT-0304、追調査 WT-EVT-0305 | WT-AGREE-01 は event head 0231 への合意。後続反応と追加候補まで合意済みとはしない |
-| L3 | 131 候補、285 AC、131 test ID。compile は backflow_required | 既存 123 件を削除せず、6 件改定・8 件追加。追加分 P1 は整理上の暫定値。最新 revision の合意と優先度安定を再確認する |
+| L2 | フロント先行の画面プロト往復。最新PO入力 WT-EVT-0303、整理 WT-EVT-0304、追調査 WT-EVT-0305〜0306 | WT-AGREE-01 は event head 0231 への合意。後続反応と追加候補まで合意済みとはしない |
+| L3 | 132 候補、289 AC、132 test ID。compile は backflow_required | 既存 123 件を削除せず、6 件改定・8 件追加。追加分 P1 は整理上の暫定値。最新 revision の合意と優先度安定を再確認する |
 | 試作 | 試作03段13に加え、独立コンテンツ代表PoCのコードと実測証跡あり | `docs/research/` の試作テーマ。製品の `themes/` / `plugins/` の完成を意味しない |
 | HELIX runtime | consumer setup 境界と non-terminal PLAN により completion blocked | 要求の G1 / G2 / G3 と異なる管理状態。runtime の L14 表示をテーマ開発の到達段階として使わない |
 
@@ -99,3 +99,9 @@ HELIX runtime は `npm run helix -- status` で確認する。2026-09-08 の確�
 ## 代表モックBの追加（WT-EVT-0305）
 
 [独立コンテンツ試作](../research/2026-09-08-content-faces/PLAN.md)で有料記事・インタビュー・BLP・獲得LPを追加。既存282 ACを維持し、権限と公開配信経路、掲載確認とデータ可搬性、BLPから入力への到達の3 ACを追加した。詳細は[追調査差分](../research/2026-09-08-content-faces/research-delta.md)。全件の再現完了・G3承認とはしない。
+
+## 学習・支援系と証拠監査（WT-EVT-0306）
+
+学習・ヘルプの入口、講座、3レッスン、用語集、FAQ、検索結果とゼロ件を独立WPへ追加。標準ブロック本文を正本として目次と区画を読み取り、本文の語も検索できるようにした。新規候補WT-FR-LEARN-01と4 ACを追加し、132要求・289条件。共通継承への接続と全管理UIは未完了。
+
+全条件の証拠対応は[受入条件監査](../research/2026-09-08-selection-catalog/acceptance-audit.json)で追跡する。関連画像と受入達成を分離し、未対応付け、部分確認、PoC確認済み、実装や条件の変更による再検証を区別する。既存試作の成功行も、AC全体との対応を精査するまで自動昇格しない。

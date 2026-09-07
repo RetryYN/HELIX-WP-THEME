@@ -4095,6 +4095,42 @@
       "revision": 1,
       "owner": "PO",
       "semantic_digest": "c38f4878b97914c2"
+    },
+    {
+      "id": "WT-FR-LEARN-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-BR-04",
+        "WT-CAND-LEARN",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0306"
+      ],
+      "statement": "学習・支援系として講座 / マニュアル / レッスン、用語集、FAQ / ヘルプを扱う。サイト階層・学ぶ順番・ページ内目次を別のナビゲーションとして表示し、親階層と前後の端を正しく扱う。用語の索引とFAQ開閉、学習対象に限定した検索・ゼロ件・ページ送りを提供し、下書きや別種別の購入本文を公開検索へ混入させない。PC / SP と JavaScript 無効でも本文の閲覧と各移動が成立する。専用管理と共通継承の接続を検証する。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-LEARN-01A",
+        "WT-AC-LEARN-01B",
+        "WT-AC-LEARN-01C",
+        "WT-AC-LEARN-01D"
+      ],
+      "test_ids": [
+        "WT-AT-LEARN-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "caaa7c209171d416"
     }
   ]
 }

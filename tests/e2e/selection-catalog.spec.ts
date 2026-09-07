@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('568');
+  await expect(page.locator('#total')).toHaveText('574');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -22,10 +22,10 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await page.locator('[data-device="sp"]').click();
   await expect(page.locator('#count')).toContainText('SP');
   await page.locator('#tab-requirements').click();
-  await expect(page.locator('.req-row')).toHaveCount(131);
+  await expect(page.locator('.req-row')).toHaveCount(132);
   await page.locator('#req-search').fill('WT-FR-FORM-01');
   await expect(page.locator('.req-row')).toHaveCount(1);
-  await page.locator('.req-row summary').click();
+  await page.locator('.req-row > summary').click();
   await expect(page.locator('.req-row')).toContainText('WT-AC-');
   await page.locator('.req-row button').click();
   await expect(page.locator('#collection-title')).toHaveText('要求に関連する候補');

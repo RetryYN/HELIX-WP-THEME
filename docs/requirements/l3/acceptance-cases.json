@@ -1710,6 +1710,30 @@
       "requirement_id": "WT-FR-BLP-01",
       "polarity": "positive",
       "oracle": "BLPの理解・適否判断から、別管理の獲得LPと入力操作へ到達する。PC/SP・JavaScript無効でも本文と次の導線が成立する。"
+    },
+    {
+      "id": "WT-AC-LEARN-01A",
+      "requirement_id": "WT-FR-LEARN-01",
+      "polarity": "positive",
+      "oracle": "階層付きの講座とレッスンを独立管理し、親階層・現在位置・前後端・ページ内目次を実際の投稿構造と照合する。"
+    },
+    {
+      "id": "WT-AC-LEARN-01B",
+      "requirement_id": "WT-FR-LEARN-01",
+      "polarity": "positive",
+      "oracle": "用語索引で目的の見出しへ移動でき、FAQはキーボードとJavaScript無効で開閉できる。PC/SPで本文と移動先が成立する。"
+    },
+    {
+      "id": "WT-AC-LEARN-01C",
+      "requirement_id": "WT-FR-LEARN-01",
+      "polarity": "negative",
+      "oracle": "公開検索に下書き・別種別の購入本文が出る、検索入力からHTMLを実行できる、ゼロ件やページ末端から戻れない場合はFAIL。"
+    },
+    {
+      "id": "WT-AC-LEARN-01D",
+      "requirement_id": "WT-FR-LEARN-01",
+      "polarity": "boundary",
+      "oracle": "学習用の階層と前後ナビを共通継承/独自設定/非表示へ接続し、見た目の変更で公開範囲や認可を解除しない。"
     }
   ]
 }

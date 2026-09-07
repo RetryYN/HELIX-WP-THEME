@@ -2,7 +2,7 @@
   "schema": "wt-content-faces-verification.v1",
   "completed": true,
   "scope": "Dedicated WordPress PoC with local entitlement fixtures; not production service integration",
-  "pass": 185,
+  "pass": 191,
   "fail": 0,
   "rows": [
     {
@@ -367,6 +367,30 @@
     },
     {
       "name": "cache:other_product:subscription:body",
+      "pass": true
+    },
+    {
+      "name": "transition:oneoff:before-login",
+      "pass": true
+    },
+    {
+      "name": "transition:oneoff:after-login",
+      "pass": true
+    },
+    {
+      "name": "transition:oneoff:after-session-clear",
+      "pass": true
+    },
+    {
+      "name": "transition:subscription:before-login",
+      "pass": true
+    },
+    {
+      "name": "transition:subscription:after-login",
+      "pass": true
+    },
+    {
+      "name": "transition:subscription:after-session-clear",
       "pass": true
     },
     {

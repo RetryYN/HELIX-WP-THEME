@@ -1,6 +1,6 @@
 # 独立コンテンツの実機カタログ
 
-試作テーマに有料記事・インタビュー・BLP・獲得LPを追加。コンテンツの保存と管理は別の試作プラグインの4CPTに置く。[比較カタログ](../2026-09-08-selection-catalog/index.html)から画像比較・メモ保存・ローカル実機へ移動できる。
+試作テーマに有料記事・インタビュー・BLP・獲得LP・学習を追加。コンテンツの保存と管理は別の試作プラグインの5CPTに置く。[比較カタログ](../2026-09-08-selection-catalog/index.html)から画像比較・メモ保存・ローカル実機へ移動できる。
 
 ## 再現
 
@@ -10,7 +10,9 @@ Docker・Node.js・Pythonを用意し、リポジトリのルートで実行す�
 python3 scripts/start-content-lab.py
 npx playwright install chromium
 WTCF_LAB_CREDENTIALS="${TMPDIR:-/tmp}/helix-content-lab/credentials.json" node scripts/verify-content-faces.mjs
+node scripts/verify-learning-faces.mjs
 python3 scripts/verify-content-management.py
+node scripts/verify-content-passwords.mjs
 node scripts/build-selection-catalog.mjs
 ```
 
@@ -39,8 +41,18 @@ node scripts/build-selection-catalog.mjs
 ## 証拠と限界
 
 - [表示・アクセス検査](results/verify.json): 6閲覧者状態×2課金方式×3表示用途、no-store、公開HTML/REST/検索/feed/一覧、掲載確認、参照カード、BLP→LP、PC/SP・JS無効、横溢れ、h1。各実行の完了フラグ・全行・撮影索引を保持する。
-- [管理とテーマ変更](results/management.json): 4CPTの管理UI/REST、確認前draft、別テーマへ切替後の同一レコード保持、試作テーマ復元を独立したWP-CLIプロセスで照合した。
+- [管理とテーマ変更](results/management.json): 5CPTの管理UI/REST、確認前draft、別テーマへ切替後の同一レコード保持、試作テーマ復元を独立したWP-CLIプロセスで照合した。
 - 初期の権限は外部認可サービスを置き換える**ローカルfixture**。実決済・購読契約・外部認可サービス障害・CDN・実データ移行の検証ではない。
 - テーマは表示projectionだけを受け取る。保護本文は公開post_contentや公開RESTメタに保存しない。配送経路の追加時には新しい経路の検査が必要。
 - インタビュー編集用の専用入力UI、全CPTの管理権限行列、全継承セットへの接続は今後の作業。現状の3状態のヘッダーは代表表示であり、既存の共通設定束全体の実証ではない。
-- [追調査差分](research-delta.md)で3 ACを追加。全131要求の再現は継続中。
+- [追調査差分](research-delta.md)で3 ACを追加。全132要求の再現は継続中。
+
+## 学習・支援系の追加
+
+`seed.php`は学習データも投入する。起動済みlabで学習だけを更新する場合は同じ専用WP-CLIコンテナで`seed-learning.php`を実行する。`node scripts/verify-learning-faces.mjs`で講座/レッスン/目次/用語/FAQ/検索を検証し、結果と12画像を`results/learning/`へ保存する。本文は標準の見出し・段落ブロックを正本とし、目次と区画はその読み取り結果。メタに別の本文を保持しない。検索はタイトルだけでなく本文内の用語も対象にする。
+
+公開投稿7件・下書き1件、講座配下の3レッスンをfixtureとして持つ。専用環境の管理検査は学習投稿の親ID・順序・標準ブロック本文も照合する。共通継承/独自/非表示の束への接続は未完了。検索noindexはlab全体のnoindex設定と重なるため、製品SEO契約の単独達成証拠には使わない。
+
+## 同期前の検証
+
+表示・アクセス191項目、学習180項目、管理5項目を確認。[標準パスワード保護](results/passwords.json)も5種別のHTML/REST計10項目を確認した。独自表示でも保護フォームへ分岐し、参照カードのHTML生成はテーマが担当する。パスワード検査は専用fixtureへ一時設定して復元するため、管理検査と同様に他のWP検査・撮影と同時実行しない。

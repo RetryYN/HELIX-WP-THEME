@@ -30,6 +30,7 @@ $ids['blp'] = wtcf_seed( 'wt_blp', 'before-redesign', '作り直す、その前�
 	array( 'title' => '小さな変更で、確かめられることがある', 'text' => '問い合わせを急がせる前に、疑問に答える内容を置きます。変更前後を同じ内容と画面幅で比較し、読み手の負担が減ったかを確認します。' ),
 	array( 'title' => '相談が向く場合・向かない場合', 'text' => '課題の整理と改善の順番を決めたいチームには相談が向きます。すでに実装仕様が確定し、作業のみを依頼したい場合は、制作サービスの検討が適しています。' ) ) ) );
 $ids['embedded'] = wtcf_seed( 'page', 'voices-in-context', '制作の考え方', '人物の詳細へつながる参照カード。', '[wtcf_interview_card slug="making-room"]', array() );
+require_once __DIR__ . '/seed-learning.php';
 update_option( 'wtcf_fixture_ids', $ids, false );
 update_option( 'blog_public', 0 );
 update_option( 'permalink_structure', '/%postname%/' );

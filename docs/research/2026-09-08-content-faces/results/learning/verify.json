@@ -1,0 +1,907 @@
+{
+  "schema": "wt-learning-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-learning-faces.mjs": "91a177b7cad86d248da924e28285a00bae86b91ea3eadf7077453f9afb96207e",
+    "docs/research/2026-09-08-content-faces/plugin/learning.php": "bb06fa3d7b052a8e137206e9d3e6f465761668d3b8805c1c94f5037b651e0b29",
+    "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+    "docs/research/2026-09-08-content-faces/seed-learning.php": "e2314da13c7201ccc7c875c2ab09cdf2258496928eeed9303a2f16fb6dbe2dbe",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "b5d359a26d9fc25eaa0ef09d9de41a71b705d0cdee65b2dfe8a281800b44977f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "b8f2abb7a7883dd134fed32ecb5595ddd7bcd03e44235a7d54213d6c265b787e"
+  },
+  "scope": "Learning hierarchy, sequence, glossary, help and public search in the dedicated WordPress PoC",
+  "pass": 180,
+  "fail": 0,
+  "rows": [
+    {
+      "name": "archive:count:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "archive:first-page:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "archive:second-page:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "course:three-lessons:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:first-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:parent:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:current:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:toc:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:middle:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:last-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "glossary:term-target:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "help:open:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "help:close:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:読み手:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-true:3",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-true:3",
+      "pass": true
+    },
+    {
+      "name": "search:アクセシビリティ:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:存在しない検索語:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:購入者向けの検証本文:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-true:10",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-true:10",
+      "pass": true
+    },
+    {
+      "name": "search:未公開レッスンの内部確認語:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-true:13",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-true:13",
+      "pass": true
+    },
+    {
+      "name": "search:escaped:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-true:38",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-true:38",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-index:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-index:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:course:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:course:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:lesson:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:lesson:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:glossary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:glossary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:help:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:help:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-link:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target-focus:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "archive:count:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "archive:first-page:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "archive:second-page:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "course:three-lessons:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:first-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:parent:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:current:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:toc:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:middle:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:last-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "glossary:term-target:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "help:open:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "help:close:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:読み手:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-false:3",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-false:3",
+      "pass": true
+    },
+    {
+      "name": "search:アクセシビリティ:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:存在しない検索語:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:購入者向けの検証本文:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-false:10",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-false:10",
+      "pass": true
+    },
+    {
+      "name": "search:未公開レッスンの内部確認語:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-false:13",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-false:13",
+      "pass": true
+    },
+    {
+      "name": "search:escaped:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:pc:js-false:38",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:pc:js-false:38",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-index:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-index:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:course:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:course:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:lesson:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:lesson:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:glossary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:glossary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:help:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:help:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-link:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target-focus:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "archive:count:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "archive:first-page:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "archive:second-page:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "course:three-lessons:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:first-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:parent:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:current:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:toc:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:middle:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "lesson:last-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "glossary:term-target:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "help:open:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "help:close:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:読み手:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-true:3",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-true:3",
+      "pass": true
+    },
+    {
+      "name": "search:アクセシビリティ:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:存在しない検索語:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-true:8",
+      "pass": true
+    },
+    {
+      "name": "search:購入者向けの検証本文:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-true:10",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-true:10",
+      "pass": true
+    },
+    {
+      "name": "search:未公開レッスンの内部確認語:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-true:13",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-true:13",
+      "pass": true
+    },
+    {
+      "name": "search:escaped:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-true:38",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-true:38",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-index:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-index:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:course:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:course:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:lesson:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:lesson:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:glossary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:glossary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:help:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:help:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-link:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "skip-target-focus:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "archive:count:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "archive:first-page:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "archive:second-page:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "course:three-lessons:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:first-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:parent:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:current:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:toc:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:middle:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "lesson:last-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "glossary:term-target:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "help:open:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "help:close:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:読み手:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-false:3",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-false:3",
+      "pass": true
+    },
+    {
+      "name": "search:アクセシビリティ:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:存在しない検索語:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-false:8",
+      "pass": true
+    },
+    {
+      "name": "search:購入者向けの検証本文:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-false:10",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-false:10",
+      "pass": true
+    },
+    {
+      "name": "search:未公開レッスンの内部確認語:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-false:13",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-false:13",
+      "pass": true
+    },
+    {
+      "name": "search:escaped:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search:noindex:sp:js-false:38",
+      "pass": true
+    },
+    {
+      "name": "search:no-injected-image:sp:js-false:38",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-index:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-index:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:course:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:course:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:lesson:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:lesson:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:glossary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:glossary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:help:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:help:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:learning-empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:learning-empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-link:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "skip-target-focus:sp:js-false",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "learning-index-pc.jpg",
+      "face": "learning",
+      "part": "learning-index",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "course-pc.jpg",
+      "face": "learning",
+      "part": "course",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/page-design/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "lesson-pc.jpg",
+      "face": "learning",
+      "part": "lesson",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/page-design/evidence/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "glossary-pc.jpg",
+      "face": "learning",
+      "part": "glossary",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/glossary/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "help-pc.jpg",
+      "face": "learning",
+      "part": "help",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/help/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "learning-empty-pc.jpg",
+      "face": "learning",
+      "part": "learning-empty",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "pc",
+      "route": "/learn/?learn_q=not-found",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "learning-index-sp.jpg",
+      "face": "learning",
+      "part": "learning-index",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "course-sp.jpg",
+      "face": "learning",
+      "part": "course",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/page-design/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "lesson-sp.jpg",
+      "face": "learning",
+      "part": "lesson",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/page-design/evidence/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "glossary-sp.jpg",
+      "face": "learning",
+      "part": "glossary",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/glossary/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "help-sp.jpg",
+      "face": "learning",
+      "part": "help",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/help/",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    },
+    {
+      "file": "learning-empty-sp.jpg",
+      "face": "learning",
+      "part": "learning-empty",
+      "design": "editorial",
+      "role": "anonymous",
+      "dev": "sp",
+      "route": "/learn/?learn_q=not-found",
+      "requirement_ids": [
+        "WT-FR-LEARN-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
+      ]
+    }
+  ]
+}

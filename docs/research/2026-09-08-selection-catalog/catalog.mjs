@@ -10,7 +10,7 @@ const button = (text, action) => {
   node.type = 'button'; node.addEventListener('click', action); return node;
 };
 const labels = { unreviewed: '未選択', adopt: '採用候補', hold: '保留', reject: '除外' };
-const faceLabels = { article: '記事', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
+const faceLabels = { article: '記事', learning: '学習・ヘルプ', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
 const storageKey = 'helix-selection-memos.v1';
 let noticeTimer;
 function notify(message) {
@@ -46,7 +46,7 @@ async function start() {
   const comparison = new Set();
   $('total').textContent = data.entries.length;
   $('req-total').textContent = data.requirementCount;
-  const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['home', 'article', 'paid', 'interview', 'blp', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
+  const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['home', 'article', 'paid', 'interview', 'blp', 'learning', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
   for (const [key, label] of collections) {
     const b = button(label, () => { face = key; linkedIds = null; limit = 36; render(); });
     b.dataset.face = key; $('faces').append(b);
@@ -169,8 +169,19 @@ async function start() {
       const row = el('details', undefined, 'req-row');
       const summary = el('summary'); summary.append(el('strong', req.id), el('span', req.status === 'partial_poc' ? '代表PoC検証あり・全条件未完了' : '未検証', 'status-label'), el('p', req.statement));
       const body = el('div'); body.append(el('p', req.next));
-      if (req.evidence) { const proof = el('a', '代表PoCの実測結果を見る'); proof.href = req.evidence; body.append(proof); }
-      for (const ac of req.acceptance) body.append(el('p', `${ac.id} — ${ac.oracle}`));
+      if (req.evidence) { const proof = el('a', '全受入条件の証拠対応を見る'); proof.href = req.evidence; body.append(proof); }
+      for (const ac of req.acceptance) {
+        const caseRow = el('details', undefined, 'acceptance-row');
+        const states = { missing: '証拠の対応付けなし', partial: '部分確認', verified_in_poc: 'PoC確認済み', stale: '再検証が必要' };
+        caseRow.append(el('summary', `${ac.id} · ${states[ac.status] || '未検証'}`), el('p', ac.oracle));
+        if (ac.scope) caseRow.append(el('p', `確認した範囲: ${ac.scope}`));
+        for (const remaining of ac.remaining || []) caseRow.append(el('p', `残り: ${remaining}`));
+        for (const proof of ac.evidence || []) {
+          const link = el('a', `検査結果（${proof.row_names.length}行）`);
+          link.href = '../../../' + proof.path; caseRow.append(link);
+        }
+        body.append(caseRow);
+      }
       if (req.pending?.length) body.append(el('p', `未決事項: ${typeof req.pending === 'string' ? req.pending : JSON.stringify(req.pending)}`));
       if (req.relatedEntryIds.length) body.append(button(`関連する${req.relatedEntryIds.length}候補を見る`, () => {
         linkedIds = new Set(req.relatedEntryIds); face = 'all'; limit = 36;

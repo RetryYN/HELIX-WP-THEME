@@ -13,8 +13,9 @@ function wtcf_manifest() {
 add_action( 'init', function () {
 	foreach ( wtcf_manifest()['types'] as $type => $definition ) {
 		register_post_type( $type, array( 'label' => $definition['label'], 'public' => true, 'show_in_rest' => true,
+			'hierarchical' => ! empty( $definition['hierarchical'] ),
 			'has_archive' => true, 'rewrite' => array( 'slug' => $definition['slug'] ),
-			'supports' => array( 'title', 'editor', 'excerpt', 'revisions' ) ) );
+			'supports' => array( 'title', 'editor', 'excerpt', 'revisions', 'page-attributes' ) ) );
 	}
 } );
 
@@ -39,7 +40,7 @@ function wtcf_access( $post_id ) {
 // Only a sanitized display projection crosses from the fixture adapter to the theme.
 function wtcf_display( $post_id ) {
 	$post = get_post( $post_id );
-	if ( ! $post || ! isset( wtcf_manifest()['types'][ $post->post_type ] ) ) { return null; }
+	if ( ! $post || post_password_required( $post ) || ! isset( wtcf_manifest()['types'][ $post->post_type ] ) ) { return null; }
 	$doc = wtcf_document( $post_id );
 	$display = array( 'id' => $post_id, 'type' => $post->post_type, 'title' => get_the_title( $post_id ),
 		'url' => get_permalink( $post_id ), 'summary' => $post->post_excerpt, 'content' => $post->post_content );
@@ -74,11 +75,5 @@ add_filter( 'wp_insert_post_data', function ( $data, $postarr ) {
 	return $data;
 }, 10, 2 );
 
-add_shortcode( 'wtcf_interview_card', function ( $attributes ) {
-	$slug = sanitize_title( $attributes['slug'] ?? '' );
-	$post = get_page_by_path( $slug, OBJECT, 'wt_interview' );
-	if ( ! $post || $post->post_status !== 'publish' ) { return ''; }
-	$data = wtcf_display( $post->ID );
-	if ( ! $data['confirmed'] ) { return ''; }
-	return '<aside class="wtcf-reference"><p>VOICE / 制作の現場から</p><h2><a href="' . esc_url( $data['url'] ) . '">' . esc_html( $data['title'] ) . '</a></h2><p>' . esc_html( $data['summary'] ) . '</p></aside>';
-} );
+
+require_once __DIR__ . '/learning.php';

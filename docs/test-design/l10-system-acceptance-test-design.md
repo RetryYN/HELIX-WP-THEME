@@ -149,3 +149,11 @@ pair freeze と G3 到達は主張しない。
 | WT-AT-PAID-01 | WT-AC-PAID-01C | 無料会員・別商品・失効・対象購入・有効購読、HTML/REST/検索/feed/一覧・cache | scripts/verify-content-faces.mjs、content-faces/results/verify.json |
 | WT-AT-INTERVIEW-01 | WT-AC-INTERVIEW-01C | 掲載確認前draft、テーマ変更後の独立CPTと保存データ保持 | content-faces/results/verify.json、management.json |
 | WT-AT-BLP-01 | WT-AC-BLP-01C | 理解・適否→別管理LP→入力到達、PC/SP・JS無効 | scripts/verify-content-faces.mjs |
+
+## 学習・支援系（WT-EVT-0306）
+
+全132要求・289 AC。
+
+| test ID | 対応要求 | 受入条件 | 検証方法 | 残り |
+| --- | --- | --- | --- | --- |
+| WT-AT-LEARN-01 | WT-FR-LEARN-01 | WT-AC-LEARN-01A, WT-AC-LEARN-01B, WT-AC-LEARN-01C, WT-AC-LEARN-01D | scripts/verify-learning-faces.mjs、scripts/verify-content-management.py。講座/前後/目次/用語/FAQ/公開検索、PC/SP・JS無効 | 共通継承/独自/非表示への接続、全管理UIの検証 |
