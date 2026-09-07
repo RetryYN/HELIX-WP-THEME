@@ -10,7 +10,7 @@ const button = (text, action) => {
   node.type = 'button'; node.addEventListener('click', action); return node;
 };
 const labels = { unreviewed: '未選択', adopt: '採用候補', hold: '保留', reject: '除外' };
-const faceLabels = { site: '会社・規約', article: '記事', learning: '学習・ヘルプ', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
+const faceLabels = { inheritance: '共通設定の継承', site: '会社・規約', article: '記事', learning: '学習・ヘルプ', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
 const storageKey = 'helix-selection-memos.v1';
 let noticeTimer;
 function notify(message) {
@@ -46,7 +46,7 @@ async function start() {
   const comparison = new Set();
   $('total').textContent = data.entries.length;
   $('req-total').textContent = data.requirementCount;
-  const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['home', 'article', 'paid', 'interview', 'blp', 'learning', 'site', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
+  const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['inheritance', 'home', 'article', 'paid', 'interview', 'blp', 'learning', 'site', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
   for (const [key, label] of collections) {
     const b = button(label, () => { face = key; linkedIds = null; limit = 36; render(); });
     b.dataset.face = key; $('faces').append(b);

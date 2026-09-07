@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('586');
+  await expect(page.locator('#total')).toHaveText('604');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -127,4 +127,17 @@ test('quality comparison opens from catalog with paired evidence and a return pa
   }
   await page.getByRole('link', { name: '← 選択カタログへ' }).click();
   await expect(page.locator('.tile-open').first()).toBeVisible();
+});
+
+
+test('independent faces expose shared, own and off comparisons', async ({ page }) => {
+  await page.locator('[data-face="inheritance"]').click();
+  await expect(page.locator('.tile-open')).toHaveCount(18);
+  await page.locator('#search').fill('chrome-content-content_learning');
+  await expect(page.locator('.tile-open')).toHaveCount(3);
+  await page.locator('[data-device="sp"]').click();
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail')).toContainText('WT-FR-PARTS-03');
+  await expect(page.locator('#detail')).toContainText('WT-FR-LEARN-01');
+  await expect(page.locator('#detail').getByRole('link', { name: 'ローカルの実機で操作する ↗' })).toHaveAttribute('href', /content_chrome/);
 });

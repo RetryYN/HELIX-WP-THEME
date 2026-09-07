@@ -25,7 +25,7 @@ const families = {
   SNS: ['share', 'article-tail-share', 'footer-extra', 'lp-line'],
   AUTHOR: ['article-tail-author'], TPL: ['404'],
   PAID: ['content-paid'], INTERVIEW: ['content-interview'], BLP: ['content-blp'],
-  LEARN: ['content-learning'],
+  LEARN: ['content-learning', 'chrome-content-content_learning'],
 };
 const purpose = part => /form-|event-apply/.test(part) ? '手続きを支える'
   : /cta|fixed|lp-|chrome-fix/.test(part) ? '行動につなげる'
@@ -105,6 +105,27 @@ if (fs.existsSync(path.join(root, sitePath))) {
     entries.set(id, entry);
   }
 }
+const inheritancePath = 'docs/research/2026-09-08-content-faces/results/inheritance/verify.json';
+if (fs.existsSync(path.join(root, inheritancePath))) {
+  const evidence = read(inheritancePath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass)) throw Error('Content inheritance evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale inheritance evidence: ${file}`);
+  }
+  const labels = { content_paid: '有料記事', content_interview: 'インタビュー', content_blp: 'BLP', content_lp: 'LP', content_learning: '学習', content_site: '常設案内' };
+  const modes = { site: '共通設定', own: '独自設定', off: '非表示' };
+  for (const shot of evidence.shots) {
+    if (!labels[shot.face] || !modes[shot.mode] || !['pc', 'sp'].includes(shot.device) || !/^[a-z0-9_-]+\.jpg$/.test(shot.file)) throw Error('Invalid inheritance screenshot');
+    if (!fs.existsSync(path.join(root, path.dirname(inheritancePath), shot.file))) throw Error('Missing inheritance screenshot');
+    const id = `inheritance:${shot.face}:${shot.mode}`;
+    const entry = entries.get(id) || { id, face: 'inheritance', part: `chrome-content-${shot.face}`, label: `${labels[shot.face]} / ${modes[shot.mode]}`, variant: shot.mode,
+      purpose: '共通設定と個別設定を選ぶ', group: '共通設定・部品', images: {}, requirementIds: [], demoRoute: shot.route,
+      description: '既存の共通ヘッダー・フッター・固定CTA・サイドバーへ接続した代表表示です。共通は右、独自は左のサイドバーを使用し、SPでは本文の後へ置きます。導線の実在性・固定要素の被覆・全状態の同意と認可は未完了です。',
+      evidence: '../2026-09-08-content-faces/results/inheritance/verify.json' };
+    entry.images[shot.device] = `../2026-09-08-content-faces/results/inheritance/${shot.file}`;
+    entries.set(id, entry);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
@@ -118,7 +139,7 @@ const requirements = ir.requirements.map(r => {
     next: related.length ? '関連画像を起点に全受入条件の再現・実測を確認する' : '操作・状態・契約を含む再現デモと証跡を追加する' };
 });
 const result = { schema: 'wt-selection-catalog.v1', source: prototype, requirementCount: requirements.length,
-  screenshotCount: index.length + (contentEvidence?.shots.length || 0) + (learningEvidence?.shots.length || 0) + (siteEvidence?.shots.length || 0), faces: glossary.faces, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
+  screenshotCount: [...entries.values()].reduce((sum, entry) => sum + Object.keys(entry.images).length, 0), faces: glossary.faces, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
   evidenceNote: '関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。' };
 const out = path.join(root, 'docs/research/2026-09-08-selection-catalog/catalog-data.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });

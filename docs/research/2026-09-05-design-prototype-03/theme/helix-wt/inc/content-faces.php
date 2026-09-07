@@ -24,14 +24,15 @@ function wtcf_render_face() {
 	$design = wtcf_choice( 'design', 'editorial', $manifest['designs'] );
 	$owner = wtcf_choice( 'ownership', 'inherit', $manifest['ownership'] );
 	ob_start();
+	echo wtcf_shared_part( 'header' );
 	?>
 	<div class="wtcf wtcf--<?php echo esc_attr( $design ); ?>" data-ownership="<?php echo esc_attr( $owner ); ?>">
-	<?php if ( $owner !== 'off' ) : ?>
+	<?php if ( ! wtcf_shared_chrome() && $owner !== 'off' ) : ?>
 	<header class="wtcf-header"><a class="wtcf-brand" href="<?php echo esc_url( get_post_type_archive_link( 'wt_paid' ) ); ?>">HELIX <span><?php echo $owner === 'own' ? 'FIELD NOTES' : 'JOURNAL & IDEAS'; ?></span></a><nav aria-label="コンテンツ案内">
 	<?php echo wtcf_link( get_post_type_archive_link( 'wt_paid' ), '読む' ) . wtcf_link( get_post_type_archive_link( 'wt_interview' ), '人を知る' ) . wtcf_link( get_post_type_archive_link( 'wt_blp' ), '考える' ); ?>
 	</nav></header>
 	<?php endif; ?>
-	<main id="content" class="wtcf-main">
+	<?php echo wtcf_shared_layout_start(); ?><main id="content" class="wtcf-main">
 	<?php if ( is_post_type_archive() ) : ?>
 		<header class="wtcf-intro"><p class="wtcf-kicker">THE COLLECTION</p><h1><?php post_type_archive_title(); ?></h1><p>考え方を、次の一歩へ。テーマを選んでじっくり読む。</p></header>
 		<div class="wtcf-list">
@@ -77,7 +78,7 @@ function wtcf_render_face() {
 		</div>
 		<?php endif; ?>
 	<?php endif; endif; ?>
-	</main><footer class="wtcf-footer"><p>HELIX / 読むことから、動き出す。</p><a href="#content">本文の先頭へ戻る ↑</a></footer></div>
+	</main><?php echo wtcf_shared_layout_end(); ?><?php if ( ! wtcf_shared_chrome() ) : ?><footer class="wtcf-footer"><p>HELIX / 読むことから、動き出す。</p><a href="#content">本文の先頭へ戻る ↑</a></footer><?php endif; ?></div><?php echo wtcf_shared_part( 'footer' ); ?>
 	<?php return ob_get_clean();
 }
 add_action( 'init', function () { register_block_type( 'helix-wt/content-face', array( 'render_callback' => 'wtcf_render_face' ) ); } );

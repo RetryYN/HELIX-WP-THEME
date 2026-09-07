@@ -13,11 +13,11 @@ function wtcf_render_site_page( $attributes ) {
 	$manifest = wtcf_site_manifest(); $key = $attributes['pageKey'] ?? '';
 	if ( ! is_string( $key ) || ! isset( $manifest['pages'][ $key ] ) ) { return '<p>このページ種別は登録されていません。</p>'; }
 	$page = $manifest['pages'][ $key ]; $settings = wtcf_site_settings(); $business = $settings['business'];
-	ob_start(); ?>
+	ob_start(); echo wtcf_shared_part( 'header' ); ?>
 	<div class="wtsite" data-site-page="<?php echo esc_attr( $key ); ?>">
 	<a class="wtsite-skip" href="#site-main">本文へ移動</a>
-	<header class="wtsite-header"><a class="wtsite-brand" href="<?php echo esc_url( wtcf_site_url( 'company' ) ); ?>">HELIX<span>DESIGN & EDITORIAL</span></a><nav aria-label="事業の案内"><?php foreach ( array( 'service', 'pricing', 'company', 'contact' ) as $nav ) { echo wtcf_link( wtcf_site_url( $nav ), $manifest['pages'][ $nav ]['label'] ); } ?></nav></header>
-	<main id="site-main" tabindex="-1"><header class="wtsite-intro"><p class="wtsite-eyebrow"><?php echo esc_html( $page['eyebrow'] ); ?></p><h1><?php echo esc_html( $page['title'] ); ?></h1><p class="wtsite-lead"><?php echo esc_html( $page['lead'] ); ?></p><p class="wtsite-updated">更新 <?php echo esc_html( $manifest['updated'] ); ?></p></header>
+	<?php if ( ! wtcf_shared_chrome() ) : ?><header class="wtsite-header"><a class="wtsite-brand" href="<?php echo esc_url( wtcf_site_url( 'company' ) ); ?>">HELIX<span>DESIGN & EDITORIAL</span></a><nav aria-label="事業の案内"><?php foreach ( array( 'service', 'pricing', 'company', 'contact' ) as $nav ) { echo wtcf_link( wtcf_site_url( $nav ), $manifest['pages'][ $nav ]['label'] ); } ?></nav></header><?php endif; ?>
+	<?php echo wtcf_shared_layout_start(); ?><main id="site-main" tabindex="-1"><header class="wtsite-intro"><p class="wtsite-eyebrow"><?php echo esc_html( $page['eyebrow'] ); ?></p><h1><?php echo esc_html( $page['title'] ); ?></h1><p class="wtsite-lead"><?php echo esc_html( $page['lead'] ); ?></p><p class="wtsite-updated">更新 <?php echo esc_html( $manifest['updated'] ); ?></p></header>
 	<div class="wtsite-layout"><aside><nav aria-label="このページの目次"><p>ON THIS PAGE</p><?php foreach ( $page['sections'] as $i => $section ) { echo wtcf_link( '#site-section-' . $i, $section[0] ); } ?></nav></aside><article>
 	<?php if ( $page['fields'] ) : ?><dl class="wtsite-facts"><?php foreach ( $page['fields'] as $field ) { echo '<div><dt>' . esc_html( $manifest['field_labels'][ $field ] ) . '</dt><dd data-business-field="' . esc_attr( $field ) . '">' . esc_html( $business[ $field ] ) . '</dd></div>'; } ?></dl><?php endif; ?>
 	<?php if ( isset( $page['plans'] ) ) : ?><div class="wtsite-plans"><?php foreach ( $page['plans'] as $plan ) : ?><section><h2><?php echo esc_html( $plan['name'] ); ?></h2><p class="wtsite-price"><?php echo esc_html( $plan['price'] ); ?></p><p><?php echo esc_html( $plan['unit'] ); ?></p><h3>含まれるもの</h3><p><?php echo esc_html( $plan['scope'] ); ?></p><h3>含まれないもの</h3><p><?php echo esc_html( $plan['limit'] ); ?></p></section><?php endforeach; ?></div><?php endif; ?>
@@ -25,8 +25,8 @@ function wtcf_render_site_page( $attributes ) {
 	<?php foreach ( $page['sections'] as $i => $section ) : ?><section class="wtsite-section" id="site-section-<?php echo (int) $i; ?>" tabindex="-1"><h2><?php echo esc_html( $section[0] ); ?></h2><p><?php echo esc_html( $section[1] ); ?></p></section><?php endforeach; ?>
 	<?php if ( ! empty( $page['handoff'] ) ) : ?><div class="wtsite-handoff"><h2>別の受付画面へ進む</h2><p>個人情報の入力は不要です。検証用の分類を選ぶ操作だけを試せます。</p><?php echo wtcf_link( 'http://127.0.0.1:8099' . $manifest['handoff_path'], '受付例を開く →', 'wtsite-button' ); ?></div><?php endif; ?>
 	<nav class="wtsite-related" aria-label="関連する案内"><?php foreach ( $page['links'] as $link ) { echo wtcf_link( wtcf_site_url( $link ), $manifest['pages'][ $link ]['label'] . ' →' ); } ?></nav>
-	</article></div></main>
-	<footer class="wtsite-footer"><p data-business-field="name"><?php echo esc_html( $business['name'] ); ?></p><nav aria-label="サイトの利用案内"><?php foreach ( array( 'privacy', 'commerce', 'transmissions', 'accessibility', 'terms' ) as $link ) { echo wtcf_link( wtcf_site_url( $link ), $manifest['pages'][ $link ]['label'] ); } ?></nav><p>表示・導線を確かめるための架空サイトです。</p></footer></div>
+	</article></div></main><?php echo wtcf_shared_layout_end(); ?>
+	<?php if ( ! wtcf_shared_chrome() ) : ?><footer class="wtsite-footer"><p data-business-field="name"><?php echo esc_html( $business['name'] ); ?></p><nav aria-label="サイトの利用案内"><?php foreach ( array( 'privacy', 'commerce', 'transmissions', 'accessibility', 'terms' ) as $link ) { echo wtcf_link( wtcf_site_url( $link ), $manifest['pages'][ $link ]['label'] ); } ?></nav><p>表示・導線を確かめるための架空サイトです。</p></footer><?php endif; ?></div><?php echo wtcf_shared_part( 'footer' ); ?>
 	<?php return ob_get_clean();
 }
 add_action( 'init', function () {

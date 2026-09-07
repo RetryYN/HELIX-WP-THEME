@@ -11,14 +11,14 @@ function wtcf_render_learning() {
 	$design = wtcf_choice( 'design', 'editorial', wtcf_manifest()['designs'] );
 	$kinds = array( 'course' => '学習ガイド', 'lesson' => 'レッスン', 'glossary' => '用語集', 'help' => 'ヘルプ' );
 	$data = is_singular() ? wtcf_learning_display( get_the_ID() ) : null;
-	ob_start(); ?>
+	ob_start(); echo wtcf_shared_part( 'header' ); ?>
 	<div class="wtcf wtcf--<?php echo esc_attr( $design ); ?> wtlearn">
 	<a class="wtlearn-skip" href="#learning-main">本文へ移動</a>
-	<header class="wtcf-header"><a class="wtcf-brand" href="<?php echo esc_url( $archive ); ?>">HELIX<span>LEARNING CENTER</span></a><nav aria-label="学習の入口"><?php echo wtcf_link( $archive, '学習・ヘルプ一覧' ); ?></nav></header>
+	<?php if ( ! wtcf_shared_chrome() ) : ?><header class="wtcf-header"><a class="wtcf-brand" href="<?php echo esc_url( $archive ); ?>">HELIX<span>LEARNING CENTER</span></a><nav aria-label="学習の入口"><?php echo wtcf_link( $archive, '学習・ヘルプ一覧' ); ?></nav></header><?php endif; ?>
 	<?php if ( $data ) : ?>
 	<nav class="wtlearn-breadcrumbs" aria-label="階層"><ol><li><?php echo wtcf_link( $archive, '学習・ヘルプ' ); ?></li><?php foreach ( $data['ancestors'] as $ancestor ) { echo '<li>' . wtcf_link( $ancestor['url'], $ancestor['title'] ) . '</li>'; } ?><li aria-current="page"><?php echo esc_html( $data['title'] ); ?></li></ol></nav>
 	<?php endif; ?>
-	<main id="learning-main" class="wtcf-main" tabindex="-1">
+	<?php echo wtcf_shared_layout_start(); ?><main id="learning-main" class="wtcf-main" tabindex="-1">
 	<?php if ( ! $data ) : $results = wtcf_learning_search(); ?>
 	<header class="wtcf-intro"><p class="wtcf-kicker">LEARN / FIND / TRY</p><h1>知りたいことから、<br>できることへ。</h1><p class="wtcf-lead">はじめての学習から、作業中の疑問まで。ひとつずつ確かめながら進めましょう。</p></header>
 	<?php echo wtcf_learning_search_form( $results['query'] ); ?>
@@ -47,7 +47,7 @@ function wtcf_render_learning() {
 	if ( $data['next'] ) { echo wtcf_link( $data['next']['url'], $data['next']['title'] . ' →', 'wtlearn-next' ); }
 	?></nav></article></div>
 	<?php endif; ?>
-	</main><footer class="wtcf-footer"><p>HELIX / 一歩ずつ、理解を深める。</p><?php echo wtcf_link( $archive, '学習・ヘルプへ戻る' ); ?></footer></div>
+	</main><?php echo wtcf_shared_layout_end(); ?><?php if ( ! wtcf_shared_chrome() ) : ?><footer class="wtcf-footer"><p>HELIX / 一歩ずつ、理解を深める。</p><?php echo wtcf_link( $archive, '学習・ヘルプへ戻る' ); ?></footer><?php endif; ?></div><?php echo wtcf_shared_part( 'footer' ); ?>
 	<?php return ob_get_clean();
 }
 add_action( 'init', function () { register_block_type( 'helix-wt/learning', array( 'render_callback' => 'wtcf_render_learning' ) ); } );

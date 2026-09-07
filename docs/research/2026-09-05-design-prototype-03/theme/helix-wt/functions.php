@@ -4,9 +4,12 @@
  * PoC 証跡。実装時はプレビュー引数を管理者限定にし、選択 UI（サイトエディター / 記事サイドバー）を付ける。
  */
 
+require_once __DIR__ . '/inc/content-chrome.php';
+
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {
 	$axes = array(
+		'content_chrome' => array( 'native', array( 'native', 'shared' ) ),
 		// 2026-09-06 PO 反応 17 回目 WT-EVT-0270「ヘッダーバリエーション増やそうか」: 台帳 §1 header レイアウトの観察型から +5（Claude 案）
 		// center = logo-center-nav-below / two-rows / overlay = transparent-over-hero（eyecatch:hero と併用）/ tel = with-tel / band = テーマ A/B の帯色型
 		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce', 'center', 'two-rows', 'overlay', 'tel', 'band' ) ),
@@ -98,7 +101,7 @@ function wt_axes() {
 		// own の束は面ごとに別の軸（own_<face>_side_*）。同じ own を選んでも面をまたいで設定が混ざらない（Astra 1 巡目: 共通の own_side_* は第 3 の共通設定になる）
 		// 継承セットの追加 = wt_side_bundles() に 1 行 + 軸 5 本（許可値は台帳から導出するので面の所属軸は触らない）
 	);
-	foreach ( array( 'category', 'event', 'page' ) as $face ) { // 独自設定の束（面専用）。既定セット minimal は Claude 暫定
+	foreach ( array_merge( array( 'category', 'event', 'page' ), array_keys( wtcf_chrome_faces() ) ) as $face ) { // 独自設定の束（面専用）。既定セット minimal は Claude 暫定
 		$axes[ 'own_' . $face . '_side_layout' ] = array( 'right', array( 'none', 'right', 'left', 'both' ) );
 		$axes[ 'own_' . $face . '_side_sticky' ] = array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) );
 		$axes[ 'own_' . $face . '_side_sp' ]     = array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) );
@@ -138,6 +141,7 @@ function wt_axes() {
 	$axes['cat_side']   = array( 'article', array_merge( $bundles, array( 'classic', 'off' ) ) ); // 既定 = 記事側継承（PO 原文）。classic = 段 6 の独自 aside
 	$axes['event_side'] = array( 'off', array_merge( array( 'off' ), $bundles ) ); // 既定 = OFF（PO 原文「LP に近い場合は不要」）
 	$axes['page_side']  = array( 'home', array_merge( $bundles, array( 'off' ) ) ); // 既定 = HP 側継承（Claude 暫定）
+	foreach ( array_keys( wtcf_chrome_faces() ) as $face ) { $axes[ $face . '_side' ] = array( 'off', array_merge( $bundles, array( 'off' ) ) ); }
 	return $axes;
 }
 
@@ -146,6 +150,7 @@ require_once __DIR__ . '/inc/form.php'; // 段 11: フォーム（種別 / 項�
 
 // 段 10c: 面の判定と、その面が使うサイドバー設定の束（home / article / null = 無し）
 function wt_side_face() {
+	if ( wtcf_shared_chrome() ) { return wtcf_chrome_face(); }
 	if ( wt_is_lp_page() ) { return 'lp'; }
 	if ( is_front_page() ) { return 'home'; }
 	if ( wt_is_event_page() ) { return 'event'; }
@@ -166,7 +171,10 @@ function wt_side_bundle() {
 		case 'category': $s = wt_opt( 'cat_side' ); return isset( $bundles[ $s ] ) ? $s : null; // classic / off は共通サイドバーを使わない
 		case 'event': $s = wt_opt( 'event_side' ); return isset( $bundles[ $s ] ) ? $s : null;
 		case 'page': $s = wt_opt( 'page_side' ); return isset( $bundles[ $s ] ) ? $s : null;
-		default: return null;
+		default:
+			$face = wt_side_face();
+			if ( isset( wtcf_chrome_faces()[ $face ] ) ) { $s = wt_opt( $face . '_side' ); return isset( $bundles[ $s ] ) ? $s : null; }
+			return null;
 	}
 }
 function wt_side_eff( $k ) { // $k: layout / sticky / sp / set / nav。面の束から実効値を返す
@@ -179,7 +187,7 @@ function wt_side_eff( $k ) { // $k: layout / sticky / sp / set / nav。面の束
 }
 
 // 段 12: ヘッダー・フッター・固定 CTA の束（wt_side_* と同じ形）
-function wt_chrome_faces() { return array( 'home', 'article', 'category', 'event', 'page', 'lp' ); }
+function wt_chrome_faces() { return array_merge( array( 'home', 'article', 'category', 'event', 'page', 'lp' ), array_keys( wtcf_chrome_faces() ) ); }
 function wt_chrome_prefix( $face ) { return 'category' === $face ? 'cat' : $face; }
 function wt_chrome_bundles() { return array( 'site' => '', 'own' => 'own_{face}_' ); } // 名前 → 軸接頭辞（own は面名に置換）。継承セットの追加はここに 1 行 + 軸
 function wt_chrome_keys( $part ) { // 束を構成する軸

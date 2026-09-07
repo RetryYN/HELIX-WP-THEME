@@ -78,3 +78,9 @@ node scripts/build-selection-catalog.mjs
 [変更前後の比較](results/site-quality/)で会社案内・料金のPC/SPを並べる。`node scripts/verify-site-page-quality.mjs`は常設11面×PC/SP×JS有無の44条件で、リンク44px、本文16px、横溢れなし、スキップリンクのフォーカスと本文移動、コード変更なしを265検査する。変更前は延べ370のリンク測定が44px未満、変更後は0。共通の`tap-min`を使い、ロゴ・ナビ・目次・フッターの操作領域を確保する。
 
 基準画像と`baseline.json`は4f7851dの表示CSSに対する記録。`--baseline`は変更前の再採取用で、現在の表示で上書きすると元の比較を失うため、通常の回帰では指定しない。背景や本文を変えずに操作寸法を改善した比較であり、全面の品質・速度・CWV・固定面・同意バーや管理画面の成立とは区別する。
+
+## 共通パーツ設定への接続
+
+個別デザインは`content_chrome:native`、既存の共通パーツは`content_chrome:shared`で選択する。例: 有料記事URLへ`?wt=content_chrome:shared,content_paid_head:own,own_content_paid_header:center,content_paid_side:article`を付ける。既存の`wt_opt`と同じtheme_modキー（例`wt_content_chrome`）へ保存できる。対象面の宣言はテーマの`config/content-chrome.json`。独自ヘッダー・フッター・固定CTA・サイドバーは面別の軸に分離し、共通設定のコピーを保持しない。
+
+`node scripts/verify-content-inheritance.mjs`は専用labの設定を一時変更・復元するため、他のWP検証と並行実行しない。6面の3状態をPC/SPで撮影し、404検査で共通/独自/非表示・保存設定の反映と面間の独立性を確認する。結果と画像は`results/inheritance/`、操作例は選択カタログの「共通設定の継承」。[確認範囲と残件](inheritance-plan.md)を参照。
