@@ -2039,36 +2039,47 @@ const sideQ = (face, q) => face === "home" ? q.replace(/(^|,)side_(layout|sticky
       rows.push({ dev, js, face: "page", v: "boundary-other-slug", ...b, pass: b.faces.includes("wt-face-page") && !b.faces.includes("wt-face-event") && !b.faces.includes("wt-face-lp") && b.kind === "contact" && b.title }); }
     await ctx.close();
   }
-  // block 階層の規則（template meta が空なら page-{slug}.html、静的フロントページは front-page.html が優先）を wp-cli で状態を変えて検査し、必ず元に戻す（Astra 1 巡目）
-  const wpS = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }).trim() : null;
+  // block 階層の規則（template meta が空なら page-{slug}.html、静的フロントページは front-page.html が優先）を wp-cli で状態を変えて検査し、必ず元に戻す（Astra 1〜3 巡目）。
+  // 復元は「変更前に退避した値へ、各コマンドを個別に try/catch で戻す」（1 つの失敗で残りを飛ばさない）+ 最後に変更前と一致することを行で検査。変更前の状態が疑わしい（前回の壊れた復元の残り）ときは行に残す
+  const wpS = WPCLIDIR ? (a) => execFileSync("docker", ["compose", "run", "--rm", "-T", "wpcli", ...a], { cwd: WPCLIDIR, encoding: "utf8" }).trim().split("\n").pop() : null; // 最終行 = 値（docker の状態行が混ざっても値だけ）
   if (wpS) {
     const ctx = await browser.newContext(PC); const p = await ctx.newPage();
-    const lpId = wpS(["post", "list", "--post_type=page", "--name=lp", "--field=ID", "--post_status=publish"]).split("\n")[0]; const evId = wpS(["post", "list", "--post_type=page", "--name=event", "--field=ID", "--post_status=publish"]).split("\n")[0];
-    const lpMeta = wpS(["post", "meta", "get", lpId, "_wp_page_template"]); const showOnFront = wpS(["option", "get", "show_on_front"]); let pageOnFront = "0"; try { pageOnFront = wpS(["option", "get", "page_on_front"]); } catch (_) { /* 未設定 */ }
+    const lpId = wpS(["post", "list", "--post_type=page", "--name=lp", "--field=ID", "--post_status=publish"]); const evId = wpS(["post", "list", "--post_type=page", "--name=event", "--field=ID", "--post_status=publish"]);
+    const getMeta = (id) => { try { return wpS(["post", "meta", "get", id, "_wp_page_template"]); } catch (_) { return ""; } }; /* 未設定は "" */
+    const getOpt = (k) => { try { return wpS(["option", "get", k]); } catch (_) { return ""; } };
+    const before = { lpMeta: getMeta(lpId), evMeta: getMeta(evId), showOnFront: getOpt("show_on_front"), pageOnFront: getOpt("page_on_front") }; // 変更前の値を退避（LP / イベントの template meta、フロントページ設定）
+    rows.push({ dev: "pc", js: true, face: "wp", v: "state-before-sane", before, pass: !(before.showOnFront === "page" && [lpId, evId].includes(before.pageOnFront)) }); // 変更前から event / lp がフロントページなら前回の復元漏れ（本行で見える）
+    const failures = [];
+    const setMeta = (id, val) => { try { if (val) wpS(["post", "meta", "update", id, "_wp_page_template", val]); else if (getMeta(id) !== "") wpS(["post", "meta", "delete", id, "_wp_page_template"]); } catch (e) { failures.push({ id, val, e: String(e).slice(0, 120) }); } };
+    const setOpt = (k, val) => { try { wpS(["option", "update", k, val]); } catch (e) { failures.push({ k, val, e: String(e).slice(0, 120) }); } };
+    const restore = () => { setOpt("show_on_front", before.showOnFront || "posts"); setOpt("page_on_front", before.pageOnFront || "0"); setMeta(lpId, before.lpMeta); setMeta(evId, before.evMeta); };
     try {
-      wpS(["post", "meta", "delete", lpId, "_wp_page_template"]); // LP の template meta を外す → slug 解決（page-lp.html）
+      setMeta(lpId, ""); // LP の template meta を外す → slug 解決（page-lp.html）
       await p.goto(BASE + LP, { waitUntil: "networkidle" }); const d = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), anyForm: !!document.querySelector(".wt-form__form"), lpHero: !!document.querySelector(".wt-lp") }));
       rows.push({ dev: "pc", js: true, face: "lp", v: "slug-resolved-default-no-block", ...d, pass: d.faces.includes("wt-face-lp") && !d.anyForm && d.lpHero });
       await p.goto(BASE + LP + "?wt=lp_form:block,lp_sections:extended", { waitUntil: "networkidle" }); await p.evaluate(() => { const el = document.querySelector(".wt-lp-form--block"); if (el) el.scrollIntoView(); }); await p.waitForTimeout(600);
       const s2 = await p.evaluate(([visSrc]) => { const vis = eval(visSrc); return { faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), formVis: vis(document.querySelector(".wt-lp-form--block .wt-form__form")), kind: (document.querySelector(".wt-lp-form--block .wt-form") || { getAttribute: () => null }).getAttribute("data-wt-form") }; }, [VIS_SRC]);
       rows.push({ dev: "pc", js: true, face: "lp", v: "slug-resolved-block", ...s2, pass: s2.faces.includes("wt-face-lp") && s2.formVis && s2.kind === "contact" });
-    } finally { wpS(["post", "meta", "update", lpId, "_wp_page_template", lpMeta]); }
-    for (const [id, face, tpl, cls] of [[evId, "event", "page-event", ".wt-event"], [lpId, "lp", "page-lp", ".wt-lp"]]) { // 別テンプレートを明示割当した event / lp の slug → その面にならない（page-canvas で面 page）。戻す
-      const before = id === lpId ? lpMeta : ""; try {
-        wpS(["post", "meta", "update", id, "_wp_page_template", "page-canvas"]);
+    } finally { restore(); }
+    for (const [id, face, cls] of [[evId, "event", ".wt-event"], [lpId, "lp", ".wt-lp"]]) { // 別テンプレートを明示割当した event / lp の slug → その面にならない（page-canvas で面 page）
+      try {
+        setMeta(id, "page-canvas");
         await p.goto(BASE + (face === "lp" ? LP : "/event/") + "?wt=lp_form:block,lp_sections:extended,event_apply:block-form", { waitUntil: "networkidle" }); const o = await p.evaluate(([cls]) => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), faceEl: !!document.querySelector(cls), anyForm: !!document.querySelector(".wt-form__form") }), [cls]);
         rows.push({ dev: "pc", js: true, face, v: "other-template-assigned", ...o, pass: !o.faces.includes("wt-face-" + face) && o.faces.includes("wt-face-page") && !o.faceEl && !o.anyForm });
-      } finally { if (before) wpS(["post", "meta", "update", id, "_wp_page_template", before]); else { try { wpS(["post", "meta", "delete", id, "_wp_page_template"]); } catch (_) { /* 無ければ無い */ } } } }
-    for (const [id, face, tpl] of [[evId, "event", ""], [evId, "event", "page-event"], [lpId, "lp", "page-lp"]]) { // 静的フロントページに → front-page.html が優先し面は home（slug 解決でも明示割当でも）。戻す
-      const before = id === lpId ? lpMeta : ""; try {
-        if (tpl) wpS(["post", "meta", "update", id, "_wp_page_template", tpl]);
-        wpS(["option", "update", "show_on_front", "page"]); wpS(["option", "update", "page_on_front", id]);
+      } finally { restore(); } }
+    for (const [id, face, tpl] of [[evId, "event", ""], [evId, "event", "page-event"], [lpId, "lp", "page-lp"]]) { // 静的フロントページに → front-page.html が優先し面は home（slug 解決でも明示割当でも）
+      try {
+        if (tpl) setMeta(id, tpl);
+        setOpt("show_on_front", "page"); setOpt("page_on_front", id);
         await p.goto(BASE + HOME + "?wt=event_apply:block-form,lp_form:block,lp_sections:extended", { waitUntil: "networkidle" }); const f = await p.evaluate(() => ({ faces: Array.from(document.body.classList).filter((c) => c.startsWith("wt-face-")), anyForm: !!document.querySelector(".wt-form__form"), home: !!document.querySelector(".wt-home"), faceEl: !!document.querySelector(".wt-event, .wt-lp") }));
         rows.push({ dev: "pc", js: true, face: "home", v: `front-page-wins:${face}${tpl ? ":" + tpl : ":slug"}`, ...f, pass: f.faces.includes("wt-face-home") && !f.faces.includes("wt-face-event") && !f.faces.includes("wt-face-lp") && !f.anyForm && f.home && !f.faceEl });
-      } finally { wpS(["option", "update", "show_on_front", showOnFront]); wpS(["option", "update", "page_on_front", pageOnFront]); if (before) wpS(["post", "meta", "update", id, "_wp_page_template", before]); else { try { wpS(["post", "meta", "delete", id, "_wp_page_template"]); } catch (_) { /* 無ければ無い */ } } } }
+      } finally { restore(); } }
+    const after = { lpMeta: getMeta(lpId), evMeta: getMeta(evId), showOnFront: getOpt("show_on_front"), pageOnFront: getOpt("page_on_front") }; // 最終一致: 変更前と同じ状態に戻っていること + 復元コマンドの失敗 0
+    const evOk = await (async () => { await p.goto(BASE + "/event/", { waitUntil: "networkidle" }); return p.evaluate(() => document.body.classList.contains("wt-face-event") && !document.body.classList.contains("wt-face-home")); })(); // 実描画でもイベントに戻っている
+    rows.push({ dev: "pc", js: true, face: "wp", v: "state-restored", before, after, failures, evOk, pass: JSON.stringify(after) === JSON.stringify(before) && failures.length === 0 && evOk });
     await ctx.close();
   }
-  out.formSlots = { rows, wpcli: !!wpS, pass: !!wpS && rows.length === 20 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + JS 無効の不正値 2 + 遷移 2 + 境界（別 slug）1 + slug 解決 2 + 別テンプレート明示割当 2 + フロントページ優先 3 = 20（固定値）
+  out.formSlots = { rows, wpcli: !!wpS, pass: !!wpS && rows.length === 22 && rows.every((x) => x.pass) }; // 2 面 × (PC + SP + SP JS 無効) + 既定 2 + JS 無効の不正値 2 + 遷移 2 + 境界（別 slug）1 + 変更前の状態が正常 1 + slug 解決 2 + 別テンプレート明示割当 2 + フロントページ優先 3 + 状態の最終一致 1 = 22（固定値）
 }
 // (m) categoryVariants（段 6、WT-EVT-0283）: カテゴリ 12 軸の全型 × PC / SP / SP JS 無効。軸 class・当該型だけ可視・型固有の実体（件数 = wp-cli の投稿数、絞り込みリンクは 200 で同じカテゴリ面に留まる、並べ替えは先頭記事が変わる、右カラムの実トラック数、一覧の実カラム数、カード要素の可視、ランキングの置き場所、CTA の到達先・非送信フォーム・LINE グリフ）・h1 1 つ・44px・到達先なしのページ内リンク 0
 {

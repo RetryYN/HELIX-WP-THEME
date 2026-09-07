@@ -10181,7 +10181,7 @@
  },
  "depthFloat": {
   "base": {
-   "transform": "matrix(1, 0, 0, 1, 0, -0.884908)",
+   "transform": "matrix(1, 0, 0, 1, 0, -0.937176)",
    "shadow": "rgba(23, 28, 34, 0.06) 0px 2px 4px 0px, rgba(23, 28, 34, 0.18) 0px 12px 32px -8px",
    "animation": "wt-float"
   },
@@ -26884,7 +26884,7 @@
     "digits": [
      "37",
      "22",
-     "46"
+     "13"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -27033,7 +27033,7 @@
     "digits": [
      "37",
      "22",
-     "46"
+     "13"
     ],
     "cdDateVisible": true,
     "feed": {
@@ -85660,6 +85660,19 @@
    {
     "dev": "pc",
     "js": true,
+    "face": "wp",
+    "v": "state-before-sane",
+    "before": {
+     "lpMeta": "page-lp",
+     "evMeta": "",
+     "showOnFront": "posts",
+     "pageOnFront": "0"
+    },
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
     "face": "lp",
     "v": "slug-resolved-default-no-block",
     "faces": [
@@ -85742,6 +85755,27 @@
     "anyForm": false,
     "home": true,
     "faceEl": false,
+    "pass": true
+   },
+   {
+    "dev": "pc",
+    "js": true,
+    "face": "wp",
+    "v": "state-restored",
+    "before": {
+     "lpMeta": "page-lp",
+     "evMeta": "",
+     "showOnFront": "posts",
+     "pageOnFront": "0"
+    },
+    "after": {
+     "lpMeta": "page-lp",
+     "evMeta": "",
+     "showOnFront": "posts",
+     "pageOnFront": "0"
+    },
+    "failures": [],
+    "evOk": true,
     "pass": true
    }
   ],
