@@ -3,3 +3,10 @@
 .tile-open{display:block;width:100%;padding:0;border:0;text-align:left}.tile-open:hover{background:transparent}.tile-top>span{font-size:10px;color:var(--muted)}.detail-copy,.compare-grid>section{min-width:0;overflow-wrap:anywhere}
 
 .evidence-filters{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:12px}.evidence-filters select{width:auto;max-width:100%}#requirements-count,#requirements-empty{font-size:13px;line-height:1.8}.acceptance-row{margin:14px 0;padding:12px;border-left:3px solid var(--line);overflow-wrap:anywhere}.acceptance-row[data-evidence-state="verified_in_poc"]{border-color:var(--green)}.acceptance-row>a{display:inline-block;min-height:44px;padding:12px;margin-right:12px}
+
+/* Keep the selected candidates visible while moving between collections. */
+.compare-bar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;width:min(880px,calc(100% - 28px));gap:12px 20px}
+#compare-picks{grid-column:1/-1;display:flex;gap:8px;min-width:0;flex-wrap:wrap}
+#compare-picks button{white-space:normal;overflow-wrap:anywhere;text-align:left;max-width:100%;min-width:0;line-height:1.5}
+main{padding-bottom:max(140px,var(--compare-clearance,0px))}html{scroll-padding-bottom:var(--compare-clearance,0px)}
+@media(max-width:700px){.compare-bar{gap:8px;width:calc(100% - 20px)}#compare-picks{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding:8px}#compare-picks button{flex:0 0 230px;max-width:230px}.compare-bar strong{font-size:12px}}

@@ -12,6 +12,7 @@ const button = (text, action) => {
 const labels = { unreviewed: '未選択', adopt: '採用候補', hold: '保留', reject: '除外' };
 const faceLabels = { search: 'サイト内検索', inheritance: '共通設定の継承', site: '会社・規約', article: '記事', learning: '学習・ヘルプ', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
 const storageKey = 'helix-selection-memos.v1';
+const workspaceKey = 'helix-selection-workspace.v1';
 let noticeTimer;
 function notify(message) {
   $('notice').textContent = message; $('notice').hidden = false;
@@ -44,11 +45,17 @@ async function start() {
   const memoFor = id => memos[id] || { status: 'unreviewed', note: '' };
   let face = 'common', device = 'pc', limit = 36, linkedIds = null;
   const comparison = new Set();
+  let activeTab = 0, detailId = null;
+  const focusWorkspace = () => $(activeTab === 1 ? 'req-search' : 'search').focus();
+  function saveWorkspace() {
+    try { localStorage.setItem(workspaceKey, JSON.stringify({ schema: workspaceKey, face, device, limit, linkedIds: linkedIds ? [...linkedIds] : null, comparison: [...comparison], activeTab, search: $('search').value, purpose: $('purpose').value, decision: $('decision').value, reqSearch: $('req-search').value, evidenceState: $('evidence-state').value })); }
+    catch { notify('絞り込みと比較候補を保存できません。選択メモは書出して保管してください。'); }
+  }
   $('total').textContent = data.entries.length;
   $('req-total').textContent = data.requirementCount;
   const collections = [['all', 'すべて'], ['common', '共通設定・部品'], ...['inheritance', 'home', 'article', 'paid', 'interview', 'blp', 'learning', 'site', 'search', 'category', 'lp', 'event', 'page', 'form', 'footer', '404'].map(k => [k, faceLabels[k]])];
   for (const [key, label] of collections) {
-    const b = button(label, () => { face = key; linkedIds = null; limit = 36; render(); });
+    const b = button(label, () => { face = key; linkedIds = null; limit = 36; switchTab(0); render(); });
     b.dataset.face = key; $('faces').append(b);
   }
   for (const purpose of new Set(data.entries.map(e => e.purpose))) {
@@ -78,6 +85,18 @@ async function start() {
   function updateCompare() {
     $('compare-bar').hidden = !comparison.size;
     $('compare-count').textContent = `${comparison.size}候補を選択中`;
+    $('compare-picks').replaceChildren();
+    for (const id of comparison) {
+      const entry = byId.get(id);
+      const chip = button(`${entry.label} / ${entry.variant} ×`, () => {
+        comparison.delete(id); render();
+        const next = $('compare-picks').querySelector('button');
+        if (next) next.focus(); else focusWorkspace();
+      });
+      chip.setAttribute('aria-label', `${entry.label} ${entry.variant}を比較から外す`);
+      $('compare-picks').append(chip);
+    }
+    saveWorkspace();
   }
   function render() {
     for (const b of $('faces').children) b.setAttribute('aria-current', String(b.dataset.face === face && !linkedIds));
@@ -87,7 +106,7 @@ async function start() {
       && (face === 'all' || face === 'common' ? face === 'all' || e.group === '共通設定・部品' : e.face === face)
       && (!$('purpose').value || e.purpose === $('purpose').value)
       && (!selected || memoFor(e.id).status === selected)
-      && `${e.label} ${e.part} ${e.variant} ${e.requirementIds.join(' ')}`.toLocaleLowerCase().includes(query))
+      && `${e.label} ${e.part} ${e.variant} ${e.requirementIds.join(' ')} ${memoFor(e.id).note}`.toLocaleLowerCase().includes(query))
       .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])));
     $('collection-title').textContent = linkedIds ? '要求に関連する候補' : collections.find(([key]) => key === face)[1];
     $('count').textContent = `${entries.length}候補 / ${device.toUpperCase()}`;
@@ -95,7 +114,7 @@ async function start() {
     $('gallery').replaceChildren();
     for (const entry of entries.slice(0, limit)) {
       const tile = el('article', undefined, 'tile');
-      const open = button('', () => detail(entry)); open.className = 'tile-open';
+      const open = button('', () => detail(entry)); open.className = 'tile-open'; open.dataset.entryId = entry.id;
       open.setAttribute('aria-label', `${entry.label} ${entry.variant}の詳細`);
       open.append(imageFor(entry, 'preview'));
       const top = el('div', undefined, 'tile-top'); top.append(el('h3', entry.label), el('span', faceLabels[entry.face]));
@@ -133,11 +152,28 @@ async function start() {
     return panel;
   }
   function detail(entry) {
+    detailId = entry.id;
     const layout = el('div', undefined, 'detail-layout'); layout.append(imageFor(entry, 'large-preview'), editor(entry));
     $('detail-content').replaceChildren(layout); $('detail').showModal();
   }
-  for (const dialog of document.querySelectorAll('dialog')) dialog.querySelector('.close').addEventListener('click', () => dialog.close());
-  $('clear-compare').addEventListener('click', () => { comparison.clear(); render(); });
+  for (const dialog of document.querySelectorAll('dialog')) {
+    dialog.querySelector('.close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+      render();
+      const target = dialog.id === 'detail' ? [...$('gallery').querySelectorAll('.tile-open')].find(n => n.dataset.entryId === detailId) : $('open-compare');
+      (target && target.getClientRects().length ? target : $('search')).focus();
+    });
+  }
+  $('reset-gallery').addEventListener('click', () => {
+    face = 'all'; linkedIds = null; limit = 36;
+    for (const id of ['search', 'purpose', 'decision']) $(id).value = '';
+    render(); $('search').focus();
+  });
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty('--compare-clearance', $('compare-bar').hidden ? '0px' : `${Math.ceil($('compare-bar').getBoundingClientRect().height) + 40}px`);
+    if ($('compare-picks').contains(document.activeElement)) document.activeElement.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }).observe($('compare-bar'));
+  $('clear-compare').addEventListener('click', () => { comparison.clear(); render(); focusWorkspace(); });
   $('open-compare').addEventListener('click', () => {
     const grid = el('div', undefined, 'compare-grid');
     for (const id of comparison) { const entry = byId.get(id); const column = el('section'); column.append(imageFor(entry, 'large-preview'), editor(entry)); grid.append(column); }
@@ -152,7 +188,9 @@ async function start() {
   $('more').addEventListener('click', () => { limit += 36; render(); });
   const tabs = [$('tab-gallery'), $('tab-requirements')];
   function switchTab(index) {
+    activeTab = index;
     tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; $(tab.getAttribute('aria-controls')).hidden = i !== index; });
+    saveWorkspace();
   }
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => switchTab(i));
@@ -203,6 +241,7 @@ async function start() {
     }
     $('requirements-count').textContent = `${shownRequirements}要求 / ${shownCases}受入条件（全${data.requirementCount}要求）`;
     $('requirements-empty').hidden = shownCases !== 0;
+    saveWorkspace();
   }
   $('req-search').addEventListener('input', requirements);
   $('evidence-state').addEventListener('change', requirements);
@@ -222,7 +261,24 @@ async function start() {
     } catch (error) { notify(`読込できません: ${error.message}`); }
     finally { $('file').value = ''; }
   });
-  switchTab(0); requirements(); render();
+  try {
+    const raw = localStorage.getItem(workspaceKey);
+    if (raw) {
+      if (raw.length > 1024 * 1024) throw Error('Workspace too large');
+      const saved = JSON.parse(raw);
+      if (saved?.schema !== workspaceKey) throw Error('Unknown workspace');
+      if (collections.some(([key]) => key === saved.face)) face = saved.face;
+      if (['pc', 'sp'].includes(saved.device)) device = saved.device;
+      if (Number.isInteger(saved.limit)) limit = Math.min(data.entries.length, Math.max(36, saved.limit));
+      if (Array.isArray(saved.linkedIds)) linkedIds = new Set(saved.linkedIds.filter(id => byId.has(id)));
+      if (Array.isArray(saved.comparison)) for (const id of saved.comparison) { if (byId.has(id) && comparison.size < 3) comparison.add(id); }
+      if (saved.activeTab === 1) activeTab = 1;
+      for (const [id, key] of [['search', 'search'], ['req-search', 'reqSearch']]) if (typeof saved[key] === 'string' && saved[key].length <= 4000) $(id).value = saved[key];
+      for (const [id, key] of [['purpose', 'purpose'], ['decision', 'decision'], ['evidence-state', 'evidenceState']]) if ([...$(id).options].some(o => o.value === saved[key])) $(id).value = saved[key];
+      for (const b of document.querySelectorAll('[data-device]')) b.setAttribute('aria-pressed', String(b.dataset.device === device));
+    }
+  } catch { notify('前回の絞り込みを復元できませんでした。選択メモは保持しています。'); }
+  switchTab(activeTab); requirements(); render();
 }
 start().catch(error => {
   $('gallery').replaceChildren(el('p', `${error.message} リポジトリをHTTPサーバーで開き、再読込してください。`));

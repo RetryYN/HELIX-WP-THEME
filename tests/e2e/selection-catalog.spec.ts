@@ -185,3 +185,131 @@ test('search start comparison retains before and after evidence', async ({ page 
   await page.getByRole('link', { name: '← 選択カタログへ' }).click();
   await expect(page.locator('[data-face="search"]')).toBeVisible();
 });
+
+test('comparison, collection filters and requirement context resume after reload', async ({ page }) => {
+  for (let i = 0; i < 3; i++) await page.locator('.compare-pick input').nth(i).check();
+  const picks = await page.locator('#compare-picks button').allTextContents();
+  await page.locator('[data-face="article"]').click();
+  await page.locator('[data-device="sp"]').click();
+  await page.locator('#search').fill('検討再開の検索語');
+  const purpose = await page.locator('#purpose option').nth(1).getAttribute('value');
+  await page.locator('#purpose').selectOption(purpose!);
+  await page.locator('#decision').selectOption('hold');
+  await page.locator('#tab-requirements').click();
+  await page.locator('#req-search').fill('WT-AC-SEARCH-01B');
+  await page.locator('#evidence-state').selectOption('partial');
+  await page.reload();
+  await expect(page.locator('#tab-requirements')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#req-search')).toHaveValue('WT-AC-SEARCH-01B');
+  await expect(page.locator('#evidence-state')).toHaveValue('partial');
+  await expect(page.locator('#compare-picks button')).toHaveText(picks);
+  await page.locator('#open-compare').click();
+  await expect(page.locator('#compare .compare-grid>section')).toHaveCount(3);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#open-compare')).toBeFocused();
+  await page.locator('#tab-gallery').click();
+  await expect(page.locator('#collection-title')).toHaveText('記事');
+  await expect(page.locator('[data-device="sp"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#search')).toHaveValue('検討再開の検索語');
+  await expect(page.locator('#purpose')).toHaveValue(purpose!);
+  await expect(page.locator('#decision')).toHaveValue('hold');
+  await page.locator('#compare-picks button').nth(1).click();
+  await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
+  await page.locator('#reset-gallery').click();
+  await expect(page.locator('#search')).toBeFocused();
+  await expect(page.locator('#count')).toHaveText('607候補 / SP');
+  await expect(page.locator('#compare-picks button')).toHaveCount(2);
+  await page.reload();
+  await expect(page.locator('#compare-picks button')).toHaveCount(2);
+  await page.locator('#clear-compare').click();
+  await page.reload();
+  await expect(page.locator('#compare-bar')).toBeHidden();
+});
+
+test('decision notes are searchable and closing the editor restores a useful focus target', async ({ page }) => {
+  const id = await page.locator('.tile-open').first().getAttribute('data-entry-id');
+  await page.locator('.tile-open').first().click();
+  await page.locator('#detail textarea').fill('余白を広くしたい');
+  await page.locator('#detail').getByRole('button', { name: '採用候補', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.tile-open').first()).toBeFocused();
+  await page.locator('#search').fill('余白を広くしたい');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('.tile-open')).toHaveAttribute('data-entry-id', id!);
+  await page.reload();
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await page.locator('.tile-open').click();
+  await page.locator('#detail textarea').fill('文字の大きさを再確認');
+  await page.locator('#detail .close').click();
+  await expect(page.locator('#empty')).toBeVisible();
+  await expect(page.locator('#search')).toBeFocused();
+  await page.locator('#reset-gallery').click();
+  await page.locator('#search').fill('文字の大きさを再確認');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+});
+
+test('invalid or obsolete workspace values cannot erase saved decisions or exceed the comparison limit', async ({ page }) => {
+  const ids = await page.locator('.tile-open').evaluateAll(nodes => nodes.slice(0, 4).map(n => (n as HTMLElement).dataset.entryId!));
+  await page.locator('.tile-open').first().click();
+  await page.locator('#detail textarea').fill('この判断は保持する');
+  await page.keyboard.press('Escape');
+  const memo = await page.evaluate(() => localStorage.getItem('helix-selection-memos.v1'));
+  await page.evaluate(ids => localStorage.setItem('helix-selection-workspace.v1', JSON.stringify({ schema: 'helix-selection-workspace.v1', face: 'removed-face', device: 'unknown', limit: -10, comparison: ['missing-id', ids[0], ids[0], ...ids], purpose: 'removed-purpose', decision: 'invalid', linkedIds: 'bad-type' })), ids);
+  await page.reload();
+  await expect(page.locator('#compare-picks button')).toHaveCount(3);
+  await expect(page.locator('#collection-title')).toHaveText('共通設定・部品');
+  await expect(page.locator('[data-device="pc"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.tile')).toHaveCount(36);
+  await page.evaluate(() => localStorage.setItem('helix-selection-workspace.v1', '{invalid'));
+  await page.reload();
+  await expect(page.locator('#notice')).toContainText('前回の絞り込みを復元できません');
+  expect(await page.evaluate(() => localStorage.getItem('helix-selection-memos.v1'))).toBe(memo);
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail textarea')).toHaveValue('この判断は保持する');
+});
+
+test('comparison tray fits desktop and mobile and reserves room for the final candidate', async ({ page }, testInfo) => {
+  for (let i = 0; i < 3; i++) await page.locator('.compare-pick input').nth(i).check();
+  for (const [label, width] of [['desktop', 1440], ['mobile', 375]] as const) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect.poll(() => page.evaluate(() => {
+      const main = document.querySelector('main')!, bar = document.querySelector('#compare-bar')!;
+      return parseFloat(getComputedStyle(main).paddingBottom) >= bar.getBoundingClientRect().height + 39;
+    })).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const chip = page.locator('#compare-picks button').last();
+    await chip.focus();
+    await expect(chip).toBeFocused();
+    await expect.poll(() => chip.evaluate(e => {
+      const r = e.getBoundingClientRect(), tray = e.parentElement!.getBoundingClientRect();
+      return r.left >= tray.left && r.right <= tray.right;
+    })).toBe(true);
+    const rect = await chip.boundingBox();
+    expect(rect!.height).toBeGreaterThanOrEqual(44);
+    await page.screenshot({ path: testInfo.outputPath(`comparison-tray-${label}.png`), fullPage: false });
+  }
+});
+
+
+test('related candidates and expanded results resume, and removing the last comparison keeps keyboard focus', async ({ page }) => {
+  await page.locator('#tab-requirements').click();
+  await page.locator('#req-search').fill('WT-FR-FORM-01');
+  await page.locator('.req-row > summary').click();
+  await page.locator('.req-row button').click();
+  await page.locator('#more').click();
+  await expect(page.locator('.tile')).toHaveCount(51);
+  const ids = await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId));
+  await page.reload();
+  await expect(page.locator('#collection-title')).toHaveText('要求に関連する候補');
+  await expect(page.locator('.tile')).toHaveCount(51);
+  expect(await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId))).toEqual(ids);
+  await page.locator('.compare-pick input').first().check();
+  await page.locator('#tab-requirements').click();
+  await page.locator('#compare-picks button').click();
+  await expect(page.locator('#req-search')).toBeFocused();
+  await page.locator('[data-face="article"]').click();
+  await expect(page.locator('#tab-gallery')).toHaveAttribute('aria-selected', 'true');
+  await page.locator('.compare-pick input').first().check();
+  await page.locator('#clear-compare').click();
+  await expect(page.locator('#search')).toBeFocused();
+});
