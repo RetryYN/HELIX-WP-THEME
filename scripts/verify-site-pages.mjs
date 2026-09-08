@@ -21,6 +21,20 @@ const sourceDigests = Object.fromEntries(sources.map(f => [f,createHash('sha256'
 const rows = [], shots = [];let completed=false;const check=(name,pass)=>{rows.push({name,pass:Boolean(pass)});assert.ok(pass,name);};
 const browser=await chromium.launch();
 try {
+  const themeSiteSource=fs.readFileSync(path.join(root,'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php'),'utf8');
+  check('handoff:origin-owned-by-manifest',new URL(manifest.handoff_origin).origin===manifest.handoff_origin&&!themeSiteSource.includes(manifest.handoff_origin));
+  const handoffGuard=JSON.parse(wp(['eval',`$cases=array(
+    'valid'=>array('handoff_origin'=>'https://forms.example.invalid','handoff_path'=>'/start'),
+    'ftp'=>array('handoff_origin'=>'ftp://forms.example.invalid','handoff_path'=>'/start'),
+    'credentials'=>array('handoff_origin'=>'https://user:pass@forms.example.invalid','handoff_path'=>'/start'),
+    'query'=>array('handoff_origin'=>'https://forms.example.invalid?x=1','handoff_path'=>'/start'),
+    'fragment'=>array('handoff_origin'=>'https://forms.example.invalid#x','handoff_path'=>'/start'),
+    'origin_path'=>array('handoff_origin'=>'https://forms.example.invalid/base','handoff_path'=>'/start'),
+    'relative_origin'=>array('handoff_origin'=>'//forms.example.invalid','handoff_path'=>'/start'),
+    'relative_path'=>array('handoff_origin'=>'https://forms.example.invalid','handoff_path'=>'start')
+  );$out=array();foreach($cases as $key=>$case){$out[$key]=wtcf_site_handoff_url($case);}echo wp_json_encode($out);`]));
+  check('handoff:valid-origin-and-path',handoffGuard.valid==='https://forms.example.invalid/start');
+  for(const key of ['ftp','credentials','query','fragment','origin_path','relative_origin','relative_path'])check('handoff:reject-'+key,handoffGuard[key]==='');
   const declared=JSON.parse(wp(['eval', `$out=array();foreach(wtcf_site_manifest()['pages'] as $key=>$page){$pattern=WP_Block_Patterns_Registry::get_instance()->get_registered('helix-wt/site-'.$key);$post=get_post(get_option('wtcf_site_page_ids')[$key]);$out[$key]=array('registered'=>(bool)$pattern,'matches'=>$pattern && $pattern['content']===$post->post_content,'type'=>$post->post_type,'id'=>$post->ID);}echo wp_json_encode($out);`]));
   for(const key of Object.keys(manifest.pages))check('pattern-and-independent-page:'+key,declared[key]?.registered&&declared[key].matches&&declared[key].type==='page');
   for(const dev of ['pc','sp'])for(const js of [true,false]){
@@ -47,7 +61,7 @@ try {
     }
     await page.goto(base+'/site-contact/');let posts=0;page.on('request',r=>{if(r.method()==='POST')posts++;});
     await page.locator('.wtsite-handoff a').click();
-    check(`handoff:other-origin:${suffix}`,new URL(page.url()).origin==='http://127.0.0.1:8099'&&await page.locator('form').count()===1);
+    check(`handoff:other-origin:${suffix}`,new URL(page.url()).origin===manifest.handoff_origin&&await page.locator('form').count()===1);
     await page.getByLabel('情報の整理').check();await page.getByRole('button',{name:'選択して次へ'}).click();
     check(`handoff:complete:${suffix}`,new URL(page.url()).pathname.endsWith('/provider/complete.html')&&new URL(page.url()).searchParams.get('topic')==='structure'&&posts===0);
     await page.getByRole('link',{name:'問い合わせ案内へ戻る'}).click();check(`handoff:return:${suffix}`,new URL(page.url()).pathname==='/site-contact/');

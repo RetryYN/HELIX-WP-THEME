@@ -2,11 +2,11 @@
   "schema": "wt-site-pages-evidence.v1",
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-site-pages.mjs": "516c390befe94b5a1bdd4c5cf327be3d7574c504bff9ded6dccb3f7f59dc4571",
-    "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "327c297d445385489a956e2e9e48997c2329d2600f352b1b23f23bb5ee743469",
+    "scripts/verify-site-pages.mjs": "e646bf6b509cf264a7b12365e3c65a54be39c8ab89ec56ebf1bd17d1a64572d5",
+    "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe",
     "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
     "docs/research/2026-09-08-content-faces/seed-site-pages.php": "211ed6dda8b20e24d76e16a73cf16df250895bfd13e8ac04de347241c13a940b",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "07a26de4cdb00f5cc6442bd0a3e407fccce6f72ec5b46a20dca21b4205c8f6e2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "a337cc5cc36543b18b9c179732d3f336dd0caf95cb8c4fe3b07360e7203559bc",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "ad722d11e6aefd6b6f334fa4d78b63e6d255507ae8b5e409430583f924f378d2",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7",
     "docs/research/2026-09-08-content-faces/provider/index.html": "f0c533674cfa176425e6cf0f015e1991aa0167c18f420b831f989c86ea93764e",
@@ -19,6 +19,42 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56"
   },
   "rows": [
+    {
+      "name": "handoff:origin-owned-by-manifest",
+      "pass": true
+    },
+    {
+      "name": "handoff:valid-origin-and-path",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-ftp",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-credentials",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-query",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-fragment",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-origin_path",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-relative_origin",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-relative_path",
+      "pass": true
+    },
     {
       "name": "pattern-and-independent-page:company",
       "pass": true

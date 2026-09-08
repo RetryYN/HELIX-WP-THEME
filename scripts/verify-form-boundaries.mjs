@@ -9,6 +9,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
 const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
+wp(['option','update','wtcf_event_fixture_mode','1']);
 const slug='form-boundaries-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
 const sources=['scripts/verify-form-boundaries.mjs',...['inc/form.php','inc/event-state.php','assets/js/form.js','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','assets/css/event-state.css'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];

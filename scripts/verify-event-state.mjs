@@ -26,6 +26,13 @@ const browser=await chromium.launch();let id,completed=false;const rows=[];
 try{
  id=Number(wp(['post','create','--post_type=page','--post_status=publish','--post_name='+slug,'--post_title=Event State Fixture','--porcelain']));
  wp(['post','meta','update',String(id),'_wp_page_template','page-event']);
+ wp(['option','update','wtcf_event_fixture_mode','1']);
+ wp(['post','meta','update',String(id),'_wtcf_event_fixture',JSON.stringify({opens_at:'2000-01-01T00:00:00Z',closes_at:'2000-01-03T00:00:00Z',observed_at:'2000-01-02T00:00:00Z',capacity:50,registered:0})]);
+ wp(['option','delete','wtcf_event_fixture_mode']);
+ const normalPage=await browser.newPage();await normalPage.goto('http://127.0.0.1:8098/'+slug+'/');
+ const normalVisible=await normalPage.locator('.wt-event-status').evaluateAll(es=>es.filter(e=>e.getBoundingClientRect().height>0).map(e=>e.textContent.trim()));
+ rows.push({name:'fixture-mode:blogname-does-not-enable-observed-time',pass:wp(['option','get','blogname'])==='HELIX Content Lab'&&normalVisible.length===1&&normalVisible[0]==='受付終了'});
+ await normalPage.close();wp(['option','update','wtcf_event_fixture_mode','1']);
  const nonce=wp(['eval','echo wp_create_nonce("wt_form");']);
  for(const fixture of fixtures){
   wp(['post','meta','update',String(id),'_wtcf_event_fixture',JSON.stringify(fixture)]);
@@ -52,7 +59,7 @@ try{
  }
  completed=true;
 }finally{
- await browser.close();if(id)wp(['post','delete',String(id),'--force']);
+ await browser.close();wp(['option','update','wtcf_event_fixture_mode','1']);if(id)wp(['post','delete',String(id),'--force']);
  rows.push({name:'owned-fixture-removed',pass:wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids'])===''});
  fs.writeFileSync(path.join(out,process.argv.includes('--strict')?'verify.json':'baseline.json'),JSON.stringify({completed,sourceDigests,fixtures,rows,limitation:'時刻・残席の専用fixture入力。観測時刻・残席による表示とPOST可否を照合。業務予約・定員更新・実送信は対象外。'},null,2)+'\n');
  console.log(JSON.stringify({completed,checks:rows.length,failed:rows.filter(r=>!r.pass).length}));

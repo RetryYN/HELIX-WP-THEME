@@ -14,6 +14,10 @@ function wt_event_fixture_time( $value ) {
 	return $date && ( false === $errors || ( ! $errors['warning_count'] && ! $errors['error_count'] ) ) ? $date->getTimestamp() : null;
 }
 
+function wt_event_fixture_mode_enabled() {
+	return '1' === (string) get_option( 'wtcf_event_fixture_mode', '' );
+}
+
 function wt_event_fixture_state() {
 	if ( ! function_exists( 'wt_is_event_page' ) || ! wt_is_event_page() ) { return null; }
 	$raw = get_post_meta( get_queried_object_id(), '_wtcf_event_fixture', true );
@@ -23,8 +27,8 @@ function wt_event_fixture_state() {
 	if ( ! is_array( $data ) ) { return $invalid; }
 	$start = wt_event_fixture_time( $data['opens_at'] ?? null );
 	$end = wt_event_fixture_time( $data['closes_at'] ?? null );
-	// 観測時刻の差替えは専用labのfixtureだけ。通常環境では実時刻を使う。
-	$now = 'HELIX Content Lab' === get_option( 'blogname' ) ? wt_event_fixture_time( $data['observed_at'] ?? null ) : time();
+	// 観測時刻の差替えは明示的に有効化したfixtureだけ。通常環境では実時刻を使う。
+	$now = wt_event_fixture_mode_enabled() ? wt_event_fixture_time( $data['observed_at'] ?? null ) : time();
 	$capacity = $data['capacity'] ?? null; $registered = $data['registered'] ?? null;
 	if ( null === $start || null === $end || null === $now || $start >= $end || ! is_int( $capacity ) || ! is_int( $registered ) || $capacity < 0 || $registered < 0 ) { return $invalid; }
 	if ( $now < $start ) { return array( 'state' => 'before', 'label' => '受付前', 'open' => false ); }
