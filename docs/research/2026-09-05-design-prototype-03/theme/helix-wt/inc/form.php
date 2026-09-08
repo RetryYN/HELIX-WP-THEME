@@ -154,6 +154,11 @@ function wt_form_state() {
 	return $state;
 }
 
+function wt_form_valid_date( $value ) {
+	return is_string( $value ) && preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/D', $value, $parts )
+		&& checkdate( (int) $parts[2], (int) $parts[3], (int) $parts[1] );
+}
+
 function wt_form_validate( $vals ) {
 	$errors = array(); $defs = wt_form_field_defs();
 	foreach ( wt_form_fields() as $f ) {
@@ -161,10 +166,16 @@ function wt_form_validate( $vals ) {
 		if ( in_array( $d['type'], array( 'privacy', 'file', 'hidden' ), true ) ) { continue; }
 		$multi = in_array( $d['type'], array( 'date3', 'yesno', 'checks' ), true );
 		if ( '' !== $v && is_array( $v ) !== $multi ) { $errors[ $f ] = $d['label'] . 'の形式が正しくありません。'; continue; } // 入力の形（配列 / 単値）が違う異常 POST は通常のエラーへ
-		if ( 'checkbox' === $d['type'] ) { if ( $d['req'] && ! $v ) { $errors[ $f ] = '同意が必要です。'; } continue; }
+		if ( 'checkbox' === $d['type'] ) { if ( ( $d['req'] || '' !== $v ) && '1' !== $v ) { $errors[ $f ] = '同意が必要です。'; } continue; }
 		if ( 'yesno' === $d['type'] ) { $ok = ! is_array( $v ) || ! array_diff( array_keys( $v ), array_keys( $d['questions'] ) ); foreach ( array_keys( $d['questions'] ) as $qi ) { if ( ! in_array( $v[ $qi ] ?? '', array( 'はい', 'いいえ' ), true ) ) { $ok = false; } } if ( ! $ok && ( $d['req'] || count( array_filter( (array) $v, fn( $x ) => '' !== $x ) ) ) ) { $errors[ $f ] = count( $d['questions'] ) . ' つの質問すべてに答えてください。'; } continue; } // 質問キー集合は 0..n-1 と一致（余分なキーも通さない）、値は はい / いいえ
 		if ( 'checks' === $d['type'] ) { foreach ( (array) $v as $x ) { if ( '' !== $x && ! in_array( $x, $d['options'], true ) ) { $errors[ $f ] = $d['label'] . 'の選択肢にありません。'; } } continue; }
-		if ( 'date3' === $d['type'] ) { if ( $d['req'] && '' === trim( (string) ( is_array( $v ) ? ( $v[0] ?? '' ) : '' ) ) ) { $errors[ $f ] = '第 1 希望日を入力してください。'; } continue; } // JS と同じ: 第 1 希望が必須
+		if ( 'date3' === $d['type'] ) {
+			if ( $d['req'] && '' === trim( (string) ( $v[0] ?? '' ) ) ) { $errors[ $f ] = '第 1 希望日を入力してください。'; }
+			foreach ( (array) $v as $i => $date ) {
+				if ( ! in_array( $i, array( 0, 1, 2 ), true ) || ( '' !== $date && ! wt_form_valid_date( $date ) ) ) { $errors[ $f ] = '希望日は実在する日付で入力してください。'; }
+			}
+			continue;
+		}
 		$v = trim( (string) $v ); $empty = '' === $v;
 		if ( $d['req'] && $empty ) { $errors[ $f ] = $d['label'] . ( in_array( $d['type'], array( 'select', 'radio' ), true ) ? 'を選択してください。' : 'を入力してください。' ); continue; }
 		if ( $empty ) { continue; }
@@ -173,10 +184,10 @@ function wt_form_validate( $vals ) {
 		if ( 'tel' === $d['type'] && ! preg_match( '/^[0-9０-９+\-() ]{8,20}$/u', $v ) ) { $errors[ $f ] = $d['label'] . 'の形式が正しくありません。'; }
 		if ( 'postal' === $d['type'] && ! preg_match( '/^\d{3}-?\d{4}$/', $v ) ) { $errors[ $f ] = '郵便番号は 7 桁で入力してください。'; }
 		if ( 'kana' === $d['type'] && ! preg_match( '/^[ぁ-ゖー\s　]+$/u', $v ) ) { $errors[ $f ] = 'ひらがなで入力してください。'; }
-		if ( 'number' === $d['type'] && ( ! is_numeric( $v ) || (int) $v < 1 ) ) { $errors[ $f ] = '1 以上の数を入力してください。'; }
-		if ( 'url' === $d['type'] && ! preg_match( '#^https?://#', $v ) ) { $errors[ $f ] = 'https:// から始まる URL を入力してください。'; }
-		if ( 'date' === $d['type'] && ! preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v ) ) { $errors[ $f ] = '日付の形式が正しくありません。'; }
-		if ( 'month' === $d['type'] && ! preg_match( '/^\d{4}-\d{2}$/', $v ) ) { $errors[ $f ] = '年月の形式が正しくありません。'; }
+		if ( 'number' === $d['type'] && ( ! preg_match( '/^[0-9]+$/D', $v ) || (int) $v < 1 ) ) { $errors[ $f ] = '1 以上の整数を入力してください。'; }
+		if ( 'url' === $d['type'] && ( ! preg_match( '#^https?://#i', $v ) || ! filter_var( $v, FILTER_VALIDATE_URL ) ) ) { $errors[ $f ] = 'https:// から始まる URL を入力してください。'; }
+		if ( 'date' === $d['type'] && ! wt_form_valid_date( $v ) ) { $errors[ $f ] = '日付の形式が正しくありません。'; }
+		if ( 'month' === $d['type'] && ! wt_form_valid_date( $v . '-01' ) ) { $errors[ $f ] = '年月の形式が正しくありません。'; }
 		if ( in_array( $d['type'], array( 'select', 'radio' ), true ) && ! in_array( $v, $d['options'], true ) ) { $errors[ $f ] = $d['label'] . 'の選択肢にありません。'; }
 		if ( 'captcha' === $d['type'] && '7' !== $v ) { $errors[ $f ] = '答えが違います。'; }
 	}
