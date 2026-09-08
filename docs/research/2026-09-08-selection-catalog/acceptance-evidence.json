@@ -6090,24 +6090,25 @@
       "requirement_digest": "16384bbbce8af1e7",
       "oracle_sha256": "d3dd3cff06ab1c91c955935c35d71bd1b8a419f32e41f26806ec43b72f23e394",
       "source_digests": {
-        "scripts/verify-form-flow.mjs": "bf37527092348c8101c982f5ed5382826239af185681446edcc442664b3770c8",
+        "scripts/verify-form-flow.mjs": "1d13c220c14a4797affe4bf2b767d05824b85b989c7cffff6262b9ea5be2d887",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "a94e0c718b92117805bbba75126b0222803658adcc13be725367aaae4df7a57a",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1a8043d1d08017f09471b82970840f0c50e3ce85c95de2c920c9db73c2e116e2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
-        "scripts/verify-form-kinds.mjs": "2d9232e3d822ac4ef404924c2588e1f9dc06943ad14028b902d9c47116465de1",
-        "scripts/verify-form-steps.mjs": "5dfbae8bfc1790791612f3d5b9a7069bceb910d0396c7c4227d66ce666e6ff05",
-        "scripts/verify-form-slots.mjs": "11b6bbd9eb95dac4f27f94837f003a1e56402cbcd4ec437cd3d0084243a1f429",
+        "scripts/verify-form-kinds.mjs": "3d6612c1ae42c5d4b6b1ef7c1cb77562680079ccfc343f99c7613afd10a8414f",
+        "scripts/verify-form-steps.mjs": "1c902631d010a13244880307e016ff4ff53fb044d6cda7cbc069b6054f6a0658",
+        "scripts/verify-form-slots.mjs": "bed121a98f442548e1085be864dba55db42ad1af8beae3a549918b6f09943ea0",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php": "c940dec5a27620c83f7467a3cb30715ec1a7ec365d34e1d231ce9833fb6ac20b",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "b74cd8b1cfe6b98ecadd93729c5c0290f789ab835d3d568e04a9899398a5d068",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "1ca21f27c999b08e5eb582cdfc1bfd7899254a89cf9e4ac93d667a8d73cba156",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html": "90e568c2b15b471d7d90ffca210420ae82e5a7b9a445a7df0a21abcfbdd6643a",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
-        "scripts/verify-form-boundaries.mjs": "804a71ff169dc45573a5a3520036e2f10590e3aff4051744341cb859d9dfe66e",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "e1aa96bf4aaf87742b6d9281084211722102c5465a188959261429fa8e05d2e4",
+        "scripts/verify-form-boundaries.mjs": "ef0fcf4de2990ace373025774042a83a2f0a087e2fba0a7a056ee1edbab0e0b4",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "d55100cda10e24d608c78538c7fbf9aa9a7a8fb316aeb32e63d58d6c08529ca8",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "de2a8dad5efec2c6c90b95c9c95e7ba6657d167a85e7ef554684fad41ff7e728",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2"
       },
       "scope": "専用の問い合わせフォームでPC/SP・JS有無、確認あり/なし/同一ページ見直し、必須不備、改行を含む値保持、修正後の確認・完了、不正nonce/段階の拒否とエラーからの再開を218検査で確認。ブラウザの外部POST試行なし。 追加で9種別＋全項目セット×PC/SP×JS有無の40条件、282検査。必須未入力の拒否、全送信対象値の修正時保持、種別別完了、添付にnameがないこと、完了時横溢れなしを確認。 段階式の9種別＋全項目セット40条件で395検査成功。各段の往復・全値保持・別ページ完了の種別継承を確認。 LP/イベントの明示テンプレートでPC/SP・JS有無の83検査成功。既定ではフォームDOMなし、選択時の項目集合、必須不備、修正値保持、イベントのapply種別と別ページ完了への継承を確認。 不正日付/年月/希望日・小数人数・ホストなしURL・同意値の受理を修正し、20異常値、正常値対照、閏日と有効月、JSの小数POST抑止を含む112検査が成功。既存978検査も現ソースで再検証済み。",
       "remaining": [
@@ -6118,7 +6119,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-08-form-flow/verify.json",
-          "sha256": "249573c5d84f28ab04108040059717cbfe67b2bdd3084e3ce8af31c7566742b0",
+          "sha256": "d8f7f20ec9e7554dda247b5957494db9fb64da75b54f6ef133ec2555b9cbda01",
           "row_names": [
             "form-present:pc:js-true:yes",
             "required-errors:pc:js-true:yes",
@@ -6342,7 +6343,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-          "sha256": "08802d4be294b317cf8500c82c0764e35e2a1118d4a21ef926c6a2c0eee94d16",
+          "sha256": "d3fc999366bc92557ab4ab7c316cf57df5490fe112970561685d7f7db9a23f9b",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -6630,7 +6631,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-          "sha256": "b1a94d9523ed919bc793d330113e19914abe228b75f6af46b21584188ba1ed36",
+          "sha256": "8c4243ff52e6cd9b47ea2698acc0f37f336dee9a6024c906d4e853dc6e72c598",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -7031,7 +7032,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-          "sha256": "4620ad9c8130ef3ca8fb8a9aff04787c0a975715c854685e5d25729cf0090393",
+          "sha256": "f8ea3579317cc115769c2592102953b09b79a1eccada5552f5f1bc73bc367542",
           "row_names": [
             "default-no-form:pc:js-true:lp",
             "kind:pc:js-true:lp",
@@ -7120,7 +7121,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-          "sha256": "edad34c636cce339796cfc0cc2774d39ca28dd4cd932d291c7e42491f75a708a",
+          "sha256": "25084fb11a8b63464070134256c5cc635754f5147e644d5a04a6cb0cfc80d1b4",
           "row_names": [
             "kind:pc:js-true:full",
             "empty-rejected:pc:js-true:full",
@@ -7243,24 +7244,25 @@
       "requirement_digest": "16384bbbce8af1e7",
       "oracle_sha256": "00788e56ea66f0516b00a66e7f4552aca96610a0d664d249d2552be1a48b45a5",
       "source_digests": {
-        "scripts/verify-form-flow.mjs": "bf37527092348c8101c982f5ed5382826239af185681446edcc442664b3770c8",
+        "scripts/verify-form-flow.mjs": "1d13c220c14a4797affe4bf2b767d05824b85b989c7cffff6262b9ea5be2d887",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "a94e0c718b92117805bbba75126b0222803658adcc13be725367aaae4df7a57a",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1a8043d1d08017f09471b82970840f0c50e3ce85c95de2c920c9db73c2e116e2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
-        "scripts/verify-form-kinds.mjs": "2d9232e3d822ac4ef404924c2588e1f9dc06943ad14028b902d9c47116465de1",
-        "scripts/verify-form-steps.mjs": "5dfbae8bfc1790791612f3d5b9a7069bceb910d0396c7c4227d66ce666e6ff05",
-        "scripts/verify-form-slots.mjs": "11b6bbd9eb95dac4f27f94837f003a1e56402cbcd4ec437cd3d0084243a1f429",
+        "scripts/verify-form-kinds.mjs": "3d6612c1ae42c5d4b6b1ef7c1cb77562680079ccfc343f99c7613afd10a8414f",
+        "scripts/verify-form-steps.mjs": "1c902631d010a13244880307e016ff4ff53fb044d6cda7cbc069b6054f6a0658",
+        "scripts/verify-form-slots.mjs": "bed121a98f442548e1085be864dba55db42ad1af8beae3a549918b6f09943ea0",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php": "c940dec5a27620c83f7467a3cb30715ec1a7ec365d34e1d231ce9833fb6ac20b",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "b74cd8b1cfe6b98ecadd93729c5c0290f789ab835d3d568e04a9899398a5d068",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "1ca21f27c999b08e5eb582cdfc1bfd7899254a89cf9e4ac93d667a8d73cba156",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html": "90e568c2b15b471d7d90ffca210420ae82e5a7b9a445a7df0a21abcfbdd6643a",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
-        "scripts/verify-form-boundaries.mjs": "804a71ff169dc45573a5a3520036e2f10590e3aff4051744341cb859d9dfe66e",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "e1aa96bf4aaf87742b6d9281084211722102c5465a188959261429fa8e05d2e4",
+        "scripts/verify-form-boundaries.mjs": "ef0fcf4de2990ace373025774042a83a2f0a087e2fba0a7a056ee1edbab0e0b4",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "d55100cda10e24d608c78538c7fbf9aa9a7a8fb316aeb32e63d58d6c08529ca8",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "de2a8dad5efec2c6c90b95c9c95e7ba6657d167a85e7ef554684fad41ff7e728",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2"
       },
       "scope": "専用の問い合わせフォームでPC/SP・JS有無、確認あり/なし/同一ページ見直し、必須不備、改行を含む値保持、修正後の確認・完了、不正nonce/段階の拒否とエラーからの再開を218検査で確認。ブラウザの外部POST試行なし。 追加で9種別＋全項目セット×PC/SP×JS有無の40条件、282検査。必須未入力の拒否、全送信対象値の修正時保持、種別別完了、添付にnameがないこと、完了時横溢れなしを確認。 段階式の9種別＋全項目セット40条件で395検査成功。各段の往復・全値保持・別ページ完了の種別継承を確認。 LP/イベントの明示テンプレートでPC/SP・JS有無の83検査成功。既定ではフォームDOMなし、選択時の項目集合、必須不備、修正値保持、イベントのapply種別と別ページ完了への継承を確認。 不正日付/年月/希望日・小数人数・ホストなしURL・同意値の受理を修正し、20異常値、正常値対照、閏日と有効月、JSの小数POST抑止を含む112検査が成功。既存978検査も現ソースで再検証済み。",
       "remaining": [
@@ -7271,7 +7273,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-08-form-flow/verify.json",
-          "sha256": "249573c5d84f28ab04108040059717cbfe67b2bdd3084e3ce8af31c7566742b0",
+          "sha256": "d8f7f20ec9e7554dda247b5957494db9fb64da75b54f6ef133ec2555b9cbda01",
           "row_names": [
             "form-present:pc:js-true:yes",
             "required-errors:pc:js-true:yes",
@@ -7495,7 +7497,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-          "sha256": "08802d4be294b317cf8500c82c0764e35e2a1118d4a21ef926c6a2c0eee94d16",
+          "sha256": "d3fc999366bc92557ab4ab7c316cf57df5490fe112970561685d7f7db9a23f9b",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -7783,7 +7785,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-          "sha256": "b1a94d9523ed919bc793d330113e19914abe228b75f6af46b21584188ba1ed36",
+          "sha256": "8c4243ff52e6cd9b47ea2698acc0f37f336dee9a6024c906d4e853dc6e72c598",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -8184,7 +8186,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-          "sha256": "4620ad9c8130ef3ca8fb8a9aff04787c0a975715c854685e5d25729cf0090393",
+          "sha256": "f8ea3579317cc115769c2592102953b09b79a1eccada5552f5f1bc73bc367542",
           "row_names": [
             "default-no-form:pc:js-true:lp",
             "kind:pc:js-true:lp",
@@ -8273,7 +8275,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-          "sha256": "edad34c636cce339796cfc0cc2774d39ca28dd4cd932d291c7e42491f75a708a",
+          "sha256": "25084fb11a8b63464070134256c5cc635754f5147e644d5a04a6cb0cfc80d1b4",
           "row_names": [
             "kind:pc:js-true:full",
             "empty-rejected:pc:js-true:full",
@@ -8396,18 +8398,19 @@
       "requirement_digest": "c5c221dd3de40604",
       "oracle_sha256": "14f87d20dc127399f2aca8ebaf553fa8531f53b8829aafab6a95a5997ca09e46",
       "source_digests": {
-        "scripts/verify-event-state.mjs": "37c95e85990b8447860952f39688f1bce0d80341d370a820197a247598a46206",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "b74cd8b1cfe6b98ecadd93729c5c0290f789ab835d3d568e04a9899398a5d068",
+        "scripts/verify-event-state.mjs": "fc69b2646b3738075527b3d02e9736db75daad9f46766849434007f7f593bf0d",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "1ca21f27c999b08e5eb582cdfc1bfd7899254a89cf9e4ac93d667a8d73cba156",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1a8043d1d08017f09471b82970840f0c50e3ce85c95de2c920c9db73c2e116e2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "e1aa96bf4aaf87742b6d9281084211722102c5465a188959261429fa8e05d2e4",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "d55100cda10e24d608c78538c7fbf9aa9a7a8fb316aeb32e63d58d6c08529ca8",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3",
-        "scripts/verify-event-boundaries.mjs": "649737732308a1893f89121582a79c3524396197bdae3a4cd07bfc68c2af887a",
+        "scripts/verify-event-boundaries.mjs": "a96df72cf695092cea5b2413094ec4b00839fa7f914e2dd184b678017a187b63",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "de2a8dad5efec2c6c90b95c9c95e7ba6657d167a85e7ef554684fad41ff7e728",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2"
       },
       "scope": "専用の時刻・残席fixture6状態×PC/SP×JS有無で、受付前/開始/満席/空席復帰/締切前/締切境界、フォーム有無、状態説明、案内導線、直接POST可否を121検査。4状態8画像をカタログへ収録。 境界17入力341検査も成功。UTC/正負offsetの時刻一致、無効日時/offset/欠落、期間逆転、定員と申込数の型・負値・0・超過を確認。不正offsetの正規化受理を修正。",
       "remaining": [
@@ -8418,7 +8421,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-08-event-state/verify.json",
-          "sha256": "5ce145aa758b117463bbdc083a00074f015235f719afb75e6595c52b9aadb419",
+          "sha256": "1a695e3e61ee7a79cd28644821754fb6adfa03c5feaebe5da2df6c2a9f1d4c6b",
           "row_names": [
             "state:before-open:pc:js-true",
             "form-availability:before-open:pc:js-true",
@@ -8545,7 +8548,7 @@
         },
         {
           "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-          "sha256": "9af07b4089c183a30abecfa533bbd52c717b55e318967ac58b5670bf2790df80",
+          "sha256": "148c821e7638352692e7ee149db48555f75a6fa80d1c1f840d34a1fc1e41dfcd",
           "row_names": [
             "state:japan-start:pc:js-true",
             "form-availability:japan-start:pc:js-true",
@@ -8897,18 +8900,19 @@
       "requirement_digest": "c5c221dd3de40604",
       "oracle_sha256": "2a0ab86e2b70ce33f1c2a86ee47be3e3913724d50c259a6629701ea2d1e4b4d8",
       "source_digests": {
-        "scripts/verify-event-state.mjs": "37c95e85990b8447860952f39688f1bce0d80341d370a820197a247598a46206",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "b74cd8b1cfe6b98ecadd93729c5c0290f789ab835d3d568e04a9899398a5d068",
+        "scripts/verify-event-state.mjs": "fc69b2646b3738075527b3d02e9736db75daad9f46766849434007f7f593bf0d",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "1ca21f27c999b08e5eb582cdfc1bfd7899254a89cf9e4ac93d667a8d73cba156",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1a8043d1d08017f09471b82970840f0c50e3ce85c95de2c920c9db73c2e116e2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "e1aa96bf4aaf87742b6d9281084211722102c5465a188959261429fa8e05d2e4",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "d55100cda10e24d608c78538c7fbf9aa9a7a8fb316aeb32e63d58d6c08529ca8",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3",
-        "scripts/verify-event-boundaries.mjs": "649737732308a1893f89121582a79c3524396197bdae3a4cd07bfc68c2af887a",
+        "scripts/verify-event-boundaries.mjs": "a96df72cf695092cea5b2413094ec4b00839fa7f914e2dd184b678017a187b63",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "de2a8dad5efec2c6c90b95c9c95e7ba6657d167a85e7ef554684fad41ff7e728",
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba"
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2"
       },
       "scope": "専用の時刻・残席fixture6状態×PC/SP×JS有無で、受付前/開始/満席/空席復帰/締切前/締切境界、フォーム有無、状態説明、案内導線、直接POST可否を121検査。4状態8画像をカタログへ収録。 境界17入力341検査も成功。UTC/正負offsetの時刻一致、無効日時/offset/欠落、期間逆転、定員と申込数の型・負値・0・超過を確認。不正offsetの正規化受理を修正。",
       "remaining": [
@@ -8919,7 +8923,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-08-event-state/verify.json",
-          "sha256": "5ce145aa758b117463bbdc083a00074f015235f719afb75e6595c52b9aadb419",
+          "sha256": "1a695e3e61ee7a79cd28644821754fb6adfa03c5feaebe5da2df6c2a9f1d4c6b",
           "row_names": [
             "state:before-open:pc:js-true",
             "form-availability:before-open:pc:js-true",
@@ -9046,7 +9050,7 @@
         },
         {
           "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-          "sha256": "9af07b4089c183a30abecfa533bbd52c717b55e318967ac58b5670bf2790df80",
+          "sha256": "148c821e7638352692e7ee149db48555f75a6fa80d1c1f840d34a1fc1e41dfcd",
           "row_names": [
             "state:japan-start:pc:js-true",
             "form-availability:japan-start:pc:js-true",

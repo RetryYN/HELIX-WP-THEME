@@ -5,11 +5,13 @@ on:
     paths:
       - 'themes/agent-neo-theme/**'
       - 'bin/check-theme-quality.sh'
+      - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
     paths:
       - 'themes/agent-neo-theme/**'
       - 'bin/check-theme-quality.sh'
+      - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:
 
@@ -48,7 +50,7 @@ jobs:
           --health-retries=5
 
       wordpress:
-        image: wordpress:6.6-apache
+        image: wordpress:7.1-php8.3-apache
         env:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: wp
@@ -88,16 +90,12 @@ jobs:
             sleep 5
           done
 
-      - name: Copy theme into WP container
-        run: |
-          WP_CONTAINER=$(docker ps --filter "ancestor=wordpress:6.6-apache" --format "{{.ID}}" | head -1)
-          docker cp themes/agent-neo-theme/ "${WP_CONTAINER}:/var/www/html/wp-content/themes/agent-neo-theme"
-          # テーマを有効化（wp-cli 経由）
-          docker exec "${WP_CONTAINER}" bash -c \
-            "wp --allow-root --path=/var/www/html theme activate agent-neo-theme || true"
+      - name: Initialize WordPress and verify target theme
+        run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
       - name: Run all quality gates (i18n / RTL / a11y / perf-static)
         env:
+          REQUIRE_A11Y: "1"
           WP_URL: "http://localhost:8086"
         run: bash bin/check-theme-quality.sh
 
@@ -122,7 +120,7 @@ jobs:
           --health-retries=5
 
       wordpress:
-        image: wordpress:6.6-apache
+        image: wordpress:7.1-php8.3-apache
         env:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: wp
@@ -155,12 +153,8 @@ jobs:
             sleep 5
           done
 
-      - name: Copy theme into WP container
-        run: |
-          WP_CONTAINER=$(docker ps --filter "ancestor=wordpress:6.6-apache" --format "{{.ID}}" | head -1)
-          docker cp themes/agent-neo-theme/ "${WP_CONTAINER}:/var/www/html/wp-content/themes/agent-neo-theme"
-          docker exec "${WP_CONTAINER}" bash -c \
-            "wp --allow-root --path=/var/www/html theme activate agent-neo-theme || true"
+      - name: Initialize WordPress and verify target theme
+        run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
       - name: Run Lighthouse CI
         run: |

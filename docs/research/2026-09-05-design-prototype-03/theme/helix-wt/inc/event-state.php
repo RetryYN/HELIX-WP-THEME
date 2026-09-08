@@ -1,5 +1,12 @@
 <?php
 /** Event state display fixture. No booking, capacity mutation, or external delivery. */
+defined( 'ABSPATH' ) || exit;
+
+add_action( 'wp_enqueue_scripts', function () {
+	if ( ! function_exists( 'wt_is_event_page' ) || ! wt_is_event_page() ) { return; }
+	wp_enqueue_style( 'wt-event-state', get_theme_file_uri( 'assets/css/event-state.css' ), array( 'helix-wt' ), filemtime( get_theme_file_path( 'assets/css/event-state.css' ) ) );
+} );
+
 function wt_event_fixture_time( $value ) {
 	if ( ! is_string( $value ) || ! preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$/D', $value ) ) { return null; }
 	$date = DateTimeImmutable::createFromFormat( '!Y-m-d\TH:i:sP', $value );

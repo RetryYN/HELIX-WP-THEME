@@ -13,7 +13,7 @@ $event_state = wt_event_fixture_state();
 $event_open = ! $event_state || $event_state['open'];
 $event_action = $event_open ? '参加を申し込む' : '受付状況を確認する';
 if ( $event_state ) {
-	$status = '<span class="wt-event-status" data-wt-event-state="' . esc_attr( $event_state['state'] ) . '" style="display:inline-flex;border:1px solid currentColor">' . esc_html( $event_state['label'] ) . '</span>';
+	$status = '<span class="wt-event-status" data-wt-event-state="' . esc_attr( $event_state['state'] ) . '">' . esc_html( $event_state['label'] ) . '</span>';
 	$apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">' . esc_html( $event_action ) . '</a>';
 }
 ?>

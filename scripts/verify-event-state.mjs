@@ -12,7 +12,7 @@ if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated 
 const slug='event-state-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
 const out=path.join(root,'docs/research/2026-09-08-event-state');fs.mkdirSync(out,{recursive:true});
-const sources=['scripts/verify-event-state.mjs',...['patterns/event.php','templates/page-event.html','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','inc/event-state.php','inc/form.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
+const sources=['scripts/verify-event-state.mjs',...['patterns/event.php','templates/page-event.html','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','assets/css/event-state.css','inc/event-state.php','inc/form.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 const sourceDigests=Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const fixtures=[
  {name:'before-open',observed_at:'2026-10-01T08:59:59Z',registered:0,expected:'受付前'},
@@ -36,6 +36,8 @@ try{
    const label=fixture.name+':'+device+':js-'+js,open=fixture.expected==='受付中';
    const visible=await page.locator('.wt-event-status').evaluateAll(es=>es.filter(e=>e.getBoundingClientRect().height>0).map(e=>e.textContent.trim()));
    rows.push({name:'state:'+label,expected:fixture.expected,visible,pass:visible.length===1&&visible[0]===fixture.expected});
+   const styled=await page.locator('[data-wt-event-state]').evaluateAll(es=>es.filter(e=>e.getBoundingClientRect().height>0).every(e=>{const s=getComputedStyle(e);return !e.hasAttribute('style')&&s.display==='inline-flex'&&s.borderTopWidth==='1px'&&s.borderTopStyle==='solid';}));
+   rows.push({name:'external-badge-style:'+label,pass:visible.length===1&&styled&&await page.locator('link#wt-event-state-css').count()===1});
    rows.push({name:'form-availability:'+label,pass:await page.locator('.wt-form__form').count()===(open?1:0)});
    rows.push({name:'explanation:'+label,pass:open||await page.locator('.wt-event-availability').count()===1});
    const link=page.locator('.wt-event-hero:visible a[href="#apply"]').first();
