@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -6,6 +7,8 @@ import assert from 'node:assert/strict';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'docs/research/2026-09-08-content-faces/results');
+const sources = ['scripts/verify-content-faces.mjs', ...['functions.php','inc/content-faces.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','assets/css/content-faces.css'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p)];
+const sourceDigests=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(fs.readFileSync(path.join(root,p))).digest('hex')]));
 const base = process.env.WTCF_BASE_URL || 'http://127.0.0.1:8098';
 if (!['127.0.0.1', 'localhost'].includes(new URL(base).hostname)) throw Error('Dedicated loopback lab required');
 if (!process.env.WTCF_LAB_CREDENTIALS) throw Error('WTCF_LAB_CREDENTIALS must point to the external lab credentials file');
@@ -113,6 +116,6 @@ try {
   completed = true;
 } finally {
   await browser.close();
-  fs.writeFileSync(path.join(out, 'verify.json'), JSON.stringify({ schema: 'wt-content-faces-verification.v1', completed, scope: 'Dedicated WordPress PoC with local entitlement fixtures; not production service integration', pass: rows.filter(r => r.pass).length, fail: rows.filter(r => !r.pass).length, rows, shots }, null, 2) + '\n');
+  fs.writeFileSync(path.join(out, 'verify.json'), JSON.stringify({ schema: 'wt-content-faces-verification.v1', completed, sourceDigests, scope: 'Dedicated WordPress PoC with local entitlement fixtures; not production service integration', pass: rows.filter(r => r.pass).length, fail: rows.filter(r => !r.pass).length, rows, shots }, null, 2) + '\n');
 }
 console.log(`content faces: ${rows.length} checks passed, ${shots.length} screenshots`);

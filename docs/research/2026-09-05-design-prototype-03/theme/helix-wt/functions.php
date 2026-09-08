@@ -147,6 +147,7 @@ function wt_axes() {
 }
 
 require_once __DIR__ . '/inc/content-faces.php';
+require_once __DIR__ . '/inc/footer-navigation.php';
 require_once __DIR__ . '/inc/form.php'; // 段 11: フォーム（種別 / 項目 / 検証 / 確認 → 完了の遷移）
 
 // 段 10c: 面の判定と、その面が使うサイドバー設定の束（home / article / null = 無し）

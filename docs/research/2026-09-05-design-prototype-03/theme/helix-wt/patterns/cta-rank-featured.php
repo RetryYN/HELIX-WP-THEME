@@ -6,7 +6,7 @@
  * Description: rank-featured 型。「総合1位」バッジ付きカードで CTA を強調
  */
 ?>
-<!-- wp:group {"className":"wt-cta-rank","layout":{"type":"flow"}} -->
+<!-- wp:group {"className":"wt-cta-rank","layout":{"type":"default"}} -->
 <div class="wp-block-group wt-cta-rank">
 <!-- wp:paragraph {"className":"wt-cta-rank__badge"} --><p class="wt-cta-rank__badge">総合 1 位</p><!-- /wp:paragraph -->
 <!-- wp:paragraph {"style":{"typography":{"fontWeight":"700"}},"fontSize":"l"} --><p class="has-l-font-size" style="font-weight:700">リフトワン L1</p><!-- /wp:paragraph -->

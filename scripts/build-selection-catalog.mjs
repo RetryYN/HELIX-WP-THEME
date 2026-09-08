@@ -183,6 +183,27 @@ if (fs.existsSync(path.join(root, eventStatePath))) {
       evidence:'../2026-09-08-event-state/verify.json'});
   }
 }
+const footerDataPath = 'docs/research/2026-09-09-footer-data/rendering.json';
+if (fs.existsSync(path.join(root, footerDataPath))) {
+  const evidence = read(footerDataPath);
+  if (!evidence.completed || !evidence.rows.length || evidence.rows.some(r => !r.pass)) throw Error('Footer data evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale footer data evidence: ${file}`);
+  }
+  for (const [state, label] of Object.entries({empty:'未登録の案内を省略',filled:'登録済みの案内を表示'})) {
+    const images = {};
+    for (const [device,width] of Object.entries({pc:1440,sp:375})) {
+      const file = `${state}-${width}.png`;
+      if (!fs.existsSync(path.join(root,path.dirname(footerDataPath),file))) throw Error('Missing footer data image');
+      images[device] = `../2026-09-09-footer-data/${file}`;
+    }
+    const id = `footer-data:${state}`;
+    entries.set(id,{id,face:'article',part:'footer-data-navigation',label,variant:state,images,requirementIds:[],
+      purpose:'迷わず案内する',group:'共通設定・部品',
+      description:state==='empty'?'保存済みメニューが空のとき、サイトマップのグループと関連サイト欄を省略。リンク登録後の候補と比較できます。':'保存済みメニューを4列のサイトマップと関連サイト欄に表示。スマートフォンではグループを開閉できます。画像は共通の検証用リンクで、グループ別メニューの編集操作は未検証です。',
+      evidence:'../2026-09-09-footer-data/rendering.json'});
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

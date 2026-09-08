@@ -2,6 +2,8 @@ import { chromium } from 'playwright';
 import fs from 'node:fs';import path from 'node:path';import { fileURLToPath } from 'node:url';import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const sourceFiles=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-site-search-input.mjs','docs/research/2026-09-08-content-faces/plugin/search.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css'];
+sourceFiles.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
+
 const digests=()=>Object.fromEntries(sourceFiles.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests(), rows=[];const check=(name,pass)=>rows.push({name,pass:!!pass});
 const query='判断', marker='<img src=x onerror="window.searchInjected=true">';

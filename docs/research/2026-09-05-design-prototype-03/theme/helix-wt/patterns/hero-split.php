@@ -22,7 +22,7 @@ $u = get_theme_file_uri( "assets/img" );
 <!-- wp:paragraph {"fontSize":"xs","textColor":"mute"} --><p class="has-mute-color has-text-color has-xs-font-size">初回相談 60 分無料 ・ 契約の縛りなし</p><!-- /wp:paragraph -->
 </div><!-- /wp:column -->
 <!-- wp:column {"width":"45%"} --><div class="wp-block-column" style="flex-basis:45%">
-<!-- wp:group {"className":"wt-hero__visual","layout":{"type":"flow"}} --><div class="wp-block-group wt-hero__visual"><img src="<?php echo esc_url( $u ); ?>/hero.png" alt=""></div><!-- /wp:group -->
+<!-- wp:group {"className":"wt-hero__visual","layout":{"type":"default"}} --><div class="wp-block-group wt-hero__visual"><img src="<?php echo esc_url( $u ); ?>/hero.png" alt=""></div><!-- /wp:group -->
 </div><!-- /wp:column -->
 </div><!-- /wp:columns -->
 </div><!-- /wp:group -->

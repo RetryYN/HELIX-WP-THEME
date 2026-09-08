@@ -12,7 +12,7 @@ if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated 
 const slug='event-boundary-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
 const out=path.join(root,'docs/research/2026-09-08-event-state');fs.mkdirSync(out,{recursive:true});
-const sources=['scripts/verify-event-boundaries.mjs',...['patterns/event.php','templates/page-event.html','functions.php','assets/css/theme.css','inc/event-state.php','inc/form.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
+const sources=['scripts/verify-event-boundaries.mjs',...['patterns/event.php','templates/page-event.html','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','inc/event-state.php','inc/form.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 const sourceDigests=Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const defaults={opens_at:'2026-10-01T09:00:00Z',closes_at:'2026-10-14T09:00:00Z',observed_at:'2026-10-02T09:00:00Z',capacity:50,registered:0};
 const fixtures=[

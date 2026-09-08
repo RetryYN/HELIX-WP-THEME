@@ -101,3 +101,5 @@ PHP検査環境を導入しunit/security 201テスト・492 assertions成功、�
 フッター保存元の方式比較: 標準Navigationの空枠残存とdraft/private参照の公開メニューfallbackを実機確認（11検査中6失敗）。公開参照・空出力を検査するfooter-navigation.php候補関数では同系列11成功。フッター本体への組込みとSite Editor/PCSP検証は次工程で、AC昇格はまだ行わない。
 
 フッター入力境界: 空白だけの表示名で無名リンクとnav枠が残る不足を20検査中2失敗として再現し、描画中だけ空名を省略するfilterで修正。20検査成功。サイト編集画面とフッター本体への組込みは残件。
+
+フッター本体に標準Navigationパターンを接続し、保存モデルwp_template_part/wp_navigationから公開する50検査成功。PC/SP×JS有無、空→有→空、off、折り畳みを照合。共通変更に伴う既存29 ACはstaleへ戻しカタログへ表示。継承から回帰を取り直している。Site Editor実操作とカタログ追加は未完了。

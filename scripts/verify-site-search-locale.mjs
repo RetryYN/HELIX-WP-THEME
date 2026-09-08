@@ -5,6 +5,8 @@ if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated 
 wp(['language','core','is-installed','ja']);
 const original=wp(['eval',"echo wp_json_encode(get_option('WPLANG',null));"]);
 const sourceFiles=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-site-search-locale.mjs','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css'];
+sourceFiles.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
+
 const digests=()=>Object.fromEntries(sourceFiles.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));const sourceDigests=digests();
 const languageDigest=wp(['eval',"echo hash_file('sha256',WP_LANG_DIR.'/ja.mo');"]);
 const out=path.join(root,'docs/research/2026-09-08-site-search/results');const rows=[],shots=[];const check=(name,pass)=>rows.push({name,pass:!!pass});let completed=false;

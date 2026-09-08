@@ -35,3 +35,25 @@ function wt_footer_navigation( $ref, $label ) {
 	}
 	return $has_link ? $html : '';
 }
+
+
+// Standard blocks stay editable in Site Editor; only the addressed footer blocks are bound.
+add_filter( 'pre_render_block', function ( $pre, $block ) {
+	$classes = explode( ' ', $block['attrs']['className'] ?? '' );
+	if ( null !== $pre || 'core/navigation' !== $block['blockName'] || ! in_array( 'wt-footer-data-navigation', $classes, true ) ) {
+		return $pre;
+	}
+	return wt_footer_navigation( $block['attrs']['ref'] ?? 0, $block['attrs']['ariaLabel'] ?? 'フッター案内' );
+}, 10, 2 );
+
+add_filter( 'render_block', function ( $html, $block ) {
+	$classes = explode( ' ', $block['attrs']['className'] ?? '' );
+	if ( ! in_array( 'wt-footer-navigation-group', $classes, true ) ) {
+		return $html;
+	}
+	if ( in_array( 'wt-footer-extra-slot--sites', $classes, true ) && ! in_array( 'sites', explode( '-', wt_chrome_eff( 'footer_extra' ) ), true ) && 'all' !== wt_chrome_eff( 'footer_extra' ) ) {
+		return '';
+	}
+	$tags = new WP_HTML_Tag_Processor( $html );
+	return $tags->next_tag( 'A' ) ? $html : '';
+}, 10, 2 );

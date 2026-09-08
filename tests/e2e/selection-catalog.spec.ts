@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('611');
+  await expect(page.locator('#total')).toHaveText('613');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -217,7 +217,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('611候補 / SP');
+  await expect(page.locator('#count')).toHaveText('613候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
@@ -374,4 +374,23 @@ test('event availability fixtures are discoverable with their limits', async ({ 
   await expect(page.locator('.req-row')).toHaveCount(1);
   await page.locator('.req-row > summary').click();
   await expect(page.locator('.req-row')).toContainText('121');
+});
+
+test('footer saved and empty states expose paired images and remaining editor scope', async ({ page }) => {
+  await page.locator('[data-face="all"]').click();
+  await page.locator('#search').fill('footer-data-navigation');
+  await expect(page.locator('.tile-open')).toHaveCount(2);
+  for (let i = 0; i < 2; i++) await page.locator('.compare-pick input').nth(i).check();
+  await page.locator('#open-compare').click();
+  await expect(page.locator('#compare .compare-grid>section')).toHaveCount(2);
+  await expect(page.locator('#compare')).toContainText('未登録の案内を省略');
+  await expect(page.locator('#compare')).toContainText('登録済みの案内を表示');
+  await expect.poll(() => page.locator('#compare img').evaluateAll(es => es.length === 2 && es.every(e => e.complete && e.naturalWidth > 0))).toBe(true);
+  await page.keyboard.press('Escape');
+  await page.locator('#tab-requirements').click();
+  await page.locator('#req-search').fill('WT-AC-PARTS-01C');
+  await expect(page.locator('.req-row')).toHaveCount(1);
+  await page.locator('.req-row > summary').click();
+  await expect(page.locator('.req-row')).toContainText('部分確認');
+  await expect(page.locator('.req-row')).toContainText('メニュー選択');
 });

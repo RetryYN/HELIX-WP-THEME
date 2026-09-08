@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1094,
+  "screenshotCount": 1098,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -11862,6 +11862,46 @@
       "group": "ページ・本文",
       "description": "専用fixtureの開始・締切・残席から算出した受付状態。受付不能時はフォームを描画せずPOSTも拒否し、状態確認の導線を残す。業務予約・定員更新・実送信は未実装。",
       "evidence": "../2026-09-08-event-state/verify.json"
+    },
+    {
+      "id": "footer-data:empty",
+      "face": "article",
+      "part": "footer-data-navigation",
+      "label": "未登録の案内を省略",
+      "variant": "empty",
+      "images": {
+        "pc": "../2026-09-09-footer-data/empty-1440.png",
+        "sp": "../2026-09-09-footer-data/empty-375.png"
+      },
+      "requirementIds": [
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02",
+        "WT-FR-PARTS-03"
+      ],
+      "purpose": "迷わず案内する",
+      "group": "共通設定・部品",
+      "description": "保存済みメニューが空のとき、サイトマップのグループと関連サイト欄を省略。リンク登録後の候補と比較できます。",
+      "evidence": "../2026-09-09-footer-data/rendering.json"
+    },
+    {
+      "id": "footer-data:filled",
+      "face": "article",
+      "part": "footer-data-navigation",
+      "label": "登録済みの案内を表示",
+      "variant": "filled",
+      "images": {
+        "pc": "../2026-09-09-footer-data/filled-1440.png",
+        "sp": "../2026-09-09-footer-data/filled-375.png"
+      },
+      "requirementIds": [
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02",
+        "WT-FR-PARTS-03"
+      ],
+      "purpose": "迷わず案内する",
+      "group": "共通設定・部品",
+      "description": "保存済みメニューを4列のサイトマップと関連サイト欄に表示。スマートフォンではグループを開閉できます。画像は共通の検証用リンクで、グループ別メニューの編集操作は未検証です。",
+      "evidence": "../2026-09-09-footer-data/rendering.json"
     }
   ],
   "requirements": [
@@ -12612,15 +12652,89 @@
           "requirement_id": "WT-FR-PARTS-01",
           "oracle": "footer パターンにサイトマップ枠と関連サイト / ページ枠があり、空なら DOM に残らない",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "標準wp_navigationとwp_template_partに接続したサイトマップ・関連サイト枠を、空→登録→空へ変更。PC/SP・JS有効/無効で空グループと関連サイト枠のDOM省略、登録リンク、キーボード開閉、列整列を52行で確認。Site Editorの本文編集・保存・公開反映・再読込は別8行で確認。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "Site Editorでのメニュー選択・リンク編集・空への削除操作は未検証。",
+            "グループ別の異なるメニュー、階層メニューの空ラベル、全継承先の保存データ組合せは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-footer-data/rendering.json",
+              "sha256": "64f9b32c3752b1037cf228c35043ad302883a0f24790550b1c44f2d01356ab2b",
+              "row_names": [
+                "related-group:empty:1440:js-true",
+                "sitemap-groups:empty:1440:js-true",
+                "viewport:empty:1440:js-true",
+                "related-group:empty:1440:js-false",
+                "sitemap-groups:empty:1440:js-false",
+                "viewport:empty:1440:js-false",
+                "related-group:empty:375:js-true",
+                "sitemap-groups:empty:375:js-true",
+                "viewport:empty:375:js-true",
+                "related-group:empty:375:js-false",
+                "sitemap-groups:empty:375:js-false",
+                "viewport:empty:375:js-false",
+                "related-group:filled:1440:js-true",
+                "sitemap-groups:filled:1440:js-true",
+                "viewport:filled:1440:js-true",
+                "stored-links:filled:1440:js-true",
+                "aligned-headings:filled:1440:js-true",
+                "keyboard-toggle:filled:1440:js-true",
+                "off-omits-related:filled:1440:js-true",
+                "related-group:filled:1440:js-false",
+                "sitemap-groups:filled:1440:js-false",
+                "viewport:filled:1440:js-false",
+                "stored-links:filled:1440:js-false",
+                "aligned-headings:filled:1440:js-false",
+                "keyboard-toggle:filled:1440:js-false",
+                "off-omits-related:filled:1440:js-false",
+                "related-group:filled:375:js-true",
+                "sitemap-groups:filled:375:js-true",
+                "viewport:filled:375:js-true",
+                "stored-links:filled:375:js-true",
+                "keyboard-toggle:filled:375:js-true",
+                "off-omits-related:filled:375:js-true",
+                "related-group:filled:375:js-false",
+                "sitemap-groups:filled:375:js-false",
+                "viewport:filled:375:js-false",
+                "stored-links:filled:375:js-false",
+                "keyboard-toggle:filled:375:js-false",
+                "off-omits-related:filled:375:js-false",
+                "related-group:emptied:1440:js-true",
+                "sitemap-groups:emptied:1440:js-true",
+                "viewport:emptied:1440:js-true",
+                "related-group:emptied:1440:js-false",
+                "sitemap-groups:emptied:1440:js-false",
+                "viewport:emptied:1440:js-false",
+                "related-group:emptied:375:js-true",
+                "sitemap-groups:emptied:375:js-true",
+                "viewport:emptied:375:js-true",
+                "related-group:emptied:375:js-false",
+                "sitemap-groups:emptied:375:js-false",
+                "viewport:emptied:375:js-false",
+                "owned-footer-removed",
+                "owned-navigation-removed"
+              ]
+            },
+            {
+              "path": "docs/research/2026-09-09-footer-data/editor.json",
+              "sha256": "92930b59369ca1cef6d08d2d8d57e78a281abf574ae711f8318a65b8947ed249",
+              "row_names": [
+                "initial:valid-blocks",
+                "edit:store-updated",
+                "save:database",
+                "save:public-view",
+                "reload:content",
+                "reload:valid-blocks",
+                "sources:unchanged",
+                "cleanup:owned-part-removed"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:header-hamburger-search",
         "article:header-hamburger-right",
@@ -12787,7 +12901,9 @@
         "inheritance:content_learning:off",
         "inheritance:content_site:site",
         "inheritance:content_site:own",
-        "inheritance:content_site:off"
+        "inheritance:content_site:off",
+        "footer-data:empty",
+        "footer-data:filled"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -12814,7 +12930,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "efa71f0ba5b68fc94079e6df0b526b0dbb6db89811b0fd2fd4bbbafbf0cca1b9",
+              "sha256": "afc2d21e5e1967aa2d09615e895ad1887d0c9f2ae5dc15595174ee171ed355f6",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -12896,7 +13012,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "efa71f0ba5b68fc94079e6df0b526b0dbb6db89811b0fd2fd4bbbafbf0cca1b9",
+              "sha256": "afc2d21e5e1967aa2d09615e895ad1887d0c9f2ae5dc15595174ee171ed355f6",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -13132,7 +13248,9 @@
         "inheritance:content_learning:off",
         "inheritance:content_site:site",
         "inheritance:content_site:own",
-        "inheritance:content_site:off"
+        "inheritance:content_site:off",
+        "footer-data:empty",
+        "footer-data:filled"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -17129,7 +17247,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "12572c61d5b7acacd38cdd57d4c7c75f3c11ba92bad7946a3a1a0b45eca4f38f",
+              "sha256": "2258646d88999e952a055fae5924529bcf238a6c7fc5009f4410a29f8e7f9585",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -17415,7 +17533,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "12572c61d5b7acacd38cdd57d4c7c75f3c11ba92bad7946a3a1a0b45eca4f38f",
+              "sha256": "2258646d88999e952a055fae5924529bcf238a6c7fc5009f4410a29f8e7f9585",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -19110,7 +19228,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "2c6d0e311d6f6d1f44b98e602fe827b31c41c0c063f65396908043333962cfb0",
+              "sha256": "e617c542031535febf8221fe7a44efdd4bbb0d326fb1efed221cc2107b8b9a9b",
               "row_names": [
                 "pattern-and-independent-page:company",
                 "pattern-and-independent-page:service",
@@ -19574,7 +19692,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "2c6d0e311d6f6d1f44b98e602fe827b31c41c0c063f65396908043333962cfb0",
+              "sha256": "e617c542031535febf8221fe7a44efdd4bbb0d326fb1efed221cc2107b8b9a9b",
               "row_names": [
                 "pattern-and-independent-page:company",
                 "pattern-and-independent-page:service",
@@ -19988,7 +20106,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "2c6d0e311d6f6d1f44b98e602fe827b31c41c0c063f65396908043333962cfb0",
+              "sha256": "e617c542031535febf8221fe7a44efdd4bbb0d326fb1efed221cc2107b8b9a9b",
               "row_names": [
                 "pattern-and-independent-page:company",
                 "pattern-and-independent-page:service",
@@ -20732,7 +20850,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "d7a2dc3f9bb3ee1b5d94fe6ea98ece35a0b06f4754c8b2cc63285cd482237b25",
+              "sha256": "5ce145aa758b117463bbdc083a00074f015235f719afb75e6595c52b9aadb419",
               "row_names": [
                 "state:before-open:pc:js-true",
                 "form-availability:before-open:pc:js-true",
@@ -20859,7 +20977,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "f895fb758f4ea92620351687a776729f719b2d6da5f24135fe1b7ca5d2f92430",
+              "sha256": "9af07b4089c183a30abecfa533bbd52c717b55e318967ac58b5670bf2790df80",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -21221,7 +21339,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "d7a2dc3f9bb3ee1b5d94fe6ea98ece35a0b06f4754c8b2cc63285cd482237b25",
+              "sha256": "5ce145aa758b117463bbdc083a00074f015235f719afb75e6595c52b9aadb419",
               "row_names": [
                 "state:before-open:pc:js-true",
                 "form-availability:before-open:pc:js-true",
@@ -21348,7 +21466,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "f895fb758f4ea92620351687a776729f719b2d6da5f24135fe1b7ca5d2f92430",
+              "sha256": "9af07b4089c183a30abecfa533bbd52c717b55e318967ac58b5670bf2790df80",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -21777,7 +21895,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -21859,7 +21977,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -21919,7 +22037,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22043,7 +22161,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22074,7 +22192,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22184,7 +22302,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22312,7 +22430,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "blp:lp-target",
                 "blp:reasoning"
@@ -22342,7 +22460,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "blp:lp-target",
                 "blp:ownership:inherit",
@@ -22377,7 +22495,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "406d80ab4e733f8af4535cb62f4749471c9eaf0799b56d918ec0c69ab28cfd0b",
+              "sha256": "40cbf71b328843fe7f69beede177b9f73ce6adbf846bd49782787a6513c78bf6",
               "row_names": [
                 "blp:lp-target",
                 "heading:blp:editorial:pc:js-false",
@@ -22448,7 +22566,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "41fcbfe6c90ed10ac4ad59e08900ccf9144bc0391f547a322b5d80e085145ce3",
+              "sha256": "249573c5d84f28ab04108040059717cbfe67b2bdd3084e3ce8af31c7566742b0",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -22672,7 +22790,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "c187dac9fa53d846f56387b79f5c1a44be3a382cdb570121089502a438049dd3",
+              "sha256": "08802d4be294b317cf8500c82c0764e35e2a1118d4a21ef926c6a2c0eee94d16",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -22960,7 +23078,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "4c9f5ef3b6d67fa732781fcb7c2478f8c6a05a135bb8603900607e4502bade75",
+              "sha256": "b1a94d9523ed919bc793d330113e19914abe228b75f6af46b21584188ba1ed36",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -23361,7 +23479,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "2465f974d8d9e0190f5b548393d8f42d3aea435af8d1f43a30f7b1592c970916",
+              "sha256": "4620ad9c8130ef3ca8fb8a9aff04787c0a975715c854685e5d25729cf0090393",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -23450,7 +23568,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "921f32822145675b5d400c773d4986ca5007e601139885201bc0197ed88de075",
+              "sha256": "edad34c636cce339796cfc0cc2774d39ca28dd4cd932d291c7e42491f75a708a",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -23583,7 +23701,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "41fcbfe6c90ed10ac4ad59e08900ccf9144bc0391f547a322b5d80e085145ce3",
+              "sha256": "249573c5d84f28ab04108040059717cbfe67b2bdd3084e3ce8af31c7566742b0",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -23807,7 +23925,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "c187dac9fa53d846f56387b79f5c1a44be3a382cdb570121089502a438049dd3",
+              "sha256": "08802d4be294b317cf8500c82c0764e35e2a1118d4a21ef926c6a2c0eee94d16",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -24095,7 +24213,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "4c9f5ef3b6d67fa732781fcb7c2478f8c6a05a135bb8603900607e4502bade75",
+              "sha256": "b1a94d9523ed919bc793d330113e19914abe228b75f6af46b21584188ba1ed36",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -24496,7 +24614,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "2465f974d8d9e0190f5b548393d8f42d3aea435af8d1f43a30f7b1592c970916",
+              "sha256": "4620ad9c8130ef3ca8fb8a9aff04787c0a975715c854685e5d25729cf0090393",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -24585,7 +24703,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "921f32822145675b5d400c773d4986ca5007e601139885201bc0197ed88de075",
+              "sha256": "edad34c636cce339796cfc0cc2774d39ca28dd4cd932d291c7e42491f75a708a",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -24783,7 +24901,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "16bd7046041c8e8f745c6645d561b9ee7ab5496bf2067228f691a83a8742e99b",
+              "sha256": "a5fe5220f1aee3ee4b33e5c6cccec0383ed2f91cf2632e52b56f33cfd3166b3d",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -25231,7 +25349,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "16bd7046041c8e8f745c6645d561b9ee7ab5496bf2067228f691a83a8742e99b",
+              "sha256": "a5fe5220f1aee3ee4b33e5c6cccec0383ed2f91cf2632e52b56f33cfd3166b3d",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -25833,7 +25951,9 @@
         "inheritance:content_learning:off",
         "inheritance:content_site:site",
         "inheritance:content_site:own",
-        "inheritance:content_site:off"
+        "inheritance:content_site:off",
+        "footer-data:empty",
+        "footer-data:filled"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -25857,7 +25977,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "54c63b0a678d434187ecb4ed3b5c4101655d7ec570492a88b6d0e51359e8f297",
+              "sha256": "d50323589218566f434f2af1c5e7e04c33294b294336803a33d381d16369bbbd",
               "row_names": [
                 "course:three-lessons:pc:js-false",
                 "course:three-lessons:pc:js-true",
@@ -25913,7 +26033,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "54c63b0a678d434187ecb4ed3b5c4101655d7ec570492a88b6d0e51359e8f297",
+              "sha256": "d50323589218566f434f2af1c5e7e04c33294b294336803a33d381d16369bbbd",
               "row_names": [
                 "glossary:term-target:pc:js-false",
                 "glossary:term-target:pc:js-true",
@@ -25998,7 +26118,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "54c63b0a678d434187ecb4ed3b5c4101655d7ec570492a88b6d0e51359e8f297",
+              "sha256": "d50323589218566f434f2af1c5e7e04c33294b294336803a33d381d16369bbbd",
               "row_names": [
                 "archive:count:pc:js-true",
                 "archive:first-page:pc:js-true",
@@ -26221,7 +26341,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "5e810d90c2d1cd7d396371802a407511d65c8ca73ddeaeb228d91f24c13e7d90",
+              "sha256": "6112957cb7afe864b38708c225c0ba3b8ffed0f8eaf14b43f5df01c7b300b999",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -26346,7 +26466,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "63a11b87821693e704fb615499b3869423bc022fb54eaf43cab05276da40626d",
+              "sha256": "435c187557530b016bdb9cfefe3004ba4fad321d7057d7d89682f80136ade1c9",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -26374,7 +26494,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/access.json",
-              "sha256": "2e74082339e41a9ed1b6e09ee1fe186e9fba265bbf92f1854fac106734881b7c",
+              "sha256": "d87ff21f871cffd1b3479684526be5ca5e51be4ab2dc4648945ff4beabb0548e",
               "row_names": [
                 "count:anonymous:pc:js-true:public",
                 "results:anonymous:pc:js-true:public",
@@ -26698,7 +26818,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "ebc3cff9ec624c7ef4bae8c80b69e9e87d4966e9115a144e0c71b446068744bf",
+              "sha256": "858b461c981edd1f224a9a64b834622a3cf446643e16168872047491125bb5d4",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -27034,7 +27154,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "63a11b87821693e704fb615499b3869423bc022fb54eaf43cab05276da40626d",
+              "sha256": "435c187557530b016bdb9cfefe3004ba4fad321d7057d7d89682f80136ade1c9",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -27078,7 +27198,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "cd54e3db8587947beedd7047fe26b4e24c300834320b85031e246b2c4ef78406",
+              "sha256": "9b24d2f913e2296b0177e0060df2402c88a52a000e8186764f0d483e427b566a",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -27101,7 +27221,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "ebc3cff9ec624c7ef4bae8c80b69e9e87d4966e9115a144e0c71b446068744bf",
+              "sha256": "858b461c981edd1f224a9a64b834622a3cf446643e16168872047491125bb5d4",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -27437,7 +27557,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "5e810d90c2d1cd7d396371802a407511d65c8ca73ddeaeb228d91f24c13e7d90",
+              "sha256": "6112957cb7afe864b38708c225c0ba3b8ffed0f8eaf14b43f5df01c7b300b999",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -27516,7 +27636,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "63a11b87821693e704fb615499b3869423bc022fb54eaf43cab05276da40626d",
+              "sha256": "435c187557530b016bdb9cfefe3004ba4fad321d7057d7d89682f80136ade1c9",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -27584,7 +27704,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "cd54e3db8587947beedd7047fe26b4e24c300834320b85031e246b2c4ef78406",
+              "sha256": "9b24d2f913e2296b0177e0060df2402c88a52a000e8186764f0d483e427b566a",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -27887,7 +28007,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "1960dfa55b0b815231bf261c6652dff557e89a38020a2e00caabc383ebea13ab",
+              "sha256": "8e403ce9932e8339bf5d2e2fdbbdcc34af0c377a74380b14c6821c35329eac43",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -27956,8 +28076,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 265,
-    "partial": 16,
+    "missing": 264,
+    "partial": 17,
     "verified_in_poc": 13,
     "stale": 0
   },

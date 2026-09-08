@@ -13,6 +13,8 @@ const marker='SearchBoundaryFixture';
 if(wp(['post','list','--post_type=any','--post_status=any','--s='+marker,'--format=ids']))throw Error('Reserved fixtures exist');
 const size=Number(wp(['option','get','posts_per_page']));if(!Number.isInteger(size)||size<1||size>30)throw Error('Unexpected lab page size');
 const sources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-site-search-boundaries.mjs','docs/research/2026-09-08-content-faces/plugin/search.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html','docs/research/2026-09-08-content-faces/plugin/content-faces.php'];
+sources.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
+
 const digests=()=>Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests(), rows=[];const check=(name,pass)=>rows.push({name,pass:!!pass});
 async function keyboardLink(page,link,label){
