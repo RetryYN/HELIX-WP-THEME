@@ -253,6 +253,8 @@ test('invalid or obsolete workspace values cannot erase saved decisions or excee
   await page.locator('.tile-open').first().click();
   await page.locator('#detail textarea').fill('この判断は保持する');
   await page.keyboard.press('Escape');
+  // close handler renders and persists the workspace before focus returns.
+  await expect(page.locator('.tile-open').first()).toBeFocused();
   const memo = await page.evaluate(() => localStorage.getItem('helix-selection-memos.v1'));
   await page.evaluate(ids => localStorage.setItem('helix-selection-workspace.v1', JSON.stringify({ schema: 'helix-selection-workspace.v1', face: 'removed-face', device: 'unknown', limit: -10, comparison: ['missing-id', ids[0], ids[0], ...ids], purpose: 'removed-purpose', decision: 'invalid', linkedIds: 'bad-type' })), ids);
   await page.reload();

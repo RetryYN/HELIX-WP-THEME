@@ -1,0 +1,1806 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-event-boundaries.mjs": "70f1868a6cea1962ef18500c23e7d20fe4c8f761b5753ee8e8c3965e08e3663b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "b74cd8b1cfe6b98ecadd93729c5c0290f789ab835d3d568e04a9899398a5d068",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "0597e900b7a0c4c53864fa1e5986dd7f72263532db6cdb926dd9e9100e350cd0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "e1aa96bf4aaf87742b6d9281084211722102c5465a188959261429fa8e05d2e4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3"
+  },
+  "fixtures": [
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-01T18:00:00+09:00",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付中",
+      "name": "japan-start"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-01T03:59:59-05:00",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付前",
+      "name": "west-before-start"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-14T18:00:00+09:00",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付終了",
+      "name": "japan-deadline"
+    },
+    {
+      "opens_at": "2026-02-30T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "impossible-date"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "no-zone"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00+99:00",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "invalid-offset-hour"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00+09:99",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "invalid-offset-minute"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": null,
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "missing-observed"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-01T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "equal-period"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-09-30T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "reversed-period"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": -1,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "negative-capacity"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 1.5,
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "fraction-capacity"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": "50",
+      "registered": 0,
+      "expected": "受付情報を確認中",
+      "name": "string-capacity"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": -1,
+      "expected": "受付情報を確認中",
+      "name": "negative-registered"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": true,
+      "expected": "受付情報を確認中",
+      "name": "boolean-registered"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 0,
+      "registered": 0,
+      "expected": "満席",
+      "name": "zero-capacity"
+    },
+    {
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "capacity": 50,
+      "registered": 51,
+      "expected": "満席",
+      "name": "over-capacity"
+    }
+  ],
+  "rows": [
+    {
+      "name": "state:japan-start:pc:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:japan-start:pc:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:japan-start:sp:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:japan-start:sp:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:west-before-start:pc:js-true",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:west-before-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:west-before-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:west-before-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:west-before-start:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:west-before-start:pc:js-false",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:west-before-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:west-before-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:west-before-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:west-before-start:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:west-before-start:sp:js-true",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:west-before-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:west-before-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:west-before-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:west-before-start:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:west-before-start:sp:js-false",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:west-before-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:west-before-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:west-before-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:west-before-start:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:japan-deadline:pc:js-true",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:japan-deadline:pc:js-false",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:japan-deadline:sp:js-true",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:japan-deadline:sp:js-false",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:japan-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:japan-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:japan-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:japan-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:impossible-date:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:impossible-date:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:impossible-date:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:impossible-date:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:impossible-date:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:impossible-date:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:impossible-date:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:impossible-date:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:impossible-date:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:impossible-date:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:impossible-date:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:impossible-date:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:impossible-date:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:impossible-date:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:impossible-date:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:impossible-date:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:impossible-date:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:impossible-date:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:impossible-date:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:impossible-date:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:no-zone:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:no-zone:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:no-zone:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:no-zone:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:no-zone:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:no-zone:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:no-zone:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:no-zone:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:no-zone:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:no-zone:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:no-zone:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:no-zone:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:no-zone:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:no-zone:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:no-zone:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:no-zone:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:no-zone:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:no-zone:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:no-zone:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:no-zone:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-hour:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-hour:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-hour:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-hour:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-hour:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-hour:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-hour:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-hour:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-hour:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-hour:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-hour:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-hour:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-hour:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-hour:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-hour:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-hour:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-hour:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-hour:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-hour:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-hour:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-minute:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-minute:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-minute:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-minute:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-minute:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-minute:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-minute:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-minute:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-minute:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-minute:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-minute:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-minute:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-minute:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-minute:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-minute:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:invalid-offset-minute:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:invalid-offset-minute:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:invalid-offset-minute:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:invalid-offset-minute:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:invalid-offset-minute:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:missing-observed:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:missing-observed:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:missing-observed:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:missing-observed:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:missing-observed:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:missing-observed:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:missing-observed:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:missing-observed:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:missing-observed:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:missing-observed:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:missing-observed:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:missing-observed:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:missing-observed:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:missing-observed:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:missing-observed:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:missing-observed:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:missing-observed:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:missing-observed:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:missing-observed:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:missing-observed:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:equal-period:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:equal-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:equal-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:equal-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:equal-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:equal-period:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:equal-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:equal-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:equal-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:equal-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:equal-period:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:equal-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:equal-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:equal-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:equal-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:equal-period:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:equal-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:equal-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:equal-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:equal-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:reversed-period:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:reversed-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:reversed-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reversed-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reversed-period:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:reversed-period:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:reversed-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:reversed-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reversed-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reversed-period:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:reversed-period:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:reversed-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:reversed-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reversed-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reversed-period:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:reversed-period:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:reversed-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:reversed-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reversed-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reversed-period:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:negative-capacity:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:negative-capacity:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:negative-capacity:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:negative-capacity:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:fraction-capacity:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:fraction-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:fraction-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:fraction-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:fraction-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:fraction-capacity:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:fraction-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:fraction-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:fraction-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:fraction-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:fraction-capacity:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:fraction-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:fraction-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:fraction-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:fraction-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:fraction-capacity:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:fraction-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:fraction-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:fraction-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:fraction-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:string-capacity:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:string-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:string-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:string-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:string-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:string-capacity:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:string-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:string-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:string-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:string-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:string-capacity:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:string-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:string-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:string-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:string-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:string-capacity:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:string-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:string-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:string-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:string-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:negative-registered:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:negative-registered:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:negative-registered:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:negative-registered:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:negative-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:negative-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:negative-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:negative-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:boolean-registered:pc:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:boolean-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:boolean-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:boolean-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:boolean-registered:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:boolean-registered:pc:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:boolean-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:boolean-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:boolean-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:boolean-registered:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:boolean-registered:sp:js-true",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:boolean-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:boolean-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:boolean-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:boolean-registered:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:boolean-registered:sp:js-false",
+      "expected": "受付情報を確認中",
+      "visible": [
+        "受付情報を確認中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:boolean-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:boolean-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:boolean-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:boolean-registered:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:zero-capacity:pc:js-true",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:zero-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:zero-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:zero-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:zero-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:zero-capacity:pc:js-false",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:zero-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:zero-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:zero-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:zero-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:zero-capacity:sp:js-true",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:zero-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:zero-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:zero-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:zero-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:zero-capacity:sp:js-false",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:zero-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:zero-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:zero-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:zero-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:over-capacity:pc:js-true",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:over-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:over-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:over-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:over-capacity:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:over-capacity:pc:js-false",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:over-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:over-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:over-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:over-capacity:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:over-capacity:sp:js-true",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:over-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:over-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:over-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:over-capacity:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:over-capacity:sp:js-false",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "form-availability:over-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:over-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:over-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:over-capacity:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    }
+  ],
+  "limitation": "時刻・残席の専用fixture入力。観測時刻・残席による表示とPOST可否を照合。業務予約・定員更新・実送信は対象外。"
+}

@@ -1,7 +1,7 @@
 <?php
 /** Event state display fixture. No booking, capacity mutation, or external delivery. */
 function wt_event_fixture_time( $value ) {
-	if ( ! is_string( $value ) || ! preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})$/D', $value ) ) { return null; }
+	if ( ! is_string( $value ) || ! preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$/D', $value ) ) { return null; }
 	$date = DateTimeImmutable::createFromFormat( '!Y-m-d\TH:i:sP', $value );
 	$errors = DateTimeImmutable::getLastErrors();
 	return $date && ( false === $errors || ( ! $errors['warning_count'] && ! $errors['error_count'] ) ) ? $date->getTimestamp() : null;
