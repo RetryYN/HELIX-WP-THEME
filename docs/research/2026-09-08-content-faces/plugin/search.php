@@ -7,9 +7,28 @@ function wtcf_search_password_scopes() {
 	if ( ! $scopes ) { $scopes = new WeakMap(); }
 	return $scopes;
 }
+function wtcf_search_password_cache_version() {
+	return max( 1, (int) get_option( 'wtcf_search_password_cache_version', 1 ) );
+}
+function wtcf_search_bump_password_cache_version() {
+	update_option( 'wtcf_search_password_cache_version', wtcf_search_password_cache_version() + 1, false );
+}
+add_action( 'wp_after_insert_post', function ( $post_id, $post, $update, $post_before ) {
+	if ( ! empty( $post->post_password ) || ( $post_before && ! empty( $post_before->post_password ) ) ) {
+		wtcf_search_bump_password_cache_version();
+	}
+}, 10, 4 );
+add_action( 'before_delete_post', function ( $post_id, $post ) {
+	if ( ! empty( $post->post_password ) ) { wtcf_search_bump_password_cache_version(); }
+}, 10, 2 );
 function wtcf_search_unlocked_posts() {
 	$allowed = array();
 	if ( ! isset( $_COOKIE[ 'wp-postpass_' . COOKIEHASH ] ) || ! is_string( $_COOKIE[ 'wp-postpass_' . COOKIEHASH ] ) ) { return $allowed; }
+	$cookie = wp_unslash( $_COOKIE[ 'wp-postpass_' . COOKIEHASH ] );
+	if ( ! str_starts_with( $cookie, '$P$B' ) ) { return $allowed; }
+	$cache_key = 'wtcf_search_unlocked_' . hash( 'sha256', $cookie . '|' . wtcf_search_password_cache_version() );
+	$cached = get_transient( $cache_key );
+	if ( is_array( $cached ) ) { return array_values( array_filter( array_map( 'intval', $cached ) ) ); }
 	global $wpdb;
 	$after = 0;
 	// Inspect protected records in bounded batches. Never return password values to the browser.
@@ -20,6 +39,7 @@ function wtcf_search_unlocked_posts() {
 			$after = (int) $id;
 		}
 	} while ( count( $ids ) === 200 );
+	set_transient( $cache_key, $allowed, (int) apply_filters( 'wtcf_search_password_cache_ttl', DAY_IN_SECONDS ) );
 	return $allowed;
 }
 add_filter( 'posts_search', function ( $search, $query ) {
