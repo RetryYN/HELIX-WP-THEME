@@ -12,6 +12,8 @@
  * JS あり: 送信前に同じ規則でクライアント検証（エラーの出し方は form_error 軸と同じ）、steps は段階送り、inline-review は同一ページで見直し。
  */
 
+require_once __DIR__ . '/event-state.php'; // 申込処理前にも受付状態を照合する。
+
 // ---------- 種別 / 項目 ----------
 function wt_form_kinds() {
 	// 台帳 form_kind（取得 n=42）: contact 43% / download 19% / reservation 12% / recruit 10% / newsletter 5% / quote 5% / trial 5% / other:diagnosis 2%。apply は語彙にあるが本体観察 0（イベント申込は段 5 で既存。Claude 案で追加）
@@ -137,6 +139,8 @@ function wt_form_state() {
 	$vals = array();
 	foreach ( (array) $_POST['wt_form'] as $k => $v ) { $k = sanitize_key( $k ); $vals[ $k ] = is_array( $v ) ? array_map( fn( $x ) => is_array( $x ) ? '' : sanitize_text_field( wp_unslash( $x ) ), $v ) : sanitize_textarea_field( wp_unslash( $v ) ); }
 	$state['values'] = $vals;
+	$event = wt_event_fixture_state();
+	if ( $event && ! $event['open'] ) { $state['errors']['_form'] = $event['label'] . 'のため申込を受け付けられません。'; return $state; }
 	$step = $_POST['wt_step'] ?? 'input';
 	if ( ! is_string( $step ) || ! in_array( wp_unslash( $step ), array( 'input', 'back', 'confirm' ), true ) ) {
 		$state['errors']['_form'] = 'フォームの操作を確認できませんでした。入力内容を確認して、もう一度進んでください。';

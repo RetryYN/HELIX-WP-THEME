@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('607');
+  await expect(page.locator('#total')).toHaveText('611');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -217,7 +217,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('607候補 / SP');
+  await expect(page.locator('#count')).toHaveText('611候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
@@ -358,4 +358,18 @@ test('detail image modes preserve decision editing and restore focus when closed
   await page.locator('.tile-open').first().click();
   await expect(page.locator('#detail textarea')).toHaveValue('本文の行間を原寸で確認');
   await expect(page.locator('#detail [data-image-mode="width"]')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('event availability fixtures are discoverable with their limits', async ({ page }) => {
+  await page.locator('[data-face="all"]').click();
+  await page.locator('#search').fill('event-state-fixture');
+  await expect(page.locator('.tile-open')).toHaveCount(4);
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail')).toContainText('業務予約・定員更新・実送信は未実装');
+  await page.keyboard.press('Escape');
+  await page.locator('#tab-requirements').click();
+  await page.locator('#req-search').fill('WT-AC-EVENT-01A');
+  await expect(page.locator('.req-row')).toHaveCount(1);
+  await page.locator('.req-row > summary').click();
+  await expect(page.locator('.req-row')).toContainText('121');
 });

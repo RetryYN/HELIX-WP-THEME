@@ -162,6 +162,27 @@ if (fs.existsSync(path.join(root, searchLocalePath))) {
     entry.description = '日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。';
   }
 }
+const eventStatePath = 'docs/research/2026-09-08-event-state/verify.json';
+if (fs.existsSync(path.join(root, eventStatePath))) {
+  const evidence = read(eventStatePath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass)) throw Error('Event state evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale event state evidence: ${file}`);
+  }
+  const labels = {'before-open':'受付前の案内','opening-boundary':'受付開始と申込','full':'満席と受付状況','deadline-boundary':'締切後の案内'};
+  for (const [state, label] of Object.entries(labels)) {
+    const id = `event-state:${state}`, images = {};
+    for (const device of ['pc','sp']) {
+      const file = `${state}-${device}.jpg`;
+      if (!fs.existsSync(path.join(root, path.dirname(eventStatePath), file))) throw Error('Missing event state image');
+      images[device] = `../2026-09-08-event-state/${file}`;
+    }
+    entries.set(id, {id, face:'event', part:'event-state-fixture',label,variant:state,images,requirementIds:[],
+      purpose:'受付状況と次の行動を伝える',group:'ページ・本文',
+      description:'専用fixtureの開始・締切・残席から算出した受付状態。受付不能時はフォームを描画せずPOSTも拒否し、状態確認の導線を残す。業務予約・定員更新・実送信は未実装。',
+      evidence:'../2026-09-08-event-state/verify.json'});
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

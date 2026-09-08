@@ -9,6 +9,13 @@
 $u = get_theme_file_uri( 'assets/img' );
 $status = '<span class="wt-event-status wt-event-status--open">受付中</span><span class="wt-event-status wt-event-status--few-seats">残席わずか</span><span class="wt-event-status wt-event-status--ended">受付終了</span>';
 $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参加を申し込む</a>';
+$event_state = wt_event_fixture_state();
+$event_open = ! $event_state || $event_state['open'];
+$event_action = $event_open ? '参加を申し込む' : '受付状況を確認する';
+if ( $event_state ) {
+	$status = '<span class="wt-event-status" data-wt-event-state="' . esc_attr( $event_state['state'] ) . '" style="display:inline-flex;border:1px solid currentColor">' . esc_html( $event_state['label'] ) . '</span>';
+	$apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">' . esc_html( $event_action ) . '</a>';
+}
 ?>
 <!-- wp:html -->
 <div class="wt-event-hero-slot" id="event-hero">
@@ -47,6 +54,9 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <ul class="wt-event-tickets"><li><b>会場参加</b><p class="wt-event-tickets__price">無料</p><span>定員 50 名・資料付き・個別相談あり</span></li><li class="is-featured"><b>オンライン参加</b><p class="wt-event-tickets__price">無料</p><span>定員 300 名・後日録画を 1 週間視聴可</span></li><li><b>録画のみ</b><p class="wt-event-tickets__price">無料</p><span>当日参加できない方向け・質疑は不可</span></li></ul></div></section>
 
 <section class="wt-event__section wt-event__section--apply" id="apply" aria-labelledby="event-apply-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">APPLY</p><h2 id="event-apply-title">参加申込</h2>
+<?php if ( ! $event_open ) : ?>
+<div class="wt-event-availability" role="status"><h3><?php echo esc_html( $event_state['label'] ); ?></h3><p>現在は申込を受け付けていません。受付状況をご確認ください。</p><a href="#info">開催情報を確認する</a></div>
+<?php else : ?>
 <form class="wt-event-apply wt-event-apply--inline-form wt-lp-form-inline" action="#apply" method="get" data-wt-poc-form="no-submit"><div class="wt-lp-form__grid"><div><label for="ev-name">お名前</label><input id="ev-name" name="name" type="text" autocomplete="name" required></div><div><label for="ev-company">会社名</label><input id="ev-company" name="company" type="text" autocomplete="organization"></div><div><label for="ev-email">メールアドレス</label><input id="ev-email" name="email" type="email" autocomplete="email" required></div><div><label for="ev-type">参加区分</label><select id="ev-type" name="type"><option>会場参加</option><option>オンライン参加</option><option>録画のみ</option></select></div></div><label class="wt-event-apply__consent"><input type="checkbox" name="consent" required> 個人情報の取り扱いに同意する</label><button class="wt-lp-cta-action" type="button" aria-describedby="ev-note">申し込む</button><p id="ev-note" class="wt-lp-form__note">PoC のため送信されません。</p></form>
 <div class="wt-event-apply wt-event-apply--external-form"><p>申込フォームは別ページで開きます（所要 2 分）。</p><a class="wt-lp-cta-action" href="#apply" rel="nofollow">申込フォームへ進む <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a><p class="wt-lp-form__note">遷移先は PoC のためダミーのアンカー。</p></div>
 <div class="wt-event-apply wt-event-apply--ticket-link"><p>チケットは外部のチケットサービスで受け付けています。</p><a class="wt-lp-cta-action" href="#apply" rel="nofollow">チケットサービスで申し込む <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a><p class="wt-lp-form__note">サービス名・遷移先は PoC のため置かない。</p></div>
@@ -59,6 +69,7 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <div class="wp-block-group wt-event-apply wt-event-apply--block-form"><!-- wp:helix-wt/form {"hideTitle":true} /--></div>
 <!-- /wp:group -->
 <!-- wp:html -->
+<?php endif; ?>
 </div></section>
 
 <section class="wt-event__section wt-event__section--access" id="access" aria-labelledby="event-access-title"><div class="wt-lp-section-inner"><p class="wt-eyebrow">ACCESS</p><h2 id="event-access-title">会場アクセス</h2>
@@ -106,6 +117,6 @@ $apply_btn = '<a class="wt-lp-cta-action wt-event-apply-link" href="#apply">参�
 <!-- /wp:group -->
 
 <!-- wp:html -->
-<nav class="wt-event-fixed wt-event-fixed--sp-bottom-bar" aria-label="固定導線"><span class="wt-event-fixed__date"><time datetime="2026-10-15">10/15（木）14:00</time></span><a href="#apply">参加を申し込む</a></nav>
-<a class="wt-event-fixed wt-event-fixed--float-apply wt-lp-cta-action" href="#apply">参加を申し込む</a>
+<nav class="wt-event-fixed wt-event-fixed--sp-bottom-bar" aria-label="固定導線"><span class="wt-event-fixed__date"><time datetime="2026-10-15">10/15（木）14:00</time></span><a href="#apply"><?php echo esc_html( $event_action ); ?></a></nav>
+<a class="wt-event-fixed wt-event-fixed--float-apply wt-lp-cta-action" href="#apply"><?php echo esc_html( $event_action ); ?></a>
 <!-- /wp:html -->
