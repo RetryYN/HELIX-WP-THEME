@@ -16,7 +16,24 @@
 ## Session Start
 
 1. `helix status` で継続状態を確認する（末尾の HELIX managed block を参照）。
-2. 継続状態がなければ通常開始し、「OK: セッション初期化完了」と宣言する。
+2. `node scripts/codex-inbox.mjs deliver --exit-code 0` で Claude 起点の未配送通知を確認する
+   （`.codex/hooks.json` の SessionStart hook が同じことを行う。hook が実行されない環境では手動で叩く）。
+3. 継続状態がなければ通常開始し、「OK: セッション初期化完了」と宣言する。
+
+## codex-inbox（Claude → codex の通知経路）
+
+同梱 HELIX の `claude-inbox`（codex → Claude）は片方向で、Claude から codex を起こす口が本体に無い
+（上流 HELIX #532）。consumer 側の対称実装として、Git common dir の
+`helix-runtime/codex-memory-wake/inbox/` を spool にした `codex-inbox` を持つ。worktree をまたいで届く。
+
+- 送信（Claude 側）: `node scripts/notify-codex.mjs <key> <body> --operation-id <id> --runtime claude`
+  レビュー完了時は receipt（`pr-review-receipt`）と PR コメントに加えて、key `review:pr:<owner/repo>#<n>` で送る。
+- 受信（codex 側）: `.codex/hooks.json` の SessionStart / Stop hook が `scripts/codex-inbox.mjs deliver` を呼ぶ。
+  Stop 時に未配送があれば `[HELIX_CODEX_INBOX]` 境界で本文を stderr に出し exit 2 で停止を止める
+  （Claude の `claude-memory-wake` と同じ流儀）。配送済みは common dir の `.delivered` マーカーで管理し、二重配送しない。
+- 通知本文は wake の合図。**HEAD・CI・レビュー判定の正本にしない。** 受け取ったら current HEAD・CI・PR コメント・
+  receipt を GitHub と common dir から再取得して行動する。
+- 自己通知は拒否する（`--runtime codex` は rejected）。壊れた spool ファイルは配送も削除もしない。
 
 ## ⚠️ WT-TR-CORE-03（旧 REQ-NF-025） — AIロジック完全分離（絶対制約）
 
