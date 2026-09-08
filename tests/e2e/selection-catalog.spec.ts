@@ -109,7 +109,8 @@ test('site guide collection exposes eleven paired pages and the live pricing rou
 });
 
 test('quality comparison opens from catalog with paired evidence and a return path', async ({ page }) => {
-  await page.getByRole('link', { name: '常設案内の改善を、変更前後で比較する →' }).click();
+  await page.locator('.quality-links summary').click();
+  await page.getByRole('link', { name: '常設案内 →', exact: true }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('押せる領域を広げる');
   await expect(page.locator('figure')).toHaveCount(8);
   await expect(page.locator('table')).toContainText('370');
@@ -144,7 +145,8 @@ test('independent faces expose shared, own and off comparisons', async ({ page }
 
 
 test('navigation comparison exposes paired images and scoped verification', async ({ page }) => {
-  await page.getByRole('link', { name: '共通ナビの改善を、変更前後で比較する →' }).click();
+  await page.locator('.quality-links summary').click();
+  await page.getByRole('link', { name: '共通ナビ →', exact: true }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('共通ヘッダーへ');
   await expect(page.locator('figure')).toHaveCount(8);
   for (const image of await page.locator('img').all()) {
@@ -173,7 +175,8 @@ test('site search states expose scoped evidence and a live query', async ({ page
 
 
 test('search start comparison retains before and after evidence', async ({ page }) => {
-  await page.getByRole('link', { name: '検索開始画面を、変更前後で比較する →' }).click();
+  await page.locator('.quality-links summary').click();
+  await page.getByRole('link', { name: '検索開始画面 →', exact: true }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('次の操作を伝える');
   await expect(page.locator('figure')).toHaveCount(4);
   for (const image of await page.locator('img').all()) {
@@ -393,4 +396,36 @@ test('footer saved and empty states expose paired images and remaining editor sc
   await page.locator('.req-row > summary').click();
   await expect(page.locator('.req-row')).toContainText('部分確認');
   await expect(page.locator('.req-row')).toContainText('メニュー選択');
+});
+
+
+test('compact catalog keeps narrow filters paired and selection states legible', async ({ page }) => {
+  for (const width of [1440, 375, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect((await page.locator('#gallery').boundingBox())!.y).toBeLessThan(700);
+    if (width < 700) {
+      const purpose = (await page.locator('#purpose').boundingBox())!;
+      const decision = (await page.locator('#decision').boundingBox())!;
+      expect(Math.abs(purpose.y - decision.y)).toBeLessThan(1);
+      expect(purpose.x + purpose.width).toBeLessThan(decision.x);
+    }
+  }
+  await page.locator('.quality-links summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('link', { name: '常設案内 →', exact: true })).toBeVisible();
+  const colors = new Set<string>();
+  for (const label of ['未選択', '採用候補', '保留', '除外']) {
+    await page.locator('.tile-open').first().click();
+    await page.locator('#detail').getByRole('button', { name: label, exact: true }).click();
+    await page.keyboard.press('Escape');
+    // closeイベントの再描画とフォーカス復帰後に、接続中のバッジを測る。
+    await expect(page.locator('.tile-open').first()).toBeFocused();
+    const badge = page.locator('.decision-badge').first();
+    await expect(badge).toHaveText(label);
+    const color = await badge.evaluate(e => e.isConnected ? getComputedStyle(e).backgroundColor : '');
+    expect(color).not.toBe('');
+    colors.add(color);
+  }
+  expect(colors.size).toBe(4);
 });

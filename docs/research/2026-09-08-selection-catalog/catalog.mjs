@@ -136,6 +136,7 @@ async function start() {
     $('gallery').replaceChildren();
     for (const entry of entries.slice(0, limit)) {
       const tile = el('article', undefined, 'tile');
+      tile.dataset.decision = memoFor(entry.id).status;
       const open = button('', () => detail(entry)); open.className = 'tile-open'; open.dataset.entryId = entry.id;
       open.setAttribute('aria-label', `${entry.label} ${entry.variant}の詳細`);
       open.append(imageFor(entry, 'preview'));

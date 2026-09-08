@@ -222,4 +222,12 @@ const result = { schema: 'wt-selection-catalog.v1', source: prototype, requireme
 const out = path.join(root, 'docs/research/2026-09-08-selection-catalog/catalog-data.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(result, null, 2) + '\n');
+const readmePath = path.join(root, 'docs/research/2026-09-08-selection-catalog/README.md');
+const readme = fs.readFileSync(readmePath, 'utf8');
+const currentStart = '<!-- catalog-current:start -->';
+const currentEnd = '<!-- catalog-current:end -->';
+const currentPattern = new RegExp(`${currentStart}[\\s\\S]*?${currentEnd}`);
+if (!currentPattern.test(readme)) throw Error('Missing generated catalog-current block in selection catalog README');
+const current = `${currentStart}\n現在の生成結果: ${entries.size}候補 / ${result.screenshotCount}画像 / ${requirements.length}要求 / ${audit.acceptanceCount}受入条件。PoC確認${audit.counts.verified_in_poc}・部分確認${audit.counts.partial}・証跡未対応${audit.counts.missing}・再検証${audit.counts.stale}。全要求完了ではない。\n${currentEnd}`;
+fs.writeFileSync(readmePath, readme.replace(currentPattern, current));
 console.log(`catalog: ${entries.size} candidates / ${result.screenshotCount} screenshots / ${requirements.length} requirements`);

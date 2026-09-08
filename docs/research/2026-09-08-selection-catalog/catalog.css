@@ -19,3 +19,69 @@ main{padding-bottom:max(140px,var(--compare-clearance,0px))}html{scroll-padding-
 .image-viewer[data-mode=native] img{width:auto;max-width:none;max-height:none;margin:0}
 
 .compare-grid{grid-template-columns:repeat(var(--compare-columns,3),minmax(0,1fr))}@media(max-width:700px){.compare-grid{grid-template-columns:repeat(var(--compare-columns,3),minmax(220px,1fr))}}
+
+
+/* 選別作業の階層: 紙面・候補・判断を分け、既存の色トークンを維持する。 */
+main{padding-top:30px}
+.intro{padding-bottom:20px}
+.intro h1{font-size:clamp(28px,2.3vw,36px);line-height:1.4;margin:12px 0}
+.intro .eyebrow{margin-bottom:10px}
+.intro .lead{margin-bottom:0}
+.intro-stat strong{font-size:56px}
+.quality-links{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:8px 0 24px;font-size:12px}
+.quality-links summary{cursor:pointer;padding:14px 0;min-height:44px;font-weight:650}
+.quality-links summary span{font-weight:400;color:var(--muted);margin-left:12px}
+.quality-links>div{display:flex;flex-wrap:wrap;gap:8px 24px;padding:0 0 12px}
+.quality-links a{min-height:44px;padding:12px 0;text-underline-offset:4px}
+.workspace-tabs{margin-bottom:20px}
+.results-head{padding-top:4px;margin:20px 0 16px}
+.results-head #count{font-variant-numeric:tabular-nums}
+.gallery{gap:24px 20px}
+.tile{position:relative;background:var(--white);border:1px solid var(--line);border-radius:6px;padding:8px;display:flex;flex-direction:column;align-items:stretch}
+.tile-open{border-radius:3px;flex:1}
+.tile-open:focus-visible{outline-offset:2px}
+.tile:focus-within{border-color:var(--green)}
+.preview{border:0;background:#eef0e9;border-radius:3px}
+.tile-top{padding:0 6px;margin-top:12px;align-items:baseline;justify-content:space-between}
+.tile h3{font-size:14px}
+.tile .variant{padding:0 6px;margin:6px 0 10px;font-size:12px}
+.tile-footer{border-top:1px solid var(--line);padding:5px 6px 0;min-height:50px}
+.purpose-tag{background:transparent;padding:0;font-size:11px;color:var(--muted)}
+.compare-pick{font-size:12px;gap:6px}
+.decision-badge{align-self:flex-start;margin:0 6px 6px;padding:4px 8px;font-size:11px;background:#f1f2ed;color:var(--muted);border:1px solid var(--line)}
+.tile[data-decision=adopt] .decision-badge{background:var(--green);border-color:var(--green);color:white}
+.tile[data-decision=hold] .decision-badge{background:#f8efd9;border-color:#d9c58e;color:#705316}
+.tile[data-decision=reject] .decision-badge{background:#f4e8e4;border-color:#d9bbb1;color:#7e4233}
+.compare-pick:has(input:checked){font-weight:700;color:var(--green)}
+.tile:has(.compare-pick input:checked){border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.compare-grid>section{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:12px}
+.compare-grid .detail-copy h2{font-size:19px}
+.acceptance-row[data-evidence-state=missing]{border-color:#a5aaa1}
+.acceptance-row[data-evidence-state=partial]{border-color:#ad833b;background:#f8f3e7}
+.acceptance-row[data-evidence-state=stale]{border-color:#a35740;background:#f8eeea}
+.acceptance-row[data-evidence-state=verified_in_poc]{background:var(--tint)}
+@media(max-width:700px){
+  .sidebar{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:14px 18px 16px}
+  .sidebar nav{grid-column:1/-1;margin-bottom:4px}
+  .sidebar .filter-label{margin:0;font-size:11px;align-self:end}
+  .sidebar label[for=purpose]{grid-column:1;grid-row:2}
+  .sidebar label[for=decision]{grid-column:2;grid-row:2}
+  .sidebar select{width:100%;min-width:0;max-width:100%;grid-row:3}
+  main{padding-top:22px}
+  .intro{padding-bottom:16px}
+  .intro h1{font-size:27px;line-height:1.4;margin:8px 0 12px}
+  .intro .eyebrow{font-size:9px;margin-bottom:8px}
+  .intro .lead{font-size:12px;line-height:1.7}
+  .quality-links{margin:0 0 16px}
+  .quality-links summary span{font-size:11px}
+  .gallery{gap:16px 12px}
+  .tile{padding:6px}
+  .tile-top{display:block;padding:0 3px}
+  .tile h3{font-size:13px}
+  .tile-top>span{display:block;margin-top:3px}
+  .tile .variant{padding:0 3px;font-size:11px}
+  .tile-footer{padding:4px 3px 0}
+  .decision-badge{margin:0 3px 4px;font-size:10px}
+  .preview{height:150px}
+}
+@media(max-width:360px){.gallery{grid-template-columns:1fr}.preview{height:210px}.purpose-tag{display:block}.tile-top{display:flex}.tile-top>span{margin:0}}
