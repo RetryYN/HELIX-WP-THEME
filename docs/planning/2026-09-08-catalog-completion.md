@@ -92,3 +92,12 @@ SEARCH-01Aを未入力/ゼロ件の区別を含む105検査でPoC確認済みへ
 
 再起動前の停止点（PO指示）: 今回の日時境界修正と証拠更新で区切る。カタログE2Eは初回17/18で、dialog close時の保存と異常workspace注入のテスト競合を検出。close handlerのfocus復帰を待ってから注入するよう修正し、再実行18/18成功。npm test（要求整合性・consumer health）成功、PHP構文検査成功。カタログは611候補・1094画像、ACは13 PoC確認済み / 16部分 / 265証拠未対応 / 0 stale。全要求完遂ではない。
 再開時は current HEAD / CI / Claude receipt を再取得し、通知のARMEDを受領と混同しない。統合層の受信hook修正は別コミット91ba69a。未完了範囲は acceptance-audit.json の各 remaining と本PLANを継承し、新しい実装へ進む前に現物を確認する。統合層のtheme pinは変更しない。
+
+### 2026-09-09 再開・フッターデータ不足
+
+PHP検査環境を導入しunit/security 201テスト・492 assertions成功、既存PHPCS57ファイルの指摘0、試作PHP66ファイル構文成功。PR #174 current HEAD c87fc8eの通知にDELIVERED記録が付き、POからClaude受信報告も得た。レビュー完了は未確認。
+フッターの固定サンプルと空データ省略の不足を調査。専用labのGETによる16検査中8失敗を記録し、`docs/research/2026-09-09-footer-data/PLAN.md` にデータ保存・公開DOM・空枠省略・カタログ比較の次工程を記した。WT-AC-PARTS-01Cは未対応のまま保持する。
+
+フッター保存元の方式比較: 標準Navigationの空枠残存とdraft/private参照の公開メニューfallbackを実機確認（11検査中6失敗）。公開参照・空出力を検査するfooter-navigation.php候補関数では同系列11成功。フッター本体への組込みとSite Editor/PCSP検証は次工程で、AC昇格はまだ行わない。
+
+フッター入力境界: 空白だけの表示名で無名リンクとnav枠が残る不足を20検査中2失敗として再現し、描画中だけ空名を省略するfilterで修正。20検査成功。サイト編集画面とフッター本体への組込みは残件。

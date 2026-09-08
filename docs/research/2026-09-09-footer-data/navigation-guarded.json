@@ -1,0 +1,184 @@
+{
+  "completed": true,
+  "wordpress": "7.1",
+  "sourceDigests": {
+    "scripts/verify-footer-navigation-source.mjs": "aee5c1fe71eb659b1273b08cb06f03e111c7515b184a8037a28759c2f9bfda76",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "327cbc8698090639c529746939ccb17d3e3fed7ac3b4e83002525c16b6d22dc7"
+  },
+  "rows": [
+    {
+      "name": "stored-links:empty",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:empty",
+      "pass": true
+    },
+    {
+      "name": "stored-links:one",
+      "pass": true,
+      "actual": {
+        "links": [
+          {
+            "label": "会社案内",
+            "url": "/site-company/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": [
+        {
+          "label": "会社案内",
+          "url": "/site-company/"
+        }
+      ]
+    },
+    {
+      "name": "stored-links:multiple",
+      "pass": true,
+      "actual": {
+        "links": [
+          {
+            "label": "会社案内",
+            "url": "/site-company/"
+          },
+          {
+            "label": "読む・学ぶ",
+            "url": "/learn/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": [
+        {
+          "label": "会社案内",
+          "url": "/site-company/"
+        },
+        {
+          "label": "読む・学ぶ",
+          "url": "/learn/"
+        }
+      ]
+    },
+    {
+      "name": "stored-links:draft",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:draft",
+      "pass": true
+    },
+    {
+      "name": "stored-links:private",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:private",
+      "pass": true
+    },
+    {
+      "name": "stored-links:emptied",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:emptied",
+      "pass": true
+    },
+    {
+      "name": "stored-links:blank-label",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:blank-label",
+      "pass": true
+    },
+    {
+      "name": "stored-links:spaces-label",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:spaces-label",
+      "pass": true
+    },
+    {
+      "name": "stored-links:blank-url",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:blank-url",
+      "pass": true
+    },
+    {
+      "name": "stored-links:script-url",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 0
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:script-url",
+      "pass": true
+    },
+    {
+      "name": "stored-links:mixed",
+      "pass": true,
+      "actual": {
+        "links": [
+          {
+            "label": "会社案内",
+            "url": "/site-company/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": [
+        {
+          "label": "会社案内",
+          "url": "/site-company/"
+        }
+      ]
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    }
+  ],
+  "limitation": "Navigation標準ブロックのサーバー描画。Site Editor UI、フッター組込み、端末別レイアウトの検証ではない。"
+}
