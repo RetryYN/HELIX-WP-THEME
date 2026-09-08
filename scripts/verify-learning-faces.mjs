@@ -15,6 +15,7 @@ const sources = ['scripts/verify-learning-faces.mjs', 'docs/research/2026-09-08-
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css'];
 sources.push(...['functions.php', 'inc/footer-navigation.php', 'parts/footer.html', 'patterns/footer-sitemap.php', 'patterns/footer-related.php'].map(p => 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/' + p));
+sources.push('docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php');
 const sourceDigests = Object.fromEntries(sources.map(p => [p, createHash('sha256').update(fs.readFileSync(path.join(root, p))).digest('hex')]));
 const browser = await chromium.launch();
 const rows = [], shots = [];

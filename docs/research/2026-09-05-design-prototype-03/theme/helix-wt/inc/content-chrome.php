@@ -3,8 +3,21 @@
 defined( 'ABSPATH' ) || exit;
 function wtcf_chrome_faces() {
 	static $faces = null;
-	if ( null === $faces ) { $faces = json_decode( file_get_contents( get_theme_file_path( 'config/content-chrome.json' ) ), true ); }
-	return is_array( $faces ) ? $faces : array();
+	if ( null !== $faces ) { return $faces; }
+	$faces = array();
+	$path = get_theme_file_path( 'config/content-chrome.json' );
+	if ( ! is_file( $path ) || ! is_readable( $path ) ) { return $faces; }
+	$contents = file_get_contents( $path );
+	if ( false === $contents ) { return $faces; }
+	$decoded = json_decode( $contents, true );
+	if ( ! is_array( $decoded ) ) { return $faces; }
+	foreach ( $decoded as $face => $rule ) {
+		if ( ! is_string( $face ) || '' === trim( $face ) || ! is_array( $rule ) ) { continue; }
+		if ( ! isset( $rule['post_type'] ) || ! is_string( $rule['post_type'] ) || '' === trim( $rule['post_type'] ) ) { continue; }
+		if ( array_key_exists( 'block', $rule ) && ( ! is_string( $rule['block'] ) || '' === trim( $rule['block'] ) ) ) { continue; }
+		$faces[ $face ] = $rule;
+	}
+	return $faces;
 }
 function wtcf_chrome_face() {
 	foreach ( wtcf_chrome_faces() as $face => $rule ) {

@@ -16,6 +16,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/2026-
 const out = path.join(root, 'docs/research/2026-09-08-content-faces/results/site-pages');fs.mkdirSync(out, { recursive: true });
 const sources = ['scripts/verify-site-pages.mjs','docs/research/2026-09-08-content-faces/plugin/site-pages.json','docs/research/2026-09-08-content-faces/plugin/site-pages.php','docs/research/2026-09-08-content-faces/seed-site-pages.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html','docs/research/2026-09-08-content-faces/provider/index.html','docs/research/2026-09-08-content-faces/provider/complete.html'];
 sources.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
+sources.push('docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php');
 const sourceDigests = Object.fromEntries(sources.map(f => [f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const rows = [], shots = [];let completed=false;const check=(name,pass)=>{rows.push({name,pass:Boolean(pass)});assert.ok(pass,name);};
 const browser=await chromium.launch();

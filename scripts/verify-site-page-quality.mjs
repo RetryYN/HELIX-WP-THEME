@@ -10,6 +10,7 @@ fs.mkdirSync(out,{recursive:true});
 const sourceFiles=['scripts/verify-site-page-quality.mjs','docs/research/2026-09-08-content-faces/plugin/site-pages.json',...['theme.json','inc/site-pages.php','assets/css/site-pages.css'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 sourceFiles.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
 const digest=f=>createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex');
+sourceFiles.push('docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php');
 const sourceDigests=Object.fromEntries(sourceFiles.map(f=>[f,digest(f)]));
 const manifest=JSON.parse(fs.readFileSync(path.join(root,sourceFiles[1])));
 const rows=[],measurements=[],shots=[];let completed=false;
