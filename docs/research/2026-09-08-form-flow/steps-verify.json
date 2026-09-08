@@ -1,0 +1,1592 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-form-steps.mjs": "95b26207e82df2d2118057e5ba2db82b74eb18b335915dbe4fe5fad7fa87048c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "5a63832412ea587c7e8bbe692af9f67f10c27daeebc044bb0f8394d57b6ef24e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "3e277190449dd38227d2bd59f0fae3f17c9c862b70a7ddf6e3282a193766b987",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "0597e900b7a0c4c53864fa1e5986dd7f72263532db6cdb926dd9e9100e350cd0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
+  },
+  "rows": [
+    {
+      "name": "kind:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:contact",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:apply",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:download",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:quote",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:trial",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "next-step:0:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "back-values:0:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "next-step:1:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "back-values:1:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:contact",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:apply",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:download",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:reservation",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:newsletter",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:recruit",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:quote",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:trial",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:diagnosis",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    },
+    {
+      "name": "owned-thanks-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}
