@@ -9725,7 +9725,7 @@
         "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
         "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
         "scripts/verify-ai-boundary.mjs": "b3d1f4b62bbcdd7590d34fc3a205ba0c3ba58acf3bce0ccbb845052b96b638b8",
-        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
+        "package.json": "35e3cd5167374a5fc07f4c067e6e06be15788cb3d394787142d18d8251a83e01"
       },
       "scope": "themeとCore pluginの実行資産を7規則で走査し、SDK import・推論endpoint・variant選択・risk score・統計勝者判定の検出0件と、HELIX所有境界を確認。crawler識別子や決定的transport metadataは対象外。",
       "remaining": [],
@@ -9749,7 +9749,7 @@
         "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
         "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
         "scripts/verify-ai-boundary.mjs": "b3d1f4b62bbcdd7590d34fc3a205ba0c3ba58acf3bce0ccbb845052b96b638b8",
-        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
+        "package.json": "35e3cd5167374a5fc07f4c067e6e06be15788cb3d394787142d18d8251a83e01"
       },
       "scope": "SDK import 3種、推論endpoint、variant／risk／統計判定と、theme_allowed反転の8負例がそれぞれFAIL対象になることを検証。",
       "remaining": [],
@@ -9775,7 +9775,7 @@
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
         "scripts/verify-public-safety.mjs": "d108d376628b8dd182258d22b930052fd422e32df379c153204d396062d59e35",
-        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f",
+        "package.json": "35e3cd5167374a5fc07f4c067e6e06be15788cb3d394787142d18d8251a83e01",
         "scripts/public-safety-guard.sh": "dc99fb1c559f664bd2b86f2629e6ec30c198b6f2bfa2ca58a96213f9e248688e"
       },
       "remaining": [],
@@ -9797,7 +9797,7 @@
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
         "scripts/verify-public-safety.mjs": "d108d376628b8dd182258d22b930052fd422e32df379c153204d396062d59e35",
-        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f",
+        "package.json": "35e3cd5167374a5fc07f4c067e6e06be15788cb3d394787142d18d8251a83e01",
         "scripts/public-safety-guard.sh": "dc99fb1c559f664bd2b86f2629e6ec30c198b6f2bfa2ca58a96213f9e248688e"
       },
       "remaining": [],
@@ -9818,6 +9818,64 @@
       ],
       "oracle_sha256": "4f7e47ef710a9c6636f89cee09d9267a0cceacf719b6bfec6352a5f42fa40ac3",
       "scope": "7種類の合成fixtureを個別にstagedへ置き、各1件だけでもexit 1で拒否することを確認。実credentialは使用・保存しない。"
+    },
+    "WT-AC-ENV-01A": {
+      "status": "partial",
+      "requirement_digest": "9688503b89e59448",
+      "oracle_sha256": "fd01fbb412a2faeb5eeb86a32918bf37d65b5e42770736370b5c6284f58b32eb",
+      "source_digests": {
+        "scripts/verify-i18n-profile.mjs": "3af48bef91c170523819f254730f915643d713c46e572dc226f42c2b69a8e522",
+        "themes/agent-neo-theme/config/i18n-profile.json": "b739327a8006d70f11463672057c7ceb8c75206899ed147770842b0ecbfc78a2",
+        "themes/agent-neo-theme/languages/agent-neo.pot": "942bd64ff02bb479d1962871646fbc7c582417cd521334303494258a9aaf4130",
+        ".github/workflows/theme-quality-gate.yml": "2d989a8c3ed16be5392dd02120f11420f6c536432d14861c07194c8f0fa7ea52",
+        "docs/research/2026-09-10-i18n-boundary/PLAN.md": "ff8783857bad2d18ec86664990fe9495cb99782683b70129846b6a67f91c389c"
+      },
+      "scope": "現行テーマの499翻訳関数呼び出し（442固有msgid）、Text Domain、POT完全一致、日本語・英語のソース言語方針、RTL非対象宣言を決定論的ゲートで確認。PR CIへ配線済み。",
+      "remaining": [
+        "release時点のcurrent HEADとCI generationへ束縛したrelease receiptは、実際のrelease gateで発行する。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+          "sha256": "f7fd4c2d7949d4a36e3fdd89ea6ff462f722a366ba5d0f54007a27f9254314a2",
+          "row_names": [
+            "i18n:source-calls-found",
+            "i18n:all-gettext-calls-extracted",
+            "i18n:text-domain-consistent",
+            "i18n:pot-exactly-matches-source",
+            "i18n:source-languages-declared",
+            "i18n:rtl-out-of-scope-explicit"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ENV-01B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "9688503b89e59448",
+      "oracle_sha256": "8a69f55eefe5010b16c7e6206738309092fac3e69f09ea7c0d76b9a58219d020",
+      "source_digests": {
+        "scripts/verify-i18n-profile.mjs": "3af48bef91c170523819f254730f915643d713c46e572dc226f42c2b69a8e522",
+        "themes/agent-neo-theme/config/i18n-profile.json": "b739327a8006d70f11463672057c7ceb8c75206899ed147770842b0ecbfc78a2",
+        "themes/agent-neo-theme/languages/agent-neo.pot": "942bd64ff02bb479d1962871646fbc7c582417cd521334303494258a9aaf4130",
+        ".github/workflows/theme-quality-gate.yml": "2d989a8c3ed16be5392dd02120f11420f6c536432d14861c07194c8f0fa7ea52",
+        "docs/research/2026-09-10-i18n-boundary/PLAN.md": "ff8783857bad2d18ec86664990fe9495cb99782683b70129846b6a67f91c389c"
+      },
+      "scope": "未翻訳CJK出力、Text Domain差分、POT差分、言語方針欠落、RTL境界欠落を同じ検証器の負例で拒否する。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+          "sha256": "f7fd4c2d7949d4a36e3fdd89ea6ff462f722a366ba5d0f54007a27f9254314a2",
+          "row_names": [
+            "i18n:no-untranslated-cjk-output",
+            "negative:text-domain-drift-fails",
+            "negative:pot-source-drift-fails",
+            "negative:untranslated-cjk-output-fails",
+            "negative:missing-source-language-policy-fails",
+            "negative:missing-rtl-boundary-fails"
+          ]
+        }
+      ]
     }
   }
 }

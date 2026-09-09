@@ -7,9 +7,12 @@
     "primary": "ja",
     "supported": ["ja", "en"]
   },
+  "source_languages": ["ja", "en"],
   "rtl": {
-    "strategy": "logical-properties",
-    "_comment": "CSS logical properties（margin-inline-start 等）を使用。物理プロパティは原則禁止。",
+    "supported": false,
+    "scope": "out-of-scope",
+    "strategy": "defensive-logical-properties",
+    "_comment": "RTL は対応・検証範囲外。将来の破損を減らすため logical properties を使用するが、RTL 対応済みとは宣言しない。",
     "allowed_physical_exceptions": [
       "border-radius",
       "top",
@@ -26,7 +29,6 @@
     ]
   },
   "pot_file": "languages/agent-neo.pot",
-  "po_files": {
-    "ja": "languages/ja.po"
-  }
+  "translation_catalogs": [],
+  "_translation_catalogs_note": "本段階はソース文字列と POT の同期まで。翻訳済み PO/MO の提供は release 判断へ残す。"
 }

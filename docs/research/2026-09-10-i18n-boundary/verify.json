@@ -1,0 +1,105 @@
+{
+  "schema": "wt-i18n-boundary-verification.v1",
+  "completed": true,
+  "requirements": [
+    "WT-NFR-ENV-01"
+  ],
+  "source": "themes/agent-neo-theme/config/i18n-profile.json",
+  "counts": {
+    "source_calls": 499,
+    "unique_messages": 442,
+    "untranslated_cjk": 0
+  },
+  "rows": [
+    {
+      "name": "i18n:source-calls-found",
+      "pass": true,
+      "detail": {
+        "unique_messages": 442
+      }
+    },
+    {
+      "name": "i18n:all-gettext-calls-extracted",
+      "pass": true,
+      "detail": {
+        "extracted": 499,
+        "all_gettext_calls": 499
+      }
+    },
+    {
+      "name": "i18n:text-domain-consistent",
+      "pass": true,
+      "detail": {
+        "profile": "agent-neo",
+        "style": "agent-neo",
+        "source": [
+          "agent-neo"
+        ]
+      }
+    },
+    {
+      "name": "i18n:pot-exactly-matches-source",
+      "pass": true,
+      "detail": {
+        "unique_messages": 442
+      }
+    },
+    {
+      "name": "i18n:no-untranslated-cjk-output",
+      "pass": true,
+      "detail": {
+        "findings": []
+      }
+    },
+    {
+      "name": "i18n:source-languages-declared",
+      "pass": true,
+      "detail": {
+        "source_languages": [
+          "ja",
+          "en"
+        ]
+      }
+    },
+    {
+      "name": "i18n:rtl-out-of-scope-explicit",
+      "pass": true,
+      "detail": {
+        "rtl": {
+          "supported": false,
+          "scope": "out-of-scope",
+          "strategy": "defensive-logical-properties",
+          "_comment": "RTL は対応・検証範囲外。将来の破損を減らすため logical properties を使用するが、RTL 対応済みとは宣言しない。",
+          "allowed_physical_exceptions": [
+            "border-radius",
+            "top",
+            "bottom"
+          ],
+          "rtl_stylesheet": false,
+          "_rtl_stylesheet_note": "logical-properties 戦略のため専用 RTL スタイルシートは不要。"
+        }
+      }
+    },
+    {
+      "name": "negative:text-domain-drift-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:pot-source-drift-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:untranslated-cjk-output-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:missing-source-language-policy-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:missing-rtl-boundary-fails",
+      "pass": true
+    }
+  ],
+  "failed": 0
+}

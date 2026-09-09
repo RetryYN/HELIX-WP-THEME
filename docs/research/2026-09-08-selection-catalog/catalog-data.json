@@ -19214,27 +19214,51 @@
           "requirement_id": "WT-NFR-ENV-01",
           "oracle": "Text Domain・POT・日本語 / 英語のソース言語・RTL 非対象が release receipt で確認できる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "現行テーマの499翻訳関数呼び出し（442固有msgid）、Text Domain、POT完全一致、日本語・英語のソース言語方針、RTL非対象宣言を決定論的ゲートで確認。PR CIへ配線済み。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "release時点のcurrent HEADとCI generationへ束縛したrelease receiptは、実際のrelease gateで発行する。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+              "sha256": "f7fd4c2d7949d4a36e3fdd89ea6ff462f722a366ba5d0f54007a27f9254314a2",
+              "row_names": [
+                "i18n:source-calls-found",
+                "i18n:all-gettext-calls-extracted",
+                "i18n:text-domain-consistent",
+                "i18n:pot-exactly-matches-source",
+                "i18n:source-languages-declared",
+                "i18n:rtl-out-of-scope-explicit"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ENV-01B",
           "requirement_id": "WT-NFR-ENV-01",
           "oracle": "翻訳関数を使わない表示、POT とソースの差分、言語方針の未記載、または RTL 対応を未検証で宣言すれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "未翻訳CJK出力、Text Domain差分、POT差分、言語方針欠落、RTL境界欠落を同じ検証器の負例で拒否する。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+              "sha256": "f7fd4c2d7949d4a36e3fdd89ea6ff462f722a366ba5d0f54007a27f9254314a2",
+              "row_names": [
+                "i18n:no-untranslated-cjk-output",
+                "negative:text-domain-drift-fails",
+                "negative:pot-source-drift-fails",
+                "negative:untranslated-cjk-output-fails",
+                "negative:missing-source-language-policy-fails",
+                "negative:missing-rtl-boundary-fails"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -28263,9 +28287,9 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 256,
-    "partial": 17,
-    "verified_in_poc": 21,
+    "missing": 254,
+    "partial": 18,
+    "verified_in_poc": 22,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

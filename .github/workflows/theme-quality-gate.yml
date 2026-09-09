@@ -17,7 +17,7 @@ on:
 
 jobs:
   static-gate:
-    name: i18n + RTL + perf static checks
+    name: i18n + RTL boundary + perf static checks
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,9 @@ jobs:
       - name: Run static quality gates (i18n / RTL / perf-static)
         env:
           WP_URL: "http://localhost:8086"
-        run: bash bin/check-theme-quality.sh
+        run: |
+          npm run i18n:verify
+          bash bin/check-theme-quality.sh
         # a11y ゲートは WP が稼働していないためスキップされる（WARN のみ）
         # WP 込みの a11y 検査は axe-gate ジョブで実施する
 
@@ -97,7 +99,9 @@ jobs:
         env:
           REQUIRE_A11Y: "1"
           WP_URL: "http://localhost:8086"
-        run: bash bin/check-theme-quality.sh
+        run: |
+          npm run i18n:verify
+          bash bin/check-theme-quality.sh
 
   lhci-gate:
     name: Core Web Vitals (Lighthouse CI)
