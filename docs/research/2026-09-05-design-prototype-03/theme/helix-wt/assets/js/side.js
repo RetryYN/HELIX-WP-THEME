@@ -36,7 +36,7 @@
     drawer.addEventListener('keydown', function(e){ if (e.key !== 'Tab' || drawer.hidden) return; var f = Array.prototype.filter.call(drawer.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'), function(el){ return !el.disabled && el.getBoundingClientRect().width > 0; }); if (!f.length) return; var first = f[0], lastEl = f[f.length - 1]; if (e.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) { e.preventDefault(); lastEl.focus(); } else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); } });
     body.classList.add('wt-side-drawer-ready');
   }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-wt-totop]'), function(b){ b.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-wt-totop]'), function(b){ b.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }); });
   var mega = document.getElementById('wt-megamenu');
   var nav = document.querySelector('.wt-header__nav');
   if (mega && nav && body.classList.contains('wt-side-nav-mega-menu')) {

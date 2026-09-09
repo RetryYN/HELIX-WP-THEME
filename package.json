@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "reduced-motion:verify": "node docs/research/2026-09-10-reduced-motion/verify.mjs",
     "test:e2e": "npx playwright test",
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",

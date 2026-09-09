@@ -255,3 +255,12 @@
 	width: 100%;
 	margin-top: 10px;
 }
+
+/* WT-NFR-A11Y-02: 操作と内容を残して動きだけを停止する。 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

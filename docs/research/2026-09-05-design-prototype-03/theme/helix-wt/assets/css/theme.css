@@ -1882,3 +1882,12 @@ body.wt-face-lp:not(.wt-head-bundle-lp) .wt-lp-header{display:none!important}
 body.wt-lp-form-block .wt-lp-form--block{display:block;margin-top:2rem}
 body.wt-event-apply-block-form .wt-event-apply--block-form{display:block;margin-top:1rem}
 .wt-lp-form--block .wt-form,.wt-event-apply--block-form .wt-form{padding:0}
+
+/* WT-NFR-A11Y-02: 操作と内容を残して動きだけを停止する。 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

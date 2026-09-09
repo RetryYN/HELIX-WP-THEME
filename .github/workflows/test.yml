@@ -3,6 +3,10 @@ name: test
 on:
   push:
     paths:
+      - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
+      - 'package.json'
+      - 'package-lock.json'
       - 'plugins/**'
       - 'themes/**'
       - 'bin/**'
@@ -13,6 +17,10 @@ on:
       - '.github/workflows/test.yml'
   pull_request:
     paths:
+      - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
+      - 'package.json'
+      - 'package-lock.json'
       - 'plugins/**'
       - 'themes/**'
       - 'bin/**'
@@ -223,14 +231,13 @@ jobs:
           AGENT_NEO_WP_DB_NAME: agent_neo
 
 # ============================================================
-# job 4: E2E (Playwright / スケルトン)
+# job 4: reduced-motion browser gate (Playwright / WP 不要)
 #
-# Wave 0 ではスケルトンのみ。実 TC は後続 Wave で追加する。
+# Chromiumをinstall後、実ソースの静止・手動操作をpush/PRでも検証する。
 # ============================================================
   e2e:
-    name: E2E (Playwright) [スケルトン]
+    name: Reduced-motion browser gate (Playwright)
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout
@@ -251,7 +258,13 @@ jobs:
             echo "WARN: package.json が見つかりません。E2E は後続 Wave で設定してください。"
           fi
 
-      - name: Run E2E tests (placeholder)
-        run: |
-          echo "E2E スケルトン: 後続 Wave で tests/E2E/ にテストを追加してください。"
-          # npx playwright test  ← Wave 実装後にコメント解除
+      - name: WT-NFR-A11Y-02 reduced-motion browser gate
+        run: npm run reduced-motion:verify
+
+      - name: Upload reduced-motion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reduced-motion-evidence
+          path: docs/research/2026-09-10-reduced-motion/verify.json
+          if-no-files-found: error

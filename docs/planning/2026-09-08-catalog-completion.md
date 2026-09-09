@@ -119,3 +119,11 @@ Codex検収ではカタログE2E 21/21、npm test、PC 1440px / SP 375pxの目�
 2026-09-10、`WT-NFR-ENV-01`を再監査したところ、POTがヘッダーだけで499回の翻訳関数呼び出しを収録しておらず、RTL境界も要求と不一致だった。決定論的POT生成・差分検査を追加し、442固有msgid、Text Domain、未翻訳CJK出力0、日英ソース言語方針、RTL非対象宣言と4系統の負例を検証した。翻訳済みPO/MOとrelease receiptは未完了として残し、監査は確認22・部分18・未対応254・stale 0。
 
 Claude review 16はblocker 0でapprove。non-blockerとして、domain・言語方針・RTLの負例が本番ゲートを直接呼ばず条件式を別評価している点を受領した。同じ`evaluate()`を本番と全負例で共有するよう修正し、改変fixtureが対象gateをfalseにする直接検査へ変更した。
+
+### 2026-09-10 reduced-motionの実装と実ブラウザ検証
+
+ビジュアル実装はAstra（effort low）が担当し、Codexは差分検収と独立再実行を行った。配布テーマ、core plugin管理画面、デザイン試作の3 CSS面で、`prefers-reduced-motion: reduce`時にanimation・transition・smooth scrollを停止する。試作のスクロール操作はクリック時点の設定を参照し、数値カウンターは初期reduceと実行中の設定変更のどちらでも最終値へ確定する。
+
+Playwright検証は26行すべて成功し、2回連続のJSON出力がbyte単位で一致した。実ブラウザで3 CSS面、reveal、counter、6個の手動scroll操作、reduce/no-preferenceのライブ切替を確認し、同じgate関数へ正例と負例を通した。owned source 271ファイルのautoplay・timerも走査し、既知timerはファイル全体digestで拘束した。第三者HTML/CSS、利用者が埋め込む動画、ブラウザ拡張は検証範囲外。
+
+変更で証拠が古くなったfooter、event、form、継承、site search、AI境界、公開安全性を専用labで再実行し、全検査成功後にのみsource/proof digestを更新した。カタログは613候補・1098画像・133要求・294 AC、確認24・部分18・未対応252・stale 0。全要求の再現完遂は継続する。

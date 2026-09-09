@@ -1,12 +1,17 @@
 {
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-event-boundaries.mjs": "70f1868a6cea1962ef18500c23e7d20fe4c8f761b5753ee8e8c3965e08e3663b",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "b74cd8b1cfe6b98ecadd93729c5c0290f789ab835d3d568e04a9899398a5d068",
+    "scripts/verify-event-boundaries.mjs": "343919877bb8b2a3b3c87f7f695aa7d48d087218396b85dc67f4e41fa5636c20",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "1ca21f27c999b08e5eb582cdfc1bfd7899254a89cf9e4ac93d667a8d73cba156",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "0597e900b7a0c4c53864fa1e5986dd7f72263532db6cdb926dd9e9100e350cd0",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "d27ddafe3031bd84eb7e09d28d31f5a91f6197bb151c18b70f112f4f4c9c3411",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "de2a8dad5efec2c6c90b95c9c95e7ba6657d167a85e7ef554684fad41ff7e728",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1a8043d1d08017f09471b82970840f0c50e3ce85c95de2c920c9db73c2e116e2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "535c5e19a01860a239fb7a4dcce98c46376ab88bdebf405e36313f60abeabc74",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "43cea0eb239f7984150951c0b9a81f8aa4de28f7fd0fe94e3f76073b90559e89",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3"
   },
   "fixtures": [
@@ -649,17 +654,17 @@
       "name": "state:invalid-offset-hour:pc:js-true",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-hour:pc:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-hour:pc:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-hour:pc:js-true",
@@ -667,23 +672,23 @@
     },
     {
       "name": "post-availability:invalid-offset-hour:pc:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-hour:pc:js-false",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-hour:pc:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-hour:pc:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-hour:pc:js-false",
@@ -691,23 +696,23 @@
     },
     {
       "name": "post-availability:invalid-offset-hour:pc:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-hour:sp:js-true",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-hour:sp:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-hour:sp:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-hour:sp:js-true",
@@ -715,23 +720,23 @@
     },
     {
       "name": "post-availability:invalid-offset-hour:sp:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-hour:sp:js-false",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-hour:sp:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-hour:sp:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-hour:sp:js-false",
@@ -739,23 +744,23 @@
     },
     {
       "name": "post-availability:invalid-offset-hour:sp:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-minute:pc:js-true",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-minute:pc:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-minute:pc:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-minute:pc:js-true",
@@ -763,23 +768,23 @@
     },
     {
       "name": "post-availability:invalid-offset-minute:pc:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-minute:pc:js-false",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-minute:pc:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-minute:pc:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-minute:pc:js-false",
@@ -787,23 +792,23 @@
     },
     {
       "name": "post-availability:invalid-offset-minute:pc:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-minute:sp:js-true",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-minute:sp:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-minute:sp:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-minute:sp:js-true",
@@ -811,23 +816,23 @@
     },
     {
       "name": "post-availability:invalid-offset-minute:sp:js-true",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:invalid-offset-minute:sp:js-false",
       "expected": "受付情報を確認中",
       "visible": [
-        "受付中"
+        "受付情報を確認中"
       ],
-      "pass": false
+      "pass": true
     },
     {
       "name": "form-availability:invalid-offset-minute:sp:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "explanation:invalid-offset-minute:sp:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "availability-route:invalid-offset-minute:sp:js-false",
@@ -835,7 +840,7 @@
     },
     {
       "name": "post-availability:invalid-offset-minute:sp:js-false",
-      "pass": false
+      "pass": true
     },
     {
       "name": "state:missing-observed:pc:js-true",
