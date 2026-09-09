@@ -1,12 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {
   buildCodexInboxEntry,
   deliverCodexInbox,
+  formatCodexInboxMessage,
   listCodexInboxEntries,
   publishCodexInboxEntry,
   scanCodexInbox,
@@ -144,7 +146,7 @@ test('deliver CLI reads session_id from hook stdin JSON (ESM)', () => {
   assert.deepEqual(JSON.parse(run('')).delivered, []);
 });
 
-test('empty, corrupt or foreign delivered markers are treated as not delivered', () => {
+test('empty, corrupt, foreign or forged-digest delivered markers are treated as not delivered', () => {
   const { root } = tempRepo();
   const entry = buildCodexInboxEntry(baseEntry);
   publishCodexInboxEntry(root, entry);
@@ -154,16 +156,19 @@ test('empty, corrupt or foreign delivered markers are treated as not delivered',
     '{not json',
     JSON.stringify({ id: 'harness:codex-inbox:other:op:x', receiverSession: 's', ackDigest: 'sha256:' + 'a'.repeat(64), deliveredAt: new Date().toISOString() }),
     JSON.stringify({ id: entry.id }),
+    // 形式は正しいが本文と一致しない偽 ackDigest
+    JSON.stringify({ id: entry.id, receiverSession: 's', ackDigest: 'sha256:' + '0'.repeat(64), deliveredAt: new Date().toISOString() }),
   ]) {
     fs.writeFileSync(marker, content);
     assert.equal(listCodexInboxEntries(root)[0].delivered, false, `marker ${JSON.stringify(content).slice(0, 30)}`);
-    assert.equal(isDeliveredMarkerValid(marker, entry.id), false);
+    assert.equal(isDeliveredMarkerValid(marker, entry), false);
   }
   // 破損 marker があっても再配送され、atomic に完全な marker へ置き換わる
   const written = [];
   const result = deliverCodexInbox(root, { sessionId: 's-retry', write: (m) => written.push(m) });
   assert.deepEqual(result.delivered, [entry.id]);
-  assert.equal(isDeliveredMarkerValid(marker, entry.id), true);
+  assert.equal(isDeliveredMarkerValid(marker, entry), true);
+  assert.equal(JSON.parse(fs.readFileSync(marker, 'utf8')).ackDigest, 'sha256:' + createHash('sha256').update(formatCodexInboxMessage(entry)).digest('hex'));
   assert.equal(JSON.parse(fs.readFileSync(marker, 'utf8')).receiverSession, 's-retry');
   assert.equal(listCodexInboxEntries(root)[0].delivered, true);
   assert.equal(fs.readdirSync(sharedCodexWakeRoot(root)).filter((n) => n.endsWith('.tmp')).length, 0);

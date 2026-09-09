@@ -73,8 +73,9 @@ function writeAtomic(target, content) {
   fs.renameSync(tmp, target);
 }
 
-// delivered marker は存在だけでなく内容を検証する。空・破損・別 id の marker は未配送として扱う。
-export function isDeliveredMarkerValid(markerFile, entryId) {
+// delivered marker は存在だけでなく内容を検証する。空・破損・別 id・ACK digest 不一致の marker は未配送として扱う。
+// ackDigest は書込み時と同じ sha256(formatCodexInboxMessage(entry)) を再計算して突合する（DELIVERED と ACK 一致を分けない）。
+export function isDeliveredMarkerValid(markerFile, entry) {
   let marker;
   try {
     marker = JSON.parse(fs.readFileSync(markerFile, 'utf8'));
@@ -83,9 +84,9 @@ export function isDeliveredMarkerValid(markerFile, entryId) {
   }
   return Boolean(marker)
     && typeof marker === 'object'
-    && marker.id === entryId
+    && marker.id === entry.id
     && typeof marker.receiverSession === 'string'
-    && typeof marker.ackDigest === 'string' && /^sha256:[a-f0-9]{64}$/u.test(marker.ackDigest)
+    && marker.ackDigest === sha256(formatCodexInboxMessage(entry))
     && typeof marker.deliveredAt === 'string' && !Number.isNaN(Date.parse(marker.deliveredAt));
 }
 
@@ -141,7 +142,7 @@ export function scanCodexInbox(repoRoot) {
       rejected.push({ file: name, reason: valid.reason });
       continue;
     }
-    entries.push({ ...entry, delivered: isDeliveredMarkerValid(markerPath(repoRoot, entry, 'delivered'), entry.id) });
+    entries.push({ ...entry, delivered: isDeliveredMarkerValid(markerPath(repoRoot, entry, 'delivered'), entry) });
   }
   return { entries, rejected };
 }
