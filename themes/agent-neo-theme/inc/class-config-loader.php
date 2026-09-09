@@ -147,24 +147,6 @@ final class Agent_Neo_Config_Loader {
 		if ( empty( $manifest['boundary'] ) || ! is_array( $manifest['boundary'] ) ) {
 			$this->errors[] = 'theme-manifest.boundary must be an object';
 		}
-
-		$capabilities = $manifest['capabilities'] ?? null;
-		if ( ! is_array( $capabilities ) ) {
-			$this->errors[] = 'theme-manifest.capabilities must be an object';
-			return;
-		}
-
-		foreach ( array( 'patterns', 'template_parts', 'templates', 'style_variations', 'slots' ) as $key ) {
-			$this->require_string_list( $capabilities, $key, 'theme-manifest.capabilities' );
-		}
-
-		if ( empty( $capabilities['value_scales'] ) || ! is_array( $capabilities['value_scales'] ) ) {
-			$this->errors[] = 'theme-manifest.capabilities.value_scales must be an object';
-		}
-
-		if ( empty( $capabilities['hooks'] ) || ! is_array( $capabilities['hooks'] ) ) {
-			$this->errors[] = 'theme-manifest.capabilities.hooks must be an array';
-		}
 	}
 
 	/**

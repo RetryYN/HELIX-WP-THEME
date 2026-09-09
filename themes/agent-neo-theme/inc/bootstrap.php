@@ -20,8 +20,8 @@ require_once AGENT_NEO_DIR . 'inc/seo/class-structured-data.php';
 require_once AGENT_NEO_DIR . 'inc/seo/class-oembed-lazy.php';
 require_once AGENT_NEO_DIR . 'inc/class-agent-neo-theme.php';
 
-$GLOBALS['agent_neo_theme'] = new Agent_Neo_Theme();
-$GLOBALS['agent_neo_theme']->register();
+$agent_neo_theme = new Agent_Neo_Theme();
+$agent_neo_theme->register();
 
 if ( ! function_exists( 'agent_neo_health' ) ) {
 	/**

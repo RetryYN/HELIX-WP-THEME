@@ -20,6 +20,12 @@ if ! wp_ci core is-installed; then
     --admin_email=ci@example.invalid --skip-email
 fi
 [[ "$(wp_ci core version)" == '7.1' ]] || { echo 'Unexpected WordPress version' >&2; exit 1; }
-docker cp themes/agent-neo-theme/. "$container_id:/var/www/html/wp-content/themes/agent-neo-theme"
-wp_ci theme activate agent-neo-theme
-[[ "$(wp_ci option get stylesheet)" == 'agent-neo-theme' ]] || { echo 'Theme activation not verified' >&2; exit 1; }
+theme_source='docs/research/2026-09-05-design-prototype-03/theme/helix-wt'
+theme_slug='helix-wt'
+[[ -f "$theme_source/theme.json" && -f "$theme_source/style.css" ]] || {
+  echo "Current theme source is incomplete: $theme_source" >&2
+  exit 1
+}
+docker cp "$theme_source/." "$container_id:/var/www/html/wp-content/themes/$theme_slug"
+wp_ci theme activate "$theme_slug"
+[[ "$(wp_ci option get stylesheet)" == "$theme_slug" ]] || { echo 'Current theme activation not verified' >&2; exit 1; }

@@ -127,3 +127,13 @@ Claude review 16はblocker 0でapprove。non-blockerとして、domain・言語�
 Playwright検証は26行すべて成功し、2回連続のJSON出力がbyte単位で一致した。実ブラウザで3 CSS面、reveal、counter、6個の手動scroll操作、reduce/no-preferenceのライブ切替を確認し、同じgate関数へ正例と負例を通した。owned source 271ファイルのautoplay・timerも走査し、既知timerはファイル全体digestで拘束した。第三者HTML/CSS、利用者が埋め込む動画、ブラウザ拡張は検証範囲外。
 
 変更で証拠が古くなったfooter、event、form、継承、site search、AI境界、公開安全性を専用labで再実行し、全検査成功後にのみsource/proof digestを更新した。カタログは613候補・1098画像・133要求・294 AC、確認24・部分18・未対応252・stale 0。全要求の再現完遂は継続する。
+
+### 2026-09-10 現行テーマへの対象補正
+
+現行の正本は `docs/research/2026-09-05-design-prototype-03/theme/helix-wt/` であり、`themes/agent-neo-theme/` と `plugins/agent-neo-core/` は旧資産である。直前の capability・i18n・reduced-motion 変更に旧資産が混入していたため、旧資産9ファイルを `origin/main` とbyte一致する状態へ戻す補正差分を作成した。現行テーマの reduced-motion は別途20検査で再確認し、旧資産の結果を証拠に含めない。
+
+品質CI、WordPress fixture起動先、capability・AI境界・i18n verifierを `helix-wt` へ接続し、package名も現行名へ変更した。現行テーマの部分的なデザイン改善はAstra（effort low）が実装し、Codexは同内容・同幅の実ブラウザ比較を検収した。140検査が成功し、未定義色preset 3参照とstyle variationのpalette不足を解消、content-face CSSの `!important` は38件削減した。全面的なLOOK-01B達成とは扱わない。
+
+対象補正によって、旧テーマでは隠れていた `WT-NFR-ENV-01` の不足が現行テーマ上で露出した。現行 `helix-wt` は翻訳関数0件、未翻訳CJK表示276行であり、ENV-01A/Bは確認済みから外して未対応として扱う。大量の自動置換は混在PHPの安全性と既存証跡の再現性を損なうため採用せず、独立レーンで翻訳単位・POT・既定日本語表示・英語表示を実機検証する。
+
+補正後の集計は613候補・1098画像・133要求・294 AC、確認25・部分18・未対応251・stale 0。PRの公開HEAD `5bc1cc1` に対するClaude receiptは存在するが、未pushの補正差分には適用しない。補正HEADをpushしCIがterminalになった後に再通知・再レビューする。

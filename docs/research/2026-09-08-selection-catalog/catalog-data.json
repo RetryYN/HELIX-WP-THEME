@@ -11918,14 +11918,14 @@
           "oracle": "新しい slot / パターン / variation を追加すると capability manifest に現れる",
           "polarity": "positive",
           "status": "verified_in_poc",
-          "scope": "現行テーマのpattern・template part・template・style variation・slot・尺度・hookをmanifestへ列挙し、実ファイル／theme.json／configとの完全一致を検証。",
+          "scope": "現行helix-wtのslot・pattern・template part・template・style variation・custom block・block style・尺度をJSON manifestへ列挙し、実ソースとの完全一致を検証。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+              "sha256": "7a8facfb66b71887638a9c6254251007a42fc419d3654674471fabc0570922f9",
               "row_names": [
-                "manifest:declared-equals-source",
+                "manifest:declared-equals-current-helix-wt-source",
                 "manifest:all-capability-kinds",
                 "manifest:template-parts-match-theme-json",
                 "manifest:custom-templates-exist"
@@ -11939,20 +11939,21 @@
           "oracle": "JSON 宣言なしに PHP で登録された面・部品が検出されたら FAIL",
           "polarity": "negative",
           "status": "verified_in_poc",
-          "scope": "7種類の宣言から各1件を外した負例が、対応するdriftとして検出されることをメモリ内fixtureで検証。",
+          "scope": "現行helix-wtの8種類の宣言から各1件を外した負例が、対応するdriftとして検出されることを同一検証器で確認。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+              "sha256": "7a8facfb66b71887638a9c6254251007a42fc419d3654674471fabc0570922f9",
               "row_names": [
                 "negative:undeclared-patterns-fails",
                 "negative:undeclared-template_parts-fails",
                 "negative:undeclared-templates-fails",
                 "negative:undeclared-style_variations-fails",
                 "negative:undeclared-slots-fails",
-                "negative:undeclared-hooks-fails",
-                "negative:undeclared-value-scale-fails"
+                "negative:undeclared-custom_blocks-fails",
+                "negative:undeclared-block_styles-fails",
+                "negative:undeclared-value_scales-fails"
               ]
             }
           ]
@@ -11977,28 +11978,27 @@
           "oracle": "health の出力がテーマの登録内容と一致する",
           "polarity": "positive",
           "status": "verified_in_poc",
-          "scope": "WordPress 7.1 / PHP 8.3実機でhealthを取得し、manifest 71 patternとWordPress registry 71件、config・boundary・digestを照合。その他の宣言種別は同一HEADの静的完全一致で照合。",
+          "scope": "WordPress 7.1 / PHP 8.3実機で現行helix-wtを観測し、55 theme pattern・16 custom block・77 block styleをmanifestと照合。別JSONで宣言されたconsumer拡張はhealth内に分離表示。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+              "sha256": "7a8facfb66b71887638a9c6254251007a42fc419d3654674471fabc0570922f9",
               "row_names": [
-                "manifest:declared-equals-source"
+                "manifest:declared-equals-current-helix-wt-source"
               ]
             },
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "710817a1eb19c2ab9c5467bb55be6c2719a56b9f54baeb6df7fba3a19e748930",
+              "sha256": "fec1e96583da158b14b45d1969bbc2fec80e8295e7922470ead08462f192f8d9",
               "row_names": [
                 "health:loaded",
-                "health:config-valid",
-                "health:boundary-valid",
-                "health:manifest-present",
-                "health:patterns-match-wordpress-registry",
-                "health:no-pattern-drift",
-                "health:digest-present",
-                "health:active-theme-observed"
+                "health:active-current-theme",
+                "health:declared-patterns-registered",
+                "health:declared-custom-blocks-registered",
+                "health:block-styles-match-wordpress-registry",
+                "health:no-runtime-drift",
+                "health:digest-present"
               ]
             }
           ]
@@ -12009,12 +12009,12 @@
           "oracle": "登録内容と health の差分が 1 件でもあれば FAIL",
           "polarity": "negative",
           "status": "verified_in_poc",
-          "scope": "実機request内で宣言済みpatternを1件だけunregisterし、healthがmissing 1件を自己申告する負例を検証。request終了後はWordPressが再登録し、元テーマへ復帰。",
+          "scope": "現行helix-wtを読み込んだ実機request内で宣言済みpatternを1件unregisterし、healthがmissing 1件を検出する負例を確認。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "710817a1eb19c2ab9c5467bb55be6c2719a56b9f54baeb6df7fba3a19e748930",
+              "sha256": "fec1e96583da158b14b45d1969bbc2fec80e8295e7922470ead08462f192f8d9",
               "row_names": [
                 "negative:unregistered-pattern-reported"
               ]
@@ -12041,16 +12041,15 @@
           "oracle": "静的検出で AI SDK import・判定ロジックが 0",
           "polarity": "positive",
           "status": "verified_in_poc",
-          "scope": "themeとCore pluginの実行資産を7規則で走査し、SDK import・推論endpoint・variant選択・risk score・統計勝者判定の検出0件と、HELIX所有境界を確認。crawler識別子や決定的transport metadataは対象外。",
+          "scope": "現行helix-wtと現行content fixture pluginを静的走査し、AI SDK・model endpoint・theme内判断ロジック0件と、manifestのHELIX所有境界を確認。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "c124b06e87fda5085e393a4822dfc3300c7ec0f938817bf8986537bdd895cf98",
+              "sha256": "74c94229b21b102faf39b1157a1241e64078b7cfe67f125584b7acd6c4668615",
               "row_names": [
                 "boundary:production-findings-zero",
-                "boundary:manifest-denies-local-ai-logic",
-                "boundary:guard-accepts-current-manifest"
+                "boundary:manifest-denies-local-ai-logic"
               ]
             }
           ]
@@ -12061,12 +12060,12 @@
           "oracle": "検出 1 件で FAIL",
           "polarity": "negative",
           "status": "verified_in_poc",
-          "scope": "SDK import 3種、推論endpoint、variant／risk／統計判定と、theme_allowed反転の8負例がそれぞれFAIL対象になることを検証。",
+          "scope": "SDK import・endpoint・variation/risk/統計判断と、theme_allowed=trueの負例を同じ検出規則で拒否。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "c124b06e87fda5085e393a4822dfc3300c7ec0f938817bf8986537bdd895cf98",
+              "sha256": "74c94229b21b102faf39b1157a1241e64078b7cfe67f125584b7acd6c4668615",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -12075,7 +12074,7 @@
                 "negative:variant-decision-fails",
                 "negative:risk-score-decision-fails",
                 "negative:statistical-decision-fails",
-                "negative:boundary-guard-rejects-theme-ai"
+                "negative:boundary-policy-rejects-theme-ai"
               ]
             }
           ]
@@ -12729,7 +12728,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "6fee6dd78f800ae16e62164d16ecad1b0714ef607feb41dd8a734d4c3e943ee4",
+              "sha256": "9abc1d3f03a0c4e0920cc4e07657a45925bbb2564a452193d0c0b8995ddbd10e",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -12787,7 +12786,7 @@
             },
             {
               "path": "docs/research/2026-09-09-footer-data/editor.json",
-              "sha256": "92930b59369ca1cef6d08d2d8d57e78a281abf574ae711f8318a65b8947ed249",
+              "sha256": "0b04d5359f42b3056c5e30a959ede12ae195cd26de31562f12e240271b19a56a",
               "row_names": [
                 "initial:valid-blocks",
                 "edit:store-updated",
@@ -12998,7 +12997,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "cd097ba86d52e103c6a7e31043e0f8ab2c04b8cee5807d644b175d183339e762",
+              "sha256": "d0bf177945f92bfd255cb4b80795534e153ef6a60502d2efcf60cb4c196cc08b",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -13080,7 +13079,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "cd097ba86d52e103c6a7e31043e0f8ab2c04b8cee5807d644b175d183339e762",
+              "sha256": "d0bf177945f92bfd255cb4b80795534e153ef6a60502d2efcf60cb4c196cc08b",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -13812,12 +13811,23 @@
           "requirement_id": "WT-FR-LOOK-01",
           "oracle": "生値や !important で実現された装飾があれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "現行helix-wtで未定義tokenを3件解消し、content-faces.cssの!importantを38件から0へ削減。全体raw/importantを用途分類して残件を明示。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "theme全体に!importantが116件残る（表示軸48、視覚・配置55、reduced-motion保護13）。",
+            "raw字面2987件のうち2575件はcomponent/content dimensionで、token化可否の個別判断が未完了。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
+              "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+              "row_names": [
+                "no undefined soft reference",
+                "content faces has no important",
+                "only intended form surface differs"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-LOOK-01C",
@@ -13856,7 +13866,7 @@
           "evidence": []
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:h2-plain",
         "article:h2-bar",
@@ -13964,27 +13974,42 @@
           "requirement_id": "WT-FR-LOOK-02",
           "oracle": "写像した variation がスラッグ集合を変えず G-T1b PASS",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "現行theme.jsonの12 palette slugとrules/mincho variationのslug集合を同一検証器で完全一致確認。解決後paletteと表示もbefore/afterで維持。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
+              "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+              "row_names": [
+                "variation slugs rules",
+                "variation slugs mincho",
+                "variation resolved palette unchanged"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-LOOK-02B",
           "requirement_id": "WT-FR-LOOK-02",
           "oracle": "段の増減や新スラッグを伴う variation があれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "現行theme.jsonと同じslug集合判定へ追加slug・欠落slugの負例を通し、両方を拒否。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
+              "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+              "row_names": [
+                "negative variation added slug rejected",
+                "negative variation removed slug rejected"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:h2-plain",
         "article:h2-bar",
@@ -17334,7 +17359,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "003bb541f7f8954e3c28543361a4ca2d90fc2f272d3434c6483f951fd267e8e0",
+              "sha256": "bdc1f37e421762d550a3ad61357d0f1ccfe6566c7be62d7e20908ab19beadede",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -17620,7 +17645,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "003bb541f7f8954e3c28543361a4ca2d90fc2f272d3434c6483f951fd267e8e0",
+              "sha256": "bdc1f37e421762d550a3ad61357d0f1ccfe6566c7be62d7e20908ab19beadede",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -18937,29 +18962,20 @@
           "oracle": "reduced-motion 環境で autoplay・必須 animation・自動スクロールが停止し、静的な操作経路が残る",
           "polarity": "positive",
           "status": "verified_in_poc",
-          "scope": "配布テーマ、Core管理画面、prototype再現テーマの所有271ソースを監査。reduced-motionで3 CSS面を静止し、reveal即時表示、counter即時最終値、6手動scroll経路のauto化と設定変更追従、autoplay・未監査timer不在をChromiumで確認。",
+          "scope": "現行helix-wtだけを対象にreduced-motion時のanimation/transition/scroll/autoplay停止、静的内容、手動操作経路、設定変更中のcounter確定を検証。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "1ec26fcac33f6171a20d83fbfdf13040f291a1e450ddfbb5a72b427224b34f40",
+              "sha256": "f209a4cc983660f1bc5fec382425db2afc42c16f62a4e47a9d80a973dca988fd",
               "row_names": [
-                "source:no-autoplay:themes/agent-neo-theme",
-                "source:no-automatic-scroll-timer:themes/agent-neo-theme",
-                "source:no-autoplay:plugins/agent-neo-core",
-                "source:no-automatic-scroll-timer:plugins/agent-neo-core",
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
-                "css:themes/agent-neo-theme/style.css",
-                "css:plugins/agent-neo-core/assets/admin/app.css",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
                 "counter:initial-final-value",
-                "counter:initial-no-frame",
                 "reveal:immediate-content",
                 "manual:all-controls:0:reduce",
                 "manual:scroll-behavior:0:reduce",
-                "manual:all-controls:2:reduce",
-                "manual:scroll-behavior:2:reduce",
                 "counter:live-preference-final-value"
               ]
             }
@@ -18971,23 +18987,19 @@
           "oracle": "reduced-motion を無視、停止後に内容が欠落、または操作完了に animation を要求すれば FAIL",
           "polarity": "negative",
           "status": "verified_in_poc",
-          "scope": "本番と同じgateへanimation、transition、smooth scroll、内容非表示、操作不能、autoplayの各故障fixtureを投入して拒否し、no-preference→reduceの動的変更でも操作と最終値を維持。",
+          "scope": "現行helix-wtのreduced-motion判定へanimation・transition・smooth scroll・非表示・手動操作欠落・autoplayの各負例を通して拒否。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "1ec26fcac33f6171a20d83fbfdf13040f291a1e450ddfbb5a72b427224b34f40",
+              "sha256": "f209a4cc983660f1bc5fec382425db2afc42c16f62a4e47a9d80a973dca988fd",
               "row_names": [
-                "fixture:positive",
                 "fixture:negative:animation",
                 "fixture:negative:transition",
                 "fixture:negative:scroll",
                 "fixture:negative:visible",
                 "fixture:negative:manual",
-                "fixture:negative:autoplay",
-                "manual:all-controls:1:no-preference",
-                "manual:scroll-behavior:1:no-preference",
-                "counter:live-preference-final-value"
+                "fixture:negative:autoplay"
               ]
             }
           ]
@@ -19251,51 +19263,27 @@
           "requirement_id": "WT-NFR-ENV-01",
           "oracle": "Text Domain・POT・日本語 / 英語のソース言語・RTL 非対象が release receipt で確認できる",
           "polarity": "positive",
-          "status": "partial",
-          "scope": "現行テーマの499翻訳関数呼び出し（442固有msgid）、Text Domain、POT完全一致、日本語・英語のソース言語方針、RTL非対象宣言を決定論的ゲートで確認。PR CIへ配線済み。",
+          "status": "missing",
+          "scope": "",
           "remaining": [
-            "release時点のcurrent HEADとCI generationへ束縛したrelease receiptは、実際のrelease gateで発行する。"
+            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
           ],
-          "evidence": [
-            {
-              "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "4d3283bd73c732283f73da044dae545955fbfb827cfab836f4c19871d14268f5",
-              "row_names": [
-                "i18n:source-calls-found",
-                "i18n:all-gettext-calls-extracted",
-                "i18n:text-domain-consistent",
-                "i18n:pot-exactly-matches-source",
-                "i18n:source-languages-declared",
-                "i18n:rtl-out-of-scope-explicit"
-              ]
-            }
-          ]
+          "evidence": []
         },
         {
           "id": "WT-AC-ENV-01B",
           "requirement_id": "WT-NFR-ENV-01",
           "oracle": "翻訳関数を使わない表示、POT とソースの差分、言語方針の未記載、または RTL 対応を未検証で宣言すれば FAIL",
           "polarity": "negative",
-          "status": "verified_in_poc",
-          "scope": "未翻訳CJK出力、Text Domain差分、POT差分、言語方針欠落、RTL境界欠落を同じ検証器の負例で拒否する。",
-          "remaining": [],
-          "evidence": [
-            {
-              "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "4d3283bd73c732283f73da044dae545955fbfb827cfab836f4c19871d14268f5",
-              "row_names": [
-                "i18n:no-untranslated-cjk-output",
-                "negative:text-domain-drift-fails",
-                "negative:pot-source-drift-fails",
-                "negative:untranslated-cjk-output-fails",
-                "negative:missing-source-language-policy-fails",
-                "negative:missing-rtl-boundary-fails"
-              ]
-            }
-          ]
+          "status": "missing",
+          "scope": "",
+          "remaining": [
+            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+          ],
+          "evidence": []
         }
       ],
-      "status": "partial_poc",
+      "status": "not_verified",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -19376,7 +19364,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "6bd2f2d8f4cc77562c54a83f5146f3ff5a1697063fe6657794ab6299149ffb4c",
+              "sha256": "087e5692345c0df2919903c404b22fcf2957eb40cc10a5204406f3bb7226c6a5",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -19849,7 +19837,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "6bd2f2d8f4cc77562c54a83f5146f3ff5a1697063fe6657794ab6299149ffb4c",
+              "sha256": "087e5692345c0df2919903c404b22fcf2957eb40cc10a5204406f3bb7226c6a5",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -20272,7 +20260,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "6bd2f2d8f4cc77562c54a83f5146f3ff5a1697063fe6657794ab6299149ffb4c",
+              "sha256": "087e5692345c0df2919903c404b22fcf2957eb40cc10a5204406f3bb7226c6a5",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -21025,7 +21013,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "b81ffb83fc904d137069e9913abd76528f67ae43840d656f80defd5ec9ac20d2",
+              "sha256": "ab365f497e4c97d00909d09b6b30ef452581c59bdbd7695412443f21515fe377",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -21177,7 +21165,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "6f889f6f497116e8637d727de6b38a84f564ec8245c275f29850d673ae6c7a3f",
+              "sha256": "c1779b1811f2d400b38d4beee9bd17fc2cd045b158537e3d6471033289fbe4d5",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -21539,7 +21527,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "b81ffb83fc904d137069e9913abd76528f67ae43840d656f80defd5ec9ac20d2",
+              "sha256": "ab365f497e4c97d00909d09b6b30ef452581c59bdbd7695412443f21515fe377",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -21691,7 +21679,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "6f889f6f497116e8637d727de6b38a84f564ec8245c275f29850d673ae6c7a3f",
+              "sha256": "c1779b1811f2d400b38d4beee9bd17fc2cd045b158537e3d6471033289fbe4d5",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -22120,7 +22108,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22202,7 +22190,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22262,7 +22250,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22386,7 +22374,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22417,7 +22405,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22527,7 +22515,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22655,7 +22643,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "blp:lp-target",
                 "blp:reasoning"
@@ -22685,7 +22673,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "blp:lp-target",
                 "blp:ownership:inherit",
@@ -22720,7 +22708,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "08852272a517838d8a499d2115f2bbfb5ce013b3b72b1a1a4a19975c4d5dc354",
+              "sha256": "7019374cfdc62a024d2fc7cd9df5470acdce1f4d584261923716a9f6d5d49001",
               "row_names": [
                 "blp:lp-target",
                 "heading:blp:editorial:pc:js-false",
@@ -22791,7 +22779,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "e49e7e8c16f870a269181bdd33baf67024e9bdc07fc454e77f7b546a1e6ffebe",
+              "sha256": "41bba6424e84e9cf14b75b010e3e8c1467a276fb221a5b320dae132e2d1b7b6a",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -23015,7 +23003,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "f5fb07323879598bacba9e61b9939003d033bd2da0f42f4cc8b3d04c10027bc1",
+              "sha256": "6c593fcdec50307e634caffe0f34799d51b3a88c502e2ab5a4cbf3fe2036cf17",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -23303,7 +23291,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "01be415eb40bee12d7c9408bea85ef065e839a9099656b4b82f23c70d623a326",
+              "sha256": "644f398b930037137342c853e28efcd94eded33a686e418dd17591d73536c08f",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -23704,7 +23692,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "65b49c4e86208d690db1206b3e931e5805c2c3a7b076f9d7b2b2885421560587",
+              "sha256": "773040222fc4e0d07b3bf1fa9848281133108a38d612c789af8c3718edb3c487",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -23793,7 +23781,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "c7e5a2dd419a3d6d7aab9df9106f3baa3ae0f957182c40772d3505e05adbdc2f",
+              "sha256": "8f52924e47af5521a778c1d808ba0d6138cf132a3ccacc2d9c96ba53bbaa7c4b",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -23926,7 +23914,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "e49e7e8c16f870a269181bdd33baf67024e9bdc07fc454e77f7b546a1e6ffebe",
+              "sha256": "41bba6424e84e9cf14b75b010e3e8c1467a276fb221a5b320dae132e2d1b7b6a",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -24150,7 +24138,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "f5fb07323879598bacba9e61b9939003d033bd2da0f42f4cc8b3d04c10027bc1",
+              "sha256": "6c593fcdec50307e634caffe0f34799d51b3a88c502e2ab5a4cbf3fe2036cf17",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -24438,7 +24426,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "01be415eb40bee12d7c9408bea85ef065e839a9099656b4b82f23c70d623a326",
+              "sha256": "644f398b930037137342c853e28efcd94eded33a686e418dd17591d73536c08f",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -24839,7 +24827,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "65b49c4e86208d690db1206b3e931e5805c2c3a7b076f9d7b2b2885421560587",
+              "sha256": "773040222fc4e0d07b3bf1fa9848281133108a38d612c789af8c3718edb3c487",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -24928,7 +24916,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "c7e5a2dd419a3d6d7aab9df9106f3baa3ae0f957182c40772d3505e05adbdc2f",
+              "sha256": "8f52924e47af5521a778c1d808ba0d6138cf132a3ccacc2d9c96ba53bbaa7c4b",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -25126,7 +25114,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "c94b6600d934bdda02c74ee6aeaf318652d62e96248404e907f03838eff1a12f",
+              "sha256": "5f89ad03721df163efee1cc5453bcc6f106a6a020b243d741b353083a74eea02",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -25574,7 +25562,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "c94b6600d934bdda02c74ee6aeaf318652d62e96248404e907f03838eff1a12f",
+              "sha256": "5f89ad03721df163efee1cc5453bcc6f106a6a020b243d741b353083a74eea02",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26202,7 +26190,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "fa35e15a9d004ae5efce9cdd03c64423b6715bab51fbf9f5ffaa5ec6a5f55c32",
+              "sha256": "8534b86b1947587fcec480230fdf4aa841a8b87136e338e9fce2552cf3a9ae55",
               "row_names": [
                 "course:three-lessons:pc:js-false",
                 "course:three-lessons:pc:js-true",
@@ -26258,7 +26246,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "fa35e15a9d004ae5efce9cdd03c64423b6715bab51fbf9f5ffaa5ec6a5f55c32",
+              "sha256": "8534b86b1947587fcec480230fdf4aa841a8b87136e338e9fce2552cf3a9ae55",
               "row_names": [
                 "glossary:term-target:pc:js-false",
                 "glossary:term-target:pc:js-true",
@@ -26343,7 +26331,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "fa35e15a9d004ae5efce9cdd03c64423b6715bab51fbf9f5ffaa5ec6a5f55c32",
+              "sha256": "8534b86b1947587fcec480230fdf4aa841a8b87136e338e9fce2552cf3a9ae55",
               "row_names": [
                 "archive:count:pc:js-true",
                 "archive:first-page:pc:js-true",
@@ -26566,7 +26554,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "822274c4faaa3be915fa3bbca1bb2ab55b746799b3ad5c592bd4a46497b81cac",
+              "sha256": "24c824061d3598e8edd0453a725a0231ba7e8ccd810ae1bebaa2a7feba40a265",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -26691,7 +26679,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "0311b99e9318b7ee0388acf561a710a6b08dca11a2f9b39cadf689264d55723d",
+              "sha256": "6046a00f362383968ef6b93af498969e7511408fb33358220bbac93172c8864a",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -26719,7 +26707,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/access.json",
-              "sha256": "376875f4246b7a03877ad355cc760967b3051a3e1426d097c504e1b58374943b",
+              "sha256": "fa148cfd1384fd2e8bbf099c88c13d977541fb47afdf42882d363eaffc833a83",
               "row_names": [
                 "count:anonymous:pc:js-true:public",
                 "results:anonymous:pc:js-true:public",
@@ -27043,7 +27031,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "dcf78a49ba390a88d7c0d8640b7a93daddd81dd4fe151dfc56119710dc4217f3",
+              "sha256": "5082084828f31a1ad73305303bc3241dd55d56b5b589f27a799bb16709c8f3cb",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -27368,7 +27356,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/performance.json",
-              "sha256": "3b6dc30276e14cb094f8f5e458e1ef596dcdd5781527a2f9d53115a74335e0fc",
+              "sha256": "d82b7762dfbc7d54abeec689f6cb86a40d22610fcd7e6ada52207788fd9ec8e9",
               "row_names": [
                 "cold-scans-protected:50",
                 "warm-skips-password-checks:50",
@@ -27402,7 +27390,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "0311b99e9318b7ee0388acf561a710a6b08dca11a2f9b39cadf689264d55723d",
+              "sha256": "6046a00f362383968ef6b93af498969e7511408fb33358220bbac93172c8864a",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -27446,7 +27434,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "2f4ad8219bba211821d417f72d3184f706c1e59dd073f4a851358708eeea3289",
+              "sha256": "2c15882395ece7b31c967c6142de97d36f6c343006ebdef192260a3425ee6042",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -27469,7 +27457,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "dcf78a49ba390a88d7c0d8640b7a93daddd81dd4fe151dfc56119710dc4217f3",
+              "sha256": "5082084828f31a1ad73305303bc3241dd55d56b5b589f27a799bb16709c8f3cb",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -27805,7 +27793,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "822274c4faaa3be915fa3bbca1bb2ab55b746799b3ad5c592bd4a46497b81cac",
+              "sha256": "24c824061d3598e8edd0453a725a0231ba7e8ccd810ae1bebaa2a7feba40a265",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -27884,7 +27872,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "0311b99e9318b7ee0388acf561a710a6b08dca11a2f9b39cadf689264d55723d",
+              "sha256": "6046a00f362383968ef6b93af498969e7511408fb33358220bbac93172c8864a",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -27952,7 +27940,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "2f4ad8219bba211821d417f72d3184f706c1e59dd073f4a851358708eeea3289",
+              "sha256": "2c15882395ece7b31c967c6142de97d36f6c343006ebdef192260a3425ee6042",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -28255,7 +28243,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "4097f582a661b55c51d120caf47a0fb3b516f0805d09b2e106521fdff405968e",
+              "sha256": "f7349b2c96389c970db74ac2c64ceb2a1c9984f55c1a601f34145a6887e49b2f",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -28324,9 +28312,9 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 252,
+    "missing": 251,
     "partial": 18,
-    "verified_in_poc": 24,
+    "verified_in_poc": 25,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

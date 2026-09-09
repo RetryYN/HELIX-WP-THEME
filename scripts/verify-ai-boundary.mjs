@@ -1,10 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve(import.meta.dirname, '..');
-const roots = ['themes/agent-neo-theme', 'plugins/agent-neo-core'];
+const roots = [
+  'docs/research/2026-09-05-design-prototype-03/theme/helix-wt',
+  'docs/research/2026-09-08-content-faces/plugin',
+];
 const outputPath = path.join(root, 'docs/research/2026-09-09-ai-boundary/verify.json');
 const extensions = new Set(['.php', '.js', '.mjs', '.cjs', '.ts', '.tsx', '.json']);
 const rules = [
@@ -37,6 +40,11 @@ function findingsFor(source, file = '<fixture>') {
 
 const findings = roots.flatMap(relativeRoot => files(path.join(root, relativeRoot)).flatMap(file =>
   findingsFor(fs.readFileSync(file, 'utf8'), path.relative(root, file).split(path.sep).join('/'))));
+const scannedFiles = roots.flatMap(relativeRoot => files(path.join(root, relativeRoot))).sort();
+const sourceDigests = Object.fromEntries(scannedFiles.map(file => [
+  path.relative(root, file).split(path.sep).join('/'),
+  createHash('sha256').update(fs.readFileSync(file)).digest('hex'),
+]));
 const fixtures = {
   'sdk-import-js': `import OpenAI from 'openai';`,
   'sdk-import-php': `<?php use OpenAI\\Client;`,
@@ -53,33 +61,21 @@ const rows = [
     pass: findingsFor(source).some(finding => finding.rule === rule),
   })),
 ];
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'themes/agent-neo-theme/config/theme-manifest.json'), 'utf8'));
+const manifest = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/capability-manifest.json'), 'utf8'));
 const boundary = manifest.boundary?.ai_decision_logic;
 rows.push({
   name: 'boundary:manifest-denies-local-ai-logic',
-  pass: boundary?.owner === 'helix' && boundary?.theme_allowed === false && boundary?.core_plugin_allowed === false,
+  pass: boundary?.owner === 'helix' && boundary?.theme_allowed === false && boundary?.content_fixture_plugin_allowed === false,
   detail: boundary,
 });
-const guardPath = path.join(root, 'themes/agent-neo-theme/inc/setup/class-boundary-guard.php');
-const guardProbe = spawnSync('php', ['-r', `
-  define( 'ABSPATH', '${root.replaceAll("'", "\\'")}/' );
-  require '${guardPath.replaceAll("'", "\\'")}';
-  $manifest = json_decode( file_get_contents( '${path.join(root, 'themes/agent-neo-theme/config/theme-manifest.json').replaceAll("'", "\\'")}' ), true );
-  $positive = new Agent_Neo_Boundary_Guard();
-  $positive->validate( $manifest );
-  $manifest['boundary']['ai_decision_logic']['theme_allowed'] = true;
-  $negative = new Agent_Neo_Boundary_Guard();
-  $negative->validate( $manifest );
-  echo json_encode( array( 'positive' => $positive->get_errors(), 'negative' => $negative->get_errors() ) );
-`], { encoding: 'utf8' });
-const guard = guardProbe.status === 0 ? JSON.parse(guardProbe.stdout) : { positive: ['probe_failed'], negative: [] };
-rows.push({ name: 'boundary:guard-accepts-current-manifest', pass: guard.positive.length === 0, detail: guard.positive });
-rows.push({ name: 'negative:boundary-guard-rejects-theme-ai', pass: guard.negative.some(error => error.includes('theme_allowed must be false')), detail: guard.negative });
+const boundaryValid = value => value?.owner === 'helix' && value?.theme_allowed === false && value?.content_fixture_plugin_allowed === false;
+rows.push({ name: 'negative:boundary-policy-rejects-theme-ai', pass: !boundaryValid({ ...boundary, theme_allowed: true }) });
 const result = {
   schema: 'wt-ai-boundary-verification.v1',
   completed: true,
   requirements: ['WT-TR-CORE-03'],
   scannedRoots: roots,
+  sourceDigests,
   rules: rules.map(rule => rule.id),
   rows,
   failed: rows.filter(row => !row.pass).length,

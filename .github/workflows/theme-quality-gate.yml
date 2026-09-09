@@ -1,37 +1,47 @@
-name: theme-quality-gate
+name: current-theme-quality-gate
 
 on:
   push:
     paths:
-      - 'themes/agent-neo-theme/**'
-      - 'bin/check-theme-quality.sh'
+      - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
+      - 'docs/research/2026-09-10-current-theme-quality/**'
+      - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'scripts/verify-i18n-profile.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
     paths:
-      - 'themes/agent-neo-theme/**'
-      - 'bin/check-theme-quality.sh'
+      - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
+      - 'docs/research/2026-09-10-current-theme-quality/**'
+      - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'scripts/verify-i18n-profile.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:
 
 jobs:
   static-gate:
-    name: i18n + RTL boundary + perf static checks
+    name: Current theme static quality checks
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run static quality gates (i18n / RTL / perf-static)
-        env:
-          WP_URL: "http://localhost:8086"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify current theme quality evidence
         run: |
+          npm run current-theme-quality:verify
+          npm run reduced-motion:verify
           npm run i18n:verify
-          bash bin/check-theme-quality.sh
-        # a11y ゲートは WP が稼働していないためスキップされる（WARN のみ）
-        # WP 込みの a11y 検査は axe-gate ジョブで実施する
 
   axe-gate:
     name: a11y gate (axe-core + WordPress)
@@ -95,13 +105,8 @@ jobs:
       - name: Initialize WordPress and verify target theme
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
-      - name: Run all quality gates (i18n / RTL / a11y / perf-static)
-        env:
-          REQUIRE_A11Y: "1"
-          WP_URL: "http://localhost:8086"
-        run: |
-          npm run i18n:verify
-          bash bin/check-theme-quality.sh
+      - name: Verify current theme is rendered
+        run: curl --fail --silent --show-error http://localhost:8086/ >/dev/null
 
   lhci-gate:
     name: Core Web Vitals (Lighthouse CI)

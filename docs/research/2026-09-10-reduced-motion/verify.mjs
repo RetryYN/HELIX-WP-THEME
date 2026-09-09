@@ -2,9 +2,9 @@ import { chromium } from '@playwright/test';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 const prototype = 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/';
-const cssFiles = ['themes/agent-neo-theme/style.css', 'plugins/agent-neo-core/assets/admin/app.css', prototype + 'css/theme.css'];
+const cssFiles = [prototype + 'css/theme.css'];
 const sourceFiles = [...cssFiles, ...['article','side','footer','home','reveal'].map(name=>prototype+'js/'+name+'.js'), 'docs/research/2026-09-10-reduced-motion/verify.mjs', 'package.json', '.github/workflows/test.yml'];
-const auditRoots = ['themes/agent-neo-theme', 'plugins/agent-neo-core', 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt'];
+const auditRoots = ['docs/research/2026-09-05-design-prototype-03/theme/helix-wt'];
 function ownedFiles(root) {
   return readdirSync(root, {withFileTypes:true}).flatMap(entry=>entry.isDirectory() ? ownedFiles(root+'/'+entry.name) : /\.(?:js|php|html)$/.test(entry.name) ? [root+'/'+entry.name] : []).sort();
 }
@@ -12,7 +12,6 @@ const motionAuditSources = auditRoots.flatMap(ownedFiles).sort();
 // 既存timerは全文digest固定で監査済みの内容更新・resize・計測に限定。
 // timer追加やcallback変更を暗黙に許可しない。変更時は用途を再監査する。
 const reviewedTimerSources = {
-  "plugins/agent-neo-core/assets/js/ad-tracking.js": "994f9ab5a82b95ae560e7646a6d9c246a7f3c0929c1c976a9d7df8bfc578eda5",
   "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/article.js": "95bc2214aa9c118959753688966016a3bbe3ea6fc62cbfae9c64dcbc4787ee79",
   "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "e70778368d99e8fdbd69c7890f4d1068b6cb6f675876ea34c35f534c40efcbc5"
 };
@@ -40,7 +39,7 @@ try {
   check('fixture:positive', gate(good));
   for (const [key,value] of Object.entries({animation:'spin',transition:'1s',scroll:'smooth',visible:false,manual:false,autoplay:true})) check('fixture:negative:'+key, !gate({...good,[key]:value}));
   for (const file of cssFiles) {
-    await page.setContent('<button id="sample" class="an-skeleton an-card wt-reveal">操作可能な内容</button>');
+    await page.setContent('<button id="sample" class="wt-reveal">操作可能な内容</button>');
     await page.addStyleTag({content:'@keyframes probe{to{opacity:.5}} #sample{animation:probe 5s infinite;transition:transform 1s;scroll-behavior:smooth}'});
     await page.addStyleTag({content:readFileSync(file,'utf8')});
     const sample = await page.locator('#sample').evaluate(el=>{const s=getComputedStyle(el);return {animation:s.animationName,transition:s.transitionDuration,scroll:s.scrollBehavior,visible:s.display!=='none'&&s.visibility!=='hidden'&&s.opacity!=='0',manual:!el.disabled,autoplay:document.querySelector('[autoplay]')!==null};});

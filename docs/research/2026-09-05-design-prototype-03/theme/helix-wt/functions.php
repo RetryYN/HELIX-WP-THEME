@@ -866,6 +866,58 @@ function wt_render_sns_feed_embed() {
 }
 register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
 
+/**
+ * 現行試作テーマの宣言済み capability と WordPress 登録状態を照合する。
+ *
+ * @return array<string,mixed>
+ */
+function helix_wt_capability_health() {
+	$path = get_theme_file_path( 'config/capability-manifest.json' );
+	$raw  = is_readable( $path ) ? file_get_contents( $path ) : false;
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : null;
+	if ( ! is_array( $data ) || ! isset( $data['capabilities'] ) || ! is_array( $data['capabilities'] ) ) {
+		return array( 'loaded' => false, 'error' => 'capability_manifest_invalid' );
+	}
+	$declared = $data['capabilities'];
+	$patterns = array_values( array_filter(
+		array_column( WP_Block_Patterns_Registry::get_instance()->get_all_registered(), 'name' ),
+		static fn( $slug ) => str_starts_with( $slug, 'helix-wt/' ) || str_starts_with( $slug, 'helix-wt-page/' )
+	) );
+	$blocks = array_values( array_filter(
+		array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() ),
+		static fn( $slug ) => str_starts_with( $slug, 'helix-wt/' )
+	) );
+	$styles_registry = WP_Block_Styles_Registry::get_instance();
+	$styles = array_values( array_filter(
+		$declared['block_styles'] ?? array(),
+		static function ( $entry ) use ( $styles_registry ) {
+			list( $block, $style ) = explode( ':', $entry, 2 );
+			return $styles_registry->is_registered( $block, $style );
+		}
+	) );
+	sort( $patterns );
+	sort( $blocks );
+	sort( $styles );
+	$registered = array( 'patterns' => $patterns, 'custom_blocks' => $blocks, 'block_styles' => $styles );
+	$drift = array();
+	foreach ( $registered as $kind => $values ) {
+		$expected = $declared[ $kind ] ?? array();
+		$drift[ $kind ] = array(
+			'missing'    => array_values( array_diff( $expected, $values ) ),
+			'undeclared' => in_array( $kind, array( 'patterns', 'custom_blocks' ), true ) ? array() : array_values( array_diff( $values, $expected ) ),
+		);
+	}
+	return array(
+		'loaded'                  => true,
+		'capability_manifest'     => $declared,
+		'registered_capabilities' => $registered,
+		'extension_blocks'        => array_values( array_diff( $blocks, $declared['custom_blocks'] ?? array() ) ),
+		'extension_patterns'      => array_values( array_diff( $patterns, $declared['patterns'] ?? array() ) ),
+		'capability_drift'        => $drift,
+		'capability_digest'       => hash( 'sha256', wp_json_encode( $declared ) ),
+	);
+}
+
 // ---------- 段 10: 共通サイドバー（記事 / 固定ページ / HP。WT-EVT-0289、台帳 research-r21 sidebar n=48） ----------
 // ウィジェット 20 種 = 台帳の観察 18 種（other:toc-dropdown を含む）+ 未観察 2 種（calendar / tel-box、語彙にあり Claude 案）。セットは区分別の上位順。カテゴリ面の cat_sidebar 3 型は段 6 のまま残す（統合は次段）
 function wt_side_sets() {

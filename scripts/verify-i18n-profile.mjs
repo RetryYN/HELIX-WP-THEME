@@ -3,10 +3,10 @@ import path from 'node:path';
 import process from 'node:process';
 
 const root = path.resolve(import.meta.dirname, '..');
-const theme = path.join(root, 'themes/agent-neo-theme');
+const theme = path.join(root, 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt');
 const profilePath = path.join(theme, 'config/i18n-profile.json');
 const stylePath = path.join(theme, 'style.css');
-const potPath = path.join(theme, 'languages/agent-neo.pot');
+const potPath = path.join(theme, 'languages/helix-wt.pot');
 const outputPath = path.join(root, 'docs/research/2026-09-10-i18n-boundary/verify.json');
 const writePot = process.argv.includes('--write-pot');
 
@@ -59,11 +59,11 @@ const quotePo = value => JSON.stringify(value).replace(/\\u2028|\\u2029/g, match
 
 function renderPot(messages, domain) {
   const header = [
-    '# Copyright (C) 2026 AGENT NEO',
-    '# This file is distributed under the same license as the AGENT NEO package.',
+    '# Copyright (C) 2026 HELIX WT',
+    '# This file is distributed under the same license as the HELIX WT package.',
     'msgid ""',
     'msgstr ""',
-    '"Project-Id-Version: AGENT NEO 0.1.0\\n"',
+    '"Project-Id-Version: HELIX WT 0.3.21\\n"',
     '"MIME-Version: 1.0\\n"',
     '"Content-Type: text/plain; charset=UTF-8\\n"',
     '"Content-Transfer-Encoding: 8bit\\n"',
@@ -133,7 +133,7 @@ const result = {
   schema: 'wt-i18n-boundary-verification.v1',
   completed: true,
   requirements: ['WT-NFR-ENV-01'],
-  source: 'themes/agent-neo-theme/config/i18n-profile.json',
+  source: 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/i18n-profile.json',
   counts: { source_calls: sourceCalls, unique_messages: messages.length, untranslated_cjk: untranslatedCjk.length },
   rows,
   failed: rows.filter(row => !row.pass).length,

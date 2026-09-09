@@ -1,5 +1,5 @@
 {
-  "name": "agent-neo-e2e",
+  "name": "helix-wp-theme",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "public-safety:verify": "node scripts/verify-public-safety.mjs",
     "i18n:verify": "node scripts/verify-i18n-profile.mjs",
     "i18n:pot": "node scripts/verify-i18n-profile.mjs --write-pot",
+    "current-theme-quality:verify": "node docs/research/2026-09-10-current-theme-quality/verify.mjs",
     "postinstall": "node scripts/patch-helix-receipt.mjs && node scripts/patch-helix-consumer-review.mjs",
     "test:helix-patch": "tsx --test tests/unit/helix-receipt-patch.test.mjs tests/unit/helix-consumer-review-patch.test.mjs tests/unit/consumer-receipt-contract.test.mjs tests/unit/consumer-receipt-generator.test.ts"
   },

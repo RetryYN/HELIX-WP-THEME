@@ -1820,9 +1820,9 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 .wt-form__yesnos .wt-form__yesno label{margin-right:1rem}
 .wt-form__note{display:block;margin-top:.25rem;font-size:.75rem;color:var(--wp--preset--color--mute)}
 .wt-form__privacy{margin:.5rem 0 0;font-size:.875rem;color:var(--wp--preset--color--mute)}
-.wt-form__captcha-q{display:inline-block;margin-right:.75rem;padding:.4rem .75rem;border-radius:6px;background:var(--wp--preset--color--soft);font-weight:700;font-family:var(--wp--preset--font-family--mono,monospace)}
+.wt-form__captcha-q{display:inline-block;margin-right:.75rem;padding:.4rem .75rem;border-radius:6px;background:var(--wp--preset--color--surface);font-weight:700;font-family:var(--wp--preset--font-family--mono,monospace)}
 .wt-form__row--captcha .wt-form__control{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}.wt-form__row--captcha input{max-width:6rem!important}
-.wt-form__captcha-slot{display:grid;place-items:center;height:78px;max-width:304px;border:1px dashed var(--wp--preset--color--line);border-radius:6px;color:var(--wp--preset--color--mute);font-size:.875rem;background:var(--wp--preset--color--soft)}
+.wt-form__captcha-slot{display:grid;place-items:center;height:78px;max-width:304px;border:1px dashed var(--wp--preset--color--line);border-radius:6px;color:var(--wp--preset--color--mute);font-size:.875rem;background:var(--wp--preset--color--surface)}
 .wt-form__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .wt-form__actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:.5rem}
 .wt-form__submit,.wt-form__next,.wt-form__back{min-height:48px;padding:.75rem 1.75rem;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer}
@@ -1847,7 +1847,7 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 .wt-form__inline-review{padding:1.25rem;border:2px solid var(--wp--preset--color--accent);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--accent-soft)}.wt-form__inline-review h3{margin:0 0 .5rem;font-size:1.0625rem}
 .wt-form__form.is-reviewing>:not(.wt-form__inline-review):not(input[type=hidden]):not(.wt-form__hp){display:none}
 /* 代替導線 */
-.wt-form__side{padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--soft);text-align:center}
+.wt-form__side{padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--surface);text-align:center}
 .wt-form__side-lead{margin:0 0 .5rem;font-weight:700}.wt-form__side-note{margin:.5rem 0 0;font-size:.8125rem;color:var(--wp--preset--color--mute)}
 .wt-form__side-tel{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;font-size:1.5rem;font-weight:700;color:var(--wp--preset--color--contrast);text-decoration:none}
 .wt-form__side-link{display:inline-flex;align-items:center;min-height:44px;font-weight:700;overflow-wrap:anywhere}
