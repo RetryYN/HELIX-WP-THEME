@@ -9774,15 +9774,15 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/check-public-safety.sh": "dff98125aa1576a7b2061876951b26a65ed69e5452b384f1380e56c7839447b7",
-        "scripts/verify-public-safety.mjs": "74a09132128904a5b25c574dd1215dacaef6ac7d9ded0bbfd2f138815a2177b7",
-        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
+        "scripts/verify-public-safety.mjs": "d108d376628b8dd182258d22b930052fd422e32df379c153204d396062d59e35",
+        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f",
+        "scripts/public-safety-guard.sh": "31c660d801a41e94404920c9dc1554c0a057e4e38798103c258c64f5cdeede85"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "6a7123daa7bc75d8eba2b40fbf1edae70e6cc4000c64dca36340686838d98a98",
+          "sha256": "42eee783448ccb5dd2581229ac1524388e5505031cbeffd0385bcc3dc1ba2cd2",
           "row_names": [
             "positive:clean-source-accepted",
             "positive:research-with-private-map-accepted"
@@ -9796,15 +9796,15 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/check-public-safety.sh": "dff98125aa1576a7b2061876951b26a65ed69e5452b384f1380e56c7839447b7",
-        "scripts/verify-public-safety.mjs": "74a09132128904a5b25c574dd1215dacaef6ac7d9ded0bbfd2f138815a2177b7",
-        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
+        "scripts/verify-public-safety.mjs": "d108d376628b8dd182258d22b930052fd422e32df379c153204d396062d59e35",
+        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f",
+        "scripts/public-safety-guard.sh": "31c660d801a41e94404920c9dc1554c0a057e4e38798103c258c64f5cdeede85"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "6a7123daa7bc75d8eba2b40fbf1edae70e6cc4000c64dca36340686838d98a98",
+          "sha256": "42eee783448ccb5dd2581229ac1524388e5505031cbeffd0385bcc3dc1ba2cd2",
           "row_names": [
             "negative:private-key-rejected",
             "negative:access-token-rejected",

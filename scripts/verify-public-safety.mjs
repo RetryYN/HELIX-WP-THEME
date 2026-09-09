@@ -5,7 +5,7 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 
 const root = path.resolve(import.meta.dirname, '..');
-const guardSource = path.join(root, 'scripts/check-public-safety.sh');
+const guardSource = path.join(root, 'scripts/public-safety-guard.sh');
 const evidencePath = path.join(root, 'docs/research/2026-09-09-public-safety/verify.json');
 const sha256 = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
@@ -62,7 +62,7 @@ const report = {
   schema: 'wt-public-safety-verification.v1',
   requirements: ['WT-NFR-CRED-01'],
   completed: rows.every(row => row.pass),
-  source: 'scripts/check-public-safety.sh',
+  source: 'scripts/public-safety-guard.sh',
   source_sha256: sha256(guardSource),
   rows,
   failed: rows.filter(row => !row.pass).length,
