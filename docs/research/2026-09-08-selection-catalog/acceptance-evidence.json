@@ -9593,6 +9593,182 @@
           ]
         }
       ]
+    },
+    "WT-AC-TR-CORE-01A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "ffd857f09275e4f7",
+      "oracle_sha256": "90fdb10a866c8166f2b5ecf1d336ded84ef900035e0951e3375a358671ef0232",
+      "source_digests": {
+        "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
+        "themes/agent-neo-theme/inc/bootstrap.php": "106279e0e1840f3ce0ce1a2d73f4767e16673a1aed9f0487f7d4fe23432dddd9",
+        "themes/agent-neo-theme/inc/class-config-loader.php": "473c792651f0ef31a35e3ae19fe111131fe901deec4d6e7a7288debef51625ab",
+        "themes/agent-neo-theme/inc/class-agent-neo-theme.php": "e49083e12dda89586071e7121f09f7681226effd4fcb45974955960315905e92",
+        "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
+        "scripts/verify-capability-manifest.mjs": "4a399e3de0815358d21722b9179cf8697affb0b7c5da3924e778e1e791fac314",
+        "scripts/verify-capability-health.mjs": "b64ca31be75cdae0c7b0332ecf7f7d48681de0c97384c73c11de807a41d69fcc"
+      },
+      "scope": "現行テーマのpattern・template part・template・style variation・slot・尺度・hookをmanifestへ列挙し、実ファイル／theme.json／configとの完全一致を検証。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-capability-manifest/verify.json",
+          "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+          "row_names": [
+            "manifest:declared-equals-source",
+            "manifest:all-capability-kinds",
+            "manifest:template-parts-match-theme-json",
+            "manifest:custom-templates-exist"
+          ]
+        }
+      ]
+    },
+    "WT-AC-TR-CORE-01B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "ffd857f09275e4f7",
+      "oracle_sha256": "b36149147537d4d92057a6d3b375dc799adbe22ecf28c317c126b309717d5912",
+      "source_digests": {
+        "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
+        "themes/agent-neo-theme/inc/bootstrap.php": "106279e0e1840f3ce0ce1a2d73f4767e16673a1aed9f0487f7d4fe23432dddd9",
+        "themes/agent-neo-theme/inc/class-config-loader.php": "473c792651f0ef31a35e3ae19fe111131fe901deec4d6e7a7288debef51625ab",
+        "themes/agent-neo-theme/inc/class-agent-neo-theme.php": "e49083e12dda89586071e7121f09f7681226effd4fcb45974955960315905e92",
+        "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
+        "scripts/verify-capability-manifest.mjs": "4a399e3de0815358d21722b9179cf8697affb0b7c5da3924e778e1e791fac314",
+        "scripts/verify-capability-health.mjs": "b64ca31be75cdae0c7b0332ecf7f7d48681de0c97384c73c11de807a41d69fcc"
+      },
+      "scope": "7種類の宣言から各1件を外した負例が、対応するdriftとして検出されることをメモリ内fixtureで検証。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-capability-manifest/verify.json",
+          "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+          "row_names": [
+            "negative:undeclared-patterns-fails",
+            "negative:undeclared-template_parts-fails",
+            "negative:undeclared-templates-fails",
+            "negative:undeclared-style_variations-fails",
+            "negative:undeclared-slots-fails",
+            "negative:undeclared-hooks-fails",
+            "negative:undeclared-value-scale-fails"
+          ]
+        }
+      ]
+    },
+    "WT-AC-TR-CORE-02A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "dc2e7bba9d0c9892",
+      "oracle_sha256": "a119844b9604063573a26ca60806421fd021842660a883a3f74b8af61f9f832e",
+      "source_digests": {
+        "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
+        "themes/agent-neo-theme/inc/bootstrap.php": "106279e0e1840f3ce0ce1a2d73f4767e16673a1aed9f0487f7d4fe23432dddd9",
+        "themes/agent-neo-theme/inc/class-config-loader.php": "473c792651f0ef31a35e3ae19fe111131fe901deec4d6e7a7288debef51625ab",
+        "themes/agent-neo-theme/inc/class-agent-neo-theme.php": "e49083e12dda89586071e7121f09f7681226effd4fcb45974955960315905e92",
+        "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
+        "scripts/verify-capability-manifest.mjs": "4a399e3de0815358d21722b9179cf8697affb0b7c5da3924e778e1e791fac314",
+        "scripts/verify-capability-health.mjs": "b64ca31be75cdae0c7b0332ecf7f7d48681de0c97384c73c11de807a41d69fcc"
+      },
+      "scope": "WordPress 7.1 / PHP 8.3実機でhealthを取得し、manifest 71 patternとWordPress registry 71件、config・boundary・digestを照合。その他の宣言種別は同一HEADの静的完全一致で照合。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-capability-manifest/verify.json",
+          "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+          "row_names": [
+            "manifest:declared-equals-source"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
+          "sha256": "710817a1eb19c2ab9c5467bb55be6c2719a56b9f54baeb6df7fba3a19e748930",
+          "row_names": [
+            "health:loaded",
+            "health:config-valid",
+            "health:boundary-valid",
+            "health:manifest-present",
+            "health:patterns-match-wordpress-registry",
+            "health:no-pattern-drift",
+            "health:digest-present",
+            "health:active-theme-observed"
+          ]
+        }
+      ]
+    },
+    "WT-AC-TR-CORE-02B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "dc2e7bba9d0c9892",
+      "oracle_sha256": "b9d353893cd811aef7d3329367f7b6fff4e8fe331061682aa236b29581e1248b",
+      "source_digests": {
+        "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
+        "themes/agent-neo-theme/inc/bootstrap.php": "106279e0e1840f3ce0ce1a2d73f4767e16673a1aed9f0487f7d4fe23432dddd9",
+        "themes/agent-neo-theme/inc/class-config-loader.php": "473c792651f0ef31a35e3ae19fe111131fe901deec4d6e7a7288debef51625ab",
+        "themes/agent-neo-theme/inc/class-agent-neo-theme.php": "e49083e12dda89586071e7121f09f7681226effd4fcb45974955960315905e92",
+        "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
+        "scripts/verify-capability-manifest.mjs": "4a399e3de0815358d21722b9179cf8697affb0b7c5da3924e778e1e791fac314",
+        "scripts/verify-capability-health.mjs": "b64ca31be75cdae0c7b0332ecf7f7d48681de0c97384c73c11de807a41d69fcc"
+      },
+      "scope": "実機request内で宣言済みpatternを1件だけunregisterし、healthがmissing 1件を自己申告する負例を検証。request終了後はWordPressが再登録し、元テーマへ復帰。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
+          "sha256": "710817a1eb19c2ab9c5467bb55be6c2719a56b9f54baeb6df7fba3a19e748930",
+          "row_names": [
+            "negative:unregistered-pattern-reported"
+          ]
+        }
+      ]
+    },
+    "WT-AC-TR-CORE-03A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "0c2a06ac7122a3d1",
+      "oracle_sha256": "1a9bf72679bf483db1dfdcb031240eb38d8cf548aa2bf3eef735f71fddbb80ac",
+      "source_digests": {
+        "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
+        "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
+        "scripts/verify-ai-boundary.mjs": "b3d1f4b62bbcdd7590d34fc3a205ba0c3ba58acf3bce0ccbb845052b96b638b8",
+        "package.json": "fe7134392c8f355548d5ec728ad3f99b54c8869d2ad9d84178f29c2242a3f745"
+      },
+      "scope": "themeとCore pluginの実行資産を7規則で走査し、SDK import・推論endpoint・variant選択・risk score・統計勝者判定の検出0件と、HELIX所有境界を確認。crawler識別子や決定的transport metadataは対象外。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-ai-boundary/verify.json",
+          "sha256": "c124b06e87fda5085e393a4822dfc3300c7ec0f938817bf8986537bdd895cf98",
+          "row_names": [
+            "boundary:production-findings-zero",
+            "boundary:manifest-denies-local-ai-logic",
+            "boundary:guard-accepts-current-manifest"
+          ]
+        }
+      ]
+    },
+    "WT-AC-TR-CORE-03B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "0c2a06ac7122a3d1",
+      "oracle_sha256": "4f7e47ef710a9c6636f89cee09d9267a0cceacf719b6bfec6352a5f42fa40ac3",
+      "source_digests": {
+        "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
+        "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
+        "scripts/verify-ai-boundary.mjs": "b3d1f4b62bbcdd7590d34fc3a205ba0c3ba58acf3bce0ccbb845052b96b638b8",
+        "package.json": "fe7134392c8f355548d5ec728ad3f99b54c8869d2ad9d84178f29c2242a3f745"
+      },
+      "scope": "SDK import 3種、推論endpoint、variant／risk／統計判定と、theme_allowed反転の8負例がそれぞれFAIL対象になることを検証。",
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-ai-boundary/verify.json",
+          "sha256": "c124b06e87fda5085e393a4822dfc3300c7ec0f938817bf8986537bdd895cf98",
+          "row_names": [
+            "negative:sdk-import-js-fails",
+            "negative:sdk-import-php-fails",
+            "negative:sdk-package-php-fails",
+            "negative:model-endpoint-fails",
+            "negative:variant-decision-fails",
+            "negative:risk-score-decision-fails",
+            "negative:statistical-decision-fails",
+            "negative:boundary-guard-rejects-theme-ai"
+          ]
+        }
+      ]
     }
   }
 }

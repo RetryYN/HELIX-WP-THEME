@@ -1,0 +1,67 @@
+{
+  "schema": "wt-capability-health-runtime.v1",
+  "completed": true,
+  "requirements": [
+    "WT-TR-CORE-02"
+  ],
+  "environment": {
+    "wordpress": "7.1",
+    "php": "8.3.33",
+    "active_theme": "agent-neo-themes/agent-neo-theme"
+  },
+  "counts": {
+    "declared_patterns": 71,
+    "registered_patterns": 71,
+    "declared_hooks": 13,
+    "registered_hooks": 13
+  },
+  "negative_fixture": {
+    "removed_pattern": "agent-neo/article-author-box",
+    "reported_missing": [
+      "agent-neo/article-author-box"
+    ]
+  },
+  "rows": [
+    {
+      "name": "health:loaded",
+      "pass": true
+    },
+    {
+      "name": "health:config-valid",
+      "pass": true
+    },
+    {
+      "name": "health:boundary-valid",
+      "pass": true
+    },
+    {
+      "name": "health:manifest-present",
+      "pass": true
+    },
+    {
+      "name": "health:patterns-match-wordpress-registry",
+      "pass": true,
+      "detail": {
+        "declared": 71,
+        "registered": 71
+      }
+    },
+    {
+      "name": "health:no-pattern-drift",
+      "pass": true
+    },
+    {
+      "name": "negative:unregistered-pattern-reported",
+      "pass": true
+    },
+    {
+      "name": "health:digest-present",
+      "pass": true
+    },
+    {
+      "name": "health:active-theme-observed",
+      "pass": true
+    }
+  ],
+  "failed": 0
+}

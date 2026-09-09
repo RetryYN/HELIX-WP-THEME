@@ -11917,27 +11917,48 @@
           "requirement_id": "WT-TR-CORE-01",
           "oracle": "新しい slot / パターン / variation を追加すると capability manifest に現れる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "現行テーマのpattern・template part・template・style variation・slot・尺度・hookをmanifestへ列挙し、実ファイル／theme.json／configとの完全一致を検証。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-capability-manifest/verify.json",
+              "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+              "row_names": [
+                "manifest:declared-equals-source",
+                "manifest:all-capability-kinds",
+                "manifest:template-parts-match-theme-json",
+                "manifest:custom-templates-exist"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-TR-CORE-01B",
           "requirement_id": "WT-TR-CORE-01",
           "oracle": "JSON 宣言なしに PHP で登録された面・部品が検出されたら FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "7種類の宣言から各1件を外した負例が、対応するdriftとして検出されることをメモリ内fixtureで検証。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-capability-manifest/verify.json",
+              "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+              "row_names": [
+                "negative:undeclared-patterns-fails",
+                "negative:undeclared-template_parts-fails",
+                "negative:undeclared-templates-fails",
+                "negative:undeclared-style_variations-fails",
+                "negative:undeclared-slots-fails",
+                "negative:undeclared-hooks-fails",
+                "negative:undeclared-value-scale-fails"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -11955,27 +11976,53 @@
           "requirement_id": "WT-TR-CORE-02",
           "oracle": "health の出力がテーマの登録内容と一致する",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "WordPress 7.1 / PHP 8.3実機でhealthを取得し、manifest 71 patternとWordPress registry 71件、config・boundary・digestを照合。その他の宣言種別は同一HEADの静的完全一致で照合。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-capability-manifest/verify.json",
+              "sha256": "12e46bc17c1b11f0b6ce5304f2c3feaf561ca4c530d6cc049d7d87e517423c48",
+              "row_names": [
+                "manifest:declared-equals-source"
+              ]
+            },
+            {
+              "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
+              "sha256": "710817a1eb19c2ab9c5467bb55be6c2719a56b9f54baeb6df7fba3a19e748930",
+              "row_names": [
+                "health:loaded",
+                "health:config-valid",
+                "health:boundary-valid",
+                "health:manifest-present",
+                "health:patterns-match-wordpress-registry",
+                "health:no-pattern-drift",
+                "health:digest-present",
+                "health:active-theme-observed"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-TR-CORE-02B",
           "requirement_id": "WT-TR-CORE-02",
           "oracle": "登録内容と health の差分が 1 件でもあれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "実機request内で宣言済みpatternを1件だけunregisterし、healthがmissing 1件を自己申告する負例を検証。request終了後はWordPressが再登録し、元テーマへ復帰。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
+              "sha256": "710817a1eb19c2ab9c5467bb55be6c2719a56b9f54baeb6df7fba3a19e748930",
+              "row_names": [
+                "negative:unregistered-pattern-reported"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -11993,27 +12040,48 @@
           "requirement_id": "WT-TR-CORE-03",
           "oracle": "静的検出で AI SDK import・判定ロジックが 0",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "themeとCore pluginの実行資産を7規則で走査し、SDK import・推論endpoint・variant選択・risk score・統計勝者判定の検出0件と、HELIX所有境界を確認。crawler識別子や決定的transport metadataは対象外。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-ai-boundary/verify.json",
+              "sha256": "c124b06e87fda5085e393a4822dfc3300c7ec0f938817bf8986537bdd895cf98",
+              "row_names": [
+                "boundary:production-findings-zero",
+                "boundary:manifest-denies-local-ai-logic",
+                "boundary:guard-accepts-current-manifest"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-TR-CORE-03B",
           "requirement_id": "WT-TR-CORE-03",
           "oracle": "検出 1 件で FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "SDK import 3種、推論endpoint、variant／risk／統計判定と、theme_allowed反転の8負例がそれぞれFAIL対象になることを検証。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-ai-boundary/verify.json",
+              "sha256": "c124b06e87fda5085e393a4822dfc3300c7ec0f938817bf8986537bdd895cf98",
+              "row_names": [
+                "negative:sdk-import-js-fails",
+                "negative:sdk-import-php-fails",
+                "negative:sdk-package-php-fails",
+                "negative:model-endpoint-fails",
+                "negative:variant-decision-fails",
+                "negative:risk-score-decision-fails",
+                "negative:statistical-decision-fails",
+                "negative:boundary-guard-rejects-theme-ai"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -28176,9 +28244,9 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 264,
+    "missing": 258,
     "partial": 17,
-    "verified_in_poc": 13,
+    "verified_in_poc": 19,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

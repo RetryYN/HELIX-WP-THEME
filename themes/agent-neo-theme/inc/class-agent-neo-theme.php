@@ -196,6 +196,11 @@ final class Agent_Neo_Theme {
 	 * @return array<string, mixed>
 	 */
 	public function health(): array {
+		$capability_manifest = $this->config_loader->get( 'theme-manifest' )['capabilities'] ?? array();
+		$registered_patterns = $this->registered_patterns();
+		$declared_patterns   = $capability_manifest['patterns'] ?? array();
+		$registered_hooks    = $this->registered_hooks( $capability_manifest['hooks'] ?? array() );
+
 		return array(
 			'loaded'               => true,
 			'version'              => AGENT_NEO_VERSION,
@@ -206,7 +211,59 @@ final class Agent_Neo_Theme {
 			'config_errors'        => $this->config_loader->get_errors(),
 			'boundary_errors'      => $this->boundary_guard->get_errors(),
 			'registered_files'     => $this->config_loader->registered_files(),
+			'capability_manifest'  => $capability_manifest,
+			'capability_digest'    => hash( 'sha256', (string) wp_json_encode( $capability_manifest ) ),
+			'registered_capabilities' => array(
+				'patterns' => $registered_patterns,
+				'hooks'    => $registered_hooks,
+			),
+			'capability_drift'     => array(
+				'patterns' => array(
+					'missing'    => array_values( array_diff( $declared_patterns, $registered_patterns ) ),
+					'undeclared' => array_values( array_diff( $registered_patterns, $declared_patterns ) ),
+				),
+			),
 			'third_party_manager'  => in_array( 'third-party-manager', $this->loaded_modules, true ),
+		);
+	}
+
+	/**
+	 * WordPress が実際に登録した、このテーマのパターン slug を返す。
+	 *
+	 * @return array<int, string>
+	 */
+	private function registered_patterns(): array {
+		if ( ! class_exists( 'WP_Block_Patterns_Registry' ) ) {
+			return array();
+		}
+
+		$patterns = array_map(
+			static fn( array $pattern ): string => (string) ( $pattern['name'] ?? '' ),
+			WP_Block_Patterns_Registry::get_instance()->get_all_registered()
+		);
+		$patterns = array_filter(
+			$patterns,
+			static fn( string $name ): bool => str_starts_with( $name, 'agent-neo/' )
+		);
+		sort( $patterns );
+		return array_values( $patterns );
+	}
+
+	/**
+	 * Manifest に宣言した hook が現在登録されているか自己申告する。
+	 *
+	 * @param array<int, array<string, string>> $hooks Hook 宣言。
+	 * @return array<int, array<string, string|bool>>
+	 */
+	private function registered_hooks( array $hooks ): array {
+		return array_map(
+			static function ( array $hook ): array {
+				$type       = $hook['type'] ?? '';
+				$name       = $hook['hook'] ?? '';
+				$registered = 'action' === $type ? has_action( $name ) : has_filter( $name );
+				return array_merge( $hook, array( 'registered' => false !== $registered ) );
+			},
+			$hooks
 		);
 	}
 

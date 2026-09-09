@@ -1,0 +1,80 @@
+{
+  "schema": "wt-ai-boundary-verification.v1",
+  "completed": true,
+  "requirements": [
+    "WT-TR-CORE-03"
+  ],
+  "scannedRoots": [
+    "themes/agent-neo-theme",
+    "plugins/agent-neo-core"
+  ],
+  "rules": [
+    "sdk-import-js",
+    "sdk-import-php",
+    "sdk-package-php",
+    "model-endpoint",
+    "variant-decision",
+    "risk-score-decision",
+    "statistical-decision"
+  ],
+  "rows": [
+    {
+      "name": "boundary:production-findings-zero",
+      "pass": true,
+      "detail": {
+        "findings": []
+      }
+    },
+    {
+      "name": "negative:sdk-import-js-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:sdk-import-php-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:sdk-package-php-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:model-endpoint-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:variant-decision-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:risk-score-decision-fails",
+      "pass": true
+    },
+    {
+      "name": "negative:statistical-decision-fails",
+      "pass": true
+    },
+    {
+      "name": "boundary:manifest-denies-local-ai-logic",
+      "pass": true,
+      "detail": {
+        "owner": "helix",
+        "theme_allowed": false,
+        "core_plugin_allowed": false,
+        "allowed_local_role": "deterministic_contract_and_transport_metadata_only"
+      }
+    },
+    {
+      "name": "boundary:guard-accepts-current-manifest",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "negative:boundary-guard-rejects-theme-ai",
+      "pass": true,
+      "detail": [
+        "boundary.ai_decision_logic.theme_allowed must be false"
+      ]
+    }
+  ],
+  "failed": 0
+}

@@ -35,6 +35,12 @@ final class Agent_Neo_Boundary_Guard {
 		}
 
 		$this->require_owner( $boundary, 'fse_templates_patterns_styles', 'theme' );
+		$this->require_owner( $boundary, 'ai_decision_logic', 'helix' );
+		$this->require_theme_denied( $boundary, 'ai_decision_logic' );
+
+		if ( true === ( $boundary['ai_decision_logic']['core_plugin_allowed'] ?? null ) ) {
+			$this->errors[] = 'boundary.ai_decision_logic must not grant core plugin ownership';
+		}
 		$this->require_owner( $boundary, 'visual_only_block', 'theme' );
 		$this->require_owner( $boundary, 'section_id_cta_id_attributes', 'theme' );
 		$this->require_owner( $boundary, 'seo_head_render', 'theme_adapter' );
@@ -87,6 +93,20 @@ final class Agent_Neo_Boundary_Guard {
 		) {
 			$this->errors[] = 'boundary.' . $key
 				. ' (core-plugin-owned) must not grant theme ownership (theme_allowed=true)';
+		}
+	}
+
+	/**
+	 * Theme 側で禁止された境界が明示的に false か検証する。
+	 *
+	 * @param array<string, mixed> $boundary Boundary section。
+	 * @param string               $key Boundary key。
+	 * @return void
+	 */
+	private function require_theme_denied( array $boundary, string $key ): void {
+		$item = $boundary[ $key ] ?? null;
+		if ( ! is_array( $item ) || false !== ( $item['theme_allowed'] ?? null ) ) {
+			$this->errors[] = 'boundary.' . $key . '.theme_allowed must be false';
 		}
 	}
 }

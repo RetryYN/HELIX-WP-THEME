@@ -1,0 +1,130 @@
+{
+  "schema": "wt-capability-manifest-verification.v1",
+  "requirements": [
+    "WT-TR-CORE-01",
+    "WT-TR-CORE-02"
+  ],
+  "completed": true,
+  "source": "themes/agent-neo-theme/config/theme-manifest.json",
+  "counts": {
+    "patterns": 71,
+    "template_parts": 5,
+    "templates": 10,
+    "style_variations": 9,
+    "slots": 8,
+    "value_scales": 33,
+    "hooks": 13
+  },
+  "rows": [
+    {
+      "name": "manifest:declared-equals-source",
+      "pass": true,
+      "detail": {
+        "drift": []
+      }
+    },
+    {
+      "name": "manifest:pattern-count",
+      "pass": true,
+      "detail": {
+        "count": 71
+      }
+    },
+    {
+      "name": "manifest:all-capability-kinds",
+      "pass": true,
+      "detail": {
+        "kinds": [
+          "patterns",
+          "template_parts",
+          "templates",
+          "style_variations",
+          "slots",
+          "value_scales",
+          "hooks"
+        ]
+      }
+    },
+    {
+      "name": "negative:undeclared-patterns-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "patterns"
+      }
+    },
+    {
+      "name": "negative:undeclared-template_parts-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "template_parts"
+      }
+    },
+    {
+      "name": "negative:undeclared-templates-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "templates"
+      }
+    },
+    {
+      "name": "negative:undeclared-style_variations-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "style_variations"
+      }
+    },
+    {
+      "name": "negative:undeclared-slots-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "slots"
+      }
+    },
+    {
+      "name": "negative:undeclared-hooks-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "hooks"
+      }
+    },
+    {
+      "name": "negative:undeclared-value-scale-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "value_scales"
+      }
+    },
+    {
+      "name": "manifest:template-parts-match-theme-json",
+      "pass": true,
+      "detail": {
+        "manifest": [
+          "footer",
+          "header",
+          "post-footer",
+          "post-header",
+          "sidebar"
+        ],
+        "theme_json": [
+          "footer",
+          "header",
+          "post-footer",
+          "post-header",
+          "sidebar"
+        ]
+      }
+    },
+    {
+      "name": "manifest:custom-templates-exist",
+      "pass": true,
+      "detail": {
+        "custom_templates": [
+          "blank",
+          "no-header",
+          "page-lp-sample"
+        ]
+      }
+    }
+  ],
+  "failed": 0
+}
