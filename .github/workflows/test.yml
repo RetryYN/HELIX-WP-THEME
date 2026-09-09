@@ -238,7 +238,7 @@ jobs:
         run: |
           if [ -f package.json ]; then
             npm ci
-            npx playwright install --with-deps chromium
+            npx playwright install chromium
           else
             echo "WARN: package.json が見つかりません。E2E は後続 Wave で設定してください。"
           fi
