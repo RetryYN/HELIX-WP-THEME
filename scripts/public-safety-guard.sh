@@ -60,7 +60,7 @@ fi
 # A gitlink diff contains only the pointer at the integration layer. Inspect the
 # actual old..new commit range inside every changed, initialized submodule.
 while IFS=$'\t' read -r path old_sha new_sha; do
-  [[ -n "$path" && -d "$path/.git" || -f "$path/.git" ]] || {
+  [[ -n "$path" && ( -d "$path/.git" || -f "$path/.git" ) ]] || {
     echo "FAIL: changed submodule is not initialized: $path" >&2
     exit 1
   }
