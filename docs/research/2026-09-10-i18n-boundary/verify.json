@@ -82,23 +82,38 @@
     },
     {
       "name": "negative:text-domain-drift-fails",
-      "pass": true
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:text-domain-consistent"
+      }
     },
     {
       "name": "negative:pot-source-drift-fails",
-      "pass": true
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:pot-exactly-matches-source"
+      }
     },
     {
       "name": "negative:untranslated-cjk-output-fails",
-      "pass": true
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:no-untranslated-cjk-output"
+      }
     },
     {
       "name": "negative:missing-source-language-policy-fails",
-      "pass": true
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:source-languages-declared"
+      }
     },
     {
       "name": "negative:missing-rtl-boundary-fails",
-      "pass": true
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:rtl-out-of-scope-explicit"
+      }
     }
   ],
   "failed": 0

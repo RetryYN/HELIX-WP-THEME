@@ -92,27 +92,42 @@ const allGettextCalls = walk(theme).filter(file => file.endsWith('.php')).reduce
   sum + [...fs.readFileSync(file, 'utf8').matchAll(/\b(?:__|_e|_x|_ex|_n|_nx|esc_html__|esc_html_e|esc_html_x|esc_attr__|esc_attr_e|esc_attr_x)\s*\(/g)].length, 0);
 const untranslatedCjk = findUntranslatedCjk();
 
+function evaluate(input) {
+  return {
+    'i18n:source-calls-found': input.uniqueMessages > 0,
+    'i18n:all-gettext-calls-extracted': input.sourceCalls === input.allGettextCalls,
+    'i18n:text-domain-consistent': input.domains.length === 1 && input.domains[0] === input.profile.text_domain && input.styleDomain === input.profile.text_domain,
+    'i18n:pot-exactly-matches-source': input.actualPot === input.expectedPot,
+    'i18n:no-untranslated-cjk-output': input.untranslatedCjk.length === 0,
+    'i18n:source-languages-declared': JSON.stringify(input.profile.source_languages) === JSON.stringify(['ja', 'en']),
+    'i18n:rtl-out-of-scope-explicit': input.profile.rtl?.supported === false && input.profile.rtl?.scope === 'out-of-scope',
+  };
+}
+
+const productionInput = { profile, styleDomain, domains, actualPot, expectedPot, untranslatedCjk, sourceCalls, allGettextCalls, uniqueMessages: messages.length };
+const gates = evaluate(productionInput);
+
 const rows = [];
 const check = (name, pass, detail) => rows.push({ name, pass: Boolean(pass), detail });
-check('i18n:source-calls-found', messages.length > 0, { unique_messages: messages.length });
-check('i18n:all-gettext-calls-extracted', sourceCalls === allGettextCalls, { extracted: sourceCalls, all_gettext_calls: allGettextCalls });
-check('i18n:text-domain-consistent', domains.length === 1 && domains[0] === profile.text_domain && styleDomain === profile.text_domain, { profile: profile.text_domain, style: styleDomain, source: domains });
-check('i18n:pot-exactly-matches-source', actualPot === expectedPot, { unique_messages: messages.length });
-check('i18n:no-untranslated-cjk-output', untranslatedCjk.length === 0, { findings: untranslatedCjk });
-check('i18n:source-languages-declared', JSON.stringify(profile.source_languages) === JSON.stringify(['ja', 'en']), { source_languages: profile.source_languages ?? null });
-check('i18n:rtl-out-of-scope-explicit', profile.rtl?.supported === false && profile.rtl?.scope === 'out-of-scope', { rtl: profile.rtl });
+check('i18n:source-calls-found', gates['i18n:source-calls-found'], { unique_messages: messages.length });
+check('i18n:all-gettext-calls-extracted', gates['i18n:all-gettext-calls-extracted'], { extracted: sourceCalls, all_gettext_calls: allGettextCalls });
+check('i18n:text-domain-consistent', gates['i18n:text-domain-consistent'], { profile: profile.text_domain, style: styleDomain, source: domains });
+check('i18n:pot-exactly-matches-source', gates['i18n:pot-exactly-matches-source'], { unique_messages: messages.length });
+check('i18n:no-untranslated-cjk-output', gates['i18n:no-untranslated-cjk-output'], { findings: untranslatedCjk });
+check('i18n:source-languages-declared', gates['i18n:source-languages-declared'], { source_languages: profile.source_languages ?? null });
+check('i18n:rtl-out-of-scope-explicit', gates['i18n:rtl-out-of-scope-explicit'], { rtl: profile.rtl });
 
 const alteredDomain = structuredClone(profile);
 alteredDomain.text_domain = 'wrong-domain';
-check('negative:text-domain-drift-fails', !(domains.length === 1 && domains[0] === alteredDomain.text_domain && styleDomain === alteredDomain.text_domain));
-check('negative:pot-source-drift-fails', `${actualPot}\n# drift\n` !== expectedPot);
-check('negative:untranslated-cjk-output-fails', cjkFixtureFails("echo '未翻訳';"));
+check('negative:text-domain-drift-fails', !evaluate({ ...productionInput, profile: alteredDomain })['i18n:text-domain-consistent'], { failed_gate: 'i18n:text-domain-consistent' });
+check('negative:pot-source-drift-fails', !evaluate({ ...productionInput, actualPot: `${actualPot}\n# drift\n` })['i18n:pot-exactly-matches-source'], { failed_gate: 'i18n:pot-exactly-matches-source' });
+check('negative:untranslated-cjk-output-fails', cjkFixtureFails("echo '未翻訳';") && !evaluate({ ...productionInput, untranslatedCjk: ['fixture.php:1'] })['i18n:no-untranslated-cjk-output'], { failed_gate: 'i18n:no-untranslated-cjk-output' });
 const alteredLanguages = structuredClone(profile);
 delete alteredLanguages.source_languages;
-check('negative:missing-source-language-policy-fails', JSON.stringify(alteredLanguages.source_languages) !== JSON.stringify(['ja', 'en']));
+check('negative:missing-source-language-policy-fails', !evaluate({ ...productionInput, profile: alteredLanguages })['i18n:source-languages-declared'], { failed_gate: 'i18n:source-languages-declared' });
 const alteredRtl = structuredClone(profile);
 delete alteredRtl.rtl.scope;
-check('negative:missing-rtl-boundary-fails', !(alteredRtl.rtl?.supported === false && alteredRtl.rtl?.scope === 'out-of-scope'));
+check('negative:missing-rtl-boundary-fails', !evaluate({ ...productionInput, profile: alteredRtl })['i18n:rtl-out-of-scope-explicit'], { failed_gate: 'i18n:rtl-out-of-scope-explicit' });
 
 const result = {
   schema: 'wt-i18n-boundary-verification.v1',

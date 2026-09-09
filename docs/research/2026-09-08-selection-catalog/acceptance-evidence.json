@@ -9824,11 +9824,11 @@
       "requirement_digest": "9688503b89e59448",
       "oracle_sha256": "fd01fbb412a2faeb5eeb86a32918bf37d65b5e42770736370b5c6284f58b32eb",
       "source_digests": {
-        "scripts/verify-i18n-profile.mjs": "3af48bef91c170523819f254730f915643d713c46e572dc226f42c2b69a8e522",
+        "scripts/verify-i18n-profile.mjs": "55d51326fb022e94ee4cab7474e3670e396ba03cd196d573e9cbea222a38ccc2",
         "themes/agent-neo-theme/config/i18n-profile.json": "b739327a8006d70f11463672057c7ceb8c75206899ed147770842b0ecbfc78a2",
         "themes/agent-neo-theme/languages/agent-neo.pot": "942bd64ff02bb479d1962871646fbc7c582417cd521334303494258a9aaf4130",
         ".github/workflows/theme-quality-gate.yml": "2d989a8c3ed16be5392dd02120f11420f6c536432d14861c07194c8f0fa7ea52",
-        "docs/research/2026-09-10-i18n-boundary/PLAN.md": "ff8783857bad2d18ec86664990fe9495cb99782683b70129846b6a67f91c389c"
+        "docs/research/2026-09-10-i18n-boundary/PLAN.md": "557d98896948dd67fa331a7def1d04c0909452e884cb0e2cfb73c8097cfec88b"
       },
       "scope": "現行テーマの499翻訳関数呼び出し（442固有msgid）、Text Domain、POT完全一致、日本語・英語のソース言語方針、RTL非対象宣言を決定論的ゲートで確認。PR CIへ配線済み。",
       "remaining": [
@@ -9837,7 +9837,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "f7fd4c2d7949d4a36e3fdd89ea6ff462f722a366ba5d0f54007a27f9254314a2",
+          "sha256": "4d3283bd73c732283f73da044dae545955fbfb827cfab836f4c19871d14268f5",
           "row_names": [
             "i18n:source-calls-found",
             "i18n:all-gettext-calls-extracted",
@@ -9854,18 +9854,18 @@
       "requirement_digest": "9688503b89e59448",
       "oracle_sha256": "8a69f55eefe5010b16c7e6206738309092fac3e69f09ea7c0d76b9a58219d020",
       "source_digests": {
-        "scripts/verify-i18n-profile.mjs": "3af48bef91c170523819f254730f915643d713c46e572dc226f42c2b69a8e522",
+        "scripts/verify-i18n-profile.mjs": "55d51326fb022e94ee4cab7474e3670e396ba03cd196d573e9cbea222a38ccc2",
         "themes/agent-neo-theme/config/i18n-profile.json": "b739327a8006d70f11463672057c7ceb8c75206899ed147770842b0ecbfc78a2",
         "themes/agent-neo-theme/languages/agent-neo.pot": "942bd64ff02bb479d1962871646fbc7c582417cd521334303494258a9aaf4130",
         ".github/workflows/theme-quality-gate.yml": "2d989a8c3ed16be5392dd02120f11420f6c536432d14861c07194c8f0fa7ea52",
-        "docs/research/2026-09-10-i18n-boundary/PLAN.md": "ff8783857bad2d18ec86664990fe9495cb99782683b70129846b6a67f91c389c"
+        "docs/research/2026-09-10-i18n-boundary/PLAN.md": "557d98896948dd67fa331a7def1d04c0909452e884cb0e2cfb73c8097cfec88b"
       },
       "scope": "未翻訳CJK出力、Text Domain差分、POT差分、言語方針欠落、RTL境界欠落を同じ検証器の負例で拒否する。",
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "f7fd4c2d7949d4a36e3fdd89ea6ff462f722a366ba5d0f54007a27f9254314a2",
+          "sha256": "4d3283bd73c732283f73da044dae545955fbfb827cfab836f4c19871d14268f5",
           "row_names": [
             "i18n:no-untranslated-cjk-output",
             "negative:text-domain-drift-fails",

@@ -117,3 +117,5 @@ Codex検収ではカタログE2E 21/21、npm test、PC 1440px / SP 375pxの目�
 正負9行を受入証拠へ束縛し、`WT-AC-NFR-CRED-01A/B` をPoC確認済みへ更新。package script変更で一時staleになったAI境界2 ACも証拠を再生成して同revisionへ再束縛した。監査は確認21・部分17・未対応256・stale 0。履歴全体、画像内文字、難読化された秘密、一般形で判別不能な固有名はこの静的差分ゲートの検証範囲外。
 
 2026-09-10、`WT-NFR-ENV-01`を再監査したところ、POTがヘッダーだけで499回の翻訳関数呼び出しを収録しておらず、RTL境界も要求と不一致だった。決定論的POT生成・差分検査を追加し、442固有msgid、Text Domain、未翻訳CJK出力0、日英ソース言語方針、RTL非対象宣言と4系統の負例を検証した。翻訳済みPO/MOとrelease receiptは未完了として残し、監査は確認22・部分18・未対応254・stale 0。
+
+Claude review 16はblocker 0でapprove。non-blockerとして、domain・言語方針・RTLの負例が本番ゲートを直接呼ばず条件式を別評価している点を受領した。同じ`evaluate()`を本番と全負例で共有するよう修正し、改変fixtureが対象gateをfalseにする直接検査へ変更した。
