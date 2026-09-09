@@ -13,6 +13,7 @@ import {
   sharedCodexWakeRoot,
   spoolBaseName,
   validateCodexInboxEntry,
+  isDeliveredMarkerValid,
   CODEX_INBOX_BOUNDARY,
   CODEX_INBOX_SCHEMA,
   CODEX_WAKE_BODY_MAX_CHARS,
@@ -141,4 +142,29 @@ test('deliver CLI reads session_id from hook stdin JSON (ESM)', () => {
   assert.equal(record.receiverSession, 'session-from-hook');
   // 2 回目: 配送なし、exit 0
   assert.deepEqual(JSON.parse(run('')).delivered, []);
+});
+
+test('empty, corrupt or foreign delivered markers are treated as not delivered', () => {
+  const { root } = tempRepo();
+  const entry = buildCodexInboxEntry(baseEntry);
+  publishCodexInboxEntry(root, entry);
+  const marker = path.join(sharedCodexWakeRoot(root), `${spoolBaseName(entry.id)}.delivered`);
+  for (const content of [
+    '',
+    '{not json',
+    JSON.stringify({ id: 'harness:codex-inbox:other:op:x', receiverSession: 's', ackDigest: 'sha256:' + 'a'.repeat(64), deliveredAt: new Date().toISOString() }),
+    JSON.stringify({ id: entry.id }),
+  ]) {
+    fs.writeFileSync(marker, content);
+    assert.equal(listCodexInboxEntries(root)[0].delivered, false, `marker ${JSON.stringify(content).slice(0, 30)}`);
+    assert.equal(isDeliveredMarkerValid(marker, entry.id), false);
+  }
+  // 破損 marker があっても再配送され、atomic に完全な marker へ置き換わる
+  const written = [];
+  const result = deliverCodexInbox(root, { sessionId: 's-retry', write: (m) => written.push(m) });
+  assert.deepEqual(result.delivered, [entry.id]);
+  assert.equal(isDeliveredMarkerValid(marker, entry.id), true);
+  assert.equal(JSON.parse(fs.readFileSync(marker, 'utf8')).receiverSession, 's-retry');
+  assert.equal(listCodexInboxEntries(root)[0].delivered, true);
+  assert.equal(fs.readdirSync(sharedCodexWakeRoot(root)).filter((n) => n.endsWith('.tmp')).length, 0);
 });

@@ -66,6 +66,29 @@ function markerPath(repoRoot, entry, suffix) {
   return path.join(sharedCodexWakeRoot(repoRoot), `${spoolBaseName(entry.id)}.${suffix}`);
 }
 
+// tmp → rename の atomic 書き込み。途中停止で 0 byte や半端な JSON を残さない。
+function writeAtomic(target, content) {
+  const tmp = `${target}.${process.pid}.tmp`;
+  fs.writeFileSync(tmp, content, { mode: 0o600 });
+  fs.renameSync(tmp, target);
+}
+
+// delivered marker は存在だけでなく内容を検証する。空・破損・別 id の marker は未配送として扱う。
+export function isDeliveredMarkerValid(markerFile, entryId) {
+  let marker;
+  try {
+    marker = JSON.parse(fs.readFileSync(markerFile, 'utf8'));
+  } catch {
+    return false;
+  }
+  return Boolean(marker)
+    && typeof marker === 'object'
+    && marker.id === entryId
+    && typeof marker.receiverSession === 'string'
+    && typeof marker.ackDigest === 'string' && /^sha256:[a-f0-9]{64}$/u.test(marker.ackDigest)
+    && typeof marker.deliveredAt === 'string' && !Number.isNaN(Date.parse(marker.deliveredAt));
+}
+
 // 入口の完全検証。schema / id と key の対応 / body と digest / provenance / ファイル名の identity。
 // 部分的に正しい entry を後段（format）で落とすと、後続の正常 entry まで止まる（head-of-line blocking）。
 export function validateCodexInboxEntry(entry, fileName) {
@@ -95,9 +118,7 @@ export function publishCodexInboxEntry(repoRoot, entry) {
   if (!valid.ok) throw new Error(`invalid_entry:${valid.reason}`);
   const target = path.join(dir, `${spoolBaseName(entry.id)}.json`);
   if (fs.existsSync(target)) return { path: target, status: 'already_queued' };
-  const tmp = `${target}.${process.pid}.tmp`;
-  fs.writeFileSync(tmp, JSON.stringify(entry, null, 2) + '\n', { mode: 0o600 });
-  fs.renameSync(tmp, target);
+  writeAtomic(target, JSON.stringify(entry, null, 2) + '\n');
   return { path: target, status: 'queued' };
 }
 
@@ -120,7 +141,7 @@ export function scanCodexInbox(repoRoot) {
       rejected.push({ file: name, reason: valid.reason });
       continue;
     }
-    entries.push({ ...entry, delivered: fs.existsSync(markerPath(repoRoot, entry, 'delivered')) });
+    entries.push({ ...entry, delivered: isDeliveredMarkerValid(markerPath(repoRoot, entry, 'delivered'), entry.id) });
   }
   return { entries, rejected };
 }
@@ -154,12 +175,12 @@ export function deliverCodexInbox(repoRoot, { sessionId, write }) {
   for (const entry of pending) {
     const message = formatCodexInboxMessage(entry);
     write(message + '\n');
-    fs.writeFileSync(markerPath(repoRoot, entry, 'delivered'), JSON.stringify({
+    writeAtomic(markerPath(repoRoot, entry, 'delivered'), JSON.stringify({
       id: entry.id,
-      receiverSession: sessionId,
+      receiverSession: String(sessionId ?? 'codex-session'),
       ackDigest: sha256(message),
       deliveredAt: new Date().toISOString(),
-    }, null, 2) + '\n', { mode: 0o600 });
+    }, null, 2) + '\n');
     delivered.push(entry.id);
   }
   return { pending: pending.length, delivered, rejected };
