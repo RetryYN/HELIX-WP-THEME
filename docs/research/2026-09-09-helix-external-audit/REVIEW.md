@@ -8,6 +8,10 @@
 
 consumer receiptとpostinstall patchはdraft PR #174にあり、mainにはない。patchは既知before / after digestとatomic preflightでfail-closeだが、consumerがdependency内部を書き換える構造的負債は残る。解消先はHELIX本体のprovider extensionであり、このrepositoryから別repositoryへ実装しない。
 
-Claude→Codex通知のPR #182は外部監査後も収束中。Codexがcurrent HEAD `0d7d11e...` を再検証し、初回3 blockerの解消を確認した一方、空のdelivered markerが存在するだけで配送済みになる新規blockerを返した。main導入済みとは扱わない。
+Claude→Codex通知のPR #182はcurrent HEAD `f264ad2...` をCodexが独立再検査し、stdin session ID、ID衝突、壊れたentry隔離、atomic marker、marker本文digest一致を含む10検査で既知blocker 0まで収束した。ただしconsumer draft PRであり、HELIX mainへの対称wake導入済みとは扱わない。
+
+追加監査の訂正もHELIX main `f2695861...` とIssue #532 / #563へ照合した。`agent-session-command-center` はagent slotとcontinuationを集約し、sessionを `active / stale / completed / failed / blocked` として観測する。Claude wakeも `OFF / ARMED / CLAIMED / DELIVERED / REVIEWED / TERMINAL / SUPERSEDED` の状態、`receiverSession`、delivery/ACK digest、明示rearmを持つ。このため「双方を検知できない」「claim / ACKがない」という評価は撤回する。
+
+残る不足は配車と仕事の所有権である。Issue #532はClaude→Codexの上流generic wakeが未正規化、Issue #563はPR単位broadcastとsession単位の排他的担当が未解決としてopen。#563の2026-09-08実測では4 Claude sessionが同時稼働しながら一つのPRを複数sessionが確認し、別PRは4時間27分未着手だった。PRコメントでの担当宣言も、読んでいないsessionのsealを拘束しない。配送ACKとreview作業のleaseを分け、obligationをHEADへ束縛し、lease ownerだけがreceiptをsealできるfenceと、timeout後の一度だけの再配車を上流要求候補にする。
 
 監査の「内部機構85%」「end-to-end 65〜70%」は専門家評価として参考になるが、受入台帳の完了数ではない。現行カタログ監査は別の294 ACを単位としており、両数値を換算しない。
