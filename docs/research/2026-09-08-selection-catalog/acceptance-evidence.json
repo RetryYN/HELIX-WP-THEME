@@ -9725,7 +9725,7 @@
         "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
         "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
         "scripts/verify-ai-boundary.mjs": "b3d1f4b62bbcdd7590d34fc3a205ba0c3ba58acf3bce0ccbb845052b96b638b8",
-        "package.json": "fe7134392c8f355548d5ec728ad3f99b54c8869d2ad9d84178f29c2242a3f745"
+        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
       },
       "scope": "themeとCore pluginの実行資産を7規則で走査し、SDK import・推論endpoint・variant選択・risk score・統計勝者判定の検出0件と、HELIX所有境界を確認。crawler識別子や決定的transport metadataは対象外。",
       "remaining": [],
@@ -9749,7 +9749,7 @@
         "themes/agent-neo-theme/config/theme-manifest.json": "f1244095ea88b463c712de4f55f0d356bfb1788b954ef2813deaf9689439e660",
         "themes/agent-neo-theme/inc/setup/class-boundary-guard.php": "2066cde4d29c08bfb236782ddd116dd9bd155524b4e33061b0cf30fd161d375c",
         "scripts/verify-ai-boundary.mjs": "b3d1f4b62bbcdd7590d34fc3a205ba0c3ba58acf3bce0ccbb845052b96b638b8",
-        "package.json": "fe7134392c8f355548d5ec728ad3f99b54c8869d2ad9d84178f29c2242a3f745"
+        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
       },
       "scope": "SDK import 3種、推論endpoint、variant／risk／統計判定と、theme_allowed反転の8負例がそれぞれFAIL対象になることを検証。",
       "remaining": [],
@@ -9769,6 +9769,55 @@
           ]
         }
       ]
+    },
+    "WT-AC-NFR-CRED-01A": {
+      "status": "verified_in_poc",
+      "requirement_digest": "4ce4817a1f2becff",
+      "source_digests": {
+        "scripts/check-public-safety.sh": "dff98125aa1576a7b2061876951b26a65ed69e5452b384f1380e56c7839447b7",
+        "scripts/verify-public-safety.mjs": "74a09132128904a5b25c574dd1215dacaef6ac7d9ded0bbfd2f138815a2177b7",
+        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
+      },
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "sha256": "6a7123daa7bc75d8eba2b40fbf1edae70e6cc4000c64dca36340686838d98a98",
+          "row_names": [
+            "positive:clean-source-accepted",
+            "positive:research-with-private-map-accepted"
+          ]
+        }
+      ],
+      "oracle_sha256": "d4876a066f769ee30d1cc6800a50d7d9e0ab6530ad270d6d5671b990aeb4f0f5",
+      "scope": "通常ソースとprivate mapping付きresearch差分を一時Git repositoryのstaged差分として実行し、公開安全性ゲートが受理することを確認。"
+    },
+    "WT-AC-NFR-CRED-01B": {
+      "status": "verified_in_poc",
+      "requirement_digest": "4ce4817a1f2becff",
+      "source_digests": {
+        "scripts/check-public-safety.sh": "dff98125aa1576a7b2061876951b26a65ed69e5452b384f1380e56c7839447b7",
+        "scripts/verify-public-safety.mjs": "74a09132128904a5b25c574dd1215dacaef6ac7d9ded0bbfd2f138815a2177b7",
+        "package.json": "d4e03728385820547d231a38def76960010e2a4c4821d792ade73736346e943f"
+      },
+      "remaining": [],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "sha256": "6a7123daa7bc75d8eba2b40fbf1edae70e6cc4000c64dca36340686838d98a98",
+          "row_names": [
+            "negative:private-key-rejected",
+            "negative:access-token-rejected",
+            "negative:credential-assignment-rejected",
+            "negative:personal-path-rejected",
+            "negative:tracking-url-rejected",
+            "negative:research-requires-private-map",
+            "negative:custom-private-map-rejected"
+          ]
+        }
+      ],
+      "oracle_sha256": "4f7e47ef710a9c6636f89cee09d9267a0cceacf719b6bfec6352a5f42fa40ac3",
+      "scope": "7種類の合成fixtureを個別にstagedへ置き、各1件だけでもexit 1で拒否することを確認。実credentialは使用・保存しない。"
     }
   }
 }

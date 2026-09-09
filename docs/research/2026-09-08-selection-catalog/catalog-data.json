@@ -15568,27 +15568,46 @@
           "requirement_id": "WT-NFR-CRED-01",
           "oracle": "public-safety check OK",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "通常ソースとprivate mapping付きresearch差分を一時Git repositoryのstaged差分として実行し、公開安全性ゲートが受理することを確認。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-public-safety/verify.json",
+              "sha256": "6a7123daa7bc75d8eba2b40fbf1edae70e6cc4000c64dca36340686838d98a98",
+              "row_names": [
+                "positive:clean-source-accepted",
+                "positive:research-with-private-map-accepted"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-NFR-CRED-01B",
           "requirement_id": "WT-NFR-CRED-01",
           "oracle": "検出 1 件で FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "7種類の合成fixtureを個別にstagedへ置き、各1件だけでもexit 1で拒否することを確認。実credentialは使用・保存しない。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-09-public-safety/verify.json",
+              "sha256": "6a7123daa7bc75d8eba2b40fbf1edae70e6cc4000c64dca36340686838d98a98",
+              "row_names": [
+                "negative:private-key-rejected",
+                "negative:access-token-rejected",
+                "negative:credential-assignment-rejected",
+                "negative:personal-path-rejected",
+                "negative:tracking-url-rejected",
+                "negative:research-requires-private-map",
+                "negative:custom-private-map-rejected"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -28244,9 +28263,9 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 258,
+    "missing": 256,
     "partial": 17,
-    "verified_in_poc": 19,
+    "verified_in_poc": 21,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

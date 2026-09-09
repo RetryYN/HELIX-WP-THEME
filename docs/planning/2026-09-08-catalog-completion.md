@@ -109,3 +109,9 @@ PHP検査環境を導入しunit/security 201テスト・492 assertions成功、�
 ビジュアル実装はAstra（effort low）が担当し、Codexは独立検収と回帰テスト追加だけを行った。候補カードへ撮影幅・関連要求数・保存理由の抜粋を出し、比較ダイアログへ目的・撮影・状態・理由・関連要求の表を追加した。値が異なる行は色と「差分あり」の文字で示し、比較内の状態・理由編集を即時反映する。関連要求は受入達成の証拠ではないことを明記した。
 
 Codex検収ではカタログE2E 21/21、npm test、PC 1440px / SP 375pxの目視、文書横溢れなし、比較表のcaptionとrow/column scope、キーボードfocus、状態・理由の即時反映を確認した。スクリーンリーダー実機と選別時間のユーザーテストは未実施。候補数613・画像1098・要求133・AC294、確認19・部分17・未対応258・stale 0は変えない。
+
+### 2026-09-09 公開安全性ゲートの負例実測
+
+`WT-NFR-CRED-01` を合成fixtureだけで検証する再現スクリプトを追加した。通常ソースとprivate mapping付きresearch差分の正例2件を受理し、秘密鍵形式、既知token形式、credential代入、個人絶対path、affiliate/click tracking URL、mappingなしresearch、custom private mapping一致の負例7件を各exit 1で拒否した。実credential・実非公開名は使わず、fixtureは検査後に削除する。
+
+正負9行を受入証拠へ束縛し、`WT-AC-NFR-CRED-01A/B` をPoC確認済みへ更新。package script変更で一時staleになったAI境界2 ACも証拠を再生成して同revisionへ再束縛した。監査は確認21・部分17・未対応256・stale 0。履歴全体、画像内文字、難読化された秘密、一般形で判別不能な固有名はこの静的差分ゲートの検証範囲外。
