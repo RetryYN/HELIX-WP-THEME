@@ -9,8 +9,12 @@ import {
   deliverCodexInbox,
   listCodexInboxEntries,
   publishCodexInboxEntry,
+  scanCodexInbox,
   sharedCodexWakeRoot,
+  spoolBaseName,
+  validateCodexInboxEntry,
   CODEX_INBOX_BOUNDARY,
+  CODEX_INBOX_SCHEMA,
   CODEX_WAKE_BODY_MAX_CHARS,
 } from '../../scripts/lib/codex-inbox.mjs';
 
@@ -60,11 +64,11 @@ test('entries published from one worktree are visible and deliverable from anoth
   assert.equal(sharedCodexWakeRoot(other), sharedCodexWakeRoot(root));
   const written = [];
   const result = deliverCodexInbox(other, { sessionId: 's1', write: (m) => written.push(m) });
-  assert.deepEqual(result, { pending: 1, delivered: ['harness:codex-inbox:review:pr:owner/repo#1:op:op-1'] });
+  assert.deepEqual(result, { pending: 1, delivered: ['harness:codex-inbox:review:pr:owner/repo#1:op:op-1'], rejected: [] });
   assert.match(written[0], new RegExp(`^\\[${CODEX_INBOX_BOUNDARY}\\]`));
   assert.match(written[0], /"origin_runtime":"claude"/);
   // 2 回目は配送しない（delivered マーカーが common dir にある）
-  assert.deepEqual(deliverCodexInbox(root, { sessionId: 's2', write: () => {} }), { pending: 0, delivered: [] });
+  assert.deepEqual(deliverCodexInbox(root, { sessionId: 's2', write: () => {} }), { pending: 0, delivered: [], rejected: [] });
   assert.equal(listCodexInboxEntries(root)[0].delivered, true);
 });
 
@@ -82,5 +86,59 @@ test('malformed spool files are ignored without deleting them', () => {
   fs.writeFileSync(path.join(dir, 'broken.json'), '{not json');
   fs.writeFileSync(path.join(dir, 'foreign.json'), JSON.stringify({ schemaVersion: 'other' }));
   assert.deepEqual(listCodexInboxEntries(root), []);
+  assert.deepEqual(scanCodexInbox(root).rejected.map((r) => r.reason), ['unparseable', 'schema_mismatch']);
   assert.equal(fs.readdirSync(dir).length, 2);
+});
+
+test('ids that collapse to the same readable name get distinct spool paths', () => {
+  const { root } = tempRepo();
+  const a = publishCodexInboxEntry(root, buildCodexInboxEntry({ ...baseEntry, key: 'review:a/b' }));
+  const b = publishCodexInboxEntry(root, buildCodexInboxEntry({ ...baseEntry, key: 'review:a:b' }));
+  assert.equal(a.status, 'queued');
+  assert.equal(b.status, 'queued');
+  assert.notEqual(a.path, b.path);
+  assert.equal(listCodexInboxEntries(root).length, 2);
+  assert.match(spoolBaseName('harness:x:op:1'), /^harness_x_op_1\.[a-f0-9]{64}$/);
+});
+
+test('a partially valid entry is quarantined and does not block later entries', () => {
+  const { root } = tempRepo();
+  const dir = path.join(sharedCodexWakeRoot(root), 'inbox');
+  fs.mkdirSync(dir, { recursive: true });
+  // 先頭（sort 順で最初）に schema と id だけ持つ entry を置く
+  fs.writeFileSync(path.join(dir, '0-partial.json'), JSON.stringify({ schemaVersion: CODEX_INBOX_SCHEMA, id: 'valid-id' }));
+  // 本文改竄（digest 不一致）と、ファイル名が id と一致しない entry
+  const tampered = { ...buildCodexInboxEntry({ ...baseEntry, operationId: 'op-t' }), body: 'changed' };
+  fs.writeFileSync(path.join(dir, `${spoolBaseName(tampered.id)}.json`), JSON.stringify(tampered));
+  const moved = buildCodexInboxEntry({ ...baseEntry, operationId: 'op-m' });
+  fs.writeFileSync(path.join(dir, 'renamed.json'), JSON.stringify(moved));
+  // 正常 entry
+  publishCodexInboxEntry(root, buildCodexInboxEntry(baseEntry));
+
+  const written = [];
+  const result = deliverCodexInbox(root, { sessionId: 's', write: (m) => written.push(m) });
+  assert.deepEqual(result.delivered, ['harness:codex-inbox:review:pr:owner/repo#1:op:op-1']);
+  assert.equal(written.length, 1);
+  assert.deepEqual(result.rejected.map((r) => r.reason).sort(),
+    ['body_digest_mismatch', 'filename_identity_mismatch', 'missing_id_or_key'].sort());
+  assert.equal(fs.readdirSync(dir).length, 4, 'rejected entries are left in the spool');
+  assert.equal(validateCodexInboxEntry({ ...buildCodexInboxEntry(baseEntry), provenance: { runtime: 'codex', origin: 'x', sessionId: 'y' } }).ok, false);
+});
+
+test('deliver CLI reads session_id from hook stdin JSON (ESM)', () => {
+  const { root } = tempRepo();
+  publishCodexInboxEntry(root, buildCodexInboxEntry(baseEntry));
+  const cli = path.resolve('scripts/codex-inbox.mjs');
+  const run = (input) => {
+    try {
+      return execFileSync(process.execPath, [cli, 'deliver', '--json', '--exit-code', '0'], { cwd: root, input, encoding: 'utf8' });
+    } catch (e) { throw new Error(`cli failed: ${e.stderr}`); }
+  };
+  const out = JSON.parse(run(JSON.stringify({ session_id: 'session-from-hook' })));
+  assert.equal(out.delivered.length, 1);
+  const marker = fs.readdirSync(sharedCodexWakeRoot(root)).find((n) => n.endsWith('.delivered'));
+  const record = JSON.parse(fs.readFileSync(path.join(sharedCodexWakeRoot(root), marker), 'utf8'));
+  assert.equal(record.receiverSession, 'session-from-hook');
+  // 2 回目: 配送なし、exit 0
+  assert.deepEqual(JSON.parse(run('')).delivered, []);
 });

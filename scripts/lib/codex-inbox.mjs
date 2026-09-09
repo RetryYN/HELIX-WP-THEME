@@ -28,7 +28,12 @@ export function sharedCodexWakeRoot(repoRoot) {
 }
 
 const sha256 = (value) => 'sha256:' + createHash('sha256').update(value).digest('hex');
-const safeName = (id) => id.replace(/[^A-Za-z0-9._-]/gu, '_');
+// ファイル名は「読める断片 + id の完全 sha256」。`/` と `:` を同じ `_` に潰す断片だけでは
+// 異なる id が同じ path に衝突するため、完全 digest で identity を担保する。
+export function spoolBaseName(id) {
+  const readable = id.replace(/[^A-Za-z0-9._-]/gu, '_').slice(0, 96);
+  return `${readable}.${createHash('sha256').update(id).digest('hex')}`;
+}
 
 export function buildCodexInboxEntry({ key, body, operationId, runtime, origin, sessionId, planId, now }) {
   if (typeof key !== 'string' || !KEY_PATTERN.test(key)) throw new Error('invalid_key');
@@ -58,14 +63,37 @@ export function buildCodexInboxEntry({ key, body, operationId, runtime, origin, 
 
 function inboxDir(repoRoot) { return path.join(sharedCodexWakeRoot(repoRoot), 'inbox'); }
 function markerPath(repoRoot, entry, suffix) {
-  return path.join(sharedCodexWakeRoot(repoRoot), `${safeName(entry.id)}.${suffix}`);
+  return path.join(sharedCodexWakeRoot(repoRoot), `${spoolBaseName(entry.id)}.${suffix}`);
+}
+
+// 入口の完全検証。schema / id と key の対応 / body と digest / provenance / ファイル名の identity。
+// 部分的に正しい entry を後段（format）で落とすと、後続の正常 entry まで止まる（head-of-line blocking）。
+export function validateCodexInboxEntry(entry, fileName) {
+  const fail = (reason) => ({ ok: false, reason });
+  if (!entry || typeof entry !== 'object') return fail('not_object');
+  if (entry.schemaVersion !== CODEX_INBOX_SCHEMA) return fail('schema_mismatch');
+  if (typeof entry.id !== 'string' || typeof entry.key !== 'string') return fail('missing_id_or_key');
+  const rawKey = entry.key.slice(CODEX_INBOX_PREFIX.length);
+  if (!entry.key.startsWith(CODEX_INBOX_PREFIX) || !KEY_PATTERN.test(rawKey)) return fail('invalid_key');
+  const idPrefix = `harness:${entry.key}:op:`;
+  if (!entry.id.startsWith(idPrefix) || !OPERATION_PATTERN.test(entry.id.slice(idPrefix.length))) return fail('id_key_mismatch');
+  if (typeof entry.body !== 'string' || entry.body.trim() === '' || entry.body.length > CODEX_WAKE_BODY_MAX_CHARS) return fail('invalid_body');
+  if (entry.bodyDigest !== sha256(entry.body)) return fail('body_digest_mismatch');
+  const p = entry.provenance;
+  if (!p || typeof p !== 'object' || !RUNTIMES.has(p.runtime) || p.runtime === 'codex') return fail('invalid_provenance_runtime');
+  if (typeof p.origin !== 'string' || typeof p.sessionId !== 'string') return fail('invalid_provenance');
+  if (typeof entry.createdAt !== 'string' || Number.isNaN(Date.parse(entry.createdAt))) return fail('invalid_created_at');
+  if (fileName !== undefined && fileName !== `${spoolBaseName(entry.id)}.json`) return fail('filename_identity_mismatch');
+  return { ok: true };
 }
 
 // 同じ operationId は 1 回だけ配送する（idempotent）。既存があれば書かずにそのパスを返す。
 export function publishCodexInboxEntry(repoRoot, entry) {
   const dir = inboxDir(repoRoot);
   fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
-  const target = path.join(dir, `${safeName(entry.id)}.json`);
+  const valid = validateCodexInboxEntry(entry);
+  if (!valid.ok) throw new Error(`invalid_entry:${valid.reason}`);
+  const target = path.join(dir, `${spoolBaseName(entry.id)}.json`);
   if (fs.existsSync(target)) return { path: target, status: 'already_queued' };
   const tmp = `${target}.${process.pid}.tmp`;
   fs.writeFileSync(tmp, JSON.stringify(entry, null, 2) + '\n', { mode: 0o600 });
@@ -73,22 +101,32 @@ export function publishCodexInboxEntry(repoRoot, entry) {
   return { path: target, status: 'queued' };
 }
 
-export function listCodexInboxEntries(repoRoot) {
+// 正常 entry だけを返す。不正 entry は `rejected` に隔離し（削除しない）、後続の配送を止めない。
+export function scanCodexInbox(repoRoot) {
   const dir = inboxDir(repoRoot);
-  if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir)
-    .filter((name) => name.endsWith('.json'))
-    .sort()
-    .map((name) => {
-      try {
-        const entry = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
-        if (entry?.schemaVersion !== CODEX_INBOX_SCHEMA || typeof entry.id !== 'string') return null;
-        return { ...entry, delivered: fs.existsSync(markerPath(repoRoot, entry, 'delivered')) };
-      } catch {
-        return null; // 壊れた entry は配送しない（fail-close）。削除もしない。
-      }
-    })
-    .filter(Boolean);
+  const entries = [];
+  const rejected = [];
+  if (!fs.existsSync(dir)) return { entries, rejected };
+  for (const name of fs.readdirSync(dir).filter((n) => n.endsWith('.json')).sort()) {
+    let entry;
+    try {
+      entry = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+    } catch {
+      rejected.push({ file: name, reason: 'unparseable' });
+      continue;
+    }
+    const valid = validateCodexInboxEntry(entry, name);
+    if (!valid.ok) {
+      rejected.push({ file: name, reason: valid.reason });
+      continue;
+    }
+    entries.push({ ...entry, delivered: fs.existsSync(markerPath(repoRoot, entry, 'delivered')) });
+  }
+  return { entries, rejected };
+}
+
+export function listCodexInboxEntries(repoRoot) {
+  return scanCodexInbox(repoRoot).entries;
 }
 
 export function formatCodexInboxMessage(entry) {
@@ -110,7 +148,8 @@ export function formatCodexInboxMessage(entry) {
 
 // 未配送 entry を stdout/stderr へ書き出し、書き出しに成功したものだけ delivered にする。
 export function deliverCodexInbox(repoRoot, { sessionId, write }) {
-  const pending = listCodexInboxEntries(repoRoot).filter((entry) => !entry.delivered);
+  const { entries, rejected } = scanCodexInbox(repoRoot);
+  const pending = entries.filter((entry) => !entry.delivered);
   const delivered = [];
   for (const entry of pending) {
     const message = formatCodexInboxMessage(entry);
@@ -123,5 +162,5 @@ export function deliverCodexInbox(repoRoot, { sessionId, write }) {
     }, null, 2) + '\n', { mode: 0o600 });
     delivered.push(entry.id);
   }
-  return { pending: pending.length, delivered };
+  return { pending: pending.length, delivered, rejected };
 }

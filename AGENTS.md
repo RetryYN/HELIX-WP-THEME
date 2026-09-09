@@ -33,7 +33,8 @@
   （Claude の `claude-memory-wake` と同じ流儀）。配送済みは common dir の `.delivered` マーカーで管理し、二重配送しない。
 - 通知本文は wake の合図。**HEAD・CI・レビュー判定の正本にしない。** 受け取ったら current HEAD・CI・PR コメント・
   receipt を GitHub と common dir から再取得して行動する。
-- 自己通知は拒否する（`--runtime codex` は rejected）。壊れた spool ファイルは配送も削除もしない。
+- 自己通知は拒否する（`--runtime codex` は rejected）。壊れた・部分的にしか正しくない spool ファイルは `rejected` として
+  隔離し（`list` / `deliver` が理由付きで表示）、削除せず、後続の正常 entry の配送は止めない。
 
 ## ⚠️ WT-TR-CORE-03（旧 REQ-NF-025） — AIロジック完全分離（絶対制約）
 
