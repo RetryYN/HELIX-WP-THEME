@@ -81,3 +81,9 @@ Chromiumで検索、比較上限、PC/SP切替、要求・ACへの到達、保�
 ```sh
 node -e 'const d=require("./docs/research/2026-09-08-selection-catalog/catalog-data.json"); console.log({candidates:d.entries.length,screenshots:d.screenshotCount,acceptance:d.acceptanceAudit})'
 ```
+
+## カードの判断情報と比較表
+
+候補カードに撮影幅・関連要求数・保存した理由の先頭3行を表示する。全文は詳細で読める。比較画面では目的・撮影記録・選択状態・理由・関連要求を同じ行で照合し、異なる行に「差分あり」を付ける。比較内の状態や理由を変更すると表も更新する。関連要求は達成証拠ではない旨を表の直後に明記する。
+
+表のcaptionと行・列の見出しは[WAIの表の指針](https://www.w3.org/WAI/tutorials/tables/two-headers/)を参照。SPでは表を横へスクロールし、Tabで表領域へ移動できる。カタログ操作21件で、カードへの理由反映、比較表の即時更新、行列見出し、375pxの文書横溢れをローカル検査。PC/SPを目視確認した。スクリーンリーダー実機確認と選別時間のユーザーテストは未実施。

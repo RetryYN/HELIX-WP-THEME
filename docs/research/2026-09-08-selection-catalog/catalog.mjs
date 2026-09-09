@@ -144,7 +144,12 @@ async function start() {
       open.append(top, el('p', entry.variant, 'variant'));
       const bottom = el('div', undefined, 'tile-footer');
       bottom.append(el('span', entry.purpose, 'purpose-tag'), compareToggle(entry));
-      tile.append(open, bottom, el('span', labels[memoFor(entry.id).status], 'decision-badge')); $('gallery').append(tile);
+      const facts = el('div', undefined, 'tile-facts');
+      facts.append(el('span', ['pc', 'sp'].filter(d => entry.images[d]).map(d => d.toUpperCase()).join(' / ') + ' 撮影'), el('span', `関連 ${entry.requirementIds.length}要求`));
+      const memo = memoFor(entry.id);
+      tile.append(open, facts, bottom, el('span', labels[memo.status], 'decision-badge'));
+      if (memo.note) { const excerpt = el('p', `理由: ${memo.note}`, 'tile-note'); excerpt.title = memo.note; tile.append(excerpt); }
+      $('gallery').append(tile);
     }
     updateCompare();
   }
@@ -156,13 +161,13 @@ async function start() {
       const b = button(label, () => {
         memos[entry.id] = { ...memoFor(entry.id), status }; save();
         for (const other of choices.children) other.setAttribute('aria-pressed', String(other === b));
-        render();
+        render(); refreshComparisonFacts();
       });
       b.setAttribute('aria-pressed', String(memoFor(entry.id).status === status)); choices.append(b);
     }
     const label = el('label', '選ぶ理由・確認したいこと', 'note-label');
     const note = el('textarea'); note.maxLength = 4000; note.rows = 4; note.value = memoFor(entry.id).note;
-    note.addEventListener('input', () => { memos[entry.id] = { ...memoFor(entry.id), note: note.value }; save(); }); label.append(note);
+    note.addEventListener('input', () => { memos[entry.id] = { ...memoFor(entry.id), note: note.value }; save(); refreshComparisonFacts(); }); label.append(note);
     panel.append(choices, label);
     if (entry.demoRoute && ['127.0.0.1', 'localhost'].includes(location.hostname)) {
       const live = el('a', 'ローカルの実機で操作する ↗', 'open-image');
@@ -197,11 +202,39 @@ async function start() {
     if ($('compare-picks').contains(document.activeElement)) document.activeElement.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }).observe($('compare-bar'));
   $('clear-compare').addEventListener('click', () => { comparison.clear(); render(); focusWorkspace(); });
+  function refreshComparisonFacts() {
+    const holder = $('comparison-facts');
+    if (!holder) return;
+    const entries = [...comparison].map(id => byId.get(id));
+    const table = el('table');
+    table.append(el('caption', '候補の違いを確認 — 「差分あり」の行を見比べる。狭い画面では表を横にスクロール。'));
+    const head = el('thead'), headings = el('tr');
+    const corner = el('th', '比較項目'); corner.scope = 'col'; headings.append(corner);
+    entries.forEach((entry, index) => { const h = el('th', `${index + 1}. ${entry.label} / ${entry.variant}`); h.scope = 'col'; headings.append(h); });
+    head.append(headings); table.append(head);
+    const body = el('tbody');
+    for (const [label, value] of [
+      ['目的', e => e.purpose],
+      ['撮影記録', e => ['pc', 'sp'].filter(d => e.images[d]).map(d => d.toUpperCase()).join(' / ') || 'なし'],
+      ['選択メモ', e => labels[memoFor(e.id).status]],
+      ['選ぶ理由・確認事項', e => memoFor(e.id).note || 'まだ記入していません'],
+      ['関連する要求', e => e.requirementIds.join(' · ') || '未整理'],
+    ]) {
+      const values = entries.map(value), row = el('tr');
+      row.dataset.different = String(new Set(values).size > 1);
+      const heading = el('th', label); heading.scope = 'row';
+      if (new Set(values).size > 1) heading.append(el('span', '差分あり', 'difference-label'));
+      row.append(heading);
+      values.forEach(v => row.append(el('td', v))); body.append(row);
+    }
+    table.append(body); holder.replaceChildren(table);
+  }
   $('open-compare').addEventListener('click', () => {
     const grid = el('div', undefined, 'compare-grid');
     grid.style.setProperty('--compare-columns', comparison.size);
-    for (const id of comparison) { const entry = byId.get(id); const column = el('section'); column.append(inspectImage(entry), editor(entry)); grid.append(column); }
-    $('compare-content').replaceChildren(imageControls(), grid); $('compare').showModal();
+    for (const id of comparison) { const entry = byId.get(id); const column = el('section'); column.append(el('p', `候補 ${grid.children.length + 1} / ${entry.label}`, 'compare-column-label'), inspectImage(entry), editor(entry)); grid.append(column); }
+    const facts = el('div', undefined, 'comparison-facts'); facts.id = 'comparison-facts'; facts.tabIndex = 0; facts.setAttribute('role', 'region'); facts.setAttribute('aria-label', '候補の比較表。横にスクロールできます');
+    $('compare-content').replaceChildren(facts, el('p', '関連要求は画像との対応を探す手掛かりです。受入条件の達成を示すものではありません。', 'comparison-evidence-note'), imageControls(), grid); refreshComparisonFacts(); $('compare').showModal();
   });
   for (const name of ['search', 'purpose', 'decision']) $(name).addEventListener(name === 'search' ? 'input' : 'change', () => { limit = 36; render(); });
   for (const b of document.querySelectorAll('[data-device]')) b.addEventListener('click', () => {

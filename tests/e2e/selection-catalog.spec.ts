@@ -429,3 +429,35 @@ test('compact catalog keeps narrow filters paired and selection states legible',
   }
   expect(colors.size).toBe(4);
 });
+
+test('decision facts stay aligned between cards and the comparison table', async ({ page }) => {
+  await page.locator('.tile-open').first().click();
+  await page.locator('#detail textarea').fill('見出し密度を優先する');
+  await page.locator('#detail').getByRole('button', { name: '採用候補', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.tile-note').first()).toContainText('見出し密度を優先する');
+  await expect(page.locator('.tile-facts').first()).toContainText(/PC|SP/);
+  await expect(page.locator('.tile-facts').first()).toContainText(/関連 \d+要求/);
+
+  await page.locator('.compare-pick input').nth(0).click();
+  await page.locator('.compare-pick input').nth(1).click();
+  await page.locator('#open-compare').click();
+  const facts = page.locator('#comparison-facts');
+  await expect(facts.getByRole('table')).toHaveAccessibleName(/候補の違い/);
+  await expect(facts.getByRole('rowheader', { name: /選ぶ理由・確認事項/ })).toContainText('差分あり');
+  await expect(facts).toContainText('見出し密度を優先する');
+  await expect(page.locator('.comparison-evidence-note')).toContainText('受入条件の達成を示すものではありません');
+  expect(await facts.locator('thead th').evaluateAll(cells => cells.every(cell => cell.getAttribute('scope') === 'col'))).toBe(true);
+  expect(await facts.locator('tbody th').evaluateAll(cells => cells.every(cell => cell.getAttribute('scope') === 'row'))).toBe(true);
+
+  await page.locator('#compare textarea').nth(1).fill('余白とCTAを優先する');
+  await expect(facts).toContainText('余白とCTAを優先する');
+  await page.locator('#compare section').nth(1).getByRole('button', { name: '保留', exact: true }).click();
+  await expect(facts.getByRole('rowheader', { name: /選択メモ/ })).toContainText('差分あり');
+  await expect(facts).toContainText('保留');
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await facts.focus();
+  await expect(facts).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

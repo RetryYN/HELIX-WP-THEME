@@ -85,3 +85,21 @@ main{padding-top:30px}
   .preview{height:150px}
 }
 @media(max-width:360px){.gallery{grid-template-columns:1fr}.preview{height:210px}.purpose-tag{display:block}.tile-top{display:flex}.tile-top>span{margin:0}}
+
+/* 判断情報は画像・操作から分け、同じ行で比較できるようにする。 */
+.tile-facts{display:flex;flex-wrap:wrap;gap:4px 12px;padding:4px 4px 10px;font-size:10px;color:var(--muted);border-bottom:1px solid var(--line)}
+.tile-note{margin:8px 4px 4px;padding:8px 10px;background:var(--paper);border-left:2px solid var(--green);font-size:11px;line-height:1.7;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.comparison-facts{overflow:auto;border:1px solid var(--line);border-radius:5px;background:white;margin-bottom:10px;max-height:42vh;scrollbar-gutter:stable}
+.comparison-facts table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;line-height:1.7}
+.comparison-facts caption{text-align:left;padding:12px 14px;font-size:11px;color:var(--muted);background:var(--paper)}
+.comparison-facts th,.comparison-facts td{padding:12px 14px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere;white-space:pre-wrap}
+.comparison-facts thead th{background:var(--green);color:white;font-weight:600}
+.comparison-facts tr>:first-child{width:145px;font-weight:600}
+.comparison-facts tbody th{background:var(--paper);font-size:11px}
+.comparison-facts tr[data-different=true] td{background:#f5efdd}
+.comparison-facts tr:last-child>*{border-bottom:0}
+.comparison-evidence-note{font-size:11px;line-height:1.8;color:var(--muted);margin:8px 0 20px}
+.compare-column-label{font-size:11px!important;font-weight:700;color:var(--green);margin:0 0 10px;line-height:1.7}
+@media(max-width:700px){.tile-facts{font-size:10px;gap:4px;padding:3px 3px 8px}.tile-facts span{display:block;flex-basis:100%}.tile-note{padding:6px;font-size:10px;margin:6px 3px}.comparison-facts table{min-width:660px}.comparison-facts tr>:first-child{width:110px}.comparison-facts th,.comparison-facts td{padding:9px 10px}.comparison-facts{max-height:38vh}}
+
+.difference-label{display:block;margin-top:4px;font-size:10px;color:#74571d;font-weight:600}
