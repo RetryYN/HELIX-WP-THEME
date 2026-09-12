@@ -9,57 +9,57 @@
       "protectedPosts": 50,
       "direct": {
         "cold": [
-          2148,
-          2149
+          2668,
+          2669
         ],
         "warm": [
-          2148,
-          2149
+          2668,
+          2669
         ],
-        "cold_ms": 94.5279598236084,
-        "warm_ms": 0.052928924560546875,
+        "cold_ms": 115.50307273864746,
+        "warm_ms": 0.06914138793945312,
         "cold_queries": 54,
         "warm_queries": 0,
         "cold_checks": 50,
         "warm_checks": 0
       },
-      "coldResponseMs": 341.98177699999906,
+      "coldResponseMs": 328.7587650000005,
       "warmResponseMs": [
-        132.84050000000025,
-        131.0818220000001,
-        114.92747799999961,
-        119.70732500000122,
-        139.40057499999966
+        148.1272740000004,
+        120.86267800000132,
+        122.43411299999934,
+        151.7410779999991,
+        127.39183400000002
       ],
-      "warmMedianMs": 131.0818220000001
+      "warmMedianMs": 127.39183400000002
     },
     {
       "protectedPosts": 400,
       "direct": {
         "cold": [
-          2199,
-          2200
+          2719,
+          2720
         ],
         "warm": [
-          2199,
-          2200
+          2719,
+          2720
         ],
-        "cold_ms": 725.243091583252,
-        "warm_ms": 0.051975250244140625,
+        "cold_ms": 821.9659328460693,
+        "warm_ms": 0.08702278137207031,
         "cold_queries": 406,
         "warm_queries": 0,
         "cold_checks": 400,
         "warm_checks": 0
       },
-      "coldResponseMs": 842.8913649999995,
+      "coldResponseMs": 835.3044310000005,
       "warmResponseMs": [
-        128.3201999999983,
-        116.74744999999893,
-        125.84839199999988,
-        133.26144100000238,
-        147.34141399999862
+        135.07662400000117,
+        128.28404199999932,
+        141.26611199999752,
+        123.59098799999992,
+        138.6851089999982
       ],
-      "warmMedianMs": 128.3201999999983
+      "warmMedianMs": 135.07662400000117
     }
   ],
   "rows": [
@@ -99,8 +99,8 @@
       "name": "warm-response-faster-than-cold:50",
       "pass": true,
       "actual": {
-        "coldResponseMs": 341.98177699999906,
-        "warmMedianMs": 131.0818220000001
+        "coldResponseMs": 328.7587650000005,
+        "warmMedianMs": 127.39183400000002
       }
     },
     {
@@ -139,8 +139,8 @@
       "name": "warm-response-faster-than-cold:400",
       "pass": true,
       "actual": {
-        "coldResponseMs": 842.8913649999995,
-        "warmMedianMs": 128.3201999999983
+        "coldResponseMs": 835.3044310000005,
+        "warmMedianMs": 135.07662400000117
       }
     },
     {
@@ -148,7 +148,7 @@
       "pass": true,
       "actual": {
         "countRatio": 8,
-        "responseRatio": 0.9789320749600062
+        "responseRatio": 1.0603240392943958
       }
     },
     {

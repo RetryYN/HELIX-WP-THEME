@@ -44,15 +44,30 @@ function findUntranslatedCjk() {
   const findings = [];
   for (const absolute of walk(theme).filter(file => file.endsWith('.php'))) {
     const relative = path.relative(root, absolute).split(path.sep).join('/');
-    for (const [index, original] of fs.readFileSync(absolute, 'utf8').split('\n').entries()) {
+    const source = fs.readFileSync(absolute, 'utf8');
+    const htmlLines = stripPhp(source).split('\n');
+    for (const [index, original] of source.split('\n').entries()) {
       const line = original.replace(/\/\/.*$/, '');
-      if (/^\s*(?:\*|#|\/\*)/.test(line) || gettext.test(line)) continue;
-      const phpOutput = /\b(?:echo|print)\b/.test(line) && cjk.test(line);
-      const patternHtml = relative.includes('/patterns/') && />[^<]*[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}][^<]*</u.test(line) && !/<!--.*-->/.test(line);
-      if (phpOutput || patternHtml) findings.push(`${relative}:${index + 1}`);
+      if (/^\s*(?:\*|#|\/\*)/.test(line)) continue;
+      const phpOutput = /\b(?:echo|print)\b/.test(line) && cjk.test(line) && !gettext.test(line);
+      const htmlOutsidePhp = htmlLines[index] ?? '';
+      const rawHtml = />[^<]*[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}][^<]*</u.test(htmlOutsidePhp) && !/<!--.*-->/.test(htmlOutsidePhp);
+      if (phpOutput || rawHtml) findings.push(`${relative}:${index + 1}`);
     }
   }
   return findings;
+}
+
+function stripPhp(source) {
+  let inPhp = false;
+  let output = '';
+  for (let index = 0; index < source.length;) {
+    if (!inPhp && source.startsWith('<?php', index)) { inPhp = true; index += 5; continue; }
+    if (inPhp && source.startsWith('?>', index)) { inPhp = false; index += 2; continue; }
+    const character = source[index++];
+    output += inPhp && character !== '\n' ? ' ' : character;
+  }
+  return output;
 }
 
 const quotePo = value => JSON.stringify(value).replace(/\\u2028|\\u2029/g, match => match.toLowerCase());
@@ -122,6 +137,7 @@ alteredDomain.text_domain = 'wrong-domain';
 check('negative:text-domain-drift-fails', !evaluate({ ...productionInput, profile: alteredDomain })['i18n:text-domain-consistent'], { failed_gate: 'i18n:text-domain-consistent' });
 check('negative:pot-source-drift-fails', !evaluate({ ...productionInput, actualPot: `${actualPot}\n# drift\n` })['i18n:pot-exactly-matches-source'], { failed_gate: 'i18n:pot-exactly-matches-source' });
 check('negative:untranslated-cjk-output-fails', cjkFixtureFails("echo '未翻訳';") && !evaluate({ ...productionInput, untranslatedCjk: ['fixture.php:1'] })['i18n:no-untranslated-cjk-output'], { failed_gate: 'i18n:no-untranslated-cjk-output' });
+check('negative:untranslated-cjk-template-html-fails', cjkFixtureFails('<p>未翻訳</p>') && !evaluate({ ...productionInput, untranslatedCjk: ['fixture.php:1'] })['i18n:no-untranslated-cjk-output'], { failed_gate: 'i18n:no-untranslated-cjk-output' });
 const alteredLanguages = structuredClone(profile);
 delete alteredLanguages.source_languages;
 check('negative:missing-source-language-policy-fails', !evaluate({ ...productionInput, profile: alteredLanguages })['i18n:source-languages-declared'], { failed_gate: 'i18n:source-languages-declared' });
@@ -144,5 +160,9 @@ console.log(JSON.stringify(result, null, 2));
 if (result.failed) process.exitCode = 1;
 
 function cjkFixtureFails(line) {
-  return /\b(?:echo|print)\b/.test(line) && /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u.test(line) && !/\b(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\s*\(/.test(line);
+  const cjk = /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u;
+  const gettext = /\b(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\s*\(/;
+  const phpOutput = /\b(?:echo|print)\b/.test(line) && cjk.test(line) && !gettext.test(line);
+  const rawHtml = />[^<]*[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}][^<]*</u.test(line.replace(/<\?php.*?\?>/g, ''));
+  return phpOutput || rawHtml;
 }

@@ -8,6 +8,6 @@
 ?>
 <!-- wp:group {"className":"wt-footer-extra-slot wt-footer-extra-slot--sites wt-footer-navigation-group"} -->
 <div class="wp-block-group wt-footer-extra-slot wt-footer-extra-slot--sites wt-footer-navigation-group">
-<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">関連サイト・ページ</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":2} --><h2 class="wp-block-heading"><?php esc_html_e( '関連サイト・ページ', 'helix-wt' ); ?></h2><!-- /wp:heading -->
 <!-- wp:navigation {"className": "wt-footer-data-navigation", "ariaLabel": "関連サイト・ページ", "overlayMenu": "never"} /-->
 </div><!-- /wp:group -->

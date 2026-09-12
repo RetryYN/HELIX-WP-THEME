@@ -7,5 +7,5 @@
  */
 ?>
 <!-- wp:paragraph {"className":"wt-cta-textlink"} -->
-<p class="wt-cta-textlink"><a href="#" rel="sponsored nofollow">公式サイトで価格・在庫を確認する <i class="wt-i wt-i--s wt-i--arrow-right" aria-hidden="true"></i></a></p>
+<p class="wt-cta-textlink"><a href="#" rel="sponsored nofollow"><?php esc_html_e( '公式サイトで価格・在庫を確認する', 'helix-wt' ); ?> <i class="wt-i wt-i--s wt-i--arrow-right" aria-hidden="true"></i></a></p>
 <!-- /wp:paragraph -->

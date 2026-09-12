@@ -7,5 +7,5 @@
  */
 ?>
 <!-- wp:buttons {"className":"wt-cta-btn","layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons wt-cta-btn"><!-- wp:button {"backgroundColor":"cta","textColor":"cta-contrast"} --><div class="wp-block-button"><a class="wp-block-button__link has-cta-contrast-color has-cta-background-color has-text-color has-background wp-element-button" href="#" rel="sponsored nofollow">公式サイトで最新価格を見る <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a></div><!-- /wp:button --></div>
+<div class="wp-block-buttons wt-cta-btn"><!-- wp:button {"backgroundColor":"cta","textColor":"cta-contrast"} --><div class="wp-block-button"><a class="wp-block-button__link has-cta-contrast-color has-cta-background-color has-text-color has-background wp-element-button" href="#" rel="sponsored nofollow"><?php esc_html_e( '公式サイトで最新価格を見る', 'helix-wt' ); ?> <i class="wt-i wt-i--s wt-i--external" aria-hidden="true"></i></a></div><!-- /wp:button --></div>
 <!-- /wp:buttons -->

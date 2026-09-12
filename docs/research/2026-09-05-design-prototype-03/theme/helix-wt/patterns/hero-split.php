@@ -13,13 +13,13 @@ $u = get_theme_file_uri( "assets/img" );
 <div class="wp-block-columns alignwide are-vertically-aligned-center">
 <!-- wp:column {"width":"55%"} --><div class="wp-block-column" style="flex-basis:55%">
 <!-- wp:paragraph {"className":"wt-eyebrow"} --><p class="wt-eyebrow">Web marketing for SMB</p><!-- /wp:paragraph -->
-<!-- wp:heading {"level":1,"fontSize":"hero","style":{"typography":{"lineHeight":"1.3"}}} --><h1 class="wp-block-heading has-hero-font-size" style="line-height:1.3">問い合わせが増えるホームページを、3 か月で。</h1><!-- /wp:heading -->
-<!-- wp:paragraph {"fontSize":"l","textColor":"mute","style":{"spacing":{"margin":{"top":"1rem"}}}} --><p class="has-mute-color has-text-color has-l-font-size" style="margin-top:1rem">制作から運用・改善まで一社で。中小企業 320 社の集客を支援してきたチームが、成果の出る導線を設計します。</p><!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"fontSize":"hero","style":{"typography":{"lineHeight":"1.3"}}} --><h1 class="wp-block-heading has-hero-font-size" style="line-height:1.3"><?php esc_html_e( '問い合わせが増えるホームページを、3 か月で。', 'helix-wt' ); ?></h1><!-- /wp:heading -->
+<!-- wp:paragraph {"fontSize":"l","textColor":"mute","style":{"spacing":{"margin":{"top":"1rem"}}}} --><p class="has-mute-color has-text-color has-l-font-size" style="margin-top:1rem"><?php esc_html_e( '制作から運用・改善まで一社で。中小企業 320 社の集客を支援してきたチームが、成果の出る導線を設計します。', 'helix-wt' ); ?></p><!-- /wp:paragraph -->
 <!-- wp:buttons {"layout":{"type":"flex","flexWrap":"wrap"}} --><div class="wp-block-buttons">
-<!-- wp:button {"backgroundColor":"cta","textColor":"cta-contrast"} --><div class="wp-block-button"><a class="wp-block-button__link has-cta-contrast-color has-cta-background-color has-text-color has-background wp-element-button" href="#contact">無料で相談する</a></div><!-- /wp:button -->
-<!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#cases">導入事例を見る</a></div><!-- /wp:button -->
+<!-- wp:button {"backgroundColor":"cta","textColor":"cta-contrast"} --><div class="wp-block-button"><a class="wp-block-button__link has-cta-contrast-color has-cta-background-color has-text-color has-background wp-element-button" href="#contact"><?php esc_html_e( '無料で相談する', 'helix-wt' ); ?></a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#cases"><?php esc_html_e( '導入事例を見る', 'helix-wt' ); ?></a></div><!-- /wp:button -->
 </div><!-- /wp:buttons -->
-<!-- wp:paragraph {"fontSize":"xs","textColor":"mute"} --><p class="has-mute-color has-text-color has-xs-font-size">初回相談 60 分無料 ・ 契約の縛りなし</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"fontSize":"xs","textColor":"mute"} --><p class="has-mute-color has-text-color has-xs-font-size"><?php esc_html_e( '初回相談 60 分無料 ・ 契約の縛りなし', 'helix-wt' ); ?></p><!-- /wp:paragraph -->
 </div><!-- /wp:column -->
 <!-- wp:column {"width":"45%"} --><div class="wp-block-column" style="flex-basis:45%">
 <!-- wp:group {"className":"wt-hero__visual","layout":{"type":"default"}} --><div class="wp-block-group wt-hero__visual"><img src="<?php echo esc_url( $u ); ?>/hero.png" alt=""></div><!-- /wp:group -->
