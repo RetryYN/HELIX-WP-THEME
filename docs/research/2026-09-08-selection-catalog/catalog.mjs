@@ -74,6 +74,7 @@ async function start() {
   function inspectImage(entry) {
     const view = imageFor(entry, 'large-preview');
     view.classList.add('image-viewer'); view.dataset.mode = imageMode;
+    view.dataset.component = String(entry.group === '共通設定・部品');
     view.tabIndex = 0; view.setAttribute('role', 'region');
     view.setAttribute('aria-label', `${entry.label} ${entry.variant}の画像。拡大時は矢印キーで移動`);
     return view;
@@ -133,13 +134,16 @@ async function start() {
     $('collection-title').textContent = linkedIds ? '要求に関連する候補' : collections.find(([key]) => key === face)[1];
     $('count').textContent = `${entries.length}候補 / ${device.toUpperCase()}`;
     $('empty').hidden = entries.length > 0; $('more').hidden = entries.length <= limit;
+    $('gallery').dataset.collection = face;
     $('gallery').replaceChildren();
     for (const entry of entries.slice(0, limit)) {
       const tile = el('article', undefined, 'tile');
       tile.dataset.decision = memoFor(entry.id).status;
       const open = button('', () => detail(entry)); open.className = 'tile-open'; open.dataset.entryId = entry.id;
       open.setAttribute('aria-label', `${entry.label} ${entry.variant}の詳細`);
-      open.append(imageFor(entry, 'preview'));
+      const preview = imageFor(entry, 'preview');
+      if (entry.group === '共通設定・部品') { tile.classList.add('component-tile'); preview.classList.add('component-preview'); }
+      open.append(preview);
       const top = el('div', undefined, 'tile-top'); top.append(el('h3', entry.label), el('span', faceLabels[entry.face]));
       open.append(top, el('p', entry.variant, 'variant'));
       const bottom = el('div', undefined, 'tile-footer');
@@ -234,7 +238,22 @@ async function start() {
     grid.style.setProperty('--compare-columns', comparison.size);
     for (const id of comparison) { const entry = byId.get(id); const column = el('section'); column.append(el('p', `候補 ${grid.children.length + 1} / ${entry.label}`, 'compare-column-label'), inspectImage(entry), editor(entry)); grid.append(column); }
     const facts = el('div', undefined, 'comparison-facts'); facts.id = 'comparison-facts'; facts.tabIndex = 0; facts.setAttribute('role', 'region'); facts.setAttribute('aria-label', '候補の比較表。横にスクロールできます');
-    $('compare-content').replaceChildren(facts, el('p', '関連要求は画像との対応を探す手掛かりです。受入条件の達成を示すものではありません。', 'comparison-evidence-note'), imageControls(), grid); refreshComparisonFacts(); $('compare').showModal();
+    const switcher = el('div', undefined, 'compare-switcher');
+    switcher.setAttribute('role', 'group'); switcher.setAttribute('aria-label', '表示する比較候補');
+    const applyCandidate = index => {
+      grid.dataset.activeCandidate = String(index);
+      for (const [i, section] of [...grid.children].entries()) section.dataset.active = String(i === index);
+      for (const [i, control] of [...switcher.children].entries()) control.setAttribute('aria-pressed', String(i === index));
+    };
+    [...comparison].forEach((id, index) => {
+      const entry = byId.get(id);
+      switcher.append(button(`${index + 1}. ${entry.label} / ${entry.variant}`, () => applyCandidate(index)));
+    });
+    applyCandidate(0);
+    const factsDisclosure = el('details', undefined, 'comparison-summary');
+    factsDisclosure.open = !matchMedia('(max-width:700px)').matches;
+    factsDisclosure.append(el('summary', '候補の比較表を見る'), facts);
+    $('compare-content').replaceChildren(switcher, factsDisclosure, el('p', '関連要求は画像との対応を探す手掛かりです。受入条件の達成を示すものではありません。', 'comparison-evidence-note'), imageControls(), grid); refreshComparisonFacts(); $('compare').showModal();
   });
   for (const name of ['search', 'purpose', 'decision']) $(name).addEventListener(name === 'search' ? 'input' : 'change', () => { limit = 36; render(); });
   for (const b of document.querySelectorAll('[data-device]')) b.addEventListener('click', () => {

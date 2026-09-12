@@ -52,10 +52,22 @@ function findUntranslatedCjk() {
       const phpOutput = /\b(?:echo|print)\b/.test(line) && cjk.test(line) && !gettext.test(line);
       const htmlOutsidePhp = htmlLines[index] ?? '';
       const rawHtml = />[^<]*[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}][^<]*</u.test(htmlOutsidePhp) && !/<!--.*-->/.test(htmlOutsidePhp);
-      if (phpOutput || rawHtml) findings.push(`${relative}:${index + 1}`);
+      const rawAttribute = hasUntranslatedCjkAttribute(line);
+      if (phpOutput || rawHtml || rawAttribute) findings.push(`${relative}:${index + 1}`);
     }
   }
   return findings;
+}
+
+function hasUntranslatedCjkAttribute(line) {
+  const cjk = /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u;
+  const userFacingAttribute = /\b(?:alt|aria-label|placeholder|title)=(['"])(.*?)\1/g;
+  for (const match of line.matchAll(userFacingAttribute)) {
+    if (!cjk.test(match[2])) continue;
+    if (/esc_attr(?:__|_e)?\s*\(/.test(match[2])) continue;
+    return true;
+  }
+  return false;
 }
 
 function stripPhp(source) {
@@ -138,6 +150,7 @@ check('negative:text-domain-drift-fails', !evaluate({ ...productionInput, profil
 check('negative:pot-source-drift-fails', !evaluate({ ...productionInput, actualPot: `${actualPot}\n# drift\n` })['i18n:pot-exactly-matches-source'], { failed_gate: 'i18n:pot-exactly-matches-source' });
 check('negative:untranslated-cjk-output-fails', cjkFixtureFails("echo '未翻訳';") && !evaluate({ ...productionInput, untranslatedCjk: ['fixture.php:1'] })['i18n:no-untranslated-cjk-output'], { failed_gate: 'i18n:no-untranslated-cjk-output' });
 check('negative:untranslated-cjk-template-html-fails', cjkFixtureFails('<p>未翻訳</p>') && !evaluate({ ...productionInput, untranslatedCjk: ['fixture.php:1'] })['i18n:no-untranslated-cjk-output'], { failed_gate: 'i18n:no-untranslated-cjk-output' });
+check('negative:untranslated-cjk-attribute-fails', cjkFixtureFails('<input placeholder="未翻訳">') && !evaluate({ ...productionInput, untranslatedCjk: ['fixture.php:1'] })['i18n:no-untranslated-cjk-output'], { failed_gate: 'i18n:no-untranslated-cjk-output' });
 const alteredLanguages = structuredClone(profile);
 delete alteredLanguages.source_languages;
 check('negative:missing-source-language-policy-fails', !evaluate({ ...productionInput, profile: alteredLanguages })['i18n:source-languages-declared'], { failed_gate: 'i18n:source-languages-declared' });
@@ -164,5 +177,5 @@ function cjkFixtureFails(line) {
   const gettext = /\b(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\s*\(/;
   const phpOutput = /\b(?:echo|print)\b/.test(line) && cjk.test(line) && !gettext.test(line);
   const rawHtml = />[^<]*[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}][^<]*</u.test(line.replace(/<\?php.*?\?>/g, ''));
-  return phpOutput || rawHtml;
+  return phpOutput || rawHtml || hasUntranslatedCjkAttribute(line);
 }

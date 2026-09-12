@@ -461,3 +461,22 @@ test('decision facts stay aligned between cards and the comparison table', async
   await expect(facts).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('mobile component selection uses full width and switches comparison without losing notes', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  const first = page.locator('.component-tile').first();
+  expect(await first.evaluate(e => e.getBoundingClientRect().width)).toBeGreaterThan(340);
+  expect(await first.locator('.compare-pick').evaluate(e => e.getBoundingClientRect().bottom)).toBeLessThan(900);
+  for (let i = 0; i < 2; i++) await page.locator('.compare-pick input').nth(i).check();
+  await page.locator('#open-compare').click();
+  await expect(page.locator('#compare .compare-grid>section').first()).toBeVisible();
+  await expect(page.locator('#compare .compare-grid>section').nth(1)).toBeHidden();
+  await page.locator('#compare textarea').first().fill('幅と余白を確認');
+  await page.locator('.compare-switcher button').nth(1).click();
+  await expect(page.locator('#compare .compare-grid>section').nth(1)).toBeVisible();
+  await page.locator('.compare-switcher button').first().click();
+  await expect(page.locator('#compare textarea').first()).toHaveValue('幅と余白を確認');
+  await page.locator('.comparison-summary>summary').click();
+  await expect(page.locator('#comparison-facts')).toContainText('幅と余白を確認');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

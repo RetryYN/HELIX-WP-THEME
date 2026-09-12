@@ -103,3 +103,39 @@ main{padding-top:30px}
 @media(max-width:700px){.tile-facts{font-size:10px;gap:4px;padding:3px 3px 8px}.tile-facts span{display:block;flex-basis:100%}.tile-note{padding:6px;font-size:10px;margin:6px 3px}.comparison-facts table{min-width:660px}.comparison-facts tr>:first-child{width:110px}.comparison-facts th,.comparison-facts td{padding:9px 10px}.comparison-facts{max-height:38vh}}
 
 .difference-label{display:block;margin-top:4px;font-size:10px;color:#74571d;font-weight:600}
+
+/* 部品の実寸比を保ち、余白ではなく選択対象をカードの主役にする。 */
+.component-preview{height:auto;min-height:0;padding:0;background:var(--white);border-bottom:1px solid var(--line);border-radius:0}
+.component-preview img,.component-preview.sp img{width:100%;max-width:100%;max-height:260px;object-fit:contain;box-shadow:none}
+.component-tile .tile-open{flex:0 0 auto}
+.gallery[data-collection=common]{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.compare-switcher{display:none}
+.comparison-summary>summary{cursor:pointer;font-size:12px;font-weight:650;padding:12px 0;min-height:44px}
+@media(max-width:700px){
+  .masthead{min-height:74px;padding-block:12px}
+  .intro .eyebrow,.intro .lead{display:none}
+  .intro h1{font-size:20px;margin:0;line-height:1.5}
+  .intro h1 br{display:none}.intro h1 em{margin-left:.4em}
+  .intro{padding-bottom:10px}
+  main{padding-top:14px}
+  .quality-links{margin-bottom:8px}.quality-links summary{padding-block:10px}
+  .workspace-tabs{margin-bottom:12px}
+  .gallery[data-collection=common]{grid-template-columns:minmax(0,1fr)}
+  .component-preview img,.component-preview.sp img{max-height:240px}
+  .component-tile .tile-top{display:flex;gap:8px}
+  .component-tile .tile-facts{gap:12px}.component-tile .tile-facts span{flex-basis:auto}
+  .compare-switcher{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;padding:3px}
+  .compare-switcher button{flex:0 0 75%;font-size:12px;text-align:left;line-height:1.6}
+  .compare-switcher button[aria-pressed=true]{background:var(--green);color:white}
+  #compare .compare-grid{display:block;overflow:visible}
+  #compare .compare-grid>section[data-active=false]{display:none}
+  #compare .image-viewer{height:44dvh}
+  #compare .dialog-head{margin-bottom:10px}#compare .dialog-head h2{font-size:18px}
+  #compare .comparison-evidence-note{margin-block:8px;font-size:10px}
+  #compare .image-controls{gap:5px;margin-bottom:10px}
+  #compare .image-controls button{padding:9px;font-size:11px}
+}
+
+.image-viewer[data-component=true][data-mode=overview]{height:auto!important;min-height:0}
+.image-viewer[data-component=true][data-mode=overview] img{width:100%;max-height:44dvh}
+@media(max-width:700px){.intro h1 em{display:block;margin-left:0}.component-tile .purpose-tag{display:block}}
