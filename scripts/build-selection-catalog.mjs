@@ -20,7 +20,7 @@ const families = {
   LOOK: ['h2', 'h3', 'box', 'cta', 'axis-', 'contrast-guard', 'width', 'graph'],
   VOCAB: ['box', 'cta', 'table', 'toc', 'pr-notice', 'linkcard', 'pros-cons', 'review-bar'],
   LP: ['lp-', 'content-lp'], RECO: ['related', 'category-ranking'], META: ['eyecatch', 'toc', 'share', 'side-'],
-  ZONE: ['chrome-', 'side-', 'footer-above'], SP: ['side-sp', 'header', 'table', 'chrome-fix'],
+  ZONE: ['zone-', 'chrome-', 'side-', 'footer-above'], SP: ['side-sp', 'header', 'table', 'chrome-fix'],
   PAGE: ['page-', 'home-', 'site-'], BANNER: ['footer-above', 'side-set'],
   SNS: ['share', 'article-tail-share', 'footer-extra', 'lp-line'],
   AUTHOR: ['article-tail-author'], TPL: ['404'],
@@ -300,6 +300,30 @@ if (fs.existsSync(path.join(root, notfoundRecoveryPath))) {
       evidence: '../2026-09-13-notfound-recovery/verify.json',
     });
   }
+}
+const zoneSlotsPath = 'docs/research/2026-09-13-zone-slots/verification.json';
+if (fs.existsSync(path.join(root, zoneSlotsPath))) {
+  const evidence = read(zoneSlotsPath);
+  const requiredChecks = [
+    'pc-js:placement-order', 'pc-js:device-difference', 'pc-js:opposite-heavy-absent',
+    'sp-js:placement-order', 'sp-js:device-difference', 'sp-js:opposite-heavy-absent',
+    'empty-dom-false', 'empty-dom-true', 'fixture-cleanup',
+  ];
+  if (!evidence.completed || evidence.checks?.length !== 35
+    || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('ZONE slot evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale ZONE slot evidence: ${file}`);
+  }
+  entries.set('zone-slots:device-selection', {
+    id: 'zone-slots:device-selection', face: 'zone', part: 'zone-slot-selection',
+    label: '共通slotとPC/SP差分', variant: 'server-rendered',
+    images: { pc: '../2026-09-13-zone-slots/pc-js.png', sp: '../2026-09-13-zone-slots/sp-js.png' },
+    requirementIds: [], purpose: '配置する案内を端末ごとに選ぶ', group: '共通設定・部品',
+    description: '共通宣言を端末差分で置換し、非選択の重い面と空slotをHTMLへ残さない専用カタログPoC。通常テンプレ、Site Editor、設定schema、キャッシュ分離は未完了です。',
+    evidence: '../2026-09-13-zone-slots/verification.json',
+  });
 }
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);

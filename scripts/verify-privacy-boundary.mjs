@@ -63,6 +63,7 @@ const rows = [
 const report = {
   schema: 'wt-privacy-boundary-verification.v1', requirements: ['WT-NFR-PRIV-01'],
   completed: rows.every(row => row.pass), scannedRoots: roots, scannedFileCount: files.length,
+  scopeBoundary: 'Current HELIX WT deliverable only. Legacy AGENT NEO theme/plugin roots are read-only reference assets and are excluded by the repository work boundary.',
   rules: rules.map(({ id, category }) => ({ id, category })), sourceDigests,
   rows, failed: rows.filter(row => !row.pass).length,
 };

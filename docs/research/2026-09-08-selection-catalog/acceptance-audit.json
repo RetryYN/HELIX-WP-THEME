@@ -3,8 +3,8 @@
   "requirementCount": 133,
   "acceptanceCount": 294,
   "counts": {
-    "missing": 243,
-    "partial": 21,
+    "missing": 241,
+    "partial": 23,
     "verified_in_poc": 30,
     "stale": 0
   },
@@ -21,7 +21,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-          "sha256": "7a8facfb66b71887638a9c6254251007a42fc419d3654674471fabc0570922f9",
+          "sha256": "21c7c6774a17237389782c47dc569e614c8eec0e81f270c1ec2df35076ff5a85",
           "row_names": [
             "manifest:declared-equals-current-helix-wt-source",
             "manifest:all-capability-kinds",
@@ -42,7 +42,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-          "sha256": "7a8facfb66b71887638a9c6254251007a42fc419d3654674471fabc0570922f9",
+          "sha256": "21c7c6774a17237389782c47dc569e614c8eec0e81f270c1ec2df35076ff5a85",
           "row_names": [
             "negative:undeclared-patterns-fails",
             "negative:undeclared-template_parts-fails",
@@ -67,7 +67,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-          "sha256": "7a8facfb66b71887638a9c6254251007a42fc419d3654674471fabc0570922f9",
+          "sha256": "21c7c6774a17237389782c47dc569e614c8eec0e81f270c1ec2df35076ff5a85",
           "row_names": [
             "manifest:declared-equals-current-helix-wt-source"
           ]
@@ -116,7 +116,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "8392a8b6b7dd1ac9ff8c17e3b32c9d4d95ce58d06ab122e02fdf0186abc043d1",
+          "sha256": "9a9f2577182259d9aa3108c0b567d526aed6aa12cdd4efbd1d3ac4c52550cb58",
           "row_names": [
             "boundary:production-findings-zero",
             "boundary:manifest-denies-local-ai-logic"
@@ -135,7 +135,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "8392a8b6b7dd1ac9ff8c17e3b32c9d4d95ce58d06ab122e02fdf0186abc043d1",
+          "sha256": "9a9f2577182259d9aa3108c0b567d526aed6aa12cdd4efbd1d3ac4c52550cb58",
           "row_names": [
             "negative:sdk-import-js-fails",
             "negative:sdk-import-php-fails",
@@ -178,24 +178,54 @@
       "requirement_id": "WT-FR-ZONE-01",
       "oracle": "各 slot に共通宣言と device 別差分を置くと SP / PC の該当位置に描画され、両幅の検査を通過し、空なら DOM に残らない",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "専用WordPressカタログ面で、共通宣言とPC/SP差分のserver-side描画、非選択の重いHTML不在、空宣言時のwrapper・見出し・カードDOM不在をPC/SP・JS有無で実測。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "通常記事・固定ページの実ヘッダー内、関連前後、本文前、固定ページ上下、追尾サイドバー、SP下部固定への接続",
+        "Site Editorと設定JSON/schemaからの編集・保存・再描画",
+        "wp_is_mobileとviewport不一致、回転・resize、ページキャッシュの端末分離"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-13-zone-slots/verification.json",
+          "sha256": "fbb36ff79a49ba8082cd36b47f205093e6780b3c4d50482ce581332ae87f4ef0",
+          "row_names": [
+            "pc-js:placement-order",
+            "pc-js:device-difference",
+            "sp-js:placement-order",
+            "sp-js:device-difference",
+            "empty-dom-false",
+            "empty-dom-true"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-01B",
       "requirement_id": "WT-FR-ZONE-01",
       "oracle": "空 slot が空要素や領域見出しを出す、または重い面を Block Visibility だけで出し分ければ FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "専用WordPressカタログ面で、共通宣言とPC/SP差分のserver-side描画、非選択の重いHTML不在、空宣言時のwrapper・見出し・カードDOM不在をPC/SP・JS有無で実測。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "通常記事・固定ページの実ヘッダー内、関連前後、本文前、固定ページ上下、追尾サイドバー、SP下部固定への接続",
+        "Site Editorと設定JSON/schemaからの編集・保存・再描画",
+        "wp_is_mobileとviewport不一致、回転・resize、ページキャッシュの端末分離"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-13-zone-slots/verification.json",
+          "sha256": "fbb36ff79a49ba8082cd36b47f205093e6780b3c4d50482ce581332ae87f4ef0",
+          "row_names": [
+            "pc-js:opposite-heavy-absent",
+            "sp-js:opposite-heavy-absent",
+            "pc-js:no-hidden-zone",
+            "sp-js:no-hidden-zone",
+            "empty-dom-false",
+            "empty-dom-true"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-02A",
@@ -1117,7 +1147,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "e660b84497112153e3e73fa82d02c7e90730d27d065265783caf698874c4babd",
+          "sha256": "5483d3ea4e116abec19fa041abd37780fff17c52c0a1b2ffb5510ee1c5a05877",
           "row_names": [
             "privacy:production-tracking-ids-zero",
             "privacy:production-ad-code-zero",
@@ -1137,7 +1167,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "e660b84497112153e3e73fa82d02c7e90730d27d065265783caf698874c4babd",
+          "sha256": "5483d3ea4e116abec19fa041abd37780fff17c52c0a1b2ffb5510ee1c5a05877",
           "row_names": [
             "negative:ga4-measurement-id-fails",
             "negative:tag-manager-id-fails",
@@ -3598,7 +3628,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "9acb2cd8afd6eb5d2c6b26479329a1ffb2512813d4f7cbc6056cc588585c2d5d",
+          "sha256": "ca43967bf4438050cdfa7426f991b13478ed9a505f1f8187d04639aa76411099",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -3623,7 +3653,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "9acb2cd8afd6eb5d2c6b26479329a1ffb2512813d4f7cbc6056cc588585c2d5d",
+          "sha256": "ca43967bf4438050cdfa7426f991b13478ed9a505f1f8187d04639aa76411099",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -3793,7 +3823,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "82a6b06c3412c3f7a09cfba70904fba405f7ec7284a49d1f1771aafad6458fd2",
+          "sha256": "d67b7f3467c301f44bd8642b317ee933d2d530ed7d8184531241b31e6c82d0e3",
           "row_names": [
             "i18n:source-calls-found",
             "i18n:all-gettext-calls-extracted",
@@ -3819,7 +3849,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "82a6b06c3412c3f7a09cfba70904fba405f7ec7284a49d1f1771aafad6458fd2",
+          "sha256": "d67b7f3467c301f44bd8642b317ee933d2d530ed7d8184531241b31e6c82d0e3",
           "row_names": [
             "negative:text-domain-drift-fails",
             "negative:pot-source-drift-fails",
@@ -3870,7 +3900,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-          "sha256": "7809c389ef3a15862d7e12396d28e72f7cf7161ad94e6f2c7421f600fc157d14",
+          "sha256": "d04bc9243e9c98217b33afc419c07a5afd5a4056844b213283002a7f53951c45",
           "row_names": [
             "handoff:origin-owned-by-manifest",
             "handoff:valid-origin-and-path",
@@ -4343,7 +4373,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-          "sha256": "7809c389ef3a15862d7e12396d28e72f7cf7161ad94e6f2c7421f600fc157d14",
+          "sha256": "d04bc9243e9c98217b33afc419c07a5afd5a4056844b213283002a7f53951c45",
           "row_names": [
             "handoff:origin-owned-by-manifest",
             "handoff:valid-origin-and-path",
@@ -4873,7 +4903,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-footer-data/rendering.json",
-          "sha256": "fac3155c19051858ae6d66c04024b224359806fe1aeecd145d7b3ab0ac8c366e",
+          "sha256": "1c0ad8c6998c5779dfa65f8c872766e23588831b074c84fc815de1c8e98f608e",
           "row_names": [
             "related-group:empty:1440:js-true",
             "sitemap-groups:empty:1440:js-true",
@@ -5068,7 +5098,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-event-state/verify.json",
-          "sha256": "326441685dce162024d020fd8543918dfeab3bd93e317008edd3e49c520ae6e4",
+          "sha256": "39775e45642ad36b75b6c1a26cd935035be7875e0361074e1ea6aa2a4e8b86ce",
           "row_names": [
             "fixture-mode:blogname-does-not-enable-observed-time",
             "state:before-open:pc:js-true",
@@ -5582,7 +5612,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-event-state/verify.json",
-          "sha256": "326441685dce162024d020fd8543918dfeab3bd93e317008edd3e49c520ae6e4",
+          "sha256": "39775e45642ad36b75b6c1a26cd935035be7875e0361074e1ea6aa2a4e8b86ce",
           "row_names": [
             "fixture-mode:blogname-does-not-enable-observed-time",
             "state:before-open:pc:js-true",
@@ -6092,7 +6122,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "access:anonymous:oneoff:body",
             "access:anonymous:oneoff:preview",
@@ -6174,7 +6204,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "access:anonymous:oneoff:body",
             "access:anonymous:oneoff:preview",
@@ -6232,7 +6262,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "interview:confirmation",
             "interview:embedded-reference",
@@ -6263,7 +6293,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "interview:confirmation",
             "interview:embedded-reference",
@@ -6373,7 +6403,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "blp:lp-target",
             "blp:reasoning"
@@ -6403,7 +6433,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "blp:lp-target",
             "blp:ownership:inherit",
@@ -8709,7 +8739,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "198b8ecfa0726d86a1a1563e48e0c8ae066ff649ad3f36cdab75b22647c1a8dd",
+          "sha256": "e32e716e0c624c39226edecb461dac8994eb3f5cc4e1302a7a07a291d15707a7",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -9157,7 +9187,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "198b8ecfa0726d86a1a1563e48e0c8ae066ff649ad3f36cdab75b22647c1a8dd",
+          "sha256": "e32e716e0c624c39226edecb461dac8994eb3f5cc4e1302a7a07a291d15707a7",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -9652,7 +9682,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "access:anonymous:oneoff:body",
             "access:anonymous:oneoff:preview",
@@ -9752,7 +9782,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "interview:confirmation",
             "interview:embedded-reference",
@@ -9863,7 +9893,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-          "sha256": "d9de1290e5fd9b31ed1514725307ed00912251d55efcdbc43d33dcd30b40d037",
+          "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
           "row_names": [
             "blp:lp-target",
             "blp-journey:pc:no-js:decision-content",
@@ -9889,7 +9919,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-          "sha256": "1e58e062035c0cc631d28e237e62a61ad19cb768a9f4050bc28927acd2562201",
+          "sha256": "603142d380e15f9616469a718624452908b29d1b805336c9383fe9d20b3c2091",
           "row_names": [
             "course:three-lessons:pc:js-false",
             "course:three-lessons:pc:js-true",
@@ -9945,7 +9975,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-          "sha256": "1e58e062035c0cc631d28e237e62a61ad19cb768a9f4050bc28927acd2562201",
+          "sha256": "603142d380e15f9616469a718624452908b29d1b805336c9383fe9d20b3c2091",
           "row_names": [
             "glossary:term-target:pc:js-false",
             "glossary:term-target:pc:js-true",
@@ -10030,7 +10060,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-          "sha256": "1e58e062035c0cc631d28e237e62a61ad19cb768a9f4050bc28927acd2562201",
+          "sha256": "603142d380e15f9616469a718624452908b29d1b805336c9383fe9d20b3c2091",
           "row_names": [
             "archive:count:pc:js-true",
             "archive:first-page:pc:js-true",
@@ -10216,7 +10246,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
-          "sha256": "c6ae3c3458e99154f6e9d036b353c3c0ad08fdf3631ad8afb96bb5b954d5fc08",
+          "sha256": "f6ace1633a0c54ee069a54ef9fb6b53d798498eaee012b5c7dc4d171908717ff",
           "row_names": [
             "navigation:all-owner-combinations",
             "navigation:site-own-style-separated",
@@ -10242,7 +10272,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-          "sha256": "7809c389ef3a15862d7e12396d28e72f7cf7161ad94e6f2c7421f600fc157d14",
+          "sha256": "d04bc9243e9c98217b33afc419c07a5afd5a4056844b213283002a7f53951c45",
           "row_names": [
             "handoff:origin-owned-by-manifest",
             "handoff:valid-origin-and-path",
@@ -10665,7 +10695,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-site-search/results/verify.json",
-          "sha256": "274ec0b996253c81fd01ba7555ee9876ad0ce7ebc34307665fd6746b593b9073",
+          "sha256": "d1f7a9820592a7a5ed676cd597f24231921e376219799344b79773aa13a38c91",
           "row_names": [
             "response:results:pc:js-true",
             "search-heading:results:pc:js-true",
@@ -11904,7 +11934,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-site-search/results/verify.json",
-          "sha256": "274ec0b996253c81fd01ba7555ee9876ad0ce7ebc34307665fd6746b593b9073",
+          "sha256": "d1f7a9820592a7a5ed676cd597f24231921e376219799344b79773aa13a38c91",
           "row_names": [
             "response:results:pc:js-true",
             "search-heading:results:pc:js-true",
@@ -12354,7 +12384,7 @@
         },
         {
           "path": "docs/research/2026-09-08-site-search/results/locale.json",
-          "sha256": "1ba915adbe902e4472aa2b72e99d313a6f0488695f90da2cbdd51cd54c93826e",
+          "sha256": "17a6e5d826183f94708a03fd644e9b0ff0ed50c9beb0a5c74a7a8479bef625e6",
           "row_names": [
             "locale:results:pc:js-true",
             "translated-title:results:pc:js-true",

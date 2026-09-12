@@ -1,0 +1,158 @@
+{
+  "schema": "wt-zone-slot-poc.v1",
+  "families": {
+    "before-content": [
+      "before-content"
+    ],
+    "related": [
+      "before-related",
+      "after-related"
+    ],
+    "page": [
+      "page-top",
+      "page-bottom"
+    ],
+    "header-inner": [
+      "header-inner"
+    ],
+    "sp-bottom": [
+      "sp-bottom"
+    ],
+    "sticky-sidebar": [
+      "sticky-sidebar"
+    ]
+  },
+  "declarations": {
+    "header-inner": {
+      "slot": "header-inner",
+      "common": [
+        {
+          "title": "今月の特集：心地よい暮らしのつくり方",
+          "label": "NEW ISSUE",
+          "text": "道具、空間、時間。自分に合う整え方を見つけよう。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    },
+    "page-top": {
+      "slot": "page-top",
+      "common": [
+        {
+          "title": "よく読まれた、３つのガイド",
+          "label": "START HERE",
+          "text": "はじめての方へ。いま役立つ読みものを選びました。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    },
+    "before-content": {
+      "slot": "before-content",
+      "common": [
+        {
+          "title": "暮らしを整える、小さなヒント。",
+          "label": "FIELD NOTES",
+          "text": "日々の選択を、少し確かなものに。編集部がまとめたガイドをお届けします。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ],
+      "pc": [
+        {
+          "title": "道具をじっくり比較する",
+          "label": "DESKTOP GUIDE",
+          "text": "日々の選択を、少し確かなものに。編集部がまとめたガイドをお届けします。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        },
+        {
+          "title": "選び方から読み始める",
+          "label": "EDITOR’S PICK",
+          "text": "日々の選択を、少し確かなものに。編集部がまとめたガイドをお届けします。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ],
+      "sp": [
+        {
+          "title": "手のひらで、選び方をチェック",
+          "label": "MOBILE GUIDE",
+          "text": "日々の選択を、少し確かなものに。編集部がまとめたガイドをお届けします。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    },
+    "before-related": {
+      "slot": "before-related",
+      "common": [
+        {
+          "title": "整える習慣を、続けるために",
+          "label": "NEXT STEP",
+          "text": "１日５分から始める、片づけのヒント。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    },
+    "after-related": {
+      "slot": "after-related",
+      "common": [
+        {
+          "title": "季節と暮らす、道具の選び方",
+          "label": "SEASONAL GUIDE",
+          "text": "長く愛用できるものを、納得して選ぶ。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    },
+    "sticky-sidebar": {
+      "slot": "sticky-sidebar",
+      "common": [
+        {
+          "title": "編集部のおすすめ",
+          "label": "BOOKMARK",
+          "text": "あとで読みたいガイドをまとめました。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ],
+      "sp": []
+    },
+    "page-bottom": {
+      "slot": "page-bottom",
+      "common": [
+        {
+          "title": "次の週末、何から始めよう。",
+          "label": "YOUR NEXT WEEKEND",
+          "text": "無理のないペースで、自分らしい暮らしへ。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    },
+    "sp-bottom": {
+      "slot": "sp-bottom",
+      "common": [
+        {
+          "title": "暮らしを整える、小さなヒント。",
+          "label": "FIELD NOTES",
+          "text": "日々の選択を、少し確かなものに。編集部がまとめたガイドをお届けします。",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ],
+      "sp": [
+        {
+          "title": "気になるテーマを、もうひとつ。",
+          "label": "CONTINUE READING",
+          "text": "",
+          "url": "#zone-guide",
+          "action": "ガイドを読む"
+        }
+      ]
+    }
+  }
+}

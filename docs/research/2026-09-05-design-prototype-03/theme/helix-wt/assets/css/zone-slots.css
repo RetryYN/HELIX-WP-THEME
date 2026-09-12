@@ -1,0 +1,16 @@
+.wt-zone {display:grid;gap:var(--wp--preset--spacing--40);margin-block:var(--wp--preset--spacing--50);color:var(--wp--preset--color--contrast);overflow-wrap:anywhere}
+.wt-zone__card {min-width:0;padding:var(--wp--preset--spacing--60);background:var(--wp--preset--color--surface);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--preset--spacing--30)}
+.wt-zone__eyebrow {color:var(--wp--preset--color--accent);font-family:var(--wp--preset--font-family--mono);font-size:var(--wp--preset--font-size--xs);letter-spacing:.12em;font-weight:700;margin:0 0 var(--wp--preset--spacing--30)}
+.wt-zone__card h2 {font-size:var(--wp--preset--font-size--xxl);line-height:1.4;margin:0 0 var(--wp--preset--spacing--30)}
+.wt-zone__card>p:not(.wt-zone__eyebrow) {font-size:var(--wp--preset--font-size--s);color:var(--wp--preset--color--mute);margin:0 0 var(--wp--preset--spacing--40)}
+.wt-zone__link {display:inline-flex;align-items:center;justify-content:space-between;gap:var(--wp--preset--spacing--50);min-height:44px;box-sizing:border-box;padding:var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);background:var(--wp--preset--color--accent);color:var(--wp--preset--color--base);text-decoration:none;border-radius:var(--wp--preset--spacing--20);font-size:var(--wp--preset--font-size--s);font-weight:700}
+.wt-zone__link:visited {color:var(--wp--preset--color--base)}
+.wt-zone__link:focus-visible {outline:3px solid var(--wp--preset--color--contrast);outline-offset:3px}
+.wt-zone--header-inner .wt-zone__card {border-left:4px solid var(--wp--preset--color--accent)}
+.wt-zone--page-bottom .wt-zone__card,.wt-zone--after-related .wt-zone__card {background:var(--wp--preset--color--accent-soft)}
+.wt-zone--sp-bottom {position:sticky;bottom:0;z-index:2;background:var(--wp--preset--color--base);padding-block:var(--wp--preset--spacing--20)}
+.wt-zone--sp-bottom .wt-zone__card {padding:var(--wp--preset--spacing--40)}
+@media(min-width:768px){.wt-zone:has(.wt-zone__card:nth-child(2)){grid-template-columns:repeat(2,minmax(0,1fr))}.wt-zone--sticky-sidebar{position:sticky;top:var(--wp--preset--spacing--50)}}
+
+/* カタログは各候補を展開して並べる。実配置の固定・追従は別の配置PoCで検査する。 */
+.wt-zone-catalog .wt-zone {position:static}

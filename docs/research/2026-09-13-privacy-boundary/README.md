@@ -2,6 +2,8 @@
 
 `WT-NFR-PRIV-01` のうち、現行テーマとコンテンツfixtureプラグインが計測ID・広告コードの生値を保持しない境界を検証する。
 
+検査対象は現行成果物の `helix-wt` と、その実機表示に使うコンテンツfixtureプラグインに限定する。旧 `themes/agent-neo-theme` と旧 `plugins/agent-neo-*` はread-only参照資産であり、現行成果物へ混ぜず、本検査の対象にも含めない。
+
 ```sh
 npm run privacy:verify
 ```

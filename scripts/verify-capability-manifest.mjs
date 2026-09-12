@@ -10,18 +10,24 @@ const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const sorted = values => [...new Set(values)].sort((a, b) => String(a).localeCompare(String(b), 'en'));
 const stems = (dir, ext) => sorted(fs.readdirSync(dir).filter(name => name.endsWith(ext)).map(name => name.slice(0, -ext.length)));
 const at = (value, dotted) => dotted.split('.').reduce((current, key) => current?.[key], value);
+const filesBelow = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+  const file = path.join(directory, entry.name);
+  return entry.isDirectory() ? filesBelow(file) : [file];
+});
 
 function deriveCapabilities() {
   const theme = readJson(path.join(themeDir, 'theme.json'));
   const contentChrome = readJson(path.join(themeDir, 'config/content-chrome.json'));
   const functions = fs.readFileSync(path.join(themeDir, 'functions.php'), 'utf8');
+  const registrationSources = [path.join(themeDir, 'functions.php'), ...filesBelow(path.join(themeDir, 'inc')).filter(file => file.endsWith('.php'))]
+    .map(file => fs.readFileSync(file, 'utf8')).join('\n');
   const patterns = fs.readdirSync(path.join(themeDir, 'patterns')).filter(name => name.endsWith('.php')).map(name => {
     const source = fs.readFileSync(path.join(themeDir, 'patterns', name), 'utf8');
     const slug = source.match(/^ \* Slug:\s*(\S+)\s*$/m)?.[1];
     if (!slug) throw new Error(`pattern header has no Slug: ${name}`);
     return slug;
   });
-  const blockTypes = [...functions.matchAll(/register_block_type\(\s*['"]([^'"]+)/g)].map(match => match[1]);
+  const blockTypes = [...registrationSources.matchAll(/register_block_type\(\s*['"]([^'"]+)/g)].map(match => match[1]);
   const blockStyles = [...functions.matchAll(/array\(\s*['"](core\/[^'"]+)['"]\s*,\s*['"]([^'"]+)['"]\s*,/g)].map(match => `${match[1]}:${match[2]}`);
   const scalePaths = ['settings.color.palette', 'settings.color.gradients', 'settings.typography.fontFamilies', 'settings.typography.fontSizes', 'settings.spacing.spacingSizes'];
   return {

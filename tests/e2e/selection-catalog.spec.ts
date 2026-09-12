@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('620');
+  await expect(page.locator('#total')).toHaveText('621');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -25,6 +25,14 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await expect(page.locator('.tile-open')).toHaveCount(1);
   await expect(page.locator('.tile-open img')).toHaveAttribute('src', /notfound-recovery\/suggest-1440\.png/);
   await page.locator('#search').fill('');
+  await page.locator('#search').fill('共通slotとPC/SP差分');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('.tile-open img')).toHaveAttribute('src', /zone-slots\/pc-js\.png/);
+  await page.locator('#search').fill('');
+  await page.locator('[data-face="zone"]').click();
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('#collection-title')).toHaveText('配置slot');
+  await page.locator('[data-face="all"]').click();
   for (let i = 0; i < 4; i++) await page.locator('.compare-pick input').nth(i).click();
   await expect(page.locator('.compare-pick input:checked')).toHaveCount(3);
   await expect(page.locator('#notice')).toContainText('3候補まで');
@@ -232,7 +240,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('620候補 / SP');
+  await expect(page.locator('#count')).toHaveText('621候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
