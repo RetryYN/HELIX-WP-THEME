@@ -20,6 +20,8 @@ node scripts/build-selection-catalog.mjs
 
 `WTCF_STATE_DIR`を指定した場合は、そのディレクトリの`credentials.json`を検証スクリプトへ渡す。資格情報はリポジトリ外で生成・保持し、ログや公開成果物に含めない。起動スクリプトは既存labを再利用し、専用fixtureだけを再投入する。異なるcheckoutをマウントした同名コンテナは変更せず停止する。
 
+独立レビューでは既存の資格情報を共有しない。レビュー対象checkoutで `python3 scripts/start-content-lab.py` を実行すると、`WTCF_STATE_DIR`（未指定なら `${TMPDIR:-/tmp}/helix-content-lab`）へ新しい `credentials.json` がmode 0600で生成される。その直後に上記の `WTCF_LAB_CREDENTIALS=... node scripts/verify-content-faces.mjs` を実行すれば、リポジトリへ秘密値を置かず同じ検査を再現できる。出力JSONとログには資格情報を保存しない。
+
 | 用途 | ローカルURLのパス | 確認内容 |
 | --- | --- | --- |
 | 有料記事一覧 | `/library/` | 買い切り・購読の記事と価格、詳細への参照 |

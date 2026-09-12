@@ -1,0 +1,434 @@
+{
+  "schema": "wt-notfound-recovery.v1",
+  "completed": true,
+  "checks": [
+    {
+      "name": "404:all-three-variants-pc-sp-js-nojs",
+      "pass": true
+    },
+    {
+      "name": "404:status-and-noindex",
+      "pass": true
+    },
+    {
+      "name": "404:cv-lp-comparison-contact-visible",
+      "pass": true
+    },
+    {
+      "name": "404:all-main-targets-44px",
+      "pass": true
+    },
+    {
+      "name": "404:body-16px-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "404:suggestion-malformed-and-empty-path-safe",
+      "pass": true
+    }
+  ],
+  "rows": [
+    {
+      "variant": "popular",
+      "width": 390,
+      "noJs": false,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "popular"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "popular",
+      "width": 390,
+      "noJs": true,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "popular"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "popular",
+      "width": 1440,
+      "noJs": false,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "popular"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "popular",
+      "width": 1440,
+      "noJs": true,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "popular"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "cta",
+      "width": 390,
+      "noJs": false,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "cta"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "cta",
+      "width": 390,
+      "noJs": true,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "cta"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "cta",
+      "width": 1440,
+      "noJs": false,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "cta"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "cta",
+      "width": 1440,
+      "noJs": true,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "cta"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "suggest",
+      "width": 390,
+      "noJs": false,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "suggest"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "suggest",
+      "width": 390,
+      "noJs": true,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "suggest"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "suggest",
+      "width": 1440,
+      "noJs": false,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "suggest"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    },
+    {
+      "variant": "suggest",
+      "width": 1440,
+      "noJs": true,
+      "http": 404,
+      "overflow": false,
+      "h1": 1,
+      "variants": [
+        "suggest"
+      ],
+      "cv": [
+        {
+          "href": "/standing-desk-compare/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/lp/",
+          "visible": true,
+          "height": 48
+        },
+        {
+          "href": "/contact/",
+          "visible": true,
+          "height": 48
+        }
+      ],
+      "search": true,
+      "bodySize": 17,
+      "smallTargets": [],
+      "noindex": true,
+      "errors": []
+    }
+  ],
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8ae5afaf181b2b58a56dc355454d66c07fa42e027c90e9fda1729c2299b3ffa8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/notfound.js": "5c85cc67e703ee0e27e9fa6ede3c3d7c59516ee169c35029198b3d0b7e2b2a35",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html": "55986a539a487037ef04bd3ad206b1f10c217c7af4941bff5c06df8ec90a1240",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html": "89525727cafb903324c50b85e133009e2a0786832f6cb76b641b2e883e04e598"
+  }
+}

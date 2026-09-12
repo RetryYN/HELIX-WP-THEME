@@ -266,6 +266,41 @@ if (fs.existsSync(path.join(root, learningOwnershipPath))) {
     });
   }
 }
+const notfoundRecoveryPath = 'docs/research/2026-09-13-notfound-recovery/verify.json';
+if (fs.existsSync(path.join(root, notfoundRecoveryPath))) {
+  const evidence = read(notfoundRecoveryPath);
+  const requiredChecks = [
+    '404:all-three-variants-pc-sp-js-nojs', '404:status-and-noindex',
+    '404:cv-lp-comparison-contact-visible', '404:all-main-targets-44px',
+    '404:body-16px-no-overflow', '404:suggestion-malformed-and-empty-path-safe',
+  ];
+  if (!evidence.completed || evidence.rows?.length !== 12
+    || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('404 recovery evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale 404 recovery evidence: ${file}`);
+  }
+  const variants = {
+    popular: ['人気記事から探し直す404', '人気記事'],
+    cta: ['目的別の入口から戻る404', 'CTA'],
+    suggest: ['URLから候補を提案する404', '検索語提案'],
+  };
+  for (const [variant, [label, variantLabel]] of Object.entries(variants)) {
+    const images = {};
+    for (const [device, width] of Object.entries({ pc: 1440, sp: 390 })) {
+      const file = `${variant}-${width}.png`;
+      if (!fs.existsSync(path.join(root, path.dirname(notfoundRecoveryPath), file))) throw Error(`Missing 404 recovery image: ${file}`);
+      images[device] = `../2026-09-13-notfound-recovery/${file}`;
+    }
+    entries.set(`notfound-recovery:${variant}`, {
+      id: `notfound-recovery:${variant}`, face: '404', part: '404-recovery', label, variant: variantLabel, images,
+      requirementIds: [], purpose: '迷わず探し直せるようにする', group: 'ページ・本文',
+      description: 'HTTP 404とnoindexを保ちながら、検索、カテゴリ、比較記事・LP・問い合わせへの共通導線を示す代表表示。PC/SP・JavaScript有効/無効で実測しています。',
+      evidence: '../2026-09-13-notfound-recovery/verify.json',
+    });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

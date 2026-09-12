@@ -604,13 +604,13 @@ body.wt-detext-on .wp-block-heading.is-style-wt-plain{font-weight:700}
 
 /* ---------- 10. 404（3 変種 + CV slot） ---------- */
 .wt-404{text-align:center}
-.wt-404__code{font-family:var(--wp--preset--font-family--latin);font-size:clamp(3rem,8vw,5rem);font-weight:800;color:var(--wp--preset--color--accent-soft);line-height:1;margin:0;letter-spacing:-.02em}
+.wt-404__code{font-family:var(--wp--preset--font-family--latin);font-size:clamp(3rem,8vw,5rem);font-weight:800;color:var(--wp--preset--color--accent);line-height:1;margin:0;letter-spacing:-.02em}
 .wt-404 h1{margin:.25rem 0 .5rem}
-.wt-404__why{color:var(--wp--preset--color--mute);font-size:.9375rem;max-width:36em;margin:0 auto 1.5rem}
+.wt-404__why{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--m);max-width:36em;margin:0 auto 1.5rem}
 .wt-404__search{max-width:520px;margin:0 auto 2rem}
 .wt-404__search .wp-block-search__inside-wrapper{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);overflow:hidden}
 .wt-404__search .wp-block-search__input{border:0;min-height:48px;padding:0 1rem;font-size:1rem}
-.wt-404__search .wp-block-search__button{border:0;min-height:48px;padding:0 1.25rem;background:var(--wp--preset--color--accent);color:#fff;font-weight:700}
+.wt-404__search .wp-block-search__button{border:0;min-height:48px;padding:0 1.25rem;background:var(--wp--preset--color--accent);color:var(--wp--preset--color--base);font-weight:700}
 .wt-404__sect{text-align:left;margin-top:var(--wp--preset--spacing--60)}
 .wt-404__sect>h2{font-size:var(--wp--preset--font-size--l);margin:0 0 1rem;display:flex;align-items:center;gap:.5rem}
 .wt-404__sect>h2::before{content:"";width:4px;height:1em;background:var(--wp--preset--color--accent);border-radius:2px}
@@ -620,7 +620,7 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
 .wt-404__cats .wp-block-categories a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:1px solid var(--wp--preset--color--line);border-radius:999px;text-decoration:none;color:var(--wp--preset--color--contrast);font-size:.875rem;background:var(--wp--preset--color--base)}
 .wt-404__home{margin-top:1.5rem}
 .wt-404 .wt-related .wp-block-post-template{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:599px){.wt-404 .wt-related .wp-block-post-template{grid-template-columns:1fr 1fr}}
+@media (max-width:599px){.wt-404 .wt-related .wp-block-post-template{grid-template-columns:1fr}}
 .wt-suggest{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
 .wt-suggest a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);text-decoration:none;font-weight:700;font-size:.875rem}
 /* CV slot lane（LP / 比較記事 / 問い合わせ） */
@@ -1907,4 +1907,18 @@ body.wt-event-apply-block-form .wt-event-apply--block-form{display:block;margin-
  .wt-event-info--inline-text>div+div::before{content:none}
  .wt-event-info--inline-text dt,.wt-event-info--inline-text dd{display:block;line-height:1.8}
  .wt-event-info--inline-text dt{margin:0;white-space:nowrap}
+}
+
+/* 404 回復導線: 検索 → 選択した案内 → 共通CV導線を段階的に読む。 */
+.wt-404__variant,.wt-404__cats{padding:var(--wp--preset--spacing--50);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-404__search:focus-within{outline:2px solid var(--wp--preset--color--accent);outline-offset:4px;border-radius:var(--wp--custom--radius-m)}
+.wt-404 .wt-cv__item{grid-template-rows:auto auto 1fr auto;margin-block:0}
+.wt-404 .wt-cv__item .wp-block-button,.wt-404 .wt-cv__item .wp-block-button__link{width:100%}
+.wt-404 .wt-rcard .wp-block-post-title a{display:flex;align-items:center;min-height:var(--wp--custom--button-height)}
+.wt-404 .wt-suggest a{max-width:100%;padding-block:var(--wp--preset--spacing--20);overflow-wrap:anywhere}
+.wt-404 .wt-suggest li{max-width:100%}
+@media(max-width:599px){
+ .wt-404__variant,.wt-404__cats{padding:var(--wp--preset--spacing--40)}
+ .wt-404 h1{font-size:var(--wp--preset--font-size--xl);text-wrap:balance}
+ .wt-404__why{text-align:left}
 }

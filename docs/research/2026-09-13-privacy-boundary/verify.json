@@ -1,143 +1,72 @@
 {
-  "schema": "wt-reduced-motion-verification.v1",
+  "schema": "wt-privacy-boundary-verification.v1",
   "requirements": [
-    "WT-NFR-A11Y-02"
+    "WT-NFR-PRIV-01"
   ],
   "completed": true,
-  "motionAuditSources": [
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/article.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/category.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/contrast.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/footer.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/notfound.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/qa-modal.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/reveal.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/side.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/editor.js",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-parts.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-banner.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-box.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-button.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-price-tier.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-rank-featured.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-textlink.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-triple.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/faq.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-column.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-donut.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-gauge.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-grouped.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-line.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-radar.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-score.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-stack.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graphs.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/hero-split.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/linkcard.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/media-top.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/numbers.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-countdown.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-entry-steps.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-event-list.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-gallery.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-greeting.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-judges.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-logos-row.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-organizer.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-prizes.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-sns-feed.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-stores.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-target-audience.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-target-products.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-tickets.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-timeline.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/share-sns.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_blp.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_learning.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_lp.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_paid.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-canvas.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_blp.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_interview.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_learning.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_lp.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_paid.html",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html"
+  "scannedRoots": [
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
+    "docs/research/2026-09-08-content-faces/plugin"
   ],
-  "reviewedTimerSources": {
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/article.js": "95bc2214aa9c118959753688966016a3bbe3ea6fc62cbfae9c64dcbc4787ee79",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "e70778368d99e8fdbd69c7890f4d1068b6cb6f675876ea34c35f534c40efcbc5"
-  },
+  "scannedFileCount": 132,
+  "rules": [
+    {
+      "id": "ga4-measurement-id",
+      "category": "tracking-id"
+    },
+    {
+      "id": "google-tag-manager-id",
+      "category": "tracking-id"
+    },
+    {
+      "id": "universal-analytics-id",
+      "category": "tracking-id"
+    },
+    {
+      "id": "google-ads-id",
+      "category": "tracking-id"
+    },
+    {
+      "id": "adsense-publisher-id",
+      "category": "tracking-id"
+    },
+    {
+      "id": "meta-pixel-init",
+      "category": "tracking-id"
+    },
+    {
+      "id": "vendor-ad-script",
+      "category": "ad-code"
+    },
+    {
+      "id": "adsbygoogle-markup",
+      "category": "ad-code"
+    }
+  ],
   "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-chrome.css": "4f075f2e3411587077ec1e26cc5182dfca8bdd916329ffc3fc7f21ac5e0ac524",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "18ab6339fa2da074bba12cdfce849e009b2ce878db0616cbbf2baffbe89b2c3c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/icons.css": "07a77dc69d6a47048288aa45c07a43e4ed19723b65d6a8a39af468d0923a4821",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "ad722d11e6aefd6b6f334fa4d78b63e6d255507ae8b5e409430583f924f378d2",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8ae5afaf181b2b58a56dc355454d66c07fa42e027c90e9fda1729c2299b3ffa8",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/article.js": "95bc2214aa9c118959753688966016a3bbe3ea6fc62cbfae9c64dcbc4787ee79",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/side.js": "f1c678aa08392d42510999b8728fd5a00a7d79ecccdef2f41d7cce1e35d2ddca",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/footer.js": "2aa77aaa9afa0181559ae556fb065f17991fdb741b7e17cc7049b4e1c5d049db",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "e70778368d99e8fdbd69c7890f4d1068b6cb6f675876ea34c35f534c40efcbc5",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/reveal.js": "d2c14d140d85cb349f53e6de33fabfa820ff9cca8478e412dc989a03a88c0537",
-    "docs/research/2026-09-10-reduced-motion/verify.mjs": "6f05d500aa6b4b0aa96c26f917db1685c90aa4f508a4f864e6842f8aef84fcf2",
-    "package.json": "4065a9c3fbe6e126c63e7df31184162b4681707e229a32a827555fd384b5471a",
-    ".github/workflows/test.yml": "b890a7e6277581d594128844f30fb416332546729f84179f9f1d7cd2a2224665",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/category.js": "5d0e5d27ed700708c27e9afdd21acbb4b06b31ed1cfef6580ad31f39fd69ce30",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/contrast.js": "67d1eaa8db14456caedf9f2a2e4091687284a85621bae8695b0310e0ac123800",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/footer.js": "2aa77aaa9afa0181559ae556fb065f17991fdb741b7e17cc7049b4e1c5d049db",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "a94e0c718b92117805bbba75126b0222803658adcc13be725367aaae4df7a57a",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header.js": "c0100124cb6687e8c65774a06de126a43842f40b522df860a01a44a78711328d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "e70778368d99e8fdbd69c7890f4d1068b6cb6f675876ea34c35f534c40efcbc5",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/notfound.js": "5c85cc67e703ee0e27e9fa6ede3c3d7c59516ee169c35029198b3d0b7e2b2a35",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/qa-modal.js": "49d26dfbd7d796497a0cdbe43a791f69b01d2c0fb6378c68c1b423bcbf7e540b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/reveal.js": "d2c14d140d85cb349f53e6de33fabfa820ff9cca8478e412dc989a03a88c0537",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/side.js": "f1c678aa08392d42510999b8728fd5a00a7d79ecccdef2f41d7cce1e35d2ddca",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/block.json": "e5722d8c745c96a206a9943a8bb88fe588d7f40d4f494be7306f1aff9f98d319",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/editor.css": "05220e1ced96589473b637c79a634474567d02b93c4a7982b9f7516e892c85d1",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/blocks/site-page/editor.js": "4b43232541baa5c296ddc5404c52f1e6811ffee736cbefdc3ab028446f087295",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/capability-manifest.json": "2b8746aa89a9ef72ac54df537a0c6fdd1ce80817d735afd8986cbd5cdd718e34",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/content-chrome.json": "203a6e3703d57d485f1dc9fc4efd92ad678cbe9023a93131be04823a220abfa4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/i18n-profile.json": "6e0cb1d3607809a1e350fcb937f93b9523e3b98cb83fd7865ac067a4c634726d",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1d888f4eddbbae63302fcd2661a8603090628883c35b0fe155585208bda3c9d8",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "071495a464d3aa83a95a4497f27a630d5664022676e1ce8fe5b17e4f4f39c31a",
@@ -215,6 +144,9 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php": "027098cbf4a02ae15f3267cc923c2cc07495999e92b2debdad7b448d048b5a75",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/share-sns.php": "64ca7c3635a773e551d3a7ce88710cc5197e289a7eb246d00e21f842d1a3d18e",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php": "b1d48da46ad72b328ca91c9061c05120a014980fd7c735e63909a5a25af48584",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/style.css": "5613c5ff2578394638931da8707178dd7209887a2e65aed497ad67d44446e636",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html": "55986a539a487037ef04bd3ad206b1f10c217c7af4941bff5c06df8ec90a1240",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_blp.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
@@ -236,87 +168,48 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_learning.html": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_lp.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_paid.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a"
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+    "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "980be23e03737f934dd81626508470edb23e26f060396115a6d26bb692f97121",
+    "docs/research/2026-09-08-content-faces/plugin/learning.php": "c7b2a602bf548376c03c1ba0a6cbbea3dc720388216329b19124aa3c7488295a",
+    "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "30758dd9d9f5f333f0946802edc20e56c1fd687196a5a1c79a9d36cc4a00740a",
+    "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe",
+    "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
   },
   "rows": [
     {
-      "name": "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
+      "name": "privacy:production-tracking-ids-zero",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "privacy:production-ad-code-zero",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "negative:ga4-measurement-id-fails",
       "pass": true
     },
     {
-      "name": "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
+      "name": "negative:tag-manager-id-fails",
       "pass": true
     },
     {
-      "name": "fixture:positive",
+      "name": "negative:adsense-publisher-id-fails",
       "pass": true
     },
     {
-      "name": "fixture:negative:animation",
+      "name": "negative:ad-script-fails",
       "pass": true
     },
     {
-      "name": "fixture:negative:transition",
+      "name": "negative:ad-markup-fails",
       "pass": true
     },
     {
-      "name": "fixture:negative:scroll",
-      "pass": true
-    },
-    {
-      "name": "fixture:negative:visible",
-      "pass": true
-    },
-    {
-      "name": "fixture:negative:manual",
-      "pass": true
-    },
-    {
-      "name": "fixture:negative:autoplay",
-      "pass": true
-    },
-    {
-      "name": "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
-      "pass": true
-    },
-    {
-      "name": "counter:initial-final-value",
-      "pass": true
-    },
-    {
-      "name": "counter:initial-no-frame",
-      "pass": true
-    },
-    {
-      "name": "reveal:immediate-content",
-      "pass": true
-    },
-    {
-      "name": "manual:all-controls:0:reduce",
-      "pass": true
-    },
-    {
-      "name": "manual:scroll-behavior:0:reduce",
-      "pass": true
-    },
-    {
-      "name": "manual:all-controls:1:no-preference",
-      "pass": true
-    },
-    {
-      "name": "manual:scroll-behavior:1:no-preference",
-      "pass": true
-    },
-    {
-      "name": "manual:all-controls:2:reduce",
-      "pass": true
-    },
-    {
-      "name": "manual:scroll-behavior:2:reduce",
-      "pass": true
-    },
-    {
-      "name": "counter:live-preference-final-value",
+      "name": "positive:contract-without-runtime-values-passes",
       "pass": true
     }
   ],

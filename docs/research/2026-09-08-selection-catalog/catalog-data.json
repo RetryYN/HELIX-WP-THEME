@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1106,
+  "screenshotCount": 1112,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -11974,6 +11974,60 @@
       "group": "共通設定・部品",
       "description": "階層と前後ナビだけを除き、学習本文と講座内レッスン一覧を維持する代表表示。公開・下書き・パスワード保護の境界も別途実測しています。",
       "evidence": "../2026-09-13-learning-navigation-ownership/verify.json"
+    },
+    {
+      "id": "notfound-recovery:popular",
+      "face": "404",
+      "part": "404-recovery",
+      "label": "人気記事から探し直す404",
+      "variant": "人気記事",
+      "images": {
+        "pc": "../2026-09-13-notfound-recovery/popular-1440.png",
+        "sp": "../2026-09-13-notfound-recovery/popular-390.png"
+      },
+      "requirementIds": [
+        "WT-FR-TPL-01"
+      ],
+      "purpose": "迷わず探し直せるようにする",
+      "group": "ページ・本文",
+      "description": "HTTP 404とnoindexを保ちながら、検索、カテゴリ、比較記事・LP・問い合わせへの共通導線を示す代表表示。PC/SP・JavaScript有効/無効で実測しています。",
+      "evidence": "../2026-09-13-notfound-recovery/verify.json"
+    },
+    {
+      "id": "notfound-recovery:cta",
+      "face": "404",
+      "part": "404-recovery",
+      "label": "目的別の入口から戻る404",
+      "variant": "CTA",
+      "images": {
+        "pc": "../2026-09-13-notfound-recovery/cta-1440.png",
+        "sp": "../2026-09-13-notfound-recovery/cta-390.png"
+      },
+      "requirementIds": [
+        "WT-FR-TPL-01"
+      ],
+      "purpose": "迷わず探し直せるようにする",
+      "group": "ページ・本文",
+      "description": "HTTP 404とnoindexを保ちながら、検索、カテゴリ、比較記事・LP・問い合わせへの共通導線を示す代表表示。PC/SP・JavaScript有効/無効で実測しています。",
+      "evidence": "../2026-09-13-notfound-recovery/verify.json"
+    },
+    {
+      "id": "notfound-recovery:suggest",
+      "face": "404",
+      "part": "404-recovery",
+      "label": "URLから候補を提案する404",
+      "variant": "検索語提案",
+      "images": {
+        "pc": "../2026-09-13-notfound-recovery/suggest-1440.png",
+        "sp": "../2026-09-13-notfound-recovery/suggest-390.png"
+      },
+      "requirementIds": [
+        "WT-FR-TPL-01"
+      ],
+      "purpose": "迷わず探し直せるようにする",
+      "group": "ページ・本文",
+      "description": "HTTP 404とnoindexを保ちながら、検索、カテゴリ、比較記事・LP・問い合わせへの共通導線を示す代表表示。PC/SP・JavaScript有効/無効で実測しています。",
+      "evidence": "../2026-09-13-notfound-recovery/verify.json"
     }
   ],
   "requirements": [
@@ -12118,7 +12172,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "190bb750c9fa8464bce2907ebc303ee585a82f5c6f85c46418a135d53707ce35",
+              "sha256": "8392a8b6b7dd1ac9ff8c17e3b32c9d4d95ce58d06ab122e02fdf0186abc043d1",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -12137,7 +12191,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "190bb750c9fa8464bce2907ebc303ee585a82f5c6f85c46418a135d53707ce35",
+              "sha256": "8392a8b6b7dd1ac9ff8c17e3b32c9d4d95ce58d06ab122e02fdf0186abc043d1",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -12800,7 +12854,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "b64d6ab4f3ba5f0fa6fcccd4943bd313e313ccf637df85fd22876772ceefe8d0",
+              "sha256": "fac3155c19051858ae6d66c04024b224359806fe1aeecd145d7b3ab0ac8c366e",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -15422,27 +15476,45 @@
           "requirement_id": "WT-NFR-PRIV-01",
           "oracle": "テーマ・プラグインに計測 ID・広告 HTML の生値が 0",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 132ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+              "sha256": "e660b84497112153e3e73fa82d02c7e90730d27d065265783caf698874c4babd",
+              "row_names": [
+                "privacy:production-tracking-ids-zero",
+                "privacy:production-ad-code-zero",
+                "positive:contract-without-runtime-values-passes"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-NFR-PRIV-01B",
           "requirement_id": "WT-NFR-PRIV-01",
           "oracle": "検出 1 件で FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "GA4、Tag Manager、AdSenseのID形と広告script・adsbygoogle markupを個別fixtureへ投入し、各検出規則が1件で失敗条件を成立させることを確認。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+              "sha256": "e660b84497112153e3e73fa82d02c7e90730d27d065265783caf698874c4babd",
+              "row_names": [
+                "negative:ga4-measurement-id-fails",
+                "negative:tag-manager-id-fails",
+                "negative:adsense-publisher-id-fails",
+                "negative:ad-script-fails",
+                "negative:ad-markup-fails"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -19062,7 +19134,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "f0b25f2dab11514d29e46bf2e5b87d78cdd3c2bac1b8ff1def96254d6607b06d",
+              "sha256": "9acb2cd8afd6eb5d2c6b26479329a1ffb2512813d4f7cbc6056cc588585c2d5d",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -19087,7 +19159,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "f0b25f2dab11514d29e46bf2e5b87d78cdd3c2bac1b8ff1def96254d6607b06d",
+              "sha256": "9acb2cd8afd6eb5d2c6b26479329a1ffb2512813d4f7cbc6056cc588585c2d5d",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -19449,19 +19521,30 @@
           "requirement_id": "WT-FR-TPL-01",
           "oracle": "404 が HTTP 404 を返し、選んだ変種の CV 導線 slot に LP / 比較記事 / 問い合わせのリンクが出る",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
-          "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
-          ],
-          "evidence": []
+          "status": "verified_in_poc",
+          "scope": "404がHTTP 404を返し、人気記事・CTA・検索語提案の各変種で、比較記事・LP・問い合わせへの共通CV導線が表示されることをPC/SP・JavaScript有効/無効の12条件で実測。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
+              "sha256": "830e5d730064225155cb0ed780317982d07d965638cca64aa20066fea24c09f4",
+              "row_names": [
+                "404:all-three-variants-pc-sp-js-nojs",
+                "404:status-and-noindex",
+                "404:cv-lp-comparison-contact-visible"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "404:404-popular",
         "404:404-cta",
-        "404:404-suggest"
+        "404:404-suggest",
+        "notfound-recovery:popular",
+        "notfound-recovery:cta",
+        "notfound-recovery:suggest"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -21137,7 +21220,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "6ab526a409d80de061702e6fa2a4e75a4deb7075bc2b28da47979cc86461499a",
+              "sha256": "326441685dce162024d020fd8543918dfeab3bd93e317008edd3e49c520ae6e4",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -21651,7 +21734,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "6ab526a409d80de061702e6fa2a4e75a4deb7075bc2b28da47979cc86461499a",
+              "sha256": "326441685dce162024d020fd8543918dfeab3bd93e317008edd3e49c520ae6e4",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -25213,7 +25296,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "caa9655e0985231e12742f8903ee9ee2e19828e1f3708882b79fb3766d944121",
+              "sha256": "198b8ecfa0726d86a1a1563e48e0c8ae066ff649ad3f36cdab75b22647c1a8dd",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -25661,7 +25744,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "caa9655e0985231e12742f8903ee9ee2e19828e1f3708882b79fb3766d944121",
+              "sha256": "198b8ecfa0726d86a1a1563e48e0c8ae066ff649ad3f36cdab75b22647c1a8dd",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26670,7 +26753,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "e518cde3394b1d1666ee249232fa1bf153b335517c444e0bb7f69ee3107c2f78",
+              "sha256": "274ec0b996253c81fd01ba7555ee9876ad0ce7ebc34307665fd6746b593b9073",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -27909,7 +27992,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "e518cde3394b1d1666ee249232fa1bf153b335517c444e0bb7f69ee3107c2f78",
+              "sha256": "274ec0b996253c81fd01ba7555ee9876ad0ce7ebc34307665fd6746b593b9073",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28359,7 +28442,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "fa79d7ab0a671420453e229019682d82ef37422494cdf75dd23cb152324f3f6f",
+              "sha256": "1ba915adbe902e4472aa2b72e99d313a6f0488695f90da2cbdd51cd54c93826e",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -28428,9 +28511,9 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 246,
+    "missing": 243,
     "partial": 21,
-    "verified_in_poc": 27,
+    "verified_in_poc": 30,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"
