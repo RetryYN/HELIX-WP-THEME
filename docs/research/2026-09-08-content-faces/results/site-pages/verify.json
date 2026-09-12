@@ -1,0 +1,1803 @@
+{
+  "schema": "wt-site-pages-evidence.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-pages.mjs": "e646bf6b509cf264a7b12365e3c65a54be39c8ab89ec56ebf1bd17d1a64572d5",
+    "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe",
+    "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
+    "docs/research/2026-09-08-content-faces/seed-site-pages.php": "211ed6dda8b20e24d76e16a73cf16df250895bfd13e8ac04de347241c13a940b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "541dc6252d8ef8ca3cbdd7252de9ff1cc4c3d0871776ff2d3e9dbe696af3db8b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "ad722d11e6aefd6b6f334fa4d78b63e6d255507ae8b5e409430583f924f378d2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7",
+    "docs/research/2026-09-08-content-faces/provider/index.html": "f0c533674cfa176425e6cf0f015e1991aa0167c18f420b831f989c86ea93764e",
+    "docs/research/2026-09-08-content-faces/provider/complete.html": "cc827252a1cf51f986f3f65e5d21f554b63d2bcc56d2712660fe8ae10138dda9",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "4dfdc64cc4f31b0b9b87fe5f62d0356e80e236d6da2f3ba07217869e04e88a5c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56"
+  },
+  "rows": [
+    {
+      "name": "handoff:origin-owned-by-manifest",
+      "pass": true
+    },
+    {
+      "name": "handoff:valid-origin-and-path",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-ftp",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-credentials",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-query",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-fragment",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-origin_path",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-relative_origin",
+      "pass": true
+    },
+    {
+      "name": "handoff:reject-relative_path",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:company",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:service",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:pricing",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:careers",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:contact",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:privacy",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:commerce",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:transmissions",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:accessibility",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:locations",
+      "pass": true
+    },
+    {
+      "name": "pattern-and-independent-page:terms",
+      "pass": true
+    },
+    {
+      "name": "page:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:company:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:service:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "pricing:comparable-scope:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "pricing:aligned-comparison:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:pricing:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:careers:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:contact:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:privacy:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:commerce:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:transmissions:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:accessibility:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:locations:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:terms:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "handoff:other-origin:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "handoff:complete:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "handoff:return:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:company:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:service:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "pricing:comparable-scope:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "pricing:aligned-comparison:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:pricing:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:careers:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:contact:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:privacy:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:commerce:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:transmissions:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:accessibility:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:locations:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:terms:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "handoff:other-origin:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "handoff:complete:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "handoff:return:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:company:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:service:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "pricing:comparable-scope:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:pricing:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:careers:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:contact:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:privacy:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:commerce:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:transmissions:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:accessibility:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:locations:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "heading:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "shared-business:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "toc:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "related:terms:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "handoff:other-origin:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "handoff:complete:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "handoff:return:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "page:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:company:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:service:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "pricing:comparable-scope:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:pricing:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:careers:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:contact:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:privacy:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:commerce:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:transmissions:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:accessibility:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:locations:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "page:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "heading:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "shared-business:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "no-owned-form:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "purpose-copy:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "toc:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "related:terms:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "handoff:other-origin:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "handoff:complete:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "handoff:return:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "protected-page:body-hidden",
+      "pass": true
+    },
+    {
+      "name": "protected-page:rest-hidden",
+      "pass": true
+    },
+    {
+      "name": "central-update:company",
+      "pass": true
+    },
+    {
+      "name": "central-update:service",
+      "pass": true
+    },
+    {
+      "name": "central-update:pricing",
+      "pass": true
+    },
+    {
+      "name": "central-update:careers",
+      "pass": true
+    },
+    {
+      "name": "central-update:contact",
+      "pass": true
+    },
+    {
+      "name": "central-update:privacy",
+      "pass": true
+    },
+    {
+      "name": "central-update:commerce",
+      "pass": true
+    },
+    {
+      "name": "central-update:transmissions",
+      "pass": true
+    },
+    {
+      "name": "central-update:accessibility",
+      "pass": true
+    },
+    {
+      "name": "central-update:locations",
+      "pass": true
+    },
+    {
+      "name": "central-update:terms",
+      "pass": true
+    },
+    {
+      "name": "destinations:config-update",
+      "pass": true
+    },
+    {
+      "name": "destinations:empty",
+      "pass": true
+    },
+    {
+      "name": "central-settings-restored",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "company-pc.jpg",
+      "dev": "pc",
+      "key": "company",
+      "label": "会社案内",
+      "route": "/site-company/"
+    },
+    {
+      "file": "service-pc.jpg",
+      "dev": "pc",
+      "key": "service",
+      "label": "サービス",
+      "route": "/site-service/"
+    },
+    {
+      "file": "pricing-pc.jpg",
+      "dev": "pc",
+      "key": "pricing",
+      "label": "料金",
+      "route": "/site-pricing/"
+    },
+    {
+      "file": "careers-pc.jpg",
+      "dev": "pc",
+      "key": "careers",
+      "label": "採用",
+      "route": "/site-careers/"
+    },
+    {
+      "file": "contact-pc.jpg",
+      "dev": "pc",
+      "key": "contact",
+      "label": "問い合わせ",
+      "route": "/site-contact/"
+    },
+    {
+      "file": "privacy-pc.jpg",
+      "dev": "pc",
+      "key": "privacy",
+      "label": "プライバシー",
+      "route": "/site-privacy/"
+    },
+    {
+      "file": "commerce-pc.jpg",
+      "dev": "pc",
+      "key": "commerce",
+      "label": "販売に関する表示",
+      "route": "/site-commerce/"
+    },
+    {
+      "file": "transmissions-pc.jpg",
+      "dev": "pc",
+      "key": "transmissions",
+      "label": "外部送信先",
+      "route": "/site-transmissions/"
+    },
+    {
+      "file": "accessibility-pc.jpg",
+      "dev": "pc",
+      "key": "accessibility",
+      "label": "アクセシビリティ",
+      "route": "/site-accessibility/"
+    },
+    {
+      "file": "locations-pc.jpg",
+      "dev": "pc",
+      "key": "locations",
+      "label": "拠点・アクセス",
+      "route": "/site-locations/"
+    },
+    {
+      "file": "terms-pc.jpg",
+      "dev": "pc",
+      "key": "terms",
+      "label": "利用案内",
+      "route": "/site-terms/"
+    },
+    {
+      "file": "company-sp.jpg",
+      "dev": "sp",
+      "key": "company",
+      "label": "会社案内",
+      "route": "/site-company/"
+    },
+    {
+      "file": "service-sp.jpg",
+      "dev": "sp",
+      "key": "service",
+      "label": "サービス",
+      "route": "/site-service/"
+    },
+    {
+      "file": "pricing-sp.jpg",
+      "dev": "sp",
+      "key": "pricing",
+      "label": "料金",
+      "route": "/site-pricing/"
+    },
+    {
+      "file": "careers-sp.jpg",
+      "dev": "sp",
+      "key": "careers",
+      "label": "採用",
+      "route": "/site-careers/"
+    },
+    {
+      "file": "contact-sp.jpg",
+      "dev": "sp",
+      "key": "contact",
+      "label": "問い合わせ",
+      "route": "/site-contact/"
+    },
+    {
+      "file": "privacy-sp.jpg",
+      "dev": "sp",
+      "key": "privacy",
+      "label": "プライバシー",
+      "route": "/site-privacy/"
+    },
+    {
+      "file": "commerce-sp.jpg",
+      "dev": "sp",
+      "key": "commerce",
+      "label": "販売に関する表示",
+      "route": "/site-commerce/"
+    },
+    {
+      "file": "transmissions-sp.jpg",
+      "dev": "sp",
+      "key": "transmissions",
+      "label": "外部送信先",
+      "route": "/site-transmissions/"
+    },
+    {
+      "file": "accessibility-sp.jpg",
+      "dev": "sp",
+      "key": "accessibility",
+      "label": "アクセシビリティ",
+      "route": "/site-accessibility/"
+    },
+    {
+      "file": "locations-sp.jpg",
+      "dev": "sp",
+      "key": "locations",
+      "label": "拠点・アクセス",
+      "route": "/site-locations/"
+    },
+    {
+      "file": "terms-sp.jpg",
+      "dev": "sp",
+      "key": "terms",
+      "label": "利用案内",
+      "route": "/site-terms/"
+    }
+  ]
+}

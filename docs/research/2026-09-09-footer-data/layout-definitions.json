@@ -1,0 +1,1654 @@
+{
+  "completed": true,
+  "supported": [
+    "default",
+    "constrained",
+    "flex",
+    "grid"
+  ],
+  "sourceDigests": {
+    "scripts/verify-layout-definitions.py": "ba3a551c75b1aea7b503234a613454f2cd299761f0dd8fe034c287585250bd3e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1a8043d1d08017f09471b82970840f0c50e3ce85c95de2c920c9db73c2e116e2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "451e2fa27f20051fd411c90caefa8eda312c3d2b8b2d2afc1ac9984cc7a5f377",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "464838dcc303a9f847a58c2ddf1786e85d9afd418f14a550effb50072110abcb",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "d55100cda10e24d608c78538c7fbf9aa9a7a8fb316aeb32e63d58d6c08529ca8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "ad15bd4cae8996512d6ac7490038f6249eec034762f11d5e0a6c65b6faf946ae",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "07a26de4cdb00f5cc6442bd0a3e407fccce6f72ec5b46a20dca21b4205c8f6e2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html": "48661208aebf4b5a2cca504dd251104a45ea700c2a78c0ef46a616f9dbb797fb",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html": "89525727cafb903324c50b85e133009e2a0786832f6cb76b641b2e883e04e598",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html": "cbd731876eced57e5500f3b4c84c7614f5179fb3d5d7ed884a1033d2700c1487",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "e2516ec8f7f319448de18788ceb571010fc30b3ad94a045130bdba9b78a9b38d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html": "1d71e36aebbfce30ea5efaba4f8077638352cd1b408f8ec5ce6081911e701e23",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html": "989a0e8c8064cf7fdddc471f953fd072774227d24164600910c5972d83e687ad",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html": "3fa8bf41c4fe6beea0b46fc1c7c3dc237141a793175cb2498d845942b526e147",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html": "3ff7fb1957062ce7483783b0cb1ba9779243c2efd55049207b2ce0eef8c29db4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html": "c048d6db4069c45b9bdbdb2906a53f2da558e35c9ce9750f517756c0f9d58e69",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html": "74e5aecb4af3c9d01c1cbae3ba08229f101cead87fa231c254deb220bba652b4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html": "d225ce189fc54510f16cb1163a1aaf1cb2be510a95e075cc3684a23fc12b2982",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php": "44262a309e8fbf52d10ae82daef9a47ad0651986e7f5863094d652bf470b800e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-parts.php": "b408d966c82e3734fdee4b18374b84af8c053b3a14af15b9630286b587118bd2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php": "7749c1a8c6e7fce5f8984a435e41dc737b9c76fb75435758933032c0fe16a647",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php": "78e85aab9b9533bf48ca7854a4816e68c3b4c5746a8d2b6283dd7577e900effc",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php": "0c069419a9ebe1cbfd3bd674a1af6478fd675a1d82c7e584c199adaa9e824dcc",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-banner.php": "72c183217ba895c7770fdf04dba9ad60bc75f276283bb8ad78ff3944448017ab",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-box.php": "865bf94adfe6bb58ea88302ba8c41fc547fd8fdba0d84dd816a23a59c24ef509",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-button.php": "f1568a774e38459c361dd7864f73061c4a00aaf95d01a580f9237d0c18420f4c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-price-tier.php": "344c02462026651e3481101aaed1c95994e6f2fdfdc18385284b0c306d211f72",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-rank-featured.php": "808f29086915c975940e08656b9672b84cf45109c28a51e7a997986f0ba2f916",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-textlink.php": "d88097bd6775f12869ecb2d53dd5002f8eee84f7df0a2d8c5ac690e163c0c5c2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-triple.php": "183a96e55bd5b14ea4d3542c1767fc3455eec9ed0f6fe678b54e846d82e35d7f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta.php": "6bf1c40409b182581ef8ff4d900335bad58f49f2a6cd34b2e32e449a7941571c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "1ca21f27c999b08e5eb582cdfc1bfd7899254a89cf9e4ac93d667a8d73cba156",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/faq.php": "a6d36b305d3babd265b0753b1a8f7af52005fea376206da36fdd37dd6f6659c2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php": "d3630be3783da8b8d63d7256caeffe0524a680e3c80aea9357c1c3df9690941c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "9d0f8ad66fca7c7a6f695fb24b57b8a9272db9f799ff3574bc47c30df36f45ba",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "de2a8dad5efec2c6c90b95c9c95e7ba6657d167a85e7ef554684fad41ff7e728",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-column.php": "286e85ee9dee4abe37076797d4f4b90447c982eaedd6fbe3b4c27d8b1485f939",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-donut.php": "34e75e7eaf25753cf3ad6dee1d56b1740419e33afe57e6a43dcc03031c226647",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-gauge.php": "30edfe1bb0d6d93c9d70a5bc344c70956d24ddc8a2b7fc426f7ac11cc74eb729",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-grouped.php": "9e3478371aaa1acc09302ba5ba95f3ba3fd1e2677fd8418f79a9ad8660685949",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-line.php": "0257eaa069f38a194efe537a3832834e512bcdebe2206558293959536aad4b70",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-radar.php": "5a67fa52f65df35859992db7ebeaab461a0136694e8ff4ba650dac5a0d759be2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-score.php": "3f41c49feb1699adbf7a5a66e3155f006db763c4b7e996edcc42795c3cabbab7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graph-stack.php": "ea401f8419c90919c7d42abe882ef72e67a6ed59bc3578819830452f0bbf9243",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/graphs.php": "807d0406a9f53d186221ea147fa5758434aa3e0ee127944ec12c0ac4474f6c5a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php": "c1a2009b7fcfe0953d9f6315651b0ff7a62b0d98ec58cbcc7a27eba969a30f23",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/hero-split.php": "1ef9f2bc7fa90495332fecbc4c5b784bced8bc578f5eff81f4412a3595aa60ba",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "c369ac6062d24951f30170d2336a1e9362fd283534eab452b59a526022415244",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "4c0d7ffdd176b751a8f57bc46e280b81cd9480b6d891d5f646e1115ded02e676",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home.php": "3e82dc1af293aab9bd45fe9c2c60e1499698b77eb262d14471cf2711b01f3b3d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/linkcard.php": "dc3bedfbe655b50c07908e026b5d59ff4125d7db568094b7a70c898284fd046f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php": "c940dec5a27620c83f7467a3cb30715ec1a7ec365d34e1d231ce9833fb6ac20b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/media-top.php": "a2661176cbb227bb92cc082457cfd8d98d0199d16bb9974960e467db15cf5bdd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/numbers.php": "18fb49cf64423aa1421bba07c2dcdd4592ceb7c58bb037e3320b71cb72d7c51a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-countdown.php": "a0df6b04e046434e4de264186a5c85fbd52d6ae49811cd47e215179b9a8af403",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-entry-steps.php": "85963c7d2a7139315e81ded73c5b106399b0b8e87158f31252fe59c595d986b4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-event-list.php": "42709afb31b4ad6f6c9c0359bd7a32dbf465b26afb279ef153a8f3b3ebce1e46",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-gallery.php": "e62223dd9bc15f403dce248ddd73da207233f9daff6fd336705cd12c31ab030e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-greeting.php": "6863d99e60d21893ad032f833db1bcf983739d63d398ab599a1494c50ccc92f0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-judges.php": "03b19b33d7546e99058d738a138e06745b72e096f5574b1dd4d68b270a3a3ca3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-logos-row.php": "d643bd9a0d0294e6a310f79304f80681220daad4b313a14db8a7c75f5da41607",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-organizer.php": "826b43eed7103f3cc904cf4128d42374f023da34f774b05220b66b3666b78d77",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-prizes.php": "7d30e647797af69e6d8abf3b0e7490fb201c88bad6a1849b2f37e53ad22167f9",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-sns-feed.php": "6c07c41ea76f81d293ce6fc9bad0f13c925f2fcc7d3baa73406fc4c71ffe1445",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-stores.php": "b87bf5818560f53e6f9a5ca657b0e8a9fdf5c7f38c28f754cecc0745588f0fbd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-target-audience.php": "ddab0962d66a75985a79ee0b9d619fa27c643b6a53d43b92b6ca8e9febb5d810",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-target-products.php": "f9430af5b8d9768475a89bd522ac62f575d75b1d600a0ef7ca99f0d6c0cd8043",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-tickets.php": "f135c84ea245282f91322c6cfdede90f72e9f5d6a18990fc85cd68dfaeedca47",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-timeline.php": "2d03d4e8152ac0ae8f61453bc899b92bcc051dec104e616b55863dc52da98d70",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php": "eed588dfbc3319573cdc4a8ba42b1409f43e358e3ff0ae6d69b74c5bfbc8e9f4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php": "d0dfe6433c6543b1e8b2d2fc423755804625fb5b51841086a09b2cd4338edd26",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/share-sns.php": "527a64093a8cd15511c07ef3b0ae2bc3cb2388bac86028dfd9a8a3bc82c53d81",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php": "11ed46361822f12bf24948945f9a8d0a081f87f1cbdd81248ea4982d0944bd66",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html": "55986a539a487037ef04bd3ad206b1f10c217c7af4941bff5c06df8ec90a1240",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_blp.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_learning.html": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_lp.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_paid.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html": "4deba10559da617fb4f6c76d86220db8626120f7cc256a1a53fbe1b5efc8de14",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html": "036dd0a56ff43d5547237371bf289e6bdb5ccdcd878815197fcbdab03dc7757e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html": "a73d193cc2e44c8e11731074617a813f236cd2b83536041229b623b8473000a1",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html": "50711da545bd4b30377a12e8fedff86550f83a85ff724f66d35baf43cfcb36ee",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-canvas.html": "35bfc05f3a51b3df2ae3669db54c3c1a62e1ce8c525f1c853a16cac9d6b7b63f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html": "90e568c2b15b471d7d90ffca210420ae82e5a7b9a445a7df0a21abcfbdd6643a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html": "bd0b86a47cd8d459913d6f36a995ed14f007b348e1ad731eea6063fe62cada2f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "cbae6a4b6ec61c228b05c2425e2a66ef105715131eef7997961b9f698fdc84bd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_blp.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_interview.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_learning.html": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_lp.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_paid.html": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a"
+  },
+  "rows": [
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-6:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-9:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-15:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-16:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-18:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-22:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-24:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html:block-25:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html:block-6:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html:block-11:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html:block-6:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html:block-7:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html:block-6:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html:block-7:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html:block-5:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html:block-6:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html:block-11:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html:block-12:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html:block-5:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html:block-8:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html:block-5:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html:block-6:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html:block-5:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html:block-6:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html:block-5:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html:block-6:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-6:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-9:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-10:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-15:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-16:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html:block-17:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html:block-1:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html:block-6:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html:block-7:navigation",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-9:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-11:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-16:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-20:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php:block-21:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-4:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-6:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-11:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-12:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-16:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-17:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cases.php:block-18:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-14:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-19:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-23:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-24:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-28:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-29:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-35:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-36:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-38:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-39:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-40:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-42:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-44:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-46:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-48:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-50:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-52:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-54:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-56:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-58:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-60:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-62:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-64:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-65:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-67:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-68:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-73:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-74:cover",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-77:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-79:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-80:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-81:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-82:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-83:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-84:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-85:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-86:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-87:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-88:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-89:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-90:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-91:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-92:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-93:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-94:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-96:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-98:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-100:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-102:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-104:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-106:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-108:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-110:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-112:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-113:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-114:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/catalog-03.php:block-115:cover",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-12:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-19:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-21:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-26:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-29:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:block-35:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-box.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-box.php:block-3:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-button.php:block-0:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-price-tier.php:block-0:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-rank-featured.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-rank-featured.php:block-4:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-triple.php:block-2:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-triple.php:block-5:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-triple.php:block-8:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta.php:block-3:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-9:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-11:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-13:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-15:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:block-17:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/faq.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php:block-4:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/hero-split.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/hero-split.php:block-6:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/hero-split.php:block-11:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php:block-4:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-9:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-11:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-13:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-15:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-19:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-20:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-25:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-29:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:block-30:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/linkcard.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/linkcard.php:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-3:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-5:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-7:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-8:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-9:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-11:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-12:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-14:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-16:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-17:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-18:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-19:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-20:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-21:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-22:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-24:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-25:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-26:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:block-27:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/media-top.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/media-top.php:block-2:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/media-top.php:block-5:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/media-top.php:block-7:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/numbers.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-countdown.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-entry-steps.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-event-list.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-gallery.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-greeting.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-judges.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-logos-row.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-organizer.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-prizes.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-sns-feed.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-stores.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-target-audience.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-target-products.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-tickets.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-timeline.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php:block-4:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php:block-9:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php:block-14:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php:block-0:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php:block-7:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php:block-0:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php:block-4:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/steps.php:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-6:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-9:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-12:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-15:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-18:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-20:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html:block-23:buttons",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-6:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-8:post-template",
+      "type": "grid",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-9:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html:block-15:query-pagination",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-6:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-9:post-template",
+      "type": "grid",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-10:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-14:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-18:query-pagination",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html:block-20:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html:block-4:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html:block-4:post-template",
+      "type": "grid",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html:block-5:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html:block-10:query-pagination",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-canvas.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-canvas.html:block-2:post-content",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html:block-1:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html:block-2:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html:block-4:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html:block-5:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html:block-7:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html:block-8:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html:block-4:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html:block-5:post-content",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html:block-6:post-template",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html:block-7:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html:block-11:query-pagination",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-1:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-2:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-3:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-4:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-7:group",
+      "type": "flex",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-12:group",
+      "type": "default",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-13:group",
+      "type": "constrained",
+      "pass": true
+    },
+    {
+      "name": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html:block-14:post-content",
+      "type": "constrained",
+      "pass": true
+    }
+  ],
+  "limitation": "ソース内のブロックコメントに明示されたlayout.typeの対応検査。PHP展開、保存HTML妥当性、全ブロックの編集・表示は別検証。"
+}

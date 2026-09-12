@@ -8,6 +8,6 @@
  */
 ?>
 <!-- wp:html -->
-<a class="wt-header__spcta" href="/lp/">無料で診断</a>
-<nav class="wt-header__textnav" aria-label="主要ナビ（SP）"><a href="/category/accounting/">比較記事</a><a href="#ranking">ランキング</a><a href="#guide">選び方</a><a href="#glossary">用語集</a></nav>
+<a class="wt-header__spcta" href="/lp/"><?php esc_html_e( '無料で診断', 'helix-wt' ); ?></a>
+<nav class="wt-header__textnav" aria-label="<?php echo esc_attr__( '主要ナビ（SP）', 'helix-wt' ); ?>"><a href="/category/accounting/"><?php esc_html_e( '比較記事', 'helix-wt' ); ?></a><a href="#ranking"><?php esc_html_e( 'ランキング', 'helix-wt' ); ?></a><a href="#guide"><?php esc_html_e( '選び方', 'helix-wt' ); ?></a><a href="#glossary"><?php esc_html_e( '用語集', 'helix-wt' ); ?></a></nav>
 <!-- /wp:html -->

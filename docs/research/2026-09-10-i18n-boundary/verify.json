@@ -1,0 +1,126 @@
+{
+  "schema": "wt-i18n-boundary-verification.v1",
+  "completed": true,
+  "requirements": [
+    "WT-NFR-ENV-01"
+  ],
+  "source": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/i18n-profile.json",
+  "counts": {
+    "source_calls": 1493,
+    "unique_messages": 1120,
+    "untranslated_cjk": 0
+  },
+  "rows": [
+    {
+      "name": "i18n:source-calls-found",
+      "pass": true,
+      "detail": {
+        "unique_messages": 1120
+      }
+    },
+    {
+      "name": "i18n:all-gettext-calls-extracted",
+      "pass": true,
+      "detail": {
+        "extracted": 1493,
+        "all_gettext_calls": 1493
+      }
+    },
+    {
+      "name": "i18n:text-domain-consistent",
+      "pass": true,
+      "detail": {
+        "profile": "helix-wt",
+        "style": "helix-wt",
+        "source": [
+          "helix-wt"
+        ]
+      }
+    },
+    {
+      "name": "i18n:pot-exactly-matches-source",
+      "pass": true,
+      "detail": {
+        "unique_messages": 1120
+      }
+    },
+    {
+      "name": "i18n:no-untranslated-cjk-output",
+      "pass": true,
+      "detail": {
+        "findings": []
+      }
+    },
+    {
+      "name": "i18n:source-languages-declared",
+      "pass": true,
+      "detail": {
+        "source_languages": [
+          "ja",
+          "en"
+        ]
+      }
+    },
+    {
+      "name": "i18n:rtl-out-of-scope-explicit",
+      "pass": true,
+      "detail": {
+        "rtl": {
+          "supported": false,
+          "scope": "out-of-scope",
+          "reason": "Current prototype acceptance covers Japanese and English source content; RTL requires a separate evidence lane before release declaration."
+        }
+      }
+    },
+    {
+      "name": "negative:text-domain-drift-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:text-domain-consistent"
+      }
+    },
+    {
+      "name": "negative:pot-source-drift-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:pot-exactly-matches-source"
+      }
+    },
+    {
+      "name": "negative:untranslated-cjk-output-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:no-untranslated-cjk-output"
+      }
+    },
+    {
+      "name": "negative:untranslated-cjk-template-html-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:no-untranslated-cjk-output"
+      }
+    },
+    {
+      "name": "negative:untranslated-cjk-attribute-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:no-untranslated-cjk-output"
+      }
+    },
+    {
+      "name": "negative:missing-source-language-policy-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:source-languages-declared"
+      }
+    },
+    {
+      "name": "negative:missing-rtl-boundary-fails",
+      "pass": true,
+      "detail": {
+        "failed_gate": "i18n:rtl-out-of-scope-explicit"
+      }
+    }
+  ],
+  "failed": 0
+}

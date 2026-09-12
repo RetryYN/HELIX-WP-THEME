@@ -1,0 +1,388 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-form-boundaries.mjs": "b31a229c9499b5bde07d6349b8a16b4ad9a9a96c2641a0744dea72b006d0f05c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "5a63832412ea587c7e8bbe692af9f67f10c27daeebc044bb0f8394d57b6ef24e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "3e277190449dd38227d2bd59f0fae3f17c9c862b70a7ddf6e3282a193766b987",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "0597e900b7a0c4c53864fa1e5986dd7f72263532db6cdb926dd9e9100e350cd0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
+  },
+  "rows": [
+    {
+      "name": "kind:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:impossible-date:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-date-month:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-month:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-year:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-preference:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:impossible-preference:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:fractional-people:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-people:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-select:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-radio:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-checks:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-yesno:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-email:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:email-mismatch:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-phone:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-postal:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-kana:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:missing-url-host:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-consent:pc:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:wrong-captcha:pc:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:impossible-date:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-date-month:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-month:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-year:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-preference:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:impossible-preference:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:fractional-people:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-people:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-select:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-radio:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-checks:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-yesno:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-email:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:email-mismatch:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-phone:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-postal:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-kana:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:missing-url-host:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-consent:pc:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:wrong-captcha:pc:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:impossible-date:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-date-month:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-month:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-year:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-preference:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:impossible-preference:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:fractional-people:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-people:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-select:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-radio:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-checks:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-yesno:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-email:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:email-mismatch:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-phone:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-postal:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-kana:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "reject:missing-url-host:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-consent:sp:js-true:full",
+      "pass": false
+    },
+    {
+      "name": "reject:wrong-captcha:sp:js-true:full",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:impossible-date:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-date-month:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-month:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-year:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-preference:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:impossible-preference:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:fractional-people:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:zero-people:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-select:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-radio:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-checks:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-yesno:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-email:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:email-mismatch:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-phone:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-postal:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-kana:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "reject:missing-url-host:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:invalid-consent:sp:js-false:full",
+      "pass": false
+    },
+    {
+      "name": "reject:wrong-captcha:sp:js-false:full",
+      "pass": true
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

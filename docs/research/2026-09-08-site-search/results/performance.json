@@ -1,0 +1,164 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-search-performance.mjs": "6445fd4dfc9a33396d0504218f3336f95cb14874b3f48c3dc9c884da771eced2",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "30758dd9d9f5f333f0946802edc20e56c1fd687196a5a1c79a9d36cc4a00740a"
+  },
+  "measurements": [
+    {
+      "protectedPosts": 50,
+      "direct": {
+        "cold": [
+          6211,
+          6212
+        ],
+        "warm": [
+          6211,
+          6212
+        ],
+        "cold_ms": 109.19499397277832,
+        "warm_ms": 0.06508827209472656,
+        "cold_queries": 54,
+        "warm_queries": 0,
+        "cold_checks": 50,
+        "warm_checks": 0
+      },
+      "coldResponseMs": 364.9434889999993,
+      "warmResponseMs": [
+        201.45300300000054,
+        178.21444899999915,
+        135.73696500000005,
+        136.0828619999993,
+        141.70596699999987
+      ],
+      "warmMedianMs": 141.70596699999987
+    },
+    {
+      "protectedPosts": 400,
+      "direct": {
+        "cold": [
+          6262,
+          6263
+        ],
+        "warm": [
+          6262,
+          6263
+        ],
+        "cold_ms": 851.9580364227295,
+        "warm_ms": 0.2410411834716797,
+        "cold_queries": 406,
+        "warm_queries": 0,
+        "cold_checks": 400,
+        "warm_checks": 0
+      },
+      "coldResponseMs": 949.5423659999979,
+      "warmResponseMs": [
+        206.28074999999808,
+        219.69315800000186,
+        156.53449700000056,
+        144.03459400000065,
+        127.5142429999978
+      ],
+      "warmMedianMs": 156.53449700000056
+    }
+  ],
+  "rows": [
+    {
+      "name": "cold-scans-protected:50",
+      "pass": true,
+      "actual": 50
+    },
+    {
+      "name": "warm-skips-password-checks:50",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "cache-preserves-unlocked-ids:50",
+      "pass": true,
+      "actual": 2
+    },
+    {
+      "name": "warm-uses-bounded-queries:50",
+      "pass": true,
+      "actual": {
+        "cold": 54,
+        "warm": 0
+      }
+    },
+    {
+      "name": "postpass-cookie:50",
+      "pass": true
+    },
+    {
+      "name": "search-result-contract:50",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "warm-response-faster-than-cold:50",
+      "pass": true,
+      "actual": {
+        "coldResponseMs": 364.9434889999993,
+        "warmMedianMs": 141.70596699999987
+      }
+    },
+    {
+      "name": "cold-scans-protected:400",
+      "pass": true,
+      "actual": 400
+    },
+    {
+      "name": "warm-skips-password-checks:400",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "cache-preserves-unlocked-ids:400",
+      "pass": true,
+      "actual": 2
+    },
+    {
+      "name": "warm-uses-bounded-queries:400",
+      "pass": true,
+      "actual": {
+        "cold": 406,
+        "warm": 0
+      }
+    },
+    {
+      "name": "postpass-cookie:400",
+      "pass": true
+    },
+    {
+      "name": "search-result-contract:400",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "warm-response-faster-than-cold:400",
+      "pass": true,
+      "actual": {
+        "coldResponseMs": 949.5423659999979,
+        "warmMedianMs": 156.53449700000056
+      }
+    },
+    {
+      "name": "warm-response-not-linear-with-protected-count",
+      "pass": true,
+      "actual": {
+        "countRatio": 8,
+        "responseRatio": 1.104642947039772
+      }
+    },
+    {
+      "name": "owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ],
+  "limitation": "Cold cache scans protected posts once per cookie/version. Warm searches reuse a server-side transient. Timing is local lab evidence, not a production SLA."
+}

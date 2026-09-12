@@ -1,0 +1,1526 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-search-access.mjs": "88367b8e3451e23152cb7bd56f60a16a8cc7dab0a7fc67aae4b5cbe9562085fd",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "30758dd9d9f5f333f0946802edc20e56c1fd687196a5a1c79a9d36cc4a00740a",
+    "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "980be23e03737f934dd81626508470edb23e26f060396115a6d26bb692f97121",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "cbae6a4b6ec61c228b05c2425e2a66ef105715131eef7997961b9f698fdc84bd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "071495a464d3aa83a95a4497f27a630d5664022676e1ce8fe5b17e4f4f39c31a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1d888f4eddbbae63302fcd2661a8603090628883c35b0fe155585208bda3c9d8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3"
+  },
+  "rows": [
+    {
+      "name": "count:anonymous:pc:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:anonymous:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:pc:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:pc:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:pc:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:pc:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:pc:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:anonymous:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:pc:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:pc:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:pc:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:pc:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:sp:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:anonymous:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:sp:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:sp:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:sp:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:sp:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:sp:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:anonymous:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:sp:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:anonymous:sp:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:anonymous:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:anonymous:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:sp:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:anonymous:sp:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "reader-capability:none",
+      "pass": true
+    },
+    {
+      "name": "login:none",
+      "pass": true
+    },
+    {
+      "name": "count:none:pc:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:none:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:none:pc:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:none:pc:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:pc:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:pc:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:none",
+      "pass": true
+    },
+    {
+      "name": "count:none:pc:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:none:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:none:pc:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:none:pc:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:pc:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:pc:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:none",
+      "pass": true
+    },
+    {
+      "name": "count:none:sp:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:none:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:none:sp:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:none:sp:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:sp:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:sp:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:none",
+      "pass": true
+    },
+    {
+      "name": "count:none:sp:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:none:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:none:sp:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:none:sp:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:none:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:none:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:sp:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:none:sp:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "reader-capability:oneoff",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:pc:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:oneoff:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:pc:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:pc:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:pc:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:pc:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:pc:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:oneoff:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:pc:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:pc:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:pc:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:pc:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:sp:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:oneoff:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:sp:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:sp:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:sp:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:sp:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:sp:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:oneoff:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:sp:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:sp:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:sp:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:oneoff:sp:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "reader-capability:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:pc:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:subscription:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:pc:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:pc:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:pc:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:pc:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:pc:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:subscription:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:pc:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:pc:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:pc:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:pc:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:sp:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:subscription:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:sp:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:sp:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:sp:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:sp:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:sp:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:subscription:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:sp:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:sp:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:sp:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:subscription:sp:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "reader-capability:expired",
+      "pass": true
+    },
+    {
+      "name": "login:expired",
+      "pass": true
+    },
+    {
+      "name": "count:expired:pc:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:expired:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:expired:pc:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:expired:pc:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:pc:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:pc:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:expired",
+      "pass": true
+    },
+    {
+      "name": "count:expired:pc:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:expired:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:expired:pc:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:expired:pc:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:pc:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:pc:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:expired",
+      "pass": true
+    },
+    {
+      "name": "count:expired:sp:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:expired:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:expired:sp:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:expired:sp:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:sp:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:sp:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:expired",
+      "pass": true
+    },
+    {
+      "name": "count:expired:sp:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:expired:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:expired:sp:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:expired:sp:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:expired:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:expired:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:sp:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:expired:sp:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "reader-capability:other_product",
+      "pass": true
+    },
+    {
+      "name": "login:other_product",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:pc:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:other_product:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:pc:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:pc:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:pc:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:pc:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:pc:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:pc:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:pc:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:other_product",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:pc:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:other_product:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:pc:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:pc:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:pc:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:pc:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:pc:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:pc:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:pc:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:other_product",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:sp:js-true:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:other_product:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:sp:js-true:public",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:sp:js-true:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:sp:js-true:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:sp:js-true:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:sp:js-true:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:sp:js-true:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:sp:js-true:subscription",
+      "pass": true
+    },
+    {
+      "name": "login:other_product",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:sp:js-false:public",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "results:other_product:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:sp:js-false:public",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:sp:js-false:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:sp:js-false:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:other_product:sp:js-false:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:other_product:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:other_product:sp:js-false:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:sp:js-false:oneoff",
+      "pass": true
+    },
+    {
+      "name": "direct-access:other_product:sp:js-false:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:before-login:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:before-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:before-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:before-login:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:before-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:before-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "transition-body:oneoff:before-login",
+      "pass": true
+    },
+    {
+      "name": "login:oneoff",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:after-login:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:after-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:after-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:after-login:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:after-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:after-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "transition-body:oneoff:after-login",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:after-logout:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:after-logout:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:after-logout:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:oneoff:after-logout:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:oneoff:after-logout:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:oneoff:after-logout:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "transition-body:oneoff:after-logout",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:before-login:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:before-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:before-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:before-login:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:before-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:before-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "transition-body:subscription:before-login",
+      "pass": true
+    },
+    {
+      "name": "login:subscription",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:after-login:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:after-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:after-login:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:after-login:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:after-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:after-login:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "transition-body:subscription:after-login",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:after-logout:hidden-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:after-logout:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:after-logout:hidden-body",
+      "pass": true
+    },
+    {
+      "name": "count:subscription:after-logout:purchase-body",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "results:subscription:after-logout:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "protected-excerpt:subscription:after-logout:purchase-body",
+      "pass": true
+    },
+    {
+      "name": "transition-body:subscription:after-logout",
+      "pass": true
+    },
+    {
+      "name": "owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "wt-learning-publication.v1",
+  "completed": true,
+  "rows": [
+    {
+      "name": "published:last-page:pc",
+      "pass": true
+    },
+    {
+      "name": "published:last-record:pc",
+      "pass": true
+    },
+    {
+      "name": "published:last-page:sp",
+      "pass": true
+    },
+    {
+      "name": "published:last-record:sp",
+      "pass": true
+    },
+    {
+      "name": "unpublished:count-and-recovery:pc",
+      "pass": true
+    },
+    {
+      "name": "unpublished:record-absent:pc",
+      "pass": true
+    },
+    {
+      "name": "unpublished:query-preserved:pc",
+      "pass": true
+    },
+    {
+      "name": "unpublished:count-and-recovery:sp",
+      "pass": true
+    },
+    {
+      "name": "unpublished:record-absent:sp",
+      "pass": true
+    },
+    {
+      "name": "unpublished:query-preserved:sp",
+      "pass": true
+    },
+    {
+      "name": "all-unpublished:zero:pc",
+      "pass": true
+    },
+    {
+      "name": "all-unpublished:back-to-public-list:pc",
+      "pass": true
+    },
+    {
+      "name": "all-unpublished:zero:sp",
+      "pass": true
+    },
+    {
+      "name": "all-unpublished:back-to-public-list:sp",
+      "pass": true
+    },
+    {
+      "name": "owned-fixtures-removed",
+      "pass": true
+    }
+  ]
+}

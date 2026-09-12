@@ -1,0 +1,224 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-footer-rendering.mjs": "52c3e5a738731a61cd6be48f9b989b13c4c5fa66f4fc553bfd6635eb2b6918d6",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "4dfdc64cc4f31b0b9b87fe5f62d0356e80e236d6da2f3ba07217869e04e88a5c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8ae5afaf181b2b58a56dc355454d66c07fa42e027c90e9fda1729c2299b3ffa8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/footer.js": "2aa77aaa9afa0181559ae556fb065f17991fdb741b7e17cc7049b4e1c5d049db"
+  },
+  "rows": [
+    {
+      "name": "related-group:empty:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:empty:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "viewport:empty:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "related-group:empty:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:empty:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "viewport:empty:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "related-group:empty:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:empty:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "viewport:empty:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "related-group:empty:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:empty:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "viewport:empty:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "related-group:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "viewport:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "stored-links:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "aligned-headings:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-toggle:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "off-omits-related:filled:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "related-group:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "viewport:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "stored-links:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "aligned-headings:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-toggle:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "off-omits-related:filled:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "related-group:filled:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:filled:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "viewport:filled:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "stored-links:filled:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "keyboard-toggle:filled:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "off-omits-related:filled:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "related-group:filled:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:filled:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "viewport:filled:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "stored-links:filled:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "keyboard-toggle:filled:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "off-omits-related:filled:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "related-group:emptied:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:emptied:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "viewport:emptied:1440:js-true",
+      "pass": true
+    },
+    {
+      "name": "related-group:emptied:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:emptied:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "viewport:emptied:1440:js-false",
+      "pass": true
+    },
+    {
+      "name": "related-group:emptied:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:emptied:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "viewport:emptied:375:js-true",
+      "pass": true
+    },
+    {
+      "name": "related-group:emptied:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "sitemap-groups:emptied:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "viewport:emptied:375:js-false",
+      "pass": true
+    },
+    {
+      "name": "owned-footer-removed",
+      "pass": true
+    },
+    {
+      "name": "owned-navigation-removed",
+      "pass": true
+    }
+  ],
+  "limitation": "標準保存モデルwp_navigation/wp_template_partを使う。Site Editorブラウザー操作、全継承面、リンク先本文は未検証。"
+}

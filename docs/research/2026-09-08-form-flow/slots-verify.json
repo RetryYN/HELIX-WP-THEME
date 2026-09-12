@@ -1,0 +1,354 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-form-slots.mjs": "9db9d029c52f5066774f60d18fe1c2e05e0b98e343cc78fe7fa0222d0b2f507f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "fddeda78ae5e14a6d07df65fb308f58f759f0e71e4bea48af25c7c8a9cd94372",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "43cea0eb239f7984150951c0b9a81f8aa4de28f7fd0fe94e3f76073b90559e89",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "a94e0c718b92117805bbba75126b0222803658adcc13be725367aaae4df7a57a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1d888f4eddbbae63302fcd2661a8603090628883c35b0fe155585208bda3c9d8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "330b7d496c9044929bb05bd384ce5720f233304aceee01ec677ea61aa8f46b6a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php": "ba502b320ec0e50d6ccb100a03ee15874f9a886e12985b3dead4601ef9915531",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "e24fd68007cc1c951fc6b908ceadaed2115490b8a46df9caabe6f32dfd82089a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html": "90e568c2b15b471d7d90ffca210420ae82e5a7b9a445a7df0a21abcfbdd6643a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe"
+  },
+  "rows": [
+    {
+      "name": "default-no-form:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "kind:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "confirmation:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "separate-route:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:lp",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-true:event",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:lp",
+      "pass": true
+    },
+    {
+      "name": "default-no-form:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "kind:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "kind-fields:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "empty-rejected:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "attachment-no-name:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "confirmation:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "all-values-retained:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "separate-route:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "kind-completed:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "reflow:sp:js-false:event",
+      "pass": true
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    },
+    {
+      "name": "owned-thanks-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

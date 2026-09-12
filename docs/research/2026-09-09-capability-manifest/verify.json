@@ -1,0 +1,142 @@
+{
+  "schema": "wt-capability-manifest-verification.v2",
+  "requirements": [
+    "WT-TR-CORE-01",
+    "WT-TR-CORE-02"
+  ],
+  "completed": true,
+  "source": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/capability-manifest.json",
+  "counts": {
+    "patterns": 55,
+    "template_parts": 12,
+    "templates": 24,
+    "style_variations": 2,
+    "slots": 6,
+    "custom_blocks": 21,
+    "block_styles": 77,
+    "value_scales": 35
+  },
+  "rows": [
+    {
+      "name": "manifest:declared-equals-current-helix-wt-source",
+      "pass": true,
+      "detail": {
+        "drift": []
+      }
+    },
+    {
+      "name": "manifest:all-capability-kinds",
+      "pass": true,
+      "detail": {
+        "kinds": [
+          "patterns",
+          "template_parts",
+          "templates",
+          "style_variations",
+          "slots",
+          "custom_blocks",
+          "block_styles",
+          "value_scales"
+        ]
+      }
+    },
+    {
+      "name": "negative:undeclared-patterns-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "patterns"
+      }
+    },
+    {
+      "name": "negative:undeclared-template_parts-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "template_parts"
+      }
+    },
+    {
+      "name": "negative:undeclared-templates-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "templates"
+      }
+    },
+    {
+      "name": "negative:undeclared-style_variations-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "style_variations"
+      }
+    },
+    {
+      "name": "negative:undeclared-slots-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "slots"
+      }
+    },
+    {
+      "name": "negative:undeclared-custom_blocks-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "custom_blocks"
+      }
+    },
+    {
+      "name": "negative:undeclared-block_styles-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "block_styles"
+      }
+    },
+    {
+      "name": "negative:undeclared-value_scales-fails",
+      "pass": true,
+      "detail": {
+        "expected_drift": "value_scales"
+      }
+    },
+    {
+      "name": "manifest:template-parts-match-theme-json",
+      "pass": true,
+      "detail": {
+        "declared": [
+          "header",
+          "footer",
+          "header-nav",
+          "header-cta",
+          "header-announce",
+          "cv-slot",
+          "article-tail"
+        ],
+        "files": [
+          "article-tail",
+          "cv-slot",
+          "footer",
+          "header",
+          "header-announce",
+          "header-band",
+          "header-center",
+          "header-cta",
+          "header-nav",
+          "header-overlay",
+          "header-tel",
+          "header-two-rows"
+        ]
+      }
+    },
+    {
+      "name": "manifest:custom-templates-exist",
+      "pass": true,
+      "detail": {
+        "custom_templates": [
+          "page-lp",
+          "page-event",
+          "page-canvas",
+          "page-site-guide"
+        ]
+      }
+    }
+  ],
+  "failed": 0
+}

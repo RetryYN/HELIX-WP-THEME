@@ -1,0 +1,356 @@
+{
+  "schema": "wt-parts-declaration-verification.v1",
+  "acceptance": [
+    "WT-AC-PARTS-01A",
+    "WT-AC-PARTS-01B"
+  ],
+  "scope": "Dedicated WordPress lab WP-CLI saved declarations and public reload; core/template-part",
+  "completed": true,
+  "checks": [
+    {
+      "name": "initial:saved-declaration-roundtrip",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:body-present",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-js:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:body-present",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "initial-pc-nojs:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:body-present",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-js:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:body-present",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "initial-sp-nojs:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "updated:saved-declaration-roundtrip",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:body-present",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-js:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:body-present",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "updated-pc-nojs:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:body-present",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-js:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:selected-reference-visible",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:unselected-heavy-dom-absent",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:body-present",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:header-body-no-overlap",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:44px-header-targets",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:AA-body-text",
+      "pass": true
+    },
+    {
+      "name": "updated-sp-nojs:reload-persists",
+      "pass": true
+    },
+    {
+      "name": "missingReference:validator-rejects",
+      "pass": true
+    },
+    {
+      "name": "missingReference:public-rejects",
+      "pass": true
+    },
+    {
+      "name": "missingDevice:validator-rejects",
+      "pass": true
+    },
+    {
+      "name": "missingDevice:public-rejects",
+      "pass": true
+    },
+    {
+      "name": "invalidType:validator-rejects",
+      "pass": true
+    },
+    {
+      "name": "invalidType:public-rejects",
+      "pass": true
+    },
+    {
+      "name": "traversal:validator-rejects",
+      "pass": true
+    },
+    {
+      "name": "traversal:public-rejects",
+      "pass": true
+    },
+    {
+      "name": "extraKey:validator-rejects",
+      "pass": true
+    },
+    {
+      "name": "extraKey:public-rejects",
+      "pass": true
+    },
+    {
+      "name": "fixture-cleanup",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "initial-pc-js.png",
+    "initial-pc-nojs.png",
+    "initial-sp-js.png",
+    "initial-sp-nojs.png",
+    "updated-pc-js.png",
+    "updated-pc-nojs.png",
+    "updated-sp-js.png",
+    "updated-sp-nojs.png"
+  ],
+  "phases": {
+    "initial": {
+      "common": "header",
+      "pc": null,
+      "sp": "header-center"
+    },
+    "updated": {
+      "common": "header-center",
+      "pc": "header-band",
+      "sp": null
+    }
+  },
+  "sourceDigests": {
+    "scripts/verify-parts-declaration.mjs": "a4700cbf1918867d531f9778a36fabff37bec7df5c3cde15df157008d77edd95",
+    "docs/research/2026-09-13-parts-declaration/schema.json": "7119b87340107ea31a18f9d1384f12f82bffdfee93aec42c355a15b4c31123e2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php": "6d7926fa9181a14d8ca31f99bb5f4695c0538f53d108ef0a508ecc77e6fadfb2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/parts-catalog.css": "6b1693ff891c895a18614650afafc30a208e34dbec0ff36f3749a0574bcd97ff",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html": "d225ce189fc54510f16cb1163a1aaf1cb2be510a95e075cc3684a23fc12b2982",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html": "1d71e36aebbfce30ea5efaba4f8077638352cd1b408f8ec5ce6081911e701e23",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "e2516ec8f7f319448de18788ceb571010fc30b3ad94a045130bdba9b78a9b38d"
+  },
+  "limitations": [
+    "Site Editor interaction and client attribute persistence not verified",
+    "wp_is_mobile device selection; cache segmentation and viewport-only changes not verified",
+    "Only theme-file-backed parts; database-only part references not supported"
+  ]
+}

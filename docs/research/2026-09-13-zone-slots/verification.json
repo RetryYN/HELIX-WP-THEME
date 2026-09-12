@@ -1,0 +1,168 @@
+{
+  "schema": "wt-zone-slots-verification.v1",
+  "acceptance": [
+    "WT-AC-ZONE-01A",
+    "WT-AC-ZONE-01B"
+  ],
+  "scope": "Dedicated local WordPress / current helix-wt / server-rendering PoC",
+  "completed": true,
+  "passed": true,
+  "checks": [
+    {
+      "name": "pc-js:placement-order",
+      "pass": true
+    },
+    {
+      "name": "pc-js:device-difference",
+      "pass": true
+    },
+    {
+      "name": "pc-js:opposite-heavy-absent",
+      "pass": true
+    },
+    {
+      "name": "pc-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js:no-hidden-zone",
+      "pass": true
+    },
+    {
+      "name": "pc-js:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:placement-order",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:device-difference",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:opposite-heavy-absent",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:no-hidden-zone",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js:placement-order",
+      "pass": true
+    },
+    {
+      "name": "sp-js:device-difference",
+      "pass": true
+    },
+    {
+      "name": "sp-js:opposite-heavy-absent",
+      "pass": true
+    },
+    {
+      "name": "sp-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js:no-hidden-zone",
+      "pass": true
+    },
+    {
+      "name": "sp-js:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:placement-order",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:device-difference",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:opposite-heavy-absent",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:no-hidden-zone",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:AA-text",
+      "pass": true
+    },
+    {
+      "name": "empty-dom-false",
+      "pass": true
+    },
+    {
+      "name": "empty-dom-true",
+      "pass": true
+    },
+    {
+      "name": "fixture-cleanup",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "pc-js.png",
+    "pc-nojs.png",
+    "sp-js.png",
+    "sp-nojs.png"
+  ],
+  "sourceDigests": {
+    "scripts/verify-zone-slots.mjs": "b3e0358e337f92d758b624b26d1a749a45b06de40d9e240ef5bff7895d62f478",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "a309bece3ba6058be50a07c9b6dd1cf75d7b858ba16295e4ac8f9da5b7b30b56",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/zone-slots.css": "d3dc48347019ecec029a80e65110eca0d38586544c4b2cbfd210b41708233588"
+  },
+  "limitations": [
+    "Dedicated placement fixture; production templates and Site Editor controls not connected",
+    "Device selection uses wp_is_mobile; viewport-only resize and cache segmentation are not verified"
+  ]
+}

@@ -1,0 +1,756 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-event-state.mjs": "5db0d25fc03bb9c2c7fcd78ca9d09bca400c85a4a265eb904fafeafe05e93a3c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "c81c4d0b9f54b141d708793d668aba89b253cc7fb10013fa6ef92f6f4e0f46d6",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "a454f3bbad19a8791749b63a94436f245dd413a39d4e68e312a01a8382ec6c08",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "327823352f577436c4d087b48646c4de5d9f857270f00714ba9e6c5a4be4a23f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "43cea0eb239f7984150951c0b9a81f8aa4de28f7fd0fe94e3f76073b90559e89",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "d91d25848e006f3b155fff29bb05d59a46579e70258cfa752d6f36127a7277e3"
+  },
+  "fixtures": [
+    {
+      "name": "before-open",
+      "observed_at": "2026-10-01T08:59:59Z",
+      "registered": 0,
+      "expected": "受付前",
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "capacity": 50
+    },
+    {
+      "name": "opening-boundary",
+      "observed_at": "2026-10-01T09:00:00Z",
+      "registered": 0,
+      "expected": "受付中",
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "capacity": 50
+    },
+    {
+      "name": "full",
+      "observed_at": "2026-10-02T09:00:00Z",
+      "registered": 50,
+      "expected": "満席",
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "capacity": 50
+    },
+    {
+      "name": "reopened-seat",
+      "observed_at": "2026-10-02T09:00:01Z",
+      "registered": 49,
+      "expected": "受付中",
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "capacity": 50
+    },
+    {
+      "name": "before-deadline",
+      "observed_at": "2026-10-14T08:59:59Z",
+      "registered": 0,
+      "expected": "受付中",
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "capacity": 50
+    },
+    {
+      "name": "deadline-boundary",
+      "observed_at": "2026-10-14T09:00:00Z",
+      "registered": 0,
+      "expected": "受付終了",
+      "opens_at": "2026-10-01T09:00:00Z",
+      "closes_at": "2026-10-14T09:00:00Z",
+      "capacity": 50
+    }
+  ],
+  "rows": [
+    {
+      "name": "fixture-mode:blogname-does-not-enable-observed-time",
+      "pass": true
+    },
+    {
+      "name": "state:before-open:pc:js-true",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-open:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-open:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-open:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-open:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-open:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:before-open:pc:js-false",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-open:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-open:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-open:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-open:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-open:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:before-open:sp:js-true",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-open:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-open:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-open:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-open:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-open:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:before-open:sp:js-false",
+      "expected": "受付前",
+      "visible": [
+        "受付前"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-open:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-open:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-open:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-open:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-open:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:opening-boundary:pc:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:opening-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:opening-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:opening-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:opening-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:opening-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:opening-boundary:pc:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:opening-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:opening-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:opening-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:opening-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:opening-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:opening-boundary:sp:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:opening-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:opening-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:opening-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:opening-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:opening-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:opening-boundary:sp:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:opening-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:opening-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:opening-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:opening-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:opening-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:full:pc:js-true",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:full:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:full:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:full:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:full:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:full:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:full:pc:js-false",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:full:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:full:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:full:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:full:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:full:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:full:sp:js-true",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:full:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:full:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:full:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:full:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:full:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:full:sp:js-false",
+      "expected": "満席",
+      "visible": [
+        "満席"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:full:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:full:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:full:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:full:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:full:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:reopened-seat:pc:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:reopened-seat:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:reopened-seat:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:reopened-seat:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reopened-seat:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reopened-seat:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:reopened-seat:pc:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:reopened-seat:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:reopened-seat:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:reopened-seat:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reopened-seat:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reopened-seat:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:reopened-seat:sp:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:reopened-seat:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:reopened-seat:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:reopened-seat:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reopened-seat:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reopened-seat:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:reopened-seat:sp:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:reopened-seat:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:reopened-seat:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:reopened-seat:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:reopened-seat:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:reopened-seat:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:before-deadline:pc:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-deadline:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:before-deadline:pc:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-deadline:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:before-deadline:sp:js-true",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-deadline:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:before-deadline:sp:js-false",
+      "expected": "受付中",
+      "visible": [
+        "受付中"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:before-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:before-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:before-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:before-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:before-deadline:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:deadline-boundary:pc:js-true",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:deadline-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:deadline-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:deadline-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:deadline-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:deadline-boundary:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:deadline-boundary:pc:js-false",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:deadline-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:deadline-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:deadline-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:deadline-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:deadline-boundary:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:deadline-boundary:sp:js-true",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:deadline-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "form-availability:deadline-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "explanation:deadline-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "availability-route:deadline-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "post-availability:deadline-boundary:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:deadline-boundary:sp:js-false",
+      "expected": "受付終了",
+      "visible": [
+        "受付終了"
+      ],
+      "pass": true
+    },
+    {
+      "name": "external-badge-style:deadline-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "form-availability:deadline-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "explanation:deadline-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "availability-route:deadline-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "post-availability:deadline-boundary:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    }
+  ],
+  "limitation": "時刻・残席の専用fixture入力。観測時刻・残席による表示とPOST可否を照合。業務予約・定員更新・実送信は対象外。"
+}

@@ -1,0 +1,120 @@
+{
+    "completed": true,
+    "sourceDigests": {
+        "docs\/research\/2026-09-05-design-prototype-03\/theme\/helix-wt\/inc\/content-chrome.php": "2bb2176d245a862ac2bc43fbad020830fd4992d21a121bc59b90c585f6974864",
+        "scripts\/verify-chrome-config.php": "ad2ef30cdc418a44fb0d76ea60d928703ec46d2324b534f68510d4d6f542511d"
+    },
+    "rows": [
+        {
+            "name": "missing",
+            "pass": false,
+            "actual": {
+                "warnings": 1,
+                "error": null,
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "invalid-json",
+            "pass": true,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "null",
+            "pass": true,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "scalar",
+            "pass": true,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "missing-post-type",
+            "pass": false,
+            "actual": {
+                "warnings": 1,
+                "error": null,
+                "face": "bad"
+            },
+            "expected": null
+        },
+        {
+            "name": "string-rule",
+            "pass": false,
+            "actual": {
+                "warnings": 0,
+                "error": "TypeError",
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "empty-post-type",
+            "pass": false,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": "bad"
+            },
+            "expected": null
+        },
+        {
+            "name": "array-post-type",
+            "pass": true,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "invalid-block",
+            "pass": true,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": null
+            },
+            "expected": null
+        },
+        {
+            "name": "valid",
+            "pass": true,
+            "actual": {
+                "warnings": 0,
+                "error": null,
+                "face": "content_paid"
+            },
+            "expected": "content_paid"
+        },
+        {
+            "name": "mixed",
+            "pass": false,
+            "actual": {
+                "warnings": 1,
+                "error": null,
+                "face": "bad"
+            },
+            "expected": "content_paid"
+        }
+    ],
+    "limitation": "PHP isolated stubs for configuration boundaries; not a WordPress integration test."
+}

@@ -1,0 +1,7 @@
+/* 個別面のリンク色が共通パーツの色地上の文字へ混入しないようにする。 */
+body.wt-content-chrome-shared .wt-side-banners a{color:var(--wp--preset--color--base)}
+html:not(.wt-js) body.wt-content-chrome-shared .wt-header .wp-block-navigation__responsive-container{display:block;position:static;width:auto;height:auto}
+html:not(.wt-js) body.wt-content-chrome-shared .wt-header .wp-block-navigation__responsive-container-open{visibility:hidden;position:absolute}
+html:not(.wt-js) body.wt-content-chrome-shared .wt-header .wp-block-navigation__container{flex-wrap:wrap;gap:var(--wp--preset--spacing--30)}
+html:not(.wt-js) body.wt-content-chrome-shared .wt-header .wp-block-navigation-item__content{display:inline-flex;align-items:center;min-height:var(--wp--custom--tap-min)}
+@media(max-width:599px){html:not(.wt-js) body.wt-content-chrome-shared .wt-header__row{flex-wrap:wrap}html:not(.wt-js) body.wt-content-chrome-shared .wt-header__nav{flex:1 0 100%;order:10}}

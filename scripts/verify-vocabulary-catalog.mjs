@@ -1,0 +1,32 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
+import {chromium} from 'playwright';
+const relative='docs/research/2026-09-13-vocabulary-catalog',out=path.resolve(relative),mapping=JSON.parse(fs.readFileSync(path.join(out,'mapping.json'))),checks=[],screenshots=[];
+const check=(name,pass)=>checks.push({name,pass:!!pass});
+// 提案契約を検査する。WordPressの実登録を制限したとは主張しない。
+const validate=m=>m.vocabularies.length===14&&new Set(m.vocabularies.map(v=>v.id)).size===14&&m.vocabularies.every(v=>typeof v.receiver==='string'&&v.receiver.length>0)&&m.newBlockPlan.length<=m.maximum&&new Set(m.newBlockPlan).size===m.newBlockPlan.length&&m.vocabularies.find(v=>v.id==='table').receiver!=='new:product-comparison';
+check('mapping-fourteen-one-receiver',validate(mapping));
+check('six-proposed-plus-one-reserved',mapping.newBlockPlan.length===6&&mapping.reservedSlots===1&&mapping.maximum===7);
+check('seventh-slot-accepted',validate({...mapping,newBlockPlan:[...mapping.newBlockPlan,'reserved']}));
+check('eighth-slot-rejected',!validate({...mapping,newBlockPlan:[...mapping.newBlockPlan,'reserved','eighth']}));
+check('missing-receiver-rejected',!validate({...mapping,vocabularies:mapping.vocabularies.map((v,i)=>i===0?{...v,receiver:''}:v)}));
+check('comparison-conflation-rejected',!validate({...mapping,vocabularies:mapping.vocabularies.map(v=>v.id==='table'?{...v,receiver:'new:product-comparison'}:v)}));
+const browser=await chromium.launch();
+try{for(const [device,width] of [['pc',1440],['sp',390]])for(const javaScriptEnabled of [true,false]){const context=await browser.newContext({viewport:{width,height:960},javaScriptEnabled});const page=await context.newPage();await page.goto(pathToFileURL(path.join(out,'index.html')).href);await page.evaluate(()=>document.fonts.ready);const name=device+'-'+(javaScriptEnabled?'js':'nojs');
+check(name+':fourteen-visible',await page.locator('[data-vocab]').evaluateAll(es=>es.length===14&&es.every(e=>e.getBoundingClientRect().height>0)));
+check(name+':top-seven-visible',await page.locator('[data-vocab]').evaluateAll((es,ids)=>ids.every(id=>es.some(e=>e.dataset.vocab===id&&e.getBoundingClientRect().height>0)),mapping.vocabularies.filter(v=>v.topSeven).map(v=>v.id)));
+check(name+':four-sales-visible',await page.locator('[data-sale]').count()===4);
+check(name+':no-page-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+check(name+':44px-targets',await page.locator('a,summary').evaluateAll(es=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>=44&&r.height>=44})));
+check(name+':no-sample-overlap',await page.locator('.sample').evaluateAll(es=>es.every((e,i)=>es.every((f,j)=>{const a=e.getBoundingClientRect(),b=f.getBoundingClientRect();return i===j||a.right<=b.left||b.right<=a.left||a.bottom<=b.top||b.bottom<=a.top}))));
+check(name+':internal-links-resolve',await page.locator('a[href^="#"]').evaluateAll(es=>es.every(e=>document.getElementById(e.hash.slice(1)))));
+check(name+':AA-text',await page.locator('p,small,h1,h2,h3,dt,dd,summary,.button,.number,cite').evaluateAll(es=>{const lum=s=>{const m=s.match(/[\d.]+/g);if(!m)return null;return m.slice(0,3).map(Number).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0)};return es.filter(e=>e.getBoundingClientRect().height>0).every(e=>{let b=e;while(b&&getComputedStyle(b).backgroundColor==='rgba(0, 0, 0, 0)')b=b.parentElement;const [a,c]=[lum(getComputedStyle(e).color),lum(b?getComputedStyle(b).backgroundColor:'rgb(255,255,255)')].sort((a,b)=>b-a);return(a+.05)/(c+.05)>=4.5})}));
+await page.locator('#faq summary').first().click();check(name+':faq-opens',await page.locator('#faq details').first().getAttribute('open')!==null);
+const image=name+'.png';await page.screenshot({path:path.join(out,image),fullPage:true});screenshots.push(image);
+for(const id of ['box','product-card','mapping'])await page.locator('#'+id).screenshot({path:path.join(out,name+'-'+id+'.png')});
+await context.close();}}finally{await browser.close()}
+const sources=[relative+'/index.html',relative+'/catalog.css',relative+'/mapping.json','scripts/verify-vocabulary-catalog.mjs'];
+const sourceDigests=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(fs.readFileSync(p)).digest('hex')]));
+const result={schema:'wt-vocabulary-catalog-verification.v1',scope:'Static design proposal, no WordPress registration or editor verification',acceptance:['WT-AC-VOCAB-01A','WT-AC-VOCAB-01B'],completed:checks.every(c=>c.pass),checks,screenshots,sourceDigests,limitations:mapping.limitations};fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({passed:result.completed,checks:checks.length,failed:checks.filter(c=>!c.pass)}));if(!result.completed)process.exitCode=1;

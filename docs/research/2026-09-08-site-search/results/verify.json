@@ -1,0 +1,475 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-search.mjs": "d7d997d978b8f048b972086f46a9ed4fa2c10e17d101a1a86fdc1ff6d1c86f6a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "30758dd9d9f5f333f0946802edc20e56c1fd687196a5a1c79a9d36cc4a00740a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8ae5afaf181b2b58a56dc355454d66c07fa42e027c90e9fda1729c2299b3ffa8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "cbae6a4b6ec61c228b05c2425e2a66ef105715131eef7997961b9f698fdc84bd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "4dfdc64cc4f31b0b9b87fe5f62d0356e80e236d6da2f3ba07217869e04e88a5c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3"
+  },
+  "rows": [
+    {
+      "name": "response:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "count:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:results:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "count:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:empty:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "recover:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "result-navigation:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "count:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:results:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "count:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:empty:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "recover:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "result-navigation:pc:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "count:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:results:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "count:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "state:empty:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "recover:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "result-navigation:sp:js-true",
+      "pass": true
+    },
+    {
+      "name": "response:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "count:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:results:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "count:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "state:empty:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:blank:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "response:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "search-heading:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "editable-query:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "reflow:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "unentered:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "not-zero:whitespace:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "recover:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "result-navigation:sp:js-false",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "after-results-pc.jpg",
+      "device": "pc",
+      "state": "results",
+      "query": "判断"
+    },
+    {
+      "file": "after-empty-pc.jpg",
+      "device": "pc",
+      "state": "empty",
+      "query": "no-match-search-fixture-20260908"
+    },
+    {
+      "file": "after-blank-pc.jpg",
+      "device": "pc",
+      "state": "blank",
+      "query": ""
+    },
+    {
+      "file": "after-results-sp.jpg",
+      "device": "sp",
+      "state": "results",
+      "query": "判断"
+    },
+    {
+      "file": "after-empty-sp.jpg",
+      "device": "sp",
+      "state": "empty",
+      "query": "no-match-search-fixture-20260908"
+    },
+    {
+      "file": "after-blank-sp.jpg",
+      "device": "sp",
+      "state": "blank",
+      "query": ""
+    }
+  ]
+}

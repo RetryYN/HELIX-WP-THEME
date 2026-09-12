@@ -1,0 +1,47 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-footer-editor.mjs": "5f0ecbbcc1d81704eaa5c93d3bb134ec6e4920b13fbbe4b72dc387aa78a4c73a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "1d888f4eddbbae63302fcd2661a8603090628883c35b0fe155585208bda3c9d8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3"
+  },
+  "rows": [
+    {
+      "name": "initial:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "edit:store-updated",
+      "pass": true
+    },
+    {
+      "name": "save:database",
+      "pass": true
+    },
+    {
+      "name": "save:public-view",
+      "pass": true
+    },
+    {
+      "name": "reload:content",
+      "pass": true
+    },
+    {
+      "name": "reload:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "sources:unchanged",
+      "pass": true
+    },
+    {
+      "name": "cleanup:owned-part-removed",
+      "pass": true
+    }
+  ],
+  "limitation": "専用labのフッター本文編集・保存・再読込・公開反映。ナビゲーション選択・編集UIは未検証。"
+}

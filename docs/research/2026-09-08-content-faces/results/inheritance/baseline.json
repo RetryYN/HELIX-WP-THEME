@@ -1,0 +1,901 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-content-inheritance.mjs": "c4da57989daa45a51bad49ad487e49b1fd719cffa970949f18b1fcbbc522efa4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "a4b1510deefb0d85c3752ad0da3ad974340b837af0783620bdc1b2956446ac02",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "10853ae09cea3b0d2b71ecb8c738439262194c0c598d626faa0b1c885ca17e64",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "ee9f84d75cc065cd5a8123a2b02574897f09370610c92a1978147f95d206ea13",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "aa34c70aaed927625a7a4602350145ff67f6a2e9c77247ecfc6cf6016b9977cb"
+  },
+  "rows": [
+    {
+      "name": "response:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:site:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_paid:site:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_paid:site:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_paid:site:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:own:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_paid:own:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_paid:own:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_paid:own:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:off:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:off:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:site:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_interview:site:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_interview:site:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_interview:site:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:own:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_interview:own:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_interview:own:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_interview:own:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:off:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:off:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_blp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_blp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_blp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_blp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_blp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_blp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:off:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:off:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_lp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_lp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_lp:site:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_lp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_lp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_lp:own:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:off:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:off:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:site:pc",
+      "pass": false
+    },
+    {
+      "name": "face:content_learning:site:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:own:pc",
+      "pass": false
+    },
+    {
+      "name": "face:content_learning:own:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:off:pc",
+      "pass": false
+    },
+    {
+      "name": "face:content_learning:off:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_learning:off:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_learning:off:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:site:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_site:site:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_site:site:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_site:site:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:own:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_site:own:pc",
+      "pass": false
+    },
+    {
+      "name": "footer:content_site:own:pc",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_site:own:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:off:pc",
+      "pass": false
+    },
+    {
+      "name": "header:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:off:pc",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:site:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_paid:site:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_paid:site:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_paid:site:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:own:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_paid:own:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_paid:own:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_paid:own:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:off:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:off:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:site:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_interview:site:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_interview:site:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_interview:site:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:own:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_interview:own:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_interview:own:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_interview:own:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:off:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:off:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_blp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_blp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_blp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_blp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_blp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_blp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:off:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:off:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_lp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_lp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_lp:site:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_lp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_lp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_lp:own:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:off:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:off:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:site:sp",
+      "pass": false
+    },
+    {
+      "name": "face:content_learning:site:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:own:sp",
+      "pass": false
+    },
+    {
+      "name": "face:content_learning:own:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:off:sp",
+      "pass": false
+    },
+    {
+      "name": "face:content_learning:off:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_learning:off:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_learning:off:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:site:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_site:site:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_site:site:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_site:site:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:own:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_site:own:sp",
+      "pass": false
+    },
+    {
+      "name": "footer:content_site:own:sp",
+      "pass": false
+    },
+    {
+      "name": "native-removed:content_site:own:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:off:sp",
+      "pass": false
+    },
+    {
+      "name": "header:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:off:sp",
+      "pass": false
+    },
+    {
+      "name": "reflow:content_site:off:sp",
+      "pass": true
+    }
+  ],
+  "shots": []
+}

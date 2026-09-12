@@ -1,0 +1,2000 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21",
+    "scripts/verify-content-inheritance.mjs": "cb198719e160163aa553356bf229075ef606ef7b5cf52184e6680ff4a66d41d8",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "30758dd9d9f5f333f0946802edc20e56c1fd687196a5a1c79a9d36cc4a00740a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/footer-navigation.php": "f8f401e4feb3a3a44a0005f0d78ff1377014fc3497cbacea7347d9dfb3223297",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-sitemap.php": "23ff2d06ed82ad79d34ffcfeaf71803669109f35c2e3ced04e7edb27efed4ae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "4dfdc64cc4f31b0b9b87fe5f62d0356e80e236d6da2f3ba07217869e04e88a5c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "071495a464d3aa83a95a4497f27a630d5664022676e1ce8fe5b17e4f4f39c31a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php": "be06b3214d1a0223f718aa85eec4d0639206960ef71cd246180be2f4916ac697",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/site-pages.php": "541dc6252d8ef8ca3cbdd7252de9ff1cc4c3d0871776ff2d3e9dbe696af3db8b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "464838dcc303a9f847a58c2ddf1786e85d9afd418f14a550effb50072110abcb",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/content-chrome.json": "203a6e3703d57d485f1dc9fc4efd92ad678cbe9023a93131be04823a220abfa4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8ae5afaf181b2b58a56dc355454d66c07fa42e027c90e9fda1729c2299b3ffa8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "18ab6339fa2da074bba12cdfce849e009b2ce878db0616cbbf2baffbe89b2c3c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "ad722d11e6aefd6b6f334fa4d78b63e6d255507ae8b5e409430583f924f378d2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-chrome.css": "4f075f2e3411587077ec1e26cc5182dfca8bdd916329ffc3fc7f21ac5e0ac524",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header.js": "c0100124cb6687e8c65774a06de126a43842f40b522df860a01a44a78711328d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/footer.js": "2aa77aaa9afa0181559ae556fb065f17991fdb741b7e17cc7049b4e1c5d049db",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/side.js": "f1c678aa08392d42510999b8728fd5a00a7d79ecccdef2f41d7cce1e35d2ddca",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "e2516ec8f7f319448de18788ceb571010fc30b3ad94a045130bdba9b78a9b38d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html": "1d71e36aebbfce30ea5efaba4f8077638352cd1b408f8ec5ce6081911e701e23",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html": "74e5aecb4af3c9d01c1cbae3ba08229f101cead87fa231c254deb220bba652b4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48",
+    "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "980be23e03737f934dd81626508470edb23e26f060396115a6d26bb692f97121",
+    "docs/research/2026-09-08-content-faces/plugin/manifest.json": "0145e9cae95d4127b0eccc54bb5584ecae0559c0057dbe01434b25809b8e9653"
+  },
+  "rows": [
+    {
+      "name": "response:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_interview:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_interview:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_interview:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_blp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_blp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_blp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_lp:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_lp:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_lp:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_site:site:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_site:own:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "header:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_site:off:pc",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "access:content_paid:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_interview:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_interview:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_interview:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_blp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_blp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_blp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_lp:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_lp:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_lp:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_learning:off:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_site:site:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "header-variant:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "footer-variant:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-position:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar-banner-contrast:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "navigation-labels:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_site:own:sp",
+      "pass": true
+    },
+    {
+      "name": "response:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "face:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "header:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "footer:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "fixed:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "sidebar:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "native-removed:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "reflow:content_site:off:sp",
+      "pass": true
+    },
+    {
+      "name": "saved-settings:content_paid",
+      "pass": true
+    },
+    {
+      "name": "saved-settings:content_interview",
+      "pass": true
+    },
+    {
+      "name": "saved-settings:content_blp",
+      "pass": true
+    },
+    {
+      "name": "saved-settings:content_lp",
+      "pass": true
+    },
+    {
+      "name": "saved-settings:content_learning",
+      "pass": true
+    },
+    {
+      "name": "saved-settings:content_site",
+      "pass": true
+    },
+    {
+      "name": "shared-update-own-isolation:content_paid",
+      "pass": true
+    },
+    {
+      "name": "shared-update-own-isolation:content_interview",
+      "pass": true
+    },
+    {
+      "name": "shared-update-own-isolation:content_blp",
+      "pass": true
+    },
+    {
+      "name": "shared-update-own-isolation:content_lp",
+      "pass": true
+    },
+    {
+      "name": "shared-update-own-isolation:content_learning",
+      "pass": true
+    },
+    {
+      "name": "shared-update-own-isolation:content_site",
+      "pass": true
+    },
+    {
+      "name": "settings-restored",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "content_paid-site-pc.jpg",
+      "face": "content_paid",
+      "mode": "site",
+      "device": "pc",
+      "route": "/library/decision-design/?wt=content_chrome%3Ashared%2Ccontent_paid_head%3Asite%2Ccontent_paid_foot%3Asite%2Ccontent_paid_fix%3Asite%2Ccontent_paid_side%3Aarticle%2Cheader%3Aband%2Cown_content_paid_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_paid_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_paid_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_paid_side_layout%3Aleft%2Cown_content_paid_side_set%3Aminimal"
+    },
+    {
+      "file": "content_paid-own-pc.jpg",
+      "face": "content_paid",
+      "mode": "own",
+      "device": "pc",
+      "route": "/library/decision-design/?wt=content_chrome%3Ashared%2Ccontent_paid_head%3Aown%2Ccontent_paid_foot%3Aown%2Ccontent_paid_fix%3Aown%2Ccontent_paid_side%3Aown%2Cheader%3Aband%2Cown_content_paid_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_paid_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_paid_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_paid_side_layout%3Aleft%2Cown_content_paid_side_set%3Aminimal"
+    },
+    {
+      "file": "content_paid-off-pc.jpg",
+      "face": "content_paid",
+      "mode": "off",
+      "device": "pc",
+      "route": "/library/decision-design/?wt=content_chrome%3Ashared%2Ccontent_paid_head%3Aoff%2Ccontent_paid_foot%3Aoff%2Ccontent_paid_fix%3Aoff%2Ccontent_paid_side%3Aoff%2Cheader%3Aband%2Cown_content_paid_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_paid_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_paid_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_paid_side_layout%3Aleft%2Cown_content_paid_side_set%3Aminimal"
+    },
+    {
+      "file": "content_interview-site-pc.jpg",
+      "face": "content_interview",
+      "mode": "site",
+      "device": "pc",
+      "route": "/voices/making-room/?wt=content_chrome%3Ashared%2Ccontent_interview_head%3Asite%2Ccontent_interview_foot%3Asite%2Ccontent_interview_fix%3Asite%2Ccontent_interview_side%3Aarticle%2Cheader%3Aband%2Cown_content_interview_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_interview_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_interview_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_interview_side_layout%3Aleft%2Cown_content_interview_side_set%3Aminimal"
+    },
+    {
+      "file": "content_interview-own-pc.jpg",
+      "face": "content_interview",
+      "mode": "own",
+      "device": "pc",
+      "route": "/voices/making-room/?wt=content_chrome%3Ashared%2Ccontent_interview_head%3Aown%2Ccontent_interview_foot%3Aown%2Ccontent_interview_fix%3Aown%2Ccontent_interview_side%3Aown%2Cheader%3Aband%2Cown_content_interview_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_interview_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_interview_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_interview_side_layout%3Aleft%2Cown_content_interview_side_set%3Aminimal"
+    },
+    {
+      "file": "content_interview-off-pc.jpg",
+      "face": "content_interview",
+      "mode": "off",
+      "device": "pc",
+      "route": "/voices/making-room/?wt=content_chrome%3Ashared%2Ccontent_interview_head%3Aoff%2Ccontent_interview_foot%3Aoff%2Ccontent_interview_fix%3Aoff%2Ccontent_interview_side%3Aoff%2Cheader%3Aband%2Cown_content_interview_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_interview_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_interview_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_interview_side_layout%3Aleft%2Cown_content_interview_side_set%3Aminimal"
+    },
+    {
+      "file": "content_blp-site-pc.jpg",
+      "face": "content_blp",
+      "mode": "site",
+      "device": "pc",
+      "route": "/guides/before-redesign/?wt=content_chrome%3Ashared%2Ccontent_blp_head%3Asite%2Ccontent_blp_foot%3Asite%2Ccontent_blp_fix%3Asite%2Ccontent_blp_side%3Aarticle%2Cheader%3Aband%2Cown_content_blp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_blp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_blp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_blp_side_layout%3Aleft%2Cown_content_blp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_blp-own-pc.jpg",
+      "face": "content_blp",
+      "mode": "own",
+      "device": "pc",
+      "route": "/guides/before-redesign/?wt=content_chrome%3Ashared%2Ccontent_blp_head%3Aown%2Ccontent_blp_foot%3Aown%2Ccontent_blp_fix%3Aown%2Ccontent_blp_side%3Aown%2Cheader%3Aband%2Cown_content_blp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_blp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_blp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_blp_side_layout%3Aleft%2Cown_content_blp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_blp-off-pc.jpg",
+      "face": "content_blp",
+      "mode": "off",
+      "device": "pc",
+      "route": "/guides/before-redesign/?wt=content_chrome%3Ashared%2Ccontent_blp_head%3Aoff%2Ccontent_blp_foot%3Aoff%2Ccontent_blp_fix%3Aoff%2Ccontent_blp_side%3Aoff%2Cheader%3Aband%2Cown_content_blp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_blp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_blp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_blp_side_layout%3Aleft%2Cown_content_blp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_lp-site-pc.jpg",
+      "face": "content_lp",
+      "mode": "site",
+      "device": "pc",
+      "route": "/start/editorial-session/?wt=content_chrome%3Ashared%2Ccontent_lp_head%3Asite%2Ccontent_lp_foot%3Asite%2Ccontent_lp_fix%3Asite%2Ccontent_lp_side%3Aarticle%2Cheader%3Aband%2Cown_content_lp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_lp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_lp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_lp_side_layout%3Aleft%2Cown_content_lp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_lp-own-pc.jpg",
+      "face": "content_lp",
+      "mode": "own",
+      "device": "pc",
+      "route": "/start/editorial-session/?wt=content_chrome%3Ashared%2Ccontent_lp_head%3Aown%2Ccontent_lp_foot%3Aown%2Ccontent_lp_fix%3Aown%2Ccontent_lp_side%3Aown%2Cheader%3Aband%2Cown_content_lp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_lp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_lp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_lp_side_layout%3Aleft%2Cown_content_lp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_lp-off-pc.jpg",
+      "face": "content_lp",
+      "mode": "off",
+      "device": "pc",
+      "route": "/start/editorial-session/?wt=content_chrome%3Ashared%2Ccontent_lp_head%3Aoff%2Ccontent_lp_foot%3Aoff%2Ccontent_lp_fix%3Aoff%2Ccontent_lp_side%3Aoff%2Cheader%3Aband%2Cown_content_lp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_lp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_lp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_lp_side_layout%3Aleft%2Cown_content_lp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_learning-site-pc.jpg",
+      "face": "content_learning",
+      "mode": "site",
+      "device": "pc",
+      "route": "/learn/page-design/?wt=content_chrome%3Ashared%2Ccontent_learning_head%3Asite%2Ccontent_learning_foot%3Asite%2Ccontent_learning_fix%3Asite%2Ccontent_learning_side%3Aarticle%2Cheader%3Aband%2Cown_content_learning_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_learning_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_learning_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_learning_side_layout%3Aleft%2Cown_content_learning_side_set%3Aminimal"
+    },
+    {
+      "file": "content_learning-own-pc.jpg",
+      "face": "content_learning",
+      "mode": "own",
+      "device": "pc",
+      "route": "/learn/page-design/?wt=content_chrome%3Ashared%2Ccontent_learning_head%3Aown%2Ccontent_learning_foot%3Aown%2Ccontent_learning_fix%3Aown%2Ccontent_learning_side%3Aown%2Cheader%3Aband%2Cown_content_learning_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_learning_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_learning_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_learning_side_layout%3Aleft%2Cown_content_learning_side_set%3Aminimal"
+    },
+    {
+      "file": "content_learning-off-pc.jpg",
+      "face": "content_learning",
+      "mode": "off",
+      "device": "pc",
+      "route": "/learn/page-design/?wt=content_chrome%3Ashared%2Ccontent_learning_head%3Aoff%2Ccontent_learning_foot%3Aoff%2Ccontent_learning_fix%3Aoff%2Ccontent_learning_side%3Aoff%2Cheader%3Aband%2Cown_content_learning_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_learning_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_learning_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_learning_side_layout%3Aleft%2Cown_content_learning_side_set%3Aminimal"
+    },
+    {
+      "file": "content_site-site-pc.jpg",
+      "face": "content_site",
+      "mode": "site",
+      "device": "pc",
+      "route": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Asite%2Ccontent_site_foot%3Asite%2Ccontent_site_fix%3Asite%2Ccontent_site_side%3Aarticle%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal"
+    },
+    {
+      "file": "content_site-own-pc.jpg",
+      "face": "content_site",
+      "mode": "own",
+      "device": "pc",
+      "route": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Aown%2Ccontent_site_foot%3Aown%2Ccontent_site_fix%3Aown%2Ccontent_site_side%3Aown%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal"
+    },
+    {
+      "file": "content_site-off-pc.jpg",
+      "face": "content_site",
+      "mode": "off",
+      "device": "pc",
+      "route": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Aoff%2Ccontent_site_foot%3Aoff%2Ccontent_site_fix%3Aoff%2Ccontent_site_side%3Aoff%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal"
+    },
+    {
+      "file": "content_paid-site-sp.jpg",
+      "face": "content_paid",
+      "mode": "site",
+      "device": "sp",
+      "route": "/library/decision-design/?wt=content_chrome%3Ashared%2Ccontent_paid_head%3Asite%2Ccontent_paid_foot%3Asite%2Ccontent_paid_fix%3Asite%2Ccontent_paid_side%3Aarticle%2Cheader%3Aband%2Cown_content_paid_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_paid_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_paid_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_paid_side_layout%3Aleft%2Cown_content_paid_side_set%3Aminimal"
+    },
+    {
+      "file": "content_paid-own-sp.jpg",
+      "face": "content_paid",
+      "mode": "own",
+      "device": "sp",
+      "route": "/library/decision-design/?wt=content_chrome%3Ashared%2Ccontent_paid_head%3Aown%2Ccontent_paid_foot%3Aown%2Ccontent_paid_fix%3Aown%2Ccontent_paid_side%3Aown%2Cheader%3Aband%2Cown_content_paid_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_paid_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_paid_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_paid_side_layout%3Aleft%2Cown_content_paid_side_set%3Aminimal"
+    },
+    {
+      "file": "content_paid-off-sp.jpg",
+      "face": "content_paid",
+      "mode": "off",
+      "device": "sp",
+      "route": "/library/decision-design/?wt=content_chrome%3Ashared%2Ccontent_paid_head%3Aoff%2Ccontent_paid_foot%3Aoff%2Ccontent_paid_fix%3Aoff%2Ccontent_paid_side%3Aoff%2Cheader%3Aband%2Cown_content_paid_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_paid_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_paid_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_paid_side_layout%3Aleft%2Cown_content_paid_side_set%3Aminimal"
+    },
+    {
+      "file": "content_interview-site-sp.jpg",
+      "face": "content_interview",
+      "mode": "site",
+      "device": "sp",
+      "route": "/voices/making-room/?wt=content_chrome%3Ashared%2Ccontent_interview_head%3Asite%2Ccontent_interview_foot%3Asite%2Ccontent_interview_fix%3Asite%2Ccontent_interview_side%3Aarticle%2Cheader%3Aband%2Cown_content_interview_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_interview_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_interview_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_interview_side_layout%3Aleft%2Cown_content_interview_side_set%3Aminimal"
+    },
+    {
+      "file": "content_interview-own-sp.jpg",
+      "face": "content_interview",
+      "mode": "own",
+      "device": "sp",
+      "route": "/voices/making-room/?wt=content_chrome%3Ashared%2Ccontent_interview_head%3Aown%2Ccontent_interview_foot%3Aown%2Ccontent_interview_fix%3Aown%2Ccontent_interview_side%3Aown%2Cheader%3Aband%2Cown_content_interview_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_interview_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_interview_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_interview_side_layout%3Aleft%2Cown_content_interview_side_set%3Aminimal"
+    },
+    {
+      "file": "content_interview-off-sp.jpg",
+      "face": "content_interview",
+      "mode": "off",
+      "device": "sp",
+      "route": "/voices/making-room/?wt=content_chrome%3Ashared%2Ccontent_interview_head%3Aoff%2Ccontent_interview_foot%3Aoff%2Ccontent_interview_fix%3Aoff%2Ccontent_interview_side%3Aoff%2Cheader%3Aband%2Cown_content_interview_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_interview_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_interview_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_interview_side_layout%3Aleft%2Cown_content_interview_side_set%3Aminimal"
+    },
+    {
+      "file": "content_blp-site-sp.jpg",
+      "face": "content_blp",
+      "mode": "site",
+      "device": "sp",
+      "route": "/guides/before-redesign/?wt=content_chrome%3Ashared%2Ccontent_blp_head%3Asite%2Ccontent_blp_foot%3Asite%2Ccontent_blp_fix%3Asite%2Ccontent_blp_side%3Aarticle%2Cheader%3Aband%2Cown_content_blp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_blp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_blp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_blp_side_layout%3Aleft%2Cown_content_blp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_blp-own-sp.jpg",
+      "face": "content_blp",
+      "mode": "own",
+      "device": "sp",
+      "route": "/guides/before-redesign/?wt=content_chrome%3Ashared%2Ccontent_blp_head%3Aown%2Ccontent_blp_foot%3Aown%2Ccontent_blp_fix%3Aown%2Ccontent_blp_side%3Aown%2Cheader%3Aband%2Cown_content_blp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_blp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_blp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_blp_side_layout%3Aleft%2Cown_content_blp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_blp-off-sp.jpg",
+      "face": "content_blp",
+      "mode": "off",
+      "device": "sp",
+      "route": "/guides/before-redesign/?wt=content_chrome%3Ashared%2Ccontent_blp_head%3Aoff%2Ccontent_blp_foot%3Aoff%2Ccontent_blp_fix%3Aoff%2Ccontent_blp_side%3Aoff%2Cheader%3Aband%2Cown_content_blp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_blp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_blp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_blp_side_layout%3Aleft%2Cown_content_blp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_lp-site-sp.jpg",
+      "face": "content_lp",
+      "mode": "site",
+      "device": "sp",
+      "route": "/start/editorial-session/?wt=content_chrome%3Ashared%2Ccontent_lp_head%3Asite%2Ccontent_lp_foot%3Asite%2Ccontent_lp_fix%3Asite%2Ccontent_lp_side%3Aarticle%2Cheader%3Aband%2Cown_content_lp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_lp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_lp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_lp_side_layout%3Aleft%2Cown_content_lp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_lp-own-sp.jpg",
+      "face": "content_lp",
+      "mode": "own",
+      "device": "sp",
+      "route": "/start/editorial-session/?wt=content_chrome%3Ashared%2Ccontent_lp_head%3Aown%2Ccontent_lp_foot%3Aown%2Ccontent_lp_fix%3Aown%2Ccontent_lp_side%3Aown%2Cheader%3Aband%2Cown_content_lp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_lp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_lp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_lp_side_layout%3Aleft%2Cown_content_lp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_lp-off-sp.jpg",
+      "face": "content_lp",
+      "mode": "off",
+      "device": "sp",
+      "route": "/start/editorial-session/?wt=content_chrome%3Ashared%2Ccontent_lp_head%3Aoff%2Ccontent_lp_foot%3Aoff%2Ccontent_lp_fix%3Aoff%2Ccontent_lp_side%3Aoff%2Cheader%3Aband%2Cown_content_lp_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_lp_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_lp_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_lp_side_layout%3Aleft%2Cown_content_lp_side_set%3Aminimal"
+    },
+    {
+      "file": "content_learning-site-sp.jpg",
+      "face": "content_learning",
+      "mode": "site",
+      "device": "sp",
+      "route": "/learn/page-design/?wt=content_chrome%3Ashared%2Ccontent_learning_head%3Asite%2Ccontent_learning_foot%3Asite%2Ccontent_learning_fix%3Asite%2Ccontent_learning_side%3Aarticle%2Cheader%3Aband%2Cown_content_learning_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_learning_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_learning_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_learning_side_layout%3Aleft%2Cown_content_learning_side_set%3Aminimal"
+    },
+    {
+      "file": "content_learning-own-sp.jpg",
+      "face": "content_learning",
+      "mode": "own",
+      "device": "sp",
+      "route": "/learn/page-design/?wt=content_chrome%3Ashared%2Ccontent_learning_head%3Aown%2Ccontent_learning_foot%3Aown%2Ccontent_learning_fix%3Aown%2Ccontent_learning_side%3Aown%2Cheader%3Aband%2Cown_content_learning_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_learning_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_learning_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_learning_side_layout%3Aleft%2Cown_content_learning_side_set%3Aminimal"
+    },
+    {
+      "file": "content_learning-off-sp.jpg",
+      "face": "content_learning",
+      "mode": "off",
+      "device": "sp",
+      "route": "/learn/page-design/?wt=content_chrome%3Ashared%2Ccontent_learning_head%3Aoff%2Ccontent_learning_foot%3Aoff%2Ccontent_learning_fix%3Aoff%2Ccontent_learning_side%3Aoff%2Cheader%3Aband%2Cown_content_learning_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_learning_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_learning_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_learning_side_layout%3Aleft%2Cown_content_learning_side_set%3Aminimal"
+    },
+    {
+      "file": "content_site-site-sp.jpg",
+      "face": "content_site",
+      "mode": "site",
+      "device": "sp",
+      "route": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Asite%2Ccontent_site_foot%3Asite%2Ccontent_site_fix%3Asite%2Ccontent_site_side%3Aarticle%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal"
+    },
+    {
+      "file": "content_site-own-sp.jpg",
+      "face": "content_site",
+      "mode": "own",
+      "device": "sp",
+      "route": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Aown%2Ccontent_site_foot%3Aown%2Ccontent_site_fix%3Aown%2Ccontent_site_side%3Aown%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal"
+    },
+    {
+      "file": "content_site-off-sp.jpg",
+      "face": "content_site",
+      "mode": "off",
+      "device": "sp",
+      "route": "/site-company/?wt=content_chrome%3Ashared%2Ccontent_site_head%3Aoff%2Ccontent_site_foot%3Aoff%2Ccontent_site_fix%3Aoff%2Ccontent_site_side%3Aoff%2Cheader%3Aband%2Cown_content_site_header%3Acenter%2Cfooter_layout%3Asingle-row%2Cown_content_site_footer_layout%3Acolumns-3%2Cfixed%3Afloat-cta%2Cown_content_site_fixed%3Afloat-tel%2Cside_layout%3Aright%2Cside_set%3Aminimal%2Cown_content_site_side_layout%3Aleft%2Cown_content_site_side_set%3Aminimal"
+    }
+  ]
+}
