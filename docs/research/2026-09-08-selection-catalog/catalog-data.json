@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1132,
+  "screenshotCount": 1136,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12050,6 +12050,38 @@
       "evidence": "../2026-09-13-zone-slots/verification.json"
     },
     {
+      "id": "parts-declaration:initial",
+      "face": "parts",
+      "part": "template-part-device-selection",
+      "label": "共通ヘッダー＋SP中央型",
+      "variant": "PCは共通 / SP差分",
+      "images": {
+        "pc": "../2026-09-13-parts-declaration/initial-pc-js.png",
+        "sp": "../2026-09-13-parts-declaration/initial-sp-js.png"
+      },
+      "requirementIds": [],
+      "purpose": "共通部品と端末差分を選ぶ",
+      "group": "共通設定・部品",
+      "description": "core/template-partの共通参照をPC/SP差分で置換する保存・公開PoC。不正宣言は表示前に拒否します。Site Editor操作、テンプレート全体切替、キャッシュ分離は未完了です。",
+      "evidence": "../2026-09-13-parts-declaration/verification.json"
+    },
+    {
+      "id": "parts-declaration:updated",
+      "face": "parts",
+      "part": "template-part-device-selection",
+      "label": "共通中央型＋PC帯型",
+      "variant": "PC差分 / SPは共通",
+      "images": {
+        "pc": "../2026-09-13-parts-declaration/updated-pc-js.png",
+        "sp": "../2026-09-13-parts-declaration/updated-sp-js.png"
+      },
+      "requirementIds": [],
+      "purpose": "共通部品と端末差分を選ぶ",
+      "group": "共通設定・部品",
+      "description": "core/template-partの共通参照をPC/SP差分で置換する保存・公開PoC。不正宣言は表示前に拒否します。Site Editor操作、テンプレート全体切替、キャッシュ分離は未完了です。",
+      "evidence": "../2026-09-13-parts-declaration/verification.json"
+    },
+    {
       "id": "vocabulary-catalog:overview",
       "face": "article",
       "part": "vocabulary-overview",
@@ -12258,7 +12290,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "21c7c6774a17237389782c47dc569e614c8eec0e81f270c1ec2df35076ff5a85",
+              "sha256": "961ed9156ff334f277910128450e0882a48aa5b1af906332dee92a2f153393d2",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source",
                 "manifest:all-capability-kinds",
@@ -12279,7 +12311,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "21c7c6774a17237389782c47dc569e614c8eec0e81f270c1ec2df35076ff5a85",
+              "sha256": "961ed9156ff334f277910128450e0882a48aa5b1af906332dee92a2f153393d2",
               "row_names": [
                 "negative:undeclared-patterns-fails",
                 "negative:undeclared-template_parts-fails",
@@ -12318,7 +12350,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "21c7c6774a17237389782c47dc569e614c8eec0e81f270c1ec2df35076ff5a85",
+              "sha256": "961ed9156ff334f277910128450e0882a48aa5b1af906332dee92a2f153393d2",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source"
               ]
@@ -12381,7 +12413,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "9a9f2577182259d9aa3108c0b567d526aed6aa12cdd4efbd1d3ac4c52550cb58",
+              "sha256": "184b9570e2464aee14e35bb9d905083a0f630feeff362b47137873e77fd42382",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -12400,7 +12432,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "9a9f2577182259d9aa3108c0b567d526aed6aa12cdd4efbd1d3ac4c52550cb58",
+              "sha256": "184b9570e2464aee14e35bb9d905083a0f630feeff362b47137873e77fd42382",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -13063,24 +13095,61 @@
           "requirement_id": "WT-FR-PARTS-01",
           "oracle": "共通宣言と device 別差分の差し替え後に骨格差分（テンプレ・パーツ参照）が表示され、SP / PC の保存結果が公開面へ反映される",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "専用WordPress labでcore/template-partのcommon/pc/sp宣言をWP-CLI保存し、DB完全一致、PC/SP・JS有効/無効の公開表示と再読込、未選択パーツDOM不在を初期・更新後の2組で実測。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "Site Editor実操作とclient側属性登録・保存往復は未検証。",
+            "テンプレート全体の切替、wp_is_mobileとviewportの不一致、画面回転、ページキャッシュの端末分離は未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-parts-declaration/verification.json",
+              "sha256": "e2347fe6cb85e865bc6f33343e6f60b2d94e81f0354060095e5c920bd5085f3c",
+              "row_names": [
+                "initial:saved-declaration-roundtrip",
+                "initial-pc-js:selected-reference-visible",
+                "initial-sp-js:selected-reference-visible",
+                "initial-pc-nojs:reload-persists",
+                "initial-sp-nojs:reload-persists",
+                "updated:saved-declaration-roundtrip",
+                "updated-pc-js:selected-reference-visible",
+                "updated-sp-js:selected-reference-visible",
+                "updated-pc-nojs:reload-persists",
+                "updated-sp-nojs:reload-persists"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-PARTS-01B",
           "requirement_id": "WT-FR-PARTS-01",
           "oracle": "差し替えで参照欠落（G-S2）、device 別差分の未宣言、または invalid が出れば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "専用WordPress labでcore/template-partのcommon/pc/sp宣言をWP-CLI保存し、DB完全一致、PC/SP・JS有効/無効の公開表示と再読込、未選択パーツDOM不在を初期・更新後の2組で実測。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "保存前のSite Editor UIエラー表示は未実装。",
+            "DBだけに作成されたパーツ参照、キャッシュ分離、全テンプレートでの負例は未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-parts-declaration/verification.json",
+              "sha256": "e2347fe6cb85e865bc6f33343e6f60b2d94e81f0354060095e5c920bd5085f3c",
+              "row_names": [
+                "missingReference:validator-rejects",
+                "missingReference:public-rejects",
+                "missingDevice:validator-rejects",
+                "missingDevice:public-rejects",
+                "invalidType:validator-rejects",
+                "invalidType:public-rejects",
+                "traversal:validator-rejects",
+                "traversal:public-rejects",
+                "extraKey:validator-rejects",
+                "extraKey:public-rejects",
+                "fixture-cleanup"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-PARTS-01C",
@@ -13096,7 +13165,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "1c0ad8c6998c5779dfa65f8c872766e23588831b074c84fc815de1c8e98f608e",
+              "sha256": "7b51916a67a2b21e2d1eebc0dfa077b0d2d9c53117d268ad79615eb49927f2be",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -15802,7 +15871,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "5483d3ea4e116abec19fa041abd37780fff17c52c0a1b2ffb5510ee1c5a05877",
+              "sha256": "a5f23ab4c1d99757624a9b59dd740d5a7f7f5c924cee91b1b7c386e8c56d6aec",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -15822,7 +15891,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "5483d3ea4e116abec19fa041abd37780fff17c52c0a1b2ffb5510ee1c5a05877",
+              "sha256": "a5f23ab4c1d99757624a9b59dd740d5a7f7f5c924cee91b1b7c386e8c56d6aec",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -19454,7 +19523,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "ca43967bf4438050cdfa7426f991b13478ed9a505f1f8187d04639aa76411099",
+              "sha256": "7e16fc6de70d35ad10029b0e688215772d4ee1529941c8ab353d313074d70bd8",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -19479,7 +19548,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "ca43967bf4438050cdfa7426f991b13478ed9a505f1f8187d04639aa76411099",
+              "sha256": "7e16fc6de70d35ad10029b0e688215772d4ee1529941c8ab353d313074d70bd8",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -19891,7 +19960,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "d04bc9243e9c98217b33afc419c07a5afd5a4056844b213283002a7f53951c45",
+              "sha256": "1a54d0ac5355caa347950518607d56df5bb1ac7b8a1a1e5b63d3f6578d4eebd2",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -20364,7 +20433,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "d04bc9243e9c98217b33afc419c07a5afd5a4056844b213283002a7f53951c45",
+              "sha256": "1a54d0ac5355caa347950518607d56df5bb1ac7b8a1a1e5b63d3f6578d4eebd2",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -20787,7 +20856,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "d04bc9243e9c98217b33afc419c07a5afd5a4056844b213283002a7f53951c45",
+              "sha256": "1a54d0ac5355caa347950518607d56df5bb1ac7b8a1a1e5b63d3f6578d4eebd2",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -21540,7 +21609,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "39775e45642ad36b75b6c1a26cd935035be7875e0361074e1ea6aa2a4e8b86ce",
+              "sha256": "867eec01ccb994706a5d5027b7b4a61bf1f6855b5ac57a585b78f0a0ae15684b",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -22054,7 +22123,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "39775e45642ad36b75b6c1a26cd935035be7875e0361074e1ea6aa2a4e8b86ce",
+              "sha256": "867eec01ccb994706a5d5027b7b4a61bf1f6855b5ac57a585b78f0a0ae15684b",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -22635,7 +22704,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22717,7 +22786,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22777,7 +22846,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22901,7 +22970,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22932,7 +23001,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -23042,7 +23111,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -23170,7 +23239,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "blp:lp-target",
                 "blp:reasoning"
@@ -23200,7 +23269,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "blp:lp-target",
                 "blp:ownership:inherit",
@@ -23233,7 +23302,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "833301fb02d634cccf3a6682ce71cb74adc3aa3a5d3793a74ad4b1d277c75d27",
+              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
               "row_names": [
                 "blp:lp-target",
                 "blp-journey:pc:no-js:decision-content",
@@ -25616,7 +25685,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "e32e716e0c624c39226edecb461dac8994eb3f5cc4e1302a7a07a291d15707a7",
+              "sha256": "28cf67f601839dcba4acedfdd2e5fcecb94638d736e808e80de9cf73d0eab050",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26064,7 +26133,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "e32e716e0c624c39226edecb461dac8994eb3f5cc4e1302a7a07a291d15707a7",
+              "sha256": "28cf67f601839dcba4acedfdd2e5fcecb94638d736e808e80de9cf73d0eab050",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26692,7 +26761,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "603142d380e15f9616469a718624452908b29d1b805336c9383fe9d20b3c2091",
+              "sha256": "3550ce5b3746efa705cf2b4734306ad9150999962e508a832a77788b3eadb40a",
               "row_names": [
                 "course:three-lessons:pc:js-false",
                 "course:three-lessons:pc:js-true",
@@ -26748,7 +26817,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "603142d380e15f9616469a718624452908b29d1b805336c9383fe9d20b3c2091",
+              "sha256": "3550ce5b3746efa705cf2b4734306ad9150999962e508a832a77788b3eadb40a",
               "row_names": [
                 "glossary:term-target:pc:js-false",
                 "glossary:term-target:pc:js-true",
@@ -26833,7 +26902,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "603142d380e15f9616469a718624452908b29d1b805336c9383fe9d20b3c2091",
+              "sha256": "3550ce5b3746efa705cf2b4734306ad9150999962e508a832a77788b3eadb40a",
               "row_names": [
                 "archive:count:pc:js-true",
                 "archive:first-page:pc:js-true",
@@ -27019,7 +27088,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
-              "sha256": "f6ace1633a0c54ee069a54ef9fb6b53d798498eaee012b5c7dc4d171908717ff",
+              "sha256": "ba46755d869a4ecb40bf52e67f50febabf28efa86444916e88582050103e48ca",
               "row_names": [
                 "navigation:all-owner-combinations",
                 "navigation:site-own-style-separated",
@@ -27073,7 +27142,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "d1f7a9820592a7a5ed676cd597f24231921e376219799344b79773aa13a38c91",
+              "sha256": "ec98db487ae61d9e2096ffe423f5d069273e5e4c9a0aad3badd71f7c7a93ced0",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28312,7 +28381,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "d1f7a9820592a7a5ed676cd597f24231921e376219799344b79773aa13a38c91",
+              "sha256": "ec98db487ae61d9e2096ffe423f5d069273e5e4c9a0aad3badd71f7c7a93ced0",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28762,7 +28831,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "17a6e5d826183f94708a03fd644e9b0ff0ed50c9beb0a5c74a7a8479bef625e6",
+              "sha256": "fe43d979df2359ba422fba78e3e9358b6b0e79e3626b985be96accfc7e04d32c",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -28831,8 +28900,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 238,
-    "partial": 26,
+    "missing": 236,
+    "partial": 28,
     "verified_in_poc": 30,
     "stale": 0
   },

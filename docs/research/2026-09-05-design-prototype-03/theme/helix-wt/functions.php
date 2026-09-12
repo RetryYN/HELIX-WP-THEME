@@ -1430,3 +1430,6 @@ add_filter( 'render_block_core/post-featured-image', function ( $html, $block, $
 	$src = get_theme_file_uri( 'assets/img/lum-mid.jpg' );
 	return '<figure class="wp-block-post-featured-image"><img class="wt-thumb-fallback" src="' . esc_url( $src ) . '" alt="" width="1600" height="900" loading="lazy" decoding="async" /></figure>';
 }, 10, 3 );
+
+// 端末別パーツ宣言の保存・描画 PoC。
+require_once __DIR__ . '/inc/parts-declaration.php';

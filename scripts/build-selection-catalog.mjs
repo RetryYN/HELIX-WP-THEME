@@ -325,6 +325,39 @@ if (fs.existsSync(path.join(root, zoneSlotsPath))) {
     evidence: '../2026-09-13-zone-slots/verification.json',
   });
 }
+const partsDeclarationPath = 'docs/research/2026-09-13-parts-declaration/verification.json';
+if (fs.existsSync(path.join(root, partsDeclarationPath))) {
+  const evidence = read(partsDeclarationPath);
+  const requiredChecks = [
+    'initial:saved-declaration-roundtrip', 'updated:saved-declaration-roundtrip',
+    'initial-pc-js:selected-reference-visible', 'initial-sp-js:selected-reference-visible',
+    'updated-pc-js:selected-reference-visible', 'updated-sp-js:selected-reference-visible',
+    'missingReference:validator-rejects', 'missingReference:public-rejects',
+    'missingDevice:validator-rejects', 'invalidType:validator-rejects',
+    'traversal:validator-rejects', 'extraKey:validator-rejects', 'fixture-cleanup',
+  ];
+  if (!evidence.completed || evidence.checks?.length !== 77
+    || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('PARTS declaration evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale PARTS declaration evidence: ${file}`);
+  }
+  const variants = {
+    initial: ['共通ヘッダー＋SP中央型', 'PCは共通 / SP差分'],
+    updated: ['共通中央型＋PC帯型', 'PC差分 / SPは共通'],
+  };
+  for (const [variant, [label, variantLabel]] of Object.entries(variants)) {
+    entries.set(`parts-declaration:${variant}`, {
+      id: `parts-declaration:${variant}`, face: 'parts', part: 'template-part-device-selection',
+      label, variant: variantLabel,
+      images: { pc: `../2026-09-13-parts-declaration/${variant}-pc-js.png`, sp: `../2026-09-13-parts-declaration/${variant}-sp-js.png` },
+      requirementIds: [], purpose: '共通部品と端末差分を選ぶ', group: '共通設定・部品',
+      description: 'core/template-partの共通参照をPC/SP差分で置換する保存・公開PoC。不正宣言は表示前に拒否します。Site Editor操作、テンプレート全体切替、キャッシュ分離は未完了です。',
+      evidence: '../2026-09-13-parts-declaration/verification.json',
+    });
+  }
+}
 const vocabularyCatalogPath = 'docs/research/2026-09-13-vocabulary-catalog/verification.json';
 if (fs.existsSync(path.join(root, vocabularyCatalogPath))) {
   const evidence = read(vocabularyCatalogPath);
