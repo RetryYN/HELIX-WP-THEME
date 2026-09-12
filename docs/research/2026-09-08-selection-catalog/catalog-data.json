@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1114,
+  "screenshotCount": 1122,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12048,6 +12048,90 @@
       "group": "共通設定・部品",
       "description": "共通宣言を端末差分で置換し、非選択の重い面と空slotをHTMLへ残さない専用カタログPoC。通常テンプレ、Site Editor、設定schema、キャッシュ分離は未完了です。",
       "evidence": "../2026-09-13-zone-slots/verification.json"
+    },
+    {
+      "id": "vocabulary-catalog:overview",
+      "face": "article",
+      "part": "vocabulary-overview",
+      "label": "14語彙と販売系4種",
+      "variant": "14語彙・販売4種の全景",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/pc-js.png",
+        "sp": "../2026-09-13-vocabulary-catalog/sp-js.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "記事表現の受け皿を選ぶ",
+      "group": "ページ・本文",
+      "description": "14語彙の受け皿案と販売系4種を同じ紙面で比較する静的PoC。WordPress登録、編集保存、商品正本、製品全体のblock上限は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/verification.json"
+    },
+    {
+      "id": "vocabulary-catalog:box",
+      "face": "article",
+      "part": "vocabulary-box",
+      "label": "囲みの読み比べ",
+      "variant": "上位語彙の表示密度",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/pc-js-box.png",
+        "sp": "../2026-09-13-vocabulary-catalog/sp-js-box.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "記事表現の受け皿を選ぶ",
+      "group": "ページ・本文",
+      "description": "14語彙の受け皿案と販売系4種を同じ紙面で比較する静的PoC。WordPress登録、編集保存、商品正本、製品全体のblock上限は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/verification.json"
+    },
+    {
+      "id": "vocabulary-catalog:product-card",
+      "face": "article",
+      "part": "vocabulary-product-card",
+      "label": "商品カード",
+      "variant": "販売系の情報と導線",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/pc-js-product-card.png",
+        "sp": "../2026-09-13-vocabulary-catalog/sp-js-product-card.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "記事表現の受け皿を選ぶ",
+      "group": "ページ・本文",
+      "description": "14語彙の受け皿案と販売系4種を同じ紙面で比較する静的PoC。WordPress登録、編集保存、商品正本、製品全体のblock上限は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/verification.json"
+    },
+    {
+      "id": "vocabulary-catalog:mapping",
+      "face": "article",
+      "part": "vocabulary-mapping",
+      "label": "語彙と受け皿の対応表",
+      "variant": "core・style・新規block案",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/pc-js-mapping.png",
+        "sp": "../2026-09-13-vocabulary-catalog/sp-js-mapping.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "記事表現の受け皿を選ぶ",
+      "group": "ページ・本文",
+      "description": "14語彙の受け皿案と販売系4種を同じ紙面で比較する静的PoC。WordPress登録、編集保存、商品正本、製品全体のblock上限は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/verification.json"
     }
   ],
   "requirements": [
@@ -13514,24 +13598,51 @@
           "requirement_id": "WT-FR-VOCAB-01",
           "oracle": "14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画され、新規ブロックは 6 つ + 空き 1 枠（上限 7）に限定される",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "静的選択カタログで14語彙の1対1受け皿案、原票上位7種、販売系4種をPC/SP・JS有無で描画し、提案契約の6枠+空き1と負例を検査。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPressでの実登録、core block style登録、編集・保存・再描画の往復",
+            "現行カスタムblock 21件と製品上限7件の対象境界に関するPO判断と強制機構",
+            "商品正本、認可、構造化データ、計測、device別編集、5択メディアの接続"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-vocabulary-catalog/verification.json",
+              "sha256": "09f53bb60914fb268bb3304ca65c15499754fefd03559b169c58a850835bf4a9",
+              "row_names": [
+                "mapping-fourteen-one-receiver",
+                "six-proposed-plus-one-reserved",
+                "pc-js:top-seven-visible",
+                "pc-js:four-sales-visible",
+                "sp-js:top-seven-visible",
+                "sp-js:four-sales-visible"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-VOCAB-01B",
           "requirement_id": "WT-FR-VOCAB-01",
           "oracle": "受け皿のない語彙、比較専用テーブルを本文中の手組み比較表と同じ語彙で扱うこと、または 8 つ目の新規ブロックがあれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "静的選択カタログで14語彙の1対1受け皿案、原票上位7種、販売系4種をPC/SP・JS有無で描画し、提案契約の6枠+空き1と負例を検査。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPressでの実登録、core block style登録、編集・保存・再描画の往復",
+            "現行カスタムblock 21件と製品上限7件の対象境界に関するPO判断と強制機構",
+            "商品正本、認可、構造化データ、計測、device別編集、5択メディアの接続"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-vocabulary-catalog/verification.json",
+              "sha256": "09f53bb60914fb268bb3304ca65c15499754fefd03559b169c58a850835bf4a9",
+              "row_names": [
+                "eighth-slot-rejected",
+                "missing-receiver-rejected",
+                "comparison-conflation-rejected"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-VOCAB-01C",
@@ -13546,7 +13657,7 @@
           "evidence": []
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:toc-box",
         "article:toc-float",
@@ -13598,7 +13709,11 @@
         "article:reaction6-pr-notice-icon-band",
         "article:box-qa-modal",
         "article:box-qa-modal-open",
-        "article:table-rich"
+        "article:table-rich",
+        "vocabulary-catalog:overview",
+        "vocabulary-catalog:box",
+        "vocabulary-catalog:product-card",
+        "vocabulary-catalog:mapping"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [
@@ -13713,7 +13828,11 @@
         "article:reaction6-pr-notice-icon-band",
         "article:box-qa-modal",
         "article:box-qa-modal-open",
-        "article:table-rich"
+        "article:table-rich",
+        "vocabulary-catalog:overview",
+        "vocabulary-catalog:box",
+        "vocabulary-catalog:product-card",
+        "vocabulary-catalog:mapping"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -13815,7 +13934,11 @@
         "article:reaction6-pr-notice-icon-band",
         "article:box-qa-modal",
         "article:box-qa-modal-open",
-        "article:table-rich"
+        "article:table-rich",
+        "vocabulary-catalog:overview",
+        "vocabulary-catalog:box",
+        "vocabulary-catalog:product-card",
+        "vocabulary-catalog:mapping"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [
@@ -13907,7 +14030,11 @@
         "article:reaction6-pr-notice-icon-band",
         "article:box-qa-modal",
         "article:box-qa-modal-open",
-        "article:table-rich"
+        "article:table-rich",
+        "vocabulary-catalog:overview",
+        "vocabulary-catalog:box",
+        "vocabulary-catalog:product-card",
+        "vocabulary-catalog:mapping"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -28564,8 +28691,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 241,
-    "partial": 23,
+    "missing": 239,
+    "partial": 25,
     "verified_in_poc": 30,
     "stale": 0
   },

@@ -18,7 +18,7 @@ const families = {
   SEARCH: ['site-search'], HOME: ['home-'], EVENT: ['event-'], FORM: ['form-', 'lp-form', 'event-apply'],
   PARTS: ['header', 'footer-', 'side-', 'chrome-', 'home-hero'],
   LOOK: ['h2', 'h3', 'box', 'cta', 'axis-', 'contrast-guard', 'width', 'graph'],
-  VOCAB: ['box', 'cta', 'table', 'toc', 'pr-notice', 'linkcard', 'pros-cons', 'review-bar'],
+  VOCAB: ['vocabulary-', 'box', 'cta', 'table', 'toc', 'pr-notice', 'linkcard', 'pros-cons', 'review-bar'],
   LP: ['lp-', 'content-lp'], RECO: ['related', 'category-ranking'], META: ['eyecatch', 'toc', 'share', 'side-'],
   ZONE: ['zone-', 'chrome-', 'side-', 'footer-above'], SP: ['side-sp', 'header', 'table', 'chrome-fix'],
   PAGE: ['page-', 'home-', 'site-'], BANNER: ['footer-above', 'side-set'],
@@ -324,6 +324,39 @@ if (fs.existsSync(path.join(root, zoneSlotsPath))) {
     description: '共通宣言を端末差分で置換し、非選択の重い面と空slotをHTMLへ残さない専用カタログPoC。通常テンプレ、Site Editor、設定schema、キャッシュ分離は未完了です。',
     evidence: '../2026-09-13-zone-slots/verification.json',
   });
+}
+const vocabularyCatalogPath = 'docs/research/2026-09-13-vocabulary-catalog/verification.json';
+if (fs.existsSync(path.join(root, vocabularyCatalogPath))) {
+  const evidence = read(vocabularyCatalogPath);
+  const requiredChecks = [
+    'mapping-fourteen-one-receiver', 'six-proposed-plus-one-reserved', 'eighth-slot-rejected',
+    'missing-receiver-rejected', 'comparison-conflation-rejected',
+    'pc-js:fourteen-visible', 'pc-js:four-sales-visible', 'sp-js:fourteen-visible', 'sp-js:four-sales-visible',
+  ];
+  if (!evidence.completed || evidence.checks?.length !== 42
+    || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('Vocabulary catalog evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale vocabulary catalog evidence: ${file}`);
+  }
+  const variants = {
+    overview: ['14語彙と販売系4種', '14語彙・販売4種の全景'],
+    box: ['囲みの読み比べ', '上位語彙の表示密度'],
+    'product-card': ['商品カード', '販売系の情報と導線'],
+    mapping: ['語彙と受け皿の対応表', 'core・style・新規block案'],
+  };
+  for (const [variant, [label, variantLabel]] of Object.entries(variants)) {
+    const suffix = variant === 'overview' ? '' : `-${variant}`;
+    entries.set(`vocabulary-catalog:${variant}`, {
+      id: `vocabulary-catalog:${variant}`, face: 'article', part: `vocabulary-${variant}`,
+      label, variant: variantLabel,
+      images: { pc: `../2026-09-13-vocabulary-catalog/pc-js${suffix}.png`, sp: `../2026-09-13-vocabulary-catalog/sp-js${suffix}.png` },
+      requirementIds: [], purpose: '記事表現の受け皿を選ぶ', group: 'ページ・本文',
+      description: '14語彙の受け皿案と販売系4種を同じ紙面で比較する静的PoC。WordPress登録、編集保存、商品正本、製品全体のblock上限は未完了です。',
+      evidence: '../2026-09-13-vocabulary-catalog/verification.json',
+    });
+  }
 }
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);

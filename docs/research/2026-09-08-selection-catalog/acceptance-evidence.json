@@ -10995,6 +10995,65 @@
         "Site Editorと設定JSON/schemaからの編集・保存・再描画",
         "wp_is_mobileとviewport不一致、回転・resize、ページキャッシュの端末分離"
       ]
+    },
+    "WT-AC-VOCAB-01A": {
+      "status": "partial",
+      "requirement_digest": "9c154e2a8a0c24e8",
+      "source_digests": {
+        "scripts/verify-vocabulary-catalog.mjs": "235d98c606116474660681e9c897753db92cd88f58ff9765004d497946ba7d6e",
+        "docs/research/2026-09-13-vocabulary-catalog/index.html": "a9d4b37fff418c6dd14fc718b41c617f8ae44873bbb57f09f0e964b84fe23bb2",
+        "docs/research/2026-09-13-vocabulary-catalog/catalog.css": "d86d4b9e194c5106a0040c270e948eb0b00e134a3b61cf2d6628bc845c1df3fa",
+        "docs/research/2026-09-13-vocabulary-catalog/mapping.json": "c5a9acfa42e4e732ff34c77fd3c32c4cbec04e82cecbf6666c23d75c2fe72311"
+      },
+      "scope": "静的選択カタログで14語彙の1対1受け皿案、原票上位7種、販売系4種をPC/SP・JS有無で描画し、提案契約の6枠+空き1と負例を検査。",
+      "remaining": [
+        "WordPressでの実登録、core block style登録、編集・保存・再描画の往復",
+        "現行カスタムblock 21件と製品上限7件の対象境界に関するPO判断と強制機構",
+        "商品正本、認可、構造化データ、計測、device別編集、5択メディアの接続"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-13-vocabulary-catalog/verification.json",
+          "sha256": "09f53bb60914fb268bb3304ca65c15499754fefd03559b169c58a850835bf4a9",
+          "row_names": [
+            "mapping-fourteen-one-receiver",
+            "six-proposed-plus-one-reserved",
+            "pc-js:top-seven-visible",
+            "pc-js:four-sales-visible",
+            "sp-js:top-seven-visible",
+            "sp-js:four-sales-visible"
+          ]
+        }
+      ],
+      "oracle_sha256": "41ed92e5626cc7f82c7472e12c5425ed708353e6f10e9cd9f4b056e74d61f24a"
+    },
+    "WT-AC-VOCAB-01B": {
+      "status": "partial",
+      "requirement_digest": "9c154e2a8a0c24e8",
+      "source_digests": {
+        "scripts/verify-vocabulary-catalog.mjs": "235d98c606116474660681e9c897753db92cd88f58ff9765004d497946ba7d6e",
+        "docs/research/2026-09-13-vocabulary-catalog/index.html": "a9d4b37fff418c6dd14fc718b41c617f8ae44873bbb57f09f0e964b84fe23bb2",
+        "docs/research/2026-09-13-vocabulary-catalog/catalog.css": "d86d4b9e194c5106a0040c270e948eb0b00e134a3b61cf2d6628bc845c1df3fa",
+        "docs/research/2026-09-13-vocabulary-catalog/mapping.json": "c5a9acfa42e4e732ff34c77fd3c32c4cbec04e82cecbf6666c23d75c2fe72311"
+      },
+      "scope": "静的選択カタログで14語彙の1対1受け皿案、原票上位7種、販売系4種をPC/SP・JS有無で描画し、提案契約の6枠+空き1と負例を検査。",
+      "remaining": [
+        "WordPressでの実登録、core block style登録、編集・保存・再描画の往復",
+        "現行カスタムblock 21件と製品上限7件の対象境界に関するPO判断と強制機構",
+        "商品正本、認可、構造化データ、計測、device別編集、5択メディアの接続"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-13-vocabulary-catalog/verification.json",
+          "sha256": "09f53bb60914fb268bb3304ca65c15499754fefd03559b169c58a850835bf4a9",
+          "row_names": [
+            "eighth-slot-rejected",
+            "missing-receiver-rejected",
+            "comparison-conflation-rejected"
+          ]
+        }
+      ],
+      "oracle_sha256": "8ee89abab325aa5ebe331a246c1035d61ce1890b31a2530a20424a8a4ffebfa7"
     }
   }
 }

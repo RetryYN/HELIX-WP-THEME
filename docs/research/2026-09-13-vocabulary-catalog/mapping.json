@@ -1,0 +1,120 @@
+{
+  "schema": "wt-vocabulary-mapping-poc.v1",
+  "scope": "Design proposal, not a registered product contract",
+  "vocabularies": [
+    {
+      "id": "box",
+      "label": "囲み",
+      "receiver": "core/group + style",
+      "topSeven": true,
+      "status": "proposed"
+    },
+    {
+      "id": "button",
+      "label": "ボタン",
+      "receiver": "core/buttons + style",
+      "topSeven": true,
+      "status": "proposed"
+    },
+    {
+      "id": "blogcard",
+      "label": "ブログカード",
+      "receiver": "core/group + style",
+      "topSeven": true,
+      "status": "proposed"
+    },
+    {
+      "id": "speech",
+      "label": "吹き出し",
+      "receiver": "new:speech",
+      "topSeven": true,
+      "status": "proposed"
+    },
+    {
+      "id": "steps",
+      "label": "手順",
+      "receiver": "core/list + style",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "posts",
+      "label": "記事一覧",
+      "receiver": "core/query + style",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "accordion",
+      "label": "アコーディオン",
+      "receiver": "core/details + style",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "tabs",
+      "label": "タブ",
+      "receiver": "core/tabs + style",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "fullwidth",
+      "label": "全幅",
+      "receiver": "core/group alignfull + style",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "richmenu",
+      "label": "リッチメニュー",
+      "receiver": "core/navigation + style",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "membership",
+      "label": "会員制限",
+      "receiver": "core/group + style / external authorization",
+      "topSeven": false,
+      "status": "proposed"
+    },
+    {
+      "id": "table",
+      "label": "本文比較表",
+      "receiver": "core/table + style",
+      "topSeven": true,
+      "status": "proposed"
+    },
+    {
+      "id": "definitions",
+      "label": "定義リスト",
+      "receiver": "core/html semantic dl + style",
+      "topSeven": true,
+      "status": "proposed"
+    },
+    {
+      "id": "faq",
+      "label": "FAQ",
+      "receiver": "core/details + style",
+      "topSeven": true,
+      "status": "proposed"
+    }
+  ],
+  "newBlockPlan": [
+    "speech",
+    "review",
+    "product-card",
+    "ranking",
+    "product-comparison",
+    "cta-bundle"
+  ],
+  "reservedSlots": 1,
+  "maximum": 7,
+  "topSevenSource": "docs/research/2026-08-26-theme-structure-audit/reports/INV-01-block-vocabulary-map.md §2 rows 1–7; counts are source-specific and child blocks are not added",
+  "limitations": [
+    "No editor registration or authorization enforcement",
+    "Current prototype custom registrations exceed seven; product boundary pending",
+    "Definition-list receiver uses core/html until editor semantics are verified"
+  ]
+}

@@ -4,12 +4,16 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('621');
+  await expect(page.locator('#total')).toHaveText('625');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
   await expect(page.locator('#collection-title')).toHaveText('共通設定・部品');
   await page.locator('[data-face="all"]').click();
+  await page.locator('#search').fill('語彙と受け皿の対応表');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('.tile-open img')).toHaveAttribute('src', /vocabulary-catalog\/pc-js-mapping\.png/);
+  await page.locator('#search').fill('');
   await page.locator('#search').fill('nonexistent-candidate');
   await expect(page.locator('#empty')).toBeVisible();
   await page.locator('#search').fill('');
@@ -240,7 +244,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('621候補 / SP');
+  await expect(page.locator('#count')).toHaveText('625候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);

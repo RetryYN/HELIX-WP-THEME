@@ -3,8 +3,8 @@
   "requirementCount": 133,
   "acceptanceCount": 294,
   "counts": {
-    "missing": 241,
-    "partial": 23,
+    "missing": 239,
+    "partial": 25,
     "verified_in_poc": 30,
     "stale": 0
   },
@@ -492,24 +492,51 @@
       "requirement_id": "WT-FR-VOCAB-01",
       "oracle": "14 語彙それぞれに受け皿（core + style / 新規ブロック）が対応表で 1 対 1 に決まり、実使用上位 7 種と販売系 4 種が描画され、新規ブロックは 6 つ + 空き 1 枠（上限 7）に限定される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的選択カタログで14語彙の1対1受け皿案、原票上位7種、販売系4種をPC/SP・JS有無で描画し、提案契約の6枠+空き1と負例を検査。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPressでの実登録、core block style登録、編集・保存・再描画の往復",
+        "現行カスタムblock 21件と製品上限7件の対象境界に関するPO判断と強制機構",
+        "商品正本、認可、構造化データ、計測、device別編集、5択メディアの接続"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-13-vocabulary-catalog/verification.json",
+          "sha256": "09f53bb60914fb268bb3304ca65c15499754fefd03559b169c58a850835bf4a9",
+          "row_names": [
+            "mapping-fourteen-one-receiver",
+            "six-proposed-plus-one-reserved",
+            "pc-js:top-seven-visible",
+            "pc-js:four-sales-visible",
+            "sp-js:top-seven-visible",
+            "sp-js:four-sales-visible"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-01B",
       "requirement_id": "WT-FR-VOCAB-01",
       "oracle": "受け皿のない語彙、比較専用テーブルを本文中の手組み比較表と同じ語彙で扱うこと、または 8 つ目の新規ブロックがあれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的選択カタログで14語彙の1対1受け皿案、原票上位7種、販売系4種をPC/SP・JS有無で描画し、提案契約の6枠+空き1と負例を検査。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPressでの実登録、core block style登録、編集・保存・再描画の往復",
+        "現行カスタムblock 21件と製品上限7件の対象境界に関するPO判断と強制機構",
+        "商品正本、認可、構造化データ、計測、device別編集、5択メディアの接続"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-13-vocabulary-catalog/verification.json",
+          "sha256": "09f53bb60914fb268bb3304ca65c15499754fefd03559b169c58a850835bf4a9",
+          "row_names": [
+            "eighth-slot-rejected",
+            "missing-receiver-rejected",
+            "comparison-conflation-rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-02A",
