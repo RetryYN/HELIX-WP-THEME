@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('613');
+  await expect(page.locator('#total')).toHaveText('617');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -12,6 +12,14 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await page.locator('[data-face="all"]').click();
   await page.locator('#search').fill('nonexistent-candidate');
   await expect(page.locator('#empty')).toBeVisible();
+  await page.locator('#search').fill('');
+  await page.locator('#search').fill('入力ステップの現在位置');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('.tile-open img')).toHaveAttribute('src', /current-theme-form-progress/);
+  await page.locator('#search').fill('');
+  await page.locator('#search').fill('学習面独自の階層・前後ナビ');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('.tile-open img')).toHaveAttribute('src', /learning-navigation-ownership\/own-1440\.png/);
   await page.locator('#search').fill('');
   for (let i = 0; i < 4; i++) await page.locator('.compare-pick input').nth(i).click();
   await expect(page.locator('.compare-pick input:checked')).toHaveCount(3);
@@ -220,7 +228,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('613候補 / SP');
+  await expect(page.locator('#count')).toHaveText('617候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
@@ -302,11 +310,11 @@ test('related candidates and expanded results resume, and removing the last comp
   await page.locator('.req-row > summary').click();
   await page.locator('.req-row button').click();
   await page.locator('#more').click();
-  await expect(page.locator('.tile')).toHaveCount(51);
+  await expect(page.locator('.tile')).toHaveCount(52);
   const ids = await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId));
   await page.reload();
   await expect(page.locator('#collection-title')).toHaveText('要求に関連する候補');
-  await expect(page.locator('.tile')).toHaveCount(51);
+  await expect(page.locator('.tile')).toHaveCount(52);
   expect(await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId))).toEqual(ids);
   await page.locator('.compare-pick input').first().check();
   await page.locator('#tab-requirements').click();

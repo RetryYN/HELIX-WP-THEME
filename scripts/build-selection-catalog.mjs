@@ -204,6 +204,68 @@ if (fs.existsSync(path.join(root, footerDataPath))) {
       evidence:'../2026-09-09-footer-data/rendering.json'});
   }
 }
+const formProgressPath = 'docs/research/2026-09-12-current-theme-form-progress/verify.json';
+if (fs.existsSync(path.join(root, formProgressPath))) {
+  const evidence = read(formProgressPath);
+  if (!evidence.completed || !Array.isArray(evidence.results) || evidence.results.length !== 4
+    || evidence.results.some(r => r.http !== 200 || r.overflow || r.stepCount !== 3 || r.currentCount !== 1
+      || r.stepWidth > r.formWidth || r.markerContrast < 4.5 || r.undersizedTargets?.length)) {
+    throw Error('Form progress evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale form progress evidence: ${file}`);
+  }
+  const images = {};
+  for (const [device, width] of Object.entries({ pc: 1440, sp: 390 })) {
+    const file = `after-${width}-js.png`;
+    if (!fs.existsSync(path.join(root, path.dirname(formProgressPath), file))) throw Error('Missing form progress image');
+    images[device] = `../2026-09-12-current-theme-form-progress/${file}`;
+  }
+  entries.set('form-progress:steps', {
+    id: 'form-progress:steps', face: 'form', part: 'form-progress', label: '入力ステップの現在位置', variant: 'numbered-rail', images,
+    requirementIds: [], purpose: '手続きを支える', group: 'ページ・本文',
+    description: '3段階の現在位置を番号と接続線で示す代表表示。PC/SP、JavaScript有効/無効で横溢れ、44px操作寸法、現在位置、コントラストを検証しています。全9種別・全style variation・支援技術実機は未検証です。',
+    evidence: '../2026-09-12-current-theme-form-progress/verify.json',
+  });
+}
+const learningOwnershipPath = 'docs/research/2026-09-13-learning-navigation-ownership/verify.json';
+if (fs.existsSync(path.join(root, learningOwnershipPath))) {
+  const evidence = read(learningOwnershipPath);
+  const requiredChecks = [
+    'navigation:all-owner-combinations', 'navigation:site-own-style-separated',
+    'navigation:off-removes-only-selected-nav', 'navigation:current-and-neighbours',
+    'navigation:pc-sp-js-nojs-no-overflow', 'boundary:draft-not-public',
+    'boundary:password-protected-not-public', 'boundary:data-provider-denies-nonpublic',
+    'owned-fixtures-removed',
+  ];
+  if (!evidence.completed || evidence.rows?.length !== 44 || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('Learning navigation ownership evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale learning navigation ownership evidence: ${file}`);
+  }
+  const variants = {
+    site: ['共通設定の階層・前後ナビ', 'panel / cards'],
+    own: ['学習面独自の階層・前後ナビ', 'trail / split'],
+    off: ['階層・前後ナビを非表示', 'off'],
+  };
+  for (const [mode, [label, variant]] of Object.entries(variants)) {
+    const images = {};
+    for (const [device, width] of Object.entries({ pc: 1440, sp: 390 })) {
+      const file = `${mode}-${width}.png`;
+      if (!fs.existsSync(path.join(root, path.dirname(learningOwnershipPath), file))) throw Error(`Missing learning ownership image: ${file}`);
+      images[device] = `../2026-09-13-learning-navigation-ownership/${file}`;
+    }
+    entries.set(`learning-navigation:${mode}`, {
+      id: `learning-navigation:${mode}`, face: 'learning', part: 'content-learning-navigation', label, variant, images,
+      requirementIds: [], purpose: '学びの現在位置と次の行動を示す', group: '共通設定・部品',
+      description: mode === 'off'
+        ? '階層と前後ナビだけを除き、学習本文と講座内レッスン一覧を維持する代表表示。公開・下書き・パスワード保護の境界も別途実測しています。'
+        : `${mode === 'site' ? 'サイト共通' : '学習面独自'}の所有権と見た目を組み合わせた代表表示。階層と前後ナビを個別に切り替え、PC/SP・JavaScript有効/無効で検証しています。`,
+      evidence: '../2026-09-13-learning-navigation-ownership/verify.json',
+    });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

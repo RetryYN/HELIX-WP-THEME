@@ -46,7 +46,7 @@ const rows = ac.cases.map(c => {
     try {
       const { raw, value } = proof(ref.path);
       if (digest(raw) !== ref.sha256 || value.completed !== true) failures.push(`未完了または証跡変更: ${ref.path}`);
-      const actualRows = value.rows || value.checks || [];
+      const actualRows = [...(Array.isArray(value.rows) ? value.rows : []), ...(Array.isArray(value.checks) ? value.checks : [])];
       if (!ref.row_names?.length) failures.push(`検証行の指定なし: ${ref.path}`);
       for (const name of ref.row_names || []) {
         const matches = actualRows.filter(r => r.name === name);

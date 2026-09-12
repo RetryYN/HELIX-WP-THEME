@@ -121,6 +121,13 @@ function wt_axes() {
 	$axes['form_captcha']  = array( 'none', array( 'none', 'question', 'external-slot' ) );
 	$axes['form_side']     = array( 'tel', array( 'tel', 'none', 'email', 'chat', 'messaging-app' ) );
 	$axes['form_thanks']   = array( 'separate', array( 'separate', 'inline' ) );
+	// 学習面の位置・順序ナビ: 共通設定を継承 / 学習面だけの設定 / 非表示を分離する。表示設定は公開状態や本文認可に触れない。
+	$axes['content_learning_hierarchy'] = array( 'site', array( 'site', 'own', 'off' ) );
+	$axes['content_learning_sequence']  = array( 'site', array( 'site', 'own', 'off' ) );
+	$axes['learning_hierarchy_style']   = array( 'trail', array( 'trail', 'panel' ) );
+	$axes['learning_sequence_style']    = array( 'split', array( 'split', 'cards' ) );
+	$axes['own_content_learning_hierarchy_style'] = array( 'panel', array( 'trail', 'panel' ) );
+	$axes['own_content_learning_sequence_style']  = array( 'cards', array( 'split', 'cards' ) );
 	// 段 12（PO 反応 25 回目 WT-EVT-0302「増やす方向で」、階層整理 WT-EVT-0296 ①「共通のヘッダー、フッターで全体制御」、決定 WT-EVT-0299「継承・独自設定・非表示を分離」）: ヘッダー・フッター・固定 CTA の所属を面ごとに。
 	// 束の台帳 wt_chrome_bundles(): 共通 site = 既存 header / sp（ヘッダー）、footer_*（フッター）、新設 fixed（固定 CTA）。独自設定 own = own_<face>_header / own_<face>_sp / own_<face>_footer_* / own_<face>_fixed
 	// （HOME・イベント・LP の固定 CTA は既存 home_fixed / event_fixed / lp_fixed がそのまま own の束）。非表示 off = 描画しない。LP のヘッダーは既存 lp_header（束 lp）を既定に残す。

@@ -1,0 +1,69 @@
+{
+  "schema": "wt-form-progress-visual-audit.v1",
+  "mode": "before",
+  "fixture": {
+    "id": 6672,
+    "slug": "form-progress-visual-audit",
+    "absent": true
+  },
+  "results": [
+    {
+      "width": 390,
+      "noJs": false,
+      "http": 200,
+      "overflow": false,
+      "stepCount": 3,
+      "currentCount": 1,
+      "stepWidth": 308,
+      "formWidth": 358,
+      "visibleFieldsets": 1,
+      "undersizedTargets": [
+        "input#wt-hp"
+      ]
+    },
+    {
+      "width": 390,
+      "noJs": true,
+      "http": 200,
+      "overflow": false,
+      "stepCount": 3,
+      "currentCount": 1,
+      "stepWidth": 308,
+      "formWidth": 358,
+      "visibleFieldsets": 3,
+      "undersizedTargets": [
+        "input#wt-hp",
+        "input#wt-f-consent"
+      ]
+    },
+    {
+      "width": 1440,
+      "noJs": false,
+      "http": 200,
+      "overflow": false,
+      "stepCount": 3,
+      "currentCount": 1,
+      "stepWidth": 334,
+      "formWidth": 680,
+      "visibleFieldsets": 1,
+      "undersizedTargets": [
+        "input#wt-hp"
+      ]
+    },
+    {
+      "width": 1440,
+      "noJs": true,
+      "http": 200,
+      "overflow": false,
+      "stepCount": 3,
+      "currentCount": 1,
+      "stepWidth": 334,
+      "formWidth": 680,
+      "visibleFieldsets": 3,
+      "undersizedTargets": [
+        "input#wt-hp",
+        "input#wt-f-consent"
+      ]
+    }
+  ]
+}

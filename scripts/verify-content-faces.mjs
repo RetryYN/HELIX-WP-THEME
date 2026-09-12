@@ -78,6 +78,37 @@ try {
     await context.close();
   }
   for (const dev of ['pc', 'sp']) {
+    const noJsJourney = await contextFor('anonymous', {
+      viewport: dev === 'pc' ? { width: 1440, height: 1000 } : { width: 375, height: 812 },
+      javaScriptEnabled: false,
+    });
+    const journeyPage = await noJsJourney.newPage();
+    await journeyPage.goto(base + routes.blp);
+    const nextLink = journeyPage.locator('.wtcf-next a');
+    check(`blp-journey:${dev}:no-js:decision-content`,
+      await journeyPage.locator('.wtcf-story-section').count() === 3
+      && (await journeyPage.locator('main').innerText()).includes('向かない場合'));
+    await nextLink.click();
+    check(`blp-journey:${dev}:no-js:lp-navigation`,
+      new URL(journeyPage.url()).pathname === routes.lp
+      && await journeyPage.locator('#apply .wt-form__form').count() === 1);
+    await journeyPage.locator('#wt-f-name').fill('検証 太郎');
+    await journeyPage.locator('#wt-f-name-kana').fill('けんしょう たろう');
+    await journeyPage.locator('#wt-f-email').fill('journey@example.invalid');
+    await journeyPage.locator('#wt-f-subject-select').selectOption({ index: 1 });
+    await journeyPage.locator('#wt-f-message').fill('課題整理について相談したいです。');
+    await journeyPage.locator('#wt-f-consent').check();
+    await journeyPage.locator('#apply .wt-form__submit').click();
+    check(`blp-journey:${dev}:no-js:confirm`,
+      await journeyPage.locator('#apply .wt-form__confirm').count() === 1
+      && (await journeyPage.locator('#apply').innerText()).includes('検証 太郎'));
+    await journeyPage.locator('#apply button[name="wt_step"][value="back"]').click();
+    check(`blp-journey:${dev}:no-js:back-preserves-input`,
+      await journeyPage.locator('#apply .wt-form__form').count() === 1
+      && await journeyPage.locator('#wt-f-name').inputValue() === '検証 太郎'
+      && await journeyPage.locator('#wt-f-email').inputValue() === 'journey@example.invalid');
+    await noJsJourney.close();
+
     for (const js of [true, false]) {
       const context = await contextFor('anonymous', { viewport: dev === 'pc' ? { width: 1440, height: 1000 } : { width: 375, height: 812 }, javaScriptEnabled: js });
       const page = await context.newPage();

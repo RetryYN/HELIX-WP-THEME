@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | 会員公開文書のプレビュー境界は、ログイン状態だけでなく記事のアクセス設定と連動する | 未購入 / 購入済みの2状態だけでは別商品・失効・無料会員を見落とす。HTML以外の配信経路も必要 | WT-FR-PAID-01 rev2、WT-AC-PAID-01C | 6閲覧者状態×2課金方式×3表示用途、REST・検索・feed・一覧、no-storeを検査。外部認可サービスの障害・遅延・更新とCDNは未検証 |
 | WordPressはCPTをプラグインへ配置する方式を推奨し、テーマ変更時のデータ可搬性を理由に挙げる | 独立した名称の画面だけでは管理単位と保存先の持続を証明できない | WT-FR-INTERVIEW-01 rev2、WT-AC-INTERVIEW-01C | 4CPTを宣言から登録。掲載確認前はdraft。テーマ変更後も独立管理と同じ保存データを保持し、試作テーマへ復元することを実測 |
-| 入力確認のパターンでは、回答の変更から確認へ戻る導線を扱う | BLP→LPの送客だけで、実際の入力操作に到達できない可能性 | WT-FR-BLP-01 rev2、WT-AC-BLP-01C | BLPの判断材料→別CPTのLP→フォーム到達を実機照合。CPT上の入力→確認→修正→完了の全遷移は別途照合する |
+| 入力確認のパターンでは、回答の変更から確認へ戻る導線を扱う | BLP→LPの送客だけで、実際の入力操作に到達できない可能性 | WT-FR-BLP-01 rev2、WT-AC-BLP-01C | BLPの判断材料→別CPTのLP→フォーム到達を実機照合。さらにPC/SP・JavaScript無効でリンク移動→必須項目入力→確認→修正→入力値保持を一連の操作として照合した |
 
 出所は公開一次資料。[公開プレビューのアクセス設定](https://ghost.org/help/public-previews/)、[WordPressのCPT登録](https://developer.wordpress.org/plugins/post-types/registering-custom-post-types/)、[入力確認と回答変更](https://design-system.service.gov.uk/patterns/check-answers/)。本表の検査軸・実装方式は資料からの設計上の推論であり、資料自身がこのPoCを保証しているわけではない。
 

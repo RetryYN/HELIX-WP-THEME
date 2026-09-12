@@ -1,6 +1,12 @@
 <?php
 /** Learning pages: hierarchy, learning sequence and in-page contents are distinct navigations. */
 defined( 'ABSPATH' ) || exit;
+function wtcf_learning_navigation_style( $part ) {
+	$owner = wt_opt( 'content_learning_' . $part );
+	if ( 'off' === $owner ) { return null; }
+	$key = 'own' === $owner ? 'own_content_learning_' . $part . '_style' : 'learning_' . $part . '_style';
+	return array( 'owner' => $owner, 'style' => wt_opt( $key ) );
+}
 function wtcf_learning_search_form( $value = '' ) {
 	return '<form class="wtlearn-search" role="search" method="get" action="' . esc_url( get_post_type_archive_link( 'wt_learning' ) ) . '"><label for="learn-query">' . esc_html__( '学習・ヘルプを検索', 'helix-wt' ) . '</label><div><input id="learn-query" name="learn_q" type="search" maxlength="200" value="' . esc_attr( $value ) . '" placeholder="' . esc_attr__( '知りたいことを入力', 'helix-wt' ) . '"><button type="submit">' . esc_html__( '検索', 'helix-wt' ) . '</button></div></form>';
 }
@@ -11,12 +17,14 @@ function wtcf_render_learning() {
 	$design = wtcf_choice( 'design', 'editorial', wtcf_manifest()['designs'] );
 	$kinds = array( 'course' => __( '学習ガイド', 'helix-wt' ), 'lesson' => __( 'レッスン', 'helix-wt' ), 'glossary' => __( '用語集', 'helix-wt' ), 'help' => __( 'ヘルプ', 'helix-wt' ) );
 	$data = is_singular() ? wtcf_learning_display( get_the_ID() ) : null;
+	$hierarchy_navigation = wtcf_learning_navigation_style( 'hierarchy' );
+	$sequence_navigation  = wtcf_learning_navigation_style( 'sequence' );
 	ob_start(); echo wtcf_shared_part( 'header' ); ?>
 	<div class="wtcf wtcf--<?php echo esc_attr( $design ); ?> wtlearn">
 	<a class="wtlearn-skip" href="#learning-main"><?php esc_html_e( '本文へ移動', 'helix-wt' ); ?></a>
 	<?php if ( ! wtcf_shared_chrome() ) : ?><header class="wtcf-header"><a class="wtcf-brand" href="<?php echo esc_url( $archive ); ?>">HELIX<span>LEARNING CENTER</span></a><nav aria-label="<?php echo esc_attr__( '学習の入口', 'helix-wt' ); ?>"><?php echo wtcf_link( $archive, __( '学習・ヘルプ一覧', 'helix-wt' ) ); ?></nav></header><?php endif; ?>
-	<?php if ( $data ) : ?>
-	<nav class="wtlearn-breadcrumbs" aria-label="<?php echo esc_attr__( '階層', 'helix-wt' ); ?>"><ol><li><?php echo wtcf_link( $archive, __( '学習・ヘルプ', 'helix-wt' ) ); ?></li><?php foreach ( $data['ancestors'] as $ancestor ) { echo '<li>' . wtcf_link( $ancestor['url'], $ancestor['title'] ) . '</li>'; } ?><li aria-current="page"><?php echo esc_html( $data['title'] ); ?></li></ol></nav>
+	<?php if ( $data && $hierarchy_navigation ) : ?>
+	<nav class="wtlearn-breadcrumbs wtlearn-breadcrumbs--<?php echo esc_attr( $hierarchy_navigation['style'] ); ?>" data-wt-owner="<?php echo esc_attr( $hierarchy_navigation['owner'] ); ?>" aria-label="<?php echo esc_attr__( '階層', 'helix-wt' ); ?>"><ol><li><?php echo wtcf_link( $archive, __( '学習・ヘルプ', 'helix-wt' ) ); ?></li><?php foreach ( $data['ancestors'] as $ancestor ) { echo '<li>' . wtcf_link( $ancestor['url'], $ancestor['title'] ) . '</li>'; } ?><li aria-current="page"><?php echo esc_html( $data['title'] ); ?></li></ol></nav>
 	<?php endif; ?>
 	<?php echo wtcf_shared_layout_start(); ?><main id="learning-main" class="wtcf-main" tabindex="-1">
 	<?php if ( ! $data ) : $results = wtcf_learning_search(); ?>
@@ -42,10 +50,10 @@ function wtcf_render_learning() {
 	<?php if ( $data['kind'] === 'help' ) : ?><details><summary><?php echo esc_html( $section['title'] ); ?></summary><?php echo wp_kses_post( do_blocks( serialize_blocks( $section['blocks'] ) ) ); ?></details>
 	<?php else : ?><h2><?php echo esc_html( $section['title'] ); ?></h2><?php echo wp_kses_post( do_blocks( serialize_blocks( $section['blocks'] ) ) ); ?><?php endif; ?>
 	</section><?php endforeach; ?></div>
-	<nav class="wtlearn-pagination" aria-label="<?php echo esc_attr__( '前後のレッスン', 'helix-wt' ); ?>"><?php
+	<?php if ( $sequence_navigation ) : ?><nav class="wtlearn-pagination wtlearn-pagination--<?php echo esc_attr( $sequence_navigation['style'] ); ?>" data-wt-owner="<?php echo esc_attr( $sequence_navigation['owner'] ); ?>" aria-label="<?php echo esc_attr__( '前後のレッスン', 'helix-wt' ); ?>"><?php
 	if ( $data['previous'] ) { echo wtcf_link( $data['previous']['url'], '← ' . $data['previous']['title'], 'wtlearn-previous' ); }
 	if ( $data['next'] ) { echo wtcf_link( $data['next']['url'], $data['next']['title'] . ' →', 'wtlearn-next' ); }
-	?></nav></article></div>
+	?></nav><?php endif; ?></article></div>
 	<?php endif; ?>
 	</main><?php echo wtcf_shared_layout_end(); ?><?php if ( ! wtcf_shared_chrome() ) : ?><footer class="wtcf-footer"><p><?php esc_html_e( 'HELIX / 一歩ずつ、理解を深める。', 'helix-wt' ); ?></p><?php echo wtcf_link( $archive, __( '学習・ヘルプへ戻る', 'helix-wt' ) ); ?></footer><?php endif; ?></div><?php echo wtcf_shared_part( 'footer' ); ?>
 	<?php return ob_get_clean();
