@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1122,
+  "screenshotCount": 1132,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12132,6 +12132,111 @@
       "group": "ページ・本文",
       "description": "14語彙の受け皿案と販売系4種を同じ紙面で比較する静的PoC。WordPress登録、編集保存、商品正本、製品全体のblock上限は未完了です。",
       "evidence": "../2026-09-13-vocabulary-catalog/verification.json"
+    },
+    {
+      "id": "vocabulary-media:icon",
+      "face": "article",
+      "part": "vocabulary-media-icon",
+      "label": "メディア枠：自前SVGアイコン",
+      "variant": "icon",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/media/pc-js-icon.png",
+        "sp": "../2026-09-13-vocabulary-catalog/media/sp-js-icon.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "本文を変えず伝え方を選ぶ",
+      "group": "ページ・本文",
+      "description": "カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/media/verification.json"
+    },
+    {
+      "id": "vocabulary-media:upload",
+      "face": "article",
+      "part": "vocabulary-media-upload",
+      "label": "メディア枠：アップロード画像",
+      "variant": "upload",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/media/pc-js-upload.png",
+        "sp": "../2026-09-13-vocabulary-catalog/media/sp-js-upload.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "本文を変えず伝え方を選ぶ",
+      "group": "ページ・本文",
+      "description": "カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/media/verification.json"
+    },
+    {
+      "id": "vocabulary-media:photo",
+      "face": "article",
+      "part": "vocabulary-media-photo",
+      "label": "メディア枠：写真",
+      "variant": "photo",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/media/pc-js-photo.png",
+        "sp": "../2026-09-13-vocabulary-catalog/media/sp-js-photo.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "本文を変えず伝え方を選ぶ",
+      "group": "ページ・本文",
+      "description": "カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/media/verification.json"
+    },
+    {
+      "id": "vocabulary-media:number",
+      "face": "article",
+      "part": "vocabulary-media-number",
+      "label": "メディア枠：番号",
+      "variant": "number",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/media/pc-js-number.png",
+        "sp": "../2026-09-13-vocabulary-catalog/media/sp-js-number.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "本文を変えず伝え方を選ぶ",
+      "group": "ページ・本文",
+      "description": "カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/media/verification.json"
+    },
+    {
+      "id": "vocabulary-media:none",
+      "face": "article",
+      "part": "vocabulary-media-none",
+      "label": "メディア枠：メディアなし",
+      "variant": "none",
+      "images": {
+        "pc": "../2026-09-13-vocabulary-catalog/media/pc-js-none.png",
+        "sp": "../2026-09-13-vocabulary-catalog/media/sp-js-none.png"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-01",
+        "WT-FR-VOCAB-02",
+        "WT-FR-VOCAB-03",
+        "WT-FR-VOCAB-04"
+      ],
+      "purpose": "本文を変えず伝え方を選ぶ",
+      "group": "ページ・本文",
+      "description": "カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。",
+      "evidence": "../2026-09-13-vocabulary-catalog/media/verification.json"
     }
   ],
   "requirements": [
@@ -13649,12 +13754,27 @@
           "requirement_id": "WT-FR-VOCAB-01",
           "oracle": "メディア枠の 5 択を切り替えても語彙の本文構造が変わらず、画像は alt と width / height を持つ",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "静的5文書で、カード・箇条書き・手順の本文outerHTMLを保ちながら、自前SVG・アップロード画像例・写真・番号・なしをPC/SP・JS有無で切り替え、非選択media不在と画像属性を実測。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress実ブロックの属性への接続、Media Libraryへのアップロード、編集保存・再読込",
+            "端末別設定、responsive images/srcset、実記事データでの運用検証"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-13-vocabulary-catalog/media/verification.json",
+              "sha256": "f65609cfcc81df0b82836c954758fd47e44f1aaa418926e3acf6f21275091487",
+              "row_names": [
+                "pc-js-icon:same-body-dom",
+                "pc-js-upload:images-alt-dimensions-loaded",
+                "pc-js-photo:images-alt-dimensions-loaded",
+                "pc-js-number:only-selected-media",
+                "pc-js-none:none-no-empty-wrapper",
+                "sp-nojs-icon:same-body-dom",
+                "sp-nojs-none:none-no-empty-wrapper"
+              ]
+            }
+          ]
         }
       ],
       "status": "partial_poc",
@@ -13713,7 +13833,12 @@
         "vocabulary-catalog:overview",
         "vocabulary-catalog:box",
         "vocabulary-catalog:product-card",
-        "vocabulary-catalog:mapping"
+        "vocabulary-catalog:mapping",
+        "vocabulary-media:icon",
+        "vocabulary-media:upload",
+        "vocabulary-media:photo",
+        "vocabulary-media:number",
+        "vocabulary-media:none"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [
@@ -13832,7 +13957,12 @@
         "vocabulary-catalog:overview",
         "vocabulary-catalog:box",
         "vocabulary-catalog:product-card",
-        "vocabulary-catalog:mapping"
+        "vocabulary-catalog:mapping",
+        "vocabulary-media:icon",
+        "vocabulary-media:upload",
+        "vocabulary-media:photo",
+        "vocabulary-media:number",
+        "vocabulary-media:none"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -13938,7 +14068,12 @@
         "vocabulary-catalog:overview",
         "vocabulary-catalog:box",
         "vocabulary-catalog:product-card",
-        "vocabulary-catalog:mapping"
+        "vocabulary-catalog:mapping",
+        "vocabulary-media:icon",
+        "vocabulary-media:upload",
+        "vocabulary-media:photo",
+        "vocabulary-media:number",
+        "vocabulary-media:none"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [
@@ -14034,7 +14169,12 @@
         "vocabulary-catalog:overview",
         "vocabulary-catalog:box",
         "vocabulary-catalog:product-card",
-        "vocabulary-catalog:mapping"
+        "vocabulary-catalog:mapping",
+        "vocabulary-media:icon",
+        "vocabulary-media:upload",
+        "vocabulary-media:photo",
+        "vocabulary-media:number",
+        "vocabulary-media:none"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -28691,8 +28831,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 239,
-    "partial": 25,
+    "missing": 238,
+    "partial": 26,
     "verified_in_poc": 30,
     "stale": 0
   },

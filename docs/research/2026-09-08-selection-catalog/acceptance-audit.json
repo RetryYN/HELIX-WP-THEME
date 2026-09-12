@@ -3,8 +3,8 @@
   "requirementCount": 133,
   "acceptanceCount": 294,
   "counts": {
-    "missing": 239,
-    "partial": 25,
+    "missing": 238,
+    "partial": 26,
     "verified_in_poc": 30,
     "stale": 0
   },
@@ -5031,12 +5031,27 @@
       "requirement_id": "WT-FR-VOCAB-01",
       "oracle": "メディア枠の 5 択を切り替えても語彙の本文構造が変わらず、画像は alt と width / height を持つ",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的5文書で、カード・箇条書き・手順の本文outerHTMLを保ちながら、自前SVG・アップロード画像例・写真・番号・なしをPC/SP・JS有無で切り替え、非選択media不在と画像属性を実測。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress実ブロックの属性への接続、Media Libraryへのアップロード、編集保存・再読込",
+        "端末別設定、responsive images/srcset、実記事データでの運用検証"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-13-vocabulary-catalog/media/verification.json",
+          "sha256": "f65609cfcc81df0b82836c954758fd47e44f1aaa418926e3acf6f21275091487",
+          "row_names": [
+            "pc-js-icon:same-body-dom",
+            "pc-js-upload:images-alt-dimensions-loaded",
+            "pc-js-photo:images-alt-dimensions-loaded",
+            "pc-js-number:only-selected-media",
+            "pc-js-none:none-no-empty-wrapper",
+            "sp-nojs-icon:same-body-dom",
+            "sp-nojs-none:none-no-empty-wrapper"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SEO-01C",

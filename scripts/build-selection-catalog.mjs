@@ -358,6 +358,32 @@ if (fs.existsSync(path.join(root, vocabularyCatalogPath))) {
     });
   }
 }
+const vocabularyMediaPath = 'docs/research/2026-09-13-vocabulary-catalog/media/verification.json';
+if (fs.existsSync(path.join(root, vocabularyMediaPath))) {
+  const evidence = read(vocabularyMediaPath);
+  const modes = { icon: '自前SVGアイコン', upload: 'アップロード画像', photo: '写真', number: '番号', none: 'メディアなし' };
+  const requiredChecks = Object.keys(modes).flatMap(mode => [
+    `pc-js-${mode}:same-body-dom`, `pc-js-${mode}:only-selected-media`,
+    `sp-nojs-${mode}:same-body-dom`, `sp-nojs-${mode}:only-selected-media`,
+  ]);
+  if (!evidence.completed || evidence.checks?.length !== 220
+    || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('Vocabulary media evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale vocabulary media evidence: ${file}`);
+  }
+  for (const [mode, label] of Object.entries(modes)) {
+    entries.set(`vocabulary-media:${mode}`, {
+      id: `vocabulary-media:${mode}`, face: 'article', part: `vocabulary-media-${mode}`,
+      label: `メディア枠：${label}`, variant: mode,
+      images: { pc: `../2026-09-13-vocabulary-catalog/media/pc-js-${mode}.png`, sp: `../2026-09-13-vocabulary-catalog/media/sp-js-${mode}.png` },
+      requirementIds: [], purpose: '本文を変えず伝え方を選ぶ', group: 'ページ・本文',
+      description: 'カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。',
+      evidence: '../2026-09-13-vocabulary-catalog/media/verification.json',
+    });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

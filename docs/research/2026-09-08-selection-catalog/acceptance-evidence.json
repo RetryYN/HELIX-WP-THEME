@@ -11054,6 +11054,42 @@
         }
       ],
       "oracle_sha256": "8ee89abab325aa5ebe331a246c1035d61ce1890b31a2530a20424a8a4ffebfa7"
+    },
+    "WT-AC-VOCAB-01C": {
+      "status": "partial",
+      "requirement_digest": "9c154e2a8a0c24e8",
+      "source_digests": {
+        "scripts/build-vocabulary-media.mjs": "452adeb108162ec144eca2430482e78564113b016001352c1125da0f45886c44",
+        "scripts/verify-vocabulary-media.mjs": "d8448f83cb527e6997e66d7c9c9e07e5da499651ecb7dd449874eadfa67139a6",
+        "docs/research/2026-09-13-vocabulary-catalog/media/media.css": "bccd7bddab9e4b27e45a0ada6b8d658c3250e31341ecc36dd2029e910f8506c9",
+        "docs/research/2026-09-13-vocabulary-catalog/media/upload-workspace.svg": "2e3af28738d846b0c64eda0a2e3ac3abc331ad5a05555d1c1be568a1bb335bd6",
+        "docs/research/2026-09-13-vocabulary-catalog/media/icon.html": "8314cd28f7b306de9d85a6c0af147c4bde2658aa84650b9644269346096ca77e",
+        "docs/research/2026-09-13-vocabulary-catalog/media/upload.html": "16fa010c40aaa9f4c0a335b40ab3731c69c0ff8ca1360e5a4f5ff2ef220f49a0",
+        "docs/research/2026-09-13-vocabulary-catalog/media/photo.html": "a76d8215aa7bdfbf2b7b34aeabd2417cd55d3342923bf23472112e0722a6d5ea",
+        "docs/research/2026-09-13-vocabulary-catalog/media/number.html": "7c5c9f51b9935610ea02ca44cdff8a5468e865bb0b79b9a648f353dd3f2656ff",
+        "docs/research/2026-09-13-vocabulary-catalog/media/none.html": "3b59d41fdc1d3a7a7975efe1fdfd4b42ad00d9cd07c41b02ab8f8b78653e338c"
+      },
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-13-vocabulary-catalog/media/verification.json",
+          "sha256": "f65609cfcc81df0b82836c954758fd47e44f1aaa418926e3acf6f21275091487",
+          "row_names": [
+            "pc-js-icon:same-body-dom",
+            "pc-js-upload:images-alt-dimensions-loaded",
+            "pc-js-photo:images-alt-dimensions-loaded",
+            "pc-js-number:only-selected-media",
+            "pc-js-none:none-no-empty-wrapper",
+            "sp-nojs-icon:same-body-dom",
+            "sp-nojs-none:none-no-empty-wrapper"
+          ]
+        }
+      ],
+      "oracle_sha256": "8b1e096d53f5247cd2ab03af5aa2f251ec5c678e8b80163fd98051bcae506acd",
+      "scope": "静的5文書で、カード・箇条書き・手順の本文outerHTMLを保ちながら、自前SVG・アップロード画像例・写真・番号・なしをPC/SP・JS有無で切り替え、非選択media不在と画像属性を実測。",
+      "remaining": [
+        "WordPress実ブロックの属性への接続、Media Libraryへのアップロード、編集保存・再読込",
+        "端末別設定、responsive images/srcset、実記事データでの運用検証"
+      ]
     }
   }
 }
