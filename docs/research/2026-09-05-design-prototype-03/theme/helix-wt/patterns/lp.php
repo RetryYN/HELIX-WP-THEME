@@ -13,7 +13,7 @@ $u = get_theme_file_uri( 'assets/img' );
     <div class="wt-lp-hero__grid">
       <div class="wt-lp-hero__copy">
         <p class="wt-eyebrow">COMPARE GUIDE</p>
-        <h1 id="lp-hero-split-title"><?php esc_html_e( '比べたあとに、迷わず相談できる案内を。', 'helix-wt' ); ?></h1>
+        <h1 id="lp-hero-split-title"><span class="wt-lp-phrase"><?php esc_html_e( '比べたあとに、', 'helix-wt' ); ?></span><span class="wt-lp-phrase"><?php esc_html_e( '迷わず相談できる', 'helix-wt' ); ?></span><span class="wt-lp-phrase"><?php esc_html_e( '案内を。', 'helix-wt' ); ?></span></h1>
         <p class="wt-lp-hero__lead"><?php esc_html_e( '候補の違いを整理した読者へ、選び方と次の一歩をひとつのページで伝えます。', 'helix-wt' ); ?></p>
         <div class="wt-lp-cta wt-lp-cta--single"><a class="wt-lp-cta-action" href="#contact"><?php esc_html_e( '無料で相談する', 'helix-wt' ); ?></a></div>
         <div class="wt-lp-cta wt-lp-cta--double"><a class="wt-lp-cta-action" href="#contact"><?php esc_html_e( '無料で相談する', 'helix-wt' ); ?></a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="full" href="#comparison"><?php esc_html_e( '比較表を見る', 'helix-wt' ); ?></a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="short" href="#pricing"><?php esc_html_e( '料金を見る', 'helix-wt' ); ?></a><a class="wt-lp-cta-action wt-lp-cta-action--secondary" data-lp-cta-target="trust" href="#voices"><?php esc_html_e( '利用者の声を見る', 'helix-wt' ); ?></a></div>

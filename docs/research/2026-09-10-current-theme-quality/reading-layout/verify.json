@@ -1,0 +1,36 @@
+{
+  "schema": "wt-reading-layout-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-kit.php": "8f7975ebd0427e6842dc12141491a9c749d5b50366be4df981a67bb26f580fab",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php": "ba502b320ec0e50d6ccb100a03ee15874f9a886e12985b3dead4601ef9915531",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "e24fd68007cc1c951fc6b908ceadaed2115490b8a46df9caabe6f32dfd82089a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "10bda3fd06870a84271fb9464ae23aa245dc98202f052c0a7b65081d1f91ea0d"
+  },
+  "rows": [
+    {
+      "name": "reading-layout:all-widths-reflow",
+      "pass": true
+    },
+    {
+      "name": "reading-layout:single-derived-article-toc",
+      "pass": true
+    },
+    {
+      "name": "reading-layout:toc-none-removes-derived-toc",
+      "pass": true
+    },
+    {
+      "name": "reading-layout:lp-phrase-boundaries",
+      "pass": true
+    },
+    {
+      "name": "reading-layout:event-label-value-rows",
+      "pass": true
+    },
+    {
+      "name": "reading-layout:owned-fixtures-removed",
+      "pass": true
+    }
+  ]
+}

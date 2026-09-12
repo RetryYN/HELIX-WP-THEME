@@ -8,7 +8,6 @@
 $u = get_theme_file_uri( "assets/img" );
 ?>
 <!-- wp:paragraph {"className":"wt-lead"} --><p class="wt-lead"><?php esc_html_e( '法人向けのクラウド会計を 3 社比較しました。月額・仕訳の自動化・税理士連携で選ぶなら、結論は「従業員 10 名までなら B、それ以上なら A」です。', 'helix-wt' ); ?></p><!-- /wp:paragraph -->
-<!-- wp:html --><details class="wt-toc" open><summary><?php esc_html_e( 'この記事の内容', 'helix-wt' ); ?></summary><ol><li><a href="#h-1"><?php esc_html_e( '比較の前提', 'helix-wt' ); ?></a></li><li><a href="#h-2"><?php esc_html_e( '3 社の比較表', 'helix-wt' ); ?></a></li><li><a href="#h-3"><?php esc_html_e( '各サービスの評価', 'helix-wt' ); ?></a></li><li><a href="#h-4"><?php esc_html_e( '結論と選び方', 'helix-wt' ); ?></a></li></ol></details><!-- /wp:html -->
 <!-- wp:heading {"anchor":"h-1"} --><h2 class="wp-block-heading" id="h-1"><?php esc_html_e( '比較の前提', 'helix-wt' ); ?></h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p><?php esc_html_e( '対象は従業員 30 名以下の法人。評価軸は月額、銀行連携の対応数、仕訳の自動化精度、税理士との共有のしやすさ、サポートの 5 点です。価格は 2026 年 8 月時点の公式サイトの表示に基づきます。', 'helix-wt' ); ?></p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"is-style-wt-point","layout":{"type":"default"}} --><div class="wp-block-group is-style-wt-point"><!-- wp:paragraph {"style":{"typography":{"fontWeight":"700"}}} --><p style="font-weight:700"><?php esc_html_e( 'ポイント', 'helix-wt' ); ?></p><!-- /wp:paragraph --><!-- wp:paragraph {"fontSize":"s"} --><p class="has-s-font-size"><?php esc_html_e( '月額の差より、仕訳の自動化で減る作業時間のほうが年間コストに効きます。時給換算で比べてください。', 'helix-wt' ); ?></p><!-- /wp:paragraph --></div><!-- /wp:group -->

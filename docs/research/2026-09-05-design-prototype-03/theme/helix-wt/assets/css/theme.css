@@ -1891,3 +1891,17 @@ body.wt-event-apply-block-form .wt-event-apply--block-form{display:block;margin-
     scroll-behavior: auto !important;
   }
 }
+
+/* 読む単位を保つ。翻訳で一文節が列幅を超えた場合は内部で折り返す。 */
+.wt-lp-phrase{display:inline-block;max-width:100%;overflow-wrap:anywhere;vertical-align:top}
+.wt-lp-hero__copy h1:has(.wt-lp-phrase){font-size:clamp(2rem,3.6vw,3.25rem)}
+.wt-event-info--inline-text>div{display:inline}
+.wt-event-info--inline-text>div+div::before{content:" ／ ";color:var(--wp--preset--color--mute)}
+.wt-event-info--inline-text dt,.wt-event-info--inline-text dd{display:inline;margin:0}
+.wt-event-info--inline-text dt{font-weight:700;color:var(--wp--preset--color--accent);margin-right:.5em}
+@media(max-width:700px){
+ .wt-event-info--inline-text>div{display:grid;grid-template-columns:4em minmax(0,1fr);gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line)}
+ .wt-event-info--inline-text>div+div::before{content:none}
+ .wt-event-info--inline-text dt,.wt-event-info--inline-text dd{display:block;line-height:1.8}
+ .wt-event-info--inline-text dt{margin:0;white-space:nowrap}
+}

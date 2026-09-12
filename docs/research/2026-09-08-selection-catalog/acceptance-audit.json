@@ -3,9 +3,9 @@
   "requirementCount": 133,
   "acceptanceCount": 294,
   "counts": {
-    "missing": 249,
-    "partial": 19,
-    "verified_in_poc": 26,
+    "missing": 247,
+    "partial": 22,
+    "verified_in_poc": 25,
     "stale": 0
   },
   "complete": false,
@@ -116,7 +116,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "4e3a624eb1029161c38df4fd1a0b264fc9e2b853ea4a7155477ab0dbd3626851",
+          "sha256": "4066434c7fd02d1b596a12fc7b69356c1999c0522123fba0225de9944917402f",
           "row_names": [
             "boundary:production-findings-zero",
             "boundary:manifest-denies-local-ai-logic"
@@ -135,7 +135,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "4e3a624eb1029161c38df4fd1a0b264fc9e2b853ea4a7155477ab0dbd3626851",
+          "sha256": "4066434c7fd02d1b596a12fc7b69356c1999c0522123fba0225de9944917402f",
           "row_names": [
             "negative:sdk-import-js-fails",
             "negative:sdk-import-php-fails",
@@ -486,24 +486,47 @@
       "requirement_id": "WT-FR-VOCAB-02",
       "oracle": "h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "h2を持つ記事の固定埋め込み目次がfunctions.phpから1件だけ機械導出され、390/1440px・JS有無で全リンク先が存在することを実測。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "フロート追従・開閉ボタン化の配置方式",
+        "ページ種別設定と投稿メタの優先順位",
+        "見出し変更後の目次追従を同一fixtureで実測"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+          "sha256": "5bbb682e4f3e2bbd536a538c18045ce248f1ba5501d6ff82257bbae6f7659d0d",
+          "row_names": [
+            "reading-layout:all-widths-reflow",
+            "reading-layout:single-derived-article-toc",
+            "reading-layout:owned-fixtures-removed"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-02B",
       "requirement_id": "WT-FR-VOCAB-02",
       "oracle": "目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "同一記事でtoc:none指定時に390/1440px・JS有無の4条件すべてで自動目次が0件になることを実測。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "保存HTMLに固定された目次の検出負例",
+        "ページ種別設定と投稿メタで非表示にした条件の実測"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+          "sha256": "5bbb682e4f3e2bbd536a538c18045ce248f1ba5501d6ff82257bbae6f7659d0d",
+          "row_names": [
+            "reading-layout:single-derived-article-toc",
+            "reading-layout:toc-none-removes-derived-toc",
+            "reading-layout:owned-fixtures-removed"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-03A",
@@ -3557,7 +3580,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "b1acd9fd84a75565c4e85ac2c6dc638affbe1a7b5679908895f23134d4f3e55f",
+          "sha256": "69ae225984f1ca317dda4d1a06b94e4c684809ca159e56f2dce219b9c95112e6",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -3582,7 +3605,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "b1acd9fd84a75565c4e85ac2c6dc638affbe1a7b5679908895f23134d4f3e55f",
+          "sha256": "69ae225984f1ca317dda4d1a06b94e4c684809ca159e56f2dce219b9c95112e6",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -3744,14 +3767,15 @@
       "oracle": "Text Domain・POT・日本語 / 英語のソース言語・RTL 非対象が release receipt で確認できる",
       "polarity": "positive",
       "status": "partial",
-      "scope": "Text Domain、POT と全 PHP ソースの一致、日本語・英語のソース言語方針、RTL 非対象、利用者向け属性を含む未翻訳 CJK 0 件を検証済み。release receipt への束縛は未実施。",
+      "scope": "Text Domain、POTと抽出済みgettext呼び出しの一致、日本語・英語のソース言語方針、RTL非対象を検証。未翻訳CJK検査はecho/print行、生template HTMLのテキストノード、alt/aria-label/placeholder/title属性の3経路に限定。",
       "remaining": [
-        "current HEAD と CI に束縛した release receipt の発行"
+        "current HEAD と CI に束縛した release receipt の発行",
+        "returnで連結するPHP文字列と、配列から後段で描画する表示文字列のgettext網羅および同経路の負例"
       ],
       "evidence": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "8e8804f6e46c771a8a969da9e77a1beae07fbb8b37d1cf18725f38d9cfd07486",
+          "sha256": "82a6b06c3412c3f7a09cfba70904fba405f7ec7284a49d1f1771aafad6458fd2",
           "row_names": [
             "i18n:source-calls-found",
             "i18n:all-gettext-calls-extracted",
@@ -3769,13 +3793,15 @@
       "requirement_id": "WT-NFR-ENV-01",
       "oracle": "翻訳関数を使わない表示、POT とソースの差分、言語方針の未記載、または RTL 対応を未検証で宣言すれば FAIL",
       "polarity": "negative",
-      "status": "verified_in_poc",
-      "scope": "Text Domain・POT・生 PHP 出力・template HTML・alt/aria-label/placeholder/title・ソース言語方針・RTL 境界の各逸脱を同じ評価器で fail-close する負例を確認。",
-      "remaining": [],
+      "status": "partial",
+      "scope": "Text Domain・POT・echo/print行・生template HTML・alt/aria-label/placeholder/title・ソース言語方針・RTL境界の逸脱を同じ評価器でfail-closeする負例を確認。",
+      "remaining": [
+        "returnで連結するPHP文字列と、配列から後段で描画する表示文字列を検出する負例"
+      ],
       "evidence": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "8e8804f6e46c771a8a969da9e77a1beae07fbb8b37d1cf18725f38d9cfd07486",
+          "sha256": "82a6b06c3412c3f7a09cfba70904fba405f7ec7284a49d1f1771aafad6458fd2",
           "row_names": [
             "negative:text-domain-drift-fails",
             "negative:pot-source-drift-fails",
@@ -4821,7 +4847,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-footer-data/rendering.json",
-          "sha256": "bb920af480c35deca3348fc6b9e9bbf27128f49be11ad71fd2189386d388786f",
+          "sha256": "c71563b7dfc717bc360b0758fd5e60224ef82d7d2cf202e67c9aa46f89f9c992",
           "row_names": [
             "related-group:empty:1440:js-true",
             "sitemap-groups:empty:1440:js-true",
@@ -5016,7 +5042,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-event-state/verify.json",
-          "sha256": "fba7bdeebacfc1129d0260f400ee3cc6d2fac2b58ee26b9f68e5b3b8b1146dc7",
+          "sha256": "c60e32b80dc07ce529bb2a50bab6e5c85aea7b04dbd8583dc9acffebe38d9bfc",
           "row_names": [
             "fixture-mode:blogname-does-not-enable-observed-time",
             "state:before-open:pc:js-true",
@@ -5168,7 +5194,7 @@
         },
         {
           "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-          "sha256": "fe180ddde6fb8a4513e08af263f90c35885f9cc54168f98384c74428de155578",
+          "sha256": "5b930d732d99a461c4f0a339ca540414743d00bd790872d4e35dd904a241f8d9",
           "row_names": [
             "state:japan-start:pc:js-true",
             "form-availability:japan-start:pc:js-true",
@@ -5530,7 +5556,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-event-state/verify.json",
-          "sha256": "fba7bdeebacfc1129d0260f400ee3cc6d2fac2b58ee26b9f68e5b3b8b1146dc7",
+          "sha256": "c60e32b80dc07ce529bb2a50bab6e5c85aea7b04dbd8583dc9acffebe38d9bfc",
           "row_names": [
             "fixture-mode:blogname-does-not-enable-observed-time",
             "state:before-open:pc:js-true",
@@ -5682,7 +5708,7 @@
         },
         {
           "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-          "sha256": "fe180ddde6fb8a4513e08af263f90c35885f9cc54168f98384c74428de155578",
+          "sha256": "5b930d732d99a461c4f0a339ca540414743d00bd790872d4e35dd904a241f8d9",
           "row_names": [
             "state:japan-start:pc:js-true",
             "form-availability:japan-start:pc:js-true",
@@ -6388,7 +6414,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-form-flow/verify.json",
-          "sha256": "5399495863510962a8f3a78b209a015b0af611a90b69bd938c0f14198499f4ff",
+          "sha256": "2e97ab83dd05487636b4b2b103ddff5b61da9d85ab317b3a96ef815fe313dad9",
           "row_names": [
             "form-present:pc:js-true:yes",
             "required-errors:pc:js-true:yes",
@@ -6612,7 +6638,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-          "sha256": "db10e58f7444df1c127ebb64b27666f02ef61f779b0f7b12a510a63ccb20fafe",
+          "sha256": "2ac9af7ad7a00de9882aa37c1828212fb2a306b283a02f46b23e410ad1ebb255",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -6900,7 +6926,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-          "sha256": "09607b47c9c7900f9627c6b64d77a8d08afb09dc2b0693c604667cfbdb4da9c2",
+          "sha256": "1b69be82d9d662ddc59e33cea0fbc6bc8cca5de80bff02f6bf5a9b375b30e73e",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -7301,7 +7327,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-          "sha256": "9bfe73f4597a250427297707f86149ce58eee2ac4032589cad8292f399bce327",
+          "sha256": "757a739ea0ed309a8ecc16fe650b60654587b22b92ef970399300f58aeccc8ca",
           "row_names": [
             "default-no-form:pc:js-true:lp",
             "kind:pc:js-true:lp",
@@ -7390,7 +7416,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-          "sha256": "14ae105563fa6b03eb289305f738ff68b9453e85125e6609feb54707bd22da53",
+          "sha256": "5ee086c171a31107ad58a8a680363ece7c97ddc0f8bbe423fd313d56737869ca",
           "row_names": [
             "kind:pc:js-true:full",
             "empty-rejected:pc:js-true:full",
@@ -7523,7 +7549,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-form-flow/verify.json",
-          "sha256": "5399495863510962a8f3a78b209a015b0af611a90b69bd938c0f14198499f4ff",
+          "sha256": "2e97ab83dd05487636b4b2b103ddff5b61da9d85ab317b3a96ef815fe313dad9",
           "row_names": [
             "form-present:pc:js-true:yes",
             "required-errors:pc:js-true:yes",
@@ -7747,7 +7773,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-          "sha256": "db10e58f7444df1c127ebb64b27666f02ef61f779b0f7b12a510a63ccb20fafe",
+          "sha256": "2ac9af7ad7a00de9882aa37c1828212fb2a306b283a02f46b23e410ad1ebb255",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -8035,7 +8061,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-          "sha256": "09607b47c9c7900f9627c6b64d77a8d08afb09dc2b0693c604667cfbdb4da9c2",
+          "sha256": "1b69be82d9d662ddc59e33cea0fbc6bc8cca5de80bff02f6bf5a9b375b30e73e",
           "row_names": [
             "kind:pc:js-true:contact",
             "empty-rejected:pc:js-true:contact",
@@ -8436,7 +8462,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-          "sha256": "9bfe73f4597a250427297707f86149ce58eee2ac4032589cad8292f399bce327",
+          "sha256": "757a739ea0ed309a8ecc16fe650b60654587b22b92ef970399300f58aeccc8ca",
           "row_names": [
             "default-no-form:pc:js-true:lp",
             "kind:pc:js-true:lp",
@@ -8525,7 +8551,7 @@
         },
         {
           "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-          "sha256": "14ae105563fa6b03eb289305f738ff68b9453e85125e6609feb54707bd22da53",
+          "sha256": "5ee086c171a31107ad58a8a680363ece7c97ddc0f8bbe423fd313d56737869ca",
           "row_names": [
             "kind:pc:js-true:full",
             "empty-rejected:pc:js-true:full",
@@ -8657,7 +8683,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "8f2aac3247d1c1319e5eac1a36e0d089ff3e833802ea1df3466fd37b209a5fd7",
+          "sha256": "7c22822d65413c276a6128de2cd00b4ac1866bf8070cb5be4babfee3eab24abf",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -9105,7 +9131,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "8f2aac3247d1c1319e5eac1a36e0d089ff3e833802ea1df3466fd37b209a5fd7",
+          "sha256": "7c22822d65413c276a6128de2cd00b4ac1866bf8070cb5be4babfee3eab24abf",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -10625,7 +10651,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-site-search/results/verify.json",
-          "sha256": "412099d16d6bfb36147aa784b181937c8f5d4a147304173145bff391de0fe48b",
+          "sha256": "7723fb4ea17aeb655c9ec24a1b1a8ab0fe80a99836471d28139b3c0937027495",
           "row_names": [
             "response:results:pc:js-true",
             "search-heading:results:pc:js-true",
@@ -10750,7 +10776,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-          "sha256": "2d533f15089292fff4183011c8465fc82c299bbe31ad9eeb7b575248daccf2c4",
+          "sha256": "e25a6da95eee9f5379cb69e65bc774d4a9dbcdec00ee8d68cd1a3b78d6d92701",
           "row_names": [
             "public-count:pc:js-true",
             "private-excluded:pc:js-true",
@@ -11427,7 +11453,7 @@
         },
         {
           "path": "docs/research/2026-09-08-site-search/results/performance.json",
-          "sha256": "02eb4c40a2b79246f42712a2930095862d28cf1897446c616294ed927a9b8900",
+          "sha256": "6577059fac7b0234aac7c8e0fc7d991de17e9c8f459cb217e5bc7c94d34b5d7f",
           "row_names": [
             "cold-scans-protected:50",
             "warm-skips-password-checks:50",
@@ -11461,7 +11487,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-          "sha256": "2d533f15089292fff4183011c8465fc82c299bbe31ad9eeb7b575248daccf2c4",
+          "sha256": "e25a6da95eee9f5379cb69e65bc774d4a9dbcdec00ee8d68cd1a3b78d6d92701",
           "row_names": [
             "public-count:pc:js-true",
             "first-page:pc:js-true",
@@ -11505,7 +11531,7 @@
         },
         {
           "path": "docs/research/2026-09-08-site-search/results/input.json",
-          "sha256": "55114bb90583f5d9818450c46fc369303af1b0ded84abaed039fdbcdbb85b216",
+          "sha256": "dbff32d7f93d538faf0e9f3cfeaf2e5df085c6916e4150986f32a6358828d781",
           "row_names": [
             "page-count-preserved:page-array:pc:js-true",
             "page-count-preserved:page-negative:pc:js-true",
@@ -11864,7 +11890,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-site-search/results/verify.json",
-          "sha256": "412099d16d6bfb36147aa784b181937c8f5d4a147304173145bff391de0fe48b",
+          "sha256": "7723fb4ea17aeb655c9ec24a1b1a8ab0fe80a99836471d28139b3c0937027495",
           "row_names": [
             "response:results:pc:js-true",
             "search-heading:results:pc:js-true",
@@ -11943,7 +11969,7 @@
         },
         {
           "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-          "sha256": "2d533f15089292fff4183011c8465fc82c299bbe31ad9eeb7b575248daccf2c4",
+          "sha256": "e25a6da95eee9f5379cb69e65bc774d4a9dbcdec00ee8d68cd1a3b78d6d92701",
           "row_names": [
             "public-count:pc:js-true",
             "first-page:pc:js-true",
@@ -12011,7 +12037,7 @@
         },
         {
           "path": "docs/research/2026-09-08-site-search/results/input.json",
-          "sha256": "55114bb90583f5d9818450c46fc369303af1b0ded84abaed039fdbcdbb85b216",
+          "sha256": "dbff32d7f93d538faf0e9f3cfeaf2e5df085c6916e4150986f32a6358828d781",
           "row_names": [
             "response:query-array:pc:js-true",
             "search-available:query-array:pc:js-true",
@@ -12314,7 +12340,7 @@
         },
         {
           "path": "docs/research/2026-09-08-site-search/results/locale.json",
-          "sha256": "4d453e21b9e1fa7f450a4b75989282992365b5c73175e5ed00d2bfb73c9d729f",
+          "sha256": "09876b1a1ee53a485e71e3899b140af92658dbf07bd809f14053cb12e0e6a844",
           "row_names": [
             "locale:results:pc:js-true",
             "translated-title:results:pc:js-true",
