@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('632');
+  await expect(page.locator('#total')).toHaveText('633');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -40,6 +40,10 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await page.locator('#search').fill('共通ヘッダー＋SP中央型');
   await expect(page.locator('.tile-open')).toHaveCount(1);
   await expect(page.locator('.tile-open img')).toHaveAttribute('src', /parts-declaration\/initial-pc-js\.png/);
+  await page.locator('#search').fill('');
+  await page.locator('#search').fill('Site Editorで共通・PC・SPを選択');
+  await expect(page.locator('.tile-open')).toHaveCount(1);
+  await expect(page.locator('.tile-open img')).toHaveAttribute('src', /parts-declaration\/editor\/inspector\.png/);
   await page.locator('#search').fill('');
   await page.locator('[data-face="zone"]').click();
   await expect(page.locator('.tile-open')).toHaveCount(1);
@@ -252,7 +256,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('632候補 / SP');
+  await expect(page.locator('#count')).toHaveText('633候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);

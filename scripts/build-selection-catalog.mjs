@@ -358,6 +358,31 @@ if (fs.existsSync(path.join(root, partsDeclarationPath))) {
     });
   }
 }
+const partsEditorPath = 'docs/research/2026-09-13-parts-declaration/editor/verification.json';
+if (fs.existsSync(path.join(root, partsEditorPath))) {
+  const evidence = read(partsEditorPath);
+  const requiredChecks = [
+    'client:attribute-registered', 'inspector:store-updated', 'editor:no-invalid-preview',
+    'save:database', 'reload:declaration-valid', 'pc-js:public-reference', 'sp-js:public-reference',
+    'missingReference:rest-rejected', 'missingDevice:rest-rejected', 'invalidType:rest-rejected',
+    'editor:no-runtime-errors', 'cleanup:owned-fixtures',
+  ];
+  if (!evidence.completed || evidence.checks?.length !== 25
+    || requiredChecks.some(name => !evidence.checks?.some(check => check.name === name && check.pass === true))) {
+    throw Error('PARTS editor evidence incomplete');
+  }
+  for (const [file, hash] of Object.entries(evidence.sourceDigests || {})) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale PARTS editor evidence: ${file}`);
+  }
+  entries.set('parts-declaration:site-editor', {
+    id: 'parts-declaration:site-editor', face: 'parts', part: 'header-device-editor',
+    label: 'Site Editorで共通・PC・SPを選択', variant: 'Inspector / save / reload',
+    images: { pc: '../2026-09-13-parts-declaration/editor/inspector.png' },
+    requirementIds: [], purpose: '共通部品と端末差分を編集する', group: '共通設定・部品',
+    description: 'core/template-partのInspectorで共通・PC・SP参照を選び、実Save、再読込、公開反映を検証した編集UI。REST保存境界は不正宣言を400で拒否し、既存DB内容を維持します。',
+    evidence: '../2026-09-13-parts-declaration/editor/verification.json',
+  });
+}
 const vocabularyCatalogPath = 'docs/research/2026-09-13-vocabulary-catalog/verification.json';
 if (fs.existsSync(path.join(root, vocabularyCatalogPath))) {
   const evidence = read(vocabularyCatalogPath);

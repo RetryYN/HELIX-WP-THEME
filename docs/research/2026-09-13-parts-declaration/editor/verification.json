@@ -1,0 +1,125 @@
+{
+  "schema": "wt-parts-editor-verification.v1",
+  "completed": true,
+  "checks": [
+    {
+      "name": "client:attribute-registered",
+      "pass": true
+    },
+    {
+      "name": "inspector:store-updated",
+      "pass": true
+    },
+    {
+      "name": "editor:no-invalid-preview",
+      "pass": true
+    },
+    {
+      "name": "save:database",
+      "pass": true
+    },
+    {
+      "name": "reload:declaration-valid",
+      "pass": true
+    },
+    {
+      "name": "pc-js:public-reference",
+      "pass": true
+    },
+    {
+      "name": "pc-js:nonselected-absent",
+      "pass": true
+    },
+    {
+      "name": "pc-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:public-reference",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:nonselected-absent",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:public-reference",
+      "pass": true
+    },
+    {
+      "name": "sp-js:nonselected-absent",
+      "pass": true
+    },
+    {
+      "name": "sp-js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:public-reference",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:nonselected-absent",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "missingReference:rest-rejected",
+      "pass": true
+    },
+    {
+      "name": "missingReference:database-unchanged",
+      "pass": true
+    },
+    {
+      "name": "missingDevice:rest-rejected",
+      "pass": true
+    },
+    {
+      "name": "missingDevice:database-unchanged",
+      "pass": true
+    },
+    {
+      "name": "invalidType:rest-rejected",
+      "pass": true
+    },
+    {
+      "name": "invalidType:database-unchanged",
+      "pass": true
+    },
+    {
+      "name": "editor:no-runtime-errors",
+      "pass": true
+    },
+    {
+      "name": "cleanup:owned-fixtures",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "inspector.png",
+    "pc-js.png",
+    "pc-nojs.png",
+    "sp-js.png",
+    "sp-nojs.png"
+  ],
+  "sourceDigests": {
+    "scripts/verify-parts-editor.mjs": "e80916c742907a0d36b5961de2595537b49333bd4768c7b25a192c0ed491edee",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/parts-editor.js": "62687dc9de909f5b7d1727a28f636fcb9f19d8984e9fd163d3e912883ade722c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html": "c4583eb00a3c72761364736a199179db01f1c4415c4f0580e41537bb3c706ae0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html": "5d91a792752200561689dba20096c240c256366ea3fc5594c2b0fc1605a07249",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "792dfa74003dcb74157d537199b0095190d8fb63808f7c8868188671629d5a4a"
+  },
+  "limitations": [
+    "Cache segmentation, viewport-only resize and full-template device selection not verified",
+    "Editor canvas renders original part; public rendering applies device declaration"
+  ]
+}

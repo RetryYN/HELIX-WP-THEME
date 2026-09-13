@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1136,
+  "screenshotCount": 1137,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12082,6 +12082,30 @@
       "evidence": "../2026-09-13-parts-declaration/verification.json"
     },
     {
+      "id": "parts-declaration:site-editor",
+      "face": "parts",
+      "part": "header-device-editor",
+      "label": "Site Editorで共通・PC・SPを選択",
+      "variant": "Inspector / save / reload",
+      "images": {
+        "pc": "../2026-09-13-parts-declaration/editor/inspector.png"
+      },
+      "requirementIds": [
+        "WT-FR-PARTS-01",
+        "WT-FR-PARTS-02",
+        "WT-FR-SP-01",
+        "WT-FR-SP-02",
+        "WT-FR-SP-03",
+        "WT-NFR-SP-01",
+        "WT-NFR-SP-02",
+        "WT-FR-PARTS-03"
+      ],
+      "purpose": "共通部品と端末差分を編集する",
+      "group": "共通設定・部品",
+      "description": "core/template-partのInspectorで共通・PC・SP参照を選び、実Save、再読込、公開反映を検証した編集UI。REST保存境界は不正宣言を400で拒否し、既存DB内容を維持します。",
+      "evidence": "../2026-09-13-parts-declaration/editor/verification.json"
+    },
+    {
       "id": "vocabulary-catalog:overview",
       "face": "article",
       "part": "vocabulary-overview",
@@ -12413,7 +12437,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "184b9570e2464aee14e35bb9d905083a0f630feeff362b47137873e77fd42382",
+              "sha256": "263bac9edf23fe94cb23dce707275a78cf1750ecd93878e92861ac1608cb4693",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -12432,7 +12456,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "184b9570e2464aee14e35bb9d905083a0f630feeff362b47137873e77fd42382",
+              "sha256": "263bac9edf23fe94cb23dce707275a78cf1750ecd93878e92861ac1608cb4693",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -13096,15 +13120,15 @@
           "oracle": "共通宣言と device 別差分の差し替え後に骨格差分（テンプレ・パーツ参照）が表示され、SP / PC の保存結果が公開面へ反映される",
           "polarity": "positive",
           "status": "partial",
-          "scope": "専用WordPress labでcore/template-partのcommon/pc/sp宣言をWP-CLI保存し、DB完全一致、PC/SP・JS有効/無効の公開表示と再読込、未選択パーツDOM不在を初期・更新後の2組で実測。",
+          "scope": "core/template-partのcommon/pc/sp宣言をSite EditorのInspector実操作で選択し、Save、DB確認、編集画面再読込、PC/SP・JS有効/無効の公開反映と非選択DOM不在を実測。WP-CLI保存による別の初期・更新2組も再現。",
           "remaining": [
-            "Site Editor実操作とclient側属性登録・保存往復は未検証。",
-            "テンプレート全体の切替、wp_is_mobileとviewportの不一致、画面回転、ページキャッシュの端末分離は未検証。"
+            "テンプレート全体のdevice切替、wp_is_mobileとviewportの不一致、画面回転、ページキャッシュの端末分離は未検証。",
+            "編集canvasは元パーツを表示。DB-onlyパーツと全12パーツの編集妥当性は未検証。"
           ],
           "evidence": [
             {
               "path": "docs/research/2026-09-13-parts-declaration/verification.json",
-              "sha256": "e2347fe6cb85e865bc6f33343e6f60b2d94e81f0354060095e5c920bd5085f3c",
+              "sha256": "c574c5c2b414b2d146881c12fcc077d89f0102646f50b3f3dd7fae743c838feb",
               "row_names": [
                 "initial:saved-declaration-roundtrip",
                 "initial-pc-js:selected-reference-visible",
@@ -13117,6 +13141,23 @@
                 "updated-pc-nojs:reload-persists",
                 "updated-sp-nojs:reload-persists"
               ]
+            },
+            {
+              "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
+              "sha256": "bf91cf6228831a622be866f3c59e883a83ef9f4405879b0043931f50a0c00551",
+              "row_names": [
+                "client:attribute-registered",
+                "inspector:store-updated",
+                "editor:no-invalid-preview",
+                "save:database",
+                "reload:declaration-valid",
+                "pc-js:public-reference",
+                "pc-nojs:public-reference",
+                "sp-js:public-reference",
+                "sp-nojs:public-reference",
+                "editor:no-runtime-errors",
+                "cleanup:owned-fixtures"
+              ]
             }
           ]
         },
@@ -13126,15 +13167,14 @@
           "oracle": "差し替えで参照欠落（G-S2）、device 別差分の未宣言、または invalid が出れば FAIL",
           "polarity": "negative",
           "status": "partial",
-          "scope": "専用WordPress labでcore/template-partのcommon/pc/sp宣言をWP-CLI保存し、DB完全一致、PC/SP・JS有効/無効の公開表示と再読込、未選択パーツDOM不在を初期・更新後の2組で実測。",
+          "scope": "存在しない参照、device未宣言、不正型、traversal、未知keyを公開描画前にfail-closedで拒否。Site Editorと同じREST保存境界でも3負例をHTTP 400で拒否し、DB不変を実測。",
           "remaining": [
-            "保存前のSite Editor UIエラー表示は未実装。",
-            "DBだけに作成されたパーツ参照、キャッシュ分離、全テンプレートでの負例は未検証。"
+            "WP-CLI・直接SQLなどRESTを通らない書込みの保存時拒否、DB-onlyパーツ、全テンプレートでの負例は未検証。"
           ],
           "evidence": [
             {
               "path": "docs/research/2026-09-13-parts-declaration/verification.json",
-              "sha256": "e2347fe6cb85e865bc6f33343e6f60b2d94e81f0354060095e5c920bd5085f3c",
+              "sha256": "c574c5c2b414b2d146881c12fcc077d89f0102646f50b3f3dd7fae743c838feb",
               "row_names": [
                 "missingReference:validator-rejects",
                 "missingReference:public-rejects",
@@ -13147,6 +13187,19 @@
                 "extraKey:validator-rejects",
                 "extraKey:public-rejects",
                 "fixture-cleanup"
+              ]
+            },
+            {
+              "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
+              "sha256": "bf91cf6228831a622be866f3c59e883a83ef9f4405879b0043931f50a0c00551",
+              "row_names": [
+                "missingReference:rest-rejected",
+                "missingReference:database-unchanged",
+                "missingDevice:rest-rejected",
+                "missingDevice:database-unchanged",
+                "invalidType:rest-rejected",
+                "invalidType:database-unchanged",
+                "cleanup:owned-fixtures"
               ]
             }
           ]
@@ -13407,7 +13460,8 @@
         "inheritance:content_site:own",
         "inheritance:content_site:off",
         "footer-data:empty",
-        "footer-data:filled"
+        "footer-data:filled",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -13434,7 +13488,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "debefd564659a5bb9e4965146fd2b3af94d7e5c6b99af9c41464513b2eb4a354",
+              "sha256": "ace0cea6014e3e7db609d3561f65ed70275c1a5b24009606b5b8242dffc60d0e",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -13516,7 +13570,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/header-navigation/verify.json",
-              "sha256": "debefd564659a5bb9e4965146fd2b3af94d7e5c6b99af9c41464513b2eb4a354",
+              "sha256": "ace0cea6014e3e7db609d3561f65ed70275c1a5b24009606b5b8242dffc60d0e",
               "row_names": [
                 "stored-links:pc:js-true",
                 "visible:pc:js-true",
@@ -13754,7 +13808,8 @@
         "inheritance:content_site:own",
         "inheritance:content_site:off",
         "footer-data:empty",
-        "footer-data:filled"
+        "footer-data:filled",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -15871,7 +15926,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "a5f23ab4c1d99757624a9b59dd740d5a7f7f5c924cee91b1b7c386e8c56d6aec",
+              "sha256": "cf56f0053e8ba9828cb082fb37a3a51cfcd7f794dc66778d1f96ce8c4e2de623",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -15891,7 +15946,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "a5f23ab4c1d99757624a9b59dd740d5a7f7f5c924cee91b1b7c386e8c56d6aec",
+              "sha256": "cf56f0053e8ba9828cb082fb37a3a51cfcd7f794dc66778d1f96ce8c4e2de623",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -17749,7 +17804,8 @@
         "category:chrome-fix-site-category",
         "event:chrome-fix-site-event",
         "page:chrome-fix-site-page",
-        "lp:chrome-fix-site-lp"
+        "lp:chrome-fix-site-lp",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -17818,7 +17874,8 @@
         "category:chrome-fix-site-category",
         "event:chrome-fix-site-event",
         "page:chrome-fix-site-page",
-        "lp:chrome-fix-site-lp"
+        "lp:chrome-fix-site-lp",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -17887,7 +17944,8 @@
         "category:chrome-fix-site-category",
         "event:chrome-fix-site-event",
         "page:chrome-fix-site-page",
-        "lp:chrome-fix-site-lp"
+        "lp:chrome-fix-site-lp",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -18504,7 +18562,8 @@
         "category:chrome-fix-site-category",
         "event:chrome-fix-site-event",
         "page:chrome-fix-site-page",
-        "lp:chrome-fix-site-lp"
+        "lp:chrome-fix-site-lp",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -18573,7 +18632,8 @@
         "category:chrome-fix-site-category",
         "event:chrome-fix-site-event",
         "page:chrome-fix-site-page",
-        "lp:chrome-fix-site-lp"
+        "lp:chrome-fix-site-lp",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -19523,7 +19583,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "7e16fc6de70d35ad10029b0e688215772d4ee1529941c8ab353d313074d70bd8",
+              "sha256": "61c9554bdc1d88faee162ee56c6032b7e512a07e3b530336516813eaee9752e2",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -19548,7 +19608,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "7e16fc6de70d35ad10029b0e688215772d4ee1529941c8ab353d313074d70bd8",
+              "sha256": "61c9554bdc1d88faee162ee56c6032b7e512a07e3b530336516813eaee9752e2",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -19828,7 +19888,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "d67b7f3467c301f44bd8642b317ee933d2d530ed7d8184531241b31e6c82d0e3",
+              "sha256": "8e8804f6e46c771a8a969da9e77a1beae07fbb8b37d1cf18725f38d9cfd07486",
               "row_names": [
                 "i18n:source-calls-found",
                 "i18n:all-gettext-calls-extracted",
@@ -19854,7 +19914,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "d67b7f3467c301f44bd8642b317ee933d2d530ed7d8184531241b31e6c82d0e3",
+              "sha256": "8e8804f6e46c771a8a969da9e77a1beae07fbb8b37d1cf18725f38d9cfd07486",
               "row_names": [
                 "negative:text-domain-drift-fails",
                 "negative:pot-source-drift-fails",
@@ -25685,7 +25745,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "28cf67f601839dcba4acedfdd2e5fcecb94638d736e808e80de9cf73d0eab050",
+              "sha256": "c36445ab68e663f2ea9ff53d9087c2fd04af94b61e211d1b02785c045c8be416",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26133,7 +26193,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "28cf67f601839dcba4acedfdd2e5fcecb94638d736e808e80de9cf73d0eab050",
+              "sha256": "c36445ab68e663f2ea9ff53d9087c2fd04af94b61e211d1b02785c045c8be416",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26737,7 +26797,8 @@
         "inheritance:content_site:own",
         "inheritance:content_site:off",
         "footer-data:empty",
-        "footer-data:filled"
+        "footer-data:filled",
+        "parts-declaration:site-editor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],

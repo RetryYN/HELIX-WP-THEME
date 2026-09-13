@@ -92,3 +92,52 @@ function helix_wt_parts_catalog_style() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'helix_wt_parts_catalog_style' );
+
+/**
+ * 宣言に使えるテーマパーツを編集画面へ渡す。
+ */
+function helix_wt_parts_editor_assets() {
+	$parts = array_map(
+		static function ( $file ) {
+			return basename( $file, '.html' );
+		},
+		glob( get_theme_file_path( 'parts/*.html' ) )
+	);
+	wp_enqueue_script( 'helix-wt-parts-editor', get_theme_file_uri( 'assets/js/parts-editor.js' ), array( 'wp-blocks', 'wp-hooks', 'wp-compose', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-data', 'wp-i18n' ), filemtime( get_theme_file_path( 'assets/js/parts-editor.js' ) ), true );
+	wp_add_inline_script( 'helix-wt-parts-editor', 'window.helixWTParts=' . wp_json_encode( $parts ) . ';', 'before' );
+}
+add_action( 'enqueue_block_editor_assets', 'helix_wt_parts_editor_assets' );
+
+/**
+ * 子ブロックを含め保存内容の宣言を検査する。
+ *
+ * @param array $blocks 保存候補のブロック.
+ * @return bool 有効な内容。
+ */
+function helix_wt_parts_blocks_valid( $blocks ) {
+	foreach ( $blocks as $block ) {
+		if ( 'core/template-part' === $block['blockName'] && array_key_exists( 'wtPartsDeclaration', $block['attrs'] ) && ! helix_wt_parts_declaration_valid( $block['attrs']['wtPartsDeclaration'] ) ) {
+			return false;
+		}
+		if ( ! helix_wt_parts_blocks_valid( $block['innerBlocks'] ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * REST の保存境界で不正宣言を拒否する。
+ *
+ * @param stdClass|WP_Error $prepared 保存候補.
+ * @return stdClass|WP_Error 保存候補またはエラー。
+ */
+function helix_wt_parts_rest_guard( $prepared ) {
+	if ( ! is_wp_error( $prepared ) && isset( $prepared->post_content ) && ! helix_wt_parts_blocks_valid( parse_blocks( $prepared->post_content ) ) ) {
+		return new WP_Error( 'helix_wt_invalid_parts', __( 'パーツ参照が不正です。共通・PC・SPを明示し、存在するパーツを選択してください。', 'helix-wt' ), array( 'status' => 400 ) );
+	}
+	return $prepared;
+}
+foreach ( array( 'wp_template', 'wp_template_part', 'page', 'post' ) as $helix_wt_parts_post_type ) {
+	add_filter( 'rest_pre_insert_' . $helix_wt_parts_post_type, 'helix_wt_parts_rest_guard' );
+}
