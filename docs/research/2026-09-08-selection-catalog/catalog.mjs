@@ -46,6 +46,31 @@ async function start() {
   let face = 'common', device = 'pc', limit = 36, linkedIds = null;
   const comparison = new Set();
   let activeTab = 0, detailId = null, imageMode = 'overview';
+  let returnContext = null;
+  const suspendedDialogs = new WeakSet();
+  const returnBar = el('div', undefined, 'requirement-return'); returnBar.hidden = true;
+  $('requirements-panel').prepend(returnBar);
+  function visitRequirement(entry, req, trigger) {
+    const dialog = trigger.closest('dialog');
+    returnContext = { dialog, trigger, face, device, limit, linkedIds, comparison: [...comparison], imageMode, detailId, fields: Object.fromEntries(['search', 'purpose', 'decision', 'req-search', 'evidence-state'].map(id => [id, $(id).value])), scrollY };
+    returnBar.replaceChildren(el('p', `${entry.label} / ${entry.variant} の関連要求を確認中`), button('元の候補へ戻る', returnToCandidate));
+    returnBar.hidden = false;
+    suspendedDialogs.add(dialog); dialog.close();
+    $('req-search').value = req.id; $('evidence-state').value = '';
+    switchTab(1); requirements();
+    const summary = $('requirements').querySelector('.req-row > summary');
+    if (summary) { summary.parentElement.open = true; summary.focus(); summary.scrollIntoView({ block: 'start' }); }
+  }
+  function returnToCandidate() {
+    if (!returnContext) return;
+    const ctx = returnContext; returnContext = null; returnBar.hidden = true;
+    ({ face, device, limit, linkedIds, imageMode, detailId } = ctx);
+    comparison.clear(); ctx.comparison.forEach(id => comparison.add(id));
+    for (const [id, value] of Object.entries(ctx.fields)) $(id).value = value;
+    for (const b of document.querySelectorAll('[data-device]')) b.setAttribute('aria-pressed', String(b.dataset.device === device));
+    switchTab(0); requirements(); render();
+    scrollTo(0, ctx.scrollY); ctx.dialog.showModal(); ctx.trigger.focus();
+  }
   const focusWorkspace = () => $(activeTab === 1 ? 'req-search' : 'search').focus();
   function saveWorkspace() {
     try { localStorage.setItem(workspaceKey, JSON.stringify({ schema: workspaceKey, face, device, limit, linkedIds: linkedIds ? [...linkedIds] : null, comparison: [...comparison], activeTab, imageMode, search: $('search').value, purpose: $('purpose').value, decision: $('decision').value, reqSearch: $('req-search').value, evidenceState: $('evidence-state').value })); }
@@ -180,7 +205,23 @@ async function start() {
     if (entry.images[device]) {
       const link = el('a', '画像を原寸で開く ↗', 'open-image'); link.href = entry.images[device]; link.target = '_blank'; link.rel = 'noopener'; panel.append(link);
     }
-    panel.append(el('p', data.evidenceNote), el('p', entry.requirementIds.join(' · ') || '要求との関連付けは未整理です。', 'requirement-tags'));
+    panel.append(el('p', data.evidenceNote));
+    const related = el('section', undefined, 'related-requirements');
+    related.append(el('h3', '関連要求の確認状況'), el('p', '関連要求全体の記録です。この候補や画像の合格判定ではありません。'));
+    const states = { missing: '証拠の対応付けなし', partial: '部分確認', verified_in_poc: 'PoC確認済み', stale: '再検証が必要' };
+    for (const id of entry.requirementIds) {
+      const req = data.requirements.find(r => r.id === id);
+      if (!req) { related.append(el('p', `${id} — 要求との関連付けは未整理です。`)); continue; }
+      const row = el('div', undefined, 'related-requirement');
+      row.append(el('strong', req.id), el('p', req.statement, 'related-requirement-description'));
+      const counts = el('p', undefined, 'requirement-state-counts');
+      for (const [state, label] of Object.entries(states)) { const count = req.acceptance.filter(ac => ac.status === state).length; if (count) counts.append(el('span', `${label} ${count}件`)); }
+      const open = button('受入条件と残件を見る', () => visitRequirement(entry, req, open));
+      open.dataset.requirementId = id; open.setAttribute('aria-label', `${id} の受入条件と残件を見る`);
+      row.append(counts, open); related.append(row);
+    }
+    if (!entry.requirementIds.length) related.append(el('p', '要求との関連付けは未整理です。'));
+    panel.append(related);
     return panel;
   }
   function detail(entry) {
@@ -191,6 +232,7 @@ async function start() {
   for (const dialog of document.querySelectorAll('dialog')) {
     dialog.querySelector('.close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('close', () => {
+      if (suspendedDialogs.has(dialog)) { suspendedDialogs.delete(dialog); return; }
       render();
       const target = dialog.id === 'detail' ? [...$('gallery').querySelectorAll('.tile-open')].find(n => n.dataset.entryId === detailId) : $('open-compare');
       (target && target.getClientRects().length ? target : $('search')).focus();

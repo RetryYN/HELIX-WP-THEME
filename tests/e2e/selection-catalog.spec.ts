@@ -488,7 +488,7 @@ test('decision facts stay aligned between cards and the comparison table', async
 
   await page.locator('#compare textarea').nth(1).fill('余白とCTAを優先する');
   await expect(facts).toContainText('余白とCTAを優先する');
-  await page.locator('#compare section').nth(1).getByRole('button', { name: '保留', exact: true }).click();
+  await page.locator('#compare .compare-grid>section').nth(1).getByRole('button', { name: '保留', exact: true }).click();
   await expect(facts.getByRole('rowheader', { name: /選択メモ/ })).toContainText('差分あり');
   await expect(facts).toContainText('保留');
 
@@ -515,4 +515,59 @@ test('mobile component selection uses full width and switches comparison without
   await page.locator('.comparison-summary>summary').click();
   await expect(page.locator('#comparison-facts')).toContainText('幅と余白を確認');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+for (const width of [390, 1440]) test(`candidate requirement roundtrip preserves comparison and filters at ${width}`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 900 });
+  await page.locator('#tab-requirements').click();
+  await page.locator('#evidence-state').selectOption('verified_in_poc');
+  await page.locator('#req-search').fill('___zero___');
+  await expect(page.locator('#requirements-empty')).toBeVisible();
+  await page.locator('#tab-gallery').click();
+  await page.locator('[data-device=sp]').click();
+  for (let i = 0; i < 3; i++) await page.locator('.compare-pick input').nth(i).check();
+  await page.locator('#search').fill('header');
+  await page.locator('#open-compare').click();
+  if (width === 390) await page.locator('.compare-switcher button').nth(1).click();
+  const section = page.locator('#compare .compare-grid>section').nth(1);
+  await section.locator('textarea').fill('往復して残件を確認');
+  await page.locator('#compare [data-image-mode=native]').click();
+  const before = await page.evaluate(() => localStorage.getItem('helix-selection-workspace.v1'));
+  const jump = section.locator('[data-requirement-id]').first();
+  const id = await jump.getAttribute('data-requirement-id');
+  await jump.focus(); await page.keyboard.press('Enter');
+  await expect(page.locator('#compare')).not.toBeVisible();
+  await expect(page.locator('#req-search')).toHaveValue(id!);
+  await expect(page.locator('#evidence-state')).toHaveValue('');
+  await expect(page.locator('.req-row')).toHaveCount(1);
+  await expect(page.locator('.req-row>summary')).toBeFocused();
+  await page.getByRole('button', { name: '元の候補へ戻る', exact: true }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#compare')).toBeVisible();
+  await expect(jump).toBeFocused();
+  await expect(section.locator('textarea')).toHaveValue('往復して残件を確認');
+  await expect(page.locator('#compare [data-image-mode=native]')).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => localStorage.getItem('helix-selection-workspace.v1'))).toBe(before);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('detail links expose exact related states and handle a candidate with no related requirements', async ({ page }) => {
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail [data-requirement-id]')).toHaveCount(8);
+  const jump = page.locator('#detail [data-requirement-id="WT-FR-SP-01"]');
+  await expect(jump.locator('..')).toContainText('証拠の対応付けなし 2件');
+  await jump.click();
+  await expect(page.locator('.acceptance-row')).toHaveCount(2);
+  await expect(page.locator('.req-row')).toContainText('再現手順');
+  await page.getByRole('button', { name: '元の候補へ戻る', exact: true }).click();
+  await expect(jump).toBeFocused();
+  await page.keyboard.press('Escape');
+  await page.route('**/catalog-data.json', async route => {
+    const response = await route.fetch(); const data = await response.json();
+    data.entries.forEach((entry: { requirementIds: string[] }) => { entry.requirementIds = []; });
+    await route.fulfill({ response, json: data });
+  });
+  await page.reload(); await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail .related-requirements')).toContainText('要求との関連付けは未整理です');
+  await expect(page.locator('#detail [data-requirement-id]')).toHaveCount(0);
 });
