@@ -1136,7 +1136,7 @@ msgstr ""
 msgid "とても静か"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:22
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:61 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:22
 msgid "なし"
 msgstr ""
 
@@ -1304,10 +1304,6 @@ msgstr ""
 msgid "ライト"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php:12
-msgid "ランキング"
-msgstr ""
-
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:161
 msgid "ランキング枠"
 msgstr ""
@@ -1342,6 +1338,10 @@ msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/product-bundle.php:13
 msgid "リフトワン L1（電動・メモリー 4 件）"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:64
+msgid "リンクの内容は標準ナビゲーション編集で変更できます。参照先の保存はサイト全体に反映されます。"
 msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:88 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/share-sns.php:17
@@ -1490,10 +1490,6 @@ msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-organizer.php:14
 msgid "主催・お問い合わせ"
-msgstr ""
-
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php:12
-msgid "主要ナビ（SP）"
 msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-parts.php:24
@@ -1808,6 +1804,10 @@ msgstr ""
 msgid "入力項目を増やさず、最初の質問だけを受け付けています。"
 msgstr ""
 
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:59
+msgid "全ヘッダー型で使うナビゲーションを選びます。本文やフッターのナビは変更しません。"
+msgstr ""
+
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:42 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:43 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-prizes.php:14
 msgid "全員"
 msgstr ""
@@ -1872,6 +1872,10 @@ msgstr ""
 msgid "公開後の改善が標準"
 msgstr ""
 
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:40
+msgid "公開済みのナビゲーションを選択してください。"
+msgstr ""
+
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-organizer.php:14
 msgid "共催"
 msgstr ""
@@ -1898,6 +1902,18 @@ msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/article-parts.php:24
 msgid "共有設定は「メンバー」から。"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:58
+msgid "共通ヘッダーナビ"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:65
+msgid "共通ヘッダーナビは未選択です。共通ヘッダーナビ設定から参照先を選んでください。"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:62
+msgid "共通ヘッダーナビを保存しました。"
 msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:42
@@ -2150,6 +2166,14 @@ msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/page-prizes.php:14
 msgid "参加賞"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:60
+msgid "参照するナビゲーション"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:63
+msgid "参照先を保存"
 msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:65
@@ -3296,10 +3320,6 @@ msgstr ""
 msgid "比較表を見る"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php:12
-msgid "比較記事"
-msgstr ""
-
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:63
 msgid "比較記事で得た気づきを、相談・資料・次の確認へ自然につなぎます。"
 msgstr ""
@@ -3468,7 +3488,7 @@ msgstr ""
 msgid "用語を選ぶ"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php:18 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php:12
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php:18
 msgid "用語集"
 msgstr ""
 
@@ -4308,7 +4328,7 @@ msgstr ""
 msgid "選ばれる 3 つの理由"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php:12 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php:33 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:56
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php:33 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:56
 msgid "選び方"
 msgstr ""
 

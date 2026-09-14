@@ -5,8 +5,7 @@
    既定値は theme.json settings.custom を参照。--wp--style--global--content-size /
    ...-wide-size は post-content 等 core 側が既に var() 経由で参照しているため、
    ?wt=width:<preset> による上書きはここで再定義するだけで下流に伝わる。
-   ヘッダー（parts/header*.html）は wideSize をブロック属性へ literal 値で持つため
-   通常の var() 継承では上書きできず、.wt-header__row 側に !important の再代入をかける。 */
+   ヘッダーは層1のheader-max尺度を継承し、contentSize/wideSizeを部品や変種では再定義しない。 */
 :root{
   --wt-content-max:var(--wp--custom--content-max,680px);
   --wt-wide-max:var(--wp--custom--wide-max,1120px);
@@ -17,7 +16,7 @@
 /* narrow / wide プリセット（既定 = default、theme.json の値のまま） */
 body.wt-width-narrow{--wp--style--global--content-size:640px;--wp--style--global--wide-size:1040px;--wt-content-max:640px;--wt-wide-max:1040px;--wt-header-max:1200px}
 body.wt-width-wide{--wp--style--global--content-size:760px;--wp--style--global--wide-size:1240px;--wt-content-max:760px;--wt-wide-max:1240px;--wt-header-max:1600px}
-.wt-header__row{max-width:var(--wt-header-max)!important;margin-inline:auto!important}
+body .wt-header .wt-header__row{max-width:var(--wt-header-max);margin-inline:auto}
 html{-webkit-text-size-adjust:100%}
 body{font-feature-settings:"palt" 0;overflow-wrap:anywhere}
 img{height:auto;max-width:100%}
@@ -638,7 +637,7 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
    justify-content:flex-end（既定 CSS）で「ロゴ左・残り全部右」に統一する。
    order は旧構造（wt-header__row の直接子として cta / nav が並ぶ想定）の名残なので、
    ネスト後も nav より前に出るよう order:0（ソース順）へ戻す。 */
-.wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
+html.wt-js .wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
 .wt-header--cta .wp-block-navigation__responsive-container:not(.is-menu-open){display:none}
 .wt-header--cta .wt-header__cta{order:0}
 @media (max-width:599px){.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
@@ -1922,3 +1921,12 @@ body.wt-event-apply-block-form .wt-event-apply--block-form{display:block;margin-
  .wt-404 h1{font-size:var(--wp--preset--font-size--xl);text-wrap:balance}
  .wt-404__why{text-align:left}
 }
+
+/* native/sharedのどちらでもJSなしで標準ナビへ到達できる。 */
+html:not(.wt-js) .wt-header .wp-block-navigation__responsive-container{display:block;position:static;width:auto;height:auto}
+html:not(.wt-js) .wt-header .wp-block-navigation__responsive-container-open{display:none}
+html:not(.wt-js) .wt-header .wp-block-navigation__container{flex-wrap:wrap;gap:var(--wp--preset--spacing--30)}
+html:not(.wt-js) .wt-header .wp-block-navigation-item__content{display:inline-flex;align-items:center;min-height:var(--wp--custom--tap-min)}
+html:not(.wt-js) .wt-header .wp-block-navigation__submenu-container{position:static;opacity:1;visibility:visible;height:auto;width:auto;overflow:visible}
+html:not(.wt-js) .wt-header .wp-block-navigation-submenu__toggle{display:none}
+@media(max-width:599px){html:not(.wt-js) .wt-header__row{flex-wrap:wrap}html:not(.wt-js) .wt-header__nav{flex:1 0 100%;order:10}}

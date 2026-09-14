@@ -1,0 +1,4775 @@
+{
+  "conditionCount": 459,
+  "assertionCount": 1077,
+  "conditions": [
+    "invalid:unset:native:search",
+    "invalid:unset:native:nav",
+    "invalid:unset:native:cta",
+    "invalid:unset:native:announce",
+    "invalid:unset:native:center",
+    "invalid:unset:native:two-rows",
+    "invalid:unset:native:overlay",
+    "invalid:unset:native:tel",
+    "invalid:unset:native:band",
+    "invalid:unset:shared:search",
+    "invalid:unset:shared:nav",
+    "invalid:unset:shared:cta",
+    "invalid:unset:shared:announce",
+    "invalid:unset:shared:center",
+    "invalid:unset:shared:two-rows",
+    "invalid:unset:shared:overlay",
+    "invalid:unset:shared:tel",
+    "invalid:unset:shared:band",
+    "invalid:zero:native:search",
+    "invalid:zero:native:nav",
+    "invalid:zero:native:cta",
+    "invalid:zero:native:announce",
+    "invalid:zero:native:center",
+    "invalid:zero:native:two-rows",
+    "invalid:zero:native:overlay",
+    "invalid:zero:native:tel",
+    "invalid:zero:native:band",
+    "invalid:zero:shared:search",
+    "invalid:zero:shared:nav",
+    "invalid:zero:shared:cta",
+    "invalid:zero:shared:announce",
+    "invalid:zero:shared:center",
+    "invalid:zero:shared:two-rows",
+    "invalid:zero:shared:overlay",
+    "invalid:zero:shared:tel",
+    "invalid:zero:shared:band",
+    "invalid:missing:native:search",
+    "invalid:missing:native:nav",
+    "invalid:missing:native:cta",
+    "invalid:missing:native:announce",
+    "invalid:missing:native:center",
+    "invalid:missing:native:two-rows",
+    "invalid:missing:native:overlay",
+    "invalid:missing:native:tel",
+    "invalid:missing:native:band",
+    "invalid:missing:shared:search",
+    "invalid:missing:shared:nav",
+    "invalid:missing:shared:cta",
+    "invalid:missing:shared:announce",
+    "invalid:missing:shared:center",
+    "invalid:missing:shared:two-rows",
+    "invalid:missing:shared:overlay",
+    "invalid:missing:shared:tel",
+    "invalid:missing:shared:band",
+    "invalid:wrong-type:native:search",
+    "invalid:wrong-type:native:nav",
+    "invalid:wrong-type:native:cta",
+    "invalid:wrong-type:native:announce",
+    "invalid:wrong-type:native:center",
+    "invalid:wrong-type:native:two-rows",
+    "invalid:wrong-type:native:overlay",
+    "invalid:wrong-type:native:tel",
+    "invalid:wrong-type:native:band",
+    "invalid:wrong-type:shared:search",
+    "invalid:wrong-type:shared:nav",
+    "invalid:wrong-type:shared:cta",
+    "invalid:wrong-type:shared:announce",
+    "invalid:wrong-type:shared:center",
+    "invalid:wrong-type:shared:two-rows",
+    "invalid:wrong-type:shared:overlay",
+    "invalid:wrong-type:shared:tel",
+    "invalid:wrong-type:shared:band",
+    "invalid:malformed:native:search",
+    "invalid:malformed:native:nav",
+    "invalid:malformed:native:cta",
+    "invalid:malformed:native:announce",
+    "invalid:malformed:native:center",
+    "invalid:malformed:native:two-rows",
+    "invalid:malformed:native:overlay",
+    "invalid:malformed:native:tel",
+    "invalid:malformed:native:band",
+    "invalid:malformed:shared:search",
+    "invalid:malformed:shared:nav",
+    "invalid:malformed:shared:cta",
+    "invalid:malformed:shared:announce",
+    "invalid:malformed:shared:center",
+    "invalid:malformed:shared:two-rows",
+    "invalid:malformed:shared:overlay",
+    "invalid:malformed:shared:tel",
+    "invalid:malformed:shared:band",
+    "invalid:array:native:search",
+    "invalid:array:native:nav",
+    "invalid:array:native:cta",
+    "invalid:array:native:announce",
+    "invalid:array:native:center",
+    "invalid:array:native:two-rows",
+    "invalid:array:native:overlay",
+    "invalid:array:native:tel",
+    "invalid:array:native:band",
+    "invalid:array:shared:search",
+    "invalid:array:shared:nav",
+    "invalid:array:shared:cta",
+    "invalid:array:shared:announce",
+    "invalid:array:shared:center",
+    "invalid:array:shared:two-rows",
+    "invalid:array:shared:overlay",
+    "invalid:array:shared:tel",
+    "invalid:array:shared:band",
+    "invalid:draft:native:search",
+    "invalid:draft:native:nav",
+    "invalid:draft:native:cta",
+    "invalid:draft:native:announce",
+    "invalid:draft:native:center",
+    "invalid:draft:native:two-rows",
+    "invalid:draft:native:overlay",
+    "invalid:draft:native:tel",
+    "invalid:draft:native:band",
+    "invalid:draft:shared:search",
+    "invalid:draft:shared:nav",
+    "invalid:draft:shared:cta",
+    "invalid:draft:shared:announce",
+    "invalid:draft:shared:center",
+    "invalid:draft:shared:two-rows",
+    "invalid:draft:shared:overlay",
+    "invalid:draft:shared:tel",
+    "invalid:draft:shared:band",
+    "invalid:private:native:search",
+    "invalid:private:native:nav",
+    "invalid:private:native:cta",
+    "invalid:private:native:announce",
+    "invalid:private:native:center",
+    "invalid:private:native:two-rows",
+    "invalid:private:native:overlay",
+    "invalid:private:native:tel",
+    "invalid:private:native:band",
+    "invalid:private:shared:search",
+    "invalid:private:shared:nav",
+    "invalid:private:shared:cta",
+    "invalid:private:shared:announce",
+    "invalid:private:shared:center",
+    "invalid:private:shared:two-rows",
+    "invalid:private:shared:overlay",
+    "invalid:private:shared:tel",
+    "invalid:private:shared:band",
+    "invalid:trash:native:search",
+    "invalid:trash:native:nav",
+    "invalid:trash:native:cta",
+    "invalid:trash:native:announce",
+    "invalid:trash:native:center",
+    "invalid:trash:native:two-rows",
+    "invalid:trash:native:overlay",
+    "invalid:trash:native:tel",
+    "invalid:trash:native:band",
+    "invalid:trash:shared:search",
+    "invalid:trash:shared:nav",
+    "invalid:trash:shared:cta",
+    "invalid:trash:shared:announce",
+    "invalid:trash:shared:center",
+    "invalid:trash:shared:two-rows",
+    "invalid:trash:shared:overlay",
+    "invalid:trash:shared:tel",
+    "invalid:trash:shared:band",
+    "invalid:empty:native:search",
+    "invalid:empty:native:nav",
+    "invalid:empty:native:cta",
+    "invalid:empty:native:announce",
+    "invalid:empty:native:center",
+    "invalid:empty:native:two-rows",
+    "invalid:empty:native:overlay",
+    "invalid:empty:native:tel",
+    "invalid:empty:native:band",
+    "invalid:empty:shared:search",
+    "invalid:empty:shared:nav",
+    "invalid:empty:shared:cta",
+    "invalid:empty:shared:announce",
+    "invalid:empty:shared:center",
+    "invalid:empty:shared:two-rows",
+    "invalid:empty:shared:overlay",
+    "invalid:empty:shared:tel",
+    "invalid:empty:shared:band",
+    "hierarchy:native:search:search:true",
+    "hierarchy:native:search:right:true",
+    "hierarchy:native:search:left:true",
+    "hierarchy:native:search:cta:true",
+    "hierarchy:native:search:text-nav:true",
+    "hierarchy:native:search:center-logo:true",
+    "hierarchy:native:nav:search:true",
+    "hierarchy:native:nav:right:true",
+    "hierarchy:native:nav:left:true",
+    "hierarchy:native:nav:cta:true",
+    "hierarchy:native:nav:text-nav:true",
+    "hierarchy:native:nav:center-logo:true",
+    "hierarchy:native:cta:search:true",
+    "hierarchy:native:cta:right:true",
+    "hierarchy:native:cta:left:true",
+    "hierarchy:native:cta:cta:true",
+    "hierarchy:native:cta:text-nav:true",
+    "hierarchy:native:cta:center-logo:true",
+    "hierarchy:native:announce:search:true",
+    "hierarchy:native:announce:right:true",
+    "hierarchy:native:announce:left:true",
+    "hierarchy:native:announce:cta:true",
+    "hierarchy:native:announce:text-nav:true",
+    "hierarchy:native:announce:center-logo:true",
+    "hierarchy:native:center:search:true",
+    "hierarchy:native:center:right:true",
+    "hierarchy:native:center:left:true",
+    "hierarchy:native:center:cta:true",
+    "hierarchy:native:center:text-nav:true",
+    "hierarchy:native:center:center-logo:true",
+    "hierarchy:native:two-rows:search:true",
+    "hierarchy:native:two-rows:right:true",
+    "hierarchy:native:two-rows:left:true",
+    "hierarchy:native:two-rows:cta:true",
+    "hierarchy:native:two-rows:text-nav:true",
+    "hierarchy:native:two-rows:center-logo:true",
+    "hierarchy:native:overlay:search:true",
+    "hierarchy:native:overlay:right:true",
+    "hierarchy:native:overlay:left:true",
+    "hierarchy:native:overlay:cta:true",
+    "hierarchy:native:overlay:text-nav:true",
+    "hierarchy:native:overlay:center-logo:true",
+    "hierarchy:native:tel:search:true",
+    "hierarchy:native:tel:right:true",
+    "hierarchy:native:tel:left:true",
+    "hierarchy:native:tel:cta:true",
+    "hierarchy:native:tel:text-nav:true",
+    "hierarchy:native:tel:center-logo:true",
+    "hierarchy:native:band:search:true",
+    "hierarchy:native:band:right:true",
+    "hierarchy:native:band:left:true",
+    "hierarchy:native:band:cta:true",
+    "hierarchy:native:band:text-nav:true",
+    "hierarchy:native:band:center-logo:true",
+    "hierarchy:shared:search:search:true",
+    "hierarchy:shared:search:right:true",
+    "hierarchy:shared:search:left:true",
+    "hierarchy:shared:search:cta:true",
+    "hierarchy:shared:search:text-nav:true",
+    "hierarchy:shared:search:center-logo:true",
+    "hierarchy:shared:nav:search:true",
+    "hierarchy:shared:nav:right:true",
+    "hierarchy:shared:nav:left:true",
+    "hierarchy:shared:nav:cta:true",
+    "hierarchy:shared:nav:text-nav:true",
+    "hierarchy:shared:nav:center-logo:true",
+    "hierarchy:shared:cta:search:true",
+    "hierarchy:shared:cta:right:true",
+    "hierarchy:shared:cta:left:true",
+    "hierarchy:shared:cta:cta:true",
+    "hierarchy:shared:cta:text-nav:true",
+    "hierarchy:shared:cta:center-logo:true",
+    "hierarchy:shared:announce:search:true",
+    "hierarchy:shared:announce:right:true",
+    "hierarchy:shared:announce:left:true",
+    "hierarchy:shared:announce:cta:true",
+    "hierarchy:shared:announce:text-nav:true",
+    "hierarchy:shared:announce:center-logo:true",
+    "hierarchy:shared:center:search:true",
+    "hierarchy:shared:center:right:true",
+    "hierarchy:shared:center:left:true",
+    "hierarchy:shared:center:cta:true",
+    "hierarchy:shared:center:text-nav:true",
+    "hierarchy:shared:center:center-logo:true",
+    "hierarchy:shared:two-rows:search:true",
+    "hierarchy:shared:two-rows:right:true",
+    "hierarchy:shared:two-rows:left:true",
+    "hierarchy:shared:two-rows:cta:true",
+    "hierarchy:shared:two-rows:text-nav:true",
+    "hierarchy:shared:two-rows:center-logo:true",
+    "hierarchy:shared:overlay:search:true",
+    "hierarchy:shared:overlay:right:true",
+    "hierarchy:shared:overlay:left:true",
+    "hierarchy:shared:overlay:cta:true",
+    "hierarchy:shared:overlay:text-nav:true",
+    "hierarchy:shared:overlay:center-logo:true",
+    "hierarchy:shared:tel:search:true",
+    "hierarchy:shared:tel:right:true",
+    "hierarchy:shared:tel:left:true",
+    "hierarchy:shared:tel:cta:true",
+    "hierarchy:shared:tel:text-nav:true",
+    "hierarchy:shared:tel:center-logo:true",
+    "hierarchy:shared:band:search:true",
+    "hierarchy:shared:band:right:true",
+    "hierarchy:shared:band:left:true",
+    "hierarchy:shared:band:cta:true",
+    "hierarchy:shared:band:text-nav:true",
+    "hierarchy:shared:band:center-logo:true",
+    "hierarchy:native:search:search:false",
+    "hierarchy:native:search:right:false",
+    "hierarchy:native:search:left:false",
+    "hierarchy:native:search:cta:false",
+    "hierarchy:native:search:text-nav:false",
+    "hierarchy:native:search:center-logo:false",
+    "hierarchy:native:nav:search:false",
+    "hierarchy:native:nav:right:false",
+    "hierarchy:native:nav:left:false",
+    "hierarchy:native:nav:cta:false",
+    "hierarchy:native:nav:text-nav:false",
+    "hierarchy:native:nav:center-logo:false",
+    "hierarchy:native:cta:search:false",
+    "hierarchy:native:cta:right:false",
+    "hierarchy:native:cta:left:false",
+    "hierarchy:native:cta:cta:false",
+    "hierarchy:native:cta:text-nav:false",
+    "hierarchy:native:cta:center-logo:false",
+    "hierarchy:native:announce:search:false",
+    "hierarchy:native:announce:right:false",
+    "hierarchy:native:announce:left:false",
+    "hierarchy:native:announce:cta:false",
+    "hierarchy:native:announce:text-nav:false",
+    "hierarchy:native:announce:center-logo:false",
+    "hierarchy:native:center:search:false",
+    "hierarchy:native:center:right:false",
+    "hierarchy:native:center:left:false",
+    "hierarchy:native:center:cta:false",
+    "hierarchy:native:center:text-nav:false",
+    "hierarchy:native:center:center-logo:false",
+    "hierarchy:native:two-rows:search:false",
+    "hierarchy:native:two-rows:right:false",
+    "hierarchy:native:two-rows:left:false",
+    "hierarchy:native:two-rows:cta:false",
+    "hierarchy:native:two-rows:text-nav:false",
+    "hierarchy:native:two-rows:center-logo:false",
+    "hierarchy:native:overlay:search:false",
+    "hierarchy:native:overlay:right:false",
+    "hierarchy:native:overlay:left:false",
+    "hierarchy:native:overlay:cta:false",
+    "hierarchy:native:overlay:text-nav:false",
+    "hierarchy:native:overlay:center-logo:false",
+    "hierarchy:native:tel:search:false",
+    "hierarchy:native:tel:right:false",
+    "hierarchy:native:tel:left:false",
+    "hierarchy:native:tel:cta:false",
+    "hierarchy:native:tel:text-nav:false",
+    "hierarchy:native:tel:center-logo:false",
+    "hierarchy:native:band:search:false",
+    "hierarchy:native:band:right:false",
+    "hierarchy:native:band:left:false",
+    "hierarchy:native:band:cta:false",
+    "hierarchy:native:band:text-nav:false",
+    "hierarchy:native:band:center-logo:false",
+    "hierarchy:shared:search:search:false",
+    "hierarchy:shared:search:right:false",
+    "hierarchy:shared:search:left:false",
+    "hierarchy:shared:search:cta:false",
+    "hierarchy:shared:search:text-nav:false",
+    "hierarchy:shared:search:center-logo:false",
+    "hierarchy:shared:nav:search:false",
+    "hierarchy:shared:nav:right:false",
+    "hierarchy:shared:nav:left:false",
+    "hierarchy:shared:nav:cta:false",
+    "hierarchy:shared:nav:text-nav:false",
+    "hierarchy:shared:nav:center-logo:false",
+    "hierarchy:shared:cta:search:false",
+    "hierarchy:shared:cta:right:false",
+    "hierarchy:shared:cta:left:false",
+    "hierarchy:shared:cta:cta:false",
+    "hierarchy:shared:cta:text-nav:false",
+    "hierarchy:shared:cta:center-logo:false",
+    "hierarchy:shared:announce:search:false",
+    "hierarchy:shared:announce:right:false",
+    "hierarchy:shared:announce:left:false",
+    "hierarchy:shared:announce:cta:false",
+    "hierarchy:shared:announce:text-nav:false",
+    "hierarchy:shared:announce:center-logo:false",
+    "hierarchy:shared:center:search:false",
+    "hierarchy:shared:center:right:false",
+    "hierarchy:shared:center:left:false",
+    "hierarchy:shared:center:cta:false",
+    "hierarchy:shared:center:text-nav:false",
+    "hierarchy:shared:center:center-logo:false",
+    "hierarchy:shared:two-rows:search:false",
+    "hierarchy:shared:two-rows:right:false",
+    "hierarchy:shared:two-rows:left:false",
+    "hierarchy:shared:two-rows:cta:false",
+    "hierarchy:shared:two-rows:text-nav:false",
+    "hierarchy:shared:two-rows:center-logo:false",
+    "hierarchy:shared:overlay:search:false",
+    "hierarchy:shared:overlay:right:false",
+    "hierarchy:shared:overlay:left:false",
+    "hierarchy:shared:overlay:cta:false",
+    "hierarchy:shared:overlay:text-nav:false",
+    "hierarchy:shared:overlay:center-logo:false",
+    "hierarchy:shared:tel:search:false",
+    "hierarchy:shared:tel:right:false",
+    "hierarchy:shared:tel:left:false",
+    "hierarchy:shared:tel:cta:false",
+    "hierarchy:shared:tel:text-nav:false",
+    "hierarchy:shared:tel:center-logo:false",
+    "hierarchy:shared:band:search:false",
+    "hierarchy:shared:band:right:false",
+    "hierarchy:shared:band:left:false",
+    "hierarchy:shared:band:cta:false",
+    "hierarchy:shared:band:text-nav:false",
+    "hierarchy:shared:band:center-logo:false",
+    "scale:default:search",
+    "scale:default:nav",
+    "scale:default:cta",
+    "scale:default:announce",
+    "scale:default:center",
+    "scale:default:two-rows",
+    "scale:default:overlay",
+    "scale:default:tel",
+    "scale:default:band",
+    "scale:mincho:search",
+    "scale:mincho:nav",
+    "scale:mincho:cta",
+    "scale:mincho:announce",
+    "scale:mincho:center",
+    "scale:mincho:two-rows",
+    "scale:mincho:overlay",
+    "scale:mincho:tel",
+    "scale:mincho:band",
+    "scale:rules:search",
+    "scale:rules:nav",
+    "scale:rules:cta",
+    "scale:rules:announce",
+    "scale:rules:center",
+    "scale:rules:two-rows",
+    "scale:rules:overlay",
+    "scale:rules:tel",
+    "scale:rules:band",
+    "boundary-width:320:search",
+    "boundary-width:320:nav",
+    "boundary-width:320:cta",
+    "boundary-width:320:announce",
+    "boundary-width:320:center",
+    "boundary-width:320:two-rows",
+    "boundary-width:320:overlay",
+    "boundary-width:320:tel",
+    "boundary-width:320:band",
+    "boundary-width:599:search",
+    "boundary-width:599:nav",
+    "boundary-width:599:cta",
+    "boundary-width:599:announce",
+    "boundary-width:599:center",
+    "boundary-width:599:two-rows",
+    "boundary-width:599:overlay",
+    "boundary-width:599:tel",
+    "boundary-width:599:band",
+    "boundary-width:600:search",
+    "boundary-width:600:nav",
+    "boundary-width:600:cta",
+    "boundary-width:600:announce",
+    "boundary-width:600:center",
+    "boundary-width:600:two-rows",
+    "boundary-width:600:overlay",
+    "boundary-width:600:tel",
+    "boundary-width:600:band",
+    "boundary-width:844:search",
+    "boundary-width:844:nav",
+    "boundary-width:844:cta",
+    "boundary-width:844:announce",
+    "boundary-width:844:center",
+    "boundary-width:844:two-rows",
+    "boundary-width:844:overlay",
+    "boundary-width:844:tel",
+    "boundary-width:844:band"
+  ],
+  "rows": [
+    {
+      "name": "invalid:unset:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:unset:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:zero:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:missing:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:wrong-type:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:malformed:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:array:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:draft:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:private:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:trash:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:native:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:search:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:search:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:nav:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:nav:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:cta:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:cta:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:announce:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:announce:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:center:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:center:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:two-rows:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:two-rows:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:overlay:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:overlay:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:tel:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:tel:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:band:navigation-empty",
+      "pass": true
+    },
+    {
+      "name": "invalid:empty:shared:band:cta-independent",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:search:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:search:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:search:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:right:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:right:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:right:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:left:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:left:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:left:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:cta:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:cta:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:cta:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:text-nav:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:text-nav:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:text-nav:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:center-logo:true:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:center-logo:true:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:center-logo:true:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:search:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:nav:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:cta:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:announce:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:center:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:two-rows:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:overlay:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:tel:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:native:band:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:search:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:nav:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:cta:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:announce:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:center:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:two-rows:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:overlay:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:tel:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:search:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:search:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:search:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:right:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:right:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:right:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:left:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:left:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:left:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:cta:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:cta:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:cta:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:text-nav:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:text-nav:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:text-nav:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:center-logo:false:child-visible",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:center-logo:false:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hierarchy:shared:band:center-logo:false:child-navigation",
+      "pass": true
+    },
+    {
+      "name": "scale:default:search:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:nav:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:cta:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:announce:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:center:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:two-rows:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:overlay:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:tel:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:default:band:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:search:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:nav:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:cta:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:announce:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:center:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:two-rows:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:overlay:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:tel:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:mincho:band:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:search:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:nav:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:cta:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:announce:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:center:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:two-rows:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:overlay:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:tel:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "scale:rules:band:parent-propagates",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:search:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:nav:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:cta:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:announce:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:center:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:two-rows:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:overlay:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:tel:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:320:band:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:search:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:nav:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:cta:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:announce:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:center:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:two-rows:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:overlay:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:tel:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:599:band:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:search:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:nav:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:cta:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:announce:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:center:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:two-rows:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:overlay:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:tel:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:600:band:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:search:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:nav:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:cta:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:announce:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:center:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:two-rows:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:overlay:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:tel:overflow",
+      "pass": true
+    },
+    {
+      "name": "boundary-width:844:band:overflow",
+      "pass": true
+    },
+    {
+      "name": "scope:body-navigation-unchanged",
+      "pass": true
+    },
+    {
+      "name": "scope:header-does-not-use-body-navigation",
+      "pass": true
+    },
+    {
+      "name": "cleanup:8458",
+      "pass": true
+    },
+    {
+      "name": "cleanup:8459",
+      "pass": true
+    },
+    {
+      "name": "cleanup:8460",
+      "pass": true
+    },
+    {
+      "name": "settings-restored",
+      "pass": true
+    }
+  ]
+}
