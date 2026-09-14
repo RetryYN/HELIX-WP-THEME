@@ -13,7 +13,7 @@ const motionAuditSources = auditRoots.flatMap(ownedFiles).sort();
 // timer追加やcallback変更を暗黙に許可しない。変更時は用途を再監査する。
 const reviewedTimerSources = {
   "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/article.js": "95bc2214aa9c118959753688966016a3bbe3ea6fc62cbfae9c64dcbc4787ee79",
-  "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "e70778368d99e8fdbd69c7890f4d1068b6cb6f675876ea34c35f534c40efcbc5"
+  "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb"
 };
 sourceFiles.push(...motionAuditSources.filter(file=>!sourceFiles.includes(file)));
 const sourceDigests = Object.fromEntries(sourceFiles.map(file=>[file, createHash('sha256').update(readFileSync(file)).digest('hex')]));

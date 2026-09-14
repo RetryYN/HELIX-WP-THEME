@@ -292,13 +292,16 @@ function wt_opt( $key ) {
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'editor-styles' );
-	add_editor_style( array( 'assets/css/icons.css', 'assets/css/theme.css' ) );
+	add_editor_style( array( 'assets/css/icons.css', 'assets/css/theme.css', 'assets/css/home-completion.css' ) );
 	remove_theme_support( 'core-block-patterns' );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.21' );
 	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.21' );
+	if ( is_front_page() ) {
+		wp_enqueue_style( 'helix-wt-home-completion', get_theme_file_uri( 'assets/css/home-completion.css' ), array( 'helix-wt' ), '0.3.22' );
+	}
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );

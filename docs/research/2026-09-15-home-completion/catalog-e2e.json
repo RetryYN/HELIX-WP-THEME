@@ -1,0 +1,51 @@
+{
+  "schema": "wt-home-final-catalog-review.v1",
+  "completed": "2026-09-14T16:28:58.066311+00:00",
+  "command": "npx playwright test tests/e2e/selection-catalog.spec.ts tests/e2e/home-selection-catalog.spec.ts --workers=1",
+  "e2e": {
+    "passed": 27,
+    "failed": 0,
+    "seconds": 25.3,
+    "logSha256": "7f17eac187421dff7b2c4383942897d21ae17778271e4b5405814d9566cc3f7e"
+  },
+  "catalog": {
+    "candidates": 638,
+    "screenshots": 1147,
+    "requirements": 133,
+    "acceptance": {
+      "missing": 236,
+      "partial": 26,
+      "verified_in_poc": 32,
+      "stale": 0
+    }
+  },
+  "visualInspection": {
+    "reviewedFiles": {
+      "docs/research/2026-09-15-home-completion/after-corporate-pc.jpg": "69a3b0893ef213c1bbed214ee79b53b561e6ffdb3a459a969b1a9a1cf7c2d388",
+      "docs/research/2026-09-15-home-completion/after-corporate-sp.jpg": "024c5f6692c26442a7bb68b09cbe84cfa26f4c2816ad9b8b9b7e3cee6d5377c1",
+      "docs/research/2026-09-15-home-completion/after-media-pc.jpg": "6a03d3e864a079adfa72ad7c2a6316c795111fa3e97d08f70d8cba655eb4e5b3",
+      "docs/research/2026-09-15-home-completion/after-media-sp.jpg": "1e1947de7e3a443e26eb9659e78a0f799147fb26824e7e1e02a99f2659e25f3e",
+      "docs/research/2026-09-15-home-completion/after-school-org-pc.jpg": "cbd370f6998063708c13744d1d00c8a1d44b346a8fa763152e85149dbb7123fd",
+      "docs/research/2026-09-15-home-completion/after-school-org-sp.jpg": "630b107c0c9cccbf2e56a8f4f29f2d19706b82bd4382aace8636e3f2539d5f17",
+      "docs/research/2026-09-15-home-completion/after-service-pc.jpg": "50900b749c098d9fa3fee9b629d65e526c6774c6f71f027b7063937597fdf2b8",
+      "docs/research/2026-09-15-home-completion/after-service-sp.jpg": "7fddd2fac6f787dd14698f482a156ef06c7496242a6bceb686b876b05879ba8e",
+      "docs/research/2026-09-15-home-completion/after-shop-school-pc.jpg": "ea8a221519a3fb2046e782978e6d0b196406fb806b07274a564173ace544b3dd",
+      "docs/research/2026-09-15-home-completion/after-shop-school-sp.jpg": "4b44bc56d319c86d85146451548e80a45275fa387a86c0ddf8bb49d5c4e239e3",
+      "docs/research/2026-09-15-home-completion/catalog-compare-pc.png": "c3b0e7f4e6876c9a16242a381284af017b9832496872ee6198f041291ee8b0d0",
+      "docs/research/2026-09-15-home-completion/catalog-compare-sp.png": "fb6b2c81e5ab8072eec898bf9c203fba158b0bb17b69a158142c89815c0e94dc",
+      "docs/research/2026-09-15-home-completion/catalog-pc.png": "e193c45219389203e2c07c1b43ef31092dd24c30d33180f0991c231ce7610bad",
+      "docs/research/2026-09-15-home-completion/catalog-sp.png": "f524b90ef78fa03dc39cd6170536e7353b0859e71299525e2c356173022e0513"
+    },
+    "findingsFixed": [
+      "Image-less ranking badge overlapped heading; dedicated placeholder area now reserves badge space.",
+      "Full-page finished HOME tile previews became too narrow to distinguish; finished tiles now use full-width upper-page crop."
+    ],
+    "result": "All five PC/SP finished screens and PC/SP HOME selection/comparison inspected; no further concrete blocking visual defect found.",
+    "limits": [
+      "Synthetic PoC content; not a production content/design approval.",
+      "Full-page fixed controls are captured once at viewport position; separate footer screenshots verify clearance.",
+      "Desktop comparison uses three candidates; SP switches selected candidate rather than squeezing three columns."
+    ]
+  },
+  "cleanupMarkerAbsent": true
+}

@@ -1,0 +1,538 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-home-isolation.mjs": "0d1ac0722eb7929aecb44655c09f9c17e80d29cdd77f55781c87186cc9dc9169",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "06cf6bbfd204db7c50602529f2027d990a4533b7a5f102a06d3f5f416e2e9d9b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "071495a464d3aa83a95a4497f27a630d5664022676e1ce8fe5b17e4f4f39c31a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "74860b50b7467020bd72062a81f57881dbaa8d172e9f993872ef89143823dbb1",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-chrome.css": "4f075f2e3411587077ec1e26cc5182dfca8bdd916329ffc3fc7f21ac5e0ac524"
+  },
+  "rows": [
+    {
+      "name": "pc-js:home:site:header-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:header-source",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:footer-source",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:site:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:header-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:header-source",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:footer-source",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:own:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:off:header-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:off:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:off:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:off:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:off:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home:off:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/library/decision-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/library/decision-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/voices/making-room/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/voices/making-room/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/learn/page-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/learn/page-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/site-company/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-js:/site-company/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:header-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:header-source",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:footer-source",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:site:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:header-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:header-source",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:footer-source",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:own:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:off:header-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:off:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:off:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:off:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:off:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home:off:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/library/decision-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/library/decision-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/voices/making-room/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/voices/making-room/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/learn/page-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/learn/page-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/site-company/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:/site-company/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:header-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:header-source",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:footer-source",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:site:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:header-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:header-source",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:footer-source",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:own:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:off:header-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:off:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:off:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:off:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:off:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home:off:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/library/decision-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/library/decision-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/voices/making-room/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/voices/making-room/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/learn/page-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/learn/page-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/site-company/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-js:/site-company/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-js:fixed-footer-clearance",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:header-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:header-source",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:footer-source",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:site:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:header-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:header-source",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:footer-source",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:fixed-source",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:own:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:off:header-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:off:footer-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:off:fixed-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:off:inactive-owned-fixed-hidden",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:off:sidebar-home-bundle",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home:off:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/library/decision-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/library/decision-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/voices/making-room/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/voices/making-room/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/learn/page-design/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/learn/page-design/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/site-company/:home-axis-isolation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:/site-company/:home-css-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:fixed-footer-clearance",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}
