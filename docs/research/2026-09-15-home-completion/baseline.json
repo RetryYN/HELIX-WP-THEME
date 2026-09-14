@@ -1,0 +1,1916 @@
+{
+  "schema": "wt-home-completion.v1",
+  "completed": true,
+  "baselinePresentationDisabled": true,
+  "sourceDigests": {
+    "scripts/verify-home-completion.mjs": "0d2e90422527f989bb8de2484defe1b7c16a59b68bd06e465477289132dfd6f2",
+    "docs/research/2026-09-15-home-completion/choices.json": "e5a7352ba2f7f1d5a67af7e84a294daf1f98cd7315eaae8293867ef5074895c5",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "06cf6bbfd204db7c50602529f2027d990a4533b7a5f102a06d3f5f416e2e9d9b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "bb583557833ad9d5553f3daee44a2c5c6c6694d5b17a83ec4517e1a0006085f1",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html": "a73d193cc2e44c8e11731074617a813f236cd2b83536041229b623b8473000a1",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "74860b50b7467020bd72062a81f57881dbaa8d172e9f993872ef89143823dbb1"
+  },
+  "axes": {
+    "home_hero": [
+      "text-only",
+      "slider",
+      "fullbleed",
+      "split",
+      "article-grid",
+      "video",
+      "cards-carousel",
+      "product-shot",
+      "search-box"
+    ],
+    "home_hero_cta": [
+      "double",
+      "single",
+      "none",
+      "tel-button",
+      "search"
+    ],
+    "home_sections": [
+      "corporate",
+      "service",
+      "media",
+      "shop-school",
+      "school-org"
+    ],
+    "home_news": [
+      "list-with-date",
+      "tabs",
+      "cards",
+      "none"
+    ],
+    "home_contact": [
+      "tel-form",
+      "form-only",
+      "tel-only",
+      "line",
+      "none",
+      "double-cta"
+    ],
+    "home_fixed": [
+      "none",
+      "float-cta",
+      "sp-bottom-bar",
+      "float-tel"
+    ],
+    "home_side_layout": [
+      "none",
+      "right",
+      "left",
+      "both"
+    ],
+    "home_side_sticky": [
+      "none",
+      "whole",
+      "last-widget",
+      "toc-only"
+    ],
+    "home_side_sp": [
+      "below-content",
+      "drawer",
+      "hidden"
+    ],
+    "home_side_set": [
+      "media",
+      "blog",
+      "owned",
+      "corporate",
+      "minimal",
+      "full"
+    ],
+    "home_side_nav": [
+      "none",
+      "mega-menu",
+      "fixed-left-nav",
+      "fixed-right-icons",
+      "drawer-pc",
+      "toc-side"
+    ],
+    "side_from": [
+      "below-hero",
+      "top"
+    ]
+  },
+  "scenarioCount": 5,
+  "declaredScenarioCount": 66,
+  "rows": [
+    {
+      "name": "coverage:home_hero:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_hero_cta:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_sections:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_news:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_contact:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_fixed:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_side_layout:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_side_sticky:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_side_sp:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_side_set:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:home_side_nav:declaration",
+      "pass": true
+    },
+    {
+      "name": "coverage:side_from:declaration",
+      "pass": true
+    },
+    {
+      "name": "fixtures:owned-posts-and-images",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:home",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--text-only"
+      ]
+    },
+    {
+      "name": "pc-js:corporate:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "greeting",
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "company",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-js:corporate:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-js:corporate:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:home",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--split"
+      ]
+    },
+    {
+      "name": "pc-js:service:section-order",
+      "pass": true,
+      "details": [
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "logos",
+        "price",
+        "faq",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-js:service:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-js:service:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:home",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--search-box"
+      ]
+    },
+    {
+      "name": "pc-js:media:section-order",
+      "pass": true,
+      "details": [
+        "latest",
+        "categories",
+        "ranking",
+        "banners",
+        "news",
+        "cta"
+      ]
+    },
+    {
+      "name": "pc-js:media:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js:media:article-thumbnails",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:home",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--fullbleed"
+      ]
+    },
+    {
+      "name": "pc-js:shop-school:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "service",
+        "features",
+        "stores",
+        "events",
+        "price",
+        "faq",
+        "recruit",
+        "banners",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-js:shop-school:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-js:shop-school:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:home",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--cards-carousel"
+      ]
+    },
+    {
+      "name": "pc-js:school-org:section-order",
+      "pass": true,
+      "details": [
+        "greeting",
+        "news",
+        "features",
+        "service",
+        "events",
+        "gallery",
+        "sns",
+        "history",
+        "logos",
+        "banners",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-js:school-org:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-js:school-org:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:corporate:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:home",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--text-only"
+      ]
+    },
+    {
+      "name": "pc-nojs:corporate:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "greeting",
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "company",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-nojs:corporate:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:corporate:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:home",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--split"
+      ]
+    },
+    {
+      "name": "pc-nojs:service:section-order",
+      "pass": true,
+      "details": [
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "logos",
+        "price",
+        "faq",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-nojs:service:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:service:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:home",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--search-box"
+      ]
+    },
+    {
+      "name": "pc-nojs:media:section-order",
+      "pass": true,
+      "details": [
+        "latest",
+        "categories",
+        "ranking",
+        "banners",
+        "news",
+        "cta"
+      ]
+    },
+    {
+      "name": "pc-nojs:media:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:media:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:home",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--fullbleed"
+      ]
+    },
+    {
+      "name": "pc-nojs:shop-school:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "service",
+        "features",
+        "stores",
+        "events",
+        "price",
+        "faq",
+        "recruit",
+        "banners",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-nojs:shop-school:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:shop-school:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:home",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--cards-carousel"
+      ]
+    },
+    {
+      "name": "pc-nojs:school-org:section-order",
+      "pass": true,
+      "details": [
+        "greeting",
+        "news",
+        "features",
+        "service",
+        "events",
+        "gallery",
+        "sns",
+        "history",
+        "logos",
+        "banners",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "pc-nojs:school-org:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:selected-news",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:school-org:hero-width",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:corporate:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:home",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--text-only"
+      ]
+    },
+    {
+      "name": "sp-js:corporate:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "greeting",
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "company",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-js:corporate:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:fixed-occupancy",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:corporate:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-js:corporate:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:home",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--split"
+      ]
+    },
+    {
+      "name": "sp-js:service:section-order",
+      "pass": true,
+      "details": [
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "logos",
+        "price",
+        "faq",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-js:service:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:fixed-occupancy",
+      "pass": true,
+      "details": [
+        {
+          "x": 0,
+          "y": 843,
+          "width": 375,
+          "height": 57,
+          "bottom": 900,
+          "right": 375
+        }
+      ]
+    },
+    {
+      "name": "sp-js:service:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-js:service:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:home",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--search-box"
+      ]
+    },
+    {
+      "name": "sp-js:media:section-order",
+      "pass": true,
+      "details": [
+        "latest",
+        "categories",
+        "ranking",
+        "banners",
+        "news",
+        "cta"
+      ]
+    },
+    {
+      "name": "sp-js:media:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:fixed-occupancy",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:media:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js:media:article-thumbnails",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:home",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--fullbleed"
+      ]
+    },
+    {
+      "name": "sp-js:shop-school:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "service",
+        "features",
+        "stores",
+        "events",
+        "price",
+        "faq",
+        "recruit",
+        "banners",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-js:shop-school:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:fixed-occupancy",
+      "pass": true,
+      "details": [
+        {
+          "x": 303,
+          "y": 828,
+          "width": 56,
+          "height": 56,
+          "bottom": 884,
+          "right": 359
+        }
+      ]
+    },
+    {
+      "name": "sp-js:shop-school:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-js:shop-school:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:home",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--cards-carousel"
+      ]
+    },
+    {
+      "name": "sp-js:school-org:section-order",
+      "pass": true,
+      "details": [
+        "greeting",
+        "news",
+        "features",
+        "service",
+        "events",
+        "gallery",
+        "sns",
+        "history",
+        "logos",
+        "banners",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-js:school-org:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:fixed-occupancy",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:school-org:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-js:school-org:visible-images-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:corporate:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:home",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--text-only"
+      ]
+    },
+    {
+      "name": "sp-nojs:corporate:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "greeting",
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "company",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-nojs:corporate:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:corporate:fixed-occupancy",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:corporate:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:home",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--split"
+      ]
+    },
+    {
+      "name": "sp-nojs:service:section-order",
+      "pass": true,
+      "details": [
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "logos",
+        "price",
+        "faq",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-nojs:service:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:service:fixed-occupancy",
+      "pass": true,
+      "details": [
+        {
+          "x": 0,
+          "y": 843,
+          "width": 375,
+          "height": 57,
+          "bottom": 900,
+          "right": 375
+        }
+      ]
+    },
+    {
+      "name": "sp-nojs:service:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:home",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--search-box"
+      ]
+    },
+    {
+      "name": "sp-nojs:media:section-order",
+      "pass": true,
+      "details": [
+        "latest",
+        "categories",
+        "ranking",
+        "banners",
+        "news",
+        "cta"
+      ]
+    },
+    {
+      "name": "sp-nojs:media:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:media:fixed-occupancy",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:media:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:home",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--fullbleed"
+      ]
+    },
+    {
+      "name": "sp-nojs:shop-school:section-order",
+      "pass": true,
+      "details": [
+        "news",
+        "service",
+        "features",
+        "stores",
+        "events",
+        "price",
+        "faq",
+        "recruit",
+        "banners",
+        "access",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-nojs:shop-school:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:shop-school:fixed-occupancy",
+      "pass": true,
+      "details": [
+        {
+          "x": 303,
+          "y": 828,
+          "width": 56,
+          "height": 56,
+          "bottom": 884,
+          "right": 359
+        }
+      ]
+    },
+    {
+      "name": "sp-nojs:shop-school:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:home",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:one-selected-hero",
+      "pass": true,
+      "details": [
+        "wt-home-hero wt-home-hero--cards-carousel"
+      ]
+    },
+    {
+      "name": "sp-nojs:school-org:section-order",
+      "pass": true,
+      "details": [
+        "greeting",
+        "news",
+        "features",
+        "service",
+        "events",
+        "gallery",
+        "sns",
+        "history",
+        "logos",
+        "banners",
+        "cta",
+        "contact"
+      ]
+    },
+    {
+      "name": "sp-nojs:school-org:metadata-section-order",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:selected-news",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:selected-contact",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:sidebar-choice-resolved",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:sidebar-disabled",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:selected-hero-cta",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:school-org:fixed-occupancy",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:school-org:hero-width",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc:stress:no-image-long-copy-reflow",
+      "pass": true
+    },
+    {
+      "name": "pc:stress:same-row-card-height",
+      "pass": true,
+      "details": [
+        {
+          "y": 913.546875,
+          "height": 333.71875
+        },
+        {
+          "y": 913.546875,
+          "height": 333.71875
+        },
+        {
+          "y": 913.546875,
+          "height": 333.71875
+        }
+      ]
+    },
+    {
+      "name": "pc:stress:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:tabs:keyboard",
+      "pass": true
+    },
+    {
+      "name": "pc:tabs:last",
+      "pass": true
+    },
+    {
+      "name": "pc:slider:keyboard-reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:fullbleed:opaque-text-panel-AA",
+      "pass": false
+    },
+    {
+      "name": "pc:slider:opaque-text-panel-AA",
+      "pass": false
+    },
+    {
+      "name": "pc-js:home_hero:search-box,home_hero_cta:none:native-search",
+      "pass": true
+    },
+    {
+      "name": "pc-js:home_hero:text-only,home_hero_cta:search:native-search",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home_hero:search-box,home_hero_cta:none:native-search",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:home_hero:text-only,home_hero_cta:search:native-search",
+      "pass": true
+    },
+    {
+      "name": "sp:stress:no-image-long-copy-reflow",
+      "pass": true
+    },
+    {
+      "name": "sp:stress:same-row-card-height",
+      "pass": true,
+      "details": [
+        {
+          "y": 801.421875,
+          "height": 151.4375
+        },
+        {
+          "y": 972.859375,
+          "height": 264.046875
+        },
+        {
+          "y": 1256.90625,
+          "height": 308.828125
+        }
+      ]
+    },
+    {
+      "name": "sp:stress:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:tabs:keyboard",
+      "pass": true
+    },
+    {
+      "name": "sp:tabs:last",
+      "pass": true
+    },
+    {
+      "name": "sp:slider:keyboard-reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:fullbleed:opaque-text-panel-AA",
+      "pass": false
+    },
+    {
+      "name": "sp:slider:opaque-text-panel-AA",
+      "pass": false
+    },
+    {
+      "name": "sp-js:home_hero:search-box,home_hero_cta:none:native-search",
+      "pass": true
+    },
+    {
+      "name": "sp-js:home_hero:text-only,home_hero_cta:search:native-search",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home_hero:search-box,home_hero_cta:none:native-search",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:home_hero:text-only,home_hero_cta:search:native-search",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "before-corporate-pc.jpg",
+      "device": "pc",
+      "purpose": "corporate",
+      "route": "/?wt=home_hero%3Atext-only%2Chome_hero_cta%3Adouble%2Chome_sections%3Acorporate%2Chome_news%3Alist-with-date%2Chome_contact%3Atel-form%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Acorporate%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "news",
+        "greeting",
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "company",
+        "access",
+        "contact"
+      ],
+      "sha256": "3cea8962ed984e0a22058c662a464c494292d371589c234453afc472f2bc913e"
+    },
+    {
+      "file": "before-service-pc.jpg",
+      "device": "pc",
+      "purpose": "service",
+      "route": "/?wt=home_hero%3Asplit%2Chome_hero_cta%3Adouble%2Chome_sections%3Aservice%2Chome_news%3Anone%2Chome_contact%3Adouble-cta%2Chome_fixed%3Asp-bottom-bar%2Chome_side_layout%3Aright%2Chome_side_set%3Aminimal%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "logos",
+        "price",
+        "faq",
+        "cta",
+        "contact"
+      ],
+      "sha256": "34c5acd883b606eb102f83bca761d9683e6dc35c566533155b89181364aaed1f"
+    },
+    {
+      "file": "before-media-pc.jpg",
+      "device": "pc",
+      "purpose": "media",
+      "route": "/?wt=home_hero%3Asearch-box%2Chome_hero_cta%3Anone%2Chome_sections%3Amedia%2Chome_news%3Acards%2Chome_contact%3Anone%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Amedia%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "latest",
+        "categories",
+        "ranking",
+        "banners",
+        "news",
+        "cta"
+      ],
+      "sha256": "17e8b3c0432aefe23d34c0d2660ea9a4f20281a659bc09246e6c60bbf06102ae"
+    },
+    {
+      "file": "before-shop-school-pc.jpg",
+      "device": "pc",
+      "purpose": "shop-school",
+      "route": "/?wt=home_hero%3Afullbleed%2Chome_hero_cta%3Atel-button%2Chome_sections%3Ashop-school%2Chome_news%3Alist-with-date%2Chome_contact%3Atel-only%2Chome_fixed%3Afloat-tel%2Chome_side_layout%3Anone%2Chome_side_set%3Aminimal%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "news",
+        "service",
+        "features",
+        "stores",
+        "events",
+        "price",
+        "faq",
+        "recruit",
+        "banners",
+        "access",
+        "contact"
+      ],
+      "sha256": "9c7b6267eaf33ab64321433d9d9242694568fd4eb0906e4ce86925d79d195660"
+    },
+    {
+      "file": "before-school-org-pc.jpg",
+      "device": "pc",
+      "purpose": "school-org",
+      "route": "/?wt=home_hero%3Acards-carousel%2Chome_hero_cta%3Asingle%2Chome_sections%3Aschool-org%2Chome_news%3Atabs%2Chome_contact%3Aform-only%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Acorporate%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "greeting",
+        "news",
+        "features",
+        "service",
+        "events",
+        "gallery",
+        "sns",
+        "history",
+        "logos",
+        "banners",
+        "cta",
+        "contact"
+      ],
+      "sha256": "c5744a7ab9df207ed6e5967b5ea9cfdeba625a641212f441568004d4d43e5e3a"
+    },
+    {
+      "file": "before-corporate-sp.jpg",
+      "device": "sp",
+      "purpose": "corporate",
+      "route": "/?wt=home_hero%3Atext-only%2Chome_hero_cta%3Adouble%2Chome_sections%3Acorporate%2Chome_news%3Alist-with-date%2Chome_contact%3Atel-form%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Acorporate%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "news",
+        "greeting",
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "company",
+        "access",
+        "contact"
+      ],
+      "sha256": "11ab82b2b30da7ca14355cffdf98a926ae1b70e4882e18d9d8edd8404c969a3b"
+    },
+    {
+      "file": "before-service-sp.jpg",
+      "device": "sp",
+      "purpose": "service",
+      "route": "/?wt=home_hero%3Asplit%2Chome_hero_cta%3Adouble%2Chome_sections%3Aservice%2Chome_news%3Anone%2Chome_contact%3Adouble-cta%2Chome_fixed%3Asp-bottom-bar%2Chome_side_layout%3Aright%2Chome_side_set%3Aminimal%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "service",
+        "features",
+        "numbers",
+        "cases",
+        "logos",
+        "price",
+        "faq",
+        "cta",
+        "contact"
+      ],
+      "sha256": "e507eca726ad1babf1758fc0e2affa8b1663bd29a698d543c001e6841c28ce3b"
+    },
+    {
+      "file": "before-media-sp.jpg",
+      "device": "sp",
+      "purpose": "media",
+      "route": "/?wt=home_hero%3Asearch-box%2Chome_hero_cta%3Anone%2Chome_sections%3Amedia%2Chome_news%3Acards%2Chome_contact%3Anone%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Amedia%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "latest",
+        "categories",
+        "ranking",
+        "banners",
+        "news",
+        "cta"
+      ],
+      "sha256": "df4152cf5db3fc03424855c1c1d2a3b6e06afaf90d1367bae7e79853813ef0ac"
+    },
+    {
+      "file": "before-shop-school-sp.jpg",
+      "device": "sp",
+      "purpose": "shop-school",
+      "route": "/?wt=home_hero%3Afullbleed%2Chome_hero_cta%3Atel-button%2Chome_sections%3Ashop-school%2Chome_news%3Alist-with-date%2Chome_contact%3Atel-only%2Chome_fixed%3Afloat-tel%2Chome_side_layout%3Anone%2Chome_side_set%3Aminimal%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "news",
+        "service",
+        "features",
+        "stores",
+        "events",
+        "price",
+        "faq",
+        "recruit",
+        "banners",
+        "access",
+        "contact"
+      ],
+      "sha256": "109ff50a477bc061dd798c522ade9b013cb289edcbb4843a3185613c673773ac"
+    },
+    {
+      "file": "before-school-org-sp.jpg",
+      "device": "sp",
+      "purpose": "school-org",
+      "route": "/?wt=home_hero%3Acards-carousel%2Chome_hero_cta%3Asingle%2Chome_sections%3Aschool-org%2Chome_news%3Atabs%2Chome_contact%3Aform-only%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Acorporate%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "sectionOrder": [
+        "greeting",
+        "news",
+        "features",
+        "service",
+        "events",
+        "gallery",
+        "sns",
+        "history",
+        "logos",
+        "banners",
+        "cta",
+        "contact"
+      ],
+      "sha256": "7bc4759d29b3f9b193ef18b653b5d1ab17d1f459416379220788bc54ec66d760"
+    }
+  ]
+}

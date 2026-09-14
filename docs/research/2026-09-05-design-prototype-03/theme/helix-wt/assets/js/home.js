@@ -63,3 +63,20 @@
   }
   tick(); setInterval(tick, 60000);
 })();
+
+/* HOMEのお知らせ: JSなしは全件、JSありは手動選択のタブ。外部通信・保存なし。 */
+(function(){
+  document.querySelectorAll('.wt-home .wt-home-tabs').forEach(function(list){
+    var tabs=Array.from(list.querySelectorAll('[role="tab"]'));
+    if(!tabs.length||tabs.some(function(tab){return !document.getElementById(tab.getAttribute('aria-controls'));}))return;
+    function select(tab){tabs.forEach(function(item){var active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!active;});}
+    tabs.forEach(function(tab,index){
+      tab.addEventListener('click',function(){select(tab);});
+      tab.addEventListener('keydown',function(event){
+        var next=event.key==='ArrowRight'?(index+1)%tabs.length:event.key==='ArrowLeft'?(index+tabs.length-1)%tabs.length:event.key==='Home'?0:event.key==='End'?tabs.length-1:null;
+        if(next!==null){event.preventDefault();tabs[next].focus();select(tabs[next]);}
+      });
+    });
+    select(tabs[0]);list.hidden=false;
+  });
+})();

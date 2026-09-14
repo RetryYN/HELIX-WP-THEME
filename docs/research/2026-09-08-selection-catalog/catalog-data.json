@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1137,
+  "screenshotCount": 1147,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12293,6 +12293,161 @@
       "group": "ページ・本文",
       "description": "カード・箇条書き・手順の本文構造を保ったまま、メディア枠だけを切り替える静的PoC。WordPressの編集保存と実記事への適用は未完了です。",
       "evidence": "../2026-09-13-vocabulary-catalog/media/verification.json"
+    },
+    {
+      "id": "home-finished:corporate",
+      "face": "home",
+      "part": "home-finished",
+      "finished": true,
+      "label": "完成HOME：企業案内 — 信頼から相談へ",
+      "variant": "text-only / corporate",
+      "purpose": "会社を知り、相談先を確かめる",
+      "description": "既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-15-home-completion/after-corporate-pc.jpg",
+        "sp": "../2026-09-15-home-completion/after-corporate-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01",
+        "WT-FR-PARTS-03",
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-HOME-01"
+      ],
+      "selectionFacts": {
+        "入口の導線": "事業を読む / 問い合わせ",
+        "情報量": "標準・会社情報を広く案内",
+        "区間の順序": "お知らせ → 代表挨拶 → サービス → 特徴 → 実績 → 事例 → 会社情報 → アクセス → 問い合わせ",
+        "サイドバー開始": "heroの下から・右",
+        "共通部品の所属": "ヘッダー/フッターは共通・サイドバーはHOME用・固定導線は非表示"
+      },
+      "demoRoute": "/?wt=home_hero%3Atext-only%2Chome_hero_cta%3Adouble%2Chome_sections%3Acorporate%2Chome_news%3Alist-with-date%2Chome_contact%3Atel-form%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Acorporate%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "evidence": "../2026-09-15-home-completion/verification.json"
+    },
+    {
+      "id": "home-finished:service",
+      "face": "home",
+      "part": "home-finished",
+      "finished": true,
+      "label": "完成HOME：サービス — 比較して相談する",
+      "variant": "split / service",
+      "purpose": "価値・事例・費用を比べて相談する",
+      "description": "既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-15-home-completion/after-service-pc.jpg",
+        "sp": "../2026-09-15-home-completion/after-service-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01",
+        "WT-FR-PARTS-03",
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-HOME-01"
+      ],
+      "selectionFacts": {
+        "入口の導線": "サービスを読む / 問い合わせ",
+        "情報量": "標準・判断材料を順に提示",
+        "区間の順序": "サービス → 特徴 → 実績 → 事例 → ロゴ → 料金 → FAQ → 案内帯 → 問い合わせ",
+        "サイドバー開始": "heroの下から・右",
+        "共通部品の所属": "ヘッダー/フッターは共通・サイドバー/固定導線はHOME用"
+      },
+      "demoRoute": "/?wt=home_hero%3Asplit%2Chome_hero_cta%3Adouble%2Chome_sections%3Aservice%2Chome_news%3Anone%2Chome_contact%3Adouble-cta%2Chome_fixed%3Asp-bottom-bar%2Chome_side_layout%3Aright%2Chome_side_set%3Aminimal%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "evidence": "../2026-09-15-home-completion/verification.json"
+    },
+    {
+      "id": "home-finished:media",
+      "face": "home",
+      "part": "home-finished",
+      "finished": true,
+      "label": "完成HOME：メディア — 関心から記事へ",
+      "variant": "search-box / media",
+      "purpose": "関心のあるテーマから記事を探す",
+      "description": "既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-15-home-completion/after-media-pc.jpg",
+        "sp": "../2026-09-15-home-completion/after-media-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01",
+        "WT-FR-PARTS-03",
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-HOME-01"
+      ],
+      "selectionFacts": {
+        "入口の導線": "検索枠 / 新着 / カテゴリ",
+        "情報量": "高め・複数の記事を回遊",
+        "区間の順序": "新着記事 → カテゴリ → 人気記事 → バナー → お知らせ → 案内帯",
+        "サイドバー開始": "heroの下から・右",
+        "共通部品の所属": "ヘッダー/フッターは共通・サイドバーはHOME用・固定導線は非表示"
+      },
+      "demoRoute": "/?wt=home_hero%3Asearch-box%2Chome_hero_cta%3Anone%2Chome_sections%3Amedia%2Chome_news%3Acards%2Chome_contact%3Anone%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Amedia%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "evidence": "../2026-09-15-home-completion/verification.json"
+    },
+    {
+      "id": "home-finished:shop-school",
+      "face": "home",
+      "part": "home-finished",
+      "finished": true,
+      "label": "完成HOME：店舗・スクール — 内容から来訪へ",
+      "variant": "fullbleed / shop-school",
+      "purpose": "内容・雰囲気・場所を確かめて来訪する",
+      "description": "既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-15-home-completion/after-shop-school-pc.jpg",
+        "sp": "../2026-09-15-home-completion/after-shop-school-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01",
+        "WT-FR-PARTS-03",
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-HOME-01"
+      ],
+      "selectionFacts": {
+        "入口の導線": "電話 / 問い合わせ",
+        "情報量": "標準・現地の情報を写真で伝える",
+        "区間の順序": "お知らせ → サービス → 特徴 → 店舗 → イベント → 料金 → FAQ → 採用 → バナー → アクセス → 問い合わせ",
+        "サイドバー開始": "非表示・本文1列",
+        "共通部品の所属": "ヘッダー/フッターは共通・サイドバーは非表示・固定導線はHOME用"
+      },
+      "demoRoute": "/?wt=home_hero%3Afullbleed%2Chome_hero_cta%3Atel-button%2Chome_sections%3Ashop-school%2Chome_news%3Alist-with-date%2Chome_contact%3Atel-only%2Chome_fixed%3Afloat-tel%2Chome_side_layout%3Anone%2Chome_side_set%3Aminimal%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "evidence": "../2026-09-15-home-completion/verification.json"
+    },
+    {
+      "id": "home-finished:school-org",
+      "face": "home",
+      "part": "home-finished",
+      "finished": true,
+      "label": "完成HOME：学校・団体 — 目的別に案内する",
+      "variant": "cards-carousel / school-org",
+      "purpose": "活動・方針・手続きを目的別に案内する",
+      "description": "既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-15-home-completion/after-school-org-pc.jpg",
+        "sp": "../2026-09-15-home-completion/after-school-org-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01",
+        "WT-FR-PARTS-03",
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-HOME-01"
+      ],
+      "selectionFacts": {
+        "入口の導線": "案内カード / 問い合わせ",
+        "情報量": "高め・複数の読者を案内",
+        "区間の順序": "代表挨拶 → お知らせ → 特徴 → サービス → イベント → ギャラリー → SNS → 沿革 → ロゴ → バナー → 案内帯 → 問い合わせ",
+        "サイドバー開始": "heroの下から・右",
+        "共通部品の所属": "ヘッダー/フッターは共通・サイドバーはHOME用・固定導線は非表示"
+      },
+      "demoRoute": "/?wt=home_hero%3Acards-carousel%2Chome_hero_cta%3Asingle%2Chome_sections%3Aschool-org%2Chome_news%3Atabs%2Chome_contact%3Aform-only%2Chome_fixed%3Anone%2Chome_side_layout%3Aright%2Chome_side_set%3Acorporate%2Cside_from%3Abelow-hero%2Chome_head%3Asite%2Chome_foot%3Asite%2Chome_fix%3Aown",
+      "evidence": "../2026-09-15-home-completion/verification.json"
     }
   ],
   "requirements": [
@@ -12381,7 +12536,7 @@
             },
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "fec1e96583da158b14b45d1969bbc2fec80e8295e7922470ead08462f192f8d9",
+              "sha256": "a5494ddcce7338ebc726116fa5143e7fb0c3aa815db400482b5a1fd8e78ec8ba",
               "row_names": [
                 "health:loaded",
                 "health:active-current-theme",
@@ -12405,7 +12560,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "fec1e96583da158b14b45d1969bbc2fec80e8295e7922470ead08462f192f8d9",
+              "sha256": "a5494ddcce7338ebc726116fa5143e7fb0c3aa815db400482b5a1fd8e78ec8ba",
               "row_names": [
                 "negative:unregistered-pattern-reported"
               ]
@@ -12437,7 +12592,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "93dab2d262334c93160d88da9534ced519b593df0252e089ba0c331705430465",
+              "sha256": "bd8fb3c5df3fc7f414f3f38d7d60c7fb88e401e6f166591bcbed7a715ebea073",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -12456,7 +12611,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "93dab2d262334c93160d88da9534ced519b593df0252e089ba0c331705430465",
+              "sha256": "bd8fb3c5df3fc7f414f3f38d7d60c7fb88e401e6f166591bcbed7a715ebea073",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -13218,7 +13373,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "d3f44227a71f7014def187cecce7ddd8e9b48accd294a5e2511756845ab08512",
+              "sha256": "9f2f54ce79e92cb8c8c1d4c7ca7b6d69a85f8bd2de5044bec434590778e36d1f",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -13276,7 +13431,7 @@
             },
             {
               "path": "docs/research/2026-09-09-footer-data/editor.json",
-              "sha256": "548477c2cdb413a7308faf1eaaff2b1be465ba729ee89937d0bf6fa1502dbc45",
+              "sha256": "d7d54adc5dd23d21288b0da813482609c8e445fb79386336861cedb6f0fdbed1",
               "row_names": [
                 "initial:valid-blocks",
                 "edit:store-updated",
@@ -14457,7 +14612,12 @@
         "article:graph-column",
         "article:graph-score",
         "article:graph-gauge",
-        "article:graph-radar"
+        "article:graph-radar",
+        "home-finished:corporate",
+        "home-finished:service",
+        "home-finished:media",
+        "home-finished:shop-school",
+        "home-finished:school-org"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -15834,7 +15994,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "6107c32f87abe3dba739509989315d016b3224c508b07c690a151ba512287e03",
+              "sha256": "ca4617c43f7c0c782cbcce7628ff1a6356840eb2b4dab3baba0cbb7434897bf4",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -15854,7 +16014,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "6107c32f87abe3dba739509989315d016b3224c508b07c690a151ba512287e03",
+              "sha256": "ca4617c43f7c0c782cbcce7628ff1a6356840eb2b4dab3baba0cbb7434897bf4",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -17881,7 +18041,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "1532bc35c77406c9a1d4a7ec9d71c4d63f3eec76c707711502b4aeac6b658903",
+              "sha256": "bd63fe0426471b9286c7b046f2436c8c40d67aa7bb865c7e32d6e1fc9b569a73",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -18167,7 +18327,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "1532bc35c77406c9a1d4a7ec9d71c4d63f3eec76c707711502b4aeac6b658903",
+              "sha256": "bd63fe0426471b9286c7b046f2436c8c40d67aa7bb865c7e32d6e1fc9b569a73",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -19491,7 +19651,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "9d836fa1cc9d3cc96fb477ebb99e60362f6bf028b52f144b1afd0481ec552fed",
+              "sha256": "af2e884b7740d3d42a693097eea40f659a5c95bd1f4043cdd257d603e90ca1b6",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -19516,7 +19676,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "9d836fa1cc9d3cc96fb477ebb99e60362f6bf028b52f144b1afd0481ec552fed",
+              "sha256": "af2e884b7740d3d42a693097eea40f659a5c95bd1f4043cdd257d603e90ca1b6",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -19796,7 +19956,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "f8d0694bfb307437e70936b8278b93357a7691e07634768b57949d2458540017",
+              "sha256": "f57a3405fe053e74d744121076f7d5b488d0fc4d4ddafde4d83c5b84d2d79897",
               "row_names": [
                 "i18n:source-calls-found",
                 "i18n:all-gettext-calls-extracted",
@@ -19822,7 +19982,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "f8d0694bfb307437e70936b8278b93357a7691e07634768b57949d2458540017",
+              "sha256": "f57a3405fe053e74d744121076f7d5b488d0fc4d4ddafde4d83c5b84d2d79897",
               "row_names": [
                 "negative:text-domain-drift-fails",
                 "negative:pot-source-drift-fails",
@@ -19928,7 +20088,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "1a54d0ac5355caa347950518607d56df5bb1ac7b8a1a1e5b63d3f6578d4eebd2",
+              "sha256": "49dcc7a1ddbb3e514c9abb6134f93a1066350e8a99a61877027640d3b0c2e3d6",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -20401,7 +20561,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "1a54d0ac5355caa347950518607d56df5bb1ac7b8a1a1e5b63d3f6578d4eebd2",
+              "sha256": "49dcc7a1ddbb3e514c9abb6134f93a1066350e8a99a61877027640d3b0c2e3d6",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -20824,7 +20984,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "1a54d0ac5355caa347950518607d56df5bb1ac7b8a1a1e5b63d3f6578d4eebd2",
+              "sha256": "49dcc7a1ddbb3e514c9abb6134f93a1066350e8a99a61877027640d3b0c2e3d6",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -21314,7 +21474,12 @@
         "site:terms",
         "search:results",
         "search:empty",
-        "search:blank"
+        "search:blank",
+        "home-finished:corporate",
+        "home-finished:service",
+        "home-finished:media",
+        "home-finished:shop-school",
+        "home-finished:school-org"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [
@@ -21469,7 +21634,12 @@
         "site:terms",
         "search:results",
         "search:empty",
-        "search:blank"
+        "search:blank",
+        "home-finished:corporate",
+        "home-finished:service",
+        "home-finished:media",
+        "home-finished:shop-school",
+        "home-finished:school-org"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -21549,7 +21719,12 @@
         "home:home-contact-double-cta",
         "home:home-sections-shop-school-4",
         "home:home-sections-school-org-3",
-        "home:home-sections-school-org-4"
+        "home:home-sections-school-org-4",
+        "home-finished:corporate",
+        "home-finished:service",
+        "home-finished:media",
+        "home-finished:shop-school",
+        "home-finished:school-org"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -21577,7 +21752,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "61ab3b5a08fb0f4085e6638a3c6e853ca2bf1f0fc6bf44febbb7c2039ec35ff6",
+              "sha256": "431abf793cdbe1aaed332826881c1fffc009c76d2dc0fdea0c46e6af6560beeb",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -21729,7 +21904,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "9de152298f4b31938d282827dfad52cea05a715cea9a38f88d5b796de80ee8dc",
+              "sha256": "599229f3a47ca6ea70863137c8c2ef68aa4d21ad3a94eefac2624a4f119544b0",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -22091,7 +22266,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "61ab3b5a08fb0f4085e6638a3c6e853ca2bf1f0fc6bf44febbb7c2039ec35ff6",
+              "sha256": "431abf793cdbe1aaed332826881c1fffc009c76d2dc0fdea0c46e6af6560beeb",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -22243,7 +22418,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "9de152298f4b31938d282827dfad52cea05a715cea9a38f88d5b796de80ee8dc",
+              "sha256": "599229f3a47ca6ea70863137c8c2ef68aa4d21ad3a94eefac2624a4f119544b0",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -22672,7 +22847,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22754,7 +22929,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22814,7 +22989,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -22938,7 +23113,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -22969,7 +23144,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -23079,7 +23254,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -23207,7 +23382,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "blp:lp-target",
                 "blp:reasoning"
@@ -23237,7 +23412,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "blp:lp-target",
                 "blp:ownership:inherit",
@@ -23270,7 +23445,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "ac1d43655b2daddeb3f881716a026bce41fd4cb2708bacb2638f7f72cb8def27",
+              "sha256": "4d4e86cfb7cc731b44185fb9fbad335fd26e7c37b0072ff9275115634ad4c379",
               "row_names": [
                 "blp:lp-target",
                 "blp-journey:pc:no-js:decision-content",
@@ -23317,7 +23492,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "6384fa102aeb24d8e2f84de8e200741a8e70c620fdeb1e837c81b9c42c74aa4b",
+              "sha256": "35ce7bec587772d9abf3998b347887bd347a4db14db402d7c83474356d6f8f9c",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -23541,7 +23716,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "55c5f78840eb885aa1bf1b6a8adf965a1bcd065cb10995909b63eacfccb2c0af",
+              "sha256": "059b71571289a64f053282b997af06a51808ff349b7f29c8bbd6f4c5993803f7",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -23829,7 +24004,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "7d68bac387c0c7ce37c1f20c92140e370c56aa8a07ba64e57ef15b6ee6d1f037",
+              "sha256": "c9d8d29035184b526e166cd624827afb3d8b20eea0215d18d81ffc121bae1f32",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -24230,7 +24405,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "39c05fdf680d8ccf4acc03f175ed190d9bc07aeb0d0ee731d98f098370be62df",
+              "sha256": "cba45ba289969991be14052c538d805941f0cad408eea45f0e5adf50e00f5b82",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -24319,7 +24494,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "06d3ff9e43695e7c227d89f466484812ded5dd1d049b2a908d5de1e9eaf2f69d",
+              "sha256": "97a38366a4657e2f705d232cee587a86302198a00102fabf16357fd19d5f83bc",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -24452,7 +24627,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "6384fa102aeb24d8e2f84de8e200741a8e70c620fdeb1e837c81b9c42c74aa4b",
+              "sha256": "35ce7bec587772d9abf3998b347887bd347a4db14db402d7c83474356d6f8f9c",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -24676,7 +24851,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "55c5f78840eb885aa1bf1b6a8adf965a1bcd065cb10995909b63eacfccb2c0af",
+              "sha256": "059b71571289a64f053282b997af06a51808ff349b7f29c8bbd6f4c5993803f7",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -24964,7 +25139,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "7d68bac387c0c7ce37c1f20c92140e370c56aa8a07ba64e57ef15b6ee6d1f037",
+              "sha256": "c9d8d29035184b526e166cd624827afb3d8b20eea0215d18d81ffc121bae1f32",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25365,7 +25540,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "39c05fdf680d8ccf4acc03f175ed190d9bc07aeb0d0ee731d98f098370be62df",
+              "sha256": "cba45ba289969991be14052c538d805941f0cad408eea45f0e5adf50e00f5b82",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -25454,7 +25629,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "06d3ff9e43695e7c227d89f466484812ded5dd1d049b2a908d5de1e9eaf2f69d",
+              "sha256": "97a38366a4657e2f705d232cee587a86302198a00102fabf16357fd19d5f83bc",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -25653,7 +25828,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "e299c8469f697c3f4d32d7c533229fa30e8565070447a1f7ca564bde77cf1a54",
+              "sha256": "517b8c9eee4c04d1fcc92bc25bd5e0ffaf0aa49c071fc2e4fa645b6822f013e9",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26101,7 +26276,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "e299c8469f697c3f4d32d7c533229fa30e8565070447a1f7ca564bde77cf1a54",
+              "sha256": "517b8c9eee4c04d1fcc92bc25bd5e0ffaf0aa49c071fc2e4fa645b6822f013e9",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -26706,7 +26881,12 @@
         "inheritance:content_site:off",
         "footer-data:empty",
         "footer-data:filled",
-        "parts-declaration:site-editor"
+        "parts-declaration:site-editor",
+        "home-finished:corporate",
+        "home-finished:service",
+        "home-finished:media",
+        "home-finished:shop-school",
+        "home-finished:school-org"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -26730,7 +26910,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "3550ce5b3746efa705cf2b4734306ad9150999962e508a832a77788b3eadb40a",
+              "sha256": "6b8f994bacad849358c8b146fe3ba150ef8ea57b0c9fbd9be30c6ad98c8427e0",
               "row_names": [
                 "course:three-lessons:pc:js-false",
                 "course:three-lessons:pc:js-true",
@@ -26786,7 +26966,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "3550ce5b3746efa705cf2b4734306ad9150999962e508a832a77788b3eadb40a",
+              "sha256": "6b8f994bacad849358c8b146fe3ba150ef8ea57b0c9fbd9be30c6ad98c8427e0",
               "row_names": [
                 "glossary:term-target:pc:js-false",
                 "glossary:term-target:pc:js-true",
@@ -26871,7 +27051,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "3550ce5b3746efa705cf2b4734306ad9150999962e508a832a77788b3eadb40a",
+              "sha256": "6b8f994bacad849358c8b146fe3ba150ef8ea57b0c9fbd9be30c6ad98c8427e0",
               "row_names": [
                 "archive:count:pc:js-true",
                 "archive:first-page:pc:js-true",
@@ -27057,7 +27237,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
-              "sha256": "ba46755d869a4ecb40bf52e67f50febabf28efa86444916e88582050103e48ca",
+              "sha256": "595f0f3541905c13de47ea29a595d34fca0619781d369537d0758ca8434b3aa6",
               "row_names": [
                 "navigation:all-owner-combinations",
                 "navigation:site-own-style-separated",
@@ -27111,7 +27291,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "f7c671ec3677176d17ceb46f43bcc010fd188d0330620bb97d42c6bfa7c99e2e",
+              "sha256": "ed38f976a4724503ae2207c1597177326622e10650a9b692e60d65d86895d1a6",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -27236,7 +27416,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "baf717a312a185bc47b7c91e85c6330142be0cff526592d8434815a89a2318a9",
+              "sha256": "c92bbcf8703e52ea547092d7a4e979ec1e210fa4da3bff245b54e5f3d906b2a3",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -27264,7 +27444,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/access.json",
-              "sha256": "f9064b17b557577468ce7bd126472c667c5d41d42ea30beb2bd2fff5ef150e51",
+              "sha256": "5d58bdb2951d4b377055d67dc72818f776a495fc5e0a0a8d72b5748cfd5a8608",
               "row_names": [
                 "count:anonymous:pc:js-true:public",
                 "results:anonymous:pc:js-true:public",
@@ -27588,7 +27768,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "21a43879a8aecfef7832ab868af9e35b247b990bead2819177b6630f764d8aec",
+              "sha256": "e46cb37cf3a27c066816a930d8473a88600d0e456230e75d59620eaf33ea7614",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -27913,7 +28093,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/performance.json",
-              "sha256": "fa012ae69bc32a1f9465fcd6eb15f5dd856ae5ca7ca582ae2dcccf6622628c86",
+              "sha256": "fa8e2c9c3d8ccd51284f58f5dc9345fe48c0bdb8ee74ef0542786b0deaad337f",
               "row_names": [
                 "cold-scans-protected:50",
                 "warm-skips-password-checks:50",
@@ -27947,7 +28127,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "baf717a312a185bc47b7c91e85c6330142be0cff526592d8434815a89a2318a9",
+              "sha256": "c92bbcf8703e52ea547092d7a4e979ec1e210fa4da3bff245b54e5f3d906b2a3",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -27991,7 +28171,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "545454a46a4bc73fd1b3bfb807fd5161acd85362e725e8766149d5755fd2b5b0",
+              "sha256": "8d5a3d89ec9a628ca4f72eccd6cb3789f2222330df4278b61f6720be9992290a",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -28014,7 +28194,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "21a43879a8aecfef7832ab868af9e35b247b990bead2819177b6630f764d8aec",
+              "sha256": "e46cb37cf3a27c066816a930d8473a88600d0e456230e75d59620eaf33ea7614",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -28350,7 +28530,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "f7c671ec3677176d17ceb46f43bcc010fd188d0330620bb97d42c6bfa7c99e2e",
+              "sha256": "ed38f976a4724503ae2207c1597177326622e10650a9b692e60d65d86895d1a6",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28429,7 +28609,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "baf717a312a185bc47b7c91e85c6330142be0cff526592d8434815a89a2318a9",
+              "sha256": "c92bbcf8703e52ea547092d7a4e979ec1e210fa4da3bff245b54e5f3d906b2a3",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -28497,7 +28677,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "545454a46a4bc73fd1b3bfb807fd5161acd85362e725e8766149d5755fd2b5b0",
+              "sha256": "8d5a3d89ec9a628ca4f72eccd6cb3789f2222330df4278b61f6720be9992290a",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -28800,7 +28980,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "694134c6fd6921bc61842a42d74b86c2f616a1b0de35ea68120a865bef80946d",
+              "sha256": "fd86cd073784f8467c3775f0345a7c07b8c6fffe0eadc50f30d63c2fd2a799c4",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",

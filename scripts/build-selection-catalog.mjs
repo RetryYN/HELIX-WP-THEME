@@ -442,11 +442,39 @@ if (fs.existsSync(path.join(root, vocabularyMediaPath))) {
     });
   }
 }
+const homePath = 'docs/research/2026-09-15-home-completion/verification.json';
+if (fs.existsSync(path.join(root, homePath))) {
+  const evidence = read(homePath);
+  const homeChoices = read('docs/research/2026-09-15-home-completion/choices.json').choices;
+  const required = ['fixtures:cleanup', 'source-unchanged', ...homeChoices.flatMap(choice => ['pc-js', 'pc-nojs', 'sp-js', 'sp-nojs'].map(mode => `${mode}:${choice.id}:metadata-section-order`))];
+  if (!evidence.completed || evidence.baselinePresentationDisabled || evidence.scenarioCount !== evidence.declaredScenarioCount || evidence.rows.some(row => !row.pass) || required.some(name => !evidence.rows.some(row => row.name === name && row.pass))) throw Error('HOME completion evidence failed or partial');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale HOME evidence: ${file}`);
+  }
+  for (const choice of homeChoices) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.purpose === choice.id && s.device === device);
+      if (!shot || !fs.existsSync(path.join(root, 'docs/research/2026-09-15-home-completion', shot.file))) throw Error(`Missing finished HOME ${choice.id}/${device}`);
+      if (createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-15-home-completion', shot.file))).digest('hex') !== shot.sha256) throw Error(`Changed HOME screenshot ${shot.file}`);
+      images[device] = `../2026-09-15-home-completion/${shot.file}`;
+    }
+    entries.set(`home-finished:${choice.id}`, {
+      id: `home-finished:${choice.id}`, face: 'home', part: 'home-finished', finished: true,
+      label: `完成HOME：${choice.label}`, variant: `${choice.hero} / ${choice.id}`,
+      purpose: choice.purpose, description: '既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。',
+      group: 'ページ・本文', images, requirementIds: ['WT-FR-LOOK-01', 'WT-FR-PARTS-03'],
+      selectionFacts: { '入口の導線': choice.openingRoute, '情報量': choice.density, '区間の順序': choice.sectionOrder, 'サイドバー開始': choice.sidebarStart, '共通部品の所属': choice.ownership },
+      demoRoute: evidence.shots.find(s => s.purpose === choice.id).route,
+      evidence: '../2026-09-15-home-completion/verification.json',
+    });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
-  const related = [...entries.values()].filter(e => prefixes.some(p => e.part.startsWith(p)));
-  related.forEach(e => e.requirementIds.push(r.id));
+  const related = [...entries.values()].filter(e => e.requirementIds.includes(r.id) || prefixes.some(p => e.part.startsWith(p)));
+  related.forEach(e => { if (!e.requirementIds.includes(r.id)) e.requirementIds.push(r.id); });
   return { id: r.id, family, statement: r.statement, priority: r.priority, revision: r.revision,
     acceptance: audit.rows.filter(a => a.requirement_id === r.id),
     status: audit.rows.some(a => a.requirement_id === r.id && ['partial', 'verified_in_poc'].includes(a.status)) ? 'partial_poc' : 'not_verified', relatedEntryIds: related.map(e => e.id),

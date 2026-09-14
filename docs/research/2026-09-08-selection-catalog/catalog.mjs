@@ -155,15 +155,18 @@ async function start() {
       && (!$('purpose').value || e.purpose === $('purpose').value)
       && (!selected || memoFor(e.id).status === selected)
       && `${e.label} ${e.part} ${e.variant} ${e.requirementIds.join(' ')} ${memoFor(e.id).note}`.toLocaleLowerCase().includes(query))
-      .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])));
+      .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])) || (face === 'home' ? Number(Boolean(b.finished)) - Number(Boolean(a.finished)) : 0));
     $('collection-title').textContent = linkedIds ? '要求に関連する候補' : collections.find(([key]) => key === face)[1];
     $('count').textContent = `${entries.length}候補 / ${device.toUpperCase()}`;
     $('empty').hidden = entries.length > 0; $('more').hidden = entries.length <= limit;
+    $('home-start').hidden = face !== 'home' || Boolean(linkedIds);
+    $('home-finished-only').setAttribute('aria-pressed', String($('search').value === '完成HOME'));
     $('gallery').dataset.collection = face;
     $('gallery').replaceChildren();
     for (const entry of entries.slice(0, limit)) {
       const tile = el('article', undefined, 'tile');
       tile.dataset.decision = memoFor(entry.id).status;
+      if (entry.finished) tile.classList.add('finished-home-tile');
       const open = button('', () => detail(entry)); open.className = 'tile-open'; open.dataset.entryId = entry.id;
       open.setAttribute('aria-label', `${entry.label} ${entry.variant}の詳細`);
       const preview = imageFor(entry, 'preview');
@@ -175,8 +178,11 @@ async function start() {
       bottom.append(el('span', entry.purpose, 'purpose-tag'), compareToggle(entry));
       const facts = el('div', undefined, 'tile-facts');
       facts.append(el('span', ['pc', 'sp'].filter(d => entry.images[d]).map(d => d.toUpperCase()).join(' / ') + ' 撮影'), el('span', `関連 ${entry.requirementIds.length}要求`));
+      if (entry.finished) facts.append(el('span', '上部プレビュー・詳細で全体'));
       const memo = memoFor(entry.id);
-      tile.append(open, facts, bottom, el('span', labels[memo.status], 'decision-badge'));
+      tile.append(open, facts);
+      if (entry.finished) tile.append(el('p', entry.selectionFacts['入口の導線'], 'finished-route'));
+      tile.append(bottom, el('span', labels[memo.status], 'decision-badge'));
       if (memo.note) { const excerpt = el('p', `理由: ${memo.note}`, 'tile-note'); excerpt.title = memo.note; tile.append(excerpt); }
       $('gallery').append(tile);
     }
@@ -185,6 +191,7 @@ async function start() {
   function editor(entry) {
     const panel = el('div', undefined, 'detail-copy');
     panel.append(el('h2', entry.label), el('p', entry.variant, 'variant'), el('p', entry.description), el('p', entry.purpose));
+    if (entry.selectionFacts) { const facts = el('dl', undefined, 'selection-facts'); for (const [key, value] of Object.entries(entry.selectionFacts)) facts.append(el('dt', key), el('dd', value)); panel.append(facts); }
     const choices = el('div', undefined, 'choices'); choices.setAttribute('role', 'group'); choices.setAttribute('aria-label', '選択メモの状態');
     for (const [status, label] of Object.entries(labels)) {
       const b = button(label, () => {
@@ -238,6 +245,8 @@ async function start() {
       (target && target.getClientRects().length ? target : $('search')).focus();
     });
   }
+  $('home-finished-only').addEventListener('click', () => { $('search').value = '完成HOME'; limit = 36; render(); });
+  $('home-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('reset-gallery').addEventListener('click', () => {
     face = 'all'; linkedIds = null; limit = 36;
     for (const id of ['search', 'purpose', 'decision']) $(id).value = '';
@@ -261,6 +270,7 @@ async function start() {
     const body = el('tbody');
     for (const [label, value] of [
       ['目的', e => e.purpose],
+      ...(['入口の導線','情報量','区間の順序','サイドバー開始','共通部品の所属'].filter(key => entries.some(e => e.selectionFacts?.[key])).map(key => [key, e => e.selectionFacts?.[key] || 'この候補は部品の比較'])),
       ['撮影記録', e => ['pc', 'sp'].filter(d => e.images[d]).map(d => d.toUpperCase()).join(' / ') || 'なし'],
       ['選択メモ', e => labels[memoFor(e.id).status]],
       ['選ぶ理由・確認事項', e => memoFor(e.id).note || 'まだ記入していません'],
