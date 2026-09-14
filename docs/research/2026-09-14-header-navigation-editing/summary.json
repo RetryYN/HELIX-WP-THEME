@@ -1,0 +1,2147 @@
+{
+  "schema": "wt-header-navigation-editing.v1",
+  "completed": true,
+  "issue": 185,
+  "parentIssue": 100,
+  "conditionCount": 166,
+  "assertionCount": 520,
+  "counts": {
+    "verify": {
+      "conditions": 72,
+      "assertions": 290
+    },
+    "scope": {
+      "conditions": 18,
+      "assertions": 29
+    },
+    "recovery": {
+      "conditions": 4,
+      "assertions": 14
+    },
+    "public-isolation": {
+      "conditions": 72,
+      "assertions": 144
+    }
+  },
+  "baseline": {
+    "conditions": 1035,
+    "assertions": 5496,
+    "note": "Regression conditions overlap new editor/public probes; not a sum of unique configurations."
+  },
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "4c57c689b91aecb39fbeb75c944f376bfc1ac0e512fbba31a50bb7570b668a98",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
+    "scripts/verify-header-navigation-editing.mjs": "f557365785a0898e8f501c9419c9cbb4c0045405f4ab85382b24e10617b0e6b2",
+    "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
+    "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06",
+    "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb",
+    "scripts/verify-header-navigation-editor-isolation.mjs": "05b11e18fb2c0a64c03b8c3256a0086c038819ca92b9756e9810738a2616f3e0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html": "7057f59e0baa68c897650cccb4606ca126e2812b9274dea96f559876b14aff8a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "02743620b523a3c7abbe5c6cde7f6583a8ef299bd138f73cb3bf6b890f889845",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html": "f35a3701cd9626002c20ba95c46be681b4805e4842952570ce85dfb777308792",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html": "d71fe8763c02adf6e944bf104bb0db1377da855fec005259712e5deb77735468",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html": "cd0867ef2a66ae6944d68ba21bbdb6aba2dce116d2b59665275f58db139ea35c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html": "b867e2c452a0e7ee2963c113bba8fac4ad5c3f341e3ec0139f955e9728371981",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html": "0380dc5835fe197e9e2ea8d024fb2de048736ebb3c2b9887686ca5d65b046d35",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html": "fda8831b16032f7de7526a6f187092aa69f2c66301db5c1f51fa6f7211417dd8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html": "658d6dd949aceccad16ca7bfd700cfbfa1490e9faf26be44e44fc5cffe2653d4",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php": "f829abd1cdf19a19a4a7299c513439b05aaaa3e8022e40dfebf2b4307f40b591",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
+    "scripts/verify-header-navigation-complete.mjs": "2ecd88ff780ea62855d328203f9da9e0af67b614cb97ca18ceedbc4ac95d4ea1",
+    "scripts/verify-header-navigation-boundaries.mjs": "f2931992f9b0691d3cec1aa4e32de9a2daf26017848b61504ae38c417727f78e",
+    "scripts/verify-header-navigation-editor.mjs": "969915821aebb2f387c232274a6712e0ce2c2e966bc3a2937f39a6d0611bab2c",
+    "scripts/verify-header-navigation-static.mjs": "9ed7de5ca98b38764327eb1d3b690fec4825797180427543c08559f97ba1afd0",
+    "scripts/summarize-header-navigation-complete.mjs": "007f04ec515bbd5ab0d5ed0b38fb77fafb0fbdfbf63cbd077023b83f044f0a3e",
+    "scripts/summarize-header-navigation-editing.mjs": "5762be9114eab59699af2d39b4d7304bc3f11daa6e10d35367f1f4802a8fd133"
+  },
+  "artifacts": {
+    "docs/research/2026-09-14-header-navigation-editing/verify.json": "4d184bd92b9bfad07de73b8bb7c9307b2b2228d60cef542d6faea5c24e9d4352",
+    "docs/research/2026-09-14-header-navigation-editing/scope.json": "8a92ffd7becf8e0fcb90aae7798d7fdb6c6a3d22b9d62a6abf27683fd985fec8",
+    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "af2874a687af8c76ea7d156260acf97f576a2df905b22600b4bb12ff85d72869",
+    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "609228cb8e1834842f83d16922b84e8e1ca030791787e6e090448d0c48a861a9",
+    "docs/research/2026-09-13-header-navigation-complete/verify.json": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1"
+  },
+  "rows": [
+    {
+      "name": "verify:completed",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:save-reference-0",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:reenter-reference-0",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:canvas-reference-0",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:save-reference-1",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:reenter-reference-1",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:canvas-reference-1",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:no-global-post",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:saved-ref-remains-B",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:previous-and-next-visible",
+      "pass": true
+    },
+    {
+      "name": "verify:device:SP-label",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:undo-no-post",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:redo-no-post",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:leave-without-global-save",
+      "pass": true
+    },
+    {
+      "name": "verify:stage:reenter-no-pending",
+      "pass": true
+    },
+    {
+      "name": "verify:failure:saved-ref-remains-B",
+      "pass": true
+    },
+    {
+      "name": "verify:failure:pending-recoverable",
+      "pass": true
+    },
+    {
+      "name": "verify:retry:one-post-for-double-click",
+      "pass": true
+    },
+    {
+      "name": "verify:retry:saved-A",
+      "pass": true
+    },
+    {
+      "name": "verify:undo-after-apply:global-remains-A",
+      "pass": true
+    },
+    {
+      "name": "verify:cancel-after-apply:restores-current-A",
+      "pass": true
+    },
+    {
+      "name": "verify:rapid-change:only-confirmed-B-posted",
+      "pass": true
+    },
+    {
+      "name": "verify:rapid-change:latest-A-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "verify:rapid-change:cancel-restores-B",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:standard-navigation-entity-save",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:standard-navigation-reenter",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-nav:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-nav:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-cta:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-cta:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-announce:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-announce:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-center:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-center:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-two-rows:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-two-rows:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-overlay:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-overlay:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-tel:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-tel:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-band:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:header-band:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "verify:db-backed:exists",
+      "pass": true
+    },
+    {
+      "name": "verify:db-backed:numeric-post-php-rejected-by-core",
+      "pass": true
+    },
+    {
+      "name": "verify:db-backed:site-editor-saved-part",
+      "pass": true
+    },
+    {
+      "name": "verify:db-backed:slug-available",
+      "pass": true
+    },
+    {
+      "name": "verify:db-backed:numeric-state-id",
+      "pass": true
+    },
+    {
+      "name": "verify:db-backed:numeric-state-SP-label",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-nav:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-cta:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-announce:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-center:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-two-rows:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-overlay:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-tel:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "verify:saved-db:header-band:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "verify:outside-editor:post:independent-A",
+      "pass": true
+    },
+    {
+      "name": "verify:outside-editor:post:no-SP-binding",
+      "pass": true
+    },
+    {
+      "name": "verify:outside-editor:post:no-global-pending",
+      "pass": true
+    },
+    {
+      "name": "verify:outside-editor:wp_template_part:independent-A",
+      "pass": true
+    },
+    {
+      "name": "verify:outside-editor:wp_template_part:no-SP-binding",
+      "pass": true
+    },
+    {
+      "name": "verify:outside-editor:wp_template_part:no-global-pending",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:invalid--1",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:unchanged--1",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:invalid-1.5",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:unchanged-1.5",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:invalid-\"12\"",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:unchanged-\"12\"",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:invalid-[]",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:unchanged-[]",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:invalid-{}",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:unchanged-{}",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:invalid-2147483647",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:unchanged-2147483647",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:nonce-missing",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:nonce-unchanged",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:nonce-invalid",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:nonce-unchanged",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:low-permission",
+      "pass": true
+    },
+    {
+      "name": "verify:REST:low-unchanged",
+      "pass": true
+    },
+    {
+      "name": "verify:UI:none",
+      "pass": true
+    },
+    {
+      "name": "verify:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js",
+      "pass": true
+    },
+    {
+      "name": "verify:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php",
+      "pass": true
+    },
+    {
+      "name": "verify:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+      "pass": true
+    },
+    {
+      "name": "verify:source-current:scripts/verify-header-navigation-editing.mjs",
+      "pass": true
+    },
+    {
+      "name": "verify:source-current:scripts/recover-header-navigation-editing.mjs",
+      "pass": true
+    },
+    {
+      "name": "scope:completed",
+      "pass": true
+    },
+    {
+      "name": "scope:body:plain:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:body:plain:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:footer:plain:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:footer:plain:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:body:copied:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:body:copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:footer:copied:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:footer:copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:body:sp-copied:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:body:sp-copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:footer:sp-copied:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:footer:sp-copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:header:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-nav:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-cta:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-announce:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-center:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-two-rows:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-overlay:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-tel:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:header-band:shared",
+      "pass": true
+    },
+    {
+      "name": "scope:outside-part:footer-navigation-scope:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:outside-part:footer-navigation-scope:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:outside-part:headerish-navigation-scope:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:outside-part:headerish-navigation-scope:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:outside-part:header-copied-body:independent",
+      "pass": true
+    },
+    {
+      "name": "scope:outside-part:header-copied-body:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "scope:after-header-scope",
+      "pass": true
+    },
+    {
+      "name": "scope:cleanup",
+      "pass": true
+    },
+    {
+      "name": "scope:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php",
+      "pass": true
+    },
+    {
+      "name": "scope:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js",
+      "pass": true
+    },
+    {
+      "name": "scope:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+      "pass": true
+    },
+    {
+      "name": "scope:source-current:scripts/verify-header-navigation-scope.mjs",
+      "pass": true
+    },
+    {
+      "name": "recovery:completed",
+      "pass": true
+    },
+    {
+      "name": "recovery:signal:expected-exit",
+      "pass": true
+    },
+    {
+      "name": "recovery:signal:snapshot-removed",
+      "pass": true
+    },
+    {
+      "name": "recovery:signal:full-settings-restored",
+      "pass": true
+    },
+    {
+      "name": "recovery:signal:owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "recovery:rejection:expected-exit",
+      "pass": true
+    },
+    {
+      "name": "recovery:rejection:snapshot-removed",
+      "pass": true
+    },
+    {
+      "name": "recovery:rejection:full-settings-restored",
+      "pass": true
+    },
+    {
+      "name": "recovery:rejection:owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "recovery:exception:expected-exit",
+      "pass": true
+    },
+    {
+      "name": "recovery:exception:snapshot-removed",
+      "pass": true
+    },
+    {
+      "name": "recovery:exception:full-settings-restored",
+      "pass": true
+    },
+    {
+      "name": "recovery:exception:owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "recovery:idempotent:0",
+      "pass": true
+    },
+    {
+      "name": "recovery:idempotent:1",
+      "pass": true
+    },
+    {
+      "name": "recovery:source-current:scripts/verify-header-navigation-editing.mjs",
+      "pass": true
+    },
+    {
+      "name": "recovery:source-current:scripts/recover-header-navigation-editing.mjs",
+      "pass": true
+    },
+    {
+      "name": "recovery:source-current:scripts/verify-header-navigation-recovery.mjs",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:completed",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:search:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:nav:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:cta:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:announce:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:center:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:two-rows:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:overlay:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:tel:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:native:band:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:search:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:nav:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:cta:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:announce:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:center:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:two-rows:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:overlay:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:tel:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:shared:band:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:source-current:scripts/verify-header-navigation-editor-isolation.mjs",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js",
+      "pass": true
+    },
+    {
+      "name": "public-isolation:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+      "pass": true
+    },
+    {
+      "name": "baseline:all-regression-assertions-pass",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:scripts/verify-header-navigation-complete.mjs",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:scripts/verify-header-navigation-boundaries.mjs",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:scripts/verify-header-navigation-editor.mjs",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:scripts/verify-header-navigation-static.mjs",
+      "pass": true
+    },
+    {
+      "name": "baseline:source-current:scripts/summarize-header-navigation-complete.mjs",
+      "pass": true
+    },
+    {
+      "name": "baseline:artifact-current:docs/research/2026-09-13-header-navigation-complete/matrix.json",
+      "pass": true
+    },
+    {
+      "name": "baseline:artifact-current:docs/research/2026-09-13-header-navigation-complete/boundaries.json",
+      "pass": true
+    },
+    {
+      "name": "baseline:artifact-current:docs/research/2026-09-13-header-navigation-complete/editor/verify.json",
+      "pass": true
+    },
+    {
+      "name": "baseline:artifact-current:docs/research/2026-09-13-header-navigation-complete/static.json",
+      "pass": true
+    }
+  ]
+}

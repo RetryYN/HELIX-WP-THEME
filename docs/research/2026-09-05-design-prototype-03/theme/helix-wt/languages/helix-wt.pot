@@ -644,6 +644,14 @@ msgstr ""
 msgid "SP の予約導線を固定 CTA に集約し、診療案内を 1 画面化。"
 msgstr ""
 
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:72
+msgid "SP専用テキストナビ"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:67
+msgid "SP専用テキストナビ — 公開PCでは非表示。SPのテキストナビ配置で表示します。"
+msgstr ""
+
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php:96
 msgid "VOICE / 制作の現場から"
 msgstr ""
@@ -1136,7 +1144,7 @@ msgstr ""
 msgid "とても静か"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:61 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:22
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:62 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/compare-article.php:22
 msgid "なし"
 msgstr ""
 
@@ -1340,7 +1348,7 @@ msgstr ""
 msgid "リフトワン L1（電動・メモリー 4 件）"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:64
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:65
 msgid "リンクの内容は標準ナビゲーション編集で変更できます。参照先の保存はサイト全体に反映されます。"
 msgstr ""
 
@@ -1804,7 +1812,11 @@ msgstr ""
 msgid "入力項目を増やさず、最初の質問だけを受け付けています。"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:59
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:69
+msgid "全ヘッダーに適用"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:60
 msgid "全ヘッダー型で使うナビゲーションを選びます。本文やフッターのナビは変更しません。"
 msgstr ""
 
@@ -1868,11 +1880,15 @@ msgstr ""
 msgid "公開・改善"
 msgstr ""
 
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:71
+msgid "公開中の参照先"
+msgstr ""
+
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php:16
 msgid "公開後の改善が標準"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:40
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:41
 msgid "公開済みのナビゲーションを選択してください。"
 msgstr ""
 
@@ -1904,15 +1920,15 @@ msgstr ""
 msgid "共有設定は「メンバー」から。"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:58
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:59
 msgid "共通ヘッダーナビ"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:65
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:66
 msgid "共通ヘッダーナビは未選択です。共通ヘッダーナビ設定から参照先を選んでください。"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:62
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:63
 msgid "共通ヘッダーナビを保存しました。"
 msgstr ""
 
@@ -2168,12 +2184,20 @@ msgstr ""
 msgid "参加賞"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:60
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:61
 msgid "参照するナビゲーション"
 msgstr ""
 
-#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:63
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:68
+msgid "参照先の変更は未適用です。全ヘッダーへの適用には明示保存が必要です。"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:64
 msgid "参照先を保存"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:73
+msgid "参照先を保存しています。次の適用は保存完了後に行ってください。"
 msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php:65
@@ -2362,6 +2386,14 @@ msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/lp.php:100
 msgid "声 3 件中 2 件を例として掲載しています（内容は PoC 用の架空文）。"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:70
+msgid "変更を取り消す"
+msgstr ""
+
+#: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php:74
+msgid "変更後の参照先"
 msgstr ""
 
 #: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:16 docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php:17
