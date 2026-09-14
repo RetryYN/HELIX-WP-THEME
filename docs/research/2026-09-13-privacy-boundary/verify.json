@@ -8,7 +8,7 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
     "docs/research/2026-09-08-content-faces/plugin"
   ],
-  "scannedFileCount": 142,
+  "scannedFileCount": 143,
   "scopeBoundary": "Current HELIX WT deliverable only. Legacy AGENT NEO theme/plugin roots are read-only reference assets and are excluded by the repository work boundary.",
   "rules": [
     {
@@ -47,8 +47,9 @@
   "sourceDigests": {
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-chrome.css": "4f075f2e3411587077ec1e26cc5182dfca8bdd916329ffc3fc7f21ac5e0ac524",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "18ab6339fa2da074bba12cdfce849e009b2ce878db0616cbbf2baffbe89b2c3c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-completion.css": "40099fd03da94d602bef414b82f5df02d24bd2c1d7c0dd4fda57615ab518ac33",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "74860b50b7467020bd72062a81f57881dbaa8d172e9f993872ef89143823dbb1",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/icons.css": "07a77dc69d6a47048288aa45c07a43e4ed19723b65d6a8a39af468d0923a4821",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/parts-catalog.css": "6b1693ff891c895a18614650afafc30a208e34dbec0ff36f3749a0574bcd97ff",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/site-pages.css": "ad722d11e6aefd6b6f334fa4d78b63e6d255507ae8b5e409430583f924f378d2",
@@ -73,7 +74,7 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/capability-manifest.json": "f64149576a57451e76d4247910e7e1e0fed2a86f33fe03f98462eb2f441780e5",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/content-chrome.json": "203a6e3703d57d485f1dc9fc4efd92ad678cbe9023a93131be04823a220abfa4",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/i18n-profile.json": "6e0cb1d3607809a1e350fcb937f93b9523e3b98cb83fd7865ac067a4c634726d",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "06cf6bbfd204db7c50602529f2027d990a4533b7a5f102a06d3f5f416e2e9d9b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f70d68f32b736522d1172bf7792cb596032a455effe43aff2547acf901bc084b",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "071495a464d3aa83a95a4497f27a630d5664022676e1ce8fe5b17e4f4f39c31a",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
@@ -111,7 +112,7 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-textlink.php": "66b5111195658c2b4f65a9b65cf8dd5ac8621ae170e688e063012a6b8294a2ab",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta-triple.php": "8a7295c4c55a0a64175a0349ddf7249f688b1391253e1de0deeabece2802d54d",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/cta.php": "65ccf0af7550a80dc9b6bc6619f1011d5ed4130ace3b8a3cbe400c5a64876761",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "e24fd68007cc1c951fc6b908ceadaed2115490b8a46df9caabe6f32dfd82089a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "cc58e341eb084270eb0524c9081d5d139858c3b592b31ddc062d48a37059af5a",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/faq.php": "2ff50718193240a738de4039c3404205073b4e8d43ad5a85792c8adc9138b762",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/features.php": "a9b51d2afdf6b3fead187f6704bd74b8674d31c5385164a144531103aa51586a",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/footer-related.php": "de66f6e6dcf725658ef66d2138e2517a39838535172b35595e4ac2580029a5d3",

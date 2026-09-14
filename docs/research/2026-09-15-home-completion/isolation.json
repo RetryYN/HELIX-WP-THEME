@@ -1,11 +1,11 @@
 {
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-home-isolation.mjs": "0d1ac0722eb7929aecb44655c09f9c17e80d29cdd77f55781c87186cc9dc9169",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "06cf6bbfd204db7c50602529f2027d990a4533b7a5f102a06d3f5f416e2e9d9b",
+    "scripts/verify-home-isolation.mjs": "abe4bdc2f61111989bf4a60a60d4ef37ec2b0b104540ad106d507c6a10cc4842",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f70d68f32b736522d1172bf7792cb596032a455effe43aff2547acf901bc084b",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "cc54ce530ccb5947b26dcbf63825c1a8c8f81bdf54afcf80136a5e26cda04a56",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php": "071495a464d3aa83a95a4497f27a630d5664022676e1ce8fe5b17e4f4f39c31a",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "74860b50b7467020bd72062a81f57881dbaa8d172e9f993872ef89143823dbb1",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-chrome.css": "4f075f2e3411587077ec1e26cc5182dfca8bdd916329ffc3fc7f21ac5e0ac524"
   },
@@ -111,7 +111,7 @@
       "pass": true
     },
     {
-      "name": "pc-js:/library/decision-design/:home-css-not-enqueued",
+      "name": "pc-js:/library/decision-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -119,7 +119,7 @@
       "pass": true
     },
     {
-      "name": "pc-js:/voices/making-room/:home-css-not-enqueued",
+      "name": "pc-js:/voices/making-room/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -127,7 +127,7 @@
       "pass": true
     },
     {
-      "name": "pc-js:/learn/page-design/:home-css-not-enqueued",
+      "name": "pc-js:/learn/page-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -135,7 +135,7 @@
       "pass": true
     },
     {
-      "name": "pc-js:/site-company/:home-css-not-enqueued",
+      "name": "pc-js:/site-company/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -239,7 +239,7 @@
       "pass": true
     },
     {
-      "name": "pc-nojs:/library/decision-design/:home-css-not-enqueued",
+      "name": "pc-nojs:/library/decision-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -247,7 +247,7 @@
       "pass": true
     },
     {
-      "name": "pc-nojs:/voices/making-room/:home-css-not-enqueued",
+      "name": "pc-nojs:/voices/making-room/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -255,7 +255,7 @@
       "pass": true
     },
     {
-      "name": "pc-nojs:/learn/page-design/:home-css-not-enqueued",
+      "name": "pc-nojs:/learn/page-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -263,7 +263,7 @@
       "pass": true
     },
     {
-      "name": "pc-nojs:/site-company/:home-css-not-enqueued",
+      "name": "pc-nojs:/site-company/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -367,7 +367,7 @@
       "pass": true
     },
     {
-      "name": "sp-js:/library/decision-design/:home-css-not-enqueued",
+      "name": "sp-js:/library/decision-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -375,7 +375,7 @@
       "pass": true
     },
     {
-      "name": "sp-js:/voices/making-room/:home-css-not-enqueued",
+      "name": "sp-js:/voices/making-room/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -383,7 +383,7 @@
       "pass": true
     },
     {
-      "name": "sp-js:/learn/page-design/:home-css-not-enqueued",
+      "name": "sp-js:/learn/page-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -391,7 +391,7 @@
       "pass": true
     },
     {
-      "name": "sp-js:/site-company/:home-css-not-enqueued",
+      "name": "sp-js:/site-company/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -499,7 +499,7 @@
       "pass": true
     },
     {
-      "name": "sp-nojs:/library/decision-design/:home-css-not-enqueued",
+      "name": "sp-nojs:/library/decision-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -507,7 +507,7 @@
       "pass": true
     },
     {
-      "name": "sp-nojs:/voices/making-room/:home-css-not-enqueued",
+      "name": "sp-nojs:/voices/making-room/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -515,7 +515,7 @@
       "pass": true
     },
     {
-      "name": "sp-nojs:/learn/page-design/:home-css-not-enqueued",
+      "name": "sp-nojs:/learn/page-design/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {
@@ -523,7 +523,7 @@
       "pass": true
     },
     {
-      "name": "sp-nojs:/site-company/:home-css-not-enqueued",
+      "name": "sp-nojs:/site-company/:scoped-home-css-has-no-home-dom",
       "pass": true
     },
     {

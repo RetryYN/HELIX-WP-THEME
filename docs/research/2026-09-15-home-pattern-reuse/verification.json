@@ -1,0 +1,224 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-home-pattern-reuse.mjs": "faa81902f48a32feba486932f61fd075cc65dc309f70b9b34658acf7ba9e683e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f70d68f32b736522d1172bf7792cb596032a455effe43aff2547acf901bc084b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "bb583557833ad9d5553f3daee44a2c5c6c6694d5b17a83ec4517e1a0006085f1"
+  },
+  "rows": [
+    {
+      "name": "pc-js:before:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "pc-js:before:markup",
+      "pass": true
+    },
+    {
+      "name": "pc-js:before:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "pc-js:before:background",
+      "pass": true,
+      "details": {
+        "background": "rgba(0, 0, 0, 0)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "pc-js:before:reflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:after:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "pc-js:after:markup",
+      "pass": true
+    },
+    {
+      "name": "pc-js:after:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "pc-js:after:background",
+      "pass": true,
+      "details": {
+        "background": "rgb(23, 28, 34)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "pc-js:after:reflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:before:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:before:markup",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:before:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:before:background",
+      "pass": true,
+      "details": {
+        "background": "rgba(0, 0, 0, 0)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "pc-nojs:before:reflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:after:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:after:markup",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:after:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:after:background",
+      "pass": true,
+      "details": {
+        "background": "rgb(23, 28, 34)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "pc-nojs:after:reflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:before:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "sp-js:before:markup",
+      "pass": true
+    },
+    {
+      "name": "sp-js:before:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "sp-js:before:background",
+      "pass": true,
+      "details": {
+        "background": "rgba(0, 0, 0, 0)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "sp-js:before:reflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:after:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "sp-js:after:markup",
+      "pass": true
+    },
+    {
+      "name": "sp-js:after:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "sp-js:after:background",
+      "pass": true,
+      "details": {
+        "background": "rgb(23, 28, 34)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "sp-js:after:reflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:after:fixed-footer-clear",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:before:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:before:markup",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:before:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:before:background",
+      "pass": true,
+      "details": {
+        "background": "rgba(0, 0, 0, 0)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "sp-nojs:before:reflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:after:ordinary-page",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:after:markup",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:after:stylesheet",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:after:background",
+      "pass": true,
+      "details": {
+        "background": "rgb(23, 28, 34)",
+        "overflow": false
+      }
+    },
+    {
+      "name": "sp-nojs:after:reflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:after:fixed-footer-clear",
+      "pass": true
+    },
+    {
+      "name": "non-home:/sample-page/:unchanged",
+      "pass": true
+    },
+    {
+      "name": "non-home:/site-company/:unchanged",
+      "pass": true
+    },
+    {
+      "name": "fixture:cleanup",
+      "pass": true
+    }
+  ]
+}

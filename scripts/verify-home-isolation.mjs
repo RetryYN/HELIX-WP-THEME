@@ -37,7 +37,7 @@ try{
    };
    const initial=await snapshot('');const changed=await snapshot(',home_hero:slider,home_sections:media,home_head:off,home_foot:off,home_fix:own,home_fixed:sp-bottom-bar,home_side_layout:both,home_side_set:full,side_from:top');
    check(`${device}-${js?'js':'nojs'}:${route}:home-axis-isolation`,JSON.stringify(initial)===JSON.stringify(changed));
-   check(`${device}-${js?'js':'nojs'}:${route}:home-css-not-enqueued`,!changed.homeCss&&!changed.home);
+   check(`${device}-${js?'js':'nojs'}:${route}:scoped-home-css-has-no-home-dom`,changed.homeCss&&!changed.home);
   }
   if(width===375){
    await page.goto(base+'/?wt=home_fixed:sp-bottom-bar,home_fix:own,home_contact:double-cta');

@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('638');
+  await expect(page.locator('#total')).toHaveText('643');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -256,7 +256,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('638候補 / SP');
+  await expect(page.locator('#count')).toHaveText('643候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
@@ -338,11 +338,11 @@ test('related candidates and expanded results resume, and removing the last comp
   await page.locator('.req-row > summary').click();
   await page.locator('.req-row button').click();
   await page.locator('#more').click();
-  await expect(page.locator('.tile')).toHaveCount(52);
+  await expect(page.locator('.tile')).toHaveCount(57);
   const ids = await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId));
   await page.reload();
   await expect(page.locator('#collection-title')).toHaveText('要求に関連する候補');
-  await expect(page.locator('.tile')).toHaveCount(52);
+  await expect(page.locator('.tile')).toHaveCount(57);
   expect(await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId))).toEqual(ids);
   await page.locator('.compare-pick input').first().check();
   await page.locator('#tab-requirements').click();

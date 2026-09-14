@@ -470,6 +470,31 @@ if (fs.existsSync(path.join(root, homePath))) {
     });
   }
 }
+const eventPath = 'docs/research/2026-09-15-event-completion/verification.json';
+if (fs.existsSync(path.join(root, eventPath))) {
+  const evidence = read(eventPath);
+  const choices = read('docs/research/2026-09-15-event-completion/choices.json').choices;
+  const required = ['fixtures:cleanup', 'source-unchanged', ...choices.flatMap(c => ['pc-js', 'pc-nojs', 'sp-js', 'sp-nojs'].map(mode => `${mode}:${c.id}:metadata-section-order`))];
+  if (!evidence.completed || evidence.baselinePresentationDisabled || evidence.finishedOnly || evidence.rows.some(r => !r.pass) || required.some(name => !evidence.rows.some(r => r.name === name && r.pass))) throw Error('EVENT completion evidence failed or partial');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale EVENT evidence: ${file}`);
+  for (const choice of choices) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.purpose === choice.id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-15-event-completion', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing or changed EVENT screenshot ${choice.id}/${device}`);
+      images[device] = `../2026-09-15-event-completion/${shot.file}`;
+    }
+    entries.set(`event-finished:${choice.id}`, {
+      id: `event-finished:${choice.id}`, face: 'event', part: 'event-finished', finished: true,
+      label: `完成EVENT：${choice.label}`, variant: `${choice.values.event_hero} / ${choice.id}`,
+      purpose: choice.purpose, description: '開催情報から申込までの完成構成PoC。人物・会場・本文は架空。外部送信・実予約は含みません。受付前・満席・締切の操作証拠は別fixtureです。',
+      group: 'ページ・本文', images, requirementIds: ['WT-FR-EVENT-01', 'WT-FR-LOOK-01', 'WT-FR-PARTS-03', 'WT-FR-FORM-01'],
+      selectionFacts: choice.selectionFacts,
+      demoRoute: evidence.shots.find(s => s.purpose === choice.id).route,
+      evidence: '../2026-09-15-event-completion/verification.json',
+    });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
