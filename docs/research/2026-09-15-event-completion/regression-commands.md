@@ -15,8 +15,8 @@ node scripts/verify-site-pages.mjs
 node scripts/verify-site-page-editor.mjs
 node scripts/verify-footer-rendering.mjs
 node scripts/verify-footer-editor.mjs
-node scripts/verify-event-state.mjs
-node scripts/verify-event-boundaries.mjs
+node scripts/verify-event-state.mjs --strict
+node scripts/verify-event-boundaries.mjs --strict
 node scripts/verify-content-faces.mjs
 python3 scripts/verify-content-management.py
 node scripts/verify-interview-lifecycle.mjs

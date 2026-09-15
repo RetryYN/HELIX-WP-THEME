@@ -15,8 +15,8 @@
     "node scripts/verify-site-page-editor.mjs",
     "node scripts/verify-footer-rendering.mjs",
     "node scripts/verify-footer-editor.mjs",
-    "node scripts/verify-event-state.mjs",
-    "node scripts/verify-event-boundaries.mjs",
+    "node scripts/verify-event-state.mjs --strict",
+    "node scripts/verify-event-boundaries.mjs --strict",
     "node scripts/verify-content-faces.mjs",
     "python3 scripts/verify-content-management.py",
     "node scripts/verify-interview-lifecycle.mjs",
@@ -1787,7 +1787,7 @@
       "evidence": [
         {
           "proof": "docs/research/2026-09-08-event-state/verify.json",
-          "command": "node scripts/verify-event-state.mjs",
+          "command": "node scripts/verify-event-state.mjs --strict",
           "row_names": [
             "fixture-mode:blogname-does-not-enable-observed-time",
             "state:before-open:pc:js-true",
@@ -1939,7 +1939,7 @@
         },
         {
           "proof": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-          "command": "node scripts/verify-event-boundaries.mjs",
+          "command": "node scripts/verify-event-boundaries.mjs --strict",
           "row_names": [
             "state:japan-start:pc:js-true",
             "form-availability:japan-start:pc:js-true",
@@ -2291,7 +2291,7 @@
       "evidence": [
         {
           "proof": "docs/research/2026-09-08-event-state/verify.json",
-          "command": "node scripts/verify-event-state.mjs",
+          "command": "node scripts/verify-event-state.mjs --strict",
           "row_names": [
             "fixture-mode:blogname-does-not-enable-observed-time",
             "state:before-open:pc:js-true",
@@ -2443,7 +2443,7 @@
         },
         {
           "proof": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-          "command": "node scripts/verify-event-boundaries.mjs",
+          "command": "node scripts/verify-event-boundaries.mjs --strict",
           "row_names": [
             "state:japan-start:pc:js-true",
             "form-availability:japan-start:pc:js-true",

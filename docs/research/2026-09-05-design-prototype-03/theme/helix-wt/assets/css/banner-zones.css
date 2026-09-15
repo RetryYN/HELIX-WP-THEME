@@ -1,0 +1,29 @@
+/* Canonical creative: reserve image geometry and keep disclosure beside its own link. */
+.wt-banner-zone{box-sizing:border-box;max-width:var(--wp--custom--content-max);margin:var(--wp--preset--spacing--40) auto;padding:var(--wp--preset--spacing--40);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);color:var(--wp--preset--color--contrast);overflow-wrap:anywhere}
+.wt-banner-zone[hidden]{display:none}
+.wt-banner-zone__pr{display:block;font-size:var(--wp--preset--font-size--s);font-weight:700;line-height:1.5;margin-bottom:var(--wp--preset--spacing--20);color:var(--wp--preset--color--contrast)}
+.wt-banner-zone__link{display:flex;align-items:center;flex-wrap:wrap;gap:var(--wp--preset--spacing--30);min-height:var(--wp--custom--button-height);color:inherit;text-decoration:none;font-size:var(--wp--preset--font-size--m);font-weight:700}
+.wt-banner-zone__link:visited{color:inherit}
+.wt-banner-zone__link picture{display:block;flex:0 0 100%;width:100%;overflow:hidden;border-radius:var(--wp--custom--radius-s)}
+.wt-banner-zone__link img{display:block;width:100%;height:auto;object-fit:contain}
+.wt-banner-zone__link>span:first-of-type{flex:1}
+.wt-banner-zone__link:focus-visible,.wt-banner-zone__close:focus-visible{outline:var(--wp--preset--spacing--10) solid var(--wp--preset--color--accent);outline-offset:var(--wp--preset--spacing--10)}
+.wt-banner-zone--header-below{max-width:none;margin:0;border-radius:0;border-inline:0;background:var(--wp--preset--color--accent-soft);display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--wp--preset--spacing--40);padding-inline:var(--wp--custom--gutter)}
+.wt-banner-zone--header-below .wt-banner-zone__pr{grid-column:1}
+.wt-banner-zone--header-below .wt-banner-zone__link{grid-column:1}
+.wt-banner-zone__close{grid-column:2;grid-row:1/3;align-self:center;min-width:var(--wp--custom--button-height);min-height:var(--wp--custom--button-height);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base);color:var(--wp--preset--color--contrast);font:inherit;cursor:pointer}
+.wt-banner-zone__close[hidden]{display:none}
+.wt-banner-zone--sidebar,.wt-banner-zone--sticky-sidebar{max-width:var(--wp--custom--sidebar-w-min)}
+@media(max-width:599px){.wt-banner-zone{margin-inline:var(--wp--preset--spacing--40)}.wt-banner-zone--header-below{margin-inline:0}.wt-banner-zone--sp-bottom .wt-banner-zone__link picture{flex-basis:40%;width:40%}}
+.wt-banner-stack{display:flex;flex-direction:column;max-width:var(--wp--custom--content-max);margin-inline:auto;background:var(--wp--preset--color--base);border-top:1px solid var(--wp--preset--color--line)}
+.wt-banner-stack>div{padding:var(--wp--preset--spacing--20) var(--wp--preset--spacing--40)}
+.wt-banner-stack a{display:flex;justify-content:center;align-items:center;min-height:var(--wp--custom--button-height);font-size:var(--wp--preset--font-size--s);font-weight:700;color:var(--wp--preset--color--contrast)}
+.wt-banner-stack__consent{order:1;background:var(--wp--preset--color--surface)}
+.wt-banner-stack__menu{order:2;background:var(--wp--preset--color--accent-soft)}
+.wt-banner-stack__share{order:3}
+.wt-banner-modal{max-width:var(--wp--custom--content-max);padding:var(--wp--preset--spacing--60);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-l);background:var(--wp--preset--color--base);color:var(--wp--preset--color--contrast)}
+.wt-banner-modal::backdrop{background:var(--wp--preset--color--contrast);opacity:.7}
+.wt-banner-modal :is(a,button){display:inline-flex;align-items:center;min-height:var(--wp--custom--button-height);padding:var(--wp--preset--spacing--30)}
+@media(max-width:599px){.wt-banner-stack[data-ready]{position:fixed;inset:auto 0 0;z-index:100;max-height:40dvh;overflow:auto}body:has(.wt-banner-stack[data-ready]){padding-bottom:var(--wt-banner-stack-height,0px)}}
+.wt-banner-stack__consent{position:relative;z-index:3}.wt-banner-stack__menu{position:relative;z-index:2}.wt-banner-stack__share{position:relative;z-index:1}
+@media(max-width:599px){body:has(.wt-banner-stack[data-ready]) :is(.wt-fixed,.wt-home-fixed,.wt-event-fixed){bottom:calc(var(--wt-banner-stack-height,0px) + var(--wp--preset--spacing--20))}}

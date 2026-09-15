@@ -10,7 +10,7 @@ const button = (text, action) => {
   node.type = 'button'; node.addEventListener('click', action); return node;
 };
 const labels = { unreviewed: '未選択', adopt: '採用候補', hold: '保留', reject: '除外' };
-const faceLabels = { search: 'サイト内検索', inheritance: '共通設定の継承', site: '会社・規約', zone: '配置slot', article: '記事', learning: '学習・ヘルプ', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
+const faceLabels = { search: 'サイト内検索', inheritance: '共通設定の継承', site: '会社・規約', zone: 'バナー・配置', article: '記事', learning: '学習・ヘルプ', paid: '有料記事', interview: 'インタビュー', blp: 'BLP', category: 'カテゴリ', footer: 'フッター', lp: 'LP', home: 'ホーム', event: 'イベント', page: '固定ページ', form: 'フォーム', '404': '404' };
 const storageKey = 'helix-selection-memos.v1';
 const workspaceKey = 'helix-selection-workspace.v1';
 let noticeTimer;
@@ -155,12 +155,14 @@ async function start() {
       && (!$('purpose').value || e.purpose === $('purpose').value)
       && (!selected || memoFor(e.id).status === selected)
       && `${e.label} ${e.part} ${e.variant} ${e.requirementIds.join(' ')} ${memoFor(e.id).note}`.toLocaleLowerCase().includes(query))
-      .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])) || (['home', 'event'].includes(face) ? Number(Boolean(b.finished)) - Number(Boolean(a.finished)) : 0));
+      .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])) || (['home', 'event', 'zone'].includes(face) ? Number(Boolean(b.finished)) - Number(Boolean(a.finished)) : 0));
     $('collection-title').textContent = linkedIds ? '要求に関連する候補' : collections.find(([key]) => key === face)[1];
     $('count').textContent = `${entries.length}候補 / ${device.toUpperCase()}`;
     $('empty').hidden = entries.length > 0; $('more').hidden = entries.length <= limit;
     $('home-start').hidden = face !== 'home' || Boolean(linkedIds);
     $('event-start').hidden = face !== 'event' || Boolean(linkedIds);
+    $('banner-start').hidden = face !== 'zone' || Boolean(linkedIds);
+    $('banner-finished-only').setAttribute('aria-pressed', String($('search').value === 'バナー完成比較'));
     $('event-finished-only').setAttribute('aria-pressed', String($('search').value === '完成EVENT'));
     $('home-finished-only').setAttribute('aria-pressed', String($('search').value === '完成HOME'));
     $('gallery').dataset.collection = face;
@@ -249,6 +251,8 @@ async function start() {
   }
   $('home-finished-only').addEventListener('click', () => { $('search').value = '完成HOME'; limit = 36; render(); });
   $('event-finished-only').addEventListener('click', () => { $('search').value = '完成EVENT'; limit = 36; render(); });
+  $('banner-finished-only').addEventListener('click', () => { $('search').value = 'バナー完成比較'; limit = 36; render(); });
+  $('banner-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('event-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('home-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('reset-gallery').addEventListener('click', () => {

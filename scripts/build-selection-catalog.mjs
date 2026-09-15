@@ -495,6 +495,29 @@ if (fs.existsSync(path.join(root, eventPath))) {
     });
   }
 }
+const bannerPath = 'docs/research/2026-09-16-banner-zone-completion/verification.json';
+if (fs.existsSync(path.join(root, bannerPath))) {
+  const evidence = read(bannerPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Banner zone evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale banner evidence: ${file}`);
+  const facts = {
+    notice: ['必要な案内だけを短く伝える', 'ヘッダー直下', '固定', '同じ端末で閉状態を保持'],
+    guide: ['読む前に判断材料を案内する', '本文前', '固定', '本文の流れに配置'],
+    product: ['商品情報と表示の食い違いを防ぐ', '本文後', '商品IDから派生', '商品側の画像とリンクを共用'],
+    advertisement: ['広告の提供元を曖昧にしない', '本文前', '固定', '画像・リンクの直前に広告表示'],
+    rotation: ['複数の案内を切り替える', '本文前', '訪問リクエスト単位で切替', '表示中のバナーごとに広告表示'],
+    stack: ['補助操作を本文CTAに重ねない', 'ヘッダー直下＋下部', '固定', '設定へのリンク→メニュー→共有'],
+  };
+  for (const [id, fact] of Object.entries(facts)) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-16-banner-zone-completion', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing banner screenshot ${id}/${device}`);
+      images[device] = `../2026-09-16-banner-zone-completion/${shot.file}`;
+    }
+    entries.set(`banner-finished:${id}`, { id: `banner-finished:${id}`, face: 'zone', part: 'banner-finished', finished: true, label: `バナー完成比較：${evidence.shots.find(s => s.id === id).label}`, variant: id, images, requirementIds: ['WT-FR-BANNER-01', 'WT-FR-ZONE-03'], purpose: fact[0], group: 'ページ・本文', description: '架空のバナー正本と配置の比較PoC。実配信・同意取得・推奨面積の確定を示すものではありません。', selectionFacts: { '対象と判断': fact[0], '配置': fact[1], '表示方法': fact[2], '状態と帰属': fact[3], '予算': '画像150KB以内・viewport面積60%以内の試験宣言（推奨値未確定）' }, evidence: '../2026-09-16-banner-zone-completion/verification.json' });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
