@@ -1,0 +1,662 @@
+{
+  "completed": true,
+  "conditionCount": 72,
+  "assertionCount": 144,
+  "conditions": [
+    "native:search:390:true",
+    "native:nav:390:true",
+    "native:cta:390:true",
+    "native:announce:390:true",
+    "native:center:390:true",
+    "native:two-rows:390:true",
+    "native:overlay:390:true",
+    "native:tel:390:true",
+    "native:band:390:true",
+    "shared:search:390:true",
+    "shared:nav:390:true",
+    "shared:cta:390:true",
+    "shared:announce:390:true",
+    "shared:center:390:true",
+    "shared:two-rows:390:true",
+    "shared:overlay:390:true",
+    "shared:tel:390:true",
+    "shared:band:390:true",
+    "native:search:1440:true",
+    "native:nav:1440:true",
+    "native:cta:1440:true",
+    "native:announce:1440:true",
+    "native:center:1440:true",
+    "native:two-rows:1440:true",
+    "native:overlay:1440:true",
+    "native:tel:1440:true",
+    "native:band:1440:true",
+    "shared:search:1440:true",
+    "shared:nav:1440:true",
+    "shared:cta:1440:true",
+    "shared:announce:1440:true",
+    "shared:center:1440:true",
+    "shared:two-rows:1440:true",
+    "shared:overlay:1440:true",
+    "shared:tel:1440:true",
+    "shared:band:1440:true",
+    "native:search:390:false",
+    "native:nav:390:false",
+    "native:cta:390:false",
+    "native:announce:390:false",
+    "native:center:390:false",
+    "native:two-rows:390:false",
+    "native:overlay:390:false",
+    "native:tel:390:false",
+    "native:band:390:false",
+    "shared:search:390:false",
+    "shared:nav:390:false",
+    "shared:cta:390:false",
+    "shared:announce:390:false",
+    "shared:center:390:false",
+    "shared:two-rows:390:false",
+    "shared:overlay:390:false",
+    "shared:tel:390:false",
+    "shared:band:390:false",
+    "native:search:1440:false",
+    "native:nav:1440:false",
+    "native:cta:1440:false",
+    "native:announce:1440:false",
+    "native:center:1440:false",
+    "native:two-rows:1440:false",
+    "native:overlay:1440:false",
+    "native:tel:1440:false",
+    "native:band:1440:false",
+    "shared:search:1440:false",
+    "shared:nav:1440:false",
+    "shared:cta:1440:false",
+    "shared:announce:1440:false",
+    "shared:center:1440:false",
+    "shared:two-rows:1440:false",
+    "shared:overlay:1440:false",
+    "shared:tel:1440:false",
+    "shared:band:1440:false"
+  ],
+  "sourceDigests": {
+    "scripts/verify-header-navigation-editor-isolation.mjs": "05b11e18fb2c0a64c03b8c3256a0086c038819ca92b9756e9810738a2616f3e0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "4c57c689b91aecb39fbeb75c944f376bfc1ac0e512fbba31a50bb7570b668a98",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36"
+  },
+  "rows": [
+    {
+      "name": "native:search:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:search:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:nav:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:nav:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:cta:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:cta:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:announce:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:announce:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:center:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:center:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:tel:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:tel:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:band:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:band:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:search:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:search:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:center:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:center:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:band:390:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:band:390:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:search:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:search:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:nav:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:nav:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:cta:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:cta:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:announce:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:announce:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:center:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:center:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:tel:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:tel:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:band:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:band:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:search:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:search:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:center:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:center:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:band:1440:true:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:band:1440:true:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:search:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:search:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:nav:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:nav:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:cta:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:cta:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:announce:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:announce:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:center:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:center:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:tel:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:tel:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:band:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:band:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:search:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:search:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:center:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:center:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:band:390:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:band:390:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:search:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:search:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:nav:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:nav:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:cta:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:cta:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:announce:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:announce:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:center:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:center:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:two-rows:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:overlay:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:tel:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:tel:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "native:band:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "native:band:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:search:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:search:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:nav:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:cta:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:announce:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:center:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:center:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:two-rows:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:overlay:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:tel:1440:false:editor-script-not-enqueued",
+      "pass": true
+    },
+    {
+      "name": "shared:band:1440:false:editor-ui-absent",
+      "pass": true
+    },
+    {
+      "name": "shared:band:1440:false:editor-script-not-enqueued",
+      "pass": true
+    }
+  ]
+}

@@ -13,12 +13,16 @@ const rows=[],shots=[];const check=(name,pass)=>rows.push({name,pass:!!pass});le
 const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
 const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
-const original=wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',null));"]);let settingsChanged=false;
+const original=wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',null));"]);let settingsChanged=false;let navigationId=0;
 const trackedSources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-content-inheritance.mjs','docs/research/2026-09-08-content-faces/plugin/search.php',...['inc/footer-navigation.php','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','inc/content-faces.php','inc/learning.php','inc/site-pages.php','inc/content-chrome.php','inc/content-navigation.php','config/content-chrome.json','theme.json','assets/css/theme.css','assets/css/content-faces.css','assets/css/site-pages.css','assets/css/content-chrome.css','assets/js/header.js','assets/js/footer.js','assets/js/side.js','parts/header-band.html','parts/header-center.html','parts/header-two-rows.html','parts/footer.html'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f),'docs/research/2026-09-08-content-faces/plugin/content-faces.php','docs/research/2026-09-08-content-faces/plugin/manifest.json'];
 const getDigests=()=>Object.fromEntries(trackedSources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=getDigests();
 const browser=await chromium.launch();
 try{
+ const navigationContent=['記事を読む','人を知る','学習・ヘルプ','会社案内'].map((label,index)=>`<!-- wp:navigation-link ${JSON.stringify({label,url:'/inheritance-navigation-'+index+'/',kind:'custom'})} /-->`).join('');
+ const encodedNavigation=Buffer.from(navigationContent).toString('base64');
+ navigationId=Number(wp(['eval',`$id=wp_insert_post(wp_slash(array('post_type'=>'wp_navigation','post_status'=>'publish','post_title'=>'継承検証ナビ','post_content'=>base64_decode('${encodedNavigation}'))));if(is_wp_error($id)){throw new Exception('navigation fixture');}set_theme_mod('wt_content_navigation_ref',$id);echo $id;`]));
+ settingsChanged=true;
  for(const [device,width] of [['pc',1440],['sp',375]]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:false});const page=await context.newPage();
   for(const [face,route] of Object.entries(faces))for(const mode of ['site','own','off']){
@@ -67,11 +71,13 @@ try{
  completed=true;
 }finally{
  await browser.close();
- if(settingsChanged){
-  const encoded=Buffer.from(original).toString('base64');
-  wp(['eval',`$v=json_decode(base64_decode('${encoded}'),true);if(null===$v){delete_option('theme_mods_helix-wt');}else{update_option('theme_mods_helix-wt',$v);}`]);
-  check('settings-restored',wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',null));"])===original);
- }
+ try{
+  if(settingsChanged){
+   const encoded=Buffer.from(original).toString('base64');
+   wp(['eval',`$v=json_decode(base64_decode('${encoded}'),true);if(null===$v){delete_option('theme_mods_helix-wt');}else{update_option('theme_mods_helix-wt',$v);}`]);
+   check('settings-restored',wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',null));"])===original);
+  }
+ }finally{if(navigationId)wp(['post','delete',String(navigationId),'--force']);}
  check('sources-unchanged',JSON.stringify(sourceDigests)===JSON.stringify(getDigests()));
  fs.writeFileSync(path.join(out,baseline?'baseline.json':'verify.json'),JSON.stringify({completed,sourceDigests,rows,shots},null,2)+'\n');
  console.log(JSON.stringify({checks:rows.length,failed:rows.filter(r=>!r.pass).length}));
