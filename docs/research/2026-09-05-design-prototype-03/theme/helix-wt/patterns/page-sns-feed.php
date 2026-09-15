@@ -11,11 +11,11 @@ $u = get_theme_file_uri( 'assets/img' );
 <div class="wp-block-group alignfull wt-part wt-part--sns-feed" id="part-sns-feed">
 <!-- wp:html -->
 <div class="wt-lp-section-inner">
-<p class="wt-eyebrow">SNS</p><h2 id="part-sns-title">最新の投稿</h2>
+<p class="wt-eyebrow">SNS</p><h2 id="part-sns-title"><?php esc_html_e( '最新の投稿', 'helix-wt' ); ?></h2>
 <!-- /wp:html -->
 <!-- wp:helix-wt/sns-feed-embed /-->
 <!-- wp:html -->
-<ul class="wt-part-sns__links" aria-label="公式アカウント（PoC のダミー導線）"><li><a class="wt-sns" href="#part-sns-feed" rel="nofollow" aria-label="公式アカウント 1"><i class="wt-i wt-i--sns-x" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#part-sns-feed" rel="nofollow" aria-label="公式アカウント 2"><i class="wt-i wt-i--sns-ig" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#part-sns-feed" rel="nofollow" aria-label="公式アカウント 3"><i class="wt-i wt-i--sns-yt" aria-hidden="true"></i></a></li></ul>
+<ul class="wt-part-sns__links" aria-label="<?php echo esc_attr__( '公式アカウント（PoC のダミー導線）', 'helix-wt' ); ?>"><li><a class="wt-sns" href="#part-sns-feed" rel="nofollow" aria-label="<?php echo esc_attr__( '公式アカウント 1', 'helix-wt' ); ?>"><i class="wt-i wt-i--sns-x" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#part-sns-feed" rel="nofollow" aria-label="<?php echo esc_attr__( '公式アカウント 2', 'helix-wt' ); ?>"><i class="wt-i wt-i--sns-ig" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#part-sns-feed" rel="nofollow" aria-label="<?php echo esc_attr__( '公式アカウント 3', 'helix-wt' ); ?>"><i class="wt-i wt-i--sns-yt" aria-hidden="true"></i></a></li></ul>
 </div>
 <!-- /wp:html -->
 </div>

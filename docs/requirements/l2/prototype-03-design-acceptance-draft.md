@@ -1,3 +1,62 @@
+# デザイン試作03 受入条件ドラフト（段13時点の照合）
+
+更新: 2026-09-08。要求候補の正本は [IR](../l3/requirements-ir.json) と [AC](../l3/acceptance-cases.json)、最新方針・未決・着手順は [現在の足並み](../current-alignment.md)。G3未実施。保存済み verify 90 pass / 0 fail・978枚は部分証跡であり、全要求の合格ではない。今回実機は再実行していない。
+
+## 旧ドラフト37件の現況補正
+
+9月5日の本文を現在の実装状態として読まないための全37件の照合表。証跡名は試作03の `results/verify.json` / `scripts/verify.mjs` と README を指す。「残り」は製品要件に対する未実証範囲であり、範囲削除ではない。過去の実測値や「検証手段あり26件」等の集計は歴史的な値として末尾に保持する。
+
+| 要求 | 最新の部分証跡・補正 | 残り |
+| --- | --- | --- |
+| WT-FR-ZONE-01 | sideOwner / chromeOwnerでoff時の部品非描画を部分検査 | 全slotのJSON宣言、空slot・重い面の全条件描画 |
+| WT-FR-ZONE-02 | 面別の束がある | 23ゾーンのJSON schema・first-match-wins |
+| WT-FR-ZONE-03 | fixedOverlap / chromeOwnerで固定導線の重なりを部分検査 | 同意バーとの積層、広告面積上限、初回モーダル規則 |
+| WT-FR-PARTS-01 | headerVariants / footerNoJs / sideFace / chromeOwner、HOME / イベントの拡張 | 製品JSON・Site Editor・AI経路の保存と両幅反映 |
+| WT-FR-PARTS-02 | footer型と面別選択は試作あり | テンプレ名による変種・層1尺度の所有・wp_navigation refの製品契約 |
+| WT-FR-VOCAB-01 | tableRich / qaModal / graphs / graphsMore / pageParts 等 | 14語彙の製品受け皿、SP変換の全網羅。上限7と表現最大化の境界はIR pending |
+| WT-FR-VOCAB-02 | toc / tocFloatLeft、サイドバーと目次の組み合わせ | 全ページ種別・除外指定・編集後の追従の全条件 |
+| WT-FR-VOCAB-03 | prAutoFixtures / prNoticeText / ctaBannerNoPrPrefix / productCardNoPrBadge。既定autoと文言を反映 | 広告リンク有無の判定、本文編集時の欠落防止と重複抑止の両立はIR pending |
+| WT-FR-VOCAB-04 | ブログカードの型を追加 | url_to_postid直呼び・外部URL安全な取得経路の製品検証 |
+| WT-FR-SECTION-01 | 表示用の区間・再利用パーツは増加 | 安定H2/H3 IDと中間JSON抽出の契約 |
+| WT-FR-SECTION-02 | 固定ページパーツ等の表示試作 | 区間単位diff/apply/rollback・リライト・計測 |
+| WT-FR-LOOK-01 | 見出し・幅・グラフ・depth・detext・画像効果等の個別検査あり | 全カード高さ・全組み合わせ・最悪画素コントラストの適合。単なる型数で完了しない |
+| WT-FR-LOOK-02 | この試作では製品variation写像の新証跡なし | 色8スラッグ・複数variation写像の検査 |
+| WT-FR-LOOK-03 | homeFace / eventFace / lpParts / pageParts。未観察も要求の調査対象に改定 | 全サイトパターンのvariation品質と組み合わせ |
+| WT-FR-META-01 | sideDefaults / sideOwner等で選択を部分検査 | 投稿メタ5キー・未設定/サイト既定/上書きの製品経路と複数記事の照合 |
+| WT-FR-TPL-01 | status404、検索フォームの表示 | 検索結果テンプレの型・noindex・検索ログの条件 |
+| WT-FR-RECO-01 | relatedQuality / relatedSlider / relatedNoFixture、描画品質を拡張 | 人気の集計方式・期間・bot/管理者除外・IP非保存 |
+| WT-FR-LOOK-04 | 複数書体系統の選択の新証跡なし | 自己ホスト・サブセット・フォント選択 |
+| WT-FR-BANNER-01 | announceFullWidth、サイドバーのバナー、面別所属 | バナー正本・商品ID派生・全ゾーン配置UI |
+| WT-FR-BANNER-02 | 新しい計測証跡なし | impression/click・広告タグ分離・relの製品経路 |
+| WT-FR-SP-01 | 各面PC / SPを検査 | 端末別独立保存・JSON / 管理画面 / MCP編集・全幅reflow |
+| WT-FR-SP-02 | headerVariants、SPサイドバーの選択、固定CTA | 3〜5タブの全構成・ドロワー階層・SP広告面 |
+| WT-FR-SP-03 | table、固定CTA等の個別検査 | Tabs→accordion・gallery swipe等の製品契約の網羅 |
+| WT-NFR-A11Y-01 | tap / contrast系、formFaceのエラー参照やフォーカス等を部分検査 | 全面キーボード・ARIA・focus・reflow・text-spacingと最悪画素の適合 |
+| WT-NFR-A11Y-02 | reducedMotion / lpReducedMotion、noJs系 | 全追加部品で操作完了が動きに依存しないことの網羅 |
+| WT-NFR-SP-01 | tapと固定導線の重なり検査 | 全ページの横スクロール量、同意バーを含む積層順 |
+| WT-NFR-SP-02 | PC / SP両幅の表示検査 | 主測定面選択・device別A/B・管理画面/MCPプレビュー・CWV |
+| WT-NFR-PERF-01 | noJsとhero等の構造検査 | Lighthouse / CWV予算の実測とCI blocking |
+| WT-NFR-PERF-02 | 表示成立のみ | CSS転送量・critical CSS・font swapのビルド検証 |
+| WT-NFR-PERF-03 | 表示成立のみ | Lighthouse / CWV閾値のCI blocking |
+| WT-FR-IMG-01 | 表示用画像の使用 | WebP / AVIF / WebM生成パイプライン |
+| WT-FR-IMG-02 | この試作では新証跡なし | 非同期ジョブ・再生成・dry-run |
+| WT-FR-IMG-03 | relatedNoFixtureで画像読込を検査 | alt警告・GIF置換提案・Discover代表画像の製品検査 |
+| WT-FR-TYPO-01 | 価格・見出し・数値の個別寸法検査 | 和文改行プロパティと横スクロール量の体系的検査 |
+| WT-FR-NAV-01 | パンくず等の表示とサイドナビ | BreadcrumbListの単一正本とJSON-LD、文字背景の厳密適合 |
+| WT-FR-LP-01 | lpVisibleAnchors等とformSlotsのslug / 明示テンプレ / front-page優先境界 | CPT化・URL・JSON種別とBLPの独立構成 |
+| WT-FR-LP-02 | lpParts / formSlots、確認値・完了と種別引継ぎ | フォーム実送信・保存・データ層契約、CV / A/B ID計測、最悪画素コントラスト |
+
+## 新規要求と保留事項の扱い
+
+- 分類・HOME・イベント・有料記事・インタビュー・BLP・フォーム・面別継承の8件は [最新整理](../current-alignment.md) とIRに追加。旧37件だけを最新要求の全範囲にしない。
+- 旧問い WT-Q-PROTO3-01（空slotの非描画）、02（LPのCPT化・URL・種別）、03（LP計測）は既存 ZONE-01 / LP-01 / LP-02 の要求に含まれる。採用済み機能を未採用へ戻して再質問せず、未実装・未検証として扱う。LP / イベント / BLP の種別整理は後続判断により LP-01 rev 2 へ更新済みで、旧問いの分類へ戻さない。
+- 旧「次段候補」の透過ヘッダー、HOME、LP、固定CTA等は後続試作で部分的に進んだ。現在の次段は B（有料記事・インタビュー・BLP）を早期に代表モックで確認し、C / Dと未検証を保持する。
+- 既存ACの緩和案を今回採用しない。ブロック上限、PR欠落防止と重複抑止、フォーム実処理の責務はIRの pending_resolution 3件に分離した。G3と開発スタイルの2件はフロント先行により保留。
+
+## 9月5日の段5ドラフト（履歴）
+
+以下の「現行」「本PR」「PO反応待ち」「未実装」、型数、実測値、問い、次段候補はすべて当時の記録。現在の判定や未決リストの正本ではない。上の補正表とIRを優先する。
+
 # デザイン試作 03 受入条件ドラフト（段5・Claude 案）
 
 - 位置づけ: L2 プロト往復（前段の PO 発言〔会話、2026-09-05〕を出発点とする。この会話は `docs/requirements/discovery/events.jsonl` の `WT-EVT-0239`（`WT-DIR-FRONT-FIRST-01`、フロント先行）と `WT-EVT-0240`（`WT-DIR-AUTONOMY-01`、Astra 往復・merge 許可）に記録済み。ただし `WT-EVT-0239` の `claude_interpretation` 自身が明記するとおり、「比較・アフィリエイト媒体 1 パターンに絞った」のは Claude 案であり PO 決定ではない）の出力。**PO 反応待ちのドラフトであり、要求正本ではない**。

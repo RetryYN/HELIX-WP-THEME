@@ -5,15 +5,17 @@
   var rows = function(){ return Array.prototype.slice.call(form.querySelectorAll('.wt-form__row')); };
   /* WordPress is_email() と同じ規則: 6 文字以上、@ は 1 つ、ローカル部は許可文字のみ、ドメインは '..' なし・'.' 始まり / 終わりでない（除去せず拒否）・ラベル 2 つ以上・各ラベルは英数字とハイフンでハイフン始まり/終わりでない */
   function isEmail(v){ if (v.length < 6 || v.indexOf('@', 1) === -1) return false; var at = v.lastIndexOf('@'); if (v.indexOf('@') !== at) return false; var local = v.slice(0, at), domain = v.slice(at + 1); if (!/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+$/.test(local)) return false; if (/\.\./.test(domain) || /^\.|\.$/.test(domain)) return false; var subs = domain.split('.'); if (subs.length < 2) return false; return subs.every(function(x){ return /^[a-z0-9-]+$/i.test(x) && !/^-|-$/.test(x); }); }
+  function validDate(v){ var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v); if(!m || Number(m[1])<1)return false; var d=new Date(0); d.setUTCFullYear(Number(m[1]),Number(m[2])-1,Number(m[3])); return d.getUTCFullYear()===Number(m[1]) && d.getUTCMonth()===Number(m[2])-1 && d.getUTCDate()===Number(m[3]); }
+  function validUrl(v){ try{ var u=new URL(v); return /^https?:\/\//i.test(v) && /^https?:$/.test(u.protocol) && !!u.hostname && !/\s/.test(v); }catch(e){return false;} }
   function labelOf(row){ var l = row.querySelector('.wt-form__label'); return l ? l.textContent.replace(/[*＊]|必須|（必須）/g, '').trim() : ''; }
   function focusId(row){ var f = row.getAttribute('data-wt-field'); var t = row.className.match(/wt-form__row--([a-z0-9]+)/)[1]; if (t === 'date3') return 'wt-f-' + f + '-1'; if (t === 'radio' || t === 'checks') return 'wt-f-' + f + '-0'; if (t === 'yesno') return 'wt-f-' + f + '-0-y'; return 'wt-f-' + f; }
   function validateRow(row){
     var f = row.getAttribute('data-wt-field'); var t = row.className.match(/wt-form__row--([a-z0-9]+)/)[1]; var ctl = row.querySelector('.wt-form__control'); var req = !!row.querySelector('[aria-required="true"]'); var label = labelOf(row);
     var inputs = Array.prototype.slice.call(ctl.querySelectorAll('input, select, textarea'));
     if (t === 'privacy' || t === 'file' || t === 'hidden' || t === 'checks') return '';
-    if (t === 'checkbox') return req && !inputs[0].checked ? '同意が必要です。' : '';
+    if (t === 'checkbox') return (req && !inputs[0].checked) || (inputs[0].checked && inputs[0].value !== '1') ? '同意が必要です。' : '';
     if (t === 'yesno') { var groups = ctl.querySelectorAll('.wt-form__yesno'); var ok = Array.prototype.every.call(groups, function(g){ return !!g.querySelector('input:checked'); }); return req && !ok ? groups.length + ' つの質問すべてに答えてください。' : ''; }
-    if (t === 'date3') return req && !inputs[0].value.trim() ? '第 1 希望日を入力してください。' : '';
+    if (t === 'date3') { if(req && !inputs[0].value.trim())return '第 1 希望日を入力してください。'; return inputs.some(function(i){return i.value && !validDate(i.value);}) ? '希望日は実在する日付で入力してください。' : ''; }
     if (t === 'radio') return req && !inputs.some(function(i){ return i.checked; }) ? label + 'を選択してください。' : '';
     var v = (inputs[0].value || '').trim();
     if (!v) return req ? label + (t === 'select' ? 'を選択してください。' : 'を入力してください。') : '';
@@ -21,10 +23,10 @@
     if (t === 'tel' && !/^[0-9０-９+\-() ]{8,20}$/.test(v)) return label + 'の形式が正しくありません。';
     if (t === 'postal' && !/^\d{3}-?\d{4}$/.test(v)) return '郵便番号は 7 桁で入力してください。';
     if (t === 'kana' && !/^[ぁ-ゖー\s　]+$/.test(v)) return 'ひらがなで入力してください。';
-    if (t === 'number' && !(Number(v) >= 1)) return '1 以上の数を入力してください。';
-    if (t === 'url' && !/^https?:\/\//.test(v)) return 'https:// から始まる URL を入力してください。';
-    if (t === 'date' && !/^\d{4}-\d{2}-\d{2}$/.test(v)) return '日付の形式が正しくありません。';
-    if (t === 'month' && !/^\d{4}-\d{2}$/.test(v)) return '年月の形式が正しくありません。';
+    if (t === 'number' && (!/^[0-9]+$/.test(v) || !(Number(v) >= 1))) return '1 以上の整数を入力してください。';
+    if (t === 'url' && !validUrl(v)) return 'https:// から始まる URL を入力してください。';
+    if (t === 'date' && !validDate(v)) return '日付の形式が正しくありません。';
+    if (t === 'month' && !validDate(v+'-01')) return '年月の形式が正しくありません。';
     if (t === 'captcha' && v !== '7') return '答えが違います。';
     return '';
   }

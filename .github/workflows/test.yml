@@ -3,6 +3,10 @@ name: test
 on:
   push:
     paths:
+      - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
+      - 'package.json'
+      - 'package-lock.json'
       - 'plugins/**'
       - 'themes/**'
       - 'bin/**'
@@ -13,6 +17,10 @@ on:
       - '.github/workflows/test.yml'
   pull_request:
     paths:
+      - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
+      - 'package.json'
+      - 'package-lock.json'
       - 'plugins/**'
       - 'themes/**'
       - 'bin/**'
@@ -123,23 +131,8 @@ jobs:
             echo "WARN: sbom.cdx.json が見つかりません。generate-sbom.php を先に実行してください。"
           fi
 
-      - name: G-T1/T2/T3/S1/S2 design consistency gates (check-design-consistency.sh)
-        # 層 1 トークンの形状・生値禁止（baseline 超過のみ FAIL）・見出し階層・子テーマ境界・参照整合。
-        # 根拠: docs/design/consistency-responsibilities.md §3
-        run: bash bin/check-design-consistency.sh
-
-      - name: TC-016/017a/018 theme quality static gates (check-theme-quality.sh)
-        # a11y ゲートは WP 起動が必要なため job 3 に委ねる。
-        # 静的チェック（i18n / RTL / perf-static）のみここで実行。
-        env:
-          WP_URL: "http://localhost:8086"
-        run: |
-          if [ -d themes/agent-neo-theme ]; then
-            bash bin/check-theme-quality.sh || true
-            # WP 未起動で a11y がスキップされた場合も警告のみ（exit 1 にしない）
-          else
-            echo "WARN: themes/agent-neo-theme が存在しません。スキップします。"
-          fi
+      - name: Current helix-wt static quality gate
+        run: node docs/research/2026-09-10-current-theme-quality/verify.mjs
 
 # ============================================================
 # job 3: Integration テスト (docker WP 付き / 手動 or push)
@@ -168,7 +161,7 @@ jobs:
           --health-retries=5
 
       wordpress:
-        image: wordpress:6.9.4-php8.3-apache
+        image: wordpress:7.1-php8.3-apache
         env:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: wp
@@ -223,35 +216,40 @@ jobs:
           AGENT_NEO_WP_DB_NAME: agent_neo
 
 # ============================================================
-# job 4: E2E (Playwright / スケルトン)
+# job 4: reduced-motion browser gate (Playwright / WP 不要)
 #
-# Wave 0 ではスケルトンのみ。実 TC は後続 Wave で追加する。
+# Chromiumをinstall後、実ソースの静止・手動操作をpush/PRでも検証する。
 # ============================================================
   e2e:
-    name: E2E (Playwright) [スケルトン]
+    name: Reduced-motion browser gate (Playwright)
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: .node-version
           cache: 'npm'
 
       - name: Install Playwright (if package.json exists)
         run: |
           if [ -f package.json ]; then
             npm ci
-            npx playwright install --with-deps chromium
+            npx playwright install chromium
           else
             echo "WARN: package.json が見つかりません。E2E は後続 Wave で設定してください。"
           fi
 
-      - name: Run E2E tests (placeholder)
-        run: |
-          echo "E2E スケルトン: 後続 Wave で tests/E2E/ にテストを追加してください。"
-          # npx playwright test  ← Wave 実装後にコメント解除
+      - name: WT-NFR-A11Y-02 reduced-motion browser gate
+        run: npm run reduced-motion:verify
+
+      - name: Upload reduced-motion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reduced-motion-evidence
+          path: docs/research/2026-09-10-reduced-motion/verify.json
+          if-no-files-found: error

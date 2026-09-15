@@ -12,6 +12,8 @@
  * JS あり: 送信前に同じ規則でクライアント検証（エラーの出し方は form_error 軸と同じ）、steps は段階送り、inline-review は同一ページで見直し。
  */
 
+require_once __DIR__ . '/event-state.php'; // 申込処理前にも受付状態を照合する。
+
 // ---------- 種別 / 項目 ----------
 function wt_form_kinds() {
 	// 台帳 form_kind（取得 n=42）: contact 43% / download 19% / reservation 12% / recruit 10% / newsletter 5% / quote 5% / trial 5% / other:diagnosis 2%。apply は語彙にあるが本体観察 0（イベント申込は段 5 で既存。Claude 案で追加）
@@ -137,7 +139,14 @@ function wt_form_state() {
 	$vals = array();
 	foreach ( (array) $_POST['wt_form'] as $k => $v ) { $k = sanitize_key( $k ); $vals[ $k ] = is_array( $v ) ? array_map( fn( $x ) => is_array( $x ) ? '' : sanitize_text_field( wp_unslash( $x ) ), $v ) : sanitize_textarea_field( wp_unslash( $v ) ); }
 	$state['values'] = $vals;
-	$step = sanitize_key( $_POST['wt_step'] ?? 'input' );
+	$event = wt_event_fixture_state();
+	if ( $event && ! $event['open'] ) { $state['errors']['_form'] = $event['label'] . 'のため申込を受け付けられません。'; return $state; }
+	$step = $_POST['wt_step'] ?? 'input';
+	if ( ! is_string( $step ) || ! in_array( wp_unslash( $step ), array( 'input', 'back', 'confirm' ), true ) ) {
+		$state['errors']['_form'] = 'フォームの操作を確認できませんでした。入力内容を確認して、もう一度進んでください。';
+		return $state;
+	}
+	$step = wp_unslash( $step );
 	if ( ! isset( $_POST['wt_form_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wt_form_nonce'] ) ), 'wt_form' ) ) { $state['errors']['_form'] = 'フォームの有効期限が切れました。もう一度送信してください。'; return $state; }
 	if ( ! empty( $_POST['wt_hp'] ) ) { $state['errors']['_form'] = '送信を受け付けられませんでした。'; return $state; } // honeypot
 	$errors = wt_form_validate( $vals );
@@ -149,6 +158,11 @@ function wt_form_state() {
 	return $state;
 }
 
+function wt_form_valid_date( $value ) {
+	return is_string( $value ) && preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/D', $value, $parts )
+		&& checkdate( (int) $parts[2], (int) $parts[3], (int) $parts[1] );
+}
+
 function wt_form_validate( $vals ) {
 	$errors = array(); $defs = wt_form_field_defs();
 	foreach ( wt_form_fields() as $f ) {
@@ -156,10 +170,16 @@ function wt_form_validate( $vals ) {
 		if ( in_array( $d['type'], array( 'privacy', 'file', 'hidden' ), true ) ) { continue; }
 		$multi = in_array( $d['type'], array( 'date3', 'yesno', 'checks' ), true );
 		if ( '' !== $v && is_array( $v ) !== $multi ) { $errors[ $f ] = $d['label'] . 'の形式が正しくありません。'; continue; } // 入力の形（配列 / 単値）が違う異常 POST は通常のエラーへ
-		if ( 'checkbox' === $d['type'] ) { if ( $d['req'] && ! $v ) { $errors[ $f ] = '同意が必要です。'; } continue; }
+		if ( 'checkbox' === $d['type'] ) { if ( ( $d['req'] || '' !== $v ) && '1' !== $v ) { $errors[ $f ] = '同意が必要です。'; } continue; }
 		if ( 'yesno' === $d['type'] ) { $ok = ! is_array( $v ) || ! array_diff( array_keys( $v ), array_keys( $d['questions'] ) ); foreach ( array_keys( $d['questions'] ) as $qi ) { if ( ! in_array( $v[ $qi ] ?? '', array( 'はい', 'いいえ' ), true ) ) { $ok = false; } } if ( ! $ok && ( $d['req'] || count( array_filter( (array) $v, fn( $x ) => '' !== $x ) ) ) ) { $errors[ $f ] = count( $d['questions'] ) . ' つの質問すべてに答えてください。'; } continue; } // 質問キー集合は 0..n-1 と一致（余分なキーも通さない）、値は はい / いいえ
 		if ( 'checks' === $d['type'] ) { foreach ( (array) $v as $x ) { if ( '' !== $x && ! in_array( $x, $d['options'], true ) ) { $errors[ $f ] = $d['label'] . 'の選択肢にありません。'; } } continue; }
-		if ( 'date3' === $d['type'] ) { if ( $d['req'] && '' === trim( (string) ( is_array( $v ) ? ( $v[0] ?? '' ) : '' ) ) ) { $errors[ $f ] = '第 1 希望日を入力してください。'; } continue; } // JS と同じ: 第 1 希望が必須
+		if ( 'date3' === $d['type'] ) {
+			if ( $d['req'] && '' === trim( (string) ( $v[0] ?? '' ) ) ) { $errors[ $f ] = '第 1 希望日を入力してください。'; }
+			foreach ( (array) $v as $i => $date ) {
+				if ( ! in_array( $i, array( 0, 1, 2 ), true ) || ( '' !== $date && ! wt_form_valid_date( $date ) ) ) { $errors[ $f ] = '希望日は実在する日付で入力してください。'; }
+			}
+			continue;
+		}
 		$v = trim( (string) $v ); $empty = '' === $v;
 		if ( $d['req'] && $empty ) { $errors[ $f ] = $d['label'] . ( in_array( $d['type'], array( 'select', 'radio' ), true ) ? 'を選択してください。' : 'を入力してください。' ); continue; }
 		if ( $empty ) { continue; }
@@ -168,10 +188,10 @@ function wt_form_validate( $vals ) {
 		if ( 'tel' === $d['type'] && ! preg_match( '/^[0-9０-９+\-() ]{8,20}$/u', $v ) ) { $errors[ $f ] = $d['label'] . 'の形式が正しくありません。'; }
 		if ( 'postal' === $d['type'] && ! preg_match( '/^\d{3}-?\d{4}$/', $v ) ) { $errors[ $f ] = '郵便番号は 7 桁で入力してください。'; }
 		if ( 'kana' === $d['type'] && ! preg_match( '/^[ぁ-ゖー\s　]+$/u', $v ) ) { $errors[ $f ] = 'ひらがなで入力してください。'; }
-		if ( 'number' === $d['type'] && ( ! is_numeric( $v ) || (int) $v < 1 ) ) { $errors[ $f ] = '1 以上の数を入力してください。'; }
-		if ( 'url' === $d['type'] && ! preg_match( '#^https?://#', $v ) ) { $errors[ $f ] = 'https:// から始まる URL を入力してください。'; }
-		if ( 'date' === $d['type'] && ! preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v ) ) { $errors[ $f ] = '日付の形式が正しくありません。'; }
-		if ( 'month' === $d['type'] && ! preg_match( '/^\d{4}-\d{2}$/', $v ) ) { $errors[ $f ] = '年月の形式が正しくありません。'; }
+		if ( 'number' === $d['type'] && ( ! preg_match( '/^[0-9]+$/D', $v ) || (int) $v < 1 ) ) { $errors[ $f ] = '1 以上の整数を入力してください。'; }
+		if ( 'url' === $d['type'] && ( ! preg_match( '#^https?://#i', $v ) || ! filter_var( $v, FILTER_VALIDATE_URL ) ) ) { $errors[ $f ] = 'https:// から始まる URL を入力してください。'; }
+		if ( 'date' === $d['type'] && ! wt_form_valid_date( $v ) ) { $errors[ $f ] = '日付の形式が正しくありません。'; }
+		if ( 'month' === $d['type'] && ! wt_form_valid_date( $v . '-01' ) ) { $errors[ $f ] = '年月の形式が正しくありません。'; }
 		if ( in_array( $d['type'], array( 'select', 'radio' ), true ) && ! in_array( $v, $d['options'], true ) ) { $errors[ $f ] = $d['label'] . 'の選択肢にありません。'; }
 		if ( 'captcha' === $d['type'] && '7' !== $v ) { $errors[ $f ] = '答えが違います。'; }
 	}
@@ -259,7 +279,7 @@ function wt_render_form( $attrs = array() ) {
 		$o .= '<form class="wt-form__form" method="post" action="' . $action . '" novalidate data-wt-error="' . esc_attr( $errmode ) . '" data-wt-confirm="' . esc_attr( wt_opt( 'form_confirm' ) ) . '">' . wp_nonce_field( 'wt_form', 'wt_form_nonce', true, false ) . '<input type="hidden" name="wt_step" value="input"><div class="wt-form__hp" aria-hidden="true"><label for="wt-hp">この欄は空のままにしてください</label><input type="text" id="wt-hp" name="wt_hp" tabindex="-1" autocomplete="off"></div>';
 		if ( $steps ) { $by = array(); foreach ( $fields as $f ) { $by[ wt_form_step_of( $f ) ][] = $f; } ksort( $by ); $fields = array_merge( ...array_values( $by ) ); } // steps は段ごとにまとめる（種別の並びで段 1 の項目が後ろにあっても fieldset が分かれない）
 		$present = array(); foreach ( $fields as $f ) { $present[ wt_form_step_of( $f ) ] = true; } ksort( $present ); $names = array( 1 => '基本情報', 2 => '内容', 3 => '確認・同意' );
-		if ( $steps ) { $o .= '<ol class="wt-form__steps" aria-label="入力の段階">'; $first = true; foreach ( array_keys( $present ) as $n ) { $o .= '<li' . ( $first ? ' class="is-current"' : '' ) . ' data-wt-step-i="' . $n . '">' . $names[ $n ] . '</li>'; $first = false; } $o .= '</ol>'; } // 種別に無い段は出さない（newsletter は 2 段）
+		if ( $steps ) { $o .= '<ol class="wt-form__steps" aria-label="' . esc_attr__( '入力の段階', 'helix-wt' ) . '">'; $first = true; foreach ( array_keys( $present ) as $n ) { $o .= '<li' . ( $first ? ' class="is-current"' : '' ) . ' data-wt-step-i="' . $n . '">' . $names[ $n ] . '</li>'; $first = false; } $o .= '</ol>'; } // 種別に無い段は出さない（newsletter は 2 段）
 		$cur = 0;
 		foreach ( $fields as $f ) { $d = $defs[ $f ]; $key = str_replace( '-', '_', $f ); $v = $st['values'][ $key ] ?? ''; $err = $st['errors'][ $f ] ?? '';
 			if ( $steps && wt_form_step_of( $f ) !== $cur ) { if ( $cur ) { $o .= '</fieldset>'; } $cur = wt_form_step_of( $f ); $o .= '<fieldset class="wt-form__step" data-wt-step-i="' . $cur . '"><legend class="screen-reader-text">' . $names[ $cur ] . '</legend>'; }
@@ -274,7 +294,7 @@ function wt_render_form( $attrs = array() ) {
 			$o .= '</div></div>';
 		}
 		if ( $steps && $cur ) { $o .= '</fieldset>'; }
-		if ( 'external-slot' === wt_opt( 'form_captcha' ) ) { $o .= '<div class="wt-form__captcha-slot" aria-label="外部の認証枠（PoC では描画のみ）"><span>外部認証の枠</span></div>'; }
+		if ( 'external-slot' === wt_opt( 'form_captcha' ) ) { $o .= '<div class="wt-form__captcha-slot" aria-label="' . esc_attr__( '外部の認証枠（PoC では描画のみ）', 'helix-wt' ) . '"><span>外部認証の枠</span></div>'; }
 		$o .= '<div class="wt-form__actions">' . ( $steps ? '<button type="button" class="wt-form__back wt-form__prev" hidden>戻る</button><button type="button" class="wt-form__next" hidden>次へ進む</button>' : '' ) . '<button type="submit" class="wt-form__submit">' . esc_html( wt_form_submit_text() ) . '</button></div>'; // JS 無効では段階送りをせず全項目 + 送信ボタン（次へ / 戻る は JS が出す）
 		if ( 'inline-review' === wt_opt( 'form_confirm' ) ) { $o .= '<div class="wt-form__inline-review" hidden><h3>送信前の見直し</h3><dl></dl><div class="wt-form__actions"><button type="button" class="wt-form__back wt-form__review-edit">修正する</button><button type="submit" class="wt-form__submit wt-form__review-send" name="wt_step" value="confirm">' . esc_html( $k['submit'] ) . '</button></div></div>'; }
 		$o .= '</form>';
@@ -284,10 +304,10 @@ function wt_render_form( $attrs = array() ) {
 	$sides = array(
 		'tel'           => '<p class="wt-form__side-lead">お電話でもご相談いただけます</p><span class="wt-form__side-tel" data-wt-poc="no-dial"><i class="wt-i wt-i--phone" aria-hidden="true"></i>03-1234-5678</span><p class="wt-form__side-note">平日 10:00〜18:00（土日祝休）</p>',
 		'email'         => '<p class="wt-form__side-lead">メールでのご連絡</p><a class="wt-form__side-link" href="mailto:info@example.com">info@example.com</a><p class="wt-form__side-note">2 営業日以内にご返信します</p>',
-		'chat'          => '<p class="wt-form__side-lead">チャットで今すぐ質問</p><button type="button" class="wt-form__side-btn" aria-label="チャットを開く（PoC では開きません）"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>チャットを開く</button><p class="wt-form__side-note">平日 10:00〜18:00 対応</p>',
+		'chat'          => '<p class="wt-form__side-lead">チャットで今すぐ質問</p><button type="button" class="wt-form__side-btn" aria-label="' . esc_attr__( 'チャットを開く（PoC では開きません）', 'helix-wt' ) . '"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>チャットを開く</button><p class="wt-form__side-note">平日 10:00〜18:00 対応</p>',
 		'messaging-app' => '<p class="wt-form__side-lead">メッセージアプリで相談</p><a class="wt-form__side-btn wt-form__side-btn--app" href="/lp/#line"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>友だち追加して相談</a><p class="wt-form__side-note">返信は営業時間内</p>',
 	);
-	if ( isset( $sides[ $side ] ) ) { $o .= '<aside class="wt-form__side" aria-label="フォーム以外の連絡方法">' . $sides[ $side ] . '</aside>'; }
+	if ( isset( $sides[ $side ] ) ) { $o .= '<aside class="wt-form__side" aria-label="' . esc_attr__( 'フォーム以外の連絡方法', 'helix-wt' ) . '">' . $sides[ $side ] . '</aside>'; }
 	return $o . '</div>';
 }
 

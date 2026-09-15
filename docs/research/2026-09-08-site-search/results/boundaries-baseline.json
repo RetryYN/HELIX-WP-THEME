@@ -1,0 +1,34 @@
+{
+  "completed": false,
+  "sourceDigests": {
+    "scripts/verify-site-search-boundaries.mjs": "05a6a5d3a0ba93c9915c85ee8f1d03fef094b282861648ae99bab8625dcac165",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "0c3243d62cd4f0000dec8a86fdd4ce4083c81541486a374d53c7121aedf3b174",
+    "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "81898e70ba61814333ef6165472dfc80f1e21f7e6315b3293d846dc6e7cca173"
+  },
+  "rows": [
+    {
+      "name": "public-count:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "first-page:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "private-excluded:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "next-link:pc:js-true",
+      "pass": true
+    },
+    {
+      "name": "owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

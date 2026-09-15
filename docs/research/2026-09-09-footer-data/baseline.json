@@ -1,0 +1,205 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-footer-baseline.mjs": "76852c825ff2a92d48c1d39cf5a720f31ed23979353482b0e1f878019a2fbbf7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html": "675f5836fd999c2719884af35af779b3940226a2cb97a9356f3bad963593a23a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "0597e900b7a0c4c53864fa1e5986dd7f72263532db6cdb926dd9e9100e350cd0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/footer.js": "59b57b6b0382736e4838330391fa52a4826a32dcd159c31ecd72b75c20c1d61a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
+  },
+  "rows": [
+    {
+      "name": "selected-visibility:1440:js-true:extra-none",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": false,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 25,
+        "groups": 4
+      }
+    },
+    {
+      "name": "disabled-sites-omitted:1440:js-true:extra-none",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:1440:js-true:extra-sites",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": true,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 139.1875,
+        "groups": 4
+      }
+    },
+    {
+      "name": "related-links-distinct-destinations:1440:js-true:extra-sites",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:1440:js-false:extra-none",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": false,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 25,
+        "groups": 4
+      }
+    },
+    {
+      "name": "disabled-sites-omitted:1440:js-false:extra-none",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:1440:js-false:extra-sites",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": true,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 139.1875,
+        "groups": 4
+      }
+    },
+    {
+      "name": "related-links-distinct-destinations:1440:js-false:extra-sites",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:375:js-true:extra-none",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": false,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 25,
+        "groups": 4
+      }
+    },
+    {
+      "name": "disabled-sites-omitted:375:js-true:extra-none",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:375:js-true:extra-sites",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": true,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 139.1875,
+        "groups": 4
+      }
+    },
+    {
+      "name": "related-links-distinct-destinations:375:js-true:extra-sites",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:375:js-false:extra-none",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": false,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 25,
+        "groups": 4
+      }
+    },
+    {
+      "name": "disabled-sites-omitted:375:js-false:extra-none",
+      "pass": false
+    },
+    {
+      "name": "selected-visibility:375:js-false:extra-sites",
+      "pass": true,
+      "actual": {
+        "sitesNodes": 1,
+        "sitesVisible": true,
+        "sitesLinks": [
+          {
+            "text": "関連サイト 1",
+            "href": "/"
+          },
+          {
+            "text": "関連サイト 2",
+            "href": "/"
+          }
+        ],
+        "extraHeight": 139.1875,
+        "groups": 4
+      }
+    },
+    {
+      "name": "related-links-distinct-destinations:375:js-false:extra-sites",
+      "pass": false
+    }
+  ],
+  "limitation": "現行fixtureのoff/onとリンク先を観測。空データ保存の受入試験ではない。専用labへのGETのみで保存操作なし。"
+}

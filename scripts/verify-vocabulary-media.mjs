@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {createHash} from 'node:crypto';
+import {chromium} from 'playwright';
+const relative='docs/research/2026-09-13-vocabulary-catalog/media',out=path.resolve(relative),modes=['icon','upload','photo','number','none'],checks=[],screenshots=[];
+const check=(name,pass)=>checks.push({name,pass:!!pass});
+const browser=await chromium.launch();let baseline;
+try{for(const[device,width]of[['pc',1440],['sp',390]])for(const js of[true,false]){const context=await browser.newContext({viewport:{width,height:960},javaScriptEnabled:js});for(const mode of modes){const page=await context.newPage();await page.goto(pathToFileURL(path.join(out,mode+'.html')).href);await page.evaluate(()=>document.fonts.ready);const name=device+'-'+(js?'js':'nojs')+'-'+mode;
+const bodies=await page.locator('.media-body').evaluateAll(es=>es.map(e=>e.outerHTML));baseline??=bodies;
+check(name+':same-body-dom',JSON.stringify(bodies)===JSON.stringify(baseline));
+check(name+':three-vocabularies',JSON.stringify(await page.locator('[data-kind]').evaluateAll(es=>es.map(e=>e.dataset.kind)))===JSON.stringify(['card','list','steps']));
+check(name+':only-selected-media',await page.locator('[data-media]').evaluateAll((es,m)=>m==='none'?es.length===0:es.length===3&&es.every(e=>e.dataset.media===m),mode));
+check(name+':media-nodes-match-mode',await page.locator('.media-item').evaluateAll((es,m)=>es.every(e=>{const imgs=e.querySelectorAll('img'),svgs=e.querySelectorAll('svg');return m==='photo'?imgs.length===1&&imgs[0].getAttribute('src').endsWith('media-pickup-2.jpg')&&svgs.length===0:m==='upload'?imgs.length===1&&imgs[0].getAttribute('src')==='upload-workspace.svg'&&svgs.length===0:m==='icon'?imgs.length===0&&svgs.length===1:imgs.length===0&&svgs.length===0}),mode));
+check(name+':none-no-empty-wrapper',mode!=='none'||await page.locator('.media-slot,img,svg').count()===0);
+check(name+':images-alt-dimensions-loaded',await page.locator('img').evaluateAll(es=>es.every(e=>e.hasAttribute('alt')&&e.alt.length>0&&Number(e.getAttribute('width'))>0&&Number(e.getAttribute('height'))>0&&e.complete&&e.naturalWidth>0)));
+check(name+':44px-targets',await page.locator('a').evaluateAll(es=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>=44&&r.height>=44})));
+check(name+':no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+check(name+':no-overlap',await page.locator('.media-sample').evaluateAll(es=>es.every((e,i)=>es.every((f,j)=>{const a=e.getBoundingClientRect(),b=f.getBoundingClientRect();return i===j||a.right<=b.left||b.right<=a.left||a.bottom<=b.top||b.bottom<=a.top}))));
+check(name+':AA-text',await page.locator('p,h1,h2,h3,a,.numeral').evaluateAll(es=>{const lum=s=>s.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);return es.filter(e=>e.getBoundingClientRect().height>0).every(e=>{let b=e;while(b&&getComputedStyle(b).backgroundColor==='rgba(0, 0, 0, 0)')b=b.parentElement;const[a,c]=[lum(getComputedStyle(e).color),lum(b?getComputedStyle(b).backgroundColor:'rgb(255,255,255)')].sort((a,b)=>b-a);return(a+.05)/(c+.05)>=4.5})}));
+const image=name+'.png';await page.screenshot({path:path.join(out,image),fullPage:true});screenshots.push(image);
+const next=modes[(modes.indexOf(mode)+1)%modes.length];await page.locator('.media-picker a[href="'+next+'.html"]').click();check(name+':switch-navigation',await page.locator('.media-examples').getAttribute('data-selected')===next);await page.close();}await context.close();}}finally{await browser.close()}
+const sources=['scripts/build-vocabulary-media.mjs','scripts/verify-vocabulary-media.mjs',relative+'/media.css',relative+'/upload-workspace.svg',...modes.map(m=>relative+'/'+m+'.html'),'docs/research/2026-09-13-vocabulary-catalog/catalog.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/img/media-pickup-2.jpg'];
+const sourceDigests=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(fs.readFileSync(p)).digest('hex')]));
+const result={schema:'wt-vocabulary-media-verification.v1',acceptance:['WT-AC-VOCAB-01C'],scope:'Static five-mode navigation / three vocabulary bodies / PC-SP JS-noJS',completed:checks.every(c=>c.pass),checks,screenshots,sourceDigests,limitations:['WordPress upload, editor persistence and runtime block rendering not verified','Navigation selects separately generated static documents, not an editor attribute switch']};fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({passed:result.completed,checks:checks.length,failed:checks.filter(c=>!c.pass)}));if(!result.completed)process.exitCode=1;

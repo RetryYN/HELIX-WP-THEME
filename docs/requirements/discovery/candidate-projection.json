@@ -2,8 +2,8 @@
   "schema_version": "wt-requirement-candidate-projection.v1",
   "canonical": false,
   "initiative_id": "WT-AGENT-VARIETY",
-  "event_head": "WT-EVT-0303",
-  "event_count": 303,
+  "event_head": "WT-EVT-0310",
+  "event_count": 310,
   "candidates": [
     {
       "candidate_id": "WT-CAND-CORE",
@@ -86,12 +86,24 @@
         "WT-EVT-0223",
         "WT-EVT-0224",
         "WT-EVT-0228",
-        "WT-EVT-0237"
+        "WT-EVT-0237",
+        "WT-EVT-0289",
+        "WT-EVT-0292",
+        "WT-EVT-0294",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0301",
+        "WT-EVT-0303",
+        "WT-EVT-0304",
+        "WT-EVT-0309"
       ],
       "requirement_ids": [
         "WT-FR-PARTS-01",
         "WT-FR-PARTS-02",
-        "WT-FR-PAGE-01"
+        "WT-FR-PAGE-01",
+        "WT-FR-PAGE-02",
+        "WT-FR-PARTS-03"
       ]
     },
     {
@@ -126,7 +138,14 @@
         "WT-EVT-0225",
         "WT-EVT-0226",
         "WT-EVT-0229",
-        "WT-EVT-0237"
+        "WT-EVT-0237",
+        "WT-EVT-0246",
+        "WT-EVT-0254",
+        "WT-EVT-0255",
+        "WT-EVT-0267",
+        "WT-EVT-0288",
+        "WT-EVT-0300",
+        "WT-EVT-0304"
       ],
       "requirement_ids": [
         "WT-FR-VOCAB-01",
@@ -166,7 +185,11 @@
         "WT-EVT-0226",
         "WT-EVT-0227",
         "WT-EVT-0229",
-        "WT-EVT-0237"
+        "WT-EVT-0237",
+        "WT-EVT-0288",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0304"
       ],
       "requirement_ids": [
         "WT-FR-LOOK-01",
@@ -204,7 +227,14 @@
         "WT-EVT-0157",
         "WT-EVT-0158",
         "WT-EVT-0159",
-        "WT-EVT-0237"
+        "WT-EVT-0237",
+        "WT-EVT-0289",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0301",
+        "WT-EVT-0303",
+        "WT-EVT-0304",
+        "WT-EVT-0309"
       ],
       "requirement_ids": [
         "WT-FR-LP-01",
@@ -903,9 +933,14 @@
         "WT-EVT-0277",
         "WT-EVT-0279",
         "WT-EVT-0280",
-        "WT-EVT-0287"
+        "WT-EVT-0287",
+        "WT-EVT-0288",
+        "WT-EVT-0296",
+        "WT-EVT-0304"
       ],
-      "requirement_ids": []
+      "requirement_ids": [
+        "WT-FR-HOME-01"
+      ]
     },
     {
       "candidate_id": "WT-CAND-EVENT",
@@ -920,9 +955,95 @@
         "WT-EVT-0284",
         "WT-EVT-0285",
         "WT-EVT-0286",
-        "WT-EVT-0287"
+        "WT-EVT-0287",
+        "WT-EVT-0288",
+        "WT-EVT-0296",
+        "WT-EVT-0304"
       ],
-      "requirement_ids": []
+      "requirement_ids": [
+        "WT-FR-EVENT-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-PAID",
+      "state": "candidate_inventory",
+      "source_event_ids": [
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0304",
+        "WT-EVT-0305"
+      ],
+      "requirement_ids": [
+        "WT-FR-PAID-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-INTERVIEW",
+      "state": "candidate_inventory",
+      "source_event_ids": [
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0304",
+        "WT-EVT-0305",
+        "WT-EVT-0307"
+      ],
+      "requirement_ids": [
+        "WT-FR-INTERVIEW-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-BLP",
+      "state": "candidate_inventory",
+      "source_event_ids": [
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0304",
+        "WT-EVT-0305"
+      ],
+      "requirement_ids": [
+        "WT-FR-BLP-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-FORM",
+      "state": "candidate_inventory",
+      "source_event_ids": [
+        "WT-EVT-0289",
+        "WT-EVT-0301",
+        "WT-EVT-0303",
+        "WT-EVT-0304"
+      ],
+      "requirement_ids": [
+        "WT-FR-FORM-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-LEARN",
+      "state": "proposed",
+      "source_event_ids": [
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0306",
+        "WT-EVT-0308"
+      ],
+      "requirement_ids": [
+        "WT-FR-LEARN-01"
+      ]
+    },
+    {
+      "candidate_id": "WT-CAND-SEARCH",
+      "state": "proposed",
+      "source_event_ids": [
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0310"
+      ],
+      "requirement_ids": [
+        "WT-FR-SEARCH-01"
+      ]
     }
   ],
   "question_ids": [
@@ -1009,7 +1130,8 @@
     "WT-Q-STYLE-01",
     "WT-Q-PAGE-HOME-EVENT-01",
     "WT-Q-EVENT-MAP-01",
-    "WT-Q-SHARE-FB-01"
+    "WT-Q-SHARE-FB-01",
+    "WT-Q-PAGE-TAXONOMY-01"
   ],
   "answered_question_ids": [
     "WT-Q-ZONE-01",
@@ -1093,21 +1215,70 @@
     "WT-Q-EVID-01",
     "WT-Q-PAGE-HOME-EVENT-01",
     "WT-Q-SHARE-FB-01",
-    "WT-Q-EVENT-MAP-01"
+    "WT-Q-EVENT-MAP-01",
+    "WT-Q-PAGE-TAXONOMY-01"
   ],
   "prototype_revision_ids": [
-    "WT-PROT-UI-01-r1"
+    "WT-PROT-UI-01-r1",
+    "WT-PROT-UI-01-r2"
   ],
   "reaction_ids": [
     "WT-POC-REACTION-01",
-    "WT-PROT-REACTION-02"
+    "WT-PROT-REACTION-02",
+    "WT-PROT-REACTION-03",
+    "WT-PROT-REACTION-04",
+    "WT-PROT-REACTION-05",
+    "WT-PROT-REACTION-06",
+    "WT-PROT-REACTION-07",
+    "WT-PROT-REACTION-08",
+    "WT-PROT-REACTION-09",
+    "WT-PROT-REACTION-10",
+    "WT-PROT-REACTION-11",
+    "WT-PROT-REACTION-12",
+    "WT-PROT-REACTION-13",
+    "WT-PROT-REACTION-14",
+    "WT-PROT-REACTION-15",
+    "WT-PROT-REACTION-16",
+    "WT-PROT-REACTION-17",
+    "WT-PROT-REACTION-18",
+    "WT-PROT-REACTION-19",
+    "WT-PROT-REACTION-20",
+    "WT-PROT-REACTION-21",
+    "WT-PROT-REACTION-22",
+    "WT-PROT-REACTION-23",
+    "WT-PROT-REACTION-24",
+    "WT-PROT-REACTION-25",
+    "WT-PROT-REACTION-26",
+    "WT-PROT-REACTION-27",
+    "WT-PROT-REACTION-28",
+    "WT-PROT-REACTION-29",
+    "WT-PROT-REACTION-30",
+    "WT-PROT-REACTION-31",
+    "WT-PROT-REACTION-32",
+    "WT-PROT-REACTION-33",
+    "WT-PROT-REACTION-34",
+    "WT-PROT-REACTION-35",
+    "WT-PROT-REACTION-36",
+    "WT-PROT-REACTION-37",
+    "WT-PROT-REACTION-38",
+    "WT-PROT-REACTION-39",
+    "WT-PROT-REACTION-40",
+    "WT-PROT-REACTION-41",
+    "WT-PROT-REACTION-42",
+    "WT-PROT-REACTION-43",
+    "WT-PROT-REACTION-44",
+    "WT-PROT-REACTION-45",
+    "WT-PROT-REACTION-46",
+    "WT-PROT-REACTION-48",
+    "WT-PROT-REACTION-49",
+    "WT-PROT-REACTION-50"
   ],
   "unresolved": [
     {
       "id": "WT-Q-G3-01",
       "owner": "PO",
       "form": "freeze_approval",
-      "question": "要件 123 件と非目標を承認する（優先度変更があれば指定）。承認するか",
+      "question": "最新候補 131 件（追加 8 件の優先度は暫定）と非目標を、差分・未解決事項の確認後に承認するか。WT-EVT-0237 の 123 件への問いから対象 revision を更新し、フロント先行により引き続き保留。",
       "affected_candidate_ids": [
         "WT-CAND-CORE",
         "WT-CAND-ZONE",
@@ -1140,9 +1311,15 @@
         "WT-CAND-PLUGIN",
         "WT-CAND-AUTHOR",
         "WT-CAND-NAV",
-        "WT-CAND-RECO"
+        "WT-CAND-RECO",
+        "WT-CAND-HOME",
+        "WT-CAND-EVENT",
+        "WT-CAND-PAID",
+        "WT-CAND-INTERVIEW",
+        "WT-CAND-BLP",
+        "WT-CAND-FORM"
       ],
-      "reentry": "承認で compile 再実行 → specified → G3 frozen。変更ありなら該当要件の revision を上げ iteration 3"
+      "reentry": "current-alignment.md の差分と pending_resolution を解消 → 最新 revision の合意・優先度安定確認 → compile → specified → G3 承認で frozen"
     },
     {
       "id": "WT-Q-STYLE-01",
@@ -1176,17 +1353,19 @@
     "implicit_matrix_complete": true
   },
   "convergence": {
-    "all_candidates_dispositioned": true,
-    "contradiction_zero_or_typed_defer": true,
+    "all_candidates_dispositioned": false,
+    "contradiction_zero_or_typed_defer": false,
     "unresolved_owned": true,
     "stable_priority_iterations": false,
-    "human_prototype_agreement": true
+    "human_prototype_agreement": false
   },
   "convergence_backflow": {
     "rule": "RDJ-FR-007",
     "unmet": [
-      "stable_priority_iterations"
+      "stable_priority_iterations",
+      "latest_revision_agreement",
+      "pending_resolution"
     ],
-    "reentry": "iteration 2（G3 承認用要件要約の PO 確認）で優先度安定を判定して再 compile"
+    "reentry": "WT-EVT-0304 の候補改定・新規 8 件、WT-EVT-0305 の追加3 ACと pending_resolution を確認し、PO 反応・最新 revision の合意・優先度安定を記録してから再 compile。WT-AGREE-01 は event head 0231 に対する過去合意として維持。"
   }
 }

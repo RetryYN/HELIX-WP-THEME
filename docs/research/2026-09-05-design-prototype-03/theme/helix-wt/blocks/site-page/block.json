@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "helix-wt/site-page",
+  "version": "0.1.0",
+  "title": "常設案内・規約ページ",
+  "category": "widgets",
+  "icon": "index-card",
+  "description": "共通情報から会社・サービス・料金・規約のページを表示します。",
+  "attributes": { "pageKey": { "type": "string", "default": "company" } },
+  "supports": { "html": false, "multiple": false },
+  "editorScript": "helix-wt-site-page-editor",
+  "editorStyle": "file:./editor.css"
+}

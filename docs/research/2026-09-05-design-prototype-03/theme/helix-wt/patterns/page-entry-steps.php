@@ -11,7 +11,7 @@ $u = get_theme_file_uri( 'assets/img' );
 <div class="wp-block-group alignfull wt-part wt-part--entry-steps" id="part-entry-steps">
 <!-- wp:html -->
 <div class="wt-lp-section-inner">
-<p class="wt-eyebrow">HOW TO ENTRY</p><h2 id="part-entry-title">応募の流れ</h2><ol class="wt-part-entry"><li><span class="wt-part-entry__num">1</span><i class="wt-i wt-i--xl wt-i--cart" aria-hidden="true"></i><b>対象商品を買う</b><span>期間中に対象商品を 1,000 円以上購入</span></li><li><span class="wt-part-entry__num">2</span><i class="wt-i wt-i--xl wt-i--edit" aria-hidden="true"></i><b>レシートを撮る</b><span>購入日・店名・対象商品が写るように撮影</span></li><li><span class="wt-part-entry__num">3</span><i class="wt-i wt-i--xl wt-i--mail" aria-hidden="true"></i><b>応募する</b><span>はがき・フォーム・メッセージアプリのいずれかで送付</span></li></ol>
+<p class="wt-eyebrow">HOW TO ENTRY</p><h2 id="part-entry-title"><?php esc_html_e( '応募の流れ', 'helix-wt' ); ?></h2><ol class="wt-part-entry"><li><span class="wt-part-entry__num">1</span><i class="wt-i wt-i--xl wt-i--cart" aria-hidden="true"></i><b><?php esc_html_e( '対象商品を買う', 'helix-wt' ); ?></b><span><?php esc_html_e( '期間中に対象商品を 1,000 円以上購入', 'helix-wt' ); ?></span></li><li><span class="wt-part-entry__num">2</span><i class="wt-i wt-i--xl wt-i--edit" aria-hidden="true"></i><b><?php esc_html_e( 'レシートを撮る', 'helix-wt' ); ?></b><span><?php esc_html_e( '購入日・店名・対象商品が写るように撮影', 'helix-wt' ); ?></span></li><li><span class="wt-part-entry__num">3</span><i class="wt-i wt-i--xl wt-i--mail" aria-hidden="true"></i><b><?php esc_html_e( '応募する', 'helix-wt' ); ?></b><span><?php esc_html_e( 'はがき・フォーム・メッセージアプリのいずれかで送付', 'helix-wt' ); ?></span></li></ol>
 </div>
 <!-- /wp:html -->
 </div>

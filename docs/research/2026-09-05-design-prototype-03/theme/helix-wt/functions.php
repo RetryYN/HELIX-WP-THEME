@@ -4,9 +4,14 @@
  * PoC 証跡。実装時はプレビュー引数を管理者限定にし、選択 UI（サイトエディター / 記事サイドバー）を付ける。
  */
 
+require_once __DIR__ . '/inc/content-chrome.php';
+require_once __DIR__ . '/inc/search.php';
+require_once __DIR__ . '/inc/zone-slots.php';
+
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {
 	$axes = array(
+		'content_chrome' => array( 'native', array( 'native', 'shared' ) ),
 		// 2026-09-06 PO 反応 17 回目 WT-EVT-0270「ヘッダーバリエーション増やそうか」: 台帳 §1 header レイアウトの観察型から +5（Claude 案）
 		// center = logo-center-nav-below / two-rows / overlay = transparent-over-hero（eyecatch:hero と併用）/ tel = with-tel / band = テーマ A/B の帯色型
 		'header'   => array( 'search', array( 'search', 'nav', 'cta', 'announce', 'center', 'two-rows', 'overlay', 'tel', 'band' ) ),
@@ -98,7 +103,7 @@ function wt_axes() {
 		// own の束は面ごとに別の軸（own_<face>_side_*）。同じ own を選んでも面をまたいで設定が混ざらない（Astra 1 巡目: 共通の own_side_* は第 3 の共通設定になる）
 		// 継承セットの追加 = wt_side_bundles() に 1 行 + 軸 5 本（許可値は台帳から導出するので面の所属軸は触らない）
 	);
-	foreach ( array( 'category', 'event', 'page' ) as $face ) { // 独自設定の束（面専用）。既定セット minimal は Claude 暫定
+	foreach ( array_merge( array( 'category', 'event', 'page' ), array_keys( wtcf_chrome_faces() ) ) as $face ) { // 独自設定の束（面専用）。既定セット minimal は Claude 暫定
 		$axes[ 'own_' . $face . '_side_layout' ] = array( 'right', array( 'none', 'right', 'left', 'both' ) );
 		$axes[ 'own_' . $face . '_side_sticky' ] = array( 'last-widget', array( 'none', 'whole', 'last-widget', 'toc-only' ) );
 		$axes[ 'own_' . $face . '_side_sp' ]     = array( 'below-content', array( 'below-content', 'drawer', 'hidden' ) );
@@ -117,6 +122,13 @@ function wt_axes() {
 	$axes['form_captcha']  = array( 'none', array( 'none', 'question', 'external-slot' ) );
 	$axes['form_side']     = array( 'tel', array( 'tel', 'none', 'email', 'chat', 'messaging-app' ) );
 	$axes['form_thanks']   = array( 'separate', array( 'separate', 'inline' ) );
+	// 学習面の位置・順序ナビ: 共通設定を継承 / 学習面だけの設定 / 非表示を分離する。表示設定は公開状態や本文認可に触れない。
+	$axes['content_learning_hierarchy'] = array( 'site', array( 'site', 'own', 'off' ) );
+	$axes['content_learning_sequence']  = array( 'site', array( 'site', 'own', 'off' ) );
+	$axes['learning_hierarchy_style']   = array( 'trail', array( 'trail', 'panel' ) );
+	$axes['learning_sequence_style']    = array( 'split', array( 'split', 'cards' ) );
+	$axes['own_content_learning_hierarchy_style'] = array( 'panel', array( 'trail', 'panel' ) );
+	$axes['own_content_learning_sequence_style']  = array( 'cards', array( 'split', 'cards' ) );
 	// 段 12（PO 反応 25 回目 WT-EVT-0302「増やす方向で」、階層整理 WT-EVT-0296 ①「共通のヘッダー、フッターで全体制御」、決定 WT-EVT-0299「継承・独自設定・非表示を分離」）: ヘッダー・フッター・固定 CTA の所属を面ごとに。
 	// 束の台帳 wt_chrome_bundles(): 共通 site = 既存 header / sp（ヘッダー）、footer_*（フッター）、新設 fixed（固定 CTA）。独自設定 own = own_<face>_header / own_<face>_sp / own_<face>_footer_* / own_<face>_fixed
 	// （HOME・イベント・LP の固定 CTA は既存 home_fixed / event_fixed / lp_fixed がそのまま own の束）。非表示 off = 描画しない。LP のヘッダーは既存 lp_header（束 lp）を既定に残す。
@@ -138,13 +150,17 @@ function wt_axes() {
 	$axes['cat_side']   = array( 'article', array_merge( $bundles, array( 'classic', 'off' ) ) ); // 既定 = 記事側継承（PO 原文）。classic = 段 6 の独自 aside
 	$axes['event_side'] = array( 'off', array_merge( array( 'off' ), $bundles ) ); // 既定 = OFF（PO 原文「LP に近い場合は不要」）
 	$axes['page_side']  = array( 'home', array_merge( $bundles, array( 'off' ) ) ); // 既定 = HP 側継承（Claude 暫定）
+	foreach ( array_keys( wtcf_chrome_faces() ) as $face ) { $axes[ $face . '_side' ] = array( 'off', array_merge( $bundles, array( 'off' ) ) ); }
 	return $axes;
 }
 
+require_once __DIR__ . '/inc/content-faces.php';
+require_once __DIR__ . '/inc/footer-navigation.php';
 require_once __DIR__ . '/inc/form.php'; // 段 11: フォーム（種別 / 項目 / 検証 / 確認 → 完了の遷移）
 
 // 段 10c: 面の判定と、その面が使うサイドバー設定の束（home / article / null = 無し）
 function wt_side_face() {
+	if ( wtcf_shared_chrome() ) { return wtcf_chrome_face(); }
 	if ( wt_is_lp_page() ) { return 'lp'; }
 	if ( is_front_page() ) { return 'home'; }
 	if ( wt_is_event_page() ) { return 'event'; }
@@ -165,7 +181,10 @@ function wt_side_bundle() {
 		case 'category': $s = wt_opt( 'cat_side' ); return isset( $bundles[ $s ] ) ? $s : null; // classic / off は共通サイドバーを使わない
 		case 'event': $s = wt_opt( 'event_side' ); return isset( $bundles[ $s ] ) ? $s : null;
 		case 'page': $s = wt_opt( 'page_side' ); return isset( $bundles[ $s ] ) ? $s : null;
-		default: return null;
+		default:
+			$face = wt_side_face();
+			if ( isset( wtcf_chrome_faces()[ $face ] ) ) { $s = wt_opt( $face . '_side' ); return isset( $bundles[ $s ] ) ? $s : null; }
+			return null;
 	}
 }
 function wt_side_eff( $k ) { // $k: layout / sticky / sp / set / nav。面の束から実効値を返す
@@ -178,7 +197,7 @@ function wt_side_eff( $k ) { // $k: layout / sticky / sp / set / nav。面の束
 }
 
 // 段 12: ヘッダー・フッター・固定 CTA の束（wt_side_* と同じ形）
-function wt_chrome_faces() { return array( 'home', 'article', 'category', 'event', 'page', 'lp' ); }
+function wt_chrome_faces() { return array_merge( array( 'home', 'article', 'category', 'event', 'page', 'lp' ), array_keys( wtcf_chrome_faces() ) ); }
 function wt_chrome_prefix( $face ) { return 'category' === $face ? 'cat' : $face; }
 function wt_chrome_bundles() { return array( 'site' => '', 'own' => 'own_{face}_' ); } // 名前 → 軸接頭辞（own は面名に置換）。継承セットの追加はここに 1 行 + 軸
 function wt_chrome_keys( $part ) { // 束を構成する軸
@@ -366,9 +385,9 @@ add_action( 'wp_footer', function () {
 	if ( 'none' === $t ) { return; }
 	$from = ' data-wt-from="' . esc_attr( wt_chrome_bundle( 'fix' ) ) . '"'; // どの束（site / own）から描いたか（verify が読む）
 	$m = array(
-		'sp-bottom-bar' => '<nav class="wt-fixed wt-fixed--sp-bottom-bar"' . $from . ' aria-label="固定導線"><a href="tel:0000000000"><i class="wt-i wt-i--s wt-i--phone" aria-hidden="true"></i>電話する</a><a href="/contact/"><i class="wt-i wt-i--s wt-i--mail" aria-hidden="true"></i>問い合わせ</a></nav>',
+		'sp-bottom-bar' => '<nav class="wt-fixed wt-fixed--sp-bottom-bar"' . $from . ' aria-label="' . esc_attr__( '固定導線', 'helix-wt' ) . '"><a href="tel:0000000000"><i class="wt-i wt-i--s wt-i--phone" aria-hidden="true"></i>電話する</a><a href="/contact/"><i class="wt-i wt-i--s wt-i--mail" aria-hidden="true"></i>問い合わせ</a></nav>',
 		'float-cta'     => '<a class="wt-fixed wt-fixed--float-cta wt-lp-cta-action"' . $from . ' href="/contact/">無料で相談する</a>',
-		'float-tel'     => '<a class="wt-fixed wt-fixed--float-tel"' . $from . ' href="tel:0000000000" aria-label="電話する（PoC 用のダミー番号）"><i class="wt-i wt-i--l wt-i--phone" aria-hidden="true"></i></a>',
+		'float-tel'     => '<a class="wt-fixed wt-fixed--float-tel"' . $from . ' href="tel:0000000000" aria-label="' . esc_attr__( '電話する（PoC 用のダミー番号）', 'helix-wt' ) . '"><i class="wt-i wt-i--l wt-i--phone" aria-hidden="true"></i></a>',
 	);
 	echo $m[ $t ] ?? '';
 }, 5 );
@@ -557,7 +576,7 @@ add_filter( 'the_content', function ( $content ) {
 		return wt_insert_pr( $content );
 	}
 	$is_open = in_array( $variant, array( 'box', 'float' ), true ) ? ' open' : '';
-	$toc = '<nav class="wt-toc wt-toc--' . esc_attr( $variant ) . '" aria-label="目次" data-wt-toc="' . esc_attr( $variant ) . '">'
+	$toc = '<nav class="wt-toc wt-toc--' . esc_attr( $variant ) . '" aria-label="' . esc_attr__( '目次', 'helix-wt' ) . '" data-wt-toc="' . esc_attr( $variant ) . '">'
 		. '<details class="wt-toc__d"' . $is_open . '><summary class="wt-toc__s"><i class="wt-i wt-i--s wt-i--file" aria-hidden="true"></i>この記事の内容<span class="wt-toc__count">' . $h2 . ' 章</span></summary>'
 		. '<ol class="wt-toc__list">' . $items . '</ol></details></nav>';
 	// 挿入位置: 最初の h2 の直前（リード文の後）
@@ -754,13 +773,13 @@ function wt_render_category_children() {
 		'order'      => 'ASC',
 	) );
 	if ( is_wp_error( $children ) || ! $children ) {
-		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="子カテゴリ"></nav>';
+		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="' . esc_attr__( '子カテゴリ', 'helix-wt' ) . '"></nav>';
 	}
 	$variant = wt_opt( 'cat_children' );
 	if ( 'none' === $variant || 'sidebar-tree' === $variant ) { // sidebar-tree は wt_render_category_sidebar() 側（右カラム）で描く
-		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="子カテゴリ"></nav>';
+		return '<nav class="wt-cat-children wt-cat-children--none" aria-label="' . esc_attr__( '子カテゴリ', 'helix-wt' ) . '"></nav>';
 	}
-	$out = '<nav class="wt-cat-children wt-cat-children--' . esc_attr( $variant ) . '" aria-label="子カテゴリ"><ul>';
+	$out = '<nav class="wt-cat-children wt-cat-children--' . esc_attr( $variant ) . '" aria-label="' . esc_attr__( '子カテゴリ', 'helix-wt' ) . '"><ul>';
 	$img = get_theme_file_uri( 'assets/img' );
 	foreach ( $children as $i => $child ) {
 		$url   = get_term_link( $child );
@@ -829,7 +848,7 @@ function wt_render_event_map_embed() {
 	$url = wt_event_map_embed_url();
 	$out = '<div class="wt-event-map wt-event-map--embed" data-wt-embed="' . ( $url ? 'set' : 'unset' ) . '">';
 	if ( $url ) {
-		$out .= '<iframe class="wt-event-map__frame" src="' . esc_url( $url ) . '" title="会場周辺の地図（外部の地図サービス）" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen width="1200" height="480"></iframe>';
+		$out .= '<iframe class="wt-event-map__frame" src="' . esc_url( $url ) . '" title="' . esc_attr__( '会場周辺の地図（外部の地図サービス）', 'helix-wt' ) . '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen width="1200" height="480"></iframe>';
 	} else {
 		$out .= '<p class="wt-event-map__unset">地図の埋め込み URL が未設定です（option <code>helix_wt_event_map_embed_url</code>）。設定するまで外部の地図サービスへは接続しません。</p>';
 	}
@@ -847,13 +866,65 @@ function wt_render_sns_feed_embed() {
 	$url = wt_sns_feed_embed_url();
 	$out = '<div class="wt-part-sns__feed" data-wt-embed="' . ( $url ? 'set' : 'unset' ) . '">';
 	if ( $url ) {
-		$out .= '<iframe class="wt-part-sns__frame" src="' . esc_url( $url ) . '" title="SNS の最新投稿（外部サービスの埋め込み）" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="1200" height="480"></iframe>';
+		$out .= '<iframe class="wt-part-sns__frame" src="' . esc_url( $url ) . '" title="' . esc_attr__( 'SNS の最新投稿（外部サービスの埋め込み）', 'helix-wt' ) . '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="1200" height="480"></iframe>';
 	} else {
 		$out .= '<p class="wt-part-sns__unset">SNS フィードの埋め込み URL が未設定です（option <code>helix_wt_sns_feed_embed_url</code>）。設定するまで外部の SNS サービスへは接続しません。</p>';
 	}
 	return $out . '</div>';
 }
 register_block_type( 'helix-wt/sns-feed-embed', array( 'render_callback' => 'wt_render_sns_feed_embed' ) ); // パターンを保存した後も描画時に option を読む
+
+/**
+ * 現行試作テーマの宣言済み capability と WordPress 登録状態を照合する。
+ *
+ * @return array<string,mixed>
+ */
+function helix_wt_capability_health() {
+	$path = get_theme_file_path( 'config/capability-manifest.json' );
+	$raw  = is_readable( $path ) ? file_get_contents( $path ) : false;
+	$data = is_string( $raw ) ? json_decode( $raw, true ) : null;
+	if ( ! is_array( $data ) || ! isset( $data['capabilities'] ) || ! is_array( $data['capabilities'] ) ) {
+		return array( 'loaded' => false, 'error' => 'capability_manifest_invalid' );
+	}
+	$declared = $data['capabilities'];
+	$patterns = array_values( array_filter(
+		array_column( WP_Block_Patterns_Registry::get_instance()->get_all_registered(), 'name' ),
+		static fn( $slug ) => str_starts_with( $slug, 'helix-wt/' ) || str_starts_with( $slug, 'helix-wt-page/' )
+	) );
+	$blocks = array_values( array_filter(
+		array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() ),
+		static fn( $slug ) => str_starts_with( $slug, 'helix-wt/' )
+	) );
+	$styles_registry = WP_Block_Styles_Registry::get_instance();
+	$styles = array_values( array_filter(
+		$declared['block_styles'] ?? array(),
+		static function ( $entry ) use ( $styles_registry ) {
+			list( $block, $style ) = explode( ':', $entry, 2 );
+			return $styles_registry->is_registered( $block, $style );
+		}
+	) );
+	sort( $patterns );
+	sort( $blocks );
+	sort( $styles );
+	$registered = array( 'patterns' => $patterns, 'custom_blocks' => $blocks, 'block_styles' => $styles );
+	$drift = array();
+	foreach ( $registered as $kind => $values ) {
+		$expected = $declared[ $kind ] ?? array();
+		$drift[ $kind ] = array(
+			'missing'    => array_values( array_diff( $expected, $values ) ),
+			'undeclared' => in_array( $kind, array( 'patterns', 'custom_blocks' ), true ) ? array() : array_values( array_diff( $values, $expected ) ),
+		);
+	}
+	return array(
+		'loaded'                  => true,
+		'capability_manifest'     => $declared,
+		'registered_capabilities' => $registered,
+		'extension_blocks'        => array_values( array_diff( $blocks, $declared['custom_blocks'] ?? array() ) ),
+		'extension_patterns'      => array_values( array_diff( $patterns, $declared['patterns'] ?? array() ) ),
+		'capability_drift'        => $drift,
+		'capability_digest'       => hash( 'sha256', wp_json_encode( $declared ) ),
+	);
+}
 
 // ---------- 段 10: 共通サイドバー（記事 / 固定ページ / HP。WT-EVT-0289、台帳 research-r21 sidebar n=48） ----------
 // ウィジェット 20 種 = 台帳の観察 18 種（other:toc-dropdown を含む）+ 未観察 2 種（calendar / tel-box、語彙にあり Claude 案）。セットは区分別の上位順。カテゴリ面の cat_sidebar 3 型は段 6 のまま残す（統合は次段）
@@ -874,7 +945,7 @@ function wt_side_widget( $key, $sfx = '' ) { // $sfx: 左カラム用の id 接�
 	$o     = '<section class="wt-side-widget wt-side-widget--' . esc_attr( $key ) . '" aria-labelledby="wt-side-h-' . esc_attr( $key . $sfx ) . '" data-wt-widget="' . esc_attr( $key ) . '">';
 	switch ( $key ) {
 		case 'search':
-			$o .= $h( '検索' ) . '<form role="search" method="get" action="' . esc_url( home_url( '/' ) ) . '"><label class="screen-reader-text" for="wt-side-s' . esc_attr( $sfx ) . '">キーワード</label><input id="wt-side-s' . esc_attr( $sfx ) . '" type="search" name="s" placeholder="キーワードで検索"><button type="submit" aria-label="検索"><i class="wt-i wt-i--s wt-i--search" aria-hidden="true"></i></button></form>';
+			$o .= $h( '検索' ) . '<form role="search" method="get" action="' . esc_url( home_url( '/' ) ) . '"><label class="screen-reader-text" for="wt-side-s' . esc_attr( $sfx ) . '">キーワード</label><input id="wt-side-s' . esc_attr( $sfx ) . '" type="search" name="s" placeholder="' . esc_attr__( 'キーワードで検索', 'helix-wt' ) . '"><button type="submit" aria-label="' . esc_attr__( '検索', 'helix-wt' ) . '"><i class="wt-i wt-i--s wt-i--search" aria-hidden="true"></i></button></form>';
 			break;
 		case 'profile':
 			$o .= $h( 'この媒体について' ) . '<div class="wt-side-profile"><img src="' . esc_url( $u ) . '/avatar.png" alt="" width="64" height="64" loading="lazy"><p><b>編集部</b><br>比較と選び方を、実測と一次情報で。PoC 用の架空プロフィール。</p></div>';
@@ -909,19 +980,19 @@ function wt_side_widget( $key, $sfx = '' ) { // $sfx: 左カラム用の id 接�
 			$items = ''; $h2 = 0;
 			if ( is_singular( 'post' ) ) { list( $h2, $items ) = wt_toc_items( wt_toc_assign_ids( do_blocks( get_post_field( 'post_content', get_queried_object_id() ) ) ) ); } // 本文は pattern 参照のことがあるので block を展開してから（the_content の filter は do_blocks（9）→ 目次（12）の順で、id の付与順は同じ）
 			if ( $h2 < 1 ) { return ''; } // 見出しが無い面では出さない（届かない導線を作らない）
-			$o .= $h( '目次' ) . '<nav class="wt-side-toc" aria-label="目次（サイド）"><ol>' . $items . '</ol></nav>';
+			$o .= $h( '目次' ) . '<nav class="wt-side-toc" aria-label="' . esc_attr__( '目次（サイド）', 'helix-wt' ) . '"><ol>' . $items . '</ol></nav>';
 			break;
 		case 'toc-dropdown': // 台帳 other:toc-dropdown（サイドの折りたたみ目次）
 			$items = ''; $h2 = 0;
 			if ( is_singular( 'post' ) ) { list( $h2, $items ) = wt_toc_items( wt_toc_assign_ids( do_blocks( get_post_field( 'post_content', get_queried_object_id() ) ) ) ); }
 			if ( $h2 < 1 ) { return ''; }
-			$o .= $h( '目次', '（開閉）' ) . '<details class="wt-side-tocdd"><summary>この記事の内容</summary><nav class="wt-side-toc" aria-label="目次（サイド・開閉）"><ol>' . $items . '</ol></nav></details>';
+			$o .= $h( '目次', '（開閉）' ) . '<details class="wt-side-tocdd"><summary>この記事の内容</summary><nav class="wt-side-toc" aria-label="' . esc_attr__( '目次（サイド・開閉）', 'helix-wt' ) . '"><ol>' . $items . '</ol></nav></details>';
 			break;
 		case 'newsletter':
 			$o .= $h( 'ニュースレター' ) . '<div class="wt-side-newsletter" role="group" aria-labelledby="wt-side-h-newsletter"><p>週 1 回、新着と比較の更新をお届け。</p><label class="screen-reader-text" for="wt-side-nl">メールアドレス</label><input id="wt-side-nl" type="email" name="email" placeholder="email@example.invalid" autocomplete="email"><button type="button" class="wt-lp-cta-action" aria-describedby="wt-side-nl-note">登録する</button><p id="wt-side-nl-note" class="wt-lp-form__note">PoC のため送信しない（form 要素を使わない）。</p></div>';
 			break;
 		case 'sns-follow':
-			$o .= $h( 'フォローする' ) . '<ul class="wt-side-sns" aria-label="公式アカウント（PoC のダミー導線）"><li><a class="wt-sns" href="#wt-side-h-sns-follow" rel="nofollow" aria-label="公式アカウント 1"><i class="wt-i wt-i--sns-x" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#wt-side-h-sns-follow" rel="nofollow" aria-label="公式アカウント 2"><i class="wt-i wt-i--sns-ig" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#wt-side-h-sns-follow" rel="nofollow" aria-label="公式アカウント 3"><i class="wt-i wt-i--sns-yt" aria-hidden="true"></i></a></li></ul>';
+			$o .= $h( 'フォローする' ) . '<ul class="wt-side-sns" aria-label="' . esc_attr__( '公式アカウント（PoC のダミー導線）', 'helix-wt' ) . '"><li><a class="wt-sns" href="#wt-side-h-sns-follow" rel="nofollow" aria-label="' . esc_attr__( '公式アカウント 1', 'helix-wt' ) . '"><i class="wt-i wt-i--sns-x" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#wt-side-h-sns-follow" rel="nofollow" aria-label="' . esc_attr__( '公式アカウント 2', 'helix-wt' ) . '"><i class="wt-i wt-i--sns-ig" aria-hidden="true"></i></a></li><li><a class="wt-sns" href="#wt-side-h-sns-follow" rel="nofollow" aria-label="' . esc_attr__( '公式アカウント 3', 'helix-wt' ) . '"><i class="wt-i wt-i--sns-yt" aria-hidden="true"></i></a></li></ul>';
 			break;
 		case 'archive':
 			$months = array();
@@ -935,7 +1006,7 @@ function wt_side_widget( $key, $sfx = '' ) { // $sfx: 左カラム用の id 接�
 			$o .= $h( 'カレンダー' ) . '<div class="wt-side-calendar">' . get_calendar( true, false ) . '</div>';
 			break;
 		case 'ad':
-			$o .= $h( '広告枠', '（PoC のダミー）' ) . '<div class="wt-side-ad" role="img" aria-label="広告枠のダミー（300×250 相当。実運用では広告タグを置く）"><span>AD 300×250</span></div>';
+			$o .= $h( '広告枠', '（PoC のダミー）' ) . '<div class="wt-side-ad" role="img" aria-label="' . esc_attr__( '広告枠のダミー（300×250 相当。実運用では広告タグを置く）', 'helix-wt' ) . '"><span>AD 300×250</span></div>';
 			break;
 		case 'related-posts':
 			$o .= $h( '関連記事' ) . '<ul class="wt-side-related">';
@@ -970,10 +1041,10 @@ function wt_render_sidebar( $attrs = array() ) {
 	foreach ( $keys as $k ) { $out .= wt_side_widget( $k ); }
 	// left 側 / both の左は「ナビ寄り」（カテゴリ + 検索）に固定し、右に本セットを置く
 	$left = wt_side_widget( 'categories', '-l' ) . wt_side_widget( 'search', '-l' );
-	return '<aside class="wt-side wt-side--right" data-wt-side="right" aria-label="サイドバー">' . $out . '</aside>'
-		. '<aside class="wt-side wt-side--left" data-wt-side="left" aria-label="サイドナビ（左）">' . $left . '</aside>'
+	return '<aside class="wt-side wt-side--right" data-wt-side="right" aria-label="' . esc_attr__( 'サイドバー', 'helix-wt' ) . '">' . $out . '</aside>'
+		. '<aside class="wt-side wt-side--left" data-wt-side="left" aria-label="' . esc_attr__( 'サイドナビ（左）', 'helix-wt' ) . '">' . $left . '</aside>'
 		. '<button class="wt-side-drawer__open" type="button" hidden aria-controls="wt-side-drawer" aria-expanded="false"><i class="wt-i wt-i--menu" aria-hidden="true"></i>メニュー</button>'
-		. '<div class="wt-side-drawer" id="wt-side-drawer" hidden><div class="wt-side-drawer__panel" role="dialog" aria-modal="true" aria-label="サイドバー（ドロワー）"><button class="wt-side-drawer__close" type="button" aria-label="閉じる"><i class="wt-i wt-i--close" aria-hidden="true"></i></button><div class="wt-side-drawer__body"></div></div></div>';
+		. '<div class="wt-side-drawer" id="wt-side-drawer" hidden><div class="wt-side-drawer__panel" role="dialog" aria-modal="true" aria-label="' . esc_attr__( 'サイドバー（ドロワー）', 'helix-wt' ) . '"><button class="wt-side-drawer__close" type="button" aria-label="' . esc_attr__( '閉じる', 'helix-wt' ) . '"><i class="wt-i wt-i--close" aria-hidden="true"></i></button><div class="wt-side-drawer__body"></div></div></div>';
 }
 register_block_type( 'helix-wt/sidebar', array( 'render_callback' => 'wt_render_sidebar' ) );
 // サイドナビ 5 型（fixed-left-nav / fixed-right-icons / mega-menu / drawer-pc / toc-side）。mega-menu はヘッダーのナビにパネルを足す（JS で aria）
@@ -981,8 +1052,8 @@ function wt_render_side_nav() {
 	$cats = get_terms( array( 'taxonomy' => 'category', 'parent' => 0, 'hide_empty' => false, 'orderby' => 'term_id', 'order' => 'ASC', 'number' => 8 ) );
 	$li   = '';
 	foreach ( is_wp_error( $cats ) ? array() : $cats as $c ) { $l = get_term_link( $c ); if ( ! is_wp_error( $l ) ) { $li .= '<li><a href="' . esc_url( $l ) . '">' . esc_html( $c->name ) . '</a></li>'; } }
-	$out  = '<nav class="wt-sidenav wt-sidenav--fixed-left" aria-label="サイドナビ（固定・左）"><p class="wt-eyebrow">MENU</p><ul>' . $li . '</ul></nav>';
-	$out .= '<nav class="wt-sidenav wt-sidenav--fixed-right" aria-label="サイドナビ（固定・右アイコン）"><a href="/lp/" aria-label="資料請求"><i class="wt-i wt-i--download" aria-hidden="true"></i><span>資料</span></a><a href="tel:0000000000" aria-label="電話（PoC 用のダミー番号）"><i class="wt-i wt-i--phone" aria-hidden="true"></i><span>電話</span></a><a href="/lp/" aria-label="お問い合わせ（相談ページへ）"><i class="wt-i wt-i--mail" aria-hidden="true"></i><span>相談</span></a><button type="button" data-wt-totop aria-label="ページ上部へ"><i class="wt-i wt-i--chevron-down" aria-hidden="true"></i><span>TOP</span></button></nav>';
+	$out  = '<nav class="wt-sidenav wt-sidenav--fixed-left" aria-label="' . esc_attr__( 'サイドナビ（固定・左）', 'helix-wt' ) . '"><p class="wt-eyebrow">MENU</p><ul>' . $li . '</ul></nav>';
+	$out .= '<nav class="wt-sidenav wt-sidenav--fixed-right" aria-label="' . esc_attr__( 'サイドナビ（固定・右アイコン）', 'helix-wt' ) . '"><a href="/lp/" aria-label="' . esc_attr__( '資料請求', 'helix-wt' ) . '"><i class="wt-i wt-i--download" aria-hidden="true"></i><span>資料</span></a><a href="tel:0000000000" aria-label="' . esc_attr__( '電話（PoC 用のダミー番号）', 'helix-wt' ) . '"><i class="wt-i wt-i--phone" aria-hidden="true"></i><span>電話</span></a><a href="/lp/" aria-label="' . esc_attr__( 'お問い合わせ（相談ページへ）', 'helix-wt' ) . '"><i class="wt-i wt-i--mail" aria-hidden="true"></i><span>相談</span></a><button type="button" data-wt-totop aria-label="' . esc_attr__( 'ページ上部へ', 'helix-wt' ) . '"><i class="wt-i wt-i--chevron-down" aria-hidden="true"></i><span>TOP</span></button></nav>';
 	$out .= '<div class="wt-megamenu" id="wt-megamenu" hidden><div class="wt-megamenu__inner"><div><p class="wt-eyebrow">CATEGORY</p><ul>' . $li . '</ul></div><div><p class="wt-eyebrow">PICKUP</p><ul><li><a href="/lp/">はじめての方へ</a></li><li><a href="/event/">イベント</a></li><li><a href="/parts/">固定ページ用パーツ</a></li></ul></div><div><p class="wt-eyebrow">ABOUT</p><ul><li><a href="/">この媒体について</a></li><li><a href="/category/topic-index/">カテゴリ一覧</a></li></ul></div></div></div>';
 	return $out;
 }
@@ -1031,7 +1102,7 @@ function wt_render_category_filter() {
 	$out = '<div class="wt-cat-filter wt-cat-filter--' . esc_attr( $variant ) . '">';
 	if ( 'tabs' === $variant ) {
 		$children = get_terms( array( 'taxonomy' => 'category', 'parent' => (int) $term->term_id, 'hide_empty' => false, 'orderby' => 'term_id', 'order' => 'ASC' ) );
-		$out     .= '<nav aria-label="絞り込み"><ul><li><a href="' . esc_url( $base ) . '" aria-current="page">すべて</a></li>';
+		$out     .= '<nav aria-label="' . esc_attr__( '絞り込み', 'helix-wt' ) . '"><ul><li><a href="' . esc_url( $base ) . '" aria-current="page">すべて</a></li>';
 		foreach ( is_wp_error( $children ) ? array() : $children as $child ) {
 			$link = get_term_link( $child );
 			if ( ! is_wp_error( $link ) ) {
@@ -1046,7 +1117,7 @@ function wt_render_category_filter() {
 		}
 		krsort( $years );
 		$current = get_query_var( 'year' );
-		$out    .= '<nav aria-label="年で絞り込み"><ul><li><a href="' . esc_url( $base ) . '"' . ( $current ? '' : ' aria-current="page"' ) . '>すべて</a></li>';
+		$out    .= '<nav aria-label="' . esc_attr__( '年で絞り込み', 'helix-wt' ) . '"><ul><li><a href="' . esc_url( $base ) . '"' . ( $current ? '' : ' aria-current="page"' ) . '>すべて</a></li>';
 		foreach ( array_keys( $years ) as $y ) {
 			$out .= '<li><a href="' . esc_url( add_query_arg( 'year', $y, $base ) ) . '"' . ( (string) $current === (string) $y ? ' aria-current="page"' : '' ) . '>' . esc_html( $y ) . '年</a></li>';
 		}
@@ -1054,7 +1125,7 @@ function wt_render_category_filter() {
 	} elseif ( 'tag' === $variant ) {
 		$tags    = get_terms( array( 'taxonomy' => 'post_tag', 'hide_empty' => true, 'number' => 12 ) );
 		$current = get_query_var( 'tag' );
-		$out    .= '<nav aria-label="タグで絞り込み"><ul><li><a href="' . esc_url( $base ) . '"' . ( $current ? '' : ' aria-current="page"' ) . '>すべて</a></li>';
+		$out    .= '<nav aria-label="' . esc_attr__( 'タグで絞り込み', 'helix-wt' ) . '"><ul><li><a href="' . esc_url( $base ) . '"' . ( $current ? '' : ' aria-current="page"' ) . '>すべて</a></li>';
 		foreach ( is_wp_error( $tags ) ? array() : $tags as $t ) {
 			$out .= '<li><a href="' . esc_url( add_query_arg( 'tag', $t->slug, $base ) ) . '"' . ( $current === $t->slug ? ' aria-current="page"' : '' ) . '>#' . esc_html( $t->name ) . '</a></li>';
 		}
@@ -1107,9 +1178,9 @@ function wt_render_category_sidebar() {
 	$out .= '</ol></section>';
 	// cta-banner（33%）
 	$lp   = get_page_by_path( 'lp' );
-	$out .= '<section class="wt-cat-widget wt-cat-widget--cta" aria-label="案内"><a class="wt-cat-widget__banner" href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>はじめての方へ</b><span>選び方の全体像を 1 ページで</span></a></section>';
+	$out .= '<section class="wt-cat-widget wt-cat-widget--cta" aria-label="' . esc_attr__( '案内', 'helix-wt' ) . '"><a class="wt-cat-widget__banner" href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>はじめての方へ</b><span>選び方の全体像を 1 ページで</span></a></section>';
 	// full: search / archive-month / new-posts / profile / tags
-	$out .= '<section class="wt-cat-widget wt-cat-widget--search" aria-labelledby="wt-cat-w-search"><h2 id="wt-cat-w-search">検索</h2><form role="search" method="get" action="' . esc_url( home_url( '/' ) ) . '"><label class="screen-reader-text" for="wt-cat-s">キーワード</label><input id="wt-cat-s" type="search" name="s" placeholder="キーワード"><button type="submit" aria-label="検索"><i class="wt-i wt-i--search" aria-hidden="true"></i></button></form></section>';
+	$out .= '<section class="wt-cat-widget wt-cat-widget--search" aria-labelledby="wt-cat-w-search"><h2 id="wt-cat-w-search">検索</h2><form role="search" method="get" action="' . esc_url( home_url( '/' ) ) . '"><label class="screen-reader-text" for="wt-cat-s">キーワード</label><input id="wt-cat-s" type="search" name="s" placeholder="' . esc_attr__( 'キーワード', 'helix-wt' ) . '"><button type="submit" aria-label="' . esc_attr__( '検索', 'helix-wt' ) . '"><i class="wt-i wt-i--search" aria-hidden="true"></i></button></form></section>';
 	$months = array();
 	foreach ( wt_category_posts( $term, -1 ) as $p ) {
 		$months[ get_the_date( 'Y-m', $p ) ] = array( (int) get_the_date( 'Y', $p ), (int) get_the_date( 'n', $p ) );
@@ -1179,12 +1250,12 @@ function wt_render_category_cta() {
 	}
 	if ( 'lp-banner' === $variant ) {
 		$lp = get_page_by_path( 'lp' );
-		return '<aside class="wt-cat-cta wt-cat-cta--lp-banner" aria-label="案内"><a href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>' . esc_html( $term->name ) . ' の選び方ガイド</b><span>比較の軸と失敗しない順番を 1 ページにまとめました</span><span class="wt-lp-cta-action">ガイドを読む</span></a></aside>';
+		return '<aside class="wt-cat-cta wt-cat-cta--lp-banner" aria-label="' . esc_attr__( '案内', 'helix-wt' ) . '"><a href="' . esc_url( $lp ? get_permalink( $lp ) : home_url( '/' ) ) . '"><span class="wt-eyebrow">GUIDE</span><b>' . esc_html( $term->name ) . ' の選び方ガイド</b><span>比較の軸と失敗しない順番を 1 ページにまとめました</span><span class="wt-lp-cta-action">ガイドを読む</span></a></aside>';
 	}
 	if ( 'newsletter' === $variant ) { // PoC: 送信しない（外部の配信サービスへ接続しない）。form 要素を使わない: 文字入力 1 つの form は送信ボタンが無くても Enter で暗黙送信される
 		return '<aside class="wt-cat-cta wt-cat-cta--newsletter" id="cat-newsletter" aria-labelledby="wt-cat-nl-title"><h2 id="wt-cat-nl-title">新着記事をメールで受け取る</h2><div class="wt-cat-cta__fields" role="group" aria-labelledby="wt-cat-nl-title" data-wt-poc-form="no-submit"><label for="wt-cat-nl-email">メールアドレス</label><input id="wt-cat-nl-email" type="email" name="email" autocomplete="email" placeholder="you@example.com"><button type="button">登録する（PoC: 送信しない）</button></div></aside>';
 	}
-	return '<aside class="wt-cat-cta wt-cat-cta--line" id="cat-line" aria-label="LINE 案内"><p>新着と限定情報を LINE でお届け</p><a class="wt-lp-cta-action" href="#cat-line" aria-label="LINE で友だち追加"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>LINE で友だち追加</a></aside>';
+	return '<aside class="wt-cat-cta wt-cat-cta--line" id="cat-line" aria-label="' . esc_attr__( 'LINE 案内', 'helix-wt' ) . '"><p>新着と限定情報を LINE でお届け</p><a class="wt-lp-cta-action" href="#cat-line" aria-label="' . esc_attr__( 'LINE で友だち追加', 'helix-wt' ) . '"><i class="wt-i wt-i--bubble" aria-hidden="true"></i>LINE で友だち追加</a></aside>';
 }
 
 function wt_render_card_badges( $attributes = array(), $content = '', $block = null ) {
@@ -1223,7 +1294,7 @@ function wt_render_category_minihome() {
 		'order'      => 'ASC',
 	) );
 	if ( is_wp_error( $children ) || ! $children ) {
-		return '<section class="wt-cat-minihome" aria-label="カテゴリ ミニ HOME"><p>子カテゴリの一覧は準備中です。</p></section>';
+		return '<section class="wt-cat-minihome" aria-label="' . esc_attr__( 'カテゴリ ミニ HOME', 'helix-wt' ) . '"><p>子カテゴリの一覧は準備中です。</p></section>';
 	}
 	$out = '<section class="wt-cat-minihome" aria-labelledby="wt-cat-minihome-title"><div class="wt-cat-minihome__intro"><p class="wt-eyebrow">CATEGORY GUIDE</p><h2 id="wt-cat-minihome-title">読む順番</h2><ol class="wt-cat-reading-order">';
 	foreach ( $children as $child ) {
@@ -1272,7 +1343,7 @@ function wt_render_tail_prevnext() {
 	if ( ! $previous && ! $next ) {
 		return '';
 	}
-	$out = '<nav class="wt-tail__prevnext" aria-label="前後の記事">';
+	$out = '<nav class="wt-tail__prevnext" aria-label="' . esc_attr__( '前後の記事', 'helix-wt' ) . '">';
 	foreach ( array( 'previous' => $previous, 'next' => $next ) as $direction => $post ) {
 		if ( ! $post ) {
 			continue;
@@ -1297,7 +1368,7 @@ function wt_render_tail_author() {
 	$avatar    = '<div class="wt-author-box__avatar"><span class="wt-author-box__initial" aria-hidden="true">' . esc_html( $initial ) . '</span></div>';
 	$name_html = '<p class="wt-author-box__name">' . esc_html( $name ) . '</p>';
 	$bio_html  = $bio ? '<p class="wt-author-box__bio">' . esc_html( $bio ) . '</p>' : '';
-	$sns       = '<div class="wt-author-sns" aria-label="著者の共有先"><a href="#" aria-label="共有先 1">1</a><a href="#" aria-label="共有先 2">2</a><a href="#" aria-label="共有先 3">3</a></div>';
+	$sns       = '<div class="wt-author-sns" aria-label="' . esc_attr__( '著者の共有先', 'helix-wt' ) . '"><a href="#" aria-label="' . esc_attr__( '共有先 1', 'helix-wt' ) . '">1</a><a href="#" aria-label="' . esc_attr__( '共有先 2', 'helix-wt' ) . '">2</a><a href="#" aria-label="' . esc_attr__( '共有先 3', 'helix-wt' ) . '">3</a></div>';
 	$variants  = array(
 		'avatar-bio'     => $avatar . '<div><p class="wt-author-box__label">この記事を書いた人</p>' . $name_html . $bio_html . '</div>',
 		'avatar-bio-sns' => $avatar . '<div><p class="wt-author-box__label">この記事を書いた人</p>' . $name_html . $bio_html . $sns . '</div>',
@@ -1359,3 +1430,6 @@ add_filter( 'render_block_core/post-featured-image', function ( $html, $block, $
 	$src = get_theme_file_uri( 'assets/img/lum-mid.jpg' );
 	return '<figure class="wp-block-post-featured-image"><img class="wt-thumb-fallback" src="' . esc_url( $src ) . '" alt="" width="1600" height="900" loading="lazy" decoding="async" /></figure>';
 }, 10, 3 );
+
+// 端末別パーツ宣言の保存・描画 PoC。
+require_once __DIR__ . '/inc/parts-declaration.php';

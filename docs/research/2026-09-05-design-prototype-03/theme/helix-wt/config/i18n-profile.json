@@ -1,0 +1,10 @@
+{
+  "schema": "helix-wt-i18n-profile.v1",
+  "text_domain": "helix-wt",
+  "source_languages": ["ja", "en"],
+  "rtl": {
+    "supported": false,
+    "scope": "out-of-scope",
+    "reason": "Current prototype acceptance covers Japanese and English source content; RTL requires a separate evidence lane before release declaration."
+  }
+}

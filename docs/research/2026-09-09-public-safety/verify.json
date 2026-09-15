@@ -1,0 +1,75 @@
+{
+  "schema": "wt-public-safety-verification.v1",
+  "requirements": [
+    "WT-NFR-CRED-01"
+  ],
+  "completed": true,
+  "source": "scripts/public-safety-guard.sh",
+  "source_sha256": "dc99fb1c559f664bd2b86f2629e6ec30c198b6f2bfa2ca58a96213f9e248688e",
+  "rows": [
+    {
+      "name": "positive:clean-source-accepted",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:private-key-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:access-token-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:credential-assignment-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:personal-path-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:tracking-url-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:research-requires-private-map",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:research-with-private-map-accepted",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:custom-private-map-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    }
+  ],
+  "failed": 0
+}

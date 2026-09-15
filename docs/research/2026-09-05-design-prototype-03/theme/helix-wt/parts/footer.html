@@ -1,6 +1,6 @@
 <!-- wp:group {"tagName":"footer","className":"wt-footer","backgroundColor":"surface","layout":{"type":"constrained","wideSize":"1120px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}}} -->
-<footer class="wp-block-group wt-footer has-surface-background-color has-background">
-<!-- wp:group {"align":"wide","className":"wt-footer__brand","layout":{"type":"flow"}} -->
+<footer class="wp-block-group wt-footer has-surface-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
+<!-- wp:group {"align":"wide","className":"wt-footer__brand","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide wt-footer__brand"><!-- wp:site-title {"level":0} /-->
 <!-- wp:paragraph {"fontSize":"s","textColor":"mute"} --><p class="has-mute-color has-text-color has-s-font-size">読みものと案内をまとめたフッター枠。</p><!-- /wp:paragraph --></div>
 <!-- /wp:group -->
@@ -12,14 +12,9 @@
   <div class="wt-footer__above-slot wt-footer__above-slot--newsletter"><div><p class="wt-eyebrow">UPDATE</p><h2>更新のお知らせを受け取る</h2></div><form class="wt-footer__form" action="#" method="post"><label><span class="screen-reader-text">メールアドレス</span><input type="email" name="email" placeholder="メールアドレス" /></label><button type="submit">登録</button></form></div>
 </section>
 <div class="wt-footer__layouts">
-  <section class="wt-footer__layout wt-footer__layout--sitemap" aria-label="サイトマップ">
-    <div class="wt-footer__sitemap">
-      <details open><summary>読む</summary><ul><li><a href="/category/topic-index/">カテゴリ一覧</a></li><li><a href="/category/topic-one/">読み進める</a></li><li><a href="/category/topic-two/">比べる</a></li></ul></details>
-      <details open><summary>使う</summary><ul><li><a href="/">案内を見る</a></li><li><a href="/category/topic-three/">選ぶ</a></li><li><a href="/">更新情報</a></li></ul></details>
-      <details open><summary>知る</summary><ul><li><a href="/">このページについて</a></li><li><a href="/">読み方</a></li><li><a href="/">よくある質問</a></li></ul></details>
-      <details open><summary>案内</summary><ul><li><a href="/">お問い合わせ</a></li><li><a href="/">利用規約</a></li><li><a href="/">プライバシー</a></li></ul></details>
-    </div>
-  </section>
+<!-- /wp:html -->
+<!-- wp:pattern {"slug":"helix-wt/footer-sitemap"} /-->
+<!-- wp:html -->
   <nav class="wt-footer__layout wt-footer__layout--single-row" aria-label="フッターナビ"><a href="/category/topic-index/">カテゴリ一覧</a><a href="/">案内を見る</a><a href="/">お問い合わせ</a><a href="/">利用規約</a></nav>
   <section class="wt-footer__layout wt-footer__layout--columns-3" aria-label="フッター案内">
     <div><h2>読む</h2><a href="/category/topic-one/">読み進める</a><a href="/category/topic-two/">比べる</a></div>
@@ -29,7 +24,9 @@
 </div>
 <section class="wt-footer__extra" aria-label="フッター付属情報">
   <div class="wt-footer-extra-slot wt-footer-extra-slot--sns"><h2>SNSアイコン</h2><div class="wt-social"><a href="#" aria-label="X（公式アカウント）" rel="nofollow"><i class="wt-i wt-i--sns-x" aria-hidden="true"></i></a><a href="#" aria-label="写真共有（公式アカウント）" rel="nofollow"><i class="wt-i wt-i--sns-ig" aria-hidden="true"></i></a><a href="#" aria-label="動画（公式チャンネル）" rel="nofollow"><i class="wt-i wt-i--sns-yt" aria-hidden="true"></i></a><a href="#" aria-label="LINE（公式アカウント）" rel="nofollow"><i class="wt-i wt-i--bubble" aria-hidden="true"></i></a></div></div>
-  <div class="wt-footer-extra-slot wt-footer-extra-slot--sites"><h2>関連サイト</h2><ul><li><a href="/">関連サイト 1</a></li><li><a href="/">関連サイト 2</a></li></ul></div>
+<!-- /wp:html -->
+<!-- wp:pattern {"slug":"helix-wt/footer-related"} /-->
+<!-- wp:html -->
   <div class="wt-footer-extra-slot wt-footer-extra-slot--badges"><h2>認証バッジ</h2><div class="wt-badges"><span>認証</span><span>安全</span></div></div>
   <div class="wt-footer-extra-slot wt-footer-extra-slot--address"><h2>住所</h2><address>設定された所在地</address></div>
 </section>

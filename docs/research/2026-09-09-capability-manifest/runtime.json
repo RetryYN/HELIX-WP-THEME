@@ -1,0 +1,102 @@
+{
+  "schema": "wt-capability-health-runtime.v2",
+  "completed": true,
+  "requirements": [
+    "WT-TR-CORE-02"
+  ],
+  "environment": {
+    "wordpress": "7.1",
+    "php": "8.3.33",
+    "active_theme": "helix-wt"
+  },
+  "counts": {
+    "declared_patterns": 55,
+    "registered_patterns": 66,
+    "declared_custom_blocks": 16,
+    "registered_custom_blocks": 21,
+    "declared_block_styles": 77,
+    "registered_block_styles": 77
+  },
+  "negative_fixture": {
+    "removed_pattern": "helix-wt-page/countdown",
+    "reported_missing": [
+      "helix-wt-page/countdown"
+    ]
+  },
+  "rows": [
+    {
+      "name": "health:loaded",
+      "pass": true
+    },
+    {
+      "name": "health:active-current-theme",
+      "pass": true,
+      "detail": {
+        "active_theme": "helix-wt"
+      }
+    },
+    {
+      "name": "health:declared-patterns-registered",
+      "pass": true,
+      "detail": {
+        "extensions": [
+          "helix-wt/site-accessibility",
+          "helix-wt/site-careers",
+          "helix-wt/site-commerce",
+          "helix-wt/site-company",
+          "helix-wt/site-contact",
+          "helix-wt/site-locations",
+          "helix-wt/site-pricing",
+          "helix-wt/site-privacy",
+          "helix-wt/site-service",
+          "helix-wt/site-terms",
+          "helix-wt/site-transmissions"
+        ]
+      }
+    },
+    {
+      "name": "health:declared-custom-blocks-registered",
+      "pass": true,
+      "detail": {
+        "extensions": [
+          "helix-wt/content-face",
+          "helix-wt/form",
+          "helix-wt/form-thanks",
+          "helix-wt/learning",
+          "helix-wt/site-page"
+        ]
+      }
+    },
+    {
+      "name": "health:block-styles-match-wordpress-registry",
+      "pass": true
+    },
+    {
+      "name": "health:no-runtime-drift",
+      "pass": true,
+      "detail": {
+        "patterns": {
+          "missing": [],
+          "undeclared": []
+        },
+        "custom_blocks": {
+          "missing": [],
+          "undeclared": []
+        },
+        "block_styles": {
+          "missing": [],
+          "undeclared": []
+        }
+      }
+    },
+    {
+      "name": "negative:unregistered-pattern-reported",
+      "pass": true
+    },
+    {
+      "name": "health:digest-present",
+      "pass": true
+    }
+  ],
+  "failed": 0
+}

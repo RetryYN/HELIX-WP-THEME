@@ -1,0 +1,108 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-header-navigation.mjs": "dfaafd4ef6798445c603aa8754990fb0fa574cf9edaccd3bd03722fe55df1118",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "6b1e3c0d949e1cddf6b58bd31b3c2cb38a33f53634209ed2176817feb02fdf44",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php": "bf46f2f5e2bd39851da7f5126eadad10ce665da347eb271396d5835d9154b961",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-chrome.css": "77174bf6516bde20083fb57b5c2be382ac6e15aaaea0163b6cb6737acbd24668",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html": "d225ce189fc54510f16cb1163a1aaf1cb2be510a95e075cc3684a23fc12b2982",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "e2516ec8f7f319448de18788ceb571010fc30b3ad94a045130bdba9b78a9b38d",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php": "c1a2009b7fcfe0953d9f6315651b0ff7a62b0d98ec58cbcc7a27eba969a30f23"
+  },
+  "rows": [
+    {
+      "name": "stored-links:pc:js-true",
+      "pass": false
+    },
+    {
+      "name": "stored-links:pc:js-false",
+      "pass": false
+    },
+    {
+      "name": "stored-links:sp:js-true",
+      "pass": false
+    },
+    {
+      "name": "stored-links:sp:js-false",
+      "pass": false
+    },
+    {
+      "name": "updated:search",
+      "pass": false
+    },
+    {
+      "name": "updated:nav",
+      "pass": false
+    },
+    {
+      "name": "updated:cta",
+      "pass": false
+    },
+    {
+      "name": "updated:announce",
+      "pass": false
+    },
+    {
+      "name": "updated:center",
+      "pass": false
+    },
+    {
+      "name": "updated:two-rows",
+      "pass": false
+    },
+    {
+      "name": "updated:overlay",
+      "pass": false
+    },
+    {
+      "name": "updated:tel",
+      "pass": false
+    },
+    {
+      "name": "updated:band",
+      "pass": false
+    },
+    {
+      "name": "unpublished:draft",
+      "pass": false
+    },
+    {
+      "name": "unpublished:trash",
+      "pass": false
+    },
+    {
+      "name": "unset:no-placeholder-links",
+      "pass": false
+    },
+    {
+      "name": "settings-restored",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "before-pc-js-true.jpg",
+      "device": "pc",
+      "js": true
+    },
+    {
+      "file": "before-pc-js-false.jpg",
+      "device": "pc",
+      "js": false
+    },
+    {
+      "file": "before-sp-js-true.jpg",
+      "device": "sp",
+      "js": true
+    },
+    {
+      "file": "before-sp-js-false.jpg",
+      "device": "sp",
+      "js": false
+    }
+  ]
+}

@@ -2,8 +2,10 @@
 (function(){
   var ul = document.querySelector('.wt-suggest[data-wt-from-path]');
   if (!ul) return;
-  var words = decodeURIComponent(location.pathname).split(/[\/\-_.+%\s]+/).filter(function(w){ return w && w.length >= 2 && !/^\d+$/.test(w) && !/^(html?|php|index|page|category|tag)$/i.test(w); }).slice(0, 5);
-  if (!words.length) { ul.closest('.wt-404__variant--suggest') && ul.remove(); return; }
+  var path = location.pathname;
+  try { path = decodeURIComponent(path); } catch (_) { /* 不正な percent escape でも回復導線を残す。 */ }
+  var words = path.split(/[\/\-_.+%\s]+/).filter(function(w){ return w && w.length >= 2 && !/^\d+$/.test(w) && !/^(html?|php|index|page|category|tag)$/i.test(w); }).slice(0, 5);
+  if (!words.length) return;
   words.forEach(function(w){ var li = document.createElement('li'); var a = document.createElement('a'); a.href = '/?s=' + encodeURIComponent(w); a.textContent = '「' + w + '」で検索'; li.appendChild(a); ul.appendChild(li); });
   var input = document.querySelector('.wt-404__search input[type="search"]'); if (input && !input.value) input.value = words.join(' ');
 })();

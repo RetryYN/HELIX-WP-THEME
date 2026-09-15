@@ -1,0 +1,146 @@
+{
+  "completed": true,
+  "wordpress": "7.1",
+  "sourceDigests": {
+    "scripts/verify-footer-navigation-source.mjs": "3dfcbccfea340347293c701f619ec1ef3d8ef70db97103900885271dc21d1f9c"
+  },
+  "rows": [
+    {
+      "name": "stored-links:empty",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:empty",
+      "pass": false
+    },
+    {
+      "name": "stored-links:one",
+      "pass": true,
+      "actual": {
+        "links": [
+          {
+            "label": "会社案内",
+            "url": "/site-company/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": [
+        {
+          "label": "会社案内",
+          "url": "/site-company/"
+        }
+      ]
+    },
+    {
+      "name": "stored-links:multiple",
+      "pass": true,
+      "actual": {
+        "links": [
+          {
+            "label": "会社案内",
+            "url": "/site-company/"
+          },
+          {
+            "label": "読む・学ぶ",
+            "url": "/learn/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": [
+        {
+          "label": "会社案内",
+          "url": "/site-company/"
+        },
+        {
+          "label": "読む・学ぶ",
+          "url": "/learn/"
+        }
+      ]
+    },
+    {
+      "name": "stored-links:draft",
+      "pass": false,
+      "actual": {
+        "links": [
+          {
+            "label": "記事を読む",
+            "url": "http://127.0.0.1:8098/library/"
+          },
+          {
+            "label": "人を知る",
+            "url": "http://127.0.0.1:8098/voices/"
+          },
+          {
+            "label": "学習・ヘルプ",
+            "url": "http://127.0.0.1:8098/learn/"
+          },
+          {
+            "label": "会社案内",
+            "url": "http://127.0.0.1:8098/site-company/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:draft",
+      "pass": false
+    },
+    {
+      "name": "stored-links:private",
+      "pass": false,
+      "actual": {
+        "links": [
+          {
+            "label": "記事を読む",
+            "url": "http://127.0.0.1:8098/library/"
+          },
+          {
+            "label": "人を知る",
+            "url": "http://127.0.0.1:8098/voices/"
+          },
+          {
+            "label": "学習・ヘルプ",
+            "url": "http://127.0.0.1:8098/learn/"
+          },
+          {
+            "label": "会社案内",
+            "url": "http://127.0.0.1:8098/site-company/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:private",
+      "pass": false
+    },
+    {
+      "name": "stored-links:emptied",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:emptied",
+      "pass": false
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    }
+  ],
+  "limitation": "Navigation標準ブロックのサーバー描画。Site Editor UI、フッター組込み、端末別レイアウトの検証ではない。"
+}
