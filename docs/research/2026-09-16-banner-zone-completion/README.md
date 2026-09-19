@@ -8,9 +8,9 @@
 
 既存43 ACとzone-slot 2 ACを現ソースで再実行して証拠を再束縛し、監査は missing 236 / partial 26 / verified_in_poc 32 / stale 0。カタログは649候補 / 1,169画像 / 133要求へ生成した。新規 `tests/e2e/banner-selection-catalog.spec.ts` はPC/SPの6候補、全比較事実、画像、選択理由保存を検査し、既存カタログ・HOME・EVENTと合わせて31件を検査した（新規6件と既存25件は全成功）。`npm test` も成功。
 
-## ACと証拠（採用・昇格ではない）
+## ACと証拠（partial登録、完了昇格ではない）
 
-全行の証拠は `verification.json`。以下は実証範囲の対応でありAC全体完了を表さない。
+全行の証拠は `verification.json`。BANNER 5件とZONE-03 4件は、下記の実証範囲だけを `acceptance-evidence.json` へ `partial` 登録した。AC全体完了や `verified_in_poc` への昇格を表さない。
 
 | AC | 実証した行 | 残る範囲 |
 | --- | --- | --- |
@@ -32,4 +32,4 @@
 2. 43 ACは各proofの`completed:true`と指定行PASSを確認後に再束縛。変更された既存zone-slot 2 ACも35/35の専用再検証後に再束縛した。状態の昇格はしていない。
 3. HOME全66シナリオ3,235件、EVENT全行列2,004件、BANNER 403件を再実行してからカタログを生成した。
 4. 8099静的サーバーでカタログE2Eを実行。新規6件と既存25件は全成功。完成画像はPC/SPで目視した。
-5. 外部公式資料からの追加要求候補は `external-observations.md` に記録した。commit/push/PRはこの時点では未実施。
+5. 外部公式資料からの追加要求候補は `external-observations.md` に記録した。BANNER 5件とZONE-03 4件は証拠行・source digest・oracle digestを固定して `partial` 登録した。

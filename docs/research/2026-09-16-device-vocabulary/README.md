@@ -17,7 +17,7 @@ PHP構文、WordPress-Core PHPCS、i18n POT/検証、JS構文、diff-check PASS�
 | WT-AC-VOCAB-01A/B/C | core/table、core/tabs、core/gallery、core/details、core/buttonsの受け皿を使用 | 全14語彙、Editor保存往復、block上限判断 |
 | WT-AC-LOOK-01E | 2用途説明、4完成画像、no-overflow/nojs | LOOK要求全体、全型・全端末 |
 
-AC登録・昇格は行わない。比較表の列ラベル生成は既存テーマの実装を再利用。galleryには装飾画像（alt空）とcaptionを使用。Tabs styleは独自新規blockではないが、coreの対話実装をそのstyleに限りテーマのAPG操作へ置換する。Coreの通常Tabsは変更しない。現在のJSONは既定の2選択セットであり任意のschema入力を受ける管理機能ではない。
+SP-03A/Bは上記の実証範囲だけを `acceptance-evidence.json` へ `partial` 登録した。AC全体完了や `verified_in_poc` への昇格ではない。比較表の列ラベル生成は既存テーマの実装を再利用。galleryには装飾画像（alt空）とcaptionを使用。Tabs styleは独自新規blockではないが、coreの対話実装をそのstyleに限りテーマのAPG操作へ置換する。Coreの通常Tabsは変更しない。現在のJSONは既定の2選択セットであり任意のschema入力を受ける管理機能ではない。
 
 ## 検収側への引継ぎ
 
@@ -26,6 +26,6 @@ AC登録・昇格は行わない。比較表の列ラベル生成は既存テー
 1. capability scannerを`inc/*.php`のobject形式`register_block_style()`にも対応させ、manifestを57 patterns / 78 block stylesへ再生成した。実機登録は68 patterns / 78 stylesで宣言対象の欠落0。
 2. `regression-command-map.json` の **41 AC→32コマンド→証拠→row_names**を全件照合した。DB使用verifierは直列実行し、unmapped 0。
 3. カタログ生成とDEVICE/HOME/EVENT/BANNERおよび既存カタログE2Eを実行済み。
-4. AC登録・状態昇格はしていない。正式な管理UI、MCPプレビュー一致、全14語彙、支援技術実機は引き続き未実証。
+4. SP-03A/Bを証拠行・source digest・oracle digest付きで `partial` 登録した。正式な管理UI、MCPプレビュー一致、全14語彙、支援技術実機は引き続き未実証。
 
 本担当はcommit/push/PRを行っていない。正式面積/認可/外部配信/同意機能は本バッチ対象外。

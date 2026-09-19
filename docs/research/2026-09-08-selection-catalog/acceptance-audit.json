@@ -3,8 +3,8 @@
   "requirementCount": 133,
   "acceptanceCount": 294,
   "counts": {
-    "missing": 236,
-    "partial": 26,
+    "missing": 225,
+    "partial": 37,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -256,48 +256,203 @@
       "requirement_id": "WT-FR-ZONE-03",
       "oracle": "3 要素を同時に有効化しても規約の順で積層し、CTA と重ならない",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "同意・メニュー・シェア相当の3要素をPC/SP・JS有無で規定順に積層し、本文末CTAと重ならないことを測定。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実consent providerと既存全固定CTAの組合せを残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "stack:pc:js:G-E1:cta-clear",
+            "stack:pc:js:G-E1:stack-order",
+            "stack:pc:js:cta-clear",
+            "stack:pc:js:stack-order",
+            "stack:pc:nojs:G-E1:cta-clear",
+            "stack:pc:nojs:G-E1:stack-order",
+            "stack:pc:nojs:cta-clear",
+            "stack:pc:nojs:stack-order",
+            "stack:sp:js:G-E1:cta-clear",
+            "stack:sp:js:G-E1:stack-order",
+            "stack:sp:js:cta-clear",
+            "stack:sp:js:stack-order",
+            "stack:sp:nojs:G-E1:cta-clear",
+            "stack:sp:nojs:G-E1:stack-order",
+            "stack:sp:nojs:cta-clear",
+            "stack:sp:nojs:stack-order"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-03B",
       "requirement_id": "WT-FR-ZONE-03",
       "oracle": "重なりや順序違反があれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "順序違反とCTA重なりの負例fixtureをローカルG-E1相当gateが検出。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "正式G-E1パイプラインへの接続を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "negative:G-E1:cta-clear",
+            "negative:G-E1:stack-order"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-03C",
       "requirement_id": "WT-FR-ZONE-03",
       "oracle": "ゾーン割当に広告・バナーの面積上限が宣言され、初回表示で同意バー以外のモーダルが出ず、LP 単位設定で例外を選べ、G-E1 が両方を検査する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "fixture宣言の面積上限、通常面の初回モーダル禁止、LP単位の例外、ローカルG-E1相当predicateをPC/SPで確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "A/B実測に基づく正式面積値、全体CLS、正式G-E1パイプラインを残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "advertisement:pc:js:G-E1:area-cap",
+            "advertisement:pc:js:G-E1:initial-modal",
+            "advertisement:pc:js:area-cap",
+            "advertisement:pc:js:initial-modal-denied",
+            "advertisement:pc:nojs:G-E1:area-cap",
+            "advertisement:pc:nojs:G-E1:initial-modal",
+            "advertisement:pc:nojs:area-cap",
+            "advertisement:pc:nojs:initial-modal-denied",
+            "advertisement:sp:js:G-E1:area-cap",
+            "advertisement:sp:js:G-E1:initial-modal",
+            "advertisement:sp:js:area-cap",
+            "advertisement:sp:js:initial-modal-denied",
+            "advertisement:sp:nojs:G-E1:area-cap",
+            "advertisement:sp:nojs:G-E1:initial-modal",
+            "advertisement:sp:nojs:area-cap",
+            "advertisement:sp:nojs:initial-modal-denied",
+            "geometry:pc:reserved-size",
+            "geometry:sp:reserved-size",
+            "guide:pc:js:G-E1:area-cap",
+            "guide:pc:js:G-E1:initial-modal",
+            "guide:pc:js:area-cap",
+            "guide:pc:js:initial-modal-denied",
+            "guide:pc:nojs:G-E1:area-cap",
+            "guide:pc:nojs:G-E1:initial-modal",
+            "guide:pc:nojs:area-cap",
+            "guide:pc:nojs:initial-modal-denied",
+            "guide:sp:js:G-E1:area-cap",
+            "guide:sp:js:G-E1:initial-modal",
+            "guide:sp:js:area-cap",
+            "guide:sp:js:initial-modal-denied",
+            "guide:sp:nojs:G-E1:area-cap",
+            "guide:sp:nojs:G-E1:initial-modal",
+            "guide:sp:nojs:area-cap",
+            "guide:sp:nojs:initial-modal-denied",
+            "modal:banner-zone-fixture",
+            "modal:banner-zone-lp-fixture",
+            "modal:close",
+            "negative:G-E1:area-cap",
+            "negative:G-E1:initial-modal",
+            "notice:pc:js:G-E1:area-cap",
+            "notice:pc:js:G-E1:initial-modal",
+            "notice:pc:js:area-cap",
+            "notice:pc:js:initial-modal-denied",
+            "notice:pc:nojs:G-E1:area-cap",
+            "notice:pc:nojs:G-E1:initial-modal",
+            "notice:pc:nojs:area-cap",
+            "notice:pc:nojs:initial-modal-denied",
+            "notice:sp:js:G-E1:area-cap",
+            "notice:sp:js:G-E1:initial-modal",
+            "notice:sp:js:area-cap",
+            "notice:sp:js:initial-modal-denied",
+            "notice:sp:nojs:G-E1:area-cap",
+            "notice:sp:nojs:G-E1:initial-modal",
+            "notice:sp:nojs:area-cap",
+            "notice:sp:nojs:initial-modal-denied",
+            "product:pc:js:G-E1:area-cap",
+            "product:pc:js:G-E1:initial-modal",
+            "product:pc:js:area-cap",
+            "product:pc:js:initial-modal-denied",
+            "product:pc:nojs:G-E1:area-cap",
+            "product:pc:nojs:G-E1:initial-modal",
+            "product:pc:nojs:area-cap",
+            "product:pc:nojs:initial-modal-denied",
+            "product:sp:js:G-E1:area-cap",
+            "product:sp:js:G-E1:initial-modal",
+            "product:sp:js:area-cap",
+            "product:sp:js:initial-modal-denied",
+            "product:sp:nojs:G-E1:area-cap",
+            "product:sp:nojs:G-E1:initial-modal",
+            "product:sp:nojs:area-cap",
+            "product:sp:nojs:initial-modal-denied",
+            "rotation:pc:js:G-E1:area-cap",
+            "rotation:pc:js:G-E1:initial-modal",
+            "rotation:pc:js:area-cap",
+            "rotation:pc:js:initial-modal-denied",
+            "rotation:pc:nojs:G-E1:area-cap",
+            "rotation:pc:nojs:G-E1:initial-modal",
+            "rotation:pc:nojs:area-cap",
+            "rotation:pc:nojs:initial-modal-denied",
+            "rotation:sp:js:G-E1:area-cap",
+            "rotation:sp:js:G-E1:initial-modal",
+            "rotation:sp:js:area-cap",
+            "rotation:sp:js:initial-modal-denied",
+            "rotation:sp:nojs:G-E1:area-cap",
+            "rotation:sp:nojs:G-E1:initial-modal",
+            "rotation:sp:nojs:area-cap",
+            "rotation:sp:nojs:initial-modal-denied",
+            "stack:pc:js:G-E1:area-cap",
+            "stack:pc:js:G-E1:initial-modal",
+            "stack:pc:js:area-cap",
+            "stack:pc:js:initial-modal-denied",
+            "stack:pc:nojs:G-E1:area-cap",
+            "stack:pc:nojs:G-E1:initial-modal",
+            "stack:pc:nojs:area-cap",
+            "stack:pc:nojs:initial-modal-denied",
+            "stack:sp:js:G-E1:area-cap",
+            "stack:sp:js:G-E1:initial-modal",
+            "stack:sp:js:area-cap",
+            "stack:sp:js:initial-modal-denied",
+            "stack:sp:nojs:G-E1:area-cap",
+            "stack:sp:nojs:G-E1:initial-modal",
+            "stack:sp:nojs:area-cap",
+            "stack:sp:nojs:initial-modal-denied"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-03D",
       "requirement_id": "WT-FR-ZONE-03",
       "oracle": "面積上限を超える割当、LP 設定なしの初回モーダル、または G-E1 が検査しない場合は FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "面積超過、LP設定なし初回モーダル、順序違反、CTA重なりを負例gateで検出し、LP例外の正例も確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "rendererによる自動抑制と正式G-E1パイプラインを残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "modal:banner-zone-fixture",
+            "modal:banner-zone-lp-fixture",
+            "negative:G-E1:area-cap",
+            "negative:G-E1:cta-clear",
+            "negative:G-E1:initial-modal",
+            "negative:G-E1:stack-order"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-PARTS-01A",
@@ -2331,48 +2486,145 @@
       "requirement_id": "WT-FR-BANNER-01",
       "oracle": "PC / SP 画像、リンク、alt、種別、有効期間、PR 要否がバナー正本にあり、商品 ID から派生し、ゾーンのページ種別・カテゴリ・記事単位で固定またはローテーション表示できる",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "ローカルfixtureでPC/SP画像・リンク・alt・種別・期間・PR要否、商品ID派生、14 slot、固定/リクエスト時rotation、ページ/カテゴリ/記事/face scopeを確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "管理UI、全face×slot組合せ、実配信キャッシュと外部配信経路を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "contract:category-scope",
+            "contract:end-exclusive",
+            "contract:face-scope",
+            "contract:post-scope-404",
+            "contract:post-scope-after-content",
+            "contract:post-scope-after-related",
+            "contract:post-scope-before-content",
+            "contract:post-scope-before-related",
+            "contract:post-scope-footer",
+            "contract:post-scope-header-below",
+            "contract:post-scope-header-inner",
+            "contract:post-scope-list",
+            "contract:post-scope-page-bottom",
+            "contract:post-scope-page-top",
+            "contract:post-scope-sidebar",
+            "contract:post-scope-sp-bottom",
+            "contract:post-scope-sticky-sidebar",
+            "contract:product-reference",
+            "contract:rotation-attribution",
+            "contract:slot-404",
+            "contract:slot-after-content",
+            "contract:slot-after-related",
+            "contract:slot-before-content",
+            "contract:slot-before-related",
+            "contract:slot-footer",
+            "contract:slot-header-below",
+            "contract:slot-header-inner",
+            "contract:slot-list",
+            "contract:slot-page-bottom",
+            "contract:slot-page-top",
+            "contract:slot-sidebar",
+            "contract:slot-sp-bottom",
+            "contract:slot-sticky-sidebar",
+            "contract:start-inclusive",
+            "contract:valid",
+            "placement:404:pc:no-duplicates",
+            "placement:404:sp:no-duplicates",
+            "placement:article:pc:no-duplicates",
+            "placement:article:sp:no-duplicates",
+            "placement:category:pc:no-duplicates",
+            "placement:category:sp:no-duplicates",
+            "placement:home:pc:no-duplicates",
+            "placement:home:sp:no-duplicates",
+            "placement:lp:pc:no-duplicates",
+            "placement:lp:sp:no-duplicates",
+            "placement:page:pc:no-duplicates",
+            "placement:page:sp:no-duplicates"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-BANNER-01B",
       "requirement_id": "WT-FR-BANNER-01",
       "oracle": "PC / SP または alt・有効期間が欠落、商品正本と別管理、ゾーン割当ができない、または画像を速度予算外にすれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "必須画像・alt・期間欠落、無効期間、画像予算超過、商品正本との二重管理を負例fixtureで拒否。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "全不正入力、ゾーン割当不能の管理経路、ページ全体の速度予算を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "contract:image-budget",
+            "contract:invalid-date",
+            "contract:missing-alt",
+            "contract:missing-ends_at",
+            "contract:missing-pc",
+            "contract:missing-sp",
+            "contract:missing-starts_at",
+            "contract:product-duplicate-source"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-BANNER-01C",
       "requirement_id": "WT-FR-BANNER-01",
       "oracle": "お知らせバーがバナー正本から派生してヘッダー直下 slot に出て、閉じた状態が端末側に記憶される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "バナー正本由来のお知らせをheader直下へ配置し、PC/SPで閉状態が端末保存されることを確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "任意正本文言、更新時の閉状態方針、初期描画前の復元を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "notice:pc:js:close-persists",
+            "notice:pc:js:one-assignment",
+            "notice:pc:js:response",
+            "notice:sp:js:close-persists",
+            "notice:sp:js:one-assignment",
+            "notice:sp:js:response",
+            "placement:home:pc:header-below",
+            "placement:home:sp:header-below"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-BANNER-01D",
       "requirement_id": "WT-FR-BANNER-01",
       "oracle": "お知らせバーが正本と別管理、slot 外、または閉じ状態が記憶されなければ FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "正本由来・header直下・端末保存という正例境界と、JSなしで別の割当を作らないことを確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "別正本注入・slot外配置・保存欠落の専用負例、初期描画前復元、端末間同期を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "notice:pc:js:close-persists",
+            "notice:pc:nojs:one-assignment",
+            "notice:sp:js:close-persists",
+            "notice:sp:nojs:one-assignment",
+            "placement:article:pc:header-below",
+            "placement:article:sp:header-below"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-BANNER-02A",
@@ -2499,24 +2751,75 @@
       "requirement_id": "WT-FR-SP-03",
       "oracle": "JSON の共通語彙契約に device 別差分として比較の横スクロール / カード、タブのアコーディオン、目次の開閉、ギャラリーのスワイプ、CTA の全幅 / sticky が現れ、AI 選択と管理画面 / MCP の SP / PC プレビューが一致する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的JSON presetと同一本文でPC/SPの比較表、tabs/accordion、目次、gallery、CTAの端末差を実機表示で確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "AI選択、管理画面/MCPプレビュー一致、任意schema入力、5語彙の独立編集を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
+          "sha256": "cd59a5b8057e42d31640f385d8de655ad50b2835c9445f88c617ca3a41c41b9d",
+          "row_names": [
+            "compare:pc:js:contract",
+            "compare:pc:js:table-device-shape",
+            "compare:pc:js:tabs",
+            "compare:sp:js:accordion",
+            "compare:sp:js:contract",
+            "compare:sp:js:gallery-button-scroll",
+            "compare:sp:js:table-device-shape",
+            "compare:sp:js:toc-closed",
+            "compare:sp:js:toc-opens",
+            "read:pc:js:contract",
+            "read:pc:js:table-device-shape",
+            "read:pc:js:tabs",
+            "read:sp:js:accordion",
+            "read:sp:js:contract",
+            "read:sp:js:cta-inside-viewport",
+            "read:sp:js:cta-reserved",
+            "read:sp:js:gallery-button-scroll",
+            "read:sp:js:table-device-shape",
+            "read:sp:js:toc-closed",
+            "read:sp:js:toc-opens"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SP-03B",
       "requirement_id": "WT-FR-SP-03",
       "oracle": "device 別の語彙挙動が JSON にない、AI が挙動未選択のまま配信する、PC 側の検査がない、または管理画面と MCP の SP / PC プレビューが不一致なら FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "PC/SP、JS有無、幅変更往復、keyboard操作で本文保持とdead controlなしを確認し、端末片側だけの実装を防ぐ境界を実測。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "JSON欠落・AI未選択・管理画面/MCP不一致の専用負例gate、支援技術実機、全APG契約を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
+          "sha256": "cd59a5b8057e42d31640f385d8de655ad50b2835c9445f88c617ca3a41c41b9d",
+          "row_names": [
+            "compare:pc:js:arrow-selects-second",
+            "compare:pc:js:end-selects-last",
+            "compare:pc:js:home-selects-first",
+            "compare:pc:js:resize-back-tabs",
+            "compare:pc:js:resize-to-accordion",
+            "compare:pc:nojs:all-content-visible",
+            "compare:pc:nojs:no-dead-controls",
+            "compare:sp:js:enter-collapses",
+            "compare:sp:js:space-opens",
+            "compare:sp:nojs:all-content-visible",
+            "compare:sp:nojs:no-dead-controls",
+            "fixture:cleanup",
+            "read:pc:nojs:all-content-visible",
+            "read:pc:nojs:no-dead-controls",
+            "read:sp:nojs:all-content-visible",
+            "read:sp:nojs:no-dead-controls",
+            "source-unchanged"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-SP-01A",
@@ -4993,12 +5296,99 @@
       "requirement_id": "WT-FR-BANNER-01",
       "oracle": "全面のゾーンにバナー / 問い合わせボタンを置いても広告面積上限と初回モーダル禁止の検査を通る",
       "polarity": "boundary",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "6 face×PC/SPで14 slot到達、重複なし、問い合わせ導線との積層、fixture面積上限と初回モーダル禁止を確認。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "全23語彙、配置管理UI、正式面積値、全slot同時設定をrendererが強制抑制する実装を残す。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "geometry:pc:reserved-size",
+            "geometry:sp:reserved-size",
+            "placement:404:pc:footer-contained",
+            "placement:404:pc:header-below",
+            "placement:404:pc:no-duplicates",
+            "placement:404:pc:page-top-in-footer",
+            "placement:404:pc:sp-only",
+            "placement:404:sp:footer-contained",
+            "placement:404:sp:header-below",
+            "placement:404:sp:no-duplicates",
+            "placement:404:sp:page-top-in-footer",
+            "placement:404:sp:sp-only",
+            "placement:article:pc:footer-contained",
+            "placement:article:pc:header-below",
+            "placement:article:pc:no-duplicates",
+            "placement:article:pc:page-top-in-footer",
+            "placement:article:pc:sp-only",
+            "placement:article:sp:footer-contained",
+            "placement:article:sp:header-below",
+            "placement:article:sp:no-duplicates",
+            "placement:article:sp:page-top-in-footer",
+            "placement:article:sp:sp-only",
+            "placement:category:pc:footer-contained",
+            "placement:category:pc:header-below",
+            "placement:category:pc:no-duplicates",
+            "placement:category:pc:page-top-in-footer",
+            "placement:category:pc:sp-only",
+            "placement:category:sp:footer-contained",
+            "placement:category:sp:header-below",
+            "placement:category:sp:no-duplicates",
+            "placement:category:sp:page-top-in-footer",
+            "placement:category:sp:sp-only",
+            "placement:home:pc:footer-contained",
+            "placement:home:pc:header-below",
+            "placement:home:pc:no-duplicates",
+            "placement:home:pc:page-top-in-footer",
+            "placement:home:pc:sp-only",
+            "placement:home:sp:footer-contained",
+            "placement:home:sp:header-below",
+            "placement:home:sp:no-duplicates",
+            "placement:home:sp:page-top-in-footer",
+            "placement:home:sp:sp-only",
+            "placement:lp:pc:footer-contained",
+            "placement:lp:pc:header-below",
+            "placement:lp:pc:no-duplicates",
+            "placement:lp:pc:page-top-in-footer",
+            "placement:lp:pc:sp-only",
+            "placement:lp:sp:footer-contained",
+            "placement:lp:sp:header-below",
+            "placement:lp:sp:no-duplicates",
+            "placement:lp:sp:page-top-in-footer",
+            "placement:lp:sp:sp-only",
+            "placement:page:pc:footer-contained",
+            "placement:page:pc:header-below",
+            "placement:page:pc:no-duplicates",
+            "placement:page:pc:page-top-in-footer",
+            "placement:page:pc:sp-only",
+            "placement:page:sp:footer-contained",
+            "placement:page:sp:header-below",
+            "placement:page:sp:no-duplicates",
+            "placement:page:sp:page-top-in-footer",
+            "placement:page:sp:sp-only",
+            "placement:slot-reached:404",
+            "placement:slot-reached:after-content",
+            "placement:slot-reached:after-related",
+            "placement:slot-reached:before-content",
+            "placement:slot-reached:before-related",
+            "placement:slot-reached:footer",
+            "placement:slot-reached:header-below",
+            "placement:slot-reached:header-inner",
+            "placement:slot-reached:list",
+            "placement:slot-reached:page-bottom",
+            "placement:slot-reached:page-top",
+            "placement:slot-reached:sidebar",
+            "placement:slot-reached:sp-bottom",
+            "placement:slot-reached:sticky-sidebar",
+            "stack:pc:js:area-cap",
+            "stack:pc:js:initial-modal-denied",
+            "stack:sp:js:area-cap",
+            "stack:sp:js:initial-modal-denied"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-01C",

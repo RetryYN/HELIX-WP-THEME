@@ -11130,6 +11130,607 @@
       "remaining": [
         "WP-CLI・直接SQLなどRESTを通らない書込みの保存時拒否、DB-onlyパーツ、全テンプレートでの負例は未検証。"
       ]
+    },
+    "WT-AC-BANNER-01A": {
+      "status": "partial",
+      "requirement_digest": "9f69d181bedf6af4",
+      "oracle_sha256": "88e547cff86af084b6e4df3192312454c2f88e5c7536909279dc156514468e47",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "ローカルfixtureでPC/SP画像・リンク・alt・種別・期間・PR要否、商品ID派生、14 slot、固定/リクエスト時rotation、ページ/カテゴリ/記事/face scopeを確認。",
+      "remaining": [
+        "管理UI、全face×slot組合せ、実配信キャッシュと外部配信経路を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "contract:category-scope",
+            "contract:end-exclusive",
+            "contract:face-scope",
+            "contract:post-scope-404",
+            "contract:post-scope-after-content",
+            "contract:post-scope-after-related",
+            "contract:post-scope-before-content",
+            "contract:post-scope-before-related",
+            "contract:post-scope-footer",
+            "contract:post-scope-header-below",
+            "contract:post-scope-header-inner",
+            "contract:post-scope-list",
+            "contract:post-scope-page-bottom",
+            "contract:post-scope-page-top",
+            "contract:post-scope-sidebar",
+            "contract:post-scope-sp-bottom",
+            "contract:post-scope-sticky-sidebar",
+            "contract:product-reference",
+            "contract:rotation-attribution",
+            "contract:slot-404",
+            "contract:slot-after-content",
+            "contract:slot-after-related",
+            "contract:slot-before-content",
+            "contract:slot-before-related",
+            "contract:slot-footer",
+            "contract:slot-header-below",
+            "contract:slot-header-inner",
+            "contract:slot-list",
+            "contract:slot-page-bottom",
+            "contract:slot-page-top",
+            "contract:slot-sidebar",
+            "contract:slot-sp-bottom",
+            "contract:slot-sticky-sidebar",
+            "contract:start-inclusive",
+            "contract:valid",
+            "placement:404:pc:no-duplicates",
+            "placement:404:sp:no-duplicates",
+            "placement:article:pc:no-duplicates",
+            "placement:article:sp:no-duplicates",
+            "placement:category:pc:no-duplicates",
+            "placement:category:sp:no-duplicates",
+            "placement:home:pc:no-duplicates",
+            "placement:home:sp:no-duplicates",
+            "placement:lp:pc:no-duplicates",
+            "placement:lp:sp:no-duplicates",
+            "placement:page:pc:no-duplicates",
+            "placement:page:sp:no-duplicates"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BANNER-01B": {
+      "status": "partial",
+      "requirement_digest": "9f69d181bedf6af4",
+      "oracle_sha256": "5fa35dc56143d6863b388817e83dcbfccc70d43ed95f1637c2546edf9b55c1da",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "必須画像・alt・期間欠落、無効期間、画像予算超過、商品正本との二重管理を負例fixtureで拒否。",
+      "remaining": [
+        "全不正入力、ゾーン割当不能の管理経路、ページ全体の速度予算を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "contract:image-budget",
+            "contract:invalid-date",
+            "contract:missing-alt",
+            "contract:missing-ends_at",
+            "contract:missing-pc",
+            "contract:missing-sp",
+            "contract:missing-starts_at",
+            "contract:product-duplicate-source"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BANNER-01C": {
+      "status": "partial",
+      "requirement_digest": "9f69d181bedf6af4",
+      "oracle_sha256": "88a294e27cbc7108e597218e13fa7703fadff903721baf9c743b71fb8f10f727",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "バナー正本由来のお知らせをheader直下へ配置し、PC/SPで閉状態が端末保存されることを確認。",
+      "remaining": [
+        "任意正本文言、更新時の閉状態方針、初期描画前の復元を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "notice:pc:js:close-persists",
+            "notice:pc:js:one-assignment",
+            "notice:pc:js:response",
+            "notice:sp:js:close-persists",
+            "notice:sp:js:one-assignment",
+            "notice:sp:js:response",
+            "placement:home:pc:header-below",
+            "placement:home:sp:header-below"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BANNER-01D": {
+      "status": "partial",
+      "requirement_digest": "9f69d181bedf6af4",
+      "oracle_sha256": "969b1ccf887a2b55941db93bc8c05012d4bf842970d56ee80af465f0929b9f97",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "正本由来・header直下・端末保存という正例境界と、JSなしで別の割当を作らないことを確認。",
+      "remaining": [
+        "別正本注入・slot外配置・保存欠落の専用負例、初期描画前復元、端末間同期を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "notice:pc:js:close-persists",
+            "notice:pc:nojs:one-assignment",
+            "notice:sp:js:close-persists",
+            "notice:sp:nojs:one-assignment",
+            "placement:article:pc:header-below",
+            "placement:article:sp:header-below"
+          ]
+        }
+      ]
+    },
+    "WT-AC-BANNER-01E": {
+      "status": "partial",
+      "requirement_digest": "9f69d181bedf6af4",
+      "oracle_sha256": "d5e455a6dd51a679983ad970fc2a3a6f5a045dcb6b414cd9f344a1441a7aa9ac",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "6 face×PC/SPで14 slot到達、重複なし、問い合わせ導線との積層、fixture面積上限と初回モーダル禁止を確認。",
+      "remaining": [
+        "全23語彙、配置管理UI、正式面積値、全slot同時設定をrendererが強制抑制する実装を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "geometry:pc:reserved-size",
+            "geometry:sp:reserved-size",
+            "placement:404:pc:footer-contained",
+            "placement:404:pc:header-below",
+            "placement:404:pc:no-duplicates",
+            "placement:404:pc:page-top-in-footer",
+            "placement:404:pc:sp-only",
+            "placement:404:sp:footer-contained",
+            "placement:404:sp:header-below",
+            "placement:404:sp:no-duplicates",
+            "placement:404:sp:page-top-in-footer",
+            "placement:404:sp:sp-only",
+            "placement:article:pc:footer-contained",
+            "placement:article:pc:header-below",
+            "placement:article:pc:no-duplicates",
+            "placement:article:pc:page-top-in-footer",
+            "placement:article:pc:sp-only",
+            "placement:article:sp:footer-contained",
+            "placement:article:sp:header-below",
+            "placement:article:sp:no-duplicates",
+            "placement:article:sp:page-top-in-footer",
+            "placement:article:sp:sp-only",
+            "placement:category:pc:footer-contained",
+            "placement:category:pc:header-below",
+            "placement:category:pc:no-duplicates",
+            "placement:category:pc:page-top-in-footer",
+            "placement:category:pc:sp-only",
+            "placement:category:sp:footer-contained",
+            "placement:category:sp:header-below",
+            "placement:category:sp:no-duplicates",
+            "placement:category:sp:page-top-in-footer",
+            "placement:category:sp:sp-only",
+            "placement:home:pc:footer-contained",
+            "placement:home:pc:header-below",
+            "placement:home:pc:no-duplicates",
+            "placement:home:pc:page-top-in-footer",
+            "placement:home:pc:sp-only",
+            "placement:home:sp:footer-contained",
+            "placement:home:sp:header-below",
+            "placement:home:sp:no-duplicates",
+            "placement:home:sp:page-top-in-footer",
+            "placement:home:sp:sp-only",
+            "placement:lp:pc:footer-contained",
+            "placement:lp:pc:header-below",
+            "placement:lp:pc:no-duplicates",
+            "placement:lp:pc:page-top-in-footer",
+            "placement:lp:pc:sp-only",
+            "placement:lp:sp:footer-contained",
+            "placement:lp:sp:header-below",
+            "placement:lp:sp:no-duplicates",
+            "placement:lp:sp:page-top-in-footer",
+            "placement:lp:sp:sp-only",
+            "placement:page:pc:footer-contained",
+            "placement:page:pc:header-below",
+            "placement:page:pc:no-duplicates",
+            "placement:page:pc:page-top-in-footer",
+            "placement:page:pc:sp-only",
+            "placement:page:sp:footer-contained",
+            "placement:page:sp:header-below",
+            "placement:page:sp:no-duplicates",
+            "placement:page:sp:page-top-in-footer",
+            "placement:page:sp:sp-only",
+            "placement:slot-reached:404",
+            "placement:slot-reached:after-content",
+            "placement:slot-reached:after-related",
+            "placement:slot-reached:before-content",
+            "placement:slot-reached:before-related",
+            "placement:slot-reached:footer",
+            "placement:slot-reached:header-below",
+            "placement:slot-reached:header-inner",
+            "placement:slot-reached:list",
+            "placement:slot-reached:page-bottom",
+            "placement:slot-reached:page-top",
+            "placement:slot-reached:sidebar",
+            "placement:slot-reached:sp-bottom",
+            "placement:slot-reached:sticky-sidebar",
+            "stack:pc:js:area-cap",
+            "stack:pc:js:initial-modal-denied",
+            "stack:sp:js:area-cap",
+            "stack:sp:js:initial-modal-denied"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ZONE-03A": {
+      "status": "partial",
+      "requirement_digest": "4436e08d054a0bb8",
+      "oracle_sha256": "b88b0d71ab2a18bbf87f878a2c0702056d37188c401de882201386ca18e8f47a",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "同意・メニュー・シェア相当の3要素をPC/SP・JS有無で規定順に積層し、本文末CTAと重ならないことを測定。",
+      "remaining": [
+        "実consent providerと既存全固定CTAの組合せを残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "stack:pc:js:G-E1:cta-clear",
+            "stack:pc:js:G-E1:stack-order",
+            "stack:pc:js:cta-clear",
+            "stack:pc:js:stack-order",
+            "stack:pc:nojs:G-E1:cta-clear",
+            "stack:pc:nojs:G-E1:stack-order",
+            "stack:pc:nojs:cta-clear",
+            "stack:pc:nojs:stack-order",
+            "stack:sp:js:G-E1:cta-clear",
+            "stack:sp:js:G-E1:stack-order",
+            "stack:sp:js:cta-clear",
+            "stack:sp:js:stack-order",
+            "stack:sp:nojs:G-E1:cta-clear",
+            "stack:sp:nojs:G-E1:stack-order",
+            "stack:sp:nojs:cta-clear",
+            "stack:sp:nojs:stack-order"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ZONE-03B": {
+      "status": "partial",
+      "requirement_digest": "4436e08d054a0bb8",
+      "oracle_sha256": "a4b5a20ad92219295a4bcd11bf98a23dc4c663109cba3a2f5c441a0875e3a1cd",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "順序違反とCTA重なりの負例fixtureをローカルG-E1相当gateが検出。",
+      "remaining": [
+        "正式G-E1パイプラインへの接続を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "negative:G-E1:cta-clear",
+            "negative:G-E1:stack-order"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ZONE-03C": {
+      "status": "partial",
+      "requirement_digest": "4436e08d054a0bb8",
+      "oracle_sha256": "cc77dad8a703b08f13a2064f4a640f0daa96c6bf15040a80306f32ae18f985fb",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "fixture宣言の面積上限、通常面の初回モーダル禁止、LP単位の例外、ローカルG-E1相当predicateをPC/SPで確認。",
+      "remaining": [
+        "A/B実測に基づく正式面積値、全体CLS、正式G-E1パイプラインを残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "advertisement:pc:js:G-E1:area-cap",
+            "advertisement:pc:js:G-E1:initial-modal",
+            "advertisement:pc:js:area-cap",
+            "advertisement:pc:js:initial-modal-denied",
+            "advertisement:pc:nojs:G-E1:area-cap",
+            "advertisement:pc:nojs:G-E1:initial-modal",
+            "advertisement:pc:nojs:area-cap",
+            "advertisement:pc:nojs:initial-modal-denied",
+            "advertisement:sp:js:G-E1:area-cap",
+            "advertisement:sp:js:G-E1:initial-modal",
+            "advertisement:sp:js:area-cap",
+            "advertisement:sp:js:initial-modal-denied",
+            "advertisement:sp:nojs:G-E1:area-cap",
+            "advertisement:sp:nojs:G-E1:initial-modal",
+            "advertisement:sp:nojs:area-cap",
+            "advertisement:sp:nojs:initial-modal-denied",
+            "geometry:pc:reserved-size",
+            "geometry:sp:reserved-size",
+            "guide:pc:js:G-E1:area-cap",
+            "guide:pc:js:G-E1:initial-modal",
+            "guide:pc:js:area-cap",
+            "guide:pc:js:initial-modal-denied",
+            "guide:pc:nojs:G-E1:area-cap",
+            "guide:pc:nojs:G-E1:initial-modal",
+            "guide:pc:nojs:area-cap",
+            "guide:pc:nojs:initial-modal-denied",
+            "guide:sp:js:G-E1:area-cap",
+            "guide:sp:js:G-E1:initial-modal",
+            "guide:sp:js:area-cap",
+            "guide:sp:js:initial-modal-denied",
+            "guide:sp:nojs:G-E1:area-cap",
+            "guide:sp:nojs:G-E1:initial-modal",
+            "guide:sp:nojs:area-cap",
+            "guide:sp:nojs:initial-modal-denied",
+            "modal:banner-zone-fixture",
+            "modal:banner-zone-lp-fixture",
+            "modal:close",
+            "negative:G-E1:area-cap",
+            "negative:G-E1:initial-modal",
+            "notice:pc:js:G-E1:area-cap",
+            "notice:pc:js:G-E1:initial-modal",
+            "notice:pc:js:area-cap",
+            "notice:pc:js:initial-modal-denied",
+            "notice:pc:nojs:G-E1:area-cap",
+            "notice:pc:nojs:G-E1:initial-modal",
+            "notice:pc:nojs:area-cap",
+            "notice:pc:nojs:initial-modal-denied",
+            "notice:sp:js:G-E1:area-cap",
+            "notice:sp:js:G-E1:initial-modal",
+            "notice:sp:js:area-cap",
+            "notice:sp:js:initial-modal-denied",
+            "notice:sp:nojs:G-E1:area-cap",
+            "notice:sp:nojs:G-E1:initial-modal",
+            "notice:sp:nojs:area-cap",
+            "notice:sp:nojs:initial-modal-denied",
+            "product:pc:js:G-E1:area-cap",
+            "product:pc:js:G-E1:initial-modal",
+            "product:pc:js:area-cap",
+            "product:pc:js:initial-modal-denied",
+            "product:pc:nojs:G-E1:area-cap",
+            "product:pc:nojs:G-E1:initial-modal",
+            "product:pc:nojs:area-cap",
+            "product:pc:nojs:initial-modal-denied",
+            "product:sp:js:G-E1:area-cap",
+            "product:sp:js:G-E1:initial-modal",
+            "product:sp:js:area-cap",
+            "product:sp:js:initial-modal-denied",
+            "product:sp:nojs:G-E1:area-cap",
+            "product:sp:nojs:G-E1:initial-modal",
+            "product:sp:nojs:area-cap",
+            "product:sp:nojs:initial-modal-denied",
+            "rotation:pc:js:G-E1:area-cap",
+            "rotation:pc:js:G-E1:initial-modal",
+            "rotation:pc:js:area-cap",
+            "rotation:pc:js:initial-modal-denied",
+            "rotation:pc:nojs:G-E1:area-cap",
+            "rotation:pc:nojs:G-E1:initial-modal",
+            "rotation:pc:nojs:area-cap",
+            "rotation:pc:nojs:initial-modal-denied",
+            "rotation:sp:js:G-E1:area-cap",
+            "rotation:sp:js:G-E1:initial-modal",
+            "rotation:sp:js:area-cap",
+            "rotation:sp:js:initial-modal-denied",
+            "rotation:sp:nojs:G-E1:area-cap",
+            "rotation:sp:nojs:G-E1:initial-modal",
+            "rotation:sp:nojs:area-cap",
+            "rotation:sp:nojs:initial-modal-denied",
+            "stack:pc:js:G-E1:area-cap",
+            "stack:pc:js:G-E1:initial-modal",
+            "stack:pc:js:area-cap",
+            "stack:pc:js:initial-modal-denied",
+            "stack:pc:nojs:G-E1:area-cap",
+            "stack:pc:nojs:G-E1:initial-modal",
+            "stack:pc:nojs:area-cap",
+            "stack:pc:nojs:initial-modal-denied",
+            "stack:sp:js:G-E1:area-cap",
+            "stack:sp:js:G-E1:initial-modal",
+            "stack:sp:js:area-cap",
+            "stack:sp:js:initial-modal-denied",
+            "stack:sp:nojs:G-E1:area-cap",
+            "stack:sp:nojs:G-E1:initial-modal",
+            "stack:sp:nojs:area-cap",
+            "stack:sp:nojs:initial-modal-denied"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ZONE-03D": {
+      "status": "partial",
+      "requirement_digest": "4436e08d054a0bb8",
+      "oracle_sha256": "99a6dc2622082022ce1a022d008158ba02a7d739b7b499f44a13e335a6652f71",
+      "source_digests": {
+        "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+        "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+      },
+      "scope": "面積超過、LP設定なし初回モーダル、順序違反、CTA重なりを負例gateで検出し、LP例外の正例も確認。",
+      "remaining": [
+        "rendererによる自動抑制と正式G-E1パイプラインを残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
+          "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+          "row_names": [
+            "modal:banner-zone-fixture",
+            "modal:banner-zone-lp-fixture",
+            "negative:G-E1:area-cap",
+            "negative:G-E1:cta-clear",
+            "negative:G-E1:initial-modal",
+            "negative:G-E1:stack-order"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SP-03A": {
+      "status": "partial",
+      "requirement_digest": "883199a3ab6510d8",
+      "oracle_sha256": "b2f6b1bc87b7b71252db2bf1ad35181b9313487edccd1f4c1214e0064b85c9be",
+      "source_digests": {
+        "scripts/verify-device-vocabulary.mjs": "2388840b0c4d827161b772dbe88381005bbf67605c78c7b50d96b83d10a2f7f8",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+      },
+      "scope": "静的JSON presetと同一本文でPC/SPの比較表、tabs/accordion、目次、gallery、CTAの端末差を実機表示で確認。",
+      "remaining": [
+        "AI選択、管理画面/MCPプレビュー一致、任意schema入力、5語彙の独立編集を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
+          "sha256": "cd59a5b8057e42d31640f385d8de655ad50b2835c9445f88c617ca3a41c41b9d",
+          "row_names": [
+            "compare:pc:js:contract",
+            "compare:pc:js:table-device-shape",
+            "compare:pc:js:tabs",
+            "compare:sp:js:accordion",
+            "compare:sp:js:contract",
+            "compare:sp:js:gallery-button-scroll",
+            "compare:sp:js:table-device-shape",
+            "compare:sp:js:toc-closed",
+            "compare:sp:js:toc-opens",
+            "read:pc:js:contract",
+            "read:pc:js:table-device-shape",
+            "read:pc:js:tabs",
+            "read:sp:js:accordion",
+            "read:sp:js:contract",
+            "read:sp:js:cta-inside-viewport",
+            "read:sp:js:cta-reserved",
+            "read:sp:js:gallery-button-scroll",
+            "read:sp:js:table-device-shape",
+            "read:sp:js:toc-closed",
+            "read:sp:js:toc-opens"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SP-03B": {
+      "status": "partial",
+      "requirement_digest": "883199a3ab6510d8",
+      "oracle_sha256": "7b09655ace66b4fbcb5b94656dc2fd85eafb6689be311243ca077b661df42ca1",
+      "source_digests": {
+        "scripts/verify-device-vocabulary.mjs": "2388840b0c4d827161b772dbe88381005bbf67605c78c7b50d96b83d10a2f7f8",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+      },
+      "scope": "PC/SP、JS有無、幅変更往復、keyboard操作で本文保持とdead controlなしを確認し、端末片側だけの実装を防ぐ境界を実測。",
+      "remaining": [
+        "JSON欠落・AI未選択・管理画面/MCP不一致の専用負例gate、支援技術実機、全APG契約を残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
+          "sha256": "cd59a5b8057e42d31640f385d8de655ad50b2835c9445f88c617ca3a41c41b9d",
+          "row_names": [
+            "compare:pc:js:arrow-selects-second",
+            "compare:pc:js:end-selects-last",
+            "compare:pc:js:home-selects-first",
+            "compare:pc:js:resize-back-tabs",
+            "compare:pc:js:resize-to-accordion",
+            "compare:pc:nojs:all-content-visible",
+            "compare:pc:nojs:no-dead-controls",
+            "compare:sp:js:enter-collapses",
+            "compare:sp:js:space-opens",
+            "compare:sp:nojs:all-content-visible",
+            "compare:sp:nojs:no-dead-controls",
+            "fixture:cleanup",
+            "read:pc:nojs:all-content-visible",
+            "read:pc:nojs:no-dead-controls",
+            "read:sp:nojs:all-content-visible",
+            "read:sp:nojs:no-dead-controls",
+            "source-unchanged"
+          ]
+        }
+      ]
     }
   }
 }
