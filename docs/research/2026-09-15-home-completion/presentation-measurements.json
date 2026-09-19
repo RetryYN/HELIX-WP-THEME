@@ -1,0 +1,68 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "scripts/measure-home-presentation.mjs": "88d26997b49a6cb70b72881d739badbf5ec2347d623aa967ef517b3979022ecc",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "4f96f85d0b9b08dcb7f2647e23ac9bff2c6edbc99320da52e9d231b26edc5826"
+  },
+  "measurements": [
+    {
+      "device": "pc",
+      "version": "before",
+      "heroToBodyGap": 70.078125,
+      "sidebarTop": 707.65625,
+      "heroBottom": 637.578125,
+      "fixedVisible": false,
+      "fixedTop": 0,
+      "lastFooterLinkBottom": 864.15625
+    },
+    {
+      "device": "pc",
+      "version": "after",
+      "heroToBodyGap": 40,
+      "sidebarTop": 672.765625,
+      "heroBottom": 632.765625,
+      "fixedVisible": false,
+      "fixedTop": 0,
+      "lastFooterLinkBottom": 863.59375
+    },
+    {
+      "device": "sp",
+      "version": "before",
+      "heroToBodyGap": 70.078125,
+      "sidebarTop": 7031.171875,
+      "heroBottom": 761.8125,
+      "fixedVisible": true,
+      "fixedTop": 843,
+      "lastFooterLinkBottom": 864.046875
+    },
+    {
+      "device": "sp",
+      "version": "after",
+      "heroToBodyGap": 40,
+      "sidebarTop": 6950.234375,
+      "heroBottom": 771.015625,
+      "fixedVisible": true,
+      "fixedTop": 843,
+      "lastFooterLinkBottom": 792.109375
+    }
+  ],
+  "rows": [
+    {
+      "name": "pc:hero-body-gap-reduced",
+      "pass": true
+    },
+    {
+      "name": "pc:sidebar-below-hero",
+      "pass": true
+    },
+    {
+      "name": "sp:hero-body-gap-reduced",
+      "pass": true
+    },
+    {
+      "name": "sp:footer-overlap-reproduced-and-fixed",
+      "pass": true
+    }
+  ]
+}

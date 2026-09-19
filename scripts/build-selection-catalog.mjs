@@ -442,11 +442,184 @@ if (fs.existsSync(path.join(root, vocabularyMediaPath))) {
     });
   }
 }
+const homePath = 'docs/research/2026-09-15-home-completion/verification.json';
+if (fs.existsSync(path.join(root, homePath))) {
+  const evidence = read(homePath);
+  const homeChoices = read('docs/research/2026-09-15-home-completion/choices.json').choices;
+  const required = ['fixtures:cleanup', 'source-unchanged', ...homeChoices.flatMap(choice => ['pc-js', 'pc-nojs', 'sp-js', 'sp-nojs'].map(mode => `${mode}:${choice.id}:metadata-section-order`))];
+  if (!evidence.completed || evidence.baselinePresentationDisabled || evidence.scenarioCount !== evidence.declaredScenarioCount || evidence.rows.some(row => !row.pass) || required.some(name => !evidence.rows.some(row => row.name === name && row.pass))) throw Error('HOME completion evidence failed or partial');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale HOME evidence: ${file}`);
+  }
+  for (const choice of homeChoices) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.purpose === choice.id && s.device === device);
+      if (!shot || !fs.existsSync(path.join(root, 'docs/research/2026-09-15-home-completion', shot.file))) throw Error(`Missing finished HOME ${choice.id}/${device}`);
+      if (createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-15-home-completion', shot.file))).digest('hex') !== shot.sha256) throw Error(`Changed HOME screenshot ${shot.file}`);
+      images[device] = `../2026-09-15-home-completion/${shot.file}`;
+    }
+    entries.set(`home-finished:${choice.id}`, {
+      id: `home-finished:${choice.id}`, face: 'home', part: 'home-finished', finished: true,
+      label: `完成HOME：${choice.label}`, variant: `${choice.hero} / ${choice.id}`,
+      purpose: choice.purpose, description: '既存の目的別構成をheroからfooterまで同じ条件で比較する完成画面PoC。文言・記事・数値は架空。選択メモは本番への適用ではありません。',
+      group: 'ページ・本文', images, requirementIds: ['WT-FR-LOOK-01', 'WT-FR-PARTS-03'],
+      selectionFacts: { '入口の導線': choice.openingRoute, '情報量': choice.density, '区間の順序': choice.sectionOrder, 'サイドバー開始': choice.sidebarStart, '共通部品の所属': choice.ownership },
+      demoRoute: evidence.shots.find(s => s.purpose === choice.id).route,
+      evidence: '../2026-09-15-home-completion/verification.json',
+    });
+  }
+}
+const eventPath = 'docs/research/2026-09-15-event-completion/verification.json';
+if (fs.existsSync(path.join(root, eventPath))) {
+  const evidence = read(eventPath);
+  const choices = read('docs/research/2026-09-15-event-completion/choices.json').choices;
+  const required = ['fixtures:cleanup', 'source-unchanged', ...choices.flatMap(c => ['pc-js', 'pc-nojs', 'sp-js', 'sp-nojs'].map(mode => `${mode}:${c.id}:metadata-section-order`))];
+  if (!evidence.completed || evidence.baselinePresentationDisabled || evidence.finishedOnly || evidence.rows.some(r => !r.pass) || required.some(name => !evidence.rows.some(r => r.name === name && r.pass))) throw Error('EVENT completion evidence failed or partial');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale EVENT evidence: ${file}`);
+  for (const choice of choices) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.purpose === choice.id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-15-event-completion', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing or changed EVENT screenshot ${choice.id}/${device}`);
+      images[device] = `../2026-09-15-event-completion/${shot.file}`;
+    }
+    entries.set(`event-finished:${choice.id}`, {
+      id: `event-finished:${choice.id}`, face: 'event', part: 'event-finished', finished: true,
+      label: `完成EVENT：${choice.label}`, variant: `${choice.values.event_hero} / ${choice.id}`,
+      purpose: choice.purpose, description: '開催情報から申込までの完成構成PoC。人物・会場・本文は架空。外部送信・実予約は含みません。受付前・満席・締切の操作証拠は別fixtureです。',
+      group: 'ページ・本文', images, requirementIds: ['WT-FR-EVENT-01', 'WT-FR-LOOK-01', 'WT-FR-PARTS-03', 'WT-FR-FORM-01'],
+      selectionFacts: choice.selectionFacts,
+      demoRoute: evidence.shots.find(s => s.purpose === choice.id).route,
+      evidence: '../2026-09-15-event-completion/verification.json',
+    });
+  }
+}
+const bannerPath = 'docs/research/2026-09-16-banner-zone-completion/verification.json';
+if (fs.existsSync(path.join(root, bannerPath))) {
+  const evidence = read(bannerPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Banner zone evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale banner evidence: ${file}`);
+  const facts = {
+    notice: ['必要な案内だけを短く伝える', 'ヘッダー直下', '固定', '同じ端末で閉状態を保持'],
+    guide: ['読む前に判断材料を案内する', '本文前', '固定', '本文の流れに配置'],
+    product: ['商品情報と表示の食い違いを防ぐ', '本文後', '商品IDから派生', '商品側の画像とリンクを共用'],
+    advertisement: ['広告の提供元を曖昧にしない', '本文前', '固定', '画像・リンクの直前に広告表示'],
+    rotation: ['複数の案内を切り替える', '本文前', '訪問リクエスト単位で切替', '表示中のバナーごとに広告表示'],
+    stack: ['補助操作を本文CTAに重ねない', 'ヘッダー直下＋下部', '固定', '設定へのリンク→メニュー→共有'],
+  };
+  for (const [id, fact] of Object.entries(facts)) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-16-banner-zone-completion', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing banner screenshot ${id}/${device}`);
+      images[device] = `../2026-09-16-banner-zone-completion/${shot.file}`;
+    }
+    entries.set(`banner-finished:${id}`, { id: `banner-finished:${id}`, face: 'zone', part: 'banner-finished', finished: true, label: `バナー完成比較：${evidence.shots.find(s => s.id === id).label}`, variant: id, images, requirementIds: ['WT-FR-BANNER-01', 'WT-FR-ZONE-03'], purpose: fact[0], group: 'ページ・本文', description: '架空のバナー正本と配置の比較PoC。実配信・同意取得・推奨面積の確定を示すものではありません。', selectionFacts: { '対象と判断': fact[0], '配置': fact[1], '表示方法': fact[2], '状態と帰属': fact[3], '予算': '画像150KB以内・viewport面積60%以内の試験宣言（推奨値未確定）' }, evidence: '../2026-09-16-banner-zone-completion/verification.json' });
+  }
+}
+const devicePath = 'docs/research/2026-09-16-device-vocabulary/verification.json';
+if (fs.existsSync(path.join(root, devicePath))) {
+  const evidence = read(devicePath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixture:cleanup' && r.pass)) throw Error('Device vocabulary evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale device evidence: ${file}`);
+  for (const [id, title] of [['compare', '横に比べて、条件を確かめる'], ['read', '一つずつ読んで、相談を決める']]) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-16-device-vocabulary', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing device screenshot ${id}/${device}`);
+      images[device] = `../2026-09-16-device-vocabulary/${shot.file}`;
+    }
+    entries.set(`device-finished:${id}`, { id: `device-finished:${id}`, face: 'article', part: 'device-finished', finished: true, label: `端末別完成比較：${title}`, variant: id, images, requirementIds: ['WT-FR-SP-03', 'WT-FR-VOCAB-01', 'WT-FR-LOOK-01'], purpose: title, group: 'ページ・本文', description: '同じ架空本文を端末別の読み方で比較するPoC。管理画面・MCPのプレビュー一致は未実証。', selectionFacts: { '対象と判断': title, '比較表': id === 'read' ? 'PC横表・SP項目カード' : 'PC/SPとも横比較', '内容の切替': 'PCタブ・SP見出し開閉', '写真と目次': 'SP横送り・目次開閉、PC一覧', '行動導線': id === 'read' ? 'SPで到達後に固定' : '本文末の全幅ボタン', 'JSなし': '全本文・写真横スクロール・通常フローCTA' }, evidence: '../2026-09-16-device-vocabulary/verification.json' });
+  }
+}
+const recommendationPath = 'docs/research/2026-09-19-recommendation-layouts/verification.json';
+if (fs.existsSync(path.join(root, recommendationPath))) {
+  const evidence = read(recommendationPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Recommendation layout evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale recommendation evidence: ${file}`);
+  for (const [id, label] of [['cards', '写真から次の記事を選ぶ'], ['list', '内容を確かめて次の記事を選ぶ']]) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-recommendation-layouts', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing recommendation screenshot ${id}/${device}`);
+      images[device] = `../2026-09-19-recommendation-layouts/${shot.file}`;
+    }
+    entries.set(`recommendation-layout:${id}`, { id: `recommendation-layout:${id}`, face: 'article', part: 'related-layout', finished: true, label: `記事一覧比較：${label}`, variant: id, images, requirementIds: ['WT-FR-RECO-01'], purpose: label, group: 'ページ・本文', description: '同じ新着記事3件を表示型だけ変えて比較。人気集計・関連記事抽出・管理画面での型切替は未確認。', selectionFacts: { '対象と判断': label, '選択と順序': '公開記事・新着順・3件（両型共通）', 'PC': id === 'cards' ? '2列カード・写真を上に配置' : '写真と説明の横並びリスト', 'SP': id === 'cards' ? '1列・写真の後に本文' : '横メディア行・写真100px／残りに本文', '画像なし': id === 'list' ? '本文が行の全幅を使用' : '空の画像枠を省略', '参照ID': `helix-wt/recommendation-${id}` }, evidence: '../2026-09-19-recommendation-layouts/verification.json' });
+  }
+}
+const eyecatchPath = 'docs/research/2026-09-19-eyecatch-meta/verification.json';
+if (fs.existsSync(path.join(root, eyecatchPath))) {
+  const evidence = read(eyecatchPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Eyecatch meta evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale eyecatch evidence: ${file}`);
+  for (const [id, label] of [['title-image', '題名の後に写真'], ['image-title', '写真の後に題名'], ['hero', '写真に題名を重ねる'], ['side', '題名の横に写真を添える'], ['none', '写真を表示しない']]) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-eyecatch-meta', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing eyecatch screenshot ${id}/${device}`);
+      images[device] = `../2026-09-19-eyecatch-meta/${shot.file}`;
+    }
+    entries.set(`eyecatch-meta:${id}`, { id: `eyecatch-meta:${id}`, face: 'article', part: 'eyecatch-meta', finished: true, label: `記事設定比較：${label}`, variant: id, images, requirementIds: ['WT-FR-META-01'], purpose: '題名と写真の優先順を選ぶ', group: 'ページ・本文', description: '同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。', selectionFacts: { '対象と判断': label, '同じ内容': '題名・本文・写真は全型共通', '保存先': `投稿メタ wt_eyecatch = ${id}`, '未設定': 'サイト既定を継承', '他の記事': '対照記事の表示は変わらない', 'SP': id === 'side' ? '題名の後に写真を積む' : label, 'JSなし': '位置と表示を維持' }, evidence: '../2026-09-19-eyecatch-meta/verification.json' });
+  }
+}
+// 既存目次候補を保存設定からの実機画像へ更新し、重複候補を増やさない。
+const tocPath = 'docs/research/2026-09-19-toc-settings/verification.json';
+if (fs.existsSync(path.join(root, tocPath))) {
+  const report = JSON.parse(fs.readFileSync(path.join(root, tocPath), 'utf8'));
+  if (!report.completed || report.rows.some(r => !r.pass)) throw Error('TOC settings verification failed');
+  for (const [source, digest] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== digest) throw Error(`Stale TOC source ${source}`);
+  for (const [id, purpose] of [['box', '本文の前に構成を見せる'], ['float', 'サイドバーなしは横レール、ありは本文内'], ['collapsible', '必要なときに目次を開く'], ['none', '本文へ直接読み進める']]) {
+    const entry = entries.get(`article:toc-${id}`);
+    if (!entry) throw Error(`Missing existing TOC candidate ${id}`);
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-toc-settings', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing TOC screenshot ${id}/${device}`);
+      entry.images[device] = `../2026-09-19-toc-settings/${shot.file}`;
+    }
+    entry.purpose = purpose;
+    entry.label = '目次設定比較：' + ({box:'本文前',float:'フロート／本文内',collapsible:'開閉',none:'非表示'})[id];
+    entry.description = '同じ記事の投稿メタに保存した4型を比較。見出し編集への追従、サイト既定継承、対照記事、PC/SP・JS有無・キーボード開閉を実測。ページ種別設定UIとREST/MCPは未確認。';
+    entry.selectionFacts = {'対象と判断': purpose, '保存先': `投稿メタ wt_toc = ${id}`, '未設定': 'サイト既定を継承', '内容': 'H2/H3から描画時に導出。H2が3個未満では省略', 'JSなし': '目次の表示と開閉を維持', '他の記事': '対照記事の表示は変わらない'};
+    entry.evidence = '../2026-09-19-toc-settings/verification.json';
+  }
+}
+const pricingPath = 'docs/research/2026-09-19-pricing-cards/verification.json';
+if (fs.existsSync(path.join(root, pricingPath))) {
+  const report = read(pricingPath);
+  const candidates = read('docs/research/2026-09-19-pricing-cards/catalog-candidates.json');
+  if (!report.completed || report.rows.some(r => !r.pass) || !report.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Pricing card evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale pricing source ${source}`);
+  for (const candidate of candidates.entries) {
+    const id = candidate.variant;
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(item => item.id === id && item.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-pricing-cards', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing pricing screenshot ${id}/${device}`);
+    }
+    entries.set(candidate.id, {...candidate, finished:true, selectionFacts:{'対象と判断':id === 'standard' ? '通常量の3プランを比較' : '説明が長い3プランの境界確認','同じ型':'通常／長文は同じ既存1型。型数を増やさない','PC':'同一行の外枠・見出し・末尾CTAを整列','SP':'1列で全文を省略せず表示','保存先':'固定ページ本文のcore blocks','参照ID':'helix-wt/pricing'}});
+  }
+}
+const headingPath = 'docs/research/2026-09-20-heading-fluid/verification.json';
+if (fs.existsSync(path.join(root, headingPath))) {
+  const report = read(headingPath);
+  const candidates = read('docs/research/2026-09-20-heading-fluid/catalog-candidates.json');
+  if (!report.completed || report.rows.some(r => !r.pass) || !report.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Heading comparison evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale heading source ${source}`);
+  for (const candidate of candidates.entries) {
+    const entry = entries.get(candidate.id);
+    if (!entry || !['h2', 'h3'].includes(entry.part)) throw Error(`Unknown heading candidate ${candidate.id}`);
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(item => item.id === candidate.id.slice('article:'.length) && item.device === device && item.scale === 1);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-heading-fluid', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing heading screenshot ${candidate.id}/${device}`);
+    }
+    Object.assign(entry, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
-  const related = [...entries.values()].filter(e => prefixes.some(p => e.part.startsWith(p)));
-  related.forEach(e => e.requirementIds.push(r.id));
+  const related = [...entries.values()].filter(e => e.requirementIds.includes(r.id) || prefixes.some(p => e.part.startsWith(p)));
+  related.forEach(e => { if (!e.requirementIds.includes(r.id)) e.requirementIds.push(r.id); });
   return { id: r.id, family, statement: r.statement, priority: r.priority, revision: r.revision,
     acceptance: audit.rows.filter(a => a.requirement_id === r.id),
     status: audit.rows.some(a => a.requirement_id === r.id && ['partial', 'verified_in_poc'].includes(a.status)) ? 'partial_poc' : 'not_verified', relatedEntryIds: related.map(e => e.id),
@@ -469,3 +642,5 @@ if (!currentPattern.test(readme)) throw Error('Missing generated catalog-current
 const current = `${currentStart}\n現在の生成結果: ${entries.size}候補 / ${result.screenshotCount}画像 / ${requirements.length}要求 / ${audit.acceptanceCount}受入条件。PoC確認${audit.counts.verified_in_poc}・部分確認${audit.counts.partial}・証跡未対応${audit.counts.missing}・再検証${audit.counts.stale}。全要求完了ではない。\n${currentEnd}`;
 fs.writeFileSync(readmePath, readme.replace(currentPattern, current));
 console.log(`catalog: ${entries.size} candidates / ${result.screenshotCount} screenshots / ${requirements.length} requirements`);
+// catalog-data を書き出した後に、同じ時点の要求・証跡・候補から完遂backlogも再生成する。
+await import('./build-catalog-completion-backlog.mjs');

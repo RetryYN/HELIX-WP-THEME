@@ -1,0 +1,41 @@
+{
+  "schema": "wt-heading-fluid-checks.v1",
+  "results": [
+    {
+      "command": "node scripts/check-heading-tokens.mjs",
+      "exit_code": 0,
+      "passed": 10
+    },
+    {
+      "command": "node scripts/verify-heading-fluid.mjs",
+      "exit_code": 0,
+      "passed": 1204
+    },
+    {
+      "command": "npx playwright test tests/e2e/heading-fluid.spec.ts",
+      "exit_code": 0,
+      "passed": 12
+    },
+    {
+      "command": "npx playwright test tests/e2e/heading-selection-catalog.spec.ts",
+      "exit_code": 0,
+      "passed": 1
+    },
+    {
+      "command": "npm test",
+      "exit_code": 0,
+      "unit_tests": 31,
+      "public_safety_fixture_tests": 9
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "bash scripts/public-safety-guard.sh --staged (isolated temporary index of this batch)",
+      "exit_code": 0,
+      "output": "public safety check: OK (20462 added line(s) inspected)",
+      "limitation": "No local private mapping was supplied. The guard passed, but its cut | grep -q condition may skip the mapping prerequisite on large diffs under pipefail. Reported to parent; mapped private-name coverage is not claimed."
+    }
+  ]
+}

@@ -4171,6 +4171,39 @@
       "revision": 1,
       "owner": "PO",
       "semantic_digest": "f10f447cb383624e"
+    },
+    {
+      "id": "WT-FR-UTILITY-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-CAND-PARTS",
+        "WT-EVT-0311"
+      ],
+      "statement": "診断・計算・生成ツールを通常フォーム・検索結果とは別の対話型ユーティリティ面として持つ。入力、検証、計算・診断・生成、結果、根拠、再入力を一つの表示契約で扱い、calculator / grader / generator の代表用途を同じ構造で再現できる。計算式・診断規則・生成処理・外部API・個人データ保存はテーマ外へ分離し、入力非保存を既定とする。結果の近くに使用データ、基準、更新日、丸め、対象外を示し、PC/SP、キーボード、JavaScript無効、境界値、外部処理失敗でも説明と代替経路を失わない。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-UTILITY-01A",
+        "WT-AC-UTILITY-01B",
+        "WT-AC-UTILITY-01C",
+        "WT-AC-UTILITY-01D"
+      ],
+      "test_ids": [
+        "WT-AT-UTILITY-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "9cb6c793907b1cab"
     }
   ]
 }

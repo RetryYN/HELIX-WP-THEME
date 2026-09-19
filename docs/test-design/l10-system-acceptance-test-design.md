@@ -165,3 +165,5 @@ WT-EVT-0308: WT-AT-LEARN-01のAC-01Cはゼロ件からの復帰、巨大/不正/
 WT-EVT-0309: WT-AT-PAGE-01のAC-01A/B/CはJSONからのパターン登録と固定ページ、全11面の共通事業者情報の更新、送信先一覧の変更/空、規約へのリンク、会社/サービス/料金/拠点/採用の目的別本文、PC/SP・JS無効と別受付画面への遷移を検査する。実処理契約の人間判断待ちを解除する検証ではない。
 
 WT-EVT-0310: WT-AT-SEARCH-01 → WT-FR-SEARCH-01 / WT-AC-SEARCH-01A/B/C/D。scripts/verify-site-search.mjsとverify-site-search-boundaries.mjsで検索結果・再検索・公開範囲・ページ送りを専用labで確認。未入力専用状態、全権限変更、日本語locale、キーボード、範囲外の復帰までを完了条件とし、既存の73検査だけで達成としない。
+
+WT-EVT-0311: WT-AT-UTILITY-01 → WT-FR-UTILITY-01 / WT-AC-UTILITY-01A/B/C/D。calculator / grader / generator の代表fixtureで、入力・検証・結果・根拠・再入力、PC/SP・キーボード・JS無効、境界値、外部処理失敗、保存なし既定を検査する。フォーム送信や検索結果の証跡を代用しない。

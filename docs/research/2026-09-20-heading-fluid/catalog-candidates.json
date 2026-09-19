@@ -1,0 +1,370 @@
+{
+  "schema": "wt-heading-catalog-candidates.v1",
+  "note": "既存15候補のみ更新。新規型0。LOOK-01Bは見出し範囲のトークン移行・100/200%文字を確認、テーマ全体はpartial。",
+  "acceptance": [
+    "WT-AC-LOOK-01A",
+    "WT-AC-LOOK-01B"
+  ],
+  "entries": [
+    {
+      "id": "article:h2-plain",
+      "variant": "plain",
+      "label": "見出し比較：H2 太字のみ",
+      "description": "同じ短文と長文を並べた既存block styleの比較。装飾を抑えて本文を続ける。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-plain-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-plain-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "装飾を抑えて本文を続ける",
+        "装飾の強さ": "低",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-plain",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-2tone",
+      "variant": "2tone",
+      "label": "見出し比較：H2 二色の下線",
+      "description": "同じ短文と長文を並べた既存block styleの比較。長い記事の節を軽い線で区切る。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-2tone-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-2tone-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "長い記事の節を軽い線で区切る",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-2tone",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-icon",
+      "variant": "icon",
+      "label": "見出し比較：H2 星アイコン",
+      "description": "同じ短文と長文を並べた既存block styleの比較。要点や注目する節を示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-icon-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-icon-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "要点や注目する節を示す",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-icon",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-bar",
+      "variant": "bar",
+      "label": "見出し比較：H2 左バー",
+      "description": "同じ短文と長文を並べた既存block styleの比較。見出しの始点をそろえる。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-bar-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-bar-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "見出しの始点をそろえる",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-bar",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-underline",
+      "variant": "underline",
+      "label": "見出し比較：H2 下線",
+      "description": "同じ短文と長文を並べた既存block styleの比較。セクションの区切りを明示する。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-underline-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-underline-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "セクションの区切りを明示する",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-underline",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-band",
+      "variant": "band",
+      "label": "見出し比較：H2 色の帯",
+      "description": "同じ短文と長文を並べた既存block styleの比較。大きな話題の切替を強調する。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-band-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-band-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "大きな話題の切替を強調する",
+        "装飾の強さ": "高",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-band",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "面積の大きい装飾。連続した小節への多用を避け、variationの色・コントラストは別検査する。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-numbox",
+      "variant": "numbox",
+      "label": "見出し比較：H2 番号ボックス",
+      "description": "同じ短文と長文を並べた既存block styleの比較。順番を追って読む章を示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-numbox-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-numbox-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "順番を追って読む章を示す",
+        "装飾の強さ": "高",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-numbox",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "CSS counterで表示。本文データではない",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "番号はCSS counterの装飾。読み上げで必要な順序や番号は本文にも明示する。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-barbg",
+      "variant": "barbg",
+      "label": "見出し比較：H2 左バーと淡い背景",
+      "description": "同じ短文と長文を並べた既存block styleの比較。注意して読む章の面をつくる。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-barbg-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-barbg-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "注意して読む章の面をつくる",
+        "装飾の強さ": "高",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-barbg",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "面積の大きい装飾。連続した小節への多用を避け、variationの色・コントラストは別検査する。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-doubleline",
+      "variant": "doubleline",
+      "label": "見出し比較：H2 上下の罫線",
+      "description": "同じ短文と長文を並べた既存block styleの比較。コラムや独立した節を区切る。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-doubleline-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-doubleline-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "コラムや独立した節を区切る",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-doubleline",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h2-label",
+      "variant": "label",
+      "label": "見出し比較：H2 英字ラベル",
+      "description": "同じ短文と長文を並べた既存block styleの比較。編集記事の章に小さな導入を置く。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h2-label-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h2-label-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "編集記事の章に小さな導入を置く",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-label",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "SECTIONは固定の装飾ラベル。本文の情報や翻訳が必要なラベルの代用にはしない。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h3-bar-thin",
+      "variant": "bar-thin",
+      "label": "見出し比較：H3 細い左バー",
+      "description": "同じ短文と長文を並べた既存block styleの比較。章内の小さな項目を整理する。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h3-bar-thin-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h3-bar-thin-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "章内の小さな項目を整理する",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-bar-thin",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h3-dotted",
+      "variant": "dotted",
+      "label": "見出し比較：H3 点線の下線",
+      "description": "同じ短文と長文を並べた既存block styleの比較。小項目の境界を柔らかく示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h3-dotted-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h3-dotted-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "小項目の境界を柔らかく示す",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-dotted",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h3-num",
+      "variant": "num",
+      "label": "見出し比較：H3 番号前置",
+      "description": "同じ短文と長文を並べた既存block styleの比較。章内の手順を順に示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h3-num-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h3-num-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "章内の手順を順に示す",
+        "装飾の強さ": "中",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-num",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "CSS counterで表示。本文データではない",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "番号はCSS counterの装飾。読み上げで必要な順序や番号は本文にも明示する。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h3-marker",
+      "variant": "marker",
+      "label": "見出し比較：H3 小さなマーカー",
+      "description": "同じ短文と長文を並べた既存block styleの比較。小項目の始点を示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h3-marker-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h3-marker-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "小項目の始点を示す",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-marker",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    },
+    {
+      "id": "article:h3-underline-thin",
+      "variant": "underline-thin",
+      "label": "見出し比較：H3 細い下線",
+      "description": "同じ短文と長文を並べた既存block styleの比較。小項目を静かな線で区切る。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
+      "images": {
+        "pc": "../2026-09-20-heading-fluid/h3-underline-thin-pc.jpg",
+        "sp": "../2026-09-20-heading-fluid/h3-underline-thin-sp.jpg"
+      },
+      "selectionFacts": {
+        "対象と判断": "小項目を静かな線で区切る",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-underline-thin",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390 / 狭幅320、文字100%・200%、JS有無",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのChromiumのみ。全variation・編集画面保存・root文字拡大・任意書体・RTLは未確認。",
+        "組合せ": "H2の下にH3を置く。帯・番号は大区切り、細線・点線は本文内の小区切りと組み合わせる。",
+        "編集場所": "ブロックのスタイルで選択。共通尺度はtheme/helix-wt/theme.json settings.custom.heading、見出し意匠はassets/css/theme.css。",
+        "200%文字": "同じ幅で見出し・段落の実測font-sizeを2倍。全文・順序・階層・文字領域を確認。ブラウザーzoomとは別。",
+        "制約": "長文は折り返す。装飾だけで重要度を伝えず、本文と意味上の見出し階層を保つ。"
+      },
+      "evidence": "../2026-09-20-heading-fluid/verification.json"
+    }
+  ]
+}

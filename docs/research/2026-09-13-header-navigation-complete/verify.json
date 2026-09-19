@@ -22,10 +22,10 @@
     }
   },
   "artifacts": {
-    "docs/research/2026-09-13-header-navigation-complete/matrix.json": "e642f54e888bc404fe5f479acc2bfb5f08cc2251bf3fc571bfb88a829d99c5ea",
-    "docs/research/2026-09-13-header-navigation-complete/boundaries.json": "dbd58616eb82d49911756437e22cb1619e3a5cdd5897713a150285f990f89a81",
+    "docs/research/2026-09-13-header-navigation-complete/matrix.json": "26f308849bd2ff102a751d9a08a30a12ace2ee1b4166269a6169c3e463e18248",
+    "docs/research/2026-09-13-header-navigation-complete/boundaries.json": "71d2906bf8355cceda1a1e8cdf670c3cfbbbb6d13b77344290c5772103fc8b4a",
     "docs/research/2026-09-13-header-navigation-complete/editor/verify.json": "af04b73660b8eeaaf1052f12dedcdc8571b2925442126a0d9d5883b7bd9ea8fb",
-    "docs/research/2026-09-13-header-navigation-complete/static.json": "19595702c13092050cd402baea00d779d576d1c5bc0905532c783a9bf82f426c"
+    "docs/research/2026-09-13-header-navigation-complete/static.json": "9e4904226a9674e3ae967156d8411e84353e364b9b8ff1182031bdc4bd296e59"
   },
   "sourceDigests": {
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html": "7057f59e0baa68c897650cccb4606ca126e2812b9274dea96f559876b14aff8a",
@@ -41,7 +41,7 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3",
     "scripts/verify-header-navigation-complete.mjs": "2ecd88ff780ea62855d328203f9da9e0af67b614cb97ca18ceedbc4ac95d4ea1",
     "scripts/verify-header-navigation-boundaries.mjs": "f2931992f9b0691d3cec1aa4e32de9a2daf26017848b61504ae38c417727f78e",
     "scripts/verify-header-navigation-editor.mjs": "969915821aebb2f387c232274a6712e0ce2c2e966bc3a2937f39a6d0611bab2c",
@@ -20298,15 +20298,15 @@
       "pass": true
     },
     {
-      "name": "boundaries:cleanup:12671",
+      "name": "boundaries:cleanup:14397",
       "pass": true
     },
     {
-      "name": "boundaries:cleanup:12672",
+      "name": "boundaries:cleanup:14398",
       "pass": true
     },
     {
-      "name": "boundaries:cleanup:12673",
+      "name": "boundaries:cleanup:14399",
       "pass": true
     },
     {
@@ -21482,43 +21482,27 @@
       "pass": true
     },
     {
-      "name": "static:header-css:95:no-global-layout-redefinition",
+      "name": "static:header-css:100:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:96:no-global-layout-redefinition",
+      "name": "static:header-css:101:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:98:no-global-layout-redefinition",
+      "name": "static:header-css:103:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:187:no-global-layout-redefinition",
+      "name": "static:header-css:192:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:198:no-global-layout-redefinition",
+      "name": "static:header-css:203:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:199:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:206:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:207:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:208:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:210:no-global-layout-redefinition",
+      "name": "static:header-css:204:no-global-layout-redefinition",
       "pass": true
     },
     {
@@ -21531,10 +21515,6 @@
     },
     {
       "name": "static:header-css:213:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:214:no-global-layout-redefinition",
       "pass": true
     },
     {
@@ -21602,127 +21582,119 @@
       "pass": true
     },
     {
+      "name": "static:header-css:231:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
       "name": "static:header-css:232:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:557:no-global-layout-redefinition",
+      "name": "static:header-css:233:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:558:no-global-layout-redefinition",
+      "name": "static:header-css:234:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:559:no-global-layout-redefinition",
+      "name": "static:header-css:235:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:560:no-global-layout-redefinition",
+      "name": "static:header-css:237:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:591:no-global-layout-redefinition",
+      "name": "static:header-css:565:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:592:no-global-layout-redefinition",
+      "name": "static:header-css:566:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:593:no-global-layout-redefinition",
+      "name": "static:header-css:567:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:594:no-global-layout-redefinition",
+      "name": "static:header-css:568:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:658:no-global-layout-redefinition",
+      "name": "static:header-css:599:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:775:no-global-layout-redefinition",
+      "name": "static:header-css:600:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:778:no-global-layout-redefinition",
+      "name": "static:header-css:601:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:798:no-global-layout-redefinition",
+      "name": "static:header-css:602:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:799:no-global-layout-redefinition",
+      "name": "static:header-css:666:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:800:no-global-layout-redefinition",
+      "name": "static:header-css:783:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:801:no-global-layout-redefinition",
+      "name": "static:header-css:786:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:802:no-global-layout-redefinition",
+      "name": "static:header-css:806:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:803:no-global-layout-redefinition",
+      "name": "static:header-css:807:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:804:no-global-layout-redefinition",
+      "name": "static:header-css:808:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:805:no-global-layout-redefinition",
+      "name": "static:header-css:809:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:923:no-global-layout-redefinition",
+      "name": "static:header-css:810:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:924:no-global-layout-redefinition",
+      "name": "static:header-css:811:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:938:no-global-layout-redefinition",
+      "name": "static:header-css:812:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:948:no-global-layout-redefinition",
+      "name": "static:header-css:813:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:1324:no-global-layout-redefinition",
+      "name": "static:header-css:931:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:1325:no-global-layout-redefinition",
+      "name": "static:header-css:932:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:1326:no-global-layout-redefinition",
+      "name": "static:header-css:946:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:1327:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:1328:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:1330:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:1331:no-global-layout-redefinition",
+      "name": "static:header-css:956:no-global-layout-redefinition",
       "pass": true
     },
     {
@@ -21743,10 +21715,6 @@
     },
     {
       "name": "static:header-css:1336:no-global-layout-redefinition",
-      "pass": true
-    },
-    {
-      "name": "static:header-css:1337:no-global-layout-redefinition",
       "pass": true
     },
     {
@@ -21910,47 +21878,79 @@
       "pass": true
     },
     {
-      "name": "static:header-css:1766:no-global-layout-redefinition",
+      "name": "static:header-css:1378:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2270:no-global-layout-redefinition",
+      "name": "static:header-css:1379:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2400:no-global-layout-redefinition",
+      "name": "static:header-css:1380:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2428:no-global-layout-redefinition",
+      "name": "static:header-css:1381:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2429:no-global-layout-redefinition",
+      "name": "static:header-css:1382:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2430:no-global-layout-redefinition",
+      "name": "static:header-css:1383:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2431:no-global-layout-redefinition",
+      "name": "static:header-css:1384:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2432:no-global-layout-redefinition",
+      "name": "static:header-css:1385:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2433:no-global-layout-redefinition",
+      "name": "static:header-css:1774:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2434:no-global-layout-redefinition",
+      "name": "static:header-css:2278:no-global-layout-redefinition",
       "pass": true
     },
     {
-      "name": "static:header-css:2435:no-global-layout-redefinition",
+      "name": "static:header-css:2408:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2436:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2437:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2438:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2439:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2440:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2441:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2442:no-global-layout-redefinition",
+      "pass": true
+    },
+    {
+      "name": "static:header-css:2443:no-global-layout-redefinition",
       "pass": true
     },
     {

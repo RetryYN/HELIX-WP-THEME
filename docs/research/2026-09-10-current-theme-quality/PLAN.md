@@ -4,7 +4,7 @@
 
 ## 監査所見
 
-- コメントを除いたpx/rem/emの字面出現2987。token定義やbreakpointを含むため違反数と同一視しない。
+- コメントを除いたpx/rem/emの字面出現3077。token定義やbreakpointを含むため違反数と同一視しない（2026-09-20再集計）。
 - !important154件: theme.css116（表示選択48・motion停止13・その他視覚/配置55）、content-faces.css38（表示1・視覚/組版37）。表示指定も自動的な許容ではなく、軸の選択規則との衝突を実測する必要がある。
 - フォームのcaptcha question/placeholder/sidebarの3箇所が未定義color--softを参照。既存surfaceの意味（補助面）へ修正する。
 - variation rules/minchoは親paletteのok/warn-soft/ok-softを欠く。既存親値を追加してslug集合を揃え、意図する色を変えない。

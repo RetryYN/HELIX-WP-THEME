@@ -4,7 +4,18 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('633');
+  await expect(page.locator('#total')).toHaveText('660');
+});
+
+test('pricing cards compare standard and long copy without inflating the design count', async ({ page }) => {
+  await page.locator('[data-face="all"]').click();
+  await page.locator('#search').fill('料金3プラン');
+  await expect(page.locator('.tile-open')).toHaveCount(2);
+  await expect(page.locator('.tile-open')).toContainText(['料金3プラン・通常本文', '料金3プラン・長い説明']);
+  await expect(page.locator('.tile-open img').first()).toHaveAttribute('src', /2026-09-19-pricing-cards\/standard-pc\.jpg/);
+  await expect(page.locator('.tile-open img').last()).toHaveAttribute('src', /2026-09-19-pricing-cards\/long-copy-pc\.jpg/);
+  await page.locator('.tile-open').first().click();
+  await expect(page.locator('#detail')).toContainText('通常／長文は同じ既存1型。型数を増やさない');
 });
 
 test('search, comparison limit, PC/SP and requirement discovery', async ({ page }) => {
@@ -46,8 +57,8 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await expect(page.locator('.tile-open img')).toHaveAttribute('src', /parts-declaration\/editor\/inspector\.png/);
   await page.locator('#search').fill('');
   await page.locator('[data-face="zone"]').click();
-  await expect(page.locator('.tile-open')).toHaveCount(1);
-  await expect(page.locator('#collection-title')).toHaveText('配置slot');
+  await expect(page.locator('.tile-open')).toHaveCount(7);
+  await expect(page.locator('#collection-title')).toHaveText('バナー・配置');
   await page.locator('[data-face="all"]').click();
   for (let i = 0; i < 4; i++) await page.locator('.compare-pick input').nth(i).click();
   await expect(page.locator('.compare-pick input:checked')).toHaveCount(3);
@@ -256,7 +267,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('633候補 / SP');
+  await expect(page.locator('#count')).toHaveText('660候補 / SP');
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
@@ -338,11 +349,11 @@ test('related candidates and expanded results resume, and removing the last comp
   await page.locator('.req-row > summary').click();
   await page.locator('.req-row button').click();
   await page.locator('#more').click();
-  await expect(page.locator('.tile')).toHaveCount(52);
+  await expect(page.locator('.tile')).toHaveCount(57);
   const ids = await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId));
   await page.reload();
   await expect(page.locator('#collection-title')).toHaveText('要求に関連する候補');
-  await expect(page.locator('.tile')).toHaveCount(52);
+  await expect(page.locator('.tile')).toHaveCount(57);
   expect(await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId))).toEqual(ids);
   await page.locator('.compare-pick input').first().check();
   await page.locator('#tab-requirements').click();

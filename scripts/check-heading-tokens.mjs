@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
+const json=JSON.parse(fs.readFileSync(theme+'theme.json','utf8')),css=fs.readFileSync(theme+'assets/css/theme.css','utf8');
+const clean=css.replace(/\/\*[\s\S]*?\*\//g,''),styles=['plain','2tone','icon','bar','underline','band','numbox','barbg','doubleline','label','bar-thin','dotted','num','marker','underline-thin'];
+const rules=[...clean.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>/^\s*\.wp-block-heading\.is-style-wt-/.test(m[1])||m[1].includes('> .wp-block-heading.is-style-wt-num::before'));
+const rows=[],check=(name,pass,details)=>rows.push({name,pass:!!pass,details});
+check('15-existing-styles',styles.every(s=>rules.some(m=>m[1].includes('.is-style-wt-'+s+'{')||m[1].trim()==='.wp-block-heading.is-style-wt-'+s)),styles.length);
+const decoration=rules.map(m=>m[2].replace(/url\("[^"]*"\)/g,'url(asset)')).join(';');
+const raw=[...decoration.matchAll(/(?:^|[\s:,(])(-?(?:\d*\.)?\d+)(px|rem|em)\b/g)].map(m=>m[1]+m[2]).filter(v=>v!=='1px');
+check('decoration:no-raw-dimensions-except-1px',raw.length===0,raw);
+check('decoration:no-raw-colors',!/#(?:[0-9a-f]{3}){1,2}\b/i.test(decoration));
+check('decoration:no-important',!decoration.includes('!important'));
+const refs=[...new Set([...decoration.matchAll(/var\(--wp--custom--heading--([a-z-]+)\)/g)].map(m=>m[1]))];
+check('decoration:all-heading-tokens-resolve',refs.every(r=>Object.hasOwn(json.settings.custom.heading,r)),refs);
+check('spacing:heading-margins-use-tokens',['h2','h3'].every(h=>Object.values(json.styles.elements[h].spacing.margin).every(v=>v.startsWith('var(--wp--'))));
+check('typography:line-height-unitless-token',json.styles.elements.heading.typography.lineHeight==='var(--wp--custom--heading--line-height)'&&Number(json.settings.custom.heading['line-height'])>=1.5);
+for(const slug of ['l','xl','xxl']){const t=json.settings.typography.fontSizes.find(t=>t.slug===slug);check('typography:fluid-rem-'+slug,t.fluid&&/rem$/.test(t.fluid.min)&&/rem$/.test(t.fluid.max)&&parseFloat(t.fluid.max)>parseFloat(t.fluid.min));}
+const sources=['scripts/check-heading-tokens.mjs','scripts/verify-heading-fluid.mjs','tests/e2e/heading-fluid.spec.ts',theme+'theme.json',theme+'assets/css/theme.css'];
+const sourceDigests=Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(f)).digest('hex')]));
+const report={schema:'wt-heading-token-check.v1',completed:rows.every(r=>r.pass),scope:'Existing 15 heading styles only; 1px rule exception retained. Other theme decorations excluded.',sourceDigests,rows};
+fs.writeFileSync('docs/research/2026-09-20-heading-fluid/tokens.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(!report.completed)process.exitCode=1;

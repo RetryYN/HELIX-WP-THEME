@@ -54,6 +54,7 @@ const rows = [
   runFixture('negative:personal-path-rejected', 'src/path.txt', `${personalPath}\n`, false),
   runFixture('negative:tracking-url-rejected', 'src/url.txt', `${trackingUrl}\n`, false),
   runFixture('negative:research-requires-private-map', 'docs/research/note.md', 'public observation\n', false),
+  runFixture('negative:large-research-requires-private-map', 'docs/research/large-note.md', 'public observation\n'.repeat(25000), false),
   runFixture('positive:research-with-private-map-accepted', 'docs/research/note.md', 'public observation\n', true, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
   runFixture('negative:custom-private-map-rejected', 'docs/research/note.md', 'private-client-name\n', false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
 ];

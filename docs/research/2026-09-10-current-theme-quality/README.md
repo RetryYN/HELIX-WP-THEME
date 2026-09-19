@@ -23,20 +23,20 @@ font9段、spacing8段、全body軸、raw値は維持した。既存の型を減
 
 ## 未完了の監査
 
-`audit.py` / `audit.json` が現行テーマ全体を用途別に記録する。字面のraw出現2987は違反数ではない。
+`audit.py` / `audit.json` が現行テーマ全体を用途別に記録する。字面のraw出現3077は違反数ではない。
 
 | 区分 | 出現 |
 | --- | ---: |
-| theme.json等のtoken定義 | 75 |
+| theme.json等のtoken定義 | 100 |
 | CSS内のlocal token/軸上書き | 39 |
-| breakpoint条件 | 78 |
-| 1px罫線 | 183 |
-| 単位付き0 | 7 |
-| JSの寸法/監視値 | 3 |
-| structured style値 | 27 |
-| 部品/コンテンツ寸法（自動許容しない） | 2575 |
+| breakpoint条件 | 91 |
+| 1px罫線 | 198 |
+| 単位付き0 | 15 |
+| JSの寸法/監視値 | 9 |
+| structured style値 | 23 |
+| 部品/コンテンツ寸法（自動許容しない） | 2602 |
 
-!importantは154→116。残りはtheme.cssの視覚/配置55、表示選択48、reduced-motion保護13。表示選択48を契約上許容と決めてはいない。全軸の競合・非表示要素の復活・SP配置を実測してから順に整理する。**LOOK-01B全体は未完了**。
+!importantは初回監査の154から121。残りは視覚/配置57、表示選択51、reduced-motion保護13。表示選択51を契約上許容と決めてはいない。全軸の競合・非表示要素の復活・SP配置を実測してから順に整理する。既存15見出しの装飾は別証跡でtoken化したが、**LOOK-01B全体は未完了**。
 
 次の優先箇所はヘッダー幅（partsのliteral wideSizeとCSS importantの競合）、density軸の二重定義、cover/scrimの明度別背景、関連/カテゴリのgridと表示選択。各軸の旧PO是正を再発させないため、単純な一括置換はしない。
 

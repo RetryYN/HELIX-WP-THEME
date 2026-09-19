@@ -5,7 +5,7 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "dc99fb1c559f664bd2b86f2629e6ec30c198b6f2bfa2ca58a96213f9e248688e",
+  "source_sha256": "7b6dd35180b83ca78906cfe2c434f57ebbf47ccb7e3b298c00e9cec9ab763eba",
   "rows": [
     {
       "name": "positive:clean-source-accepted",
@@ -51,6 +51,13 @@
     },
     {
       "name": "negative:research-requires-private-map",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:large-research-requires-private-map",
       "pass": true,
       "expected": "reject",
       "actual": "reject",

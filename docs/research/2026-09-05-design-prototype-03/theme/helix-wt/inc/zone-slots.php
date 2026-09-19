@@ -14,6 +14,9 @@ defined( 'ABSPATH' ) || exit;
  * @return string 描画する HTML。空の slot は空文字。
  */
 function wt_zone_render( $attributes ) {
+	if ( ! empty( $attributes['banner'] ) && function_exists( 'wt_banner_zone' ) ) {
+		return wt_banner_zone( $attributes['slot'] ?? '' );
+	}
 	$ids = array( 'before-content', 'before-related', 'after-related', 'page-top', 'page-bottom', 'header-inner', 'sp-bottom', 'sticky-sidebar' );
 	$id  = $attributes['slot'] ?? '';
 	if ( ! in_array( $id, $ids, true ) ) {
@@ -62,6 +65,10 @@ add_action(
 				'render_callback' => 'wt_zone_render',
 				'attributes'      => array(
 					'slot'   => array( 'type' => 'string' ),
+					'banner' => array(
+						'type'    => 'boolean',
+						'default' => false,
+					),
 					'common' => array(
 						'type'    => 'array',
 						'default' => array(),

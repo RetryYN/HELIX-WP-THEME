@@ -1,0 +1,225 @@
+{
+  "schema": "wt-event-finished-choices.v1",
+  "note": "既存5構成の比較用PoC。実予約・外部送信は含まない。",
+  "choices": [
+    {
+      "id": "seminar",
+      "label": "セミナー：対象と得られること",
+      "purpose": "参加の適否を理解して申し込む",
+      "values": {
+        "event_sections": "seminar",
+        "event_hero": "date-place-block",
+        "event_info": "inline-text",
+        "event_apply": "block-form",
+        "event_schedule": "timeline",
+        "event_speakers": "single-profile",
+        "event_map": "text-only",
+        "event_status": "open",
+        "event_fixed": "sp-bottom-bar",
+        "event_share": "none",
+        "event_side": "off",
+        "event_head": "site",
+        "event_foot": "site",
+        "event_fix": "own",
+        "form_fields": "minimal"
+      },
+      "sectionIds": [
+        "info",
+        "overview",
+        "audience",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "organizer",
+        "notes"
+      ],
+      "selectionFacts": {
+        "対象と判断": "参加の適否を理解して申し込む",
+        "申込方式": "block-form",
+        "会場案内": "text-only",
+        "補助情報": "sidebar非表示・heroから本文へ",
+        "共通部品の所属": "header/footer共通・固定導線event独自",
+        "受付不能時": "理由表示と開催情報へ戻る導線（別fixtureで検証）",
+        "区間の順序": "開催情報 → 概要 → 対象者 → プログラム → 登壇者 → 参加区分 → 申込・応募 → 会場案内 → よくある質問 → 主催・連絡先 → 注意事項"
+      }
+    },
+    {
+      "id": "seminar-classic",
+      "label": "セミナー：開催実績と安心",
+      "purpose": "開催実績と参加条件を確かめる",
+      "values": {
+        "event_sections": "seminar-classic",
+        "event_hero": "text-only",
+        "event_info": "inline-text",
+        "event_apply": "external-form",
+        "event_schedule": "table",
+        "event_speakers": "cards-photo",
+        "event_map": "text-only",
+        "event_status": "open",
+        "event_fixed": "sp-bottom-bar",
+        "event_share": "none",
+        "event_side": "off",
+        "event_head": "site",
+        "event_foot": "site",
+        "event_fix": "own",
+        "form_fields": "minimal"
+      },
+      "sectionIds": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "notes"
+      ],
+      "selectionFacts": {
+        "対象と判断": "開催実績と参加条件を確かめる",
+        "申込方式": "external-form",
+        "会場案内": "text-only",
+        "補助情報": "sidebar非表示・heroから本文へ",
+        "共通部品の所属": "header/footer共通・固定導線event独自",
+        "受付不能時": "理由表示と開催情報へ戻る導線（別fixtureで検証）",
+        "区間の順序": "開催情報 → 概要 → プログラム → 登壇者 → 参加区分 → 申込・応募 → 会場案内 → よくある質問 → 協賛 → 開催実績 → 注意事項"
+      }
+    },
+    {
+      "id": "conference",
+      "label": "カンファレンス：内容と参加区分",
+      "purpose": "プログラムと登壇者で参加を選ぶ",
+      "values": {
+        "event_sections": "conference",
+        "event_hero": "photo-overlay",
+        "event_info": "table",
+        "event_apply": "ticket-link",
+        "event_schedule": "table",
+        "event_speakers": "cards-photo",
+        "event_map": "static-image",
+        "event_status": "open",
+        "event_fixed": "sp-bottom-bar",
+        "event_share": "none",
+        "event_side": "off",
+        "event_head": "site",
+        "event_foot": "site",
+        "event_fix": "own",
+        "form_fields": "minimal"
+      },
+      "sectionIds": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "sponsors",
+        "apply",
+        "access",
+        "past",
+        "organizer",
+        "notes"
+      ],
+      "selectionFacts": {
+        "対象と判断": "プログラムと登壇者で参加を選ぶ",
+        "申込方式": "ticket-link",
+        "会場案内": "static-image",
+        "補助情報": "sidebar非表示・heroから本文へ",
+        "共通部品の所属": "header/footer共通・固定導線event独自",
+        "受付不能時": "理由表示と開催情報へ戻る導線（別fixtureで検証）",
+        "区間の順序": "開催情報 → 概要 → プログラム → 登壇者 → 参加区分 → 協賛 → 申込・応募 → 会場案内 → 開催実績 → 主催・連絡先 → 注意事項"
+      }
+    },
+    {
+      "id": "festival",
+      "label": "地域イベント：現地体験",
+      "purpose": "写真と当日の流れから来場を検討する",
+      "values": {
+        "event_sections": "festival",
+        "event_hero": "key-visual",
+        "event_info": "inline-text",
+        "event_apply": "external-form",
+        "event_schedule": "accordion",
+        "event_speakers": "none",
+        "event_map": "static-image",
+        "event_status": "open",
+        "event_fixed": "sp-bottom-bar",
+        "event_share": "none",
+        "event_side": "off",
+        "event_head": "site",
+        "event_foot": "site",
+        "event_fix": "own",
+        "form_fields": "minimal"
+      },
+      "sectionIds": [
+        "info",
+        "overview",
+        "countdown",
+        "schedule",
+        "gallery",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "organizer",
+        "notes"
+      ],
+      "selectionFacts": {
+        "対象と判断": "写真と当日の流れから来場を検討する",
+        "申込方式": "external-form",
+        "会場案内": "static-image",
+        "補助情報": "sidebar非表示・heroから本文へ",
+        "共通部品の所属": "header/footer共通・固定導線event独自",
+        "受付不能時": "理由表示と開催情報へ戻る導線（別fixtureで検証）",
+        "区間の順序": "開催情報 → 概要 → 開催まで → プログラム → 写真 → 申込・応募 → 会場案内 → よくある質問 → 協賛 → 開催実績 → 主催・連絡先 → 注意事項"
+      }
+    },
+    {
+      "id": "campaign",
+      "label": "キャンペーン：賞品と応募手順",
+      "purpose": "対象商品と条件を確認して応募する",
+      "values": {
+        "event_sections": "campaign",
+        "event_hero": "key-visual",
+        "event_info": "inline-text",
+        "event_apply": "receipt-upload",
+        "event_schedule": "none",
+        "event_speakers": "none",
+        "event_map": "none",
+        "event_status": "open",
+        "event_fixed": "sp-bottom-bar",
+        "event_share": "none",
+        "event_side": "off",
+        "event_head": "site",
+        "event_foot": "site",
+        "event_fix": "own",
+        "form_fields": "minimal"
+      },
+      "sectionIds": [
+        "info",
+        "overview",
+        "prizes",
+        "products",
+        "entry",
+        "apply",
+        "judges",
+        "organizer",
+        "notes"
+      ],
+      "selectionFacts": {
+        "対象と判断": "対象商品と条件を確認して応募する",
+        "申込方式": "receipt-upload",
+        "会場案内": "none",
+        "補助情報": "sidebar非表示・heroから本文へ",
+        "共通部品の所属": "header/footer共通・固定導線event独自",
+        "受付不能時": "理由表示と開催情報へ戻る導線（別fixtureで検証）",
+        "区間の順序": "開催情報 → 概要 → 賞品 → 対象商品 → 応募手順 → 申込・応募 → 審査員 → 主催・連絡先 → 注意事項"
+      }
+    }
+  ]
+}

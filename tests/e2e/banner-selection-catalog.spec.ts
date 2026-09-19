@@ -1,0 +1,43 @@
+import { test, expect } from '@playwright/test';
+const base = process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099';
+const route = '/docs/research/2026-09-08-selection-catalog/';
+for (const [device, width] of [['pc', 1440], ['sp', 375]] as const) {
+  test(`finished BANNER selection, comparison facts and saved reason / ${device}`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 950 });
+    await page.goto(base + route);
+    await page.locator('[data-face="zone"]').click();
+    await expect(page.locator('#banner-start')).toBeVisible();
+    await expect(page.locator('.tile-open').first()).toHaveAttribute('data-entry-id', 'banner-finished:notice');
+    await page.locator('#banner-finished-only').click();
+    await expect(page.locator('.tile-open')).toHaveCount(6);
+    await page.locator(`[data-device="${device}"]`).click();
+    const preview = page.locator('.finished-home-tile .preview').first();
+    const image = preview.locator('img');
+    await expect(image).toBeVisible();
+    expect(await image.evaluate(e=>e.getBoundingClientRect().width/e.parentElement!.getBoundingClientRect().width)).toBeGreaterThan(.95);
+    await expect(page.locator('.finished-home-tile').first()).toContainText('上部プレビュー・詳細で全体');
+    for (let i=0; i<2; i++) await page.locator('.compare-pick input').nth(i).check();
+    await page.locator('#open-compare').click();
+    await expect(page.locator('#compare .compare-grid>section')).toHaveCount(2);
+    await expect(page.locator('#comparison-facts')).toContainText('対象と判断');
+    for (const label of ['対象と判断', '配置', '表示方法', '状態と帰属', '予算']) await expect(page.locator('#comparison-facts th[scope="row"]', { hasText: label })).toHaveCount(1);
+    const first = page.locator('#compare .compare-grid>section').first();
+    await expect(first.locator('img')).toHaveAttribute('src', new RegExp(`notice-${device}\\.jpg$`));
+    await first.getByRole('button', { name:'保留', exact:true }).click();
+    await first.locator('textarea').fill('入口の案内と本文の情報量を比較してから選ぶ');
+    await page.keyboard.press('Escape');
+    await page.reload();
+    await expect(page.locator('#search')).toHaveValue('バナー完成比較');
+    await expect(page.locator('.tile-open')).toHaveCount(6);
+    await expect(page.locator('#compare-count')).toHaveText('2候補を選択中');
+    await page.locator('.tile-open').first().click();
+    await expect(page.locator('#detail textarea')).toHaveValue('入口の案内と本文の情報量を比較してから選ぶ');
+    await expect(page.locator('#detail').getByRole('button', { name:'保留', exact:true })).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('#detail .selection-facts')).toContainText('予算');
+    await page.keyboard.press('Escape');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    await page.screenshot({ path:`docs/research/2026-09-16-banner-zone-completion/catalog-${device}.png`, fullPage:true });
+    await page.locator('#banner-with-parts').click();
+    expect(await page.locator('.tile-open').count()).toBeGreaterThan(6);
+  });
+}

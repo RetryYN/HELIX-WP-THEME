@@ -1,0 +1,1368 @@
+{
+  "schema": "wt-event-completion.v1",
+  "completed": true,
+  "baselinePresentationDisabled": true,
+  "finishedOnly": true,
+  "sourceDigests": {
+    "scripts/verify-event-completion.mjs": "132cbeabd249ba696e11dffc98662c77125bcd3d77038d4ea0e851f4242f016c",
+    "docs/research/2026-09-15-event-completion/choices.json": "178bfd3dc276b7604701e8ac2daaf44f3d88c8d1900ef74e8b0e24ffaaf34f51",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f70d68f32b736522d1172bf7792cb596032a455effe43aff2547acf901bc084b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php": "cc58e341eb084270eb0524c9081d5d139858c3b592b31ddc062d48a37059af5a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-completion.css": "40099fd03da94d602bef414b82f5df02d24bd2c1d7c0dd4fda57615ab518ac33",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-state.css": "cf12069d89a6fdab5c16e1411e8f0ec75af5520abd829157c31652706ca73de2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/event-state.php": "43cea0eb239f7984150951c0b9a81f8aa4de28f7fd0fe94e3f76073b90559e89",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "fddeda78ae5e14a6d07df65fb308f58f759f0e71e4bea48af25c7c8a9cd94372"
+  },
+  "shots": [
+    {
+      "file": "before-seminar-pc.jpg",
+      "device": "pc",
+      "purpose": "seminar",
+      "route": "/event-completion-fixture/?wt=event_sections%3Aseminar%2Cevent_hero%3Adate-place-block%2Cevent_info%3Ainline-text%2Cevent_apply%3Ablock-form%2Cevent_schedule%3Atimeline%2Cevent_speakers%3Asingle-profile%2Cevent_map%3Atext-only%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "dcfe913f86ece0db6da38275430adf5407f3bf529e16056114e665bed37e46b0"
+    },
+    {
+      "file": "before-seminar-classic-pc.jpg",
+      "device": "pc",
+      "purpose": "seminar-classic",
+      "route": "/event-completion-fixture/?wt=event_sections%3Aseminar-classic%2Cevent_hero%3Atext-only%2Cevent_info%3Ainline-text%2Cevent_apply%3Aexternal-form%2Cevent_schedule%3Atable%2Cevent_speakers%3Acards-photo%2Cevent_map%3Atext-only%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "d4cc0ba7ad2db3c122f67bf18f8098845edac054f26220335c55eec4e3d9e3ea"
+    },
+    {
+      "file": "before-conference-pc.jpg",
+      "device": "pc",
+      "purpose": "conference",
+      "route": "/event-completion-fixture/?wt=event_sections%3Aconference%2Cevent_hero%3Aphoto-overlay%2Cevent_info%3Atable%2Cevent_apply%3Aticket-link%2Cevent_schedule%3Atable%2Cevent_speakers%3Acards-photo%2Cevent_map%3Astatic-image%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "d2332f608d720ac244ab5fb24e78cdb23bbd23fedc0d49725adca65861ac6c0b"
+    },
+    {
+      "file": "before-festival-pc.jpg",
+      "device": "pc",
+      "purpose": "festival",
+      "route": "/event-completion-fixture/?wt=event_sections%3Afestival%2Cevent_hero%3Akey-visual%2Cevent_info%3Ainline-text%2Cevent_apply%3Aexternal-form%2Cevent_schedule%3Aaccordion%2Cevent_speakers%3Anone%2Cevent_map%3Astatic-image%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "31f875b459fdb1c1e7a0920368ae1e8a158c904f80ce4e0f40ab563d004246c4"
+    },
+    {
+      "file": "before-campaign-pc.jpg",
+      "device": "pc",
+      "purpose": "campaign",
+      "route": "/event-completion-fixture/?wt=event_sections%3Acampaign%2Cevent_hero%3Akey-visual%2Cevent_info%3Ainline-text%2Cevent_apply%3Areceipt-upload%2Cevent_schedule%3Anone%2Cevent_speakers%3Anone%2Cevent_map%3Anone%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "ac4391b6f1cb0d2bce3f05965fd7a26625629d4aa065ffef0e7e99b71e186de2"
+    },
+    {
+      "file": "before-seminar-sp.jpg",
+      "device": "sp",
+      "purpose": "seminar",
+      "route": "/event-completion-fixture/?wt=event_sections%3Aseminar%2Cevent_hero%3Adate-place-block%2Cevent_info%3Ainline-text%2Cevent_apply%3Ablock-form%2Cevent_schedule%3Atimeline%2Cevent_speakers%3Asingle-profile%2Cevent_map%3Atext-only%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "268bd26e32b33662cdd379a2277d95fb2745bf390cd68cd70897757ee13ef27a"
+    },
+    {
+      "file": "before-seminar-classic-sp.jpg",
+      "device": "sp",
+      "purpose": "seminar-classic",
+      "route": "/event-completion-fixture/?wt=event_sections%3Aseminar-classic%2Cevent_hero%3Atext-only%2Cevent_info%3Ainline-text%2Cevent_apply%3Aexternal-form%2Cevent_schedule%3Atable%2Cevent_speakers%3Acards-photo%2Cevent_map%3Atext-only%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "5ae682cfb0db87014928f22677ef7ecdb6c81c5dd7e9219cad69c3ae4a0777c8"
+    },
+    {
+      "file": "before-conference-sp.jpg",
+      "device": "sp",
+      "purpose": "conference",
+      "route": "/event-completion-fixture/?wt=event_sections%3Aconference%2Cevent_hero%3Aphoto-overlay%2Cevent_info%3Atable%2Cevent_apply%3Aticket-link%2Cevent_schedule%3Atable%2Cevent_speakers%3Acards-photo%2Cevent_map%3Astatic-image%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "0a529388420a48a7166a73a705c1cb9e21773d6b54b93b4e7dedecef9278c9e5"
+    },
+    {
+      "file": "before-festival-sp.jpg",
+      "device": "sp",
+      "purpose": "festival",
+      "route": "/event-completion-fixture/?wt=event_sections%3Afestival%2Cevent_hero%3Akey-visual%2Cevent_info%3Ainline-text%2Cevent_apply%3Aexternal-form%2Cevent_schedule%3Aaccordion%2Cevent_speakers%3Anone%2Cevent_map%3Astatic-image%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "9c83cf22d969ab17944646fad4f2300355a069fba6aeaf7f2787ce537d9df901"
+    },
+    {
+      "file": "before-campaign-sp.jpg",
+      "device": "sp",
+      "purpose": "campaign",
+      "route": "/event-completion-fixture/?wt=event_sections%3Acampaign%2Cevent_hero%3Akey-visual%2Cevent_info%3Ainline-text%2Cevent_apply%3Areceipt-upload%2Cevent_schedule%3Anone%2Cevent_speakers%3Anone%2Cevent_map%3Anone%2Cevent_status%3Aopen%2Cevent_fixed%3Asp-bottom-bar%2Cevent_share%3Anone%2Cevent_side%3Aoff%2Cevent_head%3Asite%2Cevent_foot%3Asite%2Cevent_fix%3Aown%2Cform_fields%3Aminimal",
+      "sha256": "e53bad020f9281c2b88d0f323021ea2fc20e4841b096f09b5ed19902f52fc8e7"
+    }
+  ],
+  "rows": [
+    {
+      "name": "pc-js:seminar:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--date-place-block"
+      ]
+    },
+    {
+      "name": "pc-js:seminar:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-js:seminar:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "audience",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-js:seminar:selected-application",
+      "pass": true,
+      "details": [
+        "wp-block-group wt-event-apply wt-event-apply--block-form has-global-padding is-layout-constrained wp-block-group-is-layout-constrained"
+      ]
+    },
+    {
+      "name": "pc-js:seminar:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "pc-js:seminar:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar-classic:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar-classic:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--text-only"
+      ]
+    },
+    {
+      "name": "pc-js:seminar-classic:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar-classic:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar-classic:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-js:seminar-classic:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-js:seminar-classic:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "pc-js:seminar-classic:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "pc-js:seminar-classic:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-js:seminar-classic:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-js:conference:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:conference:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--photo-overlay"
+      ]
+    },
+    {
+      "name": "pc-js:conference:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-js:conference:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:conference:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-js:conference:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "sponsors",
+        "apply",
+        "access",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-js:conference:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--ticket-link"
+      ]
+    },
+    {
+      "name": "pc-js:conference:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "pc-js:conference:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-js:conference:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-js:festival:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:festival:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "pc-js:festival:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-js:festival:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:festival:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-js:festival:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "countdown",
+        "schedule",
+        "gallery",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-js:festival:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "pc-js:festival:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "pc-js:festival:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-js:festival:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-js:campaign:response",
+      "pass": true
+    },
+    {
+      "name": "pc-js:campaign:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "pc-js:campaign:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-js:campaign:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:campaign:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-js:campaign:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "prizes",
+        "products",
+        "entry",
+        "apply",
+        "judges",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-js:campaign:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--receipt-upload"
+      ]
+    },
+    {
+      "name": "pc-js:campaign:selected-map",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-js:campaign:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-js:campaign:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-js:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:seminar:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--date-place-block"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:seminar:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "audience",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar:selected-application",
+      "pass": true,
+      "details": [
+        "wp-block-group wt-event-apply wt-event-apply--block-form has-global-padding is-layout-constrained wp-block-group-is-layout-constrained"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar-classic:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar-classic:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--text-only"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar-classic:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar-classic:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar-classic:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:seminar-classic:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar-classic:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar-classic:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "pc-nojs:seminar-classic:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:seminar-classic:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:conference:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:conference:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--photo-overlay"
+      ]
+    },
+    {
+      "name": "pc-nojs:conference:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:conference:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:conference:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:conference:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "sponsors",
+        "apply",
+        "access",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-nojs:conference:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--ticket-link"
+      ]
+    },
+    {
+      "name": "pc-nojs:conference:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "pc-nojs:conference:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:conference:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:festival:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:festival:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "pc-nojs:festival:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:festival:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:festival:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:festival:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "countdown",
+        "schedule",
+        "gallery",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-nojs:festival:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "pc-nojs:festival:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "pc-nojs:festival:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:festival:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:campaign:response",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:campaign:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "pc-nojs:campaign:one-heading",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:campaign:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:campaign:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:campaign:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "prizes",
+        "products",
+        "entry",
+        "apply",
+        "judges",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "pc-nojs:campaign:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--receipt-upload"
+      ]
+    },
+    {
+      "name": "pc-nojs:campaign:selected-map",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "pc-nojs:campaign:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:campaign:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:seminar:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--date-place-block"
+      ]
+    },
+    {
+      "name": "sp-js:seminar:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:seminar:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "audience",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-js:seminar:selected-application",
+      "pass": true,
+      "details": [
+        "wp-block-group wt-event-apply wt-event-apply--block-form has-global-padding is-layout-constrained wp-block-group-is-layout-constrained"
+      ]
+    },
+    {
+      "name": "sp-js:seminar:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "sp-js:seminar:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar-classic:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar-classic:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--text-only"
+      ]
+    },
+    {
+      "name": "sp-js:seminar-classic:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar-classic:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar-classic:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:seminar-classic:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-js:seminar-classic:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "sp-js:seminar-classic:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "sp-js:seminar-classic:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-js:seminar-classic:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-js:conference:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:conference:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--photo-overlay"
+      ]
+    },
+    {
+      "name": "sp-js:conference:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-js:conference:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:conference:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:conference:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "sponsors",
+        "apply",
+        "access",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-js:conference:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--ticket-link"
+      ]
+    },
+    {
+      "name": "sp-js:conference:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "sp-js:conference:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-js:conference:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-js:festival:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:festival:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "sp-js:festival:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-js:festival:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:festival:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:festival:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "countdown",
+        "schedule",
+        "gallery",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-js:festival:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "sp-js:festival:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "sp-js:festival:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-js:festival:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-js:campaign:response",
+      "pass": true
+    },
+    {
+      "name": "sp-js:campaign:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "sp-js:campaign:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-js:campaign:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:campaign:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:campaign:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "prizes",
+        "products",
+        "entry",
+        "apply",
+        "judges",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-js:campaign:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--receipt-upload"
+      ]
+    },
+    {
+      "name": "sp-js:campaign:selected-map",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-js:campaign:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-js:campaign:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-js:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:seminar:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--date-place-block"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:seminar:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "audience",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar:selected-application",
+      "pass": true,
+      "details": [
+        "wp-block-group wt-event-apply wt-event-apply--block-form has-global-padding is-layout-constrained wp-block-group-is-layout-constrained"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar-classic:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar-classic:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--text-only"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar-classic:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar-classic:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar-classic:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:seminar-classic:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar-classic:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar-classic:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--text-only"
+      ]
+    },
+    {
+      "name": "sp-nojs:seminar-classic:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:seminar-classic:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:conference:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:conference:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--photo-overlay"
+      ]
+    },
+    {
+      "name": "sp-nojs:conference:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:conference:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:conference:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:conference:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "schedule",
+        "speakers",
+        "tickets",
+        "sponsors",
+        "apply",
+        "access",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-nojs:conference:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--ticket-link"
+      ]
+    },
+    {
+      "name": "sp-nojs:conference:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "sp-nojs:conference:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:conference:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:festival:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:festival:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "sp-nojs:festival:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:festival:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:festival:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:festival:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "countdown",
+        "schedule",
+        "gallery",
+        "apply",
+        "access",
+        "faq",
+        "sponsors",
+        "past",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-nojs:festival:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--external-form"
+      ]
+    },
+    {
+      "name": "sp-nojs:festival:selected-map",
+      "pass": true,
+      "details": [
+        "wt-event-map wt-event-map--static-image"
+      ]
+    },
+    {
+      "name": "sp-nojs:festival:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:festival:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:campaign:response",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:campaign:one-hero",
+      "pass": true,
+      "details": [
+        "wt-event-hero wt-event-hero--key-visual"
+      ]
+    },
+    {
+      "name": "sp-nojs:campaign:one-heading",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:campaign:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:campaign:no-external-request",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:campaign:metadata-section-order",
+      "pass": true,
+      "details": [
+        "info",
+        "overview",
+        "prizes",
+        "products",
+        "entry",
+        "apply",
+        "judges",
+        "organizer",
+        "notes"
+      ]
+    },
+    {
+      "name": "sp-nojs:campaign:selected-application",
+      "pass": true,
+      "details": [
+        "wt-event-apply wt-event-apply--receipt-upload"
+      ]
+    },
+    {
+      "name": "sp-nojs:campaign:selected-map",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "sp-nojs:campaign:unselected-map-no-iframe",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:campaign:sidebar-off",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:runtime-errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ]
+}

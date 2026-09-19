@@ -7,6 +7,8 @@
 require_once __DIR__ . '/inc/content-chrome.php';
 require_once __DIR__ . '/inc/search.php';
 require_once __DIR__ . '/inc/zone-slots.php';
+require_once __DIR__ . '/inc/banner-zones.php';
+require_once __DIR__ . '/inc/device-vocabulary.php';
 
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {
@@ -292,13 +294,16 @@ function wt_opt( $key ) {
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'editor-styles' );
-	add_editor_style( array( 'assets/css/icons.css', 'assets/css/theme.css' ) );
+	add_editor_style( array( 'assets/css/icons.css', 'assets/css/theme.css', 'assets/css/home-completion.css', 'assets/css/event-completion.css' ) );
 	remove_theme_support( 'core-block-patterns' );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'helix-wt-icons', get_theme_file_uri( 'assets/css/icons.css' ), array(), '0.3.21' );
 	wp_enqueue_style( 'helix-wt', get_theme_file_uri( 'assets/css/theme.css' ), array( 'helix-wt-icons' ), '0.3.21' );
+	// HOME patterns are reusable: load their scoped corrections wherever the base rules load.
+	wp_enqueue_style( 'helix-wt-home-completion', get_theme_file_uri( 'assets/css/home-completion.css' ), array( 'helix-wt' ), '0.3.23' );
+	wp_enqueue_style( 'helix-wt-event-completion', get_theme_file_uri( 'assets/css/event-completion.css' ), array( 'helix-wt' ), '0.3.23' );
 	$defer = array( 'strategy' => 'defer' );
 	wp_enqueue_script( 'helix-wt-reveal', get_theme_file_uri( 'assets/js/reveal.js' ), array(), '0.3.2', $defer );
 	wp_enqueue_script( 'helix-wt-header', get_theme_file_uri( 'assets/js/header.js' ), array(), '0.3.2', $defer );

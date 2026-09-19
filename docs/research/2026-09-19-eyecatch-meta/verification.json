@@ -1,0 +1,914 @@
+{
+  "schema": "wt-eyecatch-meta-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-eyecatch-meta.mjs": "645269c3f187d22a715ce4a04b0146a44af0dcd38d8979a7be7ddee821a264ba",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3"
+  },
+  "rows": [
+    {
+      "name": "title-image:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 77,
+        "tr": 1060,
+        "tb": 211.59375,
+        "ix": 380,
+        "iy": 227.59375,
+        "ir": 1060,
+        "ib": 610.09375,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "title-image:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 77,
+        "tr": 1060,
+        "tb": 211.59375,
+        "ix": 380,
+        "iy": 227.59375,
+        "ir": 1060,
+        "ib": 610.09375,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "title-image:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "title-image:pc:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 77,
+        "tr": 374,
+        "tb": 232.1875,
+        "ix": 16,
+        "iy": 248.1875,
+        "ir": 374,
+        "ib": 449.5625,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "title-image:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 77,
+        "tr": 374,
+        "tb": 232.1875,
+        "ix": 16,
+        "iy": 248.1875,
+        "ir": 374,
+        "ib": 449.5625,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "title-image:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "title-image:sp:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 475.5,
+        "tr": 1060,
+        "tb": 610.09375,
+        "ix": 380,
+        "iy": 77,
+        "ir": 1060,
+        "ib": 459.5,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "image-title:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 475.5,
+        "tr": 1060,
+        "tb": 610.09375,
+        "ix": 380,
+        "iy": 77,
+        "ir": 1060,
+        "ib": 459.5,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "image-title:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "image-title:pc:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 294.375,
+        "tr": 374,
+        "tb": 449.5625,
+        "ix": 16,
+        "iy": 77,
+        "ir": 374,
+        "ib": 278.375,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "image-title:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 294.375,
+        "tr": 374,
+        "tb": 449.5625,
+        "ix": 16,
+        "iy": 77,
+        "ir": 374,
+        "ib": 278.375,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "image-title:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "image-title:sp:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 284.90625,
+        "tr": 1060,
+        "tb": 459.5,
+        "ix": 380,
+        "iy": 77,
+        "ir": 1060,
+        "ib": 459.5,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "hero:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 284.90625,
+        "tr": 1060,
+        "tb": 459.5,
+        "ix": 380,
+        "iy": 77,
+        "ir": 1060,
+        "ib": 459.5,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "hero:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "hero:pc:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 241.8125,
+        "tr": 374,
+        "tb": 437,
+        "ix": 16,
+        "iy": 77,
+        "ir": 374,
+        "ib": 437,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "hero:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 241.8125,
+        "tr": 374,
+        "tb": 437,
+        "ix": 16,
+        "iy": 77,
+        "ir": 374,
+        "ib": 437,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "hero:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "hero:sp:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "side:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "side:pc:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "side:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "side:pc:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "side:pc:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 77,
+        "tr": 824,
+        "tb": 249.390625,
+        "ix": 840,
+        "iy": 77,
+        "ir": 1060,
+        "ib": 200.75,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "side:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "side:pc:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "side:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "side:pc:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "side:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "side:pc:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "side:pc:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 77,
+        "tr": 824,
+        "tb": 249.390625,
+        "ix": 840,
+        "iy": 77,
+        "ir": 1060,
+        "ib": 200.75,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "side:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "side:pc:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "side:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "side:sp:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "side:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "side:sp:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "side:sp:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 77,
+        "tr": 374,
+        "tb": 232.1875,
+        "ix": 16,
+        "iy": 248.1875,
+        "ir": 374,
+        "ib": 449.5625,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "side:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "side:sp:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "side:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "side:sp:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "side:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "side:sp:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "side:sp:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 77,
+        "tr": 374,
+        "tb": 232.1875,
+        "ix": 16,
+        "iy": 248.1875,
+        "ir": 374,
+        "ib": 449.5625,
+        "visible": true,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "side:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "side:sp:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 77,
+        "tr": 1060,
+        "tb": 211.59375,
+        "ix": 0,
+        "iy": 0,
+        "ir": 0,
+        "ib": 0,
+        "visible": false,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "none:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 380,
+        "ty": 77,
+        "tr": 1060,
+        "tb": 211.59375,
+        "ix": 0,
+        "iy": 0,
+        "ir": 0,
+        "ib": 0,
+        "visible": false,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "none:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:title-readable",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 77,
+        "tr": 374,
+        "tb": 232.1875,
+        "ix": 0,
+        "iy": 0,
+        "ir": 0,
+        "ib": 0,
+        "visible": false,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "none:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:post-meta-selected",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:title-readable",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:visual-order",
+      "pass": true,
+      "details": {
+        "tx": 16,
+        "ty": 77,
+        "tr": 374,
+        "tb": 232.1875,
+        "ix": 0,
+        "iy": 0,
+        "ir": 0,
+        "ib": 0,
+        "visible": false,
+        "textVisible": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "none:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:control-inherits-site",
+      "pass": true
+    },
+    {
+      "name": "unset:inherits-site",
+      "pass": true
+    },
+    {
+      "name": "unset:follows-changed-site",
+      "pass": true
+    },
+    {
+      "name": "explicit:overrides-changed-site",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "title-image",
+      "device": "pc",
+      "file": "title-image-pc.jpg",
+      "sha256": "61d886dc3e0bb9580eec4f9e133e76f8fa4530a1d4c9bac499e902a9f2388c88"
+    },
+    {
+      "id": "title-image",
+      "device": "sp",
+      "file": "title-image-sp.jpg",
+      "sha256": "e9ba7e5b05c1901d00ded8f505c4de5aebf990bdc6ffd8b919cd54e88f96e58e"
+    },
+    {
+      "id": "image-title",
+      "device": "pc",
+      "file": "image-title-pc.jpg",
+      "sha256": "eb80e700ad20661824f7ad1c392d5006833b55041470df981e3d892b14c412e8"
+    },
+    {
+      "id": "image-title",
+      "device": "sp",
+      "file": "image-title-sp.jpg",
+      "sha256": "c0d397ba0201024830a26adc1dd9df6d6ca9cd9e29575114add2b19b8d78b1c8"
+    },
+    {
+      "id": "hero",
+      "device": "pc",
+      "file": "hero-pc.jpg",
+      "sha256": "2e7710a29a67857df8e217476d28104c0d69404aeb687b4e390afd2ffa9c0343"
+    },
+    {
+      "id": "hero",
+      "device": "sp",
+      "file": "hero-sp.jpg",
+      "sha256": "718184551e288ff33bcc2794093c89e3cc5af0ac32d65c1fadddd43f320adaf8"
+    },
+    {
+      "id": "side",
+      "device": "pc",
+      "file": "side-pc.jpg",
+      "sha256": "ae71ae9c6fc98b3ded3a2301235cd538f775df6c4a2bc9b9bee75dc3d85a8ac8"
+    },
+    {
+      "id": "side",
+      "device": "sp",
+      "file": "side-sp.jpg",
+      "sha256": "e9ba7e5b05c1901d00ded8f505c4de5aebf990bdc6ffd8b919cd54e88f96e58e"
+    },
+    {
+      "id": "none",
+      "device": "pc",
+      "file": "none-pc.jpg",
+      "sha256": "074d3a0093d56c9b205c7fb66f726192deb609bec0fa76be521d1d64b82a81e9"
+    },
+    {
+      "id": "none",
+      "device": "sp",
+      "file": "none-sp.jpg",
+      "sha256": "516438abc105606fd9ed17f1e5b3d1261940ac9ea7871d7ec72abbb6ee61014a"
+    }
+  ]
+}

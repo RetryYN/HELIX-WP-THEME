@@ -1,0 +1,44 @@
+import { test, expect } from '@playwright/test';
+const base = process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099';
+const route = '/docs/research/2026-09-08-selection-catalog/';
+for (const [device, width] of [['pc', 1440], ['sp', 375]] as const) {
+  test(`finished HOME selection, comparison facts and saved reason / ${device}`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 950 });
+    await page.goto(base + route);
+    await page.locator('[data-face="home"]').click();
+    await expect(page.locator('#home-start')).toBeVisible();
+    await expect(page.locator('.tile-open').first()).toHaveAttribute('data-entry-id', 'home-finished:corporate');
+    await page.locator('#home-finished-only').click();
+    await expect(page.locator('.tile-open')).toHaveCount(5);
+    await page.locator(`[data-device="${device}"]`).click();
+    const preview = page.locator('.finished-home-tile .preview').first();
+    const image = preview.locator('img');
+    await expect(image).toBeVisible();
+    expect(await image.evaluate(e=>e.getBoundingClientRect().width/e.parentElement!.getBoundingClientRect().width)).toBeGreaterThan(.95);
+    await expect(page.locator('.finished-home-tile').first()).toContainText('上部プレビュー・詳細で全体');
+    for (let i=0; i<2; i++) await page.locator('.compare-pick input').nth(i).check();
+    await page.locator('#open-compare').click();
+    await expect(page.locator('#compare .compare-grid>section')).toHaveCount(2);
+    await expect(page.locator('#comparison-facts')).toContainText('入口の導線');
+    await expect(page.locator('#comparison-facts')).toContainText('サイドバー開始');
+    await expect(page.locator('#comparison-facts')).toContainText('共通部品の所属');
+    const first = page.locator('#compare .compare-grid>section').first();
+    await expect(first.locator('img')).toHaveAttribute('src', new RegExp(`after-corporate-${device}\\.jpg$`));
+    await first.getByRole('button', { name:'保留', exact:true }).click();
+    await first.locator('textarea').fill('入口の案内と本文の情報量を比較してから選ぶ');
+    await page.keyboard.press('Escape');
+    await page.reload();
+    await expect(page.locator('#search')).toHaveValue('完成HOME');
+    await expect(page.locator('.tile-open')).toHaveCount(5);
+    await expect(page.locator('#compare-count')).toHaveText('2候補を選択中');
+    await page.locator('.tile-open').first().click();
+    await expect(page.locator('#detail textarea')).toHaveValue('入口の案内と本文の情報量を比較してから選ぶ');
+    await expect(page.locator('#detail').getByRole('button', { name:'保留', exact:true })).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('#detail .selection-facts')).toContainText('区間の順序');
+    await page.keyboard.press('Escape');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    await page.screenshot({ path:`docs/research/2026-09-15-home-completion/catalog-${device}.png`, fullPage:true });
+    await page.locator('#home-with-parts').click();
+    await expect(page.locator('.tile-open')).toHaveCount(36);
+  });
+}

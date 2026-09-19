@@ -1,0 +1,490 @@
+{
+  "schema": "wt-device-vocabulary-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-device-vocabulary.mjs": "2388840b0c4d827161b772dbe88381005bbf67605c78c7b50d96b83d10a2f7f8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+  },
+  "rows": [
+    {
+      "name": "compare:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:panel-count",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:contract",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:table-labels",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:tabs",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:end-selects-last",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:home-selects-first",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:arrow-selects-second",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:resize-to-accordion",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:resize-back-tabs",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:js:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": false,
+        "cell": "table-cell"
+      }
+    },
+    {
+      "name": "compare:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:panel-count",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:contract",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:table-labels",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:all-content-visible",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:no-dead-controls",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:cta-flow",
+      "pass": true
+    },
+    {
+      "name": "compare:pc:nojs:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": false,
+        "cell": "table-cell"
+      }
+    },
+    {
+      "name": "compare:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:panel-count",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:contract",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:table-labels",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:accordion",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:enter-collapses",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:space-opens",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:toc-closed",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:toc-opens",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:gallery-button-scroll",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:js:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": true,
+        "cell": "table-cell"
+      }
+    },
+    {
+      "name": "compare:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:panel-count",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:contract",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:table-labels",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:all-content-visible",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:no-dead-controls",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:cta-flow",
+      "pass": true
+    },
+    {
+      "name": "compare:sp:nojs:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": true,
+        "cell": "table-cell"
+      }
+    },
+    {
+      "name": "read:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:panel-count",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:contract",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:table-labels",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:tabs",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:end-selects-last",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:home-selects-first",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:arrow-selects-second",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:resize-to-accordion",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:resize-back-tabs",
+      "pass": true
+    },
+    {
+      "name": "read:pc:js:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": false,
+        "cell": "table-cell"
+      }
+    },
+    {
+      "name": "read:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:panel-count",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:contract",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:table-labels",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:all-content-visible",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:no-dead-controls",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:cta-flow",
+      "pass": true
+    },
+    {
+      "name": "read:pc:nojs:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": false,
+        "cell": "table-cell"
+      }
+    },
+    {
+      "name": "read:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:panel-count",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:contract",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:table-labels",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:accordion",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:enter-collapses",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:space-opens",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:toc-closed",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:toc-opens",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:gallery-button-scroll",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": false,
+        "cell": "flex"
+      }
+    },
+    {
+      "name": "read:sp:js:cta-reserved",
+      "pass": true
+    },
+    {
+      "name": "read:sp:js:cta-inside-viewport",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:core-panels-in-html",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:panel-count",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:contract",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:table-labels",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:image-loaded",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:all-content-visible",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:no-dead-controls",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:cta-flow",
+      "pass": true
+    },
+    {
+      "name": "read:sp:nojs:table-device-shape",
+      "pass": true,
+      "details": {
+        "scroll": false,
+        "cell": "flex"
+      }
+    },
+    {
+      "name": "fixture:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "compare",
+      "device": "pc",
+      "file": "compare-pc.jpg",
+      "sha256": "81e747e2e81d4a5fd9d2761edc33067d841fd2ea9837aa88005c351077986ade"
+    },
+    {
+      "id": "compare",
+      "device": "sp",
+      "file": "compare-sp.jpg",
+      "sha256": "b04865718735d22a64160babf371f3c1cffc61523db397a1df88756b9597d862"
+    },
+    {
+      "id": "read",
+      "device": "pc",
+      "file": "read-pc.jpg",
+      "sha256": "02aa1a2b68c73856c064d245455fc255244fb3becdb2891812ea56c48177ba83"
+    },
+    {
+      "id": "read",
+      "device": "sp",
+      "file": "read-sp.jpg",
+      "sha256": "752b08e9812660693c1d024d25f476ac440f9c5287c635d7526b9a2904f5474b"
+    }
+  ]
+}
