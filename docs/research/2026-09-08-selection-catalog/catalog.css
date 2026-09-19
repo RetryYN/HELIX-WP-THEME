@@ -199,3 +199,8 @@ dialog .dialog-head{position:sticky;top:-26px;z-index:3;background:var(--paper);
 .decision-panel .choices button:hover{border-color:#244d3b}
 .decision-panel textarea{background:#fff;line-height:1.7;min-height:110px}
 @media(max-width:700px){.decision-panel{padding:14px;margin:20px 0}.decision-panel .choices{gap:6px}.decision-panel .choices button{padding:9px}.decision-panel-head h3{font-size:14px}}
+
+/* 左ナビを残す中間幅でも、共通部品をSP一覧より小さく縮めない。 */
+@media(min-width:701px) and (max-width:1000px){
+  .gallery[data-collection=common]{grid-template-columns:minmax(0,1fr)}
+}
