@@ -38,8 +38,11 @@
   const [error,setError] = wp.element.useState('');
   const [busy,setBusy] = wp.element.useState(false);
   const [touched,setTouched] = wp.element.useState(false);
+  const [,setRevision] = wp.element.useState(0);
   const origin = wp.element.useRef(null);
-  const explicitRef = wp.element.useRef(null);
+  const referenceHistory = wp.element.useRef(null);
+  const expectedAttribute = wp.element.useRef(null);
+  const lastAttribute = wp.element.useRef(Number(props.attributes.ref || 0));
   const inHeader = wp.data.useSelect(select => {
    const blocks = select('core/block-editor'), editor = select('core/editor');
    if(blocks.getBlockParents(props.clientId).some(id => { const b=blocks.getBlock(id); return b?.name==='core/template-part' && headerSlug(b.attributes.slug); }))return true;
@@ -49,12 +52,26 @@
   if(props.name!=='core/navigation'||!inHeader)return el(BlockEdit,props);
   const classes=(props.attributes.className||'').split(' ');
   const attributeRef=Number(props.attributes.ref || 0);
-  const target=touched ? (explicitRef.current===attributeRef ? attributeRef : props.attributes.ref===origin.current.attribute ? origin.current.ref : attributeRef) : ref;
+  if(touched&&attributeRef!==lastAttribute.current){
+   const history=referenceHistory.current;
+   if(expectedAttribute.current===attributeRef)expectedAttribute.current=null;
+   else if(history.index>0&&history.values[history.index-1]===attributeRef)history.index--;
+   else if(history.index+1<history.values.length&&history.values[history.index+1]===attributeRef)history.index++;
+   else{history.values=history.values.slice(0,history.index+1).concat(attributeRef);history.index=history.values.length-1;}
+   lastAttribute.current=attributeRef;
+  }
+  const target=touched ? (referenceHistory.current.index===0 ? origin.current.ref : referenceHistory.current.values[referenceHistory.current.index]) : ref;
   const pending=target!==ref;
   const label=id=>helixWTNavigation.choices.find(choice=>Number(choice.value)===id)?.label || helixWTNavigation.labels.text3;
   const change=attrs=>{
-   if(Object.hasOwn(attrs,'ref')&&!touched){origin.current={attribute:props.attributes.ref,ref};setTouched(true);}
-   if(Object.hasOwn(attrs,'ref'))explicitRef.current=Number(attrs.ref || 0);
+   if(Object.hasOwn(attrs,'ref')){
+    if(!touched){origin.current={attribute:props.attributes.ref,ref};referenceHistory.current={values:[attributeRef],index:0};setTouched(true);}
+    const history=referenceHistory.current;
+    const next=Number(attrs.ref || 0);
+    history.values=history.values.slice(0,history.index+1).concat(next);history.index++;
+    expectedAttribute.current=next;
+    setRevision(value=>value+1);
+   }
    props.setAttributes(attrs);
   };
   const navigation=target ? el(BlockEdit,Object.assign({},props,{attributes:Object.assign({},props.attributes,{ref:target}),setAttributes:change})) : el(wp.components.Notice,{status:'info',isDismissible:false},helixWTNavigation.labels.text7);
