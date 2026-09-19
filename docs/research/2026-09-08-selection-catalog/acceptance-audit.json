@@ -1,9 +1,9 @@
 {
   "schema": "wt-catalog-acceptance-audit.v1",
   "requirementCount": 134,
-  "acceptanceCount": 298,
+  "acceptanceCount": 300,
   "counts": {
-    "missing": 224,
+    "missing": 226,
     "partial": 42,
     "verified_in_poc": 32,
     "stale": 0
@@ -13715,6 +13715,30 @@
       "requirement_id": "WT-FR-UTILITY-01",
       "oracle": "PC/SP・キーボード・200%文字拡大・JavaScript無効で説明と入力順を保ち、結果更新を通知し、横溢れや操作不能がない。",
       "polarity": "positive",
+      "status": "missing",
+      "scope": "",
+      "remaining": [
+        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "WT-AC-ADMIN-01E",
+      "requirement_id": "WT-FR-ADMIN-01",
+      "oracle": "DataViews / DataForm 互換の管理画面で fields / actions がサーバー登録された schema と manifest から読まれ、pattern・長さ・数値範囲の検証、階層表示、一括操作、入力状態を同じ設定契約へ束ねる。未提供版では既存の設定 JSON 契約へ縮退し、設定値と権限境界を失わない。",
+      "polarity": "boundary",
+      "status": "missing",
+      "scope": "",
+      "remaining": [
+        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "WT-AC-ADMIN-03C",
+      "requirement_id": "WT-FR-ADMIN-03",
+      "oracle": "dry-run・適用・rollback の失敗時に原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保つ。部分適用を成功として表示せず、操作ログへ失敗と復旧結果を残す。",
+      "polarity": "boundary",
       "status": "missing",
       "scope": "",
       "remaining": [

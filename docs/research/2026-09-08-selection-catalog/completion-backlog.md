@@ -3,7 +3,7 @@
 この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。
 
 - 要求: 134
-- 受入条件: 298（missing 225 / partial 41 / verified_in_poc 32 / stale 0）
+- 受入条件: 300（missing 226 / partial 42 / verified_in_poc 32 / stale 0）
 - カタログ候補: 660
 - スクリーンショット: 1191
 - ページ種別の未観察・未検証: 19
@@ -15,8 +15,8 @@
 | WT-FR-AB-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AB-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AB-03 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-ADMIN-01 | P0 | missing | 4 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-ADMIN-03 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
+| WT-FR-ADMIN-01 | P0 | missing | 5 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
+| WT-FR-ADMIN-03 | P0 | missing | 3 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-ADMIN-04 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AGENT-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AUDIT-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |

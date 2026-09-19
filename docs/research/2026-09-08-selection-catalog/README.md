@@ -84,10 +84,12 @@ npm run catalog-evidence:rebind -- \
 イベント受付fixtureの4候補8画像は、受付前・開始・満席・締切後をクエリ切替ではなく時刻/残席入力から表示する。現在の候補・画像・受入状況は、次の生成ブロックを正本JSONから更新する。業務予約、全配置や地図/サイドバー等は未確認。
 
 <!-- catalog-current:start -->
-現在の生成結果: 660候補 / 1191画像 / 134要求 / 298受入条件。PoC確認32・部分確認41・証跡未対応225・再検証0。全要求完了ではない。
+現在の生成結果: 660候補 / 1191画像 / 134要求 / 300受入条件。PoC確認32・部分確認42・証跡未対応226・再検証0。全要求完了ではない。
 <!-- catalog-current:end -->
 
 最新の生成済みデータの件数は、リポジトリのルートで次のコマンドでも確認できる。再検証中の証跡を生成済みデータの数だけで達成済みとは判断しない。
+
+候補を機械的に絞り込む連携用の `selection-index.json` も同じ生成器から出力する。候補ごとに要求 ID、受入状態の件数、未対応受入 ID、証跡参照、PC/SP画像の有無を持ち、`catalog-data.json` の表示用データとは分離している。`selectionCoverage.status` は選定の手掛かりであり、G3や製品受入の完了を意味しない。
 
 ```sh
 node -e 'const d=require("./docs/research/2026-09-08-selection-catalog/catalog-data.json"); console.log({candidates:d.entries.length,screenshots:d.screenshotCount,acceptance:d.acceptanceAudit})'

@@ -82,3 +82,31 @@ test('the npm catalog evidence test command includes admission coverage', () => 
   assert.match(rebindTest, /\.\/acceptance-admission\.test\.mjs/u);
   assert.match(rebindTest, /\.\/dialog-focus-capture\.test\.mjs/u);
 });
+
+test('selection index exposes evidence boundaries for every catalog candidate', () => {
+  const root = new URL('../', import.meta.url);
+  const catalog = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/catalog-data.json', root), 'utf8'));
+  const index = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/selection-index.json', root), 'utf8'));
+  const projection = JSON.parse(fs.readFileSync(new URL('docs/requirements/discovery/candidate-projection.json', root), 'utf8'));
+  assert.equal(index.schema, 'wt-selection-index.v1');
+  assert.equal(index.generatedAtEventHead, projection.event_head);
+  assert.equal(index.candidateCount, catalog.entries.length);
+  assert.equal(index.entries.length, catalog.entries.length);
+  const catalogIds = new Set(catalog.entries.map(entry => entry.id));
+  const indexIds = new Set(index.entries.map(entry => entry.id));
+  assert.equal(indexIds.size, index.entries.length);
+  assert.deepEqual([...indexIds].sort(), [...catalogIds].sort());
+  for (const entry of index.entries) {
+    const coverage = entry.selectionCoverage;
+    assert.ok(['unmapped', 'missing', 'partial', 'stale', 'verified_in_poc'].includes(coverage.status));
+    assert.equal(Object.values(coverage.counts).reduce((sum, count) => sum + count, 0), coverage.acceptanceCount);
+    assert.deepEqual(coverage.openAcceptanceIds, [...coverage.openAcceptanceIds].sort());
+    assert.ok(entry.devices.every(device => ['pc', 'sp'].includes(device)));
+  }
+  const requirementIds = new Set(index.requirements.map(requirement => requirement.id));
+  assert.equal(requirementIds.size, catalog.requirements.length);
+  for (const requirement of index.requirements) {
+    assert.ok(requirement.relatedEntryIds.every(id => catalogIds.has(id)));
+    assert.ok(requirement.acceptance.every(row => ['missing', 'partial', 'stale', 'verified_in_poc'].includes(row.status)));
+  }
+});
