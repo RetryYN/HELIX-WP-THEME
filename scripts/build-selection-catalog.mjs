@@ -533,6 +533,21 @@ if (fs.existsSync(path.join(root, devicePath))) {
     entries.set(`device-finished:${id}`, { id: `device-finished:${id}`, face: 'article', part: 'device-finished', finished: true, label: `端末別完成比較：${title}`, variant: id, images, requirementIds: ['WT-FR-SP-03', 'WT-FR-VOCAB-01', 'WT-FR-LOOK-01'], purpose: title, group: 'ページ・本文', description: '同じ架空本文を端末別の読み方で比較するPoC。管理画面・MCPのプレビュー一致は未実証。', selectionFacts: { '対象と判断': title, '比較表': id === 'read' ? 'PC横表・SP項目カード' : 'PC/SPとも横比較', '内容の切替': 'PCタブ・SP見出し開閉', '写真と目次': 'SP横送り・目次開閉、PC一覧', '行動導線': id === 'read' ? 'SPで到達後に固定' : '本文末の全幅ボタン', 'JSなし': '全本文・写真横スクロール・通常フローCTA' }, evidence: '../2026-09-16-device-vocabulary/verification.json' });
   }
 }
+const recommendationPath = 'docs/research/2026-09-19-recommendation-layouts/verification.json';
+if (fs.existsSync(path.join(root, recommendationPath))) {
+  const evidence = read(recommendationPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Recommendation layout evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale recommendation evidence: ${file}`);
+  for (const [id, label] of [['cards', '写真から次の記事を選ぶ'], ['list', '内容を確かめて次の記事を選ぶ']]) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-recommendation-layouts', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing recommendation screenshot ${id}/${device}`);
+      images[device] = `../2026-09-19-recommendation-layouts/${shot.file}`;
+    }
+    entries.set(`recommendation-layout:${id}`, { id: `recommendation-layout:${id}`, face: 'article', part: 'related-layout', finished: true, label: `記事一覧比較：${label}`, variant: id, images, requirementIds: ['WT-FR-RECO-01'], purpose: label, group: 'ページ・本文', description: '同じ新着記事3件を表示型だけ変えて比較。人気集計・関連記事抽出・管理画面での型切替は未確認。', selectionFacts: { '対象と判断': label, '選択と順序': '公開記事・新着順・3件（両型共通）', 'PC': id === 'cards' ? '2列カード・写真を上に配置' : '写真と説明の横並びリスト', 'SP': id === 'cards' ? '1列・写真の後に本文' : '横メディア行・写真100px／残りに本文', '画像なし': id === 'list' ? '本文が行の全幅を使用' : '空の画像枠を省略', '参照ID': `helix-wt/recommendation-${id}` }, evidence: '../2026-09-19-recommendation-layouts/verification.json' });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

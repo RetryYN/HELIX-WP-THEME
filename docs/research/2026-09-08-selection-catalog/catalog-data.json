@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1173,
+  "screenshotCount": 1177,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12828,6 +12828,60 @@
         "JSなし": "全本文・写真横スクロール・通常フローCTA"
       },
       "evidence": "../2026-09-16-device-vocabulary/verification.json"
+    },
+    {
+      "id": "recommendation-layout:cards",
+      "face": "article",
+      "part": "related-layout",
+      "finished": true,
+      "label": "記事一覧比較：写真から次の記事を選ぶ",
+      "variant": "cards",
+      "images": {
+        "pc": "../2026-09-19-recommendation-layouts/cards-pc.jpg",
+        "sp": "../2026-09-19-recommendation-layouts/cards-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "purpose": "写真から次の記事を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ新着記事3件を表示型だけ変えて比較。人気集計・関連記事抽出・管理画面での型切替は未確認。",
+      "selectionFacts": {
+        "対象と判断": "写真から次の記事を選ぶ",
+        "選択と順序": "公開記事・新着順・3件（両型共通）",
+        "PC": "2列カード・写真を上に配置",
+        "SP": "1列・写真の後に本文",
+        "画像なし": "空の画像枠を省略",
+        "参照ID": "helix-wt/recommendation-cards"
+      },
+      "evidence": "../2026-09-19-recommendation-layouts/verification.json"
+    },
+    {
+      "id": "recommendation-layout:list",
+      "face": "article",
+      "part": "related-layout",
+      "finished": true,
+      "label": "記事一覧比較：内容を確かめて次の記事を選ぶ",
+      "variant": "list",
+      "images": {
+        "pc": "../2026-09-19-recommendation-layouts/list-pc.jpg",
+        "sp": "../2026-09-19-recommendation-layouts/list-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "purpose": "内容を確かめて次の記事を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ新着記事3件を表示型だけ変えて比較。人気集計・関連記事抽出・管理画面での型切替は未確認。",
+      "selectionFacts": {
+        "対象と判断": "内容を確かめて次の記事を選ぶ",
+        "選択と順序": "公開記事・新着順・3件（両型共通）",
+        "PC": "写真と説明の横並びリスト",
+        "SP": "横メディア行・写真100px／残りに本文",
+        "画像なし": "本文が行の全幅を使用",
+        "参照ID": "helix-wt/recommendation-list"
+      },
+      "evidence": "../2026-09-19-recommendation-layouts/verification.json"
     }
   ],
   "requirements": [
@@ -12849,7 +12903,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "dbf56a1665a27bc7939af29f17e893941658448451f8fb536a321b5e80e71f09",
+              "sha256": "3df6bfc43f37bd42751585d236ec3eae5990ed6904a046c53087fb8d642a2fe4",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source",
                 "manifest:all-capability-kinds",
@@ -12870,7 +12924,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "dbf56a1665a27bc7939af29f17e893941658448451f8fb536a321b5e80e71f09",
+              "sha256": "3df6bfc43f37bd42751585d236ec3eae5990ed6904a046c53087fb8d642a2fe4",
               "row_names": [
                 "negative:undeclared-patterns-fails",
                 "negative:undeclared-template_parts-fails",
@@ -12909,14 +12963,14 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "dbf56a1665a27bc7939af29f17e893941658448451f8fb536a321b5e80e71f09",
+              "sha256": "3df6bfc43f37bd42751585d236ec3eae5990ed6904a046c53087fb8d642a2fe4",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source"
               ]
             },
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "3214c40bb99c526d26de47a71dd12be5da6bf8f0984b81969a0937d67f388f2f",
+              "sha256": "32ef1b76f98d3da60d105d75b1c327d95ee5147404e58cd1a796a02d5a1cf93b",
               "row_names": [
                 "health:loaded",
                 "health:active-current-theme",
@@ -12940,7 +12994,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "3214c40bb99c526d26de47a71dd12be5da6bf8f0984b81969a0937d67f388f2f",
+              "sha256": "32ef1b76f98d3da60d105d75b1c327d95ee5147404e58cd1a796a02d5a1cf93b",
               "row_names": [
                 "negative:unregistered-pattern-reported"
               ]
@@ -12972,7 +13026,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "bc9bac6f5632ca6f94840de79f09a03aab52bf09f4abb6b7dd160126270b6111",
+              "sha256": "549a746b61a1fdd3248aaa10a5edffe2fc152610874288ce078beff39270eb1b",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -12991,7 +13045,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "bc9bac6f5632ca6f94840de79f09a03aab52bf09f4abb6b7dd160126270b6111",
+              "sha256": "549a746b61a1fdd3248aaa10a5edffe2fc152610874288ce078beff39270eb1b",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -16544,7 +16598,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "87cfca54548bacb7d67a3899032d6ca36672384535e894d03f3d2326c8a5e11c",
+              "sha256": "bba54846a227ff3a37328a6c2319203ef0965306ef738b0edc23b92ad769f904",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -16564,7 +16618,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "87cfca54548bacb7d67a3899032d6ca36672384535e894d03f3d2326c8a5e11c",
+              "sha256": "bba54846a227ff3a37328a6c2319203ef0965306ef738b0edc23b92ad769f904",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -19888,15 +19942,44 @@
           "requirement_id": "WT-FR-RECO-01",
           "oracle": "表示型を切り替えても集計方式と件数が変わらず、型が用途別一覧の参照 ID を持つ",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "core Queryで同じ新着公開記事3件・同じ順序・同じ分類を保ち、カード/説明リストの参照IDを持つ2表示型をPC/SP・JS有無で確認。非公開記事は除外。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "人気の集計方式・期間、手動指定、関連記事3方式、IPなし集計、管理画面/MCPの設定往復を残す。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-19-recommendation-layouts/verification.json",
+              "sha256": "238d11fa3ca746a4c28d66b4c87ab597deb4a154b1dfa273ca414ed3c9044a5d",
+              "row_names": [
+                "cards:pc:js:private-excluded",
+                "cards:pc:js:same-public-order-count",
+                "cards:pc:nojs:private-excluded",
+                "cards:pc:nojs:same-public-order-count",
+                "cards:registered",
+                "cards:sp:js:private-excluded",
+                "cards:sp:js:same-public-order-count",
+                "cards:sp:nojs:private-excluded",
+                "cards:sp:nojs:same-public-order-count",
+                "contract:newest-three-not-popularity",
+                "contract:query-invariant",
+                "fixtures:cleanup",
+                "list:pc:js:private-excluded",
+                "list:pc:js:same-public-order-count",
+                "list:pc:nojs:private-excluded",
+                "list:pc:nojs:same-public-order-count",
+                "list:registered",
+                "list:sp:js:private-excluded",
+                "list:sp:js:same-public-order-count",
+                "list:sp:nojs:private-excluded",
+                "list:sp:nojs:same-public-order-count",
+                "source-unchanged"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:related-grid",
         "article:related-list",
@@ -19912,7 +19995,9 @@
         "article:reaction7-related-featured",
         "article:reaction7-related-ranking-numbers",
         "article:related-slider",
-        "category:category-ranking-top"
+        "category:category-ranking-top",
+        "recommendation-layout:cards",
+        "recommendation-layout:list"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -20749,7 +20834,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "2a484805330c4c1439eb13cf82c8661cdc591cf5c21aae5e9c3a2fdd95e4e62d",
+              "sha256": "448bf4f1a369d091e0f17946428ffecbd5826e83f961d6160d5af50bad49dfa3",
               "row_names": [
                 "i18n:source-calls-found",
                 "i18n:all-gettext-calls-extracted",
@@ -20775,7 +20860,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "2a484805330c4c1439eb13cf82c8661cdc591cf5c21aae5e9c3a2fdd95e4e62d",
+              "sha256": "448bf4f1a369d091e0f17946428ffecbd5826e83f961d6160d5af50bad49dfa3",
               "row_names": [
                 "negative:text-domain-drift-fails",
                 "negative:pot-source-drift-fails",
@@ -29857,8 +29942,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 225,
-    "partial": 37,
+    "missing": 224,
+    "partial": 38,
     "verified_in_poc": 32,
     "stale": 0
   },

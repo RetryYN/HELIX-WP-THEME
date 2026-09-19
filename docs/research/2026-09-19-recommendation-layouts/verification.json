@@ -1,0 +1,639 @@
+{
+  "schema": "wt-recommendation-layout-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-recommendation-layouts.mjs": "6c71a50b2acb3aa656b28d9b25d97a451c99af1fd6e75d6be2c190b9a0404bbe",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-cards.php": "83014f4c3fa65f08e3d6db076ba7acc7fdf5c7ecfd3e0f102da3a49aa1e9ec45",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-list.php": "0bceacb982f783c175c63221659d2fc3fa9ba439c50d126445c536e12c1d1870",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/style.css": "5613c5ff2578394638931da8707178dd7209887a2e65aed497ad67d44446e636"
+  },
+  "rows": [
+    {
+      "name": "cards:registered",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "cards:pc:js:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 380,
+          "y": 287.484375
+        },
+        {
+          "x": 732,
+          "y": 287.484375
+        },
+        {
+          "x": 380,
+          "y": 794.671875
+        }
+      ]
+    },
+    {
+      "name": "cards:pc:js:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:js:article-link",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "cards:pc:nojs:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 380,
+          "y": 287.484375
+        },
+        {
+          "x": 732,
+          "y": 287.484375
+        },
+        {
+          "x": 380,
+          "y": 794.671875
+        }
+      ]
+    },
+    {
+      "name": "cards:pc:nojs:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "cards:pc:nojs:article-link",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "cards:sp:js:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 16,
+          "y": 288.828125
+        },
+        {
+          "x": 16,
+          "y": 779.6875
+        },
+        {
+          "x": 16,
+          "y": 1293.84375
+        }
+      ]
+    },
+    {
+      "name": "cards:sp:js:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:js:article-link",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "cards:sp:nojs:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 16,
+          "y": 288.828125
+        },
+        {
+          "x": 16,
+          "y": 779.6875
+        },
+        {
+          "x": 16,
+          "y": 1293.84375
+        }
+      ]
+    },
+    {
+      "name": "cards:sp:nojs:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "cards:sp:nojs:article-link",
+      "pass": true
+    },
+    {
+      "name": "list:registered",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "list:pc:js:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 380,
+          "y": 287.484375
+        },
+        {
+          "x": 380,
+          "y": 491.875
+        },
+        {
+          "x": 380,
+          "y": 696.265625
+        }
+      ]
+    },
+    {
+      "name": "list:pc:js:horizontal-media-row",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:image-absence-full-width",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:image-fills-media-slot",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "list:pc:js:article-link",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "list:pc:nojs:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 380,
+          "y": 287.484375
+        },
+        {
+          "x": 380,
+          "y": 491.875
+        },
+        {
+          "x": 380,
+          "y": 696.265625
+        }
+      ]
+    },
+    {
+      "name": "list:pc:nojs:horizontal-media-row",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:image-absence-full-width",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:image-fills-media-slot",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "list:pc:nojs:article-link",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "list:sp:js:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 16,
+          "y": 329.484375
+        },
+        {
+          "x": 16,
+          "y": 616.421875
+        },
+        {
+          "x": 16,
+          "y": 926.65625
+        }
+      ]
+    },
+    {
+      "name": "list:sp:js:horizontal-media-row",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:image-absence-full-width",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:image-fills-media-slot",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "list:sp:js:article-link",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:same-public-order-count",
+      "pass": true,
+      "details": {
+        "actual": [
+          11192,
+          11194,
+          11196
+        ],
+        "expected": [
+          11192,
+          11194,
+          11196
+        ]
+      }
+    },
+    {
+      "name": "list:sp:nojs:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:images-loaded",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:image-absence-no-empty-frame",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:titles-readable",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:layout",
+      "pass": true,
+      "details": [
+        {
+          "x": 16,
+          "y": 329.484375
+        },
+        {
+          "x": 16,
+          "y": 616.421875
+        },
+        {
+          "x": 16,
+          "y": 926.65625
+        }
+      ]
+    },
+    {
+      "name": "list:sp:nojs:horizontal-media-row",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:image-absence-full-width",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:image-fills-media-slot",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:keyboard-focus",
+      "pass": true
+    },
+    {
+      "name": "list:sp:nojs:article-link",
+      "pass": true
+    },
+    {
+      "name": "contract:query-invariant",
+      "pass": true
+    },
+    {
+      "name": "contract:newest-three-not-popularity",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "cards",
+      "device": "pc",
+      "file": "cards-pc.jpg",
+      "sha256": "e652f2f78f5b566a9683964a4aa8da2da7a2223cdf8ab075c32a647234c70fc7"
+    },
+    {
+      "id": "cards",
+      "device": "sp",
+      "file": "cards-sp.jpg",
+      "sha256": "69d6612ba050ac63f80198ad5521a19366393a6db916a081936db8d66dfbfabd"
+    },
+    {
+      "id": "list",
+      "device": "pc",
+      "file": "list-pc.jpg",
+      "sha256": "fa179713c554b2d63b49709afc6476d8880c0ea08121451fd522ccaa1b99a182"
+    },
+    {
+      "id": "list",
+      "device": "sp",
+      "file": "list-sp.jpg",
+      "sha256": "5107df6f3838f6cef660befe4e6bdd46e064a02203bcfa0133504d0d308002a3"
+    }
+  ]
+}
