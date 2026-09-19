@@ -4115,10 +4115,10 @@
       "requirement_digest": "84947c39cad55e8a",
       "oracle_sha256": "d4d263caf9487cef94885a834e2a506c4ce38932deb179201fe763de6c11a1b8",
       "source_digests": {
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "4c57c689b91aecb39fbeb75c944f376bfc1ac0e512fbba31a50bb7570b668a98",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "f12feafa5b03d2ab1f4c5e2eee3e84b46d8e57863699853f59c91dc5c0d992bb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
-        "scripts/verify-header-navigation-editing.mjs": "f557365785a0898e8f501c9419c9cbb4c0045405f4ab85382b24e10617b0e6b2",
+        "scripts/verify-header-navigation-editing.mjs": "5bd2613fa69580582cf45539a2772f2b2bdbdec05df71de9eb0dbca0c18f0fad",
         "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
         "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06",
         "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb",
@@ -4141,12 +4141,12 @@
         "scripts/summarize-header-navigation-complete.mjs": "007f04ec515bbd5ab0d5ed0b38fb77fafb0fbdfbf63cbd077023b83f044f0a3e",
         "scripts/summarize-header-navigation-editing.mjs": "5762be9114eab59699af2d39b4d7304bc3f11daa6e10d35367f1f4802a8fd133"
       },
-      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/520 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/523 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1",
+          "sha256": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -4160,7 +4160,7 @@
         },
         {
           "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-          "sha256": "bf7d6ad79fae57817b39f199d7e25a3984b912609597e879e4cc57e0c82250d2",
+          "sha256": "ad3a6e78e5f3eb09b3fa5eb4baa1cf3c254e8602c15e57358de98119687ff44d",
           "row_names": [
             "verify:completed",
             "scope:completed",
@@ -4176,10 +4176,10 @@
       "requirement_digest": "84947c39cad55e8a",
       "oracle_sha256": "1e2eb6698eb5db814ff95299799d43dd51a7fa70ebb2872b9502bd53920f465e",
       "source_digests": {
-        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "4c57c689b91aecb39fbeb75c944f376bfc1ac0e512fbba31a50bb7570b668a98",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "f12feafa5b03d2ab1f4c5e2eee3e84b46d8e57863699853f59c91dc5c0d992bb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
-        "scripts/verify-header-navigation-editing.mjs": "f557365785a0898e8f501c9419c9cbb4c0045405f4ab85382b24e10617b0e6b2",
+        "scripts/verify-header-navigation-editing.mjs": "5bd2613fa69580582cf45539a2772f2b2bdbdec05df71de9eb0dbca0c18f0fad",
         "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
         "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06",
         "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb",
@@ -4202,12 +4202,12 @@
         "scripts/summarize-header-navigation-complete.mjs": "007f04ec515bbd5ab0d5ed0b38fb77fafb0fbdfbf63cbd077023b83f044f0a3e",
         "scripts/summarize-header-navigation-editing.mjs": "5762be9114eab59699af2d39b4d7304bc3f11daa6e10d35367f1f4802a8fd133"
       },
-      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/520 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/523 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1",
+          "sha256": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -4221,7 +4221,7 @@
         },
         {
           "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-          "sha256": "bf7d6ad79fae57817b39f199d7e25a3984b912609597e879e4cc57e0c82250d2",
+          "sha256": "ad3a6e78e5f3eb09b3fa5eb4baa1cf3c254e8602c15e57358de98119687ff44d",
           "row_names": [
             "verify:completed",
             "scope:completed",
@@ -9719,7 +9719,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "93dab2d262334c93160d88da9534ced519b593df0252e089ba0c331705430465",
+          "sha256": "1249f35aa041fe722270feea6c63c14f39b50681dc7156390a7e6ab39ae222d9",
           "row_names": [
             "boundary:production-findings-zero",
             "boundary:manifest-denies-local-ai-logic"
@@ -9829,7 +9829,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "93dab2d262334c93160d88da9534ced519b593df0252e089ba0c331705430465",
+          "sha256": "1249f35aa041fe722270feea6c63c14f39b50681dc7156390a7e6ab39ae222d9",
           "row_names": [
             "negative:sdk-import-js-fails",
             "negative:sdk-import-php-fails",
@@ -10669,12 +10669,12 @@
         "scripts/verify-privacy-boundary.mjs": "cd25717f1a1e81febb17199051142afc4eb3c978b14457dac3b2971ce05a3e62",
         "package.json": "4065a9c3fbe6e126c63e7df31184162b4681707e229a32a827555fd384b5471a"
       },
-      "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 132ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
+      "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 141ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "6107c32f87abe3dba739509989315d016b3224c508b07c690a151ba512287e03",
+          "sha256": "641288701149096568a6e22eb34dbb03990dfe0cffc343d562fa756d128a7309",
           "row_names": [
             "privacy:production-tracking-ids-zero",
             "privacy:production-ad-code-zero",
@@ -10828,7 +10828,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "6107c32f87abe3dba739509989315d016b3224c508b07c690a151ba512287e03",
+          "sha256": "641288701149096568a6e22eb34dbb03990dfe0cffc343d562fa756d128a7309",
           "row_names": [
             "negative:ga4-measurement-id-fails",
             "negative:tag-manager-id-fails",

@@ -116,7 +116,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "93dab2d262334c93160d88da9534ced519b593df0252e089ba0c331705430465",
+          "sha256": "1249f35aa041fe722270feea6c63c14f39b50681dc7156390a7e6ab39ae222d9",
           "row_names": [
             "boundary:production-findings-zero",
             "boundary:manifest-denies-local-ai-logic"
@@ -135,7 +135,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "93dab2d262334c93160d88da9534ced519b593df0252e089ba0c331705430465",
+          "sha256": "1249f35aa041fe722270feea6c63c14f39b50681dc7156390a7e6ab39ae222d9",
           "row_names": [
             "negative:sdk-import-js-fails",
             "negative:sdk-import-php-fails",
@@ -395,12 +395,12 @@
       "oracle": "wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない",
       "polarity": "positive",
       "status": "verified_in_poc",
-      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/520 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/523 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1",
+          "sha256": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -414,7 +414,7 @@
         },
         {
           "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-          "sha256": "bf7d6ad79fae57817b39f199d7e25a3984b912609597e879e4cc57e0c82250d2",
+          "sha256": "ad3a6e78e5f3eb09b3fa5eb4baa1cf3c254e8602c15e57358de98119687ff44d",
           "row_names": [
             "verify:completed",
             "scope:completed",
@@ -431,12 +431,12 @@
       "oracle": "header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL",
       "polarity": "negative",
       "status": "verified_in_poc",
-      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/520 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/523 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1",
+          "sha256": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -450,7 +450,7 @@
         },
         {
           "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-          "sha256": "bf7d6ad79fae57817b39f199d7e25a3984b912609597e879e4cc57e0c82250d2",
+          "sha256": "ad3a6e78e5f3eb09b3fa5eb4baa1cf3c254e8602c15e57358de98119687ff44d",
           "row_names": [
             "verify:completed",
             "scope:completed",
@@ -1143,12 +1143,12 @@
       "oracle": "テーマ・プラグインに計測 ID・広告 HTML の生値が 0",
       "polarity": "positive",
       "status": "verified_in_poc",
-      "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 132ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
+      "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 141ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "6107c32f87abe3dba739509989315d016b3224c508b07c690a151ba512287e03",
+          "sha256": "641288701149096568a6e22eb34dbb03990dfe0cffc343d562fa756d128a7309",
           "row_names": [
             "privacy:production-tracking-ids-zero",
             "privacy:production-ad-code-zero",
@@ -1168,7 +1168,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "6107c32f87abe3dba739509989315d016b3224c508b07c690a151ba512287e03",
+          "sha256": "641288701149096568a6e22eb34dbb03990dfe0cffc343d562fa756d128a7309",
           "row_names": [
             "negative:ga4-measurement-id-fails",
             "negative:tag-manager-id-fails",
