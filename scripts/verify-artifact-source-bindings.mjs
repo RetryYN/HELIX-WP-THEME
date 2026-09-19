@@ -8,6 +8,7 @@ const researchRoot = path.join(root, 'docs/research');
 // Immutable before-state captures. Refreshing these to current bytes would erase
 // comparison evidence. Exact paths keep every newly named artifact gated by default.
 const historicalSnapshots = new Map([
+  ['docs/research/2026-09-08-selection-catalog/visual-quality/dialog-focus/before.json', 'pre-fix dialog focus baseline'],
   ['docs/research/2026-09-08-content-faces/results/header-navigation/baseline.json', 'pre-fix baseline'],
   ['docs/research/2026-09-08-content-faces/results/inheritance/baseline.json', 'pre-fix baseline'],
   ['docs/research/2026-09-08-content-faces/results/site-quality/baseline.json', 'pre-fix baseline'],
