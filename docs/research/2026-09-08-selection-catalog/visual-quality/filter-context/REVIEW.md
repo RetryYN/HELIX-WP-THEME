@@ -19,12 +19,12 @@
 変更後画像: [PC](after-1440.png) / [SP](after-390.png)。同じ3候補に対し、結果直前で「選択メモ: 未選択」「検索: 料金」を確認・個別解除できる。PCは1行、SPは折り返す。全候補に戻したときは条件欄自体を閉じる。PC/SPとも画像を目視確認した。
 
 ```sh
-CATALOG_BASE_URL=http://127.0.0.1:8099 node docs/research/2026-09-08-selection-catalog/visual-quality/filter-context/capture.mjs
+CATALOG_BASELINE_REF=513c0516db9994d3b85e4e23d67466251d151ff0 CATALOG_BASE_URL=http://127.0.0.1:8099 node docs/research/2026-09-08-selection-catalog/visual-quality/filter-context/capture.mjs
 CATALOG_BASE_URL=http://127.0.0.1:8099 npx playwright test tests/e2e/selection-catalog-filters.spec.ts tests/e2e/selection-catalog.spec.ts --workers=1
 npm test
 ```
 
-`capture.mjs`は既定でHEADのHTML/CSS/JSを変更前としてブラウザへ配信する。commit後に再撮影する場合は`CATALOG_BASELINE_REF=513c0516db9994d3b85e4e23d67466251d151ff0`を指定する。[観察JSON](observations.json)は同じ候補データで変更前後を比較した記録。
+`capture.mjs`は`CATALOG_BASELINE_REF`を必須とし、未指定の再撮影を拒否する。before/after PNGが同一バイトなら比較証跡として失敗する。一時出力で回帰確認する場合は`CATALOG_CAPTURE_OUTPUT`を指定する。[観察JSON](observations.json)は同じ候補データで変更前後を比較した記録。
 
 - 新規5ケース成功: PC/SPで個別解除、Enter操作とフォーカス復帰、保存から再開、ゼロ件回復、長い検索語の折返し、文字列の安全表示、比較候補・選択メモ・PC/SPの保全、関連要求範囲の解除。
 - 既存の表示密度検査も1440/375/320pxで成功。カード開始位置700px未満・横溢れなしを維持。

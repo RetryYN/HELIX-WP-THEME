@@ -1,11 +1,13 @@
 import { chromium } from '@playwright/test';
 import { execFileSync } from 'node:child_process';
-import { writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const base = process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099';
 const catalog = 'docs/research/2026-09-08-selection-catalog';
-const output = `${catalog}/visual-quality/filter-context`;
-const baseline = process.env.CATALOG_BASELINE_REF || 'HEAD';
+const output = process.env.CATALOG_CAPTURE_OUTPUT || `${catalog}/visual-quality/filter-context`;
+const baseline = process.env.CATALOG_BASELINE_REF;
+if (!baseline) throw new Error('CATALOG_BASELINE_REF is required; refusing to capture HEAD as before-state');
+await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const observations = [];
 for (const stage of ['before', 'after']) {
@@ -31,4 +33,9 @@ for (const stage of ['before', 'after']) {
   }
 }
 await browser.close();
+for (const width of [1440, 390]) {
+  const before = await readFile(`${output}/before-${width}.png`);
+  const after = await readFile(`${output}/after-${width}.png`);
+  if (before.equals(after)) throw new Error(`before/after screenshots are byte-identical at ${width}px`);
+}
 await writeFile(`${output}/observations.json`, JSON.stringify({ baseline: execFileSync('git', ['rev-parse', baseline], { encoding: 'utf8' }).trim(), observations }, null, 2) + '\n');
