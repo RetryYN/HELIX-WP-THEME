@@ -138,6 +138,7 @@ function plan(options) {
   if (!options.cases.length) fail('at least one --case is required');
   const registryRaw = bytes(registryPath);
   const registry = JSON.parse(registryRaw);
+  const selectedIds = new Set(options.cases);
   const changedPaths = new Set(git(['diff', '--name-only', 'HEAD', '--']).split('\n').filter(Boolean));
   const selected = options.cases.map(id => {
     const evidence = registry.cases[id];
@@ -148,8 +149,18 @@ function plan(options) {
   });
   const staleCount = selected.reduce((sum, item) => sum + item.staleSources.length, 0);
   if (!staleCount) fail('selected cases have no changed source digests to rebind');
+  for (const [id, evidence] of Object.entries(registry.cases || {})) {
+    if (selectedIds.has(id)) continue;
+    const stale = Object.entries(evidence.source_digests || {}).find(([source, expected]) => digest(bytes(source)) !== expected);
+    if (stale) fail(`all cases affected by a changed source must be selected: ${id} / ${stale[0]}`);
+  }
   const proofs = new Map();
   for (const { evidence } of selected) for (const proof of evidence.proofs || []) proofs.set(proof.path, proof);
+  for (const [id, evidence] of Object.entries(registry.cases || {})) {
+    if (selectedIds.has(id)) continue;
+    const shared = (evidence.proofs || []).find(proof => proofs.has(proof.path));
+    if (shared) fail(`all cases sharing a regenerated proof must be selected: ${id} / ${shared.path}`);
+  }
   const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), proofs: [...proofs.keys()], commands: options.commands };
   if (!options.apply) {
     console.log(JSON.stringify({ mode: 'dry-run', ...summary }, null, 2));

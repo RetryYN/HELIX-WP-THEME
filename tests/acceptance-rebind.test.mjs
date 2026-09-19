@@ -98,3 +98,17 @@ test('check accepts a chained second rebind and validates the latest proof diges
   assert.equal(checked.status, 0, checked.stderr);
   assert.match(checked.stdout, /2 transaction/u);
 });
+
+test('apply rejects a partial case set when another case shares the changed source', t => {
+  const f = fixture(t);
+  const file = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');
+  const registry = JSON.parse(fs.readFileSync(file));
+  registry.cases.A2 = structuredClone(registry.cases.A1);
+  fs.writeFileSync(file, `${JSON.stringify(registry, null, 2)}\n`);
+  spawnSync('git', ['add', '.'], { cwd: f.root });
+  spawnSync('git', ['commit', '-m', 'shared case'], { cwd: f.root });
+  f.write('implementation.php', 'source-v2\n');
+  const result = f.run(['--case', 'A1']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /all cases affected.*A2/u);
+});
