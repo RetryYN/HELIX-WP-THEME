@@ -146,6 +146,32 @@ async function start() {
     }
     saveWorkspace();
   }
+  function resetGallery() {
+    face = 'all'; linkedIds = null; limit = 36;
+    for (const id of ['search', 'purpose', 'decision']) $(id).value = '';
+    render(); $('search').focus();
+  }
+  function renderFilters() {
+    const filters = [];
+    if (linkedIds) filters.push(['linked', '範囲: 要求に関連する候補', () => { linkedIds = null; }]);
+    if (face !== 'all') filters.push(['face', `面: ${collections.find(([key]) => key === face)[1]}`, () => { face = 'all'; }]);
+    if ($('purpose').value) filters.push(['purpose', `目的: ${$('purpose').value}`, () => { $('purpose').value = ''; }]);
+    if ($('decision').value) filters.push(['decision', `選択メモ: ${labels[$('decision').value]}`, () => { $('decision').value = ''; }]);
+    if ($('search').value.trim()) filters.push(['search', `検索: ${$('search').value.trim()}`, () => { $('search').value = ''; }]);
+    $('active-filters').hidden = filters.length === 0;
+    $('filter-chips').replaceChildren();
+    filters.forEach(([key, label, clear], index) => {
+      const chip = button('', () => {
+        clear(); limit = 36; render();
+        const remaining = $('filter-chips').children;
+        (remaining[Math.min(index, remaining.length - 1)] || $('search')).focus();
+      });
+      chip.dataset.filter = key;
+      chip.setAttribute('aria-label', `${label}を解除`);
+      const mark = el('span', '×', 'filter-remove'); mark.setAttribute('aria-hidden', 'true');
+      chip.append(el('span', label), mark); $('filter-chips').append(chip);
+    });
+  }
   function render() {
     for (const b of $('faces').children) b.setAttribute('aria-current', String(b.dataset.face === face && !linkedIds));
     const query = $('search').value.trim().toLocaleLowerCase();
@@ -167,6 +193,7 @@ async function start() {
     $('banner-finished-only').setAttribute('aria-pressed', String($('search').value === 'バナー完成比較'));
     $('event-finished-only').setAttribute('aria-pressed', String($('search').value === '完成EVENT'));
     $('home-finished-only').setAttribute('aria-pressed', String($('search').value === '完成HOME'));
+    renderFilters();
     $('gallery').dataset.collection = face;
     $('gallery').replaceChildren();
     for (const entry of entries.slice(0, limit)) {
@@ -259,11 +286,8 @@ async function start() {
   $('banner-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('event-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('home-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
-  $('reset-gallery').addEventListener('click', () => {
-    face = 'all'; linkedIds = null; limit = 36;
-    for (const id of ['search', 'purpose', 'decision']) $(id).value = '';
-    render(); $('search').focus();
-  });
+  $('reset-gallery').addEventListener('click', resetGallery);
+  $('clear-filters').addEventListener('click', resetGallery);
   new ResizeObserver(() => {
     document.documentElement.style.setProperty('--compare-clearance', $('compare-bar').hidden ? '0px' : `${Math.ceil($('compare-bar').getBoundingClientRect().height) + 40}px`);
     if ($('compare-picks').contains(document.activeElement)) document.activeElement.scrollIntoView({ block: 'nearest', inline: 'nearest' });
