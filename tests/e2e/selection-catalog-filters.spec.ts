@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 
 for (const width of [1440, 390]) {
-  test(`filter context, individual removal and resume at ${width}px`, async ({ page }) => {
+  test(`filter context, individual removal and resume at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(url);
     await page.locator('[data-face=all]').click();
@@ -15,7 +15,7 @@ for (const width of [1440, 390]) {
     await expect(page.locator('[data-filter=decision]')).toContainText('選択メモ: 未選択');
     await expect(page.locator('[data-filter=search]')).toContainText('検索: 料金');
     await page.locator('.results-head').scrollIntoViewIfNeeded();
-    await page.screenshot({ path: `docs/research/2026-09-08-selection-catalog/visual-quality/filter-context/after-${width}.png` });
+    await page.screenshot({ path: testInfo.outputPath(`filter-context-${width}.png`) });
     await page.locator('.compare-pick input').first().check();
     await page.locator('[data-filter=decision]').focus();
     await page.keyboard.press('Enter');
