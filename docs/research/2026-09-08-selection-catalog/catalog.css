@@ -175,3 +175,27 @@ dialog .dialog-head{position:sticky;top:-26px;z-index:3;background:var(--paper);
 .filter-remove{flex-shrink:0;font-size:17px;line-height:1;color:var(--green)}
 @media(max-width:700px){.active-filters{padding:8px 12px;margin-bottom:16px}.filter-chips{gap:6px}.filter-chips button{font-size:11px;padding:8px 10px}}
 @media(min-width:701px){.active-filters{display:flex;align-items:center;gap:16px;padding-block:10px}.active-filters-head{display:contents}.active-filters-head p{flex-shrink:0}.active-filters-head button{order:2;margin-left:auto;flex-shrink:0}.filter-chips{flex:1;min-width:0}}
+
+/* 判断と理由を一つの面へまとめ、状態を文字・チェック・色で示す。 */
+.decision-panel{margin:22px 0;padding:18px;background:#f1f2eb;border:1px solid #d8ddd1;border-radius:8px}
+.decision-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.decision-panel-head h3{font-size:15px;margin:0;line-height:1.6}
+.current-decision{font-size:11px;font-weight:700;padding:4px 8px;border-radius:4px;background:#e4e7e2;color:#475248}
+.decision-panel[data-status=adopt] .current-decision{background:#244d3b;color:#fff}
+.decision-panel[data-status=hold] .current-decision{background:#eee1bd;color:#654c13}
+.decision-panel[data-status=reject] .current-decision{background:#f0ded8;color:#743e2e}
+.detail-copy .decision-help{font-size:11px;line-height:1.7;color:#626b63;margin:8px 0 0}
+.decision-panel .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0 18px}
+.decision-panel .choices button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 5px;text-align:left;background:#fff;padding:10px;min-height:62px;border-color:#d2d8ce;line-height:1.5}
+.decision-panel .choice-label{font-size:12px;font-weight:700}
+.decision-panel .choice-check{visibility:hidden;font-weight:800}
+.decision-panel .choices small{grid-column:1/-1;font-size:10px;color:inherit;line-height:1.6}
+.decision-panel .choices button[aria-pressed=true]{border-color:currentColor;box-shadow:inset 0 0 0 1px currentColor}
+.decision-panel .choices button[aria-pressed=true] .choice-check{visibility:visible}
+.decision-panel .choices button[data-status=unreviewed][aria-pressed=true]{background:#e4e7e2;color:#39483c}
+.decision-panel .choices button[data-status=adopt][aria-pressed=true]{background:#244d3b;color:#fff;border-color:#244d3b;box-shadow:inset 0 0 0 1px #244d3b}
+.decision-panel .choices button[data-status=hold][aria-pressed=true]{background:#eee1bd;color:#654c13}
+.decision-panel .choices button[data-status=reject][aria-pressed=true]{background:#f0ded8;color:#743e2e}
+.decision-panel .choices button:hover{border-color:#244d3b}
+.decision-panel textarea{background:#fff;line-height:1.7;min-height:110px}
+@media(max-width:700px){.decision-panel{padding:14px;margin:20px 0}.decision-panel .choices{gap:6px}.decision-panel .choices button{padding:9px}.decision-panel-head h3{font-size:14px}}

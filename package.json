@@ -8,7 +8,7 @@
     "test:e2e:catalog": "npx playwright test tests/e2e/selection-catalog.spec.ts tests/e2e/selection-catalog-filters.spec.ts tests/e2e/*-selection-catalog.spec.ts",
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",
-    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:codex-inbox",
+    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run catalog-evidence:rebind-test && npm run catalog-evidence:rebind-check && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:codex-inbox",
     "test:codex-inbox": "node --test tests/unit/codex-inbox.test.mjs",
     "requirements:validate": "node scripts/validate-requirements.mjs",
     "requirements:helix-l1-l2": "node scripts/validate-helix-l1-l2.mjs",
@@ -19,6 +19,9 @@
     "privacy:verify": "node scripts/verify-privacy-boundary.mjs",
     "public-safety:verify": "node scripts/verify-public-safety.mjs",
     "artifact-bindings:verify": "node scripts/verify-artifact-source-bindings.mjs",
+    "catalog-evidence:rebind": "node scripts/rebind-acceptance-evidence.mjs",
+    "catalog-evidence:rebind-test": "node --test tests/acceptance-rebind.test.mjs tests/catalog-evidence.test.mjs",
+    "catalog-evidence:rebind-check": "node scripts/rebind-acceptance-evidence.mjs --check",
     "catalog-evidence:audit": "node scripts/audit-catalog-evidence.mjs",
     "i18n:verify": "node scripts/verify-i18n-profile.mjs",
     "i18n:pot": "node scripts/verify-i18n-profile.mjs --write-pot",
@@ -34,5 +37,10 @@
   },
   "engines": {
     "node": ">=24.15.0 <25"
+  },
+  "catalogOracles": {
+    "docs/research/2026-09-09-public-safety/verify.json": "public-safety:verify",
+    "docs/research/2026-09-10-reduced-motion/verify.json": "reduced-motion:verify",
+    "docs/research/2026-09-13-privacy-boundary/verify.json": "privacy:verify"
   }
 }

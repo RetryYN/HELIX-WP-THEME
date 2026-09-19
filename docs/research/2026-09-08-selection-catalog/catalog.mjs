@@ -225,19 +225,33 @@ async function start() {
     const panel = el('div', undefined, 'detail-copy');
     panel.append(el('h2', entry.label), el('p', entry.variant, 'variant'), el('p', entry.description), el('p', entry.purpose));
     if (entry.selectionFacts) { const facts = el('dl', undefined, 'selection-facts'); for (const [key, value] of Object.entries(entry.selectionFacts)) facts.append(el('dt', key), el('dd', value)); panel.append(facts); }
+    const decisionPanel = el('section', undefined, 'decision-panel');
+    decisionPanel.setAttribute('aria-label', 'この候補の選択メモ');
+    const decisionHead = el('div', undefined, 'decision-panel-head');
+    const currentDecision = el('span', labels[memoFor(entry.id).status], 'current-decision');
+    currentDecision.setAttribute('role', 'status');
+    decisionHead.append(el('h3', 'この候補をどうする？'), currentDecision);
+    decisionPanel.dataset.status = memoFor(entry.id).status;
+    decisionPanel.append(decisionHead, el('p', '検討用のメモです。採用候補は正式な承認ではありません。', 'decision-help'));
+    const hints = { unreviewed: '判断をいったん戻す', adopt: '使いたい形として残す', hold: '確認してから決める', reject: '今回の候補から外す' };
     const choices = el('div', undefined, 'choices'); choices.setAttribute('role', 'group'); choices.setAttribute('aria-label', '選択メモの状態');
     for (const [status, label] of Object.entries(labels)) {
       const b = button(label, () => {
         memos[entry.id] = { ...memoFor(entry.id), status }; save();
         for (const other of choices.children) other.setAttribute('aria-pressed', String(other === b));
+        decisionPanel.dataset.status = status; currentDecision.textContent = label;
         render(); refreshComparisonFacts();
       });
+      b.dataset.status = status; b.setAttribute('aria-label', label); b.setAttribute('title', hints[status]);
+      const choiceLabel = el('span', label, 'choice-label');
+      const check = el('span', '✓', 'choice-check'); check.setAttribute('aria-hidden', 'true');
+      b.replaceChildren(choiceLabel, check, el('small', hints[status]));
       b.setAttribute('aria-pressed', String(memoFor(entry.id).status === status)); choices.append(b);
     }
     const label = el('label', '選ぶ理由・確認したいこと', 'note-label');
     const note = el('textarea'); note.maxLength = 4000; note.rows = 4; note.value = memoFor(entry.id).note;
     note.addEventListener('input', () => { memos[entry.id] = { ...memoFor(entry.id), note: note.value }; save(); refreshComparisonFacts(); }); label.append(note);
-    panel.append(choices, label);
+    decisionPanel.append(choices, label); panel.append(decisionPanel);
     if (entry.demoRoute && ['127.0.0.1', 'localhost'].includes(location.hostname)) {
       const live = el('a', 'ローカルの実機で操作する ↗', 'open-image');
       live.href = `http://${location.hostname}:8098${entry.demoRoute}`; live.target = '_blank'; live.rel = 'noopener'; panel.append(live);

@@ -1,0 +1,221 @@
+{
+  "schema": "wt-acceptance-rebind-log.v1",
+  "transactions": [
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B",
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-NFR-PRIV-01A",
+        "WT-AC-NFR-PRIV-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "privacy:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "3d60deac77844bf8b9088f03fbcfd021dc727849bc5477f8950c702e801406a0",
+          "after": "24eac648fbd86a70af4522efbd13ee2ad5172c32e369e6cf61485767a372b7db"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "3d60deac77844bf8b9088f03fbcfd021dc727849bc5477f8950c702e801406a0",
+          "after": "24eac648fbd86a70af4522efbd13ee2ad5172c32e369e6cf61485767a372b7db"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "9f1d19cf50b903d01ab628436eccd46a40237c7987e810132315d7fc5c0ca199",
+          "after_sha256": "24eac648fbd86a70af4522efbd13ee2ad5172c32e369e6cf61485767a372b7db",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+          "before_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "after_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "3f1ea6a3d427b04e2e504850c10cef167fa1c073b300207716684c37bf0ab43a",
+      "registry_after_sha256": "10ee2171213fbb7331750c60fef8d7a9852c079cf3226a07bc1ac63839ccf479"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B",
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-NFR-PRIV-01A",
+        "WT-AC-NFR-PRIV-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "privacy:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "package.json",
+          "before": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c",
+          "after": "e4c827e551996d1d76f1996c7df5d6cdf95b0f6060b9eda113aa3007b908bd4e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "package.json",
+          "before": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c",
+          "after": "e4c827e551996d1d76f1996c7df5d6cdf95b0f6060b9eda113aa3007b908bd4e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "package.json",
+          "before": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c",
+          "after": "e4c827e551996d1d76f1996c7df5d6cdf95b0f6060b9eda113aa3007b908bd4e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "24eac648fbd86a70af4522efbd13ee2ad5172c32e369e6cf61485767a372b7db",
+          "after": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "package.json",
+          "before": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c",
+          "after": "e4c827e551996d1d76f1996c7df5d6cdf95b0f6060b9eda113aa3007b908bd4e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "24eac648fbd86a70af4522efbd13ee2ad5172c32e369e6cf61485767a372b7db",
+          "after": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "package.json",
+          "before": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c",
+          "after": "e4c827e551996d1d76f1996c7df5d6cdf95b0f6060b9eda113aa3007b908bd4e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "package.json",
+          "before": "102a98c9af87283244c0896950d0789b2cbb20800ec2c07a8405ac0b4c45d33c",
+          "after": "e4c827e551996d1d76f1996c7df5d6cdf95b0f6060b9eda113aa3007b908bd4e"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "24eac648fbd86a70af4522efbd13ee2ad5172c32e369e6cf61485767a372b7db",
+          "after_sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+          "before_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "after_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "10ee2171213fbb7331750c60fef8d7a9852c079cf3226a07bc1ac63839ccf479",
+      "registry_after_sha256": "46159f000641906adb45fd8701b436fb179abe423b3232b3f7f7ffdeb4de5d59"
+    }
+  ]
+}
