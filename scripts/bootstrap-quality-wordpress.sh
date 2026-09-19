@@ -19,7 +19,11 @@ if ! wp_ci core is-installed; then
     --admin_user=ci_admin --admin_password="$(openssl rand -hex 24)" \
     --admin_email=ci@example.invalid --skip-email
 fi
-[[ "$(wp_ci core version)" == '7.1' ]] || { echo 'Unexpected WordPress version' >&2; exit 1; }
+wp_version="$(wp_ci core version)"
+[[ "$wp_version" == '7.1' || "$wp_version" == 7.1.* ]] || {
+  echo "Unexpected WordPress version: $wp_version (expected 7.1.x)" >&2
+  exit 1
+}
 theme_source='docs/research/2026-09-05-design-prototype-03/theme/helix-wt'
 theme_slug='helix-wt'
 [[ -f "$theme_source/theme.json" && -f "$theme_source/style.css" ]] || {
