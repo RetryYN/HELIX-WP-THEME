@@ -584,6 +584,21 @@ if (fs.existsSync(path.join(root, tocPath))) {
     entry.evidence = '../2026-09-19-toc-settings/verification.json';
   }
 }
+const pricingPath = 'docs/research/2026-09-19-pricing-cards/verification.json';
+if (fs.existsSync(path.join(root, pricingPath))) {
+  const report = read(pricingPath);
+  const candidates = read('docs/research/2026-09-19-pricing-cards/catalog-candidates.json');
+  if (!report.completed || report.rows.some(r => !r.pass) || !report.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Pricing card evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale pricing source ${source}`);
+  for (const candidate of candidates.entries) {
+    const id = candidate.variant;
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(item => item.id === id && item.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-pricing-cards', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing pricing screenshot ${id}/${device}`);
+    }
+    entries.set(candidate.id, {...candidate, finished:true, selectionFacts:{'対象と判断':id === 'standard' ? '通常量の3プランを比較' : '説明が長い3プランの境界確認','同じ型':'通常／長文は同じ既存1型。型数を増やさない','PC':'同一行の外枠・見出し・末尾CTAを整列','SP':'1列で全文を省略せず表示','保存先':'固定ページ本文のcore blocks','参照ID':'helix-wt/pricing'}});
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

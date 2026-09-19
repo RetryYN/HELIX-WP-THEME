@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1187,
+  "screenshotCount": 1191,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -13058,6 +13058,62 @@
         "JSなし": "位置と表示を維持"
       },
       "evidence": "../2026-09-19-eyecatch-meta/verification.json"
+    },
+    {
+      "id": "page:pricing-cards-standard",
+      "face": "page",
+      "part": "pricing-cards",
+      "label": "料金3プラン・通常本文",
+      "variant": "standard",
+      "description": "3プランを横並びで比較し、おすすめを上辺ラベルで示す。本文は省略せず、PCではカード外枠と相談CTAの下端を揃える。SPは縦積み。価格と月単位を一行で表示。保存先は固定ページ本文のcore blocks。未挿入状態からhelix-wt/pricingを選ぶ。同期待機やtheme_modの継承はなく、既存のtheme.json尺度を使用。",
+      "purpose": "プランを比較して相談する",
+      "group": "ページ・本文",
+      "images": {
+        "sp": "../2026-09-19-pricing-cards/standard-sp.jpg",
+        "pc": "../2026-09-19-pricing-cards/standard-pc.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01"
+      ],
+      "referenceId": "helix-wt/pricing",
+      "evidence": "../2026-09-19-pricing-cards/verification.json",
+      "finished": true,
+      "selectionFacts": {
+        "対象と判断": "通常量の3プランを比較",
+        "同じ型": "通常／長文は同じ既存1型。型数を増やさない",
+        "PC": "同一行の外枠・見出し・末尾CTAを整列",
+        "SP": "1列で全文を省略せず表示",
+        "保存先": "固定ページ本文のcore blocks",
+        "参照ID": "helix-wt/pricing"
+      }
+    },
+    {
+      "id": "page:pricing-cards-long-copy",
+      "face": "page",
+      "part": "pricing-cards",
+      "label": "料金3プラン・長い説明",
+      "variant": "long-copy",
+      "description": "同じ料金3プランに長い説明を入れた境界比較。別のデザイン型ではない。本文は省略せず、PCではカード外枠と相談CTAの下端を揃える。SPは縦積み。価格と月単位を一行で表示。保存先は固定ページ本文のcore blocks。未挿入状態からhelix-wt/pricingを選ぶ。同期待機やtheme_modの継承はなく、既存のtheme.json尺度を使用。",
+      "purpose": "プランを比較して相談する",
+      "group": "ページ・本文",
+      "images": {
+        "sp": "../2026-09-19-pricing-cards/long-copy-sp.jpg",
+        "pc": "../2026-09-19-pricing-cards/long-copy-pc.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01"
+      ],
+      "referenceId": "helix-wt/pricing",
+      "evidence": "../2026-09-19-pricing-cards/verification.json",
+      "finished": true,
+      "selectionFacts": {
+        "対象と判断": "説明が長い3プランの境界確認",
+        "同じ型": "通常／長文は同じ既存1型。型数を増やさない",
+        "PC": "同一行の外枠・見出し・末尾CTAを整列",
+        "SP": "1列で全文を省略せず表示",
+        "保存先": "固定ページ本文のcore blocks",
+        "参照ID": "helix-wt/pricing"
+      }
     }
   ],
   "requirements": [
@@ -13202,7 +13258,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "549a746b61a1fdd3248aaa10a5edffe2fc152610874288ce078beff39270eb1b",
+              "sha256": "f73670e9d5ee6d1f9ad3840f21e5fdac4e678fbb576b0f20c37733d99320751d",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -13221,7 +13277,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "549a746b61a1fdd3248aaa10a5edffe2fc152610874288ce078beff39270eb1b",
+              "sha256": "f73670e9d5ee6d1f9ad3840f21e5fdac4e678fbb576b0f20c37733d99320751d",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -14144,7 +14200,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "7f9aa0593446625a7d19ff94274ce6353e6845b4d24e60078127ed6fe215809a",
+              "sha256": "7a108b726daba3ded2c989ac9e0a8b4a7416d152fb63fc819949c755eea2b658",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -14411,7 +14467,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "c56eeed2b5b403721988be2675efdeff21c0eb565ec321a598908f4ee216aadd",
+              "sha256": "6a3681b3554bccf3d329621faa480e256f934c7daa8fea50c0b1ce515e3e015e",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14425,7 +14481,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "a765cfc076c42dcf14e00e8d865fb51c9321c0af15915bb8167c48de46a38da2",
+              "sha256": "7c7fd285f0a736bf994bb411de951bfb2a5575e7417bb4d5ef27b69f721e78f2",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14447,7 +14503,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "c56eeed2b5b403721988be2675efdeff21c0eb565ec321a598908f4ee216aadd",
+              "sha256": "6a3681b3554bccf3d329621faa480e256f934c7daa8fea50c0b1ce515e3e015e",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14461,7 +14517,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "a765cfc076c42dcf14e00e8d865fb51c9321c0af15915bb8167c48de46a38da2",
+              "sha256": "7c7fd285f0a736bf994bb411de951bfb2a5575e7417bb4d5ef27b69f721e78f2",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14838,7 +14894,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "f4dea7ac8f3ad2e9b8f30cccc00b623ceae14a1d4e0dbb852645310838f17ac8",
+              "sha256": "e0c7e03abd2a1a2ae3d9b9dad35dbf36c42b43003ad10a9aee79a8bb164636cf",
               "row_names": [
                 "box:saved-readback",
                 "float:saved-readback",
@@ -14883,7 +14939,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "f4dea7ac8f3ad2e9b8f30cccc00b623ceae14a1d4e0dbb852645310838f17ac8",
+              "sha256": "e0c7e03abd2a1a2ae3d9b9dad35dbf36c42b43003ad10a9aee79a8bb164636cf",
               "row_names": [
                 "none:saved-readback",
                 "none:pc:js:selected",
@@ -15302,12 +15358,145 @@
           "requirement_id": "WT-FR-LOOK-01",
           "oracle": "同一列のカードの高さが本文量に関わらず一致し、見出しが既定寸法で 1 行に収まり、型数が用途別一覧の参照 ID を持つ",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "既存helix-wt/pricingを通常本文/長文で保存しPC1440/SP390×JS有無で比較。PC同一行のカード高さ・末尾CTA・見出し基準線、価格単位、SP縦積み、非省略本文、focus、44px、reduced-motion、保存読み戻し・対照ページ不変・cleanupを確認。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "他カード型と全style variation、任意の長いプラン名、管理画面挿入保存、全用途別型数との照合は未確認。",
+            "既存1型の改善であり、新規型2種の追加ではない。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-19-pricing-cards/verification.json",
+              "sha256": "e1d2cb8fd0d54839a85d6ed63bb74506f118163fcff30a94a3a08e47fc4ea18d",
+              "row_names": [
+                "standard:saved-content-roundtrip",
+                "long-copy:saved-content-roundtrip",
+                "standard:pc:js:response",
+                "standard:pc:js:three-plans",
+                "standard:pc:js:no-overflow",
+                "standard:pc:js:text-unclipped",
+                "standard:pc:js:title-single-line",
+                "standard:pc:js:touch-target",
+                "standard:pc:js:cta-target",
+                "standard:pc:js:price-unit-single-line",
+                "standard:pc:js:title-baseline",
+                "standard:pc:js:equal-row-height",
+                "standard:pc:js:cta-baseline",
+                "standard:pc:js:sp-stacks",
+                "standard:pc:js:reduced-motion",
+                "standard:pc:js:focus-visible",
+                "standard:pc:js:contact-navigation",
+                "standard:pc:nojs:response",
+                "standard:pc:nojs:three-plans",
+                "standard:pc:nojs:no-overflow",
+                "standard:pc:nojs:text-unclipped",
+                "standard:pc:nojs:title-single-line",
+                "standard:pc:nojs:touch-target",
+                "standard:pc:nojs:cta-target",
+                "standard:pc:nojs:price-unit-single-line",
+                "standard:pc:nojs:title-baseline",
+                "standard:pc:nojs:equal-row-height",
+                "standard:pc:nojs:cta-baseline",
+                "standard:pc:nojs:sp-stacks",
+                "standard:pc:nojs:reduced-motion",
+                "standard:pc:nojs:focus-visible",
+                "standard:pc:nojs:contact-navigation",
+                "standard:sp:js:response",
+                "standard:sp:js:three-plans",
+                "standard:sp:js:no-overflow",
+                "standard:sp:js:text-unclipped",
+                "standard:sp:js:title-single-line",
+                "standard:sp:js:touch-target",
+                "standard:sp:js:cta-target",
+                "standard:sp:js:price-unit-single-line",
+                "standard:sp:js:title-baseline",
+                "standard:sp:js:equal-row-height",
+                "standard:sp:js:cta-baseline",
+                "standard:sp:js:sp-stacks",
+                "standard:sp:js:reduced-motion",
+                "standard:sp:js:focus-visible",
+                "standard:sp:js:contact-navigation",
+                "standard:sp:nojs:response",
+                "standard:sp:nojs:three-plans",
+                "standard:sp:nojs:no-overflow",
+                "standard:sp:nojs:text-unclipped",
+                "standard:sp:nojs:title-single-line",
+                "standard:sp:nojs:touch-target",
+                "standard:sp:nojs:cta-target",
+                "standard:sp:nojs:price-unit-single-line",
+                "standard:sp:nojs:title-baseline",
+                "standard:sp:nojs:equal-row-height",
+                "standard:sp:nojs:cta-baseline",
+                "standard:sp:nojs:sp-stacks",
+                "standard:sp:nojs:reduced-motion",
+                "standard:sp:nojs:focus-visible",
+                "standard:sp:nojs:contact-navigation",
+                "long-copy:pc:js:response",
+                "long-copy:pc:js:three-plans",
+                "long-copy:pc:js:no-overflow",
+                "long-copy:pc:js:text-unclipped",
+                "long-copy:pc:js:title-single-line",
+                "long-copy:pc:js:touch-target",
+                "long-copy:pc:js:cta-target",
+                "long-copy:pc:js:price-unit-single-line",
+                "long-copy:pc:js:title-baseline",
+                "long-copy:pc:js:equal-row-height",
+                "long-copy:pc:js:cta-baseline",
+                "long-copy:pc:js:sp-stacks",
+                "long-copy:pc:js:reduced-motion",
+                "long-copy:pc:js:focus-visible",
+                "long-copy:pc:js:contact-navigation",
+                "long-copy:pc:nojs:response",
+                "long-copy:pc:nojs:three-plans",
+                "long-copy:pc:nojs:no-overflow",
+                "long-copy:pc:nojs:text-unclipped",
+                "long-copy:pc:nojs:title-single-line",
+                "long-copy:pc:nojs:touch-target",
+                "long-copy:pc:nojs:cta-target",
+                "long-copy:pc:nojs:price-unit-single-line",
+                "long-copy:pc:nojs:title-baseline",
+                "long-copy:pc:nojs:equal-row-height",
+                "long-copy:pc:nojs:cta-baseline",
+                "long-copy:pc:nojs:sp-stacks",
+                "long-copy:pc:nojs:reduced-motion",
+                "long-copy:pc:nojs:focus-visible",
+                "long-copy:pc:nojs:contact-navigation",
+                "long-copy:sp:js:response",
+                "long-copy:sp:js:three-plans",
+                "long-copy:sp:js:no-overflow",
+                "long-copy:sp:js:text-unclipped",
+                "long-copy:sp:js:title-single-line",
+                "long-copy:sp:js:touch-target",
+                "long-copy:sp:js:cta-target",
+                "long-copy:sp:js:price-unit-single-line",
+                "long-copy:sp:js:title-baseline",
+                "long-copy:sp:js:equal-row-height",
+                "long-copy:sp:js:cta-baseline",
+                "long-copy:sp:js:sp-stacks",
+                "long-copy:sp:js:reduced-motion",
+                "long-copy:sp:js:focus-visible",
+                "long-copy:sp:js:contact-navigation",
+                "long-copy:sp:nojs:response",
+                "long-copy:sp:nojs:three-plans",
+                "long-copy:sp:nojs:no-overflow",
+                "long-copy:sp:nojs:text-unclipped",
+                "long-copy:sp:nojs:title-single-line",
+                "long-copy:sp:nojs:touch-target",
+                "long-copy:sp:nojs:cta-target",
+                "long-copy:sp:nojs:price-unit-single-line",
+                "long-copy:sp:nojs:title-baseline",
+                "long-copy:sp:nojs:equal-row-height",
+                "long-copy:sp:nojs:cta-baseline",
+                "long-copy:sp:nojs:sp-stacks",
+                "long-copy:sp:nojs:reduced-motion",
+                "long-copy:sp:nojs:focus-visible",
+                "long-copy:sp:nojs:contact-navigation",
+                "fixture:isolation",
+                "fixtures:cleanup",
+                "source-unchanged"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-LOOK-01D",
@@ -15436,7 +15625,9 @@
         "event-finished:festival",
         "event-finished:campaign",
         "device-finished:compare",
-        "device-finished:read"
+        "device-finished:read",
+        "page:pricing-cards-standard",
+        "page:pricing-cards-long-copy"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -15769,7 +15960,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
-              "sha256": "419dcd12c68612f3c9148bc1d5f9d3a88704c5230e337ed8cd24b168f63abe4e",
+              "sha256": "1def36fbbb9d2b5f506627860cfb0abcec5c112fbd3d69f9ef7c65cee903de99",
               "row_names": [
                 "explicit:overrides-changed-site",
                 "fixtures:cleanup",
@@ -16890,7 +17081,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "f9910caac07e142331718c5b9b17f38304abf97942cd297d5178797cc2247624",
+              "sha256": "40b9fbee096d79c012f5de75a673dab8f1a9cde7de0759ccbcd9499e43c95bd1",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -16910,7 +17101,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "f9910caac07e142331718c5b9b17f38304abf97942cd297d5178797cc2247624",
+              "sha256": "40b9fbee096d79c012f5de75a673dab8f1a9cde7de0759ccbcd9499e43c95bd1",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -20821,7 +21012,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "b0488f988e86b222937911b06f6db8c75379b1058613684b42a6615ad51f203c",
+              "sha256": "7e09f947c56a1a9c2060c9bd639d365213a3f6cc0f7a1b390e8daef2eac28ed7",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -20846,7 +21037,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "b0488f988e86b222937911b06f6db8c75379b1058613684b42a6615ad51f203c",
+              "sha256": "7e09f947c56a1a9c2060c9bd639d365213a3f6cc0f7a1b390e8daef2eac28ed7",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -21214,7 +21405,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
-              "sha256": "37a0472656c2120259f1e27f009b6e5f771041595748babbfe0cddbe7ca2b01e",
+              "sha256": "d24a19cc7929e000064ad6f2d841408fc86fcdeb88fc6e61dee61377873cf485",
               "row_names": [
                 "404:all-three-variants-pc-sp-js-nojs",
                 "404:status-and-noindex",
@@ -22922,7 +23113,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "e884d28e9d22580ae4d51ca1b935d8d1457398b8836a3bfbc8d82dd0630c3d26",
+              "sha256": "884afd45e96b01a221080a66ef0f9717a037ae1fd6c2fad3fe51c5d288f38fd9",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -23074,7 +23265,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "90e718ffd01c80315217f85be6150a74d2bec81dc930b6a4bc61f1a94b92b12a",
+              "sha256": "8324fbcb405c216a565a09e04933eba4c8c2d12517782a0a1278d908f2385d3e",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -23436,7 +23627,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "e884d28e9d22580ae4d51ca1b935d8d1457398b8836a3bfbc8d82dd0630c3d26",
+              "sha256": "884afd45e96b01a221080a66ef0f9717a037ae1fd6c2fad3fe51c5d288f38fd9",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -23588,7 +23779,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "90e718ffd01c80315217f85be6150a74d2bec81dc930b6a4bc61f1a94b92b12a",
+              "sha256": "8324fbcb405c216a565a09e04933eba4c8c2d12517782a0a1278d908f2385d3e",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -24667,7 +24858,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "ce4931fe65d91227e01811966c311cfdf7d2e3ee1746ca1fbc9f0c871952b11d",
+              "sha256": "29bb1272cb7e9d7b9923ddf0e47d58d81b78b984d6ee2e3f386b26a99c2d23a4",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -24891,7 +25082,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "b1bbdcf5d08a30369c5784a7972f3e20516bae9f14b78fc667df78596fc00df3",
+              "sha256": "b88aaa85f635153ddbb1f06cff68b6ab6c013cbe7b57b5778a5e1b1243a2ca5f",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25179,7 +25370,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "0225445417b72b512d938121f95e91930da81f36b873ddfdc7afab61e10bca4e",
+              "sha256": "72285d810f514785f73bd156a86cbc1218e05b44a4449ab82b82950f17949384",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25580,7 +25771,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "766bba35fb501f9b006cf5c67325eaa4f843d01931853b8a3997026c7eeaf013",
+              "sha256": "18785b292ee550d09224d69c8585122c978d1039e31310b5cd40190f7f0d60ae",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -25669,7 +25860,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "01a14f866a14b0e66be9c23b55ba5fc5765b9828152ecd1b6621977c4df8cc4e",
+              "sha256": "0cdddf64e29f1150aeb8a46c9ab40468def487485990355be6f9a4aa68265149",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -25802,7 +25993,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "ce4931fe65d91227e01811966c311cfdf7d2e3ee1746ca1fbc9f0c871952b11d",
+              "sha256": "29bb1272cb7e9d7b9923ddf0e47d58d81b78b984d6ee2e3f386b26a99c2d23a4",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -26026,7 +26217,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "b1bbdcf5d08a30369c5784a7972f3e20516bae9f14b78fc667df78596fc00df3",
+              "sha256": "b88aaa85f635153ddbb1f06cff68b6ab6c013cbe7b57b5778a5e1b1243a2ca5f",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -26314,7 +26505,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "0225445417b72b512d938121f95e91930da81f36b873ddfdc7afab61e10bca4e",
+              "sha256": "72285d810f514785f73bd156a86cbc1218e05b44a4449ab82b82950f17949384",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -26715,7 +26906,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "766bba35fb501f9b006cf5c67325eaa4f843d01931853b8a3997026c7eeaf013",
+              "sha256": "18785b292ee550d09224d69c8585122c978d1039e31310b5cd40190f7f0d60ae",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -26804,7 +26995,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "01a14f866a14b0e66be9c23b55ba5fc5765b9828152ecd1b6621977c4df8cc4e",
+              "sha256": "0cdddf64e29f1150aeb8a46c9ab40468def487485990355be6f9a4aa68265149",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -27008,7 +27199,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "1be17d2a2dfa330fb6c51d9fcce673293d9fb8068809eab0061c6d240a2c978d",
+              "sha256": "ba41cc9527ced22896cfdc6ed3de4aa35c69d9fd8ce19e186e2f7b937e5184f0",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -27456,7 +27647,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "1be17d2a2dfa330fb6c51d9fcce673293d9fb8068809eab0061c6d240a2c978d",
+              "sha256": "ba41cc9527ced22896cfdc6ed3de4aa35c69d9fd8ce19e186e2f7b937e5184f0",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -28476,7 +28667,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "4e13d17c1ae2bb17467e0d624f797288c724f6ceed80266c4c746d6f46327f0d",
+              "sha256": "44f97f283438cd9402f6f6107b0e5c00f664f0b0c77c56441c6d47ac8cc2df55",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28601,7 +28792,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "fa6a6a8535957099d8cb55ea12b7626ed97dbbd6f0e7ff55b1347bd0d8a858ba",
+              "sha256": "e0b60b9e802b8553712493988c192ad632ebf10e5ad29570fa67457c01a17ee9",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -29312,7 +29503,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "fa6a6a8535957099d8cb55ea12b7626ed97dbbd6f0e7ff55b1347bd0d8a858ba",
+              "sha256": "e0b60b9e802b8553712493988c192ad632ebf10e5ad29570fa67457c01a17ee9",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -29356,7 +29547,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "f5a08f203e89684ca35c81214dcc346606f0e974ae181399a2c2a6d2e1babc90",
+              "sha256": "f900092209937a873eb39cbfa3c386af0e76db7589d55ebdf40ff19ae9e72f5c",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -29715,7 +29906,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "4e13d17c1ae2bb17467e0d624f797288c724f6ceed80266c4c746d6f46327f0d",
+              "sha256": "44f97f283438cd9402f6f6107b0e5c00f664f0b0c77c56441c6d47ac8cc2df55",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -29794,7 +29985,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "fa6a6a8535957099d8cb55ea12b7626ed97dbbd6f0e7ff55b1347bd0d8a858ba",
+              "sha256": "e0b60b9e802b8553712493988c192ad632ebf10e5ad29570fa67457c01a17ee9",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -29862,7 +30053,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "f5a08f203e89684ca35c81214dcc346606f0e974ae181399a2c2a6d2e1babc90",
+              "sha256": "f900092209937a873eb39cbfa3c386af0e76db7589d55ebdf40ff19ae9e72f5c",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -30165,7 +30356,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "bfb178f6c2d7c1711062d071c62c219ee32e42ed9eb96096bddab138a5ebb5b0",
+              "sha256": "96749783ad22402529856f6f4ac89b3177caaf629a5daa295097080e70dc0350",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -30234,8 +30425,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 223,
-    "partial": 39,
+    "missing": 222,
+    "partial": 40,
     "verified_in_poc": 32,
     "stale": 0
   },

@@ -1,0 +1,929 @@
+{
+  "schema": "wt-pricing-cards-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-pricing-cards.mjs": "84a572e045bf1238e7789867695fa92850f395126b400012f258ac284bfab0f7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/pricing.php": "d6446041a24ae74afaeca3a403bd0c943b64d5def8c9d716aff1969d3c7f1e5b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f93e5dae493896e305a72efda03245030adf58f6f58ca4cf65e93de742ae03cf"
+  },
+  "rows": [
+    {
+      "name": "standard:saved-content-roundtrip",
+      "pass": true
+    },
+    {
+      "name": "long-copy:saved-content-roundtrip",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:three-plans",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:touch-target",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:cta-target",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 330.375,
+          "y": 278.859375,
+          "bottom": 609.234375,
+          "buttonBottom": 588.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 152.65625,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 330.375,
+          "y": 278.859375,
+          "bottom": 609.234375,
+          "buttonBottom": 588.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 330.375,
+          "y": 278.859375,
+          "bottom": 609.234375,
+          "buttonBottom": 588.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "standard:pc:js:cta-baseline",
+      "pass": true,
+      "details": [
+        588.234375,
+        588.234375,
+        588.234375
+      ]
+    },
+    {
+      "name": "standard:pc:js:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:js:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:three-plans",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:touch-target",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:cta-target",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 330.375,
+          "y": 278.859375,
+          "bottom": 609.234375,
+          "buttonBottom": 588.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 152.65625,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 330.375,
+          "y": 278.859375,
+          "bottom": 609.234375,
+          "buttonBottom": 588.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 330.375,
+          "y": 278.859375,
+          "bottom": 609.234375,
+          "buttonBottom": 588.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "standard:pc:nojs:cta-baseline",
+      "pass": true,
+      "details": [
+        588.234375,
+        588.234375,
+        588.234375
+      ]
+    },
+    {
+      "name": "standard:pc:nojs:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "standard:pc:nojs:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:three-plans",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:touch-target",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:cta-target",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 160.609375,
+          "height": 287.625,
+          "y": 139.609375,
+          "bottom": 427.234375,
+          "buttonBottom": 406.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 472.234375,
+          "height": 318.015625,
+          "y": 451.234375,
+          "bottom": 769.25,
+          "buttonBottom": 748.25,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 814.25,
+          "height": 287.625,
+          "y": 793.25,
+          "bottom": 1080.875,
+          "buttonBottom": 1059.875,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "standard:sp:js:cta-baseline",
+      "pass": true,
+      "details": [
+        406.234375,
+        748.25,
+        1059.875
+      ]
+    },
+    {
+      "name": "standard:sp:js:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:js:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:three-plans",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:touch-target",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:cta-target",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 160.609375,
+          "height": 287.625,
+          "y": 139.609375,
+          "bottom": 427.234375,
+          "buttonBottom": 406.234375,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 472.234375,
+          "height": 318.015625,
+          "y": 451.234375,
+          "bottom": 769.25,
+          "buttonBottom": 748.25,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 814.25,
+          "height": 287.625,
+          "y": 793.25,
+          "bottom": 1080.875,
+          "buttonBottom": 1059.875,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "standard:sp:nojs:cta-baseline",
+      "pass": true,
+      "details": [
+        406.234375,
+        748.25,
+        1059.875
+      ]
+    },
+    {
+      "name": "standard:sp:nojs:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "standard:sp:nojs:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:three-plans",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:touch-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:cta-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 465.15625,
+          "y": 278.859375,
+          "bottom": 744.015625,
+          "buttonBottom": 723.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 152.65625,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 465.15625,
+          "y": 278.859375,
+          "bottom": 744.015625,
+          "buttonBottom": 723.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 465.15625,
+          "y": 278.859375,
+          "bottom": 744.015625,
+          "buttonBottom": 723.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "long-copy:pc:js:cta-baseline",
+      "pass": true,
+      "details": [
+        723.015625,
+        723.015625,
+        723.015625
+      ]
+    },
+    {
+      "name": "long-copy:pc:js:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:js:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:three-plans",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:touch-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:cta-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 465.15625,
+          "y": 278.859375,
+          "bottom": 744.015625,
+          "buttonBottom": 723.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 152.65625,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 465.15625,
+          "y": 278.859375,
+          "bottom": 744.015625,
+          "buttonBottom": 723.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 299.859375,
+          "height": 465.15625,
+          "y": 278.859375,
+          "bottom": 744.015625,
+          "buttonBottom": 723.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 152.671875,
+          "titleLines": 0.9995039682539683,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "long-copy:pc:nojs:cta-baseline",
+      "pass": true,
+      "details": [
+        723.015625,
+        723.015625,
+        723.015625
+      ]
+    },
+    {
+      "name": "long-copy:pc:nojs:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "long-copy:pc:nojs:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:three-plans",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:touch-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:cta-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 160.609375,
+          "height": 332.40625,
+          "y": 139.609375,
+          "bottom": 472.015625,
+          "buttonBottom": 451.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 517.015625,
+          "height": 318.015625,
+          "y": 496.015625,
+          "bottom": 814.03125,
+          "buttonBottom": 793.03125,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 859.03125,
+          "height": 332.40625,
+          "y": 838.03125,
+          "bottom": 1170.4375,
+          "buttonBottom": 1149.4375,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "long-copy:sp:js:cta-baseline",
+      "pass": true,
+      "details": [
+        451.015625,
+        793.03125,
+        1149.4375
+      ]
+    },
+    {
+      "name": "long-copy:sp:js:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:js:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:three-plans",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:text-unclipped",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:title-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:touch-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:cta-target",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:price-unit-single-line",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:title-baseline",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:equal-row-height",
+      "pass": true,
+      "details": [
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 160.609375,
+          "height": 332.40625,
+          "y": 139.609375,
+          "bottom": 472.015625,
+          "buttonBottom": 451.015625,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 517.015625,
+          "height": 318.015625,
+          "y": 496.015625,
+          "bottom": 814.03125,
+          "buttonBottom": 793.03125,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        },
+        {
+          "priceFits": true,
+          "unitSameLine": true,
+          "titleY": 859.03125,
+          "height": 332.40625,
+          "y": 838.03125,
+          "bottom": 1170.4375,
+          "buttonBottom": 1149.4375,
+          "buttonHeight": 48,
+          "buttonWidth": 284,
+          "titleLines": 0.999547689980654,
+          "fits": true,
+          "link": "#contact"
+        }
+      ]
+    },
+    {
+      "name": "long-copy:sp:nojs:cta-baseline",
+      "pass": true,
+      "details": [
+        451.015625,
+        793.03125,
+        1149.4375
+      ]
+    },
+    {
+      "name": "long-copy:sp:nojs:sp-stacks",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:focus-visible",
+      "pass": true
+    },
+    {
+      "name": "long-copy:sp:nojs:contact-navigation",
+      "pass": true
+    },
+    {
+      "name": "fixture:isolation",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "standard",
+      "device": "pc",
+      "file": "standard-pc.jpg",
+      "sha256": "e5b82d0056a4866ccbd218d712ed00a8934a09a3114ad08a7eedeb97abab5093"
+    },
+    {
+      "id": "standard",
+      "device": "sp",
+      "file": "standard-sp.jpg",
+      "sha256": "9f63e282106a7f5201ca0ad0f82375a962877c982b3465b8896ffc6e124d6f82"
+    },
+    {
+      "id": "long-copy",
+      "device": "pc",
+      "file": "long-copy-pc.jpg",
+      "sha256": "4b2ab4486e575f64a3e4daf7f0084355f56229634933db20519d188ec7ae3bc8"
+    },
+    {
+      "id": "long-copy",
+      "device": "sp",
+      "file": "long-copy-sp.jpg",
+      "sha256": "a4b06c0a162e6b49d34ddfe411dbde73390dc7d809110eff58e3b61bb178a654"
+    }
+  ]
+}

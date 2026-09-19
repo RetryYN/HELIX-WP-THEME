@@ -122,6 +122,13 @@ img{height:auto;max-width:100%}
 .wt-plan--featured{border-color:var(--wp--preset--color--accent)!important;box-shadow:0 0 0 1px var(--wp--preset--color--accent)}
 .wt-price{font-family:var(--wp--preset--font-family--latin);font-size:2rem;font-weight:700;line-height:1}
 .wt-price small{font-size:.875rem;font-weight:500;color:var(--wp--preset--color--mute)}
+/* 料金は内容量が違っても相談導線を同じ下端へ置く。既存の汎用カードには適用しない。 */
+.wt-pricing .wt-plan{display:flex;flex-direction:column;position:relative;overflow:visible;min-width:0}
+.wt-pricing .wt-plan > h3{margin-top:0}
+.wt-pricing .wt-plan > .wp-block-buttons{margin-top:auto;padding-top:1rem}
+.wt-pricing .wt-plan .wt-price{display:flex;align-items:baseline;gap:.2em;white-space:nowrap;font-size:var(--wp--preset--font-size--xxl)}
+.wt-pricing .wt-plan--featured > p:first-child{position:absolute;top:-.85rem;left:1.25rem;margin:0;line-height:1.6}
+
 
 /* 出現アニメ（IO、reduced-motion 尊重） */
 /* JS 初期化（html.wt-js）が確認できた場合のみ初期非表示にする: JS 無効・IO 非対応時は常に表示 */
