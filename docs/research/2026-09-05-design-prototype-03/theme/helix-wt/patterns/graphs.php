@@ -10,11 +10,11 @@
 <!-- wp:html -->
 <figure class="wt-graph wt-graph--bar" data-wt-graph="bar">
 <div class="wt-graph__rows">
-<div class="wt-graph__row" style="--v:62"><span class="wt-graph__label">リフトワン L1</span><span class="wt-graph__bar"><i></i></span><span class="wt-graph__val">62<small>cm</small></span></div>
-<div class="wt-graph__row" style="--v:71"><span class="wt-graph__label">スタンド・ライト S2</span><span class="wt-graph__bar"><i></i></span><span class="wt-graph__val">71<small>cm</small></span></div>
-<div class="wt-graph__row" style="--v:58"><span class="wt-graph__label">デスクフロー D3</span><span class="wt-graph__bar"><i></i></span><span class="wt-graph__val">58<small>cm</small></span></div>
+<div class="wt-graph__row" style="--v:62"><span class="wt-graph__label"><?php esc_html_e( 'リフトワン L1', 'helix-wt' ); ?></span><span class="wt-graph__bar"><i></i></span><span class="wt-graph__val">62<small>cm</small></span></div>
+<div class="wt-graph__row" style="--v:71"><span class="wt-graph__label"><?php esc_html_e( 'スタンド・ライト S2', 'helix-wt' ); ?></span><span class="wt-graph__bar"><i></i></span><span class="wt-graph__val">71<small>cm</small></span></div>
+<div class="wt-graph__row" style="--v:58"><span class="wt-graph__label"><?php esc_html_e( 'デスクフロー D3', 'helix-wt' ); ?></span><span class="wt-graph__bar"><i></i></span><span class="wt-graph__val">58<small>cm</small></span></div>
 </div>
-<table class="wt-graph__data screen-reader-text"><caption>最低高さ（cm、低いほど良い）</caption><tbody><tr><th scope="row">リフトワン L1</th><td>62</td></tr><tr><th scope="row">スタンド・ライト S2</th><td>71</td></tr><tr><th scope="row">デスクフロー D3</th><td>58</td></tr></tbody></table>
-<figcaption>最低高さの比較（cm、低いほど良い）</figcaption>
+<table class="wt-graph__data screen-reader-text"><caption><?php esc_html_e( '最低高さ（cm、低いほど良い）', 'helix-wt' ); ?></caption><tbody><tr><th scope="row"><?php esc_html_e( 'リフトワン L1', 'helix-wt' ); ?></th><td>62</td></tr><tr><th scope="row"><?php esc_html_e( 'スタンド・ライト S2', 'helix-wt' ); ?></th><td>71</td></tr><tr><th scope="row"><?php esc_html_e( 'デスクフロー D3', 'helix-wt' ); ?></th><td>58</td></tr></tbody></table>
+<figcaption><?php esc_html_e( '最低高さの比較（cm、低いほど良い）', 'helix-wt' ); ?></figcaption>
 </figure>
 <!-- /wp:html -->

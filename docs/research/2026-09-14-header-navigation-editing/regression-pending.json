@@ -1,0 +1,49 @@
+{
+  "schema": "wt-header-navigation-editing-regression-resolution.v1",
+  "completed": true,
+  "observedAtHandoff": true,
+  "reason": "All 21 dependent runtime acceptance cases were rerun after lab release and rebound only after their named rows passed.",
+  "resolvedCaseCount": 21,
+  "resolvedCaseIds": [
+    "WT-AC-NFR-SP-01A",
+    "WT-AC-NFR-SP-01B",
+    "WT-AC-A11Y-02A",
+    "WT-AC-A11Y-02B",
+    "WT-AC-PAGE-01A",
+    "WT-AC-PAGE-01B",
+    "WT-AC-PAID-01A",
+    "WT-AC-PAID-01B",
+    "WT-AC-INTERVIEW-01A",
+    "WT-AC-INTERVIEW-01B",
+    "WT-AC-BLP-01A",
+    "WT-AC-BLP-01B",
+    "WT-AC-PARTS-03A",
+    "WT-AC-PARTS-03B",
+    "WT-AC-PAID-01C",
+    "WT-AC-INTERVIEW-01C",
+    "WT-AC-BLP-01C",
+    "WT-AC-LEARN-01A",
+    "WT-AC-LEARN-01B",
+    "WT-AC-LEARN-01C",
+    "WT-AC-PAGE-01C"
+  ],
+  "verifierCorrection": {
+    "file": "scripts/verify-content-inheritance.mjs",
+    "reason": "Removed an implicit dependency on core navigation fallback by creating, selecting, deleting, and restoring an owned navigation fixture.",
+    "checks": 428,
+    "failed": 0
+  },
+  "finalAudit": {
+    "requirements": 133,
+    "acceptance": 294,
+    "missing": 236,
+    "partial": 26,
+    "verified_in_poc": 32,
+    "stale": 0
+  },
+  "catalog": {
+    "candidates": 633,
+    "screenshots": 1137,
+    "requirements": 133
+  }
+}

@@ -1,0 +1,10 @@
+/* PARTS の専用公開面検証。既存パーツの操作対象を拡張する。 */
+.wt-parts-catalog .wt-header a,
+.wt-parts-catalog .wt-header button {
+  min-width: 44px;
+  min-height: 44px;
+}
+.wt-parts-catalog .wt-header a {
+  display: inline-flex;
+  align-items: center;
+}

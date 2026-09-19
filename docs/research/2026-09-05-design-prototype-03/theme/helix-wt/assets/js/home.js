@@ -8,9 +8,9 @@
   var dots = nav ? nav.querySelector('.wt-home-slider__dots') : null;
   var prev = nav ? nav.querySelector('[data-wt-slide="prev"]') : null;
   var next = nav ? nav.querySelector('[data-wt-slide="next"]') : null;
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduced = function(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
   var current = 0;
-  function go(i){ current = (i + slides.length) % slides.length; track.scrollTo({ left: slides[current].offsetLeft, behavior: reduced ? 'auto' : 'smooth' }); update(); }
+  function go(i){ current = (i + slides.length) % slides.length; track.scrollTo({ left: slides[current].offsetLeft, behavior: reduced() ? 'auto' : 'smooth' }); update(); }
   function update(){
     if (!dots) return;
     Array.prototype.forEach.call(dots.children, function(d, i){ d.setAttribute('aria-current', i === current ? 'true' : 'false'); });
@@ -33,10 +33,10 @@
     var track = root.querySelector('.wt-hcar__track'); if (!track) return;
     var items = Array.prototype.slice.call(track.children); if (items.length < 2) return;
     var nav = root.querySelector('.wt-hcar__nav');
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reduced = function(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
     function step(dir){
       var w = items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
-      track.scrollBy({ left: dir * w, behavior: reduced ? 'auto' : 'smooth' });
+      track.scrollBy({ left: dir * w, behavior: reduced() ? 'auto' : 'smooth' });
     }
     if (nav) {
       var prev = nav.querySelector('[data-wt-slide="prev"]'), next = nav.querySelector('[data-wt-slide="next"]');
@@ -62,4 +62,21 @@
     });
   }
   tick(); setInterval(tick, 60000);
+})();
+
+/* HOMEのお知らせ: JSなしは全件、JSありは手動選択のタブ。外部通信・保存なし。 */
+(function(){
+  document.querySelectorAll('.wt-home .wt-home-tabs').forEach(function(list){
+    var tabs=Array.from(list.querySelectorAll('[role="tab"]'));
+    if(!tabs.length||tabs.some(function(tab){return !document.getElementById(tab.getAttribute('aria-controls'));}))return;
+    function select(tab){tabs.forEach(function(item){var active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!active;});}
+    tabs.forEach(function(tab,index){
+      tab.addEventListener('click',function(){select(tab);});
+      tab.addEventListener('keydown',function(event){
+        var next=event.key==='ArrowRight'?(index+1)%tabs.length:event.key==='ArrowLeft'?(index+tabs.length-1)%tabs.length:event.key==='Home'?0:event.key==='End'?tabs.length-1:null;
+        if(next!==null){event.preventDefault();tabs[next].focus();select(tabs[next]);}
+      });
+    });
+    select(tabs[0]);list.hidden=false;
+  });
 })();

@@ -1,0 +1,13 @@
+{
+  "schema": "wt-home-timer-rereview.v1",
+  "source": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js",
+  "priorSourceSha256": "e70778368d99e8fdbd69c7890f4d1068b6cb6f675876ea34c35f534c40efcbc5",
+  "currentSourceSha256": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb",
+  "priorImplementationPrefixUnchanged": true,
+  "countdownSourceSha256": "f4d5317d896a10c35373e7af04c2e7de952de26124a4d10a772b6671c9f6043d",
+  "countdownSourceUnchanged": true,
+  "addedTimerCalls": 0,
+  "intervalMilliseconds": 60000,
+  "purpose": "既存countdownの残り日・時・分と終了文言を更新。scroll/slide移動・自動再生を呼ばない。追加コードはHOMEタブの手動クリック/キーボード操作のみ。",
+  "verifierChange": "reviewedTimerSourcesのhome.js digestだけを再監査後に更新。timer禁止判定と他source digestは変更しない。"
+}

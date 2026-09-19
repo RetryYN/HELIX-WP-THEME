@@ -11,7 +11,7 @@ $u = get_theme_file_uri( 'assets/img' );
 <div class="wp-block-group alignfull wt-part wt-part--organizer" id="part-organizer">
 <!-- wp:html -->
 <div class="wt-lp-section-inner">
-<p class="wt-eyebrow">ORGANIZER</p><h2 id="part-organizer-title">主催・お問い合わせ</h2><table class="wt-part-organizer"><tbody><tr><th scope="row">主催</th><td>サンプル株式会社（架空）</td></tr><tr><th scope="row">共催</th><td>サンプル商工会（架空）</td></tr><tr><th scope="row">後援</th><td>設定された自治体・団体（PoC 用の表記）</td></tr><tr><th scope="row">運営事務局</th><td>サンプル株式会社 イベント事務局</td></tr><tr><th scope="row">お問い合わせ</th><td><a href="#part-organizer">event@example.invalid（ダミー）</a>／000-000-0000（平日 9:00-18:00）</td></tr></tbody></table>
+<p class="wt-eyebrow">ORGANIZER</p><h2 id="part-organizer-title"><?php esc_html_e( '主催・お問い合わせ', 'helix-wt' ); ?></h2><table class="wt-part-organizer"><tbody><tr><th scope="row"><?php esc_html_e( '主催', 'helix-wt' ); ?></th><td><?php esc_html_e( 'サンプル株式会社（架空）', 'helix-wt' ); ?></td></tr><tr><th scope="row"><?php esc_html_e( '共催', 'helix-wt' ); ?></th><td><?php esc_html_e( 'サンプル商工会（架空）', 'helix-wt' ); ?></td></tr><tr><th scope="row"><?php esc_html_e( '後援', 'helix-wt' ); ?></th><td><?php esc_html_e( '設定された自治体・団体（PoC 用の表記）', 'helix-wt' ); ?></td></tr><tr><th scope="row"><?php esc_html_e( '運営事務局', 'helix-wt' ); ?></th><td><?php esc_html_e( 'サンプル株式会社 イベント事務局', 'helix-wt' ); ?></td></tr><tr><th scope="row"><?php esc_html_e( 'お問い合わせ', 'helix-wt' ); ?></th><td><a href="#part-organizer"><?php esc_html_e( 'event@example.invalid（ダミー）', 'helix-wt' ); ?></a><?php esc_html_e( '／000-000-0000（平日 9:00-18:00）', 'helix-wt' ); ?></td></tr></tbody></table>
 </div>
 <!-- /wp:html -->
 </div>

@@ -1,0 +1,264 @@
+{
+  "schema": "wt-interview-lifecycle.v1",
+  "completed": true,
+  "rows": [
+    {
+      "name": "confirmed:status",
+      "pass": true
+    },
+    {
+      "name": "confirmed:detail",
+      "pass": true
+    },
+    {
+      "name": "confirmed:rest",
+      "pass": true
+    },
+    {
+      "name": "confirmed:collection",
+      "pass": true
+    },
+    {
+      "name": "confirmed:search",
+      "pass": true
+    },
+    {
+      "name": "confirmed:feed",
+      "pass": true
+    },
+    {
+      "name": "confirmed:archive",
+      "pass": true
+    },
+    {
+      "name": "confirmed:card",
+      "pass": true
+    },
+    {
+      "name": "confirmed:projection",
+      "pass": true
+    },
+    {
+      "name": "confirmation-revoked:status",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:detail",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:rest",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:collection",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:search",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:feed",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:archive",
+      "pass": false
+    },
+    {
+      "name": "confirmation-revoked:card",
+      "pass": true
+    },
+    {
+      "name": "confirmation-revoked:projection",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:status",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:detail",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:rest",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:collection",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:search",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:feed",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:archive",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:card",
+      "pass": false
+    },
+    {
+      "name": "reconfirmed-awaits-publish:projection",
+      "pass": false
+    },
+    {
+      "name": "explicitly-republished:status",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:detail",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:rest",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:collection",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:search",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:feed",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:archive",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:card",
+      "pass": true
+    },
+    {
+      "name": "explicitly-republished:projection",
+      "pass": true
+    },
+    {
+      "name": "broken-speaker-reference:status",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:detail",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:rest",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:collection",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:search",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:feed",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:archive",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:card",
+      "pass": false
+    },
+    {
+      "name": "broken-speaker-reference:projection",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:status",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:detail",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:rest",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:collection",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:search",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:feed",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:archive",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:card",
+      "pass": false
+    },
+    {
+      "name": "invalid-publish-rejected:projection",
+      "pass": false
+    },
+    {
+      "name": "missing-document:status",
+      "pass": false
+    },
+    {
+      "name": "missing-document:detail",
+      "pass": false
+    },
+    {
+      "name": "missing-document:rest",
+      "pass": false
+    },
+    {
+      "name": "missing-document:collection",
+      "pass": false
+    },
+    {
+      "name": "missing-document:search",
+      "pass": false
+    },
+    {
+      "name": "missing-document:feed",
+      "pass": false
+    },
+    {
+      "name": "missing-document:archive",
+      "pass": false
+    },
+    {
+      "name": "missing-document:card",
+      "pass": true
+    },
+    {
+      "name": "missing-document:projection",
+      "pass": false
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    }
+  ],
+  "implementation_commit": "56a3e26d81f3753d7488282a67733102800dafbc",
+  "role": "Before-fix observation; intentionally failing, not acceptance evidence"
+}

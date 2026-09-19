@@ -237,6 +237,8 @@ title "GATE 3: a11y（axe-core / critical・serious 違反 0 が合格）"
 
 AXE_AVAILABLE=false
 AXE_FAIL=0
+AXE_EXEC_ERRORS=0
+REQUIRE_A11Y="${REQUIRE_A11Y:-0}"
 
 # axe-core CLI または Playwright + axe-core の存在確認
 if command -v axe &>/dev/null; then
@@ -288,6 +290,7 @@ if [ "$WP_ALIVE" = "true" ] && [ "$AXE_AVAILABLE" = "true" ]; then
   AXE_RESULT_FILE="/tmp/axe-results-$$.json"
 
   if [ "$AXE_AVAILABLE" = "true" ]; then
+    set +e
     timeout 90 python3 - <<PYEOF 2>/tmp/axe-stderr-$$.txt
 import json, os, shutil, sys
 from pathlib import Path
@@ -359,6 +362,7 @@ print(f"axe results saved to {result_file}", flush=True)
 PYEOF
 
     AXE_RC=$?
+    set -e
     # timeout(124) または他の非ゼロ終了でもファイルなければ WARN で続行
     if [ "$AXE_RC" -eq 124 ]; then
       warn "a11y GATE: axe 実行が 90s でタイムアウトしました（WARN / スキップ）"
@@ -369,6 +373,7 @@ PYEOF
 
   if [ -f "${AXE_RESULT_FILE}" ]; then
     # 結果解析
+    set +e
     AXE_SUMMARY=$(python3 - <<PYEOF2 2>/dev/null
 import json, sys
 with open("${AXE_RESULT_FILE}") as f:
@@ -379,7 +384,12 @@ serious_count = 0
 moderate_count = 0
 minor_count = 0
 
+if not isinstance(all_results, dict) or not all_results:
+    raise ValueError("empty or malformed axe results")
+
 for url, result in all_results.items():
+    if not isinstance(result, dict) or ("error" not in result and not isinstance(result.get("violations"), list)):
+        raise ValueError("malformed axe page result")
     if "error" in result:
         print(f"ERROR [{url}]: {result['error']}")
         continue
@@ -405,6 +415,17 @@ for url, result in all_results.items():
 print(f"---SUMMARY--- critical={critical_count} serious={serious_count} moderate={moderate_count} minor={minor_count}")
 PYEOF2
 )
+    AXE_PARSE_RC=$?
+    set -e
+
+    if [ "$AXE_PARSE_RC" -ne 0 ]; then
+      if [ "$REQUIRE_A11Y" = "1" ]; then
+        fail "a11y GATE: malformed axe result"
+      else
+        warn "a11y GATE: malformed axe result"
+      fi
+      AXE_SUMMARY=""
+    fi
 
     # 詳細行の出力（サブシェル内なので AXE_FAIL カウントはここではしない）
     while IFS= read -r line; do
@@ -413,7 +434,12 @@ PYEOF2
       elif echo "$line" | grep -q "^MODERATE\|^MINOR"; then
         warn "axe: ${line}"
       elif echo "$line" | grep -q "^ERROR"; then
-        warn "axe: ${line}"
+        if [ "$REQUIRE_A11Y" = "1" ]; then
+          fail "axe: ${line}"
+          AXE_EXEC_ERRORS=$((AXE_EXEC_ERRORS + 1))
+        else
+          warn "axe: ${line}"
+        fi
       elif [ -n "$line" ]; then
         info "axe: ${line}"
       fi
@@ -433,7 +459,7 @@ PYEOF2
 
       info "axe 結果集計: critical=${AXE_CRITICAL} serious=${AXE_SERIOUS} moderate=${AXE_MODERATE} minor=${AXE_MINOR}"
 
-      TOTAL_FAIL_AXE=$((AXE_CRITICAL + AXE_SERIOUS))
+      TOTAL_FAIL_AXE=$((AXE_CRITICAL + AXE_SERIOUS + AXE_EXEC_ERRORS))
       if [ "$TOTAL_FAIL_AXE" -eq 0 ]; then
         pass "a11y GATE: critical/serious 違反 0 件（PASS）"
         [ "$AXE_MODERATE" -gt 0 ] && warn "a11y: moderate ${AXE_MODERATE} 件（改善推奨）"
@@ -442,16 +468,19 @@ PYEOF2
         fail "a11y GATE: critical ${AXE_CRITICAL} + serious ${AXE_SERIOUS} = ${TOTAL_FAIL_AXE} 件（FAIL）"
         AXE_FAIL=$((AXE_FAIL + TOTAL_FAIL_AXE))
       fi
+    elif [ "$AXE_PARSE_RC" -eq 0 ]; then
+      if [ "$REQUIRE_A11Y" = "1" ]; then fail "a11y GATE: result summary missing"; else warn "a11y GATE: result summary missing"; fi
     fi
 
     rm -f "${AXE_RESULT_FILE}"
   else
-    warn "a11y GATE: axe 結果ファイルが生成されなかった（スキップ）"
+    if [ "$REQUIRE_A11Y" = "1" ]; then fail "a11y GATE: required result missing"; else warn "a11y GATE: axe 結果ファイルが生成されなかった（スキップ）"; fi
     [ -f /tmp/axe-stderr-$$.txt ] && cat /tmp/axe-stderr-$$.txt | head -20
   fi
 
   rm -f /tmp/axe-stderr-$$.txt
 else
+  if [ "$REQUIRE_A11Y" = "1" ]; then fail "a11y GATE: required WordPress or execution environment unavailable"; fi
   if [ "$WP_ALIVE" = "false" ]; then
     warn "a11y GATE: WP 未稼働のためスキップ（ローカル実行時は 'docker compose up' で WP を起動してください）"
   else

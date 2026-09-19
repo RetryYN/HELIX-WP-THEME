@@ -8,6 +8,6 @@
 ?>
 <!-- wp:buttons {"className":"wt-cta-tier","layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons wt-cta-tier"><!-- wp:button {"backgroundColor":"cta","textColor":"cta-contrast","className":"wt-cta-tier__btn"} -->
-<div class="wp-block-button wt-cta-tier__btn"><a class="wp-block-button__link has-cta-contrast-color has-cta-background-color has-text-color has-background wp-element-button" href="#" rel="sponsored nofollow"><span class="wt-cta-tier__price">59,800 円〜</span><span class="wt-cta-tier__perk">今なら送料無料</span></a></div>
+<div class="wp-block-button wt-cta-tier__btn"><a class="wp-block-button__link has-cta-contrast-color has-cta-background-color has-text-color has-background wp-element-button" href="#" rel="sponsored nofollow"><span class="wt-cta-tier__price"><?php esc_html_e( '59,800 円〜', 'helix-wt' ); ?></span><span class="wt-cta-tier__perk"><?php esc_html_e( '今なら送料無料', 'helix-wt' ); ?></span></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->

@@ -11,7 +11,7 @@ $u = get_theme_file_uri( 'assets/img' );
 <div class="wp-block-group alignfull wt-part wt-part--tickets" id="part-tickets">
 <!-- wp:html -->
 <div class="wt-lp-section-inner">
-<p class="wt-eyebrow">TICKETS</p><h2 id="part-tickets-title">参加区分・料金</h2><ul class="wt-event-tickets wt-part-tickets"><li><b>一般</b><p class="wt-event-tickets__price">3,000<small>円</small></p><span>当日会場でお支払い</span></li><li class="is-featured"><b>早割</b><p class="wt-event-tickets__price">2,000<small>円</small></p><span>9 月末までの申込・資料付き</span></li><li><b>学生</b><p class="wt-event-tickets__price">無料</p><span>学生証の提示が必要</span></li></ul><p class="wt-lp-form__note">価格は PoC 用の架空値（税込表記の例）。</p>
+<p class="wt-eyebrow">TICKETS</p><h2 id="part-tickets-title"><?php esc_html_e( '参加区分・料金', 'helix-wt' ); ?></h2><ul class="wt-event-tickets wt-part-tickets"><li><b><?php esc_html_e( '一般', 'helix-wt' ); ?></b><p class="wt-event-tickets__price">3,000<small><?php esc_html_e( '円', 'helix-wt' ); ?></small></p><span><?php esc_html_e( '当日会場でお支払い', 'helix-wt' ); ?></span></li><li class="is-featured"><b><?php esc_html_e( '早割', 'helix-wt' ); ?></b><p class="wt-event-tickets__price">2,000<small><?php esc_html_e( '円', 'helix-wt' ); ?></small></p><span><?php esc_html_e( '9 月末までの申込・資料付き', 'helix-wt' ); ?></span></li><li><b><?php esc_html_e( '学生', 'helix-wt' ); ?></b><p class="wt-event-tickets__price"><?php esc_html_e( '無料', 'helix-wt' ); ?></p><span><?php esc_html_e( '学生証の提示が必要', 'helix-wt' ); ?></span></li></ul><p class="wt-lp-form__note"><?php esc_html_e( '価格は PoC 用の架空値（税込表記の例）。', 'helix-wt' ); ?></p>
 </div>
 <!-- /wp:html -->
 </div>

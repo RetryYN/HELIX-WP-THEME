@@ -1,0 +1,42 @@
+/* Event compositions: shared tokens, scoped reusable content, no animation dependency. */
+.wt-event .wt-side-layout{row-gap:var(--wp--preset--spacing--50)}
+.wt-event .wt-event-hero__inner{padding-block:var(--wp--preset--spacing--70);max-width:var(--wp--custom--content-max)}
+.wt-event .wt-event-hero h1{font-size:var(--wp--preset--font-size--hero);line-height:1.35;overflow-wrap:anywhere}
+.wt-event :is(h2,h3,b,dd,td,span,p,a){overflow-wrap:anywhere}
+.wt-event .wt-event-hero__grid{gap:var(--wp--preset--spacing--60);align-items:start}
+.wt-event .wt-event-hero__meta{gap:var(--wp--preset--spacing--30);margin-block:var(--wp--preset--spacing--40)}
+.wt-event .wt-event-hero__meta span{min-width:0}
+.wt-event .wt-event-hero--photo-overlay .wt-event-hero__inner{background:var(--wp--preset--color--contrast);color:var(--wp--preset--color--base);margin:var(--wp--preset--spacing--50);padding:var(--wp--preset--spacing--60);border-radius:var(--wp--custom--radius-l)}
+.wt-event .wt-event-hero .wt-lp-cta-action{min-height:var(--wp--custom--button-height);padding-inline:var(--wp--preset--spacing--50)}
+.wt-event .wt-event__section>.wt-lp-section-inner{padding-block:var(--wp--preset--spacing--70)}
+.wt-event .wt-event__section--info>.wt-lp-section-inner{padding-block:var(--wp--preset--spacing--50)}
+.wt-event .wt-event-info--inline-text>div{display:grid;grid-template-columns:5em minmax(0,1fr);gap:var(--wp--preset--spacing--30);padding-block:var(--wp--preset--spacing--20)}
+.wt-event .wt-event-info--inline-text dt{font-weight:700;color:var(--wp--preset--color--accent)}
+.wt-event .wt-event-info--inline-text dd{margin:0}
+.wt-event :is(.wt-event-highlights,.wt-event-speakers--cards-photo,.wt-event-tickets){gap:var(--wp--preset--spacing--40)}
+.wt-event :is(.wt-event-highlights,.wt-event-speakers--cards-photo,.wt-event-tickets)>li{min-width:0;padding:var(--wp--preset--spacing--50)}
+.wt-event .wt-event-speakers--cards-photo li{align-items:flex-start;text-align:start;border-top:var(--wp--preset--spacing--10) solid var(--wp--preset--color--accent)}
+.wt-event :is(.wt-event-highlights,.wt-event-speakers)>li>span{font-size:var(--wp--preset--font-size--m);line-height:1.75}
+.wt-event .wt-event-speakers--cards-photo li>img{margin-bottom:var(--wp--preset--spacing--30)}
+.wt-event .wt-event-speakers--cards-photo li>span{margin-top:auto;padding-top:var(--wp--preset--spacing--30)}
+.wt-event .wt-event-tickets li{display:flex;flex-direction:column;gap:var(--wp--preset--spacing--20)}
+.wt-event .wt-event-tickets li>span{margin-top:auto}
+.wt-event .wt-event-schedule--table{table-layout:fixed}
+.wt-event .wt-event-schedule--table :is(th,td){padding:var(--wp--preset--spacing--30)}
+.wt-event .wt-event-schedule--table :is(th,td):first-child{width:5em}
+.wt-event :is(a,button,input,select,summary):focus-visible{outline:var(--wp--preset--spacing--10) solid var(--wp--preset--color--accent);outline-offset:var(--wp--preset--spacing--10)}
+.wt-event .wt-event__section--apply{scroll-margin-top:var(--wp--preset--spacing--80)}
+.wt-event .wt-event-apply{max-width:var(--wp--custom--content-max)}
+.wt-event .wt-event-organizer a,.wt-event .wt-event-availability a{display:inline-flex;align-items:center;min-height:var(--wp--custom--button-height)}
+.wt-event .wt-event-fixed--sp-bottom-bar a{min-height:var(--wp--custom--button-height)}
+@media(max-width:599px){
+ .wt-event .wt-event-hero h1{font-size:var(--wp--preset--font-size--xxxl)}
+ .wt-event .wt-event-hero__inner{padding-block:var(--wp--preset--spacing--60)}
+ .wt-event .wt-event-hero--photo-overlay .wt-event-hero__inner{margin:var(--wp--preset--spacing--40);padding:var(--wp--preset--spacing--50)}
+ .wt-event .wt-event__section>.wt-lp-section-inner{padding-block:var(--wp--preset--spacing--60)}
+ .wt-event .wt-event-info--inline-text>div{grid-template-columns:4em minmax(0,1fr)}
+ .wt-event .wt-event-speakers--single-profile{grid-template-columns:minmax(0,1fr)}
+ .wt-event .wt-event-speakers--list li{flex-direction:column;gap:var(--wp--preset--spacing--20)}
+ body.wt-face-event.wt-fix-bundle-own:is(.wt-event-fixed-sp-bottom-bar,.wt-event-fixed-float-apply) .wt-footer::after,
+ body.wt-face-event:is(.wt-fixed-eff-sp-bottom-bar,.wt-fixed-eff-float-cta,.wt-fixed-eff-float-tel) .wt-footer::after{content:"";display:block;block-size:calc(var(--wp--custom--button-height) + var(--wp--preset--spacing--50) + env(safe-area-inset-bottom))}
+}

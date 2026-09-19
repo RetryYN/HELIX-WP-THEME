@@ -1,0 +1,411 @@
+{
+  "schema": "wt-event-regression-pending.v1",
+  "note": "All 43 dependent acceptance cases were rerun against current sources; every named proof row passed before digest rebinding.",
+  "count": 43,
+  "rows": [
+    {
+      "id": "WT-AC-TR-CORE-01A",
+      "requirement_id": "WT-TR-CORE-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-TR-CORE-01B",
+      "requirement_id": "WT-TR-CORE-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-TR-CORE-02A",
+      "requirement_id": "WT-TR-CORE-02",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-TR-CORE-02B",
+      "requirement_id": "WT-TR-CORE-02",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-TR-CORE-03A",
+      "requirement_id": "WT-TR-CORE-03",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-TR-CORE-03B",
+      "requirement_id": "WT-TR-CORE-03",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-VOCAB-02A",
+      "requirement_id": "WT-FR-VOCAB-02",
+      "remaining": [
+        "フロート追従・開閉ボタン化の配置方式",
+        "ページ種別設定と投稿メタの優先順位",
+        "見出し変更後の目次追従を同一fixtureで実測",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-VOCAB-02B",
+      "requirement_id": "WT-FR-VOCAB-02",
+      "remaining": [
+        "保存HTMLに固定された目次の検出負例",
+        "ページ種別設定と投稿メタで非表示にした条件の実測",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-NFR-PRIV-01A",
+      "requirement_id": "WT-NFR-PRIV-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-NFR-PRIV-01B",
+      "requirement_id": "WT-NFR-PRIV-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-NFR-SP-01A",
+      "requirement_id": "WT-NFR-SP-01",
+      "remaining": [
+        "他のページ種別、固定CTA・ドロワー・同意バーの被覆と積層順、共通/device別設定編集は未検証。",
+        "本文中リンクや実コンテンツ長の全組み合わせ、全ページ種別のデザイン品質を保証する検証ではない。",
+        "新規shared表示の共通パーツは、このnative常設面の操作寸法監査の対象外。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-NFR-SP-01B",
+      "requirement_id": "WT-NFR-SP-01",
+      "remaining": [
+        "他のページ種別、固定CTA・ドロワー・同意バーの被覆と積層順、共通/device別設定編集は未検証。",
+        "本文中リンクや実コンテンツ長の全組み合わせ、全ページ種別のデザイン品質を保証する検証ではない。",
+        "新規shared表示の共通パーツは、このnative常設面の操作寸法監査の対象外。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-A11Y-02A",
+      "requirement_id": "WT-NFR-A11Y-02",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-A11Y-02B",
+      "requirement_id": "WT-NFR-A11Y-02",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-ENV-01A",
+      "requirement_id": "WT-NFR-ENV-01",
+      "remaining": [
+        "current HEAD と CI に束縛した release receipt の発行",
+        "returnで連結するPHP文字列と、配列から後段で描画する表示文字列のgettext網羅および同経路の負例",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/languages/helix-wt.pot",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php",
+        "未完了または証跡変更: docs/research/2026-09-10-i18n-boundary/verify.json"
+      ]
+    },
+    {
+      "id": "WT-AC-ENV-01B",
+      "requirement_id": "WT-NFR-ENV-01",
+      "remaining": [
+        "returnで連結するPHP文字列と、配列から後段で描画する表示文字列を検出する負例",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/languages/helix-wt.pot",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php",
+        "未完了または証跡変更: docs/research/2026-09-10-i18n-boundary/verify.json"
+      ]
+    },
+    {
+      "id": "WT-AC-PAGE-01A",
+      "requirement_id": "WT-FR-PAGE-01",
+      "remaining": [
+        "本文・料金等の個別編集、共通事業者設定の管理UI、実在する第三者フォームへの引き渡し契約は未検証。",
+        "パターン一覧からの挿入は会社案内1種。全11パターンの個別挿入は未検証。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PAGE-01B",
+      "requirement_id": "WT-FR-PAGE-01",
+      "remaining": [
+        "製品全体の認証情報非保持、第三者サービスの実送信・二重送信抑止と責務契約の人間判断は残る。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PARTS-01C",
+      "requirement_id": "WT-FR-PARTS-01",
+      "remaining": [
+        "Site Editorでのメニュー選択・リンク編集・空への削除操作は未検証。",
+        "グループ別の異なるメニュー、階層メニューの空ラベル、全継承先の保存データ組合せは未検証。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-EVENT-01A",
+      "requirement_id": "WT-FR-EVENT-01",
+      "remaining": [
+        "区間・全申込型・地図とサイドバーの所属、無選択埋め込み通信の全境界",
+        "地域タイムゾーン名/DST/閏秒/小数秒など未対応の日時形式、取消/中止、残席閾値、全デザイン軸との組合せ",
+        "実際の予約・同時申込・定員更新・外部チケット処理",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-EVENT-01B",
+      "requirement_id": "WT-FR-EVENT-01",
+      "remaining": [
+        "区間・全申込型・地図とサイドバーの所属、無選択埋め込み通信の全境界",
+        "地域タイムゾーン名/DST/閏秒/小数秒など未対応の日時形式、取消/中止、残席閾値、全デザイン軸との組合せ",
+        "実際の予約・同時申込・定員更新・外部チケット処理",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PAID-01A",
+      "requirement_id": "WT-FR-PAID-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PAID-01B",
+      "requirement_id": "WT-FR-PAID-01",
+      "remaining": [
+        "未検査の配信経路と追加連携先に対する本文露出の境界検査を残す。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-INTERVIEW-01A",
+      "requirement_id": "WT-FR-INTERVIEW-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-INTERVIEW-01B",
+      "requirement_id": "WT-FR-INTERVIEW-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-BLP-01A",
+      "requirement_id": "WT-FR-BLP-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-BLP-01B",
+      "requirement_id": "WT-FR-BLP-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-FORM-01A",
+      "requirement_id": "WT-FR-FORM-01",
+      "remaining": [
+        "未検証の配列深さ/形状、国際化URL、文字数などの入力境界、確認方式とレイアウトの全組合せ",
+        "LP/イベントの全配置型の視覚・外部通信検証、slug/フロントページ/明示テンプレートの全境界組合せ",
+        "実nonce有効期間の経過、第三者フォームとの共存、サーバー側の保存・送信に関する全経路の検証",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-FORM-01B",
+      "requirement_id": "WT-FR-FORM-01",
+      "remaining": [
+        "未検証の配列深さ/形状、国際化URL、文字数などの入力境界、確認方式とレイアウトの全組合せ",
+        "LP/イベントの全配置型の視覚・外部通信検証、slug/フロントページ/明示テンプレートの全境界組合せ",
+        "実nonce有効期間の経過、第三者フォームとの共存、サーバー側の保存・送信に関する全経路の検証",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/event.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PARTS-03A",
+      "requirement_id": "WT-FR-PARTS-03",
+      "remaining": [
+        "5継承セットの追加例、全既存面、JS有効のドロワー操作、固定要素の被覆、導線の実在性、全認可・同意状態は未検証。",
+        "サイトエディターからの設定操作と、学習の階層/前後ナビ自体の継承設定は未完了。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PARTS-03B",
+      "requirement_id": "WT-FR-PARTS-03",
+      "remaining": [
+        "5継承セットの追加例、全既存面、JS有効のドロワー操作、固定要素の被覆、導線の実在性、全認可・同意状態は未検証。",
+        "サイトエディターからの設定操作と、学習の階層/前後ナビ自体の継承設定は未完了。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PAID-01C",
+      "requirement_id": "WT-FR-PAID-01",
+      "remaining": [
+        "REST個別・埋め込み・認可更新遅延と実キャッシュを含む追加経路の検査を残す。",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-INTERVIEW-01C",
+      "requirement_id": "WT-FR-INTERVIEW-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-BLP-01C",
+      "requirement_id": "WT-FR-BLP-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-LEARN-01A",
+      "requirement_id": "WT-FR-LEARN-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-LEARN-01B",
+      "requirement_id": "WT-FR-LEARN-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-LEARN-01C",
+      "requirement_id": "WT-FR-LEARN-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-LEARN-01D",
+      "requirement_id": "WT-FR-LEARN-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-PAGE-01C",
+      "requirement_id": "WT-FR-PAGE-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-SEARCH-01A",
+      "requirement_id": "WT-FR-SEARCH-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-SEARCH-01B",
+      "requirement_id": "WT-FR-SEARCH-01",
+      "remaining": [
+        "購読権限の付与/失効直後、編集者を含む全権限・全配信経路の行列",
+        "cold cache miss・transient evict後の再走査と、persistent object cache・第三者検索/認可/キャッシュ拡張との共存",
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-SEARCH-01C",
+      "requirement_id": "WT-FR-SEARCH-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    },
+    {
+      "id": "WT-AC-SEARCH-01D",
+      "requirement_id": "WT-FR-SEARCH-01",
+      "remaining": [
+        "実装・検証コードの変更: docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      ]
+    }
+  ],
+  "completed": true,
+  "resolved_at": "2026-09-15",
+  "resolved_count": 43,
+  "resolved_ids": [
+    "WT-AC-TR-CORE-01A",
+    "WT-AC-TR-CORE-01B",
+    "WT-AC-TR-CORE-02A",
+    "WT-AC-TR-CORE-02B",
+    "WT-AC-TR-CORE-03A",
+    "WT-AC-TR-CORE-03B",
+    "WT-AC-VOCAB-02A",
+    "WT-AC-VOCAB-02B",
+    "WT-AC-NFR-PRIV-01A",
+    "WT-AC-NFR-PRIV-01B",
+    "WT-AC-NFR-SP-01A",
+    "WT-AC-NFR-SP-01B",
+    "WT-AC-A11Y-02A",
+    "WT-AC-A11Y-02B",
+    "WT-AC-ENV-01A",
+    "WT-AC-ENV-01B",
+    "WT-AC-PAGE-01A",
+    "WT-AC-PAGE-01B",
+    "WT-AC-PARTS-01C",
+    "WT-AC-EVENT-01A",
+    "WT-AC-EVENT-01B",
+    "WT-AC-PAID-01A",
+    "WT-AC-PAID-01B",
+    "WT-AC-INTERVIEW-01A",
+    "WT-AC-INTERVIEW-01B",
+    "WT-AC-BLP-01A",
+    "WT-AC-BLP-01B",
+    "WT-AC-FORM-01A",
+    "WT-AC-FORM-01B",
+    "WT-AC-PARTS-03A",
+    "WT-AC-PARTS-03B",
+    "WT-AC-PAID-01C",
+    "WT-AC-INTERVIEW-01C",
+    "WT-AC-BLP-01C",
+    "WT-AC-LEARN-01A",
+    "WT-AC-LEARN-01B",
+    "WT-AC-LEARN-01C",
+    "WT-AC-LEARN-01D",
+    "WT-AC-PAGE-01C",
+    "WT-AC-SEARCH-01A",
+    "WT-AC-SEARCH-01B",
+    "WT-AC-SEARCH-01C",
+    "WT-AC-SEARCH-01D"
+  ]
+}

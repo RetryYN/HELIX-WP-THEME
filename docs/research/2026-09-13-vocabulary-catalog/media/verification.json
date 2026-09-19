@@ -1,0 +1,929 @@
+{
+  "schema": "wt-vocabulary-media-verification.v1",
+  "acceptance": [
+    "WT-AC-VOCAB-01C"
+  ],
+  "scope": "Static five-mode navigation / three vocabulary bodies / PC-SP JS-noJS",
+  "completed": true,
+  "checks": [
+    {
+      "name": "pc-js-icon:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-js-icon:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-js-upload:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-js-photo:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-js-number:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-js-none:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-icon:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-upload:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-photo:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-number:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs-none:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js-icon:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js-upload:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js-photo:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js-number:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js-none:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-icon:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-upload:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-photo:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-number:switch-navigation",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:same-body-dom",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:three-vocabularies",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:only-selected-media",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:media-nodes-match-mode",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:none-no-empty-wrapper",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:images-alt-dimensions-loaded",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:no-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs-none:switch-navigation",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "pc-js-icon.png",
+    "pc-js-upload.png",
+    "pc-js-photo.png",
+    "pc-js-number.png",
+    "pc-js-none.png",
+    "pc-nojs-icon.png",
+    "pc-nojs-upload.png",
+    "pc-nojs-photo.png",
+    "pc-nojs-number.png",
+    "pc-nojs-none.png",
+    "sp-js-icon.png",
+    "sp-js-upload.png",
+    "sp-js-photo.png",
+    "sp-js-number.png",
+    "sp-js-none.png",
+    "sp-nojs-icon.png",
+    "sp-nojs-upload.png",
+    "sp-nojs-photo.png",
+    "sp-nojs-number.png",
+    "sp-nojs-none.png"
+  ],
+  "sourceDigests": {
+    "scripts/build-vocabulary-media.mjs": "452adeb108162ec144eca2430482e78564113b016001352c1125da0f45886c44",
+    "scripts/verify-vocabulary-media.mjs": "d8448f83cb527e6997e66d7c9c9e07e5da499651ecb7dd449874eadfa67139a6",
+    "docs/research/2026-09-13-vocabulary-catalog/media/media.css": "bccd7bddab9e4b27e45a0ada6b8d658c3250e31341ecc36dd2029e910f8506c9",
+    "docs/research/2026-09-13-vocabulary-catalog/media/upload-workspace.svg": "2e3af28738d846b0c64eda0a2e3ac3abc331ad5a05555d1c1be568a1bb335bd6",
+    "docs/research/2026-09-13-vocabulary-catalog/media/icon.html": "8314cd28f7b306de9d85a6c0af147c4bde2658aa84650b9644269346096ca77e",
+    "docs/research/2026-09-13-vocabulary-catalog/media/upload.html": "16fa010c40aaa9f4c0a335b40ab3731c69c0ff8ca1360e5a4f5ff2ef220f49a0",
+    "docs/research/2026-09-13-vocabulary-catalog/media/photo.html": "a76d8215aa7bdfbf2b7b34aeabd2417cd55d3342923bf23472112e0722a6d5ea",
+    "docs/research/2026-09-13-vocabulary-catalog/media/number.html": "7c5c9f51b9935610ea02ca44cdff8a5468e865bb0b79b9a648f353dd3f2656ff",
+    "docs/research/2026-09-13-vocabulary-catalog/media/none.html": "3b59d41fdc1d3a7a7975efe1fdfd4b42ad00d9cd07c41b02ab8f8b78653e338c",
+    "docs/research/2026-09-13-vocabulary-catalog/catalog.css": "d86d4b9e194c5106a0040c270e948eb0b00e134a3b61cf2d6628bc845c1df3fa",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/img/media-pickup-2.jpg": "e99e4d083203cdeffb9936033839b9bcfb380549d994f61ec520950f5e06aef7"
+  },
+  "limitations": [
+    "WordPress upload, editor persistence and runtime block rendering not verified",
+    "Navigation selects separately generated static documents, not an editor attribute switch"
+  ]
+}

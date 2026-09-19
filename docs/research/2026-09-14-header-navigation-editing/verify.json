@@ -1,0 +1,1305 @@
+{
+  "completed": true,
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
+    "scripts/verify-header-navigation-editing.mjs": "a588b77c193ebeb8603e5ba4b18806e15f31113384ed55db9f288aaf366ced72",
+    "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1"
+  },
+  "checks": [
+    {
+      "name": "UI:save-reference-0",
+      "pass": true
+    },
+    {
+      "name": "UI:reenter-reference-0",
+      "pass": true
+    },
+    {
+      "name": "UI:canvas-reference-0",
+      "pass": true
+    },
+    {
+      "name": "UI:save-reference-1",
+      "pass": true
+    },
+    {
+      "name": "UI:reenter-reference-1",
+      "pass": true
+    },
+    {
+      "name": "UI:canvas-reference-1",
+      "pass": true
+    },
+    {
+      "name": "stage:no-global-post",
+      "pass": true
+    },
+    {
+      "name": "stage:saved-ref-remains-B",
+      "pass": true
+    },
+    {
+      "name": "stage:previous-and-next-visible",
+      "pass": true
+    },
+    {
+      "name": "device:SP-label",
+      "pass": true
+    },
+    {
+      "name": "stage:undo-no-post",
+      "pass": true
+    },
+    {
+      "name": "stage:redo-no-post",
+      "pass": true
+    },
+    {
+      "name": "explicit-origin:saved-attribute-C",
+      "pass": true
+    },
+    {
+      "name": "stage:leave-without-global-save",
+      "pass": true
+    },
+    {
+      "name": "stage:reenter-no-pending",
+      "pass": true
+    },
+    {
+      "name": "explicit-origin:selection-remains-C",
+      "pass": true
+    },
+    {
+      "name": "history:no-op-selection-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "history:no-op-does-not-create-phantom-level",
+      "pass": true
+    },
+    {
+      "name": "explicit-origin:subsequent-selection-remains-editable",
+      "pass": true
+    },
+    {
+      "name": "history:second-explicit-C-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "history:iframe-shortcut-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:iframe-shortcut-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "history:first-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:ambiguous-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "history:undo-after-ambiguous-redo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:second-undo-restores-origin-B",
+      "pass": true
+    },
+    {
+      "name": "history:first-redo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:post-redo-selection-remains-editable",
+      "pass": true
+    },
+    {
+      "name": "failure:saved-ref-remains-B",
+      "pass": true
+    },
+    {
+      "name": "failure:pending-recoverable",
+      "pass": true
+    },
+    {
+      "name": "retry:one-post-for-double-click",
+      "pass": true
+    },
+    {
+      "name": "retry:saved-A",
+      "pass": true
+    },
+    {
+      "name": "undo-after-apply:global-remains-A",
+      "pass": true
+    },
+    {
+      "name": "cancel-after-apply:restores-current-A",
+      "pass": true
+    },
+    {
+      "name": "rapid-change:only-confirmed-B-posted",
+      "pass": true
+    },
+    {
+      "name": "rapid-change:latest-A-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "rapid-change:cancel-restores-B",
+      "pass": true
+    },
+    {
+      "name": "UI:standard-navigation-entity-save",
+      "pass": true
+    },
+    {
+      "name": "UI:standard-navigation-reenter",
+      "pass": true
+    },
+    {
+      "name": "UI:header:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-nav:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-nav:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-cta:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-cta:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-announce:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-announce:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-center:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-center:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-two-rows:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-two-rows:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-overlay:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-overlay:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-tel:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-tel:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "UI:header-band:saved-reentered",
+      "pass": true
+    },
+    {
+      "name": "UI:header-band:valid-blocks",
+      "pass": true
+    },
+    {
+      "name": "db-backed:exists",
+      "pass": true
+    },
+    {
+      "name": "db-backed:numeric-post-php-rejected-by-core",
+      "pass": true
+    },
+    {
+      "name": "db-backed:site-editor-saved-part",
+      "pass": true
+    },
+    {
+      "name": "db-backed:slug-available",
+      "pass": true
+    },
+    {
+      "name": "db-backed:numeric-state-id",
+      "pass": true
+    },
+    {
+      "name": "db-backed:numeric-state-SP-label",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:390:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:390:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:390:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:1440:true:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:1440:true:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:1440:true:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:390:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:390:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:390:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-nav:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-cta:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-announce:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-center:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-two-rows:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-overlay:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-tel:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:native:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:1440:false:saved-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:1440:false:visible-navigation",
+      "pass": true
+    },
+    {
+      "name": "saved-db:header-band:shared:1440:false:overflow",
+      "pass": true
+    },
+    {
+      "name": "outside-editor:post:independent-A",
+      "pass": true
+    },
+    {
+      "name": "outside-editor:post:no-SP-binding",
+      "pass": true
+    },
+    {
+      "name": "outside-editor:post:no-global-pending",
+      "pass": true
+    },
+    {
+      "name": "outside-editor:wp_template_part:independent-A",
+      "pass": true
+    },
+    {
+      "name": "outside-editor:wp_template_part:no-SP-binding",
+      "pass": true
+    },
+    {
+      "name": "outside-editor:wp_template_part:no-global-pending",
+      "pass": true
+    },
+    {
+      "name": "REST:invalid--1",
+      "pass": true
+    },
+    {
+      "name": "REST:unchanged--1",
+      "pass": true
+    },
+    {
+      "name": "REST:invalid-1.5",
+      "pass": true
+    },
+    {
+      "name": "REST:unchanged-1.5",
+      "pass": true
+    },
+    {
+      "name": "REST:invalid-\"12\"",
+      "pass": true
+    },
+    {
+      "name": "REST:unchanged-\"12\"",
+      "pass": true
+    },
+    {
+      "name": "REST:invalid-[]",
+      "pass": true
+    },
+    {
+      "name": "REST:unchanged-[]",
+      "pass": true
+    },
+    {
+      "name": "REST:invalid-{}",
+      "pass": true
+    },
+    {
+      "name": "REST:unchanged-{}",
+      "pass": true
+    },
+    {
+      "name": "REST:invalid-2147483647",
+      "pass": true
+    },
+    {
+      "name": "REST:unchanged-2147483647",
+      "pass": true
+    },
+    {
+      "name": "REST:nonce-missing",
+      "pass": true
+    },
+    {
+      "name": "REST:nonce-unchanged",
+      "pass": true
+    },
+    {
+      "name": "REST:nonce-invalid",
+      "pass": true
+    },
+    {
+      "name": "REST:nonce-unchanged",
+      "pass": true
+    },
+    {
+      "name": "REST:low-permission",
+      "pass": true
+    },
+    {
+      "name": "REST:low-unchanged",
+      "pass": true
+    },
+    {
+      "name": "UI:none",
+      "pass": true
+    }
+  ],
+  "conditions": [
+    "saved-db:header:native:390:true",
+    "saved-db:header:shared:390:true",
+    "saved-db:header-nav:native:390:true",
+    "saved-db:header-nav:shared:390:true",
+    "saved-db:header-cta:native:390:true",
+    "saved-db:header-cta:shared:390:true",
+    "saved-db:header-announce:native:390:true",
+    "saved-db:header-announce:shared:390:true",
+    "saved-db:header-center:native:390:true",
+    "saved-db:header-center:shared:390:true",
+    "saved-db:header-two-rows:native:390:true",
+    "saved-db:header-two-rows:shared:390:true",
+    "saved-db:header-overlay:native:390:true",
+    "saved-db:header-overlay:shared:390:true",
+    "saved-db:header-tel:native:390:true",
+    "saved-db:header-tel:shared:390:true",
+    "saved-db:header-band:native:390:true",
+    "saved-db:header-band:shared:390:true",
+    "saved-db:header:native:1440:true",
+    "saved-db:header:shared:1440:true",
+    "saved-db:header-nav:native:1440:true",
+    "saved-db:header-nav:shared:1440:true",
+    "saved-db:header-cta:native:1440:true",
+    "saved-db:header-cta:shared:1440:true",
+    "saved-db:header-announce:native:1440:true",
+    "saved-db:header-announce:shared:1440:true",
+    "saved-db:header-center:native:1440:true",
+    "saved-db:header-center:shared:1440:true",
+    "saved-db:header-two-rows:native:1440:true",
+    "saved-db:header-two-rows:shared:1440:true",
+    "saved-db:header-overlay:native:1440:true",
+    "saved-db:header-overlay:shared:1440:true",
+    "saved-db:header-tel:native:1440:true",
+    "saved-db:header-tel:shared:1440:true",
+    "saved-db:header-band:native:1440:true",
+    "saved-db:header-band:shared:1440:true",
+    "saved-db:header:native:390:false",
+    "saved-db:header:shared:390:false",
+    "saved-db:header-nav:native:390:false",
+    "saved-db:header-nav:shared:390:false",
+    "saved-db:header-cta:native:390:false",
+    "saved-db:header-cta:shared:390:false",
+    "saved-db:header-announce:native:390:false",
+    "saved-db:header-announce:shared:390:false",
+    "saved-db:header-center:native:390:false",
+    "saved-db:header-center:shared:390:false",
+    "saved-db:header-two-rows:native:390:false",
+    "saved-db:header-two-rows:shared:390:false",
+    "saved-db:header-overlay:native:390:false",
+    "saved-db:header-overlay:shared:390:false",
+    "saved-db:header-tel:native:390:false",
+    "saved-db:header-tel:shared:390:false",
+    "saved-db:header-band:native:390:false",
+    "saved-db:header-band:shared:390:false",
+    "saved-db:header:native:1440:false",
+    "saved-db:header:shared:1440:false",
+    "saved-db:header-nav:native:1440:false",
+    "saved-db:header-nav:shared:1440:false",
+    "saved-db:header-cta:native:1440:false",
+    "saved-db:header-cta:shared:1440:false",
+    "saved-db:header-announce:native:1440:false",
+    "saved-db:header-announce:shared:1440:false",
+    "saved-db:header-center:native:1440:false",
+    "saved-db:header-center:shared:1440:false",
+    "saved-db:header-two-rows:native:1440:false",
+    "saved-db:header-two-rows:shared:1440:false",
+    "saved-db:header-overlay:native:1440:false",
+    "saved-db:header-overlay:shared:1440:false",
+    "saved-db:header-tel:native:1440:false",
+    "saved-db:header-tel:shared:1440:false",
+    "saved-db:header-band:native:1440:false",
+    "saved-db:header-band:shared:1440:false"
+  ],
+  "conditionCount": 72,
+  "assertionCount": 304,
+  "cleanup": true
+}

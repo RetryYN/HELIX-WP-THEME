@@ -1,0 +1,44 @@
+{
+  "schema": "wt-catalog-candidates.v1",
+  "note": "既存1型の通常本文と長文ストレス状態。型の追加は0。最終カタログ登録は親レーンが行う。",
+  "entries": [
+    {
+      "id": "page:pricing-cards-standard",
+      "face": "page",
+      "part": "pricing-cards",
+      "label": "料金3プラン・通常本文",
+      "variant": "standard",
+      "description": "3プランを横並びで比較し、おすすめを上辺ラベルで示す。本文は省略せず、PCではカード外枠と相談CTAの下端を揃える。SPは縦積み。価格と月単位を一行で表示。保存先は固定ページ本文のcore blocks。未挿入状態からhelix-wt/pricingを選ぶ。同期待機やtheme_modの継承はなく、既存のtheme.json尺度を使用。",
+      "purpose": "プランを比較して相談する",
+      "group": "ページ・本文",
+      "images": {
+        "sp": "../2026-09-19-pricing-cards/standard-sp.jpg",
+        "pc": "../2026-09-19-pricing-cards/standard-pc.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01"
+      ],
+      "referenceId": "helix-wt/pricing",
+      "evidence": "../2026-09-19-pricing-cards/verification.json"
+    },
+    {
+      "id": "page:pricing-cards-long-copy",
+      "face": "page",
+      "part": "pricing-cards",
+      "label": "料金3プラン・長い説明",
+      "variant": "long-copy",
+      "description": "同じ料金3プランに長い説明を入れた境界比較。別のデザイン型ではない。本文は省略せず、PCではカード外枠と相談CTAの下端を揃える。SPは縦積み。価格と月単位を一行で表示。保存先は固定ページ本文のcore blocks。未挿入状態からhelix-wt/pricingを選ぶ。同期待機やtheme_modの継承はなく、既存のtheme.json尺度を使用。",
+      "purpose": "プランを比較して相談する",
+      "group": "ページ・本文",
+      "images": {
+        "sp": "../2026-09-19-pricing-cards/long-copy-sp.jpg",
+        "pc": "../2026-09-19-pricing-cards/long-copy-pc.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01"
+      ],
+      "referenceId": "helix-wt/pricing",
+      "evidence": "../2026-09-19-pricing-cards/verification.json"
+    }
+  ]
+}

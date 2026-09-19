@@ -1,0 +1,8 @@
+{
+  "schema": "wt-device-vocabulary.v1",
+  "breakpoint": 768,
+  "presets": {
+    "compare": {"pc":{"table":"scroll","tabs":"tabs","gallery":"grid","toc":"open","cta":"inline"},"sp":{"table":"scroll","tabs":"accordion","gallery":"swipe","toc":"disclosure","cta":"full"}},
+    "read": {"pc":{"table":"scroll","tabs":"tabs","gallery":"grid","toc":"open","cta":"inline"},"sp":{"table":"cards","tabs":"accordion","gallery":"swipe","toc":"disclosure","cta":"sticky"}}
+  }
+}

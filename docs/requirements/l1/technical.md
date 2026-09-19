@@ -8,6 +8,9 @@ authority: docs/requirements/authority.md
 
 # L1 Technical Requirements
 
+> 2026-09-08 注記: 本文は WT-AGREE-01（event head 0231、9月5日）の承認済み基準。後続のPO判断・候補改定は [最新整理](../current-alignment.md) と L2 events / L3 IR を併読する。`g1_approved` は追加8件や改定6件の再承認を意味しない。本文内の問い件数・「現行」・対象制限は当時の記録として読む。
+
+
 | ID | 技術境界 |
 | --- | --- |
 | WT-TRL1-01 |WordPress FSE / theme.json v3 / Block API / PHP >= 8.1 / WP 7.1 系。子テーマは層 1（尺度）を再定義しない S3 対応範囲は WP 7.1+、PHP 8.2〜8.5、MySQL 8.4 / MariaDB 11 とし、対応表と iframed editor smoke を保持する。|

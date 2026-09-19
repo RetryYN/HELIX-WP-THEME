@@ -5,8 +5,7 @@
    既定値は theme.json settings.custom を参照。--wp--style--global--content-size /
    ...-wide-size は post-content 等 core 側が既に var() 経由で参照しているため、
    ?wt=width:<preset> による上書きはここで再定義するだけで下流に伝わる。
-   ヘッダー（parts/header*.html）は wideSize をブロック属性へ literal 値で持つため
-   通常の var() 継承では上書きできず、.wt-header__row 側に !important の再代入をかける。 */
+   ヘッダーは層1のheader-max尺度を継承し、contentSize/wideSizeを部品や変種では再定義しない。 */
 :root{
   --wt-content-max:var(--wp--custom--content-max,680px);
   --wt-wide-max:var(--wp--custom--wide-max,1120px);
@@ -17,7 +16,7 @@
 /* narrow / wide プリセット（既定 = default、theme.json の値のまま） */
 body.wt-width-narrow{--wp--style--global--content-size:640px;--wp--style--global--wide-size:1040px;--wt-content-max:640px;--wt-wide-max:1040px;--wt-header-max:1200px}
 body.wt-width-wide{--wp--style--global--content-size:760px;--wp--style--global--wide-size:1240px;--wt-content-max:760px;--wt-wide-max:1240px;--wt-header-max:1600px}
-.wt-header__row{max-width:var(--wt-header-max)!important;margin-inline:auto!important}
+body .wt-header .wt-header__row{max-width:var(--wt-header-max);margin-inline:auto}
 html{-webkit-text-size-adjust:100%}
 body{font-feature-settings:"palt" 0;overflow-wrap:anywhere}
 img{height:auto;max-width:100%}
@@ -43,8 +42,8 @@ img{height:auto;max-width:100%}
 .wp-block-button.is-style-outline .wp-block-button__link{border:1.5px solid currentColor;background:transparent;color:var(--wp--preset--color--accent)}
 
 /* 見出しスタイル */
-.wp-block-heading.is-style-wt-bar{padding-left:.75rem;border-left:4px solid var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-underline{padding-bottom:.3em;border-bottom:2px solid var(--wp--preset--color--contrast)}
+.wp-block-heading.is-style-wt-bar{padding-left:var(--wp--custom--heading--inset);border-left:var(--wp--custom--heading--bar) solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-underline{padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:var(--wp--custom--heading--rule) solid var(--wp--preset--color--contrast)}
 
 /* 囲み */
 .wp-block-group.is-style-wt-note,.wp-block-group.is-style-wt-point,.wp-block-group.is-style-wt-warn{padding:1rem 1.25rem;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem}
@@ -123,6 +122,13 @@ img{height:auto;max-width:100%}
 .wt-plan--featured{border-color:var(--wp--preset--color--accent)!important;box-shadow:0 0 0 1px var(--wp--preset--color--accent)}
 .wt-price{font-family:var(--wp--preset--font-family--latin);font-size:2rem;font-weight:700;line-height:1}
 .wt-price small{font-size:.875rem;font-weight:500;color:var(--wp--preset--color--mute)}
+/* 料金は内容量が違っても相談導線を同じ下端へ置く。既存の汎用カードには適用しない。 */
+.wt-pricing .wt-plan{display:flex;flex-direction:column;position:relative;overflow:visible;min-width:0}
+.wt-pricing .wt-plan > h3{margin-top:0}
+.wt-pricing .wt-plan > .wp-block-buttons{margin-top:auto;padding-top:1rem}
+.wt-pricing .wt-plan .wt-price{display:flex;align-items:baseline;gap:.2em;white-space:nowrap;font-size:var(--wp--preset--font-size--xxl)}
+.wt-pricing .wt-plan--featured > p:first-child{position:absolute;top:-.85rem;left:1.25rem;margin:0;line-height:1.6}
+
 
 /* 出現アニメ（IO、reduced-motion 尊重） */
 /* JS 初期化（html.wt-js）が確認できた場合のみ初期非表示にする: JS 無効・IO 非対応時は常に表示 */
@@ -313,41 +319,44 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 @media (min-width:1200px){
 .wt-toc--float{position:fixed;left:max(8px, calc(50% - (var(--wt-content-max) / 2) - 16px - var(--wt-sidebar-w)));top:calc(var(--wt-header-h) + 1.5rem);width:var(--wt-sidebar-w);max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
 .wt-toc--float .wt-toc__s::after{display:none}
+/* サイドバー併設時は外側レールを確保できないため、本文内に戻してPR表記・本文との重なりを避ける。 */
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-toc--float{position:static;inset:auto;width:auto;max-height:none;overflow:visible;margin-block:1.5rem;z-index:auto}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-toc--float .wt-toc__s::after{display:block}
 }
 @media (min-width:1200px){body.wt-toc-float .wp-block-post-content{}}
 
 /* ---------- 4. 見出し（block style、h2 10 型 / h3 5 型） ---------- */
 .wp-block-heading.is-style-wt-plain{font-weight:800}
-/* 2026-09-05 PO 反応3回目: 下線系（2tone/underline/dotted/underline-thin）の文字下端〜下線の距離が遠すぎた。
-   padding-bottom を固定 rem から 0.3em（文字サイズに追従）へ変更し、概ね 4〜8px に収める。 */
-.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:.3em;border-bottom:2px solid var(--wp--preset--color--line)}
-.wp-block-heading.is-style-wt-2tone::after{content:"";position:absolute;left:0;bottom:-2px;width:5rem;height:2px;background:var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-icon{display:flex;align-items:center;gap:.6rem}
+/* 文字に追従する装飾尺度は theme.json の heading トークンで一元管理する。 */
+.wp-block-heading{overflow-wrap:anywhere}
+.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:var(--wp--custom--heading--rule) solid var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-2tone::after{content:"";position:absolute;left:0;bottom:var(--wp--custom--heading--rule-negative);width:var(--wp--custom--heading--accent-length);max-width:100%;height:var(--wp--custom--heading--rule);background:var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-icon{display:flex;align-items:baseline;gap:var(--wp--custom--heading--gap)}
 /* 2026-09-05 PO 反応2回目: 既定アイコンが check-circle（チェックマーク）で、リスト側の is-style-wt-check
    （丸背景 + 白チェック）と見た目が被っていた。見出し側の既定は star（星）へ変更し、リストと区別する。 */
-.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:1.15em;height:1.15em;background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%203l2.8%205.9%206.4.8-4.7%204.4%201.2%206.4L12%2017.3%206.3%2020.5l1.2-6.4L2.8%209.7l6.4-.8z%22/%3E%3C/svg%3E")}
+.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:var(--wp--custom--heading--icon);height:var(--wp--custom--heading--icon);background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%203l2.8%205.9%206.4.8-4.7%204.4%201.2%206.4L12%2017.3%206.3%2020.5l1.2-6.4L2.8%209.7l6.4-.8z%22/%3E%3C/svg%3E")}
 .wp-block-heading.is-style-wt-icon[data-wt-icon="lightbulb"]::before{--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%2018h6M10%2021h4M12%203a6%206%200%200%201%203.5%2010.9c-.6.5-1%201.2-1%202.1h-5c0-.9-.4-1.6-1-2.1A6%206%200%200%201%2012%203z%22/%3E%3C/svg%3E")}
-.wp-block-heading.is-style-wt-band{background:var(--wp--preset--color--accent);color:#fff;padding:.55rem .9rem;border-radius:var(--wp--custom--radius-s)}
-.wp-block-heading.is-style-wt-bar-thin{padding-left:.6rem;border-left:3px solid var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-dotted{padding-bottom:.3em;border-bottom:2px dotted var(--wp--preset--color--line)}
-.wp-block-heading.is-style-wt-num{display:flex;align-items:baseline;gap:.5rem;counter-increment:wt-h3}
+.wp-block-heading.is-style-wt-band{background:var(--wp--preset--color--accent);color:var(--wp--custom--heading--ink);padding:var(--wp--custom--heading--padding-block) var(--wp--custom--heading--inset);border-radius:var(--wp--custom--radius-s)}
+.wp-block-heading.is-style-wt-bar-thin{padding-left:var(--wp--custom--heading--inset);border-left:var(--wp--custom--heading--bar-thin) solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-dotted{padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:var(--wp--custom--heading--rule) dotted var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-num{display:flex;align-items:baseline;gap:var(--wp--custom--heading--gap);counter-increment:wt-h3}
 .wp-block-post-content{counter-reset:wt-h3 wt-h2num}
 /* 2026-09-05 PO 反応2回目是正: (1) 番号（::before）が比較表 caption と同種の理由で 1 文字ずつ縦積みになっていた
    ——親が display:flex のとき、子は既定で flex-shrink:1 のため、行が窮屈だと自身の内容幅より縮んで折り返す。
    flex:0 0 auto と white-space:nowrap で「縮まない・折り返さない」ことを明示して防ぐ。
    (2) 番号の font-size は見出し本文（h3 テキスト）より大きくする指摘のため .9em → 1.5em（h3 文字基準の 1.5 倍）へ。 */
-.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-weight:800;font-size:1.5em;line-height:1}
+.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-weight:800;font-size:var(--wp--custom--heading--number-size);line-height:1}
 /* 2026-09-05 PO 反応2回目: h2 バリエーション +4（台帳 parts-pattern-taxonomy README §1 観察型から） */
-.wp-block-heading.is-style-wt-numbox{display:flex;align-items:center;gap:.75rem;counter-increment:wt-h2num}
-.wp-block-heading.is-style-wt-numbox::before{content:counter(wt-h2num,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;width:1.9em;height:1.9em;border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:#fff;font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:.7em}
-.wp-block-heading.is-style-wt-barbg{border-left:6px solid var(--wp--preset--color--accent);background:var(--wp--preset--color--surface);padding:.6rem .9rem;border-radius:0 var(--wp--custom--radius-s) var(--wp--custom--radius-s) 0}
-.wp-block-heading.is-style-wt-doubleline{padding-block:.4rem;border-top:1px solid var(--wp--preset--color--line);border-bottom:3px double var(--wp--preset--color--line)}
-.wp-block-heading.is-style-wt-label{display:flex;flex-direction:column;gap:.3rem}
-.wp-block-heading.is-style-wt-label::before{content:"SECTION";order:-1;font-family:var(--wp--preset--font-family--latin);font-size:.55em;font-weight:700;letter-spacing:.12em;color:var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-numbox{display:flex;align-items:flex-start;gap:var(--wp--custom--heading--gap);counter-increment:wt-h2num}
+.wp-block-heading.is-style-wt-numbox::before{content:counter(wt-h2num,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;width:var(--wp--custom--heading--badge-size);height:var(--wp--custom--heading--badge-size);border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:var(--wp--custom--heading--ink);font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:var(--wp--custom--heading--badge-text)}
+.wp-block-heading.is-style-wt-barbg{border-left:var(--wp--custom--heading--bar-strong) solid var(--wp--preset--color--accent);background:var(--wp--preset--color--surface);padding:var(--wp--custom--heading--padding-block) var(--wp--custom--heading--inset);border-radius:0 var(--wp--custom--radius-s) var(--wp--custom--radius-s) 0}
+.wp-block-heading.is-style-wt-doubleline{padding-block:var(--wp--custom--heading--underline-gap);border-top:1px solid var(--wp--preset--color--line);border-bottom:var(--wp--custom--heading--bar-thin) double var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-label{display:flex;flex-direction:column;gap:var(--wp--preset--spacing--10)}
+.wp-block-heading.is-style-wt-label::before{content:"SECTION";order:-1;font-family:var(--wp--preset--font-family--latin);font-size:var(--wp--custom--heading--label-text);font-weight:700;letter-spacing:var(--wp--custom--heading--label-tracking);color:var(--wp--preset--color--accent)}
 /* 2026-09-05 PO 反応2回目: h3 バリエーション +2 */
-.wp-block-heading.is-style-wt-marker{display:flex;align-items:center;gap:.5rem}
-.wp-block-heading.is-style-wt-marker::before{content:"";flex:0 0 auto;width:.6em;height:.6em;background:var(--wp--preset--color--accent);border-radius:2px}
-.wp-block-heading.is-style-wt-underline-thin{padding-bottom:.3em;border-bottom:1px solid var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-marker{display:flex;align-items:baseline;gap:var(--wp--custom--heading--gap)}
+.wp-block-heading.is-style-wt-marker::before{content:"";flex:0 0 auto;width:var(--wp--custom--heading--marker);height:var(--wp--custom--heading--marker);background:var(--wp--preset--color--accent);border-radius:var(--wp--custom--heading--rule)}
+.wp-block-heading.is-style-wt-underline-thin{padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:1px solid var(--wp--preset--color--line)}
 
 /* ---------- 5. 囲み（group block style 7 型 × 色 modifier .wt-c-*） ---------- */
 .wp-block-group[class*="is-style-wt-"]{--wt-box-accent:var(--wp--preset--color--accent);--wt-box-soft:var(--wp--preset--color--accent-soft);--wt-box-line:var(--wp--preset--color--line)}
@@ -604,13 +613,13 @@ body.wt-detext-on .wp-block-heading.is-style-wt-plain{font-weight:700}
 
 /* ---------- 10. 404（3 変種 + CV slot） ---------- */
 .wt-404{text-align:center}
-.wt-404__code{font-family:var(--wp--preset--font-family--latin);font-size:clamp(3rem,8vw,5rem);font-weight:800;color:var(--wp--preset--color--accent-soft);line-height:1;margin:0;letter-spacing:-.02em}
+.wt-404__code{font-family:var(--wp--preset--font-family--latin);font-size:clamp(3rem,8vw,5rem);font-weight:800;color:var(--wp--preset--color--accent);line-height:1;margin:0;letter-spacing:-.02em}
 .wt-404 h1{margin:.25rem 0 .5rem}
-.wt-404__why{color:var(--wp--preset--color--mute);font-size:.9375rem;max-width:36em;margin:0 auto 1.5rem}
+.wt-404__why{color:var(--wp--preset--color--mute);font-size:var(--wp--preset--font-size--m);max-width:36em;margin:0 auto 1.5rem}
 .wt-404__search{max-width:520px;margin:0 auto 2rem}
 .wt-404__search .wp-block-search__inside-wrapper{border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);overflow:hidden}
 .wt-404__search .wp-block-search__input{border:0;min-height:48px;padding:0 1rem;font-size:1rem}
-.wt-404__search .wp-block-search__button{border:0;min-height:48px;padding:0 1.25rem;background:var(--wp--preset--color--accent);color:#fff;font-weight:700}
+.wt-404__search .wp-block-search__button{border:0;min-height:48px;padding:0 1.25rem;background:var(--wp--preset--color--accent);color:var(--wp--preset--color--base);font-weight:700}
 .wt-404__sect{text-align:left;margin-top:var(--wp--preset--spacing--60)}
 .wt-404__sect>h2{font-size:var(--wp--preset--font-size--l);margin:0 0 1rem;display:flex;align-items:center;gap:.5rem}
 .wt-404__sect>h2::before{content:"";width:4px;height:1em;background:var(--wp--preset--color--accent);border-radius:2px}
@@ -620,7 +629,7 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
 .wt-404__cats .wp-block-categories a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:1px solid var(--wp--preset--color--line);border-radius:999px;text-decoration:none;color:var(--wp--preset--color--contrast);font-size:.875rem;background:var(--wp--preset--color--base)}
 .wt-404__home{margin-top:1.5rem}
 .wt-404 .wt-related .wp-block-post-template{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:599px){.wt-404 .wt-related .wp-block-post-template{grid-template-columns:1fr 1fr}}
+@media (max-width:599px){.wt-404 .wt-related .wp-block-post-template{grid-template-columns:1fr}}
 .wt-suggest{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
 .wt-suggest a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;background:var(--wp--preset--color--accent-soft);color:var(--wp--preset--color--accent);text-decoration:none;font-weight:700;font-size:.875rem}
 /* CV slot lane（LP / 比較記事 / 問い合わせ） */
@@ -638,7 +647,7 @@ body.wt-nf-popular .wt-404__variant--popular,body.wt-nf-cta .wt-404__variant--ct
    justify-content:flex-end（既定 CSS）で「ロゴ左・残り全部右」に統一する。
    order は旧構造（wt-header__row の直接子として cta / nav が並ぶ想定）の名残なので、
    ネスト後も nav より前に出るよう order:0（ソース順）へ戻す。 */
-.wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
+html.wt-js .wt-header--cta .wp-block-navigation__responsive-container-open:not(.always-shown){display:inline-flex!important}
 .wt-header--cta .wp-block-navigation__responsive-container:not(.is-menu-open){display:none}
 .wt-header--cta .wt-header__cta{order:0}
 @media (max-width:599px){.wt-header--cta .wt-header__cta .wp-block-button__link{min-height:40px}}
@@ -710,8 +719,8 @@ body.wt-cat-list-featured-grid .wt-cat-list>li:first-child .wt-cat-card__excerpt
 body.wt-cat-list-featured-grid .wt-cat-list>li:first-child .wp-block-post-featured-image img{aspect-ratio:21/9}
 .wt-cat-pagination{margin-top:var(--wp--preset--spacing--60)}
 .wt-cat-pagination a,.wt-cat-pagination span{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 .75rem}
-body.wt-cat-pagination-numbers .wp-block-query-pagination-previous,body.wt-cat-pagination-numbers .wp-block-query-pagination-next{display:none}
-body.wt-cat-pagination-prev-next .wp-block-query-pagination-numbers{display:none}
+body.wt-cat-pagination-numbers .wt-cat-pagination .wp-block-query-pagination-previous,body.wt-cat-pagination-numbers .wt-cat-pagination .wp-block-query-pagination-next{display:none}
+body.wt-cat-pagination-prev-next .wt-cat-pagination .wp-block-query-pagination-numbers{display:none}
 .wt-load-more{display:none;align-items:center;justify-content:center;min-height:48px;margin:var(--wp--preset--spacing--60) auto 0;padding:0 1.25rem;border:1px solid var(--wp--preset--color--accent);border-radius:999px;background:var(--wp--preset--color--base);color:var(--wp--preset--color--accent);font-weight:700;cursor:pointer}
 html.wt-js body.wt-cat-pagination-load-more .wt-cat-pagination{display:none}
 html.wt-js body.wt-cat-pagination-load-more .wt-load-more:not([hidden]){display:flex}.wt-load-more[hidden]{display:none!important}
@@ -1244,7 +1253,7 @@ body.wt-sp-center-logo .wt-header__nav .wp-block-navigation{min-width:44px}
 /* 適用範囲（Astra 是正 2 巡目）: 「numbox の h2 と同じ親コンテナ（post-content 直下でも Group 内でも）に置かれた num の h3」だけを親番号付きにする。Group に入れた numbox も対象で、別コンテナの h3 には波及しない（同一本文内の別セクションの単独 num は従来の連番のまま）。同じ親コンテナ内では、numbox の h2 を 1 つでも使う本文では num の h3 がすべて「直前の numbox 番号-連番」になる。
    通常 h2 が混在する場合も h2 ごとに連番は振り直す（通常 h2 は親番号を進めない）。「numbox 以外の h2 の配下だけ単独連番」は CSS では判定できないため、混在は想定外として README に明記 */
 :is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > h2:not(.is-style-wt-numbox){counter-set:wt-h3 0}
-:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:1.15em}
+:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:var(--wp--custom--heading--nested-number-size)}
 /* numbox を（入れ子の深さを問わず）含むコンテナ（Group 等）の直後の兄弟から wt-h3 を 0 に戻す（入れ子 Group の外へ出る境界も対象。Astra 4 巡目）。これで後続の別コンテナ・post-content 直下の単独 num は 01 から数え直す（wt-h2num は本文全体で続く）。counter-set は後続兄弟へ伝わる（counter-reset は伝わらない。1243 行の注記と同じ実測） */
 .wp-block-post-content :has(.is-style-wt-numbox) + *,.wp-block-post-content > :has(.is-style-wt-numbox) + *{counter-set:wt-h3 0}
 /* 直後の兄弟が num の h3 自身なら 1（counter-set は counter-increment の後に適用されるため 0 にすると 00 になる。CSS Lists 3 の適用順） */
@@ -1820,9 +1829,9 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 .wt-form__yesnos .wt-form__yesno label{margin-right:1rem}
 .wt-form__note{display:block;margin-top:.25rem;font-size:.75rem;color:var(--wp--preset--color--mute)}
 .wt-form__privacy{margin:.5rem 0 0;font-size:.875rem;color:var(--wp--preset--color--mute)}
-.wt-form__captcha-q{display:inline-block;margin-right:.75rem;padding:.4rem .75rem;border-radius:6px;background:var(--wp--preset--color--soft);font-weight:700;font-family:var(--wp--preset--font-family--mono,monospace)}
+.wt-form__captcha-q{display:inline-block;margin-right:.75rem;padding:.4rem .75rem;border-radius:6px;background:var(--wp--preset--color--surface);font-weight:700;font-family:var(--wp--preset--font-family--mono,monospace)}
 .wt-form__row--captcha .wt-form__control{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}.wt-form__row--captcha input{max-width:6rem!important}
-.wt-form__captcha-slot{display:grid;place-items:center;height:78px;max-width:304px;border:1px dashed var(--wp--preset--color--line);border-radius:6px;color:var(--wp--preset--color--mute);font-size:.875rem;background:var(--wp--preset--color--soft)}
+.wt-form__captcha-slot{display:grid;place-items:center;height:78px;max-width:304px;border:1px dashed var(--wp--preset--color--line);border-radius:6px;color:var(--wp--preset--color--mute);font-size:.875rem;background:var(--wp--preset--color--surface)}
 .wt-form__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .wt-form__actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:.5rem}
 .wt-form__submit,.wt-form__next,.wt-form__back{min-height:48px;padding:.75rem 1.75rem;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer}
@@ -1838,8 +1847,11 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 .wt-form--layout-label-left .wt-form__row{grid-template-columns:11rem minmax(0,1fr);align-items:start}.wt-form--layout-label-left .wt-form__label{padding-top:.75rem}.wt-form--layout-label-left .wt-form__row--checkbox,.wt-form--layout-label-left .wt-form__row--privacy{grid-template-columns:minmax(0,1fr)}}
 .wt-form--layout-placeholder-only .wt-form__row:not(.wt-form__row--radio):not(.wt-form__row--yesno):not(.wt-form__row--date3):not(.wt-form__row--captcha):not(.wt-form__row--file) .wt-form__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wt-form--layout-placeholder-only .wt-form__row{position:relative}
-.wt-form__steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.25rem;margin:0 0 .5rem;padding:0;list-style:none;counter-reset:wt-step}
-.wt-form__steps li{counter-increment:wt-step;padding:.5rem .25rem;text-align:center;font-size:.8125rem;font-weight:700;color:var(--wp--preset--color--mute);border-bottom:3px solid var(--wp--preset--color--line)}.wt-form__steps li::before{content:counter(wt-step) ". "}.wt-form__steps li.is-current{color:var(--wp--preset--color--accent);border-color:var(--wp--preset--color--accent)}.wt-form__steps li.is-done{color:var(--wp--preset--color--contrast);border-color:var(--wp--preset--color--accent)}
+.wt-form__steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 0 .75rem;padding:0;list-style:none;counter-reset:wt-step}
+.wt-form__steps::before{content:"";position:absolute;top:15px;right:16.666%;left:16.666%;height:2px;background:var(--wp--preset--color--line)}
+.wt-form__steps li{position:relative;z-index:1;display:grid;justify-items:center;gap:.4rem;counter-increment:wt-step;padding:0 .25rem .35rem;text-align:center;font-size:.8125rem;font-weight:700;line-height:1.35;color:var(--wp--preset--color--mute)}
+.wt-form__steps li::before{content:counter(wt-step);display:grid;place-items:center;width:30px;height:30px;box-sizing:border-box;border:2px solid var(--wp--preset--color--line);border-radius:50%;background:var(--wp--preset--color--base);color:var(--wp--preset--color--mute);font-size:.75rem;line-height:1}
+.wt-form__steps li.is-current{color:var(--wp--preset--color--accent)}.wt-form__steps li.is-current::before{border-color:var(--wp--preset--color--accent);background:var(--wp--preset--color--accent);color:#fff;box-shadow:0 0 0 4px var(--wp--preset--color--accent-soft)}.wt-form__steps li.is-done{color:var(--wp--preset--color--contrast)}.wt-form__steps li.is-done::before{border-color:var(--wp--preset--color--accent);color:var(--wp--preset--color--accent)}
 .wt-form__step{display:grid;gap:1rem;margin:0;padding:0;border:0;min-width:0}.wt-form__step[hidden]{display:none}
 /* 確認画面 / 同一ページ見直し */
 .wt-form__review{margin:0;display:grid;gap:0}.wt-form__review>div{display:grid;grid-template-columns:minmax(0,1fr);gap:.15rem;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line)}.wt-form__review dt{font-size:.8125rem;font-weight:700;color:var(--wp--preset--color--mute)}.wt-form__review dd{margin:0;overflow-wrap:anywhere}
@@ -1847,7 +1859,7 @@ body.wt-face-category:not(.wt-cat-side-classic):not(.wt-cat-side-off).wt-side-la
 .wt-form__inline-review{padding:1.25rem;border:2px solid var(--wp--preset--color--accent);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--accent-soft)}.wt-form__inline-review h3{margin:0 0 .5rem;font-size:1.0625rem}
 .wt-form__form.is-reviewing>:not(.wt-form__inline-review):not(input[type=hidden]):not(.wt-form__hp){display:none}
 /* 代替導線 */
-.wt-form__side{padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--soft);text-align:center}
+.wt-form__side{padding:1.25rem;border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--surface);text-align:center}
 .wt-form__side-lead{margin:0 0 .5rem;font-weight:700}.wt-form__side-note{margin:.5rem 0 0;font-size:.8125rem;color:var(--wp--preset--color--mute)}
 .wt-form__side-tel{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;font-size:1.5rem;font-weight:700;color:var(--wp--preset--color--contrast);text-decoration:none}
 .wt-form__side-link{display:inline-flex;align-items:center;min-height:44px;font-weight:700;overflow-wrap:anywhere}
@@ -1882,3 +1894,49 @@ body.wt-face-lp:not(.wt-head-bundle-lp) .wt-lp-header{display:none!important}
 body.wt-lp-form-block .wt-lp-form--block{display:block;margin-top:2rem}
 body.wt-event-apply-block-form .wt-event-apply--block-form{display:block;margin-top:1rem}
 .wt-lp-form--block .wt-form,.wt-event-apply--block-form .wt-form{padding:0}
+
+/* WT-NFR-A11Y-02: 操作と内容を残して動きだけを停止する。 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 読む単位を保つ。翻訳で一文節が列幅を超えた場合は内部で折り返す。 */
+.wt-lp-phrase{display:inline-block;max-width:100%;overflow-wrap:anywhere;vertical-align:top}
+.wt-lp-hero__copy h1:has(.wt-lp-phrase){font-size:clamp(2rem,3.6vw,3.25rem)}
+.wt-event-info--inline-text>div{display:inline}
+.wt-event-info--inline-text>div+div::before{content:" ／ ";color:var(--wp--preset--color--mute)}
+.wt-event-info--inline-text dt,.wt-event-info--inline-text dd{display:inline;margin:0}
+.wt-event-info--inline-text dt{font-weight:700;color:var(--wp--preset--color--accent);margin-right:.5em}
+@media(max-width:700px){
+ .wt-event-info--inline-text>div{display:grid;grid-template-columns:4em minmax(0,1fr);gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--wp--preset--color--line)}
+ .wt-event-info--inline-text>div+div::before{content:none}
+ .wt-event-info--inline-text dt,.wt-event-info--inline-text dd{display:block;line-height:1.8}
+ .wt-event-info--inline-text dt{margin:0;white-space:nowrap}
+}
+
+/* 404 回復導線: 検索 → 選択した案内 → 共通CV導線を段階的に読む。 */
+.wt-404__variant,.wt-404__cats{padding:var(--wp--preset--spacing--50);border:1px solid var(--wp--preset--color--line);border-radius:var(--wp--custom--radius-m);background:var(--wp--preset--color--base)}
+.wt-404__search:focus-within{outline:2px solid var(--wp--preset--color--accent);outline-offset:4px;border-radius:var(--wp--custom--radius-m)}
+.wt-404 .wt-cv__item{grid-template-rows:auto auto 1fr auto;margin-block:0}
+.wt-404 .wt-cv__item .wp-block-button,.wt-404 .wt-cv__item .wp-block-button__link{width:100%}
+.wt-404 .wt-rcard .wp-block-post-title a{display:flex;align-items:center;min-height:var(--wp--custom--button-height)}
+.wt-404 .wt-suggest a{max-width:100%;padding-block:var(--wp--preset--spacing--20);overflow-wrap:anywhere}
+.wt-404 .wt-suggest li{max-width:100%}
+@media(max-width:599px){
+ .wt-404__variant,.wt-404__cats{padding:var(--wp--preset--spacing--40)}
+ .wt-404 h1{font-size:var(--wp--preset--font-size--xl);text-wrap:balance}
+ .wt-404__why{text-align:left}
+}
+
+/* native/sharedのどちらでもJSなしで標準ナビへ到達できる。 */
+html:not(.wt-js) .wt-header .wp-block-navigation__responsive-container{display:block;position:static;width:auto;height:auto}
+html:not(.wt-js) .wt-header .wp-block-navigation__responsive-container-open{display:none}
+html:not(.wt-js) .wt-header .wp-block-navigation__container{flex-wrap:wrap;gap:var(--wp--preset--spacing--30)}
+html:not(.wt-js) .wt-header .wp-block-navigation-item__content{display:inline-flex;align-items:center;min-height:var(--wp--custom--tap-min)}
+html:not(.wt-js) .wt-header .wp-block-navigation__submenu-container{position:static;opacity:1;visibility:visible;height:auto;width:auto;overflow:visible}
+html:not(.wt-js) .wt-header .wp-block-navigation-submenu__toggle{display:none}
+@media(max-width:599px){html:not(.wt-js) .wt-header__row{flex-wrap:wrap}html:not(.wt-js) .wt-header__nav{flex:1 0 100%;order:10}}

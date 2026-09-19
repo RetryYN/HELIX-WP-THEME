@@ -1,0 +1,129 @@
+{
+  "completed": true,
+  "conditionCount": 18,
+  "assertionCount": 29,
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
+    "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06"
+  },
+  "rows": [
+    {
+      "name": "body:plain:independent",
+      "pass": true
+    },
+    {
+      "name": "body:plain:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "footer:plain:independent",
+      "pass": true
+    },
+    {
+      "name": "footer:plain:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "body:copied:independent",
+      "pass": true
+    },
+    {
+      "name": "body:copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "footer:copied:independent",
+      "pass": true
+    },
+    {
+      "name": "footer:copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "body:sp-copied:independent",
+      "pass": true
+    },
+    {
+      "name": "body:sp-copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "footer:sp-copied:independent",
+      "pass": true
+    },
+    {
+      "name": "footer:sp-copied:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "header:shared",
+      "pass": true
+    },
+    {
+      "name": "header-nav:shared",
+      "pass": true
+    },
+    {
+      "name": "header-cta:shared",
+      "pass": true
+    },
+    {
+      "name": "header-announce:shared",
+      "pass": true
+    },
+    {
+      "name": "header-center:shared",
+      "pass": true
+    },
+    {
+      "name": "header-two-rows:shared",
+      "pass": true
+    },
+    {
+      "name": "header-overlay:shared",
+      "pass": true
+    },
+    {
+      "name": "header-tel:shared",
+      "pass": true
+    },
+    {
+      "name": "header-band:shared",
+      "pass": true
+    },
+    {
+      "name": "outside-part:footer-navigation-scope:independent",
+      "pass": true
+    },
+    {
+      "name": "outside-part:footer-navigation-scope:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "outside-part:headerish-navigation-scope:independent",
+      "pass": true
+    },
+    {
+      "name": "outside-part:headerish-navigation-scope:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "outside-part:header-copied-body:independent",
+      "pass": true
+    },
+    {
+      "name": "outside-part:header-copied-body:not-rebound",
+      "pass": true
+    },
+    {
+      "name": "after-header-scope",
+      "pass": true
+    },
+    {
+      "name": "cleanup",
+      "pass": true
+    }
+  ]
+}

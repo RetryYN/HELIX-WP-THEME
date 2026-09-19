@@ -1,0 +1,50 @@
+/* HOME: 完成画面でhero・本文・補助導線を一続きに比較する。共通尺度のみを使い、他面へ波及させない。 */
+.wt-home .wt-side-layout{row-gap:var(--wp--preset--spacing--50)}
+.wt-home .wt-home-hero__inner,.wt-home .wt-home-slider__caption{padding-block:var(--wp--preset--spacing--80)}
+.wt-home .wt-home-hero__grid{gap:var(--wp--preset--spacing--60);grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--wp--custom--sidebar-w-min)),1fr))}
+.wt-home .wt-home-hero__lead{margin-bottom:var(--wp--preset--spacing--60);line-height:1.75}
+.wt-home :is(.wt-home-hero h1,.wt-home-hero h2,.wt-home-cards b,.wt-home-features b,.wp-block-post-title){overflow-wrap:anywhere;word-break:normal}
+.wt-home .wt-home-cta{gap:var(--wp--preset--spacing--30)}
+.wt-home .wt-home-cta .wt-lp-cta-action{min-height:var(--wp--custom--button-height);padding-inline:var(--wp--preset--spacing--50)}
+.wt-home .wt-home-hero--split .wt-home-hero__media,.wt-home .wt-home-hero--product-shot .wt-home-hero__media{padding:var(--wp--preset--spacing--30);border-radius:var(--wp--custom--radius-l);background:var(--wp--preset--color--surface)}
+.wt-home .wt-home__section>.wt-lp-section-inner{padding-block:var(--wp--preset--spacing--70)}
+.wt-home .wt-home__section h2{margin-bottom:var(--wp--preset--spacing--50);line-height:1.35;text-wrap:balance}
+.wt-home :is(.wt-home-cards--3,.wt-home-cards--cases,.wt-home-features,.wt-home-price){grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--wp--custom--sidebar-w-min)),1fr));gap:var(--wp--preset--spacing--40)}
+.wt-home .wt-home-cards li{min-width:0;display:flex}
+.wt-home .wt-home-cards a{width:100%;height:auto;padding:var(--wp--preset--spacing--50)}
+.wt-home .wt-home-cards--cases a{padding:0}
+.wt-home .wt-home-cards b{font-size:var(--wp--preset--font-size--m)}
+.wt-home .wt-home-cards--cases b{padding:0 var(--wp--preset--spacing--40) var(--wp--preset--spacing--50)}
+.wt-home .wt-home-features li{padding:var(--wp--preset--spacing--40);border-top:var(--wp--preset--spacing--10) solid var(--wp--preset--color--accent-soft)}
+.wt-home .wt-home-card .wp-block-post-date{margin-top:auto;padding-top:var(--wp--preset--spacing--20)}
+.wt-home .wt-home-card:has(.wp-block-post-featured-image) .wp-block-post-featured-image{margin-block:0 var(--wp--preset--spacing--20)}
+.wt-home .wt-home-contact__two{gap:var(--wp--preset--spacing--40)}
+.wt-home .wt-home-contact__two>div{padding:var(--wp--preset--spacing--50)}
+.wt-home .wt-home-tabs[hidden]{display:none}
+.wt-home .wt-home-tabs button:focus-visible,.wt-home a:focus-visible,.wt-home input:focus-visible,.wt-home button:focus-visible{outline:var(--wp--preset--spacing--10) solid var(--wp--preset--color--accent);outline-offset:var(--wp--preset--spacing--10)}
+/* 写真上は画像の明度に依存せず、本文と操作領域の背景を固定する。 */
+.wt-home .wt-home-slider__caption{background:var(--wp--preset--color--contrast);border-radius:var(--wp--custom--radius-l);margin:var(--wp--preset--spacing--60);padding:var(--wp--preset--spacing--60);max-width:var(--wp--custom--content-max)}
+.wt-home .wt-home-hero--fullbleed .wt-home-hero__inner{background:var(--wp--preset--color--contrast);border-radius:var(--wp--custom--radius-l);margin:var(--wp--preset--spacing--60);padding:var(--wp--preset--spacing--60);max-width:var(--wp--custom--content-max)}
+.wt-home :is(.wt-home-hero--fullbleed,.wt-home-hero--slider) .wt-home-tel small{color:var(--wp--preset--color--base)}
+@media (max-width:599px){
+ .wt-home .wt-home-hero__inner{padding-block:var(--wp--preset--spacing--60)}
+ .wt-home .wt-home-hero--fullbleed .wt-home-hero__inner,.wt-home .wt-home-slider__caption{margin:var(--wp--preset--spacing--40);padding:var(--wp--preset--spacing--50)}
+ .wt-home .wt-home__section>.wt-lp-section-inner{padding-block:var(--wp--preset--spacing--60)}
+ .wt-home .wt-home-cta .wt-lp-cta-action{flex:1 1 auto;justify-content:center}
+ .wt-home :is(.wt-home-cards--3,.wt-home-cards--cases,.wt-home-features,.wt-home-price){grid-template-columns:minmax(0,1fr)}
+ body:has(.wt-home) :is(.wt-fixed--sp-bottom-bar,.wt-home-fixed--sp-bottom-bar) a{min-height:var(--wp--custom--button-height);padding-block:var(--wp--preset--spacing--10)}
+ body:has(.wt-home) :is(.wt-fixed--sp-bottom-bar,.wt-home-fixed--sp-bottom-bar) a:last-child{background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast);border-radius:var(--wp--custom--radius-m)}
+}
+@media (prefers-reduced-motion:reduce){.wt-home .wt-home-cards a{transition:none}.wt-home .wt-home-cards a:hover{transform:none}}
+/* footerのinline paddingを上書きせず、固定導線の高さを内容の後ろに確保する。 */
+@media (max-width:599px){
+ body:has(.wt-home).wt-fix-bundle-own:is(.wt-home-fixed-sp-bottom-bar,.wt-home-fixed-float-cta,.wt-home-fixed-float-tel) .wt-footer::after,
+ body:has(.wt-home):is(.wt-fixed-eff-sp-bottom-bar,.wt-fixed-eff-float-cta,.wt-fixed-eff-float-tel) .wt-footer::after{content:"";display:block;block-size:calc(var(--wp--custom--button-height) + var(--wp--preset--spacing--50) + env(safe-area-inset-bottom))}
+}
+/* 画像なしの記事も順位バッジを本文に重ねない。枠は装飾で、代替画像は生成しない。 */
+.wt-home .wt-home-rank__item>.wp-block-post-title:first-child::before{content:"";display:block;aspect-ratio:16/9;background:var(--wp--preset--color--surface);border-radius:var(--wp--custom--radius-m);margin-bottom:var(--wp--preset--spacing--20)}
+.wt-home .wt-home-rank .wp-block-post-template>li:first-child .wt-home-rank__item::before{background:var(--wp--preset--color--cta);color:var(--wp--preset--color--cta-contrast)}
+@media (max-width:599px){
+ .wt-home .wt-home-rank__item>.wp-block-post-title:first-child{display:grid;grid-template-columns:40% minmax(0,1fr);gap:var(--wp--preset--spacing--30);align-items:center;grid-column:1/-1}
+ .wt-home .wt-home-rank__item>.wp-block-post-title:first-child::before{margin-bottom:0}
+}

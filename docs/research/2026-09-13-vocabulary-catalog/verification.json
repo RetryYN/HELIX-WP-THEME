@@ -1,0 +1,196 @@
+{
+  "schema": "wt-vocabulary-catalog-verification.v1",
+  "scope": "Static design proposal, no WordPress registration or editor verification",
+  "acceptance": [
+    "WT-AC-VOCAB-01A",
+    "WT-AC-VOCAB-01B"
+  ],
+  "completed": true,
+  "checks": [
+    {
+      "name": "mapping-fourteen-one-receiver",
+      "pass": true
+    },
+    {
+      "name": "six-proposed-plus-one-reserved",
+      "pass": true
+    },
+    {
+      "name": "seventh-slot-accepted",
+      "pass": true
+    },
+    {
+      "name": "eighth-slot-rejected",
+      "pass": true
+    },
+    {
+      "name": "missing-receiver-rejected",
+      "pass": true
+    },
+    {
+      "name": "comparison-conflation-rejected",
+      "pass": true
+    },
+    {
+      "name": "pc-js:fourteen-visible",
+      "pass": true
+    },
+    {
+      "name": "pc-js:top-seven-visible",
+      "pass": true
+    },
+    {
+      "name": "pc-js:four-sales-visible",
+      "pass": true
+    },
+    {
+      "name": "pc-js:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-js:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-js:no-sample-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-js:internal-links-resolve",
+      "pass": true
+    },
+    {
+      "name": "pc-js:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-js:faq-opens",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:fourteen-visible",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:top-seven-visible",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:four-sales-visible",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:no-sample-overlap",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:internal-links-resolve",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:AA-text",
+      "pass": true
+    },
+    {
+      "name": "pc-nojs:faq-opens",
+      "pass": true
+    },
+    {
+      "name": "sp-js:fourteen-visible",
+      "pass": true
+    },
+    {
+      "name": "sp-js:top-seven-visible",
+      "pass": true
+    },
+    {
+      "name": "sp-js:four-sales-visible",
+      "pass": true
+    },
+    {
+      "name": "sp-js:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-js:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-js:no-sample-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-js:internal-links-resolve",
+      "pass": true
+    },
+    {
+      "name": "sp-js:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-js:faq-opens",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:fourteen-visible",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:top-seven-visible",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:four-sales-visible",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:44px-targets",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:no-sample-overlap",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:internal-links-resolve",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:AA-text",
+      "pass": true
+    },
+    {
+      "name": "sp-nojs:faq-opens",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "pc-js.png",
+    "pc-nojs.png",
+    "sp-js.png",
+    "sp-nojs.png"
+  ],
+  "sourceDigests": {
+    "docs/research/2026-09-13-vocabulary-catalog/index.html": "a9d4b37fff418c6dd14fc718b41c617f8ae44873bbb57f09f0e964b84fe23bb2",
+    "docs/research/2026-09-13-vocabulary-catalog/catalog.css": "d86d4b9e194c5106a0040c270e948eb0b00e134a3b61cf2d6628bc845c1df3fa",
+    "docs/research/2026-09-13-vocabulary-catalog/mapping.json": "c5a9acfa42e4e732ff34c77fd3c32c4cbec04e82cecbf6666c23d75c2fe72311",
+    "scripts/verify-vocabulary-catalog.mjs": "235d98c606116474660681e9c897753db92cd88f58ff9765004d497946ba7d6e"
+  },
+  "limitations": [
+    "No editor registration or authorization enforcement",
+    "Current prototype custom registrations exceed seven; product boundary pending",
+    "Definition-list receiver uses core/html until editor semantics are verified"
+  ]
+}

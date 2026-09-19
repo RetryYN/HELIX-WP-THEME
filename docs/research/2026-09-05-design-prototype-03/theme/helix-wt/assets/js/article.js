@@ -1,6 +1,6 @@
 /* 記事面: 目次（SP 開閉・現在位置強調）、関連カルーセル（自動送りなし）、共有（Web Share / リンクコピー）、count-up */
 (function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = function(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
   var isSp = window.matchMedia('(max-width: 599px)').matches;
 
   // 目次
@@ -32,12 +32,12 @@
     if (!isCarousel && !isSlider) return;
     var nav = document.createElement('div'); nav.className = 'wt-carousel__nav';
     var page = function(){ return isSlider ? track.clientWidth : track.clientWidth * 0.8; };
-    var mk = function(dir, label){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = '<i class="wt-i wt-i--chevron-' + (dir < 0 ? 'right" style="transform:scaleX(-1)' : 'right"') + '" aria-hidden="true"></i>'; b.addEventListener('click', function(){ track.scrollBy({ left: dir * page(), behavior: reduce ? 'auto' : 'smooth' }); }); return b; };
+    var mk = function(dir, label){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = '<i class="wt-i wt-i--chevron-' + (dir < 0 ? 'right" style="transform:scaleX(-1)' : 'right"') + '" aria-hidden="true"></i>'; b.addEventListener('click', function(){ track.scrollBy({ left: dir * page(), behavior: reduce() ? 'auto' : 'smooth' }); }); return b; };
     var prev = mk(-1, '前へ'), next = mk(1, '次へ');
     nav.appendChild(prev);
     var dots = null, dotBtns = [];
     var pageCount = function(){ var first = track.firstElementChild; if (!first) return 1; var per = Math.max(1, Math.round(track.clientWidth / (first.getBoundingClientRect().width + 16))); return Math.max(1, Math.ceil(track.children.length / per)); };
-    var goTo = function(idx){ track.scrollTo({ left: idx * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); };
+    var goTo = function(idx){ track.scrollTo({ left: idx * track.clientWidth, behavior: reduce() ? 'auto' : 'smooth' }); };
     var buildDots = function(){
       if (!dots) return;
       dots.innerHTML = ''; dotBtns = [];
@@ -84,13 +84,20 @@
   // count-up（motion ON かつ reduced-motion でないときだけ。それ以外は最終値を即表示）
   var counts = document.querySelectorAll('.wt-count[data-to]');
   if (counts.length) {
-    var on = document.body.classList.contains('wt-motion-on') && !reduce && 'IntersectionObserver' in window;
+    var on = document.body.classList.contains('wt-motion-on') && !reduce() && 'IntersectionObserver' in window;
     var fmt = function(n, dec){ return n.toLocaleString('ja-JP', { minimumFractionDigits: dec, maximumFractionDigits: dec }); };
     var run = function(el){
       var to = parseFloat(el.getAttribute('data-to')), dec = (el.getAttribute('data-to').split('.')[1] || '').length, t0 = null, dur = 900;
-      var step = function(ts){ if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur); p = 1 - Math.pow(1 - p, 3); el.textContent = fmt(to * p, dec); if (p < 1) requestAnimationFrame(step); };
+      var step = function(ts){ if (reduce()) { el.textContent = fmt(to, dec); return; } if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur); p = 1 - Math.pow(1 - p, 3); el.textContent = fmt(to * p, dec); if (p < 1) requestAnimationFrame(step); };
+      if (reduce()) { el.textContent = fmt(to, dec); return; }
       requestAnimationFrame(step);
     };
+    var preference = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (preference && preference.addEventListener) preference.addEventListener('change', function(e){
+      if (!e.matches) return;
+      if (cio) cio.disconnect();
+      counts.forEach(function(el){ el.textContent = fmt(parseFloat(el.getAttribute('data-to')), (el.getAttribute('data-to').split('.')[1] || '').length); });
+    });
     if (!on) { counts.forEach(function(el){ el.textContent = fmt(parseFloat(el.getAttribute('data-to')), (el.getAttribute('data-to').split('.')[1] || '').length); }); }
     else { var cio = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { run(e.target); cio.unobserve(e.target); } }); }); counts.forEach(function(el){ cio.observe(el); }); }
   }

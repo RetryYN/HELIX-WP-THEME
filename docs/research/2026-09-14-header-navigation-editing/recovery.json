@@ -1,0 +1,68 @@
+{
+  "completed": true,
+  "conditionCount": 4,
+  "assertionCount": 14,
+  "sourceDigests": {
+    "scripts/verify-header-navigation-editing.mjs": "a588b77c193ebeb8603e5ba4b18806e15f31113384ed55db9f288aaf366ced72",
+    "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
+    "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb"
+  },
+  "rows": [
+    {
+      "name": "signal:expected-exit",
+      "pass": true
+    },
+    {
+      "name": "signal:snapshot-removed",
+      "pass": true
+    },
+    {
+      "name": "signal:full-settings-restored",
+      "pass": true
+    },
+    {
+      "name": "signal:owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "rejection:expected-exit",
+      "pass": true
+    },
+    {
+      "name": "rejection:snapshot-removed",
+      "pass": true
+    },
+    {
+      "name": "rejection:full-settings-restored",
+      "pass": true
+    },
+    {
+      "name": "rejection:owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "exception:expected-exit",
+      "pass": true
+    },
+    {
+      "name": "exception:snapshot-removed",
+      "pass": true
+    },
+    {
+      "name": "exception:full-settings-restored",
+      "pass": true
+    },
+    {
+      "name": "exception:owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "idempotent:0",
+      "pass": true
+    },
+    {
+      "name": "idempotent:1",
+      "pass": true
+    }
+  ]
+}

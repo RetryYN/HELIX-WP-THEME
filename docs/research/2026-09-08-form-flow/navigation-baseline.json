@@ -1,0 +1,248 @@
+{
+  "completed": false,
+  "sourceDigests": {
+    "scripts/verify-form-flow.mjs": "0b8cc3c9e360567ad2d798907b41c42409f6d12ee943c2c4c08f936c387c59cd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/form.php": "282d35952ca70eddc641963cec3debbd2c22cf4e488b81c3ce61122a084099bd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/form.js": "3e277190449dd38227d2bd59f0fae3f17c9c862b70a7ddf6e3282a193766b987",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "0597e900b7a0c4c53864fa1e5986dd7f72263532db6cdb926dd9e9100e350cd0",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "d965378a47610b2e8240f6ae7cfb7309827d504b4560fc162ffd7a32f378ad78"
+  },
+  "rows": [
+    {
+      "name": "form-present:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "required-errors:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "confirmation-values:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:name:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:email:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:message:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "reconfirmation:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "completed:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-nonce:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "reject-keeps-values:invalid-nonce:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-step:pc:js-true:yes",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:unknown-step:pc:js-true:yes",
+      "pass": false
+    },
+    {
+      "name": "reject:normalized-step:pc:js-true:yes",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:normalized-step:pc:js-true:yes",
+      "pass": false
+    },
+    {
+      "name": "reject:array-step:pc:js-true:yes",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:array-step:pc:js-true:yes",
+      "pass": false
+    },
+    {
+      "name": "no-external-post:pc:js-true:yes",
+      "pass": true
+    },
+    {
+      "name": "form-present:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "required-errors:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "completed:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-nonce:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "reject-keeps-values:invalid-nonce:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-step:pc:js-true:no",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:unknown-step:pc:js-true:no",
+      "pass": false
+    },
+    {
+      "name": "reject:normalized-step:pc:js-true:no",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:normalized-step:pc:js-true:no",
+      "pass": false
+    },
+    {
+      "name": "reject:array-step:pc:js-true:no",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:array-step:pc:js-true:no",
+      "pass": false
+    },
+    {
+      "name": "no-external-post:pc:js-true:no",
+      "pass": true
+    },
+    {
+      "name": "form-present:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "required-errors:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "confirmation-values:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:name:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:email:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:message:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "reconfirmation:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "completed:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "reflow:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "reject:invalid-nonce:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "reject-keeps-values:invalid-nonce:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "reject:unknown-step:pc:js-true:inline-review",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:unknown-step:pc:js-true:inline-review",
+      "pass": false
+    },
+    {
+      "name": "reject:normalized-step:pc:js-true:inline-review",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:normalized-step:pc:js-true:inline-review",
+      "pass": false
+    },
+    {
+      "name": "reject:array-step:pc:js-true:inline-review",
+      "pass": false
+    },
+    {
+      "name": "reject-keeps-values:array-step:pc:js-true:inline-review",
+      "pass": false
+    },
+    {
+      "name": "no-external-post:pc:js-true:inline-review",
+      "pass": true
+    },
+    {
+      "name": "form-present:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "required-errors:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "confirmation-values:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:name:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:email:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "edit-preserves:message:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "reconfirmation:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "completed:pc:js-false:yes",
+      "pass": true
+    },
+    {
+      "name": "owned-fixture-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}

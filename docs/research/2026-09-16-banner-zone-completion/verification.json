@@ -1,0 +1,2333 @@
+{
+  "schema": "wt-banner-zone-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+    "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+  },
+  "rows": [
+    {
+      "name": "contract:valid",
+      "pass": true
+    },
+    {
+      "name": "contract:product-reference",
+      "pass": true
+    },
+    {
+      "name": "contract:missing-pc",
+      "pass": true
+    },
+    {
+      "name": "contract:missing-sp",
+      "pass": true
+    },
+    {
+      "name": "contract:missing-alt",
+      "pass": true
+    },
+    {
+      "name": "contract:missing-starts_at",
+      "pass": true
+    },
+    {
+      "name": "contract:missing-ends_at",
+      "pass": true
+    },
+    {
+      "name": "contract:image-budget",
+      "pass": true
+    },
+    {
+      "name": "contract:product-duplicate-source",
+      "pass": true
+    },
+    {
+      "name": "contract:start-inclusive",
+      "pass": true
+    },
+    {
+      "name": "contract:end-exclusive",
+      "pass": true
+    },
+    {
+      "name": "contract:invalid-date",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-header-below",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-header-below",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-header-inner",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-header-inner",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-before-content",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-before-content",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-after-content",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-after-content",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-before-related",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-before-related",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-after-related",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-after-related",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-sidebar",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-sidebar",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-sticky-sidebar",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-sticky-sidebar",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-list",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-list",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-404",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-404",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-footer",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-footer",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-page-top",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-page-top",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-page-bottom",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-page-bottom",
+      "pass": true
+    },
+    {
+      "name": "contract:slot-sp-bottom",
+      "pass": true
+    },
+    {
+      "name": "contract:post-scope-sp-bottom",
+      "pass": true
+    },
+    {
+      "name": "contract:rotation-attribution",
+      "pass": true
+    },
+    {
+      "name": "contract:category-scope",
+      "pass": true
+    },
+    {
+      "name": "contract:face-scope",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:area-cap",
+      "pass": true,
+      "details": 0.09111111111111111
+    },
+    {
+      "name": "notice:pc:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:js:close-persists",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:area-cap",
+      "pass": true,
+      "details": 0.09111111111111111
+    },
+    {
+      "name": "notice:pc:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "notice:pc:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:area-cap",
+      "pass": true,
+      "details": 0.09819444444444445
+    },
+    {
+      "name": "notice:sp:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:js:close-persists",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:area-cap",
+      "pass": true,
+      "details": 0.09111111111111111
+    },
+    {
+      "name": "notice:sp:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "notice:sp:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:area-cap",
+      "pass": true,
+      "details": 0.10640576774691358
+    },
+    {
+      "name": "guide:pc:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:area-cap",
+      "pass": true,
+      "details": 0.10640576774691358
+    },
+    {
+      "name": "guide:pc:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "guide:pc:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:area-cap",
+      "pass": true,
+      "details": 0.2577263888888889
+    },
+    {
+      "name": "guide:sp:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:area-cap",
+      "pass": true,
+      "details": 0.2577263888888889
+    },
+    {
+      "name": "guide:sp:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "guide:sp:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:area-cap",
+      "pass": true,
+      "details": 0.10640576774691358
+    },
+    {
+      "name": "product:pc:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "product:pc:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:area-cap",
+      "pass": true,
+      "details": 0.10640576774691358
+    },
+    {
+      "name": "product:pc:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "product:pc:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:area-cap",
+      "pass": true,
+      "details": 0.07509476851851851
+    },
+    {
+      "name": "product:sp:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "product:sp:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:area-cap",
+      "pass": true,
+      "details": 0.07509476851851851
+    },
+    {
+      "name": "product:sp:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "product:sp:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:area-cap",
+      "pass": true,
+      "details": 0.12111352237654321
+    },
+    {
+      "name": "advertisement:pc:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:area-cap",
+      "pass": true,
+      "details": 0.12111352237654321
+    },
+    {
+      "name": "advertisement:pc:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "advertisement:pc:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:area-cap",
+      "pass": true,
+      "details": 0.28621444444444444
+    },
+    {
+      "name": "advertisement:sp:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:area-cap",
+      "pass": true,
+      "details": 0.28621444444444444
+    },
+    {
+      "name": "advertisement:sp:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "advertisement:sp:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:area-cap",
+      "pass": true,
+      "details": 0.12111352237654321
+    },
+    {
+      "name": "rotation:pc:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:area-cap",
+      "pass": true,
+      "details": 0.12111352237654321
+    },
+    {
+      "name": "rotation:pc:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "rotation:pc:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:area-cap",
+      "pass": true,
+      "details": 0.28621444444444444
+    },
+    {
+      "name": "rotation:sp:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:area-cap",
+      "pass": true,
+      "details": 0.28621444444444444
+    },
+    {
+      "name": "rotation:sp:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "rotation:sp:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:area-cap",
+      "pass": true,
+      "details": 0.09111111111111111
+    },
+    {
+      "name": "stack:pc:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:area-cap",
+      "pass": true,
+      "details": 0.09111111111111111
+    },
+    {
+      "name": "stack:pc:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:pc:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:area-cap",
+      "pass": true,
+      "details": 0.09819444444444445
+    },
+    {
+      "name": "stack:sp:js:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:js:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:one-assignment",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:initial-modal-denied",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:area-cap",
+      "pass": true,
+      "details": 0.09111111111111111
+    },
+    {
+      "name": "stack:sp:nojs:disclosure-adjacent",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:functional-alt",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "stack:sp:nojs:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "placement:home:pc:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "sidebar",
+        "sticky-sidebar",
+        "after-content",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:home:pc:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:home:pc:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:home:pc:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:home:pc:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:home:sp:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "sidebar",
+        "sticky-sidebar",
+        "after-content",
+        "sp-bottom",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:home:sp:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:home:sp:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:home:sp:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:home:sp:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:article:pc:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "before-related",
+        "after-related",
+        "sidebar",
+        "sticky-sidebar",
+        "after-content",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:article:pc:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:article:pc:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:article:pc:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:article:pc:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:article:sp:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "before-related",
+        "after-related",
+        "sidebar",
+        "sticky-sidebar",
+        "after-content",
+        "sp-bottom",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:article:sp:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:article:sp:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:article:sp:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:article:sp:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:category:pc:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "list",
+        "sidebar",
+        "sticky-sidebar",
+        "after-content",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:category:pc:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:category:pc:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:category:pc:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:category:pc:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:category:sp:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "list",
+        "sidebar",
+        "sticky-sidebar",
+        "after-content",
+        "sp-bottom",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:category:sp:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:category:sp:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:category:sp:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:category:sp:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:page:pc:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "after-content",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:page:pc:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:page:pc:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:page:pc:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:page:pc:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:page:sp:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "after-content",
+        "sp-bottom",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:page:sp:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:page:sp:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:page:sp:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:page:sp:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:pc:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "after-content",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:lp:pc:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:pc:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:pc:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:pc:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:sp:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "after-content",
+        "sp-bottom",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:lp:sp:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:sp:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:sp:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:lp:sp:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:404:pc:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "404",
+        "after-content",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:404:pc:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:404:pc:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:404:pc:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:404:pc:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:404:sp:no-duplicates",
+      "pass": true,
+      "details": [
+        "header-inner",
+        "header-below",
+        "before-content",
+        "404",
+        "after-content",
+        "sp-bottom",
+        "footer",
+        "page-top",
+        "page-bottom"
+      ]
+    },
+    {
+      "name": "placement:404:sp:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:404:sp:footer-contained",
+      "pass": true
+    },
+    {
+      "name": "placement:404:sp:page-top-in-footer",
+      "pass": true
+    },
+    {
+      "name": "placement:404:sp:sp-only",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:header-below",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:header-inner",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:before-content",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:after-content",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:before-related",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:after-related",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:sidebar",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:sticky-sidebar",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:list",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:404",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:footer",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:page-top",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:page-bottom",
+      "pass": true
+    },
+    {
+      "name": "placement:slot-reached:sp-bottom",
+      "pass": true
+    },
+    {
+      "name": "geometry:pc:reserved-size",
+      "pass": true,
+      "details": {
+        "before": {
+          "image": {
+            "width": 646,
+            "height": 129.1875,
+            "top": 94
+          },
+          "mainTop": 295.796875
+        },
+        "after": {
+          "image": {
+            "width": 646,
+            "height": 129.1875,
+            "top": 94
+          },
+          "mainTop": 295.796875
+        }
+      }
+    },
+    {
+      "name": "geometry:sp:reserved-size",
+      "pass": true,
+      "details": {
+        "before": {
+          "image": {
+            "width": 309,
+            "height": 154.5,
+            "top": 94
+          },
+          "mainTop": 346.59375
+        },
+        "after": {
+          "image": {
+            "width": 309,
+            "height": 154.5,
+            "top": 94
+          },
+          "mainTop": 346.59375
+        }
+      }
+    },
+    {
+      "name": "modal:banner-zone-lp-fixture",
+      "pass": true
+    },
+    {
+      "name": "modal:close",
+      "pass": true
+    },
+    {
+      "name": "modal:banner-zone-fixture",
+      "pass": true
+    },
+    {
+      "name": "negative:G-E1:area-cap",
+      "pass": true
+    },
+    {
+      "name": "negative:G-E1:initial-modal",
+      "pass": true
+    },
+    {
+      "name": "negative:G-E1:stack-order",
+      "pass": true
+    },
+    {
+      "name": "negative:G-E1:cta-clear",
+      "pass": true
+    },
+    {
+      "name": "G-E1:LP-exception-positive",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "notice",
+      "label": "お知らせだけを添える",
+      "file": "notice-pc.jpg",
+      "device": "pc",
+      "sha256": "b160991eaf9e9432958753627e26b195eea3fd4cc568d08289c5b61954234a34"
+    },
+    {
+      "id": "notice",
+      "label": "お知らせだけを添える",
+      "file": "notice-sp.jpg",
+      "device": "sp",
+      "sha256": "95588b16b931f4d35d0c1aad504fa21111e56cf5160b61cd0cf09b28a7d53f98"
+    },
+    {
+      "id": "guide",
+      "label": "本文前に判断材料を置く",
+      "file": "guide-pc.jpg",
+      "device": "pc",
+      "sha256": "ceeb96230dc26792905db23c31ec949a1b97a30bcbc5095ad1eba2387cc37635"
+    },
+    {
+      "id": "guide",
+      "label": "本文前に判断材料を置く",
+      "file": "guide-sp.jpg",
+      "device": "sp",
+      "sha256": "3c4e911ad23ae8a1375d4411c86a9e9719f9f22a6f9a90ebeac5dd0370eec42c"
+    },
+    {
+      "id": "product",
+      "label": "商品正本から案内する",
+      "file": "product-pc.jpg",
+      "device": "pc",
+      "sha256": "e84eb574dcb83029e4997284f2f630ec87d668b4a9d4b4debaacdff4c462b8d8"
+    },
+    {
+      "id": "product",
+      "label": "商品正本から案内する",
+      "file": "product-sp.jpg",
+      "device": "sp",
+      "sha256": "b2bef509e625811dcb5ce63731f97ee562b3e0b732b136239f104d360ee76b4d"
+    },
+    {
+      "id": "advertisement",
+      "label": "広告の帰属を明示する",
+      "file": "advertisement-pc.jpg",
+      "device": "pc",
+      "sha256": "f8a4a9b9a4b0e253d8b1a6bb980f8dd0fa5e8661bcea3e2d0b3e811f98009de8"
+    },
+    {
+      "id": "advertisement",
+      "label": "広告の帰属を明示する",
+      "file": "advertisement-sp.jpg",
+      "device": "sp",
+      "sha256": "6240683d224e560c8de813718c8550a7559e274c19540de9373891ea3608d20d"
+    },
+    {
+      "id": "rotation",
+      "label": "次の訪問で案内を切り替える",
+      "file": "rotation-pc.jpg",
+      "device": "pc",
+      "sha256": "f8a4a9b9a4b0e253d8b1a6bb980f8dd0fa5e8661bcea3e2d0b3e811f98009de8"
+    },
+    {
+      "id": "rotation",
+      "label": "次の訪問で案内を切り替える",
+      "file": "rotation-sp.jpg",
+      "device": "sp",
+      "sha256": "6240683d224e560c8de813718c8550a7559e274c19540de9373891ea3608d20d"
+    },
+    {
+      "id": "stack",
+      "label": "補助操作の重なりを避ける",
+      "file": "stack-pc.jpg",
+      "device": "pc",
+      "sha256": "22b922f6b5ab5bd436b81cafdfb95fa0aa50ac95a69e96f43f391f1ac4c5fb28"
+    },
+    {
+      "id": "stack",
+      "label": "補助操作の重なりを避ける",
+      "file": "stack-sp.jpg",
+      "device": "sp",
+      "sha256": "fde829d67bc04fa040cda9b0b178399597cb530b103bec6b8a9f8c7c30d257c7"
+    }
+  ],
+  "gateSnapshots": [
+    {
+      "name": "notice:pc:js",
+      "snapshot": {
+        "areaRatio": 0.09111111111111111,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 706.296875,
+          "bottom": 754.296875
+        }
+      }
+    },
+    {
+      "name": "notice:pc:nojs",
+      "snapshot": {
+        "areaRatio": 0.09111111111111111,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 706.296875,
+          "bottom": 754.296875
+        }
+      }
+    },
+    {
+      "name": "notice:sp:js",
+      "snapshot": {
+        "areaRatio": 0.09819444444444445,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 850.484375,
+          "bottom": 898.484375
+        }
+      }
+    },
+    {
+      "name": "notice:sp:nojs",
+      "snapshot": {
+        "areaRatio": 0.09111111111111111,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 844.109375,
+          "bottom": 892.109375
+        }
+      }
+    },
+    {
+      "name": "guide:pc:js",
+      "snapshot": {
+        "areaRatio": 0.10640576774691358,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 843.09375,
+          "bottom": 891.09375
+        }
+      }
+    },
+    {
+      "name": "guide:pc:nojs",
+      "snapshot": {
+        "areaRatio": 0.10640576774691358,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 843.09375,
+          "bottom": 891.09375
+        }
+      }
+    },
+    {
+      "name": "guide:sp:js",
+      "snapshot": {
+        "areaRatio": 0.2577263888888889,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 1031.703125,
+          "bottom": 1079.703125
+        }
+      }
+    },
+    {
+      "name": "guide:sp:nojs",
+      "snapshot": {
+        "areaRatio": 0.2577263888888889,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 1031.703125,
+          "bottom": 1079.703125
+        }
+      }
+    },
+    {
+      "name": "product:pc:js",
+      "snapshot": {
+        "areaRatio": 0.10640576774691358,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 624.296875,
+          "bottom": 672.296875
+        }
+      }
+    },
+    {
+      "name": "product:pc:nojs",
+      "snapshot": {
+        "areaRatio": 0.10640576774691358,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 624.296875,
+          "bottom": 672.296875
+        }
+      }
+    },
+    {
+      "name": "product:sp:js",
+      "snapshot": {
+        "areaRatio": 0.07509476851851851,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 762.109375,
+          "bottom": 810.109375
+        }
+      }
+    },
+    {
+      "name": "product:sp:nojs",
+      "snapshot": {
+        "areaRatio": 0.07509476851851851,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 762.109375,
+          "bottom": 810.109375
+        }
+      }
+    },
+    {
+      "name": "advertisement:pc:js",
+      "snapshot": {
+        "areaRatio": 0.12111352237654321,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 871.125,
+          "bottom": 919.125
+        }
+      }
+    },
+    {
+      "name": "advertisement:pc:nojs",
+      "snapshot": {
+        "areaRatio": 0.12111352237654321,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 871.125,
+          "bottom": 919.125
+        }
+      }
+    },
+    {
+      "name": "advertisement:sp:js",
+      "snapshot": {
+        "areaRatio": 0.28621444444444444,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 1059.734375,
+          "bottom": 1107.734375
+        }
+      }
+    },
+    {
+      "name": "advertisement:sp:nojs",
+      "snapshot": {
+        "areaRatio": 0.28621444444444444,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 1059.734375,
+          "bottom": 1107.734375
+        }
+      }
+    },
+    {
+      "name": "rotation:pc:js",
+      "snapshot": {
+        "areaRatio": 0.12111352237654321,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 871.125,
+          "bottom": 919.125
+        }
+      }
+    },
+    {
+      "name": "rotation:pc:nojs",
+      "snapshot": {
+        "areaRatio": 0.12111352237654321,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 871.125,
+          "bottom": 919.125
+        }
+      }
+    },
+    {
+      "name": "rotation:sp:js",
+      "snapshot": {
+        "areaRatio": 0.28621444444444444,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 1059.734375,
+          "bottom": 1107.734375
+        }
+      }
+    },
+    {
+      "name": "rotation:sp:nojs",
+      "snapshot": {
+        "areaRatio": 0.28621444444444444,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [],
+        "cta": {
+          "top": 1059.734375,
+          "bottom": 1107.734375
+        }
+      }
+    },
+    {
+      "name": "stack:pc:js",
+      "snapshot": {
+        "areaRatio": 0,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [
+          {
+            "kind": "consent",
+            "top": 713.953125,
+            "bottom": 776.015625
+          },
+          {
+            "kind": "menu",
+            "top": 776.015625,
+            "bottom": 838.078125
+          },
+          {
+            "kind": "share",
+            "top": 838.078125,
+            "bottom": 900.140625
+          }
+        ],
+        "cta": {
+          "top": 288.296875,
+          "bottom": 336.296875
+        }
+      }
+    },
+    {
+      "name": "stack:pc:nojs",
+      "snapshot": {
+        "areaRatio": 0,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [
+          {
+            "kind": "consent",
+            "top": 713.953125,
+            "bottom": 776.015625
+          },
+          {
+            "kind": "menu",
+            "top": 776.015625,
+            "bottom": 838.078125
+          },
+          {
+            "kind": "share",
+            "top": 838.078125,
+            "bottom": 900.140625
+          }
+        ],
+        "cta": {
+          "top": 288.296875,
+          "bottom": 336.296875
+        }
+      }
+    },
+    {
+      "name": "stack:sp:js",
+      "snapshot": {
+        "areaRatio": 0,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [
+          {
+            "kind": "consent",
+            "top": 713.8125,
+            "bottom": 775.875
+          },
+          {
+            "kind": "menu",
+            "top": 775.875,
+            "bottom": 837.9375
+          },
+          {
+            "kind": "share",
+            "top": 837.9375,
+            "bottom": 900
+          }
+        ],
+        "cta": {
+          "top": 274.484375,
+          "bottom": 322.484375
+        }
+      }
+    },
+    {
+      "name": "stack:sp:nojs",
+      "snapshot": {
+        "areaRatio": 0,
+        "areaCap": 0.6,
+        "openPromotionalModals": 0,
+        "face": "page",
+        "lpException": false,
+        "layers": [
+          {
+            "kind": "consent",
+            "top": 713.796875,
+            "bottom": 775.859375
+          },
+          {
+            "kind": "menu",
+            "top": 775.859375,
+            "bottom": 837.921875
+          },
+          {
+            "kind": "share",
+            "top": 837.921875,
+            "bottom": 899.984375
+          }
+        ],
+        "cta": {
+          "top": 274.109375,
+          "bottom": 322.109375
+        }
+      }
+    }
+  ]
+}
