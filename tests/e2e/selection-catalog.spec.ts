@@ -589,3 +589,37 @@ test('detail links expose exact related states and handle a candidate with no re
   await expect(page.locator('#detail .related-requirements')).toContainText('要求との関連付けは未整理です');
   await expect(page.locator('#detail [data-requirement-id]')).toHaveCount(0);
 });
+
+test('decision panel explains states, persists choices and stays usable at narrow widths', async ({ page }) => {
+  for (const width of [320, 390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.locator('.tile-open').first().click();
+    const panel = page.locator('#detail .decision-panel');
+    await expect(panel).toContainText('正式な承認ではありません');
+    for (const [label, hint] of [['採用候補', '使いたい形として残す'], ['除外', '今回の候補から外す'], ['未選択', '判断をいったん戻す'], ['保留', '確認してから決める']]) {
+      const choice = panel.getByRole('button', { name: label, exact: true });
+      await expect(choice).toContainText(hint);
+      await choice.click();
+      await expect(choice).toHaveAttribute('aria-pressed', 'true');
+      await expect(panel.locator('.current-decision')).toHaveText(label);
+      await expect(panel.locator('.choice-check:visible')).toHaveCount(1);
+      expect(await choice.evaluate(e => e.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
+    }
+    await panel.getByLabel('選ぶ理由・確認したいこと').fill('余白と情報量を確認して決める');
+    expect(await panel.evaluate(e => e.scrollWidth <= e.clientWidth)).toBe(true);
+    await page.locator('#detail .close').click();
+    await page.reload();
+    await page.locator('.tile-open').first().click();
+    await expect(panel.getByRole('button', { name: '保留', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(panel.getByLabel('選ぶ理由・確認したいこと')).toHaveValue('余白と情報量を確認して決める');
+    await page.locator('#detail .close').click();
+    await page.locator('.compare-pick input').first().check();
+    await page.locator('#open-compare').click();
+    const compared = page.locator('#compare .decision-panel').first();
+    await expect(compared.locator('.current-decision')).toHaveText('保留');
+    await compared.getByRole('button', { name: '採用候補', exact: true }).click();
+    await expect(page.locator('#comparison-facts')).toContainText('採用候補');
+    await page.locator('#compare .close').click();
+    await page.locator('#clear-compare').click();
+  }
+});

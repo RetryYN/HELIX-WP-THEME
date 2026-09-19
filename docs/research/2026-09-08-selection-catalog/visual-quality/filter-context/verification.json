@@ -2,7 +2,7 @@
   "date": "2026-09-20",
   "scope": "catalog filter context only",
   "playwright": {
-    "passed": 31,
+    "passed": 32,
     "failed": 0,
     "newTestsPassed": 5,
     "existingFailures": []
@@ -10,9 +10,10 @@
   "npmTest": "passed",
   "publicSafety": "passed with private mapping via temporary index",
   "sourceDigests": {
-    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "223ea0f76028241b3213f5ebe533be203e36830e4f550a819d412ac32aeaa37e",
-    "docs/research/2026-09-08-selection-catalog/catalog.css": "8719006181eb8c1a64bbf366f3178551d042ca248f3dd21b735571658f3a7e77",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "1dd3470954c83410e3c0fe2ede13d7ccc33b53ae1aaf0ea09835bbfe51441d33",
+    "docs/research/2026-09-08-selection-catalog/catalog.css": "acdaa2fe1b400210a2939656c775645d8627a750806053519bc3b8dfa4b3f048",
     "docs/research/2026-09-08-selection-catalog/index.html": "75a67380c1a0c81554e29f6ba2bb992cfdf9dfdc667d1f520632dba0c9f0028f",
     "tests/e2e/selection-catalog-filters.spec.ts": "b2cf0bb4e03d14263488aa8bd7599ce1de87c514a196aeb290526cb9cb9da90f"
-  }
+  },
+  "revalidation": "2026-09-20: decision-panel change; selection-catalog and filter suites rerun on dedicated static server (32 passed)."
 }
