@@ -2,7 +2,7 @@
   "completed": true,
   "wordpress": "7.1",
   "sourceDigests": {
-    "scripts/verify-footer-navigation-source.mjs": "3dfcbccfea340347293c701f619ec1ef3d8ef70db97103900885271dc21d1f9c"
+    "scripts/verify-footer-navigation-source.mjs": "74a18ce1c5003332a09b891d8425f2cf9de91a2215d5141f068b6497ba0cceae"
   },
   "rows": [
     {
@@ -136,6 +136,92 @@
     {
       "name": "empty-wrapper-omitted:emptied",
       "pass": false
+    },
+    {
+      "name": "stored-links:blank-label",
+      "pass": true,
+      "actual": {
+        "links": [],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:blank-label",
+      "pass": false
+    },
+    {
+      "name": "stored-links:spaces-label",
+      "pass": false,
+      "actual": {
+        "links": [
+          {
+            "label": "",
+            "url": "/learn/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:spaces-label",
+      "pass": false
+    },
+    {
+      "name": "stored-links:blank-url",
+      "pass": false,
+      "actual": {
+        "links": [
+          {
+            "label": "案内",
+            "url": ""
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:blank-url",
+      "pass": false
+    },
+    {
+      "name": "stored-links:script-url",
+      "pass": false,
+      "actual": {
+        "links": [
+          {
+            "label": "案内",
+            "url": ""
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-wrapper-omitted:script-url",
+      "pass": false
+    },
+    {
+      "name": "stored-links:mixed",
+      "pass": true,
+      "actual": {
+        "links": [
+          {
+            "label": "会社案内",
+            "url": "/site-company/"
+          }
+        ],
+        "nav_count": 1
+      },
+      "expected": [
+        {
+          "label": "会社案内",
+          "url": "/site-company/"
+        }
+      ]
     },
     {
       "name": "owned-fixture-removed",

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 const base = process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099';
 const route = '/docs/research/2026-09-08-selection-catalog/';
 for (const [device, width] of [['pc', 1440], ['sp', 375]] as const) {
-  test(`finished BANNER selection, comparison facts and saved reason / ${device}`, async ({ page }) => {
+  test(`finished BANNER selection, comparison facts and saved reason / ${device}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 950 });
     await page.goto(base + route);
     await page.locator('[data-face="zone"]').click();
@@ -36,7 +36,7 @@ for (const [device, width] of [['pc', 1440], ['sp', 375]] as const) {
     await expect(page.locator('#detail .selection-facts')).toContainText('予算');
     await page.keyboard.press('Escape');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-    await page.screenshot({ path:`docs/research/2026-09-16-banner-zone-completion/catalog-${device}.png`, fullPage:true });
+    await page.screenshot({ path: testInfo.outputPath(`banner-catalog-${device}.png`), fullPage:true });
     await page.locator('#banner-with-parts').click();
     expect(await page.locator('.tile-open').count()).toBeGreaterThan(6);
   });

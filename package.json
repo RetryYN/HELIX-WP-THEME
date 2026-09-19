@@ -5,6 +5,7 @@
   "scripts": {
     "reduced-motion:verify": "node docs/research/2026-09-10-reduced-motion/verify.mjs",
     "test:e2e": "npx playwright test",
+    "test:e2e:catalog": "npx playwright test tests/e2e/selection-catalog.spec.ts tests/e2e/selection-catalog-filters.spec.ts tests/e2e/*-selection-catalog.spec.ts",
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",
     "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:codex-inbox",

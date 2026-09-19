@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 const base = process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099';
 for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) {
-  test(`recommendation layout comparison and saved choice / ${device}`, async ({ page }) => {
+  test(`recommendation layout comparison and saved choice / ${device}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 950 });
     await page.goto(base + '/docs/research/2026-09-08-selection-catalog/');
     await page.locator('[data-face="article"]').click();
@@ -17,7 +17,7 @@ for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) {
     await expect(facts).toContainText('helix-wt/recommendation-list');
     const first = page.locator('#compare .compare-grid>section').first();
     await expect(first.locator('img')).toHaveAttribute('src', new RegExp(`cards-${device}\\.jpg$`));
-    expect(await first.locator('img').evaluate(e => (e as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    await expect.poll(() => first.locator('img').evaluate(e => (e as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     await first.getByRole('button', { name: '保留', exact: true }).click();
     await first.locator('textarea').fill('写真の有無と説明量を比べてから選ぶ');
     await page.keyboard.press('Escape');
@@ -28,6 +28,6 @@ for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) {
     await expect(page.locator('#detail .selection-facts')).toContainText('helix-wt/recommendation-cards');
     await page.keyboard.press('Escape');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `docs/research/2026-09-19-recommendation-layouts/catalog-${device}.png`, fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`recommendation-catalog-${device}.png`), fullPage: true });
   });
 }

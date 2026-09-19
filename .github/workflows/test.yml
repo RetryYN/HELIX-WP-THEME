@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'docs/research/2026-09-08-selection-catalog/**'
       - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
       - 'package.json'
       - 'package-lock.json'
@@ -18,6 +19,7 @@ on:
   pull_request:
     paths:
       - 'docs/research/2026-09-10-reduced-motion/**'
+      - 'docs/research/2026-09-08-selection-catalog/**'
       - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
       - 'package.json'
       - 'package-lock.json'
@@ -220,7 +222,7 @@ jobs:
 #
 # Chromiumをinstall後、実ソースの静止・手動操作をpush/PRでも検証する。
 # ============================================================
-  e2e:
+  reduced-motion:
     name: Reduced-motion browser gate (Playwright)
     runs-on: ubuntu-latest
 
@@ -256,3 +258,44 @@ jobs:
           name: reduced-motion-evidence
           path: docs/research/2026-09-10-reduced-motion/verify.json
           if-no-files-found: error
+
+  selection-catalog-e2e:
+    name: Selection catalog browser suite (Playwright)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: 'npm'
+
+      - name: Install dependencies and Chromium
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Run selection catalog browser suite
+        run: |
+          python3 -m http.server 8099 > "$RUNNER_TEMP/selection-catalog-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          npm run test:e2e:catalog
+        env:
+          CATALOG_BASE_URL: http://127.0.0.1:8099
+
+      - name: Assert committed evidence is unchanged
+        run: git diff --exit-code -- docs/research
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selection-catalog-playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
