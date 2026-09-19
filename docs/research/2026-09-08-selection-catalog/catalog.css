@@ -220,3 +220,8 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
 .comparison-facts thead th{position:sticky;top:0;z-index:2;box-shadow:0 1px 0 var(--line)}
 .comparison-facts tbody th{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 var(--line)}
 .comparison-facts thead th:first-child{left:0;z-index:3}
+
+/* 小画面でも検索語・選択値・判断メモを読み返せる入力文字サイズに揃える。 */
+@media(max-width:700px){
+  .search input,.sidebar select,.evidence-filters select,.decision-panel textarea{font-size:16px;min-height:44px}
+}
