@@ -1,0 +1,10 @@
+{
+  "schema": "wt-catalog-admission-oracles.v1",
+  "commands": {
+    "docs/research/2026-09-20-heading-comparison/verification.json": ["node", "scripts/verify-heading-comparison.mjs"],
+    "docs/research/2026-09-20-heading-fluid/verification.json": ["node", "scripts/verify-heading-fluid.mjs"],
+    "docs/research/2026-09-20-heading-fluid/tokens.json": ["node", "scripts/check-heading-tokens.mjs"],
+    "docs/research/2026-09-19-pricing-cards/verification.json": ["node", "scripts/verify-pricing-cards.mjs"],
+    "docs/research/2026-09-10-reduced-motion/verify.json": ["node", "docs/research/2026-09-10-reduced-motion/verify.mjs"]
+  }
+}

@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import './acceptance-admission.test.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 
