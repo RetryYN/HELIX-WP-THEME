@@ -116,7 +116,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "dfac716075f37d53ba7ea26c8df361b88a1469dae3a2c0ccf91adae29218fc1f",
+          "sha256": "1249f35aa041fe722270feea6c63c14f39b50681dc7156390a7e6ab39ae222d9",
           "row_names": [
             "boundary:production-findings-zero",
             "boundary:manifest-denies-local-ai-logic"
@@ -135,7 +135,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "dfac716075f37d53ba7ea26c8df361b88a1469dae3a2c0ccf91adae29218fc1f",
+          "sha256": "1249f35aa041fe722270feea6c63c14f39b50681dc7156390a7e6ab39ae222d9",
           "row_names": [
             "negative:sdk-import-js-fails",
             "negative:sdk-import-php-fails",
@@ -395,12 +395,12 @@
       "oracle": "wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない",
       "polarity": "positive",
       "status": "verified_in_poc",
-      "scope": "native/shared全9型、SP6軸、A→B、JS有無の504条件、無効参照・階層・親尺度・幅境界459条件、Site Editor実選択・標準リンク編集・全9part保存再入場後72条件。計1035条件、5496 assertions。固定navigation-linkと層1再定義は再帰静的検査で0。管理権限・nonce負例、独立CTA、実移動、設定復元を含む専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/523 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "dbfe6c8cd4e4e518cfaaf32c4dca11b1b4627cc3000d1b727ff2cd54db117b1e",
+          "sha256": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -411,6 +411,17 @@
             "static:expected-condition-count",
             "static:all-assertions-pass"
           ]
+        },
+        {
+          "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
+          "sha256": "ad3a6e78e5f3eb09b3fa5eb4baa1cf3c254e8602c15e57358de98119687ff44d",
+          "row_names": [
+            "verify:completed",
+            "scope:completed",
+            "recovery:completed",
+            "public-isolation:completed",
+            "baseline:all-regression-assertions-pass"
+          ]
         }
       ]
     },
@@ -420,12 +431,12 @@
       "oracle": "header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL",
       "polarity": "negative",
       "status": "verified_in_poc",
-      "scope": "native/shared全9型、SP6軸、A→B、JS有無の504条件、無効参照・階層・親尺度・幅境界459条件、Site Editor実選択・標準リンク編集・全9part保存再入場後72条件。計1035条件、5496 assertions。固定navigation-linkと層1再定義は再帰静的検査で0。管理権限・nonce負例、独立CTA、実移動、設定復元を含む専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/523 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "dbfe6c8cd4e4e518cfaaf32c4dca11b1b4627cc3000d1b727ff2cd54db117b1e",
+          "sha256": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -435,6 +446,17 @@
             "editor/verify:all-assertions-pass",
             "static:expected-condition-count",
             "static:all-assertions-pass"
+          ]
+        },
+        {
+          "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
+          "sha256": "ad3a6e78e5f3eb09b3fa5eb4baa1cf3c254e8602c15e57358de98119687ff44d",
+          "row_names": [
+            "verify:completed",
+            "scope:completed",
+            "recovery:completed",
+            "public-isolation:completed",
+            "baseline:all-regression-assertions-pass"
           ]
         }
       ]
@@ -1121,12 +1143,12 @@
       "oracle": "テーマ・プラグインに計測 ID・広告 HTML の生値が 0",
       "polarity": "positive",
       "status": "verified_in_poc",
-      "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 132ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
+      "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 141ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "e1e9e8700c335b75d1d11fecb5fa3d85bdc3b3363fca8b4c752e9edbbadff544",
+          "sha256": "641288701149096568a6e22eb34dbb03990dfe0cffc343d562fa756d128a7309",
           "row_names": [
             "privacy:production-tracking-ids-zero",
             "privacy:production-ad-code-zero",
@@ -1146,7 +1168,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "e1e9e8700c335b75d1d11fecb5fa3d85bdc3b3363fca8b4c752e9edbbadff544",
+          "sha256": "641288701149096568a6e22eb34dbb03990dfe0cffc343d562fa756d128a7309",
           "row_names": [
             "negative:ga4-measurement-id-fails",
             "negative:tag-manager-id-fails",
@@ -3607,7 +3629,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "15fef8859331bb31ef8f68706001dfa8b67683dca64e505b3a765eaa056b4382",
+          "sha256": "9d836fa1cc9d3cc96fb477ebb99e60362f6bf028b52f144b1afd0481ec552fed",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -3632,7 +3654,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "15fef8859331bb31ef8f68706001dfa8b67683dca64e505b3a765eaa056b4382",
+          "sha256": "9d836fa1cc9d3cc96fb477ebb99e60362f6bf028b52f144b1afd0481ec552fed",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -3802,7 +3824,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "35688a24f94fbdfaebed7482d6983210c69b8b0377446ff6fcf87fba28665ba4",
+          "sha256": "f8d0694bfb307437e70936b8278b93357a7691e07634768b57949d2458540017",
           "row_names": [
             "i18n:source-calls-found",
             "i18n:all-gettext-calls-extracted",
@@ -3828,7 +3850,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-          "sha256": "35688a24f94fbdfaebed7482d6983210c69b8b0377446ff6fcf87fba28665ba4",
+          "sha256": "f8d0694bfb307437e70936b8278b93357a7691e07634768b57949d2458540017",
           "row_names": [
             "negative:text-domain-drift-fails",
             "negative:pot-source-drift-fails",
@@ -8733,7 +8755,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "32f106c79373b2393ebf4bfb7d8aefacb10c06cfa3dc85bd3dbf9f5c04b9212b",
+          "sha256": "e299c8469f697c3f4d32d7c533229fa30e8565070447a1f7ca564bde77cf1a54",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",
@@ -9181,7 +9203,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-          "sha256": "32f106c79373b2393ebf4bfb7d8aefacb10c06cfa3dc85bd3dbf9f5c04b9212b",
+          "sha256": "e299c8469f697c3f4d32d7c533229fa30e8565070447a1f7ca564bde77cf1a54",
           "row_names": [
             "response:content_paid:site:pc",
             "face:content_paid:site:pc",

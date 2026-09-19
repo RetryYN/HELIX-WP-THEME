@@ -18,8 +18,9 @@ function helix_wt_header_navigation_state() {
 		);
 	}
 	return array(
-		'ref'     => wtcf_shared_navigation_ref(),
-		'choices' => $choices,
+		'headerParts' => helix_wt_shared_header_parts(),
+		'ref'         => wtcf_shared_navigation_ref(),
+		'choices'     => $choices,
 	);
 }
 add_action(
@@ -52,17 +53,25 @@ add_action(
 	function () {
 		if ( ! current_user_can( 'edit_theme_options' ) ) {
 			return; }
-		wp_enqueue_script( 'helix-wt-header-navigation-editor', get_theme_file_uri( 'assets/js/header-navigation-editor.js' ), array( 'wp-plugins', 'wp-editor', 'wp-element', 'wp-components', 'wp-api-fetch', 'wp-hooks', 'wp-compose', 'wp-i18n' ), filemtime( get_theme_file_path( 'assets/js/header-navigation-editor.js' ) ), true );
+		wp_enqueue_script( 'helix-wt-header-navigation-editor', get_theme_file_uri( 'assets/js/header-navigation-editor.js' ), array( 'wp-plugins', 'wp-editor', 'wp-element', 'wp-components', 'wp-api-fetch', 'wp-hooks', 'wp-compose', 'wp-i18n', 'wp-data', 'wp-block-editor' ), filemtime( get_theme_file_path( 'assets/js/header-navigation-editor.js' ) ), true );
 		$data           = helix_wt_header_navigation_state();
 		$data['labels'] = array(
-			'text0' => __( '共通ヘッダーナビ', 'helix-wt' ),
-			'text1' => __( '全ヘッダー型で使うナビゲーションを選びます。本文やフッターのナビは変更しません。', 'helix-wt' ),
-			'text2' => __( '参照するナビゲーション', 'helix-wt' ),
-			'text3' => __( 'なし', 'helix-wt' ),
-			'text4' => __( '共通ヘッダーナビを保存しました。', 'helix-wt' ),
-			'text5' => __( '参照先を保存', 'helix-wt' ),
-			'text6' => __( 'リンクの内容は標準ナビゲーション編集で変更できます。参照先の保存はサイト全体に反映されます。', 'helix-wt' ),
-			'text7' => __( '共通ヘッダーナビは未選択です。共通ヘッダーナビ設定から参照先を選んでください。', 'helix-wt' ),
+			'text0'  => __( '共通ヘッダーナビ', 'helix-wt' ),
+			'text1'  => __( '全ヘッダー型で使うナビゲーションを選びます。本文やフッターのナビは変更しません。', 'helix-wt' ),
+			'text2'  => __( '参照するナビゲーション', 'helix-wt' ),
+			'text3'  => __( 'なし', 'helix-wt' ),
+			'text4'  => __( '共通ヘッダーナビを保存しました。', 'helix-wt' ),
+			'text5'  => __( '参照先を保存', 'helix-wt' ),
+			'text6'  => __( 'リンクの内容は標準ナビゲーション編集で変更できます。参照先の保存はサイト全体に反映されます。', 'helix-wt' ),
+			'text7'  => __( '共通ヘッダーナビは未選択です。共通ヘッダーナビ設定から参照先を選んでください。', 'helix-wt' ),
+			'text8'  => __( 'SP専用テキストナビ — 公開PCでは非表示。SPのテキストナビ配置で表示します。', 'helix-wt' ),
+			'text9'  => __( '参照先の変更は未適用です。全ヘッダーへの適用には明示保存が必要です。', 'helix-wt' ),
+			'text10' => __( '全ヘッダーに適用', 'helix-wt' ),
+			'text11' => __( '変更を取り消す', 'helix-wt' ),
+			'text12' => __( '公開中の参照先', 'helix-wt' ),
+			'text15' => __( 'SP専用テキストナビ', 'helix-wt' ),
+			'text14' => __( '参照先を保存しています。次の適用は保存完了後に行ってください。', 'helix-wt' ),
+			'text13' => __( '変更後の参照先', 'helix-wt' ),
 		);
 		wp_localize_script( 'helix-wt-header-navigation-editor', 'helixWTNavigation', $data );
 	}
