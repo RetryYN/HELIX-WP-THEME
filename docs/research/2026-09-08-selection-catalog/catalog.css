@@ -162,3 +162,16 @@ dialog .dialog-head{position:sticky;top:-26px;z-index:3;background:var(--paper);
 .home-start{margin:0 0 24px;padding:24px;border:1px solid var(--line);border-left:4px solid var(--green);background:var(--white);display:flex;align-items:center;gap:24px}.home-start h3{font-size:20px;margin:8px 0}.home-start p{font-size:13px;line-height:1.8;margin:0}.home-start-actions{display:flex;gap:8px;flex-wrap:wrap;flex:0 0 250px}.home-start-actions button{min-height:44px}.home-start-actions button[aria-pressed="true"]{background:var(--green);color:white}.finished-route{font-size:12px;line-height:1.6;padding:0 6px;color:var(--muted)}.selection-facts{display:grid;grid-template-columns:7em minmax(0,1fr);gap:10px 16px;font-size:12px;line-height:1.8;border-block:1px solid var(--line);padding:16px 0}.selection-facts dt{font-weight:700}.selection-facts dd{margin:0}.compare-grid .selection-facts{display:block}.compare-grid .selection-facts dd{margin-bottom:12px}@media(max-width:700px){.home-start{display:block;padding:18px}.home-start-actions{margin-top:14px}.home-start h3{font-size:18px}.selection-facts{grid-template-columns:1fr;gap:4px}.selection-facts dd{margin-bottom:10px}}
 /* 長い完成HOMEは入口を見分ける。全体は詳細/比較の既存ビューで確認できる。 */
 .finished-home-tile .preview{display:block;padding:0;overflow:hidden}.finished-home-tile .preview img{display:block;width:100%;height:auto;max-width:none;max-height:none;margin:0;object-position:top}
+
+/* 結果のそばで、件数を狭めている条件を確かめて外す。 */
+.active-filters{margin:0 0 20px;padding:12px 16px;background:#eef1e9;border:1px solid #d3dccd;border-radius:6px}
+.active-filters-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}
+.active-filters-head p{font-size:11px;font-weight:700;letter-spacing:.05em;margin:0;color:var(--green)}
+.active-filters-head button{padding:6px 10px;font-size:11px;border:0;text-decoration:underline;text-underline-offset:3px}
+.filter-chips{display:flex;flex-wrap:wrap;gap:8px}
+.filter-chips button{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:100%;padding:9px 12px;background:var(--white);border-color:#b5c4af;font-size:12px;text-align:left;line-height:1.6}
+.filter-chips button>span:first-child{min-width:0;overflow-wrap:anywhere}
+.filter-chips button:hover{background:var(--tint);border-color:var(--green)}
+.filter-remove{flex-shrink:0;font-size:17px;line-height:1;color:var(--green)}
+@media(max-width:700px){.active-filters{padding:8px 12px;margin-bottom:16px}.filter-chips{gap:6px}.filter-chips button{font-size:11px;padding:8px 10px}}
+@media(min-width:701px){.active-filters{display:flex;align-items:center;gap:16px;padding-block:10px}.active-filters-head{display:contents}.active-filters-head p{flex-shrink:0}.active-filters-head button{order:2;margin-left:auto;flex-shrink:0}.filter-chips{flex:1;min-width:0}}
