@@ -46,6 +46,7 @@ async function start() {
   let face = 'common', device = 'pc', limit = 36, linkedIds = null;
   const comparison = new Set();
   let activeTab = 0, detailId = null, imageMode = 'overview';
+  let galleryEntries = [], detailEntries = [];
   let returnContext = null;
   const suspendedDialogs = new WeakSet();
   const returnBar = el('div', undefined, 'requirement-return'); returnBar.hidden = true;
@@ -200,6 +201,7 @@ async function start() {
       && (!selected || memoFor(e.id).status === selected)
       && `${e.label} ${e.part} ${e.variant} ${e.requirementIds.join(' ')} ${memoFor(e.id).note}`.toLocaleLowerCase().includes(query))
       .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])) || (['home', 'event', 'zone', 'article'].includes(face) ? Number(Boolean(b.finished)) - Number(Boolean(a.finished)) : 0));
+    galleryEntries = entries;
     $('collection-title').textContent = linkedIds ? '要求に関連する候補' : collections.find(([key]) => key === face)[1];
     $('count').textContent = `${entries.length}候補 / ${device.toUpperCase()}`;
     $('empty').hidden = entries.length > 0; $('more').hidden = entries.length <= limit;
@@ -296,15 +298,37 @@ async function start() {
     panel.append(related);
     return panel;
   }
-  function detail(entry) {
+  function detail(entry, direction = null) {
+    // 開いた時点の絞り込み順を保持する。判断後も前後の候補を飛ばさない。
+    if (!direction) detailEntries = [...galleryEntries];
     detailId = entry.id;
+    const index = detailEntries.findIndex(candidate => candidate.id === entry.id);
+    const head = $('detail').querySelector('.dialog-head');
+    head.querySelector('.detail-sequence')?.remove();
+    const sequence = el('nav', undefined, 'detail-sequence');
+    sequence.setAttribute('aria-label', '開いた候補一覧を順に確認');
+    const position = el('span', `${index + 1} / ${detailEntries.length}候補`, 'detail-position');
+    position.setAttribute('role', 'status');
+    position.setAttribute('aria-label', `${index + 1} / ${detailEntries.length}候補: ${entry.label} ${entry.variant}`);
+    for (const [step, label, offset] of [['previous', '← 前の候補', -1], ['next', '次の候補 →', 1]]) {
+      const target = detailEntries[index + offset];
+      const control = button(label, () => { if (target) detail(target, step); });
+      control.dataset.step = step; control.disabled = !target;
+      sequence.append(control);
+    }
+    sequence.insertBefore(position, sequence.lastChild);
+    head.append(sequence);
     const layout = el('div', undefined, 'detail-layout'); layout.append(inspectImage(entry), editor(entry));
-    $('detail-content').replaceChildren(imageControls(), layout); $('detail').showModal();
+    $('detail-content').replaceChildren(imageControls(), layout);
+    if (!$('detail').open) $('detail').showModal();
+    $('detail').scrollTop = 0;
+    if (direction) (sequence.querySelector(`[data-step="${direction}"]:not(:disabled)`) || sequence.querySelector('button:not(:disabled)') || head.querySelector('.close')).focus({ preventScroll: true });
   }
   for (const dialog of document.querySelectorAll('dialog')) {
     dialog.querySelector('.close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('close', () => {
       if (suspendedDialogs.has(dialog)) { suspendedDialogs.delete(dialog); return; }
+      if (dialog.id === 'detail') limit = Math.max(limit, galleryEntries.findIndex(entry => entry.id === detailId) + 1);
       render();
       const target = dialog.id === 'detail' ? [...$('gallery').querySelectorAll('.tile-open')].find(n => n.dataset.entryId === detailId) : $('open-compare');
       (target && target.getClientRects().length ? target : $('search')).focus();
