@@ -155,12 +155,14 @@ async function start() {
       && (!$('purpose').value || e.purpose === $('purpose').value)
       && (!selected || memoFor(e.id).status === selected)
       && `${e.label} ${e.part} ${e.variant} ${e.requirementIds.join(' ')} ${memoFor(e.id).note}`.toLocaleLowerCase().includes(query))
-      .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])) || (['home', 'event', 'zone'].includes(face) ? Number(Boolean(b.finished)) - Number(Boolean(a.finished)) : 0));
+      .sort((a, b) => Number(Boolean(b.images[device])) - Number(Boolean(a.images[device])) || (['home', 'event', 'zone', 'article'].includes(face) ? Number(Boolean(b.finished)) - Number(Boolean(a.finished)) : 0));
     $('collection-title').textContent = linkedIds ? '要求に関連する候補' : collections.find(([key]) => key === face)[1];
     $('count').textContent = `${entries.length}候補 / ${device.toUpperCase()}`;
     $('empty').hidden = entries.length > 0; $('more').hidden = entries.length <= limit;
     $('home-start').hidden = face !== 'home' || Boolean(linkedIds);
     $('event-start').hidden = face !== 'event' || Boolean(linkedIds);
+    $('device-start').hidden = face !== 'article' || Boolean(linkedIds);
+    $('device-finished-only').setAttribute('aria-pressed', String($('search').value === '端末別完成比較'));
     $('banner-start').hidden = face !== 'zone' || Boolean(linkedIds);
     $('banner-finished-only').setAttribute('aria-pressed', String($('search').value === 'バナー完成比較'));
     $('event-finished-only').setAttribute('aria-pressed', String($('search').value === '完成EVENT'));
@@ -251,6 +253,8 @@ async function start() {
   }
   $('home-finished-only').addEventListener('click', () => { $('search').value = '完成HOME'; limit = 36; render(); });
   $('event-finished-only').addEventListener('click', () => { $('search').value = '完成EVENT'; limit = 36; render(); });
+  $('device-finished-only').addEventListener('click', () => { $('search').value = '端末別完成比較'; limit = 36; render(); });
+  $('device-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('banner-finished-only').addEventListener('click', () => { $('search').value = 'バナー完成比較'; limit = 36; render(); });
   $('banner-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });
   $('event-with-parts').addEventListener('click', () => { $('search').value = ''; limit = 36; render(); });

@@ -4,7 +4,7 @@
   "sourceDigests": {
     "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
     "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "4f96f85d0b9b08dcb7f2647e23ac9bff2c6edbc99320da52e9d231b26edc5826",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
@@ -930,7 +930,7 @@
     {
       "name": "rotation:pc:js:area-cap",
       "pass": true,
-      "details": 0.10640576774691358
+      "details": 0.12111352237654321
     },
     {
       "name": "rotation:pc:js:disclosure-adjacent",
@@ -975,7 +975,7 @@
     {
       "name": "rotation:pc:nojs:area-cap",
       "pass": true,
-      "details": 0.10640576774691358
+      "details": 0.12111352237654321
     },
     {
       "name": "rotation:pc:nojs:disclosure-adjacent",
@@ -1020,7 +1020,7 @@
     {
       "name": "rotation:sp:js:area-cap",
       "pass": true,
-      "details": 0.2577263888888889
+      "details": 0.28621444444444444
     },
     {
       "name": "rotation:sp:js:disclosure-adjacent",
@@ -1065,7 +1065,7 @@
     {
       "name": "rotation:sp:nojs:area-cap",
       "pass": true,
-      "details": 0.2577263888888889
+      "details": 0.28621444444444444
     },
     {
       "name": "rotation:sp:nojs:disclosure-adjacent",
@@ -1880,14 +1880,14 @@
       "label": "次の訪問で案内を切り替える",
       "file": "rotation-pc.jpg",
       "device": "pc",
-      "sha256": "ceeb96230dc26792905db23c31ec949a1b97a30bcbc5095ad1eba2387cc37635"
+      "sha256": "f8a4a9b9a4b0e253d8b1a6bb980f8dd0fa5e8661bcea3e2d0b3e811f98009de8"
     },
     {
       "id": "rotation",
       "label": "次の訪問で案内を切り替える",
       "file": "rotation-sp.jpg",
       "device": "sp",
-      "sha256": "3c4e911ad23ae8a1375d4411c86a9e9719f9f22a6f9a90ebeac5dd0370eec42c"
+      "sha256": "6240683d224e560c8de813718c8550a7559e274c19540de9373891ea3608d20d"
     },
     {
       "id": "stack",
@@ -2148,60 +2148,60 @@
     {
       "name": "rotation:pc:js",
       "snapshot": {
-        "areaRatio": 0.10640576774691358,
+        "areaRatio": 0.12111352237654321,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 843.09375,
-          "bottom": 891.09375
+          "top": 871.125,
+          "bottom": 919.125
         }
       }
     },
     {
       "name": "rotation:pc:nojs",
       "snapshot": {
-        "areaRatio": 0.10640576774691358,
+        "areaRatio": 0.12111352237654321,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 843.09375,
-          "bottom": 891.09375
+          "top": 871.125,
+          "bottom": 919.125
         }
       }
     },
     {
       "name": "rotation:sp:js",
       "snapshot": {
-        "areaRatio": 0.2577263888888889,
+        "areaRatio": 0.28621444444444444,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1031.703125,
-          "bottom": 1079.703125
+          "top": 1059.734375,
+          "bottom": 1107.734375
         }
       }
     },
     {
       "name": "rotation:sp:nojs",
       "snapshot": {
-        "areaRatio": 0.2577263888888889,
+        "areaRatio": 0.28621444444444444,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1031.703125,
-          "bottom": 1079.703125
+          "top": 1059.734375,
+          "bottom": 1107.734375
         }
       }
     },

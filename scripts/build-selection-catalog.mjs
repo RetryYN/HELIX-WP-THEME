@@ -518,6 +518,21 @@ if (fs.existsSync(path.join(root, bannerPath))) {
     entries.set(`banner-finished:${id}`, { id: `banner-finished:${id}`, face: 'zone', part: 'banner-finished', finished: true, label: `バナー完成比較：${evidence.shots.find(s => s.id === id).label}`, variant: id, images, requirementIds: ['WT-FR-BANNER-01', 'WT-FR-ZONE-03'], purpose: fact[0], group: 'ページ・本文', description: '架空のバナー正本と配置の比較PoC。実配信・同意取得・推奨面積の確定を示すものではありません。', selectionFacts: { '対象と判断': fact[0], '配置': fact[1], '表示方法': fact[2], '状態と帰属': fact[3], '予算': '画像150KB以内・viewport面積60%以内の試験宣言（推奨値未確定）' }, evidence: '../2026-09-16-banner-zone-completion/verification.json' });
   }
 }
+const devicePath = 'docs/research/2026-09-16-device-vocabulary/verification.json';
+if (fs.existsSync(path.join(root, devicePath))) {
+  const evidence = read(devicePath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixture:cleanup' && r.pass)) throw Error('Device vocabulary evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale device evidence: ${file}`);
+  for (const [id, title] of [['compare', '横に比べて、条件を確かめる'], ['read', '一つずつ読んで、相談を決める']]) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-16-device-vocabulary', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing device screenshot ${id}/${device}`);
+      images[device] = `../2026-09-16-device-vocabulary/${shot.file}`;
+    }
+    entries.set(`device-finished:${id}`, { id: `device-finished:${id}`, face: 'article', part: 'device-finished', finished: true, label: `端末別完成比較：${title}`, variant: id, images, requirementIds: ['WT-FR-SP-03', 'WT-FR-VOCAB-01', 'WT-FR-LOOK-01'], purpose: title, group: 'ページ・本文', description: '同じ架空本文を端末別の読み方で比較するPoC。管理画面・MCPのプレビュー一致は未実証。', selectionFacts: { '対象と判断': title, '比較表': id === 'read' ? 'PC横表・SP項目カード' : 'PC/SPとも横比較', '内容の切替': 'PCタブ・SP見出し開閉', '写真と目次': 'SP横送り・目次開閉、PC一覧', '行動導線': id === 'read' ? 'SPで到達後に固定' : '本文末の全幅ボタン', 'JSなし': '全本文・写真横スクロール・通常フローCTA' }, evidence: '../2026-09-16-device-vocabulary/verification.json' });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

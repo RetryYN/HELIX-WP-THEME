@@ -28,7 +28,9 @@ function deriveCapabilities() {
     return slug;
   });
   const blockTypes = [...registrationSources.matchAll(/register_block_type\(\s*['"]([^'"]+)/g)].map(match => match[1]);
-  const blockStyles = [...functions.matchAll(/array\(\s*['"](core\/[^'"]+)['"]\s*,\s*['"]([^'"]+)['"]\s*,/g)].map(match => `${match[1]}:${match[2]}`);
+  const tupleStyles = [...functions.matchAll(/array\(\s*['"](core\/[^'"]+)['"]\s*,\s*['"]([^'"]+)['"]\s*,/g)].map(match => `${match[1]}:${match[2]}`);
+  const objectStyles = [...registrationSources.matchAll(/register_block_style\(\s*['"](core\/[^'"]+)['"]\s*,\s*array\(\s*['"]name['"]\s*=>\s*['"]([^'"]+)['"]/g)].map(match => `${match[1]}:${match[2]}`);
+  const blockStyles = [...tupleStyles, ...objectStyles];
   const scalePaths = ['settings.color.palette', 'settings.color.gradients', 'settings.typography.fontFamilies', 'settings.typography.fontSizes', 'settings.spacing.spacingSizes'];
   return {
     patterns: sorted(patterns),
