@@ -325,6 +325,11 @@ async function start() {
     if (direction) (sequence.querySelector(`[data-step="${direction}"]:not(:disabled)`) || sequence.querySelector('button:not(:disabled)') || head.querySelector('.close')).focus({ preventScroll: true });
   }
   for (const dialog of document.querySelectorAll('dialog')) {
+    // sticky見出しの背後へキーボードフォーカスをスクロールさせない。
+    const header = dialog.querySelector('.dialog-head');
+    new ResizeObserver(() => {
+      dialog.style.setProperty('--dialog-header-clearance', `${Math.ceil(header.getBoundingClientRect().height) + 8}px`);
+    }).observe(header);
     dialog.querySelector('.close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('close', () => {
       if (suspendedDialogs.has(dialog)) { suspendedDialogs.delete(dialog); return; }
