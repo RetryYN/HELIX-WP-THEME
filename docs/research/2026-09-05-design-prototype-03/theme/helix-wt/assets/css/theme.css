@@ -42,8 +42,8 @@ img{height:auto;max-width:100%}
 .wp-block-button.is-style-outline .wp-block-button__link{border:1.5px solid currentColor;background:transparent;color:var(--wp--preset--color--accent)}
 
 /* 見出しスタイル */
-.wp-block-heading.is-style-wt-bar{padding-left:.75rem;border-left:4px solid var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-underline{padding-bottom:.3em;border-bottom:2px solid var(--wp--preset--color--contrast)}
+.wp-block-heading.is-style-wt-bar{padding-left:var(--wp--custom--heading--inset);border-left:var(--wp--custom--heading--bar) solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-underline{padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:var(--wp--custom--heading--rule) solid var(--wp--preset--color--contrast)}
 
 /* 囲み */
 .wp-block-group.is-style-wt-note,.wp-block-group.is-style-wt-point,.wp-block-group.is-style-wt-warn{padding:1rem 1.25rem;border-radius:var(--wp--custom--radius-m);margin-block:1.5rem}
@@ -327,36 +327,36 @@ body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-toc
 
 /* ---------- 4. 見出し（block style、h2 10 型 / h3 5 型） ---------- */
 .wp-block-heading.is-style-wt-plain{font-weight:800}
-/* 2026-09-05 PO 反応3回目: 下線系（2tone/underline/dotted/underline-thin）の文字下端〜下線の距離が遠すぎた。
-   padding-bottom を固定 rem から 0.3em（文字サイズに追従）へ変更し、概ね 4〜8px に収める。 */
-.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:.3em;border-bottom:2px solid var(--wp--preset--color--line)}
-.wp-block-heading.is-style-wt-2tone::after{content:"";position:absolute;left:0;bottom:-2px;width:5rem;height:2px;background:var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-icon{display:flex;align-items:baseline;gap:.6rem}
+/* 文字に追従する装飾尺度は theme.json の heading トークンで一元管理する。 */
+.wp-block-heading{overflow-wrap:anywhere}
+.wp-block-heading.is-style-wt-2tone{position:relative;padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:var(--wp--custom--heading--rule) solid var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-2tone::after{content:"";position:absolute;left:0;bottom:var(--wp--custom--heading--rule-negative);width:var(--wp--custom--heading--accent-length);max-width:100%;height:var(--wp--custom--heading--rule);background:var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-icon{display:flex;align-items:baseline;gap:var(--wp--custom--heading--gap)}
 /* 2026-09-05 PO 反応2回目: 既定アイコンが check-circle（チェックマーク）で、リスト側の is-style-wt-check
    （丸背景 + 白チェック）と見た目が被っていた。見出し側の既定は star（星）へ変更し、リストと区別する。 */
-.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:1.15em;height:1.15em;background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%203l2.8%205.9%206.4.8-4.7%204.4%201.2%206.4L12%2017.3%206.3%2020.5l1.2-6.4L2.8%209.7l6.4-.8z%22/%3E%3C/svg%3E")}
+.wp-block-heading.is-style-wt-icon::before{content:"";flex:0 0 auto;width:var(--wp--custom--heading--icon);height:var(--wp--custom--heading--icon);background:var(--wp--preset--color--accent);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%203l2.8%205.9%206.4.8-4.7%204.4%201.2%206.4L12%2017.3%206.3%2020.5l1.2-6.4L2.8%209.7l6.4-.8z%22/%3E%3C/svg%3E")}
 .wp-block-heading.is-style-wt-icon[data-wt-icon="lightbulb"]::before{--i:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%2018h6M10%2021h4M12%203a6%206%200%200%201%203.5%2010.9c-.6.5-1%201.2-1%202.1h-5c0-.9-.4-1.6-1-2.1A6%206%200%200%201%2012%203z%22/%3E%3C/svg%3E")}
-.wp-block-heading.is-style-wt-band{background:var(--wp--preset--color--accent);color:#fff;padding:.55rem .9rem;border-radius:var(--wp--custom--radius-s)}
-.wp-block-heading.is-style-wt-bar-thin{padding-left:.6rem;border-left:3px solid var(--wp--preset--color--accent)}
-.wp-block-heading.is-style-wt-dotted{padding-bottom:.3em;border-bottom:2px dotted var(--wp--preset--color--line)}
-.wp-block-heading.is-style-wt-num{display:flex;align-items:baseline;gap:.5rem;counter-increment:wt-h3}
+.wp-block-heading.is-style-wt-band{background:var(--wp--preset--color--accent);color:var(--wp--custom--heading--ink);padding:var(--wp--custom--heading--padding-block) var(--wp--custom--heading--inset);border-radius:var(--wp--custom--radius-s)}
+.wp-block-heading.is-style-wt-bar-thin{padding-left:var(--wp--custom--heading--inset);border-left:var(--wp--custom--heading--bar-thin) solid var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-dotted{padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:var(--wp--custom--heading--rule) dotted var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-num{display:flex;align-items:baseline;gap:var(--wp--custom--heading--gap);counter-increment:wt-h3}
 .wp-block-post-content{counter-reset:wt-h3 wt-h2num}
 /* 2026-09-05 PO 反応2回目是正: (1) 番号（::before）が比較表 caption と同種の理由で 1 文字ずつ縦積みになっていた
    ——親が display:flex のとき、子は既定で flex-shrink:1 のため、行が窮屈だと自身の内容幅より縮んで折り返す。
    flex:0 0 auto と white-space:nowrap で「縮まない・折り返さない」ことを明示して防ぐ。
    (2) 番号の font-size は見出し本文（h3 テキスト）より大きくする指摘のため .9em → 1.5em（h3 文字基準の 1.5 倍）へ。 */
-.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-weight:800;font-size:1.5em;line-height:1}
+.wp-block-heading.is-style-wt-num::before{content:counter(wt-h3,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;font-family:var(--wp--preset--font-family--latin);color:var(--wp--preset--color--accent);font-weight:800;font-size:var(--wp--custom--heading--number-size);line-height:1}
 /* 2026-09-05 PO 反応2回目: h2 バリエーション +4（台帳 parts-pattern-taxonomy README §1 観察型から） */
-.wp-block-heading.is-style-wt-numbox{display:flex;align-items:flex-start;gap:.75rem;counter-increment:wt-h2num}
-.wp-block-heading.is-style-wt-numbox::before{content:counter(wt-h2num,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;width:1.9em;height:1.9em;border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:#fff;font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:.7em}
-.wp-block-heading.is-style-wt-barbg{border-left:6px solid var(--wp--preset--color--accent);background:var(--wp--preset--color--surface);padding:.6rem .9rem;border-radius:0 var(--wp--custom--radius-s) var(--wp--custom--radius-s) 0}
-.wp-block-heading.is-style-wt-doubleline{padding-block:.4rem;border-top:1px solid var(--wp--preset--color--line);border-bottom:3px double var(--wp--preset--color--line)}
-.wp-block-heading.is-style-wt-label{display:flex;flex-direction:column;gap:.3rem}
-.wp-block-heading.is-style-wt-label::before{content:"SECTION";order:-1;font-family:var(--wp--preset--font-family--latin);font-size:.55em;font-weight:700;letter-spacing:.12em;color:var(--wp--preset--color--accent)}
+.wp-block-heading.is-style-wt-numbox{display:flex;align-items:flex-start;gap:var(--wp--custom--heading--gap);counter-increment:wt-h2num}
+.wp-block-heading.is-style-wt-numbox::before{content:counter(wt-h2num,decimal-leading-zero);flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;width:var(--wp--custom--heading--badge-size);height:var(--wp--custom--heading--badge-size);border-radius:var(--wp--custom--radius-s);background:var(--wp--preset--color--accent);color:var(--wp--custom--heading--ink);font-family:var(--wp--preset--font-family--latin);font-weight:700;font-size:var(--wp--custom--heading--badge-text)}
+.wp-block-heading.is-style-wt-barbg{border-left:var(--wp--custom--heading--bar-strong) solid var(--wp--preset--color--accent);background:var(--wp--preset--color--surface);padding:var(--wp--custom--heading--padding-block) var(--wp--custom--heading--inset);border-radius:0 var(--wp--custom--radius-s) var(--wp--custom--radius-s) 0}
+.wp-block-heading.is-style-wt-doubleline{padding-block:var(--wp--custom--heading--underline-gap);border-top:1px solid var(--wp--preset--color--line);border-bottom:var(--wp--custom--heading--bar-thin) double var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-label{display:flex;flex-direction:column;gap:var(--wp--preset--spacing--10)}
+.wp-block-heading.is-style-wt-label::before{content:"SECTION";order:-1;font-family:var(--wp--preset--font-family--latin);font-size:var(--wp--custom--heading--label-text);font-weight:700;letter-spacing:var(--wp--custom--heading--label-tracking);color:var(--wp--preset--color--accent)}
 /* 2026-09-05 PO 反応2回目: h3 バリエーション +2 */
-.wp-block-heading.is-style-wt-marker{display:flex;align-items:baseline;gap:.5rem}
-.wp-block-heading.is-style-wt-marker::before{content:"";flex:0 0 auto;width:.6em;height:.6em;background:var(--wp--preset--color--accent);border-radius:2px}
-.wp-block-heading.is-style-wt-underline-thin{padding-bottom:.3em;border-bottom:1px solid var(--wp--preset--color--line)}
+.wp-block-heading.is-style-wt-marker{display:flex;align-items:baseline;gap:var(--wp--custom--heading--gap)}
+.wp-block-heading.is-style-wt-marker::before{content:"";flex:0 0 auto;width:var(--wp--custom--heading--marker);height:var(--wp--custom--heading--marker);background:var(--wp--preset--color--accent);border-radius:var(--wp--custom--heading--rule)}
+.wp-block-heading.is-style-wt-underline-thin{padding-bottom:var(--wp--custom--heading--underline-gap);border-bottom:1px solid var(--wp--preset--color--line)}
 
 /* ---------- 5. 囲み（group block style 7 型 × 色 modifier .wt-c-*） ---------- */
 .wp-block-group[class*="is-style-wt-"]{--wt-box-accent:var(--wp--preset--color--accent);--wt-box-soft:var(--wp--preset--color--accent-soft);--wt-box-line:var(--wp--preset--color--line)}
@@ -1253,7 +1253,7 @@ body.wt-sp-center-logo .wt-header__nav .wp-block-navigation{min-width:44px}
 /* 適用範囲（Astra 是正 2 巡目）: 「numbox の h2 と同じ親コンテナ（post-content 直下でも Group 内でも）に置かれた num の h3」だけを親番号付きにする。Group に入れた numbox も対象で、別コンテナの h3 には波及しない（同一本文内の別セクションの単独 num は従来の連番のまま）。同じ親コンテナ内では、numbox の h2 を 1 つでも使う本文では num の h3 がすべて「直前の numbox 番号-連番」になる。
    通常 h2 が混在する場合も h2 ごとに連番は振り直す（通常 h2 は親番号を進めない）。「numbox 以外の h2 の配下だけ単独連番」は CSS では判定できないため、混在は想定外として README に明記 */
 :is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > h2:not(.is-style-wt-numbox){counter-set:wt-h3 0}
-:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:1.15em}
+:is(.wp-block-post-content,.wp-block-post-content *):has(> .is-style-wt-numbox) > .wp-block-heading.is-style-wt-num::before{content:counter(wt-h2num,decimal-leading-zero) "-" counter(wt-h3);font-size:var(--wp--custom--heading--nested-number-size)}
 /* numbox を（入れ子の深さを問わず）含むコンテナ（Group 等）の直後の兄弟から wt-h3 を 0 に戻す（入れ子 Group の外へ出る境界も対象。Astra 4 巡目）。これで後続の別コンテナ・post-content 直下の単独 num は 01 から数え直す（wt-h2num は本文全体で続く）。counter-set は後続兄弟へ伝わる（counter-reset は伝わらない。1243 行の注記と同じ実測） */
 .wp-block-post-content :has(.is-style-wt-numbox) + *,.wp-block-post-content > :has(.is-style-wt-numbox) + *{counter-set:wt-h3 0}
 /* 直後の兄弟が num の h3 自身なら 1（counter-set は counter-increment の後に適用されるため 0 にすると 00 になる。CSS Lists 3 の適用順） */

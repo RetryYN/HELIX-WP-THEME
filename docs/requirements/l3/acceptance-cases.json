@@ -1764,6 +1764,30 @@
       "requirement_id": "WT-FR-SEARCH-01",
       "polarity": "positive",
       "oracle": "PC/SP・JS有効/無効で検索・ページ送り・結果移動が成立する。検索語を安全に表示し、キーボード操作・日本語表示・横溢れなしを確認する。"
+    },
+    {
+      "id": "WT-AC-UTILITY-01A",
+      "requirement_id": "WT-FR-UTILITY-01",
+      "polarity": "positive",
+      "oracle": "calculator / grader / generator の代表用途で、入力ラベル、検証、派生結果、根拠、再入力が同じ結果契約から表示される。"
+    },
+    {
+      "id": "WT-AC-UTILITY-01B",
+      "requirement_id": "WT-FR-UTILITY-01",
+      "polarity": "negative",
+      "oracle": "テーマに計算式・診断規則・生成処理・外部API資格情報を持つ、入力を既定で保存する、または結果を根拠なしの保証として表示すればFAIL。"
+    },
+    {
+      "id": "WT-AC-UTILITY-01C",
+      "requirement_id": "WT-FR-UTILITY-01",
+      "polarity": "boundary",
+      "oracle": "空、最小・最大、尺度外、長文、多言語、外部処理の遅延・失敗・再試行で、入力を失わず、誤った成功結果を残さず、対象外と代替経路を示す。"
+    },
+    {
+      "id": "WT-AC-UTILITY-01D",
+      "requirement_id": "WT-FR-UTILITY-01",
+      "polarity": "positive",
+      "oracle": "PC/SP・キーボード・200%文字拡大・JavaScript無効で説明と入力順を保ち、結果更新を通知し、横溢れや操作不能がない。"
     }
   ]
 }

@@ -121,3 +121,7 @@ HELIX runtime は `npm run helix -- status` で確認する。2026-09-08 の確�
 ## WT-EVT-0310: サイト全体検索
 
 検索結果・ゼロ件・再検索の73検査と変更前の欠落を根拠にWT-FR-SEARCH-01を追加。4 ACで公開範囲・ページ送り・未入力・安全な表示・操作を具体化。133要求・294 AC・133 test ID。P1は暫定、G3未実施。検索代表面だけで全条件確認済みとしない。
+
+## WT-EVT-0311: 対話型ユーティリティ面
+
+Shopify公式tools indexとHubSpot公式Website Graderの説明を既存台帳へ再照合し、入力から診断・計算・生成結果を返す面が未記録だと確認した。[取りこぼし調査](../research/2026-09-20-interactive-utility-gap/README.md)を根拠にWT-FR-UTILITY-01と4 ACを追加し、134要求・298 AC・134 test IDとした。通常フォーム・検索結果とは目的を分け、処理規則と保存はテーマ外、入力非保存を既定とする。代表PoCとG3は未実施。

@@ -113,7 +113,7 @@ if [[ -n "$custom_regex" ]]; then
   check_pattern "private name/domain mapping" "$custom_regex" '-Ei'
 fi
 
-if cut -f1 "$records" | grep -Eq '(^|/)(research|evidence|artifacts?/poc|raw|captures?)(/|$)' &&
+if awk -F '\t' '$1 ~ /(^|\/)(research|evidence|artifacts?\/poc|raw|captures?)(\/|$)/ { found=1 } END { exit !found }' "$records" &&
    [[ -z "$custom_regex" ]]; then
   echo "FAIL: research/evidence/PoC content changed without a private redaction mapping." >&2
   echo "  Set PUBLIC_REDACTION_GUARD_RE or create .public-safety.local.regex." >&2

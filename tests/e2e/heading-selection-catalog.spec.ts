@@ -5,11 +5,14 @@ test('既存15型を同じ本文と用途で選び、3候補をPC/SP比較する
  await page.locator('[data-face="all"]').click();
  await page.locator('#search').fill('見出し比較：');
  await expect(page.locator('.tile-open')).toHaveCount(15);
- await expect(page.locator('.tile-open img').first()).toHaveAttribute('src',/2026-09-20-heading-comparison\/h[23]-.+-pc\.jpg/);
+ await expect(page.locator('.tile-open img').first()).toHaveAttribute('src',/2026-09-20-heading-fluid\/h[23]-.+-pc\.jpg/);
  await page.locator('.tile-open').first().click();
  await expect(page.locator('#detail')).toContainText('全15型で同じ短文と長文');
  await expect(page.locator('#detail')).toContainText('見た目のために変更しない');
  await expect(page.locator('#detail')).toContainText('core/heading className');
+ await expect(page.locator('#detail')).toContainText('200%');
+ await expect(page.locator('#detail')).toContainText('settings.custom.heading');
+ await expect(page.locator('#detail')).toContainText('組合せ');
  await page.keyboard.press('Escape');
  for(let i=0;i<3;i++)await page.locator('.compare-pick input').nth(i).check();
  await page.locator('#open-compare').click();
