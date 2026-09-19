@@ -83,7 +83,28 @@ function loadCandidateFile(candidatePath) {
     .map(([id, row]) => ({ ...row, id, __candidatePath: candidatePath }));
 }
 
-function normalizeCandidate(candidate, registry, acceptanceById, requirementById) {
+function validateProofRelevance(candidate, proofs, oracleConfig) {
+  const mappings = oracleConfig.acceptanceProofs;
+  if (mappings === undefined || mappings === null) {
+    if (candidate.status === 'verified_in_poc') fail(`verified candidate requires acceptanceProofs mapping: ${candidate.id}`);
+    return;
+  }
+  if (typeof mappings !== 'object' || Array.isArray(mappings)) fail('catalog admission acceptanceProofs mapping is invalid');
+  const allowed = mappings[candidate.id];
+  if (allowed === undefined) {
+    if (candidate.status === 'verified_in_poc') fail(`verified candidate requires acceptanceProofs mapping: ${candidate.id}`);
+    return;
+  }
+  if (!Array.isArray(allowed) || !allowed.length || allowed.some(value => typeof value !== 'string' || !value)) {
+    fail(`acceptanceProofs mapping must contain non-empty paths: ${candidate.id}`);
+  }
+  const allowedSet = new Set(allowed);
+  for (const proof of proofs) {
+    if (!allowedSet.has(proof.path)) fail(`proof path is not allowed for acceptance: ${candidate.id} / ${proof.path}`);
+  }
+}
+
+function normalizeCandidate(candidate, registry, acceptanceById, requirementById, oracleConfig) {
   const id = candidate.id;
   if (typeof id !== 'string' || !id) fail('candidate acceptance id is required');
   if (registry.cases?.[id]) fail(`acceptance already admitted: ${id}`);
@@ -105,6 +126,7 @@ function normalizeCandidate(candidate, registry, acceptanceById, requirementById
   if (requirementDigest !== requirement.semantic_digest) fail(`requirement digest mismatch: ${id}`);
   const oracleSha = candidate.oracle_sha256 ?? digest(acceptance.oracle);
   if (oracleSha !== digest(acceptance.oracle)) fail(`oracle digest mismatch: ${id}`);
+  validateProofRelevance(candidate, proofs, oracleConfig);
   for (const proof of proofs) validateProof(proof);
   return {
     status: candidate.status,
@@ -150,6 +172,7 @@ function main() {
   const options = parseArgs(process.argv.slice(2));
   const registryRaw = bytes(registryPath);
   const registry = JSON.parse(registryRaw);
+  const oracleConfig = read(oracleConfigPath);
   const acceptance = read(acceptancePath).cases;
   const requirements = read(requirementsPath).requirements;
   const acceptanceById = new Map(acceptance.map(item => [item.id, item]));
@@ -163,7 +186,7 @@ function main() {
   const candidateProofs = candidates.flatMap(proofRefs);
   const commands = declaredOracleCommands(candidateProofs, options.commands);
   const candidateDigests = Object.fromEntries([...new Set(candidates.map(candidate => candidate.__candidatePath))].map(file => [file, digest(bytes(file))]));
-  const normalized = candidates.map(candidate => [candidate.id, normalizeCandidate(candidate, registry, acceptanceById, requirementById)]);
+  const normalized = candidates.map(candidate => [candidate.id, normalizeCandidate(candidate, registry, acceptanceById, requirementById, oracleConfig)]);
   if (!options.apply) {
     console.log(JSON.stringify({ mode: 'dry-run', candidates: normalized.map(([id]) => id), commands, candidateDigests }, null, 2));
     return;
@@ -186,7 +209,7 @@ function main() {
   }
   const records = new Map();
   for (const candidate of candidates) {
-    const record = normalizeCandidate(candidate, registry, acceptanceById, requirementById);
+    const record = normalizeCandidate(candidate, registry, acceptanceById, requirementById, oracleConfig);
     record.proofs = record.proofs.map(proof => ({ ...proof, sha256: finalProofs.get(proof.path) }));
     records.set(candidate.id, record);
   }
