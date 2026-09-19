@@ -1,19 +1,32 @@
 {
-  "date": "2026-09-20",
-  "scope": "catalog filter context only",
+  "schema": "wt-catalog-filter-verification.v1",
+  "scope": "catalog selection and filter browser regression only",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/selection-catalog.spec.ts",
+    "tests/e2e/selection-catalog-filters.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
   "playwright": {
     "passed": 34,
     "failed": 0,
-    "newTestsPassed": 6,
-    "existingFailures": []
+    "skipped": 0,
+    "flaky": 0
   },
-  "npmTest": "passed",
-  "publicSafety": "passed with private mapping via temporary index",
   "sourceDigests": {
-    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "b739f779f16c2eb25b2e3680c053dac329ab9a4647371f6224f54ce2608db640",
-    "docs/research/2026-09-08-selection-catalog/catalog.css": "20aa1979e81c04d222f3f535b6a331e2c21de2c416a41ff675488ff53a819c6f",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "5f53c0df3de770dc1b80e61cbb509ed7066a84e2b3937b3108950dfc70c6b2c4",
+    "docs/research/2026-09-08-selection-catalog/catalog.css": "a3cac88a86fd578bd80d767328941946b7497d9765306c4627b498d7e4cfcfc3",
     "docs/research/2026-09-08-selection-catalog/index.html": "75a67380c1a0c81554e29f6ba2bb992cfdf9dfdc667d1f520632dba0c9f0028f",
-    "tests/e2e/selection-catalog-filters.spec.ts": "b2cf0bb4e03d14263488aa8bd7599ce1de87c514a196aeb290526cb9cb9da90f"
+    "tests/e2e/selection-catalog.spec.ts": "4d7b702f9eeba4627ef78b5524d05644871a70d90601e867ce1b3a00707213a2",
+    "tests/e2e/selection-catalog-filters.spec.ts": "b2cf0bb4e03d14263488aa8bd7599ce1de87c514a196aeb290526cb9cb9da90f",
+    "docs/research/2026-09-08-selection-catalog/visual-quality/filter-context/verify.mjs": "9973e73fc835dc3097c832d5c9c0e1ce1c9680152498cb539aac0c11600579e5"
   },
-  "revalidation": "2026-09-20: merged main 76091b6 user-scroll preservation with tablet common-component CSS; selection-catalog and selection-catalog-filters suites revalidated together (34 passed), including tablet boundaries and mobile navigation. Existing screenshots remain prior visual evidence; tablet before/after captures are unchanged."
+  "limitations": [
+    "Does not assert npm test or public safety; those checks run separately.",
+    "Existing filter screenshots are earlier visual evidence."
+  ]
 }
