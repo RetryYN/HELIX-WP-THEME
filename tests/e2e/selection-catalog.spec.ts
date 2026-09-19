@@ -501,6 +501,8 @@ test('decision facts stay aligned between cards and the comparison table', async
   await expect(facts.getByRole('rowheader', { name: /選ぶ理由・確認事項/ })).toContainText('差分あり');
   await expect(facts).toContainText('見出し密度を優先する');
   await expect(page.locator('.comparison-evidence-note')).toContainText('受入条件の達成を示すものではありません');
+  await expect(facts.locator('thead th')).toHaveCount(3);
+  expect(await facts.locator('tbody th').count()).toBeGreaterThan(0);
   expect(await facts.locator('thead th').evaluateAll(cells => cells.every(cell => cell.getAttribute('scope') === 'col'))).toBe(true);
   expect(await facts.locator('tbody th').evaluateAll(cells => cells.every(cell => cell.getAttribute('scope') === 'row'))).toBe(true);
 
