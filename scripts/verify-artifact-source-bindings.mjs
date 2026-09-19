@@ -59,7 +59,23 @@ for (const absolute of jsonFiles) {
   if (!artifact.sourceDigests || Array.isArray(artifact.sourceDigests) || typeof artifact.sourceDigests !== 'object') continue;
 
   if (historicalSnapshots.has(artifactPath)) {
-    excluded.push({ path: artifactPath, reason: historicalSnapshots.get(artifactPath) });
+    const bindings = Object.entries(artifact.sourceDigests);
+    let mismatches = 0;
+    for (const [sourcePath, expected] of bindings) {
+      const source = path.resolve(root, sourcePath);
+      if (source !== root && !source.startsWith(`${root}${path.sep}`)) {
+        findings.push({ artifact: artifactPath, source: sourcePath, reason: 'outside-root' });
+        continue;
+      }
+      if (!existsSync(source) || digest(source) !== expected) mismatches += 1;
+    }
+    excluded.push({
+      path: artifactPath,
+      reason: historicalSnapshots.get(artifactPath),
+      bindings: bindings.length,
+      mismatches,
+    });
+    if (mismatches === 0) findings.push({ artifact: artifactPath, reason: 'exclusion-not-needed' });
     continue;
   }
 

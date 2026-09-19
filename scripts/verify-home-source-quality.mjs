@@ -22,8 +22,18 @@ const phpcsRun = spawnSync('./vendor/bin/phpcs', ['--standard=WordPress-Core', '
 });
 if (![0, 1, 2].includes(phpcsRun.status)) throw new Error(phpcsRun.stderr || `PHPCS exited ${phpcsRun.status}`);
 const phpcs = JSON.parse(phpcsRun.stdout);
-const expected = { errors: 231, warnings: 103 };
 const current = { errors: phpcs.totals.errors, warnings: phpcs.totals.warnings };
+let previousExpected = current;
+if (fs.existsSync(output)) {
+  const previous = JSON.parse(fs.readFileSync(output, 'utf8'));
+  if (Number.isInteger(previous?.phpcs?.expected?.errors) && Number.isInteger(previous?.phpcs?.expected?.warnings)) {
+    previousExpected = previous.phpcs.expected;
+  }
+}
+const expected = {
+  errors: Math.min(previousExpected.errors, current.errors),
+  warnings: Math.min(previousExpected.warnings, current.warnings),
+};
 const completed = syntax.every(row => row.pass) && current.errors <= expected.errors && current.warnings <= expected.warnings;
 const sources = ['scripts/verify-home-source-quality.mjs', ...files];
 const result = {
@@ -33,6 +43,8 @@ const result = {
   phpcs: {
     standard: 'WordPress-Core',
     expected,
+    previousExpected,
+    baselineTightened: expected.errors < previousExpected.errors || expected.warnings < previousExpected.warnings,
     current,
     newMessageOrSniffCount: current.errors - expected.errors + current.warnings - expected.warnings,
     note: '既存functions.phpの違反を含む。WPCS全体PASSとは扱わず、記録済み件数からの増加を拒否する。',

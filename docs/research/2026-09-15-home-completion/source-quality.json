@@ -33,6 +33,11 @@
       "errors": 231,
       "warnings": 103
     },
+    "previousExpected": {
+      "errors": 231,
+      "warnings": 103
+    },
+    "baselineTightened": false,
     "current": {
       "errors": 231,
       "warnings": 103
@@ -41,7 +46,7 @@
     "note": "既存functions.phpの違反を含む。WPCS全体PASSとは扱わず、記録済み件数からの増加を拒否する。"
   },
   "sourceDigests": {
-    "scripts/verify-home-source-quality.mjs": "8c0f9279132b05d6e38a6c51ec023cb3f4b14232b374f3850058a43ea6c33311",
+    "scripts/verify-home-source-quality.mjs": "cd8d74701a0ef131e380a1168fc63770deb74f99206a03c9eb2c8a4a6dbe1b2c",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "bb583557833ad9d5553f3daee44a2c5c6c6694d5b17a83ec4517e1a0006085f1"
