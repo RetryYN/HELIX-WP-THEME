@@ -645,3 +645,21 @@ test('decision panel explains states, persists choices and stays usable at narro
     await page.locator('#clear-compare').click();
   }
 });
+
+test('tablet component previews retain a readable width beside navigation', async ({ page }) => {
+  for (const width of [701, 768, 1000, 1001, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    const first = await page.locator('.component-tile').first().boundingBox();
+    const second = await page.locator('.component-tile').nth(1).boundingBox();
+    expect(first).not.toBeNull();
+    expect(second).not.toBeNull();
+    if (width <= 1000) {
+      expect(first!.width).toBeGreaterThan(400);
+      expect(second!.y).toBeGreaterThanOrEqual(first!.y + first!.height);
+    } else {
+      expect(second!.x).toBeGreaterThan(first!.x);
+      expect(Math.abs(second!.y - first!.y)).toBeLessThan(1);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  }
+});
