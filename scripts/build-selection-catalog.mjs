@@ -548,6 +548,21 @@ if (fs.existsSync(path.join(root, recommendationPath))) {
     entries.set(`recommendation-layout:${id}`, { id: `recommendation-layout:${id}`, face: 'article', part: 'related-layout', finished: true, label: `記事一覧比較：${label}`, variant: id, images, requirementIds: ['WT-FR-RECO-01'], purpose: label, group: 'ページ・本文', description: '同じ新着記事3件を表示型だけ変えて比較。人気集計・関連記事抽出・管理画面での型切替は未確認。', selectionFacts: { '対象と判断': label, '選択と順序': '公開記事・新着順・3件（両型共通）', 'PC': id === 'cards' ? '2列カード・写真を上に配置' : '写真と説明の横並びリスト', 'SP': id === 'cards' ? '1列・写真の後に本文' : '横メディア行・写真100px／残りに本文', '画像なし': id === 'list' ? '本文が行の全幅を使用' : '空の画像枠を省略', '参照ID': `helix-wt/recommendation-${id}` }, evidence: '../2026-09-19-recommendation-layouts/verification.json' });
   }
 }
+const eyecatchPath = 'docs/research/2026-09-19-eyecatch-meta/verification.json';
+if (fs.existsSync(path.join(root, eyecatchPath))) {
+  const evidence = read(eyecatchPath);
+  if (!evidence.completed || evidence.rows.some(r => !r.pass) || !evidence.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Eyecatch meta evidence incomplete');
+  for (const [file, hash] of Object.entries(evidence.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex') !== hash) throw Error(`Stale eyecatch evidence: ${file}`);
+  for (const [id, label] of [['title-image', '題名の後に写真'], ['image-title', '写真の後に題名'], ['hero', '写真に題名を重ねる'], ['side', '題名の横に写真を添える'], ['none', '写真を表示しない']]) {
+    const images = {};
+    for (const device of ['pc', 'sp']) {
+      const shot = evidence.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-eyecatch-meta', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing eyecatch screenshot ${id}/${device}`);
+      images[device] = `../2026-09-19-eyecatch-meta/${shot.file}`;
+    }
+    entries.set(`eyecatch-meta:${id}`, { id: `eyecatch-meta:${id}`, face: 'article', part: 'eyecatch-meta', finished: true, label: `記事設定比較：${label}`, variant: id, images, requirementIds: ['WT-FR-META-01'], purpose: '題名と写真の優先順を選ぶ', group: 'ページ・本文', description: '同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。', selectionFacts: { '対象と判断': label, '同じ内容': '題名・本文・写真は全型共通', '保存先': `投稿メタ wt_eyecatch = ${id}`, '未設定': 'サイト既定を継承', '他の記事': '対照記事の表示は変わらない', 'SP': id === 'side' ? '題名の後に写真を積む' : label, 'JSなし': '位置と表示を維持' }, evidence: '../2026-09-19-eyecatch-meta/verification.json' });
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

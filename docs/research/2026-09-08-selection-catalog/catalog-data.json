@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 133,
-  "screenshotCount": 1177,
+  "screenshotCount": 1187,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12882,6 +12882,146 @@
         "参照ID": "helix-wt/recommendation-list"
       },
       "evidence": "../2026-09-19-recommendation-layouts/verification.json"
+    },
+    {
+      "id": "eyecatch-meta:title-image",
+      "face": "article",
+      "part": "eyecatch-meta",
+      "finished": true,
+      "label": "記事設定比較：題名の後に写真",
+      "variant": "title-image",
+      "images": {
+        "pc": "../2026-09-19-eyecatch-meta/title-image-pc.jpg",
+        "sp": "../2026-09-19-eyecatch-meta/title-image-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-META-01"
+      ],
+      "purpose": "題名と写真の優先順を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。",
+      "selectionFacts": {
+        "対象と判断": "題名の後に写真",
+        "同じ内容": "題名・本文・写真は全型共通",
+        "保存先": "投稿メタ wt_eyecatch = title-image",
+        "未設定": "サイト既定を継承",
+        "他の記事": "対照記事の表示は変わらない",
+        "SP": "題名の後に写真",
+        "JSなし": "位置と表示を維持"
+      },
+      "evidence": "../2026-09-19-eyecatch-meta/verification.json"
+    },
+    {
+      "id": "eyecatch-meta:image-title",
+      "face": "article",
+      "part": "eyecatch-meta",
+      "finished": true,
+      "label": "記事設定比較：写真の後に題名",
+      "variant": "image-title",
+      "images": {
+        "pc": "../2026-09-19-eyecatch-meta/image-title-pc.jpg",
+        "sp": "../2026-09-19-eyecatch-meta/image-title-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-META-01"
+      ],
+      "purpose": "題名と写真の優先順を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。",
+      "selectionFacts": {
+        "対象と判断": "写真の後に題名",
+        "同じ内容": "題名・本文・写真は全型共通",
+        "保存先": "投稿メタ wt_eyecatch = image-title",
+        "未設定": "サイト既定を継承",
+        "他の記事": "対照記事の表示は変わらない",
+        "SP": "写真の後に題名",
+        "JSなし": "位置と表示を維持"
+      },
+      "evidence": "../2026-09-19-eyecatch-meta/verification.json"
+    },
+    {
+      "id": "eyecatch-meta:hero",
+      "face": "article",
+      "part": "eyecatch-meta",
+      "finished": true,
+      "label": "記事設定比較：写真に題名を重ねる",
+      "variant": "hero",
+      "images": {
+        "pc": "../2026-09-19-eyecatch-meta/hero-pc.jpg",
+        "sp": "../2026-09-19-eyecatch-meta/hero-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-META-01"
+      ],
+      "purpose": "題名と写真の優先順を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。",
+      "selectionFacts": {
+        "対象と判断": "写真に題名を重ねる",
+        "同じ内容": "題名・本文・写真は全型共通",
+        "保存先": "投稿メタ wt_eyecatch = hero",
+        "未設定": "サイト既定を継承",
+        "他の記事": "対照記事の表示は変わらない",
+        "SP": "写真に題名を重ねる",
+        "JSなし": "位置と表示を維持"
+      },
+      "evidence": "../2026-09-19-eyecatch-meta/verification.json"
+    },
+    {
+      "id": "eyecatch-meta:side",
+      "face": "article",
+      "part": "eyecatch-meta",
+      "finished": true,
+      "label": "記事設定比較：題名の横に写真を添える",
+      "variant": "side",
+      "images": {
+        "pc": "../2026-09-19-eyecatch-meta/side-pc.jpg",
+        "sp": "../2026-09-19-eyecatch-meta/side-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-META-01"
+      ],
+      "purpose": "題名と写真の優先順を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。",
+      "selectionFacts": {
+        "対象と判断": "題名の横に写真を添える",
+        "同じ内容": "題名・本文・写真は全型共通",
+        "保存先": "投稿メタ wt_eyecatch = side",
+        "未設定": "サイト既定を継承",
+        "他の記事": "対照記事の表示は変わらない",
+        "SP": "題名の後に写真を積む",
+        "JSなし": "位置と表示を維持"
+      },
+      "evidence": "../2026-09-19-eyecatch-meta/verification.json"
+    },
+    {
+      "id": "eyecatch-meta:none",
+      "face": "article",
+      "part": "eyecatch-meta",
+      "finished": true,
+      "label": "記事設定比較：写真を表示しない",
+      "variant": "none",
+      "images": {
+        "pc": "../2026-09-19-eyecatch-meta/none-pc.jpg",
+        "sp": "../2026-09-19-eyecatch-meta/none-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-META-01"
+      ],
+      "purpose": "題名と写真の優先順を選ぶ",
+      "group": "ページ・本文",
+      "description": "同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。",
+      "selectionFacts": {
+        "対象と判断": "写真を表示しない",
+        "同じ内容": "題名・本文・写真は全型共通",
+        "保存先": "投稿メタ wt_eyecatch = none",
+        "未設定": "サイト既定を継承",
+        "他の記事": "対照記事の表示は変わらない",
+        "SP": "写真を表示しない",
+        "JSなし": "位置と表示を維持"
+      },
+      "evidence": "../2026-09-19-eyecatch-meta/verification.json"
     }
   ],
   "requirements": [
@@ -15546,15 +15686,87 @@
           "requirement_id": "WT-FR-META-01",
           "oracle": "記事の eyecatch メタで位置・有無を変えると該当記事だけ出力位置が変わり、未設定の記事はサイト既定に従う",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "既存5型を投稿メタで対象記事だけ変更し、対照記事不変、未設定時のサイト既定継承、既定変更への追従、明示上書きをPC/SP・JS有無で実測。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "管理画面の視覚ピッカー、REST/MCP往復、画像欠損時のhero可読性、全style variation・header組合せを残す。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
+              "sha256": "12c595390fd2ef92116076acefcd0f943435835d7cd64a3100700c576b39dbbe",
+              "row_names": [
+                "explicit:overrides-changed-site",
+                "fixtures:cleanup",
+                "hero:pc:js:control-inherits-site",
+                "hero:pc:js:post-meta-selected",
+                "hero:pc:js:visual-order",
+                "hero:pc:nojs:control-inherits-site",
+                "hero:pc:nojs:post-meta-selected",
+                "hero:pc:nojs:visual-order",
+                "hero:sp:js:control-inherits-site",
+                "hero:sp:js:post-meta-selected",
+                "hero:sp:js:visual-order",
+                "hero:sp:nojs:control-inherits-site",
+                "hero:sp:nojs:post-meta-selected",
+                "hero:sp:nojs:visual-order",
+                "image-title:pc:js:control-inherits-site",
+                "image-title:pc:js:post-meta-selected",
+                "image-title:pc:js:visual-order",
+                "image-title:pc:nojs:control-inherits-site",
+                "image-title:pc:nojs:post-meta-selected",
+                "image-title:pc:nojs:visual-order",
+                "image-title:sp:js:control-inherits-site",
+                "image-title:sp:js:post-meta-selected",
+                "image-title:sp:js:visual-order",
+                "image-title:sp:nojs:control-inherits-site",
+                "image-title:sp:nojs:post-meta-selected",
+                "image-title:sp:nojs:visual-order",
+                "none:pc:js:control-inherits-site",
+                "none:pc:js:post-meta-selected",
+                "none:pc:js:visual-order",
+                "none:pc:nojs:control-inherits-site",
+                "none:pc:nojs:post-meta-selected",
+                "none:pc:nojs:visual-order",
+                "none:sp:js:control-inherits-site",
+                "none:sp:js:post-meta-selected",
+                "none:sp:js:visual-order",
+                "none:sp:nojs:control-inherits-site",
+                "none:sp:nojs:post-meta-selected",
+                "none:sp:nojs:visual-order",
+                "side:pc:js:control-inherits-site",
+                "side:pc:js:post-meta-selected",
+                "side:pc:js:visual-order",
+                "side:pc:nojs:control-inherits-site",
+                "side:pc:nojs:post-meta-selected",
+                "side:pc:nojs:visual-order",
+                "side:sp:js:control-inherits-site",
+                "side:sp:js:post-meta-selected",
+                "side:sp:js:visual-order",
+                "side:sp:nojs:control-inherits-site",
+                "side:sp:nojs:post-meta-selected",
+                "side:sp:nojs:visual-order",
+                "source-unchanged",
+                "title-image:pc:js:control-inherits-site",
+                "title-image:pc:js:post-meta-selected",
+                "title-image:pc:js:visual-order",
+                "title-image:pc:nojs:control-inherits-site",
+                "title-image:pc:nojs:post-meta-selected",
+                "title-image:pc:nojs:visual-order",
+                "title-image:sp:js:control-inherits-site",
+                "title-image:sp:js:post-meta-selected",
+                "title-image:sp:js:visual-order",
+                "title-image:sp:nojs:control-inherits-site",
+                "title-image:sp:nojs:post-meta-selected",
+                "title-image:sp:nojs:visual-order",
+                "unset:follows-changed-site",
+                "unset:inherits-site"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:eyecatch-title-image",
         "article:eyecatch-image-title",
@@ -15628,7 +15840,12 @@
         "page:page-side-article",
         "page:page-side-own",
         "page:page-side-off",
-        "home:home-side-off"
+        "home:home-side-off",
+        "eyecatch-meta:title-image",
+        "eyecatch-meta:image-title",
+        "eyecatch-meta:hero",
+        "eyecatch-meta:side",
+        "eyecatch-meta:none"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
@@ -29942,8 +30159,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 224,
-    "partial": 38,
+    "missing": 223,
+    "partial": 39,
     "verified_in_poc": 32,
     "stale": 0
   },

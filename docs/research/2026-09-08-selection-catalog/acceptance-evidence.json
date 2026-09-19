@@ -11855,6 +11855,94 @@
           ]
         }
       ]
+    },
+    "WT-AC-META-01C": {
+      "status": "partial",
+      "requirement_digest": "1a5cc13e01d4576d",
+      "oracle_sha256": "0f655bc1ef9b4930c73d3798af657fcb2819fd5eb51427b0b767e1afe3491f5d",
+      "source_digests": {
+        "scripts/verify-eyecatch-meta.mjs": "645269c3f187d22a715ce4a04b0146a44af0dcd38d8979a7be7ddee821a264ba",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63"
+      },
+      "scope": "既存5型を投稿メタで対象記事だけ変更し、対照記事不変、未設定時のサイト既定継承、既定変更への追従、明示上書きをPC/SP・JS有無で実測。",
+      "remaining": [
+        "管理画面の視覚ピッカー、REST/MCP往復、画像欠損時のhero可読性、全style variation・header組合せを残す。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
+          "sha256": "12c595390fd2ef92116076acefcd0f943435835d7cd64a3100700c576b39dbbe",
+          "row_names": [
+            "explicit:overrides-changed-site",
+            "fixtures:cleanup",
+            "hero:pc:js:control-inherits-site",
+            "hero:pc:js:post-meta-selected",
+            "hero:pc:js:visual-order",
+            "hero:pc:nojs:control-inherits-site",
+            "hero:pc:nojs:post-meta-selected",
+            "hero:pc:nojs:visual-order",
+            "hero:sp:js:control-inherits-site",
+            "hero:sp:js:post-meta-selected",
+            "hero:sp:js:visual-order",
+            "hero:sp:nojs:control-inherits-site",
+            "hero:sp:nojs:post-meta-selected",
+            "hero:sp:nojs:visual-order",
+            "image-title:pc:js:control-inherits-site",
+            "image-title:pc:js:post-meta-selected",
+            "image-title:pc:js:visual-order",
+            "image-title:pc:nojs:control-inherits-site",
+            "image-title:pc:nojs:post-meta-selected",
+            "image-title:pc:nojs:visual-order",
+            "image-title:sp:js:control-inherits-site",
+            "image-title:sp:js:post-meta-selected",
+            "image-title:sp:js:visual-order",
+            "image-title:sp:nojs:control-inherits-site",
+            "image-title:sp:nojs:post-meta-selected",
+            "image-title:sp:nojs:visual-order",
+            "none:pc:js:control-inherits-site",
+            "none:pc:js:post-meta-selected",
+            "none:pc:js:visual-order",
+            "none:pc:nojs:control-inherits-site",
+            "none:pc:nojs:post-meta-selected",
+            "none:pc:nojs:visual-order",
+            "none:sp:js:control-inherits-site",
+            "none:sp:js:post-meta-selected",
+            "none:sp:js:visual-order",
+            "none:sp:nojs:control-inherits-site",
+            "none:sp:nojs:post-meta-selected",
+            "none:sp:nojs:visual-order",
+            "side:pc:js:control-inherits-site",
+            "side:pc:js:post-meta-selected",
+            "side:pc:js:visual-order",
+            "side:pc:nojs:control-inherits-site",
+            "side:pc:nojs:post-meta-selected",
+            "side:pc:nojs:visual-order",
+            "side:sp:js:control-inherits-site",
+            "side:sp:js:post-meta-selected",
+            "side:sp:js:visual-order",
+            "side:sp:nojs:control-inherits-site",
+            "side:sp:nojs:post-meta-selected",
+            "side:sp:nojs:visual-order",
+            "source-unchanged",
+            "title-image:pc:js:control-inherits-site",
+            "title-image:pc:js:post-meta-selected",
+            "title-image:pc:js:visual-order",
+            "title-image:pc:nojs:control-inherits-site",
+            "title-image:pc:nojs:post-meta-selected",
+            "title-image:pc:nojs:visual-order",
+            "title-image:sp:js:control-inherits-site",
+            "title-image:sp:js:post-meta-selected",
+            "title-image:sp:js:visual-order",
+            "title-image:sp:nojs:control-inherits-site",
+            "title-image:sp:nojs:post-meta-selected",
+            "title-image:sp:nojs:visual-order",
+            "unset:follows-changed-site",
+            "unset:inherits-site"
+          ]
+        }
+      ]
     }
   }
 }
