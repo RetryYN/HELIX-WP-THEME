@@ -24,7 +24,7 @@ CATALOG_BASE_URL=http://127.0.0.1:8099 npx playwright test tests/e2e/selection-c
 npm test
 ```
 
-`capture.mjs`は`CATALOG_BASELINE_REF`を必須とし、未指定の再撮影を拒否する。before/after PNGが同一バイトなら比較証跡として失敗する。一時出力で回帰確認する場合は`CATALOG_CAPTURE_OUTPUT`を指定する。[観察JSON](observations.json)は同じ候補データで変更前後を比較した記録。
+`capture.mjs`は`CATALOG_BASELINE_REF`を必須とし、未指定の再撮影を拒否する。before/after PNGが同一バイトなら比較証跡として失敗する。撮影中は出力先と同じ親ディレクトリの一時領域を使い、検査成功後だけPNGと観察JSONを出力先へ昇格するため、失敗時に既存証跡を上書きしない。一時出力で回帰確認する場合は`CATALOG_CAPTURE_OUTPUT`を指定する。[観察JSON](observations.json)は同じ候補データで変更前後を比較した記録。
 
 - 新規5ケース成功: PC/SPで個別解除、Enter操作とフォーカス復帰、保存から再開、ゼロ件回復、長い検索語の折返し、文字列の安全表示、比較候補・選択メモ・PC/SPの保全、関連要求範囲の解除。
 - 既存の表示密度検査も1440/375/320pxで成功。カード開始位置700px未満・横溢れなしを維持。
