@@ -10,10 +10,10 @@
   "npmTest": "passed",
   "publicSafety": "passed with private mapping via temporary index",
   "sourceDigests": {
-    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "1dd3470954c83410e3c0fe2ede13d7ccc33b53ae1aaf0ea09835bbfe51441d33",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "281e35d1abadd588280a1514eed14866aa661c5b5bf734f1038ef41857285050",
     "docs/research/2026-09-08-selection-catalog/catalog.css": "acdaa2fe1b400210a2939656c775645d8627a750806053519bc3b8dfa4b3f048",
     "docs/research/2026-09-08-selection-catalog/index.html": "75a67380c1a0c81554e29f6ba2bb992cfdf9dfdc667d1f520632dba0c9f0028f",
     "tests/e2e/selection-catalog-filters.spec.ts": "b2cf0bb4e03d14263488aa8bd7599ce1de87c514a196aeb290526cb9cb9da90f"
   },
-  "revalidation": "2026-09-20: decision-panel change; selection-catalog and filter suites rerun on dedicated static server (32 passed)."
+  "revalidation": "2026-09-20: catalog.mjs current-head revalidated with selection-catalog and selection-catalog-filters E2E suites (33 passed), including mobile collection selection restore at 390px; visual screenshots remain the prior filter-context evidence."
 }
