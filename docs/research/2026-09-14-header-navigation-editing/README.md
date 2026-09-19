@@ -49,7 +49,7 @@ node scripts/verify-header-navigation-editor-isolation.mjs
 
 ## 最終検収と引継ぎ
 
-最終source digestで新Editor293、scope29、異常終了復旧14、公開面のEditor非混入144検査が成功。実検査480に集計・digest整合43を加え、summaryは166実行条件 / 523 assertions、completed:true。既存header回帰は1,035条件 / 5,496 assertionsで成功。PHP 2ファイルのWordPress-Core PHPCSはエラー0・警告0、PHP/JS構文、i18n14検査も成功した。環境はWordPress 7.1 / PHP 8.3.33 / Chromium。
+最終source digestで新Editor298、scope29、異常終了復旧14、公開面のEditor非混入144検査が成功。新Editorは、保存済み属性C・共通設定BからA→Cと明示選択し、二段undoでA→開始表示Bへ戻る経路と、その後のredo・再編集を直接検査する。実検査485に集計・digest整合43を加え、summaryは166実行条件 / 528 assertions、completed:true。既存header回帰は1,035条件 / 5,496 assertionsで成功。PHP 2ファイルのWordPress-Core PHPCSはエラー0・警告0、PHP/JS構文、i18n14検査も成功した。環境はWordPress 7.1 / PHP 8.3.33 / Chromium。
 
 新しい画像7枚はscreenshots.htmlから参照できる。公開390/1440pxの画像は既存header回帰フォルダで再取得した。
 

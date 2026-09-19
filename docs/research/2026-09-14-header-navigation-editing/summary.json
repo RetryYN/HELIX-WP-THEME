@@ -4,11 +4,11 @@
   "issue": 185,
   "parentIssue": 100,
   "conditionCount": 166,
-  "assertionCount": 523,
+  "assertionCount": 534,
   "counts": {
     "verify": {
       "conditions": 72,
-      "assertions": 293
+      "assertions": 304
     },
     "scope": {
       "conditions": 18,
@@ -29,10 +29,10 @@
     "note": "Regression conditions overlap new editor/public probes; not a sum of unique configurations."
   },
   "sourceDigests": {
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "f12feafa5b03d2ab1f4c5e2eee3e84b46d8e57863699853f59c91dc5c0d992bb",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
-    "scripts/verify-header-navigation-editing.mjs": "5bd2613fa69580582cf45539a2772f2b2bdbdec05df71de9eb0dbca0c18f0fad",
+    "scripts/verify-header-navigation-editing.mjs": "a588b77c193ebeb8603e5ba4b18806e15f31113384ed55db9f288aaf366ced72",
     "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
     "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06",
     "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb",
@@ -56,11 +56,11 @@
     "scripts/summarize-header-navigation-editing.mjs": "5762be9114eab59699af2d39b4d7304bc3f11daa6e10d35367f1f4802a8fd133"
   },
   "artifacts": {
-    "docs/research/2026-09-14-header-navigation-editing/verify.json": "3f56da0109000184014a4bb70a2b41e313f50d2eca3b20e2917a729c55557b97",
-    "docs/research/2026-09-14-header-navigation-editing/scope.json": "da578273be0b7529a56468cbe2b6ca706120f7021e788368475ff436cabed4a6",
-    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "25a89435a3e20484542a911c011a72b6ff4c9571e9fa29786e8e9c80f4a83907",
-    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "612781d117f7f35c897c66bfe19c3f56d9d2d3fa4f2a4ffc2282bdec9b0ac4d3",
-    "docs/research/2026-09-13-header-navigation-complete/verify.json": "495e0c7fe3376f15d95192eb8192009c4af57dcabac92aa228b93525096e0533"
+    "docs/research/2026-09-14-header-navigation-editing/verify.json": "57871d515e8f2e1bee251bd8aaa69d594e91ec95d04120437ba3e3e42f5b4c69",
+    "docs/research/2026-09-14-header-navigation-editing/scope.json": "ba352dc865515f5c4b0ffc05229fa6785301a1cd80f8c49b28cc7c5988a2ecf4",
+    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "77e6782870e11e338c1f3ba944e72305f756c72b050ea7ba66b86239f72eb457",
+    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "2f07b1034eff384dbb44918f871c720eb4c245e1a223877687c53a7dbeaa4279",
+    "docs/research/2026-09-13-header-navigation-complete/verify.json": "303909a075ef06db6b8b280fe51e3f05137c1b4f45eec537a0fe209919b5dcea"
   },
   "rows": [
     {
@@ -132,7 +132,51 @@
       "pass": true
     },
     {
+      "name": "verify:history:no-op-selection-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "verify:history:no-op-does-not-create-phantom-level",
+      "pass": true
+    },
+    {
       "name": "verify:explicit-origin:subsequent-selection-remains-editable",
+      "pass": true
+    },
+    {
+      "name": "verify:history:second-explicit-C-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "verify:history:iframe-shortcut-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "verify:history:iframe-shortcut-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "verify:history:first-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "verify:history:ambiguous-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "verify:history:undo-after-ambiguous-redo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "verify:history:second-undo-restores-origin-B",
+      "pass": true
+    },
+    {
+      "name": "verify:history:first-redo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "verify:history:post-redo-selection-remains-editable",
       "pass": true
     },
     {
