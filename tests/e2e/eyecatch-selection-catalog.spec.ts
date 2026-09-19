@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 const base = process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099';
 for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) {
-  test(`eyecatch saved meta comparison / ${device}`, async ({ page }) => {
+  test(`eyecatch saved meta comparison / ${device}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 950 });
     await page.goto(base + '/docs/research/2026-09-08-selection-catalog/');
     await page.locator('[data-face="article"]').click();
@@ -16,7 +16,7 @@ for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) {
     await expect(page.locator('#comparison-facts')).toContainText('投稿メタ wt_eyecatch = image-title');
     const first = page.locator('#compare .compare-grid>section').first();
     await expect(first.locator('img')).toHaveAttribute('src', new RegExp(`title-image-${device}\\.jpg$`));
-    expect(await first.locator('img').evaluate(e => (e as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    await expect.poll(() => first.locator('img').evaluate(e => (e as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     await first.getByRole('button', { name: '保留', exact: true }).click();
     await first.locator('textarea').fill('題名を先に読む構成を記事ごとに検討する');
     await page.keyboard.press('Escape');
@@ -26,6 +26,6 @@ for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) {
     await expect(page.locator('#detail textarea')).toHaveValue('題名を先に読む構成を記事ごとに検討する');
     await page.keyboard.press('Escape');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `docs/research/2026-09-19-eyecatch-meta/catalog-${device}.png`, fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`eyecatch-catalog-${device}.png`), fullPage: true });
   });
 }
