@@ -1,0 +1,1026 @@
+{
+  "schema": "wt-toc-settings-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-toc-settings.mjs": "234eaa58bf20f7122b61855cc3e8edef87532e58b354aca728bca313d8292f77",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "f034b7f0c23e191f6f11d4d481c6237ba3f4cfda26cff5782a0ca7307fa7ae63",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/article.js": "95bc2214aa9c118959753688966016a3bbe3ea6fc62cbfae9c64dcbc4787ee79"
+  },
+  "rows": [
+    {
+      "name": "box:saved-readback",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:selected",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:initial-open",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "box:pc:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:initial-open",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "box:pc:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:selected",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:initial-open",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "box:sp:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:initial-open",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "box:sp:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "float:saved-readback",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:selected",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:initial-open",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "float:pc:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:initial-open",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "float:pc:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:selected",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:initial-open",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "float:sp:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:initial-open",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "float:sp:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "collapsible:saved-readback",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:selected",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:initial-open",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:keyboard-opens",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:keyboard-closes",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:initial-open",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:keyboard-opens",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:keyboard-closes",
+      "pass": true
+    },
+    {
+      "name": "collapsible:pc:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:selected",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:initial-open",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:keyboard-opens",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:keyboard-closes",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:derived-labels",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:valid-targets",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:h3-nested",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:initial-open",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:summary-touch-target",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:keyboard-opens",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:keyboard-closes",
+      "pass": true
+    },
+    {
+      "name": "collapsible:sp:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "none:saved-readback",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:http200",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:selected",
+      "pass": true
+    },
+    {
+      "name": "none:pc:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "none:pc:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:http200",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:selected",
+      "pass": true
+    },
+    {
+      "name": "none:sp:js:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:http200",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:selected",
+      "pass": true
+    },
+    {
+      "name": "none:sp:nojs:control-inherits",
+      "pass": true
+    },
+    {
+      "name": "float-layout:right:pc:js:no-text-overlap",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:right:pc:js:placement",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:right:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:right:pc:nojs:no-text-overlap",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:right:pc:nojs:placement",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:right:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:right:sp:js:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:right:sp:js:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:right:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:right:sp:nojs:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:right:sp:nojs:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:right:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:left:pc:js:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:pc:js:placement",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:left:pc:nojs:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:pc:nojs:placement",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:left:sp:js:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:sp:js:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:left:sp:nojs:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:sp:nojs:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:left:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:both:pc:js:no-text-overlap",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:both:pc:js:placement",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:both:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:both:pc:nojs:no-text-overlap",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:both:pc:nojs:placement",
+      "pass": false,
+      "details": {
+        "position": "fixed",
+        "overlaps": 1
+      }
+    },
+    {
+      "name": "float-layout:both:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:both:sp:js:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:both:sp:js:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:both:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:both:sp:nojs:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:both:sp:nojs:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:both:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:none:pc:js:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:pc:js:placement",
+      "pass": true,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:pc:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:none:pc:nojs:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:pc:nojs:placement",
+      "pass": true,
+      "details": {
+        "position": "fixed",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:pc:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:none:sp:js:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:sp:js:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:sp:js:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "float-layout:none:sp:nojs:no-text-overlap",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:sp:nojs:placement",
+      "pass": true,
+      "details": {
+        "position": "static",
+        "overlaps": 0
+      }
+    },
+    {
+      "name": "float-layout:none:sp:nojs:no-overflow",
+      "pass": true
+    },
+    {
+      "name": "unset:inherits-site",
+      "pass": true
+    },
+    {
+      "name": "edit:headings-follow",
+      "pass": true
+    },
+    {
+      "name": "storage:no-generated-toc",
+      "pass": true
+    },
+    {
+      "name": "threshold:two-h2-hidden",
+      "pass": true
+    },
+    {
+      "name": "page:not-inserted",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "box",
+      "device": "pc",
+      "file": "box-pc.jpg",
+      "sha256": "bc17b72ffa7574064ec1b79fcc440a477c6e9cf82f6f00a9a85abcda0ade92f3"
+    },
+    {
+      "id": "box",
+      "device": "sp",
+      "file": "box-sp.jpg",
+      "sha256": "67514cfb0163d16625dfc41283f87451d07c8577449be2fcb4f1e6ad95cd5373"
+    },
+    {
+      "id": "float",
+      "device": "pc",
+      "file": "float-pc.jpg",
+      "sha256": "cce69836541074de232ca2940b66f33b11d3009381fe34455a24772df4c4ccc4"
+    },
+    {
+      "id": "float",
+      "device": "sp",
+      "file": "float-sp.jpg",
+      "sha256": "65147283d10bdbe6336c1c7d32a53fccdfd1f3f2a335a2443b12aeca9bcd7ea0"
+    },
+    {
+      "id": "collapsible",
+      "device": "pc",
+      "file": "collapsible-pc.jpg",
+      "sha256": "6cf97e4a25c03eafef084d994407f424624f82b81a1312c94f53f6849e6bd94c"
+    },
+    {
+      "id": "collapsible",
+      "device": "sp",
+      "file": "collapsible-sp.jpg",
+      "sha256": "90197215b5b77dea2286a353b3f4f5a462920fc08cd0212100ad8412bd387b29"
+    },
+    {
+      "id": "none",
+      "device": "pc",
+      "file": "none-pc.jpg",
+      "sha256": "fd24909adbacba9d8e42d89492a2fc7e28c9ec60cc99488522b4768a97d8f10d"
+    },
+    {
+      "id": "none",
+      "device": "sp",
+      "file": "none-sp.jpg",
+      "sha256": "560c2b0e27ac5ac8510f630fcbfc93ec0a6159e56786cce545120707cbba67ac"
+    },
+    {
+      "id": "float-right",
+      "device": "pc",
+      "file": "float-right-pc.jpg",
+      "sha256": "cce69836541074de232ca2940b66f33b11d3009381fe34455a24772df4c4ccc4"
+    },
+    {
+      "id": "float-left",
+      "device": "pc",
+      "file": "float-left-pc.jpg",
+      "sha256": "0e0c1228f538716dda6e759cddcd80d41bef20bc96a7ef40ff23f6ae0bb57118"
+    },
+    {
+      "id": "float-both",
+      "device": "pc",
+      "file": "float-both-pc.jpg",
+      "sha256": "24885e5ab4a8d61fe58f8fbdf0d04a19dcb0e386accbce0a875e26e64ef8f255"
+    },
+    {
+      "id": "float-none",
+      "device": "pc",
+      "file": "float-none-pc.jpg",
+      "sha256": "3528948c16f04b21278fb6f0ad6542db40c3dfce7d355e5a36e9d226bba5527a"
+    }
+  ]
+}

@@ -563,6 +563,27 @@ if (fs.existsSync(path.join(root, eyecatchPath))) {
     entries.set(`eyecatch-meta:${id}`, { id: `eyecatch-meta:${id}`, face: 'article', part: 'eyecatch-meta', finished: true, label: `記事設定比較：${label}`, variant: id, images, requirementIds: ['WT-FR-META-01'], purpose: '題名と写真の優先順を選ぶ', group: 'ページ・本文', description: '同じ記事・写真で投稿メタから5型を選択。対照記事の不変、未設定時のサイト既定継承、PC/SP・JS有無を実測。管理画面とREST/MCP往復、写真欠損は未確認。', selectionFacts: { '対象と判断': label, '同じ内容': '題名・本文・写真は全型共通', '保存先': `投稿メタ wt_eyecatch = ${id}`, '未設定': 'サイト既定を継承', '他の記事': '対照記事の表示は変わらない', 'SP': id === 'side' ? '題名の後に写真を積む' : label, 'JSなし': '位置と表示を維持' }, evidence: '../2026-09-19-eyecatch-meta/verification.json' });
   }
 }
+// 既存目次候補を保存設定からの実機画像へ更新し、重複候補を増やさない。
+const tocPath = 'docs/research/2026-09-19-toc-settings/verification.json';
+if (fs.existsSync(path.join(root, tocPath))) {
+  const report = JSON.parse(fs.readFileSync(path.join(root, tocPath), 'utf8'));
+  if (!report.completed || report.rows.some(r => !r.pass)) throw Error('TOC settings verification failed');
+  for (const [source, digest] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== digest) throw Error(`Stale TOC source ${source}`);
+  for (const [id, purpose] of [['box', '本文の前に構成を見せる'], ['float', 'サイドバーなしは横レール、ありは本文内'], ['collapsible', '必要なときに目次を開く'], ['none', '本文へ直接読み進める']]) {
+    const entry = entries.get(`article:toc-${id}`);
+    if (!entry) throw Error(`Missing existing TOC candidate ${id}`);
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(s => s.id === id && s.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-19-toc-settings', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing TOC screenshot ${id}/${device}`);
+      entry.images[device] = `../2026-09-19-toc-settings/${shot.file}`;
+    }
+    entry.purpose = purpose;
+    entry.label = '目次設定比較：' + ({box:'本文前',float:'フロート／本文内',collapsible:'開閉',none:'非表示'})[id];
+    entry.description = '同じ記事の投稿メタに保存した4型を比較。見出し編集への追従、サイト既定継承、対照記事、PC/SP・JS有無・キーボード開閉を実測。ページ種別設定UIとREST/MCPは未確認。';
+    entry.selectionFacts = {'対象と判断': purpose, '保存先': `投稿メタ wt_toc = ${id}`, '未設定': 'サイト既定を継承', '内容': 'H2/H3から描画時に導出。H2が3個未満では省略', 'JSなし': '目次の表示と開閉を維持', '他の記事': '対照記事の表示は変わらない'};
+    entry.evidence = '../2026-09-19-toc-settings/verification.json';
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

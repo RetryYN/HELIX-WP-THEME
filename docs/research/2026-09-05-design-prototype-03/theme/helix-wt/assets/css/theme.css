@@ -312,6 +312,9 @@ body.wt-eyecatch-hero .wt-posthead__img::after{content:"";position:absolute;inse
 @media (min-width:1200px){
 .wt-toc--float{position:fixed;left:max(8px, calc(50% - (var(--wt-content-max) / 2) - 16px - var(--wt-sidebar-w)));top:calc(var(--wt-header-h) + 1.5rem);width:var(--wt-sidebar-w);max-height:calc(100vh - var(--wt-header-h) - 3rem);overflow:auto;margin:0;z-index:5;font-size:.875rem}
 .wt-toc--float .wt-toc__s::after{display:none}
+/* サイドバー併設時は外側レールを確保できないため、本文内に戻してPR表記・本文との重なりを避ける。 */
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-toc--float{position:static;inset:auto;width:auto;max-height:none;overflow:visible;margin-block:1.5rem;z-index:auto}
+body:is(.wt-side-layout-right,.wt-side-layout-left,.wt-side-layout-both) .wt-toc--float .wt-toc__s::after{display:block}
 }
 @media (min-width:1200px){body.wt-toc-float .wp-block-post-content{}}
 

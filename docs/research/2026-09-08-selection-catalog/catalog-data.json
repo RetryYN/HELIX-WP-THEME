@@ -197,14 +197,14 @@
       "id": "article:toc-box",
       "face": "article",
       "part": "toc",
-      "label": "目次",
+      "label": "目次設定比較：本文前",
       "variant": "box",
-      "description": "記事の h2・h3 から生成する章一覧。埋め込み、フロート、開閉、非表示の違いを見る。",
-      "purpose": "迷わず案内する",
+      "description": "同じ記事の投稿メタに保存した4型を比較。見出し編集への追従、サイト既定継承、対照記事、PC/SP・JS有無・キーボード開閉を実測。ページ種別設定UIとREST/MCPは未確認。",
+      "purpose": "本文の前に構成を見せる",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/toc-box-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/toc-box-pc.jpg"
+        "sp": "../2026-09-19-toc-settings/box-sp.jpg",
+        "pc": "../2026-09-19-toc-settings/box-pc.jpg"
       },
       "requirementIds": [
         "WT-FR-VOCAB-01",
@@ -212,20 +212,29 @@
         "WT-FR-VOCAB-03",
         "WT-FR-VOCAB-04",
         "WT-FR-META-01"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "本文の前に構成を見せる",
+        "保存先": "投稿メタ wt_toc = box",
+        "未設定": "サイト既定を継承",
+        "内容": "H2/H3から描画時に導出。H2が3個未満では省略",
+        "JSなし": "目次の表示と開閉を維持",
+        "他の記事": "対照記事の表示は変わらない"
+      },
+      "evidence": "../2026-09-19-toc-settings/verification.json"
     },
     {
       "id": "article:toc-float",
       "face": "article",
       "part": "toc",
-      "label": "目次",
+      "label": "目次設定比較：フロート／本文内",
       "variant": "float",
-      "description": "記事の h2・h3 から生成する章一覧。埋め込み、フロート、開閉、非表示の違いを見る。",
-      "purpose": "迷わず案内する",
+      "description": "同じ記事の投稿メタに保存した4型を比較。見出し編集への追従、サイト既定継承、対照記事、PC/SP・JS有無・キーボード開閉を実測。ページ種別設定UIとREST/MCPは未確認。",
+      "purpose": "サイドバーなしは横レール、ありは本文内",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/toc-float-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/toc-float-pc.jpg"
+        "sp": "../2026-09-19-toc-settings/float-sp.jpg",
+        "pc": "../2026-09-19-toc-settings/float-pc.jpg"
       },
       "requirementIds": [
         "WT-FR-VOCAB-01",
@@ -233,20 +242,29 @@
         "WT-FR-VOCAB-03",
         "WT-FR-VOCAB-04",
         "WT-FR-META-01"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "サイドバーなしは横レール、ありは本文内",
+        "保存先": "投稿メタ wt_toc = float",
+        "未設定": "サイト既定を継承",
+        "内容": "H2/H3から描画時に導出。H2が3個未満では省略",
+        "JSなし": "目次の表示と開閉を維持",
+        "他の記事": "対照記事の表示は変わらない"
+      },
+      "evidence": "../2026-09-19-toc-settings/verification.json"
     },
     {
       "id": "article:toc-collapsible",
       "face": "article",
       "part": "toc",
-      "label": "目次",
+      "label": "目次設定比較：開閉",
       "variant": "collapsible",
-      "description": "記事の h2・h3 から生成する章一覧。埋め込み、フロート、開閉、非表示の違いを見る。",
-      "purpose": "迷わず案内する",
+      "description": "同じ記事の投稿メタに保存した4型を比較。見出し編集への追従、サイト既定継承、対照記事、PC/SP・JS有無・キーボード開閉を実測。ページ種別設定UIとREST/MCPは未確認。",
+      "purpose": "必要なときに目次を開く",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/toc-collapsible-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/toc-collapsible-pc.jpg"
+        "sp": "../2026-09-19-toc-settings/collapsible-sp.jpg",
+        "pc": "../2026-09-19-toc-settings/collapsible-pc.jpg"
       },
       "requirementIds": [
         "WT-FR-VOCAB-01",
@@ -254,20 +272,29 @@
         "WT-FR-VOCAB-03",
         "WT-FR-VOCAB-04",
         "WT-FR-META-01"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "必要なときに目次を開く",
+        "保存先": "投稿メタ wt_toc = collapsible",
+        "未設定": "サイト既定を継承",
+        "内容": "H2/H3から描画時に導出。H2が3個未満では省略",
+        "JSなし": "目次の表示と開閉を維持",
+        "他の記事": "対照記事の表示は変わらない"
+      },
+      "evidence": "../2026-09-19-toc-settings/verification.json"
     },
     {
       "id": "article:toc-none",
       "face": "article",
       "part": "toc",
-      "label": "目次",
+      "label": "目次設定比較：非表示",
       "variant": "none",
-      "description": "記事の h2・h3 から生成する章一覧。埋め込み、フロート、開閉、非表示の違いを見る。",
-      "purpose": "迷わず案内する",
+      "description": "同じ記事の投稿メタに保存した4型を比較。見出し編集への追従、サイト既定継承、対照記事、PC/SP・JS有無・キーボード開閉を実測。ページ種別設定UIとREST/MCPは未確認。",
+      "purpose": "本文へ直接読み進める",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/toc-none-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/toc-none-pc.jpg"
+        "sp": "../2026-09-19-toc-settings/none-sp.jpg",
+        "pc": "../2026-09-19-toc-settings/none-pc.jpg"
       },
       "requirementIds": [
         "WT-FR-VOCAB-01",
@@ -275,7 +302,16 @@
         "WT-FR-VOCAB-03",
         "WT-FR-VOCAB-04",
         "WT-FR-META-01"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "本文へ直接読み進める",
+        "保存先": "投稿メタ wt_toc = none",
+        "未設定": "サイト既定を継承",
+        "内容": "H2/H3から描画時に導出。H2が3個未満では省略",
+        "JSなし": "目次の表示と開閉を維持",
+        "他の記事": "対照記事の表示は変わらない"
+      },
+      "evidence": "../2026-09-19-toc-settings/verification.json"
     },
     {
       "id": "article:toc-box-open",
@@ -14108,7 +14144,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "652681931cd9c6e423b3d97908762b0f82723d0b978d73d1a43b6825e8510888",
+              "sha256": "7f9aa0593446625a7d19ff94274ce6353e6845b4d24e60078127ed6fe215809a",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -14375,7 +14411,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1",
+              "sha256": "c56eeed2b5b403721988be2675efdeff21c0eb565ec321a598908f4ee216aadd",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14389,7 +14425,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "bf7d6ad79fae57817b39f199d7e25a3984b912609597e879e4cc57e0c82250d2",
+              "sha256": "a765cfc076c42dcf14e00e8d865fb51c9321c0af15915bb8167c48de46a38da2",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14411,7 +14447,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "15d389d5cfd1986ff32ec0e59083bd27359caab34e9ed58a01a2329f62fb19f1",
+              "sha256": "c56eeed2b5b403721988be2675efdeff21c0eb565ec321a598908f4ee216aadd",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14425,7 +14461,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "bf7d6ad79fae57817b39f199d7e25a3984b912609597e879e4cc57e0c82250d2",
+              "sha256": "a765cfc076c42dcf14e00e8d865fb51c9321c0af15915bb8167c48de46a38da2",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14783,20 +14819,42 @@
           "oracle": "h2 を持つ記事で目次が選択した配置方式（埋め込み / フロート / 開閉）で出て、ページ種別設定と投稿メタで表示・非表示が切り替わり、見出しを変えると目次が追従する",
           "polarity": "positive",
           "status": "partial",
-          "scope": "h2を持つ記事の固定埋め込み目次がfunctions.phpから1件だけ機械導出され、390/1440px・JS有無で全リンク先が存在することを実測。",
+          "scope": "同一記事の投稿メタへbox/float/collapsible/noneを保存し、PC/SP・JS有無で選択反映、H2/H3からの機械導出、見出し編集追従、サイト既定継承、対照記事不変を実測。collapsibleのキーボード開閉、サイドバーなしの固定レールと左右/両側サイドバー時の本文内fallback・PR表記/本文との非重複も確認。",
           "remaining": [
-            "フロート追従・開閉ボタン化の配置方式",
-            "ページ種別設定と投稿メタの優先順位",
-            "見出し変更後の目次追従を同一fixtureで実測"
+            "ページ種別設定UIと投稿メタの優先順位を管理画面で実測",
+            "REST/MCPによる設定読書き",
+            "任意サイドバー幅・巨大目次・重複見出しIDの境界",
+            "全スタイルvariationでの見た目確認"
           ],
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-              "sha256": "759002b528d219bd77f3d466287b3bbb98c9289f52bf11c0f73c922a2e7f7249",
+              "sha256": "a11299da117bf4eca66a0afd8c68973c28233c33638e3e4e820098c7c8382d4e",
               "row_names": [
                 "reading-layout:all-widths-reflow",
                 "reading-layout:single-derived-article-toc",
                 "reading-layout:owned-fixtures-removed"
+              ]
+            },
+            {
+              "path": "docs/research/2026-09-19-toc-settings/verification.json",
+              "sha256": "f4dea7ac8f3ad2e9b8f30cccc00b623ceae14a1d4e0dbb852645310838f17ac8",
+              "row_names": [
+                "box:saved-readback",
+                "float:saved-readback",
+                "collapsible:saved-readback",
+                "none:saved-readback",
+                "box:pc:js:derived-labels",
+                "box:sp:nojs:h3-nested",
+                "collapsible:pc:js:keyboard-opens",
+                "collapsible:pc:js:keyboard-closes",
+                "float-layout:right:pc:js:no-text-overlap",
+                "float-layout:both:pc:nojs:placement",
+                "float-layout:none:pc:js:placement",
+                "unset:inherits-site",
+                "edit:headings-follow",
+                "fixtures:cleanup",
+                "source-unchanged"
               ]
             }
           ]
@@ -14807,19 +14865,36 @@
           "oracle": "目次本文が保存 HTML に固定される（h2 変更で不整合）、または非表示にしたページ種別で目次が出れば FAIL",
           "polarity": "negative",
           "status": "partial",
-          "scope": "同一記事でtoc:none指定時に390/1440px・JS有無の4条件すべてで自動目次が0件になることを実測。",
+          "scope": "投稿メタnoneのPC/SP・JS有無で自動目次0件、生成目次が保存HTMLへ混入しないこと、H2が2件の閾値と固定ページ除外、対照記事不変、fixture回収を実測。",
           "remaining": [
-            "保存HTMLに固定された目次の検出負例",
-            "ページ種別設定と投稿メタで非表示にした条件の実測"
+            "ページ種別設定UIによる非表示条件",
+            "REST/MCPによる非表示設定の読書き",
+            "重複見出しID・空見出し・巨大本文の負例境界"
           ],
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-              "sha256": "759002b528d219bd77f3d466287b3bbb98c9289f52bf11c0f73c922a2e7f7249",
+              "sha256": "a11299da117bf4eca66a0afd8c68973c28233c33638e3e4e820098c7c8382d4e",
               "row_names": [
                 "reading-layout:single-derived-article-toc",
                 "reading-layout:toc-none-removes-derived-toc",
                 "reading-layout:owned-fixtures-removed"
+              ]
+            },
+            {
+              "path": "docs/research/2026-09-19-toc-settings/verification.json",
+              "sha256": "f4dea7ac8f3ad2e9b8f30cccc00b623ceae14a1d4e0dbb852645310838f17ac8",
+              "row_names": [
+                "none:saved-readback",
+                "none:pc:js:selected",
+                "none:pc:nojs:selected",
+                "none:sp:js:selected",
+                "none:sp:nojs:selected",
+                "storage:no-generated-toc",
+                "threshold:two-h2-hidden",
+                "page:not-inserted",
+                "fixtures:cleanup",
+                "source-unchanged"
               ]
             }
           ]
@@ -15694,7 +15769,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
-              "sha256": "12c595390fd2ef92116076acefcd0f943435835d7cd64a3100700c576b39dbbe",
+              "sha256": "419dcd12c68612f3c9148bc1d5f9d3a88704c5230e337ed8cd24b168f63abe4e",
               "row_names": [
                 "explicit:overrides-changed-site",
                 "fixtures:cleanup",
@@ -16815,7 +16890,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "bba54846a227ff3a37328a6c2319203ef0965306ef738b0edc23b92ad769f904",
+              "sha256": "f9910caac07e142331718c5b9b17f38304abf97942cd297d5178797cc2247624",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -16835,7 +16910,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "bba54846a227ff3a37328a6c2319203ef0965306ef738b0edc23b92ad769f904",
+              "sha256": "f9910caac07e142331718c5b9b17f38304abf97942cd297d5178797cc2247624",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -20746,7 +20821,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "388cf3f04fe1d0d688e505f59313e33befbeb4a36e0dbf3ff2ecdf9457a42107",
+              "sha256": "b0488f988e86b222937911b06f6db8c75379b1058613684b42a6615ad51f203c",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -20771,7 +20846,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "388cf3f04fe1d0d688e505f59313e33befbeb4a36e0dbf3ff2ecdf9457a42107",
+              "sha256": "b0488f988e86b222937911b06f6db8c75379b1058613684b42a6615ad51f203c",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -21139,7 +21214,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
-              "sha256": "a03824e8a16e6f75c2b0f62c1fa138c4dd90e8af67b757bacadf4063a1388dd3",
+              "sha256": "37a0472656c2120259f1e27f009b6e5f771041595748babbfe0cddbe7ca2b01e",
               "row_names": [
                 "404:all-three-variants-pc-sp-js-nojs",
                 "404:status-and-noindex",
@@ -22847,7 +22922,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "f801c07c8430cd37760166435d540cb6b8ff6824732f815d63ab91c4bfda6e86",
+              "sha256": "e884d28e9d22580ae4d51ca1b935d8d1457398b8836a3bfbc8d82dd0630c3d26",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -22999,7 +23074,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "594c05b8f54477f28d7931a00aed186ed2e540fe897e795af369f8a64bce10fe",
+              "sha256": "90e718ffd01c80315217f85be6150a74d2bec81dc930b6a4bc61f1a94b92b12a",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -23361,7 +23436,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "f801c07c8430cd37760166435d540cb6b8ff6824732f815d63ab91c4bfda6e86",
+              "sha256": "e884d28e9d22580ae4d51ca1b935d8d1457398b8836a3bfbc8d82dd0630c3d26",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -23513,7 +23588,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "594c05b8f54477f28d7931a00aed186ed2e540fe897e795af369f8a64bce10fe",
+              "sha256": "90e718ffd01c80315217f85be6150a74d2bec81dc930b6a4bc61f1a94b92b12a",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -24592,7 +24667,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "2dff0b2c7ed9c32b4d49b3b979bbbe875b884640ad93850a54ae1fe3b1dc7fee",
+              "sha256": "ce4931fe65d91227e01811966c311cfdf7d2e3ee1746ca1fbc9f0c871952b11d",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -24816,7 +24891,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "8b676d55263270c55878ba320387b67fd174ff8b66d92c9b32cffc32fcea648e",
+              "sha256": "b1bbdcf5d08a30369c5784a7972f3e20516bae9f14b78fc667df78596fc00df3",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25104,7 +25179,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "fa733b8ff36e9bc472cfd8b7c5e5ce13e48924ec34bce9ba3d689025c861480d",
+              "sha256": "0225445417b72b512d938121f95e91930da81f36b873ddfdc7afab61e10bca4e",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25505,7 +25580,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "1be26d79248e2e5b722c3306f1c3a96056297f848961045392c78dae5faa09ee",
+              "sha256": "766bba35fb501f9b006cf5c67325eaa4f843d01931853b8a3997026c7eeaf013",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -25594,7 +25669,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "39885c26c36880522bc99cd62143195d0ad5d80260aef05bd71be173b15ffc86",
+              "sha256": "01a14f866a14b0e66be9c23b55ba5fc5765b9828152ecd1b6621977c4df8cc4e",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -25727,7 +25802,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "2dff0b2c7ed9c32b4d49b3b979bbbe875b884640ad93850a54ae1fe3b1dc7fee",
+              "sha256": "ce4931fe65d91227e01811966c311cfdf7d2e3ee1746ca1fbc9f0c871952b11d",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -25951,7 +26026,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "8b676d55263270c55878ba320387b67fd174ff8b66d92c9b32cffc32fcea648e",
+              "sha256": "b1bbdcf5d08a30369c5784a7972f3e20516bae9f14b78fc667df78596fc00df3",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -26239,7 +26314,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "fa733b8ff36e9bc472cfd8b7c5e5ce13e48924ec34bce9ba3d689025c861480d",
+              "sha256": "0225445417b72b512d938121f95e91930da81f36b873ddfdc7afab61e10bca4e",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -26640,7 +26715,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "1be26d79248e2e5b722c3306f1c3a96056297f848961045392c78dae5faa09ee",
+              "sha256": "766bba35fb501f9b006cf5c67325eaa4f843d01931853b8a3997026c7eeaf013",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -26729,7 +26804,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "39885c26c36880522bc99cd62143195d0ad5d80260aef05bd71be173b15ffc86",
+              "sha256": "01a14f866a14b0e66be9c23b55ba5fc5765b9828152ecd1b6621977c4df8cc4e",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -26933,7 +27008,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "d4c7181e50c0181a6f65c5e7e623585819d9aa4582799ab6ff4a1aefb6126f8f",
+              "sha256": "1be17d2a2dfa330fb6c51d9fcce673293d9fb8068809eab0061c6d240a2c978d",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -27381,7 +27456,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "d4c7181e50c0181a6f65c5e7e623585819d9aa4582799ab6ff4a1aefb6126f8f",
+              "sha256": "1be17d2a2dfa330fb6c51d9fcce673293d9fb8068809eab0061c6d240a2c978d",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -28401,7 +28476,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "14048f99606b4c2d4bf2d81e299df993f7eeb3e1268f3c271f7d809c0efb765b",
+              "sha256": "4e13d17c1ae2bb17467e0d624f797288c724f6ceed80266c4c746d6f46327f0d",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28526,7 +28601,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "070faf6be5d8ba28a45605dc3a80280bb180b3c9550c213bb71f51fec372cffa",
+              "sha256": "fa6a6a8535957099d8cb55ea12b7626ed97dbbd6f0e7ff55b1347bd0d8a858ba",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -29203,7 +29278,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/performance.json",
-              "sha256": "7abef57cd3fbff638152930e5dc0eee94c77e065e4cc9b8cc3f504c7b2f37124",
+              "sha256": "e1a357e380b5dcea542315e49d56fda7138fbf43ed19240050246dcb5fdff12d",
               "row_names": [
                 "cold-scans-protected:50",
                 "warm-skips-password-checks:50",
@@ -29237,7 +29312,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "070faf6be5d8ba28a45605dc3a80280bb180b3c9550c213bb71f51fec372cffa",
+              "sha256": "fa6a6a8535957099d8cb55ea12b7626ed97dbbd6f0e7ff55b1347bd0d8a858ba",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -29281,7 +29356,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "9571329799051127a517717c596564f874ed4c91d9602f67f01fa83a2e8101a9",
+              "sha256": "f5a08f203e89684ca35c81214dcc346606f0e974ae181399a2c2a6d2e1babc90",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -29640,7 +29715,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "14048f99606b4c2d4bf2d81e299df993f7eeb3e1268f3c271f7d809c0efb765b",
+              "sha256": "4e13d17c1ae2bb17467e0d624f797288c724f6ceed80266c4c746d6f46327f0d",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -29719,7 +29794,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "070faf6be5d8ba28a45605dc3a80280bb180b3c9550c213bb71f51fec372cffa",
+              "sha256": "fa6a6a8535957099d8cb55ea12b7626ed97dbbd6f0e7ff55b1347bd0d8a858ba",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -29787,7 +29862,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "9571329799051127a517717c596564f874ed4c91d9602f67f01fa83a2e8101a9",
+              "sha256": "f5a08f203e89684ca35c81214dcc346606f0e974ae181399a2c2a6d2e1babc90",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -30090,7 +30165,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "ecba2407c3094593c5e59cfd40e1983a9112eca99fdbbbb3b3092e465e9b20e7",
+              "sha256": "bfb178f6c2d7c1711062d071c62c219ee32e42ed9eb96096bddab138a5ebb5b0",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
