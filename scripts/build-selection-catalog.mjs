@@ -599,6 +599,22 @@ if (fs.existsSync(path.join(root, pricingPath))) {
     entries.set(candidate.id, {...candidate, finished:true, selectionFacts:{'対象と判断':id === 'standard' ? '通常量の3プランを比較' : '説明が長い3プランの境界確認','同じ型':'通常／長文は同じ既存1型。型数を増やさない','PC':'同一行の外枠・見出し・末尾CTAを整列','SP':'1列で全文を省略せず表示','保存先':'固定ページ本文のcore blocks','参照ID':'helix-wt/pricing'}});
   }
 }
+const headingPath = 'docs/research/2026-09-20-heading-comparison/verification.json';
+if (fs.existsSync(path.join(root, headingPath))) {
+  const report = read(headingPath);
+  const candidates = read('docs/research/2026-09-20-heading-comparison/catalog-candidates.json');
+  if (!report.completed || report.rows.some(r => !r.pass) || !report.rows.some(r => r.name === 'fixtures:cleanup' && r.pass)) throw Error('Heading comparison evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale heading source ${source}`);
+  for (const candidate of candidates.entries) {
+    const entry = entries.get(candidate.id);
+    if (!entry || !['h2', 'h3'].includes(entry.part)) throw Error(`Unknown heading candidate ${candidate.id}`);
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(item => item.id === candidate.id.slice('article:'.length) && item.device === device);
+      if (!shot || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-heading-comparison', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing heading screenshot ${candidate.id}/${device}`);
+    }
+    Object.assign(entry, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

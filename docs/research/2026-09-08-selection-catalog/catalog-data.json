@@ -337,81 +337,121 @@
       "id": "article:h2-plain",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 太字のみ",
       "variant": "plain",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。装飾を抑えて本文を続ける。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-plain-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-plain-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "装飾を抑えて本文を続ける",
+        "装飾の強さ": "低",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-plain",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-bar",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 左バー",
       "variant": "bar",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。見出しの始点をそろえる。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-bar-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-bar-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-bar-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-bar-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "見出しの始点をそろえる",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-bar",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-band",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 色の帯",
       "variant": "band",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。大きな話題の切替を強調する。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-band-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-band-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-band-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-band-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "大きな話題の切替を強調する",
+        "装飾の強さ": "高",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-band",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h3-bar-thin",
       "face": "article",
       "part": "h3",
-      "label": "h3 見出し",
+      "label": "見出し比較：H3 細い左バー",
       "variant": "bar-thin",
-      "description": "記事内の小見出しの block style。下位の話題を線、番号、マーカーで区切る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。章内の小さな項目を整理する。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h3-bar-thin-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h3-bar-thin-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h3-bar-thin-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h3-bar-thin-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "章内の小さな項目を整理する",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-bar-thin",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:box-plain-border",
@@ -3012,221 +3052,331 @@
       "id": "article:h2-icon",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 星アイコン",
       "variant": "icon",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。要点や注目する節を示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-icon-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-icon-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-icon-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-icon-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "要点や注目する節を示す",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-icon",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-2tone",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 二色の下線",
       "variant": "2tone",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。長い記事の節を軽い線で区切る。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-2tone-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-2tone-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-2tone-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-2tone-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "長い記事の節を軽い線で区切る",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-2tone",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-underline",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 下線",
       "variant": "underline",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。セクションの区切りを明示する。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-underline-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-underline-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-underline-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-underline-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "セクションの区切りを明示する",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-underline",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-numbox",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 番号ボックス",
       "variant": "numbox",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。順番を追って読む章を示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-numbox-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-numbox-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-numbox-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-numbox-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "順番を追って読む章を示す",
+        "装飾の強さ": "高",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-numbox",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "CSS counterで表示。本文データではない",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-barbg",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 左バーと淡い背景",
       "variant": "barbg",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。注意して読む章の面をつくる。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-barbg-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-barbg-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-barbg-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-barbg-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "注意して読む章の面をつくる",
+        "装飾の強さ": "高",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-barbg",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-doubleline",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 上下の罫線",
       "variant": "doubleline",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。コラムや独立した節を区切る。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-doubleline-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-doubleline-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-doubleline-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-doubleline-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "コラムや独立した節を区切る",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-doubleline",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h2-label",
       "face": "article",
       "part": "h2",
-      "label": "h2 見出し",
+      "label": "見出し比較：H2 英字ラベル",
       "variant": "label",
-      "description": "記事内の大見出しの block style。文字の前後に置く線、帯、番号、ラベルを見る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。編集記事の章に小さな導入を置く。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h2-label-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h2-label-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h2-label-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h2-label-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "編集記事の章に小さな導入を置く",
+        "装飾の強さ": "中",
+        "意味上の階層": "H2（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-label",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h3-dotted",
       "face": "article",
       "part": "h3",
-      "label": "h3 見出し",
+      "label": "見出し比較：H3 点線の下線",
       "variant": "dotted",
-      "description": "記事内の小見出しの block style。下位の話題を線、番号、マーカーで区切る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。小項目の境界を柔らかく示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h3-dotted-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h3-dotted-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h3-dotted-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h3-dotted-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "小項目の境界を柔らかく示す",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-dotted",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h3-num",
       "face": "article",
       "part": "h3",
-      "label": "h3 見出し",
+      "label": "見出し比較：H3 番号前置",
       "variant": "num",
-      "description": "記事内の小見出しの block style。下位の話題を線、番号、マーカーで区切る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。章内の手順を順に示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h3-num-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h3-num-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h3-num-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h3-num-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "章内の手順を順に示す",
+        "装飾の強さ": "中",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-num",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "CSS counterで表示。本文データではない",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h3-marker",
       "face": "article",
       "part": "h3",
-      "label": "h3 見出し",
+      "label": "見出し比較：H3 小さなマーカー",
       "variant": "marker",
-      "description": "記事内の小見出しの block style。下位の話題を線、番号、マーカーで区切る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。小項目の始点を示す。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h3-marker-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h3-marker-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h3-marker-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h3-marker-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "小項目の始点を示す",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-marker",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:h3-underline-thin",
       "face": "article",
       "part": "h3",
-      "label": "h3 見出し",
+      "label": "見出し比較：H3 細い下線",
       "variant": "underline-thin",
-      "description": "記事内の小見出しの block style。下位の話題を線、番号、マーカーで区切る。",
+      "description": "同じ短文と長文を並べた既存block styleの比較。小項目を静かな線で区切る。保存先はcore/headingのclassName。文字サイズはtheme.jsonの階層を継承し、装飾では意味上の階層を変えない。新しい型の追加ではない。",
       "purpose": "読みやすく伝える",
       "group": "ページ・本文",
       "images": {
-        "sp": "../2026-09-05-design-prototype-03/results/h3-underline-thin-sp.jpg",
-        "pc": "../2026-09-05-design-prototype-03/results/h3-underline-thin-pc.jpg"
+        "pc": "../2026-09-20-heading-comparison/h3-underline-thin-pc.jpg",
+        "sp": "../2026-09-20-heading-comparison/h3-underline-thin-sp.jpg"
       },
       "requirementIds": [
         "WT-FR-LOOK-01",
         "WT-FR-LOOK-02",
         "WT-FR-LOOK-03",
         "WT-FR-LOOK-04"
-      ]
+      ],
+      "selectionFacts": {
+        "対象と判断": "小項目を静かな線で区切る",
+        "装飾の強さ": "低",
+        "意味上の階層": "H3（見た目のために変更しない）",
+        "保存先": "core/heading className = is-style-wt-underline-thin",
+        "比較条件": "全15型で同じ短文と長文。PC1440 / SP390",
+        "番号の扱い": "番号なし",
+        "検証の限界": "既定styleのみ。全variation・編集画面保存・200%文字拡大は未確認"
+      },
+      "evidence": "../2026-09-20-heading-comparison/verification.json"
     },
     {
       "id": "article:box-quote",
@@ -14200,7 +14350,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "7a108b726daba3ded2c989ac9e0a8b4a7416d152fb63fc819949c755eea2b658",
+              "sha256": "9b4e6a593ff42a713906ba98559707c52ea4968250360c4ccd0dab3824c842cf",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -14467,7 +14617,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "6a3681b3554bccf3d329621faa480e256f934c7daa8fea50c0b1ce515e3e015e",
+              "sha256": "835ed58b1b614f9b4b505046a88e5b0e18943cc58015ff30e0e60accbe8a4feb",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14481,7 +14631,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "7c7fd285f0a736bf994bb411de951bfb2a5575e7417bb4d5ef27b69f721e78f2",
+              "sha256": "5b82bdb4f81e5b26e4cdb1a0579d1de85d6b773a3028a2fdbd9a86aed7757aaf",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14503,7 +14653,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "6a3681b3554bccf3d329621faa480e256f934c7daa8fea50c0b1ce515e3e015e",
+              "sha256": "835ed58b1b614f9b4b505046a88e5b0e18943cc58015ff30e0e60accbe8a4feb",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14517,7 +14667,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "7c7fd285f0a736bf994bb411de951bfb2a5575e7417bb4d5ef27b69f721e78f2",
+              "sha256": "5b82bdb4f81e5b26e4cdb1a0579d1de85d6b773a3028a2fdbd9a86aed7757aaf",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14885,7 +15035,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-              "sha256": "a11299da117bf4eca66a0afd8c68973c28233c33638e3e4e820098c7c8382d4e",
+              "sha256": "b242f1104d9e43bcc55105b3907f5df1c563a05dfd7ca9f660fbae6cec5a5301",
               "row_names": [
                 "reading-layout:all-widths-reflow",
                 "reading-layout:single-derived-article-toc",
@@ -14894,7 +15044,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "e0c7e03abd2a1a2ae3d9b9dad35dbf36c42b43003ad10a9aee79a8bb164636cf",
+              "sha256": "e5189ec3ddf14236b045abedb279da9527268ed49a0de0bfbfb18d96f6dd1be3",
               "row_names": [
                 "box:saved-readback",
                 "float:saved-readback",
@@ -14930,7 +15080,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-              "sha256": "a11299da117bf4eca66a0afd8c68973c28233c33638e3e4e820098c7c8382d4e",
+              "sha256": "b242f1104d9e43bcc55105b3907f5df1c563a05dfd7ca9f660fbae6cec5a5301",
               "row_names": [
                 "reading-layout:single-derived-article-toc",
                 "reading-layout:toc-none-removes-derived-toc",
@@ -14939,7 +15089,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "e0c7e03abd2a1a2ae3d9b9dad35dbf36c42b43003ad10a9aee79a8bb164636cf",
+              "sha256": "e5189ec3ddf14236b045abedb279da9527268ed49a0de0bfbfb18d96f6dd1be3",
               "row_names": [
                 "none:saved-readback",
                 "none:pc:js:selected",
@@ -15323,12 +15473,522 @@
           "requirement_id": "WT-FR-LOOK-01",
           "oracle": "見出し尺度が単調非増加（G-T3 PASS）で、style と variant が block style として列挙される",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "既定styleのH2/H3/H4単調非増加、core/heading 15style登録、同じ短文/長文のPC1440/SP390/320×JS有無、保存本文読み戻し・全文・非クリップ・counter・fixture回収を実測。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "正式G-T3、全style variation、editor挿入保存再読込、REST/MCPは未確認。",
+            "LOOK-01Bの既存固定値装飾は残件。今回の整列修正だけでBを合格にしない。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-heading-comparison/verification.json",
+              "sha256": "cce1e00742ec30fb7c965357665d84b5e1a57b0107e6db2a84302e3e19e12abd",
+              "row_names": [
+                "registry:15-existing-styles",
+                "content:roundtrip",
+                "pc:js:response",
+                "pc:js:no-page-overflow",
+                "pc:js:scale-descends",
+                "pc:js:h2-plain:semantics",
+                "pc:js:h2-plain:full-copy",
+                "pc:js:h2-plain:no-clipping",
+                "pc:js:h2-plain:level-size",
+                "pc:js:h2-plain:no-motion",
+                "pc:js:h2-2tone:semantics",
+                "pc:js:h2-2tone:full-copy",
+                "pc:js:h2-2tone:no-clipping",
+                "pc:js:h2-2tone:level-size",
+                "pc:js:h2-2tone:no-motion",
+                "pc:js:h2-icon:semantics",
+                "pc:js:h2-icon:full-copy",
+                "pc:js:h2-icon:no-clipping",
+                "pc:js:h2-icon:level-size",
+                "pc:js:h2-icon:no-motion",
+                "pc:js:h2-icon:first-line-decoration",
+                "pc:js:h2-bar:semantics",
+                "pc:js:h2-bar:full-copy",
+                "pc:js:h2-bar:no-clipping",
+                "pc:js:h2-bar:level-size",
+                "pc:js:h2-bar:no-motion",
+                "pc:js:h2-underline:semantics",
+                "pc:js:h2-underline:full-copy",
+                "pc:js:h2-underline:no-clipping",
+                "pc:js:h2-underline:level-size",
+                "pc:js:h2-underline:no-motion",
+                "pc:js:h2-band:semantics",
+                "pc:js:h2-band:full-copy",
+                "pc:js:h2-band:no-clipping",
+                "pc:js:h2-band:level-size",
+                "pc:js:h2-band:no-motion",
+                "pc:js:h2-numbox:semantics",
+                "pc:js:h2-numbox:full-copy",
+                "pc:js:h2-numbox:no-clipping",
+                "pc:js:h2-numbox:level-size",
+                "pc:js:h2-numbox:no-motion",
+                "pc:js:h2-numbox:first-line-decoration",
+                "pc:js:h2-numbox:counter-retained",
+                "pc:js:h2-barbg:semantics",
+                "pc:js:h2-barbg:full-copy",
+                "pc:js:h2-barbg:no-clipping",
+                "pc:js:h2-barbg:level-size",
+                "pc:js:h2-barbg:no-motion",
+                "pc:js:h2-doubleline:semantics",
+                "pc:js:h2-doubleline:full-copy",
+                "pc:js:h2-doubleline:no-clipping",
+                "pc:js:h2-doubleline:level-size",
+                "pc:js:h2-doubleline:no-motion",
+                "pc:js:h2-label:semantics",
+                "pc:js:h2-label:full-copy",
+                "pc:js:h2-label:no-clipping",
+                "pc:js:h2-label:level-size",
+                "pc:js:h2-label:no-motion",
+                "pc:js:h3-bar-thin:semantics",
+                "pc:js:h3-bar-thin:full-copy",
+                "pc:js:h3-bar-thin:no-clipping",
+                "pc:js:h3-bar-thin:level-size",
+                "pc:js:h3-bar-thin:no-motion",
+                "pc:js:h3-dotted:semantics",
+                "pc:js:h3-dotted:full-copy",
+                "pc:js:h3-dotted:no-clipping",
+                "pc:js:h3-dotted:level-size",
+                "pc:js:h3-dotted:no-motion",
+                "pc:js:h3-num:semantics",
+                "pc:js:h3-num:full-copy",
+                "pc:js:h3-num:no-clipping",
+                "pc:js:h3-num:level-size",
+                "pc:js:h3-num:no-motion",
+                "pc:js:h3-num:counter-retained",
+                "pc:js:h3-marker:semantics",
+                "pc:js:h3-marker:full-copy",
+                "pc:js:h3-marker:no-clipping",
+                "pc:js:h3-marker:level-size",
+                "pc:js:h3-marker:no-motion",
+                "pc:js:h3-marker:first-line-decoration",
+                "pc:js:h3-underline-thin:semantics",
+                "pc:js:h3-underline-thin:full-copy",
+                "pc:js:h3-underline-thin:no-clipping",
+                "pc:js:h3-underline-thin:level-size",
+                "pc:js:h3-underline-thin:no-motion",
+                "pc:nojs:response",
+                "pc:nojs:no-page-overflow",
+                "pc:nojs:scale-descends",
+                "pc:nojs:h2-plain:semantics",
+                "pc:nojs:h2-plain:full-copy",
+                "pc:nojs:h2-plain:no-clipping",
+                "pc:nojs:h2-plain:level-size",
+                "pc:nojs:h2-plain:no-motion",
+                "pc:nojs:h2-2tone:semantics",
+                "pc:nojs:h2-2tone:full-copy",
+                "pc:nojs:h2-2tone:no-clipping",
+                "pc:nojs:h2-2tone:level-size",
+                "pc:nojs:h2-2tone:no-motion",
+                "pc:nojs:h2-icon:semantics",
+                "pc:nojs:h2-icon:full-copy",
+                "pc:nojs:h2-icon:no-clipping",
+                "pc:nojs:h2-icon:level-size",
+                "pc:nojs:h2-icon:no-motion",
+                "pc:nojs:h2-icon:first-line-decoration",
+                "pc:nojs:h2-bar:semantics",
+                "pc:nojs:h2-bar:full-copy",
+                "pc:nojs:h2-bar:no-clipping",
+                "pc:nojs:h2-bar:level-size",
+                "pc:nojs:h2-bar:no-motion",
+                "pc:nojs:h2-underline:semantics",
+                "pc:nojs:h2-underline:full-copy",
+                "pc:nojs:h2-underline:no-clipping",
+                "pc:nojs:h2-underline:level-size",
+                "pc:nojs:h2-underline:no-motion",
+                "pc:nojs:h2-band:semantics",
+                "pc:nojs:h2-band:full-copy",
+                "pc:nojs:h2-band:no-clipping",
+                "pc:nojs:h2-band:level-size",
+                "pc:nojs:h2-band:no-motion",
+                "pc:nojs:h2-numbox:semantics",
+                "pc:nojs:h2-numbox:full-copy",
+                "pc:nojs:h2-numbox:no-clipping",
+                "pc:nojs:h2-numbox:level-size",
+                "pc:nojs:h2-numbox:no-motion",
+                "pc:nojs:h2-numbox:first-line-decoration",
+                "pc:nojs:h2-numbox:counter-retained",
+                "pc:nojs:h2-barbg:semantics",
+                "pc:nojs:h2-barbg:full-copy",
+                "pc:nojs:h2-barbg:no-clipping",
+                "pc:nojs:h2-barbg:level-size",
+                "pc:nojs:h2-barbg:no-motion",
+                "pc:nojs:h2-doubleline:semantics",
+                "pc:nojs:h2-doubleline:full-copy",
+                "pc:nojs:h2-doubleline:no-clipping",
+                "pc:nojs:h2-doubleline:level-size",
+                "pc:nojs:h2-doubleline:no-motion",
+                "pc:nojs:h2-label:semantics",
+                "pc:nojs:h2-label:full-copy",
+                "pc:nojs:h2-label:no-clipping",
+                "pc:nojs:h2-label:level-size",
+                "pc:nojs:h2-label:no-motion",
+                "pc:nojs:h3-bar-thin:semantics",
+                "pc:nojs:h3-bar-thin:full-copy",
+                "pc:nojs:h3-bar-thin:no-clipping",
+                "pc:nojs:h3-bar-thin:level-size",
+                "pc:nojs:h3-bar-thin:no-motion",
+                "pc:nojs:h3-dotted:semantics",
+                "pc:nojs:h3-dotted:full-copy",
+                "pc:nojs:h3-dotted:no-clipping",
+                "pc:nojs:h3-dotted:level-size",
+                "pc:nojs:h3-dotted:no-motion",
+                "pc:nojs:h3-num:semantics",
+                "pc:nojs:h3-num:full-copy",
+                "pc:nojs:h3-num:no-clipping",
+                "pc:nojs:h3-num:level-size",
+                "pc:nojs:h3-num:no-motion",
+                "pc:nojs:h3-num:counter-retained",
+                "pc:nojs:h3-marker:semantics",
+                "pc:nojs:h3-marker:full-copy",
+                "pc:nojs:h3-marker:no-clipping",
+                "pc:nojs:h3-marker:level-size",
+                "pc:nojs:h3-marker:no-motion",
+                "pc:nojs:h3-marker:first-line-decoration",
+                "pc:nojs:h3-underline-thin:semantics",
+                "pc:nojs:h3-underline-thin:full-copy",
+                "pc:nojs:h3-underline-thin:no-clipping",
+                "pc:nojs:h3-underline-thin:level-size",
+                "pc:nojs:h3-underline-thin:no-motion",
+                "sp:js:response",
+                "sp:js:no-page-overflow",
+                "sp:js:scale-descends",
+                "sp:js:h2-plain:semantics",
+                "sp:js:h2-plain:full-copy",
+                "sp:js:h2-plain:no-clipping",
+                "sp:js:h2-plain:level-size",
+                "sp:js:h2-plain:no-motion",
+                "sp:js:h2-2tone:semantics",
+                "sp:js:h2-2tone:full-copy",
+                "sp:js:h2-2tone:no-clipping",
+                "sp:js:h2-2tone:level-size",
+                "sp:js:h2-2tone:no-motion",
+                "sp:js:h2-icon:semantics",
+                "sp:js:h2-icon:full-copy",
+                "sp:js:h2-icon:no-clipping",
+                "sp:js:h2-icon:level-size",
+                "sp:js:h2-icon:no-motion",
+                "sp:js:h2-icon:first-line-decoration",
+                "sp:js:h2-bar:semantics",
+                "sp:js:h2-bar:full-copy",
+                "sp:js:h2-bar:no-clipping",
+                "sp:js:h2-bar:level-size",
+                "sp:js:h2-bar:no-motion",
+                "sp:js:h2-underline:semantics",
+                "sp:js:h2-underline:full-copy",
+                "sp:js:h2-underline:no-clipping",
+                "sp:js:h2-underline:level-size",
+                "sp:js:h2-underline:no-motion",
+                "sp:js:h2-band:semantics",
+                "sp:js:h2-band:full-copy",
+                "sp:js:h2-band:no-clipping",
+                "sp:js:h2-band:level-size",
+                "sp:js:h2-band:no-motion",
+                "sp:js:h2-numbox:semantics",
+                "sp:js:h2-numbox:full-copy",
+                "sp:js:h2-numbox:no-clipping",
+                "sp:js:h2-numbox:level-size",
+                "sp:js:h2-numbox:no-motion",
+                "sp:js:h2-numbox:first-line-decoration",
+                "sp:js:h2-numbox:counter-retained",
+                "sp:js:h2-barbg:semantics",
+                "sp:js:h2-barbg:full-copy",
+                "sp:js:h2-barbg:no-clipping",
+                "sp:js:h2-barbg:level-size",
+                "sp:js:h2-barbg:no-motion",
+                "sp:js:h2-doubleline:semantics",
+                "sp:js:h2-doubleline:full-copy",
+                "sp:js:h2-doubleline:no-clipping",
+                "sp:js:h2-doubleline:level-size",
+                "sp:js:h2-doubleline:no-motion",
+                "sp:js:h2-label:semantics",
+                "sp:js:h2-label:full-copy",
+                "sp:js:h2-label:no-clipping",
+                "sp:js:h2-label:level-size",
+                "sp:js:h2-label:no-motion",
+                "sp:js:h3-bar-thin:semantics",
+                "sp:js:h3-bar-thin:full-copy",
+                "sp:js:h3-bar-thin:no-clipping",
+                "sp:js:h3-bar-thin:level-size",
+                "sp:js:h3-bar-thin:no-motion",
+                "sp:js:h3-dotted:semantics",
+                "sp:js:h3-dotted:full-copy",
+                "sp:js:h3-dotted:no-clipping",
+                "sp:js:h3-dotted:level-size",
+                "sp:js:h3-dotted:no-motion",
+                "sp:js:h3-num:semantics",
+                "sp:js:h3-num:full-copy",
+                "sp:js:h3-num:no-clipping",
+                "sp:js:h3-num:level-size",
+                "sp:js:h3-num:no-motion",
+                "sp:js:h3-num:counter-retained",
+                "sp:js:h3-marker:semantics",
+                "sp:js:h3-marker:full-copy",
+                "sp:js:h3-marker:no-clipping",
+                "sp:js:h3-marker:level-size",
+                "sp:js:h3-marker:no-motion",
+                "sp:js:h3-marker:first-line-decoration",
+                "sp:js:h3-underline-thin:semantics",
+                "sp:js:h3-underline-thin:full-copy",
+                "sp:js:h3-underline-thin:no-clipping",
+                "sp:js:h3-underline-thin:level-size",
+                "sp:js:h3-underline-thin:no-motion",
+                "sp:nojs:response",
+                "sp:nojs:no-page-overflow",
+                "sp:nojs:scale-descends",
+                "sp:nojs:h2-plain:semantics",
+                "sp:nojs:h2-plain:full-copy",
+                "sp:nojs:h2-plain:no-clipping",
+                "sp:nojs:h2-plain:level-size",
+                "sp:nojs:h2-plain:no-motion",
+                "sp:nojs:h2-2tone:semantics",
+                "sp:nojs:h2-2tone:full-copy",
+                "sp:nojs:h2-2tone:no-clipping",
+                "sp:nojs:h2-2tone:level-size",
+                "sp:nojs:h2-2tone:no-motion",
+                "sp:nojs:h2-icon:semantics",
+                "sp:nojs:h2-icon:full-copy",
+                "sp:nojs:h2-icon:no-clipping",
+                "sp:nojs:h2-icon:level-size",
+                "sp:nojs:h2-icon:no-motion",
+                "sp:nojs:h2-icon:first-line-decoration",
+                "sp:nojs:h2-bar:semantics",
+                "sp:nojs:h2-bar:full-copy",
+                "sp:nojs:h2-bar:no-clipping",
+                "sp:nojs:h2-bar:level-size",
+                "sp:nojs:h2-bar:no-motion",
+                "sp:nojs:h2-underline:semantics",
+                "sp:nojs:h2-underline:full-copy",
+                "sp:nojs:h2-underline:no-clipping",
+                "sp:nojs:h2-underline:level-size",
+                "sp:nojs:h2-underline:no-motion",
+                "sp:nojs:h2-band:semantics",
+                "sp:nojs:h2-band:full-copy",
+                "sp:nojs:h2-band:no-clipping",
+                "sp:nojs:h2-band:level-size",
+                "sp:nojs:h2-band:no-motion",
+                "sp:nojs:h2-numbox:semantics",
+                "sp:nojs:h2-numbox:full-copy",
+                "sp:nojs:h2-numbox:no-clipping",
+                "sp:nojs:h2-numbox:level-size",
+                "sp:nojs:h2-numbox:no-motion",
+                "sp:nojs:h2-numbox:first-line-decoration",
+                "sp:nojs:h2-numbox:counter-retained",
+                "sp:nojs:h2-barbg:semantics",
+                "sp:nojs:h2-barbg:full-copy",
+                "sp:nojs:h2-barbg:no-clipping",
+                "sp:nojs:h2-barbg:level-size",
+                "sp:nojs:h2-barbg:no-motion",
+                "sp:nojs:h2-doubleline:semantics",
+                "sp:nojs:h2-doubleline:full-copy",
+                "sp:nojs:h2-doubleline:no-clipping",
+                "sp:nojs:h2-doubleline:level-size",
+                "sp:nojs:h2-doubleline:no-motion",
+                "sp:nojs:h2-label:semantics",
+                "sp:nojs:h2-label:full-copy",
+                "sp:nojs:h2-label:no-clipping",
+                "sp:nojs:h2-label:level-size",
+                "sp:nojs:h2-label:no-motion",
+                "sp:nojs:h3-bar-thin:semantics",
+                "sp:nojs:h3-bar-thin:full-copy",
+                "sp:nojs:h3-bar-thin:no-clipping",
+                "sp:nojs:h3-bar-thin:level-size",
+                "sp:nojs:h3-bar-thin:no-motion",
+                "sp:nojs:h3-dotted:semantics",
+                "sp:nojs:h3-dotted:full-copy",
+                "sp:nojs:h3-dotted:no-clipping",
+                "sp:nojs:h3-dotted:level-size",
+                "sp:nojs:h3-dotted:no-motion",
+                "sp:nojs:h3-num:semantics",
+                "sp:nojs:h3-num:full-copy",
+                "sp:nojs:h3-num:no-clipping",
+                "sp:nojs:h3-num:level-size",
+                "sp:nojs:h3-num:no-motion",
+                "sp:nojs:h3-num:counter-retained",
+                "sp:nojs:h3-marker:semantics",
+                "sp:nojs:h3-marker:full-copy",
+                "sp:nojs:h3-marker:no-clipping",
+                "sp:nojs:h3-marker:level-size",
+                "sp:nojs:h3-marker:no-motion",
+                "sp:nojs:h3-marker:first-line-decoration",
+                "sp:nojs:h3-underline-thin:semantics",
+                "sp:nojs:h3-underline-thin:full-copy",
+                "sp:nojs:h3-underline-thin:no-clipping",
+                "sp:nojs:h3-underline-thin:level-size",
+                "sp:nojs:h3-underline-thin:no-motion",
+                "narrow:js:response",
+                "narrow:js:no-page-overflow",
+                "narrow:js:scale-descends",
+                "narrow:js:h2-plain:semantics",
+                "narrow:js:h2-plain:full-copy",
+                "narrow:js:h2-plain:no-clipping",
+                "narrow:js:h2-plain:level-size",
+                "narrow:js:h2-plain:no-motion",
+                "narrow:js:h2-2tone:semantics",
+                "narrow:js:h2-2tone:full-copy",
+                "narrow:js:h2-2tone:no-clipping",
+                "narrow:js:h2-2tone:level-size",
+                "narrow:js:h2-2tone:no-motion",
+                "narrow:js:h2-icon:semantics",
+                "narrow:js:h2-icon:full-copy",
+                "narrow:js:h2-icon:no-clipping",
+                "narrow:js:h2-icon:level-size",
+                "narrow:js:h2-icon:no-motion",
+                "narrow:js:h2-icon:first-line-decoration",
+                "narrow:js:h2-bar:semantics",
+                "narrow:js:h2-bar:full-copy",
+                "narrow:js:h2-bar:no-clipping",
+                "narrow:js:h2-bar:level-size",
+                "narrow:js:h2-bar:no-motion",
+                "narrow:js:h2-underline:semantics",
+                "narrow:js:h2-underline:full-copy",
+                "narrow:js:h2-underline:no-clipping",
+                "narrow:js:h2-underline:level-size",
+                "narrow:js:h2-underline:no-motion",
+                "narrow:js:h2-band:semantics",
+                "narrow:js:h2-band:full-copy",
+                "narrow:js:h2-band:no-clipping",
+                "narrow:js:h2-band:level-size",
+                "narrow:js:h2-band:no-motion",
+                "narrow:js:h2-numbox:semantics",
+                "narrow:js:h2-numbox:full-copy",
+                "narrow:js:h2-numbox:no-clipping",
+                "narrow:js:h2-numbox:level-size",
+                "narrow:js:h2-numbox:no-motion",
+                "narrow:js:h2-numbox:first-line-decoration",
+                "narrow:js:h2-numbox:counter-retained",
+                "narrow:js:h2-barbg:semantics",
+                "narrow:js:h2-barbg:full-copy",
+                "narrow:js:h2-barbg:no-clipping",
+                "narrow:js:h2-barbg:level-size",
+                "narrow:js:h2-barbg:no-motion",
+                "narrow:js:h2-doubleline:semantics",
+                "narrow:js:h2-doubleline:full-copy",
+                "narrow:js:h2-doubleline:no-clipping",
+                "narrow:js:h2-doubleline:level-size",
+                "narrow:js:h2-doubleline:no-motion",
+                "narrow:js:h2-label:semantics",
+                "narrow:js:h2-label:full-copy",
+                "narrow:js:h2-label:no-clipping",
+                "narrow:js:h2-label:level-size",
+                "narrow:js:h2-label:no-motion",
+                "narrow:js:h3-bar-thin:semantics",
+                "narrow:js:h3-bar-thin:full-copy",
+                "narrow:js:h3-bar-thin:no-clipping",
+                "narrow:js:h3-bar-thin:level-size",
+                "narrow:js:h3-bar-thin:no-motion",
+                "narrow:js:h3-dotted:semantics",
+                "narrow:js:h3-dotted:full-copy",
+                "narrow:js:h3-dotted:no-clipping",
+                "narrow:js:h3-dotted:level-size",
+                "narrow:js:h3-dotted:no-motion",
+                "narrow:js:h3-num:semantics",
+                "narrow:js:h3-num:full-copy",
+                "narrow:js:h3-num:no-clipping",
+                "narrow:js:h3-num:level-size",
+                "narrow:js:h3-num:no-motion",
+                "narrow:js:h3-num:counter-retained",
+                "narrow:js:h3-marker:semantics",
+                "narrow:js:h3-marker:full-copy",
+                "narrow:js:h3-marker:no-clipping",
+                "narrow:js:h3-marker:level-size",
+                "narrow:js:h3-marker:no-motion",
+                "narrow:js:h3-marker:first-line-decoration",
+                "narrow:js:h3-underline-thin:semantics",
+                "narrow:js:h3-underline-thin:full-copy",
+                "narrow:js:h3-underline-thin:no-clipping",
+                "narrow:js:h3-underline-thin:level-size",
+                "narrow:js:h3-underline-thin:no-motion",
+                "narrow:nojs:response",
+                "narrow:nojs:no-page-overflow",
+                "narrow:nojs:scale-descends",
+                "narrow:nojs:h2-plain:semantics",
+                "narrow:nojs:h2-plain:full-copy",
+                "narrow:nojs:h2-plain:no-clipping",
+                "narrow:nojs:h2-plain:level-size",
+                "narrow:nojs:h2-plain:no-motion",
+                "narrow:nojs:h2-2tone:semantics",
+                "narrow:nojs:h2-2tone:full-copy",
+                "narrow:nojs:h2-2tone:no-clipping",
+                "narrow:nojs:h2-2tone:level-size",
+                "narrow:nojs:h2-2tone:no-motion",
+                "narrow:nojs:h2-icon:semantics",
+                "narrow:nojs:h2-icon:full-copy",
+                "narrow:nojs:h2-icon:no-clipping",
+                "narrow:nojs:h2-icon:level-size",
+                "narrow:nojs:h2-icon:no-motion",
+                "narrow:nojs:h2-icon:first-line-decoration",
+                "narrow:nojs:h2-bar:semantics",
+                "narrow:nojs:h2-bar:full-copy",
+                "narrow:nojs:h2-bar:no-clipping",
+                "narrow:nojs:h2-bar:level-size",
+                "narrow:nojs:h2-bar:no-motion",
+                "narrow:nojs:h2-underline:semantics",
+                "narrow:nojs:h2-underline:full-copy",
+                "narrow:nojs:h2-underline:no-clipping",
+                "narrow:nojs:h2-underline:level-size",
+                "narrow:nojs:h2-underline:no-motion",
+                "narrow:nojs:h2-band:semantics",
+                "narrow:nojs:h2-band:full-copy",
+                "narrow:nojs:h2-band:no-clipping",
+                "narrow:nojs:h2-band:level-size",
+                "narrow:nojs:h2-band:no-motion",
+                "narrow:nojs:h2-numbox:semantics",
+                "narrow:nojs:h2-numbox:full-copy",
+                "narrow:nojs:h2-numbox:no-clipping",
+                "narrow:nojs:h2-numbox:level-size",
+                "narrow:nojs:h2-numbox:no-motion",
+                "narrow:nojs:h2-numbox:first-line-decoration",
+                "narrow:nojs:h2-numbox:counter-retained",
+                "narrow:nojs:h2-barbg:semantics",
+                "narrow:nojs:h2-barbg:full-copy",
+                "narrow:nojs:h2-barbg:no-clipping",
+                "narrow:nojs:h2-barbg:level-size",
+                "narrow:nojs:h2-barbg:no-motion",
+                "narrow:nojs:h2-doubleline:semantics",
+                "narrow:nojs:h2-doubleline:full-copy",
+                "narrow:nojs:h2-doubleline:no-clipping",
+                "narrow:nojs:h2-doubleline:level-size",
+                "narrow:nojs:h2-doubleline:no-motion",
+                "narrow:nojs:h2-label:semantics",
+                "narrow:nojs:h2-label:full-copy",
+                "narrow:nojs:h2-label:no-clipping",
+                "narrow:nojs:h2-label:level-size",
+                "narrow:nojs:h2-label:no-motion",
+                "narrow:nojs:h3-bar-thin:semantics",
+                "narrow:nojs:h3-bar-thin:full-copy",
+                "narrow:nojs:h3-bar-thin:no-clipping",
+                "narrow:nojs:h3-bar-thin:level-size",
+                "narrow:nojs:h3-bar-thin:no-motion",
+                "narrow:nojs:h3-dotted:semantics",
+                "narrow:nojs:h3-dotted:full-copy",
+                "narrow:nojs:h3-dotted:no-clipping",
+                "narrow:nojs:h3-dotted:level-size",
+                "narrow:nojs:h3-dotted:no-motion",
+                "narrow:nojs:h3-num:semantics",
+                "narrow:nojs:h3-num:full-copy",
+                "narrow:nojs:h3-num:no-clipping",
+                "narrow:nojs:h3-num:level-size",
+                "narrow:nojs:h3-num:no-motion",
+                "narrow:nojs:h3-num:counter-retained",
+                "narrow:nojs:h3-marker:semantics",
+                "narrow:nojs:h3-marker:full-copy",
+                "narrow:nojs:h3-marker:no-clipping",
+                "narrow:nojs:h3-marker:level-size",
+                "narrow:nojs:h3-marker:no-motion",
+                "narrow:nojs:h3-marker:first-line-decoration",
+                "narrow:nojs:h3-underline-thin:semantics",
+                "narrow:nojs:h3-underline-thin:full-copy",
+                "narrow:nojs:h3-underline-thin:no-clipping",
+                "narrow:nojs:h3-underline-thin:level-size",
+                "narrow:nojs:h3-underline-thin:no-motion",
+                "fixtures:cleanup",
+                "source-unchanged"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-LOOK-01B",
@@ -15367,7 +16027,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-pricing-cards/verification.json",
-              "sha256": "e1d2cb8fd0d54839a85d6ed63bb74506f118163fcff30a94a3a08e47fc4ea18d",
+              "sha256": "02310c9ba870bc7231e7bb2db54ebdf539b4c624d97192e3373c1d92f9174783",
               "row_names": [
                 "standard:saved-content-roundtrip",
                 "long-copy:saved-content-roundtrip",
@@ -15960,7 +16620,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
-              "sha256": "1def36fbbb9d2b5f506627860cfb0abcec5c112fbd3d69f9ef7c65cee903de99",
+              "sha256": "28bc9940e5777799bc227d8945c7cb4c113ed3dfaa0b65d6921668820a1ef3f8",
               "row_names": [
                 "explicit:overrides-changed-site",
                 "fixtures:cleanup",
@@ -17081,7 +17741,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "40b9fbee096d79c012f5de75a673dab8f1a9cde7de0759ccbcd9499e43c95bd1",
+              "sha256": "877e10422cc159aa9615f3e5181cebaa5669177f69d161ceba5732ed6bd6a3d3",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -17101,7 +17761,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "40b9fbee096d79c012f5de75a673dab8f1a9cde7de0759ccbcd9499e43c95bd1",
+              "sha256": "877e10422cc159aa9615f3e5181cebaa5669177f69d161ceba5732ed6bd6a3d3",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -21012,7 +21672,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "7e09f947c56a1a9c2060c9bd639d365213a3f6cc0f7a1b390e8daef2eac28ed7",
+              "sha256": "bf2f395f74b380a97f090fcb06fd4421551544e868bf4548762dfafb2b4b268c",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -21037,7 +21697,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "7e09f947c56a1a9c2060c9bd639d365213a3f6cc0f7a1b390e8daef2eac28ed7",
+              "sha256": "bf2f395f74b380a97f090fcb06fd4421551544e868bf4548762dfafb2b4b268c",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -21405,7 +22065,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
-              "sha256": "d24a19cc7929e000064ad6f2d841408fc86fcdeb88fc6e61dee61377873cf485",
+              "sha256": "2a8084edf03e87f00dc17559664e5af7a062d623a19f83b6537636e8188568d2",
               "row_names": [
                 "404:all-three-variants-pc-sp-js-nojs",
                 "404:status-and-noindex",
@@ -23113,7 +23773,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "884afd45e96b01a221080a66ef0f9717a037ae1fd6c2fad3fe51c5d288f38fd9",
+              "sha256": "519b56bac549f7b4ee5b095089511d0d42bc4c8c90cda647c007cdaabf2d99f9",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -23265,7 +23925,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "8324fbcb405c216a565a09e04933eba4c8c2d12517782a0a1278d908f2385d3e",
+              "sha256": "55aa7065e917635a0b0fb9ac22b44f2e1723977545c0998948adc344032c584c",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -23627,7 +24287,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "884afd45e96b01a221080a66ef0f9717a037ae1fd6c2fad3fe51c5d288f38fd9",
+              "sha256": "519b56bac549f7b4ee5b095089511d0d42bc4c8c90cda647c007cdaabf2d99f9",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -23779,7 +24439,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "8324fbcb405c216a565a09e04933eba4c8c2d12517782a0a1278d908f2385d3e",
+              "sha256": "55aa7065e917635a0b0fb9ac22b44f2e1723977545c0998948adc344032c584c",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -24858,7 +25518,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "29bb1272cb7e9d7b9923ddf0e47d58d81b78b984d6ee2e3f386b26a99c2d23a4",
+              "sha256": "05a88649cefeb21fabfc70c8e5ba505c463899094d1b16bb2f703edbd9a15903",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -25082,7 +25742,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "b88aaa85f635153ddbb1f06cff68b6ab6c013cbe7b57b5778a5e1b1243a2ca5f",
+              "sha256": "53e158eb6c17654b483f0305dd880a9380eddb00914a57f79f331c7642a2365d",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25370,7 +26030,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "72285d810f514785f73bd156a86cbc1218e05b44a4449ab82b82950f17949384",
+              "sha256": "87fd564659a8df58adb95f7d76275f073e9526559140c8a8c05ab218e5bc6213",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -25771,7 +26431,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "18785b292ee550d09224d69c8585122c978d1039e31310b5cd40190f7f0d60ae",
+              "sha256": "0f8e26c89ef88359968c75dbfc16f94acae3419681311dc7a6239e5942065155",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -25860,7 +26520,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "0cdddf64e29f1150aeb8a46c9ab40468def487485990355be6f9a4aa68265149",
+              "sha256": "40973841c040e04b41ccac5847d091a11118d7c30a7e77b98c72a9e6123c9b57",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -25993,7 +26653,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "29bb1272cb7e9d7b9923ddf0e47d58d81b78b984d6ee2e3f386b26a99c2d23a4",
+              "sha256": "05a88649cefeb21fabfc70c8e5ba505c463899094d1b16bb2f703edbd9a15903",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -26217,7 +26877,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "b88aaa85f635153ddbb1f06cff68b6ab6c013cbe7b57b5778a5e1b1243a2ca5f",
+              "sha256": "53e158eb6c17654b483f0305dd880a9380eddb00914a57f79f331c7642a2365d",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -26505,7 +27165,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "72285d810f514785f73bd156a86cbc1218e05b44a4449ab82b82950f17949384",
+              "sha256": "87fd564659a8df58adb95f7d76275f073e9526559140c8a8c05ab218e5bc6213",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -26906,7 +27566,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "18785b292ee550d09224d69c8585122c978d1039e31310b5cd40190f7f0d60ae",
+              "sha256": "0f8e26c89ef88359968c75dbfc16f94acae3419681311dc7a6239e5942065155",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -26995,7 +27655,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "0cdddf64e29f1150aeb8a46c9ab40468def487485990355be6f9a4aa68265149",
+              "sha256": "40973841c040e04b41ccac5847d091a11118d7c30a7e77b98c72a9e6123c9b57",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -27199,7 +27859,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "ba41cc9527ced22896cfdc6ed3de4aa35c69d9fd8ce19e186e2f7b937e5184f0",
+              "sha256": "c612bbce936beb981d157e4dded844dae6c867a13f794db6696dbed353941586",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -27647,7 +28307,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "ba41cc9527ced22896cfdc6ed3de4aa35c69d9fd8ce19e186e2f7b937e5184f0",
+              "sha256": "c612bbce936beb981d157e4dded844dae6c867a13f794db6696dbed353941586",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -28667,7 +29327,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "44f97f283438cd9402f6f6107b0e5c00f664f0b0c77c56441c6d47ac8cc2df55",
+              "sha256": "3c8597ce9fbcf1b16ad6bf4be9e27c74cfb5722b9a38ba99c74ea9f51a01ab7e",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -28792,7 +29452,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "e0b60b9e802b8553712493988c192ad632ebf10e5ad29570fa67457c01a17ee9",
+              "sha256": "414a5d31f385baee5961b12baf3c1e242897f9a7fbcef9eaeb49a204d67a1fb6",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -29469,7 +30129,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/performance.json",
-              "sha256": "e1a357e380b5dcea542315e49d56fda7138fbf43ed19240050246dcb5fdff12d",
+              "sha256": "140230127b0d88dc2f232840c65ab24720116769ec116db0026ed219cd692257",
               "row_names": [
                 "cold-scans-protected:50",
                 "warm-skips-password-checks:50",
@@ -29503,7 +30163,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "e0b60b9e802b8553712493988c192ad632ebf10e5ad29570fa67457c01a17ee9",
+              "sha256": "414a5d31f385baee5961b12baf3c1e242897f9a7fbcef9eaeb49a204d67a1fb6",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -29547,7 +30207,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "f900092209937a873eb39cbfa3c386af0e76db7589d55ebdf40ff19ae9e72f5c",
+              "sha256": "94c95f0698ebe8bbba11dda412a80fe00a40aefffbef23775e8a58b197fb5928",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -29906,7 +30566,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "44f97f283438cd9402f6f6107b0e5c00f664f0b0c77c56441c6d47ac8cc2df55",
+              "sha256": "3c8597ce9fbcf1b16ad6bf4be9e27c74cfb5722b9a38ba99c74ea9f51a01ab7e",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -29985,7 +30645,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "e0b60b9e802b8553712493988c192ad632ebf10e5ad29570fa67457c01a17ee9",
+              "sha256": "414a5d31f385baee5961b12baf3c1e242897f9a7fbcef9eaeb49a204d67a1fb6",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -30053,7 +30713,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "f900092209937a873eb39cbfa3c386af0e76db7589d55ebdf40ff19ae9e72f5c",
+              "sha256": "94c95f0698ebe8bbba11dda412a80fe00a40aefffbef23775e8a58b197fb5928",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -30356,7 +31016,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "96749783ad22402529856f6f4ac89b3177caaf629a5daa295097080e70dc0350",
+              "sha256": "171d5c6a9ea9af01136bb87204c59f45316aa1885d190a74f8a004a24e6b7e8a",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -30425,8 +31085,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 222,
-    "partial": 40,
+    "missing": 221,
+    "partial": 41,
     "verified_in_poc": 32,
     "stale": 0
   },

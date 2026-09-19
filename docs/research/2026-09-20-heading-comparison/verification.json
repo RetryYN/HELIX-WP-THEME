@@ -1,0 +1,2304 @@
+{
+  "schema": "wt-heading-comparison.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-heading-comparison.mjs": "015689860cd7a1131c8e819fe910ffaebf70c653f02f01a08842f9ae78818986",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "93aa3b803fe4e8d73171874b5ac51d84e9ef42e6442c1012c61bfd98e7b690f3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "10e841b18e18c446403bc7d356f0a06c86ce1a02d14e7176e396e448274842f8"
+  },
+  "rows": [
+    {
+      "name": "registry:15-existing-styles",
+      "pass": true
+    },
+    {
+      "name": "content:roundtrip",
+      "pass": true
+    },
+    {
+      "name": "pc:js:response",
+      "pass": true
+    },
+    {
+      "name": "pc:js:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc:js:scale-descends",
+      "pass": true,
+      "details": [
+        24,
+        20,
+        18
+      ]
+    },
+    {
+      "name": "pc:js:h2-plain:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-plain:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-plain:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-plain:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-plain:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-2tone:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-2tone:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-2tone:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-2tone:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-2tone:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-icon:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-icon:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-icon:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-icon:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-icon:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-icon:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "pc:js:h2-bar:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-bar:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-bar:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-bar:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-bar:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-underline:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-underline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-underline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-underline:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-underline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-band:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-band:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-band:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-band:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-band:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-numbox:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-numbox:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-numbox:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-numbox:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-numbox:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-numbox:first-line-decoration",
+      "pass": true,
+      "details": [
+        "flex-start",
+        "flex-start"
+      ]
+    },
+    {
+      "name": "pc:js:h2-numbox:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-barbg:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-barbg:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-barbg:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-barbg:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-barbg:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-doubleline:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-doubleline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-doubleline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-doubleline:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-doubleline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-label:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-label:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-label:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-label:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h2-label:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-bar-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-bar-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-bar-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-bar-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-bar-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-dotted:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-dotted:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-dotted:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-dotted:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-dotted:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-num:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-num:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-num:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-num:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-num:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-num:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-marker:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-marker:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-marker:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-marker:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-marker:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-marker:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "pc:js:h3-underline-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-underline-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-underline-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-underline-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:js:h3-underline-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:scale-descends",
+      "pass": true,
+      "details": [
+        24,
+        20,
+        18
+      ]
+    },
+    {
+      "name": "pc:nojs:h2-plain:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-plain:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-plain:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-plain:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-plain:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-2tone:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-2tone:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-2tone:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-2tone:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-2tone:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-icon:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-icon:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-icon:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-icon:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-icon:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-icon:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "pc:nojs:h2-bar:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-bar:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-bar:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-bar:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-bar:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-underline:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-underline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-underline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-underline:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-underline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-band:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-band:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-band:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-band:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-band:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-numbox:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-numbox:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-numbox:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-numbox:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-numbox:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-numbox:first-line-decoration",
+      "pass": true,
+      "details": [
+        "flex-start",
+        "flex-start"
+      ]
+    },
+    {
+      "name": "pc:nojs:h2-numbox:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-barbg:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-barbg:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-barbg:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-barbg:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-barbg:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-doubleline:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-doubleline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-doubleline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-doubleline:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-doubleline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-label:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-label:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-label:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-label:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h2-label:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-bar-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-bar-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-bar-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-bar-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-bar-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-dotted:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-dotted:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-dotted:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-dotted:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-dotted:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-num:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-num:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-num:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-num:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-num:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-num:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-marker:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-marker:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-marker:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-marker:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-marker:no-motion",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-marker:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "pc:nojs:h3-underline-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-underline-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-underline-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-underline-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "pc:nojs:h3-underline-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:response",
+      "pass": true
+    },
+    {
+      "name": "sp:js:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp:js:scale-descends",
+      "pass": true,
+      "details": [
+        18.525,
+        17.2698,
+        17.0948
+      ]
+    },
+    {
+      "name": "sp:js:h2-plain:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-plain:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-plain:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-plain:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-plain:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-2tone:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-2tone:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-2tone:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-2tone:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-2tone:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-icon:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-icon:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-icon:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-icon:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-icon:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-icon:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "sp:js:h2-bar:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-bar:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-bar:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-bar:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-bar:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-underline:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-underline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-underline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-underline:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-underline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-band:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-band:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-band:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-band:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-band:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-numbox:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-numbox:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-numbox:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-numbox:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-numbox:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-numbox:first-line-decoration",
+      "pass": true,
+      "details": [
+        "flex-start",
+        "flex-start"
+      ]
+    },
+    {
+      "name": "sp:js:h2-numbox:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-barbg:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-barbg:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-barbg:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-barbg:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-barbg:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-doubleline:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-doubleline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-doubleline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-doubleline:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-doubleline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-label:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-label:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-label:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-label:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h2-label:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-bar-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-bar-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-bar-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-bar-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-bar-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-dotted:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-dotted:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-dotted:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-dotted:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-dotted:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-num:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-num:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-num:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-num:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-num:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-num:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-marker:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-marker:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-marker:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-marker:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-marker:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-marker:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "sp:js:h3-underline-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-underline-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-underline-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-underline-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:js:h3-underline-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:scale-descends",
+      "pass": true,
+      "details": [
+        18.525,
+        17.2698,
+        17.0948
+      ]
+    },
+    {
+      "name": "sp:nojs:h2-plain:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-plain:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-plain:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-plain:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-plain:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-2tone:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-2tone:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-2tone:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-2tone:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-2tone:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-icon:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-icon:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-icon:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-icon:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-icon:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-icon:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "sp:nojs:h2-bar:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-bar:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-bar:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-bar:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-bar:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-underline:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-underline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-underline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-underline:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-underline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-band:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-band:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-band:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-band:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-band:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-numbox:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-numbox:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-numbox:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-numbox:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-numbox:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-numbox:first-line-decoration",
+      "pass": true,
+      "details": [
+        "flex-start",
+        "flex-start"
+      ]
+    },
+    {
+      "name": "sp:nojs:h2-numbox:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-barbg:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-barbg:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-barbg:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-barbg:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-barbg:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-doubleline:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-doubleline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-doubleline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-doubleline:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-doubleline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-label:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-label:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-label:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-label:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h2-label:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-bar-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-bar-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-bar-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-bar-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-bar-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-dotted:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-dotted:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-dotted:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-dotted:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-dotted:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-num:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-num:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-num:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-num:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-num:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-num:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-marker:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-marker:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-marker:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-marker:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-marker:no-motion",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-marker:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "sp:nojs:h3-underline-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-underline-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-underline-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-underline-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "sp:nojs:h3-underline-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:response",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:scale-descends",
+      "pass": true,
+      "details": [
+        18,
+        17.008,
+        17.008
+      ]
+    },
+    {
+      "name": "narrow:js:h2-plain:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-plain:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-plain:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-plain:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-plain:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-2tone:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-2tone:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-2tone:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-2tone:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-2tone:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-icon:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-icon:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-icon:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-icon:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-icon:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-icon:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "narrow:js:h2-bar:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-bar:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-bar:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-bar:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-bar:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-underline:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-underline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-underline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-underline:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-underline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-band:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-band:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-band:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-band:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-band:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-numbox:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-numbox:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-numbox:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-numbox:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-numbox:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-numbox:first-line-decoration",
+      "pass": true,
+      "details": [
+        "flex-start",
+        "flex-start"
+      ]
+    },
+    {
+      "name": "narrow:js:h2-numbox:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-barbg:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-barbg:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-barbg:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-barbg:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-barbg:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-doubleline:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-doubleline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-doubleline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-doubleline:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-doubleline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-label:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-label:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-label:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-label:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h2-label:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-bar-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-bar-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-bar-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-bar-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-bar-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-dotted:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-dotted:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-dotted:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-dotted:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-dotted:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-num:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-num:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-num:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-num:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-num:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-num:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-marker:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-marker:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-marker:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-marker:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-marker:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-marker:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "narrow:js:h3-underline-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-underline-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-underline-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-underline-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:js:h3-underline-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:response",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:no-page-overflow",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:scale-descends",
+      "pass": true,
+      "details": [
+        18,
+        17.008,
+        17.008
+      ]
+    },
+    {
+      "name": "narrow:nojs:h2-plain:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-plain:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-plain:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-plain:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-plain:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-2tone:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-2tone:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-2tone:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-2tone:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-2tone:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-icon:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-icon:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-icon:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-icon:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-icon:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-icon:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "narrow:nojs:h2-bar:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-bar:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-bar:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-bar:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-bar:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-underline:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-underline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-underline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-underline:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-underline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-band:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-band:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-band:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-band:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-band:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:first-line-decoration",
+      "pass": true,
+      "details": [
+        "flex-start",
+        "flex-start"
+      ]
+    },
+    {
+      "name": "narrow:nojs:h2-numbox:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-barbg:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-barbg:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-barbg:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-barbg:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-barbg:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-doubleline:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-doubleline:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-doubleline:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-doubleline:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-doubleline:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-label:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-label:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-label:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-label:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h2-label:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-bar-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-bar-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-bar-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-bar-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-bar-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-dotted:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-dotted:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-dotted:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-dotted:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-dotted:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-num:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-num:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-num:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-num:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-num:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-num:counter-retained",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-marker:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-marker:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-marker:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-marker:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-marker:no-motion",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-marker:first-line-decoration",
+      "pass": true,
+      "details": [
+        "baseline",
+        "baseline"
+      ]
+    },
+    {
+      "name": "narrow:nojs:h3-underline-thin:semantics",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-underline-thin:full-copy",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-underline-thin:no-clipping",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-underline-thin:level-size",
+      "pass": true
+    },
+    {
+      "name": "narrow:nojs:h3-underline-thin:no-motion",
+      "pass": true
+    },
+    {
+      "name": "fixtures:cleanup",
+      "pass": true
+    },
+    {
+      "name": "source-unchanged",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "h2-plain",
+      "device": "pc",
+      "file": "h2-plain-pc.jpg",
+      "sha256": "f2ee9f448b7b5fe43172b4814074c0676e2c23688395aa5cb18ef99960b89cb1"
+    },
+    {
+      "id": "h2-2tone",
+      "device": "pc",
+      "file": "h2-2tone-pc.jpg",
+      "sha256": "87750998c27f5fc11522afedef5d591761bed910442839f8dc62c066c98f0f64"
+    },
+    {
+      "id": "h2-icon",
+      "device": "pc",
+      "file": "h2-icon-pc.jpg",
+      "sha256": "06b1159f79f5d9453f885d331b1ab6925d032ad500dc598c37a56976c394ef93"
+    },
+    {
+      "id": "h2-bar",
+      "device": "pc",
+      "file": "h2-bar-pc.jpg",
+      "sha256": "d36ea94aa205bedc90ca53852a49ec88b22647b84d4793e9b21bd84bca690a91"
+    },
+    {
+      "id": "h2-underline",
+      "device": "pc",
+      "file": "h2-underline-pc.jpg",
+      "sha256": "e105aa355b96709c19b6008bf7200d1e2b1f6e345ce3991eca28bb50cee04041"
+    },
+    {
+      "id": "h2-band",
+      "device": "pc",
+      "file": "h2-band-pc.jpg",
+      "sha256": "95228486f0495a6c05a46fa5ef95a1755c250bd20aeeeefa9509efc19642d8c3"
+    },
+    {
+      "id": "h2-numbox",
+      "device": "pc",
+      "file": "h2-numbox-pc.jpg",
+      "sha256": "0687c385f0b7677d93ef48a3dd797c12f48b79e86be165660764ca4cb828d1be"
+    },
+    {
+      "id": "h2-barbg",
+      "device": "pc",
+      "file": "h2-barbg-pc.jpg",
+      "sha256": "c67e4e54ea25c20fc4f356764c6974f95f615e74d7ff64868ae682abb7679ce0"
+    },
+    {
+      "id": "h2-doubleline",
+      "device": "pc",
+      "file": "h2-doubleline-pc.jpg",
+      "sha256": "9edbb2e5aa66f5316ac0acce6373703337f8d46a4746f09a9b44fcd4d3475bb9"
+    },
+    {
+      "id": "h2-label",
+      "device": "pc",
+      "file": "h2-label-pc.jpg",
+      "sha256": "b02d11b572a8443d23672be614bf794281014945d64706a23db2a22a570859e0"
+    },
+    {
+      "id": "h3-bar-thin",
+      "device": "pc",
+      "file": "h3-bar-thin-pc.jpg",
+      "sha256": "723c6d35207f7e9bbb0dfbf02353b95136dab599cdc7936f7f26e9f130b76420"
+    },
+    {
+      "id": "h3-dotted",
+      "device": "pc",
+      "file": "h3-dotted-pc.jpg",
+      "sha256": "c5a0a32eeefede92a3d8caa169337f92ee9541d237a5163c50b996987b9cb9d5"
+    },
+    {
+      "id": "h3-num",
+      "device": "pc",
+      "file": "h3-num-pc.jpg",
+      "sha256": "a1acff5d593c08b86ae551a64540ea5f543986f25fd2941901aa9b61b9e4858f"
+    },
+    {
+      "id": "h3-marker",
+      "device": "pc",
+      "file": "h3-marker-pc.jpg",
+      "sha256": "8f7686bfad3bfa18582a479e17ef5c54121ed763300aeb5ecf1ba939f61485cf"
+    },
+    {
+      "id": "h3-underline-thin",
+      "device": "pc",
+      "file": "h3-underline-thin-pc.jpg",
+      "sha256": "90b0e24249063299824af8a79ba7e33a8dd2b1d818e0747f087bc3e84ae2efb9"
+    },
+    {
+      "id": "h2-plain",
+      "device": "sp",
+      "file": "h2-plain-sp.jpg",
+      "sha256": "1a7967535151912a224eb24602583376b57cfd1a4e5272be01d8cf24c92f3526"
+    },
+    {
+      "id": "h2-2tone",
+      "device": "sp",
+      "file": "h2-2tone-sp.jpg",
+      "sha256": "05d2d721c6cef4efae8d3815b549d0a90043e505dc8fc40342681438443b957c"
+    },
+    {
+      "id": "h2-icon",
+      "device": "sp",
+      "file": "h2-icon-sp.jpg",
+      "sha256": "2f288de445bf2968ad49629b1b856e6bda968053c9a8aa39a97bb799992377ed"
+    },
+    {
+      "id": "h2-bar",
+      "device": "sp",
+      "file": "h2-bar-sp.jpg",
+      "sha256": "15547c9f8800098a62613ec097434dc3257a39311ff98fd7e680c858ed5d2730"
+    },
+    {
+      "id": "h2-underline",
+      "device": "sp",
+      "file": "h2-underline-sp.jpg",
+      "sha256": "4630ec173a8ae1ca32c3b7325f8e9aa0185b9c1ce305871f7ed19df34eb7600b"
+    },
+    {
+      "id": "h2-band",
+      "device": "sp",
+      "file": "h2-band-sp.jpg",
+      "sha256": "57d3d43dae0f41e5dcd3910d5e06f42de5a7f570de476da8e313ac080373a879"
+    },
+    {
+      "id": "h2-numbox",
+      "device": "sp",
+      "file": "h2-numbox-sp.jpg",
+      "sha256": "a27cc371710fdba1289e3d0d06a60c38e00e9ce4538448bd15db61de32877b32"
+    },
+    {
+      "id": "h2-barbg",
+      "device": "sp",
+      "file": "h2-barbg-sp.jpg",
+      "sha256": "777c2aa0356996c0b41f6de4a174b1fee30eddcebd4244eb50e7e354f153333c"
+    },
+    {
+      "id": "h2-doubleline",
+      "device": "sp",
+      "file": "h2-doubleline-sp.jpg",
+      "sha256": "38431e3f977cdc044021a9944bf0f84616d4b863248f02fb8e5b761fdf92409f"
+    },
+    {
+      "id": "h2-label",
+      "device": "sp",
+      "file": "h2-label-sp.jpg",
+      "sha256": "269cc1b5b8b8cf90838f057d44fcf2072e8a24d2f5479a5eef227d1c72221472"
+    },
+    {
+      "id": "h3-bar-thin",
+      "device": "sp",
+      "file": "h3-bar-thin-sp.jpg",
+      "sha256": "921b289a83bdeaa3a92c6f26f14707e9e6e1ddd010590c622c27945d4659ff3b"
+    },
+    {
+      "id": "h3-dotted",
+      "device": "sp",
+      "file": "h3-dotted-sp.jpg",
+      "sha256": "22dbef160cc9bebbc8723b3faf591dc547d56b524f375611979e228fe8820ab6"
+    },
+    {
+      "id": "h3-num",
+      "device": "sp",
+      "file": "h3-num-sp.jpg",
+      "sha256": "f7c15bfa6de1f6650e21afc6a376ef6bb90ad10d0b367ea37f03e40cb023129b"
+    },
+    {
+      "id": "h3-marker",
+      "device": "sp",
+      "file": "h3-marker-sp.jpg",
+      "sha256": "f7e7561a5f62b73ff0cc4146df16d2b657de37d66e58742ec31f3503b273a725"
+    },
+    {
+      "id": "h3-underline-thin",
+      "device": "sp",
+      "file": "h3-underline-thin-sp.jpg",
+      "sha256": "49708c805f6b81edb7d7edf6f46bc8c2119caaac220c4e3c3eeded400473742e"
+    }
+  ]
+}
