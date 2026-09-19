@@ -120,10 +120,24 @@ test('mobile fits viewport and tabs support keyboard; images load', async ({ pag
 
 test('mobile collection navigation keeps the restored selection in view', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
-  await page.locator('[data-face="404"]').click();
-  await expect(page.locator('#collection-title')).toHaveText('404');
-  const selected = page.locator('[data-face="404"]');
   const nav = page.locator('#faces');
+  const selected = page.locator('[data-face="404"]');
+  await nav.evaluate(node => { node.scrollLeft = 0; });
+  await expect.poll(() => selected.evaluate(node => {
+    const container = node.parentElement!;
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = node.getBoundingClientRect();
+    return itemRect.left >= containerRect.left && itemRect.right <= containerRect.right;
+  })).toBe(false);
+  await selected.evaluate((element: HTMLElement) => element.click());
+  await expect(page.locator('#collection-title')).toHaveText('404');
+  await expect.poll(() => selected.evaluate(node => {
+    const container = node.parentElement!;
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = node.getBoundingClientRect();
+    return itemRect.left >= containerRect.left && itemRect.right <= containerRect.right;
+  })).toBe(true);
+
   await nav.evaluate(node => { node.scrollLeft = 0; });
   await page.locator('#search').fill('404');
   await expect.poll(() => nav.evaluate(node => node.scrollLeft)).toBe(0);
