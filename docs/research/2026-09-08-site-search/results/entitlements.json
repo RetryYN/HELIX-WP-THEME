@@ -1,0 +1,822 @@
+{
+  "schema": "wt-site-search-entitlements.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-site-search-entitlements.mjs": "511fcd5599b9bed58897cc456cc511cef03e8c71ffaccf0028830f72be3557aa",
+    "scripts/verify-site-search-access.mjs": "88367b8e3451e23152cb7bd56f60a16a8cc7dab0a7fc67aae4b5cbe9562085fd",
+    "docs/research/2026-09-08-content-faces/plugin/content-faces.php": "980be23e03737f934dd81626508470edb23e26f060396115a6d26bb692f97121",
+    "docs/research/2026-09-08-content-faces/plugin/search.php": "30758dd9d9f5f333f0946802edc20e56c1fd687196a5a1c79a9d36cc4a00740a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html": "cbae6a4b6ec61c228b05c2425e2a66ef105715131eef7997961b9f698fdc84bd",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php": "3196fe5c275b05ea8c225978b069fdca12c53ccbb82f9855f2308ea5bf6c6a21"
+  },
+  "rows": [
+    {
+      "name": "html:anonymous:status",
+      "pass": true
+    },
+    {
+      "name": "html:anonymous:public",
+      "pass": true
+    },
+    {
+      "name": "html:anonymous:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:anonymous:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:anonymous:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:anonymous:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:anonymous:status",
+      "pass": true
+    },
+    {
+      "name": "rest:anonymous:public",
+      "pass": true
+    },
+    {
+      "name": "rest:anonymous:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:anonymous:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:anonymous:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:anonymous:status",
+      "pass": true
+    },
+    {
+      "name": "feed:anonymous:public",
+      "pass": true
+    },
+    {
+      "name": "feed:anonymous:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:anonymous:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:anonymous:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_none",
+      "pass": true
+    },
+    {
+      "name": "html:none:status",
+      "pass": true
+    },
+    {
+      "name": "html:none:public",
+      "pass": true
+    },
+    {
+      "name": "html:none:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:none:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:none:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:none:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:none:status",
+      "pass": true
+    },
+    {
+      "name": "rest:none:public",
+      "pass": true
+    },
+    {
+      "name": "rest:none:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:none:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:none:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:none:status",
+      "pass": true
+    },
+    {
+      "name": "feed:none:public",
+      "pass": true
+    },
+    {
+      "name": "feed:none:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:none:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:none:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_expired",
+      "pass": true
+    },
+    {
+      "name": "html:expired:status",
+      "pass": true
+    },
+    {
+      "name": "html:expired:public",
+      "pass": true
+    },
+    {
+      "name": "html:expired:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:expired:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:expired:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:expired:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:expired:status",
+      "pass": true
+    },
+    {
+      "name": "rest:expired:public",
+      "pass": true
+    },
+    {
+      "name": "rest:expired:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:expired:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:expired:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:expired:status",
+      "pass": true
+    },
+    {
+      "name": "feed:expired:public",
+      "pass": true
+    },
+    {
+      "name": "feed:expired:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:expired:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:expired:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_other_product",
+      "pass": true
+    },
+    {
+      "name": "html:other_product:status",
+      "pass": true
+    },
+    {
+      "name": "html:other_product:public",
+      "pass": true
+    },
+    {
+      "name": "html:other_product:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:other_product:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:other_product:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:other_product:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:other_product:status",
+      "pass": true
+    },
+    {
+      "name": "rest:other_product:public",
+      "pass": true
+    },
+    {
+      "name": "rest:other_product:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:other_product:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:other_product:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:other_product:status",
+      "pass": true
+    },
+    {
+      "name": "feed:other_product:public",
+      "pass": true
+    },
+    {
+      "name": "feed:other_product:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:other_product:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:other_product:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_oneoff",
+      "pass": true
+    },
+    {
+      "name": "html:oneoff:status",
+      "pass": true
+    },
+    {
+      "name": "html:oneoff:public",
+      "pass": true
+    },
+    {
+      "name": "html:oneoff:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:oneoff:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:oneoff:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:oneoff:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:oneoff:status",
+      "pass": true
+    },
+    {
+      "name": "rest:oneoff:public",
+      "pass": true
+    },
+    {
+      "name": "rest:oneoff:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:oneoff:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:oneoff:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:oneoff:status",
+      "pass": true
+    },
+    {
+      "name": "feed:oneoff:public",
+      "pass": true
+    },
+    {
+      "name": "feed:oneoff:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:oneoff:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:oneoff:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_subscription",
+      "pass": true
+    },
+    {
+      "name": "html:subscription:status",
+      "pass": true
+    },
+    {
+      "name": "html:subscription:public",
+      "pass": true
+    },
+    {
+      "name": "html:subscription:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:subscription:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:subscription:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:subscription:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:subscription:status",
+      "pass": true
+    },
+    {
+      "name": "rest:subscription:public",
+      "pass": true
+    },
+    {
+      "name": "rest:subscription:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:subscription:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:subscription:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:subscription:status",
+      "pass": true
+    },
+    {
+      "name": "feed:subscription:public",
+      "pass": true
+    },
+    {
+      "name": "feed:subscription:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:subscription:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:subscription:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_search_editor",
+      "pass": true
+    },
+    {
+      "name": "html:editor:status",
+      "pass": true
+    },
+    {
+      "name": "html:editor:public",
+      "pass": true
+    },
+    {
+      "name": "html:editor:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:editor:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:editor:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:editor:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:editor:status",
+      "pass": true
+    },
+    {
+      "name": "rest:editor:public",
+      "pass": true
+    },
+    {
+      "name": "rest:editor:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:editor:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:editor:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:editor:status",
+      "pass": true
+    },
+    {
+      "name": "feed:editor:public",
+      "pass": true
+    },
+    {
+      "name": "feed:editor:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:editor:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:editor:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "login:lab_admin",
+      "pass": true
+    },
+    {
+      "name": "html:admin:status",
+      "pass": true
+    },
+    {
+      "name": "html:admin:public",
+      "pass": true
+    },
+    {
+      "name": "html:admin:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "html:admin:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:admin:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "html:admin:no-store",
+      "pass": true
+    },
+    {
+      "name": "rest:admin:status",
+      "pass": true
+    },
+    {
+      "name": "rest:admin:public",
+      "pass": true
+    },
+    {
+      "name": "rest:admin:private-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:admin:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "rest:admin:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:admin:status",
+      "pass": true
+    },
+    {
+      "name": "feed:admin:public",
+      "pass": true
+    },
+    {
+      "name": "feed:admin:private-boundary",
+      "pass": true
+    },
+    {
+      "name": "feed:admin:draft-excluded",
+      "pass": true
+    },
+    {
+      "name": "feed:admin:protected-excluded",
+      "pass": true
+    },
+    {
+      "name": "paid:anonymous:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:anonymous:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:anonymous:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:anonymous:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:anonymous:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_none",
+      "pass": true
+    },
+    {
+      "name": "paid:none:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:none:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:none:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:none:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:none:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_oneoff",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_subscription",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription:/library/monthly-notes/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription:/library/monthly-notes/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription:/library/monthly-notes/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription:/library/monthly-notes/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription:/library/monthly-notes/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_search_editor",
+      "pass": true
+    },
+    {
+      "name": "paid:editor:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:editor:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:editor:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:editor:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:editor:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_oneoff",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_oneoff",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-granted:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-granted:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-granted:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-granted:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-granted:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_oneoff",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked-again:/library/decision-design/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked-again:/library/decision-design/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked-again:/library/decision-design/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked-again:/library/decision-design/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:oneoff-revoked-again:/library/decision-design/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_subscription",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired:/library/monthly-notes/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired:/library/monthly-notes/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired:/library/monthly-notes/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired:/library/monthly-notes/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired:/library/monthly-notes/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_subscription",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-granted:/library/monthly-notes/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-granted:/library/monthly-notes/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-granted:/library/monthly-notes/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-granted:/library/monthly-notes/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-granted:/library/monthly-notes/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "login:lab_subscription",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired-again:/library/monthly-notes/:status",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired-again:/library/monthly-notes/:entitlement",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired-again:/library/monthly-notes/:no-store",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired-again:/library/monthly-notes/:rest-protected-body",
+      "pass": true
+    },
+    {
+      "name": "paid:subscription-expired-again:/library/monthly-notes/:feed-protected-body",
+      "pass": true
+    },
+    {
+      "name": "owned-fixtures-removed",
+      "pass": true
+    },
+    {
+      "name": "sources-unchanged",
+      "pass": true
+    }
+  ]
+}
