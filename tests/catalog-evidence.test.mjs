@@ -58,3 +58,18 @@ test('remaining conditions prevent completion even with unchanged passing proof'
   const f = fixture(t); f.record.status = 'verified_in_poc'; f.save({ A1: f.record });
   const result = f.run(); assert.equal(result.report.counts.stale, 1); assert.equal(result.report.complete, false);
 });
+
+test('tablet component observations bind every catalog source used by the capture', () => {
+  const root = new URL('../', import.meta.url);
+  const artifact = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/visual-quality/tablet-components/observations.json', root), 'utf8'));
+  const expectedSources = [
+    'docs/research/2026-09-08-selection-catalog/catalog.css',
+    'docs/research/2026-09-08-selection-catalog/catalog.mjs',
+    'docs/research/2026-09-08-selection-catalog/index.html',
+  ];
+  assert.deepEqual(Object.keys(artifact.sourceDigests).sort(), expectedSources.sort());
+  for (const source of expectedSources) {
+    const actual = hash(fs.readFileSync(new URL(source, root)));
+    assert.equal(artifact.sourceDigests[source], actual, `${source} digest is current`);
+  }
+});
