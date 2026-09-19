@@ -18,3 +18,5 @@
 追加検収: `npm run reduced-motion:verify` は19行PASS、failed=0。`verify.json` に名前付きrowsと実ソース・verifier・package・CIのSHA-256を保存する。時間や環境絶対パスは含めない。CIは既存test.ymlのPlaywright jobにてChromium install後に実行し、JSONをartifactへ保存。関連ソース・verifier・package変更もpush/PRトリガーに追加。npm testにはbrowser依存を追加しない。
 
 最終検収: autoplay=falseを共通gateの必要条件に追加し、autoplay=trueの負例を同じgateで拒否。3所有rootのJS/PHP/HTMLを再帰列挙し、autoplay/play呼出し不存在と未監査timer不存在を6名前付きrowで検証。対象一覧と全ソースdigestはverify.jsonに記録。既存timerはarticleのresize/コピー通知、homeの分単位テキスト更新、ad-trackingの計測だけを全文SHA-256固定で許容し、将来のcallback変更・timer追加を無条件除外しない。26 rows PASS、failed=0。連続2回のJSONはバイト一致。6操作経路のブラウザ検証を維持。
+
+2026-09-20追補: PR #193 reviewで、commit済み `verify.json` 内の `header-navigation-editor.js` digestが現ソースより古いままでもCIがgreenになる穴を確認した。現HEADで再生成し、20 rows / failed 0、連続2回のJSONはバイト一致。CIはプローブ実行直後にcommit済み `verify.json` との差を検査し、内部 `sourceDigests`、手動承認済み `reviewedTimerSources`、検査行のいずれかが未更新ならfailする。
