@@ -1,6 +1,7 @@
 import { chromium } from '@playwright/test';
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 const catalog = 'docs/research/2026-09-08-selection-catalog';
 const output = `${catalog}/visual-quality/tablet-components`;
 const base = process.env.CATALOG_BASE_URL;
@@ -19,5 +20,9 @@ try {
     records.push({ stage, width, ...await page.evaluate(() => ({ imageWidth: document.querySelector('.component-preview img').getBoundingClientRect().width, columns: getComputedStyle(document.querySelector('.gallery')).gridTemplateColumns, overflow: document.documentElement.scrollWidth > innerWidth })) });
     await page.close();
   }
-  await writeFile(`${output}/observations.json`, JSON.stringify({ baseline: execFileSync('git', ['rev-parse', baseline], { encoding: 'utf8' }).trim(), records }, null, 2) + '\n');
+  const sourceDigests = {};
+  for (const file of ['index.html', 'catalog.css', 'catalog.mjs']) {
+    sourceDigests[`${catalog}/${file}`] = createHash('sha256').update(await readFile(`${catalog}/${file}`)).digest('hex');
+  }
+  await writeFile(`${output}/observations.json`, JSON.stringify({ baseline: execFileSync('git', ['rev-parse', baseline], { encoding: 'utf8' }).trim(), sourceDigests, records }, null, 2) + '\n');
 } finally { await browser.close(); }
