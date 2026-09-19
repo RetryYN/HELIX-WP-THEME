@@ -5,6 +5,7 @@ const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/res
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
   await expect(page.locator('#total')).toHaveText('660');
+  await expect(page.locator('.tile-open')).toHaveCount(36);
 });
 
 test('pricing cards compare standard and long copy without inflating the design count', async ({ page }) => {
