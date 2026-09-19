@@ -6,7 +6,7 @@
 
 SP補助ナビは、Site Editorキャンバス内で「SP専用テキストナビ」のラベルと破線枠を持つ。標準NavigationのInspectorでは「公開PCでは非表示」「SPのテキストナビ配置で表示」を説明する。公開面へこのラベル・枠・Editor JSを出さない。
 
-標準Navigationのメニュー参照を変更しても、サイト全体の参照へ即時POSTしない。変更は標準ブロック履歴に入り、undo/redoできる。Inspectorには公開中と変更後の参照先、未適用の説明、「全ヘッダーに適用」「変更を取り消す」を出す。
+標準Navigationのメニュー参照を変更しても、サイト全体の参照へ即時POSTしない。変更は標準ブロック履歴に入り、undo/redoできる。保存済みブロック属性と共通設定が異なる場合も、利用者が保存済み参照を明示選択した操作をundoと混同しない。Inspectorには公開中と変更後の参照先、未適用の説明、「全ヘッダーに適用」「変更を取り消す」を出す。
 
 「全ヘッダーに適用」はサイト全体の設定の明示保存であり、通常のテンプレート保存とは別操作。適用後にundoすると、前の参照が未適用として復元される。公開設定を戻すには、その復元内容をもう一度明示適用する。標準Navigationのリンク内容編集・Save・再入場は維持する。
 
@@ -20,7 +20,7 @@ REST失敗時は公開設定を変えず、変更予定とエラーを表示し�
 
 ## 検証の区別
 
-- 新Editorランナー: 保存済み公開72条件と、実UI参照選択、undo/redo、離脱、REST失敗、二重クリック、通信中再変更、取消、標準リンク編集、全9part保存・再入場、権限・nonce負例。
+- 新Editorランナー: 保存済み公開72条件と、実UI参照選択、保存済み属性と共通設定が異なる状態での明示再選択、undo/redo、離脱、REST失敗、二重クリック、通信中再変更、取消、標準リンク編集、全9part保存・再入場、権限・nonce負例。
 - Scopeランナー: 正規header 9、body/footer 6、非header template-part 3の18条件。cleanupと描画文脈復帰もassertする。
 - Recoveryランナー: SIGTERM、uncaughtException、unhandledRejectionと冪等な再回収の4条件。
 - Public isolationランナー: 9header × native/shared × 390/1440 × JS有無の72条件。Editor専用DOMとJSの不在を検査する。
@@ -49,7 +49,7 @@ node scripts/verify-header-navigation-editor-isolation.mjs
 
 ## 最終検収と引継ぎ
 
-最終source digestで新Editor290、scope29、異常終了復旧14、公開面のEditor非混入144検査が成功。実検査477に集計・digest整合43を加え、summaryは166実行条件 / 520 assertions、completed:true。既存header回帰は1,035条件 / 5,496 assertionsで成功。PHP 2ファイルのWordPress-Core PHPCSはエラー0・警告0、PHP/JS構文、i18n14検査も成功した。環境はWordPress 7.1 / PHP 8.3.33 / Chromium。
+最終source digestで新Editor298、scope29、異常終了復旧14、公開面のEditor非混入144検査が成功。新Editorは、保存済み属性C・共通設定BからA→Cと明示選択し、二段undoでA→開始表示Bへ戻る経路と、その後のredo・再編集を直接検査する。実検査485に集計・digest整合43を加え、summaryは166実行条件 / 528 assertions、completed:true。既存header回帰は1,035条件 / 5,496 assertionsで成功。PHP 2ファイルのWordPress-Core PHPCSはエラー0・警告0、PHP/JS構文、i18n14検査も成功した。環境はWordPress 7.1 / PHP 8.3.33 / Chromium。
 
 新しい画像7枚はscreenshots.htmlから参照できる。公開390/1440pxの画像は既存header回帰フォルダで再取得した。
 

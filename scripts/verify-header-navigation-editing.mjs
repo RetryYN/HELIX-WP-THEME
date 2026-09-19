@@ -15,17 +15,17 @@ for(const event of ['uncaughtException','unhandledRejection'])process.once(event
 browser=await chromium.launch({args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:1440,height:1000}});
 page.setDefaultTimeout(10000);
 const credentials=JSON.parse(fs.readFileSync(path.join(process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab'),'credentials.json')));
-const login=async(p,user,password)=>{await p.goto('http://127.0.0.1:8098/wp-login.php');await p.locator('#user_login').fill(user);await p.locator('#user_pass').fill(password);await p.locator('#wp-submit').click();await p.waitForURL('**/wp-admin/**');};
+const login=async(p,user,password)=>{await p.goto('http://127.0.0.1:8098/wp-login.php');await p.locator('#user_login').fill(user);await p.locator('#user_pass').fill(password);await Promise.all([p.waitForURL('**/wp-admin/**',{waitUntil:'domcontentloaded'}),p.locator('#wp-submit').click()]);};
 const openPart=async slug=>{await page.goto(`http://127.0.0.1:8098/wp-admin/site-editor.php?postId=helix-wt%2F%2F${slug}&postType=wp_template_part&canvas=edit`);await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);const start=page.getByRole('button',{name:'Get started',exact:true});if(await start.isVisible())await start.click();const exit=page.getByRole('button',{name:'Exit code editor',exact:true});if(await exit.isVisible())await exit.click();await page.locator('iframe[name="editor-canvas"]').waitFor();};
 const savePart=async()=>{await page.getByRole('button',{name:'Save',exact:true}).first().click();const confirm=page.getByRole('dialog').getByRole('button',{name:'Save',exact:true});if(await confirm.waitFor({timeout:1000}).then(()=>true,()=>false))await confirm.click();await page.waitForFunction(()=>!wp.data.select('core/editor').isSavingPost()&&!wp.data.select('core/editor').isEditedPostDirty());for(const id of wp('echo wp_json_encode(wp_list_pluck(get_posts(["post_type"=>"wp_template_part","post_status"=>"any","numberposts"=>-1]),"ID"));'))if(!originals.some(p=>p.ID===id)&&!createdPartIds.includes(id))createdPartIds.push(id);snapshot();};
 try{
- for(const letter of ['A','B']){const content='<!-- wp:navigation-link '+JSON.stringify({label:'編集ナビ'+letter,url:'http://127.0.0.1:8098/library/',kind:'custom'})+' /-->';const encoded=Buffer.from(content).toString('base64');const slug='header-editor-nav-'+letter.toLowerCase();const id=Number(php(`if(get_page_by_path('${slug}',OBJECT,'wp_navigation'))throw new Exception('collision');echo wp_insert_post(wp_slash(['post_type'=>'wp_navigation','post_status'=>'publish','post_name'=>'${slug}','post_title'=>'編集ナビ${letter}','post_content'=>base64_decode('${encoded}')]));`));created.push(id);snapshot();}
+ for(const letter of ['A','B','C']){const content='<!-- wp:navigation-link '+JSON.stringify({label:'編集ナビ'+letter,url:'http://127.0.0.1:8098/library/',kind:'custom'})+' /-->';const encoded=Buffer.from(content).toString('base64');const slug='header-editor-nav-'+letter.toLowerCase();const id=Number(php(`if(get_page_by_path('${slug}',OBJECT,'wp_navigation'))throw new Exception('collision');echo wp_insert_post(wp_slash(['post_type'=>'wp_navigation','post_status'=>'publish','post_name'=>'${slug}','post_title'=>'編集ナビ${letter}','post_content'=>base64_decode('${encoded}')]));`));created.push(id);snapshot();}
  if(process.argv.includes('--test-signal-cleanup')){process.kill(process.pid,'SIGTERM');await new Promise(()=>{});}
  if(process.argv.includes('--test-rejection-cleanup')){Promise.reject(new Error('synthetic cleanup rejection'));await new Promise(()=>{});}
  if(process.argv.includes('--test-exception-cleanup')){setTimeout(()=>{throw Error('synthetic cleanup exception');},0);await new Promise(()=>{});}
  await login(page,'lab_admin',credentials.admin);
  await openPart('header');await page.getByRole('button',{name:'共通ヘッダーナビ',exact:true}).click();
- for(const [i,ref]of created.entries()){
+ for(const [i,ref]of created.slice(0,2).entries()){
   await page.getByLabel('参照するナビゲーション',{exact:true}).selectOption(String(ref));
   await page.getByRole('button',{name:'参照先を保存',exact:true}).click();await page.locator('.components-notice__content').filter({hasText:'共通ヘッダーナビを保存しました。'}).waitFor();check('UI:save-reference-'+i,Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===ref);
   await page.reload();await page.getByRole('button',{name:'共通ヘッダーナビ',exact:true}).click();await page.getByLabel('参照するナビゲーション',{exact:true}).waitFor();check('UI:reenter-reference-'+i,await page.getByLabel('参照するナビゲーション',{exact:true}).inputValue()===String(ref));
@@ -37,27 +37,45 @@ try{
  await page.getByRole('button',{name:'共通ヘッダーナビ',exact:true}).click();
  const canvas=page.frameLocator('iframe[name="editor-canvas"]');await canvas.locator('[data-type="core/navigation"]:visible').first().click();await page.getByRole('button',{name:'Settings',exact:true}).click();
  const choose=async(name,current)=>{await page.getByRole('tabpanel',{name:'List View',exact:true}).getByRole('button',{name:current,exact:true}).click();await page.getByRole('menuitemradio',{name:new RegExp(name)}).click();};
+ const history=async label=>{await page.waitForFunction(value=>document.querySelector(`button[aria-label="${value}"]`)?.getAttribute('aria-disabled')==='false',label);await page.locator(`button[aria-label="${label}"]`).first().evaluate(button=>button.click());};
  const pending=page.locator('.wt-header-navigation-pending');
  let posts=0;page.on('request',r=>{if(r.method()==='POST'&&r.url().includes('/helix-wt/v1/header-navigation'))posts++;});
- await choose('編集ナビA','編集ナビB');await pending.waitFor();
+ await choose('編集ナビC','編集ナビB');await pending.waitFor();
  check('stage:no-global-post',posts===0);check('stage:saved-ref-remains-B',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[1]);
- check('stage:previous-and-next-visible',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ check('stage:previous-and-next-visible',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
  check('device:SP-label',await canvas.getByText(/SP専用テキストナビ/).count()>0);
  await page.screenshot({path:out+'/pending-reference.png'});
- await page.getByRole('button',{name:'Undo',exact:true}).click();await pending.waitFor({state:'hidden'});check('stage:undo-no-post',posts===0);
- await page.getByRole('button',{name:'Redo',exact:true}).click();await pending.waitFor();check('stage:redo-no-post',posts===0);
+ await history('Undo');await pending.waitFor({state:'hidden'});check('stage:undo-no-post',posts===0);
+ await history('Redo');await pending.waitFor();check('stage:redo-no-post',posts===0);
+ await savePart();check('explicit-origin:saved-attribute-C',php(`echo get_post_field('post_content',get_page_by_path('header',OBJECT,'wp_template_part'));`).includes(`"ref":${created[2]}`));
  page.on('dialog',d=>d.accept());await page.goto('http://127.0.0.1:8098/wp-admin/index.php');await openPart('header');
  check('stage:leave-without-global-save',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[1]);check('stage:reenter-no-pending',await pending.count()===0);
  await canvas.locator('[data-type="core/navigation"]:visible').first().click();
- if(!await page.getByRole('button',{name:'編集ナビB',exact:true}).isVisible())await page.getByRole('button',{name:'Settings',exact:true}).click();
- await choose('編集ナビA','編集ナビB');await pending.waitFor();
+ if(!await page.getByRole('button',{name:'編集ナビB',exact:true}).first().isVisible())await page.getByRole('button',{name:'Settings',exact:true}).click();
+ await choose('編集ナビC','編集ナビB');await pending.waitFor();
+ check('explicit-origin:selection-remains-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await openPart('header');await canvas.locator('[data-type="core/navigation"]:visible').first().click();
+ if(!await page.getByRole('button',{name:'編集ナビB',exact:true}).first().isVisible())await page.getByRole('button',{name:'Settings',exact:true}).click();
+ await choose('編集ナビC','編集ナビB');check('history:no-op-selection-remains-pending',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await choose('編集ナビA','編集ナビC');await history('Undo');await pending.waitFor({state:'hidden'});check('history:no-op-does-not-create-phantom-level',await pending.count()===0);
+ await choose('編集ナビA','編集ナビB');check('explicit-origin:subsequent-selection-remains-editable',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await choose('編集ナビC','編集ナビA');check('history:second-explicit-C-remains-pending',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await canvas.locator('[data-type="core/navigation"]:visible').first().click();await page.keyboard.press('Control+z');check('history:iframe-shortcut-undo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await page.keyboard.press('Control+y');check('history:iframe-shortcut-redo-restores-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await history('Undo');check('history:first-undo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await history('Redo');check('history:ambiguous-redo-restores-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await history('Undo');check('history:undo-after-ambiguous-redo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await history('Undo');await pending.waitFor({state:'hidden'});check('history:second-undo-restores-origin-B',await pending.count()===0);
+ await history('Redo');await pending.waitFor();check('history:first-redo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await choose('編集ナビC','編集ナビA');check('history:post-redo-selection-remains-editable',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await choose('編集ナビA','編集ナビC');
  await page.route('**/helix-wt/v1/header-navigation**',r=>r.fulfill({status:500,contentType:'application/json',body:JSON.stringify({code:'test_failure',message:'検証用の保存失敗',data:{status:500}})}));
  await pending.getByRole('button',{name:'全ヘッダーに適用',exact:true}).click();await page.locator('.components-notice__content').filter({hasText:'検証用の保存失敗'}).waitFor();
  check('failure:saved-ref-remains-B',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[1]);check('failure:pending-recoverable',await pending.count()===1);
  await page.screenshot({path:out+'/rest-failure.png'});await page.unroute('**/helix-wt/v1/header-navigation**');
  const beforeRetry=posts;await pending.getByRole('button',{name:'全ヘッダーに適用',exact:true}).evaluate(e=>{e.click();e.click();});await pending.waitFor({state:'hidden'});
  check('retry:one-post-for-double-click',posts===beforeRetry+1);check('retry:saved-A',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[0]);
- await page.getByRole('button',{name:'Undo',exact:true}).click();await pending.waitFor();check('undo-after-apply:global-remains-A',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[0]);
+ await history('Undo');await pending.waitFor();check('undo-after-apply:global-remains-A',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[0]);
  await pending.getByRole('button',{name:'変更を取り消す',exact:true}).click();await pending.waitFor({state:'hidden'});check('cancel-after-apply:restores-current-A',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[0]);
  let release;let requestArrived;const arrived=new Promise(resolve=>requestArrived=resolve);const delayed=new Promise(resolve=>release=resolve);
  await page.route('**/helix-wt/v1/header-navigation**',async r=>{requestArrived();await delayed;await r.continue();});

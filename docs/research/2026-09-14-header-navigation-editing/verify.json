@@ -1,10 +1,10 @@
 {
   "completed": true,
   "sourceDigests": {
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "4c57c689b91aecb39fbeb75c944f376bfc1ac0e512fbba31a50bb7570b668a98",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
-    "scripts/verify-header-navigation-editing.mjs": "f557365785a0898e8f501c9419c9cbb4c0045405f4ab85382b24e10617b0e6b2",
+    "scripts/verify-header-navigation-editing.mjs": "a588b77c193ebeb8603e5ba4b18806e15f31113384ed55db9f288aaf366ced72",
     "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1"
   },
   "checks": [
@@ -57,11 +57,67 @@
       "pass": true
     },
     {
+      "name": "explicit-origin:saved-attribute-C",
+      "pass": true
+    },
+    {
       "name": "stage:leave-without-global-save",
       "pass": true
     },
     {
       "name": "stage:reenter-no-pending",
+      "pass": true
+    },
+    {
+      "name": "explicit-origin:selection-remains-C",
+      "pass": true
+    },
+    {
+      "name": "history:no-op-selection-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "history:no-op-does-not-create-phantom-level",
+      "pass": true
+    },
+    {
+      "name": "explicit-origin:subsequent-selection-remains-editable",
+      "pass": true
+    },
+    {
+      "name": "history:second-explicit-C-remains-pending",
+      "pass": true
+    },
+    {
+      "name": "history:iframe-shortcut-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:iframe-shortcut-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "history:first-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:ambiguous-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "history:undo-after-ambiguous-redo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:second-undo-restores-origin-B",
+      "pass": true
+    },
+    {
+      "name": "history:first-redo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "history:post-redo-selection-remains-editable",
       "pass": true
     },
     {
@@ -1244,6 +1300,6 @@
     "saved-db:header-band:shared:1440:false"
   ],
   "conditionCount": 72,
-  "assertionCount": 290,
+  "assertionCount": 304,
   "cleanup": true
 }
