@@ -1,5 +1,6 @@
 {
-  "schema": "wt-home-source-quality.v1",
+  "schema": "wt-home-source-quality.v2",
+  "completed": true,
   "phpSyntax": {
     "files": [
       "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
@@ -7,11 +8,28 @@
       "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php"
     ],
     "passed": 3,
-    "failed": 0
+    "failed": 0,
+    "rows": [
+      {
+        "file": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php",
+        "pass": true,
+        "detail": "No syntax errors detected in docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php"
+      },
+      {
+        "file": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php",
+        "pass": true,
+        "detail": "No syntax errors detected in docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php"
+      },
+      {
+        "file": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php",
+        "pass": true,
+        "detail": "No syntax errors detected in docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php"
+      }
+    ]
   },
   "phpcs": {
     "standard": "WordPress-Core",
-    "prior": {
+    "expected": {
       "errors": 231,
       "warnings": 103
     },
@@ -20,10 +38,11 @@
       "warnings": 103
     },
     "newMessageOrSniffCount": 0,
-    "note": "既存functions.phpの違反を含む。WPCS全体PASSとは扱わない。"
+    "note": "既存functions.phpの違反を含む。WPCS全体PASSとは扱わず、記録済み件数からの増加を拒否する。"
   },
   "sourceDigests": {
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "06cf6bbfd204db7c50602529f2027d990a4533b7a5f102a06d3f5f416e2e9d9b",
+    "scripts/verify-home-source-quality.mjs": "8c0f9279132b05d6e38a6c51ec023cb3f4b14232b374f3850058a43ea6c33311",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "bb583557833ad9d5553f3daee44a2c5c6c6694d5b17a83ec4517e1a0006085f1"
   }
