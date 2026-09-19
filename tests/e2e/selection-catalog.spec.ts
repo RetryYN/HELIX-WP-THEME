@@ -5,6 +5,7 @@ const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/res
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
   await expect(page.locator('#total')).toHaveText('660');
+  await expect(page.locator('.tile-open')).toHaveCount(36);
 });
 
 test('pricing cards compare standard and long copy without inflating the design count', async ({ page }) => {
@@ -306,7 +307,13 @@ test('invalid or obsolete workspace values cannot erase saved decisions or excee
   // close handler renders and persists the workspace before focus returns.
   await expect(page.locator('.tile-open').first()).toBeFocused();
   const memo = await page.evaluate(() => localStorage.getItem('helix-selection-memos.v1'));
-  await page.evaluate(ids => localStorage.setItem('helix-selection-workspace.v1', JSON.stringify({ schema: 'helix-selection-workspace.v1', face: 'removed-face', device: 'unknown', limit: -10, comparison: ['missing-id', ids[0], ids[0], ...ids], purpose: 'removed-purpose', decision: 'invalid', linkedIds: 'bad-type' })), ids);
+  const workspace = JSON.stringify({ schema: 'helix-selection-workspace.v1', face: 'removed-face', device: 'unknown', limit: -10, comparison: ['missing-id', ids[0], ids[0], ...ids], purpose: 'removed-purpose', decision: 'invalid', linkedIds: 'bad-type' });
+  await page.addInitScript(value => {
+    if (sessionStorage.getItem('helix-test-workspace-injected') !== '1') {
+      localStorage.setItem('helix-selection-workspace.v1', value);
+      sessionStorage.setItem('helix-test-workspace-injected', '1');
+    }
+  }, workspace);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(3);
   await expect(page.locator('#collection-title')).toHaveText('共通設定・部品');
