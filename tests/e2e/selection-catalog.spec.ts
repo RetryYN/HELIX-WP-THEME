@@ -518,6 +518,18 @@ test('compact catalog keeps narrow filters paired and selection states legible',
   expect(colors.size).toBe(4);
 });
 
+test('narrow comparison bar keeps both actions visible beside selected candidates', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  for (let i = 0; i < 3; i++) await page.locator('.compare-pick input').nth(i).check();
+  const bar = page.locator('#compare-bar');
+  await expect(bar).toBeVisible();
+  expect(await bar.evaluate(e => e.scrollWidth <= e.clientWidth)).toBe(true);
+  await expect(page.locator('#clear-compare')).toBeVisible();
+  await expect(page.locator('#open-compare')).toBeVisible();
+  expect(await page.locator('#clear-compare').evaluate(e => e.getBoundingClientRect().bottom)).toBeLessThanOrEqual(900);
+  expect(await page.locator('#open-compare').evaluate(e => e.getBoundingClientRect().bottom)).toBeLessThanOrEqual(900);
+});
+
 test('decision facts stay aligned between cards and the comparison table', async ({ page }) => {
   await page.locator('.tile-open').first().click();
   await page.locator('#detail textarea').fill('見出し密度を優先する');

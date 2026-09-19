@@ -10,6 +10,7 @@
 #compare-picks button{white-space:normal;overflow-wrap:anywhere;text-align:left;max-width:100%;min-width:0;line-height:1.5}
 main{padding-bottom:max(140px,var(--compare-clearance,0px))}html{scroll-padding-bottom:var(--compare-clearance,0px)}
 @media(max-width:700px){.compare-bar{gap:8px;width:calc(100% - 20px)}#compare-picks{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding:8px}#compare-picks button{flex:0 0 230px;max-width:230px}.compare-bar strong{font-size:12px}}
+@media(max-width:420px){.compare-bar{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:10px}.compare-bar>div:first-child{grid-column:1/-1}.compare-bar>button{min-width:0;width:100%;padding-inline:8px}.compare-bar #compare-picks{padding:6px 2px}}
 
 .image-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.image-controls button{font-size:12px}.image-controls button[aria-pressed=true]{background:var(--green);color:white}.image-controls p{flex-basis:100%;font-size:12px;line-height:1.7;margin:2px 0;color:var(--muted)}
 .large-preview.image-viewer{height:60vh;min-height:0;overflow:auto;overscroll-behavior:contain;padding:12px;scrollbar-gutter:stable}
