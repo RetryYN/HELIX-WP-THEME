@@ -56,8 +56,12 @@ try{
  check('explicit-origin:selection-remains-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
  await openPart('header');await canvas.locator('[data-type="core/navigation"]:visible').first().click();
  if(!await page.getByRole('button',{name:'編集ナビB',exact:true}).first().isVisible())await page.getByRole('button',{name:'Settings',exact:true}).click();
+ await choose('編集ナビC','編集ナビB');check('history:no-op-selection-remains-pending',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await choose('編集ナビA','編集ナビC');await history('Undo');await pending.waitFor({state:'hidden'});check('history:no-op-does-not-create-phantom-level',await pending.count()===0);
  await choose('編集ナビA','編集ナビB');check('explicit-origin:subsequent-selection-remains-editable',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
  await choose('編集ナビC','編集ナビA');check('history:second-explicit-C-remains-pending',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await canvas.locator('[data-type="core/navigation"]:visible').first().click();await page.keyboard.press('Control+z');check('history:iframe-shortcut-undo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await page.keyboard.press('Control+y');check('history:iframe-shortcut-redo-restores-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
  await history('Undo');check('history:first-undo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
  await history('Redo');check('history:ambiguous-redo-restores-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
  await history('Undo');check('history:undo-after-ambiguous-redo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));

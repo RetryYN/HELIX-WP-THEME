@@ -13480,12 +13480,12 @@
           "oracle": "wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない",
           "polarity": "positive",
           "status": "verified_in_poc",
-          "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/530 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+          "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/534 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "8b69ea4a01bb513d4d0e0260be36d193b914bb6e26cd66a62f3c0359db0031e2",
+              "sha256": "303909a075ef06db6b8b280fe51e3f05137c1b4f45eec537a0fe209919b5dcea",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -13499,7 +13499,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "b180c998e63f413859fd9ab497e5778d8a0230d556e238747972e8ea9e7b0e00",
+              "sha256": "13121686c7186a7f1baab377266067ea6c3058dc1e18cdf1517455678f39b802",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -13516,12 +13516,12 @@
           "oracle": "header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL",
           "polarity": "negative",
           "status": "verified_in_poc",
-          "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/530 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+          "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/534 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
           "remaining": [],
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "8b69ea4a01bb513d4d0e0260be36d193b914bb6e26cd66a62f3c0359db0031e2",
+              "sha256": "303909a075ef06db6b8b280fe51e3f05137c1b4f45eec537a0fe209919b5dcea",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -13535,7 +13535,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "b180c998e63f413859fd9ab497e5778d8a0230d556e238747972e8ea9e7b0e00",
+              "sha256": "13121686c7186a7f1baab377266067ea6c3058dc1e18cdf1517455678f39b802",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
