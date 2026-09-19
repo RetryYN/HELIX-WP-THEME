@@ -677,3 +677,39 @@ test('tablet component previews retain a readable width beside navigation', asyn
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   }
 });
+
+for (const width of [320, 390, 768, 1440]) {
+  test(`sticky dialog headers keep reverse keyboard focus visible at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    const traverseBack = async (id: string) => {
+      const dialog = page.locator(id);
+      await dialog.locator('.related-requirement button:visible').last().focus();
+      let checked = 0;
+      for (let step = 0; step < 80; step++) {
+        await page.keyboard.press('Shift+Tab');
+        const state = await dialog.evaluate(node => {
+          const focused = document.activeElement!;
+          const header = node.querySelector('.dialog-head')!;
+          const rect = focused.getBoundingClientRect();
+          return { inHeader: header.contains(focused), contained: node.contains(focused), clearance: rect.top - header.getBoundingClientRect().bottom };
+        });
+        expect(state.contained).toBe(true);
+        if (state.inHeader) break;
+        expect(state.clearance).toBeGreaterThanOrEqual(6);
+        checked++;
+      }
+      expect(checked).toBeGreaterThan(10);
+    };
+    await page.locator('.tile-open').first().click();
+    await traverseBack('#detail');
+    // 同じ開いたダイアログで折返し・paddingの幅変更を反映する。
+    await page.setViewportSize({ width: width === 320 ? 1440 : 320, height: 844 });
+    await traverseBack('#detail');
+    await page.keyboard.press('Escape');
+    for (let i = 0; i < 3; i++) await page.locator('.compare-pick input').nth(i).check();
+    await page.locator('#open-compare').click();
+    await traverseBack('#compare');
+    await page.setViewportSize({ width, height: 844 });
+    await traverseBack('#compare');
+  });
+}
