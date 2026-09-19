@@ -1,0 +1,110 @@
+{
+  "schema": "wt-acceptance-rebind-log.v1",
+  "transactions": [
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B",
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-NFR-PRIV-01A",
+        "WT-AC-NFR-PRIV-01B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-public-safety.mjs"
+        ],
+        [
+          "node",
+          "docs/research/2026-09-10-reduced-motion/verify.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-privacy-boundary.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "9b287bac6a2c25ace2ac23d8abab15dc237a642e9a1b43c15c25174f0b6a9be3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "9b287bac6a2c25ace2ac23d8abab15dc237a642e9a1b43c15c25174f0b6a9be3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "9b287bac6a2c25ace2ac23d8abab15dc237a642e9a1b43c15c25174f0b6a9be3"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "3d60deac77844bf8b9088f03fbcfd021dc727849bc5477f8950c702e801406a0",
+          "after": "9f1d19cf50b903d01ab628436eccd46a40237c7987e810132315d7fc5c0ca199"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "9b287bac6a2c25ace2ac23d8abab15dc237a642e9a1b43c15c25174f0b6a9be3"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "3d60deac77844bf8b9088f03fbcfd021dc727849bc5477f8950c702e801406a0",
+          "after": "9f1d19cf50b903d01ab628436eccd46a40237c7987e810132315d7fc5c0ca199"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "9b287bac6a2c25ace2ac23d8abab15dc237a642e9a1b43c15c25174f0b6a9be3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "package.json",
+          "before": "4d52afd833fe986330ea10f0177afdd2f679acbde6043a2ba7795abeaa23f33c",
+          "after": "9b287bac6a2c25ace2ac23d8abab15dc237a642e9a1b43c15c25174f0b6a9be3"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "3d60deac77844bf8b9088f03fbcfd021dc727849bc5477f8950c702e801406a0",
+          "after_sha256": "9f1d19cf50b903d01ab628436eccd46a40237c7987e810132315d7fc5c0ca199",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+          "before_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "after_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "3f1ea6a3d427b04e2e504850c10cef167fa1c073b300207716684c37bf0ab43a",
+      "registry_after_sha256": "4066356f6108be602e8cf088d4bc2463b82578bcdbf95e653e931472f3c95a81"
+    }
+  ]
+}

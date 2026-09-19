@@ -38,6 +38,17 @@ Chromiumで検索、比較上限、PC/SP切替、要求・ACへの到達、保�
 
 `npm run catalog-evidence:audit`で全ACの対応を再集計する。カタログ生成からも毎回実行する。対応付けの正本は`acceptance-evidence.json`、生成結果は`acceptance-audit.json`。要求digest・AC本文digest・実装/検証コードdigest・結果ファイルdigestと成功行を照合し、変更や未完了を検出した場合は再検証扱いとして生成を止める。このコマンドは`npm test`に含まれるため、main宛ての全PRで無条件に動く`harness-check`から、artifact source bindingと受入台帳のstaleを同じ範囲で検査する。path filter付きの品質workflowだけを被覆根拠にしない。
 
+束縛元を変更した場合は、`npm run catalog-evidence:rebind -- --case <AC-ID>`で更新予定だけを確認する。適用時は、参照する全proofを再生成するoracleをargv配列で渡す。
+
+```sh
+npm run catalog-evidence:rebind -- \
+  --case WT-AC-NFR-PRIV-01A \
+  --command-json '["node","scripts/verify-privacy-boundary.mjs"]' \
+  --apply
+```
+
+`--apply`は同じ実行内で全参照proofが書き直され、完了・成功行を再確認できた場合だけ、実際に変わったsource digestとproof digestを更新する。実行記録は`acceptance-rebind-log.json`へ追記される。`npm test`はbase版とのtransaction chainを照合するため、台帳のdigestだけを直接編集した変更は失敗する。
+
 この照合は証拠の鮮度と参照整合性の検査であり、任意の成功行が要求を満たすと意味的に保証するものではない。`scope`と`remaining`は条件を精読した対応付けとして管理する。既存試作の証拠も未対応付けとして残り、証拠なしを未実装と同一視しない。
 
 ## 確認状況から探す
