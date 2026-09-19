@@ -83,10 +83,14 @@ async function start() {
     const b = button(label, () => { face = key; linkedIds = null; limit = 36; switchTab(0); render(); });
     b.dataset.face = key; $('faces').append(b);
   }
+  let lastVisibleFace = null;
   function keepActiveFaceVisible() {
     const nav = $('faces');
     const active = [...nav.children].find(node => node.getAttribute('aria-current') === 'true');
-    if (!active || nav.scrollWidth <= nav.clientWidth) return;
+    if (!active) { lastVisibleFace = null; return; }
+    if (active.dataset.face === lastVisibleFace) return;
+    lastVisibleFace = active.dataset.face;
+    if (nav.scrollWidth <= nav.clientWidth) return;
     const navRect = nav.getBoundingClientRect();
     const activeRect = active.getBoundingClientRect();
     const edge = 8;

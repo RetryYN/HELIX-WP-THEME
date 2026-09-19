@@ -2,7 +2,7 @@
   "date": "2026-09-20",
   "scope": "catalog filter context only",
   "playwright": {
-    "passed": 32,
+    "passed": 34,
     "failed": 0,
     "newTestsPassed": 5,
     "existingFailures": []
@@ -10,10 +10,10 @@
   "npmTest": "passed",
   "publicSafety": "passed with private mapping via temporary index",
   "sourceDigests": {
-    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "281e35d1abadd588280a1514eed14866aa661c5b5bf734f1038ef41857285050",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "b739f779f16c2eb25b2e3680c053dac329ab9a4647371f6224f54ce2608db640",
     "docs/research/2026-09-08-selection-catalog/catalog.css": "20aa1979e81c04d222f3f535b6a331e2c21de2c416a41ff675488ff53a819c6f",
     "docs/research/2026-09-08-selection-catalog/index.html": "75a67380c1a0c81554e29f6ba2bb992cfdf9dfdc667d1f520632dba0c9f0028f",
     "tests/e2e/selection-catalog-filters.spec.ts": "b2cf0bb4e03d14263488aa8bd7599ce1de87c514a196aeb290526cb9cb9da90f"
   },
-  "revalidation": "2026-09-20: tablet common-component CSS revalidated with selection-catalog and selection-catalog-filters E2E suites (33 passed) and tablet boundary case (1 passed). Existing 390/1440 screenshots remain prior evidence; new 390/768/1440 before/after evidence is in visual-quality/tablet-components."
+  "revalidation": "2026-09-20: merged main 76091b6 user-scroll preservation with tablet common-component CSS; selection-catalog and selection-catalog-filters suites revalidated together (34 passed), including tablet boundaries and mobile navigation. Existing screenshots remain prior visual evidence; tablet before/after captures are unchanged."
 }
