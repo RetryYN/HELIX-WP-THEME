@@ -59,6 +59,8 @@ try{
  await choose('編集ナビA','編集ナビB');check('explicit-origin:subsequent-selection-remains-editable',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
  await choose('編集ナビC','編集ナビA');check('history:second-explicit-C-remains-pending',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
  await history('Undo');check('history:first-undo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
+ await history('Redo');check('history:ambiguous-redo-restores-C',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));
+ await history('Undo');check('history:undo-after-ambiguous-redo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
  await history('Undo');await pending.waitFor({state:'hidden'});check('history:second-undo-restores-origin-B',await pending.count()===0);
  await history('Redo');await pending.waitFor();check('history:first-redo-restores-A',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビA'));
  await choose('編集ナビC','編集ナビA');check('history:post-redo-selection-remains-editable',(await pending.innerText()).includes('編集ナビB → 変更後の参照先: 編集ナビC'));

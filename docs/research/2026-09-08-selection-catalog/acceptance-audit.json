@@ -116,7 +116,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "043ecc5bd3b3ce70c86807d4c026e64a41691126d715d3dcd3e00c3b0f0b7432",
+          "sha256": "833bfc4b274296368aa2a37ddb53e3eb23773c1d4eca22d394b2b97cf564fd55",
           "row_names": [
             "boundary:production-findings-zero",
             "boundary:manifest-denies-local-ai-logic"
@@ -135,7 +135,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-          "sha256": "043ecc5bd3b3ce70c86807d4c026e64a41691126d715d3dcd3e00c3b0f0b7432",
+          "sha256": "833bfc4b274296368aa2a37ddb53e3eb23773c1d4eca22d394b2b97cf564fd55",
           "row_names": [
             "negative:sdk-import-js-fails",
             "negative:sdk-import-php-fails",
@@ -395,12 +395,12 @@
       "oracle": "wp_navigation を更新すると header に反映され、変種切替で contentSize / wideSize が再定義されない",
       "polarity": "positive",
       "status": "verified_in_poc",
-      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/528 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/530 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "ff8d3e0cb5f759932071edfe4b5da8ec63402c0e785ba4eda0a3dbb411d8ffeb",
+          "sha256": "8b69ea4a01bb513d4d0e0260be36d193b914bb6e26cd66a62f3c0359db0031e2",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -414,7 +414,7 @@
         },
         {
           "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-          "sha256": "15eb2d02d91aa407e76117ccc5330fca954694a1ebed5bcd345ef90519fdc567",
+          "sha256": "b180c998e63f413859fd9ab497e5778d8a0230d556e238747972e8ea9e7b0e00",
           "row_names": [
             "verify:completed",
             "scope:completed",
@@ -431,12 +431,12 @@
       "oracle": "header にハードコードされた navigation-link が残る、または変種が層 1 を再定義すれば FAIL",
       "polarity": "negative",
       "status": "verified_in_poc",
-      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/528 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
+      "scope": "正規9header partのnative/shared・SP6軸・A→B・JS有無を既存PoC1035条件/5496 assertionsで再実行。Issue #185ではSP専用表示、標準Navigation参照の未適用状態と明示適用、保存済み属性と共通設定が異なる状態での明示再選択、複数undoで開始表示へ戻る経路、redo、離脱、REST失敗、二重クリック・通信中再変更・取消、本文/footerのmarker複製非束縛、異常終了復旧を166実行条件/530 assertionsで検証。公開条件の重複を含むため固有条件数を合算しない。WordPress 7.1/PHP 8.3.33の専用lab PoC。",
       "remaining": [],
       "evidence": [
         {
           "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-          "sha256": "ff8d3e0cb5f759932071edfe4b5da8ec63402c0e785ba4eda0a3dbb411d8ffeb",
+          "sha256": "8b69ea4a01bb513d4d0e0260be36d193b914bb6e26cd66a62f3c0359db0031e2",
           "row_names": [
             "matrix:expected-condition-count",
             "matrix:all-assertions-pass",
@@ -450,7 +450,7 @@
         },
         {
           "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-          "sha256": "15eb2d02d91aa407e76117ccc5330fca954694a1ebed5bcd345ef90519fdc567",
+          "sha256": "b180c998e63f413859fd9ab497e5778d8a0230d556e238747972e8ea9e7b0e00",
           "row_names": [
             "verify:completed",
             "scope:completed",
@@ -1148,7 +1148,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "38c1c14f6c9bce127a54eba40d2fbfc5f013f138c7026724e83bece686fd0620",
+          "sha256": "2f4925914be1c0337b9162e6f174807a2d98e3f120ecf1241f916cb86ce64a78",
           "row_names": [
             "privacy:production-tracking-ids-zero",
             "privacy:production-ad-code-zero",
@@ -1168,7 +1168,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-          "sha256": "38c1c14f6c9bce127a54eba40d2fbfc5f013f138c7026724e83bece686fd0620",
+          "sha256": "2f4925914be1c0337b9162e6f174807a2d98e3f120ecf1241f916cb86ce64a78",
           "row_names": [
             "negative:ga4-measurement-id-fails",
             "negative:tag-manager-id-fails",

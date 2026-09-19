@@ -5,6 +5,18 @@
  const el = wp.element.createElement;
  const Sidebar = wp.editor.PluginSidebar, MenuItem = wp.editor.PluginSidebarMoreMenuItem;
  const eventName = 'helix-wt-navigation-saved';
+ let historyAction = null;
+ // WordPress標準履歴の操作方向を、値比較ではなくtoolbar/shortcutから受け取る。
+ document.addEventListener('click',event=>{
+  if(event.target.closest?.('.editor-history__undo'))historyAction='undo';
+  else if(event.target.closest?.('.editor-history__redo'))historyAction='redo';
+ },true);
+ document.addEventListener('keydown',event=>{
+  if(!(event.ctrlKey||event.metaKey)||event.altKey)return;
+  const key=event.key.toLowerCase();
+  if(key==='z')historyAction=event.shiftKey?'redo':'undo';
+  else if(key==='y'&&!event.shiftKey)historyAction='redo';
+ },true);
  let pendingSave = null;
  const save = ref => {
   if(pendingSave)return pendingSave.ref===ref ? pendingSave.promise : Promise.reject(new Error(helixWTNavigation.labels.text14));
@@ -55,9 +67,12 @@
   if(touched&&attributeRef!==lastAttribute.current){
    const history=referenceHistory.current;
    if(expectedAttribute.current===attributeRef)expectedAttribute.current=null;
-   else if(history.index>0&&history.values[history.index-1]===attributeRef)history.index--;
-   else if(history.index+1<history.values.length&&history.values[history.index+1]===attributeRef)history.index++;
+   else if(historyAction==='undo'&&history.index>0&&history.values[history.index-1]===attributeRef)history.index--;
+   else if(historyAction==='redo'&&history.index+1<history.values.length&&history.values[history.index+1]===attributeRef)history.index++;
+   else if(history.index>0&&history.values[history.index-1]===attributeRef&&(history.index+1>=history.values.length||history.values[history.index+1]!==attributeRef))history.index--;
+   else if(history.index+1<history.values.length&&history.values[history.index+1]===attributeRef&&(history.index===0||history.values[history.index-1]!==attributeRef))history.index++;
    else{history.values=history.values.slice(0,history.index+1).concat(attributeRef);history.index=history.values.length-1;}
+   historyAction=null;
    lastAttribute.current=attributeRef;
   }
   const target=touched ? (referenceHistory.current.index===0 ? origin.current.ref : referenceHistory.current.values[referenceHistory.current.index]) : ref;

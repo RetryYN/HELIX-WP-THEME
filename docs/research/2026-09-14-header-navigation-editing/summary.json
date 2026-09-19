@@ -4,11 +4,11 @@
   "issue": 185,
   "parentIssue": 100,
   "conditionCount": 166,
-  "assertionCount": 528,
+  "assertionCount": 530,
   "counts": {
     "verify": {
       "conditions": 72,
-      "assertions": 298
+      "assertions": 300
     },
     "scope": {
       "conditions": 18,
@@ -29,10 +29,10 @@
     "note": "Regression conditions overlap new editor/public probes; not a sum of unique configurations."
   },
   "sourceDigests": {
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "6aa04b9290e1a6560ccbca557a86d92a546798704187f25aeebb2226d583e384",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "c5d4ad75b5371d38b33e8085ce6a8e47811278e8c52e41d37b86111cb7e37eb6",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
-    "scripts/verify-header-navigation-editing.mjs": "8a52c9880eed7593ed00b675c2daae52ce74f112adfd028e199e4c0a1a6f3f4e",
+    "scripts/verify-header-navigation-editing.mjs": "c5c9798472bab1e25b0413c68e01a8fcaff59fa88346c182c83f5e442690d73b",
     "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
     "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06",
     "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb",
@@ -56,11 +56,11 @@
     "scripts/summarize-header-navigation-editing.mjs": "5762be9114eab59699af2d39b4d7304bc3f11daa6e10d35367f1f4802a8fd133"
   },
   "artifacts": {
-    "docs/research/2026-09-14-header-navigation-editing/verify.json": "ccee2516198dba6f12f34c393c92eea6311970fc54ad56583fa31ddc67eb61d7",
-    "docs/research/2026-09-14-header-navigation-editing/scope.json": "20e186627d13137c1a896542e12ba99e301ac95697db06c60a47319ba51a1abc",
-    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "95a24e852a5dde7460d93d765dd771b6ca4eeebf23abc8fff33073a239b1f23c",
-    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "4286ce849997ae03f41bfed39471a0eea434c62166bdcbec6d11e87893f29c1f",
-    "docs/research/2026-09-13-header-navigation-complete/verify.json": "ff8d3e0cb5f759932071edfe4b5da8ec63402c0e785ba4eda0a3dbb411d8ffeb"
+    "docs/research/2026-09-14-header-navigation-editing/verify.json": "3a14b5e205314d7604efe92c058a0d7c53001c9ef5cffae1f2ae3e66f1f6fab4",
+    "docs/research/2026-09-14-header-navigation-editing/scope.json": "2abee044b6ef40b38903e1e765dc5e8085ddbadd4faca89e96926ea90e65984c",
+    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "ef923e5c5f54d0c742d97d2b63fb819a39f79d1a1f5d5e32d7bf0a35ca3add2c",
+    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "d4a0856f35ca00e25c4e66a64e55302611e86963a1d37931a2966303538d11b9",
+    "docs/research/2026-09-13-header-navigation-complete/verify.json": "8b69ea4a01bb513d4d0e0260be36d193b914bb6e26cd66a62f3c0359db0031e2"
   },
   "rows": [
     {
@@ -141,6 +141,14 @@
     },
     {
       "name": "verify:history:first-undo-restores-A",
+      "pass": true
+    },
+    {
+      "name": "verify:history:ambiguous-redo-restores-C",
+      "pass": true
+    },
+    {
+      "name": "verify:history:undo-after-ambiguous-redo-restores-A",
       "pass": true
     },
     {
