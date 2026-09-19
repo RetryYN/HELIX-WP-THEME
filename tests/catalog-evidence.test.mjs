@@ -80,4 +80,5 @@ test('the npm catalog evidence test command includes admission coverage', () => 
   assert.match(packageJson.scripts['catalog-evidence:rebind-test'], /tests\/acceptance-rebind\.test\.mjs/u);
   const rebindTest = fs.readFileSync(new URL('tests/acceptance-rebind.test.mjs', root), 'utf8');
   assert.match(rebindTest, /\.\/acceptance-admission\.test\.mjs/u);
+  assert.match(rebindTest, /\.\/dialog-focus-capture\.test\.mjs/u);
 });
