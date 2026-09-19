@@ -47,6 +47,12 @@
             "command": "helix session start",
             "timeout": 90,
             "statusMessage": "session-log: session start (fail-open)"
+          },
+          {
+            "type": "command",
+            "command": "node scripts/codex-inbox.mjs deliver --exit-code 0",
+            "timeout": 10,
+            "statusMessage": "codex-inbox: Claude 起点の未配送通知を表示 (fail-open)"
           }
         ]
       }
@@ -84,6 +90,12 @@
             "command": "helix session summary --quiet",
             "timeout": 60,
             "statusMessage": "session-log: PLAN digest summary (fail-open)"
+          },
+          {
+            "type": "command",
+            "command": "node scripts/codex-inbox.mjs deliver --exit-code 2",
+            "timeout": 10,
+            "statusMessage": "codex-inbox: Claude 起点の通知があれば停止せず継続 (claude-memory-wake と対称)"
           }
         ]
       }
