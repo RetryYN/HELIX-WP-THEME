@@ -32,6 +32,10 @@ function fixture(t) {
   });
   write('docs/research/2026-09-08-selection-catalog/acceptance-rebind-log.json', { schema: 'wt-acceptance-rebind-log.v1', transactions: [] });
   write('rewrite-proof.mjs', "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('proof.json')); fs.writeFileSync('proof.json', JSON.stringify(p, null, 2)+'\\n');\n");
+  write('package.json', {
+    scripts: { 'fixture:verify': 'node rewrite-proof.mjs' },
+    catalogOracles: { 'proof.json': 'fixture:verify' },
+  });
   for (const args of [['init'], ['config', 'user.email', 'test@example.invalid'], ['config', 'user.name', 'Test'], ['add', '.'], ['commit', '-m', 'base']]) {
     assert.equal(spawnSync('git', args, { cwd: root }).status, 0);
   }
@@ -56,7 +60,7 @@ test('apply requires same-execution proof rewrite, updates only stale digest, an
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
   await new Promise(resolve => setTimeout(resolve, 5));
-  const result = f.run(['--case', 'A1', '--command-json', '["node","rewrite-proof.mjs"]', '--apply']);
+  const result = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
   assert.equal(result.status, 0, result.stderr);
   const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json')));
   assert.equal(registry.cases.A1.source_digests['implementation.php'], hash('source-v2\n'));
@@ -67,12 +71,12 @@ test('apply requires same-execution proof rewrite, updates only stale digest, an
   assert.match(checked.stdout, /1 digest change/u);
 });
 
-test('apply rejects an oracle command that does not rewrite every referenced proof', t => {
+test('apply rejects an arbitrary command even if it rewrites every referenced proof', t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
-  const result = f.run(['--case', 'A1', '--command-json', '["node","--version"]', '--apply']);
+  const result = f.run(['--case', 'A1', '--command-json', '["touch","proof.json"]', '--apply']);
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /did not rewrite referenced proof/u);
+  assert.match(result.stderr, /oracle command is not declared/u);
 });
 
 test('check rejects a hand-edited digest without a transaction', t => {
@@ -90,10 +94,10 @@ test('check accepts a chained second rebind and validates the latest proof diges
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
   await new Promise(resolve => setTimeout(resolve, 5));
-  assert.equal(f.run(['--case', 'A1', '--command-json', '["node","rewrite-proof.mjs"]', '--apply']).status, 0);
+  assert.equal(f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']).status, 0);
   f.write('implementation.php', 'source-v3\n');
   await new Promise(resolve => setTimeout(resolve, 5));
-  assert.equal(f.run(['--case', 'A1', '--command-json', '["node","rewrite-proof.mjs"]', '--apply']).status, 0);
+  assert.equal(f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']).status, 0);
   const checked = f.run(['--check', '--base-ref', 'HEAD']);
   assert.equal(checked.status, 0, checked.stderr);
   assert.match(checked.stdout, /2 transaction/u);

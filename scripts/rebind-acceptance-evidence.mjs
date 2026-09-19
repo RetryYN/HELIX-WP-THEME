@@ -13,6 +13,26 @@ const read = file => JSON.parse(bytes(file));
 const stable = value => `${JSON.stringify(value, null, 2)}\n`;
 const fail = message => { throw new Error(message); };
 
+function validateOracleCommands(commands, proofPaths) {
+  const declared = read('package.json').catalogOracles;
+  if (!declared || typeof declared !== 'object' || Array.isArray(declared)) fail('package.json catalogOracles mapping is required');
+  const scripts = new Set();
+  for (const proofPath of proofPaths) {
+    const script = declared[proofPath];
+    if (typeof script !== 'string' || !script) fail(`no declared catalog oracle for proof: ${proofPath}`);
+    scripts.add(script);
+  }
+  const invoked = new Set();
+  for (const command of commands) {
+    if (command.length !== 3 || command[0] !== 'npm' || command[1] !== 'run' || !scripts.has(command[2])) {
+      fail(`oracle command is not declared for the selected proofs: ${JSON.stringify(command)}`);
+    }
+    if (invoked.has(command[2])) fail(`oracle command is duplicated: ${command[2]}`);
+    invoked.add(command[2]);
+  }
+  for (const script of scripts) if (!invoked.has(script)) fail(`declared oracle was not invoked: npm run ${script}`);
+}
+
 function git(args) {
   const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' });
   if (result.status !== 0) fail(result.stderr || `git ${args.join(' ')} failed`);
@@ -115,6 +135,7 @@ function check(baseRef) {
     expected = transaction.registry_after_sha256;
     covered.push(...(transaction.changes || []));
     if (!transaction.commands?.length || !transaction.proof_writes?.length) fail('rebind transaction lacks oracle execution evidence');
+    validateOracleCommands(transaction.commands, transaction.proof_writes.map(proof => proof.path));
     for (const proof of transaction.proof_writes) {
       if (proof.rewritten !== true) fail(`proof rewrite was not observed: ${proof.path}`);
       latestProofs.set(proof.path, proof.after_sha256);
@@ -167,6 +188,7 @@ function plan(options) {
     return;
   }
   if (!options.commands.length) fail('--apply requires at least one --command-json oracle command');
+  validateOracleCommands(options.commands, proofs.keys());
   const snapshots = new Map([...proofs.keys()].map(proofPath => {
     const stat = fs.statSync(path.join(root, proofPath), { bigint: true });
     return [proofPath, { sha256: digest(bytes(proofPath)), mtimeNs: stat.mtimeNs, ctimeNs: stat.ctimeNs }];

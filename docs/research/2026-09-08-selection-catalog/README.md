@@ -38,12 +38,12 @@ Chromiumで検索、比較上限、PC/SP切替、要求・ACへの到達、保�
 
 `npm run catalog-evidence:audit`で全ACの対応を再集計する。カタログ生成からも毎回実行する。対応付けの正本は`acceptance-evidence.json`、生成結果は`acceptance-audit.json`。要求digest・AC本文digest・実装/検証コードdigest・結果ファイルdigestと成功行を照合し、変更や未完了を検出した場合は再検証扱いとして生成を止める。このコマンドは`npm test`に含まれるため、main宛ての全PRで無条件に動く`harness-check`から、artifact source bindingと受入台帳のstaleを同じ範囲で検査する。path filter付きの品質workflowだけを被覆根拠にしない。
 
-束縛元を変更した場合は、`npm run catalog-evidence:rebind -- --case <AC-ID>`で更新予定だけを確認する。適用時は、参照する全proofを再生成するoracleをargv配列で渡す。
+束縛元を変更した場合は、`npm run catalog-evidence:rebind -- --case <AC-ID>`で更新予定だけを確認する。適用時は、参照する全proofを再生成するoracleをargv配列で渡す。oracleは`package.json`の`catalogOracles`でproofごとに宣言し、コマンドは`["npm","run","<宣言済みscript>"]`だけを受け付ける。
 
 ```sh
 npm run catalog-evidence:rebind -- \
   --case WT-AC-NFR-PRIV-01A \
-  --command-json '["node","scripts/verify-privacy-boundary.mjs"]' \
+  --command-json '["npm","run","privacy:verify"]' \
   --apply
 ```
 
