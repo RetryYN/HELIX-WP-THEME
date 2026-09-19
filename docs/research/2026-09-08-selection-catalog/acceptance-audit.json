@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 298,
   "counts": {
-    "missing": 225,
-    "partial": 41,
+    "missing": 224,
+    "partial": 42,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -5973,12 +5973,24 @@
       "requirement_id": "WT-FR-LOOK-01",
       "oracle": "reduced-motion 下で装飾モーションが動く、JS 無効で要素が消える、または写真・色地上の文字が 4.5:1（大文字 3:1）未満で出れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "現行プロトタイプの reduced-motion、装飾モーション抑止、JS 無効時の可視性、手動操作の検証を admission する",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "写真・色地上の文字コントラスト 4.5:1（大きい文字は 3:1）の実測",
+        "カタログ全バリエーションの PC/SP および JS 無効時の網羅確認"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "row_names": [
+            "fixture:positive",
+            "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
+            "reveal:immediate-content",
+            "manual:all-controls:0:reduce"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-PARTS-01C",

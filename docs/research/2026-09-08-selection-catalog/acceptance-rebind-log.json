@@ -216,6 +216,44 @@
       ],
       "registry_before_sha256": "10ee2171213fbb7331750c60fef8d7a9852c079cf3226a07bc1ac63839ccf479",
       "registry_after_sha256": "46159f000641906adb45fd8701b436fb179abe423b3232b3f7f7ffdeb4de5d59"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-LOOK-01D"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-10-reduced-motion/acceptance-candidate-look-01d.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-10-reduced-motion/acceptance-candidate-look-01d.json": "f7c54504dbb717e6f5186ac87e1b861276272a9c3c6d73a0585bc5debe1e25b0"
+      },
+      "commands": [
+        [
+          "node",
+          "docs/research/2026-09-10-reduced-motion/verify.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "after_sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "46159f000641906adb45fd8701b436fb179abe423b3232b3f7f7ffdeb4de5d59",
+      "registry_after_sha256": "b134fc8e62f1c0c8379c5e310e459c5ca707576932eedf93cbf8ff8553790d8f"
     }
   ]
 }

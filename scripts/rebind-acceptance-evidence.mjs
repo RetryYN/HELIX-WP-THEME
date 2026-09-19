@@ -14,23 +14,33 @@ const stable = value => `${JSON.stringify(value, null, 2)}\n`;
 const fail = message => { throw new Error(message); };
 
 function validateOracleCommands(commands, proofPaths) {
-  const declared = read('package.json').catalogOracles;
-  if (!declared || typeof declared !== 'object' || Array.isArray(declared)) fail('package.json catalogOracles mapping is required');
-  const scripts = new Set();
+  const packageDeclared = read('package.json').catalogOracles;
+  if (!packageDeclared || typeof packageDeclared !== 'object' || Array.isArray(packageDeclared)) fail('package.json catalogOracles mapping is required');
+  const configDeclared = (() => {
+    try { return read('config/catalog-admission-oracles.json').commands; }
+    catch { return {}; }
+  })();
+  if (!configDeclared || typeof configDeclared !== 'object' || Array.isArray(configDeclared)) fail('catalog admission oracle mapping is required');
+  const expected = new Map();
   for (const proofPath of proofPaths) {
-    const script = declared[proofPath];
-    if (typeof script !== 'string' || !script) fail(`no declared catalog oracle for proof: ${proofPath}`);
-    scripts.add(script);
+    const packageScript = packageDeclared[proofPath];
+    const configCommand = configDeclared[proofPath];
+    const packageCommand = typeof packageScript === 'string' && packageScript ? ['npm', 'run', packageScript] : null;
+    const validConfig = Array.isArray(configCommand) && configCommand.length && configCommand.every(value => typeof value === 'string' && value);
+    if (validConfig && commands.some(command => JSON.stringify(command) === JSON.stringify(configCommand))) expected.set(proofPath, configCommand);
+    else if (packageCommand) expected.set(proofPath, packageCommand);
+    else if (validConfig) expected.set(proofPath, configCommand);
+    else fail(`no declared catalog oracle for proof: ${proofPath}`);
   }
   const invoked = new Set();
   for (const command of commands) {
-    if (command.length !== 3 || command[0] !== 'npm' || command[1] !== 'run' || !scripts.has(command[2])) {
-      fail(`oracle command is not declared for the selected proofs: ${JSON.stringify(command)}`);
-    }
-    if (invoked.has(command[2])) fail(`oracle command is duplicated: ${command[2]}`);
-    invoked.add(command[2]);
+    const match = [...expected.entries()].find(([, declared]) => JSON.stringify(declared) === JSON.stringify(command));
+    if (!match) fail(`oracle command is not declared for the selected proofs: ${JSON.stringify(command)}`);
+    const key = match[0];
+    if (invoked.has(key)) fail(`oracle command is duplicated: ${JSON.stringify(command)}`);
+    invoked.add(key);
   }
-  for (const script of scripts) if (!invoked.has(script)) fail(`declared oracle was not invoked: npm run ${script}`);
+  for (const [proofPath, declared] of expected) if (!invoked.has(proofPath)) fail(`declared oracle was not invoked for ${proofPath}: ${JSON.stringify(declared)}`);
 }
 
 function git(args) {
@@ -76,13 +86,19 @@ function validateProof(proof) {
   }
 }
 
-function entryDiff(before, after) {
+function entryDiff(before, after, { allowAdditions = false } = {}) {
   const changes = [];
   const ids = new Set([...Object.keys(before.cases || {}), ...Object.keys(after.cases || {})]);
   for (const id of ids) {
     const left = before.cases?.[id];
     const right = after.cases?.[id];
-    if (!left || !right) fail(`case addition/removal is not a rebind: ${id}`);
+    if (!left || !right) {
+      if (allowAdditions && !left && right) {
+        changes.push({ kind: 'admit', case_id: id, path: 'registry.cases', before: null, after: 'present' });
+        continue;
+      }
+      fail(`case addition/removal is not a rebind: ${id}`);
+    }
     const leftCopy = structuredClone(left);
     const rightCopy = structuredClone(right);
     const sourceKeys = new Set([...Object.keys(left.source_digests || {}), ...Object.keys(right.source_digests || {})]);
@@ -116,7 +132,7 @@ function check(baseRef) {
   const currentRaw = bytes(registryPath).toString();
   const base = JSON.parse(baseRaw);
   const current = JSON.parse(currentRaw);
-  const changes = entryDiff(base, current);
+  const changes = entryDiff(base, current, { allowAdditions: true });
   const baseLogRaw = (() => { try { return git(['show', `${baseRef}:${logPath}`]); } catch { return ''; } })();
   const currentLog = fs.existsSync(path.join(root, logPath)) ? read(logPath) : { schema: 'wt-acceptance-rebind-log.v1', transactions: [] };
   const baseTransactions = baseLogRaw ? JSON.parse(baseLogRaw).transactions || [] : [];
@@ -135,6 +151,14 @@ function check(baseRef) {
     expected = transaction.registry_after_sha256;
     covered.push(...(transaction.changes || []));
     if (!transaction.commands?.length || !transaction.proof_writes?.length) fail('rebind transaction lacks oracle execution evidence');
+    if (transaction.kind && !['rebind', 'admit'].includes(transaction.kind)) fail(`unknown acceptance transaction kind: ${transaction.kind}`);
+    if ((transaction.kind ?? 'rebind') === 'admit') {
+      if (!Array.isArray(transaction.candidate_paths) || !transaction.candidate_paths.length) fail('admission transaction lacks candidate paths');
+      for (const [candidatePath, expected] of Object.entries(transaction.candidate_digests || {})) {
+        if (!fs.existsSync(path.join(root, candidatePath)) || digest(bytes(candidatePath)) !== expected) fail(`admission candidate drift: ${candidatePath}`);
+      }
+      if (!(transaction.changes || []).every(change => change.kind === 'admit')) fail('admission transaction contains non-admission changes');
+    }
     validateOracleCommands(transaction.commands, transaction.proof_writes.map(proof => proof.path));
     for (const proof of transaction.proof_writes) {
       if (proof.rewritten !== true) fail(`proof rewrite was not observed: ${proof.path}`);

@@ -1,0 +1,22 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-LOOK-01D": {
+    "status": "partial",
+    "scope": "現行プロトタイプの reduced-motion、装飾モーション抑止、JS 無効時の可視性、手動操作の検証を admission する",
+    "remaining": [
+      "写真・色地上の文字コントラスト 4.5:1（大きい文字は 3:1）の実測",
+      "カタログ全バリエーションの PC/SP および JS 無効時の網羅確認"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+        "row_names": [
+          "fixture:positive",
+          "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
+          "reveal:immediate-content",
+          "manual:all-controls:0:reduce"
+        ]
+      }
+    ]
+  }
+}
