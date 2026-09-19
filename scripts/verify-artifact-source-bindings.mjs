@@ -11,8 +11,6 @@ const historicalSnapshots = new Map([
   ['docs/research/2026-09-08-content-faces/results/header-navigation/baseline.json', 'pre-fix baseline'],
   ['docs/research/2026-09-08-content-faces/results/inheritance/baseline.json', 'pre-fix baseline'],
   ['docs/research/2026-09-08-content-faces/results/site-quality/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-08-event-state/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-08-event-state/boundaries-baseline.json', 'pre-fix boundary baseline'],
   ['docs/research/2026-09-08-form-flow/baseline.json', 'pre-fix baseline'],
   ['docs/research/2026-09-08-form-flow/boundaries-baseline.json', 'pre-fix boundary baseline'],
   ['docs/research/2026-09-08-form-flow/initial-baseline.json', 'pre-fix initial baseline'],
@@ -51,7 +49,13 @@ const findings = [];
 
 for (const absolute of jsonFiles) {
   const artifactPath = path.relative(root, absolute);
-  const artifact = JSON.parse(readFileSync(absolute, 'utf8'));
+  let artifact;
+  try {
+    artifact = JSON.parse(readFileSync(absolute, 'utf8'));
+  } catch (error) {
+    findings.push({ artifact: artifactPath, reason: 'parse-error', detail: error.message });
+    continue;
+  }
   if (!artifact.sourceDigests || Array.isArray(artifact.sourceDigests) || typeof artifact.sourceDigests !== 'object') continue;
 
   if (historicalSnapshots.has(artifactPath)) {

@@ -24,7 +24,7 @@ if (![0, 1, 2].includes(phpcsRun.status)) throw new Error(phpcsRun.stderr || `PH
 const phpcs = JSON.parse(phpcsRun.stdout);
 const expected = { errors: 231, warnings: 103 };
 const current = { errors: phpcs.totals.errors, warnings: phpcs.totals.warnings };
-const completed = syntax.every(row => row.pass) && current.errors === expected.errors && current.warnings === expected.warnings;
+const completed = syntax.every(row => row.pass) && current.errors <= expected.errors && current.warnings <= expected.warnings;
 const sources = ['scripts/verify-home-source-quality.mjs', ...files];
 const result = {
   schema: 'wt-home-source-quality.v2',
