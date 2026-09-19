@@ -83,6 +83,19 @@ async function start() {
     const b = button(label, () => { face = key; linkedIds = null; limit = 36; switchTab(0); render(); });
     b.dataset.face = key; $('faces').append(b);
   }
+  function keepActiveFaceVisible() {
+    const nav = $('faces');
+    const active = [...nav.children].find(node => node.getAttribute('aria-current') === 'true');
+    if (!active || nav.scrollWidth <= nav.clientWidth) return;
+    const navRect = nav.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const edge = 8;
+    if (activeRect.right > navRect.right) {
+      nav.scrollLeft += activeRect.right - navRect.right + edge;
+    } else if (activeRect.left < navRect.left) {
+      nav.scrollLeft -= navRect.left - activeRect.left + edge;
+    }
+  }
   for (const purpose of new Set(data.entries.map(e => e.purpose))) {
     const option = el('option', purpose); option.value = purpose; $('purpose').append(option);
   }
@@ -174,6 +187,7 @@ async function start() {
   }
   function render() {
     for (const b of $('faces').children) b.setAttribute('aria-current', String(b.dataset.face === face && !linkedIds));
+    keepActiveFaceVisible();
     const query = $('search').value.trim().toLocaleLowerCase();
     const selected = $('decision').value;
     const entries = data.entries.filter(e => (!linkedIds || linkedIds.has(e.id))

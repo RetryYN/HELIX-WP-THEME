@@ -118,6 +118,28 @@ test('mobile fits viewport and tabs support keyboard; images load', async ({ pag
   await page.screenshot({ path: testInfo.outputPath('desktop.png'), fullPage: false });
 });
 
+test('mobile collection navigation keeps the restored selection in view', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.locator('[data-face="404"]').click();
+  await expect(page.locator('#collection-title')).toHaveText('404');
+  const selected = page.locator('[data-face="404"]');
+  await expect.poll(() => selected.evaluate(node => {
+    const nav = node.parentElement!;
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = node.getBoundingClientRect();
+    return { scrollLeft: nav.scrollLeft, visible: itemRect.left >= navRect.left && itemRect.right <= navRect.right };
+  })).toEqual({ scrollLeft: expect.any(Number), visible: true });
+
+  await page.reload();
+  await expect(page.locator('#collection-title')).toHaveText('404');
+  await expect.poll(() => selected.evaluate(node => {
+    const nav = node.parentElement!;
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = node.getBoundingClientRect();
+    return itemRect.left >= navRect.left && itemRect.right <= navRect.right;
+  })).toBe(true);
+});
+
 
 test('acceptance ID, remaining text and evidence status filters preserve scope and recover from zero', async ({ page }) => {
   await page.locator('#tab-requirements').click();
