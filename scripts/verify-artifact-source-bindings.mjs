@@ -56,10 +56,35 @@ for (const absolute of jsonFiles) {
     findings.push({ artifact: artifactPath, reason: 'parse-error', detail: error.message });
     continue;
   }
+  for (const [key, value] of Object.entries(artifact)) {
+    if (key === 'sourceDigests' || !/^source.*(?:digest|sha|hash)/i.test(key)) continue;
+    if (!value || Array.isArray(value) || typeof value !== 'object') continue;
+    const candidateBindings = Object.entries(value);
+    if (candidateBindings.length && candidateBindings.every(([sourcePath, hash]) =>
+      (sourcePath.includes('/') || sourcePath.includes('\\')) && typeof hash === 'string' && /^[a-f0-9]{64}$/i.test(hash))) {
+      findings.push({ artifact: artifactPath, reason: 'nonstandard-binding-key', key });
+    }
+  }
   if (!artifact.sourceDigests || Array.isArray(artifact.sourceDigests) || typeof artifact.sourceDigests !== 'object') continue;
 
   if (historicalSnapshots.has(artifactPath)) {
-    excluded.push({ path: artifactPath, reason: historicalSnapshots.get(artifactPath) });
+    const bindings = Object.entries(artifact.sourceDigests);
+    let mismatches = 0;
+    for (const [sourcePath, expected] of bindings) {
+      const source = path.resolve(root, sourcePath);
+      if (source !== root && !source.startsWith(`${root}${path.sep}`)) {
+        findings.push({ artifact: artifactPath, source: sourcePath, reason: 'outside-root' });
+        continue;
+      }
+      if (!existsSync(source) || digest(source) !== expected) mismatches += 1;
+    }
+    excluded.push({
+      path: artifactPath,
+      reason: historicalSnapshots.get(artifactPath),
+      bindings: bindings.length,
+      mismatches,
+    });
+    if (mismatches === 0) findings.push({ artifact: artifactPath, reason: 'exclusion-not-needed' });
     continue;
   }
 
