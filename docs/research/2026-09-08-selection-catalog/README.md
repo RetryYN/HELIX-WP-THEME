@@ -36,7 +36,7 @@ Chromiumで検索、比較上限、PC/SP切替、要求・ACへの到達、保�
 
 ## 受入条件ごとの証拠監査
 
-`node scripts/audit-catalog-evidence.mjs`で全ACの対応を再集計する。カタログ生成からも毎回実行する。対応付けの正本は`acceptance-evidence.json`、生成結果は`acceptance-audit.json`。要求digest・AC本文digest・実装/検証コードdigest・結果ファイルdigestと成功行を照合し、変更や未完了を検出した場合は再検証扱いとして生成を止める。
+`npm run catalog-evidence:audit`で全ACの対応を再集計する。カタログ生成からも毎回実行する。対応付けの正本は`acceptance-evidence.json`、生成結果は`acceptance-audit.json`。要求digest・AC本文digest・実装/検証コードdigest・結果ファイルdigestと成功行を照合し、変更や未完了を検出した場合は再検証扱いとして生成を止める。このコマンドは`npm test`に含まれるため、main宛ての全PRで無条件に動く`harness-check`から、artifact source bindingと受入台帳のstaleを同じ範囲で検査する。path filter付きの品質workflowだけを被覆根拠にしない。
 
 この照合は証拠の鮮度と参照整合性の検査であり、任意の成功行が要求を満たすと意味的に保証するものではない。`scope`と`remaining`は条件を精読した対応付けとして管理する。既存試作の証拠も未対応付けとして残り、証拠なしを未実装と同一視しない。
 
