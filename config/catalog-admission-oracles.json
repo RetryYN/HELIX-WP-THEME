@@ -74,6 +74,10 @@
     "docs/research/2026-09-20-lp-tracking-poc/verification.json": [
       "node",
       "scripts/verify-lp-tracking-poc.mjs"
+    ],
+    "docs/research/2026-09-20-recommendation-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-recommendation-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -196,6 +200,12 @@
     ],
     "WT-AC-LP-02B": [
       "docs/research/2026-09-20-lp-tracking-poc/verification.json"
+    ],
+    "WT-AC-RECO-01A": [
+      "docs/research/2026-09-20-recommendation-contract-poc/verification.json"
+    ],
+    "WT-AC-RECO-01B": [
+      "docs/research/2026-09-20-recommendation-contract-poc/verification.json"
     ]
   }
 }

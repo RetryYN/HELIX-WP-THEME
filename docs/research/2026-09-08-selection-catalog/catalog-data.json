@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1263,
+  "screenshotCount": 1269,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -14206,6 +14206,78 @@
       }
     },
     {
+      "id": "recommendation-contract:methods",
+      "face": "article",
+      "part": "recommendation-contract",
+      "label": "記事選定：関連・人気・手動の3方式",
+      "variant": "methods",
+      "description": "3方式、人気の方式/期間、手動順を同じ設定JSONから比較する静的契約PoC。",
+      "purpose": "迷わず案内する",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-19-recommendation-layouts/cards-pc.jpg",
+        "sp": "../2026-09-19-recommendation-layouts/cards-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "referenceId": "wt-recommendation-contract.v1",
+      "evidence": "../2026-09-20-recommendation-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "方式と運用設定を一つの契約から選ぶ。",
+        "実測": "related/popular/manual、人気方式/期間、手動順、JSON読み戻し、日次集計。",
+        "未検証": "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
+      }
+    },
+    {
+      "id": "recommendation-contract:boundary",
+      "face": "article",
+      "part": "recommendation-contract",
+      "label": "記事選定：個人情報・順位判定の境界",
+      "variant": "boundary",
+      "description": "bot/管理者除外、IP・生訪問データ非保存、テーマ外の順位判定を負例付きで確認する静的PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-19-recommendation-layouts/list-pc.jpg",
+        "sp": "../2026-09-19-recommendation-layouts/list-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "referenceId": "wt-recommendation-contract.v1",
+      "evidence": "../2026-09-20-recommendation-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "テーマが個人情報やAI順位判定を所有しない境界を選ぶ。",
+        "実測": "固定方式/手動欠落/IP・生訪問/テーマAI順位を拒否。",
+        "未検証": "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
+      }
+    },
+    {
+      "id": "recommendation-contract:display-binding",
+      "face": "article",
+      "part": "recommendation-contract",
+      "label": "記事一覧：表示型と選定結果の不変条件",
+      "variant": "display-binding",
+      "description": "カード・リスト・ランキング・サムネ大小・横スクロールの表示型を用途別参照IDへ束ね、方式・件数・記事IDを保持する静的PoC。",
+      "purpose": "読みやすく伝える",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-19-recommendation-layouts/cards-pc.jpg",
+        "sp": "../2026-09-19-recommendation-layouts/cards-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "referenceId": "wt-recommendation-contract.v1",
+      "evidence": "../2026-09-20-recommendation-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "表示型だけを変え、記事の選定結果は変えない。",
+        "実測": "5表示型、全型の参照ID、同じ方式・件数・記事ID。",
+        "未検証": "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
+      }
+    },
+    {
       "id": "recovery:transaction",
       "face": "admin",
       "part": "recovery-transaction",
@@ -24173,24 +24245,45 @@
           "requirement_id": "WT-FR-RECO-01",
           "oracle": "3方式と人気の方式・期間・手動順を設定でき、表示結果・設定 JSON・読み戻しが一致し、自前集計は IP なし日次集約になる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "3方式・人気の方式/期間・手動順・読み戻し・日次集計の静的契約を検証する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-recommendation-contract-poc/verification.json",
+              "sha256": "8c137aeb9382a133ad4b9cf778da5e5c80ba2b09d88ffd4441e054dca7973138",
+              "row_names": [
+                "AC-RECO-01A accepts three selectable methods and popular settings",
+                "AC-RECO-01A config JSON readback is identical",
+                "AC-RECO-01A self aggregation is daily and contains no IP"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-RECO-01B",
           "requirement_id": "WT-FR-RECO-01",
           "oracle": "人気方式が固定、手動おすすめを指定できない、人の閲覧や IP を保存する、またはテーマが順位判定を AI 生成すれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "固定人気、手動順欠落、IP/生訪問保存、テーマ所有のAI順位判定を負例として拒否する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-recommendation-contract-poc/verification.json",
+              "sha256": "8c137aeb9382a133ad4b9cf778da5e5c80ba2b09d88ffd4441e054dca7973138",
+              "row_names": [
+                "AC-RECO-01B rejects a fixed popular method and missing manual order",
+                "AC-RECO-01B rejects IP/raw-view persistence",
+                "AC-RECO-01B rejects theme-owned AI ranking",
+                "AC-RECO-01B rejects raw visitor fields at aggregation input"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-RECO-01C",
@@ -24252,25 +24345,25 @@
         "article:related-slider",
         "category:category-ranking-top",
         "recommendation-layout:cards",
-        "recommendation-layout:list"
+        "recommendation-layout:list",
+        "recommendation-contract:methods",
+        "recommendation-contract:boundary",
+        "recommendation-contract:display-binding"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 17,
+        "candidateCount": 20,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -34836,8 +34929,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 187,
-    "partial": 81,
+    "missing": 185,
+    "partial": 83,
     "verified_in_poc": 32,
     "stale": 0
   },

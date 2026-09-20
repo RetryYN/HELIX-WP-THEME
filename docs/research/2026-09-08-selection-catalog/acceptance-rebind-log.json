@@ -1897,6 +1897,52 @@
       ],
       "registry_before_sha256": "e54f9cc7108416089fdb74a7d19a6752950748e3996eb37f79a0f1ac1f75ac64",
       "registry_after_sha256": "1415d32e5162dcb4ae434baab09433a7417b26f5d7245460b0ff24330b51f158"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-RECO-01A",
+        "WT-AC-RECO-01B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-recommendation-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-recommendation-contract-poc/acceptance-candidate.json": "0894b67e4f91e2c9964f9e9d0e9618cc3cb2fb9a87b97db1130dd4143401d743"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-recommendation-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-RECO-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-RECO-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-recommendation-contract-poc/verification.json",
+          "before_sha256": "8c137aeb9382a133ad4b9cf778da5e5c80ba2b09d88ffd4441e054dca7973138",
+          "after_sha256": "8c137aeb9382a133ad4b9cf778da5e5c80ba2b09d88ffd4441e054dca7973138",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "1415d32e5162dcb4ae434baab09433a7417b26f5d7245460b0ff24330b51f158",
+      "registry_after_sha256": "cd0c137c4b10b875b25e7146929bef1fb31451461b2f9284e6ba3230e6978fe9"
     }
   ]
 }
