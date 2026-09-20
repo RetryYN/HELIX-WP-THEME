@@ -3,10 +3,12 @@ import { readFileSync } from 'node:fs';
 
 const catalogData = JSON.parse(readFileSync('docs/research/2026-09-08-selection-catalog/catalog-data.json', 'utf8')) as {
   entries: { face: string }[];
+  requirements: { id: string; relatedEntryIds: string[] }[];
   requirementCount: number;
   acceptanceAudit: Record<string, number>;
 };
 const catalogAcceptanceCount = Object.values(catalogData.acceptanceAudit).reduce((sum, count) => sum + count, 0);
+const formRelatedEntryCount = catalogData.requirements.find(requirement => requirement.id === 'WT-FR-FORM-01')!.relatedEntryIds.length;
 
 // Serve the repository root locally; this suite does not contact WordPress.
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
@@ -398,11 +400,11 @@ test('related candidates and expanded results resume, and removing the last comp
   await page.locator('.req-row > summary').click();
   await page.locator('.req-row button').click();
   await page.locator('#more').click();
-  await expect(page.locator('.tile')).toHaveCount(57);
+  await expect(page.locator('.tile')).toHaveCount(formRelatedEntryCount);
   const ids = await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId));
   await page.reload();
   await expect(page.locator('#collection-title')).toHaveText('要求に関連する候補');
-  await expect(page.locator('.tile')).toHaveCount(57);
+  await expect(page.locator('.tile')).toHaveCount(formRelatedEntryCount);
   expect(await page.locator('.tile-open').evaluateAll(nodes => nodes.map(n => (n as HTMLElement).dataset.entryId))).toEqual(ids);
   await page.locator('.compare-pick input').first().check();
   await page.locator('#tab-requirements').click();
