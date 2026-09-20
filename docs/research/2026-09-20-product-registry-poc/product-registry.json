@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "id": "light-a",
+      "name": "デスクライト A",
+      "price": 3980,
+      "features": [
+        "小さな机に置きやすい、軽量なライト。",
+        "明るさ 500 lm"
+      ],
+      "rating": 4.2,
+      "image": "light-a.svg",
+      "linkType": "affiliate",
+      "url": "https://example.com/affiliate/light-a/",
+      "source": "手動fixture（架空・外部取得なし）",
+      "retrievedAt": "2026-09-20T00:00:00Z",
+      "freshForHours": 24
+    },
+    {
+      "id": "light-b",
+      "name": "デスクライト B",
+      "price": 6480,
+      "features": [
+        "広い作業面を照らす、明るさ重視のライト。",
+        "明るさ 900 lm"
+      ],
+      "rating": 4.5,
+      "image": "light-b.svg",
+      "linkType": "external-store",
+      "url": "https://example.com/external-store/light-b/",
+      "source": "手動fixture（架空・外部取得なし）",
+      "retrievedAt": "2026-09-20T00:00:00Z",
+      "freshForHours": 24
+    },
+    {
+      "id": "light-c",
+      "name": "デスクライト C",
+      "price": 8480,
+      "features": [
+        "長めの保証で選ぶ、据え置きライト。",
+        "明るさ 700 lm"
+      ],
+      "rating": 4.4,
+      "image": "light-c.svg",
+      "linkType": "self-ec",
+      "url": "https://example.com/self-ec/light-c/",
+      "source": "手動fixture（架空・外部取得なし）",
+      "retrievedAt": "2026-09-18T00:00:00Z",
+      "freshForHours": 24
+    }
+  ]
+}

@@ -13900,6 +13900,117 @@
           ]
         }
       ]
+    },
+    "WT-AC-SELL-01A": {
+      "status": "partial",
+      "requirement_digest": "28cc11b3bc943d72",
+      "oracle_sha256": "9de3d64f4a46b1e750ec89853386678a497017de55deaf27de769241a2e917ca",
+      "source_digests": {
+        "docs/research/2026-09-20-product-surfaces-poc/products.mjs": "13392e92f29e00f7499a9d819a7bcc6c60ef499349119b948e62f9711cd79a62",
+        "docs/research/2026-09-20-product-surfaces-poc/light-a.svg": "e66d6d14d1ee529a9896584fbd9831782780a4ad3f42f0e449326f430531c8fd",
+        "docs/research/2026-09-20-product-surfaces-poc/light-b.svg": "d550187a43cf27b84e7830561a409cb9b5a293ac4c288b83e869e0a13ac723b4",
+        "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
+        "scripts/build-product-registry-poc.mjs": "68c0b4f3e71d649cb3957e55d0bb92b3d564ccc7a3ec39002787d76890dba586",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-product-registry-mutations.mjs": "4c434fe01f455ac03be5e2fd7fad72dc9038818739901d53fbae5f1f2054d189",
+        "scripts/verify-product-registry-poc.mjs": "3c52b80a654e60cc0817172507d571c022e405736af71180185d182c3cd1d2a7",
+        "tests/e2e/product-registry-poc-selection-catalog.spec.ts": "d373fc3af4b9fa922dc2cd61f791bbceec73e8f2ec0edb64577e5733d7ce80b9",
+        "docs/research/2026-09-20-product-registry-poc/model.mjs": "03b062a4c831b02a829817fd778b2eabd090c847433b8162d73cfc9c338308eb",
+        "docs/research/2026-09-20-product-registry-poc/render.mjs": "986724352a131fa2a1dcd3c6f965feb7ab0a7950c9dfbd407415802b0067d790",
+        "docs/research/2026-09-20-product-registry-poc/view.mjs": "3874ac5c71fb668125aa074b3b887d43593d9e7f1ca942d74738877876b35aca",
+        "docs/research/2026-09-20-product-registry-poc/registry.css": "d95fd64cf664aa2ef0bccba705818af93745feb55913a6438a4ba9f0e65ae8c9",
+        "docs/research/2026-09-20-product-registry-poc/product-schema.json": "99a054f7a46acfda6bf0baffd2e15a929f8d45796545fdae1ebaca149dc93f74",
+        "docs/research/2026-09-20-product-registry-poc/product-registry.json": "eb7f8054467ff8d389c63bc9830dd344b7d791f28a95fc208ec41656793b8d03",
+        "docs/research/2026-09-20-product-registry-poc/article-references.json": "849195bed451c74b18ed9769409ed5cbbcf4a7934d681f8816763520f51a6b21",
+        "docs/research/2026-09-20-product-registry-poc/card.html": "eca9436ce6667e7f3d92384c34c7fa9cf9c0fc73ac9b86940d2ef6d6bddede76",
+        "docs/research/2026-09-20-product-registry-poc/ranking.html": "ebde9d3d1b38b5f9044ff1d198ab94fd7f048e4e963909e994113ca8c9d0a821",
+        "docs/research/2026-09-20-product-registry-poc/comparison.html": "141f211dc776898a34e4a5ad8b7af5932fcd4f36300200f73b5fdd8a27b8ac16"
+      },
+      "scope": "schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。",
+      "remaining": [
+        "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。",
+        "外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+          "sha256": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+          "row_names": [
+            "AC-A card 1440 js shared values and responsive views",
+            "AC-A card 1440 no-js shared values and responsive views",
+            "AC-A card 390 js shared values and responsive views",
+            "AC-A card 390 no-js shared values and responsive views",
+            "AC-A card 320 js shared values and responsive views",
+            "AC-A card 320 no-js shared values and responsive views",
+            "AC-A ranking 1440 js shared values and responsive views",
+            "AC-A ranking 1440 no-js shared values and responsive views",
+            "AC-A ranking 390 js shared values and responsive views",
+            "AC-A ranking 390 no-js shared values and responsive views",
+            "AC-A ranking 320 js shared values and responsive views",
+            "AC-A ranking 320 no-js shared values and responsive views",
+            "AC-A comparison 1440 js shared values and responsive views",
+            "AC-A comparison 1440 no-js shared values and responsive views",
+            "AC-A comparison 390 js shared values and responsive views",
+            "AC-A comparison 390 no-js shared values and responsive views",
+            "AC-A comparison 320 js shared values and responsive views",
+            "AC-A comparison 320 no-js shared values and responsive views",
+            "AC-A edit all canonical fields once updates every article and structured input",
+            "AC-A freshness boundary and three link destinations remain canonical",
+            "AC-A keyboard 200 percent root text and comparison scroll stay contained"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SELL-01B": {
+      "status": "partial",
+      "requirement_digest": "28cc11b3bc943d72",
+      "oracle_sha256": "60e6d414272787a32b290c75965f95aab11183ec4ea78e4ff259f60a9c2e41c2",
+      "source_digests": {
+        "docs/research/2026-09-20-product-surfaces-poc/products.mjs": "13392e92f29e00f7499a9d819a7bcc6c60ef499349119b948e62f9711cd79a62",
+        "docs/research/2026-09-20-product-surfaces-poc/light-a.svg": "e66d6d14d1ee529a9896584fbd9831782780a4ad3f42f0e449326f430531c8fd",
+        "docs/research/2026-09-20-product-surfaces-poc/light-b.svg": "d550187a43cf27b84e7830561a409cb9b5a293ac4c288b83e869e0a13ac723b4",
+        "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
+        "scripts/build-product-registry-poc.mjs": "68c0b4f3e71d649cb3957e55d0bb92b3d564ccc7a3ec39002787d76890dba586",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-product-registry-mutations.mjs": "4c434fe01f455ac03be5e2fd7fad72dc9038818739901d53fbae5f1f2054d189",
+        "scripts/verify-product-registry-poc.mjs": "3c52b80a654e60cc0817172507d571c022e405736af71180185d182c3cd1d2a7",
+        "tests/e2e/product-registry-poc-selection-catalog.spec.ts": "d373fc3af4b9fa922dc2cd61f791bbceec73e8f2ec0edb64577e5733d7ce80b9",
+        "docs/research/2026-09-20-product-registry-poc/model.mjs": "03b062a4c831b02a829817fd778b2eabd090c847433b8162d73cfc9c338308eb",
+        "docs/research/2026-09-20-product-registry-poc/render.mjs": "986724352a131fa2a1dcd3c6f965feb7ab0a7950c9dfbd407415802b0067d790",
+        "docs/research/2026-09-20-product-registry-poc/view.mjs": "3874ac5c71fb668125aa074b3b887d43593d9e7f1ca942d74738877876b35aca",
+        "docs/research/2026-09-20-product-registry-poc/registry.css": "d95fd64cf664aa2ef0bccba705818af93745feb55913a6438a4ba9f0e65ae8c9",
+        "docs/research/2026-09-20-product-registry-poc/product-schema.json": "99a054f7a46acfda6bf0baffd2e15a929f8d45796545fdae1ebaca149dc93f74",
+        "docs/research/2026-09-20-product-registry-poc/product-registry.json": "eb7f8054467ff8d389c63bc9830dd344b7d791f28a95fc208ec41656793b8d03",
+        "docs/research/2026-09-20-product-registry-poc/article-references.json": "849195bed451c74b18ed9769409ed5cbbcf4a7934d681f8816763520f51a6b21",
+        "docs/research/2026-09-20-product-registry-poc/card.html": "eca9436ce6667e7f3d92384c34c7fa9cf9c0fc73ac9b86940d2ef6d6bddede76",
+        "docs/research/2026-09-20-product-registry-poc/ranking.html": "ebde9d3d1b38b5f9044ff1d198ab94fd7f048e4e963909e994113ca8c9d0a821",
+        "docs/research/2026-09-20-product-registry-poc/comparison.html": "141f211dc776898a34e4a5ad8b7af5932fcd4f36300200f73b5fdd8a27b8ac16"
+      },
+      "scope": "schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。",
+      "remaining": [
+        "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。",
+        "外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+          "sha256": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+          "row_names": [
+            "AC-B negative price preserves all article output",
+            "AC-B missing URL preserves all article output",
+            "AC-B foreign URL preserves all article output",
+            "AC-B unknown field preserves all article output",
+            "AC-B bad rating preserves all article output",
+            "AC-B future stamp preserves all article output",
+            "AC-B duplicate ID preserves all article output",
+            "AC-B article value or URL overrides and missing product reference are refused",
+            "AC-B syntax error and local-only update do not persist or send",
+            "AC-B mutation visible-price-drift rejected",
+            "AC-B mutation article-override-allowed rejected",
+            "AC-B mutation rating-ceiling-removed rejected"
+          ]
+        }
+      ]
     }
   }
 }

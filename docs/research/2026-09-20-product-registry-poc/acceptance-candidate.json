@@ -1,0 +1,65 @@
+{
+  "WT-AC-SELL-01A": {
+    "status": "partial",
+    "scope": "schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。",
+    "remaining": [
+      "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。",
+      "外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+        "row_names": [
+          "AC-A card 1440 js shared values and responsive views",
+          "AC-A card 1440 no-js shared values and responsive views",
+          "AC-A card 390 js shared values and responsive views",
+          "AC-A card 390 no-js shared values and responsive views",
+          "AC-A card 320 js shared values and responsive views",
+          "AC-A card 320 no-js shared values and responsive views",
+          "AC-A ranking 1440 js shared values and responsive views",
+          "AC-A ranking 1440 no-js shared values and responsive views",
+          "AC-A ranking 390 js shared values and responsive views",
+          "AC-A ranking 390 no-js shared values and responsive views",
+          "AC-A ranking 320 js shared values and responsive views",
+          "AC-A ranking 320 no-js shared values and responsive views",
+          "AC-A comparison 1440 js shared values and responsive views",
+          "AC-A comparison 1440 no-js shared values and responsive views",
+          "AC-A comparison 390 js shared values and responsive views",
+          "AC-A comparison 390 no-js shared values and responsive views",
+          "AC-A comparison 320 js shared values and responsive views",
+          "AC-A comparison 320 no-js shared values and responsive views",
+          "AC-A edit all canonical fields once updates every article and structured input",
+          "AC-A freshness boundary and three link destinations remain canonical",
+          "AC-A keyboard 200 percent root text and comparison scroll stay contained"
+        ]
+      }
+    ]
+  },
+  "WT-AC-SELL-01B": {
+    "status": "partial",
+    "scope": "schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。",
+    "remaining": [
+      "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。",
+      "外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+        "row_names": [
+          "AC-B negative price preserves all article output",
+          "AC-B missing URL preserves all article output",
+          "AC-B foreign URL preserves all article output",
+          "AC-B unknown field preserves all article output",
+          "AC-B bad rating preserves all article output",
+          "AC-B future stamp preserves all article output",
+          "AC-B duplicate ID preserves all article output",
+          "AC-B article value or URL overrides and missing product reference are refused",
+          "AC-B syntax error and local-only update do not persist or send",
+          "AC-B mutation visible-price-drift rejected",
+          "AC-B mutation article-override-allowed rejected",
+          "AC-B mutation rating-ceiling-removed rejected"
+        ]
+      }
+    ]
+  }
+}

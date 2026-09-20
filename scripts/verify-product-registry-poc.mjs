@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {scenarios} from '../docs/research/2026-09-20-product-registry-poc/model.mjs';
+const definitions=scenarios.map(f=>({kind:f.id,label:f.label,title:f.lead}));
+const root='docs/research/2026-09-20-product-registry-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-product-registry-poc.mjs']);
+const files=['docs/research/2026-09-20-product-surfaces-poc/products.mjs',...['light-a.svg','light-b.svg','light-c.svg'].map(f=>'docs/research/2026-09-20-product-surfaces-poc/'+f),'scripts/build-product-registry-poc.mjs','scripts/product-surfaces-server.mjs','scripts/verify-product-registry-mutations.mjs','scripts/verify-product-registry-poc.mjs','tests/e2e/product-registry-poc-selection-catalog.spec.ts',...['model.mjs','render.mjs','view.mjs','registry.css','product-schema.json','product-registry.json','article-references.json',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'product-registry-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/product-registry-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,REGISTRY_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const browserRows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(browserRows.every(r=>r.pass));
+ const mutations=JSON.parse(execFileSync(process.execPath,['scripts/verify-product-registry-mutations.mjs'],options));
+ const rows=[...browserRows,...mutations];
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-product-registry-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local canonical product registry. Three articles refer by ID; four surfaces share canonical values. Both ACs partial; persistence, WP 7.2, actual cross-article deployment and external APIs unconnected.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=id=>rows.filter(r=>r.name.startsWith('AC-'+id+' ')).map(r=>r.name);
+ const remaining=['WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。','外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B'].map(id=>[`WT-AC-SELL-01${id}`,{status:'partial',scope:'schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(id)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-product-registry-catalog-candidates.v1',entries:definitions.map(d=>({id:`product-registry:${d.kind}`,face:'article',part:`product-registry-${d.kind}`,label:`商品正本：${d.label}`,variant:d.kind,description:`${d.title} 2受入条件は部分確認。`,purpose:'正本変更が複数記事と販売面へ同じ値で届くことを確認する',group:'ページ本文',images:{pc:`../2026-09-20-product-registry-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-product-registry-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-SELL-01'],referenceId:'wt-product-registry-poc.v1',evidence:'../2026-09-20-product-registry-poc/verification.json',selectionFacts:{'対象と判断':d.title,'単一正本':'名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。','反映':'同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。','鮮度':'手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。','実測':'1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'2 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}

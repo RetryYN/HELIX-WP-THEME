@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 685,
-  "screenshot_count": 1241,
+  "catalog_candidate_count": 688,
+  "screenshot_count": 1247,
   "acceptance_counts": {
-    "missing": 200,
-    "partial": 68,
+    "missing": 198,
+    "partial": 70,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -388,22 +388,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "認証 SMTP と From 整合、SPF / DKIM / DMARC の状態を検査し、未設定を警告する。wp_mail_failed を操作ログへ残し、第三者 SMTP プラグイン検出時は送信を譲る",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-SELL-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア / 自社 EC URL）を保持する。複数記事から同じ正本を参照して一括反映し、商品表示と構造化データの入力を分散させない。決済・カート・会員はテーマ外とする。外部 EC / ASP API クライアントと認証情報を持たず、商品正本の取得元・時刻・鮮度を保持し、アフィリエイト用 merchant feed と ProductGroup を要求対象外にする。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2916,6 +2900,26 @@
         "section-contract:delivery"
       ],
       "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ）。section ID・variant ID・目標 CV ID・device type も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側。max-snippet / nosnippet / data-nosnippet と section × actor × version の rewrite history を記事メタへ記録する。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-SELL-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 3,
+      "candidates": [
+        "product-registry:card",
+        "product-registry:ranking",
+        "product-registry:comparison"
+      ],
+      "statement": "商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア / 自社 EC URL）を保持する。複数記事から同じ正本を参照して一括反映し、商品表示と構造化データの入力を分散させない。決済・カート・会員はテーマ外とする。外部 EC / ASP API クライアントと認証情報を持たず、商品正本の取得元・時刻・鮮度を保持し、アフィリエイト用 merchant feed と ProductGroup を要求対象外にする。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

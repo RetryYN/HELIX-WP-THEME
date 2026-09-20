@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 685,
+  "candidateCount": 688,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -3021,33 +3021,34 @@
     {
       "id": "WT-FR-SELL-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-SELL-01A",
-          "WT-AC-SELL-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-SELL-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-SELL-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "product-registry:card",
+        "product-registry:ranking",
+        "product-registry:comparison"
+      ]
     },
     {
       "id": "WT-FR-SELL-02",
@@ -30405,6 +30406,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-seo-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-registry:card",
+      "face": "article",
+      "part": "product-registry-card",
+      "label": "商品正本：記事の商品カード",
+      "variant": "card",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-registry:ranking",
+      "face": "article",
+      "part": "product-registry-ranking",
+      "label": "商品正本：ランキング記事",
+      "variant": "ranking",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-registry:comparison",
+      "face": "article",
+      "part": "product-registry-comparison",
+      "label": "商品正本：比較記事とCTA",
+      "variant": "comparison",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
       "devices": [
         "pc",
         "sp"

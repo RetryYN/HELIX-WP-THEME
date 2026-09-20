@@ -906,6 +906,52 @@
       ],
       "registry_before_sha256": "90326ec17315c0bbb6aecd77b01b05f496f2e986167fb2e21cfbf0ac79f83509",
       "registry_after_sha256": "7a2e8a1df898fcb1ea1658c77309ead4307c7d972acd317591c1ed340de0fca1"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-SELL-01A",
+        "WT-AC-SELL-01B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-product-registry-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-product-registry-poc/acceptance-candidate.json": "65a71caaa6a9c0cd19e8ee90087beb496fc873bf01dfc4058d5b53f582460ea2"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-product-registry-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SELL-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SELL-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+          "before_sha256": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+          "after_sha256": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "7a2e8a1df898fcb1ea1658c77309ead4307c7d972acd317591c1ed340de0fca1",
+      "registry_after_sha256": "7d693b9fead74e7a7cd9245805a4a6b2177a0cdcd4c588f27fb635aae6cadf67"
     }
   ]
 }

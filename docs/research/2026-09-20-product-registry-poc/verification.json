@@ -1,0 +1,210 @@
+{
+  "schema": "wt-product-registry-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/product-registry-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "docs/research/2026-09-20-product-surfaces-poc/products.mjs": "13392e92f29e00f7499a9d819a7bcc6c60ef499349119b948e62f9711cd79a62",
+    "docs/research/2026-09-20-product-surfaces-poc/light-a.svg": "e66d6d14d1ee529a9896584fbd9831782780a4ad3f42f0e449326f430531c8fd",
+    "docs/research/2026-09-20-product-surfaces-poc/light-b.svg": "d550187a43cf27b84e7830561a409cb9b5a293ac4c288b83e869e0a13ac723b4",
+    "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
+    "scripts/build-product-registry-poc.mjs": "68c0b4f3e71d649cb3957e55d0bb92b3d564ccc7a3ec39002787d76890dba586",
+    "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+    "scripts/verify-product-registry-mutations.mjs": "4c434fe01f455ac03be5e2fd7fad72dc9038818739901d53fbae5f1f2054d189",
+    "scripts/verify-product-registry-poc.mjs": "3c52b80a654e60cc0817172507d571c022e405736af71180185d182c3cd1d2a7",
+    "tests/e2e/product-registry-poc-selection-catalog.spec.ts": "d373fc3af4b9fa922dc2cd61f791bbceec73e8f2ec0edb64577e5733d7ce80b9",
+    "docs/research/2026-09-20-product-registry-poc/model.mjs": "03b062a4c831b02a829817fd778b2eabd090c847433b8162d73cfc9c338308eb",
+    "docs/research/2026-09-20-product-registry-poc/render.mjs": "986724352a131fa2a1dcd3c6f965feb7ab0a7950c9dfbd407415802b0067d790",
+    "docs/research/2026-09-20-product-registry-poc/view.mjs": "3874ac5c71fb668125aa074b3b887d43593d9e7f1ca942d74738877876b35aca",
+    "docs/research/2026-09-20-product-registry-poc/registry.css": "d95fd64cf664aa2ef0bccba705818af93745feb55913a6438a4ba9f0e65ae8c9",
+    "docs/research/2026-09-20-product-registry-poc/product-schema.json": "99a054f7a46acfda6bf0baffd2e15a929f8d45796545fdae1ebaca149dc93f74",
+    "docs/research/2026-09-20-product-registry-poc/product-registry.json": "eb7f8054467ff8d389c63bc9830dd344b7d791f28a95fc208ec41656793b8d03",
+    "docs/research/2026-09-20-product-registry-poc/article-references.json": "849195bed451c74b18ed9769409ed5cbbcf4a7934d681f8816763520f51a6b21",
+    "docs/research/2026-09-20-product-registry-poc/card.html": "eca9436ce6667e7f3d92384c34c7fa9cf9c0fc73ac9b86940d2ef6d6bddede76",
+    "docs/research/2026-09-20-product-registry-poc/ranking.html": "ebde9d3d1b38b5f9044ff1d198ab94fd7f048e4e963909e994113ca8c9d0a821",
+    "docs/research/2026-09-20-product-registry-poc/comparison.html": "141f211dc776898a34e4a5ad8b7af5932fcd4f36300200f73b5fdd8a27b8ac16"
+  },
+  "rows": [
+    {
+      "name": "AC-A card 1440 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 1440 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 390 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 390 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 320 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 320 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 1440 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 1440 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 390 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 390 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 320 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 320 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 1440 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 1440 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 390 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 390 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 320 js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 320 no-js shared values and responsive views",
+      "pass": true
+    },
+    {
+      "name": "AC-A edit all canonical fields once updates every article and structured input",
+      "pass": true
+    },
+    {
+      "name": "AC-B negative price preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B missing URL preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B foreign URL preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B unknown field preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B bad rating preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B future stamp preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B duplicate ID preserves all article output",
+      "pass": true
+    },
+    {
+      "name": "AC-B article value or URL overrides and missing product reference are refused",
+      "pass": true
+    },
+    {
+      "name": "AC-A freshness boundary and three link destinations remain canonical",
+      "pass": true
+    },
+    {
+      "name": "AC-A keyboard 200 percent root text and comparison scroll stay contained",
+      "pass": true
+    },
+    {
+      "name": "AC-B syntax error and local-only update do not persist or send",
+      "pass": true
+    },
+    {
+      "name": "AC-B mutation visible-price-drift rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "AC-B mutation article-override-allowed rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "AC-B mutation rating-ceiling-removed rejected",
+      "pass": true,
+      "unexpected": 1
+    }
+  ],
+  "shots": [
+    {
+      "id": "card",
+      "device": "pc",
+      "file": "card-pc.jpg",
+      "sha256": "3ea9272fc179cce469d400030fadeabcc2dd3f9071eef2300d56ab4e13509d46"
+    },
+    {
+      "id": "card",
+      "device": "sp",
+      "file": "card-sp.jpg",
+      "sha256": "79f9d3576093f552e1559b58552503d16e80407cf43258d45baf7d2f30393f10"
+    },
+    {
+      "id": "ranking",
+      "device": "pc",
+      "file": "ranking-pc.jpg",
+      "sha256": "babd56112b91a54231f0c53446e169dcc3d8b1efca5e5a5cca7d9327dff8032a"
+    },
+    {
+      "id": "ranking",
+      "device": "sp",
+      "file": "ranking-sp.jpg",
+      "sha256": "2a7f75c1f7e02cd2ce7d3de6adde7b0b476c20511088200b0345b248aa7c5e96"
+    },
+    {
+      "id": "comparison",
+      "device": "pc",
+      "file": "comparison-pc.jpg",
+      "sha256": "97f91e6fcfab7ee5a3045c663b550c196118448246c09e1fd45e8a080fa2b43b"
+    },
+    {
+      "id": "comparison",
+      "device": "sp",
+      "file": "comparison-sp.jpg",
+      "sha256": "fcb23ad7839f3ec935423650d3764398c23fbf233447a095a8ea8fd834fcdef7"
+    }
+  ],
+  "scope": "Static/local canonical product registry. Three articles refer by ID; four surfaces share canonical values. Both ACs partial; persistence, WP 7.2, actual cross-article deployment and external APIs unconnected.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

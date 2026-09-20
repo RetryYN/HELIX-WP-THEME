@@ -52,6 +52,10 @@
     "docs/research/2026-09-20-seo-contract-poc/verification.json": [
       "node",
       "scripts/verify-seo-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-20-product-registry-poc/verification.json": [
+      "node",
+      "scripts/verify-product-registry-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -135,6 +139,12 @@
     ],
     "WT-AC-NFR-SEO-01B": [
       "docs/research/2026-09-20-seo-contract-poc/verification.json"
+    ],
+    "WT-AC-SELL-01A": [
+      "docs/research/2026-09-20-product-registry-poc/verification.json"
+    ],
+    "WT-AC-SELL-01B": [
+      "docs/research/2026-09-20-product-registry-poc/verification.json"
     ]
   }
 }
