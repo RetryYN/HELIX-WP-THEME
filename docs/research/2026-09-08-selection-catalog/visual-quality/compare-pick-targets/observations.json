@@ -1,0 +1,180 @@
+{
+  "schema": "wt-compare-pick-targets.v1",
+  "baseline": "8331d4db60886a08a244b784fab83a05551620de",
+  "sourceDigests": {
+    "docs/research/2026-09-08-selection-catalog/catalog.css": "528f1d5acf91a37aacca6505b05090b4fd4bf804aa67aa18baaa3f8e94cef345",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "6c684e056f786906a58fca2ec7ea7a3b46e2beb168242c5244747ecdd6a19655",
+    "docs/research/2026-09-08-selection-catalog/index.html": "5129e855c93122ce687282b0f0bcc9e1cfd7b4d193dfa7743206da029de7cf18",
+    "docs/research/2026-09-08-selection-catalog/catalog-data.json": "3551d360e1525a0f3da96271dc93c1c58559ca5c9319a9f002b80e5159aa10a7",
+    "docs/research/2026-09-08-selection-catalog/visual-quality/compare-pick-targets/capture.mjs": "38592a129ed426a4e7134f73df2338c515dcd05a9ed2bcb01e1a9d39729209e9",
+    "tests/e2e/compare-pick-targets-selection-catalog.spec.ts": "3ee84ae998d03f46ef8ba1e231d77fe1fef935f4ab012c3a956fea425e2a91c6"
+  },
+  "observations": [
+    {
+      "stage": "before",
+      "width": 320,
+      "collection": "common",
+      "cardWidth": 284,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 320,
+      "collection": "all",
+      "cardWidth": 284,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 320,
+      "collection": "common",
+      "cardWidth": 284,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 320,
+      "collection": "all",
+      "cardWidth": 284,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "collection": "common",
+      "cardWidth": 354,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "collection": "all",
+      "cardWidth": 171,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "collection": "common",
+      "cardWidth": 354,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "collection": "all",
+      "cardWidth": 171,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 768,
+      "collection": "common",
+      "cardWidth": 486,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 768,
+      "collection": "all",
+      "cardWidth": 233,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 768,
+      "collection": "common",
+      "cardWidth": 486,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 768,
+      "collection": "all",
+      "cardWidth": 233,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "collection": "common",
+      "cardWidth": 548,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "collection": "all",
+      "cardWidth": 358.65625,
+      "targetWidth": 54.015625,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "collection": "common",
+      "cardWidth": 548,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "collection": "all",
+      "cardWidth": 358.65625,
+      "targetWidth": 96,
+      "targetHeight": 44,
+      "overflow": false
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "before-common-390.png",
+      "sha256": "a90f6a6dc0bcf3e9fdfbb49e52361650e587938835c2bc1feb5888404885a33a"
+    },
+    {
+      "file": "before-all-390.png",
+      "sha256": "4e2af44017e35781a7c104d74e086c0df8b84cd625de73c7347d8f4e82260bce"
+    },
+    {
+      "file": "after-common-390.png",
+      "sha256": "4be568863ef6747b61a4324e8d215d008a5bb7df495d984f4260e3720d9ebec1"
+    },
+    {
+      "file": "after-all-390.png",
+      "sha256": "1d319bb980ab1c2cd9356674e9d5b7e88d98bece354cf203a85234e6ecd60b5e"
+    }
+  ],
+  "limitations": [
+    "Static catalog / Chromium only; no requirement completion or real-device accessibility claim",
+    "Before swaps baseline CSS against the same current content"
+  ]
+}

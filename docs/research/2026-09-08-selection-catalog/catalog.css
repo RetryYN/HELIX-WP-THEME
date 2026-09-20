@@ -239,3 +239,10 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
   #detail .image-controls button,#compare .image-controls button{padding-inline:4px;font-size:12px;min-width:0;min-height:44px}
   .image-controls p{grid-column:1/-1}
 }
+
+/* 比較への追加を目的ラベルと区別し、checkboxの周りにも押せる面を確保する。 */
+.tile-footer .purpose-tag{min-width:0;overflow-wrap:anywhere}
+.tile-footer .compare-pick{min-width:96px;min-height:44px;flex-shrink:0;justify-content:center;padding:0 12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper)}
+.tile-footer .compare-pick:hover{border-color:var(--green);background:var(--tint)}
+.tile-footer .compare-pick:has(input:checked){border-color:var(--green);background:var(--tint)}
+.tile-footer .compare-pick:has(input:focus-visible){outline:3px solid #bc5b22;outline-offset:2px}
