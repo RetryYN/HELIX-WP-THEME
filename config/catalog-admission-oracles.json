@@ -90,6 +90,10 @@
     "docs/research/2026-09-20-look-purpose-contract-poc/verification.json": [
       "node",
       "scripts/verify-look-purpose-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-20-look-pattern-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-look-pattern-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -242,6 +246,15 @@
     ],
     "WT-AC-LOOK-01E": [
       "docs/research/2026-09-20-look-purpose-contract-poc/verification.json"
+    ],
+    "WT-AC-LOOK-03A": [
+      "docs/research/2026-09-20-look-pattern-contract-poc/verification.json"
+    ],
+    "WT-AC-LOOK-03B": [
+      "docs/research/2026-09-20-look-pattern-contract-poc/verification.json"
+    ],
+    "WT-AC-LOOK-03C": [
+      "docs/research/2026-09-20-look-pattern-contract-poc/verification.json"
     ]
   }
 }

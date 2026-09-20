@@ -1,0 +1,51 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-LOOK-03A": {
+    "status": "partial",
+    "scope": "269件のサイト調査、6系統の分布、730件25 familyの部品集計、および9 variationの導出をG-T1b/G-T3へ束ねる。",
+    "remaining": [
+      "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+        "row_names": [
+          "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+          "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+        ]
+      }
+    ]
+  },
+  "WT-AC-LOOK-03B": {
+    "status": "partial",
+    "scope": "調査証跡のないパターンをvariationMapへ入れない負例を固定する。",
+    "remaining": [
+      "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+        "row_names": [
+          "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
+          "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
+        ]
+      }
+    ]
+  },
+  "WT-AC-LOOK-03C": {
+    "status": "partial",
+    "scope": "未観察パターンをopen indexへ保持し、completion=falseを固定する。",
+    "remaining": [
+      "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+        "row_names": [
+          "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
+          "AC-LOOK-03C rejects an open pattern that is already observed"
+        ]
+      }
+    ]
+  }
+}

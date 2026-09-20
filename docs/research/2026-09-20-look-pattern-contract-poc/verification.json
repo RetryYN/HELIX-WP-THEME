@@ -1,0 +1,129 @@
+{
+  "schema": "wt-look-pattern-contract-poc-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "docs/research/2026-09-20-look-pattern-contract-poc/contract.mjs": "bd4065fcaea684bd0f02fc7d3d788cb7df393a9a92d76fa6a71ac0ab7334e175",
+    "scripts/verify-look-pattern-contract-poc.mjs": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+    "docs/research/2026-09-20-look-pattern-contract-poc/README.md": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+    "docs/research/2026-09-20-look-pattern-contract-poc/external-observations.md": "04a905bbc8658d74c318302036a4ae539b65d971e428349f062d235481b57672",
+    "docs/research/2026-09-04-site-survey/sites-index.json": "63e879be4868feef8f00dd30e0b165fc1eb4424cf38e0ac7d9e7717648f6f6f9",
+    "docs/research/2026-09-04-site-survey/results/analysis.json": "508f98e375800a2acbd24de1c0e8ce5ed1f4e24028d3a4da7b0bded6b93b504c",
+    "docs/research/2026-09-05-parts-pattern-taxonomy/aggregate.json": "c84d23c86eb9168f24715a6797a87bbe0de92589fd53ac0df2f4aff2fc01b7fd",
+    "docs/research/2026-09-03-design-prototype-01/index.json": "342b3b106a25d580b6b0922a9eef95631633077e37e62cd5da7ccaddfde61d2d",
+    "bin/check-design-consistency.sh": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+    "themes/agent-neo-theme/theme.json": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a",
+    "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765"
+  },
+  "survey": {
+    "entries": 269,
+    "patternCounts": {
+      "brand": 35,
+      "compare": 66,
+      "corporate": 35,
+      "motion": 35,
+      "portal": 64,
+      "service": 34
+    },
+    "analysisGroups": 12,
+    "taxonomyObservations": 730,
+    "taxonomyFamilies": 25
+  },
+  "variationMap": {
+    "corporate": [
+      "business"
+    ],
+    "service": [
+      "light"
+    ],
+    "brand": [
+      "vivid",
+      "warm"
+    ],
+    "portal": [
+      "editorial",
+      "mono"
+    ],
+    "compare": [
+      "depth"
+    ],
+    "motion": [
+      "dark",
+      "night-contrast"
+    ]
+  },
+  "openPatterns": [
+    {
+      "id": "commerce",
+      "status": "unobserved",
+      "source": "page-type-ledger"
+    },
+    {
+      "id": "membership",
+      "status": "unobserved",
+      "source": "page-type-ledger"
+    },
+    {
+      "id": "jobs",
+      "status": "unobserved",
+      "source": "page-type-ledger"
+    },
+    {
+      "id": "maintenance",
+      "status": "unobserved",
+      "source": "page-type-ledger"
+    }
+  ],
+  "gates": {
+    "gT1b": true,
+    "gT3": true,
+    "completion": false
+  },
+  "rows": [
+    {
+      "name": "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03B rejects a pattern distribution that is not in the survey",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03C rejects an open pattern that is already observed",
+      "pass": true
+    },
+    {
+      "name": "contract has no transport, model, or decision invocation",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "pattern-contract",
+      "device": "pc",
+      "file": "../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg",
+      "sha256": "240fb2fa3197576a7b741fc3eec3bf3bb4cad74690d90596b3457a9b42f3ca2b"
+    },
+    {
+      "id": "pattern-contract",
+      "device": "sp",
+      "file": "../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg",
+      "sha256": "9ec7eb592b02a0235af5b82f357f469e1df8dd650872e2762db99be63ff4677b"
+    }
+  ],
+  "scope": "実サイト調査のパターン分布を現行variationへ対応付け、未観察系統を開いたままカタログ選択へ渡す。",
+  "remaining": [
+    "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+  ]
+}
