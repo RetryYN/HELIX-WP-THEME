@@ -106,6 +106,12 @@ test('selection index exposes evidence boundaries for every catalog candidate', 
   const requirementIds = new Set(index.requirements.map(requirement => requirement.id));
   assert.equal(requirementIds.size, catalog.requirements.length);
   for (const requirement of index.requirements) {
+    const catalogRequirement = catalog.requirements.find(candidate => candidate.id === requirement.id);
+    assert.ok(catalogRequirement);
+    assert.deepEqual(requirement.coverage, catalogRequirement.coverage);
+    assert.equal(requirement.coverage.candidateCount, requirement.relatedEntryIds.length);
+    assert.ok(['no_candidate', 'candidate_with_open_acceptance', 'candidate_with_partial_evidence', 'candidate_verified'].includes(requirement.coverage.selectionState));
+    assert.equal(Object.values(requirement.coverage.counts).reduce((sum, count) => sum + count, 0), requirement.coverage.acceptanceCount);
     assert.ok(requirement.relatedEntryIds.every(id => catalogIds.has(id)));
     assert.ok(requirement.acceptance.every(row => ['missing', 'partial', 'stale', 'verified_in_poc'].includes(row.status)));
   }

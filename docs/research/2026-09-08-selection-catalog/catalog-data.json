@@ -13385,7 +13385,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-CORE-02",
@@ -13448,7 +13460,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-CORE-03",
@@ -13506,7 +13530,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-GATE-01",
@@ -13544,7 +13580,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-GATE-01A",
+          "WT-AC-NFR-GATE-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-PLUGIN-01",
@@ -13582,7 +13633,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TR-PLUGIN-01A",
+          "WT-AC-TR-PLUGIN-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-PLUGIN-02",
@@ -13620,7 +13686,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TR-PLUGIN-02A",
+          "WT-AC-TR-PLUGIN-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-ZONE-01",
@@ -13804,7 +13885,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 115,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-ZONE-02",
@@ -13958,7 +14051,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 115,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-ZONE-02A",
+          "WT-AC-ZONE-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-ZONE-03",
@@ -14297,7 +14405,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 121,
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-PARTS-01",
@@ -14657,7 +14777,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 169,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-PARTS-02",
@@ -14913,7 +15045,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 169,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_verified"
+      }
     },
     {
       "id": "WT-FR-VOCAB-01",
@@ -15070,7 +15214,19 @@
       "pending": [
         "「最大数」と新規ブロック上限 7 の関係を整理する。表現の型数と登録ブロック数は別であり、PoC の動的ブロック数で製品の上限遵守を判定しない。上限撤廃を PO 決定とみなさない。"
       ],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 62,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-VOCAB-02",
@@ -15231,7 +15387,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 60,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-VOCAB-03",
@@ -15344,7 +15512,23 @@
       "pending": [
         "本文の表記がある場合の重複抑止と「本文編集により消せない」条件の両立を確定する。PoC の先頭文字列検出は広告リンク有無の機械判定を代替しない。"
       ],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 60,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 3,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-VOCAB-03A",
+          "WT-AC-VOCAB-03B",
+          "WT-AC-VOCAB-03C"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-VOCAB-04",
@@ -15443,7 +15627,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 60,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-VOCAB-04A",
+          "WT-AC-VOCAB-04B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-SECTION-01",
@@ -15481,7 +15680,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SECTION-01A",
+          "WT-AC-SECTION-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SECTION-02",
@@ -15519,7 +15733,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SECTION-02A",
+          "WT-AC-SECTION-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-LOOK-01",
@@ -16396,7 +16625,21 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 103,
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 1,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LOOK-01E"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-LOOK-02",
@@ -16539,7 +16782,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 89,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_verified"
+      }
     },
     {
       "id": "WT-FR-LOOK-03",
@@ -16679,7 +16934,23 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 89,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 3,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LOOK-03A",
+          "WT-AC-LOOK-03B",
+          "WT-AC-LOOK-03C"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-META-01",
@@ -16880,7 +17151,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 78,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 1,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-META-01A",
+          "WT-AC-META-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-ADMIN-01",
@@ -16954,7 +17240,25 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 5,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-ADMIN-01A",
+          "WT-AC-ADMIN-01B",
+          "WT-AC-ADMIN-01C",
+          "WT-AC-ADMIN-01D",
+          "WT-AC-ADMIN-01E"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-LP-01",
@@ -17054,7 +17358,23 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 49,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 3,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LP-01A",
+          "WT-AC-LP-01B",
+          "WT-AC-LP-01C"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-LP-02",
@@ -17142,7 +17462,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 49,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LP-02A",
+          "WT-AC-LP-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-MIGRATE-01",
@@ -17180,7 +17515,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-MIGRATE-01A",
+          "WT-AC-MIGRATE-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-MIGRATE-02",
@@ -17218,7 +17568,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-MIGRATE-02A",
+          "WT-AC-MIGRATE-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-MIGRATE-03",
@@ -17256,7 +17621,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-MIGRATE-03A",
+          "WT-AC-MIGRATE-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AGENT-01",
@@ -17294,7 +17674,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AGENT-01A",
+          "WT-AC-AGENT-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AGENT-02",
@@ -17332,7 +17727,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AGENT-02A",
+          "WT-AC-AGENT-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AGENT-03",
@@ -17370,7 +17780,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AGENT-03A",
+          "WT-AC-AGENT-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AGENT-04",
@@ -17408,7 +17833,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AGENT-04A",
+          "WT-AC-AGENT-04B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-AGENT-05",
@@ -17446,7 +17886,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TR-AGENT-05A",
+          "WT-AC-TR-AGENT-05B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AGENT-06",
@@ -17484,7 +17939,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AGENT-06A",
+          "WT-AC-AGENT-06B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-VALUE-01",
@@ -17522,7 +17992,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-VALUE-01A",
+          "WT-AC-VALUE-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-VALUE-02",
@@ -17560,7 +18045,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-VALUE-02A",
+          "WT-AC-VALUE-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-VALUE-03",
@@ -17598,7 +18098,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-VALUE-03A",
+          "WT-AC-NFR-VALUE-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SEO-01",
@@ -17648,7 +18163,23 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 3,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SEO-01A",
+          "WT-AC-SEO-01B",
+          "WT-AC-SEO-01C"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SEO-02",
@@ -17686,7 +18217,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SEO-02A",
+          "WT-AC-SEO-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SEO-03",
@@ -17724,7 +18270,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SEO-03A",
+          "WT-AC-SEO-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-INTAKE-01",
@@ -17762,7 +18323,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-INTAKE-01A",
+          "WT-AC-INTAKE-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-SEC-01",
@@ -17800,7 +18376,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-SEC-01A",
+          "WT-AC-NFR-SEC-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-REL-01",
@@ -17838,7 +18429,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-REL-01A",
+          "WT-AC-NFR-REL-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-PRIV-01",
@@ -17894,7 +18500,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-PERM-01",
@@ -17932,7 +18550,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-PERM-01A",
+          "WT-AC-NFR-PERM-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-COST-01",
@@ -17970,7 +18603,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-COST-01A",
+          "WT-AC-NFR-COST-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-LEGAL-01",
@@ -18008,7 +18656,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-LEGAL-01A",
+          "WT-AC-NFR-LEGAL-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-OBS-01",
@@ -18046,7 +18709,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-OBS-01A",
+          "WT-AC-NFR-OBS-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-A11Y-01",
@@ -18084,7 +18762,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-A11Y-01A",
+          "WT-AC-NFR-A11Y-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-REC-01",
@@ -18122,7 +18815,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-REC-01A",
+          "WT-AC-NFR-REC-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-CRED-01",
@@ -18179,7 +18887,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-PERF-01",
@@ -18217,7 +18937,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-PERF-01A",
+          "WT-AC-NFR-PERF-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SELL-01",
@@ -18255,7 +18990,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SELL-01A",
+          "WT-AC-SELL-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SELL-02",
@@ -18293,7 +19043,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SELL-02A",
+          "WT-AC-SELL-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SELL-03",
@@ -18331,7 +19096,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SELL-03A",
+          "WT-AC-SELL-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SEO-04",
@@ -18369,7 +19149,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SEO-04A",
+          "WT-AC-SEO-04B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-SEO-01",
@@ -18407,7 +19202,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-SEO-01A",
+          "WT-AC-NFR-SEO-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SEO-05",
@@ -18445,7 +19255,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SEO-05A",
+          "WT-AC-SEO-05B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CRAWL-01",
@@ -18483,7 +19308,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CRAWL-01A",
+          "WT-AC-CRAWL-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CRAWL-02",
@@ -18521,7 +19361,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CRAWL-02A",
+          "WT-AC-CRAWL-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CRAWL-03",
@@ -18559,7 +19414,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CRAWL-03A",
+          "WT-AC-CRAWL-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-CRAWL-01",
@@ -18597,7 +19467,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-CRAWL-01A",
+          "WT-AC-NFR-CRAWL-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AB-01",
@@ -18635,7 +19520,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AB-01A",
+          "WT-AC-AB-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AB-02",
@@ -18673,7 +19573,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AB-02A",
+          "WT-AC-AB-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AB-03",
@@ -18711,7 +19626,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AB-03A",
+          "WT-AC-AB-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-IMG-01",
@@ -18749,7 +19679,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-IMG-01A",
+          "WT-AC-IMG-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-IMG-02",
@@ -18787,7 +19732,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-IMG-02A",
+          "WT-AC-IMG-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-IMG-03",
@@ -18825,7 +19785,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-IMG-03A",
+          "WT-AC-IMG-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-PERF-02",
@@ -18863,7 +19838,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-PERF-02A",
+          "WT-AC-NFR-PERF-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-PERF-03",
@@ -18901,7 +19891,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-PERF-03A",
+          "WT-AC-NFR-PERF-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-API-01",
@@ -18939,7 +19944,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-API-01A",
+          "WT-AC-API-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-API-02",
@@ -18977,7 +19997,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-API-02A",
+          "WT-AC-API-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-API-03",
@@ -19015,7 +20050,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-API-03A",
+          "WT-AC-API-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-ADMIN-02",
@@ -19053,7 +20103,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-ADMIN-02A",
+          "WT-AC-ADMIN-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-ADMIN-03",
@@ -19103,7 +20168,23 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 3,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-ADMIN-03A",
+          "WT-AC-ADMIN-03B",
+          "WT-AC-ADMIN-03C"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-ADMIN-04",
@@ -19141,7 +20222,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-ADMIN-04A",
+          "WT-AC-ADMIN-04B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-CLI-01",
@@ -19179,7 +20275,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CLI-01A",
+          "WT-AC-CLI-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SNS-01",
@@ -19240,7 +20351,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 22,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SNS-01A",
+          "WT-AC-SNS-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-SNS-02",
@@ -19301,7 +20427,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 22,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SNS-02A",
+          "WT-AC-SNS-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-CV-01",
@@ -19339,7 +20480,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CV-01A",
+          "WT-AC-CV-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CV-02",
@@ -19377,7 +20533,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CV-02A",
+          "WT-AC-CV-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CV-03",
@@ -19415,7 +20586,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CV-03A",
+          "WT-AC-CV-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-CV-01",
@@ -19453,7 +20639,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-CV-01A",
+          "WT-AC-NFR-CV-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-BANNER-01",
@@ -19738,7 +20939,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 26,
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 5,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-BANNER-02",
@@ -19797,7 +21010,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 20,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-BANNER-02A",
+          "WT-AC-BANNER-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-AUDIT-01",
@@ -19835,7 +21063,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AUDIT-01A",
+          "WT-AC-AUDIT-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AUDIT-02",
@@ -19873,7 +21116,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AUDIT-02A",
+          "WT-AC-AUDIT-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SP-01",
@@ -19943,7 +21201,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 31,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SP-01A",
+          "WT-AC-SP-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-SP-02",
@@ -20013,7 +21286,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 31,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SP-02A",
+          "WT-AC-SP-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-SP-03",
@@ -20136,7 +21424,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 33,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-NFR-SP-01",
@@ -20754,7 +22054,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 31,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-NFR-SP-02",
@@ -20824,7 +22136,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 31,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-SP-02A",
+          "WT-AC-NFR-SP-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-TAG-01",
@@ -20862,7 +22189,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TAG-01A",
+          "WT-AC-TAG-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-TAG-02",
@@ -20900,7 +22242,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TAG-02A",
+          "WT-AC-TAG-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-TAG-03",
@@ -20938,7 +22295,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TAG-03A",
+          "WT-AC-TAG-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-TAG-01",
@@ -20976,7 +22348,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NFR-TAG-01A",
+          "WT-AC-NFR-TAG-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-PLUGIN-03",
@@ -21014,7 +22401,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TR-PLUGIN-03A",
+          "WT-AC-TR-PLUGIN-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-PLUGIN-04",
@@ -21052,7 +22454,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TR-PLUGIN-04A",
+          "WT-AC-TR-PLUGIN-04B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-AUTHOR-01",
@@ -21095,7 +22512,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 4,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AUTHOR-01A",
+          "WT-AC-AUTHOR-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-AUTHOR-02",
@@ -21138,7 +22570,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 4,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-AUTHOR-02A",
+          "WT-AC-AUTHOR-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-NAV-01",
@@ -21176,7 +22623,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-NAV-01A",
+          "WT-AC-NAV-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-RECO-01",
@@ -21273,7 +22735,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 17,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 1,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-RECO-01A",
+          "WT-AC-RECO-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-SELL-04",
@@ -21311,7 +22788,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SELL-04A",
+          "WT-AC-SELL-04B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SEO-06",
@@ -21349,7 +22841,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SEO-06A",
+          "WT-AC-SEO-06B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CRAWL-04",
@@ -21387,7 +22894,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CRAWL-04A",
+          "WT-AC-CRAWL-04B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-LOOK-04",
@@ -21515,7 +23037,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 89,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LOOK-04A",
+          "WT-AC-LOOK-04B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-CRAWL-05",
@@ -21553,7 +23090,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CRAWL-05A",
+          "WT-AC-CRAWL-05B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-HOST-01",
@@ -21591,7 +23143,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-HOST-01A",
+          "WT-AC-HOST-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-TR-HOST-02",
@@ -21629,7 +23196,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-HOST-02A",
+          "WT-AC-HOST-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-LOG-01",
@@ -21667,7 +23249,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LOG-01A",
+          "WT-AC-LOG-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-LOG-01",
@@ -21705,7 +23302,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LOG-NFR-01A",
+          "WT-AC-LOG-NFR-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-MAIL-01",
@@ -21743,7 +23355,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-MAIL-01A",
+          "WT-AC-MAIL-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-SYNC-01",
@@ -21781,7 +23408,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SYNC-01A",
+          "WT-AC-SYNC-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-A11Y-02",
@@ -21843,7 +23485,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 2,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-TYPO-01",
@@ -21881,7 +23535,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TYPO-01A",
+          "WT-AC-TYPO-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-LEGAL-02",
@@ -21919,7 +23588,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LEGAL-02A",
+          "WT-AC-LEGAL-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-LEGAL-03",
@@ -21957,7 +23641,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LEGAL-03A",
+          "WT-AC-LEGAL-03B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-CONSENT-01",
@@ -22007,7 +23706,23 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 3,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-CONSENT-01A",
+          "WT-AC-CONSENT-01B",
+          "WT-AC-CONSENT-01C"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-PRIV-02",
@@ -22045,7 +23760,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-PRIV-02A",
+          "WT-AC-PRIV-02B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-OSS-01",
@@ -22083,7 +23813,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-OSS-01A",
+          "WT-AC-OSS-01B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-NFR-ENV-01",
@@ -22150,7 +23895,19 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-TPL-01",
@@ -22215,7 +23972,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 6,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-TPL-01A",
+          "WT-AC-TPL-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-PAGE-01",
@@ -23635,7 +25407,19 @@
       "pending": [
         "旧「自前フォームは保持せず」と新しいフォーム表示試作の境界を分離した。実送信・保存の担当と第三者フォームへの譲渡契約を設計・受入条件で確定する。"
       ],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 81,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-SELL-05",
@@ -23673,7 +25457,22 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-SELL-05A",
+          "WT-AC-SELL-05B"
+        ],
+        "selectionState": "no_candidate"
+      }
     },
     {
       "id": "WT-FR-PAGE-02",
@@ -23793,7 +25592,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 81,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-PAGE-02A",
+          "WT-AC-PAGE-02B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-HOME-01",
@@ -23878,7 +25692,22 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 46,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-HOME-01A",
+          "WT-AC-HOME-01B"
+        ],
+        "selectionState": "candidate_with_open_acceptance"
+      }
     },
     {
       "id": "WT-FR-EVENT-01",
@@ -24982,7 +26811,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 61,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-PAID-01",
@@ -25248,7 +27089,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 9,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-INTERVIEW-01",
@@ -25517,7 +27370,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 2,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 3,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_verified"
+      }
     },
     {
       "id": "WT-FR-BLP-01",
@@ -25623,7 +27488,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 2,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 3,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_verified"
+      }
     },
     {
       "id": "WT-FR-FORM-01",
@@ -27965,7 +29842,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 57,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-PARTS-03",
@@ -29055,7 +30944,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 179,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-LEARN-01",
@@ -29436,7 +31337,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 13,
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 4,
+          "partial": 0,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_verified"
+      }
     },
     {
       "id": "WT-FR-SEARCH-01",
@@ -31210,7 +33123,19 @@
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 3,
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 3,
+          "partial": 1,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
     },
     {
       "id": "WT-FR-UTILITY-01",
@@ -31272,7 +33197,24 @@
       "relatedEntryIds": [],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する"
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 4,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-UTILITY-01A",
+          "WT-AC-UTILITY-01B",
+          "WT-AC-UTILITY-01C",
+          "WT-AC-UTILITY-01D"
+        ],
+        "selectionState": "no_candidate"
+      }
     }
   ],
   "acceptanceAudit": {

@@ -628,6 +628,34 @@ const requirements = ir.requirements.map(r => {
     pending: r.pending_resolution || [],
     next: related.length ? '関連画像を起点に全受入条件の再現・実測を確認する' : '操作・状態・契約を含む再現デモと証跡を追加する' };
 });
+
+// Requirement rows need a selector-facing state as well as acceptance status.
+// A requirement can have verified rows and still have no visual candidate, or
+// have candidates while missing evidence. Keep those cases distinct so the
+// catalog can prioritize the next useful action without implying completion.
+const coverageForRequirement = requirement => {
+  const counts = Object.fromEntries(['verified_in_poc', 'partial', 'missing', 'stale'].map(status => [status, 0]));
+  for (const row of requirement.acceptance) counts[row.status] = (counts[row.status] || 0) + 1;
+  const openAcceptanceIds = requirement.acceptance
+    .filter(row => ['missing', 'stale'].includes(row.status))
+    .map(row => row.id)
+    .sort();
+  const selectionState = !requirement.relatedEntryIds.length
+    ? 'no_candidate'
+    : openAcceptanceIds.length
+      ? 'candidate_with_open_acceptance'
+      : counts.partial
+        ? 'candidate_with_partial_evidence'
+        : 'candidate_verified';
+  return {
+    candidateCount: requirement.relatedEntryIds.length,
+    acceptanceCount: requirement.acceptance.length,
+    counts,
+    openAcceptanceIds,
+    selectionState,
+  };
+};
+for (const requirement of requirements) requirement.coverage = coverageForRequirement(requirement);
 // Candidates are selected by people and agents, so expose the evidence boundary
 // next to every candidate.  The related requirement list alone cannot tell a
 // selector whether a candidate is merely photographed, partially verified, or
@@ -671,6 +699,7 @@ const selectionIndex = {
     id: requirement.id,
     priority: requirement.priority,
     status: requirement.status,
+    coverage: requirement.coverage,
     acceptance: requirement.acceptance.map(row => ({ id: row.id, status: row.status })),
     relatedEntryIds: requirement.relatedEntryIds,
   })),
