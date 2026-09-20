@@ -110,3 +110,19 @@ test('selection index exposes evidence boundaries for every catalog candidate', 
     assert.ok(requirement.acceptance.every(row => ['missing', 'partial', 'stale', 'verified_in_poc'].includes(row.status)));
   }
 });
+
+test('catalog data stays aligned with canonical requirement and acceptance counts', () => {
+  const root = new URL('../', import.meta.url);
+  const ir = JSON.parse(fs.readFileSync(new URL('docs/requirements/l3/requirements-ir.json', root), 'utf8'));
+  const cases = JSON.parse(fs.readFileSync(new URL('docs/requirements/l3/acceptance-cases.json', root), 'utf8'));
+  const catalog = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/catalog-data.json', root), 'utf8'));
+  const catalogAcceptanceRows = catalog.requirements.flatMap(requirement => requirement.acceptance);
+  const auditAcceptanceCount = Object.values(catalog.acceptanceAudit).reduce((sum, count) => sum + count, 0);
+
+  assert.equal(catalog.requirementCount, ir.requirements.length);
+  assert.equal(catalog.requirements.length, ir.requirements.length);
+  assert.equal(catalogAcceptanceRows.length, cases.cases.length);
+  assert.equal(auditAcceptanceCount, cases.cases.length);
+  assert.equal(new Set(catalog.requirements.map(requirement => requirement.id)).size, ir.requirements.length);
+  assert.equal(new Set(catalogAcceptanceRows.map(acceptance => acceptance.id)).size, cases.cases.length);
+});
