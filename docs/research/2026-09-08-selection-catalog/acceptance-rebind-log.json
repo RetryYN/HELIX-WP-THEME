@@ -1762,6 +1762,95 @@
       ],
       "registry_before_sha256": "770585152336778820d902c3c66edba24779b8f9112f6626026ea59bfe7615f7",
       "registry_after_sha256": "de5442af86d7635e43760771217dced0b026f267aa5f91b02f197edeeb6420ea"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-LP-01A",
+        "WT-AC-LP-01B",
+        "WT-AC-LP-01C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-lp-routing-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LP-01A",
+          "path": "scripts/verify-lp-routing-poc.mjs",
+          "before": "4773447f5e7e191b7ed2365e789a1fe730b98d1308313467c600dbcd6ba5d539",
+          "after": "0dd5556c017cfa96650392c6ea3eb1392ad08cf0b808f36bd13dc2a7a3b3ed7e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LP-01A",
+          "path": "tests/e2e/lp-routing-poc-selection-catalog.spec.ts",
+          "before": "560fa62fa6efad893a71e735623ba6ed03ca53635f745c85aa0ae6b83d7157d6",
+          "after": "a4b7bc4fcfcbf2b35d0b9ec2e5e564db65e0fcee38a453a918d6ce9e671ffe44"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LP-01A",
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "before": "66daf1c9161493bbe608c07297c9b8fe834955bbfd9ed869a0b50e09b5f554a9",
+          "after": "5ad8021a8e18e59600133d1bc3fef2682b4946bb61d8a69f99dec76e44c3642c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LP-01B",
+          "path": "scripts/verify-lp-routing-poc.mjs",
+          "before": "4773447f5e7e191b7ed2365e789a1fe730b98d1308313467c600dbcd6ba5d539",
+          "after": "0dd5556c017cfa96650392c6ea3eb1392ad08cf0b808f36bd13dc2a7a3b3ed7e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LP-01B",
+          "path": "tests/e2e/lp-routing-poc-selection-catalog.spec.ts",
+          "before": "560fa62fa6efad893a71e735623ba6ed03ca53635f745c85aa0ae6b83d7157d6",
+          "after": "a4b7bc4fcfcbf2b35d0b9ec2e5e564db65e0fcee38a453a918d6ce9e671ffe44"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LP-01B",
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "before": "66daf1c9161493bbe608c07297c9b8fe834955bbfd9ed869a0b50e09b5f554a9",
+          "after": "5ad8021a8e18e59600133d1bc3fef2682b4946bb61d8a69f99dec76e44c3642c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LP-01C",
+          "path": "scripts/verify-lp-routing-poc.mjs",
+          "before": "4773447f5e7e191b7ed2365e789a1fe730b98d1308313467c600dbcd6ba5d539",
+          "after": "0dd5556c017cfa96650392c6ea3eb1392ad08cf0b808f36bd13dc2a7a3b3ed7e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LP-01C",
+          "path": "tests/e2e/lp-routing-poc-selection-catalog.spec.ts",
+          "before": "560fa62fa6efad893a71e735623ba6ed03ca53635f745c85aa0ae6b83d7157d6",
+          "after": "a4b7bc4fcfcbf2b35d0b9ec2e5e564db65e0fcee38a453a918d6ce9e671ffe44"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LP-01C",
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "before": "66daf1c9161493bbe608c07297c9b8fe834955bbfd9ed869a0b50e09b5f554a9",
+          "after": "5ad8021a8e18e59600133d1bc3fef2682b4946bb61d8a69f99dec76e44c3642c"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "before_sha256": "5ad8021a8e18e59600133d1bc3fef2682b4946bb61d8a69f99dec76e44c3642c",
+          "after_sha256": "5ad8021a8e18e59600133d1bc3fef2682b4946bb61d8a69f99dec76e44c3642c",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "de5442af86d7635e43760771217dced0b026f267aa5f91b02f197edeeb6420ea",
+      "registry_after_sha256": "e54f9cc7108416089fdb74a7d19a6752950748e3996eb37f79a0f1ac1f75ac64"
     }
   ]
 }

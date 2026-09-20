@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
-import { manifest, records, fixedPage, restProjection, copy, validateFixture, validateRecord } from '../../docs/research/2026-09-20-lp-routing-poc/model.mjs';
+import { manifest, records, fixedPage, restProjection, copy, validateManifest, validateFixture, validateRecord } from '../../docs/research/2026-09-20-lp-routing-poc/model.mjs';
 import { startProductServer } from '../../scripts/product-surfaces-server.mjs';
 
 let service;
@@ -44,6 +44,26 @@ test('AC-LP-01B rejects hierarchical LP slugs and collapsing event kinds into LP
   expect(() => validateFixture(collapsed)).toThrow('event and comparison types are required');
   const wrongPage = copy(records); wrongPage[0].path = '/guides/start-editorial-session/';
   expect(() => validateRecord(wrongPage[0])).toThrow('LP-like path is not flat');
+});
+
+test('AC-LP-01C rejects a directory base on a non-BLP type', () => {
+  const next = copy(manifest); next.contentTypes[0].slugBase = 'campaigns';
+  expect(() => validateManifest(next)).toThrow('non-BLP type has a directory base');
+});
+
+test('AC-LP-01C rejects a CV goal owned by a BLP', () => {
+  const next = copy(records); next[3].goalCvId = 'wrong-goal';
+  expect(() => validateFixture(next)).toThrow('BLP must not own a CV goal');
+});
+
+test('AC-LP-01C requires a BLP destination', () => {
+  const next = copy(records); delete next[3].sendsTo;
+  expect(() => validateFixture(next)).toThrow('BLP must declare its LP destination');
+});
+
+test('AC-LP-01C requires all four declared management types', () => {
+  const next = copy(manifest); next.contentTypes.pop();
+  expect(() => validateManifest(next)).toThrow('manifest content types are incomplete');
 });
 
 test('AC-LP-01C keeps BLP purpose and destination separate from LP and preserves independent kinds', async ({ page }) => {
