@@ -1,0 +1,86 @@
+{
+  "schema": "wt-product-registry-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "product-registry:card",
+      "face": "article",
+      "part": "product-registry-card",
+      "label": "商品正本：記事の商品カード",
+      "variant": "card",
+      "description": "正本を一度直すと、参照記事へ同じ値が届く。 2受入条件は部分確認。",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-registry-poc/card-pc.jpg",
+        "sp": "../2026-09-20-product-registry-poc/card-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "referenceId": "wt-product-registry-poc.v1",
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "正本を一度直すと、参照記事へ同じ値が届く。",
+        "単一正本": "名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。",
+        "反映": "同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。",
+        "鮮度": "手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
+        "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "product-registry:ranking",
+      "face": "article",
+      "part": "product-registry-ranking",
+      "label": "商品正本：ランキング記事",
+      "variant": "ranking",
+      "description": "並び順は記事に、商品情報は正本に。 2受入条件は部分確認。",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-registry-poc/ranking-pc.jpg",
+        "sp": "../2026-09-20-product-registry-poc/ranking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "referenceId": "wt-product-registry-poc.v1",
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "並び順は記事に、商品情報は正本に。",
+        "単一正本": "名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。",
+        "反映": "同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。",
+        "鮮度": "手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
+        "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "product-registry:comparison",
+      "face": "article",
+      "part": "product-registry-comparison",
+      "label": "商品正本：比較記事とCTA",
+      "variant": "comparison",
+      "description": "表と行動ボタンにも、同じリンク先を使う。 2受入条件は部分確認。",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-registry-poc/comparison-pc.jpg",
+        "sp": "../2026-09-20-product-registry-poc/comparison-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "referenceId": "wt-product-registry-poc.v1",
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "表と行動ボタンにも、同じリンク先を使う。",
+        "単一正本": "名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。",
+        "反映": "同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。",
+        "鮮度": "手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
+        "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      }
+    }
+  ]
+}

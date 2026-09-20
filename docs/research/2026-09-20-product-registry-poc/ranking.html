@@ -1,0 +1,214 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>ランキング記事｜商品正本 PoC</title><link rel="stylesheet" href="registry.css"><body data-scenario="ranking"><a class="skip" href="#previews">記事へ進む</a><header class="site-header"><strong>HELIX / 商品正本</strong><span>架空データ・ローカル PoC</span></header><main><nav aria-label="候補"><a href="card.html" >記事の商品カード</a><a href="ranking.html" aria-current="page">ランキング記事</a><a href="comparison.html" >比較記事とCTA</a></nav><p class="eyebrow">PRODUCT REGISTRY / ONE SOURCE</p><h1>ランキング記事</h1><p class="lead">並び順は記事に、商品情報は正本に。</p><p class="boundary">3記事は商品IDだけを参照。編集値はページ内メモリに反映し、実保存・決済・カート・会員・外部APIを持ちません。2受入条件は部分確認。</p><section class="editor"><div><h2>商品正本を更新する</h2><p>名前・価格・特徴・評価・画像・リンク先はこの正本だけで管理。記事別の上書きは受け付けません。</p><noscript><p class="notice">JS無効でも3記事の初期表示と正本JSONを読めます。編集は動作しません。</p></noscript><label>schema付き商品JSON<textarea id="input" rows="9" spellcheck="false">{
+  &quot;version&quot;: 1,
+  &quot;products&quot;: [
+    {
+      &quot;id&quot;: &quot;light-a&quot;,
+      &quot;name&quot;: &quot;デスクライト A&quot;,
+      &quot;price&quot;: 3980,
+      &quot;features&quot;: [
+        &quot;小さな机に置きやすい、軽量なライト。&quot;,
+        &quot;明るさ 500 lm&quot;
+      ],
+      &quot;rating&quot;: 4.2,
+      &quot;image&quot;: &quot;light-a.svg&quot;,
+      &quot;linkType&quot;: &quot;affiliate&quot;,
+      &quot;url&quot;: &quot;https://example.com/affiliate/light-a/&quot;,
+      &quot;source&quot;: &quot;手動fixture（架空・外部取得なし）&quot;,
+      &quot;retrievedAt&quot;: &quot;2026-09-20T00:00:00Z&quot;,
+      &quot;freshForHours&quot;: 24
+    },
+    {
+      &quot;id&quot;: &quot;light-b&quot;,
+      &quot;name&quot;: &quot;デスクライト B&quot;,
+      &quot;price&quot;: 6480,
+      &quot;features&quot;: [
+        &quot;広い作業面を照らす、明るさ重視のライト。&quot;,
+        &quot;明るさ 900 lm&quot;
+      ],
+      &quot;rating&quot;: 4.5,
+      &quot;image&quot;: &quot;light-b.svg&quot;,
+      &quot;linkType&quot;: &quot;external-store&quot;,
+      &quot;url&quot;: &quot;https://example.com/external-store/light-b/&quot;,
+      &quot;source&quot;: &quot;手動fixture（架空・外部取得なし）&quot;,
+      &quot;retrievedAt&quot;: &quot;2026-09-20T00:00:00Z&quot;,
+      &quot;freshForHours&quot;: 24
+    },
+    {
+      &quot;id&quot;: &quot;light-c&quot;,
+      &quot;name&quot;: &quot;デスクライト C&quot;,
+      &quot;price&quot;: 8480,
+      &quot;features&quot;: [
+        &quot;長めの保証で選ぶ、据え置きライト。&quot;,
+        &quot;明るさ 700 lm&quot;
+      ],
+      &quot;rating&quot;: 4.4,
+      &quot;image&quot;: &quot;light-c.svg&quot;,
+      &quot;linkType&quot;: &quot;self-ec&quot;,
+      &quot;url&quot;: &quot;https://example.com/self-ec/light-c/&quot;,
+      &quot;source&quot;: &quot;手動fixture（架空・外部取得なし）&quot;,
+      &quot;retrievedAt&quot;: &quot;2026-09-18T00:00:00Z&quot;,
+      &quot;freshForHours&quot;: 24
+    }
+  ]
+}</textarea></label><div class="buttons"><button id="apply" disabled>検証して3記事へ反映</button><button id="reset" disabled>初期値に戻す</button></div><p id="status" role="status">未変更。再読込で初期値に戻ります。</p></div><aside><h2>参照と鮮度</h2><p>取得元は手動fixture。外部EC/ASPから取得していません。</p><p>検査時計：2026-09-20T12:00:00Z<br>各商品の取得時刻と確認期間から鮮度ラベルを表示。</p><p>期限超過は「要再確認」。実時間監視・自動再取得は未実装です。</p><details><summary>記事の参照だけを見る</summary><pre>[
+  {
+    &quot;id&quot;: &quot;card&quot;,
+    &quot;title&quot;: &quot;小さな机の選び方&quot;,
+    &quot;productIds&quot;: [
+      &quot;light-a&quot;,
+      &quot;light-b&quot;,
+      &quot;light-c&quot;
+    ]
+  },
+  {
+    &quot;id&quot;: &quot;ranking&quot;,
+    &quot;title&quot;: &quot;用途別に選ぶライト&quot;,
+    &quot;productIds&quot;: [
+      &quot;light-b&quot;,
+      &quot;light-a&quot;,
+      &quot;light-c&quot;
+    ]
+  },
+  {
+    &quot;id&quot;: &quot;comparison&quot;,
+    &quot;title&quot;: &quot;３つのライトを比べる&quot;,
+    &quot;productIds&quot;: [
+      &quot;light-c&quot;,
+      &quot;light-a&quot;,
+      &quot;light-b&quot;
+    ]
+  }
+]</pre></details><p class="scope">affiliate用merchant feed / ProductGroupは要求対象外。実在レビュー・検索適格性は未検証。</p></aside></section><div id="previews" tabindex="-1"><section class="article-preview" data-article="ranking"><header><span>参照記事 / ranking</span><h2>用途別に選ぶライト</h2></header><div class="products ranking"><section data-product="light-b"><p class="rank">編集デモ 1 位</p><div class="product-content"><img src="../2026-09-20-product-surfaces-poc/light-b.svg" alt="デスクライト Bの架空イラスト" width="400" height="260"><h3>デスクライト B</h3><p class="price">6,480 円</p><p class="rating">評価 4.5 / 5（架空）</p><ul><li>広い作業面を照らす、明るさ重視のライト。</li><li>明るさ 900 lm</li></ul><p class="meta">外部ストア<br>手動fixture（架空・外部取得なし）<br>2026-09-20T00:00:00Z<br><strong class="freshness">確認期間内</strong></p><a class="cta" href="https://example.com/external-store/light-b/" >デスクライト Bの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></div></section><section data-product="light-a"><p class="rank">編集デモ 2 位</p><div class="product-content"><img src="../2026-09-20-product-surfaces-poc/light-a.svg" alt="デスクライト Aの架空イラスト" width="400" height="260"><h3>デスクライト A</h3><p class="price">3,980 円</p><p class="rating">評価 4.2 / 5（架空）</p><ul><li>小さな机に置きやすい、軽量なライト。</li><li>明るさ 500 lm</li></ul><p class="meta">アフィリエイト<br>手動fixture（架空・外部取得なし）<br>2026-09-20T00:00:00Z<br><strong class="freshness">確認期間内</strong></p><a class="cta" href="https://example.com/affiliate/light-a/" rel="sponsored nofollow">デスクライト Aの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></div></section><section data-product="light-c"><p class="rank">編集デモ 3 位</p><div class="product-content"><img src="../2026-09-20-product-surfaces-poc/light-c.svg" alt="デスクライト Cの架空イラスト" width="400" height="260"><h3>デスクライト C</h3><p class="price">8,480 円</p><p class="rating">評価 4.4 / 5（架空）</p><ul><li>長めの保証で選ぶ、据え置きライト。</li><li>明るさ 700 lm</li></ul><p class="meta">自社EC<br>手動fixture（架空・外部取得なし）<br>2026-09-18T00:00:00Z<br><strong class="freshness">要再確認</strong></p><a class="cta" href="https://example.com/self-ec/light-c/" >デスクライト Cの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></div></section></div></section><section class="article-preview" data-article="card"><header><span>参照記事 / card</span><h2>小さな机の選び方</h2></header><div class="products card"><section data-product="light-a"><div class="product-content"><img src="../2026-09-20-product-surfaces-poc/light-a.svg" alt="デスクライト Aの架空イラスト" width="400" height="260"><h3>デスクライト A</h3><p class="price">3,980 円</p><p class="rating">評価 4.2 / 5（架空）</p><ul><li>小さな机に置きやすい、軽量なライト。</li><li>明るさ 500 lm</li></ul><p class="meta">アフィリエイト<br>手動fixture（架空・外部取得なし）<br>2026-09-20T00:00:00Z<br><strong class="freshness">確認期間内</strong></p><a class="cta" href="https://example.com/affiliate/light-a/" rel="sponsored nofollow">デスクライト Aの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></div></section><section data-product="light-b"><div class="product-content"><img src="../2026-09-20-product-surfaces-poc/light-b.svg" alt="デスクライト Bの架空イラスト" width="400" height="260"><h3>デスクライト B</h3><p class="price">6,480 円</p><p class="rating">評価 4.5 / 5（架空）</p><ul><li>広い作業面を照らす、明るさ重視のライト。</li><li>明るさ 900 lm</li></ul><p class="meta">外部ストア<br>手動fixture（架空・外部取得なし）<br>2026-09-20T00:00:00Z<br><strong class="freshness">確認期間内</strong></p><a class="cta" href="https://example.com/external-store/light-b/" >デスクライト Bの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></div></section><section data-product="light-c"><div class="product-content"><img src="../2026-09-20-product-surfaces-poc/light-c.svg" alt="デスクライト Cの架空イラスト" width="400" height="260"><h3>デスクライト C</h3><p class="price">8,480 円</p><p class="rating">評価 4.4 / 5（架空）</p><ul><li>長めの保証で選ぶ、据え置きライト。</li><li>明るさ 700 lm</li></ul><p class="meta">自社EC<br>手動fixture（架空・外部取得なし）<br>2026-09-18T00:00:00Z<br><strong class="freshness">要再確認</strong></p><a class="cta" href="https://example.com/self-ec/light-c/" >デスクライト Cの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></div></section></div></section><section class="article-preview" data-article="comparison"><header><span>参照記事 / comparison</span><h2>３つのライトを比べる</h2></header><div class="table-scroll" tabindex="0" role="region" aria-label="商品比較"><table><caption>３つのライトを比べる</caption><thead><tr><th scope="col">項目</th><th scope="col" data-product="light-c"><img src="../2026-09-20-product-surfaces-poc/light-c.svg" alt="デスクライト Cの架空イラスト" width="400" height="260"><h3>デスクライト C</h3><p class="price">8,480 円</p><p class="rating">評価 4.4 / 5（架空）</p><ul><li>長めの保証で選ぶ、据え置きライト。</li><li>明るさ 700 lm</li></ul><p class="meta">自社EC<br>手動fixture（架空・外部取得なし）<br>2026-09-18T00:00:00Z<br><strong class="freshness">要再確認</strong></p></th><th scope="col" data-product="light-a"><img src="../2026-09-20-product-surfaces-poc/light-a.svg" alt="デスクライト Aの架空イラスト" width="400" height="260"><h3>デスクライト A</h3><p class="price">3,980 円</p><p class="rating">評価 4.2 / 5（架空）</p><ul><li>小さな机に置きやすい、軽量なライト。</li><li>明るさ 500 lm</li></ul><p class="meta">アフィリエイト<br>手動fixture（架空・外部取得なし）<br>2026-09-20T00:00:00Z<br><strong class="freshness">確認期間内</strong></p></th><th scope="col" data-product="light-b"><img src="../2026-09-20-product-surfaces-poc/light-b.svg" alt="デスクライト Bの架空イラスト" width="400" height="260"><h3>デスクライト B</h3><p class="price">6,480 円</p><p class="rating">評価 4.5 / 5（架空）</p><ul><li>広い作業面を照らす、明るさ重視のライト。</li><li>明るさ 900 lm</li></ul><p class="meta">外部ストア<br>手動fixture（架空・外部取得なし）<br>2026-09-20T00:00:00Z<br><strong class="freshness">確認期間内</strong></p></th></tr></thead><tbody><tr><th scope="row">次の行動</th><td data-product="light-c"><a class="cta" href="https://example.com/self-ec/light-c/" >デスクライト Cの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></td><td data-product="light-a"><a class="cta" href="https://example.com/affiliate/light-a/" rel="sponsored nofollow">デスクライト Aの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></td><td data-product="light-b"><a class="cta" href="https://example.com/external-store/light-b/" >デスクライト Bの詳細（デモ）</a><p class="condition">税込の架空価格。購入不可。条件・在庫は未接続。</p></td></tr></tbody></table></div></section></div><details class="output"><summary>構造化データの共通入力を見る</summary><pre id="structured-preview">[
+  {
+    &quot;@context&quot;: &quot;https://schema.org&quot;,
+    &quot;@graph&quot;: [
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-a&quot;,
+        &quot;name&quot;: &quot;デスクライト A&quot;,
+        &quot;description&quot;: &quot;小さな机に置きやすい、軽量なライト。 / 明るさ 500 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-a.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/affiliate/light-a/&quot;,
+          &quot;price&quot;: 3980,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      },
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-b&quot;,
+        &quot;name&quot;: &quot;デスクライト B&quot;,
+        &quot;description&quot;: &quot;広い作業面を照らす、明るさ重視のライト。 / 明るさ 900 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-b.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/external-store/light-b/&quot;,
+          &quot;price&quot;: 6480,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      },
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-c&quot;,
+        &quot;name&quot;: &quot;デスクライト C&quot;,
+        &quot;description&quot;: &quot;長めの保証で選ぶ、据え置きライト。 / 明るさ 700 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-c.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/self-ec/light-c/&quot;,
+          &quot;price&quot;: 8480,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      }
+    ]
+  },
+  {
+    &quot;@context&quot;: &quot;https://schema.org&quot;,
+    &quot;@graph&quot;: [
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-b&quot;,
+        &quot;name&quot;: &quot;デスクライト B&quot;,
+        &quot;description&quot;: &quot;広い作業面を照らす、明るさ重視のライト。 / 明るさ 900 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-b.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/external-store/light-b/&quot;,
+          &quot;price&quot;: 6480,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      },
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-a&quot;,
+        &quot;name&quot;: &quot;デスクライト A&quot;,
+        &quot;description&quot;: &quot;小さな机に置きやすい、軽量なライト。 / 明るさ 500 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-a.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/affiliate/light-a/&quot;,
+          &quot;price&quot;: 3980,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      },
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-c&quot;,
+        &quot;name&quot;: &quot;デスクライト C&quot;,
+        &quot;description&quot;: &quot;長めの保証で選ぶ、据え置きライト。 / 明るさ 700 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-c.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/self-ec/light-c/&quot;,
+          &quot;price&quot;: 8480,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      }
+    ]
+  },
+  {
+    &quot;@context&quot;: &quot;https://schema.org&quot;,
+    &quot;@graph&quot;: [
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-c&quot;,
+        &quot;name&quot;: &quot;デスクライト C&quot;,
+        &quot;description&quot;: &quot;長めの保証で選ぶ、据え置きライト。 / 明るさ 700 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-c.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/self-ec/light-c/&quot;,
+          &quot;price&quot;: 8480,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      },
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-a&quot;,
+        &quot;name&quot;: &quot;デスクライト A&quot;,
+        &quot;description&quot;: &quot;小さな机に置きやすい、軽量なライト。 / 明るさ 500 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-a.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/affiliate/light-a/&quot;,
+          &quot;price&quot;: 3980,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      },
+      {
+        &quot;@type&quot;: &quot;Product&quot;,
+        &quot;sku&quot;: &quot;light-b&quot;,
+        &quot;name&quot;: &quot;デスクライト B&quot;,
+        &quot;description&quot;: &quot;広い作業面を照らす、明るさ重視のライト。 / 明るさ 900 lm&quot;,
+        &quot;image&quot;: &quot;https://example.com/fixtures/light-b.svg&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;url&quot;: &quot;https://example.com/external-store/light-b/&quot;,
+          &quot;price&quot;: 6480,
+          &quot;priceCurrency&quot;: &quot;JPY&quot;
+        }
+      }
+    ]
+  }
+]</pre></details><footer>WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・外部APIは未接続。商品表示とJSON-LDの正本一致だけの代表PoC。AI・credentialなし。</footer></main><script type="module" src="view.mjs"></script></body></html>

@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1241,
+  "screenshotCount": 1247,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -13996,6 +13996,87 @@
         "実測": "required fields、Forbidden types、古い日付・欠落・禁止型の負例。",
         "未検証": "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。 本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
       }
+    },
+    {
+      "id": "product-registry:card",
+      "face": "article",
+      "part": "product-registry-card",
+      "label": "商品正本：記事の商品カード",
+      "variant": "card",
+      "description": "正本を一度直すと、参照記事へ同じ値が届く。 2受入条件は部分確認。",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-registry-poc/card-pc.jpg",
+        "sp": "../2026-09-20-product-registry-poc/card-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "referenceId": "wt-product-registry-poc.v1",
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "正本を一度直すと、参照記事へ同じ値が届く。",
+        "単一正本": "名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。",
+        "反映": "同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。",
+        "鮮度": "手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
+        "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "product-registry:ranking",
+      "face": "article",
+      "part": "product-registry-ranking",
+      "label": "商品正本：ランキング記事",
+      "variant": "ranking",
+      "description": "並び順は記事に、商品情報は正本に。 2受入条件は部分確認。",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-registry-poc/ranking-pc.jpg",
+        "sp": "../2026-09-20-product-registry-poc/ranking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "referenceId": "wt-product-registry-poc.v1",
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "並び順は記事に、商品情報は正本に。",
+        "単一正本": "名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。",
+        "反映": "同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。",
+        "鮮度": "手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
+        "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "product-registry:comparison",
+      "face": "article",
+      "part": "product-registry-comparison",
+      "label": "商品正本：比較記事とCTA",
+      "variant": "comparison",
+      "description": "表と行動ボタンにも、同じリンク先を使う。 2受入条件は部分確認。",
+      "purpose": "正本変更が複数記事と販売面へ同じ値で届くことを確認する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-registry-poc/comparison-pc.jpg",
+        "sp": "../2026-09-20-product-registry-poc/comparison-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-01"
+      ],
+      "referenceId": "wt-product-registry-poc.v1",
+      "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "表と行動ボタンにも、同じリンク先を使う。",
+        "単一正本": "名前/価格/特徴/評価/画像/リンク先はschema付きJSON。記事は商品IDと順番だけ。",
+        "反映": "同一ページ内の3記事・4販売面と構造化入力を一括更新。実保存は未接続。",
+        "鮮度": "手動fixtureの取得元/時刻/確認期間を保持。固定検査時計で期限超過を可視化。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
+        "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
+      }
     }
   ],
   "requirements": [
@@ -19780,45 +19861,95 @@
           "requirement_id": "WT-FR-SELL-01",
           "oracle": "商品名・価格・特徴・評価・画像・アフィリエイト / 外部ストア / 自社 EC URL が 1 つの商品正本に保存され、複数記事から同じ値を参照して一括反映できる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。",
+            "外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+              "sha256": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+              "row_names": [
+                "AC-A card 1440 js shared values and responsive views",
+                "AC-A card 1440 no-js shared values and responsive views",
+                "AC-A card 390 js shared values and responsive views",
+                "AC-A card 390 no-js shared values and responsive views",
+                "AC-A card 320 js shared values and responsive views",
+                "AC-A card 320 no-js shared values and responsive views",
+                "AC-A ranking 1440 js shared values and responsive views",
+                "AC-A ranking 1440 no-js shared values and responsive views",
+                "AC-A ranking 390 js shared values and responsive views",
+                "AC-A ranking 390 no-js shared values and responsive views",
+                "AC-A ranking 320 js shared values and responsive views",
+                "AC-A ranking 320 no-js shared values and responsive views",
+                "AC-A comparison 1440 js shared values and responsive views",
+                "AC-A comparison 1440 no-js shared values and responsive views",
+                "AC-A comparison 390 js shared values and responsive views",
+                "AC-A comparison 390 no-js shared values and responsive views",
+                "AC-A comparison 320 js shared values and responsive views",
+                "AC-A comparison 320 no-js shared values and responsive views",
+                "AC-A edit all canonical fields once updates every article and structured input",
+                "AC-A freshness boundary and three link destinations remain canonical",
+                "AC-A keyboard 200 percent root text and comparison scroll stay contained"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-SELL-01B",
           "requirement_id": "WT-FR-SELL-01",
           "oracle": "記事ごとの手入力が正本になった、商品リンク先が正本外に散った、または決済・カート・会員をテーマが持てば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "schema付き商品正本のローカル検証/編集を3記事・カード/ランキング/比較表/CTA・構造化入力へ反映。記事override拒否、取得元/時刻/鮮度、PC/SP/JS有無/keyboardを検査。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。",
+            "外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+              "sha256": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+              "row_names": [
+                "AC-B negative price preserves all article output",
+                "AC-B missing URL preserves all article output",
+                "AC-B foreign URL preserves all article output",
+                "AC-B unknown field preserves all article output",
+                "AC-B bad rating preserves all article output",
+                "AC-B future stamp preserves all article output",
+                "AC-B duplicate ID preserves all article output",
+                "AC-B article value or URL overrides and missing product reference are refused",
+                "AC-B syntax error and local-only update do not persist or send",
+                "AC-B mutation visible-price-drift rejected",
+                "AC-B mutation article-override-allowed rejected",
+                "AC-B mutation rating-ceiling-removed rejected"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "product-registry:card",
+        "product-registry:ranking",
+        "product-registry:comparison"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-SELL-01A",
-          "WT-AC-SELL-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -34375,8 +34506,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 200,
-    "partial": 68,
+    "missing": 198,
+    "partial": 70,
     "verified_in_poc": 32,
     "stale": 0
   },
