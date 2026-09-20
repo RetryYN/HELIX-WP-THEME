@@ -13407,6 +13407,120 @@
           ]
         }
       ]
+    },
+    "WT-AC-SELL-02A": {
+      "status": "partial",
+      "requirement_digest": "ae57a9ed9601257f",
+      "oracle_sha256": "71b685899daecaf1dbd5d02474ea0ed04ca6a9ce6ae51a310ac90778e92022c3",
+      "source_digests": {
+        "scripts/build-product-surfaces-poc.mjs": "05f6afdfedb3619ca82e2cf2dfb0329c108124cd3d3f993f6a83362b7b7ec202",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/product-surfaces-renderer.mjs": "f1a2d8a8112cadef4b119c8eb68d9d55714f4d08e75deacf04e21e2ad03753ef",
+        "scripts/verify-product-surfaces-poc.mjs": "89ce2b68e33634293bf43eec87b8ccb27b2eebefa0a8d8c08d4062f2af69f410",
+        "tests/e2e/product-surfaces-poc-selection-catalog.spec.ts": "e5a8d1f1827235236e6f7d7ca8c02af9c0944f06b4785d783b002b65c8821457",
+        "docs/research/2026-09-20-product-surfaces-poc/products.mjs": "13392e92f29e00f7499a9d819a7bcc6c60ef499349119b948e62f9711cd79a62",
+        "docs/research/2026-09-20-product-surfaces-poc/view.mjs": "c3e436a7682ef643ce21bae09695dab68a80e0c30a0848fe1d27d0813f263db1",
+        "docs/research/2026-09-20-product-surfaces-poc/products.css": "6698d52449d21c2c76c48f22d04172076b1bbc84f79c00c4429d266f30569894",
+        "docs/research/2026-09-20-product-surfaces-poc/light-a.svg": "e66d6d14d1ee529a9896584fbd9831782780a4ad3f42f0e449326f430531c8fd",
+        "docs/research/2026-09-20-product-surfaces-poc/light-b.svg": "d550187a43cf27b84e7830561a409cb9b5a293ac4c288b83e869e0a13ac723b4",
+        "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
+        "docs/research/2026-09-20-product-surfaces-poc/card.html": "8481e3e4c86f30bcf56c6578edff2999fe49a65801f347f106e2425d7074feae",
+        "docs/research/2026-09-20-product-surfaces-poc/ranking.html": "5b6329596363c19da27bfca11a56791f29fc3575c82bfc1f10c748c3dfd6de3f",
+        "docs/research/2026-09-20-product-surfaces-poc/comparison.html": "552dc8db0533d22077c0fae8aae9309dffd856762bb593bc6d3e4f03dcab1b1e",
+        "docs/research/2026-09-20-product-surfaces-poc/cta.html": "0cf39dddd230dfbe763935951a04357bfb88017e6a3b96c4ca56514099492574",
+        "docs/research/2026-09-20-product-surfaces-poc/review.html": "e7bfc1b055abb1fd57901e52266e7e48c5db27e7323ec07d4e5e4c2b78615a87"
+      },
+      "scope": "同一架空商品fixtureから5販売面。表示/JSON-LD値一致、配送返品分岐、比較表構造、variant/CV ID、1440/390/320px、JS有無、keyboard、代表200% root文字。",
+      "remaining": [
+        "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。",
+        "Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "row_names": [
+            "AC-A card 1440px js canonical values and reflow",
+            "AC-A card 1440px no-js canonical values and reflow",
+            "AC-A card 390px js canonical values and reflow",
+            "AC-A card 390px no-js canonical values and reflow",
+            "AC-A card 320px js canonical values and reflow",
+            "AC-A card 320px no-js canonical values and reflow",
+            "AC-A ranking 1440px js canonical values and reflow",
+            "AC-A ranking 1440px no-js canonical values and reflow",
+            "AC-A ranking 390px js canonical values and reflow",
+            "AC-A ranking 390px no-js canonical values and reflow",
+            "AC-A ranking 320px js canonical values and reflow",
+            "AC-A ranking 320px no-js canonical values and reflow",
+            "AC-A comparison 1440px js canonical values and reflow",
+            "AC-A comparison 1440px no-js canonical values and reflow",
+            "AC-A comparison 390px js canonical values and reflow",
+            "AC-A comparison 390px no-js canonical values and reflow",
+            "AC-A comparison 320px js canonical values and reflow",
+            "AC-A comparison 320px no-js canonical values and reflow",
+            "AC-A cta 1440px js canonical values and reflow",
+            "AC-A cta 1440px no-js canonical values and reflow",
+            "AC-A cta 390px js canonical values and reflow",
+            "AC-A cta 390px no-js canonical values and reflow",
+            "AC-A cta 320px js canonical values and reflow",
+            "AC-A cta 320px no-js canonical values and reflow",
+            "AC-A review 1440px js canonical values and reflow",
+            "AC-A review 1440px no-js canonical values and reflow",
+            "AC-A review 390px js canonical values and reflow",
+            "AC-A review 390px no-js canonical values and reflow",
+            "AC-A review 320px js canonical values and reflow",
+            "AC-A review 320px no-js canonical values and reflow",
+            "AC-A card CTA emits both IDs locally without external writes",
+            "AC-A ranking CTA emits both IDs locally without external writes",
+            "AC-A comparison CTA emits both IDs locally without external writes",
+            "AC-A cta CTA emits both IDs locally without external writes",
+            "AC-A review CTA emits both IDs locally without external writes",
+            "AC-A comparison columns rows highlights bottom CTA and sticky keyboard scroll",
+            "AC-A card keyboard and 200 percent root text keep document within viewport",
+            "AC-A comparison keyboard and 200 percent root text keep document within viewport"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SELL-02B": {
+      "status": "partial",
+      "requirement_digest": "ae57a9ed9601257f",
+      "oracle_sha256": "dff5939220873bfc8379618ec310153be0c8720c2c65de572122e6d0774ac7ad",
+      "source_digests": {
+        "scripts/build-product-surfaces-poc.mjs": "05f6afdfedb3619ca82e2cf2dfb0329c108124cd3d3f993f6a83362b7b7ec202",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/product-surfaces-renderer.mjs": "f1a2d8a8112cadef4b119c8eb68d9d55714f4d08e75deacf04e21e2ad03753ef",
+        "scripts/verify-product-surfaces-poc.mjs": "89ce2b68e33634293bf43eec87b8ccb27b2eebefa0a8d8c08d4062f2af69f410",
+        "tests/e2e/product-surfaces-poc-selection-catalog.spec.ts": "e5a8d1f1827235236e6f7d7ca8c02af9c0944f06b4785d783b002b65c8821457",
+        "docs/research/2026-09-20-product-surfaces-poc/products.mjs": "13392e92f29e00f7499a9d819a7bcc6c60ef499349119b948e62f9711cd79a62",
+        "docs/research/2026-09-20-product-surfaces-poc/view.mjs": "c3e436a7682ef643ce21bae09695dab68a80e0c30a0848fe1d27d0813f263db1",
+        "docs/research/2026-09-20-product-surfaces-poc/products.css": "6698d52449d21c2c76c48f22d04172076b1bbc84f79c00c4429d266f30569894",
+        "docs/research/2026-09-20-product-surfaces-poc/light-a.svg": "e66d6d14d1ee529a9896584fbd9831782780a4ad3f42f0e449326f430531c8fd",
+        "docs/research/2026-09-20-product-surfaces-poc/light-b.svg": "d550187a43cf27b84e7830561a409cb9b5a293ac4c288b83e869e0a13ac723b4",
+        "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
+        "docs/research/2026-09-20-product-surfaces-poc/card.html": "8481e3e4c86f30bcf56c6578edff2999fe49a65801f347f106e2425d7074feae",
+        "docs/research/2026-09-20-product-surfaces-poc/ranking.html": "5b6329596363c19da27bfca11a56791f29fc3575c82bfc1f10c748c3dfd6de3f",
+        "docs/research/2026-09-20-product-surfaces-poc/comparison.html": "552dc8db0533d22077c0fae8aae9309dffd856762bb593bc6d3e4f03dcab1b1e",
+        "docs/research/2026-09-20-product-surfaces-poc/cta.html": "0cf39dddd230dfbe763935951a04357bfb88017e6a3b96c4ca56514099492574",
+        "docs/research/2026-09-20-product-surfaces-poc/review.html": "e7bfc1b055abb1fd57901e52266e7e48c5db27e7323ec07d4e5e4c2b78615a87"
+      },
+      "scope": "同一架空商品fixtureから5販売面。表示/JSON-LD値一致、配送返品分岐、比較表構造、variant/CV ID、1440/390/320px、JS有無、keyboard、代表200% root文字。",
+      "remaining": [
+        "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。",
+        "Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "row_names": [
+            "AC-B missing data-variant-id blocks conversion projection",
+            "AC-B missing data-goal-cv-id blocks conversion projection",
+            "AC-B altered canonical fixture reaches all five renders and JSON-LD",
+            "AC-B route branching needs complete merchant policies and known destination"
+          ]
+        }
+      ]
     }
   }
 }

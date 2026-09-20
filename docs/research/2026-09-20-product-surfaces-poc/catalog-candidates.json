@@ -1,0 +1,140 @@
+{
+  "schema": "wt-product-surfaces-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "product-surfaces:card",
+      "face": "article",
+      "part": "product-surfaces-card",
+      "label": "販売面：商品カード",
+      "variant": "card",
+      "description": "特徴・評価・価格を一枚で見比べる。。同一商品正本の静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-surfaces-poc/card-pc.jpg",
+        "sp": "../2026-09-20-product-surfaces-poc/card-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "referenceId": "wt-product-surfaces-poc.v1",
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "特徴・評価・価格を一枚で見比べる。",
+        "商品正本": "架空商品3点の単一fixture。商品/価格/評価/レビュー/条件とJSON-LDを同時生成。",
+        "構造化データ": "affiliate/external-storeはproduct snippet形、self-ECは配送/返品付きmerchant listing形。検索表示適格性は未検証。",
+        "実測": "1440/390/320px、JS有無、IDイベント、比較表keyboard scroll、代表200% root文字。",
+        "対象外": "AI・credential・実購入・外部APIなし。計測/広告はテーマ外。",
+        "未検証": "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。 Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      }
+    },
+    {
+      "id": "product-surfaces:ranking",
+      "face": "article",
+      "part": "product-surfaces-ranking",
+      "label": "販売面：ランキング",
+      "variant": "ranking",
+      "description": "順位の根拠と用途を確かめて選ぶ。。同一商品正本の静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-surfaces-poc/ranking-pc.jpg",
+        "sp": "../2026-09-20-product-surfaces-poc/ranking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "referenceId": "wt-product-surfaces-poc.v1",
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "順位の根拠と用途を確かめて選ぶ。",
+        "商品正本": "架空商品3点の単一fixture。商品/価格/評価/レビュー/条件とJSON-LDを同時生成。",
+        "構造化データ": "affiliate/external-storeはproduct snippet形、self-ECは配送/返品付きmerchant listing形。検索表示適格性は未検証。",
+        "実測": "1440/390/320px、JS有無、IDイベント、比較表keyboard scroll、代表200% root文字。",
+        "対象外": "AI・credential・実購入・外部APIなし。計測/広告はテーマ外。",
+        "未検証": "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。 Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      }
+    },
+    {
+      "id": "product-surfaces:comparison",
+      "face": "article",
+      "part": "product-surfaces-comparison",
+      "label": "販売面：比較専用テーブル",
+      "variant": "comparison",
+      "description": "同じ項目を横に並べ、違いを見つける。。同一商品正本の静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-surfaces-poc/comparison-pc.jpg",
+        "sp": "../2026-09-20-product-surfaces-poc/comparison-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "referenceId": "wt-product-surfaces-poc.v1",
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "同じ項目を横に並べ、違いを見つける。",
+        "商品正本": "架空商品3点の単一fixture。商品/価格/評価/レビュー/条件とJSON-LDを同時生成。",
+        "構造化データ": "affiliate/external-storeはproduct snippet形、self-ECは配送/返品付きmerchant listing形。検索表示適格性は未検証。",
+        "実測": "1440/390/320px、JS有無、IDイベント、比較表keyboard scroll、代表200% root文字。",
+        "対象外": "AI・credential・実購入・外部APIなし。計測/広告はテーマ外。",
+        "未検証": "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。 Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      }
+    },
+    {
+      "id": "product-surfaces:cta",
+      "face": "article",
+      "part": "product-surfaces-cta",
+      "label": "販売面：CTA束",
+      "variant": "cta",
+      "description": "条件を見ながら次の行動を選ぶ。。同一商品正本の静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-surfaces-poc/cta-pc.jpg",
+        "sp": "../2026-09-20-product-surfaces-poc/cta-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "referenceId": "wt-product-surfaces-poc.v1",
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "条件を見ながら次の行動を選ぶ。",
+        "商品正本": "架空商品3点の単一fixture。商品/価格/評価/レビュー/条件とJSON-LDを同時生成。",
+        "構造化データ": "affiliate/external-storeはproduct snippet形、self-ECは配送/返品付きmerchant listing形。検索表示適格性は未検証。",
+        "実測": "1440/390/320px、JS有無、IDイベント、比較表keyboard scroll、代表200% root文字。",
+        "対象外": "AI・credential・実購入・外部APIなし。計測/広告はテーマ外。",
+        "未検証": "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。 Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      }
+    },
+    {
+      "id": "product-surfaces:review",
+      "face": "article",
+      "part": "product-surfaces-review",
+      "label": "販売面：レビュー",
+      "variant": "review",
+      "description": "良い点と注意点の両方を確かめる。。同一商品正本の静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-product-surfaces-poc/review-pc.jpg",
+        "sp": "../2026-09-20-product-surfaces-poc/review-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "referenceId": "wt-product-surfaces-poc.v1",
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "良い点と注意点の両方を確かめる。",
+        "商品正本": "架空商品3点の単一fixture。商品/価格/評価/レビュー/条件とJSON-LDを同時生成。",
+        "構造化データ": "affiliate/external-storeはproduct snippet形、self-ECは配送/返品付きmerchant listing形。検索表示適格性は未検証。",
+        "実測": "1440/390/320px、JS有無、IDイベント、比較表keyboard scroll、代表200% root文字。",
+        "対象外": "AI・credential・実購入・外部APIなし。計測/広告はテーマ外。",
+        "未検証": "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。 Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
+      }
+    }
+  ]
+}

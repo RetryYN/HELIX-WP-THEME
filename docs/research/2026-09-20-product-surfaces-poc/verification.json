@@ -1,0 +1,264 @@
+{
+  "schema": "wt-product-surfaces-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/product-surfaces-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "scripts/build-product-surfaces-poc.mjs": "05f6afdfedb3619ca82e2cf2dfb0329c108124cd3d3f993f6a83362b7b7ec202",
+    "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+    "scripts/product-surfaces-renderer.mjs": "f1a2d8a8112cadef4b119c8eb68d9d55714f4d08e75deacf04e21e2ad03753ef",
+    "scripts/verify-product-surfaces-poc.mjs": "89ce2b68e33634293bf43eec87b8ccb27b2eebefa0a8d8c08d4062f2af69f410",
+    "tests/e2e/product-surfaces-poc-selection-catalog.spec.ts": "e5a8d1f1827235236e6f7d7ca8c02af9c0944f06b4785d783b002b65c8821457",
+    "docs/research/2026-09-20-product-surfaces-poc/products.mjs": "13392e92f29e00f7499a9d819a7bcc6c60ef499349119b948e62f9711cd79a62",
+    "docs/research/2026-09-20-product-surfaces-poc/view.mjs": "c3e436a7682ef643ce21bae09695dab68a80e0c30a0848fe1d27d0813f263db1",
+    "docs/research/2026-09-20-product-surfaces-poc/products.css": "6698d52449d21c2c76c48f22d04172076b1bbc84f79c00c4429d266f30569894",
+    "docs/research/2026-09-20-product-surfaces-poc/light-a.svg": "e66d6d14d1ee529a9896584fbd9831782780a4ad3f42f0e449326f430531c8fd",
+    "docs/research/2026-09-20-product-surfaces-poc/light-b.svg": "d550187a43cf27b84e7830561a409cb9b5a293ac4c288b83e869e0a13ac723b4",
+    "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
+    "docs/research/2026-09-20-product-surfaces-poc/card.html": "8481e3e4c86f30bcf56c6578edff2999fe49a65801f347f106e2425d7074feae",
+    "docs/research/2026-09-20-product-surfaces-poc/ranking.html": "5b6329596363c19da27bfca11a56791f29fc3575c82bfc1f10c748c3dfd6de3f",
+    "docs/research/2026-09-20-product-surfaces-poc/comparison.html": "552dc8db0533d22077c0fae8aae9309dffd856762bb593bc6d3e4f03dcab1b1e",
+    "docs/research/2026-09-20-product-surfaces-poc/cta.html": "0cf39dddd230dfbe763935951a04357bfb88017e6a3b96c4ca56514099492574",
+    "docs/research/2026-09-20-product-surfaces-poc/review.html": "e7bfc1b055abb1fd57901e52266e7e48c5db27e7323ec07d4e5e4c2b78615a87"
+  },
+  "rows": [
+    {
+      "name": "AC-A card 1440px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 1440px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 390px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 390px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 320px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A card 320px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 1440px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 1440px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 390px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 390px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 320px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking 320px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 1440px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 1440px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 390px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 390px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 320px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison 320px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta 1440px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta 1440px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta 390px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta 390px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta 320px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta 320px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 1440px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 1440px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 390px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 390px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 320px js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 320px no-js canonical values and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A card CTA emits both IDs locally without external writes",
+      "pass": true
+    },
+    {
+      "name": "AC-A ranking CTA emits both IDs locally without external writes",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison CTA emits both IDs locally without external writes",
+      "pass": true
+    },
+    {
+      "name": "AC-A cta CTA emits both IDs locally without external writes",
+      "pass": true
+    },
+    {
+      "name": "AC-A review CTA emits both IDs locally without external writes",
+      "pass": true
+    },
+    {
+      "name": "AC-B missing data-variant-id blocks conversion projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B missing data-goal-cv-id blocks conversion projection",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison columns rows highlights bottom CTA and sticky keyboard scroll",
+      "pass": true
+    },
+    {
+      "name": "AC-B altered canonical fixture reaches all five renders and JSON-LD",
+      "pass": true
+    },
+    {
+      "name": "AC-B route branching needs complete merchant policies and known destination",
+      "pass": true
+    },
+    {
+      "name": "AC-A card keyboard and 200 percent root text keep document within viewport",
+      "pass": true
+    },
+    {
+      "name": "AC-A comparison keyboard and 200 percent root text keep document within viewport",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "card",
+      "device": "pc",
+      "file": "card-pc.jpg",
+      "sha256": "739cf450773a1c19dcf5f1e6c189ca9f8e67b63bb5cb980312736f725499a5d6"
+    },
+    {
+      "id": "card",
+      "device": "sp",
+      "file": "card-sp.jpg",
+      "sha256": "d702d80cf9fafff1fe744f88f027071fb7991a3b280cd42bf37bfe0f62af8706"
+    },
+    {
+      "id": "ranking",
+      "device": "pc",
+      "file": "ranking-pc.jpg",
+      "sha256": "1bb65373396a9ea8114382476197f6b2936d94b24768dee543007a131a2e5d6e"
+    },
+    {
+      "id": "ranking",
+      "device": "sp",
+      "file": "ranking-sp.jpg",
+      "sha256": "172a82228ef8cf315e1a364b4393f569b35cc87618c9f139f9fda90e22ea7087"
+    },
+    {
+      "id": "comparison",
+      "device": "pc",
+      "file": "comparison-pc.jpg",
+      "sha256": "5487917e548d66538dfa91ac6b51e0b338776ec333c199a703963732f94cf94a"
+    },
+    {
+      "id": "comparison",
+      "device": "sp",
+      "file": "comparison-sp.jpg",
+      "sha256": "059fa46ff3c7cb0ed5695b2823235502aad4ea55aebbcd323fd9e794c7b5e924"
+    },
+    {
+      "id": "cta",
+      "device": "pc",
+      "file": "cta-pc.jpg",
+      "sha256": "471bc5f46faedfe090736baa7fecb55fd38c1931bbed47beba55160f69c2eba2"
+    },
+    {
+      "id": "cta",
+      "device": "sp",
+      "file": "cta-sp.jpg",
+      "sha256": "4d7b4bd30699e4b90002cdb0eb0c62e006c8f4ddb8bb47762f1aa50f69987cbf"
+    },
+    {
+      "id": "review",
+      "device": "pc",
+      "file": "review-pc.jpg",
+      "sha256": "caf77adf7adf2bf3bae3986db936c58272ec28779b6d374c1cb5cd7d18271c76"
+    },
+    {
+      "id": "review",
+      "device": "sp",
+      "file": "review-sp.jpg",
+      "sha256": "928287f4e2fe7b6d697158be840ea82410a35f9ec3c9bf268bf82e5cd79c2a73"
+    }
+  ],
+  "scope": "Static/local fictional product PoC only. Five surfaces from one fixture. JSON-LD values and routing checked locally only. Both ACs partial; no external API, purchase or credentials.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

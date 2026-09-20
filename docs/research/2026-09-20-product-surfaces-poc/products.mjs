@@ -1,0 +1,9 @@
+export const catalog={id:'demo-light-catalog',revision:1,updated:'2026-09-20',rankingBasis:'架空の編集デモ。価格・明るさ・設置幅を比較し、用途別の説明用に手動で並べた順序です。実測順位・販売順位ではありません。',author:'デモ編集者（架空）',products:[
+ {id:'light-a',name:'デスクライト A',description:'小さな机に置きやすい、軽量なライト。',price:3980,currency:'JPY',linkType:'affiliate',rank:1,rating:4.2,ratingCount:12,lumens:500,width:12,warranty:1,highlight:'width',pros:['設置幅が小さい','価格を抑えやすい'],cons:['明るさは控えめ'],review:'小さな作業スペース向けの例。明るさ重視なら別候補も比較します。',condition:'税込の架空価格。購入不可。外部の販売条件は未検証。',color:'#627f6d',goalCvId:'demo-product-detail'},
+ {id:'light-b',name:'デスクライト B',description:'広い作業面を照らす、明るさ重視のライト。',price:6480,currency:'JPY',linkType:'external-store',rank:2,rating:4.5,ratingCount:18,lumens:900,width:18,warranty:1,highlight:'lumens',pros:['明るさに余裕がある','広い机に合わせやすい'],cons:['設置幅が必要'],review:'広い机向けの例。置き場所を確保してから選ぶ想定です。',condition:'税込の架空価格。購入不可。外部の販売条件は未検証。',color:'#a78c68',goalCvId:'demo-product-detail'},
+ {id:'light-c',name:'デスクライト C',description:'長めの保証で選ぶ、据え置きライト。',price:8480,currency:'JPY',linkType:'self-ec',rank:3,rating:4.4,ratingCount:9,lumens:700,width:16,warranty:2,highlight:'warranty',pros:['保証期間が長い','明るさと設置幅の中間'],cons:['価格は高め'],review:'保証を重視する人向けの例。予算との釣り合いを確認します。',condition:'税込の架空価格。購入不可。国内送料0円・返品14日（デモ）。',color:'#75849a',goalCvId:'demo-product-detail',shipping:{country:'JP',price:0,handlingDays:1,transitDays:3},returns:{country:'JP',days:14,method:'ReturnByMail',fees:'FreeReturn'}}
+]};
+export const surfaces=[{id:'card',label:'商品カード',lead:'特徴・評価・価格を一枚で見比べる。'},{id:'ranking',label:'ランキング',lead:'順位の根拠と用途を確かめて選ぶ。'},{id:'comparison',label:'比較専用テーブル',lead:'同じ項目を横に並べ、違いを見つける。'},{id:'cta',label:'CTA束',lead:'条件を見ながら次の行動を選ぶ。'},{id:'review',label:'レビュー',lead:'良い点と注意点の両方を確かめる。'}];
+export const variantId=surface=>`sell-${surface}-v1`;
+export const mode=type=>type==='self-ec'?'merchant-listing':'product-snippet';
+export const linkLabel={affiliate:'アフィリエイト', 'external-store':'外部ストア','self-ec':'自社EC'};

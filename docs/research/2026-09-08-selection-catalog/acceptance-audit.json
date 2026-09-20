@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 212,
-    "partial": 56,
+    "missing": 210,
+    "partial": 58,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2374,24 +2374,82 @@
       "requirement_id": "WT-FR-SELL-02",
       "oracle": "同じ商品正本から商品カード・ランキング・比較専用テーブル・CTA 束とレビューを描画し、リンク先がアフィリエイト・外部ストアなら product snippet 形、自社 EC なら配送・返品ポリシー付き merchant listing 形として Product / Offer / AggregateRating / ItemList 構造化データを出力する。比較専用テーブルは列=商品・行=項目・最下行 CTA で、SP は横スクロールかカード化し、variant ID と目標 CV ID を計測へ渡す",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "同一架空商品fixtureから5販売面。表示/JSON-LD値一致、配送返品分岐、比較表構造、variant/CV ID、1440/390/320px、JS有無、keyboard、代表200% root文字。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。",
+        "Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "row_names": [
+            "AC-A card 1440px js canonical values and reflow",
+            "AC-A card 1440px no-js canonical values and reflow",
+            "AC-A card 390px js canonical values and reflow",
+            "AC-A card 390px no-js canonical values and reflow",
+            "AC-A card 320px js canonical values and reflow",
+            "AC-A card 320px no-js canonical values and reflow",
+            "AC-A ranking 1440px js canonical values and reflow",
+            "AC-A ranking 1440px no-js canonical values and reflow",
+            "AC-A ranking 390px js canonical values and reflow",
+            "AC-A ranking 390px no-js canonical values and reflow",
+            "AC-A ranking 320px js canonical values and reflow",
+            "AC-A ranking 320px no-js canonical values and reflow",
+            "AC-A comparison 1440px js canonical values and reflow",
+            "AC-A comparison 1440px no-js canonical values and reflow",
+            "AC-A comparison 390px js canonical values and reflow",
+            "AC-A comparison 390px no-js canonical values and reflow",
+            "AC-A comparison 320px js canonical values and reflow",
+            "AC-A comparison 320px no-js canonical values and reflow",
+            "AC-A cta 1440px js canonical values and reflow",
+            "AC-A cta 1440px no-js canonical values and reflow",
+            "AC-A cta 390px js canonical values and reflow",
+            "AC-A cta 390px no-js canonical values and reflow",
+            "AC-A cta 320px js canonical values and reflow",
+            "AC-A cta 320px no-js canonical values and reflow",
+            "AC-A review 1440px js canonical values and reflow",
+            "AC-A review 1440px no-js canonical values and reflow",
+            "AC-A review 390px js canonical values and reflow",
+            "AC-A review 390px no-js canonical values and reflow",
+            "AC-A review 320px js canonical values and reflow",
+            "AC-A review 320px no-js canonical values and reflow",
+            "AC-A card CTA emits both IDs locally without external writes",
+            "AC-A ranking CTA emits both IDs locally without external writes",
+            "AC-A comparison CTA emits both IDs locally without external writes",
+            "AC-A cta CTA emits both IDs locally without external writes",
+            "AC-A review CTA emits both IDs locally without external writes",
+            "AC-A comparison columns rows highlights bottom CTA and sticky keyboard scroll",
+            "AC-A card keyboard and 200 percent root text keep document within viewport",
+            "AC-A comparison keyboard and 200 percent root text keep document within viewport"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SELL-02B",
       "requirement_id": "WT-FR-SELL-02",
       "oracle": "リンク先種別に応じた product snippet / merchant listing の出し分けがない、merchant listing に配送・返品ポリシーがない、販売系 4 つのいずれかが別正本を読む、本文中の手組み比較表と同じ語彙になる、variant ID・目標 CV ID が計測から欠落する、または表示値と構造化データが不一致なら FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "同一架空商品fixtureから5販売面。表示/JSON-LD値一致、配送返品分岐、比較表構造、variant/CV ID、1440/390/320px、JS有無、keyboard、代表200% root文字。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。",
+        "Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "row_names": [
+            "AC-B missing data-variant-id blocks conversion projection",
+            "AC-B missing data-goal-cv-id blocks conversion projection",
+            "AC-B altered canonical fixture reaches all five renders and JSON-LD",
+            "AC-B route branching needs complete merchant policies and known destination"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SELL-03A",

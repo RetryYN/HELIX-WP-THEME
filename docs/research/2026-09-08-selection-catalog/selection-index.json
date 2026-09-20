@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 672,
+  "candidateCount": 677,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -3050,33 +3050,36 @@
     {
       "id": "WT-FR-SELL-02",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 5,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-SELL-02A",
-          "WT-AC-SELL-02B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-SELL-02A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-SELL-02B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "product-surfaces:card",
+        "product-surfaces:ranking",
+        "product-surfaces:comparison",
+        "product-surfaces:cta",
+        "product-surfaces:review"
+      ]
     },
     {
       "id": "WT-FR-SELL-03",
@@ -30021,6 +30024,151 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-surfaces:card",
+      "face": "article",
+      "part": "product-surfaces-card",
+      "label": "販売面：商品カード",
+      "variant": "card",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-surfaces:ranking",
+      "face": "article",
+      "part": "product-surfaces-ranking",
+      "label": "販売面：ランキング",
+      "variant": "ranking",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-surfaces:comparison",
+      "face": "article",
+      "part": "product-surfaces-comparison",
+      "label": "販売面：比較専用テーブル",
+      "variant": "comparison",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-surfaces:cta",
+      "face": "article",
+      "part": "product-surfaces-cta",
+      "label": "販売面：CTA束",
+      "variant": "cta",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "product-surfaces:review",
+      "face": "article",
+      "part": "product-surfaces-review",
+      "label": "販売面：レビュー",
+      "variant": "review",
+      "purpose": "同じ商品を目的に合う販売面で比較する",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SELL-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
       "devices": [
         "pc",
         "sp"
