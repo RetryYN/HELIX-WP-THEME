@@ -712,6 +712,23 @@ if (fs.existsSync(path.join(root, sectionContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const seoContractPath = 'docs/research/2026-09-20-seo-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, seoContractPath))) {
+  const report = read(seoContractPath);
+  const candidates = read('docs/research/2026-09-20-seo-contract-poc/catalog-candidates.json');
+  if (!report.completed || !report.rows.length || report.rows.some(row => !row.pass)) throw Error('SEO contract PoC evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale SEO contract source ${source}`);
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['seo-contract:article', 'seo-contract:registry'])) throw Error('SEO contract candidates must cover article and registry');
+  for (const candidate of candidates.entries) {
+    if (!['WT-FR-SEO-04', 'WT-NFR-SEO-01'].includes(candidate.requirementIds[0])) throw Error('SEO contract requirement mapping mismatch');
+    const expectedShotId = candidate.variant;
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(item => item.id === expectedShotId && item.device === device);
+      if (!shot || candidate.images[device] !== `../2026-09-20-seo-contract-poc/${shot.file}` || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-seo-contract-poc', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing SEO contract screenshot ${candidate.id}/${device}`);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

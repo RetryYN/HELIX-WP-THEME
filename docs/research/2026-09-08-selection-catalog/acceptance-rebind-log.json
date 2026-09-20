@@ -715,6 +715,68 @@
       ],
       "registry_before_sha256": "c5f62ee6b7c72e1329d7bb397437e9b1312e4b4fea6022a1fee9337fc00209fc",
       "registry_after_sha256": "19ecab87702b41c00f96611ce968114d304f7799563688a13540ba5126de207f"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-SEO-04A",
+        "WT-AC-SEO-04B",
+        "WT-AC-NFR-SEO-01A",
+        "WT-AC-NFR-SEO-01B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-seo-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-seo-contract-poc/acceptance-candidate.json": "dba232c16984448cd6876fbdad46aebd472fd7d5bb1b6bd9ca280ba151f23c9a"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-seo-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-SEO-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-SEO-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SEO-04A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SEO-04B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "before_sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "after_sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "19ecab87702b41c00f96611ce968114d304f7799563688a13540ba5126de207f",
+      "registry_after_sha256": "ee0e77262981d1796aeab5c60a3bf9d04a582b57f4a90f9e9361251d22fc7a1a"
     }
   ]
 }

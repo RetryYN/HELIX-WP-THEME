@@ -3,9 +3,9 @@
 この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。
 
 - 要求: 134
-- 受入条件: 300（missing 206 / partial 62 / verified_in_poc 32 / stale 0）
-- カタログ候補: 680
-- スクリーンショット: 1231
+- 受入条件: 300（missing 202 / partial 66 / verified_in_poc 32 / stale 0）
+- カタログ候補: 682
+- スクリーンショット: 1235
 - ページ種別の未観察・未検証: 19
 
 ## 次に閉じる要求
@@ -29,7 +29,6 @@
 | WT-FR-NAV-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SELL-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SELL-04 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-SEO-04 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SYNC-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-TAG-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-TAG-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
@@ -46,7 +45,6 @@
 | WT-NFR-REC-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-REL-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-SEC-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-NFR-SEO-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-TAG-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-VALUE-03 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-TR-API-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
@@ -113,6 +111,8 @@
 | WT-FR-MIGRATE-03 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SEO-02 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-COST-01 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
+| WT-FR-SEO-04 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-NFR-SEO-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ADMIN-01 | P0 | partial | 5 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ADMIN-03 | P0 | partial | 3 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ADMIN-04 | P0 | partial | 2 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |

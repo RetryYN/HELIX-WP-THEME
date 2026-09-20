@@ -1,0 +1,55 @@
+{
+  "schema": "wt-seo-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "seo-contract:article",
+      "face": "article",
+      "part": "seo-contract-article",
+      "label": "SEO契約：可視メタとJSON-LD",
+      "variant": "article",
+      "description": "可視本文・meta・BreadcrumbList・Articleを同じ正本から確かめる。4受入条件は部分確認。",
+      "purpose": "検索向け出力の正本と境界を選ぶ",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-seo-contract-poc/article-pc.jpg",
+        "sp": "../2026-09-20-seo-contract-poc/article-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-SEO-04"
+      ],
+      "referenceId": "wt-seo-contract-poc.v1",
+      "evidence": "../2026-09-20-seo-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "可視本文・meta・JSON-LDを一つのfixtureから照合する。",
+        "正本": "Article / BreadcrumbList / meta / OGPを同じfixtureから出力。",
+        "実測": "1440/390px、JSON-LD値、Breadcrumb順序、画像1200px、rel属性、負例。",
+        "未検証": "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。 本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
+      }
+    },
+    {
+      "id": "seo-contract:registry",
+      "face": "article",
+      "part": "seo-contract-registry",
+      "label": "SEO契約：型・出典台帳",
+      "variant": "registry",
+      "description": "必須プロパティと非推奨型の出典・参照日を確認する。4受入条件は部分確認。",
+      "purpose": "検索仕様の更新を要求へ戻す",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-seo-contract-poc/registry-pc.jpg",
+        "sp": "../2026-09-20-seo-contract-poc/registry-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-NFR-SEO-01"
+      ],
+      "referenceId": "wt-seo-contract-poc.v1",
+      "evidence": "../2026-09-20-seo-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "型ごとの必須プロパティと廃止型を台帳で検査する。",
+        "台帳": "公式URL・確認日・statusをJSON正本へ保持。",
+        "実測": "required fields、Forbidden types、古い日付・欠落・禁止型の負例。",
+        "未検証": "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。 本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
+      }
+    }
+  ]
+}

@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 206,
-    "partial": 62,
+    "missing": 202,
+    "partial": 66,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2552,48 +2552,88 @@
       "requirement_id": "WT-FR-SEO-04",
       "oracle": "各 SEO 要求に Google 検索セントラルの公式ドキュメント URL と 2026-09-03 の参照日が紐づき、構造化データの必須プロパティ・FAQPage / HowTo / SearchAction など対象外・非推奨型を出さないこと・hreflang の多言語時のみの自己参照 / 相互参照・代表画像の OGP / image 一致・Discover 幅 1200px 以上・検索の基本・ページエクスペリエンス・rel 属性・クローキングにならない A/B 配信の準拠項目が列挙される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "同一fixtureから可視meta・BreadcrumbList・Article・画像・出典台帳を生成し、PC/SPで再読する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "SEO-04A visible metadata and one canonical graph",
+            "SEO-04A breadcrumb and image contracts",
+            "SEO-04A sponsored links keep ordinary links distinct"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SEO-04B",
       "requirement_id": "WT-FR-SEO-04",
       "oracle": "出典 URL / 参照日がない、公式仕様と要求の対応が追えない、単一言語で hreflang を要求する、Discover 画像要件またはクローキング回避が検査されない、または対象外になった型・非推奨型を要求する記述が残れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "必須プロパティ欠落・禁止型・出典日付の負例を同じ契約で拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "SEO-04B missing required property is rejected",
+            "SEO-04B forbidden type is rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-SEO-01A",
       "requirement_id": "WT-NFR-SEO-01",
       "oracle": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane が走り、FAQPage / HowTo / SearchAction ほかの廃止型 JSON 正本を照合して違反を赤にし、公式改定時に出典 URL と参照日を更新できる",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "required propertiesと廃止型台帳を検査するローカルtest laneを持つ。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "NFR-SEO-01A registry and test lane enforce required fields"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-SEO-01B",
       "requirement_id": "WT-NFR-SEO-01",
       "oracle": "test lane がない、廃止型リストにない型を許す、違反を WARN のまま通す、必須プロパティ欠落を見逃す、または改定後の出典 URL / 参照日が古いままなら FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "廃止型追加・必須欠落・古い出典日付をFAILへ落とす。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "SEO-04B forbidden type is rejected",
+            "NFR-SEO-01B stale source date is rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SEO-05A",
