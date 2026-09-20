@@ -110,7 +110,21 @@ test('selection index exposes evidence boundaries for every catalog candidate', 
     assert.ok(catalogRequirement);
     assert.deepEqual(requirement.coverage, catalogRequirement.coverage);
     assert.equal(requirement.coverage.candidateCount, requirement.relatedEntryIds.length);
-    assert.ok(['no_candidate', 'candidate_with_open_acceptance', 'candidate_with_partial_evidence', 'candidate_verified'].includes(requirement.coverage.selectionState));
+    const openAcceptanceIds = catalogRequirement.acceptance
+      .filter(row => ['missing', 'stale'].includes(row.status))
+      .map(row => row.id)
+      .sort();
+    const partialCount = catalogRequirement.acceptance
+      .filter(row => row.status === 'partial').length;
+    const expectedSelectionState = !catalogRequirement.relatedEntryIds.length
+      ? 'no_candidate'
+      : openAcceptanceIds.length
+        ? 'candidate_with_open_acceptance'
+        : partialCount
+          ? 'candidate_with_partial_evidence'
+          : 'candidate_verified';
+    assert.deepEqual(requirement.coverage.openAcceptanceIds, openAcceptanceIds);
+    assert.equal(requirement.coverage.selectionState, expectedSelectionState);
     assert.equal(Object.values(requirement.coverage.counts).reduce((sum, count) => sum + count, 0), requirement.coverage.acceptanceCount);
     assert.ok(requirement.relatedEntryIds.every(id => catalogIds.has(id)));
     assert.ok(requirement.acceptance.every(row => ['missing', 'partial', 'stale', 'verified_in_poc'].includes(row.status)));
