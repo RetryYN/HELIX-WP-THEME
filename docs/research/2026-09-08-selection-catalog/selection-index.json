@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 705,
+  "candidateCount": 706,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -1732,35 +1732,31 @@
     {
       "id": "WT-FR-LOOK-03",
       "priority": "P1",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 89,
+        "candidateCount": 90,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 3,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-LOOK-03A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-LOOK-03B",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-LOOK-03C",
-          "status": "missing"
+          "status": "partial"
         }
       ],
       "relatedEntryIds": [
@@ -1852,7 +1848,8 @@
         "article:graph-column",
         "article:graph-score",
         "article:graph-gauge",
-        "article:graph-radar"
+        "article:graph-radar",
+        "look-pattern:survey-derived"
       ]
     },
     {
@@ -7088,14 +7085,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -7126,14 +7120,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -7164,14 +7155,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -7202,14 +7190,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -7244,14 +7229,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7288,14 +7270,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7332,14 +7311,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7376,14 +7352,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7420,14 +7393,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7464,14 +7434,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7508,14 +7475,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7552,14 +7516,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7596,14 +7557,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7640,14 +7598,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7684,14 +7639,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7728,14 +7680,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -7900,14 +7849,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -7938,14 +7884,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -7976,14 +7919,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8206,14 +8146,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8244,14 +8181,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8282,14 +8216,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8320,14 +8251,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8358,14 +8286,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8396,14 +8321,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8434,14 +8356,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8472,14 +8391,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8510,14 +8426,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8548,14 +8461,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8586,14 +8496,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -8624,14 +8531,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11226,14 +11130,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11264,14 +11165,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11302,14 +11200,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11859,14 +11754,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11897,14 +11789,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11935,14 +11824,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -11973,14 +11859,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12011,14 +11894,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12049,14 +11929,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12087,14 +11964,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12125,14 +11999,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12163,14 +12034,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12201,14 +12069,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12239,14 +12104,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -12281,14 +12143,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12325,14 +12184,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12369,14 +12225,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12413,14 +12266,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12457,14 +12307,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12501,14 +12348,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12545,14 +12389,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12589,14 +12430,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -12633,14 +12471,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -13455,14 +13290,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13493,14 +13325,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13531,14 +13360,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13569,14 +13395,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13607,14 +13430,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13645,14 +13465,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13683,14 +13500,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13895,14 +13709,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13933,14 +13744,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -13971,14 +13779,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14009,14 +13814,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14047,14 +13849,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14085,14 +13884,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14123,14 +13919,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14161,14 +13954,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14199,14 +13989,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14237,14 +14024,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14274,14 +14058,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14311,14 +14092,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14348,14 +14126,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14385,14 +14160,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14423,14 +14195,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14465,14 +14234,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -14509,14 +14275,11 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 13,
-          "missing": 7,
+          "partial": 16,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B",
           "WT-AC-VOCAB-04A",
@@ -14549,14 +14312,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14587,14 +14347,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14625,14 +14382,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14663,14 +14417,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -14747,14 +14498,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -15730,14 +15478,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -15768,14 +15513,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -15806,14 +15548,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -15844,14 +15583,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -15882,14 +15618,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -15920,14 +15653,11 @@
         "acceptanceCount": 12,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 5,
-          "missing": 5,
+          "partial": 8,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LOOK-03A",
-          "WT-AC-LOOK-03B",
-          "WT-AC-LOOK-03C",
           "WT-AC-LOOK-04A",
           "WT-AC-LOOK-04B"
         ],
@@ -29918,6 +29648,35 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-look-purpose-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "look-pattern:survey-derived",
+      "face": "article",
+      "part": "look-pattern-contract",
+      "label": "見た目：サイトパターン分布からの導出",
+      "variant": "survey-derived",
+      "purpose": "用途に合う型を選ぶ",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-LOOK-03"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-look-pattern-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"

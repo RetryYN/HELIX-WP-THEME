@@ -45,3 +45,10 @@ Chromiumの代表LP検査であり、全ブラウザ・全候補・WCAG全項目
 既存12組のvisual captureを実行し、filter-contextも再検証した。
 強制配色captureの初回は1440px通常配色control画像のdigest不一致で停止、単独再実行で成功した。
 この既存撮影の安定性を今回の改善成果には含めない。
+
+## main更新への追従
+
+並行PRのmerge後、`03e5637` を取り込み、同mainをbefore基準として本captureを再実行した。既存12組も再capture済み。
+カタログデータの更新はmainからの取り込みで、本PRは要求・受入台帳を編集しない。
+
+main取り込み後も専用15件・選択/絞り込み39件成功。強制配色captureは通常色darkの画像digest不一致で一度停止し、単独再実行で成功した。
