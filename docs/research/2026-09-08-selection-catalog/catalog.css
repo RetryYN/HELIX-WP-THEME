@@ -252,3 +252,12 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
 
 /* 高さの違う候補が並んでも、比較操作と判断表示をカード下部に揃える。 */
 .tile .tile-facts{margin-top:auto}
+
+/* 強制配色で背景色が失われても、現在の選択を下線の形で示す。 */
+@media(forced-colors:active){
+  nav button[aria-current=true],.workspace-tabs button[aria-selected=true],
+  .device button[aria-pressed=true],.image-controls button[aria-pressed=true],
+  .compare-switcher button[aria-pressed=true],.home-start-actions button[aria-pressed=true]{
+    text-decoration-line:underline;text-decoration-thickness:3px;text-underline-offset:4px;
+  }
+}

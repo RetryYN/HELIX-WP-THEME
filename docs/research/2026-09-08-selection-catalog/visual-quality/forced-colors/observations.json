@@ -1,0 +1,1244 @@
+{
+  "schema": "wt-forced-colors-selection.v1",
+  "baseline": "8bb959298f6db044eec74135d25f132b84738af9",
+  "sourceDigests": {
+    "docs/research/2026-09-08-selection-catalog/catalog.css": "1ac1d0f6ea76bbea13fa46a9dabbcee284ab377cf85ea2358d5e0a28009b088a",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "6c684e056f786906a58fca2ec7ea7a3b46e2beb168242c5244747ecdd6a19655",
+    "docs/research/2026-09-08-selection-catalog/index.html": "5129e855c93122ce687282b0f0bcc9e1cfd7b4d193dfa7743206da029de7cf18",
+    "docs/research/2026-09-08-selection-catalog/catalog-data.json": "520292a263c8780c4af610b262e6a02e262707e8fe6bfc2e767ea891e86f78f5",
+    "docs/research/2026-09-08-selection-catalog/visual-quality/forced-colors/capture.mjs": "411c4300bcd65f1459fdf1916ab4830dbf7c773b6645d51b21de6b71281ecec4",
+    "tests/e2e/forced-colors-selection-catalog.spec.ts": "f663cedb29b24233f03158e0ccca5bb60b59ac519cda76dcb3e60ea7c1397082"
+  },
+  "observations": [
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 43,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.671875,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 106.65625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "underline",
+          "thickness": "3px",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "controls": [
+        {
+          "label": "PC",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        },
+        {
+          "label": "SP",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 55,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "controls": [
+        {
+          "label": "全体を見る",
+          "selected": true,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        },
+        {
+          "label": "幅に合わせる",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 108.015625,
+          "height": 44
+        },
+        {
+          "label": "原寸で読む",
+          "selected": false,
+          "decoration": "none",
+          "thickness": "auto",
+          "width": 96.015625,
+          "height": 44
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "file": "before-light-gallery-390.png",
+      "sha256": "0e9fc3b6b371250f4d1e08ec2baf40020e9ee36f0bc9f9fccfa5829b4ded75b6"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "viewport",
+      "file": "before-light-detail-390.png",
+      "sha256": "4942a7ca9611352d8886a3c3f06f81bf62bf225b4c45338c419facec5e6c2226"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "file": "after-light-gallery-390.png",
+      "sha256": "9d3eea0815fa589e1a2753e75ae5bbb09ee50a90922507ae9eecc7c187f65423"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "viewport",
+      "file": "after-light-detail-390.png",
+      "sha256": "2196a012386b03caca5b86e4712da6eca1f24dc5916d04a3213ff57294101e53"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "file": "before-dark-gallery-390.png",
+      "sha256": "32341375a3140c23ff0cce5611ae0a9e5db92bd09db1cffaed972e65e328916c"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "viewport",
+      "file": "before-dark-detail-390.png",
+      "sha256": "785f5b49ce024fc8c687b516b909882440b62cd87adf8f68579effbaee39b881"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "file": "after-dark-gallery-390.png",
+      "sha256": "de76b6135ce3d0e8c98d43ce3cb8f7ced023e383d3af6d7de84349a88a261019"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "viewport",
+      "file": "after-dark-detail-390.png",
+      "sha256": "b54ba930afb3f4d0bd4aa00300a345c570eca89b4c4f93f34810427efd01b7bb"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "2742c7ed44611349b3952c8bbff175b1245b6727bfab42e533c7ce56e8a0fcdb"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6a15a8c143c5832ab92a7fb319708deefedb6d0f898bc25981c26e62780f6b0f"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "2742c7ed44611349b3952c8bbff175b1245b6727bfab42e533c7ce56e8a0fcdb"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6a15a8c143c5832ab92a7fb319708deefedb6d0f898bc25981c26e62780f6b0f"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "2742c7ed44611349b3952c8bbff175b1245b6727bfab42e533c7ce56e8a0fcdb"
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6a15a8c143c5832ab92a7fb319708deefedb6d0f898bc25981c26e62780f6b0f"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "2742c7ed44611349b3952c8bbff175b1245b6727bfab42e533c7ce56e8a0fcdb"
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6a15a8c143c5832ab92a7fb319708deefedb6d0f898bc25981c26e62780f6b0f"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "sha256": "d5764b2b36d330de56120c9949ceea992693f0d11dab91ee80229f246b12bf30"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "viewport",
+      "sha256": "eccb1e7d93edc402790de72cc635aaa0d5ea64b04775d34b6b9126a68acb9417"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "sha256": "5d404f2e1b1e4dcae7229288daa87f5143ba13152e7fa6d38d8df507d3af5367"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "viewport",
+      "sha256": "4d4c96f72d373795eb900b34278ef5b03ac126d207f2204fd6c5c78adaee7ef7"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "sha256": "84fc5552ec6e4e833aa96d211c7423c49a5c8d112e357b4aa138a23dea75b67f"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "viewport",
+      "sha256": "8ef3541cfa7e305772e91f050af7d6c2e32ad4c3a1560e0fa020847476ce169b"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "viewport",
+      "sha256": "2d1a2a0bcfea13b67a5162f2b567f14209ed1b5f363d1495819321c579ae06d2"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "active",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "viewport",
+      "sha256": "1785f04cfa7ea72c19a2c557708d3429b36814487ac61bcb24ffcd79f7f73e39"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "8a03f60c476f16f1bba92649aa8ba8131820a1820d4a1fb87dd4bb8c553767ce"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6abba7c0417109ab9da56b0137425b2123053be6542d30646ec29e51b4827c4e"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "8a03f60c476f16f1bba92649aa8ba8131820a1820d4a1fb87dd4bb8c553767ce"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "light",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6abba7c0417109ab9da56b0137425b2123053be6542d30646ec29e51b4827c4e"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "8a03f60c476f16f1bba92649aa8ba8131820a1820d4a1fb87dd4bb8c553767ce"
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6abba7c0417109ab9da56b0137425b2123053be6542d30646ec29e51b4827c4e"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "gallery",
+      "scope": "controls",
+      "sha256": "8a03f60c476f16f1bba92649aa8ba8131820a1820d4a1fb87dd4bb8c553767ce"
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "forcedColors": "none",
+      "colorScheme": "dark",
+      "scenario": "detail",
+      "scope": "controls",
+      "sha256": "6abba7c0417109ab9da56b0137425b2123053be6542d30646ec29e51b4827c4e"
+    }
+  ],
+  "limitations": [
+    "Chromium forced-colors emulation with light/dark palettes; not all OS themes or assistive technology",
+    "Before swaps baseline CSS against the same current content"
+  ]
+}
