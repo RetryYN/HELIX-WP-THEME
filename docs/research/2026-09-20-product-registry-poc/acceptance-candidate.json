@@ -53,11 +53,13 @@
           "AC-B bad rating preserves all article output",
           "AC-B future stamp preserves all article output",
           "AC-B duplicate ID preserves all article output",
+          "AC-B duplicate product ID is rejected by the canonical validator",
           "AC-B article value or URL overrides and missing product reference are refused",
           "AC-B syntax error and local-only update do not persist or send",
           "AC-B mutation visible-price-drift rejected",
           "AC-B mutation article-override-allowed rejected",
-          "AC-B mutation rating-ceiling-removed rejected"
+          "AC-B mutation rating-ceiling-removed rejected",
+          "AC-B mutation duplicate-id-guard-removed rejected"
         ]
       }
     ]
