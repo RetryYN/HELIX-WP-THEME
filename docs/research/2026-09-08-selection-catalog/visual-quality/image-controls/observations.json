@@ -1,0 +1,452 @@
+{
+  "schema": "wt-image-controls-visual.v1",
+  "baseline": "5bb99ef6b2816cbe084016f36d1caf737ab3fddb",
+  "sourceDigests": {
+    "docs/research/2026-09-08-selection-catalog/catalog.css": "4389c5e6fb3856b6b09540257c16458d6a59a0349f332b90871713cedae7ceac",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "6c684e056f786906a58fca2ec7ea7a3b46e2beb168242c5244747ecdd6a19655",
+    "docs/research/2026-09-08-selection-catalog/index.html": "5129e855c93122ce687282b0f0bcc9e1cfd7b4d193dfa7743206da029de7cf18",
+    "docs/research/2026-09-08-selection-catalog/catalog-data.json": "2999c4ff55834ff6e8fd59cd9767654ebb21dc31113ac59c2f25246fd9da3381",
+    "docs/research/2026-09-08-selection-catalog/visual-quality/image-controls/capture.mjs": "d9ef1dda603c50e1bce42b5b8562cf29bf6f7a5b1946b058c81a2b3bb92d26df",
+    "tests/e2e/image-controls-selection-catalog.spec.ts": "95a4bd081eb60e3efce396206b3d33b13ad9a5e6bb4fa35b3eb0aa7eb88afe50"
+  },
+  "observations": [
+    {
+      "stage": "before",
+      "width": 320,
+      "dialog": "detail",
+      "height": 169.171875,
+      "buttons": [
+        {
+          "top": 171,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 223,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 320,
+      "dialog": "compare",
+      "height": 114.171875,
+      "buttons": [
+        {
+          "top": 306,
+          "height": 44,
+          "width": 75,
+          "overflow": false
+        },
+        {
+          "top": 306,
+          "height": 44,
+          "width": 86,
+          "overflow": false
+        },
+        {
+          "top": 306,
+          "height": 44,
+          "width": 75,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 320,
+      "dialog": "detail",
+      "height": 117.171875,
+      "buttons": [
+        {
+          "top": 171,
+          "height": 44,
+          "width": 83.328125,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 83.328125,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 83.34375,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 320,
+      "dialog": "compare",
+      "height": 117.171875,
+      "buttons": [
+        {
+          "top": 306,
+          "height": 44,
+          "width": 83.328125,
+          "overflow": false
+        },
+        {
+          "top": 306,
+          "height": 44,
+          "width": 83.328125,
+          "overflow": false
+        },
+        {
+          "top": 306,
+          "height": 44,
+          "width": 83.34375,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "dialog": "detail",
+      "height": 96.78125,
+      "buttons": [
+        {
+          "top": 171,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 390,
+      "dialog": "compare",
+      "height": 93.78125,
+      "buttons": [
+        {
+          "top": 262,
+          "height": 44,
+          "width": 75,
+          "overflow": false
+        },
+        {
+          "top": 262,
+          "height": 44,
+          "width": 86,
+          "overflow": false
+        },
+        {
+          "top": 262,
+          "height": 44,
+          "width": 75,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "dialog": "detail",
+      "height": 96.78125,
+      "buttons": [
+        {
+          "top": 171,
+          "height": 44,
+          "width": 106.65625,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 106.671875,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 106.65625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 390,
+      "dialog": "compare",
+      "height": 96.78125,
+      "buttons": [
+        {
+          "top": 262,
+          "height": 44,
+          "width": 106.65625,
+          "overflow": false
+        },
+        {
+          "top": 262,
+          "height": 44,
+          "width": 106.671875,
+          "overflow": false
+        },
+        {
+          "top": 262,
+          "height": 44,
+          "width": 106.65625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 700,
+      "dialog": "detail",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 171,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 700,
+      "dialog": "compare",
+      "height": 73.390625,
+      "buttons": [
+        {
+          "top": 244,
+          "height": 44,
+          "width": 75,
+          "overflow": false
+        },
+        {
+          "top": 244,
+          "height": 44,
+          "width": 86,
+          "overflow": false
+        },
+        {
+          "top": 244,
+          "height": 44,
+          "width": 75,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 700,
+      "dialog": "detail",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 171,
+          "height": 44,
+          "width": 210,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 210,
+          "overflow": false
+        },
+        {
+          "top": 171,
+          "height": 44,
+          "width": 210,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 700,
+      "dialog": "compare",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 244,
+          "height": 44,
+          "width": 210,
+          "overflow": false
+        },
+        {
+          "top": 244,
+          "height": 44,
+          "width": 210,
+          "overflow": false
+        },
+        {
+          "top": 244,
+          "height": 44,
+          "width": 210,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "dialog": "detail",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 178,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 178,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 178,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "before",
+      "width": 1440,
+      "dialog": "compare",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 494,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 494,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 494,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "dialog": "detail",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 178,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 178,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 178,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "stage": "after",
+      "width": 1440,
+      "dialog": "compare",
+      "height": 76.390625,
+      "buttons": [
+        {
+          "top": 494,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        },
+        {
+          "top": 494,
+          "height": 44,
+          "width": 108.015625,
+          "overflow": false
+        },
+        {
+          "top": 494,
+          "height": 44,
+          "width": 96.015625,
+          "overflow": false
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "before-detail-320.png",
+      "sha256": "556af65744e22015791649832661289a926aa086a0ba35e8731d0943c8c792a9"
+    },
+    {
+      "file": "before-compare-320.png",
+      "sha256": "478cb786f145eadad2b995bf108a1ca93862cfe0a0cb31c6d863bad05e1e69ce"
+    },
+    {
+      "file": "after-detail-320.png",
+      "sha256": "4c7482e386a9c6337e47a22e9eb318c148eb244ed214c5d4f46491c421a2f573"
+    },
+    {
+      "file": "after-compare-320.png",
+      "sha256": "c874d9092cd333c96156e40a0d8ec5f6ba65202f3de2b6fdb8e0aa72c1d78190"
+    }
+  ],
+  "limitations": [
+    "Static catalog / Chromium only; no requirement completion or real-device accessibility claim",
+    "Before swaps only baseline CSS against the same current content"
+  ]
+}
