@@ -261,3 +261,12 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
     text-decoration-line:underline;text-decoration-thickness:3px;text-underline-offset:4px;
   }
 }
+
+/* 中間幅でも比較候補を細い3列に縮めず、既存の切替で画像と説明を読む。 */
+@media(min-width:701px) and (max-width:1000px){
+  #compare .compare-switcher{display:flex;gap:8px;margin-bottom:12px}
+  #compare .compare-switcher button{flex:1;min-width:0;text-align:left;font-size:12px;line-height:1.6}
+  #compare .compare-switcher button[aria-pressed=true]{background:var(--green);color:white}
+  #compare .compare-grid{display:block}
+  #compare .compare-grid>section[data-active=false]{display:none}
+}
