@@ -16,9 +16,9 @@
     "docs/research/2026-09-20-product-surfaces-poc/light-c.svg": "e885f2bfba6a03947e68f980b8ccee09fe9717c369bb1d6a4c2ce8d2c84a5b66",
     "scripts/build-product-registry-poc.mjs": "68c0b4f3e71d649cb3957e55d0bb92b3d564ccc7a3ec39002787d76890dba586",
     "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
-    "scripts/verify-product-registry-mutations.mjs": "4c434fe01f455ac03be5e2fd7fad72dc9038818739901d53fbae5f1f2054d189",
+    "scripts/verify-product-registry-mutations.mjs": "afefd2d946b96a716c8a5366e3cdf24307aabe794300aec442c7d5571d2dea16",
     "scripts/verify-product-registry-poc.mjs": "3c52b80a654e60cc0817172507d571c022e405736af71180185d182c3cd1d2a7",
-    "tests/e2e/product-registry-poc-selection-catalog.spec.ts": "d373fc3af4b9fa922dc2cd61f791bbceec73e8f2ec0edb64577e5733d7ce80b9",
+    "tests/e2e/product-registry-poc-selection-catalog.spec.ts": "64b3365398fbaf138a548e766231184c6c6c760fbcaf8256fcf13b060208473a",
     "docs/research/2026-09-20-product-registry-poc/model.mjs": "03b062a4c831b02a829817fd778b2eabd090c847433b8162d73cfc9c338308eb",
     "docs/research/2026-09-20-product-registry-poc/render.mjs": "986724352a131fa2a1dcd3c6f965feb7ab0a7950c9dfbd407415802b0067d790",
     "docs/research/2026-09-20-product-registry-poc/view.mjs": "3874ac5c71fb668125aa074b3b887d43593d9e7f1ca942d74738877876b35aca",
@@ -136,6 +136,10 @@
       "pass": true
     },
     {
+      "name": "AC-B duplicate product ID is rejected by the canonical validator",
+      "pass": true
+    },
+    {
       "name": "AC-B article value or URL overrides and missing product reference are refused",
       "pass": true
     },
@@ -163,6 +167,11 @@
     },
     {
       "name": "AC-B mutation rating-ceiling-removed rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "AC-B mutation duplicate-id-guard-removed rejected",
       "pass": true,
       "unexpected": 1
     }

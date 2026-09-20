@@ -1400,6 +1400,73 @@
       ],
       "registry_before_sha256": "22850b152bc31957898db1a04589931d01ab09fa0ae35fd77f2f846db0f7b99d",
       "registry_after_sha256": "5903d93d9aa3c37d1889437f1f2513779df85f10be1c2c2d2908810a4e610984"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-SELL-01A",
+        "WT-AC-SELL-01B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-product-registry-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-SELL-01A",
+          "path": "scripts/verify-product-registry-mutations.mjs",
+          "before": "4c434fe01f455ac03be5e2fd7fad72dc9038818739901d53fbae5f1f2054d189",
+          "after": "afefd2d946b96a716c8a5366e3cdf24307aabe794300aec442c7d5571d2dea16"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-SELL-01A",
+          "path": "tests/e2e/product-registry-poc-selection-catalog.spec.ts",
+          "before": "d373fc3af4b9fa922dc2cd61f791bbceec73e8f2ec0edb64577e5733d7ce80b9",
+          "after": "64b3365398fbaf138a548e766231184c6c6c760fbcaf8256fcf13b060208473a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-SELL-01A",
+          "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+          "before": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+          "after": "2885669cc66b897a720d95dd9c1eca4fd3f43217495d442828f66d14591084ae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-SELL-01B",
+          "path": "scripts/verify-product-registry-mutations.mjs",
+          "before": "4c434fe01f455ac03be5e2fd7fad72dc9038818739901d53fbae5f1f2054d189",
+          "after": "afefd2d946b96a716c8a5366e3cdf24307aabe794300aec442c7d5571d2dea16"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-SELL-01B",
+          "path": "tests/e2e/product-registry-poc-selection-catalog.spec.ts",
+          "before": "d373fc3af4b9fa922dc2cd61f791bbceec73e8f2ec0edb64577e5733d7ce80b9",
+          "after": "64b3365398fbaf138a548e766231184c6c6c760fbcaf8256fcf13b060208473a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-SELL-01B",
+          "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+          "before": "606015f57578bc259ad18fb417dd9c7e7b87426b4ffcb13538ad15212846ab5b",
+          "after": "2885669cc66b897a720d95dd9c1eca4fd3f43217495d442828f66d14591084ae"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-product-registry-poc/verification.json",
+          "before_sha256": "2885669cc66b897a720d95dd9c1eca4fd3f43217495d442828f66d14591084ae",
+          "after_sha256": "2885669cc66b897a720d95dd9c1eca4fd3f43217495d442828f66d14591084ae",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "5903d93d9aa3c37d1889437f1f2513779df85f10be1c2c2d2908810a4e610984",
+      "registry_after_sha256": "162dc9dcb5e98011f62fba7fccfb707b82bcde73fa792499091fd3adfc7a7236"
     }
   ]
 }
