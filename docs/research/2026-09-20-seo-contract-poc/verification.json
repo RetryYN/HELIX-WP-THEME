@@ -1,0 +1,72 @@
+{
+  "schema": "wt-seo-contract-poc-verification.v1",
+  "completed": true,
+  "rows": [
+    {
+      "name": "SEO-04A visible metadata and one canonical graph",
+      "pass": true
+    },
+    {
+      "name": "SEO-04A breadcrumb and image contracts",
+      "pass": true
+    },
+    {
+      "name": "SEO-04A sponsored links keep ordinary links distinct",
+      "pass": true
+    },
+    {
+      "name": "SEO-04B missing required property is rejected",
+      "pass": true
+    },
+    {
+      "name": "SEO-04B forbidden type is rejected",
+      "pass": true
+    },
+    {
+      "name": "NFR-SEO-01A registry and test lane enforce required fields",
+      "pass": true
+    },
+    {
+      "name": "NFR-SEO-01B stale source date is rejected",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "article",
+      "device": "pc",
+      "file": "article-pc.jpg",
+      "sha256": "669bfe86a738f4eff997e80974b35a876a4a78b2ed3653a3900b65175d5a3d20"
+    },
+    {
+      "id": "article",
+      "device": "sp",
+      "file": "article-sp.jpg",
+      "sha256": "6fa00a94246b5f9e0fc7e026c7eda40fabc495ab0de4e07791cc5da2b2345762"
+    },
+    {
+      "id": "registry",
+      "device": "pc",
+      "file": "registry-pc.jpg",
+      "sha256": "447d3c6ae490e05917d62ae67f6b39fa246f4ada77254350e45a20cc36bc3209"
+    },
+    {
+      "id": "registry",
+      "device": "sp",
+      "file": "registry-sp.jpg",
+      "sha256": "3a4154afcafe7c03780d7da00e60a940f984e20084e61e48af410f37d9abe241"
+    }
+  ],
+  "sourceDigests": {
+    "scripts/verify-seo-contract-poc.mjs": "41c3f63d0d7205cda53010bd4b52457dae114b5fafc6c2908782d8b40a2e9820",
+    "docs/research/2026-09-20-seo-contract-poc/fixture.mjs": "b2fe41db20aa6da075aebb03b08148f439c1cad1672d6c3eb69b5fc6ed85cf48",
+    "docs/research/2026-09-20-seo-contract-poc/render.mjs": "71c0ceda50ce72a8b093434b806068817e2ebc068053f62f34d72eb2eb390577",
+    "docs/research/2026-09-20-seo-contract-poc/article.html": "87db29c0ab89130d74929e04291888845560136a253ea8e408b6cb8be8e69319",
+    "docs/research/2026-09-20-seo-contract-poc/registry.html": "7346ce175dc20a10d87e1eb52b25c7e775445b0c14615ba2de47a24ac5255a99"
+  },
+  "checkedAt": "2026-09-20",
+  "scope": "Local static metadata and JSON-LD contract only; no Rich Results, WordPress, search display, or production SEO plugin integration.",
+  "limitations": [
+    "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。"
+  ]
+}

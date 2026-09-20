@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 683,
+  "candidateCount": 685,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -3117,64 +3117,62 @@
     {
       "id": "WT-FR-SEO-04",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-SEO-04A",
-          "WT-AC-SEO-04B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-SEO-04A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-SEO-04B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "seo-contract:article"
+      ]
     },
     {
       "id": "WT-NFR-SEO-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NFR-SEO-01A",
-          "WT-AC-NFR-SEO-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-NFR-SEO-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-NFR-SEO-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "seo-contract:registry"
+      ]
     },
     {
       "id": "WT-FR-SEO-05",
@@ -30349,6 +30347,64 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "seo-contract:article",
+      "face": "article",
+      "part": "seo-contract-article",
+      "label": "SEO契約：可視メタとJSON-LD",
+      "variant": "article",
+      "purpose": "検索向け出力の正本と境界を選ぶ",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-SEO-04"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-seo-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "seo-contract:registry",
+      "face": "article",
+      "part": "seo-contract-registry",
+      "label": "SEO契約：型・出典台帳",
+      "variant": "registry",
+      "purpose": "検索仕様の更新を要求へ戻す",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-NFR-SEO-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-seo-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"

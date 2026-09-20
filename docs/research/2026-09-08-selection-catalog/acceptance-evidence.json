@@ -13792,6 +13792,114 @@
           ]
         }
       ]
+    },
+    "WT-AC-SEO-04A": {
+      "status": "partial",
+      "requirement_digest": "80725ac68b43abf9",
+      "oracle_sha256": "5a1fc25a133da09c6a1bca226167c1b5c7c2ff94b96545635c9c513e8eb06350",
+      "source_digests": {
+        "scripts/verify-seo-contract-poc.mjs": "41c3f63d0d7205cda53010bd4b52457dae114b5fafc6c2908782d8b40a2e9820",
+        "docs/research/2026-09-20-seo-contract-poc/fixture.mjs": "b2fe41db20aa6da075aebb03b08148f439c1cad1672d6c3eb69b5fc6ed85cf48",
+        "docs/research/2026-09-20-seo-contract-poc/render.mjs": "71c0ceda50ce72a8b093434b806068817e2ebc068053f62f34d72eb2eb390577",
+        "docs/research/2026-09-20-seo-contract-poc/article.html": "87db29c0ab89130d74929e04291888845560136a253ea8e408b6cb8be8e69319",
+        "docs/research/2026-09-20-seo-contract-poc/registry.html": "7346ce175dc20a10d87e1eb52b25c7e775445b0c14615ba2de47a24ac5255a99"
+      },
+      "scope": "同一fixtureから可視meta・BreadcrumbList・Article・画像・出典台帳を生成し、PC/SPで再読する。",
+      "remaining": [
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "SEO-04A visible metadata and one canonical graph",
+            "SEO-04A breadcrumb and image contracts",
+            "SEO-04A sponsored links keep ordinary links distinct"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SEO-04B": {
+      "status": "partial",
+      "requirement_digest": "80725ac68b43abf9",
+      "oracle_sha256": "10ec58763ac03a516e65cb0f7413f9853c9019c4b0b30c328a434d3e6c6c89e8",
+      "source_digests": {
+        "scripts/verify-seo-contract-poc.mjs": "41c3f63d0d7205cda53010bd4b52457dae114b5fafc6c2908782d8b40a2e9820",
+        "docs/research/2026-09-20-seo-contract-poc/fixture.mjs": "b2fe41db20aa6da075aebb03b08148f439c1cad1672d6c3eb69b5fc6ed85cf48",
+        "docs/research/2026-09-20-seo-contract-poc/render.mjs": "71c0ceda50ce72a8b093434b806068817e2ebc068053f62f34d72eb2eb390577",
+        "docs/research/2026-09-20-seo-contract-poc/article.html": "87db29c0ab89130d74929e04291888845560136a253ea8e408b6cb8be8e69319",
+        "docs/research/2026-09-20-seo-contract-poc/registry.html": "7346ce175dc20a10d87e1eb52b25c7e775445b0c14615ba2de47a24ac5255a99"
+      },
+      "scope": "必須プロパティ欠落・禁止型・出典日付の負例を同じ契約で拒否する。",
+      "remaining": [
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "SEO-04B missing required property is rejected",
+            "SEO-04B forbidden type is rejected"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NFR-SEO-01A": {
+      "status": "partial",
+      "requirement_digest": "d36d82d80467ffc3",
+      "oracle_sha256": "36d5a7e08ea2453a7bf3c953cdad68eec8a84c374c52cfec29fe8e35d2abb8ff",
+      "source_digests": {
+        "scripts/verify-seo-contract-poc.mjs": "41c3f63d0d7205cda53010bd4b52457dae114b5fafc6c2908782d8b40a2e9820",
+        "docs/research/2026-09-20-seo-contract-poc/fixture.mjs": "b2fe41db20aa6da075aebb03b08148f439c1cad1672d6c3eb69b5fc6ed85cf48",
+        "docs/research/2026-09-20-seo-contract-poc/render.mjs": "71c0ceda50ce72a8b093434b806068817e2ebc068053f62f34d72eb2eb390577",
+        "docs/research/2026-09-20-seo-contract-poc/article.html": "87db29c0ab89130d74929e04291888845560136a253ea8e408b6cb8be8e69319",
+        "docs/research/2026-09-20-seo-contract-poc/registry.html": "7346ce175dc20a10d87e1eb52b25c7e775445b0c14615ba2de47a24ac5255a99"
+      },
+      "scope": "required propertiesと廃止型台帳を検査するローカルtest laneを持つ。",
+      "remaining": [
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "NFR-SEO-01A registry and test lane enforce required fields"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NFR-SEO-01B": {
+      "status": "partial",
+      "requirement_digest": "d36d82d80467ffc3",
+      "oracle_sha256": "473f85e501c63de05442fef94c5bcd1840b28ac0993fb5b30e5bf2a0ec943f9f",
+      "source_digests": {
+        "scripts/verify-seo-contract-poc.mjs": "41c3f63d0d7205cda53010bd4b52457dae114b5fafc6c2908782d8b40a2e9820",
+        "docs/research/2026-09-20-seo-contract-poc/fixture.mjs": "b2fe41db20aa6da075aebb03b08148f439c1cad1672d6c3eb69b5fc6ed85cf48",
+        "docs/research/2026-09-20-seo-contract-poc/render.mjs": "71c0ceda50ce72a8b093434b806068817e2ebc068053f62f34d72eb2eb390577",
+        "docs/research/2026-09-20-seo-contract-poc/article.html": "87db29c0ab89130d74929e04291888845560136a253ea8e408b6cb8be8e69319",
+        "docs/research/2026-09-20-seo-contract-poc/registry.html": "7346ce175dc20a10d87e1eb52b25c7e775445b0c14615ba2de47a24ac5255a99"
+      },
+      "scope": "廃止型追加・必須欠落・古い出典日付をFAILへ落とす。",
+      "remaining": [
+        "WP 7.2実機・12ページ種別・第三者SEOプラグイン譲渡・Rich Results Test・URL Inspection・実検索表示は未検証。",
+        "本番のmeta/OGP/sitemap/CWV/A-B配信は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-seo-contract-poc/verification.json",
+          "sha256": "14e8c374a1b32b96d5d2827db353852f3c373c0ad5c89b89988c76b0861e7932",
+          "row_names": [
+            "SEO-04B forbidden type is rejected",
+            "NFR-SEO-01B stale source date is rejected"
+          ]
+        }
+      ]
     }
   }
 }
