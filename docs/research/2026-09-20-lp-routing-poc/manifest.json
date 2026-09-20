@@ -1,0 +1,37 @@
+{
+  "schema": "wt-lp-routing-manifest.v1",
+  "contentTypes": [
+    {
+      "id": "wt_lp",
+      "label": "獲得LP",
+      "purpose": "購入意思の高い利用者のCV獲得",
+      "slugBase": null,
+      "hierarchical": false
+    },
+    {
+      "id": "wt_event",
+      "label": "イベント",
+      "purpose": "開催情報と申込の管理",
+      "slugBase": null,
+      "hierarchical": false
+    },
+    {
+      "id": "wt_comparison",
+      "label": "比較特設",
+      "purpose": "比較検討のための特設案内",
+      "slugBase": null,
+      "hierarchical": false
+    },
+    {
+      "id": "wt_blp",
+      "label": "理解・比較ページ",
+      "purpose": "判断材料を提供してLPへ送る",
+      "slugBase": "guides",
+      "hierarchical": true
+    }
+  ],
+  "routes": {
+    "lp": "flat",
+    "fixedPage": "hierarchical"
+  }
+}

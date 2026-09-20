@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 192,
-    "partial": 76,
+    "missing": 189,
+    "partial": 79,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -1473,24 +1473,48 @@
       "requirement_id": "WT-FR-LP-01",
       "oracle": "LP が CPT として作成でき、ディレクトリに依存しない URL で公開され、種別（通常 / イベント / 比較特設）が REST と manifest から列挙できる。固定ページは階層 URL のまま",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "LP・イベント・比較特設・BLPのmanifestとREST形投影を作り、LP系の非階層スラッグ、固定ページの階層URL、PC/SP・JS無効の表示を検査。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2のCPT/REST/保存/権限/リライトルールは未接続。",
+        "静的JSONの契約を実運用の投稿編集画面や公開APIの成功とは扱わない。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "sha256": "66daf1c9161493bbe608c07297c9b8fe834955bbfd9ed869a0b50e09b5f554a9",
+          "row_names": [
+            "AC-LP-01A manifest and REST expose flat LP routes and independent kinds",
+            "AC-LP-01A remains usable without JavaScript at PC and SP widths",
+            "AC-LP-01B rejects hierarchical LP slugs and collapsing event kinds into LP",
+            "AC-LP-01C keeps BLP purpose and destination separate from LP and preserves independent kinds"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-LP-01B",
       "requirement_id": "WT-FR-LP-01",
       "oracle": "LP が固定ページ階層の配下 URL になる、または種別が JSON で列挙できなければ FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "階層化LP、階層URL、イベント/比較種別のLPへの畳み込みを負例として拒否。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2のCPT/REST/保存/権限/リライトルールは未接続。",
+        "静的JSONの契約を実運用の投稿編集画面や公開APIの成功とは扱わない。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "sha256": "66daf1c9161493bbe608c07297c9b8fe834955bbfd9ed869a0b50e09b5f554a9",
+          "row_names": [
+            "AC-LP-01A manifest and REST expose flat LP routes and independent kinds",
+            "AC-LP-01A remains usable without JavaScript at PC and SP widths",
+            "AC-LP-01B rejects hierarchical LP slugs and collapsing event kinds into LP",
+            "AC-LP-01C keeps BLP purpose and destination separate from LP and preserves independent kinds"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-MIGRATE-01A",
@@ -11363,12 +11387,24 @@
       "requirement_id": "WT-FR-LP-01",
       "oracle": "LP / BLP の目的差、イベント / 比較の管理単位を JSON の種別で識別できる",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "BLPは判断材料と送客、LPはCV目的、イベント/比較は独立種別としてmanifestで識別できることを検査。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2のCPT/REST/保存/権限/リライトルールは未接続。",
+        "静的JSONの契約を実運用の投稿編集画面や公開APIの成功とは扱わない。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-lp-routing-poc/verification.json",
+          "sha256": "66daf1c9161493bbe608c07297c9b8fe834955bbfd9ed869a0b50e09b5f554a9",
+          "row_names": [
+            "AC-LP-01A manifest and REST expose flat LP routes and independent kinds",
+            "AC-LP-01A remains usable without JavaScript at PC and SP widths",
+            "AC-LP-01B rejects hierarchical LP slugs and collapsing event kinds into LP",
+            "AC-LP-01C keeps BLP purpose and destination separate from LP and preserves independent kinds"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-03C",

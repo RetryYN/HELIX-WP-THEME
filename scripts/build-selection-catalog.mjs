@@ -762,6 +762,22 @@ if (fs.existsSync(path.join(root, productRegistryPath))) {
   }
 }
 const recoveryContractPath = 'docs/research/2026-09-20-recovery-contract-poc/verification.json';
+const lpRoutingPath = 'docs/research/2026-09-20-lp-routing-poc/verification.json';
+if (fs.existsSync(path.join(root, lpRoutingPath))) {
+  const report = read(lpRoutingPath);
+  const candidates = read('docs/research/2026-09-20-lp-routing-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.shots.length !== 2) throw Error('LP routing evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error('Stale LP routing source ' + source);
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['lp-routing:comparison', 'lp-routing:event', 'lp-routing:normal'])) throw Error('LP routing candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-LP-01'])) throw Error('LP routing requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(item => item.device === device);
+      if (!shot || candidate.images[device] !== `../2026-09-20-lp-routing-poc/${shot.file}` || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-lp-routing-poc', shot.file))).digest('hex') !== shot.sha256) throw Error('Missing LP routing screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 if (fs.existsSync(path.join(root, recoveryContractPath))) {
   const report = read(recoveryContractPath);
   const candidates = read('docs/research/2026-09-20-recovery-contract-poc/catalog-candidates.json');
