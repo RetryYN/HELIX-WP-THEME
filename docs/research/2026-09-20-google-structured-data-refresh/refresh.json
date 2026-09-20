@@ -1,0 +1,44 @@
+{
+  "schema": "wt-google-structured-data-refresh.v1",
+  "checkedAt": "2026-09-20",
+  "sources": [
+    {
+      "id": "google-breadcrumb",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/breadcrumb",
+      "status": "current",
+      "statusDelta": "BreadcrumbList requires ordered ListItem data; the final item may omit item; a typical user path is preferred over a raw URL path.",
+      "adoptionDecision": "retain shared breadcrumb source for visible trail and JSON-LD",
+      "routeImpact": "WT-FR-NAV-01"
+    },
+    {
+      "id": "google-structured-data-intro",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+      "status": "current",
+      "statusDelta": "JSON-LD remains the recommended implementation; markup must describe visible page content and does not guarantee a rich result.",
+      "adoptionDecision": "keep server/source-of-truth boundary and do not claim display eligibility as completion",
+      "routeImpact": "WT-FR-SEO-04"
+    },
+    {
+      "id": "google-structured-data-updates",
+      "url": "https://developers.google.com/search/updates",
+      "status": "current",
+      "statusDelta": "Practice problem support is being removed from Search reporting and Dataset is documented for Dataset Search rather than Google Search rich results; deprecated feature documentation is removed over time.",
+      "adoptionDecision": "feed update deltas into the deprecated-type registry and fail closed on removed types",
+      "routeImpact": "WT-FR-SEO-02, WT-NFR-SEO-01"
+    },
+    {
+      "id": "google-product",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/product",
+      "status": "current",
+      "statusDelta": "Product snippets and merchant listings have different eligibility boundaries; initial HTML is preferred for fast-changing product data.",
+      "adoptionDecision": "keep product surface PoC scoped to local source consistency and record search eligibility as unverified",
+      "routeImpact": "WT-FR-SELL-02"
+    }
+  ],
+  "requirementDecision": {
+    "newRequirementIds": [],
+    "existingRequirementsUpdated": [],
+    "reason": "The refresh tightens source status and verification boundaries already represented by the current SEO/NAV requirements; no new behavior was discovered that warrants a separate requirement ID.",
+    "completionClaimAllowed": false
+  }
+}
