@@ -98,7 +98,7 @@ test('filter browser verification cannot under-report registered cases', () => {
   assert.equal(artifact.playwright.failed, 0);
   assert.equal(artifact.playwright.skipped, 0);
   assert.equal(artifact.playwright.flaky, 0);
-  assert.ok(artifact.playwright.passed >= Number(match[1]), 'verification artifact under-reports registered browser cases');
+  assert.equal(artifact.playwright.passed, Number(match[1]), 'verification artifact count does not match registered browser cases');
 });
 
 test('selection index exposes evidence boundaries for every catalog candidate', () => {
