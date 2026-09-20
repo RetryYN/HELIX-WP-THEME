@@ -30,8 +30,16 @@
       "id": "google-product",
       "url": "https://developers.google.com/search/docs/appearance/structured-data/product",
       "status": "current",
-      "statusDelta": "Product snippets and merchant listings have different eligibility boundaries; initial HTML is preferred for fast-changing product data.",
+      "statusDelta": "Product snippets and merchant listings have different eligibility boundaries.",
       "adoptionDecision": "keep product surface PoC scoped to local source consistency and record search eligibility as unverified",
+      "routeImpact": "WT-FR-SELL-02"
+    },
+    {
+      "id": "google-merchant-listing",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/merchant-listing",
+      "status": "current",
+      "statusDelta": "For fast-changing price and availability, structured data in the initial HTML is preferred because JavaScript-only updates can make crawls less frequent and less reliable.",
+      "adoptionDecision": "keep initial HTML as the preferred product data source while leaving search eligibility and purchase integration unverified",
       "routeImpact": "WT-FR-SELL-02"
     }
   ],
