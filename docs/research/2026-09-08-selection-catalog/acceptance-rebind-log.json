@@ -440,6 +440,74 @@
       ],
       "registry_before_sha256": "b0c02e5ce91561aa6be8f539d2ad7c85cc2637a6f97373552d5cf1abdf07d83a",
       "registry_after_sha256": "834d63df44c5fdb88af074476144038560d0af27f3f0bb21f2745dbc413c93a0"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-ADMIN-03A",
+        "WT-AC-ADMIN-03B",
+        "WT-AC-ADMIN-03C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-admin-changes-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ADMIN-03A",
+          "path": "tests/e2e/admin-changes-poc-selection-catalog.spec.ts",
+          "before": "df41606213438e418cc10f9eff05f3faf8a84fc48c9f1b87795f43b76ba861a6",
+          "after": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ADMIN-03A",
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "before": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "after": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ADMIN-03B",
+          "path": "tests/e2e/admin-changes-poc-selection-catalog.spec.ts",
+          "before": "df41606213438e418cc10f9eff05f3faf8a84fc48c9f1b87795f43b76ba861a6",
+          "after": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ADMIN-03B",
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "before": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "after": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ADMIN-03C",
+          "path": "tests/e2e/admin-changes-poc-selection-catalog.spec.ts",
+          "before": "df41606213438e418cc10f9eff05f3faf8a84fc48c9f1b87795f43b76ba861a6",
+          "after": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ADMIN-03C",
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "before": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "after": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "before_sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "after_sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "834d63df44c5fdb88af074476144038560d0af27f3f0bb21f2745dbc413c93a0",
+      "registry_after_sha256": "099eeb0a07ed440457a11369fb7152f7aa93bd4849f2c9e6e291b8d19e129ae6"
     }
   ]
 }

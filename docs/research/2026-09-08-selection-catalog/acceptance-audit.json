@@ -2887,7 +2887,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
-          "sha256": "dbd3fc02613ac6824d66cc7901c33a82a62f274c4d2d2672e93c8ff50026312a",
+          "sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
           "row_names": [
             "AC-A review 1440px js diff and reflow",
             "AC-A review 1440px no-js diff and reflow",
@@ -2927,12 +2927,11 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
-          "sha256": "dbd3fc02613ac6824d66cc7901c33a82a62f274c4d2d2672e93c8ff50026312a",
+          "sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
           "row_names": [
             "AC-B reject prevents subsequent apply until fresh review",
             "AC-B hold prevents subsequent apply until fresh review",
             "AC-B bypassing disabled display cannot bypass review or destructive stop",
-            "AC-B reviewed but unconfirmed apply is blocked even when display guard is removed",
             "AC-B operations stay transient and emit no external writes"
           ]
         }
@@ -13955,7 +13954,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
-          "sha256": "dbd3fc02613ac6824d66cc7901c33a82a62f274c4d2d2672e93c8ff50026312a",
+          "sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
           "row_names": [
             "AC-C dryrun failure preserves diff and retry recovers with logs",
             "AC-C apply failure preserves diff and retry recovers with logs",

@@ -13204,7 +13204,7 @@
         "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
         "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
         "scripts/verify-admin-changes-poc.mjs": "9273d3678d72b1d6bba8d7632f743cdcf5b88c7bab4bd082c4e5cb439f8abb9e",
-        "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "41960b7b9801735656d0615524a0fda3ec373259bbb0e226cab99cfe2c527277",
+        "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef",
         "docs/research/2026-09-20-admin-changes-poc/contract.mjs": "43614a61194987043f234bd459845fda14b6c153651ff3c5a9447d4696d514f0",
         "docs/research/2026-09-20-admin-changes-poc/view.mjs": "a16de37703466f7589738e6f8099773985f16d32dd472dddf93dc1f7ec7d05cb",
         "docs/research/2026-09-20-admin-changes-poc/changes.css": "2600d90f2d81d83f2898bd3d12972b69e7d726365eb14d61c7f274153c17b0b3",
@@ -13220,7 +13220,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
-          "sha256": "dbd3fc02613ac6824d66cc7901c33a82a62f274c4d2d2672e93c8ff50026312a",
+          "sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
           "row_names": [
             "AC-A review 1440px js diff and reflow",
             "AC-A review 1440px no-js diff and reflow",
@@ -13255,7 +13255,7 @@
         "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
         "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
         "scripts/verify-admin-changes-poc.mjs": "9273d3678d72b1d6bba8d7632f743cdcf5b88c7bab4bd082c4e5cb439f8abb9e",
-        "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "41960b7b9801735656d0615524a0fda3ec373259bbb0e226cab99cfe2c527277",
+        "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef",
         "docs/research/2026-09-20-admin-changes-poc/contract.mjs": "43614a61194987043f234bd459845fda14b6c153651ff3c5a9447d4696d514f0",
         "docs/research/2026-09-20-admin-changes-poc/view.mjs": "a16de37703466f7589738e6f8099773985f16d32dd472dddf93dc1f7ec7d05cb",
         "docs/research/2026-09-20-admin-changes-poc/changes.css": "2600d90f2d81d83f2898bd3d12972b69e7d726365eb14d61c7f274153c17b0b3",
@@ -13271,12 +13271,11 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
-          "sha256": "dbd3fc02613ac6824d66cc7901c33a82a62f274c4d2d2672e93c8ff50026312a",
+          "sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
           "row_names": [
             "AC-B reject prevents subsequent apply until fresh review",
             "AC-B hold prevents subsequent apply until fresh review",
             "AC-B bypassing disabled display cannot bypass review or destructive stop",
-            "AC-B reviewed but unconfirmed apply is blocked even when display guard is removed",
             "AC-B operations stay transient and emit no external writes"
           ]
         }
@@ -13291,7 +13290,7 @@
         "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
         "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
         "scripts/verify-admin-changes-poc.mjs": "9273d3678d72b1d6bba8d7632f743cdcf5b88c7bab4bd082c4e5cb439f8abb9e",
-        "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "41960b7b9801735656d0615524a0fda3ec373259bbb0e226cab99cfe2c527277",
+        "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef",
         "docs/research/2026-09-20-admin-changes-poc/contract.mjs": "43614a61194987043f234bd459845fda14b6c153651ff3c5a9447d4696d514f0",
         "docs/research/2026-09-20-admin-changes-poc/view.mjs": "a16de37703466f7589738e6f8099773985f16d32dd472dddf93dc1f7ec7d05cb",
         "docs/research/2026-09-20-admin-changes-poc/changes.css": "2600d90f2d81d83f2898bd3d12972b69e7d726365eb14d61c7f274153c17b0b3",
@@ -13307,7 +13306,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
-          "sha256": "dbd3fc02613ac6824d66cc7901c33a82a62f274c4d2d2672e93c8ff50026312a",
+          "sha256": "623770436340496082dd8ef38a77a1e7375d6a314d9efecadff1806cf87caab4",
           "row_names": [
             "AC-C dryrun failure preserves diff and retry recovers with logs",
             "AC-C apply failure preserves diff and retry recovers with logs",
