@@ -1,0 +1,78 @@
+{
+  "WT-AC-ADMIN-03A": {
+    "status": "partial",
+    "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+        "row_names": [
+          "AC-A review 1440px js diff and reflow",
+          "AC-A review 1440px no-js diff and reflow",
+          "AC-A review 390px js diff and reflow",
+          "AC-A review 390px no-js diff and reflow",
+          "AC-A review 320px js diff and reflow",
+          "AC-A review 320px no-js diff and reflow",
+          "AC-A blocked 1440px js diff and reflow",
+          "AC-A blocked 1440px no-js diff and reflow",
+          "AC-A blocked 390px js diff and reflow",
+          "AC-A blocked 390px no-js diff and reflow",
+          "AC-A blocked 320px js diff and reflow",
+          "AC-A blocked 320px no-js diff and reflow",
+          "AC-A recovery 1440px js diff and reflow",
+          "AC-A recovery 1440px no-js diff and reflow",
+          "AC-A recovery 390px js diff and reflow",
+          "AC-A recovery 390px no-js diff and reflow",
+          "AC-A recovery 320px js diff and reflow",
+          "AC-A recovery 320px no-js diff and reflow",
+          "AC-A review apply rollback logs and restores all values",
+          "AC-A keyboard review and rollback at 200 percent root text"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-03B": {
+    "status": "partial",
+    "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+        "row_names": [
+          "AC-B reject prevents subsequent apply until fresh review",
+          "AC-B hold prevents subsequent apply until fresh review",
+          "AC-B bypassing disabled display cannot bypass review or destructive stop",
+          "AC-B operations stay transient and emit no external writes"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-03C": {
+    "status": "partial",
+    "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+        "row_names": [
+          "AC-C dryrun failure preserves diff and retry recovers with logs",
+          "AC-C apply failure preserves diff and retry recovers with logs",
+          "AC-C reject failure preserves diff and retry recovers with logs",
+          "AC-C rollback failure preserves diff and retry recovers with logs",
+          "AC-C partial apply is incomplete and rollback failure keeps recovery context",
+          "AC-C diagnostic copy success",
+          "AC-C diagnostic copy fallback"
+        ]
+      }
+    ]
+  }
+}

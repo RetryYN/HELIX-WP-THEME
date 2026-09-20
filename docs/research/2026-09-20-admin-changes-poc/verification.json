@@ -1,0 +1,191 @@
+{
+  "schema": "wt-admin-changes-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/admin-changes-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "scripts/build-admin-changes-poc.mjs": "cc8b8b15d032af8d4e6e32cc1b66fe41a84c75a782c0bd9a8cee7849406de5a9",
+    "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+    "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+    "scripts/verify-admin-changes-poc.mjs": "9273d3678d72b1d6bba8d7632f743cdcf5b88c7bab4bd082c4e5cb439f8abb9e",
+    "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "df41606213438e418cc10f9eff05f3faf8a84fc48c9f1b87795f43b76ba861a6",
+    "docs/research/2026-09-20-admin-changes-poc/contract.mjs": "43614a61194987043f234bd459845fda14b6c153651ff3c5a9447d4696d514f0",
+    "docs/research/2026-09-20-admin-changes-poc/view.mjs": "a16de37703466f7589738e6f8099773985f16d32dd472dddf93dc1f7ec7d05cb",
+    "docs/research/2026-09-20-admin-changes-poc/changes.css": "2600d90f2d81d83f2898bd3d12972b69e7d726365eb14d61c7f274153c17b0b3",
+    "docs/research/2026-09-20-admin-changes-poc/review.html": "7cbd5112c3c5d74b33ae5d8d99d98cb0363e79f1a27eb5ff179ecb95a9e2ed8d",
+    "docs/research/2026-09-20-admin-changes-poc/blocked.html": "ad3ffa79290dbb56e195700087dfc04f7a619f9cfd1e46a9e13684eb061637fe",
+    "docs/research/2026-09-20-admin-changes-poc/recovery.html": "e202e4ea4e73a62990b5dd770e3f65e2f7b110afd318bd6560a1db3d523bd0e7"
+  },
+  "rows": [
+    {
+      "name": "AC-A review 1440px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 1440px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 390px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 390px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 320px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review 320px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A blocked 1440px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A blocked 1440px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A blocked 390px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A blocked 390px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A blocked 320px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A blocked 320px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A recovery 1440px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A recovery 1440px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A recovery 390px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A recovery 390px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A recovery 320px js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A recovery 320px no-js diff and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A review apply rollback logs and restores all values",
+      "pass": true
+    },
+    {
+      "name": "AC-B reject prevents subsequent apply until fresh review",
+      "pass": true
+    },
+    {
+      "name": "AC-B hold prevents subsequent apply until fresh review",
+      "pass": true
+    },
+    {
+      "name": "AC-B bypassing disabled display cannot bypass review or destructive stop",
+      "pass": true
+    },
+    {
+      "name": "AC-C dryrun failure preserves diff and retry recovers with logs",
+      "pass": true
+    },
+    {
+      "name": "AC-C apply failure preserves diff and retry recovers with logs",
+      "pass": true
+    },
+    {
+      "name": "AC-C reject failure preserves diff and retry recovers with logs",
+      "pass": true
+    },
+    {
+      "name": "AC-C rollback failure preserves diff and retry recovers with logs",
+      "pass": true
+    },
+    {
+      "name": "AC-C partial apply is incomplete and rollback failure keeps recovery context",
+      "pass": true
+    },
+    {
+      "name": "AC-C diagnostic copy success",
+      "pass": true
+    },
+    {
+      "name": "AC-C diagnostic copy fallback",
+      "pass": true
+    },
+    {
+      "name": "AC-A keyboard review and rollback at 200 percent root text",
+      "pass": true
+    },
+    {
+      "name": "AC-B operations stay transient and emit no external writes",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "review",
+      "device": "pc",
+      "file": "review-pc.jpg",
+      "sha256": "8cfdbada4e29e232f8ff02d2c377042abef072abe1d006d23d79c1984853cc73"
+    },
+    {
+      "id": "review",
+      "device": "sp",
+      "file": "review-sp.jpg",
+      "sha256": "1c8330f80da146ae93fcd9cc7fd6319652fa191a5a0bfd5b2a38b50ac1581735"
+    },
+    {
+      "id": "blocked",
+      "device": "pc",
+      "file": "blocked-pc.jpg",
+      "sha256": "e58ab17a5b37ffb307f0f2f26fc5797de8e91172bdff4709595dc8e851c384e1"
+    },
+    {
+      "id": "blocked",
+      "device": "sp",
+      "file": "blocked-sp.jpg",
+      "sha256": "e017266f838dc1cf0831d593ef9b15867c3e3d81320379171bf815f3b030e96e"
+    },
+    {
+      "id": "recovery",
+      "device": "pc",
+      "file": "recovery-pc.jpg",
+      "sha256": "d14143c31621a32184751ddbf94cdaa87986d95f0fe1becae02cfa81bb9652a8"
+    },
+    {
+      "id": "recovery",
+      "device": "sp",
+      "file": "recovery-sp.jpg",
+      "sha256": "e43748fcc21e5d7557bd075951cb0204f6c5e6e756141e86375fd24e329a5f56"
+    }
+  ],
+  "scope": "Static/local browser-memory PoC only. Not WordPress admin, WP 7.2, DataViews/DataForm integration, server registration, persistence, permissions, MCP or external APIs. All three ACs partial.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

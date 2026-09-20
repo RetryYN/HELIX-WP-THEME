@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {fixtures} from '../docs/research/2026-09-20-admin-changes-poc/contract.mjs';
+const definitions=fixtures.map(f=>({kind:f.id,label:f.label,title:f.lead}));
+const root='docs/research/2026-09-20-admin-changes-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-admin-changes-poc.mjs']);
+const files=['scripts/build-admin-changes-poc.mjs','scripts/utility-poc-server.mjs','scripts/utility-poc-provider.mjs','scripts/verify-admin-changes-poc.mjs','tests/e2e/admin-changes-poc-selection-catalog.spec.ts',...['contract.mjs','view.mjs','changes.css',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'admin-changes-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/admin-changes-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,ADMIN_CHANGES_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const rows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(rows.every(r=>r.pass));
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-admin-changes-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local browser-memory PoC only. Not WordPress admin, WP 7.2, DataViews/DataForm integration, server registration, persistence, permissions, MCP or external APIs. All three ACs partial.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=suffix=>rows.filter(r=>r.name.startsWith(`AC-${suffix}`)).map(r=>r.name);
+ const remaining=['WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。','実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B','C'].map(s=>[`WT-AC-ADMIN-03${s}`,{status:'partial',scope:'差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(s)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-admin-changes-catalog-candidates.v1',entries:definitions.map(d=>({id:`admin-changes:${d.kind}`,face:'inheritance',part:`admin-changes-${d.kind}`,label:`変更確認：${d.label}`,variant:d.kind,description:`${d.title}。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。`,purpose:'変更案と復旧の文脈を確かめる',group:'共通設定・部品',images:{pc:`../2026-09-20-admin-changes-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-admin-changes-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-ADMIN-03'],referenceId:'wt-admin-changes-poc.v1',evidence:'../2026-09-20-admin-changes-poc/verification.json',selectionFacts:{'対象と判断':d.title,'反映の境界':'ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。','入力の扱い':'再読込・画面移動で初期化。永続保存・外部送信なし。','実測':'1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。','対象外':'AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'3 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}

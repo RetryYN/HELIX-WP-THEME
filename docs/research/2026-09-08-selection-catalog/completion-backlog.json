@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 666,
-  "screenshot_count": 1203,
+  "catalog_candidate_count": 669,
+  "screenshot_count": 1209,
   "acceptance_counts": {
-    "missing": 217,
-    "partial": 51,
+    "missing": 214,
+    "partial": 54,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -212,22 +212,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "A/B の承認・停止・rollback を WT-UI-10 と MCP 常用パックの双方から操作し、停止時は既定案へ即時復帰する。A/B の判定ロジックはテーマ・プラグインに置かない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-ADMIN-03",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 3,
-        "missing": 3,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する 適用・却下・rollback が失敗した場合は、原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保持する。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2908,6 +2892,26 @@
         "admin:article"
       ],
       "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）を各項目の所有先の初期値にする: 設定 JSON が持つ項目はサイト既定セットの初期値、theme.json / block style が持つ項目（本文幅・書体など）はテーマ既定、選択なしの guard 項目（44px・コントラスト等）は検査で強制し設定にしない。選択を持つ項目だけ個別に変更でき、証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。 WordPress 7.2 系の DataViews / DataForm へ移行できるよう、一覧・編集の fields / actions をサーバー登録し、pattern・長さ・数値範囲の検証、階層表示、一括操作、入力状態を同じ schema / manifest 契約へ束ねる。未提供版では既存の設定 JSON 契約へ縮退する。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-ADMIN-03",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 3,
+        "missing": 0,
+        "partial": 3,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 3,
+      "candidates": [
+        "admin-changes:review",
+        "admin-changes:blocked",
+        "admin-changes:recovery"
+      ],
+      "statement": "WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する 適用・却下・rollback が失敗した場合は、原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保持する。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

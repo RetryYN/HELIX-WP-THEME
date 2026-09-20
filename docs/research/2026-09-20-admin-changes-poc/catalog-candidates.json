@@ -1,0 +1,86 @@
+{
+  "schema": "wt-admin-changes-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "admin-changes:review",
+      "face": "inheritance",
+      "part": "admin-changes-review",
+      "label": "変更確認：差分レビュー",
+      "variant": "review",
+      "description": "変更前と変更後を確認してから適用する。。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-changes-poc/review-pc.jpg",
+        "sp": "../2026-09-20-admin-changes-poc/review-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "referenceId": "wt-admin-changes-poc.v1",
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "変更前と変更後を確認してから適用する。",
+        "反映の境界": "ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin-changes:blocked",
+      "face": "inheritance",
+      "part": "admin-changes-blocked",
+      "label": "変更確認：破壊域の停止",
+      "variant": "blocked",
+      "description": "保護対象が含まれる変更案は、まとめて停止する。。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-changes-poc/blocked-pc.jpg",
+        "sp": "../2026-09-20-admin-changes-poc/blocked-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "referenceId": "wt-admin-changes-poc.v1",
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "保護対象が含まれる変更案は、まとめて停止する。",
+        "反映の境界": "ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin-changes:recovery",
+      "face": "inheritance",
+      "part": "admin-changes-recovery",
+      "label": "変更確認：失敗からの復旧",
+      "variant": "recovery",
+      "description": "差分と診断を残し、直近の状態へ戻す。。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-changes-poc/recovery-pc.jpg",
+        "sp": "../2026-09-20-admin-changes-poc/recovery-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "referenceId": "wt-admin-changes-poc.v1",
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "差分と診断を残し、直近の状態へ戻す。",
+        "反映の境界": "ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    }
+  ]
+}
