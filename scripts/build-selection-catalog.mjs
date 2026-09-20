@@ -767,9 +767,10 @@ if (fs.existsSync(path.join(root, recoveryContractPath))) {
   const candidates = read('docs/research/2026-09-20-recovery-contract-poc/catalog-candidates.json');
   if (!report.completed || !report.rows.length || report.rows.some(row => !row.pass)) throw Error('Recovery contract PoC evidence incomplete');
   for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error('Stale recovery contract source ' + source);
-  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['recovery:transaction'])) throw Error('Recovery contract candidates mismatch');
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['recovery:token-projection', 'recovery:transaction'])) throw Error('Recovery contract candidates mismatch');
   for (const candidate of candidates.entries) {
-    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-NFR-REC-01'])) throw Error('Recovery contract requirement mapping mismatch');
+    const expectedRequirements = candidate.id === 'recovery:token-projection' ? ['WT-NFR-VALUE-03'] : ['WT-NFR-REC-01'];
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(expectedRequirements)) throw Error('Recovery contract requirement mapping mismatch');
     for (const device of ['pc', 'sp']) {
       const shot = report.shots.find(item => item.id === candidate.variant && item.device === device);
       if (!shot || candidate.images[device] !== '../2026-09-20-recovery-contract-poc/' + shot.file || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-recovery-contract-poc', shot.file))).digest('hex') !== shot.sha256) throw Error('Missing recovery contract screenshot ' + candidate.id + '/' + device);

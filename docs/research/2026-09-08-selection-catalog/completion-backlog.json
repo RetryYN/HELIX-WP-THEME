@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 690,
-  "screenshot_count": 1251,
+  "catalog_candidate_count": 691,
+  "screenshot_count": 1253,
   "acceptance_counts": {
-    "missing": 194,
-    "partial": 74,
+    "missing": 192,
+    "partial": 76,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -660,22 +660,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "計測の検査で、同意前の非発火、データ層の必須項目、Consent Mode v2 7 種への写像表、head slot の consent default 最初の注入順、3 slot 外へのスクリプト注入 0、同意なしイベントのサーバー保存 0、タグ転送の性能予算内を確認する。Consent Mode v2 7 種への写像、head の consent default 最初の注入、外部送信契約、タグ転送量を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-NFR-VALUE-03",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "bridge 投影・子テーマ・user global styles は同スラッグへの値差し替えだけができ、段の増減・スラッグ変更・settings 上書きはスキーマ検査で拒否する。dimension preset、minWidth、background.gradient は宣言済み尺度・安全域として扱う。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2650,6 +2634,24 @@
         "seo-contract:registry"
       ],
       "statement": "schema.org 型と Google 必須プロパティを検査する Rich Results Test 相当の test lane を持ち、必須プロパティ欠落と非推奨型を赤として扱う。FAQPage / HowTo / SearchAction ほか Google 公式 updates に基づく廃止型リストを JSON 正本として保持し、各型の出典 URL と参照日を記録して改定差分を追う。出典: https://developers.google.com/search/updates、https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）。廃止型・schema 更新を docs updates RSS から監視し、robots / favicon / 日付 / canonical の公式出典と参照日を保持する。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-NFR-VALUE-03",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 1,
+      "candidates": [
+        "recovery:token-projection"
+      ],
+      "statement": "bridge 投影・子テーマ・user global styles は同スラッグへの値差し替えだけができ、段の増減・スラッグ変更・settings 上書きはスキーマ検査で拒否する。dimension preset、minWidth、background.gradient は宣言済み尺度・安全域として扱う。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

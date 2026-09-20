@@ -25,6 +25,31 @@
         "対象外": "視覚デザインの採用、実WP保存、DB/API、権限、MCP/CLI、AI、credential、外部送信。",
         "未検証": "実WP 7.2での永続化・同時更新競合・全リソース横断のrollback。"
       }
+    },
+    {
+      "id": "recovery:token-projection",
+      "face": "admin",
+      "part": "token-projection",
+      "label": "尺度投影：6段の値差し替え",
+      "variant": "value",
+      "description": "bridge投影が親の6段フォント・余白、2段幅、安全値を維持し、段追加・削除・slug変更・settings上書きを拒否する契約PoC。",
+      "purpose": "尺度の所有権と投影境界を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-recovery-contract-poc/value-pc.jpg",
+        "sp": "../2026-09-20-recovery-contract-poc/value-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-NFR-VALUE-03"
+      ],
+      "referenceId": "wt-token-projection.v1",
+      "evidence": "../2026-09-20-recovery-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "親の段数・slugを壊さず、bridgeが値だけを差し替えられるか選ぶ候補。",
+        "実測": "6段フォント・6段余白・2段幅、dimension preset/minWidth/background.gradientのslug維持、段削除・slug変更・settings上書き拒否。",
+        "対象外": "実theme.json・bridge・子テーマ・user global styles・WP 7.2接続、視覚デザインの採用。",
+        "未検証": "実際の投影API・保存・複数正本の優先順・権限。"
+      }
     }
   ]
 }
