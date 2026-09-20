@@ -8,6 +8,30 @@ export const fixture = Object.freeze({
   },
 });
 
+export const tokenProjectionFixture = Object.freeze({
+  schema: 'wt-token-projection.v1',
+  parent: {
+    typography: { slugs: ['small', 'medium', 'large', 'x-large', 'xx-large', 'xxx-large'], values: ['0.875rem', '1rem', '1.125rem', '1.5rem', '2rem', '3rem'] },
+    spacing: { slugs: ['10', '20', '30', '40', '50', '60'], values: ['0.5rem', '1rem', '1.5rem', '2rem', '3rem', '4rem'] },
+    widths: { slugs: ['content', 'wide'], values: ['760px', '1200px'] },
+    safeValues: {
+      dimensionPreset: { slug: 'preset-40', value: '2rem' },
+      minWidth: { slug: 'min-20', value: '20rem' },
+      backgroundGradient: { slug: 'brand-soft', value: 'linear-gradient(135deg, #16324f, #5b8def)' },
+    },
+  },
+  bridge: {
+    typography: { slugs: ['small', 'medium', 'large', 'x-large', 'xx-large', 'xxx-large'], values: ['0.9rem', '1rem', '1.125rem', '1.5rem', '2rem', '3rem'] },
+    spacing: { slugs: ['10', '20', '30', '40', '50', '60'], values: ['0.5rem', '1rem', '1.5rem', '2.25rem', '3rem', '4.5rem'] },
+    widths: { slugs: ['content', 'wide'], values: ['800px', '1280px'] },
+    safeValues: {
+      dimensionPreset: { slug: 'preset-40', value: '2.25rem' },
+      minWidth: { slug: 'min-20', value: '20rem' },
+      backgroundGradient: { slug: 'brand-soft', value: 'linear-gradient(135deg, #16324f, #7aa2f7)' },
+    },
+  },
+});
+
 const clone = value => structuredClone(value);
 const sorted = value => {
   if (Array.isArray(value)) return value.map(sorted);
@@ -27,6 +51,27 @@ const stableDigest = text => {
   return hash.toString(16).padStart(16, '0');
 };
 export const digest = value => 'digest:' + stableDigest(canonical(value));
+
+const sameKeys = (left, right) => JSON.stringify(Object.keys(left).sort()) === JSON.stringify(Object.keys(right).sort());
+const validateTokenDimension = (parent, projection, name) => {
+  if (!projection || typeof projection !== 'object' || Array.isArray(projection)) throw new Error(`${name} projection must be an object`);
+  if (!sameKeys(parent, projection)) throw new Error(`${name} projection changes dimensions`);
+  if (JSON.stringify(parent.slugs) !== JSON.stringify(projection.slugs)) throw new Error(`${name} projection changes slugs`);
+  if (!Array.isArray(projection.values) || projection.values.length !== parent.slugs.length) throw new Error(`${name} projection changes scale length`);
+  if (projection.values.some(value => typeof value !== 'string' || !value.trim())) throw new Error(`${name} projection has invalid value`);
+};
+
+export const projectTokenLayer = (parent, projection) => {
+  if (!parent || !projection || typeof parent !== 'object' || typeof projection !== 'object') throw new Error('Token projection requires objects');
+  if (!sameKeys(parent, projection) || Object.hasOwn(projection, 'settings')) throw new Error('Token projection settings override is forbidden');
+  for (const name of ['typography', 'spacing', 'widths']) validateTokenDimension(parent[name], projection[name], name);
+  if (!sameKeys(parent.safeValues, projection.safeValues)) throw new Error('safe value dimensions cannot change');
+  for (const name of Object.keys(parent.safeValues)) {
+    const expected = parent.safeValues[name]; const actual = projection.safeValues[name];
+    if (!actual || expected.slug !== actual.slug || typeof actual.value !== 'string' || !actual.value.trim()) throw new Error(`safe value ${name} changes slug or value`);
+  }
+  return structuredClone(projection);
+};
 
 const getAt = (value, path) => path.split('.').reduce((current, key) => current?.[key], value);
 const setAt = (value, path, next) => {

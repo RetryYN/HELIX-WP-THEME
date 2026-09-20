@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 194,
-    "partial": 74,
+    "missing": 192,
+    "partial": 76,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -1737,24 +1737,40 @@
       "requirement_id": "WT-NFR-VALUE-03",
       "oracle": "段を増減する投影が拒否され、親の 6 段が維持される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "親の6段フォント・余白と2段幅を維持したまま、bridge投影が値だけを差し替える契約を検査。dimension preset、minWidth、background.gradientも同じslugの安全値として保持。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実theme.json・bridge・子テーマ・user global styles・WP 7.2の投影接続は未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "sha256": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
+          "row_names": [
+            "AC-VALUE-03A token projection preserves parent six-level scales"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-VALUE-03B",
       "requirement_id": "WT-NFR-VALUE-03",
       "oracle": "投影で 60 が落ちてコア既定が入る（PoC 実測）状態が再現すれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "段の増減、slug変更、settings上書きを拒否し、親の尺度を維持する負例を検査。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実theme.json・bridge・子テーマ・user global stylesの実更新境界は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "sha256": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
+          "row_names": [
+            "AC-VALUE-03B token projection rejects scale or settings changes"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SEO-01A",
@@ -2075,7 +2091,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
-          "sha256": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf",
+          "sha256": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
           "row_names": [
             "AC-A structure pc dry-run apply rollback restores digest",
             "AC-A structure sp dry-run apply rollback restores digest",
@@ -2103,7 +2119,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
-          "sha256": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf",
+          "sha256": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
           "row_names": [
             "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
             "AC-B unknown path and empty patch are rejected"

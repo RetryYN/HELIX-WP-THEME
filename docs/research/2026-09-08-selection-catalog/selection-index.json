@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 690,
+  "candidateCount": 691,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -2526,33 +2526,32 @@
     {
       "id": "WT-NFR-VALUE-03",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NFR-VALUE-03A",
-          "WT-AC-NFR-VALUE-03B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-NFR-VALUE-03A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-NFR-VALUE-03B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "recovery:token-projection"
+      ]
     },
     {
       "id": "WT-FR-SEO-01",
@@ -30233,6 +30232,35 @@
       "group": "共通設定・部品",
       "requirementIds": [
         "WT-NFR-REC-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-recovery-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "recovery:token-projection",
+      "face": "admin",
+      "part": "token-projection",
+      "label": "尺度投影：6段の値差し替え",
+      "variant": "value",
+      "purpose": "尺度の所有権と投影境界を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-NFR-VALUE-03"
       ],
       "selectionCoverage": {
         "status": "partial",

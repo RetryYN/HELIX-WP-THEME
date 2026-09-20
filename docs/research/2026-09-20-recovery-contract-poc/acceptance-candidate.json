@@ -38,5 +38,35 @@
         ]
       }
     ]
+  },
+  "WT-AC-NFR-VALUE-03A": {
+    "status": "partial",
+    "scope": "親の6段フォント・余白と2段幅を維持したまま、bridge投影が値だけを差し替える契約を検査。dimension preset、minWidth、background.gradientも同じslugの安全値として保持。",
+    "remaining": [
+      "実theme.json・bridge・子テーマ・user global styles・WP 7.2の投影接続は未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+        "row_names": [
+          "AC-VALUE-03A token projection preserves parent six-level scales"
+        ]
+      }
+    ]
+  },
+  "WT-AC-NFR-VALUE-03B": {
+    "status": "partial",
+    "scope": "段の増減、slug変更、settings上書きを拒否し、親の尺度を維持する負例を検査。",
+    "remaining": [
+      "実theme.json・bridge・子テーマ・user global stylesの実更新境界は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+        "row_names": [
+          "AC-VALUE-03B token projection rejects scale or settings changes"
+        ]
+      }
+    ]
   }
 }
