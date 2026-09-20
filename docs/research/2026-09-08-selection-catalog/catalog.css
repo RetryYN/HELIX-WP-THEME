@@ -270,3 +270,8 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
   #compare .compare-grid{display:block}
   #compare .compare-grid>section[data-active=false]{display:none}
 }
+
+/* 低い画面でもsticky画像の下端を詳細ダイアログ内に収める。 */
+@media(min-width:701px){
+  #detail .detail-layout>.image-viewer{max-height:calc(90dvh - var(--dialog-header-clearance,138px) - 28px)}
+}
