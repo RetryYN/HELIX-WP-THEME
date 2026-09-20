@@ -1,0 +1,204 @@
+{
+  "schema": "wt-breadcrumb-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/breadcrumb-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "docs/research/2026-09-20-google-structured-data-refresh/README.md": "ae28184b6f868e5b20cd3e9f4a0b657464abc2ba1ab3bd25989ab0e06255de0d",
+    "docs/research/2026-09-20-google-structured-data-refresh/refresh.json": "6fe45f184bbc65abeb423644803b9a91ff4fb68285ffaf278ae52ba585c17002",
+    "scripts/build-breadcrumb-poc.mjs": "a78cc604afae86c8fa173533a26db3e5d31ba1e79b7bf5b2547a37d46acc0d24",
+    "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+    "scripts/verify-breadcrumb-mutations.mjs": "6690852cf6814674cb3278371c10d6e7790574860e08ddfe3fad37c498b10fe4",
+    "scripts/verify-breadcrumb-poc.mjs": "b55396b0f25f3e994322e4f3735217dd08d5961753cf4b9750b60fd763ab07be",
+    "tests/e2e/breadcrumb-poc-selection-catalog.spec.ts": "aff62d70b962e35f41ede79eecc8283ae439d5b2ecbf8dcbb038748e3843eca4",
+    "docs/research/2026-09-20-breadcrumb-poc/model.mjs": "e19c6d8c72e50a6cf31b63789f2d72cb028b231dff840494e4e5dbf3073e4a85",
+    "docs/research/2026-09-20-breadcrumb-poc/view.mjs": "be654683418712b2b0460d741feb236bcb07b72879c5dc6857c8d379c81db20b",
+    "docs/research/2026-09-20-breadcrumb-poc/breadcrumbs.css": "552c1fef67790b2c257cee6a3245e0fa7fdb5b8f51ad64ac6eddf238f7efb21d",
+    "docs/research/2026-09-20-breadcrumb-poc/post.html": "d835b8f625758a3bb5e23b13260f2e6d1501930e4eba879a5d73ea3def39c378",
+    "docs/research/2026-09-20-breadcrumb-poc/page.html": "5e1f2332d517a1fcc9fdce8acd8533712e317b6a5df0a1d54a3f56d54c935292",
+    "docs/research/2026-09-20-breadcrumb-poc/lp.html": "cddc39aa531bec8426fa1f856091bd66ba6edc5c2295a3a1fdb575e16445c771"
+  },
+  "rows": [
+    {
+      "name": "AC-A post 1440 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A post 1440 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A post 390 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A post 390 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A post 320 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A post 320 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A page 1440 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A page 1440 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A page 390 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A page 390 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A page 320 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A page 320 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp 1440 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp 1440 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp 390 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp 390 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp 320 js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp 320 no-js visible breadcrumb and JSON-LD match",
+      "pass": true
+    },
+    {
+      "name": "AC-A post canonical name parent path changes both visible and JSON-LD",
+      "pass": true
+    },
+    {
+      "name": "AC-A page canonical name parent path changes both visible and JSON-LD",
+      "pass": true
+    },
+    {
+      "name": "AC-A lp canonical name parent path changes both visible and JSON-LD",
+      "pass": true
+    },
+    {
+      "name": "AC-B missing stops projection and preserves prior display",
+      "pass": true
+    },
+    {
+      "name": "AC-B cycle stops projection and preserves prior display",
+      "pass": true
+    },
+    {
+      "name": "AC-B unsafe stops projection and preserves prior display",
+      "pass": true
+    },
+    {
+      "name": "AC-B query stops projection and preserves prior display",
+      "pass": true
+    },
+    {
+      "name": "AC-B deep cycle empty name and one-node output are rejected",
+      "pass": true
+    },
+    {
+      "name": "AC-A LP uses semantic parent and directory independent URL with recorded boundary",
+      "pass": true
+    },
+    {
+      "name": "AC-B altered ancestor name and URL are derived without hand-written trail",
+      "pass": true
+    },
+    {
+      "name": "AC-A keyboard and 200 percent root text preserve long labels",
+      "pass": true
+    },
+    {
+      "name": "AC-A local editing and click do not send or persist data",
+      "pass": true
+    },
+    {
+      "name": "AC-B mutation visible-label-drift rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "AC-B mutation json-position-drift rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "AC-B mutation ancestor-label-fixed rejected",
+      "pass": true,
+      "unexpected": 1
+    }
+  ],
+  "shots": [
+    {
+      "id": "post",
+      "device": "pc",
+      "file": "post-pc.jpg",
+      "sha256": "522d2a918eec88a16002549de3572235641a9d84561cc9aa19db77ae25d172a1"
+    },
+    {
+      "id": "post",
+      "device": "sp",
+      "file": "post-sp.jpg",
+      "sha256": "2404c929363f3858cbcc3658e4a66958dab2afb270a9bb5c505f6201f932c3e5"
+    },
+    {
+      "id": "page",
+      "device": "pc",
+      "file": "page-pc.jpg",
+      "sha256": "9429404638ecb5f1d8036554ea1db8ec833bdb323a54f9fee7f36c7cde75dfaf"
+    },
+    {
+      "id": "page",
+      "device": "sp",
+      "file": "page-sp.jpg",
+      "sha256": "5eb191a9878f5cd8c252742c65bcdd340d423a64348a6186c5cc224463c2754d"
+    },
+    {
+      "id": "lp",
+      "device": "pc",
+      "file": "lp-pc.jpg",
+      "sha256": "4e1dcda356a3e6a91e7dee09ca9dc555ed2a393b6f59513af99a8d55e29874ea"
+    },
+    {
+      "id": "lp",
+      "device": "sp",
+      "file": "lp-sp.jpg",
+      "sha256": "c7b6577a6920682499d3d2bf3af6eeb4dd3393efdafddac1ea902525438b9215"
+    }
+  ],
+  "scope": "Static/local breadcrumb fixture for post/page/LP. Visible text, URLs and order checked against JSON-LD from one canonical tree. Both ACs partial; WP core Breadcrumbs and WP 7.2, storage, real URL resolution and Google validators unconnected.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

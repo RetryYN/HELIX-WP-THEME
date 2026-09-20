@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 682,
+  "candidateCount": 685,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -4785,33 +4785,34 @@
     {
       "id": "WT-FR-NAV-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NAV-01A",
-          "WT-AC-NAV-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-NAV-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-NAV-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "breadcrumb:post",
+        "breadcrumb:page",
+        "breadcrumb:lp"
+      ]
     },
     {
       "id": "WT-FR-RECO-01",
@@ -30259,6 +30260,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-section-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "breadcrumb:post",
+      "face": "article",
+      "part": "breadcrumb-post",
+      "label": "パンくず：投稿の階層",
+      "variant": "post",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "breadcrumb:page",
+      "face": "article",
+      "part": "breadcrumb-page",
+      "label": "パンくず：固定ページの階層",
+      "variant": "page",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "breadcrumb:lp",
+      "face": "article",
+      "part": "breadcrumb-lp",
+      "label": "パンくず：LPの典型導線",
+      "variant": "lp",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
       "devices": [
         "pc",
         "sp"

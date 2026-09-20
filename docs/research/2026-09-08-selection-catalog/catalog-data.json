@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1235,
+  "screenshotCount": 1241,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -13870,6 +13870,84 @@
       }
     },
     {
+      "id": "breadcrumb:post",
+      "face": "article",
+      "part": "breadcrumb-post",
+      "label": "パンくず：投稿の階層",
+      "variant": "post",
+      "description": "記事から、ひとつ上の読みものへ。 2受入条件は部分確認。",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-breadcrumb-poc/post-pc.jpg",
+        "sp": "../2026-09-20-breadcrumb-poc/post-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "referenceId": "wt-breadcrumb-poc.v1",
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "記事から、ひとつ上の読みものへ。",
+        "単一正本": "名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。",
+        "LPの境界": "ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。",
+        "未検証": "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。 LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "breadcrumb:page",
+      "face": "article",
+      "part": "breadcrumb-page",
+      "label": "パンくず：固定ページの階層",
+      "variant": "page",
+      "description": "長いページ名でも、いまの位置を見失わない。 2受入条件は部分確認。",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-breadcrumb-poc/page-pc.jpg",
+        "sp": "../2026-09-20-breadcrumb-poc/page-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "referenceId": "wt-breadcrumb-poc.v1",
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "長いページ名でも、いまの位置を見失わない。",
+        "単一正本": "名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。",
+        "LPの境界": "ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。",
+        "未検証": "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。 LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "breadcrumb:lp",
+      "face": "article",
+      "part": "breadcrumb-lp",
+      "label": "パンくず：LPの典型導線",
+      "variant": "lp",
+      "description": "URLの深さではなく、利用者の導線を示す。 2受入条件は部分確認。",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-breadcrumb-poc/lp-pc.jpg",
+        "sp": "../2026-09-20-breadcrumb-poc/lp-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "referenceId": "wt-breadcrumb-poc.v1",
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "URLの深さではなく、利用者の導線を示す。",
+        "単一正本": "名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。",
+        "LPの境界": "ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。",
+        "未検証": "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。 LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
       "id": "seo-contract:article",
       "face": "article",
       "part": "seo-contract-article",
@@ -23533,45 +23611,95 @@
           "requirement_id": "WT-FR-NAV-01",
           "oracle": "表示パンくずと BreadcrumbList の階層・順序・URL が同一正本から生成され、保存 HTML の手書き固定がない",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "投稿/固定ページ/LPの同一階層fixtureから可視パンくずとBreadcrumbListを生成。文字/URL/順序、正本変更、欠損/循環、PC/SP/JS有無/keyboard/200% root文字をローカル検査。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。",
+            "LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-breadcrumb-poc/verification.json",
+              "sha256": "e267ec7f78f6c625a3614edb93ed4f2552c8e2f7f6fb7b1b3c59f56de38801db",
+              "row_names": [
+                "AC-A post 1440 js visible breadcrumb and JSON-LD match",
+                "AC-A post 1440 no-js visible breadcrumb and JSON-LD match",
+                "AC-A post 390 js visible breadcrumb and JSON-LD match",
+                "AC-A post 390 no-js visible breadcrumb and JSON-LD match",
+                "AC-A post 320 js visible breadcrumb and JSON-LD match",
+                "AC-A post 320 no-js visible breadcrumb and JSON-LD match",
+                "AC-A page 1440 js visible breadcrumb and JSON-LD match",
+                "AC-A page 1440 no-js visible breadcrumb and JSON-LD match",
+                "AC-A page 390 js visible breadcrumb and JSON-LD match",
+                "AC-A page 390 no-js visible breadcrumb and JSON-LD match",
+                "AC-A page 320 js visible breadcrumb and JSON-LD match",
+                "AC-A page 320 no-js visible breadcrumb and JSON-LD match",
+                "AC-A lp 1440 js visible breadcrumb and JSON-LD match",
+                "AC-A lp 1440 no-js visible breadcrumb and JSON-LD match",
+                "AC-A lp 390 js visible breadcrumb and JSON-LD match",
+                "AC-A lp 390 no-js visible breadcrumb and JSON-LD match",
+                "AC-A lp 320 js visible breadcrumb and JSON-LD match",
+                "AC-A lp 320 no-js visible breadcrumb and JSON-LD match",
+                "AC-A post canonical name parent path changes both visible and JSON-LD",
+                "AC-A page canonical name parent path changes both visible and JSON-LD",
+                "AC-A lp canonical name parent path changes both visible and JSON-LD",
+                "AC-A LP uses semantic parent and directory independent URL with recorded boundary",
+                "AC-A keyboard and 200 percent root text preserve long labels",
+                "AC-A local editing and click do not send or persist data"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-NAV-01B",
           "requirement_id": "WT-FR-NAV-01",
           "oracle": "表示だけまたは JSON-LD だけが別系統、階層が手書き固定、LP の課題が未記録なら FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "投稿/固定ページ/LPの同一階層fixtureから可視パンくずとBreadcrumbListを生成。文字/URL/順序、正本変更、欠損/循環、PC/SP/JS有無/keyboard/200% root文字をローカル検査。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。",
+            "LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-breadcrumb-poc/verification.json",
+              "sha256": "e267ec7f78f6c625a3614edb93ed4f2552c8e2f7f6fb7b1b3c59f56de38801db",
+              "row_names": [
+                "AC-B missing stops projection and preserves prior display",
+                "AC-B cycle stops projection and preserves prior display",
+                "AC-B unsafe stops projection and preserves prior display",
+                "AC-B query stops projection and preserves prior display",
+                "AC-B deep cycle empty name and one-node output are rejected",
+                "AC-B altered ancestor name and URL are derived without hand-written trail",
+                "AC-B mutation visible-label-drift rejected",
+                "AC-B mutation json-position-drift rejected",
+                "AC-B mutation ancestor-label-fixed rejected"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "breadcrumb:post",
+        "breadcrumb:page",
+        "breadcrumb:lp"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NAV-01A",
-          "WT-AC-NAV-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -34247,8 +34375,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 202,
-    "partial": 66,
+    "missing": 200,
+    "partial": 68,
     "verified_in_poc": 32,
     "stale": 0
   },

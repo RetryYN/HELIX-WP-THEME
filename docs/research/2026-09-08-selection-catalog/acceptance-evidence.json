@@ -13694,6 +13694,105 @@
         }
       ]
     },
+    "WT-AC-NAV-01A": {
+      "status": "partial",
+      "requirement_digest": "c8e46379ba35e66f",
+      "oracle_sha256": "b268ffcf8e4966539f99603725a278ed649ee75db7fafa9a1b47be2aae4a675e",
+      "source_digests": {
+        "docs/research/2026-09-20-google-structured-data-refresh/README.md": "ae28184b6f868e5b20cd3e9f4a0b657464abc2ba1ab3bd25989ab0e06255de0d",
+        "docs/research/2026-09-20-google-structured-data-refresh/refresh.json": "6fe45f184bbc65abeb423644803b9a91ff4fb68285ffaf278ae52ba585c17002",
+        "scripts/build-breadcrumb-poc.mjs": "a78cc604afae86c8fa173533a26db3e5d31ba1e79b7bf5b2547a37d46acc0d24",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-breadcrumb-mutations.mjs": "6690852cf6814674cb3278371c10d6e7790574860e08ddfe3fad37c498b10fe4",
+        "scripts/verify-breadcrumb-poc.mjs": "b55396b0f25f3e994322e4f3735217dd08d5961753cf4b9750b60fd763ab07be",
+        "tests/e2e/breadcrumb-poc-selection-catalog.spec.ts": "aff62d70b962e35f41ede79eecc8283ae439d5b2ecbf8dcbb038748e3843eca4",
+        "docs/research/2026-09-20-breadcrumb-poc/model.mjs": "e19c6d8c72e50a6cf31b63789f2d72cb028b231dff840494e4e5dbf3073e4a85",
+        "docs/research/2026-09-20-breadcrumb-poc/view.mjs": "be654683418712b2b0460d741feb236bcb07b72879c5dc6857c8d379c81db20b",
+        "docs/research/2026-09-20-breadcrumb-poc/breadcrumbs.css": "552c1fef67790b2c257cee6a3245e0fa7fdb5b8f51ad64ac6eddf238f7efb21d",
+        "docs/research/2026-09-20-breadcrumb-poc/post.html": "d835b8f625758a3bb5e23b13260f2e6d1501930e4eba879a5d73ea3def39c378",
+        "docs/research/2026-09-20-breadcrumb-poc/page.html": "5e1f2332d517a1fcc9fdce8acd8533712e317b6a5df0a1d54a3f56d54c935292",
+        "docs/research/2026-09-20-breadcrumb-poc/lp.html": "cddc39aa531bec8426fa1f856091bd66ba6edc5c2295a3a1fdb575e16445c771"
+      },
+      "scope": "投稿/固定ページ/LPの同一階層fixtureから可視パンくずとBreadcrumbListを生成。文字/URL/順序、正本変更、欠損/循環、PC/SP/JS有無/keyboard/200% root文字をローカル検査。",
+      "remaining": [
+        "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。",
+        "LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-breadcrumb-poc/verification.json",
+          "sha256": "e267ec7f78f6c625a3614edb93ed4f2552c8e2f7f6fb7b1b3c59f56de38801db",
+          "row_names": [
+            "AC-A post 1440 js visible breadcrumb and JSON-LD match",
+            "AC-A post 1440 no-js visible breadcrumb and JSON-LD match",
+            "AC-A post 390 js visible breadcrumb and JSON-LD match",
+            "AC-A post 390 no-js visible breadcrumb and JSON-LD match",
+            "AC-A post 320 js visible breadcrumb and JSON-LD match",
+            "AC-A post 320 no-js visible breadcrumb and JSON-LD match",
+            "AC-A page 1440 js visible breadcrumb and JSON-LD match",
+            "AC-A page 1440 no-js visible breadcrumb and JSON-LD match",
+            "AC-A page 390 js visible breadcrumb and JSON-LD match",
+            "AC-A page 390 no-js visible breadcrumb and JSON-LD match",
+            "AC-A page 320 js visible breadcrumb and JSON-LD match",
+            "AC-A page 320 no-js visible breadcrumb and JSON-LD match",
+            "AC-A lp 1440 js visible breadcrumb and JSON-LD match",
+            "AC-A lp 1440 no-js visible breadcrumb and JSON-LD match",
+            "AC-A lp 390 js visible breadcrumb and JSON-LD match",
+            "AC-A lp 390 no-js visible breadcrumb and JSON-LD match",
+            "AC-A lp 320 js visible breadcrumb and JSON-LD match",
+            "AC-A lp 320 no-js visible breadcrumb and JSON-LD match",
+            "AC-A post canonical name parent path changes both visible and JSON-LD",
+            "AC-A page canonical name parent path changes both visible and JSON-LD",
+            "AC-A lp canonical name parent path changes both visible and JSON-LD",
+            "AC-A LP uses semantic parent and directory independent URL with recorded boundary",
+            "AC-A keyboard and 200 percent root text preserve long labels",
+            "AC-A local editing and click do not send or persist data"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NAV-01B": {
+      "status": "partial",
+      "requirement_digest": "c8e46379ba35e66f",
+      "oracle_sha256": "d1be9154175fc6a5b8cd0469acd1078efe965d9117027a519784a1009801d8d8",
+      "source_digests": {
+        "docs/research/2026-09-20-google-structured-data-refresh/README.md": "ae28184b6f868e5b20cd3e9f4a0b657464abc2ba1ab3bd25989ab0e06255de0d",
+        "docs/research/2026-09-20-google-structured-data-refresh/refresh.json": "6fe45f184bbc65abeb423644803b9a91ff4fb68285ffaf278ae52ba585c17002",
+        "scripts/build-breadcrumb-poc.mjs": "a78cc604afae86c8fa173533a26db3e5d31ba1e79b7bf5b2547a37d46acc0d24",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-breadcrumb-mutations.mjs": "6690852cf6814674cb3278371c10d6e7790574860e08ddfe3fad37c498b10fe4",
+        "scripts/verify-breadcrumb-poc.mjs": "b55396b0f25f3e994322e4f3735217dd08d5961753cf4b9750b60fd763ab07be",
+        "tests/e2e/breadcrumb-poc-selection-catalog.spec.ts": "aff62d70b962e35f41ede79eecc8283ae439d5b2ecbf8dcbb038748e3843eca4",
+        "docs/research/2026-09-20-breadcrumb-poc/model.mjs": "e19c6d8c72e50a6cf31b63789f2d72cb028b231dff840494e4e5dbf3073e4a85",
+        "docs/research/2026-09-20-breadcrumb-poc/view.mjs": "be654683418712b2b0460d741feb236bcb07b72879c5dc6857c8d379c81db20b",
+        "docs/research/2026-09-20-breadcrumb-poc/breadcrumbs.css": "552c1fef67790b2c257cee6a3245e0fa7fdb5b8f51ad64ac6eddf238f7efb21d",
+        "docs/research/2026-09-20-breadcrumb-poc/post.html": "d835b8f625758a3bb5e23b13260f2e6d1501930e4eba879a5d73ea3def39c378",
+        "docs/research/2026-09-20-breadcrumb-poc/page.html": "5e1f2332d517a1fcc9fdce8acd8533712e317b6a5df0a1d54a3f56d54c935292",
+        "docs/research/2026-09-20-breadcrumb-poc/lp.html": "cddc39aa531bec8426fa1f856091bd66ba6edc5c2295a3a1fdb575e16445c771"
+      },
+      "scope": "投稿/固定ページ/LPの同一階層fixtureから可視パンくずとBreadcrumbListを生成。文字/URL/順序、正本変更、欠損/循環、PC/SP/JS有無/keyboard/200% root文字をローカル検査。",
+      "remaining": [
+        "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。",
+        "LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-breadcrumb-poc/verification.json",
+          "sha256": "e267ec7f78f6c625a3614edb93ed4f2552c8e2f7f6fb7b1b3c59f56de38801db",
+          "row_names": [
+            "AC-B missing stops projection and preserves prior display",
+            "AC-B cycle stops projection and preserves prior display",
+            "AC-B unsafe stops projection and preserves prior display",
+            "AC-B query stops projection and preserves prior display",
+            "AC-B deep cycle empty name and one-node output are rejected",
+            "AC-B altered ancestor name and URL are derived without hand-written trail",
+            "AC-B mutation visible-label-drift rejected",
+            "AC-B mutation json-position-drift rejected",
+            "AC-B mutation ancestor-label-fixed rejected"
+          ]
+        }
+      ]
+    },
     "WT-AC-SEO-04A": {
       "status": "partial",
       "requirement_digest": "80725ac68b43abf9",
