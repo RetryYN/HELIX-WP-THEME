@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 178,
-    "partial": 90,
+    "missing": 177,
+    "partial": 91,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -11462,12 +11462,25 @@
       "requirement_id": "WT-FR-LOOK-01",
       "oracle": "型の用途説明と見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4 軸の拡張を台帳へ対応付け、PC / SP の表示不具合と無効 JS / reduced-motion を検査する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "用途台帳と既存実機検査を、見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4軸、およびPC/SP・JS無効・reduced-motion・コントラストへ対応付ける。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "全style variation・Site Editor・ブラウザzoom/root font組合せ、用途台帳のPO保留行、全候補の再撮影は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-look-purpose-contract-poc/verification.json",
+          "sha256": "819971a203f77fe6bca107fbf4c29f56daae479cca7a7b1d996800a39230013a",
+          "row_names": [
+            "AC-LOOK-01E binds the purpose ledger and all required surface families",
+            "AC-LOOK-01E projects PC/SP, JS-off, reduced-motion, and contrast gates",
+            "AC-LOOK-01E keeps the measured prototype complete",
+            "AC-LOOK-01E has candidate-facing evidence for both widths",
+            "AC-LOOK-01E rejects a missing purpose surface",
+            "AC-LOOK-01E rejects an omitted reduced-motion gate"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-LOOK-03C",

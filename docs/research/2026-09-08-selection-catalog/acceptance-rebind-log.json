@@ -2059,6 +2059,44 @@
       ],
       "registry_before_sha256": "754e2f24aacb94ffec32657b24e18d4c03a30a2f6926ca0e3d894c40f3f81ca1",
       "registry_after_sha256": "6ce022ac3c25992197caaadfacb46e39ed2631f0deb7a938c84f393159d1b8a9"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-LOOK-01E"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-look-purpose-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-look-purpose-contract-poc/acceptance-candidate.json": "8dfc0b8fc2407a26af304b77f11024dc4113ad284b0300aa84c7ad611f78df16"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-look-purpose-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-LOOK-01E",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-look-purpose-contract-poc/verification.json",
+          "before_sha256": "819971a203f77fe6bca107fbf4c29f56daae479cca7a7b1d996800a39230013a",
+          "after_sha256": "819971a203f77fe6bca107fbf4c29f56daae479cca7a7b1d996800a39230013a",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "6ce022ac3c25992197caaadfacb46e39ed2631f0deb7a938c84f393159d1b8a9",
+      "registry_after_sha256": "56eb7e4b4b92e26ecaa35ee213ce68992edb59d80cc4318f22404d1738e41277"
     }
   ]
 }

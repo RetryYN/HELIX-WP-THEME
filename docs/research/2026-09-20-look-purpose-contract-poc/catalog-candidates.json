@@ -1,0 +1,29 @@
+{
+  "schema": "wt-look-purpose-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "look-contract:purpose-quality",
+      "face": "article",
+      "part": "look-contract",
+      "label": "見た目：用途台帳と品質ゲート",
+      "variant": "purpose-quality",
+      "description": "用途台帳から見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4軸を束ね、既存のPC/SP・JS無効・reduced-motion・コントラスト検査へ接続する静的契約PoC。",
+      "purpose": "読みやすく伝える",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01"
+      ],
+      "referenceId": "wt-look-purpose-contract.v1",
+      "evidence": "../2026-09-20-look-purpose-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "用途別台帳から必要な型を選び、同じ品質ゲートでPC/SPを検査する。",
+        "実測": "既存results/verify.json 90 pass / 0 fail、JS無効・reduced-motion・contrast・4軸、代表PC/SP画像。",
+        "未検証": "全style variation・Site Editor・ブラウザzoom/root font組合せ、用途台帳のPO保留行、全候補の再撮影は未接続。"
+      }
+    }
+  ]
+}
