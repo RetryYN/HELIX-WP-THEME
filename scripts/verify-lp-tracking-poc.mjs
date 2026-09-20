@@ -18,7 +18,7 @@ try {
   const report = JSON.parse(execFileSync('npx', args, { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, env: { ...process.env, LP_TRACKING_CAPTURE_DIR: staging } }));
   const flatten = suites => suites.flatMap(suite => [...(suite.specs || []), ...flatten(suite.suites || [])]);
   const rows = flatten(report.suites).map(spec => ({ name: spec.title, pass: spec.ok && spec.tests.every(test => test.results.length === 1 && test.results[0].status === 'passed') }));
-  assert(rows.length === 4 && rows.every(row => row.pass));
+  assert(rows.length === 8 && rows.every(row => row.pass));
   const shots = ['pc', 'sp'].map(device => {
     const file = 'lp-tracking-' + device + '.jpg';
     assert(fs.statSync(path.join(staging, file)).size > 1000);

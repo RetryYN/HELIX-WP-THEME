@@ -62,3 +62,23 @@ test('AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimizat
   expect(() => validateTrackingContract(optimization)).toThrow('optimization must remain outside the theme');
   expect(() => validateEvent({ name: 'lp_cta_click', eventId: 'fixture', version: fixture.tracking.version, lpId: fixture.lp.id, goalCvId: '', variantId: fixture.lp.variantId })).toThrow('event.goalCvId is required');
 });
+
+test('AC-LP-02B rejects an underspecified LP pattern inventory', () => {
+  const candidate = copy(fixture); candidate.lp.patternIds = ['lp-form'];
+  expect(() => validateTrackingContract(candidate)).toThrow('LP patterns are required');
+});
+
+test('AC-LP-02B rejects a form slot count other than one', () => {
+  const candidate = copy(fixture); candidate.formSlots.push({ ...copy(fixture.formSlots[0]), id: 'alternate-form' });
+  expect(() => validateTrackingContract(candidate)).toThrow('exactly one form slot is required');
+});
+
+test('AC-LP-02B rejects duplicate form slot identities', () => {
+  const candidate = copy(fixture); candidate.formSlots.push(copy(fixture.formSlots[0]));
+  expect(() => validateTrackingContract(candidate)).toThrow('duplicate form slot: consultation-form');
+});
+
+test('AC-LP-02B rejects a non-boolean form field requirement', () => {
+  const candidate = copy(fixture); candidate.formSlots[0].fields[0].required = 'true';
+  expect(() => validateTrackingContract(candidate)).toThrow('field.required must be boolean: name');
+});

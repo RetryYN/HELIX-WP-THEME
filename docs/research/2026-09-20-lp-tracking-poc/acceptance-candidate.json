@@ -29,7 +29,11 @@
       {
         "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
         "row_names": [
-          "AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization"
+          "AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization",
+          "AC-LP-02B rejects an underspecified LP pattern inventory",
+          "AC-LP-02B rejects a form slot count other than one",
+          "AC-LP-02B rejects duplicate form slot identities",
+          "AC-LP-02B rejects a non-boolean form field requirement"
         ]
       }
     ]

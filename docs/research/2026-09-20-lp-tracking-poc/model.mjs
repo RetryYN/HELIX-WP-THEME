@@ -40,7 +40,7 @@ export function validateTrackingContract(value = fixture) {
   if (value.schema !== fixture.schema) throw new Error('tracking fixture schema is invalid');
   for (const key of ['id', 'goalCvId', 'variantId', 'variationId']) requiredString(value.lp?.[key], `lp.${key}`);
   if (!Array.isArray(value.lp.patternIds) || value.lp.patternIds.length < 2) throw new Error('LP patterns are required');
-  if (!Array.isArray(value.formSlots) || value.formSlots.length !== 1) throw new Error('exactly one form slot is required');
+  if (!Array.isArray(value.formSlots) || !value.formSlots.length) throw new Error('at least one form slot is required');
   const ids = new Set();
   for (const form of value.formSlots) {
     requiredString(form.id, 'form.id');
@@ -55,6 +55,7 @@ export function validateTrackingContract(value = fixture) {
       if (typeof field.required !== 'boolean') throw new Error(`field.required must be boolean: ${field.id}`);
     }
   }
+  if (value.formSlots.length !== 1) throw new Error('exactly one form slot is required');
   const tracking = value.tracking;
   if (tracking?.version !== fixture.tracking.version) throw new Error('tracking version is invalid');
   if (tracking.destination !== 'helix.dataLayer' || tracking.owner !== 'helix') throw new Error('tracking destination is outside the HELIX contract');
