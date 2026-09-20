@@ -232,3 +232,10 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
 .req-row[data-poc-coverage=all]>summary .status-label{background:var(--tint);border-color:#b5c4af;color:var(--green)}
 .req-row[data-poc-coverage=some]>summary .status-label{background:#f8efd9;border-color:#d9c58e;color:#705316}
 @media(max-width:420px){.req-row>summary .status-label{display:table;margin:8px 0 0 14px}.req-row>summary>p{margin-top:10px}}
+
+/* 小画面の倍率操作を同じ行に揃え、プレビューのための高さを残す。 */
+@media(max-width:700px){
+  #detail .image-controls,#compare .image-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  #detail .image-controls button,#compare .image-controls button{padding-inline:4px;font-size:12px;min-width:0;min-height:44px}
+  .image-controls p{grid-column:1/-1}
+}
