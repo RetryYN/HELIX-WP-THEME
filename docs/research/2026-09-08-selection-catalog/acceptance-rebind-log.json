@@ -1851,6 +1851,52 @@
       ],
       "registry_before_sha256": "de5442af86d7635e43760771217dced0b026f267aa5f91b02f197edeeb6420ea",
       "registry_after_sha256": "e54f9cc7108416089fdb74a7d19a6752950748e3996eb37f79a0f1ac1f75ac64"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-LP-02A",
+        "WT-AC-LP-02B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-lp-tracking-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-lp-tracking-poc/acceptance-candidate.json": "47ac8c642cff33a4743faae344f2f6e2d1cb258cea119f083a40a06fbabc3b03"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-lp-tracking-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-LP-02A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-LP-02B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+          "before_sha256": "31ea9d0f43a3e4dbeac21e45720383b1acf9a54f374d9b1ca81825815922bdaa",
+          "after_sha256": "31ea9d0f43a3e4dbeac21e45720383b1acf9a54f374d9b1ca81825815922bdaa",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "e54f9cc7108416089fdb74a7d19a6752950748e3996eb37f79a0f1ac1f75ac64",
+      "registry_after_sha256": "1415d32e5162dcb4ae434baab09433a7417b26f5d7245460b0ff24330b51f158"
     }
   ]
 }

@@ -1,0 +1,53 @@
+{
+  "schema": "wt-lp-tracking-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "lp-tracking:form-slot",
+      "face": "lp",
+      "part": "lp-form-tracking",
+      "label": "LPフォーム：slotと必須ID付きイベント",
+      "variant": "form-slot",
+      "description": "LP専用form slotをJSONで宣言し、4種類の行動イベントへ同じLP/目標CV/variant IDを渡す静的PoC。",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-tracking-poc/lp-tracking-pc.jpg",
+        "sp": "../2026-09-20-lp-tracking-poc/lp-tracking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-02"
+      ],
+      "referenceId": "wt-lp-tracking-poc.v1",
+      "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "フォーム配置とデータ層契約を同じLP正本から選ぶ。",
+        "実測": "form slot、variation/pattern、view/scroll/CTA/submit、必須ID、JS無効。",
+        "未検証": "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected. External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
+      }
+    },
+    {
+      "id": "lp-tracking:boundary",
+      "face": "lp",
+      "part": "lp-form-tracking",
+      "label": "LP計測：外部送信・最適化の境界",
+      "variant": "boundary",
+      "description": "テーマ内に判定ロジックや外部送信を置かず、契約外イベントと必須ID欠落を拒否する静的PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-tracking-poc/lp-tracking-pc.jpg",
+        "sp": "../2026-09-20-lp-tracking-poc/lp-tracking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-02"
+      ],
+      "referenceId": "wt-lp-tracking-poc.v1",
+      "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "テーマがCV判定や最適化を所有しない境界を選ぶ。",
+        "実測": "ID欠落、イベント集合不足、optimizationOwner改変、送信API不在。",
+        "未検証": "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected. External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
+      }
+    }
+  ]
+}

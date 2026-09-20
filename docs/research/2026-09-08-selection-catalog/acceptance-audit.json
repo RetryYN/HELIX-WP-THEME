@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 189,
-    "partial": 79,
+    "missing": 187,
+    "partial": 81,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2247,24 +2247,44 @@
       "requirement_id": "WT-FR-LP-02",
       "oracle": "LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが version 付きデータ層契約から必須 ID 付きで記録され、LP 専用 variation / パターンと目標 CV ID・A/B variant ID が選べる",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的LP fixtureでform slot・LP専用variation/patternと、表示・スクロール・CTA・送信のversion付きdata layerイベントを必須ID付きで記録する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+        "External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+          "sha256": "31ea9d0f43a3e4dbeac21e45720383b1acf9a54f374d9b1ca81825815922bdaa",
+          "row_names": [
+            "AC-LP-02A declares form placement, LP variation, and versioned event contract",
+            "AC-LP-02A records view, scroll, CTA, and submit with required IDs",
+            "AC-LP-02A remains readable without JavaScript"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-LP-02B",
       "requirement_id": "WT-FR-LP-02",
       "oracle": "計測イベントまたは必須 ID が欠落する、契約外経路へ散る、またはテーマ内に最適化・判定ロジックが入れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "必須ID欠落、イベント集合不足、テーマ内最適化、外部送信を負例・静的境界で拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+        "External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+          "sha256": "31ea9d0f43a3e4dbeac21e45720383b1acf9a54f374d9b1ca81825815922bdaa",
+          "row_names": [
+            "AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-AGENT-06A",
