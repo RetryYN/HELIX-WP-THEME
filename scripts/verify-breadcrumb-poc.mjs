@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {scenarios} from '../docs/research/2026-09-20-breadcrumb-poc/model.mjs';
+const definitions=scenarios.map(f=>({kind:f.id,label:f.label,title:f.lead}));
+const root='docs/research/2026-09-20-breadcrumb-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-breadcrumb-poc.mjs']);
+const files=['docs/research/2026-09-20-google-structured-data-refresh/README.md','docs/research/2026-09-20-google-structured-data-refresh/refresh.json','scripts/build-breadcrumb-poc.mjs','scripts/product-surfaces-server.mjs','scripts/verify-breadcrumb-mutations.mjs','scripts/verify-breadcrumb-poc.mjs','tests/e2e/breadcrumb-poc-selection-catalog.spec.ts',...['model.mjs','view.mjs','breadcrumbs.css',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'breadcrumb-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/breadcrumb-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,BREADCRUMB_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const browserRows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(browserRows.every(r=>r.pass));
+ const mutations=JSON.parse(execFileSync(process.execPath,['scripts/verify-breadcrumb-mutations.mjs'],options));
+ const rows=[...browserRows,...mutations];
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-breadcrumb-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local breadcrumb fixture for post/page/LP. Visible text, URLs and order checked against JSON-LD from one canonical tree. Both ACs partial; WP core Breadcrumbs and WP 7.2, storage, real URL resolution and Google validators unconnected.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=id=>rows.filter(r=>r.name.startsWith('AC-'+id+' ')).map(r=>r.name);
+ const remaining=['WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。','LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B'].map(id=>[`WT-AC-NAV-01${id}`,{status:'partial',scope:'投稿/固定ページ/LPの同一階層fixtureから可視パンくずとBreadcrumbListを生成。文字/URL/順序、正本変更、欠損/循環、PC/SP/JS有無/keyboard/200% root文字をローカル検査。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(id)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-breadcrumb-catalog-candidates.v1',entries:definitions.map(d=>({id:`breadcrumb:${d.kind}`,face:'article',part:`breadcrumb-${d.kind}`,label:`パンくず：${d.label}`,variant:d.kind,description:`${d.title} 2受入条件は部分確認。`,purpose:'階層と現在地を表示・JSON-LDの両方で確かめる',group:'ページ本文',images:{pc:`../2026-09-20-breadcrumb-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-breadcrumb-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-NAV-01'],referenceId:'wt-breadcrumb-poc.v1',evidence:'../2026-09-20-breadcrumb-poc/verification.json',selectionFacts:{'対象と判断':d.title,'単一正本':'名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。','実測':'1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。','LPの境界':'ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'2 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}

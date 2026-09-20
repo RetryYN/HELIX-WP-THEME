@@ -1,0 +1,83 @@
+{
+  "schema": "wt-breadcrumb-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "breadcrumb:post",
+      "face": "article",
+      "part": "breadcrumb-post",
+      "label": "パンくず：投稿の階層",
+      "variant": "post",
+      "description": "記事から、ひとつ上の読みものへ。 2受入条件は部分確認。",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-breadcrumb-poc/post-pc.jpg",
+        "sp": "../2026-09-20-breadcrumb-poc/post-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "referenceId": "wt-breadcrumb-poc.v1",
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "記事から、ひとつ上の読みものへ。",
+        "単一正本": "名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。",
+        "LPの境界": "ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。",
+        "未検証": "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。 LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "breadcrumb:page",
+      "face": "article",
+      "part": "breadcrumb-page",
+      "label": "パンくず：固定ページの階層",
+      "variant": "page",
+      "description": "長いページ名でも、いまの位置を見失わない。 2受入条件は部分確認。",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-breadcrumb-poc/page-pc.jpg",
+        "sp": "../2026-09-20-breadcrumb-poc/page-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "referenceId": "wt-breadcrumb-poc.v1",
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "長いページ名でも、いまの位置を見失わない。",
+        "単一正本": "名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。",
+        "LPの境界": "ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。",
+        "未検証": "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。 LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "breadcrumb:lp",
+      "face": "article",
+      "part": "breadcrumb-lp",
+      "label": "パンくず：LPの典型導線",
+      "variant": "lp",
+      "description": "URLの深さではなく、利用者の導線を示す。 2受入条件は部分確認。",
+      "purpose": "階層と現在地を表示・JSON-LDの両方で確かめる",
+      "group": "ページ本文",
+      "images": {
+        "pc": "../2026-09-20-breadcrumb-poc/lp-pc.jpg",
+        "sp": "../2026-09-20-breadcrumb-poc/lp-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-NAV-01"
+      ],
+      "referenceId": "wt-breadcrumb-poc.v1",
+      "evidence": "../2026-09-20-breadcrumb-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "URLの深さではなく、利用者の導線を示す。",
+        "単一正本": "名前/親/URLから可視パンくずとBreadcrumbListを同時生成。可視文字を直接検査。",
+        "実測": "1440/390/320px、JS有無、keyboard、200% root文字、欠損/循環/正本変更、3摂動。",
+        "LPの境界": "ディレクトリ非依存URLから階層を推測しない。典型導線は設定候補。",
+        "未検証": "WPコアBreadcrumbsブロック・WP 7.2実機・実投稿/固定ページ階層・保存・SEOプラグイン出力所有権は未接続/未検証。 LPディレクトリ非依存URLは典型導線をサイト設定で別管理する設計候補。実URL解決/複数導線・Rich Results/URL Inspection/検索表示適格性・実スクリーンリーダーは未検証。"
+      }
+    }
+  ]
+}

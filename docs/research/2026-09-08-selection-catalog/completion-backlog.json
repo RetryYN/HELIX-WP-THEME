@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 680,
-  "screenshot_count": 1231,
+  "catalog_candidate_count": 683,
+  "screenshot_count": 1237,
   "acceptance_counts": {
-    "missing": 206,
-    "partial": 62,
+    "missing": 204,
+    "partial": 64,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -388,22 +388,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "認証 SMTP と From 整合、SPF / DKIM / DMARC の状態を検査し、未設定を警告する。wp_mail_failed を操作ログへ残し、第三者 SMTP プラグイン検出時は送信を譲る",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-NAV-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "コア Breadcrumbs ブロックを表示し、BreadcrumbList 構造化データを同じ出力元から生成する。階層は投稿・固定ページ・LP の構造から機械導出し、保存 HTML に固定しない。LP のディレクトリ非依存 URL は設計課題として記録する",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2868,6 +2852,26 @@
         "admin-keys:revoked"
       ],
       "statement": "WT-UI-10 の鍵管理タブで HELIX 接続用 API key を発行・失効し、鍵ごとに読み専用 / 書き込み可を設定する。鍵の値は一度だけ表示し、テーマ・プラグインの公開ファイルへ置かない。自前鍵ではなく専用ロールの Application Passwords を読み取り用 / 書き込み用に分けて薄く包む。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-NAV-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 3,
+      "candidates": [
+        "breadcrumb:post",
+        "breadcrumb:page",
+        "breadcrumb:lp"
+      ],
+      "statement": "コア Breadcrumbs ブロックを表示し、BreadcrumbList 構造化データを同じ出力元から生成する。階層は投稿・固定ページ・LP の構造から機械導出し、保存 HTML に固定しない。LP のディレクトリ非依存 URL は設計課題として記録する",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {
