@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 688,
-  "screenshot_count": 1247,
+  "catalog_candidate_count": 689,
+  "screenshot_count": 1249,
   "acceptance_counts": {
-    "missing": 198,
-    "partial": 70,
+    "missing": 196,
+    "partial": 72,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -612,22 +612,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "WordPress privacy tools の exporter / eraser と privacy policy content に、リード・同意記録・操作ログ・クロール集約の保存内容と削除・出力範囲を登録する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-NFR-REC-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の digest に戻る",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2762,6 +2746,24 @@
         "seo-contract:article"
       ],
       "statement": "SEO の要件と実装を Google 検索セントラルの公式ドキュメントに準拠させ、構造化データ（型ごとの必須 / 推奨プロパティ、FAQPage / HowTo / SearchAction など対象外・非推奨型を出さないこと、代表画像の OGP / 構造化データ image 一致）、検索の基本（title / meta / canonical / robots / sitemap、hreflang は多言語構成時のみ自己参照・相互参照、robots meta max-image-preview:large）、ページエクスペリエンス（Core Web Vitals、モバイル）、幅 1200px 以上の Discover 代表画像、リンク rel 属性、クローキングにならない A/B 配信を準拠項目として機械検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を確認する。各 SEO 要求は公式ドキュメント URL と参照日を持つ。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox、https://developers.google.com/search/docs/specialty/international/localized-versions（参照日: 2026-09-03）。max-snippet / nosnippet / data-nosnippet をページ種別・section で設定し、既定は許可する。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-NFR-REC-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 1,
+      "candidates": [
+        "recovery:transaction"
+      ],
+      "statement": "構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の digest に戻る",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

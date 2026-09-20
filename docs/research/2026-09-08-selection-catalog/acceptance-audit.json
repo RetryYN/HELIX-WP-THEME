@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 198,
-    "partial": 70,
+    "missing": 196,
+    "partial": 72,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2041,24 +2041,49 @@
       "requirement_id": "WT-NFR-REC-01",
       "oracle": "apply 後の rollback で変更前 digest と一致する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "構造・スタイル・値・ゾーンの4種のローカルfixtureを、同一receipt契約でdry-run→apply→rollbackし、復元digestを照合。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WPの保存/API、実権限、実運用の全リソース種別、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "sha256": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+          "row_names": [
+            "AC-A structure pc dry-run apply rollback restores digest",
+            "AC-A structure sp dry-run apply rollback restores digest",
+            "AC-A style pc dry-run apply rollback restores digest",
+            "AC-A style sp dry-run apply rollback restores digest",
+            "AC-A value pc dry-run apply rollback restores digest",
+            "AC-A value sp dry-run apply rollback restores digest",
+            "AC-A zone pc dry-run apply rollback restores digest",
+            "AC-A zone sp dry-run apply rollback restores digest",
+            "AC-A dry-run is side-effect free until apply"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-REC-01B",
       "requirement_id": "WT-NFR-REC-01",
       "oracle": "不一致 1 件で FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "stale receipt、patch mismatch、stale rollback、未知path、空patchを拒否。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP/APIの失敗境界と保存競合は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "sha256": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+          "row_names": [
+            "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
+            "AC-B unknown path and empty patch are rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-CRED-01A",
@@ -4891,7 +4916,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -4916,7 +4941,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -6385,7 +6410,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+          "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
           "row_names": [
             "fixture:positive",
             "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",

@@ -1,0 +1,22 @@
+import { test, expect } from '@playwright/test';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { startRecoveryServer } from '../../scripts/recovery-contract-server.mjs';
+import { fixture, patches, dryRun, apply, rollback, digest } from '../../docs/research/2026-09-20-recovery-contract-poc/contract.mjs';
+
+let service: Awaited<ReturnType<typeof startRecoveryServer>>;
+test.beforeAll(async () => { execFileSync(process.execPath, ['scripts/build-recovery-contract-poc.mjs'], { stdio: 'pipe' }); service = await startRecoveryServer(); });
+test.afterAll(async () => { await service.close(); });
+const url = () => `${service.base}/docs/research/2026-09-20-recovery-contract-poc/index.html`;
+
+for (const kind of Object.keys(patches)) for (const [device, width] of [['pc', 1440], ['sp', 390]] as const) test(`AC-A ${kind} ${device} dry-run apply rollback restores digest`, async ({ page }, info) => {
+  await page.setViewportSize({ width, height: 900 }); await page.goto(url()); await page.locator('#kind').selectOption(kind);
+  const before = digest(fixture); await page.locator('#apply').click(); await expect(page.locator('#status')).toContainText('適用済み'); await expect(page.locator('#rollback')).toBeEnabled();
+  const applied = await page.evaluate(() => window.__recoveryState); expect(applied.digest).not.toBe(before);
+  await page.locator('#rollback').click(); await expect(page.locator('#status')).toContainText('復元済み'); expect((await page.evaluate(() => window.__recoveryState)).digest).toBe(before);
+  const output = process.env.RECOVERY_CAPTURE_DIR ? path.join(process.env.RECOVERY_CAPTURE_DIR, `${kind}-${device}.jpg`) : info.outputPath(`${kind}-${device}.jpg`); await page.screenshot({ path: output, fullPage: true, type: 'jpeg', quality: 85 });
+});
+
+test('AC-A dry-run is side-effect free until apply', async () => { const state = structuredClone(fixture); const before = digest(state); const receipt = dryRun(state, patches.structure); expect(digest(state)).toBe(before); expect(receipt.beforeDigest).toBe(before); expect(receipt.targetDigest).not.toBe(before); });
+test('AC-B stale receipt, mismatched patch, and stale rollback are rejected', () => { const state = structuredClone(fixture); const receipt = dryRun(state, patches.structure); const changed = apply(state, patches.style, dryRun(state, patches.style)).state; expect(() => apply(changed, patches.structure, receipt)).toThrow('Receipt base digest is stale'); expect(() => apply(state, patches.style, receipt)).toThrow('Receipt patch digest mismatch'); const applied = apply(state, patches.structure, receipt); const drifted = apply(applied.state, patches.style, dryRun(applied.state, patches.style)).state; expect(() => rollback(drifted, applied.rollbackPoint)).toThrow('Rollback target digest is stale'); });
+test('AC-B unknown path and empty patch are rejected', () => { expect(() => dryRun(fixture, [])).toThrow('Patch must contain at least one operation'); expect(() => dryRun(fixture, [{ path: 'resources.unknown.value', value: true }])).toThrow('Patch target is missing'); });

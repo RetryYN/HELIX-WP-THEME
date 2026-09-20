@@ -1,0 +1,122 @@
+{
+  "schema": "wt-recovery-contract-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "scripts/build-recovery-contract-poc.mjs": "7fc99d4e8dc04e40491f8aea864cb80433ec455cc8d5348378163ca5c0eb2bf9",
+    "scripts/recovery-contract-renderer.mjs": "b2023efc74a45f889fa3a888cc514cc8a8067632363ac170ef1a37b80ae1ed29",
+    "scripts/recovery-contract-server.mjs": "0d25ff31e05447729a17cf3b64dd7f8b925c8351a4deed49b1f71414e9d51869",
+    "scripts/verify-recovery-contract-poc.mjs": "467c5c43df8cde7303f4f9d558ccab02c35fcaa581a682c4fb77601c2d93f75c",
+    "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts": "a60f9711de79bd67bac9b198bd1861c80885856f97613390487be4becd717760",
+    "docs/research/2026-09-20-recovery-contract-poc/contract.mjs": "22813242b688d80e04c5474f0cab3351e9c997c819927152754e43fc94e294fb",
+    "docs/research/2026-09-20-recovery-contract-poc/view.mjs": "9daddc4d40ddeb25f3706e7308a562b87d290ef68ac1a89c9e8cf644ae067cd6",
+    "docs/research/2026-09-20-recovery-contract-poc/index.html": "71e026880e5524c31f4cf33a3fc5cd52548df4686cb28d557dd39725ba1a2958"
+  },
+  "rows": [
+    {
+      "name": "AC-A structure pc dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A structure sp dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A style pc dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A style sp dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A value pc dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A value sp dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A zone pc dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A zone sp dry-run apply rollback restores digest",
+      "pass": true
+    },
+    {
+      "name": "AC-A dry-run is side-effect free until apply",
+      "pass": true
+    },
+    {
+      "name": "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
+      "pass": true
+    },
+    {
+      "name": "AC-B unknown path and empty patch are rejected",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "structure",
+      "device": "pc",
+      "file": "structure-pc.jpg",
+      "sha256": "392e5544928904fb2c8a4753dba842094ccd3605df9bff9be35e8d420c21d9fb"
+    },
+    {
+      "id": "structure",
+      "device": "sp",
+      "file": "structure-sp.jpg",
+      "sha256": "9f5ef3d3e76439bd7c1ac4f5642b398f0f97badb515b9da7bdbf4419bafb75f5"
+    },
+    {
+      "id": "style",
+      "device": "pc",
+      "file": "style-pc.jpg",
+      "sha256": "aaf0502f07b185336c9ccf46b8ddf8c37858e8d677ac91c8d0e2a969fb961874"
+    },
+    {
+      "id": "style",
+      "device": "sp",
+      "file": "style-sp.jpg",
+      "sha256": "53154bebb63134480cb699342854ee9e060da92c0b2b2a9086b1e1428a1f9443"
+    },
+    {
+      "id": "value",
+      "device": "pc",
+      "file": "value-pc.jpg",
+      "sha256": "a9ef93bf3312d03e969e18ba3c44b79ce6b30b7c60c3d9b770703291f7d46a49"
+    },
+    {
+      "id": "value",
+      "device": "sp",
+      "file": "value-sp.jpg",
+      "sha256": "cf8a5616923be5184a104893377597ca13ba53905e5b5779e407bd176351990d"
+    },
+    {
+      "id": "zone",
+      "device": "pc",
+      "file": "zone-pc.jpg",
+      "sha256": "406e2b9426889aaa2b3ecf37c671ddc9c2550adeeda0220524dd3a2d03d487c5"
+    },
+    {
+      "id": "zone",
+      "device": "sp",
+      "file": "zone-sp.jpg",
+      "sha256": "5d0126e34413814a21345089b1df44eb2572385371cd538385deef6e9fff71a9"
+    }
+  ],
+  "scope": "Static/local contract PoC. Four resource classes share dry-run/apply/rollback receipt and digest restoration. No real WP/API/storage write.",
+  "remaining": [
+    "実WP 7.2、実ユーザー権限、永続DB、MCP/CLI、実運用の構造/スタイル/値/ゾーン全体は未接続。"
+  ]
+}
