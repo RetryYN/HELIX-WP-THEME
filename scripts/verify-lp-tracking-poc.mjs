@@ -40,7 +40,7 @@ try {
   save(root + '/acceptance-candidate.json', {
     schema: 'wt-acceptance-candidate.v1',
     'WT-AC-LP-02A': { status: 'partial', scope: '静的LP fixtureでform slot・LP専用variation/patternと、表示・スクロール・CTA・送信のversion付きdata layerイベントを必須ID付きで記録する。', remaining, proofs: [{ path: root + '/verification.json', row_names: names.filter(name => name.startsWith('AC-LP-02A')) }] },
-    'WT-AC-LP-02B': { status: 'partial', scope: '必須ID欠落、イベント集合不足、テーマ内最適化、外部送信を負例・静的境界で拒否する。', remaining, proofs: [{ path: root + '/verification.json', row_names: names.filter(name => name.startsWith('AC-LP-02B')) }] },
+    'WT-AC-LP-02B': { status: 'partial', scope: '必須ID欠落、イベント集合不足、テーマ内最適化、外部送信を負例・静的境界で拒否する。', remaining, proofs: [{ path: root + '/verification.json', row_names: names.filter(name => name === 'AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization') }] },
   });
   const images = { pc: '../2026-09-20-lp-tracking-poc/lp-tracking-pc.jpg', sp: '../2026-09-20-lp-tracking-poc/lp-tracking-sp.jpg' };
   const evidence = '../2026-09-20-lp-tracking-poc/verification.json';
