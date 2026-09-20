@@ -8,7 +8,7 @@ const evidence = `${catalog}/visual-quality/landscape-viewer`;
 const output = process.env.CATALOG_CAPTURE_OUTPUT || evidence;
 const base = process.env.CATALOG_BASE_URL;
 if (!base) throw new Error('CATALOG_BASE_URL is required');
-const baseline = execFileSync('git', ['rev-parse', process.env.CATALOG_BASELINE_REF || '03e5637'], { encoding: 'utf8' }).trim();
+const baseline = execFileSync('git', ['rev-parse', process.env.CATALOG_BASELINE_REF || '40b28a2'], { encoding: 'utf8' }).trim();
 const css = execFileSync('git', ['show', `${baseline}:${catalog}/catalog.css`]);
 const hash = value => createHash('sha256').update(value).digest('hex');
 assert.notEqual(hash(css), hash(await readFile(`${catalog}/catalog.css`)));

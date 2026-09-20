@@ -52,3 +52,9 @@ Chromiumの代表LP検査であり、全ブラウザ・全候補・WCAG全項目
 カタログデータの更新はmainからの取り込みで、本PRは要求・受入台帳を編集しない。
 
 main取り込み後も専用15件・選択/絞り込み39件成功。強制配色captureは通常色darkの画像digest不一致で一度停止し、単独再実行で成功した。
+
+## レビュー対応
+
+| 指摘 | 対応 | 検証 |
+| --- | --- | --- |
+| Claude `cbea6fe` review: #306 merge後のcatalog-data digestへ新規証跡が未追従 | main `40b28a2` を取り込み、同mainをbefore基準としてcaptureを再実行 | 専用E2E15件成功・全artifact binding findings 0。npm test・新HEAD CIを続けて確認 |

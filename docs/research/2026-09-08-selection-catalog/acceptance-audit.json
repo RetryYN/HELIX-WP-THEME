@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 174,
-    "partial": 94,
+    "missing": 172,
+    "partial": 96,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -154,24 +154,45 @@
       "requirement_id": "WT-NFR-GATE-01",
       "oracle": "PR の HEAD で静的 FAIL=0 かつ G-E1 invalid=0 の receipt が同一 HEAD に束縛される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的6ゲート FAIL=0 と WordPress 7.1 の71パターン G-E1 invalid=0 を再集計する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実機 G-E1 は 2026-08-29 のローカル WordPress 7.1 証跡であり、現行HEADの再実行 receipt ではない。",
+        "required check と独立レビュー receipt を同一 current HEAD へ束縛する運用は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+          "row_names": [
+            "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
+            "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-GATE-01B",
       "requirement_id": "WT-NFR-GATE-01",
       "oracle": "静的 PASS のみで merge された変更が実機 invalid を生めば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "静的PASSのみ、またはG-E1 invalidを含む証跡を拒否し、過去証跡を現行HEAD完了扱いしない。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実機 G-E1 は 2026-08-29 のローカル WordPress 7.1 証跡であり、現行HEADの再実行 receipt ではない。",
+        "required check と独立レビュー receipt を同一 current HEAD へ束縛する運用は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+          "row_names": [
+            "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
+            "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
+            "AC-NFR-GATE-01B rejects G-E1 invalid blocks"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-01A",
