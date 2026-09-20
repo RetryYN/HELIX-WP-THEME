@@ -442,6 +442,7 @@ async function start() {
       shownRequirements++; shownCases += cases.length;
       const verified = req.acceptance.filter(ac => ac.status === 'verified_in_poc').length;
       const row = el('details', undefined, 'req-row');
+      row.dataset.pocCoverage = verified === req.acceptance.length ? 'all' : verified ? 'some' : 'none';
       const summary = el('summary'); summary.append(el('strong', req.id), el('span', `PoC確認 ${verified}/${req.acceptance.length}条件`, 'status-label'), el('p', req.statement));
       const body = el('div'); body.append(el('p', req.next));
       if (req.evidence) { const proof = el('a', '全受入条件の証拠対応を見る'); proof.href = req.evidence; body.append(proof); }
