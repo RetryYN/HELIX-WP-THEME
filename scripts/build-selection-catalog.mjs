@@ -812,6 +812,27 @@ if (fs.existsSync(path.join(root, recommendationContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const prDisclosureContractPath = 'docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, prDisclosureContractPath))) {
+  const report = read(prDisclosureContractPath);
+  const candidates = read('docs/research/2026-09-20-pr-disclosure-contract-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.shots.length !== 2) throw Error('PR disclosure contract evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale PR disclosure contract source: ${source}`);
+  }
+  const expectedIds = ['pr-disclosure:automatic-boundary', 'pr-disclosure:placement', 'pr-disclosure:wording-boundary'];
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(expectedIds)) throw Error('PR disclosure contract candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-VOCAB-03'])) throw Error('PR disclosure contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const expectedFile = candidate.images[device].replace('../2026-09-05-design-prototype-03/results/', '');
+      const shot = report.shots.find(item => item.device === device && item.file.endsWith(expectedFile));
+      const imagePath = path.join(root, 'docs/research/2026-09-05-design-prototype-03/results', expectedFile);
+      if (!shot || !fs.existsSync(imagePath) || createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex') !== shot.sha256) throw Error('Missing PR disclosure contract screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 if (fs.existsSync(path.join(root, recoveryContractPath))) {
   const report = read(recoveryContractPath);
   const candidates = read('docs/research/2026-09-20-recovery-contract-poc/catalog-candidates.json');

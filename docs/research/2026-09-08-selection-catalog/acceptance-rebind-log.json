@@ -1943,6 +1943,60 @@
       ],
       "registry_before_sha256": "1415d32e5162dcb4ae434baab09433a7417b26f5d7245460b0ff24330b51f158",
       "registry_after_sha256": "cd0c137c4b10b875b25e7146929bef1fb31451461b2f9284e6ba3230e6978fe9"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-VOCAB-03A",
+        "WT-AC-VOCAB-03B",
+        "WT-AC-VOCAB-03C"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/acceptance-candidate.json": "ab7026ab9cfd1be1fd14a1e2d1a2c98c91aa673c59f9f4d50ebb59f24b8b6883"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-pr-disclosure-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-VOCAB-03A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-VOCAB-03B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-VOCAB-03C",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "before_sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "after_sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "cd0c137c4b10b875b25e7146929bef1fb31451461b2f9284e6ba3230e6978fe9",
+      "registry_after_sha256": "754e2f24aacb94ffec32657b24e18d4c03a30a2f6926ca0e3d894c40f3f81ca1"
     }
   ]
 }

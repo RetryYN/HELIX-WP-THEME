@@ -14380,6 +14380,92 @@
           ]
         }
       ]
+    },
+    "WT-AC-VOCAB-03A": {
+      "status": "partial",
+      "requirement_digest": "6373025f0aa101f2",
+      "oracle_sha256": "99ac5dd643d2397b421dbb128a164bf227db9ff6737422d12814abf0419b70b9",
+      "source_digests": {
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/contract.mjs": "312d088ada974220fbe178dd498c7fbf662f51d21684ff1dd3a7ebb013884788",
+        "scripts/verify-pr-disclosure-contract-poc.mjs": "45509300b422ae5893d58e2243d68471eac5a283bfcc84b8f6751e28128dde29",
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/README.md": "0b597a6014dc2853106af62d10247812ea1dff559a5471bad44dbdebb69ee097",
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/external-observations.md": "7c0a88cf2917db94637f4e483ef22a970986aecd43c8e1f04f107c37d30a289d",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "広告シグナルがある記事だけへ、既定の控えめなPR表記を記事上部一箇所・first view・最小文字サイズ・AAコントラストで自動表示し、表示範囲を選択できる静的契約を検証する。",
+      "remaining": [
+        "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "row_names": [
+            "AC-VOCAB-03A accepts automatic commercial signal detection",
+            "AC-VOCAB-03A places one subtle notice in the article first view",
+            "AC-VOCAB-03A keeps display design and page/post controls selectable"
+          ]
+        }
+      ]
+    },
+    "WT-AC-VOCAB-03B": {
+      "status": "partial",
+      "requirement_digest": "6373025f0aa101f2",
+      "oracle_sha256": "5fa38999e2281be3ab7926684c628bcad0ff7ea1d7b76be3600bf16437506862",
+      "source_digests": {
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/contract.mjs": "312d088ada974220fbe178dd498c7fbf662f51d21684ff1dd3a7ebb013884788",
+        "scripts/verify-pr-disclosure-contract-poc.mjs": "45509300b422ae5893d58e2243d68471eac5a283bfcc84b8f6751e28128dde29",
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/README.md": "0b597a6014dc2853106af62d10247812ea1dff559a5471bad44dbdebb69ee097",
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/external-observations.md": "7c0a88cf2917db94637f4e483ef22a970986aecd43c8e1f04f107c37d30a289d",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "欠落、対象外への誤表示、サイズ/コントラスト不足、CTA/バナー隣接、本文編集による削除を負例として拒否する。",
+      "remaining": [
+        "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "row_names": [
+            "AC-VOCAB-03B omits notices from articles with no commercial signal",
+            "AC-VOCAB-03B rejects signal removal from the automatic contract",
+            "AC-VOCAB-03B rejects below-minimum font size or contrast",
+            "AC-VOCAB-03B rejects CTA/banner adjacency",
+            "AC-VOCAB-03B rejects body-edit removal"
+          ]
+        }
+      ]
+    },
+    "WT-AC-VOCAB-03C": {
+      "status": "partial",
+      "requirement_digest": "6373025f0aa101f2",
+      "oracle_sha256": "d875eeb68c89ddd6426859897ec17a05c4f5cf01065b633e6cf4dba5c25726a2",
+      "source_digests": {
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/contract.mjs": "312d088ada974220fbe178dd498c7fbf662f51d21684ff1dd3a7ebb013884788",
+        "scripts/verify-pr-disclosure-contract-poc.mjs": "45509300b422ae5893d58e2243d68471eac5a283bfcc84b8f6751e28128dde29",
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/README.md": "0b597a6014dc2853106af62d10247812ea1dff559a5471bad44dbdebb69ee097",
+        "docs/research/2026-09-20-pr-disclosure-contract-poc/external-observations.md": "7c0a88cf2917db94637f4e483ef22a970986aecd43c8e1f04f107c37d30a289d",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "PO既定文言、不要なCTA/商品カード束バッジ抑止、先頭範囲の重複抑止と既知のpending境界を記録する。",
+      "remaining": [
+        "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "row_names": [
+            "AC-VOCAB-03C keeps the PO default wording and avoids component badges",
+            "AC-VOCAB-03C suppresses duplicate positive disclosure in the first three paragraphs",
+            "AC-VOCAB-03C preserves the known pending boundary for late or heading-only disclosure"
+          ]
+        }
+      ]
     }
   }
 }

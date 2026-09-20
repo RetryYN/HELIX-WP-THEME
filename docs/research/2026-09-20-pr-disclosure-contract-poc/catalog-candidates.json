@@ -1,0 +1,77 @@
+{
+  "schema": "wt-pr-disclosure-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "pr-disclosure:automatic-boundary",
+      "face": "article",
+      "part": "pr-disclosure",
+      "label": "PR表記：広告シグナルの自動境界",
+      "variant": "default",
+      "description": "広告パーツ・アフィリエイトリンク・商品リンクを起点に、対象記事だけへ自動挿入する静的契約PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/pr-notice-one-line-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/pr-notice-one-line-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-03"
+      ],
+      "referenceId": "wt-pr-disclosure-contract.v1",
+      "evidence": "../2026-09-20-pr-disclosure-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "広告シグナルと表示要否を同一契約から選ぶ。",
+        "実測": "4種以上のシグナル、対象/対象外、先頭3段落・600字境界、否定文。",
+        "未検証": "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+      }
+    },
+    {
+      "id": "pr-disclosure:placement",
+      "face": "article",
+      "part": "pr-disclosure",
+      "label": "PR表記：記事上部・first view・AA",
+      "variant": "default",
+      "description": "控えめな既定文言を記事上部に一箇所だけ置き、最小文字サイズとAAコントラストを契約化する静的PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/pr-notice-one-line-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/pr-notice-one-line-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-03"
+      ],
+      "referenceId": "wt-pr-disclosure-contract.v1",
+      "evidence": "../2026-09-20-pr-disclosure-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "記事を読み始める前に広告性を確認できる位置を選ぶ。",
+        "実測": "article-top、first view、count 1、CTA/バナー隣接なし、4.5:1以上。",
+        "未検証": "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+      }
+    },
+    {
+      "id": "pr-disclosure:wording-boundary",
+      "face": "article",
+      "part": "pr-disclosure",
+      "label": "PR表記：既定文言と重複抑止",
+      "variant": "default",
+      "description": "PO決定文言を正本に束ね、本文先頭の既存表記との重複を抑止し、pending境界を明示する静的PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/pr-notice-one-line-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/pr-notice-one-line-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-VOCAB-03"
+      ],
+      "referenceId": "wt-pr-disclosure-contract.v1",
+      "evidence": "../2026-09-20-pr-disclosure-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "文言の統一と二重表示の抑止を選ぶ。",
+        "実測": "本記事にはプロモーションが含まれます。、先頭3段落/600字、CTA・商品カード束バッジなし。",
+        "未検証": "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+      }
+    }
+  ]
+}
