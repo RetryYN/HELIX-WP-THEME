@@ -84,6 +84,7 @@ function validateProof(proof) {
     const matches = rows.filter(row => row.name === name);
     if (!matches.length || matches.some(row => row.pass !== true)) fail(`proof row is not passing: ${proof.path} / ${name}`);
   }
+  return value;
 }
 
 function entryDiff(before, after, { allowAdditions = false } = {}) {
@@ -227,7 +228,15 @@ function plan(options) {
     const before = snapshots.get(proofPath);
     const rewritten = stat.mtimeNs > before.mtimeNs || stat.ctimeNs > before.ctimeNs;
     if (!rewritten) fail(`oracle did not rewrite referenced proof in this execution: ${proofPath}`);
-    validateProof(proof);
+    const value = validateProof(proof);
+    const declared = value.sourceDigests ?? value.source_digests;
+    if (!declared || typeof declared !== 'object' || Array.isArray(declared)) fail(`proof lacks sourceDigests: ${proofPath}`);
+    for (const [source, expected] of Object.entries(declared)) {
+      if (!fs.existsSync(path.join(root, source)) || digest(bytes(source)) !== expected) fail(`proof source digest mismatch: ${proofPath} / ${source}`);
+      for (const { evidence } of selected) {
+        if ((evidence.proofs || []).some(item => item.path === proofPath)) evidence.source_digests[source] = expected;
+      }
+    }
     const after = digest(bytes(proofPath));
     proofWrites.push({ path: proofPath, before_sha256: before.sha256, after_sha256: after, rewritten: true });
     for (const { evidence } of selected) for (const item of evidence.proofs || []) if (item.path === proofPath) item.sha256 = after;

@@ -4,4 +4,6 @@
 
 既存証跡はローカル WordPress 7.1 で取得されている。REST匿名一覧・実行、MCP匿名tools/list、receiptなし・偽receipt、誤HTTPメソッドを負例として確認する。実サイトの資格情報は記録しない。
 
+契約の `sourceDigests` は、契約・pack・比較結果だけでなく、上記の8つのセキュリティ観察JSONそのものにも束縛する。観察JSONだけを変更して検証成果物を更新しない場合は、artifact source binding検査で検出する。
+
 部分契約であり、現行HEADの再実行receipt、全REST/MCP匿名メソッド、実装全体のSSRF・Warning静的監査、WordPress 7.2実機は残件として開く。`completion=false` を固定し、既存PoCの成功を製品完成とは扱わない。

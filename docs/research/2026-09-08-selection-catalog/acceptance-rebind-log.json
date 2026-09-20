@@ -2275,6 +2275,407 @@
       ],
       "registry_before_sha256": "e210f8376cf5c62417c019154f110511cec59458de57f371d248bd733d51fb60",
       "registry_after_sha256": "d1fd000735858f3b9fafc13403249cc925aba3a0d51fded500897158354d735b"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-AGENT-01A",
+        "WT-AC-AGENT-01B",
+        "WT-AC-NFR-PERM-01A",
+        "WT-AC-NFR-PERM-01B",
+        "WT-AC-NFR-SEC-01A",
+        "WT-AC-NFR-SEC-01B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-abilities-security-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs",
+          "before": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+          "after": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json",
+          "after": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json",
+          "after": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json",
+          "after": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json",
+          "after": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json",
+          "after": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json",
+          "after": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs",
+          "before": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+          "after": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json",
+          "after": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json",
+          "after": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json",
+          "after": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json",
+          "after": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json",
+          "after": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json",
+          "after": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs",
+          "before": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+          "after": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json",
+          "after": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json",
+          "after": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json",
+          "after": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json",
+          "after": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json",
+          "after": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json",
+          "after": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs",
+          "before": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+          "after": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json",
+          "after": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json",
+          "after": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json",
+          "after": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json",
+          "after": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json",
+          "after": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json",
+          "after": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs",
+          "before": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+          "after": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json",
+          "after": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json",
+          "after": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json",
+          "after": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json",
+          "after": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json",
+          "after": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json",
+          "after": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs",
+          "before": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+          "after": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json",
+          "after": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json",
+          "after": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json",
+          "after": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json",
+          "after": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json",
+          "after": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json",
+          "after": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json",
+          "after": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before_sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after_sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "d1fd000735858f3b9fafc13403249cc925aba3a0d51fded500897158354d735b",
+      "registry_after_sha256": "4107acd92799c97b953753ac3be9db03a8947970caed9af2d59799de80c62ed7"
     }
   ]
 }
