@@ -1176,6 +1176,176 @@
       ],
       "registry_before_sha256": "bfa8bacca1968fb0cfe85647e74c9aeec44b85ad9c60437889c827874bd87ce9",
       "registry_after_sha256": "8cc270f9d370db8d86d924bcf3aa9f3e5b4a39304fb3f43f69e173be8c11178e"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-PRIV-01A",
+        "WT-AC-NFR-PRIV-01B",
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B",
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "privacy:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "after": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "after": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "package.json",
+          "before": "ed3def309c43e78ffd920c0554108c19dc0524fcd1220f7ae9ebf469c095aad8",
+          "after": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "after": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+          "before_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "after_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "after_sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "8cc270f9d370db8d86d924bcf3aa9f3e5b4a39304fb3f43f69e173be8c11178e",
+      "registry_after_sha256": "6733f888ddcb9b0ea9bfdcc3382b4138cd6354a6fc59a5775cfe20c6956d6f25"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-ZONE-02A",
+        "WT-AC-ZONE-02B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-zone-overrides-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-zone-overrides-poc/acceptance-candidate.json": "22d592206e539d256bdf3deffb09bfe5b4eea60e933651d42c07c7ac7d98b861"
+      },
+      "commands": [
+        [
+          "npm",
+          "run",
+          "zone-overrides:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ZONE-02A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ZONE-02B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+          "before_sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "after_sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "6733f888ddcb9b0ea9bfdcc3382b4138cd6354a6fc59a5775cfe20c6956d6f25",
+      "registry_after_sha256": "22850b152bc31957898db1a04589931d01ab09fa0ae35fd77f2f846db0f7b99d"
     }
   ]
 }

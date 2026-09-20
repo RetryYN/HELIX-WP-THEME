@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1249,
+  "screenshotCount": 1251,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -14102,6 +14102,33 @@
         "対象外": "視覚デザインの採用、実WP保存、DB/API、権限、MCP/CLI、AI、credential、外部送信。",
         "未検証": "実WP 7.2での永続化・同時更新競合・全リソース横断のrollback。"
       }
+    },
+    {
+      "id": "zone:overrides",
+      "face": "zone",
+      "part": "zone-overrides-contract",
+      "label": "ゾーン：参照と上書き順",
+      "variant": "first-match-wins",
+      "description": "creativeをID参照に分離し、条件に一致した最初のoverridesだけを選ぶ契約。実WP接続は未完了。",
+      "purpose": "配置条件と上書き順を決める",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-13-zone-slots/pc-js.png",
+        "sp": "../2026-09-13-zone-slots/sp-js.png"
+      },
+      "requirementIds": [
+        "WT-FR-ZONE-02",
+        "WT-FR-ZONE-01",
+        "WT-FR-ZONE-03"
+      ],
+      "referenceId": "wt-zone-overrides-poc.v1",
+      "evidence": "../2026-09-20-zone-overrides-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "同じzoneに複数条件が当たるとき、配列の先頭だけを採用するかを確認。",
+        "実測": "23意味ゾーン、creative参照、taxonomy/device条件、未知zoneと不正定義の拒否。",
+        "対象外": "実WP REST、CPT、Site Editor、権限、MCP/CLI、creative公開描画、同時更新。",
+        "既存画像": "zone-slotsのPC/SP配置画像は視覚候補の比較用で、このPoCの実装証拠ではない。"
+      }
     }
   ],
   "requirements": [
@@ -14659,13 +14686,14 @@
         "inheritance:content_site:site",
         "inheritance:content_site:own",
         "inheritance:content_site:off",
-        "zone-slots:device-selection"
+        "zone-slots:device-selection",
+        "zone:overrides"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 115,
+        "candidateCount": 116,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
@@ -14689,27 +14717,53 @@
           "requirement_id": "WT-FR-ZONE-02",
           "oracle": "schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "23意味ゾーンの代表schemaとcreative参照、未定義zone拒否、overridesのfirst-match-winsを純粋契約で検証。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+              "sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+              "row_names": [
+                "schema:23 semantic zones declared",
+                "schema:directional variants remain explicit",
+                "schema:creative references are IDs",
+                "resolve:default creative",
+                "resolve:first matching override wins",
+                "resolve:later rule is not merged",
+                "resolve:device fallback after taxonomy miss",
+                "resolve:empty zone is explicit null"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ZONE-02B",
           "requirement_id": "WT-FR-ZONE-02",
           "oracle": "複数規則が同時適用される、または未定義ゾーンが通れば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "未定義zone、未宣言zone、overrides型不正、creative参照欠落を拒否する負例を検証。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+              "sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+              "row_names": [
+                "negative:unknown zone rejected",
+                "negative:unknown config zone rejected",
+                "negative:overrides object rejected",
+                "negative:missing creative reference rejected"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "footer:footer-above-none",
         "footer:footer-above-cta-band",
@@ -14825,25 +14879,23 @@
         "inheritance:content_site:site",
         "inheritance:content_site:own",
         "inheritance:content_site:off",
-        "zone-slots:device-selection"
+        "zone-slots:device-selection",
+        "zone:overrides"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 115,
+        "candidateCount": 116,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -15179,13 +15231,14 @@
         "banner-finished:product",
         "banner-finished:advertisement",
         "banner-finished:rotation",
-        "banner-finished:stack"
+        "banner-finished:stack",
+        "zone:overrides"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 121,
+        "candidateCount": 122,
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
@@ -17346,7 +17399,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
               "row_names": [
                 "fixture:positive",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -19719,7 +19772,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
-              "sha256": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+              "sha256": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf",
               "row_names": [
                 "AC-A structure pc dry-run apply rollback restores digest",
                 "AC-A structure sp dry-run apply rollback restores digest",
@@ -19747,7 +19800,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
-              "sha256": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+              "sha256": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf",
               "row_names": [
                 "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
                 "AC-B unknown path and empty patch are rejected"
@@ -24685,7 +24738,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -24710,7 +24763,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -34555,8 +34608,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 196,
-    "partial": 72,
+    "missing": 194,
+    "partial": 74,
     "verified_in_poc": 32,
     "stale": 0
   },

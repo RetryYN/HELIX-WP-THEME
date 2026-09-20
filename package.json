@@ -8,7 +8,7 @@
     "test:e2e:catalog": "npx playwright test tests/e2e/selection-catalog.spec.ts tests/e2e/selection-catalog-filters.spec.ts tests/e2e/*-selection-catalog.spec.ts",
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",
-    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run catalog-evidence:rebind-test && npm run catalog-evidence:rebind-check && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:codex-inbox",
+    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run zone-overrides:verify && npm run catalog-evidence:rebind-test && npm run catalog-evidence:rebind-check && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:codex-inbox",
     "test:codex-inbox": "node --test tests/unit/codex-inbox.test.mjs",
     "requirements:validate": "node scripts/validate-requirements.mjs",
     "requirements:helix-l1-l2": "node scripts/validate-helix-l1-l2.mjs",
@@ -28,7 +28,8 @@
     "current-theme-quality:verify": "node docs/research/2026-09-10-current-theme-quality/verify.mjs",
     "postinstall": "node scripts/patch-helix-receipt.mjs && node scripts/patch-helix-consumer-review.mjs",
     "test:helix-patch": "tsx --test tests/unit/helix-receipt-patch.test.mjs tests/unit/helix-consumer-review-patch.test.mjs tests/unit/consumer-receipt-contract.test.mjs tests/unit/consumer-receipt-generator.test.ts",
-    "recovery-contract:verify": "node scripts/verify-recovery-contract-poc.mjs"
+    "recovery-contract:verify": "node scripts/verify-recovery-contract-poc.mjs",
+    "zone-overrides:verify": "node scripts/verify-zone-overrides-poc.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
@@ -43,6 +44,7 @@
     "docs/research/2026-09-09-public-safety/verify.json": "public-safety:verify",
     "docs/research/2026-09-10-reduced-motion/verify.json": "reduced-motion:verify",
     "docs/research/2026-09-13-privacy-boundary/verify.json": "privacy:verify",
-    "docs/research/2026-09-20-recovery-contract-poc/verification.json": "recovery-contract:verify"
+    "docs/research/2026-09-20-recovery-contract-poc/verification.json": "recovery-contract:verify",
+    "docs/research/2026-09-20-zone-overrides-poc/verification.json": "zone-overrides:verify"
   }
 }

@@ -66,7 +66,7 @@ test('search, comparison limit, PC/SP and requirement discovery', async ({ page 
   await expect(page.locator('.tile-open img')).toHaveAttribute('src', /parts-declaration\/editor\/inspector\.png/);
   await page.locator('#search').fill('');
   await page.locator('[data-face="zone"]').click();
-  await expect(page.locator('.tile-open')).toHaveCount(7);
+  await expect(page.locator('.tile-open')).toHaveCount(8);
   await expect(page.locator('#collection-title')).toHaveText('バナー・配置');
   await page.locator('[data-face="all"]').click();
   for (let i = 0; i < 4; i++) await page.locator('.compare-pick input').nth(i).click();

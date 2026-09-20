@@ -1,0 +1,34 @@
+{
+  "WT-AC-ZONE-02A": {
+    "status": "partial",
+    "scope": "23意味ゾーンの代表schemaとcreative参照、未定義zone拒否、overridesのfirst-match-winsを純粋契約で検証。",
+    "remaining": ["実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"],
+    "proofs": [{
+      "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+      "row_names": [
+        "schema:23 semantic zones declared",
+        "schema:directional variants remain explicit",
+        "schema:creative references are IDs",
+        "resolve:default creative",
+        "resolve:first matching override wins",
+        "resolve:later rule is not merged",
+        "resolve:device fallback after taxonomy miss",
+        "resolve:empty zone is explicit null"
+      ]
+    }]
+  },
+  "WT-AC-ZONE-02B": {
+    "status": "partial",
+    "scope": "未定義zone、未宣言zone、overrides型不正、creative参照欠落を拒否する負例を検証。",
+    "remaining": ["実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"],
+    "proofs": [{
+      "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+      "row_names": [
+        "negative:unknown zone rejected",
+        "negative:unknown config zone rejected",
+        "negative:overrides object rejected",
+        "negative:missing creative reference rejected"
+      ]
+    }]
+  }
+}
