@@ -1,0 +1,73 @@
+{
+  "schema": "wt-abilities-security-contract-poc-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+    "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+    "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+    "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+    "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+    "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+    "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+    "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+  },
+  "pack": "wt-site-selection",
+  "abilities": [
+    "wt/site-selection-read",
+    "wt/site-selection-dry-run",
+    "wt/site-selection-apply"
+  ],
+  "observations": {
+    "restAnonymousStatus": 401,
+    "mcpAnonymousStatus": 401,
+    "receiptRequiredCode": "wt_receipt_required",
+    "receiptMismatchCode": "wt_receipt_mismatch",
+    "wrongMethodStatus": 405,
+    "mcpNoReceiptError": true,
+    "applyAfterReceipt": true,
+    "readAfterHeader": "header-b"
+  },
+  "gates": {
+    "completion": false,
+    "liveCurrentHead": false
+  },
+  "rows": [
+    {
+      "name": "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B records the known input-schema normalization boundary",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects a pack with an undeclared ability",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-PERM-01B rejects receipt-less apply evidence",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden",
+      "pass": true
+    },
+    {
+      "name": "contract has no transport, model, or credential material",
+      "pass": true
+    }
+  ],
+  "scope": "既存のAbilities 3面PoCから、manifest・権限・dry-run receiptの比較可能な部分証跡を作る。",
+  "remaining": [
+    "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+    "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+  ]
+}

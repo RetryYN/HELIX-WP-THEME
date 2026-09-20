@@ -2197,6 +2197,84 @@
       ],
       "registry_before_sha256": "924bfb012d5f96e475749f726f7761b7fa919a8c8e4bd7eb2c15ca55c474185a",
       "registry_after_sha256": "e210f8376cf5c62417c019154f110511cec59458de57f371d248bd733d51fb60"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-AGENT-01A",
+        "WT-AC-AGENT-01B",
+        "WT-AC-NFR-PERM-01A",
+        "WT-AC-NFR-PERM-01B",
+        "WT-AC-NFR-SEC-01A",
+        "WT-AC-NFR-SEC-01B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-abilities-security-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-abilities-security-contract-poc/acceptance-candidate.json": "5a653ceef2799ca43ec899d741a913c62af213af8649f9c58090ca215a6fe634"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-abilities-security-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before_sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "after_sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "e210f8376cf5c62417c019154f110511cec59458de57f371d248bd733d51fb60",
+      "registry_after_sha256": "d1fd000735858f3b9fafc13403249cc925aba3a0d51fded500897158354d735b"
     }
   ]
 }

@@ -891,6 +891,24 @@ if (fs.existsSync(path.join(root, gateContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const abilitiesSecurityContractPath = 'docs/research/2026-09-20-abilities-security-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, abilitiesSecurityContractPath))) {
+  const report = read(abilitiesSecurityContractPath);
+  const candidates = read('docs/research/2026-09-20-abilities-security-contract-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.abilities.length !== 3 || report.observations.restAnonymousStatus !== 401 || report.observations.mcpAnonymousStatus !== 401 || report.gates.completion !== false) throw Error('Abilities security contract evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale abilities security contract source: ${source}`);
+  }
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['agent-pack:security-and-receipt'])) throw Error('Abilities security contract candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-AGENT-01', 'WT-NFR-SEC-01', 'WT-NFR-PERM-01'])) throw Error('Abilities security contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const imagePath = path.resolve(root, 'docs/research/2026-09-08-selection-catalog', candidate.images[device]);
+      if (!fs.existsSync(imagePath)) throw Error('Missing abilities security contract screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const authorContractPath = 'docs/research/2026-09-20-author-contract-poc/verification.json';
 if (fs.existsSync(path.join(root, authorContractPath))) {
   const report = read(authorContractPath);
