@@ -83,6 +83,24 @@ test('the npm catalog evidence test command includes admission coverage', () => 
   assert.match(rebindTest, /\.\/dialog-focus-capture\.test\.mjs/u);
 });
 
+test('filter browser verification cannot under-report registered cases', () => {
+  const root = new URL('../', import.meta.url);
+  const artifact = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/visual-quality/filter-context/verification.json', root), 'utf8'));
+  const suites = [
+    'tests/e2e/selection-catalog.spec.ts',
+    'tests/e2e/selection-catalog-filters.spec.ts',
+  ];
+  const playwright = path.join(root.pathname, 'node_modules/.bin/playwright');
+  const listed = spawnSync(playwright, ['test', ...suites, '--list'], { cwd: root.pathname, encoding: 'utf8' });
+  assert.equal(listed.status, 0, listed.stderr);
+  const match = listed.stdout.match(/Total:\s+(\d+) tests\b/u);
+  assert.ok(match, 'Playwright --list did not report a total');
+  assert.equal(artifact.playwright.failed, 0);
+  assert.equal(artifact.playwright.skipped, 0);
+  assert.equal(artifact.playwright.flaky, 0);
+  assert.ok(artifact.playwright.passed >= Number(match[1]), 'verification artifact under-reports registered browser cases');
+});
+
 test('selection index exposes evidence boundaries for every catalog candidate', () => {
   const root = new URL('../', import.meta.url);
   const catalog = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/catalog-data.json', root), 'utf8'));
