@@ -5,6 +5,8 @@
 > 参照日はすべて 2026-09-03。出典は公式・一次情報を優先し、二次情報のみの箇所は「未検証」と記す。
 > 第三者製品名・ベンダー名は伏せ字（国内主要有料テーマ、大手 CDN、国内主要共用ホスティング 等）。
 
+> **最新追補（2026-09-20）**: Google Search Central の構造化データ・Breadcrumb・Product・更新履歴を再確認した。公式 URL、状態差分、要求への影響は [2026-09-20-google-structured-data-refresh/README.md](2026-09-20-google-structured-data-refresh/README.md) と [refresh.json](2026-09-20-google-structured-data-refresh/refresh.json) に固定している。この文書の観察日・当時の判断は履歴として保持し、現在の採用判断には追補を使う。
+
 ## 1. 方法
 
 - 入力: `docs/requirements/l3/requirements-ir.json` の 97 要求（PR #86 merge 時点、head c575638）と
