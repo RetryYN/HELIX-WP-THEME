@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 214,
-    "partial": 54,
+    "missing": 212,
+    "partial": 56,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2942,24 +2942,67 @@
       "requirement_id": "WT-FR-ADMIN-04",
       "oracle": "WT-UI-10 から HELIX 接続用 API key を発行・失効し、読み専用 / 書き込み可を設定でき、発行値は一度だけ表示される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。",
+        "実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+          "sha256": "064b7c9fc1224fd8a45d72912e6039283e84dafad61d2c89f72b12c4d8b5c465",
+          "row_names": [
+            "AC-A readonly 1440px js permission and reflow",
+            "AC-A readonly 1440px no-js permission and reflow",
+            "AC-A readonly 390px js permission and reflow",
+            "AC-A readonly 390px no-js permission and reflow",
+            "AC-A readonly 320px js permission and reflow",
+            "AC-A readonly 320px no-js permission and reflow",
+            "AC-A writer 1440px js permission and reflow",
+            "AC-A writer 1440px no-js permission and reflow",
+            "AC-A writer 390px js permission and reflow",
+            "AC-A writer 390px no-js permission and reflow",
+            "AC-A writer 320px js permission and reflow",
+            "AC-A writer 320px no-js permission and reflow",
+            "AC-A revoked 1440px js permission and reflow",
+            "AC-A revoked 1440px no-js permission and reflow",
+            "AC-A revoked 390px js permission and reflow",
+            "AC-A revoked 390px no-js permission and reflow",
+            "AC-A revoked 320px js permission and reflow",
+            "AC-A revoked 320px no-js permission and reflow",
+            "AC-A one-time issuance focuses value and prevents duplicate issue while visible",
+            "AC-A issue failure and retry preserve accurate state",
+            "AC-A revoke failure and retry preserve accurate state",
+            "AC-A keyboard issue hide revoke and 200 percent root text"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ADMIN-04B",
       "requirement_id": "WT-FR-ADMIN-04",
       "oracle": "失効できない、権限を分けられない、同じ鍵の値を再表示できる、または公開ファイルへ鍵を保存すれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。",
+        "実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+          "sha256": "064b7c9fc1224fd8a45d72912e6039283e84dafad61d2c89f72b12c4d8b5c465",
+          "row_names": [
+            "AC-B reveal remains denied after display controls are bypassed",
+            "AC-B per-record permissions survive role picker and display tampering",
+            "AC-B revocation clears a visible value and repeated revoke cannot restore it",
+            "AC-B invalid permission cannot issue even when injected into picker",
+            "AC-B no persistence cookies requests logs or metadata retain issued value"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-CLI-01A",

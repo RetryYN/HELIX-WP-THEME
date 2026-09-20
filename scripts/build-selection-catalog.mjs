@@ -664,6 +664,22 @@ if (fs.existsSync(path.join(root, adminChangesPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const adminKeysPath = 'docs/research/2026-09-20-admin-keys-poc/verification.json';
+if (fs.existsSync(path.join(root, adminKeysPath))) {
+  const report = read(adminKeysPath);
+  const candidates = read('docs/research/2026-09-20-admin-keys-poc/catalog-candidates.json');
+  if (!report.completed || !report.rows.length || report.rows.some(r => !r.pass)) throw Error('Admin keys PoC evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale admin source ${source}`);
+  if (JSON.stringify(candidates.entries.map(e => e.id).sort()) !== JSON.stringify(['admin-keys:readonly', 'admin-keys:revoked', 'admin-keys:writer'])) throw Error('Admin keys candidates must cover all three scenarios');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-ADMIN-04'])) throw Error('Admin keys requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(s => s.id === candidate.variant && s.device === device);
+      if (!shot || candidate.images[device] !== `../2026-09-20-admin-keys-poc/${shot.file}` || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-admin-keys-poc', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing admin screenshot ${candidate.id}/${device}`);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

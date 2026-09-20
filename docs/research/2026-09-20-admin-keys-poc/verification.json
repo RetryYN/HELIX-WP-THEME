@@ -1,0 +1,175 @@
+{
+  "schema": "wt-admin-keys-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/admin-keys-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "scripts/build-admin-keys-poc.mjs": "0af6cfbc15786797843ec2e9925230d9af50ed0efcc254bdfa910388cf3f74de",
+    "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+    "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+    "scripts/verify-admin-keys-poc.mjs": "53e8c98229f6ff6668e0e64714cc5929dc4bb9fb59169375d643dc2303210652",
+    "tests/e2e/admin-keys-poc-selection-catalog.spec.ts": "4915b3cdeb452fad467930dd7046851d21978af9e1467f7411c95ded6f10f622",
+    "docs/research/2026-09-20-admin-keys-poc/contract.mjs": "8b2e69df057bcddbb45de2f87dfa71c7961b6b24eb30734acaa292133633151b",
+    "docs/research/2026-09-20-admin-keys-poc/view.mjs": "31eea4480a66c94af4b608866f3d49c0699a1bd461901f39954104cb207ae7d5",
+    "docs/research/2026-09-20-admin-keys-poc/keys.css": "8b537b72632dc7bbe3edf1c1c1aae921a0cf46252736eb75e3bd43afb682a559",
+    "docs/research/2026-09-20-admin-keys-poc/readonly.html": "d7f06d4646735d7afa3b9bdfc1a8f6b938ce326f664e990a9b00d4003c15e5d8",
+    "docs/research/2026-09-20-admin-keys-poc/writer.html": "ffe4065e5b626ddfb4bafa644164e8da89613e52383962c88cea31ab5d35a0e6",
+    "docs/research/2026-09-20-admin-keys-poc/revoked.html": "0c5dd8bd8005f4dbb31fed72d42252e8d294781b1fb9b08489b3b6dd554ecf36"
+  },
+  "rows": [
+    {
+      "name": "AC-A readonly 1440px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A readonly 1440px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A readonly 390px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A readonly 390px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A readonly 320px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A readonly 320px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A writer 1440px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A writer 1440px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A writer 390px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A writer 390px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A writer 320px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A writer 320px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoked 1440px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoked 1440px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoked 390px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoked 390px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoked 320px js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoked 320px no-js permission and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A one-time issuance focuses value and prevents duplicate issue while visible",
+      "pass": true
+    },
+    {
+      "name": "AC-B reveal remains denied after display controls are bypassed",
+      "pass": true
+    },
+    {
+      "name": "AC-B per-record permissions survive role picker and display tampering",
+      "pass": true
+    },
+    {
+      "name": "AC-B revocation clears a visible value and repeated revoke cannot restore it",
+      "pass": true
+    },
+    {
+      "name": "AC-A issue failure and retry preserve accurate state",
+      "pass": true
+    },
+    {
+      "name": "AC-A revoke failure and retry preserve accurate state",
+      "pass": true
+    },
+    {
+      "name": "AC-B invalid permission cannot issue even when injected into picker",
+      "pass": true
+    },
+    {
+      "name": "AC-A keyboard issue hide revoke and 200 percent root text",
+      "pass": true
+    },
+    {
+      "name": "AC-B no persistence cookies requests logs or metadata retain issued value",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "readonly",
+      "device": "pc",
+      "file": "readonly-pc.jpg",
+      "sha256": "6a81fba8134151e319fea2cf9eec2b093caf0d6dda6de1248ce16768c958ec78"
+    },
+    {
+      "id": "readonly",
+      "device": "sp",
+      "file": "readonly-sp.jpg",
+      "sha256": "2141573a7ce9bc7981ead670d87c54e23410de65da31240a2023c7f8440b1da2"
+    },
+    {
+      "id": "writer",
+      "device": "pc",
+      "file": "writer-pc.jpg",
+      "sha256": "7635f3002e0688a172f1476e34a0b21b0651286f4a3cb8de3d706ec6b6b059f6"
+    },
+    {
+      "id": "writer",
+      "device": "sp",
+      "file": "writer-sp.jpg",
+      "sha256": "c477580aef2d1fc568141a3e05ab9c588935e3008e7dd884614c390249470cab"
+    },
+    {
+      "id": "revoked",
+      "device": "pc",
+      "file": "revoked-pc.jpg",
+      "sha256": "df9d345fcfc24ef706aab2f37794b79aaed4b39341abaa35cebe153c615608fb"
+    },
+    {
+      "id": "revoked",
+      "device": "sp",
+      "file": "revoked-sp.jpg",
+      "sha256": "f8fd8779c70f626b0bdfcc3b08ba29b9cf6114538eabcd939f49144a858f3588"
+    }
+  ],
+  "scope": "Static/local browser-memory PoC only. Not WordPress admin, WP 7.2, DataViews/DataForm integration, server registration, persistence, permissions, MCP or external APIs. All two ACs partial. No real keys or external APIs.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

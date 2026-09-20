@@ -508,6 +508,52 @@
       ],
       "registry_before_sha256": "834d63df44c5fdb88af074476144038560d0af27f3f0bb21f2745dbc413c93a0",
       "registry_after_sha256": "099eeb0a07ed440457a11369fb7152f7aa93bd4849f2c9e6e291b8d19e129ae6"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-ADMIN-04A",
+        "WT-AC-ADMIN-04B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-admin-keys-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-admin-keys-poc/acceptance-candidate.json": "1cbc60dafb3463c5d9e0ab894e236ae355bb1ce3675d25e738161bfb654a8a51"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-admin-keys-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-04A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-04B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+          "before_sha256": "064b7c9fc1224fd8a45d72912e6039283e84dafad61d2c89f72b12c4d8b5c465",
+          "after_sha256": "064b7c9fc1224fd8a45d72912e6039283e84dafad61d2c89f72b12c4d8b5c465",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "099eeb0a07ed440457a11369fb7152f7aa93bd4849f2c9e6e291b8d19e129ae6",
+      "registry_after_sha256": "e12909b4514a329e83f85d805fa4c4498e28bde75620f60856e182d3763f1a5d"
     }
   ]
 }

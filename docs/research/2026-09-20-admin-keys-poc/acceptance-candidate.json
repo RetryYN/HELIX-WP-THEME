@@ -1,0 +1,59 @@
+{
+  "WT-AC-ADMIN-04A": {
+    "status": "partial",
+    "scope": "実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。",
+    "remaining": [
+      "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。",
+      "実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+        "row_names": [
+          "AC-A readonly 1440px js permission and reflow",
+          "AC-A readonly 1440px no-js permission and reflow",
+          "AC-A readonly 390px js permission and reflow",
+          "AC-A readonly 390px no-js permission and reflow",
+          "AC-A readonly 320px js permission and reflow",
+          "AC-A readonly 320px no-js permission and reflow",
+          "AC-A writer 1440px js permission and reflow",
+          "AC-A writer 1440px no-js permission and reflow",
+          "AC-A writer 390px js permission and reflow",
+          "AC-A writer 390px no-js permission and reflow",
+          "AC-A writer 320px js permission and reflow",
+          "AC-A writer 320px no-js permission and reflow",
+          "AC-A revoked 1440px js permission and reflow",
+          "AC-A revoked 1440px no-js permission and reflow",
+          "AC-A revoked 390px js permission and reflow",
+          "AC-A revoked 390px no-js permission and reflow",
+          "AC-A revoked 320px js permission and reflow",
+          "AC-A revoked 320px no-js permission and reflow",
+          "AC-A one-time issuance focuses value and prevents duplicate issue while visible",
+          "AC-A issue failure and retry preserve accurate state",
+          "AC-A revoke failure and retry preserve accurate state",
+          "AC-A keyboard issue hide revoke and 200 percent root text"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-04B": {
+    "status": "partial",
+    "scope": "実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。",
+    "remaining": [
+      "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。",
+      "実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+        "row_names": [
+          "AC-B reveal remains denied after display controls are bypassed",
+          "AC-B per-record permissions survive role picker and display tampering",
+          "AC-B revocation clears a visible value and repeated revoke cannot restore it",
+          "AC-B invalid permission cannot issue even when injected into picker",
+          "AC-B no persistence cookies requests logs or metadata retain issued value"
+        ]
+      }
+    ]
+  }
+}
