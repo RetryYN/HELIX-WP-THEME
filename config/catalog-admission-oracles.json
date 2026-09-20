@@ -82,6 +82,10 @@
     "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json": [
       "node",
       "scripts/verify-pr-disclosure-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-20-author-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-author-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -219,6 +223,18 @@
     ],
     "WT-AC-VOCAB-03C": [
       "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json"
+    ],
+    "WT-AC-AUTHOR-01A": [
+      "docs/research/2026-09-20-author-contract-poc/verification.json"
+    ],
+    "WT-AC-AUTHOR-01B": [
+      "docs/research/2026-09-20-author-contract-poc/verification.json"
+    ],
+    "WT-AC-AUTHOR-02A": [
+      "docs/research/2026-09-20-author-contract-poc/verification.json"
+    ],
+    "WT-AC-AUTHOR-02B": [
+      "docs/research/2026-09-20-author-contract-poc/verification.json"
     ]
   }
 }

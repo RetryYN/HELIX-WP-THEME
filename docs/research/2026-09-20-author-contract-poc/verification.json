@@ -1,0 +1,79 @@
+{
+  "schema": "wt-author-contract-poc-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "docs/research/2026-09-20-author-contract-poc/contract.mjs": "cefd79704613c4c45f651e400b384090c98b67f38d4b6da80c74d73a08578a8f",
+    "scripts/verify-author-contract-poc.mjs": "7ca919d7cd543d5057d9a9df9482b9fc75ee2c007655e575208c7691f77cf5e8",
+    "docs/research/2026-09-20-author-contract-poc/README.md": "074c9990d538c2d1d6dd6131cae217061dd1e8943bd9be5e39d897e233022e5f",
+    "docs/research/2026-09-20-author-contract-poc/external-observations.md": "fb2f9728ccf87a4be6d283f7867e6c9578c5771cad3ab9378233e9ee3da91b7d",
+    "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+  },
+  "rows": [
+    {
+      "name": "AC-AUTHOR-01A projects one canonical update to all visible surfaces",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-01A keeps supervisor data on the same registry projection",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-01B rejects split or incomplete person values",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-01B rejects a theme-owned decision or alternate source",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-02A binds Article.author, reviewedBy, and ProfilePage to the canonical people",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-02B rejects mismatched structured-data identity",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-02B rejects an Organization as the review author",
+      "pass": true
+    },
+    {
+      "name": "AC-AUTHOR-02B rejects a profile without representative image",
+      "pass": true
+    },
+    {
+      "name": "contract has no transport, model, or decision invocation",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "avatar-bio",
+      "device": "pc",
+      "file": "../2026-09-05-design-prototype-03/results/tail-author-avatar-bio-pc.jpg",
+      "sha256": "43a8eb788adbb41f5075e57286176fe3fd23aaf470779769ac10262978c6a23c"
+    },
+    {
+      "id": "avatar-bio",
+      "device": "sp",
+      "file": "../2026-09-05-design-prototype-03/results/tail-author-avatar-bio-sp.jpg",
+      "sha256": "067c746a7fe9e3830dc82f616009b7a38da887890dc6694a5d2458448fd65fe4"
+    },
+    {
+      "id": "supervisor",
+      "device": "pc",
+      "file": "../2026-09-05-design-prototype-03/results/tail-author-supervisor-pc.jpg",
+      "sha256": "8ce8cf4b0649c3f1e7175a7795551e7e432281755a71e719b2c55e11572c4866"
+    },
+    {
+      "id": "supervisor",
+      "device": "sp",
+      "file": "../2026-09-05-design-prototype-03/results/tail-author-supervisor-sp.jpg",
+      "sha256": "992d90206287d7d95317f2c875f1c5b529cb367c587762c1602bc20528ee083b"
+    }
+  ],
+  "scope": "著者・監修者正本から表示欄、アーカイブ、Article.author、reviewedBy、ProfilePageへ投影する静的契約。",
+  "remaining": [
+    "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+  ]
+}

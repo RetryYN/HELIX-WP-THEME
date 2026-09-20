@@ -14466,6 +14466,110 @@
           ]
         }
       ]
+    },
+    "WT-AC-AUTHOR-01A": {
+      "status": "partial",
+      "requirement_digest": "63af34f6bb234993",
+      "oracle_sha256": "4e43cbacec50ed83e1ccc077dd93cd36f62f640a2f55dfe284ae071bcc62044c",
+      "source_digests": {
+        "docs/research/2026-09-20-author-contract-poc/contract.mjs": "cefd79704613c4c45f651e400b384090c98b67f38d4b6da80c74d73a08578a8f",
+        "scripts/verify-author-contract-poc.mjs": "7ca919d7cd543d5057d9a9df9482b9fc75ee2c007655e575208c7691f77cf5e8",
+        "docs/research/2026-09-20-author-contract-poc/README.md": "074c9990d538c2d1d6dd6131cae217061dd1e8943bd9be5e39d897e233022e5f",
+        "docs/research/2026-09-20-author-contract-poc/external-observations.md": "fb2f9728ccf87a4be6d283f7867e6c9578c5771cad3ab9378233e9ee3da91b7d",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "著者・監修者の正本を一度更新すると、表示欄・アーカイブ・構造化データへ同じ値を投影する静的契約を検証する。",
+      "remaining": [
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-01A projects one canonical update to all visible surfaces",
+            "AC-AUTHOR-01A keeps supervisor data on the same registry projection"
+          ]
+        }
+      ]
+    },
+    "WT-AC-AUTHOR-01B": {
+      "status": "partial",
+      "requirement_digest": "63af34f6bb234993",
+      "oracle_sha256": "5e0b2ab5ca539760b3ac47ea6dfef416dcec42bd3faccd5b39c2162939d13413",
+      "source_digests": {
+        "docs/research/2026-09-20-author-contract-poc/contract.mjs": "cefd79704613c4c45f651e400b384090c98b67f38d4b6da80c74d73a08578a8f",
+        "scripts/verify-author-contract-poc.mjs": "7ca919d7cd543d5057d9a9df9482b9fc75ee2c007655e575208c7691f77cf5e8",
+        "docs/research/2026-09-20-author-contract-poc/README.md": "074c9990d538c2d1d6dd6131cae217061dd1e8943bd9be5e39d897e233022e5f",
+        "docs/research/2026-09-20-author-contract-poc/external-observations.md": "fb2f9728ccf87a4be6d283f7867e6c9578c5771cad3ab9378233e9ee3da91b7d",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "値の分散、未反映、テーマ側の判定生成を負例として拒否する。",
+      "remaining": [
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-01B rejects split or incomplete person values",
+            "AC-AUTHOR-01B rejects a theme-owned decision or alternate source"
+          ]
+        }
+      ]
+    },
+    "WT-AC-AUTHOR-02A": {
+      "status": "partial",
+      "requirement_digest": "f2d754d81bb75db3",
+      "oracle_sha256": "6ef3a492151da48a6af1853ba763430c41d1e8fa579045570204d265bbe7ba03",
+      "source_digests": {
+        "docs/research/2026-09-20-author-contract-poc/contract.mjs": "cefd79704613c4c45f651e400b384090c98b67f38d4b6da80c74d73a08578a8f",
+        "scripts/verify-author-contract-poc.mjs": "7ca919d7cd543d5057d9a9df9482b9fc75ee2c007655e575208c7691f77cf5e8",
+        "docs/research/2026-09-20-author-contract-poc/README.md": "074c9990d538c2d1d6dd6131cae217061dd1e8943bd9be5e39d897e233022e5f",
+        "docs/research/2026-09-20-author-contract-poc/external-observations.md": "fb2f9728ccf87a4be6d283f7867e6c9578c5771cad3ab9378233e9ee3da91b7d",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "Article.author、reviewedBy、ProfilePage が表示欄と同じ著者・監修者正本を参照し、代表画像を保持する。",
+      "remaining": [
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-02A binds Article.author, reviewedBy, and ProfilePage to the canonical people"
+          ]
+        }
+      ]
+    },
+    "WT-AC-AUTHOR-02B": {
+      "status": "partial",
+      "requirement_digest": "f2d754d81bb75db3",
+      "oracle_sha256": "caae1c912418e0397e01ac2c5dea6efa123ca883f4a5845ff6262aa3ab24c715",
+      "source_digests": {
+        "docs/research/2026-09-20-author-contract-poc/contract.mjs": "cefd79704613c4c45f651e400b384090c98b67f38d4b6da80c74d73a08578a8f",
+        "scripts/verify-author-contract-poc.mjs": "7ca919d7cd543d5057d9a9df9482b9fc75ee2c007655e575208c7691f77cf5e8",
+        "docs/research/2026-09-20-author-contract-poc/README.md": "074c9990d538c2d1d6dd6131cae217061dd1e8943bd9be5e39d897e233022e5f",
+        "docs/research/2026-09-20-author-contract-poc/external-observations.md": "fb2f9728ccf87a4be6d283f7867e6c9578c5771cad3ab9378233e9ee3da91b7d",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "構造化データの不一致、Organization の監修者化、代表画像欠落を負例として拒否する。",
+      "remaining": [
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-02B rejects mismatched structured-data identity",
+            "AC-AUTHOR-02B rejects an Organization as the review author",
+            "AC-AUTHOR-02B rejects a profile without representative image"
+          ]
+        }
+      ]
     }
   }
 }

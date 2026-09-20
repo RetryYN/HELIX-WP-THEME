@@ -3,9 +3,9 @@
 この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。
 
 - 要求: 134
-- 受入条件: 300（missing 182 / partial 86 / verified_in_poc 32 / stale 0）
-- カタログ候補: 702
-- スクリーンショット: 1275
+- 受入条件: 300（missing 178 / partial 90 / verified_in_poc 32 / stale 0）
+- カタログ候補: 704
+- スクリーンショット: 1279
 - ページ種別の未観察・未検証: 19
 
 ## 次に閉じる要求
@@ -48,8 +48,6 @@
 | WT-TR-HOST-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-TR-PLUGIN-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-TR-PLUGIN-03 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-AUTHOR-01 | P0 | missing | 2 | 4 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
-| WT-FR-AUTHOR-02 | P0 | missing | 2 | 4 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
 | WT-FR-SP-01 | P0 | missing | 2 | 31 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
 | WT-FR-SP-02 | P0 | missing | 2 | 31 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
 | WT-NFR-SP-02 | P0 | missing | 2 | 31 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
@@ -114,6 +112,8 @@
 | WT-FR-SECTION-02 | P0 | partial | 2 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-SELL-01 | P0 | partial | 2 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-SELL-02 | P0 | partial | 2 | 5 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-AUTHOR-01 | P0 | partial | 2 | 6 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-AUTHOR-02 | P0 | partial | 2 | 6 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-RECO-01 | P0 | partial | 3 | 20 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-SP-01 | P0 | partial | 2 | 31 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-LP-01 | P0 | partial | 3 | 54 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |

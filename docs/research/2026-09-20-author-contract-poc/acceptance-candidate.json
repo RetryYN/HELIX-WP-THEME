@@ -1,0 +1,67 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-AUTHOR-01A": {
+    "status": "partial",
+    "scope": "著者・監修者の正本を一度更新すると、表示欄・アーカイブ・構造化データへ同じ値を投影する静的契約を検証する。",
+    "remaining": [
+      "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+        "row_names": [
+          "AC-AUTHOR-01A projects one canonical update to all visible surfaces",
+          "AC-AUTHOR-01A keeps supervisor data on the same registry projection"
+        ]
+      }
+    ]
+  },
+  "WT-AC-AUTHOR-01B": {
+    "status": "partial",
+    "scope": "値の分散、未反映、テーマ側の判定生成を負例として拒否する。",
+    "remaining": [
+      "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+        "row_names": [
+          "AC-AUTHOR-01B rejects split or incomplete person values",
+          "AC-AUTHOR-01B rejects a theme-owned decision or alternate source"
+        ]
+      }
+    ]
+  },
+  "WT-AC-AUTHOR-02A": {
+    "status": "partial",
+    "scope": "Article.author、reviewedBy、ProfilePage が表示欄と同じ著者・監修者正本を参照し、代表画像を保持する。",
+    "remaining": [
+      "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+        "row_names": [
+          "AC-AUTHOR-02A binds Article.author, reviewedBy, and ProfilePage to the canonical people"
+        ]
+      }
+    ]
+  },
+  "WT-AC-AUTHOR-02B": {
+    "status": "partial",
+    "scope": "構造化データの不一致、Organization の監修者化、代表画像欠落を負例として拒否する。",
+    "remaining": [
+      "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+        "row_names": [
+          "AC-AUTHOR-02B rejects mismatched structured-data identity",
+          "AC-AUTHOR-02B rejects an Organization as the review author",
+          "AC-AUTHOR-02B rejects a profile without representative image"
+        ]
+      }
+    ]
+  }
+}
