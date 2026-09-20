@@ -873,6 +873,24 @@ if (fs.existsSync(path.join(root, lookPatternContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const gateContractPath = 'docs/research/2026-09-20-gate-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, gateContractPath))) {
+  const report = read(gateContractPath);
+  const candidates = read('docs/research/2026-09-20-gate-contract-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.static.fail !== 0 || report.ge1.invalid !== 0 || report.ge1.patterns !== 71 || report.gates.completion !== false) throw Error('Gate contract evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale gate contract source: ${source}`);
+  }
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['gate-contract:static-and-ge1'])) throw Error('Gate contract candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-NFR-GATE-01'])) throw Error('Gate contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const imagePath = path.resolve(root, 'docs/research/2026-09-08-selection-catalog', candidate.images[device]);
+      if (!fs.existsSync(imagePath)) throw Error('Missing gate contract screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const authorContractPath = 'docs/research/2026-09-20-author-contract-poc/verification.json';
 if (fs.existsSync(path.join(root, authorContractPath))) {
   const report = read(authorContractPath);

@@ -1,0 +1,29 @@
+{
+  "schema": "wt-gate-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "gate-contract:static-and-ge1",
+      "face": "system",
+      "part": "quality-gate-contract",
+      "label": "品質ゲート：静的6種＋G-E1",
+      "variant": "static-and-ge1",
+      "description": "静的6ゲートをFAIL=0で実行し、WordPress 7.1の71パターンをG-E1 invalid=0として再集計する部分契約。現行HEAD receipt未接続を明示する。",
+      "purpose": "品質条件を確認する",
+      "group": "品質・運用",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-NFR-GATE-01"
+      ],
+      "referenceId": "wt-gate-contract.v1",
+      "evidence": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "静的PASSとG-E1 invalid=0を同じ検査で確認し、過去証跡のcurrent HEAD未束縛を残件として表示する。",
+        "実測": "静的6ゲート FAIL=0、生値433/基準438、G-E1 71パターン invalid=0。",
+        "未検証": "実機 G-E1 は 2026-08-29 のローカル WordPress 7.1 証跡であり、現行HEADの再実行 receipt ではない。 required check と独立レビュー receipt を同一 current HEAD へ束縛する運用は未接続。"
+      }
+    }
+  ]
+}

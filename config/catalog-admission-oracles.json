@@ -94,6 +94,10 @@
     "docs/research/2026-09-20-look-pattern-contract-poc/verification.json": [
       "node",
       "scripts/verify-look-pattern-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-20-gate-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-gate-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -255,6 +259,12 @@
     ],
     "WT-AC-LOOK-03C": [
       "docs/research/2026-09-20-look-pattern-contract-poc/verification.json"
+    ],
+    "WT-AC-NFR-GATE-01A": [
+      "docs/research/2026-09-20-gate-contract-poc/verification.json"
+    ],
+    "WT-AC-NFR-GATE-01B": [
+      "docs/research/2026-09-20-gate-contract-poc/verification.json"
     ]
   }
 }
