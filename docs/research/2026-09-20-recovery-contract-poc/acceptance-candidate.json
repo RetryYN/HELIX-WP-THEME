@@ -1,0 +1,41 @@
+{
+  "WT-AC-NFR-REC-01A": {
+    "status": "partial",
+    "scope": "構造・スタイル・値・ゾーンの4種のローカルfixtureを、同一receipt契約でdry-run→apply→rollbackし、復元digestを照合。",
+    "remaining": [
+      "実WPの保存/API、実権限、実運用の全リソース種別、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+        "row_names": [
+          "AC-A structure pc dry-run apply rollback restores digest",
+          "AC-A structure sp dry-run apply rollback restores digest",
+          "AC-A style pc dry-run apply rollback restores digest",
+          "AC-A style sp dry-run apply rollback restores digest",
+          "AC-A value pc dry-run apply rollback restores digest",
+          "AC-A value sp dry-run apply rollback restores digest",
+          "AC-A zone pc dry-run apply rollback restores digest",
+          "AC-A zone sp dry-run apply rollback restores digest",
+          "AC-A dry-run is side-effect free until apply"
+        ]
+      }
+    ]
+  },
+  "WT-AC-NFR-REC-01B": {
+    "status": "partial",
+    "scope": "stale receipt、patch mismatch、stale rollback、未知path、空patchを拒否。",
+    "remaining": [
+      "実WP/APIの失敗境界と保存競合は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+        "row_names": [
+          "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
+          "AC-B unknown path and empty patch are rejected"
+        ]
+      }
+    ]
+  }
+}

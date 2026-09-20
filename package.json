@@ -27,7 +27,8 @@
     "i18n:pot": "node scripts/verify-i18n-profile.mjs --write-pot",
     "current-theme-quality:verify": "node docs/research/2026-09-10-current-theme-quality/verify.mjs",
     "postinstall": "node scripts/patch-helix-receipt.mjs && node scripts/patch-helix-consumer-review.mjs",
-    "test:helix-patch": "tsx --test tests/unit/helix-receipt-patch.test.mjs tests/unit/helix-consumer-review-patch.test.mjs tests/unit/consumer-receipt-contract.test.mjs tests/unit/consumer-receipt-generator.test.ts"
+    "test:helix-patch": "tsx --test tests/unit/helix-receipt-patch.test.mjs tests/unit/helix-consumer-review-patch.test.mjs tests/unit/consumer-receipt-contract.test.mjs tests/unit/consumer-receipt-generator.test.ts",
+    "recovery-contract:verify": "node scripts/verify-recovery-contract-poc.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
@@ -41,6 +42,7 @@
   "catalogOracles": {
     "docs/research/2026-09-09-public-safety/verify.json": "public-safety:verify",
     "docs/research/2026-09-10-reduced-motion/verify.json": "reduced-motion:verify",
-    "docs/research/2026-09-13-privacy-boundary/verify.json": "privacy:verify"
+    "docs/research/2026-09-13-privacy-boundary/verify.json": "privacy:verify",
+    "docs/research/2026-09-20-recovery-contract-poc/verification.json": "recovery-contract:verify"
   }
 }

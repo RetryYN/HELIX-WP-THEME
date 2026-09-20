@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1247,
+  "screenshotCount": 1249,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -14077,6 +14077,31 @@
         "実測": "1440/390/320px、JS有無、keyboard、200% root文字、無効値拒否、3摂動。",
         "未検証": "WP 7.2実機・JSON/CPT永続保存・実記事への横断反映・権限/排他更新・実時間鮮度監視は未接続/未検証。 外部EC/ASP API・認証情報・決済/カート/会員はテーマ外。affiliate merchant feed/ProductGroupは要求対象外。検索適格性・実スクリーンリーダーは未検証。"
       }
+    },
+    {
+      "id": "recovery:transaction",
+      "face": "admin",
+      "part": "recovery-transaction",
+      "label": "変更回復：digest付き取引",
+      "variant": "structure",
+      "description": "構造・スタイル・値・ゾーンを同じreceiptで変更し、rollbackで変更前digestへ戻す無装飾の契約PoC。2受入条件は部分確認。",
+      "purpose": "変更の影響を確かめて安全に戻す",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-recovery-contract-poc/structure-pc.jpg",
+        "sp": "../2026-09-20-recovery-contract-poc/structure-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-NFR-REC-01"
+      ],
+      "referenceId": "wt-recovery-contract-poc.v1",
+      "evidence": "../2026-09-20-recovery-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "4種のリソースを同一契約でdry-run/apply/rollbackできるか選ぶ候補。",
+        "実測": "構造・スタイル・値・ゾーン各1 patch、before/after/restored digest、stale receiptと未知pathの拒否、1440/390px。",
+        "対象外": "視覚デザインの採用、実WP保存、DB/API、権限、MCP/CLI、AI、credential、外部送信。",
+        "未検証": "実WP 7.2での永続化・同時更新競合・全リソース横断のrollback。"
+      }
     }
   ],
   "requirements": [
@@ -17321,7 +17346,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+              "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
               "row_names": [
                 "fixture:positive",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -19686,45 +19711,69 @@
           "requirement_id": "WT-NFR-REC-01",
           "oracle": "apply 後の rollback で変更前 digest と一致する",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "構造・スタイル・値・ゾーンの4種のローカルfixtureを、同一receipt契約でdry-run→apply→rollbackし、復元digestを照合。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "実WPの保存/API、実権限、実運用の全リソース種別、WP 7.2実機は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+              "sha256": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+              "row_names": [
+                "AC-A structure pc dry-run apply rollback restores digest",
+                "AC-A structure sp dry-run apply rollback restores digest",
+                "AC-A style pc dry-run apply rollback restores digest",
+                "AC-A style sp dry-run apply rollback restores digest",
+                "AC-A value pc dry-run apply rollback restores digest",
+                "AC-A value sp dry-run apply rollback restores digest",
+                "AC-A zone pc dry-run apply rollback restores digest",
+                "AC-A zone sp dry-run apply rollback restores digest",
+                "AC-A dry-run is side-effect free until apply"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-NFR-REC-01B",
           "requirement_id": "WT-NFR-REC-01",
           "oracle": "不一致 1 件で FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "stale receipt、patch mismatch、stale rollback、未知path、空patchを拒否。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "実WP/APIの失敗境界と保存競合は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+              "sha256": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+              "row_names": [
+                "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
+                "AC-B unknown path and empty patch are rejected"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "recovery:transaction"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NFR-REC-01A",
-          "WT-AC-NFR-REC-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -24636,7 +24685,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+              "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -24661,7 +24710,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+              "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -34506,8 +34555,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 198,
-    "partial": 70,
+    "missing": 196,
+    "partial": 72,
     "verified_in_poc": 32,
     "stale": 0
   },

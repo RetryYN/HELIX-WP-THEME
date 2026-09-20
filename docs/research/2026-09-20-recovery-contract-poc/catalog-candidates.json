@@ -1,0 +1,30 @@
+{
+  "schema": "wt-recovery-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "recovery:transaction",
+      "face": "admin",
+      "part": "recovery-transaction",
+      "label": "変更回復：digest付き取引",
+      "variant": "structure",
+      "description": "構造・スタイル・値・ゾーンを同じreceiptで変更し、rollbackで変更前digestへ戻す無装飾の契約PoC。2受入条件は部分確認。",
+      "purpose": "変更の影響を確かめて安全に戻す",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-recovery-contract-poc/structure-pc.jpg",
+        "sp": "../2026-09-20-recovery-contract-poc/structure-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-NFR-REC-01"
+      ],
+      "referenceId": "wt-recovery-contract-poc.v1",
+      "evidence": "../2026-09-20-recovery-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "4種のリソースを同一契約でdry-run/apply/rollbackできるか選ぶ候補。",
+        "実測": "構造・スタイル・値・ゾーン各1 patch、before/after/restored digest、stale receiptと未知pathの拒否、1440/390px。",
+        "対象外": "視覚デザインの採用、実WP保存、DB/API、権限、MCP/CLI、AI、credential、外部送信。",
+        "未検証": "実WP 7.2での永続化・同時更新競合・全リソース横断のrollback。"
+      }
+    }
+  ]
+}
