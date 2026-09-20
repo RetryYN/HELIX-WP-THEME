@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {definitions} from '../docs/research/2026-09-20-utility-poc/definitions.mjs';
+const root='docs/research/2026-09-20-utility-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-utility-poc.mjs']);
+const files=['scripts/build-utility-poc.mjs','scripts/utility-poc-provider.mjs','scripts/utility-poc-server.mjs','scripts/verify-utility-poc.mjs','tests/e2e/utility-poc.spec.ts',...['definitions.mjs','view.mjs','utility.css',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'utility-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/utility-poc.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,UTILITY_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const rows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(rows.every(r=>r.pass));
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-utility-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Local provider and static view only; not WordPress or real external APIs',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=suffix=>rows.filter(r=>suffix==='A'?r.name.startsWith('AC-A-D')&&r.name.includes('x js'):suffix==='D'?r.name.startsWith('AC-A-D'):r.name.startsWith(`AC-${suffix}`)).map(r=>r.name);
+ const remaining=['WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。','実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B','C','D'].map(s=>[`WT-AC-UTILITY-01${s}`,{status:'partial',scope:'calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(s)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-utility-catalog-candidates.v1',entries:definitions.map(d=>({id:`utility:${d.kind}`,face:'utility',part:`utility-${d.kind}`,label:`対話型ツール：${d.label}`,variant:d.kind,description:`${d.lead} 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。`,purpose:'入力から結果と根拠を確かめる',group:'ページ・本文',images:{pc:`../2026-09-20-utility-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-utility-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-UTILITY-01'],referenceId:'wt-utility-result.v1',evidence:'../2026-09-20-utility-poc/verification.json',selectionFacts:{'対象と判断':d.title,'処理の境界':'表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。','入力の扱い':'入力非保存。POST処理中のみ利用。共有・メール送信なし。','実測':'1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。','根拠':d.method,'対象外':d.exclusions,'未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'4 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}

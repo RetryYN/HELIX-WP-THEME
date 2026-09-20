@@ -12816,6 +12816,194 @@
           ]
         }
       ]
+    },
+    "WT-AC-UTILITY-01A": {
+      "status": "partial",
+      "requirement_digest": "9cb6c793907b1cab",
+      "oracle_sha256": "7320f567c5f6d2cb2baae8e907bc9611ee7832109dad8afde39a904de0315e25",
+      "source_digests": {
+        "scripts/build-utility-poc.mjs": "4e114aeaa0acfcc724cb8b2966dea4c601baf4a624e2339369a01c7ab8d7126a",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/verify-utility-poc.mjs": "604cc191c4cb4081c99073013fb98c4a8518a6d0ecacce6162e0b41beef8ef71",
+        "tests/e2e/utility-poc.spec.ts": "fde5f8a8c4a0d026363945a68d5d149c215432124f229f1f13363580356c44f7",
+        "docs/research/2026-09-20-utility-poc/definitions.mjs": "16edc1df99d4e82ea5366ec2615758d393ab38859f179d2a9cb8cd3b91602eba",
+        "docs/research/2026-09-20-utility-poc/view.mjs": "adfab29988df00f0623ae3f9d2bd005d37e3b38ea3ff6d47dc11bf70de6ef7ad",
+        "docs/research/2026-09-20-utility-poc/utility.css": "22c1d6e669f07c720430b250623e5f9768b16af0c4833e892f736dbfb835e2e7",
+        "docs/research/2026-09-20-utility-poc/calculator.html": "ec223a22bf34a7456de05af4c954abcb0e3e547bc0e24183aef02131c83ce05c",
+        "docs/research/2026-09-20-utility-poc/grader.html": "3999abed53574d7be9afb039c2cec65d31c8f324c0091a94b93bc2d06c07f704",
+        "docs/research/2026-09-20-utility-poc/generator.html": "d46edd3e215db5dab11311e42df37d24f8a7fb493da357ecfc81413674df274d"
+      },
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
+      "remaining": [
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-A-D calculator pc 1x js contract and reflow",
+            "AC-A-D calculator pc 2x js contract and reflow",
+            "AC-A-D calculator sp 1x js contract and reflow",
+            "AC-A-D calculator sp 2x js contract and reflow",
+            "AC-A-D calculator narrow 1x js contract and reflow",
+            "AC-A-D calculator narrow 2x js contract and reflow",
+            "AC-A-D grader pc 1x js contract and reflow",
+            "AC-A-D grader pc 2x js contract and reflow",
+            "AC-A-D grader sp 1x js contract and reflow",
+            "AC-A-D grader sp 2x js contract and reflow",
+            "AC-A-D grader narrow 1x js contract and reflow",
+            "AC-A-D grader narrow 2x js contract and reflow",
+            "AC-A-D generator pc 1x js contract and reflow",
+            "AC-A-D generator pc 2x js contract and reflow",
+            "AC-A-D generator sp 1x js contract and reflow",
+            "AC-A-D generator sp 2x js contract and reflow",
+            "AC-A-D generator narrow 1x js contract and reflow",
+            "AC-A-D generator narrow 2x js contract and reflow"
+          ]
+        }
+      ]
+    },
+    "WT-AC-UTILITY-01B": {
+      "status": "partial",
+      "requirement_digest": "9cb6c793907b1cab",
+      "oracle_sha256": "4a425bcfc5a598bf0df6b5eb9d49c1076cdaa943e60151606e4440bad23fc4c3",
+      "source_digests": {
+        "scripts/build-utility-poc.mjs": "4e114aeaa0acfcc724cb8b2966dea4c601baf4a624e2339369a01c7ab8d7126a",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/verify-utility-poc.mjs": "604cc191c4cb4081c99073013fb98c4a8518a6d0ecacce6162e0b41beef8ef71",
+        "tests/e2e/utility-poc.spec.ts": "fde5f8a8c4a0d026363945a68d5d149c215432124f229f1f13363580356c44f7",
+        "docs/research/2026-09-20-utility-poc/definitions.mjs": "16edc1df99d4e82ea5366ec2615758d393ab38859f179d2a9cb8cd3b91602eba",
+        "docs/research/2026-09-20-utility-poc/view.mjs": "adfab29988df00f0623ae3f9d2bd005d37e3b38ea3ff6d47dc11bf70de6ef7ad",
+        "docs/research/2026-09-20-utility-poc/utility.css": "22c1d6e669f07c720430b250623e5f9768b16af0c4833e892f736dbfb835e2e7",
+        "docs/research/2026-09-20-utility-poc/calculator.html": "ec223a22bf34a7456de05af4c954abcb0e3e547bc0e24183aef02131c83ce05c",
+        "docs/research/2026-09-20-utility-poc/grader.html": "3999abed53574d7be9afb039c2cec65d31c8f324c0091a94b93bc2d06c07f704",
+        "docs/research/2026-09-20-utility-poc/generator.html": "d46edd3e215db5dab11311e42df37d24f8a7fb493da357ecfc81413674df274d"
+      },
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
+      "remaining": [
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-B calculator transient input and separate processor",
+            "AC-B grader transient input and separate processor",
+            "AC-B generator transient input and separate processor"
+          ]
+        }
+      ]
+    },
+    "WT-AC-UTILITY-01C": {
+      "status": "partial",
+      "requirement_digest": "9cb6c793907b1cab",
+      "oracle_sha256": "e0a55cf2ba76b268ddf049b37c3da759fe13696d60d778082c8e4a0245bc8a40",
+      "source_digests": {
+        "scripts/build-utility-poc.mjs": "4e114aeaa0acfcc724cb8b2966dea4c601baf4a624e2339369a01c7ab8d7126a",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/verify-utility-poc.mjs": "604cc191c4cb4081c99073013fb98c4a8518a6d0ecacce6162e0b41beef8ef71",
+        "tests/e2e/utility-poc.spec.ts": "fde5f8a8c4a0d026363945a68d5d149c215432124f229f1f13363580356c44f7",
+        "docs/research/2026-09-20-utility-poc/definitions.mjs": "16edc1df99d4e82ea5366ec2615758d393ab38859f179d2a9cb8cd3b91602eba",
+        "docs/research/2026-09-20-utility-poc/view.mjs": "adfab29988df00f0623ae3f9d2bd005d37e3b38ea3ff6d47dc11bf70de6ef7ad",
+        "docs/research/2026-09-20-utility-poc/utility.css": "22c1d6e669f07c720430b250623e5f9768b16af0c4833e892f736dbfb835e2e7",
+        "docs/research/2026-09-20-utility-poc/calculator.html": "ec223a22bf34a7456de05af4c954abcb0e3e547bc0e24183aef02131c83ce05c",
+        "docs/research/2026-09-20-utility-poc/grader.html": "3999abed53574d7be9afb039c2cec65d31c8f324c0091a94b93bc2d06c07f704",
+        "docs/research/2026-09-20-utility-poc/generator.html": "d46edd3e215db5dab11311e42df37d24f8a7fb493da357ecfc81413674df274d"
+      },
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
+      "remaining": [
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-C calculator failure retry delay cancellation and stale result",
+            "AC-C grader failure retry delay cancellation and stale result",
+            "AC-C generator failure retry delay cancellation and stale result",
+            "AC-C calculator empty minimum maximum and out of range",
+            "AC-C grader zero and all criteria",
+            "AC-C generator blank multilingual maximum long text and safe text output",
+            "AC-C processing timeout leaves inputs available for retry"
+          ]
+        }
+      ]
+    },
+    "WT-AC-UTILITY-01D": {
+      "status": "partial",
+      "requirement_digest": "9cb6c793907b1cab",
+      "oracle_sha256": "a50147c784a67dfd7bf0254d65997ebf96cd377e05c2897a0432a1f41f371549",
+      "source_digests": {
+        "scripts/build-utility-poc.mjs": "4e114aeaa0acfcc724cb8b2966dea4c601baf4a624e2339369a01c7ab8d7126a",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/verify-utility-poc.mjs": "604cc191c4cb4081c99073013fb98c4a8518a6d0ecacce6162e0b41beef8ef71",
+        "tests/e2e/utility-poc.spec.ts": "fde5f8a8c4a0d026363945a68d5d149c215432124f229f1f13363580356c44f7",
+        "docs/research/2026-09-20-utility-poc/definitions.mjs": "16edc1df99d4e82ea5366ec2615758d393ab38859f179d2a9cb8cd3b91602eba",
+        "docs/research/2026-09-20-utility-poc/view.mjs": "adfab29988df00f0623ae3f9d2bd005d37e3b38ea3ff6d47dc11bf70de6ef7ad",
+        "docs/research/2026-09-20-utility-poc/utility.css": "22c1d6e669f07c720430b250623e5f9768b16af0c4833e892f736dbfb835e2e7",
+        "docs/research/2026-09-20-utility-poc/calculator.html": "ec223a22bf34a7456de05af4c954abcb0e3e547bc0e24183aef02131c83ce05c",
+        "docs/research/2026-09-20-utility-poc/grader.html": "3999abed53574d7be9afb039c2cec65d31c8f324c0091a94b93bc2d06c07f704",
+        "docs/research/2026-09-20-utility-poc/generator.html": "d46edd3e215db5dab11311e42df37d24f8a7fb493da357ecfc81413674df274d"
+      },
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
+      "remaining": [
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-A-D calculator pc 1x js contract and reflow",
+            "AC-A-D calculator pc 1x nojs contract and reflow",
+            "AC-A-D calculator pc 2x js contract and reflow",
+            "AC-A-D calculator pc 2x nojs contract and reflow",
+            "AC-A-D calculator sp 1x js contract and reflow",
+            "AC-A-D calculator sp 1x nojs contract and reflow",
+            "AC-A-D calculator sp 2x js contract and reflow",
+            "AC-A-D calculator sp 2x nojs contract and reflow",
+            "AC-A-D calculator narrow 1x js contract and reflow",
+            "AC-A-D calculator narrow 1x nojs contract and reflow",
+            "AC-A-D calculator narrow 2x js contract and reflow",
+            "AC-A-D calculator narrow 2x nojs contract and reflow",
+            "AC-A-D grader pc 1x js contract and reflow",
+            "AC-A-D grader pc 1x nojs contract and reflow",
+            "AC-A-D grader pc 2x js contract and reflow",
+            "AC-A-D grader pc 2x nojs contract and reflow",
+            "AC-A-D grader sp 1x js contract and reflow",
+            "AC-A-D grader sp 1x nojs contract and reflow",
+            "AC-A-D grader sp 2x js contract and reflow",
+            "AC-A-D grader sp 2x nojs contract and reflow",
+            "AC-A-D grader narrow 1x js contract and reflow",
+            "AC-A-D grader narrow 1x nojs contract and reflow",
+            "AC-A-D grader narrow 2x js contract and reflow",
+            "AC-A-D grader narrow 2x nojs contract and reflow",
+            "AC-A-D generator pc 1x js contract and reflow",
+            "AC-A-D generator pc 1x nojs contract and reflow",
+            "AC-A-D generator pc 2x js contract and reflow",
+            "AC-A-D generator pc 2x nojs contract and reflow",
+            "AC-A-D generator sp 1x js contract and reflow",
+            "AC-A-D generator sp 1x nojs contract and reflow",
+            "AC-A-D generator sp 2x js contract and reflow",
+            "AC-A-D generator sp 2x nojs contract and reflow",
+            "AC-A-D generator narrow 1x js contract and reflow",
+            "AC-A-D generator narrow 1x nojs contract and reflow",
+            "AC-A-D generator narrow 2x js contract and reflow",
+            "AC-A-D generator narrow 2x nojs contract and reflow"
+          ]
+        }
+      ]
     }
   }
 }

@@ -1,0 +1,89 @@
+{
+  "schema": "wt-utility-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "utility:calculator",
+      "face": "utility",
+      "part": "utility-calculator",
+      "label": "対話型ツール：予算の計算",
+      "variant": "calculator",
+      "description": "人数と一人あたりの費用から、準備する予算の目安を確かめます。 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-utility-poc/calculator-pc.jpg",
+        "sp": "../2026-09-20-utility-poc/calculator-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "referenceId": "wt-utility-result.v1",
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "小さな企画の予算を見積もる",
+        "処理の境界": "表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。",
+        "入力の扱い": "入力非保存。POST処理中のみ利用。共有・メール送信なし。",
+        "実測": "1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。",
+        "根拠": "人数 × 一人あたりの費用。円未満は四捨五入。",
+        "対象外": "送料・税区分・予備費は含みません。実際の見積書とは異なります。",
+        "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "utility:grader",
+      "face": "utility",
+      "part": "utility-grader",
+      "label": "対話型ツール：準備のチェック",
+      "variant": "grader",
+      "description": "３つの確認項目から、確認済みと残っている準備を整理します。 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-utility-poc/grader-pc.jpg",
+        "sp": "../2026-09-20-utility-poc/grader-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "referenceId": "wt-utility-result.v1",
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "公開前の準備を確かめる",
+        "処理の境界": "表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。",
+        "入力の扱い": "入力非保存。POST処理中のみ利用。共有・メール送信なし。",
+        "実測": "1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。",
+        "根拠": "チェックした項目を１件ずつ数えます。３項目を同じ重みで扱います。",
+        "対象外": "品質・安全性・成果を保証する診断ではありません。自己申告の整理です。",
+        "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "utility:generator",
+      "face": "utility",
+      "part": "utility-generator",
+      "label": "対話型ツール：見出しの生成",
+      "variant": "generator",
+      "description": "テーマを入力し、３つの決まった型で見出しのたたき台を作ります。 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-utility-poc/generator-pc.jpg",
+        "sp": "../2026-09-20-utility-poc/generator-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "referenceId": "wt-utility-result.v1",
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "案内の見出しを組み立てる",
+        "処理の境界": "表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。",
+        "入力の扱い": "入力非保存。POST処理中のみ利用。共有・メール送信なし。",
+        "実測": "1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。",
+        "根拠": "入力したテーマに「はじめてガイド」「選ぶ前のチェック」「よくある質問」を組み合わせます。",
+        "対象外": "AI生成ではありません。事実確認・権利確認・公開判断は含みません。",
+        "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    }
+  ]
+}

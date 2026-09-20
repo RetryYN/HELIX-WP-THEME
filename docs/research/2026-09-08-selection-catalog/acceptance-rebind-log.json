@@ -254,6 +254,68 @@
       ],
       "registry_before_sha256": "46159f000641906adb45fd8701b436fb179abe423b3232b3f7f7ffdeb4de5d59",
       "registry_after_sha256": "b134fc8e62f1c0c8379c5e310e459c5ca707576932eedf93cbf8ff8553790d8f"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-UTILITY-01A",
+        "WT-AC-UTILITY-01B",
+        "WT-AC-UTILITY-01C",
+        "WT-AC-UTILITY-01D"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-utility-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-utility-poc/acceptance-candidate.json": "f2155b1c10c84ecd260ad48463446b4c85c8c721b31e69201693182082e57657"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-utility-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-UTILITY-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-UTILITY-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-UTILITY-01C",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-UTILITY-01D",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "before_sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "after_sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "b134fc8e62f1c0c8379c5e310e459c5ca707576932eedf93cbf8ff8553790d8f",
+      "registry_after_sha256": "c97ac4d86ff1cdaa0e1e5b13db903cc25ea3fd168d9b2c7fce275c76431e2a37"
     }
   ]
 }
