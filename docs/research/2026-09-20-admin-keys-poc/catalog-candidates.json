@@ -1,0 +1,86 @@
+{
+  "schema": "wt-admin-keys-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "admin-keys:readonly",
+      "face": "inheritance",
+      "part": "admin-keys-readonly",
+      "label": "鍵管理：読み取り用",
+      "variant": "readonly",
+      "description": "閲覧だけを許可する専用ロールの表示候補。。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "鍵管理の表示と権限分離を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-keys-poc/readonly-pc.jpg",
+        "sp": "../2026-09-20-admin-keys-poc/readonly-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-04"
+      ],
+      "referenceId": "wt-admin-keys-poc.v1",
+      "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "閲覧だけを許可する専用ロールの表示候補。",
+        "反映の境界": "実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。",
+        "入力の扱い": "デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。 実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+      }
+    },
+    {
+      "id": "admin-keys:writer",
+      "face": "inheritance",
+      "part": "admin-keys-writer",
+      "label": "鍵管理：書き込み用",
+      "variant": "writer",
+      "description": "更新を許可する用途を、読み取り用から分ける。。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "鍵管理の表示と権限分離を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-keys-poc/writer-pc.jpg",
+        "sp": "../2026-09-20-admin-keys-poc/writer-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-04"
+      ],
+      "referenceId": "wt-admin-keys-poc.v1",
+      "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "更新を許可する用途を、読み取り用から分ける。",
+        "反映の境界": "実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。",
+        "入力の扱い": "デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。 実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+      }
+    },
+    {
+      "id": "admin-keys:revoked",
+      "face": "inheritance",
+      "part": "admin-keys-revoked",
+      "label": "鍵管理：失効後",
+      "variant": "revoked",
+      "description": "失効した接続は読み取りも書き込みも拒否する。。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "鍵管理の表示と権限分離を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-keys-poc/revoked-pc.jpg",
+        "sp": "../2026-09-20-admin-keys-poc/revoked-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-04"
+      ],
+      "referenceId": "wt-admin-keys-poc.v1",
+      "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "失効した接続は読み取りも書き込みも拒否する。",
+        "反映の境界": "実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。",
+        "入力の扱い": "デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。 実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+      }
+    }
+  ]
+}

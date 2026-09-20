@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1209,
+  "screenshotCount": 1215,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -13571,6 +13571,87 @@
         "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
         "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
       }
+    },
+    {
+      "id": "admin-keys:readonly",
+      "face": "inheritance",
+      "part": "admin-keys-readonly",
+      "label": "鍵管理：読み取り用",
+      "variant": "readonly",
+      "description": "閲覧だけを許可する専用ロールの表示候補。。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "鍵管理の表示と権限分離を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-keys-poc/readonly-pc.jpg",
+        "sp": "../2026-09-20-admin-keys-poc/readonly-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-04"
+      ],
+      "referenceId": "wt-admin-keys-poc.v1",
+      "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "閲覧だけを許可する専用ロールの表示候補。",
+        "反映の境界": "実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。",
+        "入力の扱い": "デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。 実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+      }
+    },
+    {
+      "id": "admin-keys:writer",
+      "face": "inheritance",
+      "part": "admin-keys-writer",
+      "label": "鍵管理：書き込み用",
+      "variant": "writer",
+      "description": "更新を許可する用途を、読み取り用から分ける。。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "鍵管理の表示と権限分離を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-keys-poc/writer-pc.jpg",
+        "sp": "../2026-09-20-admin-keys-poc/writer-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-04"
+      ],
+      "referenceId": "wt-admin-keys-poc.v1",
+      "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "更新を許可する用途を、読み取り用から分ける。",
+        "反映の境界": "実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。",
+        "入力の扱い": "デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。 実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+      }
+    },
+    {
+      "id": "admin-keys:revoked",
+      "face": "inheritance",
+      "part": "admin-keys-revoked",
+      "label": "鍵管理：失効後",
+      "variant": "revoked",
+      "description": "失効した接続は読み取りも書き込みも拒否する。。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。",
+      "purpose": "鍵管理の表示と権限分離を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-keys-poc/revoked-pc.jpg",
+        "sp": "../2026-09-20-admin-keys-poc/revoked-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-04"
+      ],
+      "referenceId": "wt-admin-keys-poc.v1",
+      "evidence": "../2026-09-20-admin-keys-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "失効した接続は読み取りも書き込みも拒否する。",
+        "反映の境界": "実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。",
+        "入力の扱い": "デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。 実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
+      }
     }
   ],
   "requirements": [
@@ -20568,45 +20649,89 @@
           "requirement_id": "WT-FR-ADMIN-04",
           "oracle": "WT-UI-10 から HELIX 接続用 API key を発行・失効し、読み専用 / 書き込み可を設定でき、発行値は一度だけ表示される",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。",
+            "実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+              "sha256": "064b7c9fc1224fd8a45d72912e6039283e84dafad61d2c89f72b12c4d8b5c465",
+              "row_names": [
+                "AC-A readonly 1440px js permission and reflow",
+                "AC-A readonly 1440px no-js permission and reflow",
+                "AC-A readonly 390px js permission and reflow",
+                "AC-A readonly 390px no-js permission and reflow",
+                "AC-A readonly 320px js permission and reflow",
+                "AC-A readonly 320px no-js permission and reflow",
+                "AC-A writer 1440px js permission and reflow",
+                "AC-A writer 1440px no-js permission and reflow",
+                "AC-A writer 390px js permission and reflow",
+                "AC-A writer 390px no-js permission and reflow",
+                "AC-A writer 320px js permission and reflow",
+                "AC-A writer 320px no-js permission and reflow",
+                "AC-A revoked 1440px js permission and reflow",
+                "AC-A revoked 1440px no-js permission and reflow",
+                "AC-A revoked 390px js permission and reflow",
+                "AC-A revoked 390px no-js permission and reflow",
+                "AC-A revoked 320px js permission and reflow",
+                "AC-A revoked 320px no-js permission and reflow",
+                "AC-A one-time issuance focuses value and prevents duplicate issue while visible",
+                "AC-A issue failure and retry preserve accurate state",
+                "AC-A revoke failure and retry preserve accurate state",
+                "AC-A keyboard issue hide revoke and 200 percent root text"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-04B",
           "requirement_id": "WT-FR-ADMIN-04",
           "oracle": "失効できない、権限を分けられない、同じ鍵の値を再表示できる、または公開ファイルへ鍵を保存すれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。",
+            "実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-keys-poc/verification.json",
+              "sha256": "064b7c9fc1224fd8a45d72912e6039283e84dafad61d2c89f72b12c4d8b5c465",
+              "row_names": [
+                "AC-B reveal remains denied after display controls are bypassed",
+                "AC-B per-record permissions survive role picker and display tampering",
+                "AC-B revocation clears a visible value and repeated revoke cannot restore it",
+                "AC-B invalid permission cannot issue even when injected into picker",
+                "AC-B no persistence cookies requests logs or metadata retain issued value"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "admin-keys:readonly",
+        "admin-keys:writer",
+        "admin-keys:revoked"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ADMIN-04A",
-          "WT-AC-ADMIN-04B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -33683,8 +33808,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 214,
-    "partial": 54,
+    "missing": 212,
+    "partial": 56,
     "verified_in_poc": 32,
     "stale": 0
   },

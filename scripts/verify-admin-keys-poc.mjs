@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {fixtures} from '../docs/research/2026-09-20-admin-keys-poc/contract.mjs';
+const definitions=fixtures.map(f=>({kind:f.id,label:f.label,title:f.lead}));
+const root='docs/research/2026-09-20-admin-keys-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-admin-keys-poc.mjs']);
+const files=['scripts/build-admin-keys-poc.mjs','scripts/utility-poc-server.mjs','scripts/utility-poc-provider.mjs','scripts/verify-admin-keys-poc.mjs','tests/e2e/admin-keys-poc-selection-catalog.spec.ts',...['contract.mjs','view.mjs','keys.css',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'admin-keys-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/admin-keys-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,ADMIN_KEYS_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const rows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(rows.every(r=>r.pass));
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-admin-keys-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local browser-memory PoC only. Not WordPress admin, WP 7.2, DataViews/DataForm integration, server registration, persistence, permissions, MCP or external APIs. All two ACs partial. No real keys or external APIs.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=suffix=>rows.filter(r=>r.name.startsWith(`AC-${suffix}`)).map(r=>r.name);
+ const remaining=['Application Passwords既存APIを専用ユーザー/ロールで薄く包む想定。実API・実権限・本番WP・WP 7.2実機は未接続/未検証。','実鍵・hashed保存・実鍵の一度限り返却・MCP・全ブラウザ・実スクリーンリーダーは未検証。認証に使えないデモ値のみ。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B'].map(s=>[`WT-AC-ADMIN-04${s}`,{status:'partial',scope:'実鍵なしの鍵管理PoC。一度表示/再表示拒否・個別失効・権限分離・失敗/再試行・非保存/非送信、1440/390/320px、JS有無、keyboard。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(s)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-admin-keys-catalog-candidates.v1',entries:definitions.map(d=>({id:`admin-keys:${d.kind}`,face:'inheritance',part:`admin-keys-${d.kind}`,label:`鍵管理：${d.label}`,variant:d.kind,description:`${d.title}。一度表示・権限・失効を確認する静的/ローカルPoC。2受入条件は部分確認。`,purpose:'鍵管理の表示と権限分離を確かめる',group:'共通設定・部品',images:{pc:`../2026-09-20-admin-keys-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-admin-keys-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-ADMIN-04'],referenceId:'wt-admin-keys-poc.v1',evidence:'../2026-09-20-admin-keys-poc/verification.json',selectionFacts:{'対象と判断':d.title,'反映の境界':'実鍵なし。Application Passwords既存APIへ薄く包む候補。読み取り/書き込み用の専用ロールを想定。','入力の扱い':'デモ値は今回のDOM表示だけ。一覧/ログ/永続保存/外部送信なし。公開画像は値を消して生成。','実測':'1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。','対象外':'AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'2 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}
