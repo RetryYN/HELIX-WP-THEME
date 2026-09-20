@@ -1596,6 +1596,118 @@
       ],
       "registry_before_sha256": "2b59ef6f877d0beeefc8cb0b7c2c72dd04d48804ccb20b56029e2b89ae58291b",
       "registry_after_sha256": "fc2827810156cd023a903061dabdad0f5d80f6e9ae19aa5385244cc96b54fee7"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-REC-01A",
+        "WT-AC-NFR-REC-01B",
+        "WT-AC-NFR-VALUE-03A",
+        "WT-AC-NFR-VALUE-03B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "recovery-contract:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-REC-01A",
+          "path": "scripts/verify-recovery-contract-poc.mjs",
+          "before": "6b1ae3ca37ce915f455034761e9e883e39e93f1fe3e6fad010579ba24dd20a31",
+          "after": "9baab0bcbd25a35366f6e0dd38290b9d966ffa6ab2a024681491a068de0284d7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-REC-01A",
+          "path": "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+          "before": "6c0a709a1e2647eae1c3c1d051550d85992703b0f3e229994d8df191e01d7348",
+          "after": "10eb5564cab2d2244871be3d217c8d9a2aa8985dae0a97a82ef0875e90d435e7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-REC-01A",
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
+          "after": "cb491a346aac45b03fa3691b7c25f6c5c061eca9ea23ff27f43f628f02e55b02"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-REC-01B",
+          "path": "scripts/verify-recovery-contract-poc.mjs",
+          "before": "6b1ae3ca37ce915f455034761e9e883e39e93f1fe3e6fad010579ba24dd20a31",
+          "after": "9baab0bcbd25a35366f6e0dd38290b9d966ffa6ab2a024681491a068de0284d7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-REC-01B",
+          "path": "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+          "before": "6c0a709a1e2647eae1c3c1d051550d85992703b0f3e229994d8df191e01d7348",
+          "after": "10eb5564cab2d2244871be3d217c8d9a2aa8985dae0a97a82ef0875e90d435e7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-REC-01B",
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
+          "after": "cb491a346aac45b03fa3691b7c25f6c5c061eca9ea23ff27f43f628f02e55b02"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-VALUE-03A",
+          "path": "scripts/verify-recovery-contract-poc.mjs",
+          "before": "6b1ae3ca37ce915f455034761e9e883e39e93f1fe3e6fad010579ba24dd20a31",
+          "after": "9baab0bcbd25a35366f6e0dd38290b9d966ffa6ab2a024681491a068de0284d7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-VALUE-03A",
+          "path": "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+          "before": "6c0a709a1e2647eae1c3c1d051550d85992703b0f3e229994d8df191e01d7348",
+          "after": "10eb5564cab2d2244871be3d217c8d9a2aa8985dae0a97a82ef0875e90d435e7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-VALUE-03A",
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
+          "after": "cb491a346aac45b03fa3691b7c25f6c5c061eca9ea23ff27f43f628f02e55b02"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-VALUE-03B",
+          "path": "scripts/verify-recovery-contract-poc.mjs",
+          "before": "6b1ae3ca37ce915f455034761e9e883e39e93f1fe3e6fad010579ba24dd20a31",
+          "after": "9baab0bcbd25a35366f6e0dd38290b9d966ffa6ab2a024681491a068de0284d7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-VALUE-03B",
+          "path": "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+          "before": "6c0a709a1e2647eae1c3c1d051550d85992703b0f3e229994d8df191e01d7348",
+          "after": "10eb5564cab2d2244871be3d217c8d9a2aa8985dae0a97a82ef0875e90d435e7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-VALUE-03B",
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before": "82d708d5e1befa7f8cbe47082620f57eaab2e902e3f55860cb10ad465a45d61b",
+          "after": "cb491a346aac45b03fa3691b7c25f6c5c061eca9ea23ff27f43f628f02e55b02"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before_sha256": "cb491a346aac45b03fa3691b7c25f6c5c061eca9ea23ff27f43f628f02e55b02",
+          "after_sha256": "cb491a346aac45b03fa3691b7c25f6c5c061eca9ea23ff27f43f628f02e55b02",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "fc2827810156cd023a903061dabdad0f5d80f6e9ae19aa5385244cc96b54fee7",
+      "registry_after_sha256": "770585152336778820d902c3c66edba24779b8f9112f6626026ea59bfe7615f7"
     }
   ]
 }

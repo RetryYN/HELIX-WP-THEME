@@ -23,6 +23,10 @@ const renamedScale = structuredClone(tokenProjectionFixture.bridge); renamedScal
 assert.throws(() => projectTokenLayer(tokenProjectionFixture.parent, renamedScale), /typography projection changes slugs/);
 const settingsOverride = structuredClone(tokenProjectionFixture.bridge); settingsOverride.settings = { typography: { fontSizes: [] } };
 assert.throws(() => projectTokenLayer(tokenProjectionFixture.parent, settingsOverride), /settings override is forbidden/);
+const addedSafeValue = structuredClone(tokenProjectionFixture.bridge); addedSafeValue.safeValues.extraPreset = { slug: 'x', value: '1rem' };
+assert.throws(() => projectTokenLayer(tokenProjectionFixture.parent, addedSafeValue), /safe value dimensions cannot change/);
+const removedSafeValue = structuredClone(tokenProjectionFixture.bridge); delete removedSafeValue.safeValues.minWidth;
+assert.throws(() => projectTokenLayer(tokenProjectionFixture.parent, removedSafeValue), /safe value dimensions cannot change/);
 
 execFileSync(process.execPath, ['scripts/build-recovery-contract-poc.mjs']);
 const staging = fs.mkdtempSync(path.join(os.tmpdir(), 'recovery-contract-capture-'));
