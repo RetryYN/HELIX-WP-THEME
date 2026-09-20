@@ -20,10 +20,19 @@ IntersectionObserverで見出し全体が画面に入るとreach、連続500ms�
 
 ## 実測と残件
 
-01A/Bは境界/安定ID、02A/Bは区間差分/rollback・順序/表示・slot・イベントへ対応する。PC1440/SP390/320、JS有無、keyboard、代表200% root文字（ブラウザズームではない）を検査。6つの負の摂動をそれぞれ専用テストで検出し、sourceを復元した後にdigestを照合する。
+01A/Bは境界/安定ID、02A/Bは区間差分/rollback・順序/表示・slot・イベントへ対応する。PC1440/SP390/320、JS有無、keyboard、代表200% root文字（ブラウザズームではない）を検査。7つの負の摂動をそれぞれ専用テストで検出し、sourceを復元した後にdigestを照合する。
 
 WP 7.2実機（未提供境界）、既存sections API/registry、Block Editor/MCP、全記事/投稿メタ保存・権限、検索snippet制御（max-snippet/nosnippet/data-nosnippet）、rewrite history、TAG-02/本番tracking、全ブラウザ/実スクリーンリーダーは未検証。
 
 `node scripts/build-section-contract-poc.mjs` で静的HTML/JSON、`node scripts/verify-section-contract-poc.mjs` でE2E・摂動・PC/SP６画像・verification・partial admission候補を生成する。静的配信は `node scripts/product-surfaces-server.mjs` の共通研究用localhostサーバーを使用する。
 
 参考：[MDN section](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/section)、[見出し](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements)、[Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)。H2/H3のみの区間化と安定IDは本テーマの要求契約であり、HTML標準が自動的に保証するものではない。
+
+## PR #264 レビュー対応
+
+| 指摘 | 対応 | 検証 |
+|---|---|---|
+| #263後のmainとrebind logが競合 | mainの既存registry/logを基準に４ACを正式admissionし直す | rebind check・source bindings・全catalog E2E・CI |
+| 非blocker: Stale content guardが無検査 | 提案全体のbaseは正しいまま、内部before本文だけを改変する負例とguard除去の摂動を追加 | unchanged digestとStale content拒否、該当１テストのみ失敗 |
+
+実装契約は維持し、検査と束縛証跡を同時に更新する。古いHEADのapproveを適用しない。

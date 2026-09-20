@@ -1,10 +1,11 @@
 import {test,expect} from '@playwright/test';
 import path from 'node:path';
+import {execFileSync} from 'node:child_process';
 import {startProductServer} from '../../scripts/product-surfaces-server.mjs';
 import {catalog,surfaces,variantId} from '../../docs/research/2026-09-20-product-surfaces-poc/products.mjs';
 import {renderPage,structured} from '../../scripts/product-surfaces-renderer.mjs';
 let service:Awaited<ReturnType<typeof startProductServer>>;
-test.beforeAll(async()=>{service=await startProductServer();});test.afterAll(async()=>{await service.close();});
+test.beforeAll(async()=>{execFileSync(process.execPath,['scripts/build-product-surfaces-poc.mjs'],{stdio:'pipe'});service=await startProductServer();});test.afterAll(async()=>{await service.close();});
 const url=(kind:string)=>`${service.base}/docs/research/2026-09-20-product-surfaces-poc/${kind}.html`;
 for(const f of surfaces)for(const width of [1440,390,320])for(const js of [true,false])test(`AC-A ${f.id} ${width}px ${js?'js':'no-js'} canonical values and reflow`,async({browser},info)=>{
  const context=await browser.newContext({viewport:{width,height:1000},javaScriptEnabled:js});const page=await context.newPage();try{await page.goto(url(f.id));await expect(page.locator('h1')).toHaveText(f.label);const graph=JSON.parse(await page.locator('script[type="application/ld+json"]').textContent()||'{}')['@graph'];

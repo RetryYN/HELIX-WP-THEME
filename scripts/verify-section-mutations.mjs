@@ -5,6 +5,7 @@ const cases=[
  ['01A','heading-derived-id',"b.level===2?b.stableId:`${parent}/${b.stableId}`","b.level===2?b.stableId:`${parent}/${b.stableId}-${b.text}`",'01A heading rename'],
  ['02B','outside-write-allowed','!allowed.has(c.key)||','false||','02B foreign block'],
  ['02A','move-offset-wrong','target.end-piece.length','target.end','02A move preserves'],
+ ['02B','stale-content-allowed',"if(b.text!==c.before)throw Error('Stale content');",'', '02B stale content'],
  ['02B','event-id-missing',"variantId:'demo-section-v1',",'','02B event invalid'],
  ['02A','post-override-ignored','state.postSlot||state.globalSlot','state.globalSlot','02A global nth']
 ];

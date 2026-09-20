@@ -91,7 +91,9 @@
           "02B foreign block and stale proposals cannot alter state",
           "02B event invalid section and device are rejected",
           "02B reject and empty title keep visible article unchanged",
+          "02B stale content in an otherwise current proposal is rejected",
           "02B mutation outside-write-allowed rejected",
+          "02B mutation stale-content-allowed rejected",
           "02B mutation event-id-missing rejected"
         ]
       }

@@ -12,9 +12,9 @@
   "sourceDigests": {
     "scripts/build-section-contract-poc.mjs": "cb1285868e7b749f19ce4e268a58b1678aac1e4943ff2297605b3f18721878cd",
     "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
-    "scripts/verify-section-mutations.mjs": "9effdaa5fa999bf80cd85d655b11b4d46094825a20b87b5a9b54e1ffb878ff75",
-    "scripts/verify-section-contract-poc.mjs": "9ae1b57a0bbe147d5ed448d7ad9aa719d2ce33fb34d25705c58af4fb35ff2e07",
-    "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "bf2bf3309f733cb6162badd0aa203e380f5929a2164708b5619bc504f9df7a87",
+    "scripts/verify-section-mutations.mjs": "1f886b4ed29c0a2ee52dc7aae033b397ba029e428fec2824d00aff56aaebd19c",
+    "scripts/verify-section-contract-poc.mjs": "681914e6478b0a7f2fdb0d5db5c330bbbbfc057efb3291a262e3fc9697ba840b",
+    "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "9814b3c36081b5c5d40b9c5a67948ef199703439ded74d2fb2a2dd2afcb2e7a5",
     "docs/research/2026-09-20-section-contract-poc/contract.mjs": "8cb1310deb8e9203814370c48ef944a1c25319fbd4b2e323c0dea06a21cdc768",
     "docs/research/2026-09-20-section-contract-poc/render.mjs": "efab3d9cd2e435ced628612275662e9b5f51e0aad57c714f671f0fa613352364",
     "docs/research/2026-09-20-section-contract-poc/view.mjs": "0ccb91d004360e101831f9777ccffca5c6fc48b54121deae8ee434409229c1b7",
@@ -154,6 +154,10 @@
       "pass": true
     },
     {
+      "name": "02B stale content in an otherwise current proposal is rejected",
+      "pass": true
+    },
+    {
       "name": "01B mutation h4-becomes-section rejected",
       "pass": true,
       "unexpected": 1
@@ -170,6 +174,11 @@
     },
     {
       "name": "02A mutation move-offset-wrong rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "02B mutation stale-content-allowed rejected",
       "pass": true,
       "unexpected": 1
     },

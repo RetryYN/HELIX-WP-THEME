@@ -2263,7 +2263,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
-          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "sha256": "aa63f1aeac7e58a07ba08aae76bc8344eacf135993532cb59c676ddd3bcbf7b0",
           "row_names": [
             "01A structure 1440 js hierarchy and reflow",
             "01A structure 1440 no-js hierarchy and reflow",
@@ -2303,7 +2303,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
-          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "sha256": "aa63f1aeac7e58a07ba08aae76bc8344eacf135993532cb59c676ddd3bcbf7b0",
           "row_names": [
             "01B exact boundaries include H4 and empty-H3 H2 and reject duplicate or orphan IDs",
             "01B mutation h4-becomes-section rejected"
@@ -2325,7 +2325,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
-          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "sha256": "aa63f1aeac7e58a07ba08aae76bc8344eacf135993532cb59c676ddd3bcbf7b0",
           "row_names": [
             "02A rewrite H3 diff apply and rollback preserve unrelated content",
             "02A replace H3 diff apply and rollback preserve unrelated content",
@@ -2356,12 +2356,14 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
-          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "sha256": "aa63f1aeac7e58a07ba08aae76bc8344eacf135993532cb59c676ddd3bcbf7b0",
           "row_names": [
             "02B foreign block and stale proposals cannot alter state",
             "02B event invalid section and device are rejected",
             "02B reject and empty title keep visible article unchanged",
+            "02B stale content in an otherwise current proposal is rejected",
             "02B mutation outside-write-allowed rejected",
+            "02B mutation stale-content-allowed rejected",
             "02B mutation event-id-missing rejected"
           ]
         }
@@ -2453,7 +2455,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
-          "sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "sha256": "6e0f51f2239f8e7fe47936654a72b5bf7736a367e9dfdf54d00e9d841b023413",
           "row_names": [
             "AC-A card 1440px js canonical values and reflow",
             "AC-A card 1440px no-js canonical values and reflow",
@@ -2511,7 +2513,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
-          "sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "sha256": "6e0f51f2239f8e7fe47936654a72b5bf7736a367e9dfdf54d00e9d841b023413",
           "row_names": [
             "AC-B missing data-variant-id blocks conversion projection",
             "AC-B missing data-goal-cv-id blocks conversion projection",
