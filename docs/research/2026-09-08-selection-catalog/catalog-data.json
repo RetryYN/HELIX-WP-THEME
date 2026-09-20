@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1203,
+  "screenshotCount": 1209,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -13490,6 +13490,87 @@
         "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
         "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
       }
+    },
+    {
+      "id": "admin-changes:review",
+      "face": "inheritance",
+      "part": "admin-changes-review",
+      "label": "変更確認：差分レビュー",
+      "variant": "review",
+      "description": "変更前と変更後を確認してから適用する。。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-changes-poc/review-pc.jpg",
+        "sp": "../2026-09-20-admin-changes-poc/review-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "referenceId": "wt-admin-changes-poc.v1",
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "変更前と変更後を確認してから適用する。",
+        "反映の境界": "ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin-changes:blocked",
+      "face": "inheritance",
+      "part": "admin-changes-blocked",
+      "label": "変更確認：破壊域の停止",
+      "variant": "blocked",
+      "description": "保護対象が含まれる変更案は、まとめて停止する。。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-changes-poc/blocked-pc.jpg",
+        "sp": "../2026-09-20-admin-changes-poc/blocked-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "referenceId": "wt-admin-changes-poc.v1",
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "保護対象が含まれる変更案は、まとめて停止する。",
+        "反映の境界": "ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin-changes:recovery",
+      "face": "inheritance",
+      "part": "admin-changes-recovery",
+      "label": "変更確認：失敗からの復旧",
+      "variant": "recovery",
+      "description": "差分と診断を残し、直近の状態へ戻す。。差分と診断を保持する静的/ローカルPoC。3受入条件は部分確認。",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-changes-poc/recovery-pc.jpg",
+        "sp": "../2026-09-20-admin-changes-poc/recovery-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "referenceId": "wt-admin-changes-poc.v1",
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "差分と診断を残し、直近の状態へ戻す。",
+        "反映の境界": "ブラウザ内一時適用。破壊域は全体停止、部分適用は未完了。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、失敗と再試行、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
     }
   ],
   "requirements": [
@@ -20366,58 +20447,113 @@
           "requirement_id": "WT-FR-ADMIN-03",
           "oracle": "dry-run の変更案と破壊域停止分を差分レビューし、適用 / 却下を選べ、直近変更を rollback して復旧事実を操作ログへ残せる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+              "sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+              "row_names": [
+                "AC-A review 1440px js diff and reflow",
+                "AC-A review 1440px no-js diff and reflow",
+                "AC-A review 390px js diff and reflow",
+                "AC-A review 390px no-js diff and reflow",
+                "AC-A review 320px js diff and reflow",
+                "AC-A review 320px no-js diff and reflow",
+                "AC-A blocked 1440px js diff and reflow",
+                "AC-A blocked 1440px no-js diff and reflow",
+                "AC-A blocked 390px js diff and reflow",
+                "AC-A blocked 390px no-js diff and reflow",
+                "AC-A blocked 320px js diff and reflow",
+                "AC-A blocked 320px no-js diff and reflow",
+                "AC-A recovery 1440px js diff and reflow",
+                "AC-A recovery 1440px no-js diff and reflow",
+                "AC-A recovery 390px js diff and reflow",
+                "AC-A recovery 390px no-js diff and reflow",
+                "AC-A recovery 320px js diff and reflow",
+                "AC-A recovery 320px no-js diff and reflow",
+                "AC-A review apply rollback logs and restores all values",
+                "AC-A keyboard review and rollback at 200 percent root text"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-03B",
           "requirement_id": "WT-FR-ADMIN-03",
           "oracle": "レビューなしで適用される、却下・保留が反映されない、rollback 後の記録がない、または破壊域停止を迂回できれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+              "sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+              "row_names": [
+                "AC-B reject prevents subsequent apply until fresh review",
+                "AC-B hold prevents subsequent apply until fresh review",
+                "AC-B bypassing disabled display cannot bypass review or destructive stop",
+                "AC-B operations stay transient and emit no external writes"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-03C",
           "requirement_id": "WT-FR-ADMIN-03",
           "oracle": "dry-run・適用・rollback の失敗時に原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保つ。部分適用を成功として表示せず、操作ログへ失敗と復旧結果を残す。",
           "polarity": "boundary",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+              "sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+              "row_names": [
+                "AC-C dryrun failure preserves diff and retry recovers with logs",
+                "AC-C apply failure preserves diff and retry recovers with logs",
+                "AC-C reject failure preserves diff and retry recovers with logs",
+                "AC-C rollback failure preserves diff and retry recovers with logs",
+                "AC-C partial apply is incomplete and rollback failure keeps recovery context",
+                "AC-C diagnostic copy success",
+                "AC-C diagnostic copy fallback"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "admin-changes:review",
+        "admin-changes:blocked",
+        "admin-changes:recovery"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 3,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ADMIN-03A",
-          "WT-AC-ADMIN-03B",
-          "WT-AC-ADMIN-03C"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -33547,8 +33683,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 217,
-    "partial": 51,
+    "missing": 214,
+    "partial": 54,
     "verified_in_poc": 32,
     "stale": 0
   },

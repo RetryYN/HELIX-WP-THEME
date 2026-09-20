@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 666,
+  "candidateCount": 669,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -3701,38 +3701,38 @@
     {
       "id": "WT-FR-ADMIN-03",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 3,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ADMIN-03A",
-          "WT-AC-ADMIN-03B",
-          "WT-AC-ADMIN-03C"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-ADMIN-03A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ADMIN-03B",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ADMIN-03C",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "admin-changes:review",
+        "admin-changes:blocked",
+        "admin-changes:recovery"
+      ]
     },
     {
       "id": "WT-FR-ADMIN-04",
@@ -29846,6 +29846,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-admin-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "admin-changes:review",
+      "face": "inheritance",
+      "part": "admin-changes-review",
+      "label": "変更確認：差分レビュー",
+      "variant": "review",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "admin-changes:blocked",
+      "face": "inheritance",
+      "part": "admin-changes-blocked",
+      "label": "変更確認：破壊域の停止",
+      "variant": "blocked",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "admin-changes:recovery",
+      "face": "inheritance",
+      "part": "admin-changes-recovery",
+      "label": "変更確認：失敗からの復旧",
+      "variant": "recovery",
+      "purpose": "変更案と復旧の文脈を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ADMIN-03"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-admin-changes-poc/verification.json",
       "devices": [
         "pc",
         "sp"

@@ -28,6 +28,10 @@
     "docs/research/2026-09-20-admin-poc/verification.json": [
       "node",
       "scripts/verify-admin-poc.mjs"
+    ],
+    "docs/research/2026-09-20-admin-changes-poc/verification.json": [
+      "node",
+      "scripts/verify-admin-changes-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -60,6 +64,15 @@
     ],
     "WT-AC-ADMIN-01E": [
       "docs/research/2026-09-20-admin-poc/verification.json"
+    ],
+    "WT-AC-ADMIN-03A": [
+      "docs/research/2026-09-20-admin-changes-poc/verification.json"
+    ],
+    "WT-AC-ADMIN-03B": [
+      "docs/research/2026-09-20-admin-changes-poc/verification.json"
+    ],
+    "WT-AC-ADMIN-03C": [
+      "docs/research/2026-09-20-admin-changes-poc/verification.json"
     ]
   }
 }

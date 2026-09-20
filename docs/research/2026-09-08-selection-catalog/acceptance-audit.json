@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 217,
-    "partial": 51,
+    "missing": 214,
+    "partial": 54,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2878,24 +2878,64 @@
       "requirement_id": "WT-FR-ADMIN-03",
       "oracle": "dry-run の変更案と破壊域停止分を差分レビューし、適用 / 却下を選べ、直近変更を rollback して復旧事実を操作ログへ残せる",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "row_names": [
+            "AC-A review 1440px js diff and reflow",
+            "AC-A review 1440px no-js diff and reflow",
+            "AC-A review 390px js diff and reflow",
+            "AC-A review 390px no-js diff and reflow",
+            "AC-A review 320px js diff and reflow",
+            "AC-A review 320px no-js diff and reflow",
+            "AC-A blocked 1440px js diff and reflow",
+            "AC-A blocked 1440px no-js diff and reflow",
+            "AC-A blocked 390px js diff and reflow",
+            "AC-A blocked 390px no-js diff and reflow",
+            "AC-A blocked 320px js diff and reflow",
+            "AC-A blocked 320px no-js diff and reflow",
+            "AC-A recovery 1440px js diff and reflow",
+            "AC-A recovery 1440px no-js diff and reflow",
+            "AC-A recovery 390px js diff and reflow",
+            "AC-A recovery 390px no-js diff and reflow",
+            "AC-A recovery 320px js diff and reflow",
+            "AC-A recovery 320px no-js diff and reflow",
+            "AC-A review apply rollback logs and restores all values",
+            "AC-A keyboard review and rollback at 200 percent root text"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ADMIN-03B",
       "requirement_id": "WT-FR-ADMIN-03",
       "oracle": "レビューなしで適用される、却下・保留が反映されない、rollback 後の記録がない、または破壊域停止を迂回できれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "row_names": [
+            "AC-B reject prevents subsequent apply until fresh review",
+            "AC-B hold prevents subsequent apply until fresh review",
+            "AC-B bypassing disabled display cannot bypass review or destructive stop",
+            "AC-B operations stay transient and emit no external writes"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ADMIN-04A",
@@ -13905,12 +13945,27 @@
       "requirement_id": "WT-FR-ADMIN-03",
       "oracle": "dry-run・適用・rollback の失敗時に原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保つ。部分適用を成功として表示せず、操作ログへ失敗と復旧結果を残す。",
       "polarity": "boundary",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "差分/破壊域停止/復旧の静的PoC。dry-run、適用/却下/保留、rollback、失敗/再試行、コピー成功/拒否stub、1440/390/320px、JS有無、keyboard。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・権限・MCP・外部API・永続監査ログは未接続。実clipboard権限・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-admin-changes-poc/verification.json",
+          "sha256": "013cb4152797c4d6d659076fdb983bbe4620ffad952402aac674f37b24cb5b49",
+          "row_names": [
+            "AC-C dryrun failure preserves diff and retry recovers with logs",
+            "AC-C apply failure preserves diff and retry recovers with logs",
+            "AC-C reject failure preserves diff and retry recovers with logs",
+            "AC-C rollback failure preserves diff and retry recovers with logs",
+            "AC-C partial apply is incomplete and rollback failure keeps recovery context",
+            "AC-C diagnostic copy success",
+            "AC-C diagnostic copy fallback"
+          ]
+        }
+      ]
     }
   ]
 }
