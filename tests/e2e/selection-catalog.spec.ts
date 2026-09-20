@@ -526,6 +526,15 @@ test('narrow comparison bar keeps both actions visible beside selected candidate
   expect(await bar.evaluate(e => e.scrollWidth <= e.clientWidth)).toBe(true);
   await expect(page.locator('#clear-compare')).toBeVisible();
   await expect(page.locator('#open-compare')).toBeVisible();
+  const picks = await page.locator('#compare-picks').boundingBox();
+  const clear = await page.locator('#clear-compare').boundingBox();
+  const open = await page.locator('#open-compare').boundingBox();
+  expect(picks).not.toBeNull();
+  expect(clear).not.toBeNull();
+  expect(open).not.toBeNull();
+  expect(picks!.y + picks!.height).toBeLessThanOrEqual(clear!.y);
+  expect(Math.abs(clear!.y - open!.y)).toBeLessThan(1);
+  expect(Math.abs(clear!.width - open!.width)).toBeLessThan(1);
   expect(await page.locator('#clear-compare').evaluate(e => e.getBoundingClientRect().bottom)).toBeLessThanOrEqual(900);
   expect(await page.locator('#open-compare').evaluate(e => e.getBoundingClientRect().bottom)).toBeLessThanOrEqual(900);
 });
