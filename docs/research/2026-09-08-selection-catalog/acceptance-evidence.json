@@ -14083,7 +14083,7 @@
       "oracle_sha256": "f6f0483f38d42d0d1465841727ee35f1da818dceda58b4e795a252dcd5d05328",
       "source_digests": {
         "scripts/verify-zone-overrides-poc.mjs": "555c13eb91c97abd19faec8c3adee3e765da2b6cfb448f475c6b65e9387fc8c7",
-        "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "168fd6bcfcd85f6119fbe91d3ef01897e0cc2095e59f3f39f7e08b9683cd2892"
+        "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "d68f8509e0e91af5fe42ddd788df669282bcb779edc867bfd47be491ef0a9621"
       },
       "scope": "23意味ゾーンの代表schemaとcreative参照、未定義zone拒否、overridesのfirst-match-winsを純粋契約で検証。",
       "remaining": [
@@ -14092,7 +14092,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
-          "sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "sha256": "1d5415f61f5091aebafccdd2cf8be37ff32de25c8ae42770672ac2a443e9d9ce",
           "row_names": [
             "schema:23 semantic zones declared",
             "schema:directional variants remain explicit",
@@ -14112,7 +14112,7 @@
       "oracle_sha256": "9928bc64965090b53fec306aea506ca7cc09b7ec7b48b1bd337330aaffe0de99",
       "source_digests": {
         "scripts/verify-zone-overrides-poc.mjs": "555c13eb91c97abd19faec8c3adee3e765da2b6cfb448f475c6b65e9387fc8c7",
-        "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "168fd6bcfcd85f6119fbe91d3ef01897e0cc2095e59f3f39f7e08b9683cd2892"
+        "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "d68f8509e0e91af5fe42ddd788df669282bcb779edc867bfd47be491ef0a9621"
       },
       "scope": "未定義zone、未宣言zone、overrides型不正、creative参照欠落を拒否する負例を検証。",
       "remaining": [
@@ -14121,7 +14121,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
-          "sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "sha256": "1d5415f61f5091aebafccdd2cf8be37ff32de25c8ae42770672ac2a443e9d9ce",
           "row_names": [
             "negative:unknown zone rejected",
             "negative:unknown config zone rejected",
