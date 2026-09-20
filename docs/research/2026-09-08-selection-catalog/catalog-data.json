@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1191,
+  "screenshotCount": 1197,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12,7 +12,8 @@
     "home": "HP 面（ホーム / トップページ）: hero、区間セット（企業 HP / サービス / メディア）、お知らせ、問い合わせ帯、固定導線を確認する面（WT-EVT-0277、Claude 案。既定は台帳 research-r17 の最多型）。段 8 で hero 3 型・検索 CTA・区間セット 2 種・問い合わせ帯 1 型と、固定ページ用パーツを転用した区間 8 種を追加。",
     "event": "イベント面: セミナー / 展示会 / 地域イベント / キャンペーンのページ。hero、開催情報、スケジュール、登壇者、申込、受付状態、地図、共有、固定導線を確認する面（WT-EVT-0277、Claude 案）。段 8 で区間セット 5 種（seminar / seminar-classic / conference / festival / campaign）と申込 3 型、区間 8 種（固定ページ用パーツの転用）を追加。",
     "page": "固定ページ面: 通常の固定ページ（page.html）。固定ページ用パーツ（helix-wt-page/*）を並べた /parts/ で、パーツ単体と全長を確認する面（段 8、WT-EVT-0287）。段 10 でサイドバー（corporate セット等）を追加。",
-    "form": "フォーム面: 固定ページ /contact/ に置いた動的ブロック helix-wt/form と完了ページ /thanks/（helix-wt/form-thanks）。種別 9 × 項目セット 4 × 必須表示 2 × レイアウト 5 × 確認 3 × 同意 3 × 送信文言 9 × エラー 3 × captcha 3 × 代替導線 5 × 完了 2 の軸と、入力 → 確認 → 完了 / 失敗の遷移（JS あり / なし）を確認する面（段 11、WT-EVT-0289「フォームの項目追加とかの項目調査」/ WT-EVT-0301「進めて」。台帳 sidebar-forms-gap-survey §2 の観察由来）。PoC は送信内容を保存も送信もしない。"
+    "form": "フォーム面: 固定ページ /contact/ に置いた動的ブロック helix-wt/form と完了ページ /thanks/（helix-wt/form-thanks）。種別 9 × 項目セット 4 × 必須表示 2 × レイアウト 5 × 確認 3 × 同意 3 × 送信文言 9 × エラー 3 × captcha 3 × 代替導線 5 × 完了 2 の軸と、入力 → 確認 → 完了 / 失敗の遷移（JS あり / なし）を確認する面（段 11、WT-EVT-0289「フォームの項目追加とかの項目調査」/ WT-EVT-0301「進めて」。台帳 sidebar-forms-gap-survey §2 の観察由来）。PoC は送信内容を保存も送信もしない。",
+    "utility": "対話型ユーティリティ面: 入力から派生結果と根拠を確かめ、再入力する面。ローカルPoC。"
   },
   "entries": [
     {
@@ -13323,6 +13324,90 @@
         "SP": "1列で全文を省略せず表示",
         "保存先": "固定ページ本文のcore blocks",
         "参照ID": "helix-wt/pricing"
+      }
+    },
+    {
+      "id": "utility:calculator",
+      "face": "utility",
+      "part": "utility-calculator",
+      "label": "対話型ツール：予算の計算",
+      "variant": "calculator",
+      "description": "人数と一人あたりの費用から、準備する予算の目安を確かめます。 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-utility-poc/calculator-pc.jpg",
+        "sp": "../2026-09-20-utility-poc/calculator-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "referenceId": "wt-utility-result.v1",
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "小さな企画の予算を見積もる",
+        "処理の境界": "表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。",
+        "入力の扱い": "入力非保存。POST処理中のみ利用。共有・メール送信なし。",
+        "実測": "1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。",
+        "根拠": "人数 × 一人あたりの費用。円未満は四捨五入。",
+        "対象外": "送料・税区分・予備費は含みません。実際の見積書とは異なります。",
+        "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "utility:grader",
+      "face": "utility",
+      "part": "utility-grader",
+      "label": "対話型ツール：準備のチェック",
+      "variant": "grader",
+      "description": "３つの確認項目から、確認済みと残っている準備を整理します。 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-utility-poc/grader-pc.jpg",
+        "sp": "../2026-09-20-utility-poc/grader-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "referenceId": "wt-utility-result.v1",
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "公開前の準備を確かめる",
+        "処理の境界": "表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。",
+        "入力の扱い": "入力非保存。POST処理中のみ利用。共有・メール送信なし。",
+        "実測": "1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。",
+        "根拠": "チェックした項目を１件ずつ数えます。３項目を同じ重みで扱います。",
+        "対象外": "品質・安全性・成果を保証する診断ではありません。自己申告の整理です。",
+        "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "utility:generator",
+      "face": "utility",
+      "part": "utility-generator",
+      "label": "対話型ツール：見出しの生成",
+      "variant": "generator",
+      "description": "テーマを入力し、３つの決まった型で見出しのたたき台を作ります。 入力→検証→処理→結果→根拠→再入力を共通契約で表示。ローカルPoC、4受入条件は部分確認。",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-utility-poc/generator-pc.jpg",
+        "sp": "../2026-09-20-utility-poc/generator-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "referenceId": "wt-utility-result.v1",
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "案内の見出しを組み立てる",
+        "処理の境界": "表示は静的HTML/JS。計算・採点・文章組立は研究用ローカルサービス。",
+        "入力の扱い": "入力非保存。POST処理中のみ利用。共有・メール送信なし。",
+        "実測": "1440/390/320px、100/200% root文字、JS有無、キーボード、境界、失敗・再試行・中止。",
+        "根拠": "入力したテーマに「はじめてガイド」「選ぶ前のチェック」「よくある質問」を組み合わせます。",
+        "対象外": "AI生成ではありません。事実確認・権利確認・公開判断は含みません。",
+        "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
       }
     }
   ],
@@ -33149,77 +33234,172 @@
           "requirement_id": "WT-FR-UTILITY-01",
           "oracle": "calculator / grader / generator の代表用途で、入力ラベル、検証、派生結果、根拠、再入力が同じ結果契約から表示される。",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+            "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-utility-poc/verification.json",
+              "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+              "row_names": [
+                "AC-A-D calculator pc 1x js contract and reflow",
+                "AC-A-D calculator pc 2x js contract and reflow",
+                "AC-A-D calculator sp 1x js contract and reflow",
+                "AC-A-D calculator sp 2x js contract and reflow",
+                "AC-A-D calculator narrow 1x js contract and reflow",
+                "AC-A-D calculator narrow 2x js contract and reflow",
+                "AC-A-D grader pc 1x js contract and reflow",
+                "AC-A-D grader pc 2x js contract and reflow",
+                "AC-A-D grader sp 1x js contract and reflow",
+                "AC-A-D grader sp 2x js contract and reflow",
+                "AC-A-D grader narrow 1x js contract and reflow",
+                "AC-A-D grader narrow 2x js contract and reflow",
+                "AC-A-D generator pc 1x js contract and reflow",
+                "AC-A-D generator pc 2x js contract and reflow",
+                "AC-A-D generator sp 1x js contract and reflow",
+                "AC-A-D generator sp 2x js contract and reflow",
+                "AC-A-D generator narrow 1x js contract and reflow",
+                "AC-A-D generator narrow 2x js contract and reflow"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-UTILITY-01B",
           "requirement_id": "WT-FR-UTILITY-01",
           "oracle": "テーマに計算式・診断規則・生成処理・外部API資格情報を持つ、入力を既定で保存する、または結果を根拠なしの保証として表示すればFAIL。",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+            "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-utility-poc/verification.json",
+              "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+              "row_names": [
+                "AC-B calculator transient input and separate processor",
+                "AC-B grader transient input and separate processor",
+                "AC-B generator transient input and separate processor"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-UTILITY-01C",
           "requirement_id": "WT-FR-UTILITY-01",
           "oracle": "空、最小・最大、尺度外、長文、多言語、外部処理の遅延・失敗・再試行で、入力を失わず、誤った成功結果を残さず、対象外と代替経路を示す。",
           "polarity": "boundary",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+            "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-utility-poc/verification.json",
+              "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+              "row_names": [
+                "AC-C calculator failure retry delay cancellation and stale result",
+                "AC-C grader failure retry delay cancellation and stale result",
+                "AC-C generator failure retry delay cancellation and stale result",
+                "AC-C calculator empty minimum maximum and out of range",
+                "AC-C grader zero and all criteria",
+                "AC-C generator blank multilingual maximum long text and safe text output",
+                "AC-C processing timeout leaves inputs available for retry"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-UTILITY-01D",
           "requirement_id": "WT-FR-UTILITY-01",
           "oracle": "PC/SP・キーボード・200%文字拡大・JavaScript無効で説明と入力順を保ち、結果更新を通知し、横溢れや操作不能がない。",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+            "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-utility-poc/verification.json",
+              "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+              "row_names": [
+                "AC-A-D calculator pc 1x js contract and reflow",
+                "AC-A-D calculator pc 1x nojs contract and reflow",
+                "AC-A-D calculator pc 2x js contract and reflow",
+                "AC-A-D calculator pc 2x nojs contract and reflow",
+                "AC-A-D calculator sp 1x js contract and reflow",
+                "AC-A-D calculator sp 1x nojs contract and reflow",
+                "AC-A-D calculator sp 2x js contract and reflow",
+                "AC-A-D calculator sp 2x nojs contract and reflow",
+                "AC-A-D calculator narrow 1x js contract and reflow",
+                "AC-A-D calculator narrow 1x nojs contract and reflow",
+                "AC-A-D calculator narrow 2x js contract and reflow",
+                "AC-A-D calculator narrow 2x nojs contract and reflow",
+                "AC-A-D grader pc 1x js contract and reflow",
+                "AC-A-D grader pc 1x nojs contract and reflow",
+                "AC-A-D grader pc 2x js contract and reflow",
+                "AC-A-D grader pc 2x nojs contract and reflow",
+                "AC-A-D grader sp 1x js contract and reflow",
+                "AC-A-D grader sp 1x nojs contract and reflow",
+                "AC-A-D grader sp 2x js contract and reflow",
+                "AC-A-D grader sp 2x nojs contract and reflow",
+                "AC-A-D grader narrow 1x js contract and reflow",
+                "AC-A-D grader narrow 1x nojs contract and reflow",
+                "AC-A-D grader narrow 2x js contract and reflow",
+                "AC-A-D grader narrow 2x nojs contract and reflow",
+                "AC-A-D generator pc 1x js contract and reflow",
+                "AC-A-D generator pc 1x nojs contract and reflow",
+                "AC-A-D generator pc 2x js contract and reflow",
+                "AC-A-D generator pc 2x nojs contract and reflow",
+                "AC-A-D generator sp 1x js contract and reflow",
+                "AC-A-D generator sp 1x nojs contract and reflow",
+                "AC-A-D generator sp 2x js contract and reflow",
+                "AC-A-D generator sp 2x nojs contract and reflow",
+                "AC-A-D generator narrow 1x js contract and reflow",
+                "AC-A-D generator narrow 1x nojs contract and reflow",
+                "AC-A-D generator narrow 2x js contract and reflow",
+                "AC-A-D generator narrow 2x nojs contract and reflow"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "utility:calculator",
+        "utility:grader",
+        "utility:generator"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 4,
+          "partial": 4,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-UTILITY-01A",
-          "WT-AC-UTILITY-01B",
-          "WT-AC-UTILITY-01C",
-          "WT-AC-UTILITY-01D"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     }
   ],
   "acceptanceAudit": {
-    "missing": 226,
-    "partial": 42,
+    "missing": 222,
+    "partial": 46,
     "verified_in_poc": 32,
     "stale": 0
   },

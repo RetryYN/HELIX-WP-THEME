@@ -1,13 +1,46 @@
 {
   "schema": "wt-catalog-admission-oracles.v1",
   "commands": {
-    "docs/research/2026-09-20-heading-comparison/verification.json": ["node", "scripts/verify-heading-comparison.mjs"],
-    "docs/research/2026-09-20-heading-fluid/verification.json": ["node", "scripts/verify-heading-fluid.mjs"],
-    "docs/research/2026-09-20-heading-fluid/tokens.json": ["node", "scripts/check-heading-tokens.mjs"],
-    "docs/research/2026-09-19-pricing-cards/verification.json": ["node", "scripts/verify-pricing-cards.mjs"],
-    "docs/research/2026-09-10-reduced-motion/verify.json": ["node", "docs/research/2026-09-10-reduced-motion/verify.mjs"]
+    "docs/research/2026-09-20-heading-comparison/verification.json": [
+      "node",
+      "scripts/verify-heading-comparison.mjs"
+    ],
+    "docs/research/2026-09-20-heading-fluid/verification.json": [
+      "node",
+      "scripts/verify-heading-fluid.mjs"
+    ],
+    "docs/research/2026-09-20-heading-fluid/tokens.json": [
+      "node",
+      "scripts/check-heading-tokens.mjs"
+    ],
+    "docs/research/2026-09-19-pricing-cards/verification.json": [
+      "node",
+      "scripts/verify-pricing-cards.mjs"
+    ],
+    "docs/research/2026-09-10-reduced-motion/verify.json": [
+      "node",
+      "docs/research/2026-09-10-reduced-motion/verify.mjs"
+    ],
+    "docs/research/2026-09-20-utility-poc/verification.json": [
+      "node",
+      "scripts/verify-utility-poc.mjs"
+    ]
   },
   "acceptanceProofs": {
-    "WT-AC-LOOK-01D": ["docs/research/2026-09-10-reduced-motion/verify.json"]
+    "WT-AC-LOOK-01D": [
+      "docs/research/2026-09-10-reduced-motion/verify.json"
+    ],
+    "WT-AC-UTILITY-01A": [
+      "docs/research/2026-09-20-utility-poc/verification.json"
+    ],
+    "WT-AC-UTILITY-01B": [
+      "docs/research/2026-09-20-utility-poc/verification.json"
+    ],
+    "WT-AC-UTILITY-01C": [
+      "docs/research/2026-09-20-utility-poc/verification.json"
+    ],
+    "WT-AC-UTILITY-01D": [
+      "docs/research/2026-09-20-utility-poc/verification.json"
+    ]
   }
 }

@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+const candidateCount = JSON.parse(readFileSync('docs/research/2026-09-08-selection-catalog/catalog-data.json', 'utf8')).entries.length;
 
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 
@@ -26,7 +28,7 @@ for (const width of [1440, 390]) {
     await page.keyboard.press('Enter');
     await expect(page.locator('#active-filters')).toBeHidden();
     await expect(page.locator('#search')).toBeFocused();
-    await expect(page.locator('#count')).toHaveText('660候補 / PC');
+    await expect(page.locator('#count')).toHaveText(`${candidateCount}候補 / PC`);
   });
 
   test(`zero results, long text and reset preserve decisions at ${width}px`, async ({ page }) => {
@@ -48,7 +50,7 @@ for (const width of [1440, 390]) {
     await page.locator('#clear-filters').click();
     await expect(page.locator('#active-filters')).toBeHidden();
     await expect(page.locator('#purpose')).toHaveValue('');
-    await expect(page.locator('#count')).toHaveText('660候補 / SP');
+    await expect(page.locator('#count')).toHaveText(`${candidateCount}候補 / SP`);
     await expect(page.locator('#search')).toBeFocused();
     await expect(page.locator('#compare-count')).toHaveText('1候補を選択中');
     expect(await page.evaluate(() => localStorage.getItem('helix-selection-memos.v1'))).toBe(saved);
@@ -63,6 +65,6 @@ test('related requirement scope is visible and individually removable', async ({
   await page.locator('.req-row button').click();
   await expect(page.locator('[data-filter=linked]')).toContainText('要求に関連する候補');
   await page.locator('[data-filter=linked]').click();
-  await expect(page.locator('#count')).toHaveText('660候補 / PC');
+  await expect(page.locator('#count')).toHaveText(`${candidateCount}候補 / PC`);
   await expect(page.locator('#search')).toBeFocused();
 });

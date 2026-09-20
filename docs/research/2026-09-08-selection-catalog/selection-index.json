@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 660,
+  "candidateCount": 663,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -6509,43 +6509,42 @@
     {
       "id": "WT-FR-UTILITY-01",
       "priority": "P1",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 4,
+          "partial": 4,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-UTILITY-01A",
-          "WT-AC-UTILITY-01B",
-          "WT-AC-UTILITY-01C",
-          "WT-AC-UTILITY-01D"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-UTILITY-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-UTILITY-01B",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-UTILITY-01C",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-UTILITY-01D",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "utility:calculator",
+        "utility:grader",
+        "utility:generator"
+      ]
     }
   ],
   "entries": [
@@ -29675,6 +29674,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-19-pricing-cards/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "utility:calculator",
+      "face": "utility",
+      "part": "utility-calculator",
+      "label": "対話型ツール：予算の計算",
+      "variant": "calculator",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "utility:grader",
+      "face": "utility",
+      "part": "utility-grader",
+      "label": "対話型ツール：準備のチェック",
+      "variant": "grader",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-utility-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "utility:generator",
+      "face": "utility",
+      "part": "utility-generator",
+      "label": "対話型ツール：見出しの生成",
+      "variant": "generator",
+      "purpose": "入力から結果と根拠を確かめる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-UTILITY-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-utility-poc/verification.json",
       "devices": [
         "pc",
         "sp"

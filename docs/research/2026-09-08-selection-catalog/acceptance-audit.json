@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 226,
-    "partial": 42,
+    "missing": 222,
+    "partial": 46,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -13679,48 +13679,144 @@
       "requirement_id": "WT-FR-UTILITY-01",
       "oracle": "calculator / grader / generator の代表用途で、入力ラベル、検証、派生結果、根拠、再入力が同じ結果契約から表示される。",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-A-D calculator pc 1x js contract and reflow",
+            "AC-A-D calculator pc 2x js contract and reflow",
+            "AC-A-D calculator sp 1x js contract and reflow",
+            "AC-A-D calculator sp 2x js contract and reflow",
+            "AC-A-D calculator narrow 1x js contract and reflow",
+            "AC-A-D calculator narrow 2x js contract and reflow",
+            "AC-A-D grader pc 1x js contract and reflow",
+            "AC-A-D grader pc 2x js contract and reflow",
+            "AC-A-D grader sp 1x js contract and reflow",
+            "AC-A-D grader sp 2x js contract and reflow",
+            "AC-A-D grader narrow 1x js contract and reflow",
+            "AC-A-D grader narrow 2x js contract and reflow",
+            "AC-A-D generator pc 1x js contract and reflow",
+            "AC-A-D generator pc 2x js contract and reflow",
+            "AC-A-D generator sp 1x js contract and reflow",
+            "AC-A-D generator sp 2x js contract and reflow",
+            "AC-A-D generator narrow 1x js contract and reflow",
+            "AC-A-D generator narrow 2x js contract and reflow"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-UTILITY-01B",
       "requirement_id": "WT-FR-UTILITY-01",
       "oracle": "テーマに計算式・診断規則・生成処理・外部API資格情報を持つ、入力を既定で保存する、または結果を根拠なしの保証として表示すればFAIL。",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-B calculator transient input and separate processor",
+            "AC-B grader transient input and separate processor",
+            "AC-B generator transient input and separate processor"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-UTILITY-01C",
       "requirement_id": "WT-FR-UTILITY-01",
       "oracle": "空、最小・最大、尺度外、長文、多言語、外部処理の遅延・失敗・再試行で、入力を失わず、誤った成功結果を残さず、対象外と代替経路を示す。",
       "polarity": "boundary",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-C calculator failure retry delay cancellation and stale result",
+            "AC-C grader failure retry delay cancellation and stale result",
+            "AC-C generator failure retry delay cancellation and stale result",
+            "AC-C calculator empty minimum maximum and out of range",
+            "AC-C grader zero and all criteria",
+            "AC-C generator blank multilingual maximum long text and safe text output",
+            "AC-C processing timeout leaves inputs available for retry"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-UTILITY-01D",
       "requirement_id": "WT-FR-UTILITY-01",
       "oracle": "PC/SP・キーボード・200%文字拡大・JavaScript無効で説明と入力順を保ち、結果更新を通知し、横溢れや操作不能がない。",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "calculator / grader / generatorのローカル共通結果契約。1440/390/320px、100/200% root文字、JS有無、境界、失敗・再試行・中止、入力非保存。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。",
+        "実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-utility-poc/verification.json",
+          "sha256": "6d1bb76c33ff68679b4903c4be496cac33f56de64ec9af21347d5aaaad2ed103",
+          "row_names": [
+            "AC-A-D calculator pc 1x js contract and reflow",
+            "AC-A-D calculator pc 1x nojs contract and reflow",
+            "AC-A-D calculator pc 2x js contract and reflow",
+            "AC-A-D calculator pc 2x nojs contract and reflow",
+            "AC-A-D calculator sp 1x js contract and reflow",
+            "AC-A-D calculator sp 1x nojs contract and reflow",
+            "AC-A-D calculator sp 2x js contract and reflow",
+            "AC-A-D calculator sp 2x nojs contract and reflow",
+            "AC-A-D calculator narrow 1x js contract and reflow",
+            "AC-A-D calculator narrow 1x nojs contract and reflow",
+            "AC-A-D calculator narrow 2x js contract and reflow",
+            "AC-A-D calculator narrow 2x nojs contract and reflow",
+            "AC-A-D grader pc 1x js contract and reflow",
+            "AC-A-D grader pc 1x nojs contract and reflow",
+            "AC-A-D grader pc 2x js contract and reflow",
+            "AC-A-D grader pc 2x nojs contract and reflow",
+            "AC-A-D grader sp 1x js contract and reflow",
+            "AC-A-D grader sp 1x nojs contract and reflow",
+            "AC-A-D grader sp 2x js contract and reflow",
+            "AC-A-D grader sp 2x nojs contract and reflow",
+            "AC-A-D grader narrow 1x js contract and reflow",
+            "AC-A-D grader narrow 1x nojs contract and reflow",
+            "AC-A-D grader narrow 2x js contract and reflow",
+            "AC-A-D grader narrow 2x nojs contract and reflow",
+            "AC-A-D generator pc 1x js contract and reflow",
+            "AC-A-D generator pc 1x nojs contract and reflow",
+            "AC-A-D generator pc 2x js contract and reflow",
+            "AC-A-D generator pc 2x nojs contract and reflow",
+            "AC-A-D generator sp 1x js contract and reflow",
+            "AC-A-D generator sp 1x nojs contract and reflow",
+            "AC-A-D generator sp 2x js contract and reflow",
+            "AC-A-D generator sp 2x nojs contract and reflow",
+            "AC-A-D generator narrow 1x js contract and reflow",
+            "AC-A-D generator narrow 1x nojs contract and reflow",
+            "AC-A-D generator narrow 2x js contract and reflow",
+            "AC-A-D generator narrow 2x nojs contract and reflow"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ADMIN-01E",

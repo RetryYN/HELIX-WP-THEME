@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 660,
-  "screenshot_count": 1191,
+  "catalog_candidate_count": 663,
+  "screenshot_count": 1197,
   "acceptance_counts": {
-    "missing": 226,
-    "partial": 42,
+    "missing": 222,
+    "partial": 46,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -1910,22 +1910,6 @@
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
-      "requirement_id": "WT-FR-UTILITY-01",
-      "priority": "P1",
-      "state": "missing",
-      "acceptance": {
-        "total": 4,
-        "missing": 4,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "診断・計算・生成ツールを通常フォーム・検索結果とは別の対話型ユーティリティ面として持つ。入力、検証、計算・診断・生成、結果、根拠、再入力を一つの表示契約で扱い、calculator / grader / generator の代表用途を同じ構造で再現できる。計算式・診断規則・生成処理・外部API・個人データ保存はテーマ外へ分離し、入力非保存を既定とする。結果の近くに使用データ、基準、更新日、丸め、対象外を示し、PC/SP、キーボード、JavaScript無効、境界値、外部処理失敗でも説明と代替経路を失わない。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
       "requirement_id": "WT-FR-VALUE-02",
       "priority": "P1",
       "state": "missing",
@@ -3385,6 +3369,26 @@
         "search:blank"
       ],
       "statement": "サイト全体の検索を学習限定検索とは別の探索面として持つ。検索語を保持して修正でき、検索対象と件数、結果へのリンク、ゼロ件と未入力の案内を表示する。複数ページの移動と公開件数変更後の復帰で条件と実件数を保つ。下書き・非公開・パスワード保護・購入本文を権限外の検索結果や抜粋へ混入させない。PC/SP・JavaScript有無で再検索と結果移動が成立し、入力の安全な表示、キーボード操作と日本語表示を検証する。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-UTILITY-01",
+      "priority": "P1",
+      "state": "partial",
+      "acceptance": {
+        "total": 4,
+        "missing": 0,
+        "partial": 4,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 3,
+      "candidates": [
+        "utility:calculator",
+        "utility:grader",
+        "utility:generator"
+      ],
+      "statement": "診断・計算・生成ツールを通常フォーム・検索結果とは別の対話型ユーティリティ面として持つ。入力、検証、計算・診断・生成、結果、根拠、再入力を一つの表示契約で扱い、calculator / grader / generator の代表用途を同じ構造で再現できる。計算式・診断規則・生成処理・外部API・個人データ保存はテーマ外へ分離し、入力非保存を既定とする。結果の近くに使用データ、基準、更新日、丸め、対象外を示し、PC/SP、キーボード、JavaScript無効、境界値、外部処理失敗でも説明と代替経路を失わない。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

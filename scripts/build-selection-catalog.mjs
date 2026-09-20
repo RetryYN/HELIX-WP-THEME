@@ -616,6 +616,22 @@ if (fs.existsSync(path.join(root, headingPath))) {
     Object.assign(entry, candidate);
   }
 }
+const utilityPath = 'docs/research/2026-09-20-utility-poc/verification.json';
+if (fs.existsSync(path.join(root, utilityPath))) {
+  const report = read(utilityPath);
+  const candidates = read('docs/research/2026-09-20-utility-poc/catalog-candidates.json');
+  if (!report.completed || !report.rows.length || report.rows.some(r => !r.pass)) throw Error('Utility PoC evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale utility source ${source}`);
+  if (JSON.stringify(candidates.entries.map(e => e.id).sort()) !== JSON.stringify(['utility:calculator', 'utility:generator', 'utility:grader'])) throw Error('Utility candidates must cover all three uses');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-UTILITY-01'])) throw Error('Utility requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(s => s.id === candidate.variant && s.device === device);
+      if (!shot || candidate.images[device] !== `../2026-09-20-utility-poc/${shot.file}` || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-utility-poc', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing utility screenshot ${candidate.id}/${device}`);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
@@ -685,7 +701,7 @@ const coverageFor = entry => {
   };
 };
 const result = { schema: 'wt-selection-catalog.v1', source: prototype, requirementCount: requirements.length,
-  screenshotCount: [...entries.values()].reduce((sum, entry) => sum + Object.keys(entry.images).length, 0), faces: glossary.faces, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
+  screenshotCount: [...entries.values()].reduce((sum, entry) => sum + Object.keys(entry.images).length, 0), faces: { ...glossary.faces, utility: '対話型ユーティリティ面: 入力から派生結果と根拠を確かめ、再入力する面。ローカルPoC。' }, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
   evidenceNote: '関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。' };
 const out = path.join(root, 'docs/research/2026-09-08-selection-catalog/catalog-data.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });

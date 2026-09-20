@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
 const catalogData = JSON.parse(readFileSync('docs/research/2026-09-08-selection-catalog/catalog-data.json', 'utf8')) as {
+  entries: unknown[];
   requirementCount: number;
   acceptanceAudit: Record<string, number>;
 };
@@ -11,7 +12,7 @@ const catalogAcceptanceCount = Object.values(catalogData.acceptanceAudit).reduce
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
 test.beforeEach(async ({ page }) => {
   await page.goto(url);
-  await expect(page.locator('#total')).toHaveText('660');
+  await expect(page.locator('#total')).toHaveText(String(catalogData.entries.length));
   await expect(page.locator('.tile-open')).toHaveCount(36);
 });
 
@@ -309,7 +310,7 @@ test('comparison, collection filters and requirement context resume after reload
   await expect(page.locator('#compare-picks button')).toHaveText([picks[0], picks[2]]);
   await page.locator('#reset-gallery').click();
   await expect(page.locator('#search')).toBeFocused();
-  await expect(page.locator('#count')).toHaveText('660候補 / SP');
+  await expect(page.locator('#count')).toHaveText(`${catalogData.entries.length}候補 / SP`);
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
   await page.reload();
   await expect(page.locator('#compare-picks button')).toHaveCount(2);
