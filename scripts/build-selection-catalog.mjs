@@ -696,6 +696,22 @@ if (fs.existsSync(path.join(root, productSurfacesPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const sectionContractPath = 'docs/research/2026-09-20-section-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, sectionContractPath))) {
+  const report = read(sectionContractPath);
+  const candidates = read('docs/research/2026-09-20-section-contract-poc/catalog-candidates.json');
+  if (!report.completed || !report.rows.length || report.rows.some(r => !r.pass)) throw Error('Section contract PoC evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale section source ${source}`);
+  if (JSON.stringify(candidates.entries.map(e => e.id).sort()) !== JSON.stringify(['section-contract:delivery', 'section-contract:editing', 'section-contract:structure'])) throw Error('Section contract candidates must cover all three scenarios');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-SECTION-01', 'WT-FR-SECTION-02'])) throw Error('Section contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(s => s.id === candidate.variant && s.device === device);
+      if (!shot || candidate.images[device] !== `../2026-09-20-section-contract-poc/${shot.file}` || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-section-contract-poc', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing section screenshot ${candidate.id}/${device}`);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

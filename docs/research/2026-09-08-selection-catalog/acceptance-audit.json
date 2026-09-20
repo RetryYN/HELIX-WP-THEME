@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 210,
-    "partial": 58,
+    "missing": 206,
+    "partial": 62,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2254,48 +2254,118 @@
       "requirement_id": "WT-FR-SECTION-01",
       "oracle": "H2 / H3 が混在する記事で階層 section と親子 ID が中間 JSON に出て、見出し文言を変えても ID が変わらない",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "01A structure 1440 js hierarchy and reflow",
+            "01A structure 1440 no-js hierarchy and reflow",
+            "01A structure 390 js hierarchy and reflow",
+            "01A structure 390 no-js hierarchy and reflow",
+            "01A structure 320 js hierarchy and reflow",
+            "01A structure 320 no-js hierarchy and reflow",
+            "01A editing 1440 js hierarchy and reflow",
+            "01A editing 1440 no-js hierarchy and reflow",
+            "01A editing 390 js hierarchy and reflow",
+            "01A editing 390 no-js hierarchy and reflow",
+            "01A editing 320 js hierarchy and reflow",
+            "01A editing 320 no-js hierarchy and reflow",
+            "01A delivery 1440 js hierarchy and reflow",
+            "01A delivery 1440 no-js hierarchy and reflow",
+            "01A delivery 390 js hierarchy and reflow",
+            "01A delivery 390 no-js hierarchy and reflow",
+            "01A delivery 320 js hierarchy and reflow",
+            "01A delivery 320 no-js hierarchy and reflow",
+            "01A heading rename changes visible text without changing hierarchy IDs",
+            "01A mutation heading-derived-id rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SECTION-01B",
       "requirement_id": "WT-FR-SECTION-01",
       "oracle": "見出し変更で ID がずれる、H4 が区間になる、または H3 の無い H2 区間で境界が壊れれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "01B exact boundaries include H4 and empty-H3 H2 and reject duplicate or orphan IDs",
+            "01B mutation h4-becomes-section rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SECTION-02A",
       "requirement_id": "WT-FR-SECTION-02",
       "oracle": "H3 区間だけをリライトすると diff がその区間に閉じ、apply 後に rollback で元 digest に戻る。区間の順序入れ替え・折りたたみ・非表示・目次への出し分けが Block Editor と MCP パックの双方から同じ結果になる。「2 番目の H2 の後」規則で面が全記事に入り投稿単位で上書きできる。区間ごとの到達と滞在イベントが version 付きデータ層契約から section ID・variant ID・目標 CV ID・device type 付きで記録される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "02A rewrite H3 diff apply and rollback preserve unrelated content",
+            "02A replace H3 diff apply and rollback preserve unrelated content",
+            "02A move preserves sibling subtrees and IDs for H3 and H2",
+            "02A browser move collapse hide and toc selection remain independent",
+            "02A global nth H2 slot and post override use same fixture rules",
+            "02A viewport reach and dwell emit full local payload 1440",
+            "02A viewport reach and dwell emit full local payload 390",
+            "02A keyboard and 200 percent root text preserve access and reflow",
+            "02A H2 replacement includes children but leaves next H2 unchanged",
+            "02A mutation move-offset-wrong rejected",
+            "02A mutation post-override-ignored rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-SECTION-02B",
       "requirement_id": "WT-FR-SECTION-02",
       "oracle": "区間外が書き換わる、必須 ID が欠落する、規則が投稿単位で上書きできない、またはテーマ内に区間選定の判定ロジックが入れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "02B foreign block and stale proposals cannot alter state",
+            "02B event invalid section and device are rejected",
+            "02B reject and empty title keep visible article unchanged",
+            "02B mutation outside-write-allowed rejected",
+            "02B mutation event-id-missing rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-TR-PLUGIN-01A",

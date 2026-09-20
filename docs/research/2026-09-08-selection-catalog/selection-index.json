@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 677,
+  "candidateCount": 680,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -1406,64 +1406,66 @@
     {
       "id": "WT-FR-SECTION-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-SECTION-01A",
-          "WT-AC-SECTION-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-SECTION-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-SECTION-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "section-contract:structure",
+        "section-contract:editing",
+        "section-contract:delivery"
+      ]
     },
     {
       "id": "WT-FR-SECTION-02",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-SECTION-02A",
-          "WT-AC-SECTION-02B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-SECTION-02A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-SECTION-02B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "section-contract:structure",
+        "section-contract:editing",
+        "section-contract:delivery"
+      ]
     },
     {
       "id": "WT-FR-LOOK-01",
@@ -30169,6 +30171,96 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-product-surfaces-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "section-contract:structure",
+      "face": "article",
+      "part": "section-contract-structure",
+      "label": "区間契約：区間と階層",
+      "variant": "structure",
+      "purpose": "見出し区間の境界と変更の範囲を確かめる",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-section-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "section-contract:editing",
+      "face": "article",
+      "part": "section-contract-editing",
+      "label": "区間契約：区間の変更",
+      "variant": "editing",
+      "purpose": "見出し区間の境界と変更の範囲を確かめる",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-section-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "section-contract:delivery",
+      "face": "article",
+      "part": "section-contract-delivery",
+      "label": "区間契約：表示と挿入",
+      "variant": "delivery",
+      "purpose": "見出し区間の境界と変更の範囲を確かめる",
+      "group": "ページ本文",
+      "requirementIds": [
+        "WT-FR-SECTION-01",
+        "WT-FR-SECTION-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-section-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"

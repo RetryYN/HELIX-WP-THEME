@@ -1,0 +1,227 @@
+{
+  "schema": "wt-section-contract-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/section-contract-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "scripts/build-section-contract-poc.mjs": "cb1285868e7b749f19ce4e268a58b1678aac1e4943ff2297605b3f18721878cd",
+    "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+    "scripts/verify-section-mutations.mjs": "9effdaa5fa999bf80cd85d655b11b4d46094825a20b87b5a9b54e1ffb878ff75",
+    "scripts/verify-section-contract-poc.mjs": "9ae1b57a0bbe147d5ed448d7ad9aa719d2ce33fb34d25705c58af4fb35ff2e07",
+    "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "bf2bf3309f733cb6162badd0aa203e380f5929a2164708b5619bc504f9df7a87",
+    "docs/research/2026-09-20-section-contract-poc/contract.mjs": "8cb1310deb8e9203814370c48ef944a1c25319fbd4b2e323c0dea06a21cdc768",
+    "docs/research/2026-09-20-section-contract-poc/render.mjs": "efab3d9cd2e435ced628612275662e9b5f51e0aad57c714f671f0fa613352364",
+    "docs/research/2026-09-20-section-contract-poc/view.mjs": "0ccb91d004360e101831f9777ccffca5c6fc48b54121deae8ee434409229c1b7",
+    "docs/research/2026-09-20-section-contract-poc/sections.css": "946c439e3d6a18a119ff14b36804f4532d3450961147abd272c7410c054219a2",
+    "docs/research/2026-09-20-section-contract-poc/intermediate.json": "09ab7b77d6fc8f88aa563b46d90dceda62b235d1a00c786336691dcfd8866331",
+    "docs/research/2026-09-20-section-contract-poc/structure.html": "2f154ce63944f463f857f915bf60e5c8df5daa9e32b3c5cfd503da4539ebcc7c",
+    "docs/research/2026-09-20-section-contract-poc/editing.html": "d288af60741033be0a5809617e5ed989968fa518b6eba25be6bd20c8087c890e",
+    "docs/research/2026-09-20-section-contract-poc/delivery.html": "b30ed7402abb752e9f0668344bdae89a3ae9dba5738647022ee7ceb69668bb08"
+  },
+  "rows": [
+    {
+      "name": "01A structure 1440 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A structure 1440 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A structure 390 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A structure 390 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A structure 320 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A structure 320 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A editing 1440 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A editing 1440 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A editing 390 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A editing 390 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A editing 320 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A editing 320 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A delivery 1440 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A delivery 1440 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A delivery 390 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A delivery 390 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A delivery 320 js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01A delivery 320 no-js hierarchy and reflow",
+      "pass": true
+    },
+    {
+      "name": "01B exact boundaries include H4 and empty-H3 H2 and reject duplicate or orphan IDs",
+      "pass": true
+    },
+    {
+      "name": "01A heading rename changes visible text without changing hierarchy IDs",
+      "pass": true
+    },
+    {
+      "name": "02A rewrite H3 diff apply and rollback preserve unrelated content",
+      "pass": true
+    },
+    {
+      "name": "02A replace H3 diff apply and rollback preserve unrelated content",
+      "pass": true
+    },
+    {
+      "name": "02B foreign block and stale proposals cannot alter state",
+      "pass": true
+    },
+    {
+      "name": "02A move preserves sibling subtrees and IDs for H3 and H2",
+      "pass": true
+    },
+    {
+      "name": "02A browser move collapse hide and toc selection remain independent",
+      "pass": true
+    },
+    {
+      "name": "02A global nth H2 slot and post override use same fixture rules",
+      "pass": true
+    },
+    {
+      "name": "02A viewport reach and dwell emit full local payload 1440",
+      "pass": true
+    },
+    {
+      "name": "02A viewport reach and dwell emit full local payload 390",
+      "pass": true
+    },
+    {
+      "name": "02B event invalid section and device are rejected",
+      "pass": true
+    },
+    {
+      "name": "02B reject and empty title keep visible article unchanged",
+      "pass": true
+    },
+    {
+      "name": "02A keyboard and 200 percent root text preserve access and reflow",
+      "pass": true
+    },
+    {
+      "name": "02A H2 replacement includes children but leaves next H2 unchanged",
+      "pass": true
+    },
+    {
+      "name": "01B mutation h4-becomes-section rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "01A mutation heading-derived-id rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "02B mutation outside-write-allowed rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "02A mutation move-offset-wrong rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "02B mutation event-id-missing rejected",
+      "pass": true,
+      "unexpected": 1
+    },
+    {
+      "name": "02A mutation post-override-ignored rejected",
+      "pass": true,
+      "unexpected": 1
+    }
+  ],
+  "shots": [
+    {
+      "id": "structure",
+      "device": "pc",
+      "file": "structure-pc.jpg",
+      "sha256": "76bab774ca1251edb0ac2f468dd3e9c57b3edda632eda9f516e0c3475b8503c7"
+    },
+    {
+      "id": "structure",
+      "device": "sp",
+      "file": "structure-sp.jpg",
+      "sha256": "360e943bfe74984a231ddf1a80c51d99f8b3fd0eb5c4eb923de997138a78892b"
+    },
+    {
+      "id": "editing",
+      "device": "pc",
+      "file": "editing-pc.jpg",
+      "sha256": "beba95847c35cd05f7275c557390f63c3808e9b98c671d7b107d4ab314940efa"
+    },
+    {
+      "id": "editing",
+      "device": "sp",
+      "file": "editing-sp.jpg",
+      "sha256": "edf5fd58cc5331854ddad8083634afb2d8720ac9606f8022560dcdf0d5ed6eea"
+    },
+    {
+      "id": "delivery",
+      "device": "pc",
+      "file": "delivery-pc.jpg",
+      "sha256": "af02f8b459bc523e675f156dde57f1032aca9b9085079c3895610203099f5fd2"
+    },
+    {
+      "id": "delivery",
+      "device": "sp",
+      "file": "delivery-sp.jpg",
+      "sha256": "2a438efa93f0af3765fe8b7c4af685ca8d03b8af2ceda77e81af3b0ff6546c3b"
+    }
+  ],
+  "scope": "Static/local dedicated article fixture. H2/H3 boundaries, stable IDs, section operations and local viewport events. Four ACs partial; WP, Block Editor, MCP, storage and production tracking unconnected.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

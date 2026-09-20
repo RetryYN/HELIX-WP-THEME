@@ -600,6 +600,68 @@
       ],
       "registry_before_sha256": "e12909b4514a329e83f85d805fa4c4498e28bde75620f60856e182d3763f1a5d",
       "registry_after_sha256": "d760113786834dddcb8e993c11a2dd499648021b5fd7de16f0241b77cda4ac3b"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-SECTION-01A",
+        "WT-AC-SECTION-01B",
+        "WT-AC-SECTION-02A",
+        "WT-AC-SECTION-02B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-section-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-section-contract-poc/acceptance-candidate.json": "36eaa0e4e056c97f037b6f21cb645cfe604f2d081b2bd8f6491c8417c6ae80e6"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-section-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SECTION-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SECTION-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SECTION-02A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SECTION-02B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "before_sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "after_sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "d760113786834dddcb8e993c11a2dd499648021b5fd7de16f0241b77cda4ac3b",
+      "registry_after_sha256": "35aa56205377f71477f79123d84a8b98ba8586674706e761db8e5b33111b9962"
     }
   ]
 }

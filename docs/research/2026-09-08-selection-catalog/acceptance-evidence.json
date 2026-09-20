@@ -13521,6 +13521,176 @@
           ]
         }
       ]
+    },
+    "WT-AC-SECTION-01A": {
+      "status": "partial",
+      "requirement_digest": "a2c4c2143c506082",
+      "oracle_sha256": "20f1ae404cbd064cf4c9a9a79ceadb4c968808287c5a95a034cbe54aa6354200",
+      "source_digests": {
+        "scripts/build-section-contract-poc.mjs": "cb1285868e7b749f19ce4e268a58b1678aac1e4943ff2297605b3f18721878cd",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-section-mutations.mjs": "9effdaa5fa999bf80cd85d655b11b4d46094825a20b87b5a9b54e1ffb878ff75",
+        "scripts/verify-section-contract-poc.mjs": "9ae1b57a0bbe147d5ed448d7ad9aa719d2ce33fb34d25705c58af4fb35ff2e07",
+        "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "bf2bf3309f733cb6162badd0aa203e380f5929a2164708b5619bc504f9df7a87",
+        "docs/research/2026-09-20-section-contract-poc/contract.mjs": "8cb1310deb8e9203814370c48ef944a1c25319fbd4b2e323c0dea06a21cdc768",
+        "docs/research/2026-09-20-section-contract-poc/render.mjs": "efab3d9cd2e435ced628612275662e9b5f51e0aad57c714f671f0fa613352364",
+        "docs/research/2026-09-20-section-contract-poc/view.mjs": "0ccb91d004360e101831f9777ccffca5c6fc48b54121deae8ee434409229c1b7",
+        "docs/research/2026-09-20-section-contract-poc/sections.css": "946c439e3d6a18a119ff14b36804f4532d3450961147abd272c7410c054219a2",
+        "docs/research/2026-09-20-section-contract-poc/intermediate.json": "09ab7b77d6fc8f88aa563b46d90dceda62b235d1a00c786336691dcfd8866331",
+        "docs/research/2026-09-20-section-contract-poc/structure.html": "2f154ce63944f463f857f915bf60e5c8df5daa9e32b3c5cfd503da4539ebcc7c",
+        "docs/research/2026-09-20-section-contract-poc/editing.html": "d288af60741033be0a5809617e5ed989968fa518b6eba25be6bd20c8087c890e",
+        "docs/research/2026-09-20-section-contract-poc/delivery.html": "b30ed7402abb752e9f0668344bdae89a3ae9dba5738647022ee7ceb69668bb08"
+      },
+      "scope": "専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。",
+      "remaining": [
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "01A structure 1440 js hierarchy and reflow",
+            "01A structure 1440 no-js hierarchy and reflow",
+            "01A structure 390 js hierarchy and reflow",
+            "01A structure 390 no-js hierarchy and reflow",
+            "01A structure 320 js hierarchy and reflow",
+            "01A structure 320 no-js hierarchy and reflow",
+            "01A editing 1440 js hierarchy and reflow",
+            "01A editing 1440 no-js hierarchy and reflow",
+            "01A editing 390 js hierarchy and reflow",
+            "01A editing 390 no-js hierarchy and reflow",
+            "01A editing 320 js hierarchy and reflow",
+            "01A editing 320 no-js hierarchy and reflow",
+            "01A delivery 1440 js hierarchy and reflow",
+            "01A delivery 1440 no-js hierarchy and reflow",
+            "01A delivery 390 js hierarchy and reflow",
+            "01A delivery 390 no-js hierarchy and reflow",
+            "01A delivery 320 js hierarchy and reflow",
+            "01A delivery 320 no-js hierarchy and reflow",
+            "01A heading rename changes visible text without changing hierarchy IDs",
+            "01A mutation heading-derived-id rejected"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SECTION-01B": {
+      "status": "partial",
+      "requirement_digest": "a2c4c2143c506082",
+      "oracle_sha256": "f3a2b1f50d47acf82abbccfb54753f6778ce4a1fa1ca7094235b16c69b1da2aa",
+      "source_digests": {
+        "scripts/build-section-contract-poc.mjs": "cb1285868e7b749f19ce4e268a58b1678aac1e4943ff2297605b3f18721878cd",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-section-mutations.mjs": "9effdaa5fa999bf80cd85d655b11b4d46094825a20b87b5a9b54e1ffb878ff75",
+        "scripts/verify-section-contract-poc.mjs": "9ae1b57a0bbe147d5ed448d7ad9aa719d2ce33fb34d25705c58af4fb35ff2e07",
+        "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "bf2bf3309f733cb6162badd0aa203e380f5929a2164708b5619bc504f9df7a87",
+        "docs/research/2026-09-20-section-contract-poc/contract.mjs": "8cb1310deb8e9203814370c48ef944a1c25319fbd4b2e323c0dea06a21cdc768",
+        "docs/research/2026-09-20-section-contract-poc/render.mjs": "efab3d9cd2e435ced628612275662e9b5f51e0aad57c714f671f0fa613352364",
+        "docs/research/2026-09-20-section-contract-poc/view.mjs": "0ccb91d004360e101831f9777ccffca5c6fc48b54121deae8ee434409229c1b7",
+        "docs/research/2026-09-20-section-contract-poc/sections.css": "946c439e3d6a18a119ff14b36804f4532d3450961147abd272c7410c054219a2",
+        "docs/research/2026-09-20-section-contract-poc/intermediate.json": "09ab7b77d6fc8f88aa563b46d90dceda62b235d1a00c786336691dcfd8866331",
+        "docs/research/2026-09-20-section-contract-poc/structure.html": "2f154ce63944f463f857f915bf60e5c8df5daa9e32b3c5cfd503da4539ebcc7c",
+        "docs/research/2026-09-20-section-contract-poc/editing.html": "d288af60741033be0a5809617e5ed989968fa518b6eba25be6bd20c8087c890e",
+        "docs/research/2026-09-20-section-contract-poc/delivery.html": "b30ed7402abb752e9f0668344bdae89a3ae9dba5738647022ee7ceb69668bb08"
+      },
+      "scope": "専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。",
+      "remaining": [
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "01B exact boundaries include H4 and empty-H3 H2 and reject duplicate or orphan IDs",
+            "01B mutation h4-becomes-section rejected"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SECTION-02A": {
+      "status": "partial",
+      "requirement_digest": "c9899d1a84664726",
+      "oracle_sha256": "bd58dcd83c3ae719318a31e5c70769f71353e1b94edad0cef2b4a0e2b89eaa42",
+      "source_digests": {
+        "scripts/build-section-contract-poc.mjs": "cb1285868e7b749f19ce4e268a58b1678aac1e4943ff2297605b3f18721878cd",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-section-mutations.mjs": "9effdaa5fa999bf80cd85d655b11b4d46094825a20b87b5a9b54e1ffb878ff75",
+        "scripts/verify-section-contract-poc.mjs": "9ae1b57a0bbe147d5ed448d7ad9aa719d2ce33fb34d25705c58af4fb35ff2e07",
+        "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "bf2bf3309f733cb6162badd0aa203e380f5929a2164708b5619bc504f9df7a87",
+        "docs/research/2026-09-20-section-contract-poc/contract.mjs": "8cb1310deb8e9203814370c48ef944a1c25319fbd4b2e323c0dea06a21cdc768",
+        "docs/research/2026-09-20-section-contract-poc/render.mjs": "efab3d9cd2e435ced628612275662e9b5f51e0aad57c714f671f0fa613352364",
+        "docs/research/2026-09-20-section-contract-poc/view.mjs": "0ccb91d004360e101831f9777ccffca5c6fc48b54121deae8ee434409229c1b7",
+        "docs/research/2026-09-20-section-contract-poc/sections.css": "946c439e3d6a18a119ff14b36804f4532d3450961147abd272c7410c054219a2",
+        "docs/research/2026-09-20-section-contract-poc/intermediate.json": "09ab7b77d6fc8f88aa563b46d90dceda62b235d1a00c786336691dcfd8866331",
+        "docs/research/2026-09-20-section-contract-poc/structure.html": "2f154ce63944f463f857f915bf60e5c8df5daa9e32b3c5cfd503da4539ebcc7c",
+        "docs/research/2026-09-20-section-contract-poc/editing.html": "d288af60741033be0a5809617e5ed989968fa518b6eba25be6bd20c8087c890e",
+        "docs/research/2026-09-20-section-contract-poc/delivery.html": "b30ed7402abb752e9f0668344bdae89a3ae9dba5738647022ee7ceb69668bb08"
+      },
+      "scope": "ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。",
+      "remaining": [
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "02A rewrite H3 diff apply and rollback preserve unrelated content",
+            "02A replace H3 diff apply and rollback preserve unrelated content",
+            "02A move preserves sibling subtrees and IDs for H3 and H2",
+            "02A browser move collapse hide and toc selection remain independent",
+            "02A global nth H2 slot and post override use same fixture rules",
+            "02A viewport reach and dwell emit full local payload 1440",
+            "02A viewport reach and dwell emit full local payload 390",
+            "02A keyboard and 200 percent root text preserve access and reflow",
+            "02A H2 replacement includes children but leaves next H2 unchanged",
+            "02A mutation move-offset-wrong rejected",
+            "02A mutation post-override-ignored rejected"
+          ]
+        }
+      ]
+    },
+    "WT-AC-SECTION-02B": {
+      "status": "partial",
+      "requirement_digest": "c9899d1a84664726",
+      "oracle_sha256": "09641e4df1a44cf35feb1e071cb84cc09fbccad8a6a0cee7fd1f62d9c2d24a77",
+      "source_digests": {
+        "scripts/build-section-contract-poc.mjs": "cb1285868e7b749f19ce4e268a58b1678aac1e4943ff2297605b3f18721878cd",
+        "scripts/product-surfaces-server.mjs": "b85f154d48226569b81640419c3b3ca07faebdda16170f29bbf29620404d7f19",
+        "scripts/verify-section-mutations.mjs": "9effdaa5fa999bf80cd85d655b11b4d46094825a20b87b5a9b54e1ffb878ff75",
+        "scripts/verify-section-contract-poc.mjs": "9ae1b57a0bbe147d5ed448d7ad9aa719d2ce33fb34d25705c58af4fb35ff2e07",
+        "tests/e2e/section-contract-poc-selection-catalog.spec.ts": "bf2bf3309f733cb6162badd0aa203e380f5929a2164708b5619bc504f9df7a87",
+        "docs/research/2026-09-20-section-contract-poc/contract.mjs": "8cb1310deb8e9203814370c48ef944a1c25319fbd4b2e323c0dea06a21cdc768",
+        "docs/research/2026-09-20-section-contract-poc/render.mjs": "efab3d9cd2e435ced628612275662e9b5f51e0aad57c714f671f0fa613352364",
+        "docs/research/2026-09-20-section-contract-poc/view.mjs": "0ccb91d004360e101831f9777ccffca5c6fc48b54121deae8ee434409229c1b7",
+        "docs/research/2026-09-20-section-contract-poc/sections.css": "946c439e3d6a18a119ff14b36804f4532d3450961147abd272c7410c054219a2",
+        "docs/research/2026-09-20-section-contract-poc/intermediate.json": "09ab7b77d6fc8f88aa563b46d90dceda62b235d1a00c786336691dcfd8866331",
+        "docs/research/2026-09-20-section-contract-poc/structure.html": "2f154ce63944f463f857f915bf60e5c8df5daa9e32b3c5cfd503da4539ebcc7c",
+        "docs/research/2026-09-20-section-contract-poc/editing.html": "d288af60741033be0a5809617e5ed989968fa518b6eba25be6bd20c8087c890e",
+        "docs/research/2026-09-20-section-contract-poc/delivery.html": "b30ed7402abb752e9f0668344bdae89a3ae9dba5738647022ee7ceb69668bb08"
+      },
+      "scope": "ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。",
+      "remaining": [
+        "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+        "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+          "sha256": "eb152a1fc0f6ac2c5b5b4f6042241ef5bb21888488098de34eef6064dde37cad",
+          "row_names": [
+            "02B foreign block and stale proposals cannot alter state",
+            "02B event invalid section and device are rejected",
+            "02B reject and empty title keep visible article unchanged",
+            "02B mutation outside-write-allowed rejected",
+            "02B mutation event-id-missing rejected"
+          ]
+        }
+      ]
     }
   }
 }
