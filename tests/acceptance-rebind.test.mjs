@@ -85,6 +85,30 @@ test('apply imports newly declared proof source digests into the acceptance regi
   assert.equal(registry.cases.A1.source_digests['new-source.txt'], hash('new-source\n'));
 });
 
+test('apply rejects a proof source digest mismatch after the oracle rewrites the proof', async t => {
+  const f = fixture(t);
+  f.write('implementation.php', 'source-v2\n');
+  f.write('new-source.txt', 'new-source-mutated\n');
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /proof source digest mismatch: proof\.json \/ new-source\.txt/u);
+});
+
+test('apply rejects a rewritten proof that lacks sourceDigests', async t => {
+  const f = fixture(t);
+  f.write('implementation.php', 'source-v2\n');
+  f.write('missing-source-digests.mjs', "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('proof.json')); delete p.sourceDigests; fs.writeFileSync('proof.json', JSON.stringify(p, null, 2)+'\\n');\n");
+  const packageJson = JSON.parse(fs.readFileSync(path.join(f.root, 'package.json')));
+  packageJson.scripts['fixture:missing-source-digests'] = 'node missing-source-digests.mjs';
+  packageJson.catalogOracles['proof.json'] = 'fixture:missing-source-digests';
+  f.write('package.json', packageJson);
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:missing-source-digests"]', '--apply']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /proof lacks sourceDigests: proof\.json/u);
+});
+
 test('apply rejects an arbitrary command even if it rewrites every referenced proof', t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
