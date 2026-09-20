@@ -833,6 +833,27 @@ if (fs.existsSync(path.join(root, prDisclosureContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const authorContractPath = 'docs/research/2026-09-20-author-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, authorContractPath))) {
+  const report = read(authorContractPath);
+  const candidates = read('docs/research/2026-09-20-author-contract-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.shots.length !== 4) throw Error('Author contract evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale author contract source: ${source}`);
+  }
+  const expectedIds = ['author-contract:canonical-person', 'author-contract:supervisor'];
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(expectedIds)) throw Error('Author contract candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-AUTHOR-01', 'WT-FR-AUTHOR-02'])) throw Error('Author contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const expectedFile = candidate.images[device].replace('../2026-09-05-design-prototype-03/results/', '');
+      const shot = report.shots.find(item => item.device === device && item.file.endsWith(expectedFile));
+      const imagePath = path.join(root, 'docs/research/2026-09-05-design-prototype-03/results', expectedFile);
+      if (!shot || !fs.existsSync(imagePath) || createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex') !== shot.sha256) throw Error('Missing author contract screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 if (fs.existsSync(path.join(root, recoveryContractPath))) {
   const report = read(recoveryContractPath);
   const candidates = read('docs/research/2026-09-20-recovery-contract-poc/catalog-candidates.json');

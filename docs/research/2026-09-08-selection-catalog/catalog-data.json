@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1275,
+  "screenshotCount": 1279,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -14350,6 +14350,56 @@
       }
     },
     {
+      "id": "author-contract:canonical-person",
+      "face": "article",
+      "part": "article-tail-author",
+      "label": "著者欄：正本と表示の一致",
+      "variant": "avatar-bio",
+      "description": "著者の名前・経歴・資格・sameAs・画像を単一正本から記事末・アーカイブ・構造化データへ投影する静的契約PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/tail-author-avatar-bio-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/tail-author-avatar-bio-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-AUTHOR-01",
+        "WT-FR-AUTHOR-02"
+      ],
+      "referenceId": "wt-author-contract.v1",
+      "evidence": "../2026-09-20-author-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "同じ人物正本を表示欄・アーカイブ・構造化データで共有する。",
+        "実測": "名前・経歴・資格・url・sameAs・代表画像を一回の更新から投影。",
+        "未検証": "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      }
+    },
+    {
+      "id": "author-contract:supervisor",
+      "face": "article",
+      "part": "article-tail-author",
+      "label": "監修者欄：reviewedByの正本",
+      "variant": "supervisor",
+      "description": "監修者の人物正本を記事表示とreviewedByへ投影し、著者正本と混同しない静的契約PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/tail-author-supervisor-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/tail-author-supervisor-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-AUTHOR-01",
+        "WT-FR-AUTHOR-02"
+      ],
+      "referenceId": "wt-author-contract.v1",
+      "evidence": "../2026-09-20-author-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "著者と監修者を別人物正本として表示する。",
+        "実測": "reviewedByの人物型、著者正本とのID分離、Organization混入拒否。",
+        "未検証": "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      }
+    },
+    {
       "id": "recovery:transaction",
       "face": "admin",
       "part": "recovery-transaction",
@@ -24129,50 +24179,67 @@
           "requirement_id": "WT-FR-AUTHOR-01",
           "oracle": "正本を1回更新すると著者欄・監修者欄・著者アーカイブが同じ値で更新され、MCP と画面の設定 JSON が一致する",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "著者・監修者の正本を一度更新すると、表示欄・アーカイブ・構造化データへ同じ値を投影する静的契約を検証する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+              "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+              "row_names": [
+                "AC-AUTHOR-01A projects one canonical update to all visible surfaces",
+                "AC-AUTHOR-01A keeps supervisor data on the same registry projection"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-AUTHOR-01B",
           "requirement_id": "WT-FR-AUTHOR-01",
           "oracle": "著者と監修者の値が分散する、公開面に反映されない、またはテーマが著者の判定を生成すれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "値の分散、未反映、テーマ側の判定生成を負例として拒否する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+              "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+              "row_names": [
+                "AC-AUTHOR-01B rejects split or incomplete person values",
+                "AC-AUTHOR-01B rejects a theme-owned decision or alternate source"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:tail-author-none",
         "article:tail-author-avatar-bio",
         "article:tail-author-avatar-bio-sns",
-        "article:tail-author-supervisor"
+        "article:tail-author-supervisor",
+        "author-contract:canonical-person",
+        "author-contract:supervisor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 4,
+        "candidateCount": 6,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-01A",
-          "WT-AC-AUTHOR-01B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -24187,50 +24254,67 @@
           "requirement_id": "WT-FR-AUTHOR-02",
           "oracle": "著者・監修者の構造化データが表示欄と同じ正本を参照し、ProfilePage の必須項目と代表画像が検査を通る",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "Article.author、reviewedBy、ProfilePage が表示欄と同じ著者・監修者正本を参照し、代表画像を保持する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+              "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+              "row_names": [
+                "AC-AUTHOR-02A binds Article.author, reviewedBy, and ProfilePage to the canonical people"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-AUTHOR-02B",
           "requirement_id": "WT-FR-AUTHOR-02",
           "oracle": "author / reviewedBy / ProfilePage の正本が表示欄と不一致、または自社 Organization を review author にすれば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "構造化データの不一致、Organization の監修者化、代表画像欠落を負例として拒否する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+              "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+              "row_names": [
+                "AC-AUTHOR-02B rejects mismatched structured-data identity",
+                "AC-AUTHOR-02B rejects an Organization as the review author",
+                "AC-AUTHOR-02B rejects a profile without representative image"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "article:tail-author-none",
         "article:tail-author-avatar-bio",
         "article:tail-author-avatar-bio-sns",
-        "article:tail-author-supervisor"
+        "article:tail-author-supervisor",
+        "author-contract:canonical-person",
+        "author-contract:supervisor"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 4,
+        "candidateCount": 6,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-02A",
-          "WT-AC-AUTHOR-02B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -35032,8 +35116,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 182,
-    "partial": 86,
+    "missing": 178,
+    "partial": 90,
     "verified_in_poc": 32,
     "stale": 0
   },

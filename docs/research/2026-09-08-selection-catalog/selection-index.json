@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 702,
+  "candidateCount": 704,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -4714,73 +4714,71 @@
     {
       "id": "WT-FR-AUTHOR-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 4,
+        "candidateCount": 6,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-01A",
-          "WT-AC-AUTHOR-01B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-AUTHOR-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-AUTHOR-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
       "relatedEntryIds": [
         "article:tail-author-none",
         "article:tail-author-avatar-bio",
         "article:tail-author-avatar-bio-sns",
-        "article:tail-author-supervisor"
+        "article:tail-author-supervisor",
+        "author-contract:canonical-person",
+        "author-contract:supervisor"
       ]
     },
     {
       "id": "WT-FR-AUTHOR-02",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 4,
+        "candidateCount": 6,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-02A",
-          "WT-AC-AUTHOR-02B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-AUTHOR-02A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-AUTHOR-02B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
       "relatedEntryIds": [
         "article:tail-author-none",
         "article:tail-author-avatar-bio",
         "article:tail-author-avatar-bio-sns",
-        "article:tail-author-supervisor"
+        "article:tail-author-supervisor",
+        "author-contract:canonical-person",
+        "author-contract:supervisor"
       ]
     },
     {
@@ -10314,20 +10312,15 @@
         "WT-FR-AUTHOR-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 4,
+          "partial": 4,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-01A",
-          "WT-AC-AUTHOR-01B",
-          "WT-AC-AUTHOR-02A",
-          "WT-AC-AUTHOR-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10349,20 +10342,15 @@
         "WT-FR-AUTHOR-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 4,
+          "partial": 4,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-01A",
-          "WT-AC-AUTHOR-01B",
-          "WT-AC-AUTHOR-02A",
-          "WT-AC-AUTHOR-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10384,20 +10372,15 @@
         "WT-FR-AUTHOR-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 4,
+          "partial": 4,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-01A",
-          "WT-AC-AUTHOR-01B",
-          "WT-AC-AUTHOR-02A",
-          "WT-AC-AUTHOR-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10419,20 +10402,15 @@
         "WT-FR-AUTHOR-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 4,
+          "partial": 4,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AUTHOR-01A",
-          "WT-AC-AUTHOR-01B",
-          "WT-AC-AUTHOR-02A",
-          "WT-AC-AUTHOR-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -30024,6 +30002,66 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-pr-disclosure-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "author-contract:canonical-person",
+      "face": "article",
+      "part": "article-tail-author",
+      "label": "著者欄：正本と表示の一致",
+      "variant": "avatar-bio",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-AUTHOR-01",
+        "WT-FR-AUTHOR-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-author-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "author-contract:supervisor",
+      "face": "article",
+      "part": "article-tail-author",
+      "label": "監修者欄：reviewedByの正本",
+      "variant": "supervisor",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-AUTHOR-01",
+        "WT-FR-AUTHOR-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 4,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 4,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-author-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"

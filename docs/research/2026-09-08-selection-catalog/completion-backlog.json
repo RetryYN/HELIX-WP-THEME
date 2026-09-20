@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 702,
-  "screenshot_count": 1275,
+  "catalog_candidate_count": 704,
+  "screenshot_count": 1279,
   "acceptance_counts": {
-    "missing": 182,
-    "partial": 86,
+    "missing": 178,
+    "partial": 90,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -741,48 +741,6 @@
       "candidates": [],
       "statement": "第三者プラグインの capability を領域別に検出し、フォームは送信イベントと同意確認をデータ層契約へ接続、キャッシュ / CDN は A/B cookie・同意 routing・crawl 計測の不成立を警告して人の cache 除外 URL / edge 割当を待ち、画像最適化はテーマの生成を止めて配信だけを行い、SEO は JSON-LD・meta / OGP・sitemap を検出して譲り、同意管理はテーマの同意バーを出さず信号を読む。代表構成は実運用 2 サイトで使うプラグイン種別に限り、全プラグイン互換は対象外とする。A/B cache の二方式、loopback cache 検査、画像・SEO・同意の検出時の譲渡を実施する。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-AUTHOR-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 4,
-      "candidates": [
-        "article:tail-author-none",
-        "article:tail-author-avatar-bio",
-        "article:tail-author-avatar-bio-sns",
-        "article:tail-author-supervisor"
-      ],
-      "statement": "著者・監修者の正本（名前・経歴・資格・sameAs・画像）を設定 JSON に保持し、著者欄・監修者欄・著者アーカイブへ反映する。MCP 常用パックから付与・更新できるが、判定は HELIX 側で行う",
-      "next_action": "既存候補を受入条件へ対応付け、代表fixtureと負例を検証する"
-    },
-    {
-      "requirement_id": "WT-FR-AUTHOR-02",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 4,
-      "candidates": [
-        "article:tail-author-none",
-        "article:tail-author-avatar-bio",
-        "article:tail-author-avatar-bio-sns",
-        "article:tail-author-supervisor"
-      ],
-      "statement": "著者を Article.author の url / sameAs、監修者を reviewedBy として構造化データへ反映し、著者ページは ProfilePage と代表画像を持つ",
-      "next_action": "既存候補を受入条件へ対応付け、代表fixtureと負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SP-01",
@@ -2571,6 +2529,52 @@
         "product-surfaces:review"
       ],
       "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・返品ポリシー付きの merchant listing 形を出し分け、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする。出典: https://developers.google.com/search/docs/appearance/structured-data/product-snippet、https://developers.google.com/search/docs/appearance/structured-data/merchant-listing（参照日: 2026-09-03）。pros-cons、ランキング根拠、料金表 variant、先頭列固定を扱い、打消し表示は CTA と同視野・同サイズにする。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-AUTHOR-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 6,
+      "candidates": [
+        "article:tail-author-none",
+        "article:tail-author-avatar-bio",
+        "article:tail-author-avatar-bio-sns",
+        "article:tail-author-supervisor",
+        "author-contract:canonical-person",
+        "author-contract:supervisor"
+      ],
+      "statement": "著者・監修者の正本（名前・経歴・資格・sameAs・画像）を設定 JSON に保持し、著者欄・監修者欄・著者アーカイブへ反映する。MCP 常用パックから付与・更新できるが、判定は HELIX 側で行う",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-AUTHOR-02",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 6,
+      "candidates": [
+        "article:tail-author-none",
+        "article:tail-author-avatar-bio",
+        "article:tail-author-avatar-bio-sns",
+        "article:tail-author-supervisor",
+        "author-contract:canonical-person",
+        "author-contract:supervisor"
+      ],
+      "statement": "著者を Article.author の url / sameAs、監修者を reviewedBy として構造化データへ反映し、著者ページは ProfilePage と代表画像を持つ",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

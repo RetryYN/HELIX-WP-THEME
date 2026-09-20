@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 182,
-    "partial": 86,
+    "missing": 178,
+    "partial": 90,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -4609,48 +4609,84 @@
       "requirement_id": "WT-FR-AUTHOR-01",
       "oracle": "正本を1回更新すると著者欄・監修者欄・著者アーカイブが同じ値で更新され、MCP と画面の設定 JSON が一致する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "著者・監修者の正本を一度更新すると、表示欄・アーカイブ・構造化データへ同じ値を投影する静的契約を検証する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-01A projects one canonical update to all visible surfaces",
+            "AC-AUTHOR-01A keeps supervisor data on the same registry projection"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-AUTHOR-01B",
       "requirement_id": "WT-FR-AUTHOR-01",
       "oracle": "著者と監修者の値が分散する、公開面に反映されない、またはテーマが著者の判定を生成すれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "値の分散、未反映、テーマ側の判定生成を負例として拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-01B rejects split or incomplete person values",
+            "AC-AUTHOR-01B rejects a theme-owned decision or alternate source"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-AUTHOR-02A",
       "requirement_id": "WT-FR-AUTHOR-02",
       "oracle": "著者・監修者の構造化データが表示欄と同じ正本を参照し、ProfilePage の必須項目と代表画像が検査を通る",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "Article.author、reviewedBy、ProfilePage が表示欄と同じ著者・監修者正本を参照し、代表画像を保持する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-02A binds Article.author, reviewedBy, and ProfilePage to the canonical people"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-AUTHOR-02B",
       "requirement_id": "WT-FR-AUTHOR-02",
       "oracle": "author / reviewedBy / ProfilePage の正本が表示欄と不一致、または自社 Organization を review author にすれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "構造化データの不一致、Organization の監修者化、代表画像欠落を負例として拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-author-contract-poc/verification.json",
+          "sha256": "b0e6923f2d459d8fb10adf6e62d5f90995cc1d03202dc195d5fe3000f83703aa",
+          "row_names": [
+            "AC-AUTHOR-02B rejects mismatched structured-data identity",
+            "AC-AUTHOR-02B rejects an Organization as the review author",
+            "AC-AUTHOR-02B rejects a profile without representative image"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NAV-01A",

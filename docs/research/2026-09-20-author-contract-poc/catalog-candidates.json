@@ -1,0 +1,55 @@
+{
+  "schema": "wt-author-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "author-contract:canonical-person",
+      "face": "article",
+      "part": "article-tail-author",
+      "label": "著者欄：正本と表示の一致",
+      "variant": "avatar-bio",
+      "description": "著者の名前・経歴・資格・sameAs・画像を単一正本から記事末・アーカイブ・構造化データへ投影する静的契約PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/tail-author-avatar-bio-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/tail-author-avatar-bio-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-AUTHOR-01",
+        "WT-FR-AUTHOR-02"
+      ],
+      "referenceId": "wt-author-contract.v1",
+      "evidence": "../2026-09-20-author-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "同じ人物正本を表示欄・アーカイブ・構造化データで共有する。",
+        "実測": "名前・経歴・資格・url・sameAs・代表画像を一回の更新から投影。",
+        "未検証": "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      }
+    },
+    {
+      "id": "author-contract:supervisor",
+      "face": "article",
+      "part": "article-tail-author",
+      "label": "監修者欄：reviewedByの正本",
+      "variant": "supervisor",
+      "description": "監修者の人物正本を記事表示とreviewedByへ投影し、著者正本と混同しない静的契約PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/tail-author-supervisor-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/tail-author-supervisor-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-AUTHOR-01",
+        "WT-FR-AUTHOR-02"
+      ],
+      "referenceId": "wt-author-contract.v1",
+      "evidence": "../2026-09-20-author-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "著者と監修者を別人物正本として表示する。",
+        "実測": "reviewedByの人物型、著者正本とのID分離、Organization混入拒否。",
+        "未検証": "WordPress 7.2 管理画面保存、REST/MCP 往復、実サイト構造化データ出力、検索適格性と全ブラウザ検証は未接続。"
+      }
+    }
+  ]
+}
