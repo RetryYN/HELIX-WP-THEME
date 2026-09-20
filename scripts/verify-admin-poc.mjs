@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {layers} from '../docs/research/2026-09-20-admin-poc/contract.mjs';
+const definitions=layers.map(([kind,label,title])=>({kind,label,title}));
+const root='docs/research/2026-09-20-admin-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-admin-poc.mjs']);
+const files=['scripts/build-admin-poc.mjs','scripts/utility-poc-server.mjs','scripts/utility-poc-provider.mjs','scripts/verify-admin-poc.mjs','tests/e2e/admin-poc-selection-catalog.spec.ts',...['contract.mjs','schema.json','view.mjs','admin.css',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'admin-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/admin-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,ADMIN_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const rows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(rows.every(r=>r.pass));
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-admin-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local browser-memory PoC only. Not WordPress admin, WP 7.2, DataViews/DataForm integration, server registration, persistence, permissions, MCP or external APIs. All five ACs partial.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=suffix=>rows.filter(r=>r.name.startsWith(`AC-${suffix}`)).map(r=>r.name);
+ const remaining=['WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。','実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B','C','D','E'].map(s=>[`WT-AC-ADMIN-01${s}`,{status:'partial',scope:'3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(s)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-admin-catalog-candidates.v1',entries:definitions.map(d=>({id:`admin:${d.kind}`,face:'inheritance',part:`admin-${d.kind}`,label:`設定画面：${d.label}`,variant:d.kind,description:`${d.title}。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。`,purpose:'設定の階層と反映先を確かめる',group:'共通設定・部品',images:{pc:`../2026-09-20-admin-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-admin-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-ADMIN-01'],referenceId:'wt-admin-poc.v1',evidence:'../2026-09-20-admin-poc/verification.json',selectionFacts:{'対象と判断':d.title,'反映の境界':'ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。','入力の扱い':'再読込・画面移動で初期化。永続保存・外部送信なし。','実測':'1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。','対象外':'AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'5 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}

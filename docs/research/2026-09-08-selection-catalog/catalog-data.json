@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1197,
+  "screenshotCount": 1203,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -13409,6 +13409,87 @@
         "対象外": "AI生成ではありません。事実確認・権利確認・公開判断は含みません。",
         "未検証": "WordPress 7.2の管理画面・保存・再読込、製品テーマ/Core境界への組込みは未検証。 実外部API・認証・負荷・全ブラウザ・実スクリーンリーダーは未検証。"
       }
+    },
+    {
+      "id": "admin:site",
+      "face": "inheritance",
+      "part": "admin-site",
+      "label": "設定画面：サイト既定",
+      "variant": "site",
+      "description": "サイト全体の出発点を選ぶ。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-poc/site-pc.jpg",
+        "sp": "../2026-09-20-admin-poc/site-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "referenceId": "wt-admin-poc.v1",
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "サイト全体の出発点を選ぶ",
+        "反映の境界": "ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin:parts",
+      "face": "inheritance",
+      "part": "admin-parts",
+      "label": "設定画面：パーツ",
+      "variant": "parts",
+      "description": "既定セットから部品を調整。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-poc/parts-pc.jpg",
+        "sp": "../2026-09-20-admin-poc/parts-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "referenceId": "wt-admin-poc.v1",
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "既定セットから部品を調整",
+        "反映の境界": "ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin:article",
+      "face": "inheritance",
+      "part": "admin-article",
+      "label": "設定画面：記事の上書き",
+      "variant": "article",
+      "description": "継承する値と例外を見分ける。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-poc/article-pc.jpg",
+        "sp": "../2026-09-20-admin-poc/article-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "referenceId": "wt-admin-poc.v1",
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "継承する値と例外を見分ける",
+        "反映の境界": "ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
     }
   ],
   "requirements": [
@@ -17265,84 +17346,152 @@
           "requirement_id": "WT-FR-ADMIN-01",
           "oracle": "管理画面だけで各既定を変更・保存でき、保存値が schema 検証を通り、manifest と MCP パックから同じ値が読め、export → import で同一 digest に戻る",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-poc/verification.json",
+              "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+              "row_names": [
+                "AC-A apply export import and manifest projection use same document"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-01B",
           "requirement_id": "WT-FR-ADMIN-01",
           "oracle": "schema 外の値が保存できる、設定画面と manifest の値が食い違う、または設定 JSON 以外の option に状態が散れば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-poc/verification.json",
+              "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+              "row_names": [
+                "AC-B rejected unknown preserves applied projection",
+                "AC-B rejected pattern preserves applied projection",
+                "AC-B rejected length preserves applied projection",
+                "AC-B rejected range preserves applied projection",
+                "AC-B rejected fraction preserves applied projection",
+                "AC-B rejected missing preserves applied projection",
+                "AC-B rejected version preserves applied projection",
+                "AC-B rejected enum preserves applied projection",
+                "AC-B invalid syntax has readable diagnostic"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-01C",
           "requirement_id": "WT-FR-ADMIN-01",
           "oracle": "サイト既定セット・パーツ選択・記事上書きの 3 層が UI で分かれ、視覚ピッカーの結果がサイト既定・パーツ単位は設定 JSON の対応キーへ、記事単位は投稿メタへ書かれる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-poc/verification.json",
+              "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+              "row_names": [
+                "AC-C site 1440px js layer and reflow",
+                "AC-C site 1440px no-js layer and reflow",
+                "AC-C site 390px js layer and reflow",
+                "AC-C site 390px no-js layer and reflow",
+                "AC-C site 320px js layer and reflow",
+                "AC-C site 320px no-js layer and reflow",
+                "AC-C parts 1440px js layer and reflow",
+                "AC-C parts 1440px no-js layer and reflow",
+                "AC-C parts 390px js layer and reflow",
+                "AC-C parts 390px no-js layer and reflow",
+                "AC-C parts 320px js layer and reflow",
+                "AC-C parts 320px no-js layer and reflow",
+                "AC-C article 1440px js layer and reflow",
+                "AC-C article 1440px no-js layer and reflow",
+                "AC-C article 390px js layer and reflow",
+                "AC-C article 390px no-js layer and reflow",
+                "AC-C article 320px js layer and reflow",
+                "AC-C article 320px no-js layer and reflow"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-01D",
           "requirement_id": "WT-FR-ADMIN-01",
           "oracle": "P01〜P33 の各項目が所有先（設定 JSON / theme.json・block style / guard）の初期値または検査として実現され、選択を持つ項目だけ個別に変更でき、guard 項目は設定に現れず、強度 C の項目に要自社検証の注記が出る",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-poc/verification.json",
+              "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+              "row_names": [
+                "AC-D fixed guards ownership C note and keyboard at 200 percent root text"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-ADMIN-01E",
           "requirement_id": "WT-FR-ADMIN-01",
           "oracle": "DataViews / DataForm 互換の管理画面で fields / actions がサーバー登録された schema と manifest から読まれ、pattern・長さ・数値範囲の検証、階層表示、一括操作、入力状態を同じ設定契約へ束ねる。未提供版では既存の設定 JSON 契約へ縮退し、設定値と権限境界を失わない。",
           "polarity": "boundary",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+            "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-admin-poc/verification.json",
+              "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+              "row_names": [
+                "AC-E schema boundaries and hierarchy bulk input states"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
-      "relatedEntryIds": [],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "admin:site",
+        "admin:parts",
+        "admin:article"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ADMIN-01A",
-          "WT-AC-ADMIN-01B",
-          "WT-AC-ADMIN-01C",
-          "WT-AC-ADMIN-01D",
-          "WT-AC-ADMIN-01E"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -33398,8 +33547,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 222,
-    "partial": 46,
+    "missing": 217,
+    "partial": 51,
     "verified_in_poc": 32,
     "stale": 0
   },

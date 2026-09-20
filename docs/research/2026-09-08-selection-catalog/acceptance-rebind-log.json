@@ -316,6 +316,76 @@
       ],
       "registry_before_sha256": "b134fc8e62f1c0c8379c5e310e459c5ca707576932eedf93cbf8ff8553790d8f",
       "registry_after_sha256": "c97ac4d86ff1cdaa0e1e5b13db903cc25ea3fd168d9b2c7fce275c76431e2a37"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-ADMIN-01A",
+        "WT-AC-ADMIN-01B",
+        "WT-AC-ADMIN-01C",
+        "WT-AC-ADMIN-01D",
+        "WT-AC-ADMIN-01E"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-admin-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-admin-poc/acceptance-candidate.json": "26ab3b762d8ffb49dffb7b50ad7d093f63e735058ca0e7b8af5b83e2d3dbf99b"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-admin-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-01C",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-01D",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-ADMIN-01E",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-admin-poc/verification.json",
+          "before_sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "after_sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "c97ac4d86ff1cdaa0e1e5b13db903cc25ea3fd168d9b2c7fce275c76431e2a37",
+      "registry_after_sha256": "b0c02e5ce91561aa6be8f539d2ad7c85cc2637a6f97373552d5cf1abdf07d83a"
     }
   ]
 }

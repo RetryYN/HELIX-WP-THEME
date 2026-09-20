@@ -1,0 +1,188 @@
+{
+  "schema": "wt-admin-poc-verification.v1",
+  "completed": true,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/admin-poc-selection-catalog.spec.ts",
+    "--workers=1",
+    "--reporter=json"
+  ],
+  "sourceDigests": {
+    "scripts/build-admin-poc.mjs": "6aa763a811720a50c7e5f8b62b825523ae13f50a62582df8f66bbfdd9704248c",
+    "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+    "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+    "scripts/verify-admin-poc.mjs": "6ca4c58f89366a0d18acd7307bb0ee08d2043e5f25714692c5341821f2fd6523",
+    "tests/e2e/admin-poc-selection-catalog.spec.ts": "fb67ea919fc4177841f59dae94316f1f26582f46b2583a73d0edc98f975dc30c",
+    "docs/research/2026-09-20-admin-poc/contract.mjs": "5e94b350b1c0d716df45e658967df63b21debdd12db0381f318ff2284bf9c0e9",
+    "docs/research/2026-09-20-admin-poc/schema.json": "81edd670251ecb3381008ae193a195afdd3b3a1f048e5f52cb4f613908e63d10",
+    "docs/research/2026-09-20-admin-poc/view.mjs": "d449a061faedc44a2f4c06f4b04c88de08436a08ca8736233b3d74ef1c8e2356",
+    "docs/research/2026-09-20-admin-poc/admin.css": "6bfe6f65663e6e64fd43d125b83c83e67be21155209b28a4b1ce8dfa3186b432",
+    "docs/research/2026-09-20-admin-poc/site.html": "f4568f67ebfa89c4191ca680f3dfafb80ddf9ab4fa722cfbb69c664d1bd75d8f",
+    "docs/research/2026-09-20-admin-poc/parts.html": "0f7ec07ebc920d01a3786c78ac6b2191b4a46c50454f968dba638edcdd1b83e5",
+    "docs/research/2026-09-20-admin-poc/article.html": "46bc9dc494c65c0c2b1d4f02a9e23e1499021692a5e632d9022cc7a3767d79e5"
+  },
+  "rows": [
+    {
+      "name": "AC-C site 1440px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C site 1440px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C site 390px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C site 390px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C site 320px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C site 320px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C parts 1440px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C parts 1440px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C parts 390px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C parts 390px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C parts 320px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C parts 320px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C article 1440px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C article 1440px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C article 390px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C article 390px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C article 320px js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-C article 320px no-js layer and reflow",
+      "pass": true
+    },
+    {
+      "name": "AC-A apply export import and manifest projection use same document",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected unknown preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected pattern preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected length preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected range preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected fraction preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected missing preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected version preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B rejected enum preserves applied projection",
+      "pass": true
+    },
+    {
+      "name": "AC-B invalid syntax has readable diagnostic",
+      "pass": true
+    },
+    {
+      "name": "AC-E schema boundaries and hierarchy bulk input states",
+      "pass": true
+    },
+    {
+      "name": "AC-D fixed guards ownership C note and keyboard at 200 percent root text",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "site",
+      "device": "pc",
+      "file": "site-pc.jpg",
+      "sha256": "ad66f597e2cd742bd6fc62c5ea0184ec6103201749af0443a738c6127402d6c7"
+    },
+    {
+      "id": "site",
+      "device": "sp",
+      "file": "site-sp.jpg",
+      "sha256": "04ab00563c428e2de5282d9d6108b248e0e34d3ae92e5d22c21c2179ad4cc978"
+    },
+    {
+      "id": "parts",
+      "device": "pc",
+      "file": "parts-pc.jpg",
+      "sha256": "dc9a2ff3b9481aa79aa65b09b00cc57fa4a5ab5f32c3523a1967a6afd665b021"
+    },
+    {
+      "id": "parts",
+      "device": "sp",
+      "file": "parts-sp.jpg",
+      "sha256": "44dc3fd4109300894c18924113c8e2b0778348cff347a26aeeb35338e2cf7af0"
+    },
+    {
+      "id": "article",
+      "device": "pc",
+      "file": "article-pc.jpg",
+      "sha256": "fe5edd1b988bc55d9383c3468e58c1efdc0d9bd1be4b37710fd679e9020f6f23"
+    },
+    {
+      "id": "article",
+      "device": "sp",
+      "file": "article-sp.jpg",
+      "sha256": "aaca8783cd5e1660aee4fa01271cf788b49aee85c3a4dc408b7291b582c9ec32"
+    }
+  ],
+  "scope": "Static/local browser-memory PoC only. Not WordPress admin, WP 7.2, DataViews/DataForm integration, server registration, persistence, permissions, MCP or external APIs. All five ACs partial.",
+  "textScale": "Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech"
+}

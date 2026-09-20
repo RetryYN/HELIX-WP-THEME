@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
 const catalogData = JSON.parse(readFileSync('docs/research/2026-09-08-selection-catalog/catalog-data.json', 'utf8')) as {
-  entries: unknown[];
+  entries: { face: string }[];
   requirementCount: number;
   acceptanceAudit: Record<string, number>;
 };
@@ -223,7 +223,7 @@ test('quality comparison opens from catalog with paired evidence and a return pa
 
 test('independent faces expose shared, own and off comparisons', async ({ page }) => {
   await page.locator('[data-face="inheritance"]').click();
-  await expect(page.locator('.tile-open')).toHaveCount(18);
+  await expect(page.locator('.tile-open')).toHaveCount(catalogData.entries.filter(entry => entry.face === 'inheritance').length);
   await page.locator('#search').fill('chrome-content-content_learning');
   await expect(page.locator('.tile-open')).toHaveCount(3);
   await page.locator('[data-device="sp"]').click();
