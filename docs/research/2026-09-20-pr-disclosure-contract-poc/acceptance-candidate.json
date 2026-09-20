@@ -1,0 +1,56 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-VOCAB-03A": {
+    "status": "partial",
+    "scope": "広告シグナルがある記事だけへ、既定の控えめなPR表記を記事上部一箇所・first view・最小文字サイズ・AAコントラストで自動表示し、表示範囲を選択できる静的契約を検証する。",
+    "remaining": [
+      "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+        "row_names": [
+          "AC-VOCAB-03A accepts automatic commercial signal detection",
+          "AC-VOCAB-03A places one subtle notice in the article first view",
+          "AC-VOCAB-03A keeps display design and page/post controls selectable"
+        ]
+      }
+    ]
+  },
+  "WT-AC-VOCAB-03B": {
+    "status": "partial",
+    "scope": "欠落、対象外への誤表示、サイズ/コントラスト不足、CTA/バナー隣接、本文編集による削除を負例として拒否する。",
+    "remaining": [
+      "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+        "row_names": [
+          "AC-VOCAB-03B omits notices from articles with no commercial signal",
+          "AC-VOCAB-03B rejects signal removal from the automatic contract",
+          "AC-VOCAB-03B rejects below-minimum font size or contrast",
+          "AC-VOCAB-03B rejects CTA/banner adjacency",
+          "AC-VOCAB-03B rejects body-edit removal"
+        ]
+      }
+    ]
+  },
+  "WT-AC-VOCAB-03C": {
+    "status": "partial",
+    "scope": "PO既定文言、不要なCTA/商品カード束バッジ抑止、先頭範囲の重複抑止と既知のpending境界を記録する。",
+    "remaining": [
+      "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+        "row_names": [
+          "AC-VOCAB-03C keeps the PO default wording and avoids component badges",
+          "AC-VOCAB-03C suppresses duplicate positive disclosure in the first three paragraphs",
+          "AC-VOCAB-03C preserves the known pending boundary for late or heading-only disclosure"
+        ]
+      }
+    ]
+  }
+}

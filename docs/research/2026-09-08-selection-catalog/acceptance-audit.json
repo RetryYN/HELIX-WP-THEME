@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 185,
-    "partial": 83,
+    "missing": 182,
+    "partial": 86,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -784,24 +784,46 @@
       "requirement_id": "WT-FR-VOCAB-03",
       "oracle": "広告パーツ、アフィリエイトリンク、または商品リンクを含む記事にだけ、テーマの最小文字サイズ以上・AA コントラスト・記事上部の固定 1 箇所を満たす控えめな PR 表記がファーストビュー内に自動で出て、含まない記事には出ない。ボタン・バナーのすぐ近くには置かず、表示デザインと表示ページ制御が選べる",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "広告シグナルがある記事だけへ、既定の控えめなPR表記を記事上部一箇所・first view・最小文字サイズ・AAコントラストで自動表示し、表示範囲を選択できる静的契約を検証する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "row_names": [
+            "AC-VOCAB-03A accepts automatic commercial signal detection",
+            "AC-VOCAB-03A places one subtle notice in the article first view",
+            "AC-VOCAB-03A keeps display design and page/post controls selectable"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-03B",
       "requirement_id": "WT-FR-VOCAB-03",
       "oracle": "対象記事で表記が欠落する、対象外の記事に出る、テーマの最小文字サイズまたは AA コントラストを下回る、ボタン・バナーのすぐ近くに出る、または本文編集で消せれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "欠落、対象外への誤表示、サイズ/コントラスト不足、CTA/バナー隣接、本文編集による削除を負例として拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "row_names": [
+            "AC-VOCAB-03B omits notices from articles with no commercial signal",
+            "AC-VOCAB-03B rejects signal removal from the automatic contract",
+            "AC-VOCAB-03B rejects below-minimum font size or contrast",
+            "AC-VOCAB-03B rejects CTA/banner adjacency",
+            "AC-VOCAB-03B rejects body-edit removal"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-VOCAB-04A",
@@ -11452,12 +11474,22 @@
       "requirement_id": "WT-FR-VOCAB-03",
       "oracle": "既定文言は「本記事にはプロモーションが含まれます。」で、CTA・商品カード束の不要な PR バッジを出さない。本文表記との重複抑止と欠落防止の両立は pending_resolution 解決後に判定する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "PO既定文言、不要なCTA/商品カード束バッジ抑止、先頭範囲の重複抑止と既知のpending境界を記録する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "WordPress 7.2 の管理画面保存、REST/MCP実接続、全表示型の実機検証、本文表記との重複抑止と欠落防止の最終両立は未接続または要求pending_resolution。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
+          "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+          "row_names": [
+            "AC-VOCAB-03C keeps the PO default wording and avoids component badges",
+            "AC-VOCAB-03C suppresses duplicate positive disclosure in the first three paragraphs",
+            "AC-VOCAB-03C preserves the known pending boundary for late or heading-only disclosure"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-PAID-01C",
