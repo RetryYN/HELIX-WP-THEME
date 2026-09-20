@@ -1,0 +1,33 @@
+{
+  "schema": "wt-poc-badge-visual.v1",
+  "baseline": "1d97c11664c1fb8e51d5d4e727b7e9a60db53f38",
+  "sourceDigests": {
+    "docs/research/2026-09-08-selection-catalog/catalog.css": "0a0728dd82daedf98dacded7220705ed4e172219c28add8b16126b591d0e5b79",
+    "docs/research/2026-09-08-selection-catalog/catalog.mjs": "6b9511371476cc81623499868050670ef416ec1da3aa464119fcae8d12a45c10",
+    "docs/research/2026-09-08-selection-catalog/index.html": "5129e855c93122ce687282b0f0bcc9e1cfd7b4d193dfa7743206da029de7cf18",
+    "docs/research/2026-09-08-selection-catalog/visual-quality/poc-badges/capture.mjs": "579cf7c47b25df0f8feabd08d17b89c4800effa0c3567f9a00553a827dd7f915",
+    "tests/e2e/poc-badges-selection-catalog.spec.ts": "545755906795fd6e7b29c3720ff72ba203fb5faff6c2bc9b214d5cbd95d26d03"
+  },
+  "screenshots": [
+    {
+      "file": "before-390.png",
+      "sha256": "6349382378b1b77e00ccfd1b8649678edba9dcb47ac06381d644b785128e2522"
+    },
+    {
+      "file": "after-390.png",
+      "sha256": "c6df1ab396289a45859c55571d9205319ea312ce53c984cb72ce1e1ee399771a"
+    },
+    {
+      "file": "before-1440.png",
+      "sha256": "3cdac486ea7182e68df0a0d33f18d663793abb548c051ffb0c670b08724e0313"
+    },
+    {
+      "file": "after-1440.png",
+      "sha256": "c6d743912862eca42881070232646bc00e82087eff1686a7c941ebf0b3910f2a"
+    }
+  ],
+  "limitations": [
+    "Static catalog only; no WordPress runtime or requirement completion claim",
+    "Screenshots show initial requirement rows; browser spec additionally checks partial counts and keyboard expansion"
+  ]
+}

@@ -226,3 +226,9 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
 @media(max-width:700px){
   .search input,.sidebar select,.evidence-filters select,.decision-panel textarea{font-size:16px;min-height:44px}
 }
+
+/* PoC確認数を一覧で読み分ける。数値は残し、要求完了とは表現しない。 */
+.req-row>summary .status-label{font-size:12px;font-variant-numeric:tabular-nums;border:1px solid var(--line);border-radius:4px;padding:4px 8px;background:#f1f2ed;color:#475248;white-space:nowrap}
+.req-row[data-poc-coverage=all]>summary .status-label{background:var(--tint);border-color:#b5c4af;color:var(--green)}
+.req-row[data-poc-coverage=some]>summary .status-label{background:#f8efd9;border-color:#d9c58e;color:#705316}
+@media(max-width:420px){.req-row>summary .status-label{display:table;margin:8px 0 0 14px}.req-row>summary>p{margin-top:10px}}
