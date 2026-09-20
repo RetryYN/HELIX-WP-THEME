@@ -249,3 +249,6 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
 
 /* 候補を区別するvariant名を、小画面でもPCと同じ文字サイズで読む。 */
 @media(max-width:700px){.tile .variant{font-size:12px}}
+
+/* 高さの違う候補が並んでも、比較操作と判断表示をカード下部に揃える。 */
+.tile .tile-facts{margin-top:auto}
