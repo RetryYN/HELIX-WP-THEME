@@ -70,6 +70,10 @@
     "docs/research/2026-09-20-lp-routing-poc/verification.json": [
       "node",
       "scripts/verify-lp-routing-poc.mjs"
+    ],
+    "docs/research/2026-09-20-lp-tracking-poc/verification.json": [
+      "node",
+      "scripts/verify-lp-tracking-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -186,6 +190,12 @@
     ],
     "WT-AC-LP-01C": [
       "docs/research/2026-09-20-lp-routing-poc/verification.json"
+    ],
+    "WT-AC-LP-02A": [
+      "docs/research/2026-09-20-lp-tracking-poc/verification.json"
+    ],
+    "WT-AC-LP-02B": [
+      "docs/research/2026-09-20-lp-tracking-poc/verification.json"
     ]
   }
 }

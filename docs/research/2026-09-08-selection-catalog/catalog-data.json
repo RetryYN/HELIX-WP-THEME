@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1259,
+  "screenshotCount": 1263,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -14154,6 +14154,58 @@
       }
     },
     {
+      "id": "lp-tracking:form-slot",
+      "face": "lp",
+      "part": "lp-form-tracking",
+      "label": "LPフォーム：slotと必須ID付きイベント",
+      "variant": "form-slot",
+      "description": "LP専用form slotをJSONで宣言し、4種類の行動イベントへ同じLP/目標CV/variant IDを渡す静的PoC。",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-tracking-poc/lp-tracking-pc.jpg",
+        "sp": "../2026-09-20-lp-tracking-poc/lp-tracking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-02",
+        "WT-FR-LP-01",
+        "WT-FR-FORM-01"
+      ],
+      "referenceId": "wt-lp-tracking-poc.v1",
+      "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "フォーム配置とデータ層契約を同じLP正本から選ぶ。",
+        "実測": "form slot、variation/pattern、view/scroll/CTA/submit、必須ID、JS無効。",
+        "未検証": "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected. External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
+      }
+    },
+    {
+      "id": "lp-tracking:boundary",
+      "face": "lp",
+      "part": "lp-form-tracking",
+      "label": "LP計測：外部送信・最適化の境界",
+      "variant": "boundary",
+      "description": "テーマ内に判定ロジックや外部送信を置かず、契約外イベントと必須ID欠落を拒否する静的PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-tracking-poc/lp-tracking-pc.jpg",
+        "sp": "../2026-09-20-lp-tracking-poc/lp-tracking-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-02",
+        "WT-FR-LP-01",
+        "WT-FR-FORM-01"
+      ],
+      "referenceId": "wt-lp-tracking-poc.v1",
+      "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "テーマがCV判定や最適化を所有しない境界を選ぶ。",
+        "実測": "ID欠落、イベント集合不足、optimizationOwner改変、送信API不在。",
+        "未検証": "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected. External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
+      }
+    },
+    {
       "id": "recovery:transaction",
       "face": "admin",
       "part": "recovery-transaction",
@@ -18466,13 +18518,15 @@
         "content:lp-editorial",
         "lp-routing:normal",
         "lp-routing:event",
-        "lp-routing:comparison"
+        "lp-routing:comparison",
+        "lp-tracking:form-slot",
+        "lp-tracking:boundary"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 52,
+        "candidateCount": 54,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
@@ -18496,27 +18550,47 @@
           "requirement_id": "WT-FR-LP-02",
           "oracle": "LP でフォームを JSON 宣言で配置でき、表示・スクロール・CTA クリック・送信のイベントが version 付きデータ層契約から必須 ID 付きで記録され、LP 専用 variation / パターンと目標 CV ID・A/B variant ID が選べる",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "静的LP fixtureでform slot・LP専用variation/patternと、表示・スクロール・CTA・送信のversion付きdata layerイベントを必須ID付きで記録する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+            "External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+              "sha256": "e648532771fab332ee1c3c0ae337237ddf22ac63f64ca2d421a9006b87e47e19",
+              "row_names": [
+                "AC-LP-02A declares form placement, LP variation, and versioned event contract",
+                "AC-LP-02A records view, scroll, CTA, and submit with required IDs",
+                "AC-LP-02A remains readable without JavaScript"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-LP-02B",
           "requirement_id": "WT-FR-LP-02",
           "oracle": "計測イベントまたは必須 ID が欠落する、契約外経路へ散る、またはテーマ内に最適化・判定ロジックが入れば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "必須ID欠落、イベント集合不足、テーマ内最適化、外部送信を負例・静的境界で拒否する。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+            "External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+              "sha256": "e648532771fab332ee1c3c0ae337237ddf22ac63f64ca2d421a9006b87e47e19",
+              "row_names": [
+                "AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization"
+              ]
+            }
+          ]
         }
       ],
-      "status": "not_verified",
+      "status": "partial_poc",
       "relatedEntryIds": [
         "lp:lp-header-minimal",
         "lp:lp-header-logo-only",
@@ -18569,25 +18643,24 @@
         "content:lp-editorial",
         "lp-routing:normal",
         "lp-routing:event",
-        "lp-routing:comparison"
+        "lp-routing:comparison",
+        "lp-tracking:form-slot",
+        "lp-tracking:boundary"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 52,
+        "candidateCount": 54,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -31286,13 +31359,15 @@
         "event-finished:seminar-classic",
         "event-finished:conference",
         "event-finished:festival",
-        "event-finished:campaign"
+        "event-finished:campaign",
+        "lp-tracking:form-slot",
+        "lp-tracking:boundary"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 57,
+        "candidateCount": 59,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
@@ -34761,8 +34836,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 189,
-    "partial": 79,
+    "missing": 187,
+    "partial": 81,
     "verified_in_poc": 32,
     "stale": 0
   },

@@ -1,0 +1,50 @@
+{
+  "schema": "wt-lp-tracking-poc-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/build-lp-tracking-poc.mjs": "e7665bed79dc0289243153d3451a9b3ce2057906d96aa3d6360a2e01646459f8",
+    "scripts/verify-lp-tracking-poc.mjs": "8753bd80f6773631be75cc5c758b9b04fd8eeeaca0e918938502010ca4004e5d",
+    "tests/e2e/lp-tracking-poc-selection-catalog.spec.ts": "7c51b374a3b8016edae231b9f19f2fc43dcdd99876afab67ea66c93d9e912a6a",
+    "docs/research/2026-09-20-lp-tracking-poc/model.mjs": "34c1c1b8d7675513bcacae1c933ab6fb3afc2186d51eed852170ce98cae055e3",
+    "docs/research/2026-09-20-lp-tracking-poc/tracking.mjs": "6570ad14bc4c5f86a9635173e3abd246127ca05e22db50d9083cd0b226ec6b6f",
+    "docs/research/2026-09-20-lp-tracking-poc/style.css": "263f69a6c5085eb553d4f952440f787d2e7dc86dfdeb266927febd4a1d594c0c"
+  },
+  "rows": [
+    {
+      "name": "AC-LP-02A declares form placement, LP variation, and versioned event contract",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-02A records view, scroll, CTA, and submit with required IDs",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-02A remains readable without JavaScript",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "tracking-contract",
+      "device": "pc",
+      "file": "lp-tracking-pc.jpg",
+      "sha256": "61a6b339d7df540ab961ecacb71731d411907b3ac8ee198a41e614c81089d763"
+    },
+    {
+      "id": "tracking-contract",
+      "device": "sp",
+      "file": "lp-tracking-sp.jpg",
+      "sha256": "6f0ab76b100387d94ee10efb41de136e748233e9fc9d5c9bccb9c36fd3085546"
+    }
+  ],
+  "scope": "Static/local LP fixture. Form placement, LP variation/pattern IDs, versioned HELIX data-layer events for view/scroll/CTA/submit, required IDs, no-JS rendering, and theme-side optimization boundary are verified.",
+  "remaining": [
+    "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+    "External tracking destination, consent policy, deduplication, retries, real form transport, real-device accessibility, and all LP variations are unverified.",
+    "Optimization and decision logic remain external and are not implemented by this fixture."
+  ]
+}

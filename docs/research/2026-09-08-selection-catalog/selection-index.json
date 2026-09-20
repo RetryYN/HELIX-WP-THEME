@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 694,
+  "candidateCount": 696,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -2020,7 +2020,7 @@
       "priority": "P0",
       "status": "partial_poc",
       "coverage": {
-        "candidateCount": 52,
+        "candidateCount": 54,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
@@ -2097,36 +2097,35 @@
         "content:lp-editorial",
         "lp-routing:normal",
         "lp-routing:event",
-        "lp-routing:comparison"
+        "lp-routing:comparison",
+        "lp-tracking:form-slot",
+        "lp-tracking:boundary"
       ]
     },
     {
       "id": "WT-FR-LP-02",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 52,
+        "candidateCount": 54,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-LP-02A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-LP-02B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
       "relatedEntryIds": [
@@ -2181,7 +2180,9 @@
         "content:lp-editorial",
         "lp-routing:normal",
         "lp-routing:event",
-        "lp-routing:comparison"
+        "lp-routing:comparison",
+        "lp-tracking:form-slot",
+        "lp-tracking:boundary"
       ]
     },
     {
@@ -6131,7 +6132,7 @@
       "priority": "P1",
       "status": "partial_poc",
       "coverage": {
-        "candidateCount": 57,
+        "candidateCount": 59,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
@@ -6209,7 +6210,9 @@
         "event-finished:seminar-classic",
         "event-finished:conference",
         "event-finished:festival",
-        "event-finished:campaign"
+        "event-finished:campaign",
+        "lp-tracking:form-slot",
+        "lp-tracking:boundary"
       ]
     },
     {
@@ -10591,14 +10594,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10624,14 +10624,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10657,14 +10654,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10690,14 +10684,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10723,14 +10714,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10756,14 +10744,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10789,14 +10774,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10822,14 +10804,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10855,14 +10834,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10888,14 +10864,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10921,14 +10894,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10954,14 +10924,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -10987,14 +10954,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11020,14 +10984,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11053,14 +11014,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11086,14 +11044,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11119,14 +11074,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11152,14 +11104,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11185,14 +11134,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11218,14 +11164,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11251,14 +11194,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11284,14 +11224,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11317,14 +11254,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -11350,14 +11284,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15214,14 +15145,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15247,14 +15175,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15280,14 +15205,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15313,14 +15235,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15346,14 +15265,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15379,14 +15295,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15412,14 +15325,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15445,14 +15355,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15478,14 +15385,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15511,14 +15415,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15544,14 +15445,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15577,14 +15475,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15610,14 +15505,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15643,14 +15535,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15677,14 +15566,11 @@
         "acceptanceCount": 7,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 5,
-          "missing": 2,
+          "partial": 7,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15711,14 +15597,11 @@
         "acceptanceCount": 7,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 5,
-          "missing": 2,
+          "partial": 7,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15746,13 +15629,11 @@
         "acceptanceCount": 9,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 6,
+          "partial": 5,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B",
           "WT-AC-SNS-01A",
           "WT-AC-SNS-01B",
           "WT-AC-SNS-02A",
@@ -15785,13 +15666,11 @@
         "acceptanceCount": 9,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 6,
+          "partial": 5,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B",
           "WT-AC-SNS-01A",
           "WT-AC-SNS-01B",
           "WT-AC-SNS-02A",
@@ -15822,14 +15701,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15855,14 +15731,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15887,14 +15760,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15919,14 +15789,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25734,14 +25601,11 @@
         "acceptanceCount": 7,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 5,
-          "missing": 2,
+          "partial": 7,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -26029,14 +25893,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/verify.json",
@@ -26062,14 +25923,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/verify.json",
@@ -30094,14 +29952,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-lp-routing-poc/verification.json",
@@ -30127,14 +29982,11 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-lp-routing-poc/verification.json",
@@ -30160,17 +30012,76 @@
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 3,
-          "missing": 2,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-02A",
-          "WT-AC-LP-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-lp-routing-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "lp-tracking:form-slot",
+      "face": "lp",
+      "part": "lp-form-tracking",
+      "label": "LPフォーム：slotと必須ID付きイベント",
+      "variant": "form-slot",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-LP-02",
+        "WT-FR-LP-01",
+        "WT-FR-FORM-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 7,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 7,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "lp-tracking:boundary",
+      "face": "lp",
+      "part": "lp-form-tracking",
+      "label": "LP計測：外部送信・最適化の境界",
+      "variant": "boundary",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-LP-02",
+        "WT-FR-LP-01",
+        "WT-FR-FORM-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 7,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 7,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
       "devices": [
         "pc",
         "sp"

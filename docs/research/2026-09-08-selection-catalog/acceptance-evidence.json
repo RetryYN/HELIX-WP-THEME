@@ -14273,6 +14273,62 @@
           ]
         }
       ]
+    },
+    "WT-AC-LP-02A": {
+      "status": "partial",
+      "requirement_digest": "2792d6fee520b059",
+      "oracle_sha256": "84e5f7cccc4ccfce928c50e226609ad567b4c29b7e47eb63496166640d75a52a",
+      "source_digests": {
+        "scripts/build-lp-tracking-poc.mjs": "e7665bed79dc0289243153d3451a9b3ce2057906d96aa3d6360a2e01646459f8",
+        "scripts/verify-lp-tracking-poc.mjs": "8753bd80f6773631be75cc5c758b9b04fd8eeeaca0e918938502010ca4004e5d",
+        "tests/e2e/lp-tracking-poc-selection-catalog.spec.ts": "7c51b374a3b8016edae231b9f19f2fc43dcdd99876afab67ea66c93d9e912a6a",
+        "docs/research/2026-09-20-lp-tracking-poc/model.mjs": "34c1c1b8d7675513bcacae1c933ab6fb3afc2186d51eed852170ce98cae055e3",
+        "docs/research/2026-09-20-lp-tracking-poc/tracking.mjs": "6570ad14bc4c5f86a9635173e3abd246127ca05e22db50d9083cd0b226ec6b6f",
+        "docs/research/2026-09-20-lp-tracking-poc/style.css": "263f69a6c5085eb553d4f952440f787d2e7dc86dfdeb266927febd4a1d594c0c"
+      },
+      "scope": "静的LP fixtureでform slot・LP専用variation/patternと、表示・スクロール・CTA・送信のversion付きdata layerイベントを必須ID付きで記録する。",
+      "remaining": [
+        "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+        "External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+          "sha256": "e648532771fab332ee1c3c0ae337237ddf22ac63f64ca2d421a9006b87e47e19",
+          "row_names": [
+            "AC-LP-02A declares form placement, LP variation, and versioned event contract",
+            "AC-LP-02A records view, scroll, CTA, and submit with required IDs",
+            "AC-LP-02A remains readable without JavaScript"
+          ]
+        }
+      ]
+    },
+    "WT-AC-LP-02B": {
+      "status": "partial",
+      "requirement_digest": "2792d6fee520b059",
+      "oracle_sha256": "55cfb1535e6a280e5c4c1e74b207a6b328d39dff67ec48b37727bd95d054fe72",
+      "source_digests": {
+        "scripts/build-lp-tracking-poc.mjs": "e7665bed79dc0289243153d3451a9b3ce2057906d96aa3d6360a2e01646459f8",
+        "scripts/verify-lp-tracking-poc.mjs": "8753bd80f6773631be75cc5c758b9b04fd8eeeaca0e918938502010ca4004e5d",
+        "tests/e2e/lp-tracking-poc-selection-catalog.spec.ts": "7c51b374a3b8016edae231b9f19f2fc43dcdd99876afab67ea66c93d9e912a6a",
+        "docs/research/2026-09-20-lp-tracking-poc/model.mjs": "34c1c1b8d7675513bcacae1c933ab6fb3afc2186d51eed852170ce98cae055e3",
+        "docs/research/2026-09-20-lp-tracking-poc/tracking.mjs": "6570ad14bc4c5f86a9635173e3abd246127ca05e22db50d9083cd0b226ec6b6f",
+        "docs/research/2026-09-20-lp-tracking-poc/style.css": "263f69a6c5085eb553d4f952440f787d2e7dc86dfdeb266927febd4a1d594c0c"
+      },
+      "scope": "必須ID欠落、イベント集合不足、テーマ内最適化、外部送信を負例・静的境界で拒否する。",
+      "remaining": [
+        "WordPress 7.2 persistence, real REST/MCP registration, permissions, and editor UI are unconnected.",
+        "External tracking, consent, deduplication, retries, transport, real-device accessibility, and all LP variations remain unverified."
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-lp-tracking-poc/verification.json",
+          "sha256": "e648532771fab332ee1c3c0ae337237ddf22ac63f64ca2d421a9006b87e47e19",
+          "row_names": [
+            "AC-LP-02B rejects missing IDs, incomplete events, and theme-side optimization"
+          ]
+        }
+      ]
     }
   }
 }

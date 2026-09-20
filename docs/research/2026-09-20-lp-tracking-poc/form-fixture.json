@@ -1,0 +1,28 @@
+{
+  "schema": "wt-lp-form-slot.v1",
+  "formSlots": [
+    {
+      "id": "consultation-form",
+      "placement": "lp-form",
+      "submitTo": "local:demo",
+      "confirmation": "inline",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "id": "message",
+          "type": "textarea",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "wt-data-layer-contract.v1",
+  "tracking": {
+    "version": "wt-data-layer.v1",
+    "events": [
+      "lp_view",
+      "lp_scroll",
+      "lp_cta_click",
+      "lp_form_submit"
+    ],
+    "required": [
+      "eventId",
+      "version",
+      "lpId",
+      "goalCvId",
+      "variantId"
+    ],
+    "destination": "helix.dataLayer",
+    "owner": "helix",
+    "optimizationOwner": "external"
+  }
+}
