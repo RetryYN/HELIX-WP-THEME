@@ -3,9 +3,9 @@
 この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。
 
 - 要求: 134
-- 受入条件: 300（missing 196 / partial 72 / verified_in_poc 32 / stale 0）
-- カタログ候補: 689
-- スクリーンショット: 1249
+- 受入条件: 300（missing 194 / partial 74 / verified_in_poc 32 / stale 0）
+- カタログ候補: 690
+- スクリーンショット: 1251
 - ページ種別の未観察・未検証: 19
 
 ## 次に閉じる要求
@@ -101,7 +101,6 @@
 | WT-FR-META-01 | P1 | missing | 3 | 78 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
 | WT-FR-PAGE-02 | P1 | missing | 2 | 81 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
 | WT-FR-LOOK-03 | P1 | missing | 3 | 89 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
-| WT-FR-ZONE-02 | P1 | missing | 2 | 115 | 既存候補を受入条件へ対応付け、代表fixtureと負例を検証する |
 | WT-FR-AGENT-03 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AGENT-04 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-INTAKE-01 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
@@ -121,7 +120,7 @@
 | WT-FR-SELL-02 | P0 | partial | 2 | 5 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-SP-01 | P0 | partial | 2 | 31 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-VOCAB-01 | P0 | partial | 3 | 62 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
-| WT-FR-ZONE-01 | P0 | partial | 2 | 115 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-ZONE-01 | P0 | partial | 2 | 116 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-PARTS-01 | P0 | partial | 3 | 169 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-SEARCH-01 | P1 | partial | 4 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-UTILITY-01 | P1 | partial | 4 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
@@ -132,9 +131,10 @@
 | WT-FR-VOCAB-02 | P1 | partial | 2 | 60 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-EVENT-01 | P1 | partial | 2 | 61 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-PAGE-01 | P1 | partial | 3 | 81 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-ZONE-02 | P1 | partial | 2 | 116 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-PARTS-03 | P1 | partial | 2 | 179 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-ENV-01 | P2 | partial | 2 | 0 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
-| WT-FR-ZONE-03 | P2 | partial | 4 | 121 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-ZONE-03 | P2 | partial | 4 | 122 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 
 ## ページ種別の調査残
 

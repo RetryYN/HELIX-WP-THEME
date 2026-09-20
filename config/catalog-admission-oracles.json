@@ -61,6 +61,11 @@
       "npm",
       "run",
       "recovery-contract:verify"
+    ],
+    "docs/research/2026-09-20-zone-overrides-poc/verification.json": [
+      "npm",
+      "run",
+      "zone-overrides:verify"
     ]
   },
   "acceptanceProofs": {
@@ -156,6 +161,12 @@
     ],
     "WT-AC-NFR-REC-01B": [
       "docs/research/2026-09-20-recovery-contract-poc/verification.json"
+    ],
+    "WT-AC-ZONE-02A": [
+      "docs/research/2026-09-20-zone-overrides-poc/verification.json"
+    ],
+    "WT-AC-ZONE-02B": [
+      "docs/research/2026-09-20-zone-overrides-poc/verification.json"
     ]
   }
 }

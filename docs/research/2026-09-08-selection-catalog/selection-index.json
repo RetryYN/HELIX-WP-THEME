@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 689,
+  "candidateCount": 690,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -186,7 +186,7 @@
       "priority": "P0",
       "status": "partial_poc",
       "coverage": {
-        "candidateCount": 115,
+        "candidateCount": 116,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
@@ -322,36 +322,34 @@
         "inheritance:content_site:site",
         "inheritance:content_site:own",
         "inheritance:content_site:off",
-        "zone-slots:device-selection"
+        "zone-slots:device-selection",
+        "zone:overrides"
       ]
     },
     {
       "id": "WT-FR-ZONE-02",
       "priority": "P1",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 115,
+        "candidateCount": 116,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-ZONE-02A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ZONE-02B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
       "relatedEntryIds": [
@@ -469,7 +467,8 @@
         "inheritance:content_site:site",
         "inheritance:content_site:own",
         "inheritance:content_site:off",
-        "zone-slots:device-selection"
+        "zone-slots:device-selection",
+        "zone:overrides"
       ]
     },
     {
@@ -477,7 +476,7 @@
       "priority": "P2",
       "status": "partial_poc",
       "coverage": {
-        "candidateCount": 121,
+        "candidateCount": 122,
         "acceptanceCount": 4,
         "counts": {
           "verified_in_poc": 0,
@@ -627,7 +626,8 @@
         "banner-finished:product",
         "banner-finished:advertisement",
         "banner-finished:rotation",
-        "banner-finished:stack"
+        "banner-finished:stack",
+        "zone:overrides"
       ]
     },
     {
@@ -9363,15 +9363,13 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 4,
+          "partial": 18,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
-          "WT-AC-BANNER-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-BANNER-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -9404,15 +9402,13 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 4,
+          "partial": 18,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
-          "WT-AC-BANNER-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-BANNER-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -9445,15 +9441,13 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 4,
+          "partial": 18,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
-          "WT-AC-BANNER-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-BANNER-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -9486,15 +9480,13 @@
         "acceptanceCount": 22,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 4,
+          "partial": 18,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
-          "WT-AC-BANNER-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-BANNER-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21103,15 +21095,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21143,15 +21133,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21183,15 +21171,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21223,15 +21209,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21263,15 +21247,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21303,15 +21285,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21343,15 +21323,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21383,15 +21361,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21423,15 +21399,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21463,15 +21437,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21503,15 +21475,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21543,15 +21513,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21585,17 +21553,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21629,17 +21595,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21673,17 +21637,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21717,17 +21679,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21761,17 +21721,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21805,17 +21763,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21849,17 +21805,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21893,17 +21847,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21937,17 +21889,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -21981,17 +21931,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22025,17 +21973,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22069,17 +22015,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22113,17 +22057,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22160,8 +22102,8 @@
         "acceptanceCount": 28,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 10,
+          "partial": 18,
+          "missing": 8,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -22172,9 +22114,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22210,8 +22150,8 @@
         "acceptanceCount": 28,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 10,
+          "partial": 18,
+          "missing": 8,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -22222,9 +22162,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22260,8 +22198,8 @@
         "acceptanceCount": 28,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 16,
-          "missing": 10,
+          "partial": 18,
+          "missing": 8,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -22272,9 +22210,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22305,15 +22241,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22345,15 +22279,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22384,15 +22316,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22423,15 +22353,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22464,17 +22392,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22507,17 +22433,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22550,17 +22474,15 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 17,
-          "missing": 6,
+          "partial": 19,
+          "missing": 4,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-BANNER-02A",
           "WT-AC-BANNER-02B",
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22591,15 +22513,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22630,15 +22550,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22669,15 +22587,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22708,15 +22624,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22747,15 +22661,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22786,15 +22698,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22825,15 +22735,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22864,15 +22772,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22903,15 +22809,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22942,15 +22846,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -22981,15 +22883,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23020,15 +22920,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23215,15 +23113,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23255,15 +23151,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23295,15 +23189,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23335,15 +23227,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23375,15 +23265,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23415,15 +23303,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23454,15 +23340,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23493,15 +23377,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23532,15 +23414,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23571,15 +23451,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23610,15 +23488,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23649,15 +23525,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23688,15 +23562,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -23727,15 +23599,13 @@
         "acceptanceCount": 18,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 12,
-          "missing": 4,
+          "partial": 14,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
           "WT-AC-META-01A",
-          "WT-AC-META-01B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-META-01B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -24897,14 +24767,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -24939,8 +24806,8 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 15,
-          "missing": 8,
+          "partial": 17,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -24949,9 +24816,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -24982,14 +24847,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25024,8 +24886,8 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 15,
-          "missing": 8,
+          "partial": 17,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -25034,9 +24896,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -25067,14 +24927,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25109,8 +24966,8 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 15,
-          "missing": 8,
+          "partial": 17,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -25119,9 +24976,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -25152,14 +25007,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25194,8 +25046,8 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 15,
-          "missing": 8,
+          "partial": 17,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -25204,9 +25056,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -25237,14 +25087,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25279,8 +25126,8 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 15,
-          "missing": 8,
+          "partial": 17,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -25289,9 +25136,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -25322,14 +25167,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25364,8 +25206,8 @@
         "acceptanceCount": 25,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 15,
-          "missing": 8,
+          "partial": 17,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
@@ -25374,9 +25216,7 @@
           "WT-AC-SP-01A",
           "WT-AC-SP-01B",
           "WT-AC-SP-02A",
-          "WT-AC-SP-02B",
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
+          "WT-AC-SP-02B"
         ],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
@@ -25407,14 +25247,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25443,14 +25280,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25479,14 +25313,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25515,14 +25346,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25551,14 +25379,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25587,14 +25412,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25623,14 +25445,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25659,14 +25478,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25695,14 +25511,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25731,14 +25544,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25767,14 +25577,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25803,14 +25610,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25839,14 +25643,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25875,14 +25676,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25911,14 +25709,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25947,14 +25742,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -25983,14 +25775,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -26019,14 +25808,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -26055,14 +25841,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -27173,14 +26956,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27210,14 +26990,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27247,14 +27024,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27284,14 +27058,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27321,14 +27092,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27358,14 +27126,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27395,14 +27160,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27432,14 +27194,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27469,14 +27228,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27506,14 +27262,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27543,14 +27296,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27580,14 +27330,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27618,14 +27365,11 @@
         "acceptanceCount": 19,
         "counts": {
           "verified_in_poc": 6,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27656,14 +27400,11 @@
         "acceptanceCount": 19,
         "counts": {
           "verified_in_poc": 6,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27694,14 +27435,11 @@
         "acceptanceCount": 19,
         "counts": {
           "verified_in_poc": 6,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27731,14 +27469,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27768,14 +27503,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -27805,14 +27537,11 @@
         "acceptanceCount": 15,
         "counts": {
           "verified_in_poc": 2,
-          "partial": 11,
-          "missing": 2,
+          "partial": 13,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-content-faces/results/inheritance/verify.json",
@@ -28331,14 +28060,11 @@
         "acceptanceCount": 8,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 6,
-          "missing": 2,
+          "partial": 8,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ZONE-02A",
-          "WT-AC-ZONE-02B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-13-zone-slots/verification.json",
@@ -30521,6 +30247,37 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-recovery-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "zone:overrides",
+      "face": "zone",
+      "part": "zone-overrides-contract",
+      "label": "ゾーン：参照と上書き順",
+      "variant": "first-match-wins",
+      "purpose": "配置条件と上書き順を決める",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ZONE-02",
+        "WT-FR-ZONE-01",
+        "WT-FR-ZONE-03"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 8,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 8,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-zone-overrides-poc/verification.json",
       "devices": [
         "pc",
         "sp"

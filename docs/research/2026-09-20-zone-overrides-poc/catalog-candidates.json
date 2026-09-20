@@ -1,0 +1,23 @@
+{
+  "schema": "wt-zone-overrides-catalog-candidates.v1",
+  "entries": [{
+    "id": "zone:overrides",
+    "face": "zone",
+    "part": "zone-overrides-contract",
+    "label": "ゾーン：参照と上書き順",
+    "variant": "first-match-wins",
+    "description": "creativeをID参照に分離し、条件に一致した最初のoverridesだけを選ぶ契約。実WP接続は未完了。",
+    "purpose": "配置条件と上書き順を決める",
+    "group": "共通設定・部品",
+    "images": { "pc": "../2026-09-13-zone-slots/pc-js.png", "sp": "../2026-09-13-zone-slots/sp-js.png" },
+    "requirementIds": ["WT-FR-ZONE-02"],
+    "referenceId": "wt-zone-overrides-poc.v1",
+    "evidence": "../2026-09-20-zone-overrides-poc/verification.json",
+    "selectionFacts": {
+      "対象と判断": "同じzoneに複数条件が当たるとき、配列の先頭だけを採用するかを確認。",
+      "実測": "23意味ゾーン、creative参照、taxonomy/device条件、未知zoneと不正定義の拒否。",
+      "対象外": "実WP REST、CPT、Site Editor、権限、MCP/CLI、creative公開描画、同時更新。",
+      "既存画像": "zone-slotsのPC/SP配置画像は視覚候補の比較用で、このPoCの実装証拠ではない。"
+    }
+  }]
+}

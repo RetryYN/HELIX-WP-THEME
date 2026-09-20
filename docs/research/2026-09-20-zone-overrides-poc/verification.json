@@ -1,0 +1,71 @@
+{
+  "schema": "wt-zone-overrides-poc-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/verify-zone-overrides-poc.mjs": "555c13eb91c97abd19faec8c3adee3e765da2b6cfb448f475c6b65e9387fc8c7",
+    "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "168fd6bcfcd85f6119fbe91d3ef01897e0cc2095e59f3f39f7e08b9683cd2892"
+  },
+  "rows": [
+    {
+      "name": "schema:23 semantic zones declared",
+      "pass": true
+    },
+    {
+      "name": "schema:directional variants remain explicit",
+      "pass": true
+    },
+    {
+      "name": "schema:creative references are IDs",
+      "pass": true
+    },
+    {
+      "name": "resolve:default creative",
+      "pass": true
+    },
+    {
+      "name": "resolve:first matching override wins",
+      "pass": true
+    },
+    {
+      "name": "resolve:later rule is not merged",
+      "pass": true
+    },
+    {
+      "name": "resolve:device fallback after taxonomy miss",
+      "pass": true
+    },
+    {
+      "name": "resolve:empty zone is explicit null",
+      "pass": true
+    },
+    {
+      "name": "negative:unknown zone rejected",
+      "pass": true
+    },
+    {
+      "name": "negative:unknown config zone rejected",
+      "pass": true
+    },
+    {
+      "name": "negative:overrides object rejected",
+      "pass": true
+    },
+    {
+      "name": "negative:missing creative reference rejected",
+      "pass": true
+    }
+  ],
+  "fixture": {
+    "schema": "wt-zone-overrides.v1",
+    "declaredZoneCount": 23,
+    "testedZoneIds": [
+      "article_before",
+      "sidebar_sticky",
+      "front"
+    ]
+  },
+  "scope": "Pure local schema and first-match resolver contract; no WordPress REST, CPT, editor, persistence, permission, or production creative rendering.",
+  "remaining": [
+    "実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"
+  ]
+}

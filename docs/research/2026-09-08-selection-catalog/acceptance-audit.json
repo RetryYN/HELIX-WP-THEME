@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 196,
-    "partial": 72,
+    "missing": 194,
+    "partial": 74,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -232,24 +232,50 @@
       "requirement_id": "WT-FR-ZONE-02",
       "oracle": "schema に無いゾーン ID は拒否され、overrides は最初に一致した規則だけが適用される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "23意味ゾーンの代表schemaとcreative参照、未定義zone拒否、overridesのfirst-match-winsを純粋契約で検証。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+          "sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "row_names": [
+            "schema:23 semantic zones declared",
+            "schema:directional variants remain explicit",
+            "schema:creative references are IDs",
+            "resolve:default creative",
+            "resolve:first matching override wins",
+            "resolve:later rule is not merged",
+            "resolve:device fallback after taxonomy miss",
+            "resolve:empty zone is explicit null"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-02B",
       "requirement_id": "WT-FR-ZONE-02",
       "oracle": "複数規則が同時適用される、または未定義ゾーンが通れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "未定義zone、未宣言zone、overrides型不正、creative参照欠落を拒否する負例を検証。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "実WP 7.2のREST保存・権限・管理UI・MCP/CLI接続、全23面の実登録、creative実体の公開描画、同時更新競合は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+          "sha256": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "row_names": [
+            "negative:unknown zone rejected",
+            "negative:unknown config zone rejected",
+            "negative:overrides object rejected",
+            "negative:missing creative reference rejected"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-ZONE-03A",
@@ -4916,7 +4942,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -4941,7 +4967,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -6410,7 +6436,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "798c3a333ec9673dc7e131b11d59974572786d14ab993e1947d35dc8fd06fbfc",
+          "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
           "row_names": [
             "fixture:positive",
             "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",

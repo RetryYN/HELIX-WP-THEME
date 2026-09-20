@@ -777,6 +777,24 @@ if (fs.existsSync(path.join(root, recoveryContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const zoneOverridesPath = 'docs/research/2026-09-20-zone-overrides-poc/verification.json';
+if (fs.existsSync(path.join(root, zoneOverridesPath))) {
+  const report = read(zoneOverridesPath);
+  const candidates = read('docs/research/2026-09-20-zone-overrides-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.fixture?.declaredZoneCount !== 23) throw Error('Zone overrides evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error('Stale zone overrides source ' + source);
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['zone:overrides'])) throw Error('Zone overrides candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-ZONE-02'])) throw Error('Zone overrides requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const imagePath = candidate.images[device]
+        ? path.resolve(root, 'docs/research/2026-09-08-selection-catalog', candidate.images[device])
+        : null;
+      if (!imagePath || !fs.existsSync(imagePath)) throw Error('Missing zone overrides screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];
