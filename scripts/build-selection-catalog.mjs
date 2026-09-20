@@ -833,6 +833,26 @@ if (fs.existsSync(path.join(root, prDisclosureContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const lookPurposeContractPath = 'docs/research/2026-09-20-look-purpose-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, lookPurposeContractPath))) {
+  const report = read(lookPurposeContractPath);
+  const candidates = read('docs/research/2026-09-20-look-purpose-contract-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.shots.length !== 4) throw Error('Look purpose contract evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale look purpose contract source: ${source}`);
+  }
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['look-contract:purpose-quality'])) throw Error('Look purpose contract candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-LOOK-01'])) throw Error('Look purpose contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const expectedFile = candidate.images[device].replace('../2026-09-05-design-prototype-03/results/', '');
+      const shot = report.shots.find(item => item.device === device && item.file.endsWith(expectedFile));
+      const imagePath = path.join(root, 'docs/research/2026-09-05-design-prototype-03/results', expectedFile);
+      if (!shot || !fs.existsSync(imagePath) || createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex') !== shot.sha256) throw Error('Missing look purpose contract screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const authorContractPath = 'docs/research/2026-09-20-author-contract-poc/verification.json';
 if (fs.existsSync(path.join(root, authorContractPath))) {
   const report = read(authorContractPath);

@@ -1,0 +1,23 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-LOOK-01E": {
+    "status": "partial",
+    "scope": "用途台帳と既存実機検査を、見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4軸、およびPC/SP・JS無効・reduced-motion・コントラストへ対応付ける。",
+    "remaining": [
+      "全style variation・Site Editor・ブラウザzoom/root font組合せ、用途台帳のPO保留行、全候補の再撮影は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-look-purpose-contract-poc/verification.json",
+        "row_names": [
+          "AC-LOOK-01E binds the purpose ledger and all required surface families",
+          "AC-LOOK-01E projects PC/SP, JS-off, reduced-motion, and contrast gates",
+          "AC-LOOK-01E keeps the measured prototype complete",
+          "AC-LOOK-01E has candidate-facing evidence for both widths",
+          "AC-LOOK-01E rejects a missing purpose surface",
+          "AC-LOOK-01E rejects an omitted reduced-motion gate"
+        ]
+      }
+    ]
+  }
+}

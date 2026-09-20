@@ -14570,6 +14570,39 @@
           ]
         }
       ]
+    },
+    "WT-AC-LOOK-01E": {
+      "status": "partial",
+      "requirement_digest": "e5b535a0dbfeefc3",
+      "oracle_sha256": "b369dd81a02c4193bfbd7f1ab43f2c1e9b563b94f4a4c4143d4094a9df830fcb",
+      "source_digests": {
+        "docs/research/2026-09-20-look-purpose-contract-poc/contract.mjs": "38a4eb2898821f088988bd937ccae60ead39d3092610ca1b1e2a3fbcb18dc855",
+        "scripts/verify-look-purpose-contract-poc.mjs": "d21e4499bc4839f3d8613976bbf5f8ffdb95c8b2b54e0d08c7872714e6998ccc",
+        "docs/research/2026-09-20-look-purpose-contract-poc/README.md": "375ddacb69079206d46e37c2dc327bfaa08496f4ad61fde5a480363ac15c5acc",
+        "docs/research/2026-09-20-look-purpose-contract-poc/external-observations.md": "5228f69e425fa2a78e8af92eaf036df737d925b533afef5fca5a27592b87a24f",
+        "docs/research/2026-09-05-parts-pattern-taxonomy/by-purpose.md": "3d90dba13cc9257558f439d79cb3a2c61d4ead4bf52047239e0c68ad462f35dc",
+        "docs/research/2026-09-05-design-prototype-03/CATALOG-INDEX.json": "569539dd59ae22da76721d4635b80d88c160c5b42207bf7fed26746f1801a31b",
+        "docs/research/2026-09-05-design-prototype-03/results/verify.json": "21e84abacf1e710c3f96f9a86227d3dc845b7c3607cb5d84acaaa5428c68bdb7",
+        "docs/research/2026-09-05-design-prototype-03/scripts/verify.mjs": "50db4aa6891481ffb1720fb24ceea2eff56a9586e2c3e52109439d62bd1799fa"
+      },
+      "scope": "用途台帳と既存実機検査を、見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4軸、およびPC/SP・JS無効・reduced-motion・コントラストへ対応付ける。",
+      "remaining": [
+        "全style variation・Site Editor・ブラウザzoom/root font組合せ、用途台帳のPO保留行、全候補の再撮影は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-look-purpose-contract-poc/verification.json",
+          "sha256": "819971a203f77fe6bca107fbf4c29f56daae479cca7a7b1d996800a39230013a",
+          "row_names": [
+            "AC-LOOK-01E binds the purpose ledger and all required surface families",
+            "AC-LOOK-01E projects PC/SP, JS-off, reduced-motion, and contrast gates",
+            "AC-LOOK-01E keeps the measured prototype complete",
+            "AC-LOOK-01E has candidate-facing evidence for both widths",
+            "AC-LOOK-01E rejects a missing purpose surface",
+            "AC-LOOK-01E rejects an omitted reduced-motion gate"
+          ]
+        }
+      ]
     }
   }
 }

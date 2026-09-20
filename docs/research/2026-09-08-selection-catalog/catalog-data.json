@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 134,
-  "screenshotCount": 1279,
+  "screenshotCount": 1281,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -14350,6 +14350,30 @@
       }
     },
     {
+      "id": "look-contract:purpose-quality",
+      "face": "article",
+      "part": "look-contract",
+      "label": "見た目：用途台帳と品質ゲート",
+      "variant": "purpose-quality",
+      "description": "用途台帳から見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4軸を束ね、既存のPC/SP・JS無効・reduced-motion・コントラスト検査へ接続する静的契約PoC。",
+      "purpose": "読みやすく伝える",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LOOK-01"
+      ],
+      "referenceId": "wt-look-purpose-contract.v1",
+      "evidence": "../2026-09-20-look-purpose-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "用途別台帳から必要な型を選び、同じ品質ゲートでPC/SPを検査する。",
+        "実測": "既存results/verify.json 90 pass / 0 fail、JS無効・reduced-motion・contrast・4軸、代表PC/SP画像。",
+        "未検証": "全style variation・Site Editor・ブラウザzoom/root font組合せ、用途台帳のPO保留行、全候補の再撮影は未接続。"
+      }
+    },
+    {
       "id": "author-contract:canonical-person",
       "face": "article",
       "part": "article-tail-author",
@@ -17791,12 +17815,25 @@
           "requirement_id": "WT-FR-LOOK-01",
           "oracle": "型の用途説明と見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4 軸の拡張を台帳へ対応付け、PC / SP の表示不具合と無効 JS / reduced-motion を検査する",
           "polarity": "positive",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "用途台帳と既存実機検査を、見出し・囲み・CTA・比較表・グラフ・ブログカード・関連一覧・画像処理・4軸、およびPC/SP・JS無効・reduced-motion・コントラストへ対応付ける。",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "全style variation・Site Editor・ブラウザzoom/root font組合せ、用途台帳のPO保留行、全候補の再撮影は未接続。"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-20-look-purpose-contract-poc/verification.json",
+              "sha256": "819971a203f77fe6bca107fbf4c29f56daae479cca7a7b1d996800a39230013a",
+              "row_names": [
+                "AC-LOOK-01E binds the purpose ledger and all required surface families",
+                "AC-LOOK-01E projects PC/SP, JS-off, reduced-motion, and contrast gates",
+                "AC-LOOK-01E keeps the measured prototype complete",
+                "AC-LOOK-01E has candidate-facing evidence for both widths",
+                "AC-LOOK-01E rejects a missing purpose surface",
+                "AC-LOOK-01E rejects an omitted reduced-motion gate"
+              ]
+            }
+          ]
         }
       ],
       "status": "partial_poc",
@@ -17903,24 +17940,23 @@
         "device-finished:compare",
         "device-finished:read",
         "page:pricing-cards-standard",
-        "page:pricing-cards-long-copy"
+        "page:pricing-cards-long-copy",
+        "look-contract:purpose-quality"
       ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
       "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 103,
+        "candidateCount": 104,
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 4,
-          "missing": 1,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LOOK-01E"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {
@@ -35116,8 +35152,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 178,
-    "partial": 90,
+    "missing": 177,
+    "partial": 91,
     "verified_in_poc": 32,
     "stale": 0
   },

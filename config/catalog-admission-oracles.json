@@ -86,6 +86,10 @@
     "docs/research/2026-09-20-author-contract-poc/verification.json": [
       "node",
       "scripts/verify-author-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-20-look-purpose-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-look-purpose-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -235,6 +239,9 @@
     ],
     "WT-AC-AUTHOR-02B": [
       "docs/research/2026-09-20-author-contract-poc/verification.json"
+    ],
+    "WT-AC-LOOK-01E": [
+      "docs/research/2026-09-20-look-purpose-contract-poc/verification.json"
     ]
   }
 }
