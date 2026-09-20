@@ -123,6 +123,12 @@ test('catalog data stays aligned with canonical requirement and acceptance count
   assert.equal(catalog.requirements.length, ir.requirements.length);
   assert.equal(catalogAcceptanceRows.length, cases.cases.length);
   assert.equal(auditAcceptanceCount, cases.cases.length);
-  assert.equal(new Set(catalog.requirements.map(requirement => requirement.id)).size, ir.requirements.length);
-  assert.equal(new Set(catalogAcceptanceRows.map(acceptance => acceptance.id)).size, cases.cases.length);
+  assert.deepEqual(
+    [...new Set(catalog.requirements.map(requirement => requirement.id))].sort(),
+    [...new Set(ir.requirements.map(requirement => requirement.id))].sort(),
+  );
+  assert.deepEqual(
+    [...new Set(catalogAcceptanceRows.map(acceptance => acceptance.id))].sort(),
+    [...new Set(cases.cases.map(acceptance => acceptance.id))].sort(),
+  );
 });
