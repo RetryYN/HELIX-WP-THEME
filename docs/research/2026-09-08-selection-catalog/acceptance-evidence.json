@@ -14329,6 +14329,57 @@
           ]
         }
       ]
+    },
+    "WT-AC-RECO-01A": {
+      "status": "partial",
+      "requirement_digest": "9ff277e2c360bdfe",
+      "oracle_sha256": "fcfcbb0e08d49e1545051d1303cf415c1cfbc4059c0b17c462b2189be9e59323",
+      "source_digests": {
+        "docs/research/2026-09-20-recommendation-contract-poc/contract.mjs": "a5d153cb5e83e994bad8ebbbc5a3e4e0a4e4fdb5bb4ac6aad6668f59bcc2b479",
+        "scripts/verify-recommendation-contract-poc.mjs": "a38c00d0f85690d25242d72fa674afe368b73e8e89731ab0137ede9f2bfcdd55",
+        "docs/research/2026-09-20-recommendation-contract-poc/README.md": "86b0340e90435ae9b7663a5aacfa3935ffc7d29d41e3d0e22b525ae7856a371f"
+      },
+      "scope": "3方式・人気の方式/期間・手動順・読み戻し・日次集計の静的契約を検証する。",
+      "remaining": [
+        "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-recommendation-contract-poc/verification.json",
+          "sha256": "8c137aeb9382a133ad4b9cf778da5e5c80ba2b09d88ffd4441e054dca7973138",
+          "row_names": [
+            "AC-RECO-01A accepts three selectable methods and popular settings",
+            "AC-RECO-01A config JSON readback is identical",
+            "AC-RECO-01A self aggregation is daily and contains no IP"
+          ]
+        }
+      ]
+    },
+    "WT-AC-RECO-01B": {
+      "status": "partial",
+      "requirement_digest": "9ff277e2c360bdfe",
+      "oracle_sha256": "1190423e7b23c8fe1a45f27c02127790edf5571cc9b0c0bff8ad41e2e4b8a72b",
+      "source_digests": {
+        "docs/research/2026-09-20-recommendation-contract-poc/contract.mjs": "a5d153cb5e83e994bad8ebbbc5a3e4e0a4e4fdb5bb4ac6aad6668f59bcc2b479",
+        "scripts/verify-recommendation-contract-poc.mjs": "a38c00d0f85690d25242d72fa674afe368b73e8e89731ab0137ede9f2bfcdd55",
+        "docs/research/2026-09-20-recommendation-contract-poc/README.md": "86b0340e90435ae9b7663a5aacfa3935ffc7d29d41e3d0e22b525ae7856a371f"
+      },
+      "scope": "固定人気、手動順欠落、IP/生訪問保存、テーマ所有のAI順位判定を負例として拒否する。",
+      "remaining": [
+        "WordPress 7.2 の管理画面保存、REST/MCP 実接続、外部集計サービスの実通信、実デバイス支援技術検証は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-recommendation-contract-poc/verification.json",
+          "sha256": "8c137aeb9382a133ad4b9cf778da5e5c80ba2b09d88ffd4441e054dca7973138",
+          "row_names": [
+            "AC-RECO-01B rejects a fixed popular method and missing manual order",
+            "AC-RECO-01B rejects IP/raw-view persistence",
+            "AC-RECO-01B rejects theme-owned AI ranking",
+            "AC-RECO-01B rejects raw visitor fields at aggregation input"
+          ]
+        }
+      ]
     }
   }
 }

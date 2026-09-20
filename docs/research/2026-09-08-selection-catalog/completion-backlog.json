@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 696,
-  "screenshot_count": 1263,
+  "catalog_candidate_count": 699,
+  "screenshot_count": 1269,
   "acceptance_counts": {
-    "missing": 187,
-    "partial": 81,
+    "missing": 185,
+    "partial": 83,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -782,40 +782,6 @@
         "article:tail-author-supervisor"
       ],
       "statement": "著者を Article.author の url / sameAs、監修者を reviewedBy として構造化データへ反映し、著者ページは ProfilePage と代表画像を持つ",
-      "next_action": "既存候補を受入条件へ対応付け、代表fixtureと負例を検証する"
-    },
-    {
-      "requirement_id": "WT-FR-RECO-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 3,
-        "missing": 2,
-        "partial": 1,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 17,
-      "candidates": [
-        "article:related-grid",
-        "article:related-list",
-        "article:related-rank",
-        "article:related-carousel",
-        "category:category-ranking-none",
-        "category:category-ranking-sidebar",
-        "category:category-ranking-bottom",
-        "article:reaction7-related-grid",
-        "article:reaction7-related-list",
-        "article:reaction7-related-rank",
-        "article:reaction7-related-carousel",
-        "article:reaction7-related-featured",
-        "article:reaction7-related-ranking-numbers",
-        "article:related-slider",
-        "category:category-ranking-top",
-        "recommendation-layout:cards",
-        "recommendation-layout:list"
-      ],
-      "statement": "記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選ぶ場合も bot・管理者を除外し、IP を保存せず日次で集約する。外部集計の読み戻しも選択できる。関連 / 人気 / おすすめの表示型（カード・リスト・ランキング番号付き・サムネイル大小・横スクロール）を用途別一覧から選べる（PO 2026-09-05、WT-Q-PARTS-03）",
       "next_action": "既存候補を受入条件へ対応付け、代表fixtureと負例を検証する"
     },
     {
@@ -2682,6 +2648,43 @@
         "product-surfaces:review"
       ],
       "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・返品ポリシー付きの merchant listing 形を出し分け、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする。出典: https://developers.google.com/search/docs/appearance/structured-data/product-snippet、https://developers.google.com/search/docs/appearance/structured-data/merchant-listing（参照日: 2026-09-03）。pros-cons、ランキング根拠、料金表 variant、先頭列固定を扱い、打消し表示は CTA と同視野・同サイズにする。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-RECO-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 3,
+        "missing": 0,
+        "partial": 3,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 20,
+      "candidates": [
+        "article:related-grid",
+        "article:related-list",
+        "article:related-rank",
+        "article:related-carousel",
+        "category:category-ranking-none",
+        "category:category-ranking-sidebar",
+        "category:category-ranking-bottom",
+        "article:reaction7-related-grid",
+        "article:reaction7-related-list",
+        "article:reaction7-related-rank",
+        "article:reaction7-related-carousel",
+        "article:reaction7-related-featured",
+        "article:reaction7-related-ranking-numbers",
+        "article:related-slider",
+        "category:category-ranking-top",
+        "recommendation-layout:cards",
+        "recommendation-layout:list",
+        "recommendation-contract:methods",
+        "recommendation-contract:boundary",
+        "recommendation-contract:display-binding"
+      ],
+      "statement": "記事一覧に関連（カテゴリ→タグ→手動）、人気（運用者が集計方式と期間を選択）、おすすめ（手動指定・並び順）の3方式を持つ。人気の自前集計を選ぶ場合も bot・管理者を除外し、IP を保存せず日次で集約する。外部集計の読み戻しも選択できる。関連 / 人気 / おすすめの表示型（カード・リスト・ランキング番号付き・サムネイル大小・横スクロール）を用途別一覧から選べる（PO 2026-09-05、WT-Q-PARTS-03）",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 696,
+  "candidateCount": 699,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -4821,28 +4821,25 @@
       "priority": "P0",
       "status": "partial_poc",
       "coverage": {
-        "candidateCount": 17,
+        "candidateCount": 20,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-RECO-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-RECO-01B",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-RECO-01C",
@@ -4866,7 +4863,10 @@
         "article:related-slider",
         "category:category-ranking-top",
         "recommendation-layout:cards",
-        "recommendation-layout:list"
+        "recommendation-layout:list",
+        "recommendation-contract:methods",
+        "recommendation-contract:boundary",
+        "recommendation-contract:display-binding"
       ]
     },
     {
@@ -8094,14 +8094,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -8126,14 +8123,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -8158,14 +8152,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -8190,14 +8181,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -9117,14 +9105,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -9149,14 +9134,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -9181,14 +9163,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -13968,14 +13947,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -14000,14 +13976,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -14032,14 +14005,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -14064,14 +14034,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -14096,14 +14063,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -14128,14 +14092,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -15081,14 +15042,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -18716,14 +18674,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": null,
@@ -28850,14 +28805,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-19-recommendation-layouts/verification.json",
@@ -28882,14 +28834,11 @@
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 1,
-          "missing": 2,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-RECO-01A",
-          "WT-AC-RECO-01B"
-        ],
+        "openAcceptanceIds": [],
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-19-recommendation-layouts/verification.json",
@@ -30082,6 +30031,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-lp-tracking-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "recommendation-contract:methods",
+      "face": "article",
+      "part": "recommendation-contract",
+      "label": "記事選定：関連・人気・手動の3方式",
+      "variant": "methods",
+      "purpose": "迷わず案内する",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-recommendation-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "recommendation-contract:boundary",
+      "face": "article",
+      "part": "recommendation-contract",
+      "label": "記事選定：個人情報・順位判定の境界",
+      "variant": "boundary",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-recommendation-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "recommendation-contract:display-binding",
+      "face": "article",
+      "part": "recommendation-contract",
+      "label": "記事一覧：表示型と選定結果の不変条件",
+      "variant": "display-binding",
+      "purpose": "読みやすく伝える",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-RECO-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-recommendation-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"
