@@ -1,0 +1,107 @@
+{
+  "WT-AC-ADMIN-01A": {
+    "status": "partial",
+    "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-poc/verification.json",
+        "row_names": [
+          "AC-A apply export import and manifest projection use same document"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-01B": {
+    "status": "partial",
+    "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-poc/verification.json",
+        "row_names": [
+          "AC-B rejected unknown preserves applied projection",
+          "AC-B rejected pattern preserves applied projection",
+          "AC-B rejected length preserves applied projection",
+          "AC-B rejected range preserves applied projection",
+          "AC-B rejected fraction preserves applied projection",
+          "AC-B rejected missing preserves applied projection",
+          "AC-B rejected version preserves applied projection",
+          "AC-B rejected enum preserves applied projection",
+          "AC-B invalid syntax has readable diagnostic"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-01C": {
+    "status": "partial",
+    "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-poc/verification.json",
+        "row_names": [
+          "AC-C site 1440px js layer and reflow",
+          "AC-C site 1440px no-js layer and reflow",
+          "AC-C site 390px js layer and reflow",
+          "AC-C site 390px no-js layer and reflow",
+          "AC-C site 320px js layer and reflow",
+          "AC-C site 320px no-js layer and reflow",
+          "AC-C parts 1440px js layer and reflow",
+          "AC-C parts 1440px no-js layer and reflow",
+          "AC-C parts 390px js layer and reflow",
+          "AC-C parts 390px no-js layer and reflow",
+          "AC-C parts 320px js layer and reflow",
+          "AC-C parts 320px no-js layer and reflow",
+          "AC-C article 1440px js layer and reflow",
+          "AC-C article 1440px no-js layer and reflow",
+          "AC-C article 390px js layer and reflow",
+          "AC-C article 390px no-js layer and reflow",
+          "AC-C article 320px js layer and reflow",
+          "AC-C article 320px no-js layer and reflow"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-01D": {
+    "status": "partial",
+    "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-poc/verification.json",
+        "row_names": [
+          "AC-D fixed guards ownership C note and keyboard at 200 percent root text"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ADMIN-01E": {
+    "status": "partial",
+    "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+    "remaining": [
+      "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+      "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-admin-poc/verification.json",
+        "row_names": [
+          "AC-E schema boundaries and hierarchy bulk input states"
+        ]
+      }
+    ]
+  }
+}

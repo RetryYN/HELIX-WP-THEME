@@ -13004,6 +13004,196 @@
           ]
         }
       ]
+    },
+    "WT-AC-ADMIN-01A": {
+      "status": "partial",
+      "requirement_digest": "b8e7f5a65117025c",
+      "oracle_sha256": "931c3ffab3d4ed79246f8f60f4d99c398a228ff85426799be201080f8f180575",
+      "source_digests": {
+        "scripts/build-admin-poc.mjs": "6aa763a811720a50c7e5f8b62b825523ae13f50a62582df8f66bbfdd9704248c",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/verify-admin-poc.mjs": "6ca4c58f89366a0d18acd7307bb0ee08d2043e5f25714692c5341821f2fd6523",
+        "tests/e2e/admin-poc-selection-catalog.spec.ts": "fb67ea919fc4177841f59dae94316f1f26582f46b2583a73d0edc98f975dc30c",
+        "docs/research/2026-09-20-admin-poc/contract.mjs": "5e94b350b1c0d716df45e658967df63b21debdd12db0381f318ff2284bf9c0e9",
+        "docs/research/2026-09-20-admin-poc/schema.json": "81edd670251ecb3381008ae193a195afdd3b3a1f048e5f52cb4f613908e63d10",
+        "docs/research/2026-09-20-admin-poc/view.mjs": "d449a061faedc44a2f4c06f4b04c88de08436a08ca8736233b3d74ef1c8e2356",
+        "docs/research/2026-09-20-admin-poc/admin.css": "6bfe6f65663e6e64fd43d125b83c83e67be21155209b28a4b1ce8dfa3186b432",
+        "docs/research/2026-09-20-admin-poc/site.html": "f4568f67ebfa89c4191ca680f3dfafb80ddf9ab4fa722cfbb69c664d1bd75d8f",
+        "docs/research/2026-09-20-admin-poc/parts.html": "0f7ec07ebc920d01a3786c78ac6b2191b4a46c50454f968dba638edcdd1b83e5",
+        "docs/research/2026-09-20-admin-poc/article.html": "46bc9dc494c65c0c2b1d4f02a9e23e1499021692a5e632d9022cc7a3767d79e5"
+      },
+      "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+      "remaining": [
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-admin-poc/verification.json",
+          "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "row_names": [
+            "AC-A apply export import and manifest projection use same document"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ADMIN-01B": {
+      "status": "partial",
+      "requirement_digest": "b8e7f5a65117025c",
+      "oracle_sha256": "ce36030981488d22635fa72c066a563ce2a3b89192d99e8e58e5fdf753a7c424",
+      "source_digests": {
+        "scripts/build-admin-poc.mjs": "6aa763a811720a50c7e5f8b62b825523ae13f50a62582df8f66bbfdd9704248c",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/verify-admin-poc.mjs": "6ca4c58f89366a0d18acd7307bb0ee08d2043e5f25714692c5341821f2fd6523",
+        "tests/e2e/admin-poc-selection-catalog.spec.ts": "fb67ea919fc4177841f59dae94316f1f26582f46b2583a73d0edc98f975dc30c",
+        "docs/research/2026-09-20-admin-poc/contract.mjs": "5e94b350b1c0d716df45e658967df63b21debdd12db0381f318ff2284bf9c0e9",
+        "docs/research/2026-09-20-admin-poc/schema.json": "81edd670251ecb3381008ae193a195afdd3b3a1f048e5f52cb4f613908e63d10",
+        "docs/research/2026-09-20-admin-poc/view.mjs": "d449a061faedc44a2f4c06f4b04c88de08436a08ca8736233b3d74ef1c8e2356",
+        "docs/research/2026-09-20-admin-poc/admin.css": "6bfe6f65663e6e64fd43d125b83c83e67be21155209b28a4b1ce8dfa3186b432",
+        "docs/research/2026-09-20-admin-poc/site.html": "f4568f67ebfa89c4191ca680f3dfafb80ddf9ab4fa722cfbb69c664d1bd75d8f",
+        "docs/research/2026-09-20-admin-poc/parts.html": "0f7ec07ebc920d01a3786c78ac6b2191b4a46c50454f968dba638edcdd1b83e5",
+        "docs/research/2026-09-20-admin-poc/article.html": "46bc9dc494c65c0c2b1d4f02a9e23e1499021692a5e632d9022cc7a3767d79e5"
+      },
+      "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+      "remaining": [
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-admin-poc/verification.json",
+          "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "row_names": [
+            "AC-B rejected unknown preserves applied projection",
+            "AC-B rejected pattern preserves applied projection",
+            "AC-B rejected length preserves applied projection",
+            "AC-B rejected range preserves applied projection",
+            "AC-B rejected fraction preserves applied projection",
+            "AC-B rejected missing preserves applied projection",
+            "AC-B rejected version preserves applied projection",
+            "AC-B rejected enum preserves applied projection",
+            "AC-B invalid syntax has readable diagnostic"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ADMIN-01C": {
+      "status": "partial",
+      "requirement_digest": "b8e7f5a65117025c",
+      "oracle_sha256": "0797decace7b439aaf65dffeab5f0e2879b48ccef752235e61ea33e0896fd6e0",
+      "source_digests": {
+        "scripts/build-admin-poc.mjs": "6aa763a811720a50c7e5f8b62b825523ae13f50a62582df8f66bbfdd9704248c",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/verify-admin-poc.mjs": "6ca4c58f89366a0d18acd7307bb0ee08d2043e5f25714692c5341821f2fd6523",
+        "tests/e2e/admin-poc-selection-catalog.spec.ts": "fb67ea919fc4177841f59dae94316f1f26582f46b2583a73d0edc98f975dc30c",
+        "docs/research/2026-09-20-admin-poc/contract.mjs": "5e94b350b1c0d716df45e658967df63b21debdd12db0381f318ff2284bf9c0e9",
+        "docs/research/2026-09-20-admin-poc/schema.json": "81edd670251ecb3381008ae193a195afdd3b3a1f048e5f52cb4f613908e63d10",
+        "docs/research/2026-09-20-admin-poc/view.mjs": "d449a061faedc44a2f4c06f4b04c88de08436a08ca8736233b3d74ef1c8e2356",
+        "docs/research/2026-09-20-admin-poc/admin.css": "6bfe6f65663e6e64fd43d125b83c83e67be21155209b28a4b1ce8dfa3186b432",
+        "docs/research/2026-09-20-admin-poc/site.html": "f4568f67ebfa89c4191ca680f3dfafb80ddf9ab4fa722cfbb69c664d1bd75d8f",
+        "docs/research/2026-09-20-admin-poc/parts.html": "0f7ec07ebc920d01a3786c78ac6b2191b4a46c50454f968dba638edcdd1b83e5",
+        "docs/research/2026-09-20-admin-poc/article.html": "46bc9dc494c65c0c2b1d4f02a9e23e1499021692a5e632d9022cc7a3767d79e5"
+      },
+      "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+      "remaining": [
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-admin-poc/verification.json",
+          "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "row_names": [
+            "AC-C site 1440px js layer and reflow",
+            "AC-C site 1440px no-js layer and reflow",
+            "AC-C site 390px js layer and reflow",
+            "AC-C site 390px no-js layer and reflow",
+            "AC-C site 320px js layer and reflow",
+            "AC-C site 320px no-js layer and reflow",
+            "AC-C parts 1440px js layer and reflow",
+            "AC-C parts 1440px no-js layer and reflow",
+            "AC-C parts 390px js layer and reflow",
+            "AC-C parts 390px no-js layer and reflow",
+            "AC-C parts 320px js layer and reflow",
+            "AC-C parts 320px no-js layer and reflow",
+            "AC-C article 1440px js layer and reflow",
+            "AC-C article 1440px no-js layer and reflow",
+            "AC-C article 390px js layer and reflow",
+            "AC-C article 390px no-js layer and reflow",
+            "AC-C article 320px js layer and reflow",
+            "AC-C article 320px no-js layer and reflow"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ADMIN-01D": {
+      "status": "partial",
+      "requirement_digest": "b8e7f5a65117025c",
+      "oracle_sha256": "3115151b47ac9868ac3d9d47e88c72e5538651db52240a315964ffaaaa8e123c",
+      "source_digests": {
+        "scripts/build-admin-poc.mjs": "6aa763a811720a50c7e5f8b62b825523ae13f50a62582df8f66bbfdd9704248c",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/verify-admin-poc.mjs": "6ca4c58f89366a0d18acd7307bb0ee08d2043e5f25714692c5341821f2fd6523",
+        "tests/e2e/admin-poc-selection-catalog.spec.ts": "fb67ea919fc4177841f59dae94316f1f26582f46b2583a73d0edc98f975dc30c",
+        "docs/research/2026-09-20-admin-poc/contract.mjs": "5e94b350b1c0d716df45e658967df63b21debdd12db0381f318ff2284bf9c0e9",
+        "docs/research/2026-09-20-admin-poc/schema.json": "81edd670251ecb3381008ae193a195afdd3b3a1f048e5f52cb4f613908e63d10",
+        "docs/research/2026-09-20-admin-poc/view.mjs": "d449a061faedc44a2f4c06f4b04c88de08436a08ca8736233b3d74ef1c8e2356",
+        "docs/research/2026-09-20-admin-poc/admin.css": "6bfe6f65663e6e64fd43d125b83c83e67be21155209b28a4b1ce8dfa3186b432",
+        "docs/research/2026-09-20-admin-poc/site.html": "f4568f67ebfa89c4191ca680f3dfafb80ddf9ab4fa722cfbb69c664d1bd75d8f",
+        "docs/research/2026-09-20-admin-poc/parts.html": "0f7ec07ebc920d01a3786c78ac6b2191b4a46c50454f968dba638edcdd1b83e5",
+        "docs/research/2026-09-20-admin-poc/article.html": "46bc9dc494c65c0c2b1d4f02a9e23e1499021692a5e632d9022cc7a3767d79e5"
+      },
+      "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+      "remaining": [
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-admin-poc/verification.json",
+          "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "row_names": [
+            "AC-D fixed guards ownership C note and keyboard at 200 percent root text"
+          ]
+        }
+      ]
+    },
+    "WT-AC-ADMIN-01E": {
+      "status": "partial",
+      "requirement_digest": "b8e7f5a65117025c",
+      "oracle_sha256": "477de87a0cffa9ed1d995cba1e4105692a6be7efb69daccfb56acd09710962af",
+      "source_digests": {
+        "scripts/build-admin-poc.mjs": "6aa763a811720a50c7e5f8b62b825523ae13f50a62582df8f66bbfdd9704248c",
+        "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
+        "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
+        "scripts/verify-admin-poc.mjs": "6ca4c58f89366a0d18acd7307bb0ee08d2043e5f25714692c5341821f2fd6523",
+        "tests/e2e/admin-poc-selection-catalog.spec.ts": "fb67ea919fc4177841f59dae94316f1f26582f46b2583a73d0edc98f975dc30c",
+        "docs/research/2026-09-20-admin-poc/contract.mjs": "5e94b350b1c0d716df45e658967df63b21debdd12db0381f318ff2284bf9c0e9",
+        "docs/research/2026-09-20-admin-poc/schema.json": "81edd670251ecb3381008ae193a195afdd3b3a1f048e5f52cb4f613908e63d10",
+        "docs/research/2026-09-20-admin-poc/view.mjs": "d449a061faedc44a2f4c06f4b04c88de08436a08ca8736233b3d74ef1c8e2356",
+        "docs/research/2026-09-20-admin-poc/admin.css": "6bfe6f65663e6e64fd43d125b83c83e67be21155209b28a4b1ce8dfa3186b432",
+        "docs/research/2026-09-20-admin-poc/site.html": "f4568f67ebfa89c4191ca680f3dfafb80ddf9ab4fa722cfbb69c664d1bd75d8f",
+        "docs/research/2026-09-20-admin-poc/parts.html": "0f7ec07ebc920d01a3786c78ac6b2191b4a46c50454f968dba638edcdd1b83e5",
+        "docs/research/2026-09-20-admin-poc/article.html": "46bc9dc494c65c0c2b1d4f02a9e23e1499021692a5e632d9022cc7a3767d79e5"
+      },
+      "scope": "3層の静的設定PoC。ブラウザ内一時適用、共通schema、JSON roundtrip、検証失敗の保持、1440/390/320px、JS有無、keyboard、代表固定ガード、bulk/入力状態。",
+      "remaining": [
+        "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。",
+        "実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-admin-poc/verification.json",
+          "sha256": "8c3a2005d2fbc9fc4570ff4b4bb2136e337ad7ca172b6860aba718188260ddcb",
+          "row_names": [
+            "AC-E schema boundaries and hierarchy bulk input states"
+          ]
+        }
+      ]
     }
   }
 }

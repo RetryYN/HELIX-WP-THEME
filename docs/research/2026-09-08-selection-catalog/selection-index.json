@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 663,
+  "candidateCount": 666,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -1972,48 +1972,46 @@
     {
       "id": "WT-FR-ADMIN-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 5,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-ADMIN-01A",
-          "WT-AC-ADMIN-01B",
-          "WT-AC-ADMIN-01C",
-          "WT-AC-ADMIN-01D",
-          "WT-AC-ADMIN-01E"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-ADMIN-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ADMIN-01B",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ADMIN-01C",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ADMIN-01D",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-ADMIN-01E",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "admin:site",
+        "admin:parts",
+        "admin:article"
+      ]
     },
     {
       "id": "WT-FR-LP-01",
@@ -29761,6 +29759,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-utility-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "admin:site",
+      "face": "inheritance",
+      "part": "admin-site",
+      "label": "設定画面：サイト既定",
+      "variant": "site",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 5,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "admin:parts",
+      "face": "inheritance",
+      "part": "admin-parts",
+      "label": "設定画面：パーツ",
+      "variant": "parts",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 5,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "admin:article",
+      "face": "inheritance",
+      "part": "admin-article",
+      "label": "設定画面：記事の上書き",
+      "variant": "article",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 5,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-admin-poc/verification.json",
       "devices": [
         "pc",
         "sp"

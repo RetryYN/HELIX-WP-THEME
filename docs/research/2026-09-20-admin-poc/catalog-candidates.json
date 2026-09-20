@@ -1,0 +1,86 @@
+{
+  "schema": "wt-admin-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "admin:site",
+      "face": "inheritance",
+      "part": "admin-site",
+      "label": "設定画面：サイト既定",
+      "variant": "site",
+      "description": "サイト全体の出発点を選ぶ。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-poc/site-pc.jpg",
+        "sp": "../2026-09-20-admin-poc/site-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "referenceId": "wt-admin-poc.v1",
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "サイト全体の出発点を選ぶ",
+        "反映の境界": "ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin:parts",
+      "face": "inheritance",
+      "part": "admin-parts",
+      "label": "設定画面：パーツ",
+      "variant": "parts",
+      "description": "既定セットから部品を調整。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-poc/parts-pc.jpg",
+        "sp": "../2026-09-20-admin-poc/parts-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "referenceId": "wt-admin-poc.v1",
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "既定セットから部品を調整",
+        "反映の境界": "ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    },
+    {
+      "id": "admin:article",
+      "face": "inheritance",
+      "part": "admin-article",
+      "label": "設定画面：記事の上書き",
+      "variant": "article",
+      "description": "継承する値と例外を見分ける。schema JSONに基づく静的/ローカルPoC。5受入条件は部分確認。",
+      "purpose": "設定の階層と反映先を確かめる",
+      "group": "共通設定・部品",
+      "images": {
+        "pc": "../2026-09-20-admin-poc/article-pc.jpg",
+        "sp": "../2026-09-20-admin-poc/article-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ADMIN-01"
+      ],
+      "referenceId": "wt-admin-poc.v1",
+      "evidence": "../2026-09-20-admin-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "継承する値と例外を見分ける",
+        "反映の境界": "ブラウザ内一時適用。settings / postMetaPreviewを分けた投影。実WP画面ではない。",
+        "入力の扱い": "再読込・画面移動で初期化。永続保存・外部送信なし。",
+        "実測": "1440/390/320px、JS有無、JSON入出力、検証失敗、keyboard、代表200% root文字。",
+        "対象外": "AI・credentialなし。計測/広告はテーマ外。色/書体/寸法はtheme.json / Site Editor。",
+        "未検証": "WordPress管理面・WP 7.2実機・DataViews/DataForm実接続・サーバー登録は未検証。 実保存・投稿メタ・manifest/MCP・権限・外部APIは未接続。全P01–P33・全ブラウザ・実スクリーンリーダーは未検証。"
+      }
+    }
+  ]
+}

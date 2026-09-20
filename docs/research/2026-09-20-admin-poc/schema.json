@@ -1,0 +1,146 @@
+{
+  "id": "wt-admin-poc.v1",
+  "fields": [
+    {
+      "id": "site.bundle",
+      "label": "サイトの既定セット",
+      "type": "enum",
+      "values": [
+        "editorial",
+        "service"
+      ],
+      "default": "editorial",
+      "owner": "settings JSON",
+      "options": [
+        [
+          "editorial",
+          "読みもの中心",
+          "本文と目次を優先"
+        ],
+        [
+          "service",
+          "サービス紹介",
+          "案内と行動導線を優先"
+        ]
+      ]
+    },
+    {
+      "id": "parts.toc",
+      "label": "目次の表示",
+      "type": "enum",
+      "values": [
+        "auto",
+        "off"
+      ],
+      "default": "auto",
+      "owner": "settings JSON",
+      "options": [
+        [
+          "auto",
+          "見出しが３つ以上",
+          "本文冒頭 / SPは折りたたむ"
+        ],
+        [
+          "off",
+          "表示しない",
+          "記事ごとの上書きは別途選択"
+        ]
+      ]
+    },
+    {
+      "id": "article.toc",
+      "label": "この記事の目次",
+      "type": "enum",
+      "values": [
+        "inherit",
+        "auto",
+        "off"
+      ],
+      "default": "inherit",
+      "owner": "post meta 接続プレビュー",
+      "options": [
+        [
+          "inherit",
+          "サイト設定を継承",
+          "パーツの選択に追従"
+        ],
+        [
+          "auto",
+          "この記事で表示",
+          "見出し３つ以上が条件"
+        ],
+        [
+          "off",
+          "この記事では非表示",
+          "この記事だけ上書き"
+        ]
+      ]
+    },
+    {
+      "id": "site.label",
+      "label": "セットの管理名",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[^<>]+$",
+      "default": "編集用セット",
+      "owner": "settings JSON"
+    },
+    {
+      "id": "parts.threshold",
+      "label": "目次に必要な見出し数",
+      "type": "integer",
+      "min": 3,
+      "max": 8,
+      "default": 3,
+      "owner": "settings JSON"
+    }
+  ],
+  "actions": [
+    {
+      "id": "apply",
+      "label": "一時設定へ適用",
+      "bulk": false
+    },
+    {
+      "id": "inherit",
+      "label": "選択記事を継承へ戻す",
+      "bulk": true
+    },
+    {
+      "id": "export",
+      "label": "JSONを書き出す",
+      "bulk": false
+    },
+    {
+      "id": "import",
+      "label": "JSONを検証して取り込む",
+      "bulk": false
+    }
+  ],
+  "hierarchy": [
+    {
+      "id": "site",
+      "parent": null
+    },
+    {
+      "id": "parts",
+      "parent": "site"
+    },
+    {
+      "id": "article",
+      "parent": "parts"
+    }
+  ],
+  "states": [
+    "unchanged",
+    "dirty",
+    "invalid",
+    "applied"
+  ],
+  "exclusions": [
+    "計測・広告コードはテーマ外",
+    "色・書体・寸法はtheme.json / Site Editor",
+    "credential・AI処理なし"
+  ]
+}
