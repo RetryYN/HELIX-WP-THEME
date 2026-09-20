@@ -246,3 +246,6 @@ dialog{scroll-padding-top:var(--dialog-header-clearance,0px)}
 .tile-footer .compare-pick:hover{border-color:var(--green);background:var(--tint)}
 .tile-footer .compare-pick:has(input:checked){border-color:var(--green);background:var(--tint)}
 .tile-footer .compare-pick:has(input:focus-visible){outline:3px solid #bc5b22;outline-offset:2px}
+
+/* 候補を区別するvariant名を、小画面でもPCと同じ文字サイズで読む。 */
+@media(max-width:700px){.tile .variant{font-size:12px}}
