@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 177,
-    "partial": 91,
+    "missing": 174,
+    "partial": 94,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -2245,24 +2245,42 @@
       "requirement_id": "WT-FR-LOOK-03",
       "oracle": "サイトパターンごとに調査証跡（対象数・採取項目・分布）が digest 束縛され、そこから導出した variation / block style が G-T1b / G-T3 PASS",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "269件のサイト調査、6系統の分布、730件25 familyの部品集計、および9 variationの導出をG-T1b/G-T3へ束ねる。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "row_names": [
+            "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+            "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-LOOK-03B",
       "requirement_id": "WT-FR-LOOK-03",
       "oracle": "調査証跡のないサイトパターンの variation が要求または実装に入れば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "調査証跡のないパターンをvariationMapへ入れない負例を固定する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "row_names": [
+            "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
+            "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-LP-02A",
@@ -11487,12 +11505,21 @@
       "requirement_id": "WT-FR-LOOK-03",
       "oracle": "未観察パターンを調査対象として保持し、索引の追加が可能で、未検証を対応済みと数えない",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "未観察パターンをopen indexへ保持し、completion=falseを固定する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "row_names": [
+            "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
+            "AC-LOOK-03C rejects an open pattern that is already observed"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-LP-01C",

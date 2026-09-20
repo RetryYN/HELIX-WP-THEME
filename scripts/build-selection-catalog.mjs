@@ -853,6 +853,26 @@ if (fs.existsSync(path.join(root, lookPurposeContractPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const lookPatternContractPath = 'docs/research/2026-09-20-look-pattern-contract-poc/verification.json';
+if (fs.existsSync(path.join(root, lookPatternContractPath))) {
+  const report = read(lookPatternContractPath);
+  const candidates = read('docs/research/2026-09-20-look-pattern-contract-poc/catalog-candidates.json');
+  if (!report.completed || report.rows.some(row => !row.pass) || report.shots.length !== 2 || report.gates.completion !== false) throw Error('Look pattern contract evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale look pattern contract source: ${source}`);
+  }
+  if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['look-pattern:survey-derived'])) throw Error('Look pattern contract candidates mismatch');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-LOOK-03'])) throw Error('Look pattern contract requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const expectedFile = candidate.images[device].replace('../2026-09-05-design-prototype-03/results/', '');
+      const shot = report.shots.find(item => item.device === device && item.file.endsWith(expectedFile));
+      const imagePath = path.join(root, 'docs/research/2026-09-05-design-prototype-03/results', expectedFile);
+      if (!shot || !fs.existsSync(imagePath) || createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex') !== shot.sha256) throw Error('Missing look pattern contract screenshot ' + candidate.id + '/' + device);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const authorContractPath = 'docs/research/2026-09-20-author-contract-poc/verification.json';
 if (fs.existsSync(path.join(root, authorContractPath))) {
   const report = read(authorContractPath);

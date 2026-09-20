@@ -14603,6 +14603,102 @@
           ]
         }
       ]
+    },
+    "WT-AC-LOOK-03A": {
+      "status": "partial",
+      "requirement_digest": "b7da614d40c463f0",
+      "oracle_sha256": "80989241ef007dc23849260f43d61f191519e282f983c0280fc367c0b60e1fbe",
+      "source_digests": {
+        "docs/research/2026-09-20-look-pattern-contract-poc/contract.mjs": "bd4065fcaea684bd0f02fc7d3d788cb7df393a9a92d76fa6a71ac0ab7334e175",
+        "scripts/verify-look-pattern-contract-poc.mjs": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+        "docs/research/2026-09-20-look-pattern-contract-poc/README.md": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+        "docs/research/2026-09-20-look-pattern-contract-poc/external-observations.md": "04a905bbc8658d74c318302036a4ae539b65d971e428349f062d235481b57672",
+        "docs/research/2026-09-04-site-survey/sites-index.json": "63e879be4868feef8f00dd30e0b165fc1eb4424cf38e0ac7d9e7717648f6f6f9",
+        "docs/research/2026-09-04-site-survey/results/analysis.json": "508f98e375800a2acbd24de1c0e8ce5ed1f4e24028d3a4da7b0bded6b93b504c",
+        "docs/research/2026-09-05-parts-pattern-taxonomy/aggregate.json": "c84d23c86eb9168f24715a6797a87bbe0de92589fd53ac0df2f4aff2fc01b7fd",
+        "docs/research/2026-09-03-design-prototype-01/index.json": "342b3b106a25d580b6b0922a9eef95631633077e37e62cd5da7ccaddfde61d2d",
+        "bin/check-design-consistency.sh": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+        "themes/agent-neo-theme/theme.json": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765"
+      },
+      "scope": "269件のサイト調査、6系統の分布、730件25 familyの部品集計、および9 variationの導出をG-T1b/G-T3へ束ねる。",
+      "remaining": [
+        "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "row_names": [
+            "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+            "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+          ]
+        }
+      ]
+    },
+    "WT-AC-LOOK-03B": {
+      "status": "partial",
+      "requirement_digest": "b7da614d40c463f0",
+      "oracle_sha256": "a152fcf09ba083226783c84ccc13cabc795ce196328f0443f8aadbf5763d6b5d",
+      "source_digests": {
+        "docs/research/2026-09-20-look-pattern-contract-poc/contract.mjs": "bd4065fcaea684bd0f02fc7d3d788cb7df393a9a92d76fa6a71ac0ab7334e175",
+        "scripts/verify-look-pattern-contract-poc.mjs": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+        "docs/research/2026-09-20-look-pattern-contract-poc/README.md": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+        "docs/research/2026-09-20-look-pattern-contract-poc/external-observations.md": "04a905bbc8658d74c318302036a4ae539b65d971e428349f062d235481b57672",
+        "docs/research/2026-09-04-site-survey/sites-index.json": "63e879be4868feef8f00dd30e0b165fc1eb4424cf38e0ac7d9e7717648f6f6f9",
+        "docs/research/2026-09-04-site-survey/results/analysis.json": "508f98e375800a2acbd24de1c0e8ce5ed1f4e24028d3a4da7b0bded6b93b504c",
+        "docs/research/2026-09-05-parts-pattern-taxonomy/aggregate.json": "c84d23c86eb9168f24715a6797a87bbe0de92589fd53ac0df2f4aff2fc01b7fd",
+        "docs/research/2026-09-03-design-prototype-01/index.json": "342b3b106a25d580b6b0922a9eef95631633077e37e62cd5da7ccaddfde61d2d",
+        "bin/check-design-consistency.sh": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+        "themes/agent-neo-theme/theme.json": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765"
+      },
+      "scope": "調査証跡のないパターンをvariationMapへ入れない負例を固定する。",
+      "remaining": [
+        "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "row_names": [
+            "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
+            "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
+          ]
+        }
+      ]
+    },
+    "WT-AC-LOOK-03C": {
+      "status": "partial",
+      "requirement_digest": "b7da614d40c463f0",
+      "oracle_sha256": "f8917146ef4a27ddb035f6602c632d6fd08a9dbc261348d814977517854c8aef",
+      "source_digests": {
+        "docs/research/2026-09-20-look-pattern-contract-poc/contract.mjs": "bd4065fcaea684bd0f02fc7d3d788cb7df393a9a92d76fa6a71ac0ab7334e175",
+        "scripts/verify-look-pattern-contract-poc.mjs": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+        "docs/research/2026-09-20-look-pattern-contract-poc/README.md": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+        "docs/research/2026-09-20-look-pattern-contract-poc/external-observations.md": "04a905bbc8658d74c318302036a4ae539b65d971e428349f062d235481b57672",
+        "docs/research/2026-09-04-site-survey/sites-index.json": "63e879be4868feef8f00dd30e0b165fc1eb4424cf38e0ac7d9e7717648f6f6f9",
+        "docs/research/2026-09-04-site-survey/results/analysis.json": "508f98e375800a2acbd24de1c0e8ce5ed1f4e24028d3a4da7b0bded6b93b504c",
+        "docs/research/2026-09-05-parts-pattern-taxonomy/aggregate.json": "c84d23c86eb9168f24715a6797a87bbe0de92589fd53ac0df2f4aff2fc01b7fd",
+        "docs/research/2026-09-03-design-prototype-01/index.json": "342b3b106a25d580b6b0922a9eef95631633077e37e62cd5da7ccaddfde61d2d",
+        "bin/check-design-consistency.sh": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+        "themes/agent-neo-theme/theme.json": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765"
+      },
+      "scope": "未観察パターンをopen indexへ保持し、completion=falseを固定する。",
+      "remaining": [
+        "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "row_names": [
+            "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
+            "AC-LOOK-03C rejects an open pattern that is already observed"
+          ]
+        }
+      ]
     }
   }
 }
