@@ -40,6 +40,10 @@
     "docs/research/2026-09-20-product-surfaces-poc/verification.json": [
       "node",
       "scripts/verify-product-surfaces-poc.mjs"
+    ],
+    "docs/research/2026-09-20-section-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-section-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -93,6 +97,18 @@
     ],
     "WT-AC-SELL-02B": [
       "docs/research/2026-09-20-product-surfaces-poc/verification.json"
+    ],
+    "WT-AC-SECTION-01A": [
+      "docs/research/2026-09-20-section-contract-poc/verification.json"
+    ],
+    "WT-AC-SECTION-01B": [
+      "docs/research/2026-09-20-section-contract-poc/verification.json"
+    ],
+    "WT-AC-SECTION-02A": [
+      "docs/research/2026-09-20-section-contract-poc/verification.json"
+    ],
+    "WT-AC-SECTION-02B": [
+      "docs/research/2026-09-20-section-contract-poc/verification.json"
     ]
   }
 }

@@ -1,0 +1,102 @@
+{
+  "WT-AC-SECTION-01A": {
+    "status": "partial",
+    "scope": "専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。",
+    "remaining": [
+      "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+      "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+        "row_names": [
+          "01A structure 1440 js hierarchy and reflow",
+          "01A structure 1440 no-js hierarchy and reflow",
+          "01A structure 390 js hierarchy and reflow",
+          "01A structure 390 no-js hierarchy and reflow",
+          "01A structure 320 js hierarchy and reflow",
+          "01A structure 320 no-js hierarchy and reflow",
+          "01A editing 1440 js hierarchy and reflow",
+          "01A editing 1440 no-js hierarchy and reflow",
+          "01A editing 390 js hierarchy and reflow",
+          "01A editing 390 no-js hierarchy and reflow",
+          "01A editing 320 js hierarchy and reflow",
+          "01A editing 320 no-js hierarchy and reflow",
+          "01A delivery 1440 js hierarchy and reflow",
+          "01A delivery 1440 no-js hierarchy and reflow",
+          "01A delivery 390 js hierarchy and reflow",
+          "01A delivery 390 no-js hierarchy and reflow",
+          "01A delivery 320 js hierarchy and reflow",
+          "01A delivery 320 no-js hierarchy and reflow",
+          "01A heading rename changes visible text without changing hierarchy IDs",
+          "01A mutation heading-derived-id rejected"
+        ]
+      }
+    ]
+  },
+  "WT-AC-SECTION-01B": {
+    "status": "partial",
+    "scope": "専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。",
+    "remaining": [
+      "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+      "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+        "row_names": [
+          "01B exact boundaries include H4 and empty-H3 H2 and reject duplicate or orphan IDs",
+          "01B mutation h4-becomes-section rejected"
+        ]
+      }
+    ]
+  },
+  "WT-AC-SECTION-02A": {
+    "status": "partial",
+    "scope": "ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。",
+    "remaining": [
+      "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+      "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+        "row_names": [
+          "02A rewrite H3 diff apply and rollback preserve unrelated content",
+          "02A replace H3 diff apply and rollback preserve unrelated content",
+          "02A move preserves sibling subtrees and IDs for H3 and H2",
+          "02A browser move collapse hide and toc selection remain independent",
+          "02A global nth H2 slot and post override use same fixture rules",
+          "02A viewport reach and dwell emit full local payload 1440",
+          "02A viewport reach and dwell emit full local payload 390",
+          "02A keyboard and 200 percent root text preserve access and reflow",
+          "02A H2 replacement includes children but leaves next H2 unchanged",
+          "02A mutation move-offset-wrong rejected",
+          "02A mutation post-override-ignored rejected"
+        ]
+      }
+    ]
+  },
+  "WT-AC-SECTION-02B": {
+    "status": "partial",
+    "scope": "ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。",
+    "remaining": [
+      "WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。",
+      "本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-section-contract-poc/verification.json",
+        "row_names": [
+          "02B foreign block and stale proposals cannot alter state",
+          "02B event invalid section and device are rejected",
+          "02B reject and empty title keep visible article unchanged",
+          "02B stale content in an otherwise current proposal is rejected",
+          "02B mutation outside-write-allowed rejected",
+          "02B mutation stale-content-allowed rejected",
+          "02B mutation event-id-missing rejected"
+        ]
+      }
+    ]
+  }
+}

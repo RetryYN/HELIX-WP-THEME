@@ -3,9 +3,9 @@
 この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。
 
 - 要求: 134
-- 受入条件: 300（missing 210 / partial 58 / verified_in_poc 32 / stale 0）
-- カタログ候補: 677
-- スクリーンショット: 1225
+- 受入条件: 300（missing 206 / partial 62 / verified_in_poc 32 / stale 0）
+- カタログ候補: 680
+- スクリーンショット: 1231
 - ページ種別の未観察・未検証: 19
 
 ## 次に閉じる要求
@@ -27,8 +27,6 @@
 | WT-FR-LOG-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-MAIL-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-NAV-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-SECTION-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-SECTION-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SELL-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SELL-04 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SEO-04 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
@@ -118,6 +116,8 @@
 | WT-FR-ADMIN-01 | P0 | partial | 5 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ADMIN-03 | P0 | partial | 3 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ADMIN-04 | P0 | partial | 2 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-SECTION-01 | P0 | partial | 2 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-SECTION-02 | P0 | partial | 2 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-SELL-02 | P0 | partial | 2 | 5 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-SP-01 | P0 | partial | 2 | 31 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-VOCAB-01 | P0 | partial | 3 | 62 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |

@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {scenarios} from '../docs/research/2026-09-20-section-contract-poc/contract.mjs';
+const definitions=scenarios.map(f=>({kind:f.id,label:f.label,title:f.lead}));
+const root='docs/research/2026-09-20-section-contract-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-section-contract-poc.mjs']);
+const files=['scripts/build-section-contract-poc.mjs','scripts/product-surfaces-server.mjs','scripts/verify-section-mutations.mjs','scripts/verify-section-contract-poc.mjs','tests/e2e/section-contract-poc-selection-catalog.spec.ts',...['contract.mjs','render.mjs','view.mjs','sections.css','intermediate.json',...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'section-contract-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/section-contract-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,SECTION_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const browserRows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(browserRows.every(r=>r.pass));
+ const mutations=JSON.parse(execFileSync(process.execPath,['scripts/verify-section-mutations.mjs'],options));
+ const rows=[...browserRows,...mutations];
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-section-contract-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local dedicated article fixture. H2/H3 boundaries, stable IDs, section operations and local viewport events. Four ACs partial; WP, Block Editor, MCP, storage and production tracking unconnected.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=id=>rows.filter(r=>r.name.startsWith(id+' ')).map(r=>r.name);
+ const remaining=['WP 7.2実機・既存sections API/section-registry・Block Editor/MCP双方・全記事/投稿メタ保存・権限は未接続/未検証。','本番tracking/TAG-02統合・実読了・rewrite history記事メタ・max-snippet/nosnippet/data-nosnippet・全ブラウザ/実スクリーンリーダーは未検証。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['01A','01B','02A','02B'].map(id=>[`WT-AC-SECTION-${id}`,{status:'partial',scope:id.startsWith('01')?'専用fixtureのH2/H3境界・親子安定ID・H4内部・中間JSON/registry。':'ローカル区間差分/差替/apply/rollback・順序/表示・共通/投稿slot・画面内到達/500ms滞在イベント。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(id)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-section-contract-catalog-candidates.v1',entries:definitions.map(d=>({id:`section-contract:${d.kind}`,face:'article',part:`section-contract-${d.kind}`,label:`区間契約：${d.label}`,variant:d.kind,description:`${d.title} 4受入条件は部分確認。`,purpose:'見出し区間の境界と変更の範囲を確かめる',group:'ページ本文',images:{pc:`../2026-09-20-section-contract-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-section-contract-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-SECTION-01','WT-FR-SECTION-02'],referenceId:'wt-section-contract-poc.v1',evidence:'../2026-09-20-section-contract-poc/verification.json',selectionFacts:{'対象と判断':d.title,'区間の契約':'H2/H3のみ。文言から独立した親子IDとend exclusive境界。H4は内部の見出し。','変更の範囲':'選択区間の差分確認からapply/rollback。AI判定・保存・外部送信なし。','実測':'1440/390/320px、JS有無、keyboard、200% root文字、負例と7摂動、ローカル到達/滞在。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'4 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}
