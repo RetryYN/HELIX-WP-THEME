@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 706,
+  "candidateCount": 707,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -91,33 +91,32 @@
     {
       "id": "WT-NFR-GATE-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NFR-GATE-01A",
-          "WT-AC-NFR-GATE-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-NFR-GATE-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-NFR-GATE-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "gate-contract:static-and-ge1"
+      ]
     },
     {
       "id": "WT-TR-PLUGIN-01",
@@ -29677,6 +29676,35 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-look-pattern-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "gate-contract:static-and-ge1",
+      "face": "system",
+      "part": "quality-gate-contract",
+      "label": "品質ゲート：静的6種＋G-E1",
+      "variant": "static-and-ge1",
+      "purpose": "品質条件を確認する",
+      "group": "品質・運用",
+      "requirementIds": [
+        "WT-NFR-GATE-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "docs/research/2026-09-20-gate-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"

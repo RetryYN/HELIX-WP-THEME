@@ -2151,6 +2151,52 @@
       ],
       "registry_before_sha256": "56eb7e4b4b92e26ecaa35ee213ce68992edb59d80cc4318f22404d1738e41277",
       "registry_after_sha256": "924bfb012d5f96e475749f726f7761b7fa919a8c8e4bd7eb2c15ca55c474185a"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-NFR-GATE-01A",
+        "WT-AC-NFR-GATE-01B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-gate-contract-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-gate-contract-poc/acceptance-candidate.json": "37cb79ce7866c85c0184728286c046011308a8dd34988a55d06e9e3cd1662084"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-gate-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before_sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+          "after_sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "924bfb012d5f96e475749f726f7761b7fa919a8c8e4bd7eb2c15ca55c474185a",
+      "registry_after_sha256": "e210f8376cf5c62417c019154f110511cec59458de57f371d248bd733d51fb60"
     }
   ]
 }
