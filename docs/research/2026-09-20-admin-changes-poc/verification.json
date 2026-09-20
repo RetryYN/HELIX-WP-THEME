@@ -14,7 +14,7 @@
     "scripts/utility-poc-server.mjs": "a121eda251244c1b85751034a84b1aea2cea325c96fae0f2d322a917856e3713",
     "scripts/utility-poc-provider.mjs": "314a2e84e0cb4c8580e106427ec67b076f54b34a8602953592f9524bf1cb72b7",
     "scripts/verify-admin-changes-poc.mjs": "9273d3678d72b1d6bba8d7632f743cdcf5b88c7bab4bd082c4e5cb439f8abb9e",
-    "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "df41606213438e418cc10f9eff05f3faf8a84fc48c9f1b87795f43b76ba861a6",
+    "tests/e2e/admin-changes-poc-selection-catalog.spec.ts": "e8191cd98b7ce9078f603b360711da844b7c1aa634b925a4ad7856725bbc84ef",
     "docs/research/2026-09-20-admin-changes-poc/contract.mjs": "43614a61194987043f234bd459845fda14b6c153651ff3c5a9447d4696d514f0",
     "docs/research/2026-09-20-admin-changes-poc/view.mjs": "a16de37703466f7589738e6f8099773985f16d32dd472dddf93dc1f7ec7d05cb",
     "docs/research/2026-09-20-admin-changes-poc/changes.css": "2600d90f2d81d83f2898bd3d12972b69e7d726365eb14d61c7f274153c17b0b3",
@@ -109,6 +109,10 @@
     },
     {
       "name": "AC-B bypassing disabled display cannot bypass review or destructive stop",
+      "pass": true
+    },
+    {
+      "name": "AC-B reviewed but unconfirmed apply is blocked even when display guard is removed",
       "pass": true
     },
     {

@@ -48,6 +48,7 @@
           "AC-B reject prevents subsequent apply until fresh review",
           "AC-B hold prevents subsequent apply until fresh review",
           "AC-B bypassing disabled display cannot bypass review or destructive stop",
+          "AC-B reviewed but unconfirmed apply is blocked even when display guard is removed",
           "AC-B operations stay transient and emit no external writes"
         ]
       }
