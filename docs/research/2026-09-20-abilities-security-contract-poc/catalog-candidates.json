@@ -1,0 +1,31 @@
+{
+  "schema": "wt-abilities-security-contract-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "agent-pack:security-and-receipt",
+      "face": "system",
+      "part": "agent-ability-pack",
+      "label": "エージェント接点：3面能力・権限・receipt",
+      "variant": "security-and-receipt",
+      "description": "wt-site-selectionの3 abilityをCLI/REST/MCPへ同じ宣言から公開し、匿名拒否とdry-run receipt必須を検証した部分契約。",
+      "purpose": "安全に操作を委譲する",
+      "group": "品質・運用",
+      "images": {
+        "pc": "../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg",
+        "sp": "../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-AGENT-01",
+        "WT-NFR-SEC-01",
+        "WT-NFR-PERM-01"
+      ],
+      "referenceId": "wt-abilities-security-contract.v1",
+      "evidence": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "manifest・認証・receiptの境界を1候補に束ね、能力の選択時に安全条件と残件を同時表示する。",
+        "実測": "3 ability、CLI/REST/MCP突合、匿名401、receiptなし400、偽receipt409、apply後read反映。",
+        "未検証": "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。 REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      }
+    }
+  ]
+}

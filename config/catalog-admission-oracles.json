@@ -98,6 +98,10 @@
     "docs/research/2026-09-20-gate-contract-poc/verification.json": [
       "node",
       "scripts/verify-gate-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-20-abilities-security-contract-poc/verification.json": [
+      "node",
+      "scripts/verify-abilities-security-contract-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -265,6 +269,24 @@
     ],
     "WT-AC-NFR-GATE-01B": [
       "docs/research/2026-09-20-gate-contract-poc/verification.json"
+    ],
+    "WT-AC-AGENT-01A": [
+      "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-AGENT-01B": [
+      "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-NFR-SEC-01A": [
+      "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-NFR-SEC-01B": [
+      "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-NFR-PERM-01A": [
+      "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-NFR-PERM-01B": [
+      "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
     ]
   }
 }

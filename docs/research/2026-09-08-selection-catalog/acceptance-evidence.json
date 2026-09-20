@@ -14760,6 +14760,183 @@
           ]
         }
       ]
+    },
+    "WT-AC-AGENT-01A": {
+      "status": "partial",
+      "requirement_digest": "a84c666af9c91310",
+      "oracle_sha256": "9c69e7059964909b52776c958ffc5c6f69ea2bebdee98bdffe9fb3cb822ccc9c",
+      "source_digests": {
+        "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+        "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+        "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+      },
+      "scope": "wt-site-selection packの3 abilityをCLI/REST/MCPで列挙し、dry-run receipt後applyまで突合する。",
+      "remaining": [
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
+          ]
+        }
+      ]
+    },
+    "WT-AC-AGENT-01B": {
+      "status": "partial",
+      "requirement_digest": "a84c666af9c91310",
+      "oracle_sha256": "104a044a42419236382f57843f80a1114e6542177205a671cc1c468dc10600eb",
+      "source_digests": {
+        "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+        "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+        "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+      },
+      "scope": "未宣言ability、入力schema境界、誤HTTPメソッドを拒否する。",
+      "remaining": [
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-AGENT-01B records the known input-schema normalization boundary",
+            "AC-AGENT-01B rejects a pack with an undeclared ability"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NFR-PERM-01A": {
+      "status": "partial",
+      "requirement_digest": "1c943c1e039d6a84",
+      "oracle_sha256": "09550b12e060bd7de2d0c63ac913b90e1e12f5df560fd31ac4a27718ddcf4c45",
+      "source_digests": {
+        "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+        "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+        "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+      },
+      "scope": "匿名REST/MCPとreceiptなし・偽receiptのapplyを拒否する。",
+      "remaining": [
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+            "AC-NFR-PERM-01B rejects receipt-less apply evidence"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NFR-PERM-01B": {
+      "status": "partial",
+      "requirement_digest": "1c943c1e039d6a84",
+      "oracle_sha256": "6666d390ca5ce7956319384896772e054f2a537ca7e0f25436d72208cad14eab",
+      "source_digests": {
+        "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+        "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+        "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+      },
+      "scope": "権限・receipt境界の迂回を負例で拒否する。",
+      "remaining": [
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+            "AC-NFR-PERM-01B rejects receipt-less apply evidence"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NFR-SEC-01A": {
+      "status": "partial",
+      "requirement_digest": "4ad14571c69c0a8f",
+      "oracle_sha256": "6426c3c6a41a31853ff7eb1858d39406ad574809c10cd6812b0f0f62e2f7c6f2",
+      "source_digests": {
+        "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+        "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+        "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+      },
+      "scope": "匿名REST/MCP露出を401として記録するが、全体SSRF/Warning監査は残件とする。",
+      "remaining": [
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
+          ]
+        }
+      ]
+    },
+    "WT-AC-NFR-SEC-01B": {
+      "status": "partial",
+      "requirement_digest": "4ad14571c69c0a8f",
+      "oracle_sha256": "0540835a2cee769a9999637c35c996b2af5b716124d726c8cce0548159614775",
+      "source_digests": {
+        "docs/research/2026-09-03-poc-abilities-3face/README.md": "514daf330e00d3fc940ee73e9754a779c200ab88244d8cf78f9ae5fdc2dda314",
+        "docs/research/2026-09-03-poc-abilities-3face/results/results.json": "e9271f686b4372bb48371e719c4f61e7834db1a8f842b0ca2d49ca01bed0afa5",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/pack.json": "ad5a396094a7cb4d65cb2411e252edc940322e1680be0714abe4e160e06d596c",
+        "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
+        "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
+        "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+      },
+      "scope": "匿名公開を200扱いする改変を負例で拒否する。",
+      "remaining": [
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+      ],
+      "proofs": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
+          ]
+        }
+      ]
     }
   }
 }

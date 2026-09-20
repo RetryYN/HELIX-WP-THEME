@@ -3,8 +3,8 @@
   "requirementCount": 134,
   "acceptanceCount": 300,
   "counts": {
-    "missing": 172,
-    "partial": 96,
+    "missing": 166,
+    "partial": 102,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -1636,24 +1636,43 @@
       "requirement_id": "WT-FR-AGENT-01",
       "oracle": "設定で定義した常用パックが MCP の ability として列挙され、1 回の呼び出しで manifest 上の作業単位（例: 面にパターンを置いて公開面を確認）が dry-run 差分付きで完結し、apply 結果が dry-run と一致する",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "wt-site-selection packの3 abilityをCLI/REST/MCPで列挙し、dry-run receipt後applyまで突合する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-AGENT-01B",
       "requirement_id": "WT-FR-AGENT-01",
       "oracle": "manifest 外の指定が通る、apply が dry-run と異なる、または REST と MCP で語彙や結果が食い違えば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "未宣言ability、入力schema境界、誤HTTPメソッドを拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-AGENT-01B records the known input-schema normalization boundary",
+            "AC-AGENT-01B rejects a pack with an undeclared ability"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-AGENT-02A",
@@ -1940,24 +1959,42 @@
       "requirement_id": "WT-NFR-SEC-01",
       "oracle": "REST 監査で未認証ルート 0、SSRF 形 0、公開面 Warning 0",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "匿名REST/MCP露出を401として記録するが、全体SSRF/Warning監査は残件とする。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-SEC-01B",
       "requirement_id": "WT-NFR-SEC-01",
       "oracle": "1 件でもあれば FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "匿名公開を200扱いする改変を負例で拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-REL-01A",
@@ -2030,24 +2067,44 @@
       "requirement_id": "WT-NFR-PERM-01",
       "oracle": "管理者権限でも破壊域が保存できず、receipt なしの apply が拒否される",
       "polarity": "positive",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "匿名REST/MCPとreceiptなし・偽receiptのapplyを拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+            "AC-NFR-PERM-01B rejects receipt-less apply evidence"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-PERM-01B",
       "requirement_id": "WT-NFR-PERM-01",
       "oracle": "迂回経路 1 件で FAIL",
       "polarity": "negative",
-      "status": "missing",
-      "scope": "",
+      "status": "partial",
+      "scope": "権限・receipt境界の迂回を負例で拒否する。",
       "remaining": [
-        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+        "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+        "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
       ],
-      "evidence": []
+      "evidence": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "row_names": [
+            "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+            "AC-NFR-PERM-01B rejects receipt-less apply evidence"
+          ]
+        }
+      ]
     },
     {
       "id": "WT-AC-NFR-COST-01A",

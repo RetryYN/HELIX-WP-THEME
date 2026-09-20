@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 707,
-  "screenshot_count": 1285,
+  "catalog_candidate_count": 708,
+  "screenshot_count": 1287,
   "acceptance_counts": {
-    "missing": 172,
-    "partial": 96,
+    "missing": 166,
+    "partial": 102,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -212,22 +212,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "A/B の承認・停止・rollback を WT-UI-10 と MCP 常用パックの双方から操作し、停止時は既定案へ即時復帰する。A/B の判定ロジックはテーマ・プラグインに置かない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-AGENT-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variation・テンプレ変種・値の尺度・投稿メタ・LP 種別・hook）上の操作を用途別に束ねた複合 ability で、細粒度 API を個別に晒すのではなく、設定（JSON）でパックを構築・入れ替えできる。各パックは dry-run → apply → rollback を内包し、manifest 外の指定は拒否理由付きで返す。REST / CLI は同じ manifest とパック定義を読む従属経路とし、経路ごとに別の語彙を持たない。目的はエージェントのコンテキスト効率（1 パック呼び出しで 1 作業単位が完結する）。Abilities API の登録から MCP / REST / WP-CLI の能力集合を導出し、各操作の annotations と destructive の dry-run receipt を manifest へ含める。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -567,22 +551,6 @@
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
-      "requirement_id": "WT-NFR-PERM-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "破壊域停止は権限で解除できず、write 系 API は capability と dry-run receipt を要求する。ability 単位の認可と Application Passwords の read / write 分離で破壊域停止の迂回を防ぐ。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
       "requirement_id": "WT-NFR-PRIV-02",
       "priority": "P0",
       "state": "missing",
@@ -612,22 +580,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "描画パスで set_theme_mod / update_option を呼ばない。redirect_canonical の全面停止や全ページ session_regenerate_id のようなグローバル改変を持ち込まない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-NFR-SEC-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "未認証 REST（permission_callback __return_true）を持たず、外部 URL 取得は wp_safe_remote_get 等の検証付き経路のみ。公開面に PHP Warning を出さない。ability の公開フラグと実行許可を分け、全操作の permission callback、Application Passwords 境界、既定 security headers を検査する。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2056,6 +2008,24 @@
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
+      "requirement_id": "WT-FR-AGENT-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 1,
+      "candidates": [
+        "agent-pack:security-and-receipt"
+      ],
+      "statement": "エージェント接点の主経路は MCP の「常用パック」とする。パックは manifest（slot・ゾーン・パターン・パーツ案・variation・テンプレ変種・値の尺度・投稿メタ・LP 種別・hook）上の操作を用途別に束ねた複合 ability で、細粒度 API を個別に晒すのではなく、設定（JSON）でパックを構築・入れ替えできる。各パックは dry-run → apply → rollback を内包し、manifest 外の指定は拒否理由付きで返す。REST / CLI は同じ manifest とパック定義を読む従属経路とし、経路ごとに別の語彙を持たない。目的はエージェントのコンテキスト効率（1 パック呼び出しで 1 作業単位が完結する）。Abilities API の登録から MCP / REST / WP-CLI の能力集合を導出し、各操作の annotations と destructive の dry-run receipt を manifest へ含める。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
       "requirement_id": "WT-FR-SEO-04",
       "priority": "P0",
       "state": "partial",
@@ -2092,6 +2062,24 @@
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {
+      "requirement_id": "WT-NFR-PERM-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 1,
+      "candidates": [
+        "agent-pack:security-and-receipt"
+      ],
+      "statement": "破壊域停止は権限で解除できず、write 系 API は capability と dry-run receipt を要求する。ability 単位の認可と Application Passwords の read / write 分離で破壊域停止の迂回を防ぐ。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
       "requirement_id": "WT-NFR-REC-01",
       "priority": "P0",
       "state": "partial",
@@ -2107,6 +2095,24 @@
         "recovery:transaction"
       ],
       "statement": "構造・スタイル・値・ゾーンの変更は dry-run → apply → rollback の経路を持ち、rollback で元の digest に戻る",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-NFR-SEC-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 1,
+      "candidates": [
+        "agent-pack:security-and-receipt"
+      ],
+      "statement": "未認証 REST（permission_callback __return_true）を持たず、外部 URL 取得は wp_safe_remote_get 等の検証付き経路のみ。公開面に PHP Warning を出さない。ability の公開フラグと実行許可を分け、全操作の permission callback、Application Passwords 境界、既定 security headers を検査する。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {
