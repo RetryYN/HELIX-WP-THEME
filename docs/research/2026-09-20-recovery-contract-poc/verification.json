@@ -14,7 +14,7 @@
     "scripts/recovery-contract-renderer.mjs": "b2023efc74a45f889fa3a888cc514cc8a8067632363ac170ef1a37b80ae1ed29",
     "scripts/recovery-contract-server.mjs": "0d25ff31e05447729a17cf3b64dd7f8b925c8351a4deed49b1f71414e9d51869",
     "scripts/verify-recovery-contract-poc.mjs": "467c5c43df8cde7303f4f9d558ccab02c35fcaa581a682c4fb77601c2d93f75c",
-    "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts": "a60f9711de79bd67bac9b198bd1861c80885856f97613390487be4becd717760",
+    "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts": "bed44a76f076c6220749d33f50d55ca7ce532754280aa7f7d65b09b6feba2ce2",
     "docs/research/2026-09-20-recovery-contract-poc/contract.mjs": "22813242b688d80e04c5474f0cab3351e9c997c819927152754e43fc94e294fb",
     "docs/research/2026-09-20-recovery-contract-poc/view.mjs": "9daddc4d40ddeb25f3706e7308a562b87d290ef68ac1a89c9e8cf644ae067cd6",
     "docs/research/2026-09-20-recovery-contract-poc/index.html": "71e026880e5524c31f4cf33a3fc5cd52548df4686cb28d557dd39725ba1a2958"
@@ -58,6 +58,10 @@
     },
     {
       "name": "AC-B stale receipt, mismatched patch, and stale rollback are rejected",
+      "pass": true
+    },
+    {
+      "name": "AC-B tampered rollback snapshot is rejected",
       "pass": true
     },
     {

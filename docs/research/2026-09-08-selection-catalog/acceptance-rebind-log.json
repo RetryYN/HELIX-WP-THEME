@@ -1122,6 +1122,60 @@
       ],
       "registry_before_sha256": "cdf3a3285301fd3b89f8a07bfe1953aa70850870a0041ee0c7be220177cf882e",
       "registry_after_sha256": "bfa8bacca1968fb0cfe85647e74c9aeec44b85ad9c60437889c827874bd87ce9"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-REC-01A",
+        "WT-AC-NFR-REC-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "recovery-contract:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-REC-01A",
+          "path": "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+          "before": "a60f9711de79bd67bac9b198bd1861c80885856f97613390487be4becd717760",
+          "after": "bed44a76f076c6220749d33f50d55ca7ce532754280aa7f7d65b09b6feba2ce2"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-REC-01A",
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+          "after": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-REC-01B",
+          "path": "tests/e2e/recovery-contract-poc-selection-catalog.spec.ts",
+          "before": "a60f9711de79bd67bac9b198bd1861c80885856f97613390487be4becd717760",
+          "after": "bed44a76f076c6220749d33f50d55ca7ce532754280aa7f7d65b09b6feba2ce2"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-REC-01B",
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before": "6d5eb2c9fe7e5289b51c466a8a725bad593d62b4e626e361f76324773aeb9d29",
+          "after": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-recovery-contract-poc/verification.json",
+          "before_sha256": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf",
+          "after_sha256": "d5b1234f859f6b92392bb5ab95351161db37e0b5a5a4bd0bcc0f7dfd12ad21cf",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "bfa8bacca1968fb0cfe85647e74c9aeec44b85ad9c60437889c827874bd87ce9",
+      "registry_after_sha256": "8cc270f9d370db8d86d924bcf3aa9f3e5b4a39304fb3f43f69e173be8c11178e"
     }
   ]
 }
