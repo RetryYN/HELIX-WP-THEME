@@ -600,6 +600,59 @@
       ],
       "registry_before_sha256": "e12909b4514a329e83f85d805fa4c4498e28bde75620f60856e182d3763f1a5d",
       "registry_after_sha256": "d760113786834dddcb8e993c11a2dd499648021b5fd7de16f0241b77cda4ac3b"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-SELL-02A",
+        "WT-AC-SELL-02B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-product-surfaces-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-SELL-02A",
+          "path": "tests/e2e/product-surfaces-poc-selection-catalog.spec.ts",
+          "before": "e5a8d1f1827235236e6f7d7ca8c02af9c0944f06b4785d783b002b65c8821457",
+          "after": "f8929e5cfd39ee28da2a9b14610cf82ee5d01ac22be3d4cd1cbdd82d19e27f29"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-SELL-02A",
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "before": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "after": "6e0f51f2239f8e7fe47936654a72b5bf7736a367e9dfdf54d00e9d841b023413"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-SELL-02B",
+          "path": "tests/e2e/product-surfaces-poc-selection-catalog.spec.ts",
+          "before": "e5a8d1f1827235236e6f7d7ca8c02af9c0944f06b4785d783b002b65c8821457",
+          "after": "f8929e5cfd39ee28da2a9b14610cf82ee5d01ac22be3d4cd1cbdd82d19e27f29"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-SELL-02B",
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "before": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "after": "6e0f51f2239f8e7fe47936654a72b5bf7736a367e9dfdf54d00e9d841b023413"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "before_sha256": "6e0f51f2239f8e7fe47936654a72b5bf7736a367e9dfdf54d00e9d841b023413",
+          "after_sha256": "6e0f51f2239f8e7fe47936654a72b5bf7736a367e9dfdf54d00e9d841b023413",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "d760113786834dddcb8e993c11a2dd499648021b5fd7de16f0241b77cda4ac3b",
+      "registry_after_sha256": "c5f62ee6b7c72e1329d7bb397437e9b1312e4b4fea6022a1fee9337fc00209fc"
     }
   ]
 }
