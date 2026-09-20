@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 707,
+  "candidateCount": 708,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -2275,33 +2275,32 @@
     {
       "id": "WT-FR-AGENT-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-AGENT-01A",
-          "WT-AC-AGENT-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-AGENT-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-AGENT-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "agent-pack:security-and-receipt"
+      ]
     },
     {
       "id": "WT-FR-AGENT-02",
@@ -2682,33 +2681,32 @@
     {
       "id": "WT-NFR-SEC-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NFR-SEC-01A",
-          "WT-AC-NFR-SEC-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-NFR-SEC-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-NFR-SEC-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "agent-pack:security-and-receipt"
+      ]
     },
     {
       "id": "WT-NFR-REL-01",
@@ -2772,33 +2770,32 @@
     {
       "id": "WT-NFR-PERM-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 1,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 2,
+          "partial": 2,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-NFR-PERM-01A",
-          "WT-AC-NFR-PERM-01B"
-        ],
-        "selectionState": "no_candidate"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-NFR-PERM-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-NFR-PERM-01B",
-          "status": "missing"
+          "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "agent-pack:security-and-receipt"
+      ]
     },
     {
       "id": "WT-NFR-COST-01",
@@ -29705,6 +29702,37 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "agent-pack:security-and-receipt",
+      "face": "system",
+      "part": "agent-ability-pack",
+      "label": "エージェント接点：3面能力・権限・receipt",
+      "variant": "security-and-receipt",
+      "purpose": "安全に操作を委譲する",
+      "group": "品質・運用",
+      "requirementIds": [
+        "WT-FR-AGENT-01",
+        "WT-NFR-SEC-01",
+        "WT-NFR-PERM-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 6,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 6,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
       "devices": [
         "pc",
         "sp"

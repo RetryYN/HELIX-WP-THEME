@@ -58,3 +58,5 @@ main取り込み後も専用15件・選択/絞り込み39件成功。強制配�
 | 指摘 | 対応 | 検証 |
 | --- | --- | --- |
 | Claude `cbea6fe` review: #306 merge後のcatalog-data digestへ新規証跡が未追従 | main `40b28a2` を取り込み、同mainをbefore基準としてcaptureを再実行 | 専用E2E15件成功・全artifact binding findings 0。npm test・新HEAD CIを続けて確認 |
+
+#309 merge後のmain `68668c2` も取り込み、同mainをbefore基準として新規captureを再実行した。専用E2E15件成功、全artifact binding findings 0。

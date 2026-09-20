@@ -1,0 +1,102 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-AGENT-01A": {
+    "status": "partial",
+    "scope": "wt-site-selection packの3 abilityをCLI/REST/MCPで列挙し、dry-run receipt後applyまで突合する。",
+    "remaining": [
+      "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+      "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+        "row_names": [
+          "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
+        ]
+      }
+    ]
+  },
+  "WT-AC-AGENT-01B": {
+    "status": "partial",
+    "scope": "未宣言ability、入力schema境界、誤HTTPメソッドを拒否する。",
+    "remaining": [
+      "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+      "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+        "row_names": [
+          "AC-AGENT-01B records the known input-schema normalization boundary",
+          "AC-AGENT-01B rejects a pack with an undeclared ability"
+        ]
+      }
+    ]
+  },
+  "WT-AC-NFR-PERM-01A": {
+    "status": "partial",
+    "scope": "匿名REST/MCPとreceiptなし・偽receiptのapplyを拒否する。",
+    "remaining": [
+      "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+      "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+        "row_names": [
+          "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+          "AC-NFR-PERM-01B rejects receipt-less apply evidence"
+        ]
+      }
+    ]
+  },
+  "WT-AC-NFR-PERM-01B": {
+    "status": "partial",
+    "scope": "権限・receipt境界の迂回を負例で拒否する。",
+    "remaining": [
+      "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+      "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+        "row_names": [
+          "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
+          "AC-NFR-PERM-01B rejects receipt-less apply evidence"
+        ]
+      }
+    ]
+  },
+  "WT-AC-NFR-SEC-01A": {
+    "status": "partial",
+    "scope": "匿名REST/MCP露出を401として記録するが、全体SSRF/Warning監査は残件とする。",
+    "remaining": [
+      "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+      "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+        "row_names": [
+          "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
+        ]
+      }
+    ]
+  },
+  "WT-AC-NFR-SEC-01B": {
+    "status": "partial",
+    "scope": "匿名公開を200扱いする改変を負例で拒否する。",
+    "remaining": [
+      "PoCはWordPress 7.1のローカル実行で、現行HEADへ再実行したreceiptではない。",
+      "REST/MCPの全匿名メソッド、実装全体のSSRF/Warning静的監査、WP 7.2実機は未接続。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+        "row_names": [
+          "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
+        ]
+      }
+    ]
+  }
+}

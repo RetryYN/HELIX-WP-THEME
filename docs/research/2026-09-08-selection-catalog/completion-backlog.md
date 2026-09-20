@@ -3,9 +3,9 @@
 この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。
 
 - 要求: 134
-- 受入条件: 300（missing 172 / partial 96 / verified_in_poc 32 / stale 0）
-- カタログ候補: 707
-- スクリーンショット: 1285
+- 受入条件: 300（missing 166 / partial 102 / verified_in_poc 32 / stale 0）
+- カタログ候補: 708
+- スクリーンショット: 1287
 - ページ種別の未観察・未検証: 19
 
 ## 次に閉じる要求
@@ -15,7 +15,6 @@
 | WT-FR-AB-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AB-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AB-03 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-FR-AGENT-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-AUDIT-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-CONSENT-01 | P0 | missing | 3 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-CRAWL-05 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
@@ -37,10 +36,8 @@
 | WT-NFR-LOG-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-OSS-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-PERF-03 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-NFR-PERM-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-PRIV-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-REL-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
-| WT-NFR-SEC-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-TAG-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-TR-API-02 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-TR-CLI-01 | P0 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
@@ -97,9 +94,12 @@
 | WT-FR-MIGRATE-03 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-FR-SEO-02 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
 | WT-NFR-COST-01 | P2 | missing | 2 | 0 | 調査結果から代表fixtureを作り、カタログ候補と検証器を追加する |
+| WT-FR-AGENT-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-SEO-04 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-GATE-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-NFR-PERM-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-REC-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-NFR-SEC-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-SEO-01 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-NFR-VALUE-03 | P0 | partial | 2 | 1 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ADMIN-01 | P0 | partial | 5 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
