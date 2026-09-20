@@ -36,6 +36,10 @@
     "docs/research/2026-09-20-admin-keys-poc/verification.json": [
       "node",
       "scripts/verify-admin-keys-poc.mjs"
+    ],
+    "docs/research/2026-09-20-product-surfaces-poc/verification.json": [
+      "node",
+      "scripts/verify-product-surfaces-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -83,6 +87,12 @@
     ],
     "WT-AC-ADMIN-04B": [
       "docs/research/2026-09-20-admin-keys-poc/verification.json"
+    ],
+    "WT-AC-SELL-02A": [
+      "docs/research/2026-09-20-product-surfaces-poc/verification.json"
+    ],
+    "WT-AC-SELL-02B": [
+      "docs/research/2026-09-20-product-surfaces-poc/verification.json"
     ]
   }
 }

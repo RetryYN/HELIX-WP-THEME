@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {surfaces, catalog} from '../docs/research/2026-09-20-product-surfaces-poc/products.mjs';
+const definitions=surfaces.map(f=>({kind:f.id,label:f.label,title:f.lead}));
+const root='docs/research/2026-09-20-product-surfaces-poc';
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const save=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');
+execFileSync(process.execPath,['scripts/build-product-surfaces-poc.mjs']);
+const files=['scripts/build-product-surfaces-poc.mjs','scripts/product-surfaces-server.mjs','scripts/product-surfaces-renderer.mjs','scripts/verify-product-surfaces-poc.mjs','tests/e2e/product-surfaces-poc-selection-catalog.spec.ts',...['products.mjs','view.mjs','products.css',...catalog.products.map(p=>`${p.id}.svg`),...definitions.map(d=>`${d.kind}.html`)].map(f=>`${root}/${f}`)];
+const sourceDigests=Object.fromEntries(files.map(f=>[f,digest(f)]));
+const staging=fs.mkdtempSync(path.join(os.tmpdir(),'product-surfaces-capture-'));
+const flatten=suites=>suites.flatMap(s=>[...(s.specs||[]),...flatten(s.suites||[])]);
+try{
+ const args=['playwright','test','tests/e2e/product-surfaces-poc-selection-catalog.spec.ts','--workers=1','--reporter=json'];
+ const options={encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,PRODUCT_CAPTURE_DIR:staging}};
+ const planned=JSON.parse(execFileSync('npx',[...args,'--list'],options));
+ const report=JSON.parse(execFileSync('npx',args,options));
+ const specs=flatten(report.suites),titles=flatten(planned.suites).map(s=>s.title);
+ assert.deepEqual(specs.map(s=>s.title),titles);assert.equal(report.stats.expected,titles.length);assert.equal(report.stats.unexpected+report.stats.skipped+report.stats.flaky,0);
+ const rows=specs.map(s=>({name:s.title,pass:s.ok&&s.tests.every(t=>t.results.length===1&&t.results[0].status==='passed')}));assert(rows.every(r=>r.pass));
+ const shots=definitions.flatMap(d=>['pc','sp'].map(device=>{const file=`${d.kind}-${device}.jpg`;assert(fs.statSync(path.join(staging,file)).size>1000);return {id:d.kind,device,file,sha256:digest(path.join(staging,file))};}));
+ for(const [file,hash]of Object.entries(sourceDigests))assert.equal(digest(file),hash,'Source changed during capture');
+ for(const shot of shots)fs.copyFileSync(path.join(staging,shot.file),`${root}/${shot.file}`);
+ save(`${root}/verification.json`,{schema:'wt-product-surfaces-poc-verification.v1',completed:true,command:['npx',...args],sourceDigests,rows,shots,scope:'Static/local fictional product PoC only. Five surfaces from one fixture. JSON-LD values and routing checked locally only. Both ACs partial; no external API, purchase or credentials.',textScale:'Root font-size 16px to 32px at the same viewport; not browser zoom or screen-reader speech'});
+ const acRows=suffix=>rows.filter(r=>r.name.startsWith(`AC-${suffix}`)).map(r=>r.name);
+ const remaining=['実WP 7.2・商品正本の保存/API・SEO-02共通出力機構・本番trackingは未接続/未検証。','Rich Results・URL Inspection・実購入適格性・実商品/レビュー・全ブラウザ・実スクリーンリーダーは未検証。JSON-LDの値と分岐をローカルで検査したのみ。'];
+ save(`${root}/acceptance-candidate.json`,Object.fromEntries(['A','B'].map(s=>[`WT-AC-SELL-02${s}`,{status:'partial',scope:'同一架空商品fixtureから5販売面。表示/JSON-LD値一致、配送返品分岐、比較表構造、variant/CV ID、1440/390/320px、JS有無、keyboard、代表200% root文字。',remaining,proofs:[{path:`${root}/verification.json`,row_names:acRows(s)}]}])));
+ save(`${root}/catalog-candidates.json`,{schema:'wt-product-surfaces-catalog-candidates.v1',entries:definitions.map(d=>({id:`product-surfaces:${d.kind}`,face:'article',part:`product-surfaces-${d.kind}`,label:`販売面：${d.label}`,variant:d.kind,description:`${d.title}。同一商品正本の静的/ローカルPoC。2受入条件は部分確認。`,purpose:'同じ商品を目的に合う販売面で比較する',group:'ページ本文',images:{pc:`../2026-09-20-product-surfaces-poc/${d.kind}-pc.jpg`,sp:`../2026-09-20-product-surfaces-poc/${d.kind}-sp.jpg`},requirementIds:['WT-FR-SELL-02'],referenceId:'wt-product-surfaces-poc.v1',evidence:'../2026-09-20-product-surfaces-poc/verification.json',selectionFacts:{'対象と判断':d.title,'商品正本':'架空商品3点の単一fixture。商品/価格/評価/レビュー/条件とJSON-LDを同時生成。','構造化データ':'affiliate/external-storeはproduct snippet形、self-ECは配送/返品付きmerchant listing形。検索表示適格性は未検証。','実測':'1440/390/320px、JS有無、IDイベント、比較表keyboard scroll、代表200% root文字。','対象外':'AI・credential・実購入・外部APIなし。計測/広告はテーマ外。','未検証':remaining.join(' ')}}))});
+ console.log(JSON.stringify({completed:true,tests:rows.length,screenshots:shots.length,acceptance:'2 partial candidates'}));
+}finally{fs.rmSync(staging,{recursive:true,force:true});}

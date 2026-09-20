@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 672,
-  "screenshot_count": 1215,
+  "catalog_candidate_count": 677,
+  "screenshot_count": 1225,
   "acceptance_counts": {
-    "missing": 212,
-    "partial": 56,
+    "missing": 210,
+    "partial": 58,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -452,22 +452,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "商品を schema 付き JSON または専用投稿型で正本化し、名前・価格・特徴・評価・画像・リンク先（アフィリエイト / 外部ストア / 自社 EC URL）を保持する。複数記事から同じ正本を参照して一括反映し、商品表示と構造化データの入力を分散させない。決済・カート・会員はテーマ外とする。外部 EC / ASP API クライアントと認証情報を持たず、商品正本の取得元・時刻・鮮度を保持し、アフィリエイト用 merchant feed と ProductGroup を要求対象外にする。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-SELL-02",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・返品ポリシー付きの merchant listing 形を出し分け、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする。出典: https://developers.google.com/search/docs/appearance/structured-data/product-snippet、https://developers.google.com/search/docs/appearance/structured-data/merchant-listing（参照日: 2026-09-03）。pros-cons、ランキング根拠、料金表 variant、先頭列固定を扱い、打消し表示は CTA と同視野・同サイズにする。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2916,6 +2900,28 @@
         "admin-keys:revoked"
       ],
       "statement": "WT-UI-10 の鍵管理タブで HELIX 接続用 API key を発行・失効し、鍵ごとに読み専用 / 書き込み可を設定する。鍵の値は一度だけ表示し、テーマ・プラグインの公開ファイルへ置かない。自前鍵ではなく専用ロールの Application Passwords を読み取り用 / 書き込み用に分けて薄く包む。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-SELL-02",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 5,
+      "candidates": [
+        "product-surfaces:card",
+        "product-surfaces:ranking",
+        "product-surfaces:comparison",
+        "product-surfaces:cta",
+        "product-surfaces:review"
+      ],
+      "statement": "同じ商品正本から販売系 4 つ（商品カード・ランキング・比較専用テーブル・CTA 束）とレビューを出す。商品正本のリンク先種別に応じ、アフィリエイト・外部ストアは product snippet 形、自社 EC は配送・返品ポリシー付きの merchant listing 形を出し分け、Product / Offer / AggregateRating / ItemList 構造化データを WT-FR-SEO-02 と同じ仕組みで出力する。比較専用テーブルは列=商品・行=項目・優位項目強調・最下行 CTA とし、SP は横スクロールかカード化する。商品テーブルの variant ID と目標 CV ID を tracking 経路へ渡す。本文中の手組み比較表とは別語彙とする。出典: https://developers.google.com/search/docs/appearance/structured-data/product-snippet、https://developers.google.com/search/docs/appearance/structured-data/merchant-listing（参照日: 2026-09-03）。pros-cons、ランキング根拠、料金表 variant、先頭列固定を扱い、打消し表示は CTA と同視野・同サイズにする。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

@@ -680,6 +680,22 @@ if (fs.existsSync(path.join(root, adminKeysPath))) {
     entries.set(candidate.id, candidate);
   }
 }
+const productSurfacesPath = 'docs/research/2026-09-20-product-surfaces-poc/verification.json';
+if (fs.existsSync(path.join(root, productSurfacesPath))) {
+  const report = read(productSurfacesPath);
+  const candidates = read('docs/research/2026-09-20-product-surfaces-poc/catalog-candidates.json');
+  if (!report.completed || !report.rows.length || report.rows.some(r => !r.pass)) throw Error('Product surfaces PoC evidence incomplete');
+  for (const [source, expected] of Object.entries(report.sourceDigests)) if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale product source ${source}`);
+  if (JSON.stringify(candidates.entries.map(e => e.id).sort()) !== JSON.stringify(['product-surfaces:card', 'product-surfaces:comparison', 'product-surfaces:cta', 'product-surfaces:ranking', 'product-surfaces:review'])) throw Error('Product surfaces candidates must cover all five surfaces');
+  for (const candidate of candidates.entries) {
+    if (JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-SELL-02'])) throw Error('Product surfaces requirement mapping mismatch');
+    for (const device of ['pc', 'sp']) {
+      const shot = report.shots.find(s => s.id === candidate.variant && s.device === device);
+      if (!shot || candidate.images[device] !== `../2026-09-20-product-surfaces-poc/${shot.file}` || createHash('sha256').update(fs.readFileSync(path.join(root, 'docs/research/2026-09-20-product-surfaces-poc', shot.file))).digest('hex') !== shot.sha256) throw Error(`Missing product screenshot ${candidate.id}/${device}`);
+    }
+    entries.set(candidate.id, candidate);
+  }
+}
 const requirements = ir.requirements.map(r => {
   const family = r.id.split('-').at(-2);
   const prefixes = families[family] || [];

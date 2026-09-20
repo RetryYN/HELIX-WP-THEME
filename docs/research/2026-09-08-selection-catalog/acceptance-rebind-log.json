@@ -554,6 +554,52 @@
       ],
       "registry_before_sha256": "099eeb0a07ed440457a11369fb7152f7aa93bd4849f2c9e6e291b8d19e129ae6",
       "registry_after_sha256": "e12909b4514a329e83f85d805fa4c4498e28bde75620f60856e182d3763f1a5d"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "kind": "admit",
+      "cases": [
+        "WT-AC-SELL-02A",
+        "WT-AC-SELL-02B"
+      ],
+      "candidate_paths": [
+        "docs/research/2026-09-20-product-surfaces-poc/acceptance-candidate.json"
+      ],
+      "candidate_digests": {
+        "docs/research/2026-09-20-product-surfaces-poc/acceptance-candidate.json": "47727fea0a163e032041158ad353a851e4f3d73fc071116a27f2be0b7702e8a7"
+      },
+      "commands": [
+        [
+          "node",
+          "scripts/verify-product-surfaces-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SELL-02A",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        },
+        {
+          "kind": "admit",
+          "case_id": "WT-AC-SELL-02B",
+          "path": "registry.cases",
+          "before": null,
+          "after": "present"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-product-surfaces-poc/verification.json",
+          "before_sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "after_sha256": "088928c012f40cf2756c5822f74ca671ab90330a6618e59e3a9d4f98c441c580",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "e12909b4514a329e83f85d805fa4c4498e28bde75620f60856e182d3763f1a5d",
+      "registry_after_sha256": "d760113786834dddcb8e993c11a2dd499648021b5fd7de16f0241b77cda4ac3b"
     }
   ]
 }
