@@ -14677,7 +14677,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "44a5a0116711d36235b296784a8c11d9afc3deee99d80276aba4f333c15bbd15",
+              "sha256": "8e0a86b48698ff4b303ebff4768bdd6d63266223e71cd8799b04737d8adff6d6",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14691,7 +14691,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "4ea279e793edc8f6ebdfedfd0b81feb98816a9848ed0e8d1a26048277f2508a8",
+              "sha256": "a50e85d345f599add7f04e288ea6f3d45a6617982d9cb9b18749b19934f5d63e",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -14713,7 +14713,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "44a5a0116711d36235b296784a8c11d9afc3deee99d80276aba4f333c15bbd15",
+              "sha256": "8e0a86b48698ff4b303ebff4768bdd6d63266223e71cd8799b04737d8adff6d6",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -14727,7 +14727,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "4ea279e793edc8f6ebdfedfd0b81feb98816a9848ed0e8d1a26048277f2508a8",
+              "sha256": "a50e85d345f599add7f04e288ea6f3d45a6617982d9cb9b18749b19934f5d63e",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -16256,12 +16256,24 @@
           "requirement_id": "WT-FR-LOOK-01",
           "oracle": "reduced-motion 下で装飾モーションが動く、JS 無効で要素が消える、または写真・色地上の文字が 4.5:1（大文字 3:1）未満で出れば FAIL",
           "polarity": "negative",
-          "status": "missing",
-          "scope": "",
+          "status": "partial",
+          "scope": "現行プロトタイプの reduced-motion、装飾モーション抑止、JS 無効時の可視性、手動操作の検証を admission する",
           "remaining": [
-            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+            "写真・色地上の文字コントラスト 4.5:1（大きい文字は 3:1）の実測",
+            "カタログ全バリエーションの PC/SP および JS 無効時の網羅確認"
           ],
-          "evidence": []
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+              "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
+              "row_names": [
+                "fixture:positive",
+                "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
+                "reveal:immediate-content",
+                "manual:all-controls:0:reduce"
+              ]
+            }
+          ]
         },
         {
           "id": "WT-AC-LOOK-01E",
@@ -16873,9 +16885,9 @@
     {
       "id": "WT-FR-ADMIN-01",
       "family": "ADMIN",
-      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）を各項目の所有先の初期値にする: 設定 JSON が持つ項目はサイト既定セットの初期値、theme.json / block style が持つ項目（本文幅・書体など）はテーマ既定、選択なしの guard 項目（44px・コントラスト等）は検査で強制し設定にしない。選択を持つ項目だけ個別に変更でき、証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。",
+      "statement": "テーマ設定画面（WP 管理画面）を 1 つ持ち、サイト全体の既定（目次の配置方式・ページ種別表示、PR 表記のデザイン・表示制御、slot / ゾーン割当、SP 下部固定の積層、LP 種別の既定、MCP 常用パック構成）を AI を介さず人が普通に設定できる。正本は schema 付きの設定 JSON 1 本で、設定画面はその編集 UI にすぎない。同じ JSON を capability manifest に載せ MCP パックからも読み書きでき、export / import を持ち、MIGRATE のマッピングフォーマットの写像先になる。色・タイポ・寸法（theme.json / Site Editor）、構造（Site Editor）、計測タグ・広告コード（テーマ外）は含めない。カスタマイザーには置かない。著者・監修者、レコメンド、フォント、読み戻し、hosting capability、リンク切れ、選択セットを設定 JSON のタブへ追加する。設定 UI は 3 層（サイト既定セット / パーツ単位の選択 / 記事単位の上書き）とし、選択セット（束）とプレビュー付きの視覚ピッカーで選ぶ。JSON 直接編集は補助経路とする（PO 2026-09-05、WT-Q-ADMIN-04）CV / ユーザビリティ証跡ルール集の既定値 P01〜P33（docs/research/2026-09-05-cro-usability-evidence/README.md §2、除外なし）を各項目の所有先の初期値にする: 設定 JSON が持つ項目はサイト既定セットの初期値、theme.json / block style が持つ項目（本文幅・書体など）はテーマ既定、選択なしの guard 項目（44px・コントラスト等）は検査で強制し設定にしない。選択を持つ項目だけ個別に変更でき、証跡強度 C の項目は要自社検証の注記を UI に出す（PO 2026-09-05、WT-Q-EVID-01）。 WordPress 7.2 系の DataViews / DataForm へ移行できるよう、一覧・編集の fields / actions をサーバー登録し、pattern・長さ・数値範囲の検証、階層表示、一括操作、入力状態を同じ schema / manifest 契約へ束ねる。未提供版では既存の設定 JSON 契約へ縮退する。",
       "priority": "P0",
-      "revision": 1,
+      "revision": 2,
       "acceptance": [
         {
           "id": "WT-AC-ADMIN-01A",
@@ -16918,6 +16930,18 @@
           "requirement_id": "WT-FR-ADMIN-01",
           "oracle": "P01〜P33 の各項目が所有先（設定 JSON / theme.json・block style / guard）の初期値または検査として実現され、選択を持つ項目だけ個別に変更でき、guard 項目は設定に現れず、強度 C の項目に要自社検証の注記が出る",
           "polarity": "positive",
+          "status": "missing",
+          "scope": "",
+          "remaining": [
+            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "WT-AC-ADMIN-01E",
+          "requirement_id": "WT-FR-ADMIN-01",
+          "oracle": "DataViews / DataForm 互換の管理画面で fields / actions がサーバー登録された schema と manifest から読まれ、pattern・長さ・数値範囲の検証、階層表示、一括操作、入力状態を同じ設定契約へ束ねる。未提供版では既存の設定 JSON 契約へ縮退し、設定値と権限境界を失わない。",
+          "polarity": "boundary",
           "status": "missing",
           "scope": "",
           "remaining": [
@@ -19034,9 +19058,9 @@
     {
       "id": "WT-FR-ADMIN-03",
       "family": "ADMIN",
-      "statement": "WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する",
+      "statement": "WT-UI-10 の差分レビュータブで dry-run の変更案と破壊域停止分を並べ、適用 / 却下を選べる。直近の変更は rollback でき、戻した事実を操作ログへ記録する 適用・却下・rollback が失敗した場合は、原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保持する。",
       "priority": "P0",
-      "revision": 1,
+      "revision": 2,
       "acceptance": [
         {
           "id": "WT-AC-ADMIN-03A",
@@ -19055,6 +19079,18 @@
           "requirement_id": "WT-FR-ADMIN-03",
           "oracle": "レビューなしで適用される、却下・保留が反映されない、rollback 後の記録がない、または破壊域停止を迂回できれば FAIL",
           "polarity": "negative",
+          "status": "missing",
+          "scope": "",
+          "remaining": [
+            "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "WT-AC-ADMIN-03C",
+          "requirement_id": "WT-FR-ADMIN-03",
+          "oracle": "dry-run・適用・rollback の失敗時に原因を診断できるメッセージとコピー可能な識別情報を表示し、差分・再試行・復旧の文脈を保つ。部分適用を成功として表示せず、操作ログへ失敗と復旧結果を残す。",
+          "polarity": "boundary",
           "status": "missing",
           "scope": "",
           "remaining": [
@@ -21765,7 +21801,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "d6915e27bb03700831e6b3d6b7c1a336b097ff032ef2fb10913559542e05f998",
+              "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -21790,7 +21826,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "d6915e27bb03700831e6b3d6b7c1a336b097ff032ef2fb10913559542e05f998",
+              "sha256": "1179534ea1f8a16c673c769a0f639d13fc8043813de808065e5aeb7334accf10",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -31240,8 +31276,8 @@
     }
   ],
   "acceptanceAudit": {
-    "missing": 225,
-    "partial": 41,
+    "missing": 226,
+    "partial": 42,
     "verified_in_poc": 32,
     "stale": 0
   },

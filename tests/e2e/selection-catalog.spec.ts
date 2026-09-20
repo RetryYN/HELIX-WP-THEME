@@ -1,4 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+const catalogData = JSON.parse(readFileSync('docs/research/2026-09-08-selection-catalog/catalog-data.json', 'utf8')) as {
+  requirementCount: number;
+  acceptanceAudit: Record<string, number>;
+};
+const catalogAcceptanceCount = Object.values(catalogData.acceptanceAudit).reduce((sum, count) => sum + count, 0);
 
 // Serve the repository root locally; this suite does not contact WordPress.
 const url = `${process.env.CATALOG_BASE_URL || 'http://127.0.0.1:8099'}/docs/research/2026-09-08-selection-catalog/`;
@@ -155,7 +162,7 @@ test('mobile collection navigation keeps the restored selection in view', async 
 
 test('acceptance ID, remaining text and evidence status filters preserve scope and recover from zero', async ({ page }) => {
   await page.locator('#tab-requirements').click();
-  await expect(page.locator('#requirements-count')).toContainText('134要求 / 298受入条件');
+  await expect(page.locator('#requirements-count')).toContainText(`${catalogData.requirementCount}要求 / ${catalogAcceptanceCount}受入条件`);
   await page.locator('#req-search').fill('WT-AC-INTERVIEW-01C');
   await expect(page.locator('.req-row')).toHaveCount(1);
   await expect(page.locator('.acceptance-row')).toHaveCount(1);

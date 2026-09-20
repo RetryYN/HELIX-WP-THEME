@@ -10,6 +10,7 @@ const read = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 const index = read(`${prototype}/CATALOG-INDEX.json`);
 const glossary = read(`${prototype}/CATALOG-GLOSSARY.json`);
 const ir = read('docs/requirements/l3/requirements-ir.json');
+const discoveryProjection = read('docs/requirements/discovery/candidate-projection.json');
 execFileSync(process.execPath, [path.join(root, 'scripts/audit-catalog-evidence.mjs')], { cwd: root, stdio: 'inherit' });
 const audit = read('docs/research/2026-09-08-selection-catalog/acceptance-audit.json');
 
@@ -627,12 +628,67 @@ const requirements = ir.requirements.map(r => {
     pending: r.pending_resolution || [],
     next: related.length ? '関連画像を起点に全受入条件の再現・実測を確認する' : '操作・状態・契約を含む再現デモと証跡を追加する' };
 });
+// Candidates are selected by people and agents, so expose the evidence boundary
+// next to every candidate.  The related requirement list alone cannot tell a
+// selector whether a candidate is merely photographed, partially verified, or
+// ready for a PoC decision.  Keep this derived metadata separate from the
+// acceptance registry: it is a navigation aid, never an acceptance claim.
+const auditByRequirement = new Map();
+for (const row of audit.rows) {
+  const rows = auditByRequirement.get(row.requirement_id) || [];
+  rows.push(row);
+  auditByRequirement.set(row.requirement_id, rows);
+}
+const coverageFor = entry => {
+  const rows = entry.requirementIds.flatMap(id => auditByRequirement.get(id) || []);
+  const counts = Object.fromEntries(['verified_in_poc', 'partial', 'missing', 'stale'].map(status => [status, 0]));
+  for (const row of rows) counts[row.status] = (counts[row.status] || 0) + 1;
+  const status = counts.stale ? 'stale' : counts.missing ? (counts.verified_in_poc || counts.partial ? 'partial' : 'missing')
+    : counts.partial ? 'partial' : counts.verified_in_poc ? 'verified_in_poc' : 'unmapped';
+  const openAcceptanceIds = rows.filter(row => ['missing', 'stale'].includes(row.status)).map(row => row.id).sort();
+  const next = entry.requirementIds.map(id => requirements.find(requirement => requirement.id === id)?.next).find(Boolean)
+    || (status === 'unmapped' ? '要求との対応付けを確認する' : '受入条件の検証範囲を確認する');
+  return {
+    status,
+    acceptanceCount: rows.length,
+    counts,
+    openAcceptanceIds,
+    next,
+  };
+};
 const result = { schema: 'wt-selection-catalog.v1', source: prototype, requirementCount: requirements.length,
   screenshotCount: [...entries.values()].reduce((sum, entry) => sum + Object.keys(entry.images).length, 0), faces: glossary.faces, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
   evidenceNote: '関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。' };
 const out = path.join(root, 'docs/research/2026-09-08-selection-catalog/catalog-data.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(result, null, 2) + '\n');
+const selectionIndex = {
+  schema: 'wt-selection-index.v1',
+  source: 'catalog-data.json',
+  generatedAtEventHead: discoveryProjection.event_head,
+  candidateCount: entries.size,
+  requirements: requirements.map(requirement => ({
+    id: requirement.id,
+    priority: requirement.priority,
+    status: requirement.status,
+    acceptance: requirement.acceptance.map(row => ({ id: row.id, status: row.status })),
+    relatedEntryIds: requirement.relatedEntryIds,
+  })),
+  entries: [...entries.values()].map(entry => ({
+    id: entry.id,
+    face: entry.face,
+    part: entry.part,
+    label: entry.label,
+    variant: entry.variant,
+    purpose: entry.purpose,
+    group: entry.group,
+    requirementIds: entry.requirementIds,
+    selectionCoverage: coverageFor(entry),
+    evidence: entry.evidence || null,
+    devices: Object.keys(entry.images).sort(),
+  })),
+};
+fs.writeFileSync(path.join(path.dirname(out), 'selection-index.json'), JSON.stringify(selectionIndex, null, 2) + '\n');
 const readmePath = path.join(root, 'docs/research/2026-09-08-selection-catalog/README.md');
 const readme = fs.readFileSync(readmePath, 'utf8');
 const currentStart = '<!-- catalog-current:start -->';
