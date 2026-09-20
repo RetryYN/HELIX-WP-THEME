@@ -1346,6 +1346,60 @@
       ],
       "registry_before_sha256": "6733f888ddcb9b0ea9bfdcc3382b4138cd6354a6fc59a5775cfe20c6956d6f25",
       "registry_after_sha256": "22850b152bc31957898db1a04589931d01ab09fa0ae35fd77f2f846db0f7b99d"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-ZONE-02A",
+        "WT-AC-ZONE-02B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "zone-overrides:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ZONE-02A",
+          "path": "docs/research/2026-09-20-zone-overrides-poc/contract.mjs",
+          "before": "168fd6bcfcd85f6119fbe91d3ef01897e0cc2095e59f3f39f7e08b9683cd2892",
+          "after": "d68f8509e0e91af5fe42ddd788df669282bcb779edc867bfd47be491ef0a9621"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ZONE-02A",
+          "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+          "before": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "after": "1d5415f61f5091aebafccdd2cf8be37ff32de25c8ae42770672ac2a443e9d9ce"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ZONE-02B",
+          "path": "docs/research/2026-09-20-zone-overrides-poc/contract.mjs",
+          "before": "168fd6bcfcd85f6119fbe91d3ef01897e0cc2095e59f3f39f7e08b9683cd2892",
+          "after": "d68f8509e0e91af5fe42ddd788df669282bcb779edc867bfd47be491ef0a9621"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ZONE-02B",
+          "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+          "before": "e834cc8f607c55324ba22e9fd0b2f58f6c26b6fcad3482b3fb637c9f947f8dcf",
+          "after": "1d5415f61f5091aebafccdd2cf8be37ff32de25c8ae42770672ac2a443e9d9ce"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-zone-overrides-poc/verification.json",
+          "before_sha256": "1d5415f61f5091aebafccdd2cf8be37ff32de25c8ae42770672ac2a443e9d9ce",
+          "after_sha256": "1d5415f61f5091aebafccdd2cf8be37ff32de25c8ae42770672ac2a443e9d9ce",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "22850b152bc31957898db1a04589931d01ab09fa0ae35fd77f2f846db0f7b99d",
+      "registry_after_sha256": "5903d93d9aa3c37d1889437f1f2513779df85f10be1c2c2d2908810a4e610984"
     }
   ]
 }

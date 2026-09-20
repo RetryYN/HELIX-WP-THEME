@@ -3,7 +3,7 @@
   "completed": true,
   "sourceDigests": {
     "scripts/verify-zone-overrides-poc.mjs": "555c13eb91c97abd19faec8c3adee3e765da2b6cfb448f475c6b65e9387fc8c7",
-    "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "168fd6bcfcd85f6119fbe91d3ef01897e0cc2095e59f3f39f7e08b9683cd2892"
+    "docs/research/2026-09-20-zone-overrides-poc/contract.mjs": "d68f8509e0e91af5fe42ddd788df669282bcb779edc867bfd47be491ef0a9621"
   },
   "rows": [
     {
@@ -52,6 +52,18 @@
     },
     {
       "name": "negative:missing creative reference rejected",
+      "pass": true
+    },
+    {
+      "name": "negative:invalid creative reference rejected",
+      "pass": true
+    },
+    {
+      "name": "negative:invalid override terms rejected",
+      "pass": true
+    },
+    {
+      "name": "negative:invalid override device rejected",
       "pass": true
     }
   ],

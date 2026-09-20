@@ -97,7 +97,10 @@ export const cases = Object.freeze([
   ['resolve:device fallback after taxonomy miss', () => resolve(fixture, 'article_before', { taxonomy: 'tag', terms: ['news'], device: 'sp' }).creative_ref === 'creative:mobile'],
   ['resolve:empty zone is explicit null', () => resolve(fixture, 'archive_head', {}).creative_ref === null],
   ['negative:unknown zone rejected', () => { try { resolve(fixture, 'category_override'); return false; } catch (error) { return error.message === 'Unknown zone id: category_override'; } }],
-  ['negative:unknown config zone rejected', () => { try { validate({ ...fixture, zones: [{ id: 'not-declared' }] }); return false; } catch { return true; } }],
-  ['negative:overrides object rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', overrides: {} }] }); return false; } catch { return true; } }],
-  ['negative:missing creative reference rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', overrides: [{ match: {} }] }] }); return false; } catch { return true; } }],
+  ['negative:unknown config zone rejected', () => { try { validate({ ...fixture, zones: [{ id: 'not-declared' }] }); return false; } catch (error) { return error.message === 'Unknown zone id: not-declared'; } }],
+  ['negative:overrides object rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', overrides: {} }] }); return false; } catch (error) { return error.message === 'Overrides must be an array: front'; } }],
+  ['negative:missing creative reference rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', overrides: [{ match: {} }] }] }); return false; } catch (error) { return error.message === 'Override creative reference is invalid: front'; } }],
+  ['negative:invalid creative reference rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', creative_ref: '' }] }); return false; } catch (error) { return error.message === 'Creative reference is invalid: front'; } }],
+  ['negative:invalid override terms rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', overrides: [{ match: { taxonomy: 'category', terms: [] }, creative_ref: 'creative:x' }] }] }); return false; } catch (error) { return error.message === 'Override terms are invalid: front'; } }],
+  ['negative:invalid override device rejected', () => { try { validate({ ...fixture, zones: [{ id: 'front', overrides: [{ match: { device: 'tablet' }, creative_ref: 'creative:x' }] }] }); return false; } catch (error) { return error.message === 'Override device is invalid: front'; } }],
 ]);
