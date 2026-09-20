@@ -1,0 +1,107 @@
+{
+  "schema": "wt-section-intermediate-poc.v1",
+  "postId": "demo-article",
+  "version": 1,
+  "sections": [
+    {
+      "id": "h2-prepare",
+      "headingKey": "prepare",
+      "title": "机を整える",
+      "level": 2,
+      "parentId": null,
+      "start": 1,
+      "end": 9,
+      "blockKeys": [
+        "prepare",
+        "p1",
+        "space",
+        "p2",
+        "detail",
+        "p3",
+        "light",
+        "p4"
+      ]
+    },
+    {
+      "id": "h2-prepare/h3-space",
+      "headingKey": "space",
+      "title": "場所を決める",
+      "level": 3,
+      "parentId": "h2-prepare",
+      "start": 3,
+      "end": 7,
+      "blockKeys": [
+        "space",
+        "p2",
+        "detail",
+        "p3"
+      ]
+    },
+    {
+      "id": "h2-prepare/h3-light",
+      "headingKey": "light",
+      "title": "明るさを合わせる",
+      "level": 3,
+      "parentId": "h2-prepare",
+      "start": 7,
+      "end": 9,
+      "blockKeys": [
+        "light",
+        "p4"
+      ]
+    },
+    {
+      "id": "h2-keep",
+      "headingKey": "keep",
+      "title": "整った状態を保つ",
+      "level": 2,
+      "parentId": null,
+      "start": 9,
+      "end": 11,
+      "blockKeys": [
+        "keep",
+        "p5"
+      ]
+    },
+    {
+      "id": "h2-end",
+      "headingKey": "end",
+      "title": "次の作業に備える",
+      "level": 2,
+      "parentId": null,
+      "start": 11,
+      "end": 13,
+      "blockKeys": [
+        "end",
+        "p6"
+      ]
+    }
+  ],
+  "registry": {
+    "h2-prepare": {
+      "headingKey": "prepare",
+      "parentId": null,
+      "level": 2
+    },
+    "h2-prepare/h3-space": {
+      "headingKey": "space",
+      "parentId": "h2-prepare",
+      "level": 3
+    },
+    "h2-prepare/h3-light": {
+      "headingKey": "light",
+      "parentId": "h2-prepare",
+      "level": 3
+    },
+    "h2-keep": {
+      "headingKey": "keep",
+      "parentId": null,
+      "level": 2
+    },
+    "h2-end": {
+      "headingKey": "end",
+      "parentId": null,
+      "level": 2
+    }
+  }
+}

@@ -2,11 +2,11 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 134,
   "acceptance_count": 300,
-  "catalog_candidate_count": 677,
-  "screenshot_count": 1225,
+  "catalog_candidate_count": 680,
+  "screenshot_count": 1231,
   "acceptance_counts": {
-    "missing": 210,
-    "partial": 58,
+    "missing": 206,
+    "partial": 62,
     "verified_in_poc": 32,
     "stale": 0
   },
@@ -404,38 +404,6 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "コア Breadcrumbs ブロックを表示し、BreadcrumbList 構造化データを同じ出力元から生成する。階層は投稿・固定ページ・LP の構造から機械導出し、保存 HTML に固定しない。LP のディレクトリ非依存 URL は設計課題として記録する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-SECTION-01",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3 区間を持つ階層とする（H4 以下は区間にしない、PO 2026-09-02）。ID は親子で安定させ（h2-id/h3-id）、見出し文言の変更でずれない。中間 JSON に section 境界と ID が出て、既存の sections API / section-registry をこの規約に合わせる",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
-    },
-    {
-      "requirement_id": "WT-FR-SECTION-02",
-      "priority": "P0",
-      "state": "missing",
-      "acceptance": {
-        "total": 2,
-        "missing": 2,
-        "partial": 0,
-        "verified_in_poc": 0,
-        "stale": 0
-      },
-      "candidate_count": 0,
-      "candidates": [],
-      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ）。section ID・variant ID・目標 CV ID・device type も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側。max-snippet / nosnippet / data-nosnippet と section × actor × version の rewrite history を記事メタへ記録する。",
       "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
     },
     {
@@ -2900,6 +2868,46 @@
         "admin-keys:revoked"
       ],
       "statement": "WT-UI-10 の鍵管理タブで HELIX 接続用 API key を発行・失効し、鍵ごとに読み専用 / 書き込み可を設定する。鍵の値は一度だけ表示し、テーマ・プラグインの公開ファイルへ置かない。自前鍵ではなく専用ロールの Application Passwords を読み取り用 / 書き込み用に分けて薄く包む。",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-SECTION-01",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 3,
+      "candidates": [
+        "section-contract:structure",
+        "section-contract:editing",
+        "section-contract:delivery"
+      ],
+      "statement": "見出し区間を一級の単位（section）にする。区間は「見出しレベル N から同レベル以上の次の見出しまで」と定義し、H2 区間の中に H3 区間を持つ階層とする（H4 以下は区間にしない、PO 2026-09-02）。ID は親子で安定させ（h2-id/h3-id）、見出し文言の変更でずれない。中間 JSON に section 境界と ID が出て、既存の sections API / section-registry をこの規約に合わせる",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-SECTION-02",
+      "priority": "P0",
+      "state": "partial",
+      "acceptance": {
+        "total": 2,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 3,
+      "candidates": [
+        "section-contract:structure",
+        "section-contract:editing",
+        "section-contract:delivery"
+      ],
+      "statement": "H2 / H3 区間単位で次を行える: 差し替え（別の書き方の区間へ入れ替え）、リライト（区間だけを再生成し diff → apply / rollback、記事全体を再生成しない）、順序入れ替え、面の挿入（区間の前後に slot / ゾーンを置く。「N 番目の H2 の後」「特定 section の前」の規則をテーマ設定画面で全記事共通に、投稿単位で上書き）、表示制御（折りたたみ・非表示・目次への出し分け）、計測（区間ごとの到達・滞在を WT-FR-TAG-02 の version 付きデータ層契約で tracking 経路へ）。section ID・variant ID・目標 CV ID・device type も計測へ渡す。人は Block Editor から AI を介さず操作し、AI は MCP パックから同じ操作を行う。どの区間を書き換えるかの判定は HELIX 側。max-snippet / nosnippet / data-nosnippet と section × actor × version の rewrite history を記事メタへ記録する。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {

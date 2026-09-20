@@ -1,0 +1,107 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>区間と階層｜区間 PoC</title><link rel="stylesheet" href="sections.css"><body data-scenario="structure"><a class="skip" href="#content">本文へ進む</a><header><strong>HELIX / 記事の区間</strong><span>ローカル表示 PoC</span></header><main><nav aria-label="候補"><a href="structure.html" aria-current="page">区間と階層</a><a href="editing.html" >区間の変更</a><a href="delivery.html" >表示と挿入</a></nav><p class="eyebrow">SECTION / STABLE ID</p><h1>区間と階層</h1><p class="lead">見出しを変えても、区間のつながりを保つ。</p><p class="boundary">専用の架空記事です。変更はページ内だけ。AI判定・保存・WP API・MCP・外部送信なし。4受入条件は部分確認。</p><noscript><p class="notice">JavaScript無効：記事・目次・階層JSONは読めます。編集操作とイベントは動作しません。</p></noscript><div class="workspace"><aside class="panel"><h2>区間の地図</h2><ol id="registry"><li class="level-2"><strong>机を整える</strong><code>h2-prepare</code><span>親区間 · [1, 9)</span></li><li class="level-3"><strong>場所を決める</strong><code>h2-prepare/h3-space</code><span>子区間 · [3, 7)</span></li><li class="level-3"><strong>明るさを合わせる</strong><code>h2-prepare/h3-light</code><span>子区間 · [7, 9)</span></li><li class="level-2"><strong>整った状態を保つ</strong><code>h2-keep</code><span>親区間 · [9, 11)</span></li><li class="level-2"><strong>次の作業に備える</strong><code>h2-end</code><span>親区間 · [11, 13)</span></li></ol><details open><summary>中間JSONを見る</summary><pre id="projection">{
+  &quot;schema&quot;: &quot;wt-section-intermediate-poc.v1&quot;,
+  &quot;postId&quot;: &quot;demo-article&quot;,
+  &quot;version&quot;: 1,
+  &quot;sections&quot;: [
+    {
+      &quot;id&quot;: &quot;h2-prepare&quot;,
+      &quot;headingKey&quot;: &quot;prepare&quot;,
+      &quot;title&quot;: &quot;机を整える&quot;,
+      &quot;level&quot;: 2,
+      &quot;parentId&quot;: null,
+      &quot;start&quot;: 1,
+      &quot;end&quot;: 9,
+      &quot;blockKeys&quot;: [
+        &quot;prepare&quot;,
+        &quot;p1&quot;,
+        &quot;space&quot;,
+        &quot;p2&quot;,
+        &quot;detail&quot;,
+        &quot;p3&quot;,
+        &quot;light&quot;,
+        &quot;p4&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;h2-prepare/h3-space&quot;,
+      &quot;headingKey&quot;: &quot;space&quot;,
+      &quot;title&quot;: &quot;場所を決める&quot;,
+      &quot;level&quot;: 3,
+      &quot;parentId&quot;: &quot;h2-prepare&quot;,
+      &quot;start&quot;: 3,
+      &quot;end&quot;: 7,
+      &quot;blockKeys&quot;: [
+        &quot;space&quot;,
+        &quot;p2&quot;,
+        &quot;detail&quot;,
+        &quot;p3&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;h2-prepare/h3-light&quot;,
+      &quot;headingKey&quot;: &quot;light&quot;,
+      &quot;title&quot;: &quot;明るさを合わせる&quot;,
+      &quot;level&quot;: 3,
+      &quot;parentId&quot;: &quot;h2-prepare&quot;,
+      &quot;start&quot;: 7,
+      &quot;end&quot;: 9,
+      &quot;blockKeys&quot;: [
+        &quot;light&quot;,
+        &quot;p4&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;h2-keep&quot;,
+      &quot;headingKey&quot;: &quot;keep&quot;,
+      &quot;title&quot;: &quot;整った状態を保つ&quot;,
+      &quot;level&quot;: 2,
+      &quot;parentId&quot;: null,
+      &quot;start&quot;: 9,
+      &quot;end&quot;: 11,
+      &quot;blockKeys&quot;: [
+        &quot;keep&quot;,
+        &quot;p5&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;h2-end&quot;,
+      &quot;headingKey&quot;: &quot;end&quot;,
+      &quot;title&quot;: &quot;次の作業に備える&quot;,
+      &quot;level&quot;: 2,
+      &quot;parentId&quot;: null,
+      &quot;start&quot;: 11,
+      &quot;end&quot;: 13,
+      &quot;blockKeys&quot;: [
+        &quot;end&quot;,
+        &quot;p6&quot;
+      ]
+    }
+  ],
+  &quot;registry&quot;: {
+    &quot;h2-prepare&quot;: {
+      &quot;headingKey&quot;: &quot;prepare&quot;,
+      &quot;parentId&quot;: null,
+      &quot;level&quot;: 2
+    },
+    &quot;h2-prepare/h3-space&quot;: {
+      &quot;headingKey&quot;: &quot;space&quot;,
+      &quot;parentId&quot;: &quot;h2-prepare&quot;,
+      &quot;level&quot;: 3
+    },
+    &quot;h2-prepare/h3-light&quot;: {
+      &quot;headingKey&quot;: &quot;light&quot;,
+      &quot;parentId&quot;: &quot;h2-prepare&quot;,
+      &quot;level&quot;: 3
+    },
+    &quot;h2-keep&quot;: {
+      &quot;headingKey&quot;: &quot;keep&quot;,
+      &quot;parentId&quot;: null,
+      &quot;level&quot;: 2
+    },
+    &quot;h2-end&quot;: {
+      &quot;headingKey&quot;: &quot;end&quot;,
+      &quot;parentId&quot;: null,
+      &quot;level&quot;: 2
+    }
+  }
+}</pre></details></aside><div><section class="panel controls" aria-label="ローカル操作"><h2>選んだ区間だけを操作</h2><fieldset disabled id="tools"><label>対象区間<select id="target"><option value="h2-prepare" >机を整える (H2)</option><option value="h2-prepare/h3-space" selected>場所を決める (H3)</option><option value="h2-prepare/h3-light" >明るさを合わせる (H3)</option><option value="h2-keep" >整った状態を保つ (H2)</option><option value="h2-end" >次の作業に備える (H2)</option></select></label><label>見出し文言<input id="heading-text" value="場所を決める"></label><div class="buttons"><button id="rename">文言だけ変更</button><button id="rewrite">書き直し案</button><button id="replace">差し替え案</button><button id="move">次の同階層区間へ移動</button></div><div id="proposal" hidden><h3>選択区間の差分</h3><pre id="diff"></pre><div class="buttons"><button id="apply">この差分を適用</button><button id="reject">却下</button></div></div><button id="rollback" disabled>直近の変更を戻す</button><div class="switches"><label><input id="collapsed" type="checkbox">折りたたむ</label><label><input id="hidden" type="checkbox">本文から隠す</label><label><input id="noToc" type="checkbox">目次から外す</label></div><label>挿入規則<select id="slot"><option value="global">共通：2番目のH2の後</option><option value="post">この記事：選択区間の前</option></select></label><button id="set-slot">挿入規則を反映</button></fieldset><p id="status" role="status">操作はまだありません。保存せず再読込で戻ります。</p></section><section class="panel"><h2>このページの目次</h2><ol id="toc"><li class="level-2"><a href="#prepare">机を整える</a></li><li class="level-3"><a href="#space">場所を決める</a></li><li class="level-3"><a href="#light">明るさを合わせる</a></li><li class="level-2"><a href="#keep">整った状態を保つ</a></li><li class="level-2"><a href="#end">次の作業に備える</a></li></ol></section><article id="content" tabindex="-1"><p data-block-key="intro">架空の読みものです。机の上を整える手順を区間で比較します。</p><section data-section-id="h2-prepare"  aria-labelledby="prepare"><h2 id="prepare" data-observe="h2-prepare">机を整える</h2><div class="identity">h2-prepare <span>blocks 1–9 (end exclusive)</span></div><p data-block-key="p1">まず、作業に使うものを一か所へ集めます。</p><section data-section-id="h2-prepare/h3-space"  aria-labelledby="space"><h3 id="space" data-observe="h2-prepare/h3-space">場所を決める</h3><div class="identity">h2-prepare/h3-space <span>blocks 3–7 (end exclusive)</span></div><p data-block-key="p2">手を伸ばせる範囲に、よく使う道具を置きます。</p><h4>小さな道具の置き方</h4><p data-block-key="p3">小物は浅いトレイにまとめます。H4は区間の内部です。</p></section><section data-section-id="h2-prepare/h3-light"  aria-labelledby="light"><h3 id="light" data-observe="h2-prepare/h3-light">明るさを合わせる</h3><div class="identity">h2-prepare/h3-light <span>blocks 7–9 (end exclusive)</span></div><p data-block-key="p4">まぶしさを避けて、手元へ光を向けます。</p></section></section><section data-section-id="h2-keep"  aria-labelledby="keep"><h2 id="keep" data-observe="h2-keep">整った状態を保つ</h2><div class="identity">h2-keep <span>blocks 9–11 (end exclusive)</span></div><p data-block-key="p5">終わりに道具を戻します。このH2にはH3がありません。</p></section><aside class="zone" data-zone="section-after" data-slot-source="global">共通：次に読む案内<small>全記事共通の規則 / section-after</small></aside><section data-section-id="h2-end"  aria-labelledby="end"><h2 id="end" data-observe="h2-end">次の作業に備える</h2><div class="identity">h2-end <span>blocks 11–13 (end exclusive)</span></div><p data-block-key="p6">次に使うものを一つだけ用意します。</p></section></article></div></div><section class="panel event-panel"><h2>ローカル到達・滞在イベント</h2><p>見出しが画面内へ入ると到達、連続500msで滞在を記録します。サンプル閾値であり実際の読了判定ではありません。送信や永続保存はしません。</p><p id="event-status" role="status">イベント待機中</p><pre id="events">[]</pre></section><footer>候補契約のみ：WP 7.2実機・既存sections API/section-registry接続・Block Editor/MCP・全記事/投稿メタ保存・本番tracking・rewrite history/検索snippet制御は未検証。</footer></main><script type="module" src="view.mjs"></script></body></html>
