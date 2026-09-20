@@ -1,0 +1,41 @@
+{
+  "schema": "wt-lp-routing-rest.v1",
+  "records": [
+    {
+      "id": 101,
+      "type": "wt_lp",
+      "kind": "normal",
+      "slug": "start-editorial-session",
+      "link": "https://example.invalid/start-editorial-session/",
+      "showInRest": true,
+      "hierarchical": false
+    },
+    {
+      "id": 102,
+      "type": "wt_event",
+      "kind": "event",
+      "slug": "editorial-workshop-2026",
+      "link": "https://example.invalid/editorial-workshop-2026/",
+      "showInRest": true,
+      "hierarchical": false
+    },
+    {
+      "id": 103,
+      "type": "wt_comparison",
+      "kind": "comparison",
+      "slug": "compare-support-plans",
+      "link": "https://example.invalid/compare-support-plans/",
+      "showInRest": true,
+      "hierarchical": false
+    },
+    {
+      "id": 104,
+      "type": "wt_blp",
+      "kind": "blp",
+      "slug": "editorial-fit",
+      "link": "https://example.invalid/guides/editorial-fit/",
+      "showInRest": true,
+      "hierarchical": true
+    }
+  ]
+}

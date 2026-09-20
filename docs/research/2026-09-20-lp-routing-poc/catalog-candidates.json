@@ -1,0 +1,77 @@
+{
+  "schema": "wt-lp-routing-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "lp-routing:normal",
+      "face": "lp",
+      "part": "content-lp-routing",
+      "label": "通常LP：非階層URLとCV目的",
+      "variant": "normal",
+      "description": "通常LPを非階層スラッグで管理し、BLPから別目的のCV面へ送る静的契約PoC。",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-routing-poc/lp-routing-pc.jpg",
+        "sp": "../2026-09-20-lp-routing-poc/lp-routing-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-01"
+      ],
+      "referenceId": "wt-lp-routing-poc.v1",
+      "evidence": "../2026-09-20-lp-routing-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "LPを固定ページ階層から分離し、CV目的を持たせる。",
+        "実測": "manifest、REST投影、非階層URL、BLP→LP、PC/SP、JS無効、負例。",
+        "未検証": "実WP 7.2のCPT/REST/保存/権限/リライトルールは未接続。 静的JSONの契約を実運用の投稿編集画面や公開APIの成功とは扱わない。"
+      }
+    },
+    {
+      "id": "lp-routing:event",
+      "face": "event",
+      "part": "content-lp-routing",
+      "label": "イベント：独立管理種別",
+      "variant": "event",
+      "description": "イベントをLPへ一律に畳み込まず、独立した種別として列挙する静的契約PoC。",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-routing-poc/lp-routing-pc.jpg",
+        "sp": "../2026-09-20-lp-routing-poc/lp-routing-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-01"
+      ],
+      "referenceId": "wt-lp-routing-poc.v1",
+      "evidence": "../2026-09-20-lp-routing-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "開催情報と申込の管理目的をLPと識別する。",
+        "実測": "wt_eventのmanifest/REST種別、非階層URL、畳み込み拒否。",
+        "未検証": "実WP 7.2のCPT/REST/保存/権限/リライトルールは未接続。 静的JSONの契約を実運用の投稿編集画面や公開APIの成功とは扱わない。"
+      }
+    },
+    {
+      "id": "lp-routing:comparison",
+      "face": "comparison",
+      "part": "content-lp-routing",
+      "label": "比較特設：独立管理種別",
+      "variant": "comparison",
+      "description": "比較特設を独立種別として管理し、BLP・通常LPの目的差を選べる静的契約PoC。",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-20-lp-routing-poc/lp-routing-pc.jpg",
+        "sp": "../2026-09-20-lp-routing-poc/lp-routing-sp.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-LP-01"
+      ],
+      "referenceId": "wt-lp-routing-poc.v1",
+      "evidence": "../2026-09-20-lp-routing-poc/verification.json",
+      "selectionFacts": {
+        "対象と判断": "比較検討のための特設案内を通常LPと分ける。",
+        "実測": "wt_comparisonのmanifest/REST種別、非階層URL、BLP/LP目的差。",
+        "未検証": "実WP 7.2のCPT/REST/保存/権限/リライトルールは未接続。 静的JSONの契約を実運用の投稿編集画面や公開APIの成功とは扱わない。"
+      }
+    }
+  ]
+}

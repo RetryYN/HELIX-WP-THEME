@@ -1,0 +1,48 @@
+{
+  "schema": "wt-lp-routing-poc-verification.v1",
+  "completed": true,
+  "sourceDigests": {
+    "scripts/build-lp-routing-poc.mjs": "cb798c783a8d0bd5f8f7b978d959f3c93d06f4014fed9976f5785aa831dec49c",
+    "scripts/verify-lp-routing-poc.mjs": "4773447f5e7e191b7ed2365e789a1fe730b98d1308313467c600dbcd6ba5d539",
+    "tests/e2e/lp-routing-poc-selection-catalog.spec.ts": "560fa62fa6efad893a71e735623ba6ed03ca53635f745c85aa0ae6b83d7157d6",
+    "docs/research/2026-09-20-lp-routing-poc/model.mjs": "7b84e444510492bc3c3acf7065e8adbf1abb650d2eeaa58f7441e51013ab6267",
+    "docs/research/2026-09-20-lp-routing-poc/style.css": "3b487b8922fbb8c83b37283d73cf9bcc765efe5793e7d015bf948c375e1de46a"
+  },
+  "rows": [
+    {
+      "name": "AC-LP-01A manifest and REST expose flat LP routes and independent kinds",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01A remains usable without JavaScript at PC and SP widths",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01B rejects hierarchical LP slugs and collapsing event kinds into LP",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01C keeps BLP purpose and destination separate from LP and preserves independent kinds",
+      "pass": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "routing",
+      "device": "pc",
+      "file": "lp-routing-pc.jpg",
+      "sha256": "a111dbf6ba8c311f3daf18f67e4b77cb6804162b6457116fa6e8db5f17e9589f"
+    },
+    {
+      "id": "routing",
+      "device": "sp",
+      "file": "lp-routing-sp.jpg",
+      "sha256": "f4559b60a545683fb14080f6dac50ca2794710df662d90640725251bffafc880"
+    }
+  ],
+  "scope": "Static/local routing contract. Manifest, REST-shaped projection, flat slugs, independent event/comparison kinds, BLP→LP purpose relation, and negative route guards are verified. No WP 7.2 persistence, real REST, permissions, form submission, or external CV.",
+  "remaining": [
+    "実WP 7.2でのCPT登録・保存・show_in_rest公開・リライトルール・権限を未接続。",
+    "実フォームの表示/送信イベント、A/B variant、CV計測IDのデータ層連携はWT-FR-LP-02で別途検証する。"
+  ]
+}

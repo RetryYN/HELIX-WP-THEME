@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0312",
-  "candidateCount": 691,
+  "candidateCount": 694,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -2018,35 +2018,31 @@
     {
       "id": "WT-FR-LP-01",
       "priority": "P0",
-      "status": "not_verified",
+      "status": "partial_poc",
       "coverage": {
-        "candidateCount": 49,
+        "candidateCount": 52,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 3,
+          "partial": 3,
+          "missing": 0,
           "stale": 0
         },
-        "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C"
-        ],
-        "selectionState": "candidate_with_open_acceptance"
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
           "id": "WT-AC-LP-01A",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-LP-01B",
-          "status": "missing"
+          "status": "partial"
         },
         {
           "id": "WT-AC-LP-01C",
-          "status": "missing"
+          "status": "partial"
         }
       ],
       "relatedEntryIds": [
@@ -2098,7 +2094,10 @@
         "lp:lp-sections-extended-6",
         "lp:lp-form-block",
         "content:lp-standard",
-        "content:lp-editorial"
+        "content:lp-editorial",
+        "lp-routing:normal",
+        "lp-routing:event",
+        "lp-routing:comparison"
       ]
     },
     {
@@ -2106,7 +2105,7 @@
       "priority": "P0",
       "status": "not_verified",
       "coverage": {
-        "candidateCount": 49,
+        "candidateCount": 52,
         "acceptanceCount": 2,
         "counts": {
           "verified_in_poc": 0,
@@ -2179,7 +2178,10 @@
         "lp:lp-sections-extended-6",
         "lp:lp-form-block",
         "content:lp-standard",
-        "content:lp-editorial"
+        "content:lp-editorial",
+        "lp-routing:normal",
+        "lp-routing:event",
+        "lp-routing:comparison"
       ]
     },
     {
@@ -10585,18 +10587,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10621,18 +10620,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10657,18 +10653,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10693,18 +10686,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10729,18 +10719,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10765,18 +10752,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10801,18 +10785,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10837,18 +10818,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10873,18 +10851,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10909,18 +10884,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10945,18 +10917,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -10981,18 +10950,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11017,18 +10983,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11053,18 +11016,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11089,18 +11049,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11125,18 +11082,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11161,18 +11115,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11197,18 +11148,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11233,18 +11181,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11269,18 +11214,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11305,18 +11247,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11341,18 +11280,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11377,18 +11313,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -11413,18 +11346,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15280,18 +15210,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15316,18 +15243,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15352,18 +15276,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15388,18 +15309,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15424,18 +15342,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15460,18 +15375,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15496,18 +15408,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15532,18 +15441,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15568,18 +15474,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15604,18 +15507,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15640,18 +15540,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15676,18 +15573,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15712,18 +15606,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15748,18 +15639,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15789,14 +15677,11 @@
         "acceptanceCount": 7,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 2,
-          "missing": 5,
+          "partial": 5,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15826,14 +15711,11 @@
         "acceptanceCount": 7,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 2,
-          "missing": 5,
+          "partial": 5,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15860,18 +15742,15 @@
         "WT-FR-SNS-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 9,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 9,
+          "partial": 3,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B",
           "WT-AC-SNS-01A",
@@ -15902,18 +15781,15 @@
         "WT-FR-SNS-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 9,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 9,
+          "partial": 3,
+          "missing": 6,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B",
           "WT-AC-SNS-01A",
@@ -15942,18 +15818,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -15978,18 +15851,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -16013,18 +15883,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -16048,18 +15915,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -25870,14 +25734,11 @@
         "acceptanceCount": 7,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 2,
-          "missing": 5,
+          "partial": 5,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -26164,18 +26025,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -26200,18 +26058,15 @@
         "WT-FR-LP-02"
       ],
       "selectionCoverage": {
-        "status": "missing",
+        "status": "partial",
         "acceptanceCount": 5,
         "counts": {
           "verified_in_poc": 0,
-          "partial": 0,
-          "missing": 5,
+          "partial": 3,
+          "missing": 2,
           "stale": 0
         },
         "openAcceptanceIds": [
-          "WT-AC-LP-01A",
-          "WT-AC-LP-01B",
-          "WT-AC-LP-01C",
           "WT-AC-LP-02A",
           "WT-AC-LP-02B"
         ],
@@ -30217,6 +30072,105 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-20-product-registry-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "lp-routing:normal",
+      "face": "lp",
+      "part": "content-lp-routing",
+      "label": "通常LP：非階層URLとCV目的",
+      "variant": "normal",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LP-02A",
+          "WT-AC-LP-02B"
+        ],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-lp-routing-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "lp-routing:event",
+      "face": "event",
+      "part": "content-lp-routing",
+      "label": "イベント：独立管理種別",
+      "variant": "event",
+      "purpose": "行動につなげる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LP-02A",
+          "WT-AC-LP-02B"
+        ],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-lp-routing-poc/verification.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "lp-routing:comparison",
+      "face": "comparison",
+      "part": "content-lp-routing",
+      "label": "比較特設：独立管理種別",
+      "variant": "comparison",
+      "purpose": "信頼・納得をつくる",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-LP-01",
+        "WT-FR-LP-02"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 5,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 3,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-LP-02A",
+          "WT-AC-LP-02B"
+        ],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-20-lp-routing-poc/verification.json",
       "devices": [
         "pc",
         "sp"

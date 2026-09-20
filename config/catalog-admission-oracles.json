@@ -66,6 +66,10 @@
       "npm",
       "run",
       "zone-overrides:verify"
+    ],
+    "docs/research/2026-09-20-lp-routing-poc/verification.json": [
+      "node",
+      "scripts/verify-lp-routing-poc.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -173,6 +177,15 @@
     ],
     "WT-AC-ZONE-02B": [
       "docs/research/2026-09-20-zone-overrides-poc/verification.json"
+    ],
+    "WT-AC-LP-01A": [
+      "docs/research/2026-09-20-lp-routing-poc/verification.json"
+    ],
+    "WT-AC-LP-01B": [
+      "docs/research/2026-09-20-lp-routing-poc/verification.json"
+    ],
+    "WT-AC-LP-01C": [
+      "docs/research/2026-09-20-lp-routing-poc/verification.json"
     ]
   }
 }

@@ -1,0 +1,46 @@
+{
+  "schema": "wt-lp-routing-records.v1",
+  "records": [
+    {
+      "id": 101,
+      "type": "wt_lp",
+      "kind": "normal",
+      "title": "編集相談を始める",
+      "slug": "start-editorial-session",
+      "path": "/start-editorial-session/",
+      "goalCvId": "consultation-start",
+      "blpId": "blp-editorial-fit"
+    },
+    {
+      "id": 102,
+      "type": "wt_event",
+      "kind": "event",
+      "title": "編集設計ワークショップ",
+      "slug": "editorial-workshop-2026",
+      "path": "/editorial-workshop-2026/",
+      "goalCvId": "workshop-register",
+      "blpId": null
+    },
+    {
+      "id": 103,
+      "type": "wt_comparison",
+      "kind": "comparison",
+      "title": "運用支援プラン比較",
+      "slug": "compare-support-plans",
+      "path": "/compare-support-plans/",
+      "goalCvId": "plan-comparison-cta",
+      "blpId": "blp-plan-fit"
+    },
+    {
+      "id": 104,
+      "type": "wt_blp",
+      "kind": "blp",
+      "title": "編集支援が向く条件",
+      "slug": "editorial-fit",
+      "path": "/guides/editorial-fit/",
+      "goalCvId": null,
+      "blpId": null,
+      "sendsTo": 101
+    }
+  ]
+}
