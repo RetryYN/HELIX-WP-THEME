@@ -21,7 +21,9 @@ function fixture(t) {
   write('scripts/rebind-acceptance-evidence.mjs', fs.readFileSync(new URL('../scripts/rebind-acceptance-evidence.mjs', import.meta.url), 'utf8'));
   write('implementation.php', 'source-v1\n');
   const proof = { completed: true, rows: [{ name: 'scenario', pass: true }] };
+  proof.sourceDigests = { 'implementation.php': hash('source-v1\n'), 'new-source.txt': hash('new-source\n') };
   write('proof.json', proof);
+  write('new-source.txt', 'new-source\n');
   write('docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', {
     schema: 'wt-acceptance-evidence.v1',
     cases: {
@@ -33,7 +35,7 @@ function fixture(t) {
     },
   });
   write('docs/research/2026-09-08-selection-catalog/acceptance-rebind-log.json', { schema: 'wt-acceptance-rebind-log.v1', transactions: [] });
-  write('rewrite-proof.mjs', "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('proof.json')); fs.writeFileSync('proof.json', JSON.stringify(p, null, 2)+'\\n');\n");
+  write('rewrite-proof.mjs', "import fs from 'node:fs'; import { createHash } from 'node:crypto'; const p=JSON.parse(fs.readFileSync('proof.json')); p.sourceDigests['implementation.php']=createHash('sha256').update(fs.readFileSync('implementation.php')).digest('hex'); fs.writeFileSync('proof.json', JSON.stringify(p, null, 2)+'\\n');\n");
   write('package.json', {
     scripts: { 'fixture:verify': 'node rewrite-proof.mjs' },
     catalogOracles: { 'proof.json': 'fixture:verify' },
@@ -70,7 +72,17 @@ test('apply requires same-execution proof rewrite, updates only stale digest, an
   assert.equal((diff.match(/^[-+]\s+"implementation\.php"/gmu) || []).length, 2);
   const checked = f.run(['--check', '--base-ref', 'HEAD']);
   assert.equal(checked.status, 0, checked.stderr);
-  assert.match(checked.stdout, /1 digest change/u);
+  assert.match(checked.stdout, /3 digest change/u);
+});
+
+test('apply imports newly declared proof source digests into the acceptance registry', async t => {
+  const f = fixture(t);
+  f.write('implementation.php', 'source-v2\n');
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json')));
+  assert.equal(registry.cases.A1.source_digests['new-source.txt'], hash('new-source\n'));
 });
 
 test('apply rejects an arbitrary command even if it rewrites every referenced proof', t => {

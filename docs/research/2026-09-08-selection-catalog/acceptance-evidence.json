@@ -14772,8 +14772,16 @@
         "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
-        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
       },
       "scope": "wt-site-selection packの3 abilityをCLI/REST/MCPで列挙し、dry-run receipt後applyまで突合する。",
       "remaining": [
@@ -14783,7 +14791,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
           "row_names": [
             "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
           ]
@@ -14801,8 +14809,16 @@
         "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
-        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
       },
       "scope": "未宣言ability、入力schema境界、誤HTTPメソッドを拒否する。",
       "remaining": [
@@ -14812,7 +14828,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
           "row_names": [
             "AC-AGENT-01B records the known input-schema normalization boundary",
             "AC-AGENT-01B rejects a pack with an undeclared ability"
@@ -14831,8 +14847,16 @@
         "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
-        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
       },
       "scope": "匿名REST/MCPとreceiptなし・偽receiptのapplyを拒否する。",
       "remaining": [
@@ -14842,7 +14866,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
           "row_names": [
             "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
             "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -14861,8 +14885,16 @@
         "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
-        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
       },
       "scope": "権限・receipt境界の迂回を負例で拒否する。",
       "remaining": [
@@ -14872,7 +14904,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
           "row_names": [
             "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
             "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -14891,8 +14923,16 @@
         "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
-        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
       },
       "scope": "匿名REST/MCP露出を401として記録するが、全体SSRF/Warning監査は残件とする。",
       "remaining": [
@@ -14902,7 +14942,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
           "row_names": [
             "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
           ]
@@ -14920,8 +14960,16 @@
         "docs/research/2026-09-03-poc-abilities-3face/scripts/compare-faces.py": "361859145fece0bbc26ee0fe9c87a4b10e09d54081db3a0be741c1ccb051b91d",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "31c51c67bf338053e461961c5a7d7bdbd6275582c6e6dbb9db06f82c4d952ad8",
-        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58"
+        "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
+        "scripts/verify-abilities-security-contract-poc.mjs": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-abilities-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-tools-list-anon.json": "5e624cc207e03d06cb1a83d7e8eb917c4aff2637077d8ddb4504cc2bf271da4b",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-noreceipt-auth.json": "1b4f31707e98f6148093bd665018e12d09131641f114fcb098c174087a38982c",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-bogus-auth.json": "426855c323d8495ae03eca32ed11404f6225759171be641079f0085a2e6b55d1",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-anon-post.json": "f6a53db0ecbd1af6fa3f612db125a56fd975475ddc5a331643a4d7551246d945",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json": "5a3b0b7ad8ac15ab3be35877820140698afbe9dcc2a24fdd8c49b7dfc09286b2",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json": "d22d6c71df85fddc7fdccb46a899483361b11e8a1f535b2504c94045494ea523",
+        "docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json": "f1958502ecb219d177c284f163a645d40c1f087fa2b7fd245e5de521fb4ebcd7"
       },
       "scope": "匿名公開を200扱いする改変を負例で拒否する。",
       "remaining": [
@@ -14931,7 +14979,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+          "sha256": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
           "row_names": [
             "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
           ]
