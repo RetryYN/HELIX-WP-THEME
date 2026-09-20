@@ -1,0 +1,30 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>投稿の階層｜パンくず PoC</title><link rel="stylesheet" href="breadcrumbs.css"><script id="breadcrumb-json" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://example.com/"},{"@type":"ListItem","position":2,"name":"読みもの","item":"https://example.com/journal/"},{"@type":"ListItem","position":3,"name":"机と暮らし","item":"https://example.com/journal/workspace/"},{"@type":"ListItem","position":4,"name":"小さな机を心地よく整える","item":"https://example.com/journal/small-desk/"}]}</script><body data-page="post"><a class="skip" href="#content">本文へ進む</a><header><strong>HELIX / 暮らしの案内</strong><span>架空サイト・表示 PoC</span></header><main><nav class="choices" aria-label="候補"><a href="post.html" aria-current="page">投稿の階層</a><a href="page.html" >固定ページの階層</a><a href="lp.html" >LPの典型導線</a></nav><p class="eyebrow">BREADCRUMB / SINGLE SOURCE</p><h1>投稿の階層</h1><p class="lead">記事から、ひとつ上の読みものへ。</p><p class="boundary">静的/ローカルの候補です。WPコアBreadcrumbsブロック・WP 7.2実機・実サイト保存は未接続。2受入条件は部分確認。</p><section class="preview" aria-label="ページのプレビュー"><div id="breadcrumb"><nav aria-label="パンくず"><ol><li><a href="https://example.com/" >ホーム</a></li><li><span class="separator" aria-hidden="true">/</span><a href="https://example.com/journal/" >読みもの</a></li><li><span class="separator" aria-hidden="true">/</span><a href="https://example.com/journal/workspace/" >机と暮らし</a></li><li><span class="separator" aria-hidden="true">/</span><a href="https://example.com/journal/small-desk/" aria-current="page">小さな机を心地よく整える</a></li></ol></nav></div><article id="content" tabindex="-1"><p class="category">読みもの</p><h2 id="page-title">小さな机を心地よく整える</h2><p>こちらはパンくずの階層と表示を確かめるための架空ページです。見出しから現在地を確認し、親の案内へ戻れます。</p><div class="illustration" aria-hidden="true"><span class="book"></span><span class="vase"></span><span class="line"></span></div><h3>ひとつずつ、わかりやすく</h3><p>本文の内容を変えずに、正本の表示名・親・URLを変更して導線を比べられます。パンくずのラベルは省略せず、狭い画面では折り返します。</p></article></section><div class="contract-grid"><section class="panel"><h2>同じ正本を編集する</h2><noscript><p class="notice">JS無効でもパンくずとJSON-LDは初期HTMLにあります。編集操作は利用できません。</p></noscript><fieldset id="editor" disabled><label>現在ページの表示名<input id="name" value="小さな机を心地よく整える"></label><label>現在ページのパス<input id="path" value="/journal/small-desk/"></label><label>親の選択<select id="parent"><option value="home" >ホーム</option><option value="journal" >読みもの</option><option value="workspace" selected>机と暮らし</option><option value="guide" >ご利用ガイド</option><option value="support" >はじめての方へ</option><option value="page" >準備から利用後まで安心して進めるためのご案内</option><option value="services" >サービス</option><option value="consult" >暮らしの相談</option><option value="lp" >机まわりの相談会</option><option value="missing">欠損参照（負例）</option><option value="post">自分自身（循環の負例）</option></select></label><div class="buttons"><button id="apply">正本を更新して比較</button><button id="reset">初期状態に戻す</button></div></fieldset><p id="status" role="status">まだ変更していません。変更はページ内だけで、保存しません。</p></section><section class="panel"><h2>出力を確かめる</h2><p>同じ配列から可視リンクとJSON-LDを生成します。リンク先は予約ドメインの表示例です。JS有効時のクリックはこの説明に留めます。</p><details><summary>BreadcrumbListを見る</summary><pre id="schema-preview">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;BreadcrumbList&quot;,
+  &quot;itemListElement&quot;: [
+    {
+      &quot;@type&quot;: &quot;ListItem&quot;,
+      &quot;position&quot;: 1,
+      &quot;name&quot;: &quot;ホーム&quot;,
+      &quot;item&quot;: &quot;https://example.com/&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;ListItem&quot;,
+      &quot;position&quot;: 2,
+      &quot;name&quot;: &quot;読みもの&quot;,
+      &quot;item&quot;: &quot;https://example.com/journal/&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;ListItem&quot;,
+      &quot;position&quot;: 3,
+      &quot;name&quot;: &quot;机と暮らし&quot;,
+      &quot;item&quot;: &quot;https://example.com/journal/workspace/&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;ListItem&quot;,
+      &quot;position&quot;: 4,
+      &quot;name&quot;: &quot;小さな机を心地よく整える&quot;,
+      &quot;item&quot;: &quot;https://example.com/journal/small-desk/&quot;
+    }
+  ]
+}</pre></details><p class="url-note">LPの課題：ディレクトリ非依存URLを分解せず、サイト設定が選ぶ典型導線を別正本にする候補です。実WPのURL解決・複数導線・SEOプラグインとの出力所有権は未検証です。</p></section></div><footer>Rich Results・URL Inspection・検索表示適格性は未検証。AI・credential・外部APIなし。生成HTMLは再現用artifactであり、手書き階層の保存正本ではありません。</footer></main><script type="module" src="view.mjs"></script></body></html>
