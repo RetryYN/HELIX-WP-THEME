@@ -44,12 +44,18 @@ check('SEO-04A sponsored links keep ordinary links distinct', html.includes('rel
 
 const missingRequired = JSON.parse(JSON.stringify(fixtureGraph));
 delete missingRequired.find(node => node['@type'] === 'Article').headline;
+const missingAuthor = JSON.parse(JSON.stringify(fixtureGraph));
+delete missingAuthor.find(node => node['@type'] === 'Article').author;
+const missingPublished = JSON.parse(JSON.stringify(fixtureGraph));
+delete missingPublished.find(node => node['@type'] === 'Article').datePublished;
 const forbiddenAdded = JSON.parse(JSON.stringify(fixtureGraph));
 forbiddenAdded.push({ '@type': 'FAQPage', mainEntity: [] });
 const staleSource = sourceRegistry.map(source => ({ ...source, checkedAt: '2026-09-03' }));
 check('SEO-04B missing required property is rejected', !contractResult(missingRequired, sourceRegistry));
 check('SEO-04B forbidden type is rejected', !contractResult(forbiddenAdded, sourceRegistry));
 check('NFR-SEO-01A registry and test lane enforce required fields', contractResult(fixtureGraph, sourceRegistry) && Object.keys(requiredProperties).length === 2 && forbiddenTypes.length === 3 && sourceRegistry.every(source => source.url && source.checkedAt));
+check('NFR-SEO-01B missing Article.author is rejected', !contractResult(missingAuthor, sourceRegistry));
+check('NFR-SEO-01B missing Article.datePublished is rejected', !contractResult(missingPublished, sourceRegistry));
 check('NFR-SEO-01B stale source date is rejected', !contractResult(fixtureGraph, staleSource));
 
 const browser = await chromium.launch({ headless: true });
@@ -89,7 +95,7 @@ fs.writeFileSync(path.join(root, 'acceptance-candidate.json'), JSON.stringify({
   'WT-AC-SEO-04A': { status: 'partial', scope: '同一fixtureから可視meta・BreadcrumbList・Article・画像・出典台帳を生成し、PC/SPで再読する。', remaining, proofs: [proofRows(['SEO-04A visible metadata and one canonical graph', 'SEO-04A breadcrumb and image contracts', 'SEO-04A sponsored links keep ordinary links distinct'])] },
   'WT-AC-SEO-04B': { status: 'partial', scope: '必須プロパティ欠落・禁止型・出典日付の負例を同じ契約で拒否する。', remaining, proofs: [proofRows(['SEO-04B missing required property is rejected', 'SEO-04B forbidden type is rejected'])] },
   'WT-AC-NFR-SEO-01A': { status: 'partial', scope: 'required propertiesと廃止型台帳を検査するローカルtest laneを持つ。', remaining, proofs: [proofRows(['NFR-SEO-01A registry and test lane enforce required fields'])] },
-  'WT-AC-NFR-SEO-01B': { status: 'partial', scope: '廃止型追加・必須欠落・古い出典日付をFAILへ落とす。', remaining, proofs: [proofRows(['NFR-SEO-01B stale source date is rejected', 'SEO-04B forbidden type is rejected'])] },
+  'WT-AC-NFR-SEO-01B': { status: 'partial', scope: '廃止型追加・必須欠落・古い出典日付をFAILへ落とす。', remaining, proofs: [proofRows(['NFR-SEO-01B missing Article.author is rejected', 'NFR-SEO-01B missing Article.datePublished is rejected', 'NFR-SEO-01B stale source date is rejected', 'SEO-04B forbidden type is rejected'])] },
 }, null, 2) + '\n');
 fs.writeFileSync(path.join(root, 'catalog-candidates.json'), JSON.stringify({
   schema: 'wt-seo-contract-catalog-candidates.v1', entries: [
