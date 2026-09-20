@@ -3,8 +3,8 @@
   "completed": true,
   "sourceDigests": {
     "scripts/build-lp-routing-poc.mjs": "cb798c783a8d0bd5f8f7b978d959f3c93d06f4014fed9976f5785aa831dec49c",
-    "scripts/verify-lp-routing-poc.mjs": "4773447f5e7e191b7ed2365e789a1fe730b98d1308313467c600dbcd6ba5d539",
-    "tests/e2e/lp-routing-poc-selection-catalog.spec.ts": "560fa62fa6efad893a71e735623ba6ed03ca53635f745c85aa0ae6b83d7157d6",
+    "scripts/verify-lp-routing-poc.mjs": "0dd5556c017cfa96650392c6ea3eb1392ad08cf0b808f36bd13dc2a7a3b3ed7e",
+    "tests/e2e/lp-routing-poc-selection-catalog.spec.ts": "a4b7bc4fcfcbf2b35d0b9ec2e5e564db65e0fcee38a453a918d6ce9e671ffe44",
     "docs/research/2026-09-20-lp-routing-poc/model.mjs": "7b84e444510492bc3c3acf7065e8adbf1abb650d2eeaa58f7441e51013ab6267",
     "docs/research/2026-09-20-lp-routing-poc/style.css": "3b487b8922fbb8c83b37283d73cf9bcc765efe5793e7d015bf948c375e1de46a"
   },
@@ -19,6 +19,22 @@
     },
     {
       "name": "AC-LP-01B rejects hierarchical LP slugs and collapsing event kinds into LP",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01C rejects a directory base on a non-BLP type",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01C rejects a CV goal owned by a BLP",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01C requires a BLP destination",
+      "pass": true
+    },
+    {
+      "name": "AC-LP-01C requires all four declared management types",
       "pass": true
     },
     {
