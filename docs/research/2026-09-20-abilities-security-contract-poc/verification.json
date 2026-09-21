@@ -17,7 +17,7 @@
     "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
     "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
     "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
-    "scripts/verify-abilities-security-contract-poc.mjs": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+    "scripts/verify-abilities-security-contract-poc.mjs": "73a2ee4735c22a8253d795f944c60a7a1638a7e9123eb900e556eba387113fec"
   },
   "pack": "wt-site-selection",
   "abilities": [
@@ -101,6 +101,30 @@
       "pass": true
     },
     {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run missing the cli face",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run missing the rest face",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run missing the mcp face",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply missing the cli face",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply missing the rest face",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply missing the mcp face",
+      "pass": true
+    },
+    {
       "name": "AC-AGENT-01B rejects output_schema_cli_rest drift",
       "pass": true
     },
@@ -114,6 +138,38 @@
     },
     {
       "name": "AC-AGENT-01B rejects annotations_cli_mcp drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run output_schema_cli_rest drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run output_schema_cli_mcp drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run annotations_cli_rest drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-dry-run annotations_cli_mcp drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply output_schema_cli_rest drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply output_schema_cli_mcp drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply annotations_cli_rest drift",
+      "pass": true
+    },
+    {
+      "name": "AC-AGENT-01B rejects wt/site-selection-apply annotations_cli_mcp drift",
       "pass": true
     },
     {
