@@ -82,6 +82,16 @@ for (const face of ['cli', 'rest', 'mcp']) {
   }, /must be present on all faces/u);
 }
 
+for (const ability of fixture.abilities.slice(1)) {
+  for (const face of ['cli', 'rest', 'mcp']) {
+    rejects(`AC-AGENT-01B rejects ${ability} missing the ${face} face`, () => {
+      const broken = structuredClone(results);
+      broken.abilities[ability][face].present = false;
+      validateContract(value, broken, pack, observations);
+    }, new RegExp(`${ability} must be present on all faces`, 'u'));
+  }
+}
+
 for (const [field, message] of [
   ['output_schema_cli_rest', 'output CLI/REST mismatch'],
   ['output_schema_cli_mcp', 'output CLI/MCP mismatch'],
@@ -93,6 +103,21 @@ for (const [field, message] of [
     broken.abilities['wt/site-selection-read'].match[field] = false;
     validateContract(value, broken, pack, observations);
   }, new RegExp(message.replace(/[\\/]/gu, '\\$&'), 'u'));
+}
+
+for (const ability of fixture.abilities.slice(1)) {
+  for (const [field, message] of [
+    ['output_schema_cli_rest', 'output CLI/REST mismatch'],
+    ['output_schema_cli_mcp', 'output CLI/MCP mismatch'],
+    ['annotations_cli_rest', 'annotations CLI/REST mismatch'],
+    ['annotations_cli_mcp', 'annotations CLI/MCP mismatch'],
+  ]) {
+    rejects(`AC-AGENT-01B rejects ${ability} ${field} drift`, () => {
+      const broken = structuredClone(results);
+      broken.abilities[ability].match[field] = false;
+      validateContract(value, broken, pack, observations);
+    }, new RegExp(`${ability} ${message.replace(/[\\/]/gu, '\\$&')}`, 'u'));
+  }
 }
 
 for (const field of ['pack_in_cli', 'pack_in_rest', 'pack_in_mcp_wt_pack', 'pack_in_mcp_default_discover']) {
