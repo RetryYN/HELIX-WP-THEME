@@ -142,7 +142,7 @@ Playwright検証は26行すべて成功し、2回連続のJSON出力がbyte単�
 
 Astra（effort low）が現行main `eb037b0` のHOME共通サイドバーCTAを、同一DOMへbefore/afterのCSSだけを差し替える実ブラウザ観察で再確認した。390px/1440px、solid/outline、通常/hover/focusの24条件で、修正案はsolidの通常・focusが5.18:1、solid hoverが5.18:1、outline全状態が6.70:1となり、文言・寸法・横溢れを変えない。現行mainのsolid通常・focusは3.31:1、solid hoverは1.29:1で、14px相当の通常文字に必要な4.5:1を満たさない。これは観察結果であり、まだテーマCSSの採用やACの完了を意味しない。
 
-この調査で、現行テーマのsource-bound証跡を正規に更新する契約不足も判明した。`theme.css`変更の影響範囲は27 AC・30 proofを要求する一方、現行宣言は23 proofしか登録していない。`WT-AC-LOOK-01B` は過去比較の `2026-09-10-current-theme-quality/verify.json` と旧 `source-digests.json` のafter hash、固定の「フォーム面だけ差分4件」を現行回帰と同じ検査として参照する。公式verifyは修正案で139 pass/1 failとなり、失敗は `assets/css/theme.css` の旧digestである。該当digestの正規生成経路は確認できず、旧証跡を手編集して受理することは禁止する。旧fixtureの主要面も現行labでは404であり、過去比較を現行品質の合格証拠へ読み替えない。
+この調査で、現行テーマのsource-bound証跡を正規に更新する契約不足も判明した。`theme.css`変更の影響範囲は27 AC・30 proofを要求する一方、正規の生成経路が宣言されている影響proofは30件中1件だけで、`partial`側の23 proofには宣言がない。`WT-AC-LOOK-01B` は過去比較の `2026-09-10-current-theme-quality/verify.json` と旧 `source-digests.json` のafter hash、固定の「フォーム面だけ差分4件」を現行回帰と同じ検査として参照する。公式verifyは修正案で139 pass/1 failとなり、失敗は `assets/css/theme.css` の旧digestである。該当digestの正規生成経路は確認できず、旧証跡を手編集して受理することは禁止する。旧fixtureの主要面も現行labでは404であり、過去比較を現行品質の合格証拠へ読み替えない。
 
 次の要求として、以下を追加する。
 
