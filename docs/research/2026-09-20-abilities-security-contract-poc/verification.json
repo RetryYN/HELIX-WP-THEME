@@ -17,7 +17,7 @@
     "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
     "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
     "docs/research/2026-09-20-abilities-security-contract-poc/contract.mjs": "3c47f9b39c1a1b4f5509c11c546794cc4a4019a0a8705fec530889d5e597ac01",
-    "scripts/verify-abilities-security-contract-poc.mjs": "73a2ee4735c22a8253d795f944c60a7a1638a7e9123eb900e556eba387113fec"
+    "scripts/verify-abilities-security-contract-poc.mjs": "53f183b584b44fdb81f1bd9384c05e9aa1809367028f2018256f353ff6ecdb55"
   },
   "pack": "wt-site-selection",
   "abilities": [
@@ -89,15 +89,15 @@
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects an ability missing the cli face",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read missing the cli face",
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects an ability missing the rest face",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read missing the rest face",
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects an ability missing the mcp face",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read missing the mcp face",
       "pass": true
     },
     {
@@ -125,19 +125,19 @@
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects output_schema_cli_rest drift",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read output_schema_cli_rest drift",
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects output_schema_cli_mcp drift",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read output_schema_cli_mcp drift",
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects annotations_cli_rest drift",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read annotations_cli_rest drift",
       "pass": true
     },
     {
-      "name": "AC-AGENT-01B rejects annotations_cli_mcp drift",
+      "name": "AC-AGENT-01B rejects wt/site-selection-read annotations_cli_mcp drift",
       "pass": true
     },
     {

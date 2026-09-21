@@ -74,15 +74,7 @@ rejects('AC-AGENT-01B rejects a result with a missing ability key', () => {
   const broken = structuredClone(results); delete broken.abilities['wt/site-selection-read']; validateContract(value, broken, pack, observations);
 }, /Expected values to be strictly deep-equal/u);
 
-for (const face of ['cli', 'rest', 'mcp']) {
-  rejects(`AC-AGENT-01B rejects an ability missing the ${face} face`, () => {
-    const broken = structuredClone(results);
-    broken.abilities['wt/site-selection-read'][face].present = false;
-    validateContract(value, broken, pack, observations);
-  }, /must be present on all faces/u);
-}
-
-for (const ability of fixture.abilities.slice(1)) {
+for (const ability of fixture.abilities) {
   for (const face of ['cli', 'rest', 'mcp']) {
     rejects(`AC-AGENT-01B rejects ${ability} missing the ${face} face`, () => {
       const broken = structuredClone(results);
@@ -92,20 +84,7 @@ for (const ability of fixture.abilities.slice(1)) {
   }
 }
 
-for (const [field, message] of [
-  ['output_schema_cli_rest', 'output CLI/REST mismatch'],
-  ['output_schema_cli_mcp', 'output CLI/MCP mismatch'],
-  ['annotations_cli_rest', 'annotations CLI/REST mismatch'],
-  ['annotations_cli_mcp', 'annotations CLI/MCP mismatch'],
-]) {
-  rejects(`AC-AGENT-01B rejects ${field} drift`, () => {
-    const broken = structuredClone(results);
-    broken.abilities['wt/site-selection-read'].match[field] = false;
-    validateContract(value, broken, pack, observations);
-  }, new RegExp(message.replace(/[\\/]/gu, '\\$&'), 'u'));
-}
-
-for (const ability of fixture.abilities.slice(1)) {
+for (const ability of fixture.abilities) {
   for (const [field, message] of [
     ['output_schema_cli_rest', 'output CLI/REST mismatch'],
     ['output_schema_cli_mcp', 'output CLI/MCP mismatch'],
