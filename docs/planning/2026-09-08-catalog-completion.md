@@ -137,3 +137,17 @@ Playwright検証は26行すべて成功し、2回連続のJSON出力がbyte単�
 対象補正によって、旧テーマでは隠れていた `WT-NFR-ENV-01` の不足が現行テーマ上で露出した。現行 `helix-wt` は翻訳関数0件、未翻訳CJK表示276行であり、ENV-01A/Bは確認済みから外して未対応として扱う。大量の自動置換は混在PHPの安全性と既存証跡の再現性を損なうため採用せず、独立レーンで翻訳単位・POT・既定日本語表示・英語表示を実機検証する。
 
 補正後の集計は613候補・1098画像・133要求・294 AC、確認25・部分18・未対応251・stale 0。PRの公開HEAD `5bc1cc1` に対するClaude receiptは存在するが、未pushの補正差分には適用しない。補正HEADをpushしCIがterminalになった後に再通知・再レビューする。
+
+### 2026-09-21 共通サイドバーCTAのコントラスト再検証契約
+
+Astra（effort low）が現行main `eb037b0` のHOME共通サイドバーCTAを、同一DOMへbefore/afterのCSSだけを差し替える実ブラウザ観察で再確認した。390px/1440px、solid/outline、通常/hover/focusの24条件で、修正案はsolidの通常・focusが5.18:1、solid hoverが5.18:1、outline全状態が6.70:1となり、文言・寸法・横溢れを変えない。現行mainのsolid通常・focusは3.31:1、solid hoverは1.29:1で、14px相当の通常文字に必要な4.5:1を満たさない。これは観察結果であり、まだテーマCSSの採用やACの完了を意味しない。
+
+この調査で、現行テーマのsource-bound証跡を正規に更新する契約不足も判明した。`theme.css`変更の影響範囲は27 AC・30 proofを要求する一方、現行宣言は23 proofしか登録していない。`WT-AC-LOOK-01B` は過去比較の `2026-09-10-current-theme-quality/verify.json` と旧 `source-digests.json` のafter hash、固定の「フォーム面だけ差分4件」を現行回帰と同じ検査として参照する。公式verifyは修正案で139 pass/1 failとなり、失敗は `assets/css/theme.css` の旧digestである。該当digestの正規生成経路は確認できず、旧証跡を手編集して受理することは禁止する。旧fixtureの主要面も現行labでは404であり、過去比較を現行品質の合格証拠へ読み替えない。
+
+次の要求として、以下を追加する。
+
+1. 共通サイドバーCTAは、既存CTA tokenの前景色を通常・hover・focusで維持し、solid/outlineのPC/SP実ブラウザ観察で通常文字のコントラスト4.5:1以上を満たす。通常リンクの色、CTAの文言・寸法・横溢れ、outlineの既存コントラストを同じ観察で回帰確認する。
+2. `theme.css`の変更に対して、影響27 AC・30 proofを正規rebindで再現できるようにする。未登録23 proofは、生成コマンド、入力fixture、後片付け、成功行、source bindingを宣言し、実行結果からdigestを生成する。digest JSONの手編集、旧fixtureの復元、手動のafter hash差替えは受入条件にしない。
+3. `WT-AC-LOOK-01B` の過去比較（9/10の固定観察）と現行回帰（現行HEADの全状態・コントラスト・寸法・内容保持）を別のproofへ分離する。現行回帰は正常なCTA修正案を受理し、通常・hover・focusの前景色を一般リンク規則へ戻す改変を負例として拒否する。旧比較の差分件数は現行変更の合否条件にしない。
+
+この要求化はCSS実装を含まない。契約と現行proofが揃い、同一HEADで実ブラウザ・source binding・npm test・CIを再実行できるまで、LOOK-01Bの確認済み昇格とビジュアルPR作成を保留する。
