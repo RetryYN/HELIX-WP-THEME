@@ -9,7 +9,7 @@ const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const hash = file => createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const rows = [];
 const check = (name, fn) => { try { fn(); rows.push({ name, pass: true }); } catch (error) { rows.push({ name, pass: false, details: error instanceof Error ? error.message : String(error) }); } };
-const rejects = (name, fn) => check(name, () => assert.throws(fn));
+const rejects = (name, fn, message) => check(name, () => assert.throws(fn, message));
 const results = read(`${poc}/results/results.json`);
 const pack = read(`${poc}/scripts/pack.json`);
 const json = file => read(`${poc}/results/${file}`);
@@ -58,6 +58,72 @@ rejects('AC-NFR-PERM-01B rejects receipt-less apply evidence', () => {
 rejects('AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden', () => {
   const broken = { ...observations, restAnonymousStatus: 200 }; validateContract(value, results, pack, broken);
 });
+rejects('AC-AGENT-01B rejects a contract with the wrong schema', () => {
+  const broken = { ...value, schema: 'wrong' }; validateContract(broken, results, pack, observations);
+}, /Expected values to be strictly equal/u);
+rejects('AC-AGENT-01B rejects a contract with the wrong owner', () => {
+  const broken = { ...value, owner: 'editor' }; validateContract(broken, results, pack, observations);
+}, /Expected values to be strictly equal/u);
+rejects('AC-AGENT-01B rejects a pack outside the wt category', () => {
+  const broken = structuredClone(pack); broken.category.slug = 'other'; validateContract(value, results, broken, observations);
+}, /Expected values to be strictly equal/u);
+rejects('AC-AGENT-01B rejects a pack with a missing declared ability', () => {
+  const broken = structuredClone(pack); broken.abilities = broken.abilities.slice(0, -1); validateContract(value, results, broken, observations);
+}, /Expected values to be strictly deep-equal/u);
+rejects('AC-AGENT-01B rejects a result with a missing ability key', () => {
+  const broken = structuredClone(results); delete broken.abilities['wt/site-selection-read']; validateContract(value, broken, pack, observations);
+}, /Expected values to be strictly deep-equal/u);
+
+for (const face of ['cli', 'rest', 'mcp']) {
+  rejects(`AC-AGENT-01B rejects an ability missing the ${face} face`, () => {
+    const broken = structuredClone(results);
+    broken.abilities['wt/site-selection-read'][face].present = false;
+    validateContract(value, broken, pack, observations);
+  }, /must be present on all faces/u);
+}
+
+for (const [field, message] of [
+  ['output_schema_cli_rest', 'output CLI/REST mismatch'],
+  ['output_schema_cli_mcp', 'output CLI/MCP mismatch'],
+  ['annotations_cli_rest', 'annotations CLI/REST mismatch'],
+  ['annotations_cli_mcp', 'annotations CLI/MCP mismatch'],
+]) {
+  rejects(`AC-AGENT-01B rejects ${field} drift`, () => {
+    const broken = structuredClone(results);
+    broken.abilities['wt/site-selection-read'].match[field] = false;
+    validateContract(value, broken, pack, observations);
+  }, new RegExp(message.replace(/[\\/]/gu, '\\$&'), 'u'));
+}
+
+for (const field of ['pack_in_cli', 'pack_in_rest', 'pack_in_mcp_wt_pack', 'pack_in_mcp_default_discover']) {
+  rejects(`AC-AGENT-01A rejects a pack set missing ${field}`, () => {
+    const broken = structuredClone(results);
+    broken.sets[field] = false;
+    validateContract(value, broken, pack, observations);
+  }, /Expected values to be strictly equal/u);
+}
+
+for (const [field, bad, message] of [
+  ['mcpAnonymousStatus', 200, 'Expected values to be strictly equal'],
+  ['receiptMismatchCode', 'applied', 'Expected values to be strictly equal'],
+  ['wrongMethodStatus', 200, 'Expected values to be strictly equal'],
+  ['mcpNoReceiptError', false, 'Expected values to be strictly equal'],
+  ['applyAfterReceipt', false, 'Expected values to be strictly equal'],
+  ['readAfterHeader', 'header-a', 'Expected values to be strictly equal'],
+]) {
+  rejects(`AC-NFR-SEC-01B rejects ${field} drift`, () => {
+    const broken = { ...observations, [field]: bad };
+    validateContract(value, results, pack, broken);
+  }, new RegExp(message, 'u'));
+}
+
+for (const field of ['completion', 'liveCurrentHead']) {
+  rejects(`AC-NFR-SEC-01B rejects a completed ${field} gate`, () => {
+    const broken = structuredClone(value);
+    broken.gates[field] = true;
+    validateContract(broken, results, pack, observations);
+  }, /Expected values to be strictly equal/u);
+}
 check('contract has no transport, model, or credential material', () => {
   const source = fs.readFileSync(`${root}/contract.mjs`, 'utf8');
   for (const forbidden of ['fetch(', 'sendBeacon(', 'XMLHttpRequest', 'openai', 'anthropic', 'WP_APP_PASS', 'password']) assert(!source.includes(forbidden), forbidden);

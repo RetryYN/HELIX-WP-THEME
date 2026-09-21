@@ -2676,6 +2676,119 @@
       ],
       "registry_before_sha256": "d1fd000735858f3b9fafc13403249cc925aba3a0d51fded500897158354d735b",
       "registry_after_sha256": "4107acd92799c97b953753ac3be9db03a8947970caed9af2d59799de80c62ed7"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-AGENT-01A",
+        "WT-AC-AGENT-01B",
+        "WT-AC-NFR-PERM-01A",
+        "WT-AC-NFR-PERM-01B",
+        "WT-AC-NFR-SEC-01A",
+        "WT-AC-NFR-SEC-01B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-abilities-security-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "scripts/verify-abilities-security-contract-poc.mjs",
+          "before": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+          "after": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-AGENT-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "scripts/verify-abilities-security-contract-poc.mjs",
+          "before": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+          "after": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-AGENT-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "scripts/verify-abilities-security-contract-poc.mjs",
+          "before": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+          "after": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-PERM-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "scripts/verify-abilities-security-contract-poc.mjs",
+          "before": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+          "after": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-PERM-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "scripts/verify-abilities-security-contract-poc.mjs",
+          "before": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+          "after": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-SEC-01A",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "scripts/verify-abilities-security-contract-poc.mjs",
+          "before": "7ca6775f6bc64429ce09b352ad12889abade1216b19a0ca896d30cdf8fdaac58",
+          "after": "c386d3c853ca2eabf79daa847afd7d5050f73213643e215b493e29fb5512ea05"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-SEC-01B",
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before": "9cc17f875af6436426a21fa65506a944dbc87d196f907eb542fcd71d4b011999",
+          "after": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
+          "before_sha256": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3",
+          "after_sha256": "ac075a4da2394ed93d9f4d0e26561b905179968df9f207724906c051a36b23a3",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "4107acd92799c97b953753ac3be9db03a8947970caed9af2d59799de80c62ed7",
+      "registry_after_sha256": "cecdd32942ec6d8feece9d994b7e2621f81ec62c259ee9d4ac36ebc2c9c10bc5"
     }
   ]
 }

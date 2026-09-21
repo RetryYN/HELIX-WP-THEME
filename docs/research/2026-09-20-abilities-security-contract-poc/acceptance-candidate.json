@@ -11,7 +11,11 @@
       {
         "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
         "row_names": [
-          "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
+          "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow",
+          "AC-AGENT-01A rejects a pack set missing pack_in_cli",
+          "AC-AGENT-01A rejects a pack set missing pack_in_rest",
+          "AC-AGENT-01A rejects a pack set missing pack_in_mcp_wt_pack",
+          "AC-AGENT-01A rejects a pack set missing pack_in_mcp_default_discover"
         ]
       }
     ]
@@ -28,7 +32,19 @@
         "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
         "row_names": [
           "AC-AGENT-01B records the known input-schema normalization boundary",
-          "AC-AGENT-01B rejects a pack with an undeclared ability"
+          "AC-AGENT-01B rejects a pack with an undeclared ability",
+          "AC-AGENT-01B rejects a contract with the wrong schema",
+          "AC-AGENT-01B rejects a contract with the wrong owner",
+          "AC-AGENT-01B rejects a pack outside the wt category",
+          "AC-AGENT-01B rejects a pack with a missing declared ability",
+          "AC-AGENT-01B rejects a result with a missing ability key",
+          "AC-AGENT-01B rejects an ability missing the cli face",
+          "AC-AGENT-01B rejects an ability missing the rest face",
+          "AC-AGENT-01B rejects an ability missing the mcp face",
+          "AC-AGENT-01B rejects output_schema_cli_rest drift",
+          "AC-AGENT-01B rejects output_schema_cli_mcp drift",
+          "AC-AGENT-01B rejects annotations_cli_rest drift",
+          "AC-AGENT-01B rejects annotations_cli_mcp drift"
         ]
       }
     ]
@@ -94,7 +110,15 @@
       {
         "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
         "row_names": [
-          "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
+          "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden",
+          "AC-NFR-SEC-01B rejects mcpAnonymousStatus drift",
+          "AC-NFR-SEC-01B rejects receiptMismatchCode drift",
+          "AC-NFR-SEC-01B rejects wrongMethodStatus drift",
+          "AC-NFR-SEC-01B rejects mcpNoReceiptError drift",
+          "AC-NFR-SEC-01B rejects applyAfterReceipt drift",
+          "AC-NFR-SEC-01B rejects readAfterHeader drift",
+          "AC-NFR-SEC-01B rejects a completed completion gate",
+          "AC-NFR-SEC-01B rejects a completed liveCurrentHead gate"
         ]
       }
     ]
