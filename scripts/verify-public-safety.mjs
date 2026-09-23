@@ -24,7 +24,7 @@ function runFixture(name, relativePath, content, expectedPass, env = {}, options
     fs.mkdirSync(path.dirname(target), { recursive: true });
     if (options.symlink) fs.symlinkSync(content, target);
     else fs.writeFileSync(target, content);
-    execFileSync('git', ['add', relativePath], { cwd: fixture });
+    execFileSync('git', ['add', '--', relativePath], { cwd: fixture, env: { ...process.env, GIT_LITERAL_PATHSPECS: '1' } });
     if (options.binaryApproval) {
       const digest = sha256(target);
       fs.mkdirSync(path.join(fixture, 'config'), { recursive: true });
@@ -44,7 +44,7 @@ function runFixture(name, relativePath, content, expectedPass, env = {}, options
     const actualPass = result.status === 0;
     return {
       name,
-      pass: actualPass === expectedPass,
+      pass: actualPass === expectedPass && (!options.expectedFailure || result.stderr.includes(options.expectedFailure)),
       expected: expectedPass ? 'accept' : 'reject',
       actual: actualPass ? 'accept' : 'reject',
       exit_code: result.status,
@@ -61,8 +61,12 @@ const trackingUrl = ['https://example.invalid/path?', 'a8', 'mat=value'].join(''
 const rows = [
   runFixture('positive:clean-source-accepted', 'src/clean.php', '<?php echo "safe";\n', true),
   runFixture('negative:private-key-rejected', 'src/key.txt', `${privateKey}\n`, false),
-  runFixture('negative:private-key-in-Japanese-path-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false),
-  runFixture('negative:private-key-in-Japanese-path-range-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { range: true }),
+  runFixture('negative:private-key-in-Japanese-path-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:private-key-in-Japanese-path-range-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { range: true, expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-exclude-magic-rejected', ':(exclude)*', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-short-exclude-magic-rejected', ':!x', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-wildcard-name-rejected', '*', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-bracket-name-rejected', '[ab]', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
   runFixture('negative:control-character-path-rejected', 'src/line\nbreak.txt', 'ordinary text\n', false),
   runFixture('negative:access-token-rejected', 'src/token.txt', `${token}\n`, false),
   runFixture('negative:credential-assignment-rejected', 'src/config.txt', `client_${'secret'}=abcdefghijklmnop\n`, false),

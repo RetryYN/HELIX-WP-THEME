@@ -5,9 +5,9 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669",
+  "source_sha256": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669"
+    "scripts/public-safety-guard.sh": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9"
   },
   "rows": [
     {
@@ -33,6 +33,34 @@
     },
     {
       "name": "negative:private-key-in-Japanese-path-range-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-exclude-magic-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-short-exclude-magic-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-wildcard-name-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-bracket-name-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export GIT_LITERAL_PATHSPECS=1
 
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"

@@ -9855,15 +9855,15 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/verify-public-safety.mjs": "07bcf172c401b82e5403bf75efb6835e61b46a8ba23fd195596bdc2acac44b6e",
+        "scripts/verify-public-safety.mjs": "8c9c85d587b67aea2a9fbc29a2cc660825e6384583f4b89c2975d5d3d79b3251",
         "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
-        "scripts/public-safety-guard.sh": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669"
+        "scripts/public-safety-guard.sh": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb",
+          "sha256": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655",
           "row_names": [
             "positive:clean-source-accepted",
             "positive:research-with-private-map-accepted"
@@ -9877,15 +9877,15 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/verify-public-safety.mjs": "07bcf172c401b82e5403bf75efb6835e61b46a8ba23fd195596bdc2acac44b6e",
+        "scripts/verify-public-safety.mjs": "8c9c85d587b67aea2a9fbc29a2cc660825e6384583f4b89c2975d5d3d79b3251",
         "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
-        "scripts/public-safety-guard.sh": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669"
+        "scripts/public-safety-guard.sh": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb",
+          "sha256": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655",
           "row_names": [
             "negative:private-key-rejected",
             "negative:access-token-rejected",
