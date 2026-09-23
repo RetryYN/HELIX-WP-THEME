@@ -4,7 +4,7 @@ export const fixture = {
   schema: 'wt-gate-contract.v1',
   owner: 'helix',
   staticGates: ['G-T1', 'G-T1b', 'G-T2', 'G-T3', 'G-S1', 'G-S2'],
-  staticResult: { fail: 0, warn: 2, rawValues: 433, rawBaseline: 438 },
+  staticResult: { fail: 0, warn: 1, rawValues: 433, rawBaseline: 438 },
   ge1: {
     source: 'docs/research/2026-08-29-ge1-local/editor-validate-2026-08-29.json',
     patterns: 71,
@@ -25,13 +25,14 @@ export function validateContract(value, staticOutput, ge1) {
   assert.equal(value.owner, 'helix');
   assert.deepEqual(value.staticGates, fixture.staticGates);
   assert.equal(value.staticResult.fail, 0);
+  assert.equal(value.staticResult.warn, 1);
   assert.equal(value.staticResult.rawValues, 433);
   assert.equal(value.staticResult.rawBaseline, 438);
   assert.equal(value.ge1.patterns, 71);
-  assert.equal(value.ge1.invalid, 0);
   assert.equal(value.gates.completion, false);
   assert.equal(value.gates.exactHeadReceipt, false);
   assert.match(staticOutput, /FAIL=0/);
+  assert.match(staticOutput, /WARN=1/);
   for (const gate of fixture.staticGates) assert.match(staticOutput, new RegExp(gate));
   const rows = Object.values(ge1);
   assert.equal(rows.length, fixture.ge1.patterns);

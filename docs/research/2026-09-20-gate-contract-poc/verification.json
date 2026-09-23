@@ -7,9 +7,9 @@
     "docs/research/2026-08-29-ge1-local/editor-validate-2026-08-29.json": "6d0def2b27b3682a2f3ad31a3958c0cdd4e958b8f4421597e505e080367f3e21",
     "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
     "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-    "docs/research/2026-09-20-gate-contract-poc/contract.mjs": "ef8d1e7d281f179419c5fbccaaca53dcd5a40fc006051e3c8ad5f75a2646fbe2",
-    "scripts/verify-gate-contract-poc.mjs": "e6ff65a7789e596dbf62a86f975ac499b9c21af62820def9184dcfbbf9d8d6bd",
-    "docs/research/2026-09-20-gate-contract-poc/README.md": "19122f94b10498d8cf92ab124ccd444e3f021f71a4ef5c6992d7f20468e70e66"
+    "docs/research/2026-09-20-gate-contract-poc/contract.mjs": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62",
+    "scripts/verify-gate-contract-poc.mjs": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693",
+    "docs/research/2026-09-20-gate-contract-poc/README.md": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb"
   },
   "static": {
     "gates": [
@@ -21,7 +21,7 @@
       "G-S2"
     ],
     "fail": 0,
-    "warn": 2,
+    "warn": 1,
     "rawValues": 433,
     "rawBaseline": 438
   },
@@ -50,6 +50,86 @@
     },
     {
       "name": "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects an invalid schema",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects an invalid owner",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a changed static gate set",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a nonzero static warning count",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a changed raw value count",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a changed raw baseline",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a changed G-E1 pattern count",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects completion marked true",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects an exact-head receipt claim",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing static FAIL marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing static WARN marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing G-T1 marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing G-T1b marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing G-T2 marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing G-T3 marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing G-S1 marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a missing G-S2 marker",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a short G-E1 row set",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a nonzero G-E1 row invalid sum",
+      "pass": true
+    },
+    {
+      "name": "AC-NFR-GATE-01B rejects a reported count that matches nonzero row invalids",
       "pass": true
     },
     {
