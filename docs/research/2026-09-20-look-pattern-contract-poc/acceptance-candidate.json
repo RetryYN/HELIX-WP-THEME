@@ -2,16 +2,16 @@
   "schema": "wt-acceptance-candidate.v1",
   "WT-AC-LOOK-03A": {
     "status": "partial",
-    "scope": "269件のサイト調査、6系統の分布、730件25 familyの部品集計、および9 variationの導出をG-T1b/G-T3へ束ねる。",
+    "scope": "269件のサイト調査、6系統の分布、730件25 familyの部品集計、および旧資産9 variationの参照検査。現行PoCへの写像は未検証。",
     "remaining": [
-      "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+      "旧9 variationと現行PoCのrules/minchoは別資産。現行PoCへのサイトパターン写像、全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
     ],
     "proofs": [
       {
         "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
         "row_names": [
           "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
-          "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+          "AC-LOOK-03A checks nine archived reference variations and their historical gates"
         ]
       }
     ]
@@ -20,7 +20,7 @@
     "status": "partial",
     "scope": "調査証跡のないパターンをvariationMapへ入れない負例を固定する。",
     "remaining": [
-      "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+      "旧9 variationと現行PoCのrules/minchoは別資産。現行PoCへのサイトパターン写像、全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
     ],
     "proofs": [
       {
@@ -49,7 +49,7 @@
     "status": "partial",
     "scope": "未観察パターンをopen indexへ保持し、completion=falseを固定する。",
     "remaining": [
-      "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+      "旧9 variationと現行PoCのrules/minchoは別資産。現行PoCへのサイトパターン写像、全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
     ],
     "proofs": [
       {

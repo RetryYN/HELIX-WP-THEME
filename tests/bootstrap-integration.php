@@ -64,7 +64,7 @@ require $wp_phpunit_dir . '/includes/functions.php';
  * @return void
  */
 function agent_neo_load_plugin_for_tests(): void {
-    require dirname( __DIR__ ) . '/plugins/agent-neo-core/agent-neo-core.php';
+    require dirname( __DIR__ ) . '/archive/agent-neo/plugins/agent-neo-core/agent-neo-core.php';
 }
 tests_add_filter( 'muplugins_loaded', 'agent_neo_load_plugin_for_tests' );
 

@@ -10,7 +10,7 @@
  *   use-case / proof / comparison / pricing / faq / final-cta
  *
  * 検証観点:
- *   1. themes/agent-neo-theme/patterns/ に lp-* ファイルが 12 本存在すること。
+ *   1. archive/agent-neo/themes/agent-neo-theme/patterns/ に lp-* ファイルが 12 本存在すること。
  *   2. 各 lp-*.php のファイル名が上記 12 スラッグのいずれかに対応すること。
  *   3. Blueprint_Controller::SECTION_KINDS 定数（private）が 12 種類であること。
  *   4. パターンファイルの slug 集合と SECTION_KINDS が一致すること。
@@ -102,14 +102,14 @@ class TC029_LpBlueprintSectionTest extends TestCase {
 	// ------------------------------------------------------------------
 
 	/**
-	 * TC-029-01: themes/agent-neo-theme/patterns/ ディレクトリが存在すること。
+	 * TC-029-01: archive/agent-neo/themes/agent-neo-theme/patterns/ ディレクトリが存在すること。
 	 *
 	 * @return void
 	 */
 	public function test_tc029_patterns_directory_exists(): void {
 		$this->assertDirectoryExists(
 			$this->patterns_dir,
-			'themes/agent-neo-theme/patterns/ ディレクトリが存在すること'
+			'archive/agent-neo/themes/agent-neo-theme/patterns/ ディレクトリが存在すること'
 		);
 	}
 

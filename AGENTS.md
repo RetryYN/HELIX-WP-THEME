@@ -1,8 +1,10 @@
-# Codex CLI — AGENT NEO
+# Codex CLI — HELIX-WP-THEME
 
 このファイルは Codex CLI 向けの project rules。Claude Code 側の project context は `CLAUDE.md`、Claude runtime / hook の詳細は `~/.claude/CLAUDE.md` を参照する。
 
-> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
+現行テーマ PoC は `docs/research/2026-09-05-design-prototype-03/theme/helix-wt/`。旧 AGENT NEO のテーマ・プラグインは `archive/agent-neo/` に置く参照資産であり、現行の実装・受入証拠ではない。
+
+> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/HELIX-WP-THEME）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
 
 ## 共通規律（採用版 2026-09-23）
@@ -96,7 +98,7 @@
 > HELIX-WP-HARNESS の現行プロジェクト進捗ではない。
 > 旧 AGENT NEO kit 由来の工程物（G0.5〜G7 gate、G2 carry register、`.helix/phase.yaml` 等の旧 state、
 > 旧 L1〜L7 文書の「進捗」「passed」表示、`.helix/handover`）は**破棄前提**で、現行の拘束・formal state ではない。
-> 参照してよいのは実装（`themes/` `plugins/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
+> 参照してよいのは旧実装（`archive/agent-neo/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
 > 要求は現行 HELIX の L1→L2→L3 で整理しなおす（入力: `docs/research/` の監査証跡、L0 改定ドラフト）。
 
 | 項目 | 状態 |

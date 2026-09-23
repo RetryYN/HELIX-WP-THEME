@@ -58,13 +58,14 @@ function parseArgs(argv) {
     } catch { eventBase = ''; }
   }
   const options = {
-    cases: [], commands: [], apply: false, check: false,
+    cases: [], commands: [], rowRenames: [], apply: false, check: false,
     baseRef: process.env.CATALOG_EVIDENCE_BASE_REF || eventBase || (process.env.CI ? 'HEAD^' : 'HEAD'),
   };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--case') options.cases.push(argv[++index]);
     else if (arg === '--command-json') options.commands.push(JSON.parse(argv[++index]));
+    else if (arg === '--row-rename-json') options.rowRenames.push(JSON.parse(argv[++index]));
     else if (arg === '--base-ref') options.baseRef = argv[++index];
     else if (arg === '--apply') options.apply = true;
     else if (arg === '--check') options.check = true;
@@ -72,6 +73,9 @@ function parseArgs(argv) {
   }
   for (const command of options.commands) {
     if (!Array.isArray(command) || !command.length || command.some(value => typeof value !== 'string' || !value)) fail('--command-json must be a non-empty JSON argv array');
+  }
+  for (const item of options.rowRenames) {
+    if (!item || !['case', 'proof', 'from', 'to'].every(key => typeof item[key] === 'string' && item[key])) fail('--row-rename-json requires case, proof, from, and to');
   }
   return options;
 }
@@ -112,6 +116,9 @@ function entryDiff(before, after, { allowAdditions = false } = {}) {
       const rightProof = (right.proofs || []).find(item => item.path === proofPath);
       if (!leftProof || !rightProof) fail(`proof addition/removal is not a rebind: ${id} / ${proofPath}`);
       if (leftProof.sha256 !== rightProof.sha256) changes.push({ kind: 'proof', case_id: id, path: proofPath, before: leftProof.sha256, after: rightProof.sha256 });
+      if (JSON.stringify(leftProof.row_names || []) !== JSON.stringify(rightProof.row_names || [])) {
+        changes.push({ kind: 'row_names', case_id: id, path: proofPath, before: leftProof.row_names || [], after: rightProof.row_names || [] });
+      }
       leftProof.sha256 = rightProof.sha256;
     }
     leftCopy.source_digests = rightCopy.source_digests;
@@ -185,7 +192,7 @@ function plan(options) {
   const registryRaw = bytes(registryPath);
   const registry = JSON.parse(registryRaw);
   const selectedIds = new Set(options.cases);
-  const changedPaths = new Set(git(['diff', '--name-only', 'HEAD', '--']).split('\n').filter(Boolean));
+  const changedPaths = new Set(git(['diff', '--name-only', options.baseRef, '--']).split('\n').filter(Boolean));
   const selected = options.cases.map(id => {
     const evidence = registry.cases[id];
     if (!evidence) fail(`unknown or missing evidence case: ${id}`);
@@ -194,7 +201,13 @@ function plan(options) {
     return { id, evidence, staleSources };
   });
   const staleCount = selected.reduce((sum, item) => sum + item.staleSources.length, 0);
-  if (!staleCount) fail('selected cases have no changed source digests to rebind');
+  for (const rename of options.rowRenames) {
+    if (!selectedIds.has(rename.case)) fail(`row rename case is not selected: ${rename.case}`);
+    const proof = registry.cases[rename.case].proofs?.find(item => item.path === rename.proof);
+    if (!proof) fail(`row rename proof is not registered: ${rename.proof}`);
+    if ((proof.row_names || []).filter(name => name === rename.from).length !== 1 || proof.row_names.includes(rename.to)) fail(`row rename is not one-to-one: ${rename.case}`);
+  }
+  if (!staleCount && !options.rowRenames.length) fail('selected cases have no changed source digests or proof rows to rebind');
   for (const [id, evidence] of Object.entries(registry.cases || {})) {
     if (selectedIds.has(id)) continue;
     const stale = Object.entries(evidence.source_digests || {}).find(([source, expected]) => digest(bytes(source)) !== expected);
@@ -207,7 +220,7 @@ function plan(options) {
     const shared = (evidence.proofs || []).find(proof => proofs.has(proof.path));
     if (shared) fail(`all cases sharing a regenerated proof must be selected: ${id} / ${shared.path}`);
   }
-  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), proofs: [...proofs.keys()], commands: options.commands };
+  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
   if (!options.apply) {
     console.log(JSON.stringify({ mode: 'dry-run', ...summary }, null, 2));
     return;
@@ -221,6 +234,10 @@ function plan(options) {
   for (const command of options.commands) {
     const result = spawnSync(command[0], command.slice(1), { cwd: root, stdio: 'inherit' });
     if (result.status !== 0) fail(`oracle command failed: ${JSON.stringify(command)}`);
+  }
+  for (const rename of options.rowRenames) {
+    const proof = registry.cases[rename.case].proofs.find(item => item.path === rename.proof);
+    proof.row_names = proof.row_names.map(name => name === rename.from ? rename.to : name);
   }
   const proofWrites = [];
   for (const [proofPath, proof] of proofs) {

@@ -3919,6 +3919,317 @@
       ],
       "registry_before_sha256": "1b9b6ad5c5718f14ca95c36558767557b695dc7e48014cd0d3e15b0bfd67347a",
       "registry_after_sha256": "ce21ccfcf870d8c80d3c0984309842719513adc4461007150d36fa25391b8ed4"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-GATE-01A",
+        "WT-AC-NFR-GATE-01B",
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-gate-contract-poc.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
+          "after": "f20ca998046f689db6a74745554ca367ccbe3c61ddfd2511f37db94dfe050b3f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/README.md",
+          "before": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+          "after": "0b7c555964cc69ef08f4191d40591360129135cc85adee2b8606eda758981c52"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "archive/agent-neo/themes/agent-neo-theme/theme.json",
+          "after": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json",
+          "after": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json",
+          "after": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
+          "after": "f20ca998046f689db6a74745554ca367ccbe3c61ddfd2511f37db94dfe050b3f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/README.md",
+          "before": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+          "after": "0b7c555964cc69ef08f4191d40591360129135cc85adee2b8606eda758981c52"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "archive/agent-neo/themes/agent-neo-theme/theme.json",
+          "after": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json",
+          "after": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json",
+          "after": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
+          "after": "f20ca998046f689db6a74745554ca367ccbe3c61ddfd2511f37db94dfe050b3f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/README.md",
+          "before": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+          "after": "0b7c555964cc69ef08f4191d40591360129135cc85adee2b8606eda758981c52"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "archive/agent-neo/themes/agent-neo-theme/theme.json",
+          "after": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json",
+          "after": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json",
+          "after": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before_sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after_sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "b0e994356db4ee714a43a19a8089661b584f2fd70ad938350be54dfb240bd8bd",
+          "after_sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "ce21ccfcf870d8c80d3c0984309842719513adc4461007150d36fa25391b8ed4",
+      "registry_after_sha256": "71ae0ac13426546d9642940a0b028979fd86743b099fd3d0309b93228899337b"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "row_names",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": [
+            "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+            "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+          ],
+          "after": [
+            "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+            "AC-LOOK-03A checks nine archived reference variations and their historical gates"
+          ]
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "after_sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "71ae0ac13426546d9642940a0b028979fd86743b099fd3d0309b93228899337b",
+      "registry_after_sha256": "fc1b212466efce4d82378d7182ea1f9ec8a092d7bea131e70f2c299cff6aa27f"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D"
+      ],
+      "commands": [
+        [
+          "node",
+          "docs/research/2026-09-10-reduced-motion/verify.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": ".github/workflows/test.yml",
+          "before": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
+          "after": "736fa20e962d528d04fbc110d84d8e7e9ebaf66ff4117d104b31b2425927e411"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": ".github/workflows/test.yml",
+          "before": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
+          "after": "736fa20e962d528d04fbc110d84d8e7e9ebaf66ff4117d104b31b2425927e411"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": ".github/workflows/test.yml",
+          "before": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
+          "after": "736fa20e962d528d04fbc110d84d8e7e9ebaf66ff4117d104b31b2425927e411"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after_sha256": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "fc1b212466efce4d82378d7182ea1f9ec8a092d7bea131e70f2c299cff6aa27f",
+      "registry_after_sha256": "6a590cc7aeee914e174f26849eb452e870f7b53166783d7c9a2cced6134979f5"
     }
   ]
 }

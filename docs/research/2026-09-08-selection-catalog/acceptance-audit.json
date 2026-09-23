@@ -163,7 +163,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-          "sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
           "row_names": [
             "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
             "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
@@ -185,7 +185,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-          "sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
           "row_names": [
             "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
             "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
@@ -2331,10 +2331,10 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-          "sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
           "row_names": [
             "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
-            "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+            "AC-LOOK-03A checks nine archived reference variations and their historical gates"
           ]
         }
       ]
@@ -2352,7 +2352,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-          "sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
           "row_names": [
             "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
             "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
@@ -5177,7 +5177,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "sha256": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -5202,7 +5202,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "sha256": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -6671,7 +6671,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "sha256": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619",
           "row_names": [
             "fixture:positive",
             "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -11591,7 +11591,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-          "sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
           "row_names": [
             "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
             "AC-LOOK-03C rejects an open pattern that is already observed"
