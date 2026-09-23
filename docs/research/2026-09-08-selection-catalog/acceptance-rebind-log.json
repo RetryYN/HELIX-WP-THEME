@@ -3177,6 +3177,142 @@
       ],
       "registry_before_sha256": "19ade44c668486fe2e9e7799e77cb330a985e3367e06abc1e6517b8e71fef867",
       "registry_after_sha256": "9bd7501acc49f3227d316c0bd54d62ae7a97165b8e758434cb907ee8df19206b"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+          "after": "fc8511dbfacc7286da2f8ac42a82e2659aea0641f872790584cfae6bc1d3414e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "after": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+          "after": "fc8511dbfacc7286da2f8ac42a82e2659aea0641f872790584cfae6bc1d3414e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "after": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "b36c7e557e2df6d432abd2ed9ab8eb0cbe298bbcf03781c680ec373ef53ce940",
+          "after": "fc8511dbfacc7286da2f8ac42a82e2659aea0641f872790584cfae6bc1d3414e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+          "after": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327",
+          "after_sha256": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "9bd7501acc49f3227d316c0bd54d62ae7a97165b8e758434cb907ee8df19206b",
+      "registry_after_sha256": "0c4f6cdee740cb4797ceca9067676abd1c02116dac9044a574c77759172962e0"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "fc8511dbfacc7286da2f8ac42a82e2659aea0641f872790584cfae6bc1d3414e",
+          "after": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327",
+          "after": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "fc8511dbfacc7286da2f8ac42a82e2659aea0641f872790584cfae6bc1d3414e",
+          "after": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327",
+          "after": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "fc8511dbfacc7286da2f8ac42a82e2659aea0641f872790584cfae6bc1d3414e",
+          "after": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "9ef7c1ee39fffa739ed6bef485e98b7eadae7cf4bff360b5e50a4245c6450327",
+          "after": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750",
+          "after_sha256": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "0c4f6cdee740cb4797ceca9067676abd1c02116dac9044a574c77759172962e0",
+      "registry_after_sha256": "f2be408938a20f69ae8160b6b8469e32c12d03e9f17de11f4275a4670fc1a0f1"
     }
   ]
 }
