@@ -7,7 +7,7 @@
 | ファイル | 内容 |
 |---|---|
 | `00-REPORT.md` | 総括。方法・発見 5 件・イシュー一覧・PO 判断 |
-| `01-structure-themeA.md` | テーマA 1.4.6 構造調査（site-A.example） |
+| `01-structure-themeA.md` | テーマA <version> 構造調査（site-A.example） |
 | `02-structure-themeB.md` | テーマB 構造調査（site-B.example） |
 | `03-structure-agent-neo.md` | HELIX-WP-THEME（旧 AGENT NEO）構造調査 |
 | `04-diff-register.md` | 差分レジスタ（17 軸 / 欠落 7 / 優位 5 / 思想差 5 / 移植優先度） |
@@ -18,8 +18,11 @@
 | `issues/` | 個別詳細調査イシュー草案 16 本（THEME-INV-01〜16）。**未起票** |
 | `reports/` | **イシュー消化レポート**（証跡付き。1 イシュー = 1 ファイル） |
 | `PROGRESS.md` | 消化状況・承認待ち項目・ブロッカー |
-| `evidence/` | サーバー調査の生出力（raw） |
+| `evidence/` | サーバー調査の生出力（raw）。第三者テーマのソース抜粋と実運用サイトの dump を含むため、公開リポジトリから除去しリポジトリ外のローカル保管庫で扱う。本文中の `evidence/…` はその保管庫内の名前を指す |
 
+
+報告書内の第三者テーマのソース抜粋も同じ理由で除去し、抜粋のあった位置に注記を残した。
+本番記事の属性を抽出したスクリプトも保管庫へ移した。
 
 ## 前提と制約
 

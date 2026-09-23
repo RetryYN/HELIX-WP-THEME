@@ -24,7 +24,7 @@
 
 | サイト | テーマ | WP | 公開記事 | 固定ページ |
 |---|---|---|---|---|
-| site-A.example | **テーマA 1.4.6**（+ themeA-child、実質空） | 7.0.2 | 59 | 10 |
+| site-A.example | **テーマA <version>**（+ themeA-child、実質空） | 7.0.2 | 59 | 10 |
 | site-B.example | **テーマB**（子テーマなし） | — | 7 | 0 |
 | （比較対象） | HELIX-WP-THEME `agent-neo-theme` + core/embed プラグイン | — | — | — |
 

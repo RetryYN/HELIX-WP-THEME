@@ -70,17 +70,7 @@
 
 ### 2.1 スキーマの現状
 
-```json
-"description": "広告ゾーン定義スキーマ。CARRY-A2-001: テーマA の4ゾーン
-                (h2前挿入/記事終/関連上/カテゴリ別上書き)に対応する静的管理。REQ-NF-025厳守。",
-"required": ["zone_id", "zone_name", "position"],
-"additionalProperties": false,
-"properties": {
-  "zone_id": { "type": "string",
-    "description": "ゾーン識別子（slug 形式）。例: before_h2, after_article, above_related, category_override",
-    "pattern": "^[a-z0-9_-]+$" },
-  ...
-```
+> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 ### 2.2 実測との差分（3 点）
 
@@ -157,20 +147,7 @@
 
 `themeA_h2_ads_concert()` から確認できた条件（`evidence/re-themeA-ads.txt`）:
 
-```php
-$post_ads_display_settings = get_post_meta(get_the_ID(), '_themeA_ads_display', true);
-if ($post_ads_display_settings == '1') { return $the_content; }      // 記事単位オプトアウト
-
-$post_type = get_post_type();
-if (is_single() && $post_type == 'post') { …                          // 投稿限定
-
-// カテゴリーが複数設定されている場合、カテゴリーIDの小さい方を読み込むようにする
-$ids = array_column($categories, 'term_id');
-array_multisort($ids, SORT_ASC, $categories);
-$cat_current = $categories[0];                                        // 複数カテゴリの決定規則
-
-if ($themeA_h2_sp_display == '1') { … }                                 // デバイス別
-```
+> 第三者テーマのソース抜粋（12 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **「複数カテゴリなら term_id が小さい方」**という決定規則は、
 正規化スキーマでも明示する必要がある（暗黙にすると移管で挙動が変わる）。

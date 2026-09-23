@@ -1,4 +1,4 @@
-# リバースエンジニアリング A — テーマA 1.4.6
+# リバースエンジニアリング A — テーマA <version>
 
 調査日 2026-08-26 / ホスティング SSH 読み取り専用 / 対象 `themes/themeA`（PHP 33,931 行・vendor 除く）
 
@@ -7,26 +7,7 @@
 `functions.php`（999 行）が唯一のエントリ。**クラスも名前空間もオートローダも無い**。
 すべてグローバル関数 + `require` / `get_template_part` の直列実行。
 
-```
-functions.php
-├── define: THEMEA_THEME_VERSION / THEMEA_PHP_INCLUDE / THEMEA_CORE_DIR
-├── add_action(wp_enqueue_scripts) × 3   … jQuery をフッターへ再登録 / JS / CSS
-├── add_action(admin_enqueue_scripts) × 3
-├── add_action(wp_footer)  … style-footer.css を遅延出力
-├── require_once include/customizer.php          ← カスタマイザ UI 17 ファイルを foreach で require
-├── require_once include/load-customizer-value.php ← 動的 CSS 生成器（後述）
-├── get_template_part include/widgets           … register_sidebar 11
-├── get_template_part include/shortcode         … add_shortcode 6
-├── get_template_part include/themeA-setting      … 管理画面（2,692 行）
-├── get_template_part include/head/title
-├── get_template_part include/font-selection
-├── get_template_part include/json-ld           … 条件付き
-├── get_template_part include/custom-functions  ← 本体（5,214 行）
-├── add_action('init', create_block_themeA_blocks_block_init)  … ブロック 25 種を一括登録
-├── add_filter('redirect_canonical', …)
-├── add_action('template_redirect', themeA_init_session_start)  … PHP セッション開始
-└── require theme-update-checker.php
-```
+> 第三者テーマのソース抜粋（18 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **観測点**
 - `get_template_part` を「ファイルを読み込む」目的で使っている（テンプレート出力用の API を初期化に流用）。
@@ -58,11 +39,7 @@ functions.php
 
 `include/load-customizer-value.php` は **関数 1 個だけ**のファイル。
 
-```php
-function themeA_customize_inline_style() { … 2,098 行 … }
-add_action('wp_head',    'themeA_customize_inline_style');
-add_action('admin_head', 'themeA_customize_inline_style');
-```
+> 第三者テーマのソース抜粋（3 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 - 冒頭で 700 近いアクセサを一度に呼び、`themeA_hex_to_rgb()` / `themeA_hex_to_hsl()` で派生色を計算
   （hue rotate +30 / +45、明度 +9 などをハードコード）。
@@ -74,9 +51,7 @@ add_action('admin_head', 'themeA_customize_inline_style');
 ### 3.1 描画パスでの DB 書き込み（要注意）
 同関数の中で **`set_theme_mod()` を 5 箇所**呼び、値が未設定なら既定色を **その場で DB へ書き込む**。
 
-```php
-if (themeA__theme_color() == false) { set_theme_mod('themeA__theme_color', '#407FED'); }
-```
+> 第三者テーマのソース抜粋（1 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 `wp_head` は読み取り専用であるべき描画パス。ここに副作用があるため:
 - 未設定サイトへの初回アクセスが DB write を誘発する（同時アクセス時の競合）。
@@ -156,10 +131,7 @@ button / blogcard / category）と**静的 18 種**。同じ init 関数の末�
 全文の証跡は `evidence/probe3-raw.txt`、分類は `reports/INV-02-dynamic-render-semantics.md`。
 
 全ブロックが**同一の editor script / editor style を共有**する:
-```php
-'editor_script' => 'themeA-blocks-script',   // editor/build/index.js（単一バンドル）
-'editor_style'  => 'themeA-blocks-editor-style', // block.css
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 環境値は `wp_localize_script('themeA-blocks-script', 'THEMEA_VAR', [...])` で一括注入
 （プロフィール・SNS URL・お問い合わせ URL・パーマリンク構造・記事カラム設定・サムネイル方針など）。
 
@@ -231,14 +203,7 @@ REST から一覧・取得する経路が無い。
 
 ### 9.5.1 `redirect_canonical` を無条件で無効化
 
-```php
-add_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
-function themeA_disable_redirect_canonical($redirect_url)
-{
-	$redirect_url = false;
-	return $redirect_url;
-}
-```
+> 第三者テーマのソース抜粋（6 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 コメントには「記事内ページネーションのリンク先を `/pages/2/` にするため」とあるが、
 実装は**引数を見ずに常に `false` を返す**。WordPress の正規化リダイレクトが
@@ -251,16 +216,7 @@ function themeA_disable_redirect_canonical($redirect_url)
 
 ### 9.5.2 全ページで `session_start()` + `session_regenerate_id()`
 
-```php
-function themeA_init_session_start()
-{
-	if (session_status() !== PHP_SESSION_ACTIVE) {
-		session_start();
-		session_regenerate_id();
-	}
-}
-add_action('template_redirect', 'themeA_init_session_start');
-```
+> 第三者テーマのソース抜粋（8 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 - `template_redirect` は**フロントの全ページ描画で発火**する。有料記事を使っていないページでも走る。
 - `session_regenerate_id()` を**毎回**呼んでいる。通常は権限昇格時（ログイン直後）にだけ呼ぶもので、
@@ -275,13 +231,7 @@ add_action('template_redirect', 'themeA_init_session_start');
 
 ### 9.5.3 テーマ更新チェッカが外部エンドポイントを叩く
 
-```php
-require 'theme-update-checker.php';
-$example_update_checker = new ThemeUpdateChecker(
-	'themeA',
-	'https://themeA-update.vendor-a.example/themeA/update.json'
-);
-```
+> 第三者テーマのソース抜粋（5 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 ベンダー配布のため妥当だが、**外部ドメインへの定期通信が発生する**点は
 移管・複製時の確認事項（複製先でも同じエンドポイントを叩く）。

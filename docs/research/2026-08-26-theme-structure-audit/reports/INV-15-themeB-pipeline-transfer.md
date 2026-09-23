@@ -25,54 +25,17 @@
 
 起動は `lib/load/separate.php` から。`init`（優先度 9）で条件を判定し、`wp_head`（優先度 0）で発火する。
 
-```php
-add_action( 'init', function() {
-	if ( ! \THEMEB_Theme::is_separate_css() ) return;
-	add_filter( 'should_load_separate_core_block_assets', '__return_true' );
-	add_action( 'wp_head', __NAMESPACE__ . '\pre_parse_blocks', 0 );
-	function pre_parse_blocks() {
-		if ( \THEMEB_Theme::is_separate_css() ) {
-			\THEMEB_Theme\Pre_Parse_Blocks::init();
-		}
-	}
-}, 9 );
-```
+> 第三者テーマのソース抜粋（10 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 `Pre_Parse_Blocks::init()` の処理順:
 
-```
-1. add_filter('render_block', render_check)          … 描画されたブロック名を記録するフックを一時装着
-2. ページ種別で入力を決める
-   ├ is_single() / is_page() / (is_home() && !is_front_page())
-   │    → get_post( get_queried_object_id() )->post_content
-   └ is_term()
-        → term_meta 'themeB_term_meta_display_parts' の参照先 post
-3. parse_content( $content )
-   ├ parse_blocks( do_shortcode( $content ) )        … ショートコードを先に展開してからパース
-   ├ check_parsed_block() を全ブロックに適用（innerBlocks へ再帰）
-   │    └ themeB/blog-parts の attrs.partsID / core/block の attrs.ref を辿り
-   │      参照先 post の post_content を parse_content() で再帰処理
-   └ check_content_str( $content )                   … 文字列直検査で補完
-4. parse_widgets()                                    … 下記 1.2
-5. remove_filter('render_block', render_check)        … フックを外す
-6. ページ種別による補完（ピックアップバナー / アーカイブの tab）
-```
+> 第三者テーマのソース抜粋（15 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 ### 1.2 ウィジェットのドライラン
 
 ウィジェットは静的に読めないため、**実際に出力してから捨てる**。
 
-```php
-public static function parse_single_widget() {
-	ob_start();
-	\THEMEB_Theme::outuput_cta();
-	\THEMEB_Theme::outuput_content_widget( 'single', 'top' );
-	\THEMEB_Theme::outuput_content_widget( 'single', 'bottom' );
-	\THEMEB_Theme::outuput_widgets( 'before_related' );
-	\THEMEB_Theme::outuput_widgets( 'after_related' );
-	ob_clean();          // ← 出力は捨てる。目的は render_block フックの発火だけ
-}
-```
+> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 対象エリアは `parse_sidebar` / `parse_front_widget` / `parse_page_widget` /
 `parse_single_widget` / `parse_other_area` の 5 メソッドに分かれ、
@@ -87,14 +50,7 @@ footer_sp・footer_box1-3・before_footer・sp_menu_bottom・head_box を網羅�
 
 `parse_blocks()` では捕まらないショートコード記法を、生文字列の `strpos` で拾う。
 
-```php
-'[ad_tag'          → themeB/ad-tag
-'[ふきだし' / '[speech_balloon' → themeB/balloon
-'cap_box'          → themeB/cap-block
-'[full_wide_content' → themeB/full-wide
-'[カスタムバナー' / '[custom_banner' → themeB/banner-link
-'<table'           → core/table
-```
+> 第三者テーマのソース抜粋（6 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 さらに `dynamic_sidebar` フックでレガシーウィジェットのクラス名を見て、
 対応するコアブロック（`core/calendar` / `core/tag-cloud` / `core/latest-posts` /
@@ -160,17 +116,7 @@ public static function push_used_blocks( $block_name, &$list ) {
 登録は `wp_loaded`（優先度 20）で行い、本文系フィルタはすべて**優先度 12**で揃える。
 さらに目次と URL カード化だけは `wp_head`（優先度 99）で後付け登録する。理由もコメントにある:
 
-```php
-// 本文へのフック → SEOプラグインのmetaディスクリプション生成時に発火しないように、登録を遅らせる。
-add_action('wp_head', function () {
-	add_filter( 'the_content', __NAMESPACE__ . '\add_toc', 12 );
-	$remove_url_to_card = apply_filters( 'themeB_remove_url_to_card', テーマB::get_option( 'remove_url2card' ) );
-	if ( ! $remove_url_to_card ) {
-		add_filter( 'the_content', __NAMESPACE__ . '\url_to_blog_card', 12 );
-	}
-	…
-}, 99 );
-```
+> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 → **「同じ本文を読む処理でも、目的が違えば通すフィルタを変える」**という発想。
 SEO プラグインの description 生成に目次 HTML が混ざる事故を、登録タイミングで回避している。
@@ -197,20 +143,11 @@ SEO プラグインの description 生成に目次 HTML が混ざる事故を、
 
 ### 3.1 実装の実際
 
-```php
-function add_lazysizes( $content ) {
-	// サーバーサイドレンダー, wp-json/wp/v2 などからはフック通さない (コンテンツ遅延読み込み時は通す)
-	$is_rest = ! テーマB::is_rest( 'lazyload' ) && テーマB::is_rest();
-	if ( $is_rest || テーマB::is_iframe() ) return $content;
-	…
-```
+> 第三者テーマのソース抜粋（5 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 `wp_loaded` の登録自体にも同種の判定がある:
 
-```php
-// ajax遅延読み込み時も is_admin() true になる
-if ( ! テーマB::is_rest() && is_admin() ) return;
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 `is_rest()` は引数で「どの REST 経路か」を区別できる作りになっており、
 自前の遅延読み込みエンドポイント（`themeB-lazyload-contents`）だけは変換を通す。
@@ -237,31 +174,11 @@ if ( ! テーマB::is_rest() && is_admin() ) return;
 
 ショートコード `[themeB_toc]` は本文に**空のプレースホルダ div を置くだけ**:
 
-```php
-// ショートコードで目次が挿入されているかどうか
-if ( false !== strpos( $content, 'class="themeB-toc-placeholder"' ) ) {
-	$toc = '<div class="p-toc -called-from-sc -' . $SETTING['index_style'] . '">' .
-		'<span class="p-toc__ttl">' . $SETTING['toc_title'] . '</span></div>';
-	if ( テーマB::is_show_toc_ad() ) { $toc_ad = \THEMEB_PARTS::toc_ad(); }
-	$toc_content = 'after' === $SETTING['toc_ad_position'] ? $toc . $toc_ad : $toc_ad . $toc;
-	$content = str_replace( '<div class="themeB-toc-placeholder"></div>', $toc_content, $content );
-	テーマB::$added_toc = true;
-}
-```
+> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 プレースホルダが無い場合は**最初の h2 の直前**に挿入する:
 
-```php
-$tag = '/^<h2.*?>/im';
-if ( $toc_content && preg_match( $tag, $content, $tags ) ) {
-	if ( (int) get_query_var( 'page' ) > 1 ) {
-		$content = $toc_content . $content;          // 2ページ目以降は先頭へ
-	} else {
-		$content = preg_replace( $tag, $toc_content . $tags[0], $content, 1 );
-	}
-	テーマB::$added_toc = true;
-}
-```
+> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 ### 4.2 判定
 

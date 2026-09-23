@@ -4,7 +4,7 @@
 - 状態: **コード解析パート完了 / 到達性・情報開示は使い捨て PoC（poc-themeA）で HTTP 実証済み（2026-08-27）**。本番への write（対処適用）は PO 判断が残る。
 - 調査日: 2026-08-26
 - 手段: ホスティング SSH 読み取り専用（`sed -n` によるソース読み出しのみ）
-- 対象サイト: site-A.example（テーマA 1.4.6・WP 7.0.2）
+- 対象サイト: site-A.example（テーマA <version>・WP 7.0.2）
 
 > ## ⚠ 証拠ギャップ（2026-08-26 検証で判明・要是正）
 > 本レポートの目玉である REST 2 本の登録・`__return_true`・`file_get_contents()` は、
@@ -44,32 +44,7 @@
 
 ### 2.1 `themeA/external_url`（3775-3800 付近）
 
-```php
-function get_ogp_from_url_endpoint()
-{
-	register_rest_route(
-		'themeA',
-		'/external_url',
-		array(
-			'methods'             => WP_REST_Server::READABLE,
-			'permission_callback' => '__return_true',
-			'callback'            => 'get_ogp_from_url',
-		)
-	);
-}
-add_action('rest_api_init', 'get_ogp_from_url_endpoint');
-
-
-function get_ogp_from_url($data)
-{
-	$post_url = $data->get_param('url');
-	$html     = file_get_contents($post_url);
-	preg_match_all("<meta property=\"og:([^\"]+)\" content=\"([^\"]+)\">", $html, $ogp);
-	for ($i = 0; $i < count($ogp[1]); $i++) {
-		$result[$ogp[1][$i]] = $ogp[2][$i];
-	}
-	…
-```
+> 第三者テーマのソース抜粋（24 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **問題点（コードから読み取れる事実）**
 1. `permission_callback => '__return_true'` — 未認証・未ログインで到達可能な設計。
@@ -82,38 +57,7 @@ function get_ogp_from_url($data)
 
 ### 2.2 `themeA/post_by_url`（3670-3700 付近）
 
-```php
-function get_post_from_url_endpoint()
-{
-	register_rest_route(
-		'themeA',
-		'/post_by_url',
-		array(
-			'methods'             => WP_REST_Server::READABLE,
-			'permission_callback' => '__return_true',
-			'callback'            => 'get_post_from_url',
-		)
-	);
-}
-add_action('rest_api_init', 'get_post_from_url_endpoint');
-
-function get_post_from_url($data)
-{
-	global $post;
-	$param                = $data->get_param('url');
-	$post_id              = url_to_postid(untrailingslashit($param));
-	$post                 = get_post($post_id);
-	$categories           = get_the_category($post_id);
-	$title                = get_the_title($post_id);
-	$thumbnail_id         = get_post_thumbnail_id($post_id);
-	$thumbnail_alt        = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-	$image                = wp_get_attachment_image_src($thumbnail_id, 'medium_size');
-	$thumbnail_url        = is_array($image) ? $image[0] : themeA_noimage_url('medium');
-	$image_square         = wp_get_attachment_image_src($thumbnail_id, 'thumbnail_size');
-	$thumbnail_square_url = is_array($image_square) ? $image_square[0] : themeA_noimage_url('thumbnail');
-	return $return_array;
-}
-```
+> 第三者テーマのソース抜粋（30 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **問題点**
 - 未認証。`url_to_postid()` の結果に対し `get_post()` を行い、**投稿ステータスを確認していない**。
@@ -124,10 +68,7 @@ function get_post_from_url($data)
 
 同ファイルに 2 本。ルート追加ではなく既存 REST の拡張。
 
-```
-custom-functions.php:3582  add_action('rest_api_init', 'slug_register_views_orderby');
-custom-functions.php:3616  add_action('rest_api_init', 'themeA_slug_register_views');
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 PV 数（ビュー数）によるオーダーバイを REST に追加するもの。今回の指摘対象外。
 
@@ -137,13 +78,7 @@ PV 数（ビュー数）によるオーダーバイを REST に追加するも�
 `themeA_blog_card_dynamic_render_callback()`（内部リンクのブログカード）が、
 自分自身の REST を内部ディスパッチして記事情報を取得する:
 
-```php
-$request = new WP_REST_Request('GET', '/themeA/post_by_url');
-$request->set_query_params(array('url' => $block_attr['postUrl']));
-$response = rest_do_request($request);
-$server   = rest_get_server();
-$data     = $server->response_to_data($response, false);
-```
+> 第三者テーマのソース抜粋（5 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **重要**: `rest_do_request()` は**内部ディスパッチ**であり HTTP を経由しない。
 したがって「HTTP 経由の外部アクセスだけを遮断する」対処（WAF / `rest_endpoints` ではなく

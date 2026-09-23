@@ -92,15 +92,7 @@
 `Pre_Parse_Blocks` が `wp_head`(0) で走り、CSS を「使われているブロックの分だけ」読むために
 **本文とウィジェットを描画前に走査**する。
 
-```
-1. add_filter('render_block', render_check)          … 一時装着
-2. 本文: parse_blocks( do_shortcode( $content ) ) を再帰走査
-       └ themeB/blog-parts(attrs.partsID) / core/block(attrs.ref) は参照先 post を取得して再帰
-3. ターム: term_meta 'themeB_term_meta_display_parts' の参照先を走査
-4. ウィジェット: ob_start() → 実際に出力 → ob_clean() で捨てる（14 エリアを総当たり）
-5. 文字列直検査: [ad_tag / [ふきだし / cap_box / [full_wide_content / <table …
-6. remove_filter
-```
+> 第三者テーマのソース抜粋（7 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **これは「本文の意味構造を描画前にサーバー側で確定する」処理**であり、
 中間 JSON パイプラインと同型。`reports/INV-15-themeB-pipeline-transfer.md` で
@@ -159,10 +151,7 @@ topic-A にはセキュリティ系プラグインが入っていない（site-B
 
 ### R-03 正規化リダイレクトの全面停止
 
-```php
-add_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
-function themeA_disable_redirect_canonical($redirect_url) { $redirect_url = false; return $redirect_url; }
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 コメントの意図は「記事内ページネーションの URL 形式」だが、**引数を見ず常に `false`**。
 末尾スラッシュ・`?p=ID`・ページ送り・大文字小文字の正規化がすべて停止する。
@@ -182,10 +171,7 @@ function themeA_disable_redirect_canonical($redirect_url) { $redirect_url = fals
 
 テーマA の render_callback は**未指定属性をカスタマイザ値へフォールバック**する。
 
-```php
-$blogcardDesign = ! empty($block_attr['blogcardDesign']) ? $block_attr['blogcardDesign']
-                                                        : themeA__blogcard_design();
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **同じ保存内容でも、サイト設定が違えば出力が変わる。**
 動的 7 種のうち **6 種は正規化（実効値の解決と固定）で決定論レンダラに載る**が、
