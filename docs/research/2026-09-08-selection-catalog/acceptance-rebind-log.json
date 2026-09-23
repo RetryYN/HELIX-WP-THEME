@@ -3796,6 +3796,75 @@
       ],
       "registry_before_sha256": "1cace9abc2fa18d79d4485f5f17acef0a8683921e65b244b89e93a25b83b4bac",
       "registry_after_sha256": "45e55b396ed3fe49e05bbf0eaaa4fd32e76e3cb3c113e39a37cd5b38838e5a83"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": ".github/workflows/test.yml",
+          "before": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+          "after": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": ".github/workflows/test.yml",
+          "before": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+          "after": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": ".github/workflows/test.yml",
+          "before": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+          "after": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "04167487e7587240e1e241a9a771ede98171c8c2e493f795839f5ff2835918ed",
+          "after_sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "45e55b396ed3fe49e05bbf0eaaa4fd32e76e3cb3c113e39a37cd5b38838e5a83",
+      "registry_after_sha256": "1b9b6ad5c5718f14ca95c36558767557b695dc7e48014cd0d3e15b0bfd67347a"
     }
   ]
 }

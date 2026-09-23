@@ -245,6 +245,7 @@ jobs:
             echo "WARN: package.json が見つかりません。E2E は後続 Wave で設定してください。"
           fi
 
+      # The reduced-motion proof binds this workflow; regenerate and rebind it when this file changes.
       - name: WT-NFR-A11Y-02 reduced-motion browser gate
         run: npm run reduced-motion:verify
 
