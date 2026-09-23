@@ -3015,6 +3015,168 @@
       ],
       "registry_before_sha256": "59a27a1c1f2dc64fa22066b3d628d1720dc845cf73d149dee450631101fd40d9",
       "registry_after_sha256": "1b5fd47b34c0c50bce7d33561426f8e47cddf145d577474d963efd9e2c501487"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-GATE-01A",
+        "WT-AC-NFR-GATE-01B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-gate-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/contract.mjs",
+          "before": "ef8d1e7d281f179419c5fbccaaca53dcd5a40fc006051e3c8ad5f75a2646fbe2",
+          "after": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "scripts/verify-gate-contract-poc.mjs",
+          "before": "e6ff65a7789e596dbf62a86f975ac499b9c21af62820def9184dcfbbf9d8d6bd",
+          "after": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/README.md",
+          "before": "19122f94b10498d8cf92ab124ccd444e3f021f71a4ef5c6992d7f20468e70e66",
+          "after": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+          "after": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/contract.mjs",
+          "before": "ef8d1e7d281f179419c5fbccaaca53dcd5a40fc006051e3c8ad5f75a2646fbe2",
+          "after": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "scripts/verify-gate-contract-poc.mjs",
+          "before": "e6ff65a7789e596dbf62a86f975ac499b9c21af62820def9184dcfbbf9d8d6bd",
+          "after": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/README.md",
+          "before": "19122f94b10498d8cf92ab124ccd444e3f021f71a4ef5c6992d7f20468e70e66",
+          "after": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+          "after": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before_sha256": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f",
+          "after_sha256": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "1b5fd47b34c0c50bce7d33561426f8e47cddf145d577474d963efd9e2c501487",
+      "registry_after_sha256": "19ade44c668486fe2e9e7799e77cb330a985e3367e06abc1e6517b8e71fef867"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-GATE-01A",
+        "WT-AC-NFR-GATE-01B"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-gate-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/contract.mjs",
+          "before": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62",
+          "after": "485519f39e72f298add27d55d31f19c0adfe8b7cb06503e9fe700e9224e1fdc2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "scripts/verify-gate-contract-poc.mjs",
+          "before": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693",
+          "after": "798b5534729330999fa7d536dac41668d59e80f590f51ae4d08ee6d4e6379781"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/README.md",
+          "before": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb",
+          "after": "957fb33722c557866a4d1c4f572aa4ecf47b50ccb0d243c6b2a26457d2bee6f4"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f",
+          "after": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/contract.mjs",
+          "before": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62",
+          "after": "485519f39e72f298add27d55d31f19c0adfe8b7cb06503e9fe700e9224e1fdc2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "scripts/verify-gate-contract-poc.mjs",
+          "before": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693",
+          "after": "798b5534729330999fa7d536dac41668d59e80f590f51ae4d08ee6d4e6379781"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/README.md",
+          "before": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb",
+          "after": "957fb33722c557866a4d1c4f572aa4ecf47b50ccb0d243c6b2a26457d2bee6f4"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f",
+          "after": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before_sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after_sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "19ade44c668486fe2e9e7799e77cb330a985e3367e06abc1e6517b8e71fef867",
+      "registry_after_sha256": "9bd7501acc49f3227d316c0bd54d62ae7a97165b8e758434cb907ee8df19206b"
     }
   ]
 }

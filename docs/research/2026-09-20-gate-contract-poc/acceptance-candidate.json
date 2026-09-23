@@ -30,6 +30,27 @@
         "row_names": [
           "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
           "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
+          "AC-NFR-GATE-01B rejects an invalid schema",
+          "AC-NFR-GATE-01B rejects an invalid owner",
+          "AC-NFR-GATE-01B rejects a changed static gate set",
+          "AC-NFR-GATE-01B rejects a changed static warning count",
+          "AC-NFR-GATE-01B rejects a changed raw value count",
+          "AC-NFR-GATE-01B rejects a changed raw baseline",
+          "AC-NFR-GATE-01B rejects a changed G-E1 pattern count",
+          "AC-NFR-GATE-01B rejects completion marked true",
+          "AC-NFR-GATE-01B rejects an exact-head receipt claim",
+          "AC-NFR-GATE-01B rejects a changed static FAIL count",
+          "AC-NFR-GATE-01B rejects a changed static WARN count",
+          "AC-NFR-GATE-01B rejects a missing G-T1 section while G-T1b remains",
+          "AC-NFR-GATE-01B rejects a missing G-T1 marker",
+          "AC-NFR-GATE-01B rejects a missing G-T1b marker",
+          "AC-NFR-GATE-01B rejects a missing G-T2 marker",
+          "AC-NFR-GATE-01B rejects a missing G-T3 marker",
+          "AC-NFR-GATE-01B rejects a missing G-S1 marker",
+          "AC-NFR-GATE-01B rejects a missing G-S2 marker",
+          "AC-NFR-GATE-01B rejects a short G-E1 row set",
+          "AC-NFR-GATE-01B rejects a nonzero G-E1 row invalid sum",
+          "AC-NFR-GATE-01B rejects a reported count that matches nonzero row invalids",
           "AC-NFR-GATE-01B rejects G-E1 invalid blocks"
         ]
       }
