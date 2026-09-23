@@ -180,7 +180,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "H2 / H3 section、hero / CTA / 商品テーブルのパーツ、LP 全体を variant 単位で登録・選択し、共通の配信定義に device 別差分を持たせ、主たる確認面はサイト設定で選び、SP / PC の両幅で配信と計測を検査し、Core プラグイン API の DB 上の選択と cookie 固定割当で配信する。第三者キャッシュ / CDN が検出された場合は A/B の cookie 割当・同意ルーティング・クロール計測が成立しない旨を警告し、人が cache 除外 URL または edge 割当を選ぶまで配信を開始しない。運用中にテーマファイルを変更せず、bot には既定案のみを返す。同一 URL + cookie を既定とし、cookie 無しは既定案にする。cache 対応の variant 別方式と、非対応時の除外 URL 方式を選ぶ。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AB-02",
@@ -196,7 +196,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "A/B の impression / click / CV を variant ID・section ID・CV ID・device type 付きで WT-FR-TAG-02 の version 付きデータ層契約から tracking 経路へ送り、section・LP・商品テーブル単位のイベントを集計可能にする。集計と判定は HELIX 側で行う。A/B 対象と LP を speculative loading から除外し、prerendering 中の計測を待つ。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AB-03",
@@ -212,7 +212,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "A/B の承認・停止・rollback を WT-UI-10 と MCP 常用パックの双方から操作し、停止時は既定案へ即時復帰する。A/B の判定ロジックはテーマ・プラグインに置かない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AUDIT-01",
@@ -228,7 +228,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "HELIX 側の指摘（記事 / section / LP / バナー、種別、重さ、根拠、修正案）を Core プラグインが受け取り DB へ保持し、WT-UI-10 の監査タブと記事一覧の件数バッジから対象 section へ移動して適用 / 却下 / 保留できる。適用は dry-run → 差分レビューを通す",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CONSENT-01",
@@ -244,7 +244,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "同意記録へ時刻・ポリシー版・カテゴリ・保持期間を持たせ、撤回を常設する。明示 opt-in は既定オフとし、GPC 信号を検出した広告拒否は日本限定構成でのみ既定化し、非対象地域では設定を明示する。同意バーは既定 OFF とし、選択は ON/OFF と位置（先頭の非固定 = 既定 / 下部固定）の 2 つに限定する。日本の法令上の必須ではない（PO 2026-09-05、WT-Q-CONSENT-02）",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CRAWL-05",
@@ -260,7 +260,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "クローラーを training / search / user-triggered / ads-preview の4分類で台帳化し、公式 UA・IP endpoint・取得日時・鮮度・根拠を表示する。Google-Extended 等の control token を分離し、非 robots 準拠は遅延を含めて表示、UA 一致のみは未検証として別集計する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CV-01",
@@ -276,7 +276,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "サイト単位の CV 正本へ本 CV（申込・購入・問い合わせ）、マイクロ CV（資料 DL・メルマガ登録・メッセージアプリ追加・比較テーブル閲覧・電話タップ）、補助指標（スクロール深度・滞在）を複数登録し、各 ID・種別・重み・計測イベント・到達条件を JSON で管理する。記事・LP・section ごとに目標 CV ID を選べ、WT-FR-TAG-02 の version 付きデータ層契約へ device type とともに渡す。同意カテゴリ・時刻・版・撤回と GPC 条件を CV 正本へ接続する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CV-02",
@@ -292,7 +292,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "資料ダウンロードをフォーム入力からメール送付または即時ダウンロードの 2 経路で提供し、完了をマイクロ CV として WT-FR-TAG-02 の version 付きデータ層契約で計測する。第三者フォームが検出された場合は送信経路と同意確認を譲り受け、二重送信を起こさない。ファイルは非公開ディレクトリから署名付き期限 URL で配布する。フォーム宣言 JSON に利用目的・privacy link・同意を必須化し、認証 SMTP と同意なし保存禁止を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-IMG-01",
@@ -308,7 +308,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "全 subsize を WebP（対応環境は AVIF も）で生成し、GIF アニメ・短尺動画は WebM と fallback MP4、video autoplay muted loop playsinline として扱う。WP 7.1 のブラウザ側画像処理を第一経路とし、サーバー側は既存画像の再生成とブラウザを通らない CLI / REST / MCP 経路に限る。第三者画像最適化プラグインがサブサイズや WebP を生成している場合はテーマ側の生成を停止し、テーマは picture + srcset の配信だけを担う。hero の fetchpriority=high は `wp_get_loading_optimization_attributes()` の filter 経由で指定し、その他はコアの自動判定に任せる。出典: https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/、https://developer.wordpress.org/reference/functions/wp_get_loading_optimization_attributes/（参照日: 2026-09-03）。GD / Imagick の WebP / AVIF 能力を検出し、未対応時は WebP へ縮退して警告する。IPTC / XMP は再生成でも引き継ぐ。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-LEGAL-02",
@@ -324,7 +324,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "タグ正本に外部送信先事業者・送信情報・利用目的を必須メタとして持たせ、登録タグから外部送信先一覧ページを自動生成する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-LEGAL-03",
@@ -340,7 +340,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "No.1・ランキング・比較の調査主体・時期・対象・方法または編集部基準を商品正本へ保持し、脚注を自動表示する。価格条件・定期購入条件・個人の感想の打消しは CTA と同視野・同サイズの block style で表示する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-LOG-01",
@@ -356,7 +356,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "ユーザー領域に保存された combined / gz のサーバー生ログを WP-Cron / WP-CLI で取り込み、cache 応答も crawl log へ response_origin 付きで記録する。取り込み時に人の行と IP を破棄し、外部 CDN の不可視範囲を区別する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-MAIL-01",
@@ -372,7 +372,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "認証 SMTP と From 整合、SPF / DKIM / DMARC の状態を検査し、未設定を警告する。wp_mail_failed を操作ログへ残し、第三者 SMTP プラグイン検出時は送信を譲る",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SELL-04",
@@ -388,7 +388,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "商品・バナーの /go/<id> 経路を 302 で提供し、rel=sponsored nofollow、robots 除外、商品 ID・時刻・参照元・device のサーバー側クリック記録を行う。IP は保存せず、保持・集約は CRAWL と同じ規則に従い、データ層との二重計上を防ぐ選択を持つ",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SYNC-01",
@@ -404,7 +404,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "template part・global styles・設定 JSON・商品正本・zone 割当をスラッグ参照・URL 非依存の選択セットとして export / import し、staging dry-run から production apply へ進める",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-TAG-01",
@@ -420,7 +420,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "計測タグの注入面を head・body 開始直後・body 終端の 3 slot に限定し、タグ管理コンテナ / 個別断片の登録・選択を WT-UI-10 と MCP から行える。タグ設定と計測 ID は DB の選択として保持し、テーマと config JSON に計測 ID を置かない。ページ・LP・同意状態別の routing はテーマが配置だけを担い、同意管理・計測プラグインの検出時は WT-TR-PLUGIN-02 の譲渡を適用する。Conversion Linker、server-side tagging の 1P サブドメイン、7 サブドメインの cookie 方針、A/B cookie namespace を選択契約へ載せる。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-TAG-02",
@@ -436,7 +436,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "表示・スクロール・CTA クリック・フォーム送信・資料 DL・バナー・商品 CTA・A/B variant・section 到達・device type を一つの version 付き JSON データ層契約で定義し、必須項目として CV ID・variant ID・section ID・device type を渡す。TAG-03 の必須・計測・広告の 3 カテゴリを Consent Mode v2 の ad_storage / analytics_storage / ad_user_data / ad_personalization / functionality_storage / personalization_storage / security_storage の 7 種へ写像する対応表を契約に含め、head slot の注入順は consent default を最初に固定する。3 カテゴリは運用者向け表示単位として残す。外部タグはこの契約を read-only で読む。出典: https://developers.google.com/tag-platform/security/guides/consent（参照日: 2026-09-03）。GA4 推奨イベントと items 写像を version 付きで持ち、AI 回答エンジン由来の参照元を device type と同列の必須項目にする。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-TAG-03",
@@ -452,7 +452,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "同意状態を必須・計測・広告の 3 カテゴリで運用者向け表示単位としてデータ層へ出し、Consent Mode v2 の 7 種への写像表も契約に含める。head slot の注入順は consent default を最初に固定し、同意前は該当カテゴリのタグを発火せず、同意後は遅延発火する。サーバー側計測も同意確認を行い、同意なしイベントを保存しない。テーマの同意バーは VOCAB-01 の 7 ブロック上限に数えない既存パーツとして、core ブロック + block style で扱い、第三者同意管理が検出された場合は出力せず信号を読む。出典: https://developers.google.com/tag-platform/security/guides/consent（参照日: 2026-09-03）。GPC 信号、撤回常設、同意の時刻・版・カテゴリを保持し、日本だけを対象とする広告拒否の条件を明示する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-VALUE-01",
@@ -468,7 +468,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "値を安全域（プリセット / 尺度内）・生値（警告）・破壊域（停止）の 3 域で判定し、ブロック単位・記事単位の任意 CSS（WP 7.0 のコア機能を含む）も同じ値域判定を通して任意 CSS による迂回を許さない。破壊域は保存を止めて規則・値・境界を示す。境界値は PoC で実物を崩して確定する。dimension preset と minWidth / gradient を安全域の宣言値として列挙する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-CV-01",
@@ -484,7 +484,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "リード情報の保存先・保持期間・consent を明示し、consent なしに保存しない。CRM / MA はテーマ内に持たず、外部連携は署名付き webhook で押し出すまでとする。同意記録を時刻・版・カテゴリ・保持期間とともに保存し、明示 opt-in と認証 SMTP の状態を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-LEGAL-01",
@@ -500,7 +500,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "PR 表記の法令要件と GPL 配布要件（ライセンス表記・第三者資産の許諾）を満たす。OFL 全文、Reserved Font Name、asset ledger、SECURITY.md、semver / CHANGELOG / child theme 方針を配布ゲートに含める。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-LOG-01",
@@ -516,7 +516,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "クロール・操作・監査ログに行数 / 容量上限を設け、URL × bot × 日の集約を日次で行う。生行は短期、集約は長期とし、容量逼迫を警告してサイト停止を招かない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-OSS-01",
@@ -532,7 +532,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "OFL フォントと第三者資産の全文ライセンス・Reserved Font Name の扱い・出所を JSON 台帳と readme へ機械生成し、台帳外資産を静的ゲートで赤にする。SECURITY.md、semver、CHANGELOG、子テーマ方針も配布物へ含める",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-PERF-03",
@@ -548,7 +548,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "記事・LP・一覧・商品比較で主たる測定面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を測定対象とした Lighthouse / Core Web Vitals の LCP 2.5s、INP 200ms、CLS 0.1 を測定し、閾値割れを CI の blocking gate とする。語彙追加後もページ種別ごとの予算検査を行う。Lighthouse major と insight ID を固定し、unload 0、no-store 不使用、pagehide close を CI で確認する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-PRIV-02",
@@ -564,7 +564,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "WordPress privacy tools の exporter / eraser と privacy policy content に、リード・同意記録・操作ログ・クロール集約の保存内容と削除・出力範囲を登録する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-REL-01",
@@ -580,7 +580,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "描画パスで set_theme_mod / update_option を呼ばない。redirect_canonical の全面停止や全ページ session_regenerate_id のようなグローバル改変を持ち込まない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-TAG-01",
@@ -596,7 +596,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "計測の検査で、同意前の非発火、データ層の必須項目、Consent Mode v2 7 種への写像表、head slot の consent default 最初の注入順、3 slot 外へのスクリプト注入 0、同意なしイベントのサーバー保存 0、タグ転送の性能予算内を確認する。Consent Mode v2 7 種への写像、head の consent default 最初の注入、外部送信契約、タグ転送量を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-API-02",
@@ -612,7 +612,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "HELIX 連携 API の書き込みを batch（全成功か全失敗）とし、dry-run / rollback に対応する。投稿公開・設定変更・クロール異常・A/B 停止は署名付き webhook で押し出す",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-CLI-01",
@@ -628,7 +628,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "MCP 常用パック・REST・WP-CLI の 3 面が、パック定義 JSON から生成された同じ能力集合を扱い、ずれたら契約テストで赤にする。Abilities API の同じ登録から 3 面を生成し、permission と annotations を含む能力集合の差分を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-HOST-01",
@@ -644,7 +644,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "hosting capability manifest に PHP / DB 版、画像拡張、cron 駆動、cache / CDN、WAF、SMTP / DMARC、対応範囲を自己申告し、health・MCP・ハーネスが同じ一覧を読む",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-PLUGIN-01",
@@ -660,7 +660,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "運用中の AI はテーマファイルを触らず、WordPress が DB に持つ「サイトの選択」（ヘッダー / サイドバー / hero の案、variation、テンプレ変種、ナビ、尺度内の値、slot のパターン、記事メタ・区間・ゾーン）だけを変える。その経路は Core プラグインの API 1 本で、中では WP コアの保存経路（Site Editor が使うもの）を呼び、前後に manifest（選べるもの一覧）・dry-run と差分・尺度外 / 参照欠落の停止・rollback・監査ログを付ける。人は同じ結果を管理画面と Site Editor から得る。責務分担: テーマ = 表示（ファイル）、Core プラグイン = 選択を安全に DB へ入れる薄い層 + データ（設定 JSON・投稿メタ・section ID・ゾーン・再利用パーツ・計測・ログ）で表示も判定も持たない、Embed = ブロック、判定 = HELIX。（実装方針、PO 決定ではない: 既存 34 コントローラは 1 つのサービス層 + 薄い顔（REST / MCP / CLI / 管理画面）に畳む。）新しい部品（パターン・尺度）は運用の外でリポジトリ → ゲート → 配備。Update URI、署名・digest、選択セットの staging dry-run → production apply はハーネス責務として扱う。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-PLUGIN-03",
@@ -676,7 +676,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "第三者プラグインの capability を領域別に検出し、フォームは送信イベントと同意確認をデータ層契約へ接続、キャッシュ / CDN は A/B cookie・同意 routing・crawl 計測の不成立を警告して人の cache 除外 URL / edge 割当を待ち、画像最適化はテーマの生成を止めて配信だけを行い、SEO は JSON-LD・meta / OGP・sitemap を検出して譲り、同意管理はテーマの同意バーを出さず信号を読む。代表構成は実運用 2 サイトで使うプラグイン種別に限り、全プラグイン互換は対象外とする。A/B cache の二方式、loopback cache 検査、画像・SEO・同意の検出時の譲渡を実施する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SP-01",
@@ -942,7 +942,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "WT-UI-10 の操作ログタブで AI と人の変更を時系列に表示し、対象・差分・実行者・結果で絞り込み、CSV / JSON export できる。ログ上限・日次集約、PR 根拠、privacy tools、外部送信公表、リンク警告、選択セットの結果を export する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AGENT-02",
@@ -958,7 +958,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "本文の中間 JSON 抽出器を純関数（副作用なし、render_block 非依存、参照解決に深さ上限と訪問済み集合）として持ち、CLI / REST から呼べる",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AGENT-06",
@@ -974,7 +974,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "カスタムパーツの自己開発経路を持つ: 編集者または AI がブロックを組んで再利用パーツとして登録（参照 + 版 + digest、manifest に出る）→ 実機ゲート（invalid 0、生値なし、参照整合）を通してテーマのパターンへ昇格 → 実証記録台帳に載せる。パーツはトークンをスラッグ名でのみ参照し、トークン契約が同じであれば他テーマでも描画できる形にする（他プロダクトへの依存は作らない）。生値を含むパーツは昇格させない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AUDIT-02",
@@ -990,7 +990,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "alt・速度予算・構造化データ・見出し階層は決定論的ルール検査に限定し、CTA 密度・証拠不足・PR 表記欠落・microcopy 未選択・Discover 画像要件未達などの監査結果は HELIX 側から受け取って表示する。サイト単位の集計を JSON / CSV export し、MCP から取得できる。健康表現・ランキング根拠・PR 根拠は HELIX の監査結果を表示し、テーマは判定ロジックを持たない。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CRAWL-01",
@@ -1006,7 +1006,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "プラグイン側で UA と逆引き / 公開 IP レンジ照合により検索エンジン系・AI 系クローラーを識別し、URL・時刻・ステータス・応答時間・ページ種別を専用テーブルへ記録する。bot 判定外（人の閲覧）は記録せず捨てる。取れるのは WP が応答したリクエストだけである。公式 IP レンジの endpoint と最終版を保持し、生ログ・cache 応答・集約ログの出所と IP 廃棄を区別する。人気の自前集計を選んだ場合に限り、IP を持たない日次集約のみを「人の閲覧を記録しない」原則の例外とする。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CRAWL-02",
@@ -1022,7 +1022,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "管理画面 WT-UI-11 にクローラー別来訪数推移、最終クロールが古い URL、404 / 5xx URL、新規公開記事が初めて拾われるまでの時間、llms.txt / crawl-map への AI クローラーアクセス有無を表示する。llms.txt の既定出力の効果を断定せず、アクセス有無と時系列を効果実証の計測として追跡する。AI 利用許諾信号とクローラー endpoint の鮮度・参照日・効果実証用アクセスを表示する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CRAWL-03",
@@ -1038,7 +1038,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "robots.txt と AI クローラーの許可 / 拒否を WT-UI-11 から設定し、設定 JSON へ保存する。同じデータを MCP 常用パックと REST から取得できる。判定・順位計測・Search Console 連携は HELIX 側（テーマ外）とする。Google-Extended と Googlebot を分離し、robots 200 fallback、500KiB 検査、RFC 9309 一元生成、非準拠・未検証表示を持つ。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CRAWL-04",
@@ -1054,7 +1054,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "search / ai-input / ai-train の利用許諾を1設定から Content Signals 行、aipref Content-Usage 行またはヘッダ、RSL link へ出力し、既定を search=yes、ai-input=yes、ai-train=no とする。標準仕様の確定状態・出典・参照日・草案追随を表示する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-CV-03",
@@ -1070,7 +1070,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "CTA ボタンに主文言と任意の microcopy を持たせ、候補から選べるようにする。microcopy は必須化せず、A/B と section の計測を CV ID で集計し、判定は HELIX 側で行う",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-IMG-02",
@@ -1086,7 +1086,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "5MB 超・一括画像処理のうちブラウザを通らない CLI / REST / MCP 経路と既存画像の再生成だけをサーバー側 WP-Cron の非同期ジョブにし、ブラウザ側との二重処理を避ける。WT-UI-10 と MCP から進行を確認でき、既存画像は管理画面 1 操作と CLI から dry-run（対象件数・削減見込み）付きで再生成できる。動画変換ツールが無い場合は HELIX 側への委譲または手動アップロードを使う。出典: https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/（参照日: 2026-09-03）。非同期ジョブは WP-Cron / system cron / WP-CLI の 3 駆動から選び、cache による cron 不成立を警告する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-IMG-03",
@@ -1102,7 +1102,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "alt を必須として空の画像は公開前に警告し、AI 側が埋める導線と GIF の動画置換提案を持つ。Discover は幅 1200px 以上の代表画像、robots meta max-image-preview:large、OGP と構造化データ image の一致を検査し、未達を WT-UI-10 と MCP から警告する。第三者画像プラグインとの重複は WT-TR-PLUGIN-02 の設定で制御する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-MIGRATE-01",
@@ -1118,7 +1118,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "移行の実行（移行元サイトの取得、サーバーファイルとテーマ情報の書き換え）はテーマの責務ではなく HELIX-WP-HARNESS の責務（PO 2026-09-02）。テーマが持つのは (1) 取得項目定義（移行元から何を採るかの項目と採取方法。ハーネスが読む仕様）と (2) マッピングフォーマット（項目ごとの写像先を宣言する JSON: 4 分類 = 有無 → slot / 見た目 → block style・variation / 骨格 → テンプレ変種 / 同部位別デザイン → 同 Block Types のパターン群、写像不能は理由付きで明示）の 2 つで、いずれもテーマの JSON 資産の一部として公開する。テーマ側に変換器・移行プラグイン・移行 UI は持たない。状態の置き場はテーマ既定 = ファイル、サイト固有 = wp_template_part / global styles とし、option の不可視上書きは使わない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-MIGRATE-02",
@@ -1134,7 +1134,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "マッピングフォーマットは、ウィジェット領域 → template part / slot、コアウィジェット → コアブロック、独自ブロック → 受け皿対応表、プリセット → variation の写像規則を含み、写像不能候補（アニメーション・グラデーション角度・スライダー等）を理由付きで列挙する。変換の実行と記録はハーネス側",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SELL-03",
@@ -1150,7 +1150,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "管理画面（WT-UI-10）に商品一覧・編集を置き、AI を介さず価格・リンクを直せる。MCP 常用パックに商品の追加・更新・記事への差し込みを載せ、商品リンクのクリック計測を WT-FR-LP-02 の計測経路へ流す。購入完了の計測は外部側責務とする",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SELL-05",
@@ -1166,7 +1166,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "商品正本と本文の外部リンクを WP-Cron で HEAD 検査し、リンク切れ・期限切れ・到達不能を WT-UI-10 と MCP 常用パックへ警告する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SEO-01",
@@ -1182,7 +1182,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "構造化データは単一出力元（型ごとに 1 本）とし、CollectionPage（一覧）を追加する。WebSite は site name 用の name / alternateName / url のみを出し、WebSite.potentialAction（SearchAction）は出さない。第三者 SEO プラグインが検出された場合は JSON-LD・meta / OGP・sitemap の既定出力を検出して譲り、テーマ設定で選択した一方だけを出す。Google 検索セントラルの構造化データ一般ガイドラインに準拠し、型ごとの必須 / 推奨プロパティを揃え、対象外になった型・非推奨型を出さない。出典: https://developers.google.com/search/docs/appearance/structured-data/intro、https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox（参照日: 2026-09-03）。Organization・site name・favicon・BreadcrumbList を root / 構造の正本から出し、対象外の merchant feed 経路を持たない。カテゴリ一覧テンプレはミニ HOME 型（親・子・孫の階層、読む順、記事数、カテゴリ内人気、新着）を選べ、CollectionPage は同じ出力元から出す（PO 2026-09-05、WT-Q-PARTS-03）",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SEO-03",
@@ -1198,7 +1198,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "title / meta description / canonical / robots / sitemap / OGP を全ページ種別で出し、hreflang は多言語構成時だけ自己参照・相互参照を検査して出す。主たる確認面はサイト設定で選び、既定は SP 幅とし、SP / PC の両幅を確認対象にする。llms.txt・crawl-map・LLMO summary の既定出力は同一正本から維持するが、Google の AI 機能への効果や他 AI 事業者の読込を断定せず、WT-FR-CRAWL-02 のアクセス計測で実証する。第三者 SEO プラグインが検出された場合は重複する meta / OGP / sitemap の出力を検出して譲る。Google 検索セントラルの検索の基本・canonical 化・多言語ページのガイド・AI 最適化ガイドに準拠し、必須プロパティを揃え、非推奨型を出さない。出典: https://developers.google.com/search/docs/crawling-indexing、https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls、https://developers.google.com/search/docs/specialty/international/localized-versions、https://developers.google.com/search/docs/fundamentals/ai-optimization-guide（参照日: 2026-09-03）。公開日・更新日・sitemap lastmod を同一ソースから出し、自己 canonical と多言語時だけの hreflang を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SEO-05",
@@ -1214,7 +1214,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "アフィリエイトリンクと商品 CTA へ rel=\"sponsored\" を機械付与し、リンクの種類に応じた rel 属性を同じ出力経路で保つ。出典: https://developers.google.com/search/docs/crawling-indexing/links-crawlable（参照日: 2026-09-02）",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SEO-06",
@@ -1230,7 +1230,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "公開・更新・削除時に IndexNow へ送信し、鍵は DB に保持して公開面には検証用の鍵ファイルだけを出す。送信失敗は操作ログへ記録し、送信機構は Core プラグインの譲渡領域とする",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-TYPO-01",
@@ -1246,7 +1246,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "和文の既定 CSS に line-break: strict、overflow-wrap: anywhere、word-break: normal、text-autospace、text-spacing-trim、見出しの text-wrap: balance / pretty を宣言し、未対応環境では可読性を保つ fallback を使う",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-VALUE-02",
@@ -1262,7 +1262,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "生値は許容リスト方式（尺度系はプリセット参照へ、意匠値は許容リスト）へ移し、baseline 438 を段階的に 0 にする。ブロック単位・記事単位の任意 CSS も同じ値域・許容リスト判定を通し、判定を迂回できない。未対応表示機能は fallback とし、生値・破壊域の境界を超えない。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-A11Y-01",
@@ -1278,7 +1278,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "域の判定・状態表示は label と icon を伴い色だけに依存しない。img alt 欠落 0、AA コントラスト、横スクロール 0。WCAG 2.2 AA を到達目標とし、APG の role / aria-expanded / キーボード契約、focus 可視、reflow、text-spacing、24px 下限を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-CRAWL-01",
@@ -1294,7 +1294,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "クロールログの保持期間と間引きは既定 90 日とし、bot 判定外の個人閲覧を記録しない。対象は WP が応答したリクエストだけで、キャッシュ / CDN 応答は見えない限界をダッシュボードと運用文書に明記する。Search Console 突合と順位計測はテーマ外とする。WP 応答の直接ログと cache / CDN 由来ログを区別し、人の行と IP を取り込まず、生行短期・日次集約長期・容量上限を守る。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-OBS-01",
@@ -1310,7 +1310,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "health / gate / 台帳 / 抽出器の出力は JSON で、HEAD と digest に束縛される",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-PERF-01",
@@ -1326,7 +1326,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "記事・LP・一覧・商品比較は主たる描画・計測面はサイト設定で選び（既定は SP 幅）、SP / PC の両幅を検査し、JS 無しで全表示が成立することを原則とし、動きは CSS / HTML 標準機能を優先し、必要な JS と第三者スクリプトを遅延注入する。web-vitals-budget を維持し、面・語彙の追加後も使用ブロック分だけ CSS を読む（使用要素の把握は事前宣言または 2 パス走査）。Baseline fallback、speculative loading、bfcache、reduced-motion と JS / CSS の遅延境界を検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-PERF-02",
@@ -1342,7 +1342,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "CSS を語彙単位で分割して使用分だけ出し、共通定義は fluid、device 別差分は必要な幅だけ出す。ビルド工程で短縮化し、critical CSS は inline、残りは非同期、フォントは自己ホスト + font-display: swap とし、ページ種別ごとの JS / CSS / 画像転送量予算を JSON 宣言して SP / PC の両幅で検査する。和文フォントの自己ホスト・サブセット・font-display・size-adjust を速度予算内で検査する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-AGENT-05",
@@ -1358,7 +1358,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "REST は自前名前空間で WP コアに相乗りしない。本文変換は生成時 / レンダリング時 / 表示時の 3 層で、テーマ語彙のショートコードは意図ノードへ、プラグイン語彙は不透明ノードで原文保持、インライン書式は marks 配列で持つ。自前 REST 名前空間は Abilities API で扱えない範囲だけに限定する。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-API-01",
@@ -1374,7 +1374,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "HELIX 連携 API の全一覧読み取りに since / fields / ETag / Last-Modified を備え、差分取得を契約として保証する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-API-03",
@@ -1390,7 +1390,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "HELIX 連携 API の応答に schema version を必須化し、破壊的変更時は旧版を併走させる。OpenAPI lint / 差分検査を CI に置き、MCP 常用パック・クローラー計測・A/B・商品正本の API を同契約の上に置く",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-HOST-02",
@@ -1406,7 +1406,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "対応範囲を WP 7.1 以上、PHP 8.2〜8.5、MySQL 8.4 / MariaDB 11 として対応表に固定し、iframed 投稿エディタでブロック JS / CSS が動く smoke を G-E1 に含める",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-PLUGIN-02",
@@ -1422,7 +1422,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "第三者プラグインとの共存規約: 出力が重なる領域（JSON-LD、meta / OGP、目次、サイトマップ、llms.txt、キャッシュ、フォーム、同意管理・計測）ごとに「本テーマが出す / 検出して譲る / 設定で選ぶ」を決め、テーマ設定画面で切り替えられる。既定は二重出力を起こさない側。互換の第一対象は実運用 2 サイトで稼働する種類（SEO・サイトマップ・llms.txt・フォーム・画像最適化・キャッシュ・目次）で、全プラグイン互換は非対象。フォームは LP のフォーム制御と接続する。第三者の同意管理・計測が検出された場合は本テーマが同意バーや計測出力を重ねず、同意信号とデータ層契約へ譲る。テーマA / B からの写像（MIGRATE）はハーネスがサーバーファイルとテーマ情報を直接書き換えて行い、テーマ側に移行プラグイン・移行コード・互換固有名を持たない。IndexNow、robots、SEO / 同意 / フォームの譲渡領域を検出結果とともに manifest へ載せる。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-TR-PLUGIN-04",
@@ -1438,7 +1438,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "検出結果、領域ごとの既定（本テーマが出す / 検出して譲る / 設定で選ぶ）、現在の選択、警告、検査対象構成を capability manifest に載せ、WT-UI-10 と MCP で同じ一覧を返す。JSON-LD / meta / OGP の重複出力とフォーム二重送信は代表構成で赤にする。host capability、検出結果、現在の選択、警告、検査対象構成を UI / MCP で同じ manifest として返す。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-TPL-01",
@@ -1925,7 +1925,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "主要パーツ前後の do_action 10 箇所と出力の apply_filters 10 箇所を持ち、hook 一覧を manifest に含める",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AGENT-04",
@@ -1941,7 +1941,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "再利用パーツは参照（ID）で持ち、解決に使った版と digest を記録する。展開して保存しない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-INTAKE-01",
@@ -1957,7 +1957,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "実証記録台帳を本テーマ内で完結する append-only の JSON Lines として持つ。1 行 = パターン ID・参照元 commit・証跡パス・ゲート結果（静的 6 種 + 実機 invalid 0 が同一 HEAD に束縛）。他プロダクト（GRAPHIX-NEO 等）はこの記録を読んで採否を自分で決めるだけで、台帳は取り込み先の識別子・状態・検証を持たず、他リポへの参照や書き込みを要求しない（依存を作らない）。本テーマ側から他プロダクトの成果物を取り込む行は持たない。フォント・アイコン・画像の出所とライセンスを JSON 資産台帳へ記録し、台帳外をゲートで赤にする。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-MIGRATE-03",
@@ -1973,7 +1973,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "移管対象の推奨はサイト固有（意味に属する 60〜80 キー）に絞り、見た目は本テーマで作り直す方針をマッピングフォーマットに明記する。互換 meta キーの固有名は公開本体に置かず、ハーネス側の非公開設定から注入する",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-SEO-02",
@@ -1989,7 +1989,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "FAQ・手順の語彙と本文を残しつつ、FAQPage / HowTo の JSON-LD は既定で出力せず、任意 ON 設定も持たない。ItemList は語彙から自動生成し、本文と一致させる。Google 公式 updates に基づく対象外・非推奨型を出さない。出典: https://developers.google.com/search/updates、https://developers.google.com/search/docs/appearance/structured-data/intro（参照日: 2026-09-03）。初期 HTML に主コンテンツと ItemList を含め、廃止型 FAQPage / HowTo / SearchAction を既定出力しない。",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-NFR-COST-01",
@@ -2005,7 +2005,7 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "ゲート・PoC はローカル docker で完結し、無料枠制限や課金を伴う外部 API に依存しない",
-      "next_action": "調査結果から代表fixtureを作り、カタログ候補と検証器を追加する"
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {
       "requirement_id": "WT-FR-AGENT-01",

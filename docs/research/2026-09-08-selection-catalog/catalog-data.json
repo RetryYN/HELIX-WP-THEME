@@ -14814,7 +14814,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-              "sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+              "sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
               "row_names": [
                 "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
                 "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
@@ -14836,7 +14836,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-              "sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+              "sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
               "row_names": [
                 "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
                 "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
@@ -17894,7 +17894,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+              "sha256": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
               "row_names": [
                 "fixture:positive",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -18228,7 +18228,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+              "sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
               "row_names": [
                 "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
                 "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
@@ -18249,7 +18249,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+              "sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
               "row_names": [
                 "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
                 "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
@@ -18270,7 +18270,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+              "sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
               "row_names": [
                 "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
                 "AC-LOOK-03C rejects an open pattern that is already observed"
@@ -19222,7 +19222,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
               "row_names": [
                 "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
               ]
@@ -19243,7 +19243,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
               "row_names": [
                 "AC-AGENT-01B records the known input-schema normalization boundary",
                 "AC-AGENT-01B rejects a pack with an undeclared ability"
@@ -19957,7 +19957,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
               "row_names": [
                 "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
               ]
@@ -19978,7 +19978,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
               "row_names": [
                 "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
               ]
@@ -20148,7 +20148,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
               "row_names": [
                 "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
                 "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -20170,7 +20170,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
               "row_names": [
                 "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
                 "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -20506,7 +20506,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-public-safety/verify.json",
-              "sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+              "sha256": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d",
               "row_names": [
                 "positive:clean-source-accepted",
                 "positive:research-with-private-map-accepted"
@@ -20525,7 +20525,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-public-safety/verify.json",
-              "sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+              "sha256": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d",
               "row_names": [
                 "negative:private-key-rejected",
                 "negative:access-token-rejected",
@@ -25452,7 +25452,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+              "sha256": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -25477,7 +25477,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+              "sha256": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",

@@ -3381,6 +3381,490 @@
       ],
       "registry_before_sha256": "f2be408938a20f69ae8160b6b8469e32c12d03e9f17de11f4275a4670fc1a0f1",
       "registry_after_sha256": "1cace9abc2fa18d79d4485f5f17acef0a8683921e65b244b89e93a25b83b4bac"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-PRIV-01A",
+        "WT-AC-NFR-PRIV-01B",
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B",
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "privacy:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ],
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "ab76027282b1f17da546c15d70e888662c1d22cba364e6be9fa3f091bae25298",
+          "after": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "ab76027282b1f17da546c15d70e888662c1d22cba364e6be9fa3f091bae25298",
+          "after": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "after": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "after": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css",
+          "after": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css",
+          "after": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-completion.css",
+          "after": "40099fd03da94d602bef414b82f5df02d24bd2c1d7c0dd4fda57615ab518ac33"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css",
+          "after": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/parts-catalog.css",
+          "after": "6b1693ff891c895a18614650afafc30a208e34dbec0ff36f3749a0574bcd97ff"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/zone-slots.css",
+          "after": "d3dc48347019ecec029a80e65110eca0d38586544c4b2cbfd210b41708233588"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js",
+          "after": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js",
+          "after": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js",
+          "after": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/parts-editor.js",
+          "after": "62687dc9de909f5b7d1727a28f636fcb9f19d8984e9fd163d3e912883ade722c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json",
+          "after": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php",
+          "after": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php",
+          "after": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+          "after": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php",
+          "after": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php",
+          "after": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php",
+          "after": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php",
+          "after": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-cards.php",
+          "after": "83014f4c3fa65f08e3d6db076ba7acc7fdf5c7ecfd3e0f102da3a49aa1e9ec45"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-list.php",
+          "after": "0bceacb982f783c175c63221659d2fc3fa9ba439c50d126445c536e12c1d1870"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html",
+          "after": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html",
+          "after": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css",
+          "after": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css",
+          "after": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-completion.css",
+          "after": "40099fd03da94d602bef414b82f5df02d24bd2c1d7c0dd4fda57615ab518ac33"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css",
+          "after": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/parts-catalog.css",
+          "after": "6b1693ff891c895a18614650afafc30a208e34dbec0ff36f3749a0574bcd97ff"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/zone-slots.css",
+          "after": "d3dc48347019ecec029a80e65110eca0d38586544c4b2cbfd210b41708233588"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js",
+          "after": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js",
+          "after": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js",
+          "after": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/parts-editor.js",
+          "after": "62687dc9de909f5b7d1727a28f636fcb9f19d8984e9fd163d3e912883ade722c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json",
+          "after": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php",
+          "after": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php",
+          "after": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+          "after": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php",
+          "after": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php",
+          "after": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php",
+          "after": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php",
+          "after": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-cards.php",
+          "after": "83014f4c3fa65f08e3d6db076ba7acc7fdf5c7ecfd3e0f102da3a49aa1e9ec45"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-list.php",
+          "after": "0bceacb982f783c175c63221659d2fc3fa9ba439c50d126445c536e12c1d1870"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html",
+          "after": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-PRIV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html",
+          "after": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "package.json",
+          "before": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+          "after": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "after": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
+          "before_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "after_sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "after_sha256": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after_sha256": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "1cace9abc2fa18d79d4485f5f17acef0a8683921e65b244b89e93a25b83b4bac",
+      "registry_after_sha256": "45e55b396ed3fe49e05bbf0eaaa4fd32e76e3cb3c113e39a37cd5b38838e5a83"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": ".github/workflows/test.yml",
+          "before": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+          "after": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": ".github/workflows/test.yml",
+          "before": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+          "after": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": ".github/workflows/test.yml",
+          "before": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+          "after": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "8f3ec70720d18fb686ccddd4627b5fd528e7f77582a5e08ab4816ab99ca7ec6f",
+          "after": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "04167487e7587240e1e241a9a771ede98171c8c2e493f795839f5ff2835918ed",
+          "after_sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "45e55b396ed3fe49e05bbf0eaaa4fd32e76e3cb3c113e39a37cd5b38838e5a83",
+      "registry_after_sha256": "1b9b6ad5c5718f14ca95c36558767557b695dc7e48014cd0d3e15b0bfd67347a"
     }
   ]
 }

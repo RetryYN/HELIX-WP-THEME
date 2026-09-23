@@ -32,7 +32,7 @@ const rows = ir.requirements.map(requirement => {
     : state === 'missing' && candidates.length
       ? '既存候補を受入条件へ対応付け、代表fixtureと負例を検証する'
       : state === 'missing'
-        ? '調査結果から代表fixtureを作り、カタログ候補と検証器を追加する'
+        ? '調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する'
         : state === 'partial'
           ? 'remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する'
           : '回帰監視を維持する';
@@ -79,11 +79,11 @@ const openRows = rows.filter(row => row.state !== 'verified_in_poc');
 const md = [
   '# カタログ再現 completion backlog',
   '',
-  'この一覧は要求、受入証跡、カタログ候補、ページ種別台帳を同じ時点で再集計する。行数や進捗を手書きしない。',
+  'この一覧は要求、受入証跡、既存PoC画像の対応データ、ページ種別台帳を同じ時点で再集計する。独立HTMLカタログは破棄済み。候補数はWordPress上の表示完成数ではない。行数や進捗を手書きしない。',
   '',
   `- 要求: ${report.requirement_count}`,
   `- 受入条件: ${report.acceptance_count}（missing ${counts.missing} / partial ${counts.partial} / verified_in_poc ${counts.verified_in_poc} / stale ${counts.stale}）`,
-  `- カタログ候補: ${report.catalog_candidate_count}`,
+  `- 既存PoC画像の対応候補: ${report.catalog_candidate_count}`,
   `- スクリーンショット: ${report.screenshot_count}`,
   `- ページ種別の未観察・未検証: ${pageGaps.length}`,
   '',

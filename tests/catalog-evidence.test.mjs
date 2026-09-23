@@ -59,46 +59,12 @@ test('remaining conditions prevent completion even with unchanged passing proof'
   const result = f.run(); assert.equal(result.report.counts.stale, 1); assert.equal(result.report.complete, false);
 });
 
-test('tablet component observations bind every catalog source used by the capture', () => {
-  const root = new URL('../', import.meta.url);
-  const artifact = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/visual-quality/tablet-components/observations.json', root), 'utf8'));
-  const expectedSources = [
-    'docs/research/2026-09-08-selection-catalog/catalog.css',
-    'docs/research/2026-09-08-selection-catalog/catalog.mjs',
-    'docs/research/2026-09-08-selection-catalog/index.html',
-  ];
-  assert.deepEqual(Object.keys(artifact.sourceDigests).sort(), expectedSources.sort());
-  for (const source of expectedSources) {
-    const actual = hash(fs.readFileSync(new URL(source, root)));
-    assert.equal(artifact.sourceDigests[source], actual, `${source} digest is current`);
-  }
-});
-
 test('the npm catalog evidence test command includes admission coverage', () => {
   const root = new URL('../', import.meta.url);
   const packageJson = JSON.parse(fs.readFileSync(new URL('package.json', root), 'utf8'));
   assert.match(packageJson.scripts['catalog-evidence:rebind-test'], /tests\/acceptance-rebind\.test\.mjs/u);
   const rebindTest = fs.readFileSync(new URL('tests/acceptance-rebind.test.mjs', root), 'utf8');
   assert.match(rebindTest, /\.\/acceptance-admission\.test\.mjs/u);
-  assert.match(rebindTest, /\.\/dialog-focus-capture\.test\.mjs/u);
-});
-
-test('filter browser verification cannot under-report registered cases', () => {
-  const root = new URL('../', import.meta.url);
-  const artifact = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/visual-quality/filter-context/verification.json', root), 'utf8'));
-  const suites = [
-    'tests/e2e/selection-catalog.spec.ts',
-    'tests/e2e/selection-catalog-filters.spec.ts',
-  ];
-  const playwright = path.join(root.pathname, 'node_modules/.bin/playwright');
-  const listed = spawnSync(playwright, ['test', ...suites, '--list'], { cwd: root.pathname, encoding: 'utf8' });
-  assert.equal(listed.status, 0, listed.stderr);
-  const match = listed.stdout.match(/Total:\s+(\d+) tests\b/u);
-  assert.ok(match, 'Playwright --list did not report a total');
-  assert.equal(artifact.playwright.failed, 0);
-  assert.equal(artifact.playwright.skipped, 0);
-  assert.equal(artifact.playwright.flaky, 0);
-  assert.equal(artifact.playwright.passed, Number(match[1]), 'verification artifact count does not match registered browser cases');
 });
 
 test('selection index exposes evidence boundaries for every catalog candidate', () => {

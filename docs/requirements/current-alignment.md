@@ -1,7 +1,7 @@
 # 最新要求と現在の足並み
 
-- 更新: 2026-09-08。根拠イベント: WT-EVT-0239〜0303、整理記録: WT-EVT-0304、追調査: WT-EVT-0305〜0306。
-- 照合した実装・証跡: main `e76e7c7`（PR #172）。この文書は要求候補と証跡の対応表であり、G3 承認や全体完了の宣言ではない。
+- 更新: 2026-09-23。最新イベント: WT-EVT-0312。整理記録: WT-EVT-0304〜0311。
+- 現行IR: 134要求 / 300 AC / 134 test ID。証拠監査は missing 166 / partial 102 / verified_in_poc 32 / stale 0。この文書は要求候補と証跡の対応表であり、G3 承認や全体完了の宣言ではない。
 - 読む順: 本書 → [種別台帳](discovery/page-type-ledger.md) → [候補全件一覧](l3/g3-approval-summary.md) → [IR](l3/requirements-ir.json) / [受入条件](l3/acceptance-cases.json)。正式な入口は [authority.md](authority.md)。
 
 ## 現在の方針
@@ -15,8 +15,8 @@ WP-THEME は、機械可読性・自己記述・契約・品質を維持して�
 | 層 | 現在 | 読み方 |
 | --- | --- | --- |
 | L1 | 9月5日の G1 承認済み基準を保持 | 後続の PO 判断は本書・L2 events と L3 候補へ反映。承認済み本文に新しい承認を仮装しない |
-| L2 | フロント先行の画面プロト往復。最新PO入力 WT-EVT-0303、整理 WT-EVT-0304、追調査 WT-EVT-0305〜0306 | WT-AGREE-01 は event head 0231 への合意。後続反応と追加候補まで合意済みとはしない |
-| L3 | 132 候補、289 AC、132 test ID。compile は backflow_required | 既存 123 件を削除せず、6 件改定・8 件追加。追加分 P1 は整理上の暫定値。最新 revision の合意と優先度安定を再確認する |
+| L2 | フロント先行の画面プロト往復。最新整理 WT-EVT-0312（WordPress 7.2 管理画面の受入条件更新） | WT-AGREE-01 は event head 0231 への合意。後続反応と追加候補まで合意済みとはしない |
+| L3 | 134 候補、300 AC、134 test ID。compile は backflow_required | 追加分の P1 は整理上の暫定値。最新 revision の合意と優先度安定を再確認する |
 | 試作 | 試作03段13に加え、独立コンテンツ代表PoCのコードと実測証跡あり | `docs/research/` の試作テーマ。製品の `themes/` / `plugins/` の完成を意味しない |
 | HELIX runtime | consumer setup 境界と non-terminal PLAN により completion blocked | 要求の G1 / G2 / G3 と異なる管理状態。runtime の L14 表示をテーマ開発の到達段階として使わない |
 
@@ -41,7 +41,7 @@ L1 の「調査未実施を対象にしない」「型数は目標にしない�
 | WT-FR-VOCAB-03（rev 2） | 既定文言と不要な PR バッジ抑止を反映 | 0246 / 0254 / 0255 / 0267 | prAutoFixtures 等で本文先頭の重複抑止を検査。広告リンク有無からの自動判定・本文編集時の欠落防止との両立は未確定 |
 | WT-FR-VOCAB-01（rev 2） | ブロック上限7を保持したまま、表現最大化との関係を要解決と明示 | 0288 / 0300 | 型数と登録ブロック数は別。PoC のブロックをそのまま製品登録する判断はしていない |
 
-残り 117 件の ID・statement・優先度・AC を維持した。SEO / 画像処理 / 計測 / JSON・MCP / 安全性等の非デザイン要求を試作の都合で落とさない。[全131件](l3/g3-approval-summary.md)と [L10の検査条件](../test-design/l10-system-acceptance-test-design.md)で追跡する。追加・改定の AC は検査条件の定義であり、テスト実行結果ではない。
+SEO / 画像処理 / 計測 / JSON・MCP / 安全性等の非デザイン要求を試作の都合で落とさない。[全134件](l3/g3-approval-summary.md)と [L10の検査条件](../test-design/l10-system-acceptance-test-design.md)で追跡する。追加・改定の AC は検査条件の定義であり、テスト実行結果ではない。
 
 ## 表示試作の反応をどう反映したか
 
@@ -125,3 +125,8 @@ HELIX runtime は `npm run helix -- status` で確認する。2026-09-08 の確�
 ## WT-EVT-0311: 対話型ユーティリティ面
 
 Shopify公式tools indexとHubSpot公式Website Graderの説明を既存台帳へ再照合し、入力から診断・計算・生成結果を返す面が未記録だと確認した。[取りこぼし調査](../research/2026-09-20-interactive-utility-gap/README.md)を根拠にWT-FR-UTILITY-01と4 ACを追加し、134要求・298 AC・134 test IDとした。通常フォーム・検索結果とは目的を分け、処理規則と保存はテーマ外、入力非保存を既定とする。代表PoCとG3は未実施。
+
+
+## WT-EVT-0312: 管理画面のサーバー登録フィールドと復旧情報
+
+WordPress 7.2の公式ロードマップとDataViews/DataForm開発記録を再照合し、WT-FR-ADMIN-01 / 03 に受入条件2件（WT-AC-ADMIN-01E / 03C）を追加した。現行IRは134要求・300 AC・134 test ID。対象はサーバー登録フィールド・アクションと検証・階層・一括操作、失敗時の診断・コピー・復旧文脈。APIの未リリース部分は実装済みと扱わず、7.2未提供環境では既存JSON契約へフォールバックする。G3未実施。

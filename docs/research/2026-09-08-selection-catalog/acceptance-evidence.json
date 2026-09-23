@@ -9855,15 +9855,15 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/verify-public-safety.mjs": "ab76027282b1f17da546c15d70e888662c1d22cba364e6be9fa3f091bae25298",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+        "scripts/verify-public-safety.mjs": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
         "scripts/public-safety-guard.sh": "7b6dd35180b83ca78906cfe2c434f57ebbf47ccb7e3b298c00e9cec9ab763eba"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "sha256": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d",
           "row_names": [
             "positive:clean-source-accepted",
             "positive:research-with-private-map-accepted"
@@ -9877,15 +9877,15 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/verify-public-safety.mjs": "ab76027282b1f17da546c15d70e888662c1d22cba364e6be9fa3f091bae25298",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
+        "scripts/verify-public-safety.mjs": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
         "scripts/public-safety-guard.sh": "7b6dd35180b83ca78906cfe2c434f57ebbf47ccb7e3b298c00e9cec9ab763eba"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+          "sha256": "0d40ac7189b31f5f9fb5008c9915e2b1f0fecae0a17dde29a07711b56018e80d",
           "row_names": [
             "negative:private-key-rejected",
             "negative:access-token-rejected",
@@ -9911,8 +9911,8 @@
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/reveal.js": "d2c14d140d85cb349f53e6de33fabfa820ff9cca8478e412dc989a03a88c0537",
         "docs/research/2026-09-10-reduced-motion/verify.mjs": "4b0f8dfc45c37e6bc18fa9a9dc07b5f305a088f2f8ff76d02fbbe2d6b35912e2",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
-        ".github/workflows/test.yml": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
+        ".github/workflows/test.yml": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/category.js": "5d0e5d27ed700708c27e9afdd21acbb4b06b31ed1cfef6580ad31f39fd69ce30",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/contrast.js": "67d1eaa8db14456caedf9f2a2e4091687284a85621bae8695b0310e0ac123800",
@@ -10039,7 +10039,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
           "row_names": [
             "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
             "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -10066,8 +10066,8 @@
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/reveal.js": "d2c14d140d85cb349f53e6de33fabfa820ff9cca8478e412dc989a03a88c0537",
         "docs/research/2026-09-10-reduced-motion/verify.mjs": "4b0f8dfc45c37e6bc18fa9a9dc07b5f305a088f2f8ff76d02fbbe2d6b35912e2",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
-        ".github/workflows/test.yml": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
+        ".github/workflows/test.yml": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/category.js": "5d0e5d27ed700708c27e9afdd21acbb4b06b31ed1cfef6580ad31f39fd69ce30",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/contrast.js": "67d1eaa8db14456caedf9f2a2e4091687284a85621bae8695b0310e0ac123800",
@@ -10194,7 +10194,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
           "row_names": [
             "fixture:negative:animation",
             "fixture:negative:transition",
@@ -10790,7 +10790,29 @@
         "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe",
         "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
         "scripts/verify-privacy-boundary.mjs": "cd25717f1a1e81febb17199051142afc4eb3c978b14457dac3b2971ce05a3e62",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-completion.css": "40099fd03da94d602bef414b82f5df02d24bd2c1d7c0dd4fda57615ab518ac33",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/parts-catalog.css": "6b1693ff891c895a18614650afafc30a208e34dbec0ff36f3749a0574bcd97ff",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/zone-slots.css": "d3dc48347019ecec029a80e65110eca0d38586544c4b2cbfd210b41708233588",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/parts-editor.js": "62687dc9de909f5b7d1727a28f636fcb9f19d8984e9fd163d3e912883ade722c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-cards.php": "83014f4c3fa65f08e3d6db076ba7acc7fdf5c7ecfd3e0f102da3a49aa1e9ec45",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-list.php": "0bceacb982f783c175c63221659d2fc3fa9ba439c50d126445c536e12c1d1870",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362"
       },
       "scope": "現行helix-wtとコンテンツfixtureプラグインのPHP/JS/MJS/HTML/JSON/CSS 141ファイルを走査し、代表的な計測ID形と広告script/markupの生値0件を確認。外部所有を示す値なし契約は許容。",
       "remaining": [],
@@ -10944,7 +10966,29 @@
         "docs/research/2026-09-08-content-faces/plugin/site-pages.json": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe",
         "docs/research/2026-09-08-content-faces/plugin/site-pages.php": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78",
         "scripts/verify-privacy-boundary.mjs": "cd25717f1a1e81febb17199051142afc4eb3c978b14457dac3b2971ce05a3e62",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367"
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/banner-zones.css": "028e34a43d6f2bece4d56c33da09dcbe9b234c4471fcd9f8c7a4099b44ce1b6c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/device-vocabulary.css": "e0a1e3ce068fcf3c765a3d0252f9838525c2bc27cfb7b70701a8024bb447a0f6",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/event-completion.css": "40099fd03da94d602bef414b82f5df02d24bd2c1d7c0dd4fda57615ab518ac33",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/parts-catalog.css": "6b1693ff891c895a18614650afafc30a208e34dbec0ff36f3749a0574bcd97ff",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/zone-slots.css": "d3dc48347019ecec029a80e65110eca0d38586544c4b2cbfd210b41708233588",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/device-vocabulary.js": "05d039816d533c6aa07a4480c8b8b94d6ec5a8b175393d262ef3ade92b97a51f",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/parts-editor.js": "62687dc9de909f5b7d1727a28f636fcb9f19d8984e9fd163d3e912883ade722c",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/device-vocabulary.json": "a2164b532191ea215c4f14dce1b60156464de06064b03b43631764a7e231f0a8",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-cards.php": "83014f4c3fa65f08e3d6db076ba7acc7fdf5c7ecfd3e0f102da3a49aa1e9ec45",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/recommendation-list.php": "0bceacb982f783c175c63221659d2fc3fa9ba439c50d126445c536e12c1d1870",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362"
       },
       "scope": "GA4、Tag Manager、AdSenseのID形と広告script・adsbygoogle markupを個別fixtureへ投入し、各検出規則が1件で失敗条件を成立させることを確認。",
       "remaining": [],
@@ -12675,8 +12719,8 @@
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/reveal.js": "d2c14d140d85cb349f53e6de33fabfa820ff9cca8478e412dc989a03a88c0537",
         "docs/research/2026-09-10-reduced-motion/verify.mjs": "4b0f8dfc45c37e6bc18fa9a9dc07b5f305a088f2f8ff76d02fbbe2d6b35912e2",
-        "package.json": "e90079f55e783140bd4684bc1f676024a1fa4ef96d78324c6854db8044f7f367",
-        ".github/workflows/test.yml": "54cf682d2c8212317e4f916e2ce94fcbd57eb90e1d41e05c67d1081c93d6e7f3",
+        "package.json": "1e60ae4ad33f7336d5b3fb142f36ae97c657ba602ef35c00547148b7ee0b0283",
+        ".github/workflows/test.yml": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/banner-zones.js": "0b5a18306f35bb1a29f88b9eef07214d04ffa17b348e47473fd41dcda30a4a47",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/category.js": "5d0e5d27ed700708c27e9afdd21acbb4b06b31ed1cfef6580ad31f39fd69ce30",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/contrast.js": "67d1eaa8db14456caedf9f2a2e4091687284a85621bae8695b0310e0ac123800",
@@ -12807,7 +12851,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-          "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+          "sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
           "row_names": [
             "fixture:positive",
             "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",

@@ -2,7 +2,7 @@
 
 正本入口は [authority.md](authority.md)。現在の要求・実績・残り・次の着手順は [最新要求と現在の足並み](current-alignment.md) から読む。
 
-- [全134候補](l3/g3-approval-summary.md): 旧123件を保持し、後続の調査・PO判断を追記。298 AC / 134 test ID。追加分P1は暫定。
+- [全134候補](l3/g3-approval-summary.md): 旧123件を保持し、後続の調査・PO判断を追記。300 AC / 134 test ID。追加分P1は暫定。
 - [ページ種別台帳](discovery/page-type-ledger.md): 9系統は上限のない索引。元7分類との対応、出所・採否・証拠状態・着手順を分離。
 - [デザイン受入条件ドラフト](l2/prototype-03-design-acceptance-draft.md): 段13時点の補正と9月5日の履歴を区別。
 - L1の5文書は9月5日の承認済み基準。L2 events / projectionとL3候補へ後続のPO判断を反映し、最新revisionの合意なしに再承認・凍結を主張しない。
