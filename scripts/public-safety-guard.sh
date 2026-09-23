@@ -83,25 +83,45 @@ while IFS= read -r -d '' status; do
     printf '\n' >>"$records"
     continue
   fi
-  if git diff --no-ext-diff --no-renames --numstat "${diff_args[@]}" -- "$path" |
-      awk -F '\t' '$1 == "-" && $2 == "-" { found=1 } END { exit !found }'; then
-    digest="$(git cat-file blob "$oid" | sha256sum | cut -d ' ' -f 1)"
-    approval_file="$tmp_dir/binary-approvals.tsv"
-    approved=0
-    if awk -F '\t' -v path="$path" -v digest="$digest" '
-          NF == 2 && $1 == path && $2 == digest { found=1 }
-          END { exit !found }
-        ' "$approval_file"; then
-      approved=1
-    fi
-    if (( ! approved )); then
-      echo "FAIL: changed binary requires a reviewed path + SHA-256 record in config/public-safety-binary-approvals.tsv" >&2
-      failures=$((failures + 1))
-    fi
+
+  # Classify the actual new blob, independently of .gitattributes diff settings.
+  # Git attributes can force binary data through a textual diff, so numstat is
+  # not a sufficient binary detector for a publication safety gate.
+  content="$tmp_dir/content"
+  git cat-file blob "$oid" >"$content" || {
+    echo "FAIL: changed blob could not be read" >&2
+    failures=$((failures + 1))
+    continue
+  }
+  mime_file="$tmp_dir/mime"
+  if ! file --brief --mime-type "$content" >"$mime_file"; then
+    echo "FAIL: changed blob type could not be inspected" >&2
+    failures=$((failures + 1))
     continue
   fi
+  mime="$(<"$mime_file")"
+  case "$mime" in
+    text/*|application/json|application/xml|application/javascript|application/x-empty|image/svg+xml)
+      ;;
+    *)
+      digest="$(sha256sum "$content" | cut -d ' ' -f 1)"
+      approval_file="$tmp_dir/binary-approvals.tsv"
+      approved=0
+      if awk -F '\t' -v path="$path" -v digest="$digest" '
+            NF == 2 && $1 == path && $2 == digest { found=1 }
+            END { exit !found }
+          ' "$approval_file"; then
+        approved=1
+      fi
+      if (( ! approved )); then
+        echo "FAIL: changed binary requires a reviewed path + SHA-256 record in config/public-safety-binary-approvals.tsv" >&2
+        failures=$((failures + 1))
+      fi
+      continue
+      ;;
+  esac
 
-  git diff --no-ext-diff --no-renames --unified=0 "${diff_args[@]}" -- "$path" |
+  git diff --no-ext-diff --no-textconv --text --no-renames --unified=0 "${diff_args[@]}" -- "$path" |
     awk '
       /^diff --git / { in_hunk=0; next }
       /^@@ / { in_hunk=1; next }

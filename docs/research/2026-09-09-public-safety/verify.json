@@ -5,9 +5,9 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9",
+  "source_sha256": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9"
+    "scripts/public-safety-guard.sh": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2"
   },
   "rows": [
     {
@@ -145,6 +145,13 @@
     },
     {
       "name": "negative:binary-research-with-map-only-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-forced-text-by-gitattributes-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",

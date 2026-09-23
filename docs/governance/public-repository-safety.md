@@ -26,7 +26,7 @@ Issue、PR、CI log、ハーネスメモリへ残ることを防ぐ。
 3. commit 前に `bash scripts/public-safety-guard.sh --staged` を実行する。
 4. 調査・証跡・PoC artifact の変更時は `.public-safety.local.regex` または
    `PUBLIC_REDACTION_GUARD_RE` に非公開の検出正規表現を設定する。ファイルは一行一正規表現とする。不正・読取不能なら公開ガードは失敗する。
-5. 新規・変更されたバイナリはテキスト検査では確認できないため既定で拒否する。公開内容を人が確認した後、
+5. 新規・変更されたバイナリはテキスト検査では確認できないため既定で拒否する。判定は blob の内容から行い、`.gitattributes` の diff 設定で変更できない。分類には `file(1)` を使い、利用できない場合は失敗する。公開内容を人が確認した後、
    `config/public-safety-binary-approvals.tsv` へ「リポジトリ相対パス、タブ、対象blobのSHA-256」を1行で記録し、
    画像等の公開可否とその行をPRでレビューする。調査・証跡のバイナリには
    これに加えて非公開名の検出用正規表現も必要。内容が同一のrenameは再承認不要。

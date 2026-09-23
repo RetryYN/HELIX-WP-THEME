@@ -25,6 +25,10 @@ function runFixture(name, relativePath, content, expectedPass, env = {}, options
     if (options.symlink) fs.symlinkSync(content, target);
     else fs.writeFileSync(target, content);
     execFileSync('git', ['add', '--', relativePath], { cwd: fixture, env: { ...process.env, GIT_LITERAL_PATHSPECS: '1' } });
+    if (options.gitattributes) {
+      fs.writeFileSync(path.join(fixture, '.gitattributes'), options.gitattributes);
+      execFileSync('git', ['add', '.gitattributes'], { cwd: fixture });
+    }
     if (options.binaryApproval) {
       const digest = sha256(target);
       fs.mkdirSync(path.join(fixture, 'config'), { recursive: true });
@@ -79,6 +83,7 @@ const rows = [
   runFixture('negative:invalid-private-map-regex-rejected', 'src/clean.txt', 'ordinary text\n', false, { PUBLIC_REDACTION_GUARD_RE: '[' }),
   runFixture('negative:binary-research-without-map-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false),
   runFixture('negative:binary-research-with-map-only-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
+  runFixture('negative:binary-forced-text-by-gitattributes-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { gitattributes: '*.bin diff\n' }),
   runFixture('negative:binary-with-wrong-digest-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong' }),
   runFixture('negative:unstaged-binary-approval-is-ignored', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong', unstagedApproval: true }),
   runFixture('positive:binary-with-reviewed-digest-approval-accepted', 'src/image.bin', Buffer.from([0, 1, 2, 3]), true, {}, { binaryApproval: 'matching' }),
