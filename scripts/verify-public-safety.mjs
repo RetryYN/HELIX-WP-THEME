@@ -65,6 +65,7 @@ const report = {
   completed: rows.every(row => row.pass),
   source: 'scripts/public-safety-guard.sh',
   source_sha256: sha256(guardSource),
+  sourceDigests: { 'scripts/public-safety-guard.sh': sha256(guardSource) },
   rows,
   failed: rows.filter(row => !row.pass).length,
 };

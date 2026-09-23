@@ -6,23 +6,23 @@ authority: docs/requirements/authority.md
 iteration: 2
 ---
 
-# G3 再開前の候補要件一覧（2026-09-08）
+# G3 再開前の候補要件一覧（2026-09-23）
 
 正本は `requirements-ir.json`。現時点はフロント先行の L2 往復中で、compile は backflow_required、G3 は未実施。
-既存 123 件を維持して 8 件を追加し、6 件を改定した。追加分の P1 は整理上の暫定値で PO 合意ではない。
+134 件（P0 67 / P1 58 / P2 9）、300 AC、134 test ID。追加分の P1 は整理上の暫定値で PO 合意ではない。
 G1 / G2 の合意 WT-AGREE-01 は event head WT-EVT-0231 に対するもの。新しい revision へ自動適用しない。
 最新の方針・試作証跡・未決・着手順は [現在の足並み](../current-alignment.md)、全種別は [ページ種別台帳](../discovery/page-type-ledger.md)。
 
 ## 再開条件
 
-- WT-Q-G3-01: 旧 123 件から最新 131 件へ確認対象を更新。pending_resolution、追加要求、優先度、PO 反応を照合して最新 revision の合意を記録する。フロント先行の間は保留。
+- WT-Q-G3-01: 最新134件へ確認対象を更新。pending_resolution、追加要求、優先度、PO 反応を照合して最新 revision の合意を記録する。フロント先行の間は保留。
 - WT-Q-STYLE-01: V_DESIGN_SCRUM_IMPLEMENTATION の採否は保留。
 - 件数や validator 成功だけで収束とせず、直近 2 iteration の優先度安定と改定範囲の合意を確認 → 再 compile → specified → G3 承認で frozen。
 - 非目標: 決済・購読・会員等の業務処理、CRM / MA・配信そのもの、AI 判定のテーマ内実装。外部機能の表示・接続・権限別遷移を検証する範囲は残す。
 
 ## 要件・受入条件の全件索引
 
-要求 132 件（P0 67 / P1 56 / P2 9）、受入条件 290 件。以下の状態は要求の整理状態であり実装完了状態ではない。
+要求 134 件（P0 67 / P1 58 / P2 9）、受入条件 300 件。以下の状態は要求の整理状態であり実装完了状態ではない。
 
 | ID | rev | 優先度 | 状態 | 要求（全文） | 受入条件 |
 | --- | --- | --- | --- | --- | --- |
@@ -186,6 +186,10 @@ WT-AC-SEARCH-01A/B/C/DとWT-AT-SEARCH-01で追跡。G3未実施、既存合意�
 
 ## WT-EVT-0311: 対話型ユーティリティ面の追加候補
 
-最新134要求・298 AC・134 test ID。WT-FR-UTILITY-01（P1暫定、candidate_inventory）: calculator / grader / generator を通常フォーム・検索結果と区別し、入力から派生結果、根拠、再入力までを一つの表示契約で扱う。処理規則と保存はテーマ外へ分離し、入力非保存を既定とする。
+最新134要求・300 AC・134 test ID。WT-FR-UTILITY-01（P1暫定、candidate_inventory）: calculator / grader / generator を通常フォーム・検索結果と区別し、入力から派生結果、根拠、再入力までを一つの表示契約で扱う。処理規則と保存はテーマ外へ分離し、入力非保存を既定とする。
 
 WT-AC-UTILITY-01A/B/C/DとWT-AT-UTILITY-01で追跡。G3未実施、代表PoC未着手。
+
+## WT-EVT-0312: 管理画面の受入条件更新
+
+WT-FR-ADMIN-01 / 03 に受入条件2件（WT-AC-ADMIN-01E / 03C）を追加し、WP 7.2 DataViews/DataForm のサーバー登録フィールド・アクション、検証・階層・一括操作、失敗時の診断と復旧文脈を記録した。合計134要求・300 AC・134 test ID。未リリースAPIの実装やG3承認は主張せず、7.2未提供環境でのJSON契約フォールバックを境界とする。
