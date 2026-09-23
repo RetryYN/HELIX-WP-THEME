@@ -17,6 +17,12 @@ node scripts/audit-catalog-evidence.mjs
 node scripts/build-selection-catalog.mjs
 ```
 
+## 受入証跡の更新
+
+束縛元を変えたときは `npm run catalog-evidence:rebind -- --case <AC-ID>` で影響範囲を確認する。変更したソースに依存する全 AC と、再生成する proof を共有する全 AC を選ぶ。proof ごとの再生成コマンドは `package.json` の `catalogOracles` または `config/catalog-admission-oracles.json` の `commands` に宣言する。
+
+`--apply` では選択した全 proof の正規コマンドを `--command-json '["npm","run","<script>"]'` などの argv 配列で渡す。同じ実行内で proof の書き直し・完了状態・指定した成功行・source digest を検査し、実際に変わった digest だけを更新する。`acceptance-rebind-log.json` に transaction が追記され、`npm run catalog-evidence:rebind-check` が base 版からの chain を照合する。digest JSON の直接編集や、過去の比較証跡を現行ソースへ合わせ直す操作はしない。
+
 <!-- catalog-current:start -->
 現在の生成結果: 708候補 / 1287画像 / 134要求 / 300受入条件。PoC確認32・部分確認102・証跡未対応166・再検証0。全要求完了ではない。
 <!-- catalog-current:end -->

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { writeGenerated } from './lib/generated-output.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -64,6 +65,6 @@ const rows = ac.cases.map(c => {
 const counts = Object.fromEntries(['missing', 'partial', 'verified_in_poc', 'stale'].map(s => [s, rows.filter(r => r.status === s).length]));
 const report = { schema: 'wt-catalog-acceptance-audit.v1', requirementCount: ir.requirements.length, acceptanceCount: rows.length,
   counts, complete: rows.every(r => r.status === 'verified_in_poc'), rows };
-fs.writeFileSync(path.join(root, 'docs/research/2026-09-08-selection-catalog/acceptance-audit.json'), JSON.stringify(report, null, 2) + '\n');
+writeGenerated(path.join(root, 'docs/research/2026-09-08-selection-catalog/acceptance-audit.json'), JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify({ requirements: report.requirementCount, acceptance: report.acceptanceCount, ...counts, complete: report.complete }));
 if (counts.stale) process.exitCode = 1;

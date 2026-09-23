@@ -5,6 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { writeGenerated } from '../scripts/lib/generated-output.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 function fixture(t) {
@@ -12,6 +14,7 @@ function fixture(t) {
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   function write(file, value) { const target = path.join(root, file); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, typeof value === 'string' ? value : JSON.stringify(value)); }
   write('scripts/audit-catalog-evidence.mjs', fs.readFileSync(new URL('../scripts/audit-catalog-evidence.mjs', import.meta.url), 'utf8'));
+  write('scripts/lib/generated-output.mjs', fs.readFileSync(new URL('../scripts/lib/generated-output.mjs', import.meta.url), 'utf8'));
   write('docs/requirements/l3/requirements-ir.json', { requirements: [{ id: 'R1', semantic_digest: 'revision-1', acceptance_ids: ['A1'] }] });
   write('docs/requirements/l3/acceptance-cases.json', { cases: [{ id: 'A1', requirement_id: 'R1', oracle: 'Expected behavior', polarity: 'positive' }] });
   write('implementation.php', 'source-v1');
@@ -135,4 +138,27 @@ test('catalog data stays aligned with canonical requirement and acceptance count
     [...new Set(catalogAcceptanceRows.map(acceptance => acceptance.id))].sort(),
     [...new Set(cases.cases.map(acceptance => acceptance.id))].sort(),
   );
+});
+
+test('the generated catalog matches current sources without rewriting tracked outputs', () => {
+  const repoRoot = fileURLToPath(new URL('../', import.meta.url));
+  const files = ['acceptance-audit.json', 'catalog-data.json', 'selection-index.json', 'completion-backlog.json', 'completion-backlog.md', 'README.md']
+    .map(name => path.join(repoRoot, 'docs/research/2026-09-08-selection-catalog', name));
+  const before = files.map(file => hash(fs.readFileSync(file)));
+  const run = spawnSync(process.execPath, ['scripts/build-selection-catalog.mjs'], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+    env: { ...process.env, CATALOG_GENERATED_CHECK: '1' },
+  });
+  assert.equal(run.status, 0, run.stderr || run.stdout);
+  assert.deepEqual(files.map(file => hash(fs.readFileSync(file))), before);
+});
+
+test('generated-output check rejects stale bytes without overwriting them', t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wt-generated-check-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, 'catalog-data.json');
+  fs.writeFileSync(file, 'old\n');
+  assert.throws(() => writeGenerated(file, 'new\n', { check: true }), /out of date/u);
+  assert.equal(fs.readFileSync(file, 'utf8'), 'old\n');
 });

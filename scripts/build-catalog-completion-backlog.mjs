@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { writeGenerated } from './lib/generated-output.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -73,7 +74,7 @@ const report = {
   page_gaps: pageGaps,
   requirements: rows
 };
-fs.writeFileSync(path.join(outputDir, 'completion-backlog.json'), JSON.stringify(report, null, 2) + '\n');
+writeGenerated(path.join(outputDir, 'completion-backlog.json'), JSON.stringify(report, null, 2) + '\n');
 
 const openRows = rows.filter(row => row.state !== 'verified_in_poc');
 const md = [
@@ -100,5 +101,5 @@ const md = [
   ...pageGaps.map(row => `| ${row.type} | ${row.evidence_state} | ${row.source} | ${row.order} |`),
   ''
 ].join('\n');
-fs.writeFileSync(path.join(outputDir, 'completion-backlog.md'), md);
+writeGenerated(path.join(outputDir, 'completion-backlog.md'), md);
 console.log(JSON.stringify({ requirements: report.requirement_count, acceptance: report.acceptance_count, open: openRows.length, page_gaps: pageGaps.length }));
