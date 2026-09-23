@@ -62,7 +62,20 @@ Style::generate_css() / get_front_css() / get_editor_css() / get_nocache_css()
 `THEMEB_Theme::is_separate_css()` が真のとき、**「使われているブロックだけ CSS を読む」**ために
 `wp_head` の優先度 0 で `Pre_Parse_Blocks::init()` が走る（`lib/load/separate.php`）。
 
-> 第三者テーマのソース抜粋（12 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```
+wp_head(0)
+└ Pre_Parse_Blocks::init()
+   ├ add_filter('render_block', render_check)      … 描画されたブロック名を記録
+   ├ 本文: parse_blocks( do_shortcode( $post->post_content ) ) を再帰走査
+   │   └ themeB/blog-parts / core/block は参照先 post を取得して**中身も再帰**
+   ├ ターム: term_meta themeB_term_meta_display_parts の参照先を走査
+   ├ ウィジェット: ob_start() → 各ウィジェットエリアを実際に出力 → ob_clean() で捨てる
+   │   （サイドバー・front_top/bottom・single_top/bottom/cta・before/after_related・
+   │     footer_box1-3・sp_menu_bottom・head_box を総当たり）
+   ├ 文字列直検査: [ad_tag / [ふきだし / [speech_balloon / cap_box / [full_wide_content /
+   │               [カスタムバナー / <table を含むかで used_blocks を補完
+   └ ページ種別で補完（トップのピックアップバナー、アーカイブの tab など）
+```
 
 - 結果は静的プロパティ `THEMEB_Theme::$used_blocks` に溜まり、以後の CSS 出力判断に使われる。
 - **コアブロックは `wp_enqueue_style("wp-block-{$name}")` をこの場で呼ぶ**。
@@ -76,7 +89,11 @@ Style::generate_css() / get_front_css() / get_editor_css() / get_nocache_css()
 ## 5. ブロック実装
 
 ### 5.1 登録
-> 第三者テーマのソース抜粋（3 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```php
+register_themeB_blocks()  // init
+├ register_normal_blocks()   … 22 種を THEMEB_Theme::register_block() で
+└ register_dynamic_blocks()  … 10 種は lib/gutenberg/block/{name}.php を require
+```
 
 `THEMEB_Theme::register_block()`（`Utility/Others.php`）:
 - `index.asset.php`（wp-scripts 生成）から依存とバージョンを読み、`themeB/{name}` ハンドルで JS 登録。

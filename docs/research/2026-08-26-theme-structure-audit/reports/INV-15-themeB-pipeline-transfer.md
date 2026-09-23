@@ -29,7 +29,23 @@
 
 `Pre_Parse_Blocks::init()` の処理順:
 
-> 第三者テーマのソース抜粋（15 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```
+1. add_filter('render_block', render_check)          … 描画されたブロック名を記録するフックを一時装着
+2. ページ種別で入力を決める
+   ├ is_single() / is_page() / (is_home() && !is_front_page())
+   │    → get_post( get_queried_object_id() )->post_content
+   └ is_term()
+        → term_meta 'themeB_term_meta_display_parts' の参照先 post
+3. parse_content( $content )
+   ├ parse_blocks( do_shortcode( $content ) )        … ショートコードを先に展開してからパース
+   ├ check_parsed_block() を全ブロックに適用（innerBlocks へ再帰）
+   │    └ themeB/blog-parts の attrs.partsID / core/block の attrs.ref を辿り
+   │      参照先 post の post_content を parse_content() で再帰処理
+   └ check_content_str( $content )                   … 文字列直検査で補完
+4. parse_widgets()                                    … 下記 1.2
+5. remove_filter('render_block', render_check)        … フックを外す
+6. ページ種別による補完（ピックアップバナー / アーカイブの tab）
+```
 
 ### 1.2 ウィジェットのドライラン
 

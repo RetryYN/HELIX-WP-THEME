@@ -133,7 +133,11 @@ GSC の「ページ」レポートで次を確認（CSV エクスポート車線
 
 **現行サイトへの対処**（テーマ更新で消えないよう子テーマ側で行う）:
 
-> 第三者テーマのソース抜粋（3 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```php
+// themeA-child/functions.php（案・未適用）
+remove_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
+remove_action('template_redirect', 'themeA_init_session_start');
+```
 
 **前提**: 記事内ページネーションが壊れないことの確認（§6）。
 テーマA の `object/nextpage.php` が `<!--nextpage-->` によるページ送りを担っており、

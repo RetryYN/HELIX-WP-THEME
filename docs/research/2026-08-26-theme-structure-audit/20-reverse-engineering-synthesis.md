@@ -92,7 +92,15 @@
 `Pre_Parse_Blocks` が `wp_head`(0) で走り、CSS を「使われているブロックの分だけ」読むために
 **本文とウィジェットを描画前に走査**する。
 
-> 第三者テーマのソース抜粋（7 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```
+1. add_filter('render_block', render_check)          … 一時装着
+2. 本文: parse_blocks( do_shortcode( $content ) ) を再帰走査
+       └ themeB/blog-parts(attrs.partsID) / core/block(attrs.ref) は参照先 post を取得して再帰
+3. ターム: term_meta 'themeB_term_meta_display_parts' の参照先を走査
+4. ウィジェット: ob_start() → 実際に出力 → ob_clean() で捨てる（14 エリアを総当たり）
+5. 文字列直検査: [ad_tag / [ふきだし / cap_box / [full_wide_content / <table …
+6. remove_filter
+```
 
 **これは「本文の意味構造を描画前にサーバー側で確定する」処理**であり、
 中間 JSON パイプラインと同型。`reports/INV-15-themeB-pipeline-transfer.md` で

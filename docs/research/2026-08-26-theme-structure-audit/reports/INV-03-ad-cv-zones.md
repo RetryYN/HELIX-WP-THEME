@@ -70,7 +70,17 @@
 
 ### 2.1 スキーマの現状
 
-> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```json
+"description": "広告ゾーン定義スキーマ。CARRY-A2-001: テーマA の4ゾーン
+                (h2前挿入/記事終/関連上/カテゴリ別上書き)に対応する静的管理。REQ-NF-025厳守。",
+"required": ["zone_id", "zone_name", "position"],
+"additionalProperties": false,
+"properties": {
+  "zone_id": { "type": "string",
+    "description": "ゾーン識別子（slug 形式）。例: before_h2, after_article, above_related, category_override",
+    "pattern": "^[a-z0-9_-]+$" },
+  ...
+```
 
 ### 2.2 実測との差分（3 点）
 

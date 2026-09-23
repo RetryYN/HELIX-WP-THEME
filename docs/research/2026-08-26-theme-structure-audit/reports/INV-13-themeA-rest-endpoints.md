@@ -4,7 +4,7 @@
 - 状態: **コード解析パート完了 / 到達性・情報開示は使い捨て PoC（poc-themeA）で HTTP 実証済み（2026-08-27）**。本番への write（対処適用）は PO 判断が残る。
 - 調査日: 2026-08-26
 - 手段: ホスティング SSH 読み取り専用（`sed -n` によるソース読み出しのみ）
-- 対象サイト: site-A.example（テーマA <version>・WP 7.0.2）
+- 対象サイト: site-A.example（テーマA <version>・WP <version>）
 
 > ## ⚠ 証拠ギャップ（2026-08-26 検証で判明・要是正）
 > 本レポートの目玉である REST 2 本の登録・`__return_true`・`file_get_contents()` は、

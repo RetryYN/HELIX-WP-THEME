@@ -7,7 +7,26 @@
 `functions.php`（999 行）が唯一のエントリ。**クラスも名前空間もオートローダも無い**。
 すべてグローバル関数 + `require` / `get_template_part` の直列実行。
 
-> 第三者テーマのソース抜粋（18 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
+```
+functions.php
+├── define: THEMEA_THEME_VERSION / THEMEA_PHP_INCLUDE / THEMEA_CORE_DIR
+├── add_action(wp_enqueue_scripts) × 3   … jQuery をフッターへ再登録 / JS / CSS
+├── add_action(admin_enqueue_scripts) × 3
+├── add_action(wp_footer)  … style-footer.css を遅延出力
+├── require_once include/customizer.php          ← カスタマイザ UI 17 ファイルを foreach で require
+├── require_once include/load-customizer-value.php ← 動的 CSS 生成器（後述）
+├── get_template_part include/widgets           … register_sidebar 11
+├── get_template_part include/shortcode         … add_shortcode 6
+├── get_template_part include/themeA-setting      … 管理画面（2,692 行）
+├── get_template_part include/head/title
+├── get_template_part include/font-selection
+├── get_template_part include/json-ld           … 条件付き
+├── get_template_part include/custom-functions  ← 本体（5,214 行）
+├── add_action('init', create_block_themeA_blocks_block_init)  … ブロック 25 種を一括登録
+├── add_filter('redirect_canonical', …)
+├── add_action('template_redirect', themeA_init_session_start)  … PHP セッション開始
+└── require theme-update-checker.php
+```
 
 **観測点**
 - `get_template_part` を「ファイルを読み込む」目的で使っている（テンプレート出力用の API を初期化に流用）。
