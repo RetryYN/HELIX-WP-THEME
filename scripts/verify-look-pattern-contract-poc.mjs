@@ -62,6 +62,9 @@ rejects('AC-LOOK-03B rejects a pattern distribution that is not in the survey', 
   const wrongDistribution = observed.map(pattern => pattern === 'motion' ? 'commerce' : pattern);
   validateContract(fixture, wrongDistribution);
 }, 'look observed pattern vocabulary is invalid');
+rejects('AC-LOOK-03B rejects an extra observed vocabulary entry', () => {
+  validateContract(fixture, [...observed, 'foo']);
+}, 'look observed pattern vocabulary is invalid');
 rejects('AC-LOOK-03C rejects an open pattern that is already observed', () => {
   const value = structuredClone(fixture); value.openPatterns[0].id = 'corporate'; validateContract(value, observed);
 }, 'open pattern is not preserved: corporate');
@@ -85,11 +88,23 @@ rejects('AC-LOOK-03B rejects a missing observed variation mapping', () => {
 rejects('AC-LOOK-03B rejects incomplete consistency gates', () => {
   const value = structuredClone(fixture); value.gates.gT1b = false; validateContract(value, observed);
 }, 'look consistency gates are incomplete');
+rejects('AC-LOOK-03B rejects an incomplete G-T3 consistency gate', () => {
+  const value = structuredClone(fixture); value.gates.gT3 = false; validateContract(value, observed);
+}, 'look consistency gates are incomplete');
+rejects('AC-LOOK-03B rejects an empty variation while preserving nine styles', () => {
+  const value = structuredClone(fixture);
+  value.variationMap.motion = [];
+  value.variationMap.compare = ['depth', 'dark', 'night-contrast'];
+  validateContract(value, observed);
+}, 'missing variation mapping: motion');
 rejects('AC-LOOK-03C rejects completion marked true', () => {
   const value = structuredClone(fixture); value.gates.completion = true; validateContract(value, observed);
 }, 'unverified look patterns cannot be complete');
 rejects('AC-LOOK-03C rejects an empty open-pattern index', () => {
   const value = structuredClone(fixture); value.openPatterns = []; validateContract(value, observed);
+}, 'unobserved pattern index is empty');
+rejects('AC-LOOK-03C rejects a non-array open-pattern index', () => {
+  const value = structuredClone(fixture); value.openPatterns = 'commerce'; validateContract(value, observed);
 }, 'unobserved pattern index is empty');
 rejects('AC-LOOK-03C rejects an open pattern with the wrong status', () => {
   const value = structuredClone(fixture); value.openPatterns[0].status = 'observed'; validateContract(value, observed);

@@ -3313,6 +3313,74 @@
       ],
       "registry_before_sha256": "0c4f6cdee740cb4797ceca9067676abd1c02116dac9044a574c77759172962e0",
       "registry_after_sha256": "f2be408938a20f69ae8160b6b8469e32c12d03e9f17de11f4275a4670fc1a0f1"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6",
+          "after": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750",
+          "after": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6",
+          "after": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750",
+          "after": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6",
+          "after": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "b1ff9c6f395cc52bddbddb9d7dbe6e96648445598ef1f2a87aae983ade028750",
+          "after": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after_sha256": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "f2be408938a20f69ae8160b6b8469e32c12d03e9f17de11f4275a4670fc1a0f1",
+      "registry_after_sha256": "1cace9abc2fa18d79d4485f5f17acef0a8683921e65b244b89e93a25b83b4bac"
     }
   ]
 }

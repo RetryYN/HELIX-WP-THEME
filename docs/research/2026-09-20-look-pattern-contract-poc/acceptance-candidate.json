@@ -29,6 +29,7 @@
           "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
           "AC-LOOK-03B rejects an incomplete variation mapping",
           "AC-LOOK-03B rejects a pattern distribution that is not in the survey",
+          "AC-LOOK-03B rejects an extra observed vocabulary entry",
           "AC-LOOK-03B rejects an invalid schema",
           "AC-LOOK-03B rejects an invalid owner",
           "AC-LOOK-03B rejects a changed survey index source",
@@ -37,6 +38,8 @@
           "AC-LOOK-03B rejects a changed observed pattern vocabulary",
           "AC-LOOK-03B rejects a missing observed variation mapping",
           "AC-LOOK-03B rejects incomplete consistency gates",
+          "AC-LOOK-03B rejects an incomplete G-T3 consistency gate",
+          "AC-LOOK-03B rejects an empty variation while preserving nine styles",
           "AC-LOOK-03B rejects an invalid source contract"
         ]
       }
@@ -56,6 +59,7 @@
           "AC-LOOK-03C rejects an open pattern that is already observed",
           "AC-LOOK-03C rejects completion marked true",
           "AC-LOOK-03C rejects an empty open-pattern index",
+          "AC-LOOK-03C rejects a non-array open-pattern index",
           "AC-LOOK-03C rejects an open pattern with the wrong status",
           "AC-LOOK-03C rejects an open pattern without an id",
           "AC-LOOK-03C rejects an open pattern with an observed id",

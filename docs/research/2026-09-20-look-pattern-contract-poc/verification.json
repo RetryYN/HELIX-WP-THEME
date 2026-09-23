@@ -3,7 +3,7 @@
   "completed": true,
   "sourceDigests": {
     "docs/research/2026-09-20-look-pattern-contract-poc/contract.mjs": "bd4065fcaea684bd0f02fc7d3d788cb7df393a9a92d76fa6a71ac0ab7334e175",
-    "scripts/verify-look-pattern-contract-poc.mjs": "0bd39ce24df8fb843f88b8edb39d67b70c4b7ccc0323c167afbab02e19986ca6",
+    "scripts/verify-look-pattern-contract-poc.mjs": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
     "docs/research/2026-09-20-look-pattern-contract-poc/README.md": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
     "docs/research/2026-09-20-look-pattern-contract-poc/external-observations.md": "04a905bbc8658d74c318302036a4ae539b65d971e428349f062d235481b57672",
     "docs/research/2026-09-04-site-survey/sites-index.json": "63e879be4868feef8f00dd30e0b165fc1eb4424cf38e0ac7d9e7717648f6f6f9",
@@ -104,6 +104,10 @@
       "pass": true
     },
     {
+      "name": "AC-LOOK-03B rejects an extra observed vocabulary entry",
+      "pass": true
+    },
+    {
       "name": "AC-LOOK-03C rejects an open pattern that is already observed",
       "pass": true
     },
@@ -140,11 +144,23 @@
       "pass": true
     },
     {
+      "name": "AC-LOOK-03B rejects an incomplete G-T3 consistency gate",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03B rejects an empty variation while preserving nine styles",
+      "pass": true
+    },
+    {
       "name": "AC-LOOK-03C rejects completion marked true",
       "pass": true
     },
     {
       "name": "AC-LOOK-03C rejects an empty open-pattern index",
+      "pass": true
+    },
+    {
+      "name": "AC-LOOK-03C rejects a non-array open-pattern index",
       "pass": true
     },
     {
