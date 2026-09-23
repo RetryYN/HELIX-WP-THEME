@@ -28,6 +28,13 @@
       "exit_code": 0
     },
     {
+      "name": "negative:access-token-in-ndjson-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
       "name": "positive:empty-file-is-text-and-scanned",
       "pass": true,
       "expected": "accept",

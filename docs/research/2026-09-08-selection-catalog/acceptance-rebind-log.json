@@ -4245,6 +4245,60 @@
       ],
       "registry_before_sha256": "410119ffb70a41006c163bfd937a493fd9f6e6d1dde059d67b4dff1028bf5496",
       "registry_after_sha256": "988bd344d6cfadb9c621b50e8b304ac109dbf38fb71beb992a6ed50f45eb9545"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94",
+          "after": "cffa8f736407b9a0f3dc59d034687ada28a50be1f0501398d792d213adfa1000"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
+          "after": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94",
+          "after": "cffa8f736407b9a0f3dc59d034687ada28a50be1f0501398d792d213adfa1000"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
+          "after": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
+          "after_sha256": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "988bd344d6cfadb9c621b50e8b304ac109dbf38fb71beb992a6ed50f45eb9545",
+      "registry_after_sha256": "038123ce00dfc1fe394b4d657935f85cfa62ef3657c4815a2c98824488f331ef"
     }
   ]
 }

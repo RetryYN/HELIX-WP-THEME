@@ -66,6 +66,7 @@ const trackingUrl = ['https://example.invalid/path?', 'a8', 'mat=value'].join(''
 const rows = [
   runFixture('positive:clean-source-accepted', 'src/clean.php', '<?php echo "safe";\n', true),
   runFixture('positive:ndjson-is-text-and-scanned', 'docs/events.jsonl', '{"event":"one"}\n{"event":"two"}\n', true),
+  runFixture('negative:access-token-in-ndjson-rejected', 'docs/events.jsonl', `{"token":"${token}"}\n`, false, {}, { expectedFailure: 'well-known access token format' }),
   runFixture('positive:empty-file-is-text-and-scanned', 'docs/.gitkeep', '', true),
   runFixture('negative:private-key-rejected', 'src/key.txt', `${privateKey}\n`, false),
   runFixture('negative:private-key-in-Japanese-path-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
