@@ -42,7 +42,7 @@ function fixture(t) {
   for (const args of [['init'], ['config', 'user.email', 'test@example.invalid'], ['config', 'user.name', 'Test'], ['add', '.'], ['commit', '-m', 'base']]) {
     assert.equal(spawnSync('git', args, { cwd: root }).status, 0);
   }
-  const run = args => spawnSync('node', ['scripts/rebind-acceptance-evidence.mjs', ...args], { cwd: root, encoding: 'utf8' });
+  const run = args => spawnSync('node', ['scripts/rebind-acceptance-evidence.mjs', ...args], { cwd: root, encoding: 'utf8', env: { ...process.env, CI: '' } });
   return { root, run, write };
 }
 
