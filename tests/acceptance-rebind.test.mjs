@@ -59,6 +59,20 @@ test('dry-run reports exact stale source and leaves registry and proof unchanged
   assert.equal(fs.statSync(path.join(f.root, 'proof.json')).mtimeMs, proof);
 });
 
+test('an explicit base ref permits rebind after the source commit', async t => {
+  const f = fixture(t);
+  f.write('implementation.php', 'source-v2\n');
+  assert.equal(spawnSync('git', ['add', 'implementation.php'], { cwd: f.root }).status, 0);
+  assert.equal(spawnSync('git', ['commit', '-m', 'source change'], { cwd: f.root }).status, 0);
+  const withoutBase = f.run(['--case', 'A1']);
+  assert.equal(withoutBase.status, 1);
+  assert.match(withoutBase.stderr, /stale source is not an actual working-tree change/u);
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--base-ref', 'HEAD^', '--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(f.run(['--check', '--base-ref', 'HEAD^']).status, 0);
+});
+
 test('apply requires same-execution proof rewrite, updates only stale digest, and passes provenance check', async t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');

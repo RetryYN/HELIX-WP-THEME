@@ -192,7 +192,7 @@ function plan(options) {
   const registryRaw = bytes(registryPath);
   const registry = JSON.parse(registryRaw);
   const selectedIds = new Set(options.cases);
-  const changedPaths = new Set(git(['diff', '--name-only', 'HEAD', '--']).split('\n').filter(Boolean));
+  const changedPaths = new Set(git(['diff', '--name-only', options.baseRef, '--']).split('\n').filter(Boolean));
   const selected = options.cases.map(id => {
     const evidence = registry.cases[id];
     if (!evidence) fail(`unknown or missing evidence case: ${id}`);
