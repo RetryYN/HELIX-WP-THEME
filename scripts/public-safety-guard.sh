@@ -93,17 +93,16 @@ while IFS= read -r -d '' status; do
     failures=$((failures + 1))
     continue
   }
-  mime_file="$tmp_dir/mime"
-  if ! file --brief --mime-type "$content" >"$mime_file"; then
-    echo "FAIL: changed blob type could not be inspected" >&2
+  encoding_file="$tmp_dir/encoding"
+  if ! file --brief --mime-encoding "$content" >"$encoding_file"; then
+    echo "FAIL: changed blob encoding could not be inspected" >&2
     failures=$((failures + 1))
     continue
   fi
-  mime="$(<"$mime_file")"
-  case "$mime" in
-    text/*|application/json|application/xml|application/javascript|application/x-empty|image/svg+xml)
-      ;;
-    *)
+  encoding="$(<"$encoding_file")"
+  # Empty blobs carry no publishable content; `file` reports their encoding as
+  # binary on some libmagic versions, so keep them on the empty-text path.
+  if [[ "$encoding" == binary && -s "$content" ]]; then
       digest="$(sha256sum "$content" | cut -d ' ' -f 1)"
       approval_file="$tmp_dir/binary-approvals.tsv"
       approved=0
@@ -118,8 +117,7 @@ while IFS= read -r -d '' status; do
         failures=$((failures + 1))
       fi
       continue
-      ;;
-  esac
+  fi
 
   git diff --no-ext-diff --no-textconv --text --no-renames --unified=0 "${diff_args[@]}" -- "$path" |
     awk '

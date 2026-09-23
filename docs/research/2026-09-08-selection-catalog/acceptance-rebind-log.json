@@ -4123,6 +4123,128 @@
       ],
       "registry_before_sha256": "7650fcffdf6853b656b6d8aa8fff5949e860b23c6bf64ded15735e8bea251bd0",
       "registry_after_sha256": "be0208e19f7d8566cdbdd8d61cf87f4690a8c1f11ea405e476ac58639fe2c6f9"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "8b5c87e1fb643dec3319e879d958f7ae00e4bca992475de5de990e597adfb93c",
+          "after": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/public-safety-guard.sh",
+          "before": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2",
+          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529",
+          "after": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "8b5c87e1fb643dec3319e879d958f7ae00e4bca992475de5de990e597adfb93c",
+          "after": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/public-safety-guard.sh",
+          "before": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2",
+          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529",
+          "after": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
+          "after_sha256": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "be0208e19f7d8566cdbdd8d61cf87f4690a8c1f11ea405e476ac58639fe2c6f9",
+      "registry_after_sha256": "410119ffb70a41006c163bfd937a493fd9f6e6d1dde059d67b4dff1028bf5496"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3",
+          "after": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
+          "after": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3",
+          "after": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
+          "after": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
+          "after_sha256": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "410119ffb70a41006c163bfd937a493fd9f6e6d1dde059d67b4dff1028bf5496",
+      "registry_after_sha256": "988bd344d6cfadb9c621b50e8b304ac109dbf38fb71beb992a6ed50f45eb9545"
     }
   ]
 }

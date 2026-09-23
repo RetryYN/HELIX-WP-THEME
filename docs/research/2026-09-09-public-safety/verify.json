@@ -5,13 +5,30 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2",
+  "toolchain": {
+    "file_command": "file-5.46"
+  },
+  "source_sha256": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2"
+    "scripts/public-safety-guard.sh": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
   },
   "rows": [
     {
       "name": "positive:clean-source-accepted",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "positive:ndjson-is-text-and-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "positive:empty-file-is-text-and-scanned",
       "pass": true,
       "expected": "accept",
       "actual": "accept",
@@ -152,6 +169,13 @@
     },
     {
       "name": "negative:binary-forced-text-by-gitattributes-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:nul-in-jsonl-is-binary-and-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",

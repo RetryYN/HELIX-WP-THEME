@@ -8,6 +8,7 @@ const root = path.resolve(import.meta.dirname, '..');
 const guardSource = path.join(root, 'scripts/public-safety-guard.sh');
 const evidencePath = path.join(root, 'docs/research/2026-09-09-public-safety/verify.json');
 const sha256 = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const fileCommandVersion = execFileSync('file', ['--version'], { encoding: 'utf8' }).trim().split(/\r?\n/, 1)[0];
 
 function runFixture(name, relativePath, content, expectedPass, env = {}, options = {}) {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'wt-public-safety-'));
@@ -64,6 +65,8 @@ const personalPath = ['/', 'home', '/fixture-user/private.txt'].join('');
 const trackingUrl = ['https://example.invalid/path?', 'a8', 'mat=value'].join('');
 const rows = [
   runFixture('positive:clean-source-accepted', 'src/clean.php', '<?php echo "safe";\n', true),
+  runFixture('positive:ndjson-is-text-and-scanned', 'docs/events.jsonl', '{"event":"one"}\n{"event":"two"}\n', true),
+  runFixture('positive:empty-file-is-text-and-scanned', 'docs/.gitkeep', '', true),
   runFixture('negative:private-key-rejected', 'src/key.txt', `${privateKey}\n`, false),
   runFixture('negative:private-key-in-Japanese-path-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
   runFixture('negative:private-key-in-Japanese-path-range-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { range: true, expectedFailure: 'private key material' }),
@@ -84,6 +87,7 @@ const rows = [
   runFixture('negative:binary-research-without-map-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false),
   runFixture('negative:binary-research-with-map-only-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
   runFixture('negative:binary-forced-text-by-gitattributes-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { gitattributes: '*.bin diff\n' }),
+  runFixture('negative:nul-in-jsonl-is-binary-and-rejected', 'docs/malformed.jsonl', Buffer.from([0x7b, 0x22, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x3a, 0x00, 0x7d]), false, {}, { expectedFailure: 'changed binary requires' }),
   runFixture('negative:binary-with-wrong-digest-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong' }),
   runFixture('negative:unstaged-binary-approval-is-ignored', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong', unstagedApproval: true }),
   runFixture('positive:binary-with-reviewed-digest-approval-accepted', 'src/image.bin', Buffer.from([0, 1, 2, 3]), true, {}, { binaryApproval: 'matching' }),
@@ -96,6 +100,7 @@ const report = {
   requirements: ['WT-NFR-CRED-01'],
   completed: rows.every(row => row.pass),
   source: 'scripts/public-safety-guard.sh',
+  toolchain: { file_command: fileCommandVersion },
   source_sha256: sha256(guardSource),
   sourceDigests: { 'scripts/public-safety-guard.sh': sha256(guardSource) },
   rows,
