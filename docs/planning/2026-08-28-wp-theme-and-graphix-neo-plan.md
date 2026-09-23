@@ -1,4 +1,4 @@
-> 移管: 旧統合層 HELIX-MARKETING-HARNESS の `docs/plans/` から 2026-09-23 に移した。submodule path の記述は当時のもの。
+> 移管: 旧統合層 HELIX-MARKETING-HARNESS の `docs/plans/` から 2026-09-23 に移した。歴史記録であり現行の正本ではない。submodule path・「PO 判断待ち」の status・GRAPHIX-NEO 側文書への参照は当時のもの。
 
 # 役割分担: HELIX-WP-THEME と GRAPHIX-NEO（2026-08-28）
 

@@ -26,7 +26,7 @@ Issue、PR、CI log、ハーネスメモリへ残ることを防ぐ。
 3. commit 前に `bash scripts/public-safety-guard.sh --staged` を実行する。
 4. 調査・証跡・PoC artifact の変更時は `.public-safety.local.regex` または
    `PUBLIC_REDACTION_GUARD_RE` に非公開の検出正規表現を設定する。ファイルは一行一正規表現とする。
-5. PR では本リポの CI（harness-check）が base からの差分を検査する。
+5. PR では本リポの CI（`public-safety` workflow）が base からの差分を検査する。検査で検出した行は公開 CI ログに出るため、検出前に commit しない運用を前提とする。
 6. 検査結果を回避するための分割、難読化、無期限 allowlist、実値を含む allowlist を禁止する。
 
 
@@ -51,7 +51,7 @@ commit 前の staged 差分と push 前の送信範囲を検査する。既存�
 3. force-push は PO の明示承認後、固定した旧 SHA に対する `--force-with-lease` で行う。
 4. branch、tag、PR、fork、旧 SHA の到達性を確認する。
 5. GitHub 内部の cached view まで消す必要がある機微情報は GitHub Support へ purge を依頼する。
-6. 実施結果と残余リスクをハーネスメモリへ記録する。
+6. 実施結果と残余リスクを事故記録として `docs/governance/incidents/` に残す。ハーネスメモリへの記録は PO の明示指示があるときだけ行う。
 
 ## ガードの責務境界
 

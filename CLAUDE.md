@@ -29,6 +29,7 @@
 
 メモリ（Claude の auto-memory・共有ハーネスメモリとも）へは、PO の明示指示があるときだけ書く。
 指摘を受けたら、その場限りの指摘か永続的な指摘かを先に区別する。
+
 ## 概要
 
 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
