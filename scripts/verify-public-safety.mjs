@@ -101,7 +101,6 @@ const report = {
   requirements: ['WT-NFR-CRED-01'],
   completed: rows.every(row => row.pass),
   source: 'scripts/public-safety-guard.sh',
-  toolchain: { file_command: fileCommandVersion },
   source_sha256: sha256(guardSource),
   sourceDigests: { 'scripts/public-safety-guard.sh': sha256(guardSource) },
   rows,
@@ -109,5 +108,6 @@ const report = {
 };
 fs.mkdirSync(path.dirname(evidencePath), { recursive: true });
 fs.writeFileSync(evidencePath, `${JSON.stringify(report, null, 2)}\n`);
+console.log(`public-safety verifier toolchain: ${fileCommandVersion}`);
 console.log(JSON.stringify(report, null, 2));
 if (!report.completed) process.exitCode = 1;
