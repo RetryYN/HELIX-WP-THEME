@@ -61,8 +61,8 @@ else
   raw_args=(--raw --no-abbrev "$base_ref" "$head_ref")
 fi
 
-# A gitlink diff contains only the pointer at the integration layer. Inspect the
-# actual old..new commit range inside every changed, initialized submodule.
+# A gitlink diff contains only the pointer. This repository has no submodules today;
+# the block stays so a future submodule is inspected over its actual old..new range.
 while IFS=$'\t' read -r path old_sha new_sha; do
   [[ -n "$path" && ( -d "$path/.git" || -f "$path/.git" ) ]] || {
     echo "FAIL: changed submodule is not initialized: $path" >&2
