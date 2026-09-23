@@ -223,9 +223,9 @@ echo -e "${BOLD}--- Check 4: changelog なし (CHANGELOG.md) ---${RESET}"
 CHANGELOG_MISSING=0
 
 declare -A COMPONENT_PATHS=(
-	["plugins/agent-neo-core"]="${REPO_ROOT}/plugins/agent-neo-core/CHANGELOG.md"
-	["plugins/agent-neo-embed"]="${REPO_ROOT}/plugins/agent-neo-embed/CHANGELOG.md"
-	["themes/agent-neo-theme"]="${REPO_ROOT}/themes/agent-neo-theme/CHANGELOG.md"
+	["archive/agent-neo/plugins/agent-neo-core"]="${REPO_ROOT}/archive/agent-neo/plugins/agent-neo-core/CHANGELOG.md"
+	["archive/agent-neo/plugins/agent-neo-embed"]="${REPO_ROOT}/archive/agent-neo/plugins/agent-neo-embed/CHANGELOG.md"
+	["archive/agent-neo/themes/agent-neo-theme"]="${REPO_ROOT}/archive/agent-neo/themes/agent-neo-theme/CHANGELOG.md"
 )
 
 for component in "${!COMPONENT_PATHS[@]}"; do

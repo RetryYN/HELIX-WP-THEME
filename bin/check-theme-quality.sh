@@ -3,7 +3,7 @@
 # check-theme-quality.sh
 # AGENT NEO テーマ品質ゲート pipeline（T-023 / CARRY-G2-013）
 #
-# 検査対象: themes/agent-neo-theme/
+# 検査対象: archive/agent-neo/themes/agent-neo-theme/
 # ゲート: i18n / RTL / a11y（axe-core） / perf（静的）
 # 終了コード: 0=全PASS  1=FAILあり
 # =============================================================================
@@ -14,7 +14,7 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-THEME_DIR="${REPO_ROOT}/themes/agent-neo-theme"
+THEME_DIR="${REPO_ROOT}/archive/agent-neo/themes/agent-neo-theme"
 BUDGET_FILE="${THEME_DIR}/config/web-vitals-budget.json"
 I18N_FILE="${THEME_DIR}/config/i18n-profile.json"
 WP_URL="${WP_URL:-http://localhost:8086}"

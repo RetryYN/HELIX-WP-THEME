@@ -57,7 +57,7 @@ IMPACT_FILTER = {"serious", "critical"}
 # 既知の意図的例外（WCAG 除外リスト）
 # ---------------------------------------------------------------------------
 # SNS シェアボタンの公式ブランドカラーは WCAG 1.4.3 の意図的例外として
-# style.css に記録されている（themes/agent-neo-theme/style.css §SNS share buttons）。
+# style.css に記録されている（archive/agent-neo/themes/agent-neo-theme/style.css §SNS share buttons）。
 # Facebook (#1877f2/白=4.23:1)・LINE (#06c755/白=2.25:1)・はてな (#00a4de/白=2.85:1) は
 # 各 SNS プラットフォームの公式ブランドカラーガイドラインに準拠しているため除外する。
 KNOWN_EXCEPTIONS = {

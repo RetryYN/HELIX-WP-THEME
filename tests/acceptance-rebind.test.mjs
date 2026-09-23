@@ -140,6 +140,30 @@ test('check accepts a chained second rebind and validates the latest proof diges
   assert.match(checked.stdout, /2 transaction/u);
 });
 
+test('a proof row rename requires a passing new row and a logged oracle run', async t => {
+  const f = fixture(t);
+  const proofPath = path.join(f.root, 'proof.json');
+  const proof = JSON.parse(fs.readFileSync(proofPath));
+  proof.rows[0].name = 'renamed scenario';
+  f.write('proof.json', proof);
+  const rename = JSON.stringify({ case: 'A1', proof: 'proof.json', from: 'scenario', to: 'renamed scenario' });
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--row-rename-json', rename, '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json')));
+  assert.deepEqual(registry.cases.A1.proofs[0].row_names, ['renamed scenario']);
+  assert.equal(f.run(['--check', '--base-ref', 'HEAD']).status, 0);
+});
+
+test('a proof row rename rejects a missing new row', async t => {
+  const f = fixture(t);
+  const rename = JSON.stringify({ case: 'A1', proof: 'proof.json', from: 'scenario', to: 'absent scenario' });
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--row-rename-json', rename, '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /proof row is not passing/u);
+});
+
 test('apply rejects a partial case set when another case shares the changed source', t => {
   const f = fixture(t);
   const file = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');

@@ -7,7 +7,7 @@
       "part": "look-pattern-contract",
       "label": "見た目：サイトパターン分布からの導出",
       "variant": "survey-derived",
-      "description": "269件のサイト調査と730件の部品語彙集計から6系統を観察済みとして9 variationへ対応付け、未観察系統を開いた索引に残す静的契約PoC。",
+      "description": "269件のサイト調査と730件の部品語彙集計から6系統を観察し、旧テーマの9 variationを参照した静的契約PoC。現行PoCへの写像は未検証。",
       "purpose": "用途に合う型を選ぶ",
       "group": "ページ・本文",
       "images": {
@@ -20,9 +20,9 @@
       "referenceId": "wt-look-pattern-contract.v1",
       "evidence": "../2026-09-20-look-pattern-contract-poc/verification.json",
       "selectionFacts": {
-        "対象と判断": "観察済み分布に根拠があるvariationだけを候補にし、未観察系統は索引へ残す。",
-        "実測": "調査269件、部品集計730件25 family、G-T1b/G-T3 FAIL=0。",
-        "未検証": "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+        "対象と判断": "観察済み分布と旧テーマのvariationを参照し、現行PoCへの写像は別に検証する。",
+        "実測": "調査269件、部品集計730件25 family、旧テーマG-T1b/G-T3 FAIL=0。",
+        "未検証": "旧9 variationと現行PoCのrules/minchoは別資産。現行PoCへのサイトパターン写像、全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
       }
     }
   ]
