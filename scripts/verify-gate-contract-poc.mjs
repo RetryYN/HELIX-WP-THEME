@@ -13,6 +13,7 @@ const rejects = (name, fn) => check(name, () => assert.throws(fn));
 
 const ge1 = read(fixture.ge1.source);
 const staticOutput = execFileSync('bash', ['bin/check-design-consistency.sh'], { encoding: 'utf8' });
+const normalizedStaticOutput = staticOutput.replace(/\u001b\[[0-?]*[ -\/]*[@-~]/g, '');
 const invalid = Object.values(ge1).reduce((sum, row) => sum + (row.invalid?.length ?? 0), 0);
 const value = structuredClone(fixture);
 value.ge1.invalid = invalid;
@@ -23,11 +24,10 @@ check('AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0', () => {
   assert.equal(invalid, 0);
 });
 check('AC-NFR-GATE-01A records the known static baseline and G-E1 scope', () => {
-  assert.match(staticOutput, /生値検出: patterns=347 parts=42 templates=44 合計=433/);
-  assert.match(staticOutput, /生値 433 件 ≤ baseline 438/);
-  assert.match(staticOutput, /WARN=1/);
-  assert.match(staticOutput, /G-T1/); assert.match(staticOutput, /G-T1b/); assert.match(staticOutput, /G-T2/);
-  assert.match(staticOutput, /G-T3/); assert.match(staticOutput, /G-S1/); assert.match(staticOutput, /G-S2/);
+  assert.match(normalizedStaticOutput, /生値検出: patterns=347 parts=42 templates=44 合計=433/);
+  assert.match(normalizedStaticOutput, /生値 433 件 ≤ baseline 438/);
+  assert.match(normalizedStaticOutput, /^FAIL=0 WARN=1$/m);
+  for (const gate of fixture.staticGates) assert.match(normalizedStaticOutput, new RegExp(`^=== ${gate}(?:\\s|=)`, 'm'));
 });
 check('AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence', () => {
   const view = project(value); assert.equal(view.gates.completion, false); assert.equal(view.gates.exactHeadReceipt, false);
@@ -45,7 +45,7 @@ rejects('AC-NFR-GATE-01B rejects an invalid owner', () => {
 rejects('AC-NFR-GATE-01B rejects a changed static gate set', () => {
   const broken = structuredClone(value); broken.staticGates = broken.staticGates.slice(0, -1); validateContract(broken, staticOutput, ge1);
 });
-rejects('AC-NFR-GATE-01B rejects a nonzero static warning count', () => {
+rejects('AC-NFR-GATE-01B rejects a changed static warning count', () => {
   const broken = structuredClone(value); broken.staticResult.warn = 2; validateContract(broken, staticOutput, ge1);
 });
 rejects('AC-NFR-GATE-01B rejects a changed raw value count', () => {
@@ -63,11 +63,14 @@ rejects('AC-NFR-GATE-01B rejects completion marked true', () => {
 rejects('AC-NFR-GATE-01B rejects an exact-head receipt claim', () => {
   const broken = structuredClone(value); broken.gates.exactHeadReceipt = true; validateContract(broken, staticOutput, ge1);
 });
-rejects('AC-NFR-GATE-01B rejects a missing static FAIL marker', () => {
-  validateContract(value, staticOutput.replaceAll('FAIL=0', 'FAIL=1'), ge1);
+rejects('AC-NFR-GATE-01B rejects a changed static FAIL count', () => {
+  validateContract(value, staticOutput.replace('FAIL=0 WARN=1', 'FAIL=03 WARN=1'), ge1);
 });
-rejects('AC-NFR-GATE-01B rejects a missing static WARN marker', () => {
-  validateContract(value, staticOutput.replaceAll('WARN=1', 'WARN=0'), ge1);
+rejects('AC-NFR-GATE-01B rejects a changed static WARN count', () => {
+  validateContract(value, staticOutput.replace('FAIL=0 WARN=1', 'FAIL=0 WARN=12'), ge1);
+});
+rejects('AC-NFR-GATE-01B rejects a missing G-T1 section while G-T1b remains', () => {
+  validateContract(value, staticOutput.replace(/G-T1(?!b)/g, 'G-XX'), ge1);
 });
 for (const gate of fixture.staticGates) {
   rejects(`AC-NFR-GATE-01B rejects a missing ${gate} marker`, () => {

@@ -14710,9 +14710,9 @@
         "docs/research/2026-08-29-ge1-local/editor-validate-2026-08-29.json": "6d0def2b27b3682a2f3ad31a3958c0cdd4e958b8f4421597e505e080367f3e21",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-gate-contract-poc/contract.mjs": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62",
-        "scripts/verify-gate-contract-poc.mjs": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693",
-        "docs/research/2026-09-20-gate-contract-poc/README.md": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb"
+        "docs/research/2026-09-20-gate-contract-poc/contract.mjs": "485519f39e72f298add27d55d31f19c0adfe8b7cb06503e9fe700e9224e1fdc2",
+        "scripts/verify-gate-contract-poc.mjs": "798b5534729330999fa7d536dac41668d59e80f590f51ae4d08ee6d4e6379781",
+        "docs/research/2026-09-20-gate-contract-poc/README.md": "957fb33722c557866a4d1c4f572aa4ecf47b50ccb0d243c6b2a26457d2bee6f4"
       },
       "scope": "静的6ゲート FAIL=0 と WordPress 7.1 の71パターン G-E1 invalid=0 を再集計する。",
       "remaining": [
@@ -14722,7 +14722,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-          "sha256": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f",
+          "sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
           "row_names": [
             "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
             "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
@@ -14740,9 +14740,9 @@
         "docs/research/2026-08-29-ge1-local/editor-validate-2026-08-29.json": "6d0def2b27b3682a2f3ad31a3958c0cdd4e958b8f4421597e505e080367f3e21",
         "docs/requirements/l3/requirements-ir.json": "f865b46fd6d138c63c62c40572316323f3e372a0850dcfec3535f3d0c2d8a765",
         "docs/requirements/l3/acceptance-cases.json": "8aa63db7a3acd79230d42592d97377e60f19ee0a6db7ebb488d5c13dff0bef8d",
-        "docs/research/2026-09-20-gate-contract-poc/contract.mjs": "b8c3855b1846762c2f2e6fa446dd5fde114b22eb0afc3197a848ee4758bf3d62",
-        "scripts/verify-gate-contract-poc.mjs": "3429f75e2952d2b083995e040410882d88f9bdfb6e20577fb3dfbda8b083f693",
-        "docs/research/2026-09-20-gate-contract-poc/README.md": "188c7fb033654881716f32b9cc0479109b44892fd700cff1148f30cf6a1c7edb"
+        "docs/research/2026-09-20-gate-contract-poc/contract.mjs": "485519f39e72f298add27d55d31f19c0adfe8b7cb06503e9fe700e9224e1fdc2",
+        "scripts/verify-gate-contract-poc.mjs": "798b5534729330999fa7d536dac41668d59e80f590f51ae4d08ee6d4e6379781",
+        "docs/research/2026-09-20-gate-contract-poc/README.md": "957fb33722c557866a4d1c4f572aa4ecf47b50ccb0d243c6b2a26457d2bee6f4"
       },
       "scope": "静的PASSのみ、またはG-E1 invalidを含む証跡を拒否し、過去証跡を現行HEAD完了扱いしない。",
       "remaining": [
@@ -14752,7 +14752,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-          "sha256": "723a6527f8f466cb478f4e36b4b6b1f6759964d84cf9f099e06705fe4c40de5f",
+          "sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
           "row_names": [
             "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
             "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",

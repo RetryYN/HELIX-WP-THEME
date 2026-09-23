@@ -21,6 +21,7 @@ export const fixture = {
 };
 
 export function validateContract(value, staticOutput, ge1) {
+  const normalizedOutput = staticOutput.replace(/\u001b\[[0-?]*[ -\/]*[@-~]/g, '');
   assert.equal(value.schema, 'wt-gate-contract.v1');
   assert.equal(value.owner, 'helix');
   assert.deepEqual(value.staticGates, fixture.staticGates);
@@ -31,9 +32,8 @@ export function validateContract(value, staticOutput, ge1) {
   assert.equal(value.ge1.patterns, 71);
   assert.equal(value.gates.completion, false);
   assert.equal(value.gates.exactHeadReceipt, false);
-  assert.match(staticOutput, /FAIL=0/);
-  assert.match(staticOutput, /WARN=1/);
-  for (const gate of fixture.staticGates) assert.match(staticOutput, new RegExp(gate));
+  assert.match(normalizedOutput, /^FAIL=0 WARN=1$/m);
+  for (const gate of fixture.staticGates) assert.match(normalizedOutput, new RegExp(`^=== ${gate}(?:\\s|=)`, 'm'));
   const rows = Object.values(ge1);
   assert.equal(rows.length, fixture.ge1.patterns);
   assert.equal(rows.reduce((sum, row) => sum + (row.invalid?.length ?? 0), 0), 0);
