@@ -16,6 +16,7 @@ case "${1:-}" in
   --staged)
     mode="staged"
     [[ $# -eq 1 ]] || usage
+    diff_args=(--cached)
     ;;
   --base-ref)
     mode="range"
@@ -24,77 +25,102 @@ case "${1:-}" in
     [[ ( $# -eq 2 || $# -eq 3 ) && -n "$base_ref" ]] || usage
     git rev-parse --verify "${base_ref}^{commit}" >/dev/null
     git rev-parse --verify "${head_ref}^{commit}" >/dev/null
+    diff_args=("$base_ref" "$head_ref")
     ;;
   *) usage ;;
 esac
 
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
-records="$tmp_dir/added-lines.tsv"
+records="$tmp_dir/added-lines"
+paths="$tmp_dir/changed-paths"
+scan="$tmp_dir/scan"
 : >"$records"
-
-append_diff() {
-  local repo="$1"
-  local prefix="$2"
-  shift 2
-
-  git -C "$repo" diff --no-ext-diff --unified=0 "$@" -- \
-    ':(exclude)scripts/public-safety-guard.sh' |
-    awk -v prefix="$prefix" '
-      /^diff --git / { file = ""; in_hunk = 0; next }
-      /^\+\+\+ b\// && !in_hunk { file = substr($0, 7); next }
-      /^\+\+\+ \/dev\/null/ && !in_hunk { file = ""; next }
-      /^@@ / { in_hunk = 1; next }
-      /^\+/ && in_hunk && file != "" {
-        line = substr($0, 2)
-        gsub(/\t/, "    ", line)
-        print prefix file "\t" line
-      }
-    ' >>"$records"
-}
-
-if [[ "$mode" == "staged" ]]; then
-  append_diff . "" --cached
-  raw_args=(--cached --raw --no-abbrev)
+: >"$paths"
+approval_blob=":config/public-safety-binary-approvals.tsv"
+[[ "$mode" == "range" ]] && approval_blob="${head_ref}:config/public-safety-binary-approvals.tsv"
+if git cat-file -e "$approval_blob" 2>/dev/null; then
+  git show "$approval_blob" >"$tmp_dir/binary-approvals.tsv"
 else
-  append_diff . "" "$base_ref" "$head_ref"
-  raw_args=(--raw --no-abbrev "$base_ref" "$head_ref")
+  : >"$tmp_dir/binary-approvals.tsv"
 fi
-
-# A gitlink diff contains only the pointer. This repository has no submodules today;
-# the block stays so a future submodule is inspected over its actual old..new range.
-while IFS=$'\t' read -r path old_sha new_sha; do
-  [[ -n "$path" && ( -d "$path/.git" || -f "$path/.git" ) ]] || {
-    echo "FAIL: changed submodule is not initialized: $path" >&2
-    exit 1
-  }
-  for sha in "$old_sha" "$new_sha"; do
-    git -C "$path" cat-file -e "${sha}^{commit}" 2>/dev/null || {
-      echo "FAIL: submodule commit unavailable for inspection: $path@$sha" >&2
-      exit 1
-    }
-  done
-  append_diff "$path" "$path/" "$old_sha" "$new_sha"
-done < <(
-  git diff "${raw_args[@]}" | awk '
-    $1 ~ /^:160000/ || $2 == "160000" {
-      old = $3; new = $4; path = $6
-      if (path != "") print path "\t" old "\t" new
-    }
-  '
-)
-
 failures=0
+sensitive_changed=0
+
+# -z keeps quoted/non-ASCII names intact. An identical rename changes only
+# its path; a modified rename is scanned as a new file.
+git diff --no-ext-diff --name-status -z -M "${diff_args[@]}" -- >"$tmp_dir/name-status"
+while IFS= read -r -d '' status; do
+  if [[ "$status" == R* || "$status" == C* ]]; then
+    IFS= read -r -d '' old_path || { echo "FAIL: incomplete rename record" >&2; exit 1; }
+  fi
+  IFS= read -r -d '' path || { echo "FAIL: incomplete changed-path record" >&2; exit 1; }
+  [[ "$status" == D* ]] && continue
+  if [[ "$path" == *$'\n'* || "$path" == *$'\t'* || "$path" == *$'\r'* ]]; then
+    echo "FAIL: control character in changed path" >&2
+    exit 1
+  fi
+  printf '%s\n' "$path" >>"$paths"
+  [[ "$path" =~ (^|/)(research|evidence|artifacts?|poc|raw|captures?)(/|$) ]] && sensitive_changed=1
+  [[ "$status" == R100 ]] && continue
+
+  if [[ "$mode" == "staged" ]]; then
+    oid="$(git rev-parse --verify ":$path")"
+    entry_mode="$(git ls-files --stage -- "$path" | awk 'NR == 1 { print $1 }')"
+  else
+    oid="$(git rev-parse --verify "${head_ref}:$path")"
+    entry_mode="$(git ls-tree "$head_ref" -- "$path" | awk 'NR == 1 { print $1 }')"
+  fi
+  kind="$(git cat-file -t "$oid")"
+  if [[ "$kind" != blob ]]; then
+    echo "FAIL: changed gitlink or non-blob cannot be inspected" >&2
+    failures=$((failures + 1))
+    continue
+  fi
+  if [[ "$entry_mode" == 120000 ]]; then
+    git cat-file blob "$oid" >>"$records"
+    printf '\n' >>"$records"
+    continue
+  fi
+  if git diff --no-ext-diff --no-renames --numstat "${diff_args[@]}" -- "$path" |
+      awk -F '\t' '$1 == "-" && $2 == "-" { found=1 } END { exit !found }'; then
+    digest="$(git cat-file blob "$oid" | sha256sum | cut -d ' ' -f 1)"
+    approval_file="$tmp_dir/binary-approvals.tsv"
+    approved=0
+    if awk -F '\t' -v path="$path" -v digest="$digest" '
+          NF == 2 && $1 == path && $2 == digest { found=1 }
+          END { exit !found }
+        ' "$approval_file"; then
+      approved=1
+    fi
+    if (( ! approved )); then
+      echo "FAIL: changed binary requires a reviewed path + SHA-256 record in config/public-safety-binary-approvals.tsv" >&2
+      failures=$((failures + 1))
+    fi
+    continue
+  fi
+
+  git diff --no-ext-diff --no-renames --unified=0 "${diff_args[@]}" -- "$path" |
+    awk '
+      /^diff --git / { in_hunk=0; next }
+      /^@@ / { in_hunk=1; next }
+      /^\+/ && in_hunk { print substr($0, 2) }
+    ' >>"$records"
+done <"$tmp_dir/name-status"
+
+cat "$paths" "$records" >"$scan"
 check_pattern() {
   local description="$1"
   local pattern="$2"
   local flags="${3:--E}"
-  local found="$tmp_dir/found"
-  if grep $flags -n -- "$pattern" "$records" >"$found"; then
-    echo "FAIL: $description" >&2
-    sed 's/^/  /' "$found" >&2
-    failures=$((failures + 1))
-  fi
+  local status=0
+  # Match contents stay out of logs; invalid patterns and I/O errors fail.
+  grep $flags -q -- "$pattern" "$scan" 2>"$tmp_dir/grep-error" || status=$?
+  case "$status" in
+    0) echo "FAIL: $description" >&2; failures=$((failures + 1)) ;;
+    1) ;;
+    *) echo "FAIL: $description inspection error (grep exit $status)" >&2; failures=$((failures + 1)) ;;
+  esac
 }
 
 # Split well-known token prefixes so this guard does not flag its own source.
@@ -108,7 +134,10 @@ check_pattern "affiliate or click-tracking URL" 'https?://[^[:space:]]*(a8mat=|/
 custom_regex="${PUBLIC_REDACTION_GUARD_RE:-}"
 local_regex_file="${PUBLIC_SAFETY_REGEX_FILE:-.public-safety.local.regex}"
 if [[ -f "$local_regex_file" ]]; then
-  file_regex="$(grep -Ev '^[[:space:]]*(#|$)' "$local_regex_file" | paste -sd '|' - || true)"
+  file_regex="$(awk '!/^[[:space:]]*(#|$)/ { if (count++) printf "|"; printf "%s", $0 }' "$local_regex_file")" || {
+    echo "FAIL: private redaction mapping could not be read" >&2
+    exit 1
+  }
   if [[ -n "$file_regex" ]]; then
     custom_regex="${custom_regex:+${custom_regex}|}${file_regex}"
   fi
@@ -117,8 +146,7 @@ if [[ -n "$custom_regex" ]]; then
   check_pattern "private name/domain mapping" "$custom_regex" '-Ei'
 fi
 
-if awk -F '\t' '$1 ~ /(^|\/)(research|evidence|artifacts?\/poc|raw|captures?)(\/|$)/ { found=1 } END { exit !found }' "$records" &&
-   [[ -z "$custom_regex" ]]; then
+if (( sensitive_changed )) && [[ -z "$custom_regex" ]]; then
   echo "FAIL: research/evidence/PoC content changed without a private redaction mapping." >&2
   echo "  Set PUBLIC_REDACTION_GUARD_RE or create .public-safety.local.regex." >&2
   failures=$((failures + 1))

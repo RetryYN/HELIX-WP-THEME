@@ -5,9 +5,9 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
+  "source_sha256": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89"
+    "scripts/public-safety-guard.sh": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669"
   },
   "rows": [
     {
@@ -19,6 +19,27 @@
     },
     {
       "name": "negative:private-key-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:private-key-in-Japanese-path-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:private-key-in-Japanese-path-range-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:control-character-path-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",
@@ -75,6 +96,62 @@
     },
     {
       "name": "negative:custom-private-map-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:invalid-private-map-regex-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-research-without-map-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-research-with-map-only-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-with-wrong-digest-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:unstaged-binary-approval-is-ignored",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:binary-with-reviewed-digest-approval-accepted",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "positive:symlink-target-inspected-as-text",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:symlink-personal-target-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",

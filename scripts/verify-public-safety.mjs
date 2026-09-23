@@ -9,7 +9,7 @@ const guardSource = path.join(root, 'scripts/public-safety-guard.sh');
 const evidencePath = path.join(root, 'docs/research/2026-09-09-public-safety/verify.json');
 const sha256 = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
-function runFixture(name, relativePath, content, expectedPass, env = {}) {
+function runFixture(name, relativePath, content, expectedPass, env = {}, options = {}) {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'wt-public-safety-'));
   try {
     fs.mkdirSync(path.join(fixture, 'scripts'), { recursive: true });
@@ -22,9 +22,21 @@ function runFixture(name, relativePath, content, expectedPass, env = {}) {
     execFileSync('git', ['commit', '-qm', 'baseline'], { cwd: fixture });
     const target = path.join(fixture, relativePath);
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.writeFileSync(target, content);
+    if (options.symlink) fs.symlinkSync(content, target);
+    else fs.writeFileSync(target, content);
     execFileSync('git', ['add', relativePath], { cwd: fixture });
-    const result = spawnSync('bash', ['scripts/check-public-safety.sh', '--staged'], {
+    if (options.binaryApproval) {
+      const digest = sha256(target);
+      fs.mkdirSync(path.join(fixture, 'config'), { recursive: true });
+      fs.writeFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'),
+        `${relativePath}\t${options.binaryApproval === 'matching' ? digest : '0'.repeat(64)}\n`);
+      execFileSync('git', ['add', 'config/public-safety-binary-approvals.tsv'], { cwd: fixture });
+      if (options.unstagedApproval) {
+        fs.writeFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'), `${relativePath}\t${digest}\n`);
+      }
+    }
+    if (options.range) execFileSync('git', ['commit', '-qm', 'candidate'], { cwd: fixture });
+    const result = spawnSync('bash', ['scripts/check-public-safety.sh', ...(options.range ? ['--base-ref', 'HEAD^', 'HEAD'] : ['--staged'])], {
       cwd: fixture,
       encoding: 'utf8',
       env: { ...process.env, ...env },
@@ -49,6 +61,9 @@ const trackingUrl = ['https://example.invalid/path?', 'a8', 'mat=value'].join(''
 const rows = [
   runFixture('positive:clean-source-accepted', 'src/clean.php', '<?php echo "safe";\n', true),
   runFixture('negative:private-key-rejected', 'src/key.txt', `${privateKey}\n`, false),
+  runFixture('negative:private-key-in-Japanese-path-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false),
+  runFixture('negative:private-key-in-Japanese-path-range-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { range: true }),
+  runFixture('negative:control-character-path-rejected', 'src/line\nbreak.txt', 'ordinary text\n', false),
   runFixture('negative:access-token-rejected', 'src/token.txt', `${token}\n`, false),
   runFixture('negative:credential-assignment-rejected', 'src/config.txt', `client_${'secret'}=abcdefghijklmnop\n`, false),
   runFixture('negative:personal-path-rejected', 'src/path.txt', `${personalPath}\n`, false),
@@ -57,6 +72,14 @@ const rows = [
   runFixture('negative:large-research-requires-private-map', 'docs/research/large-note.md', 'public observation\n'.repeat(25000), false),
   runFixture('positive:research-with-private-map-accepted', 'docs/research/note.md', 'public observation\n', true, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
   runFixture('negative:custom-private-map-rejected', 'docs/research/note.md', 'private-client-name\n', false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
+  runFixture('negative:invalid-private-map-regex-rejected', 'src/clean.txt', 'ordinary text\n', false, { PUBLIC_REDACTION_GUARD_RE: '[' }),
+  runFixture('negative:binary-research-without-map-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false),
+  runFixture('negative:binary-research-with-map-only-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
+  runFixture('negative:binary-with-wrong-digest-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong' }),
+  runFixture('negative:unstaged-binary-approval-is-ignored', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong', unstagedApproval: true }),
+  runFixture('positive:binary-with-reviewed-digest-approval-accepted', 'src/image.bin', Buffer.from([0, 1, 2, 3]), true, {}, { binaryApproval: 'matching' }),
+  runFixture('positive:symlink-target-inspected-as-text', 'src/compat-link', 'safe-target', true, {}, { symlink: true }),
+  runFixture('negative:symlink-personal-target-rejected', 'src/compat-link', personalPath, false, {}, { symlink: true }),
 ];
 
 const report = {
