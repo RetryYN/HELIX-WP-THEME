@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
+import { writeGenerated } from './lib/generated-output.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const prototype = 'docs/research/2026-09-05-design-prototype-03';
@@ -1036,8 +1037,7 @@ const result = { schema: 'wt-selection-catalog.v1', source: prototype, requireme
   screenshotCount: [...entries.values()].reduce((sum, entry) => sum + Object.keys(entry.images).length, 0), faces: { ...glossary.faces, utility: '対話型ユーティリティ面: 入力から派生結果と根拠を確かめ、再入力する面。ローカルPoC。' }, entries: [...entries.values()], requirements, acceptanceAudit: audit.counts,
   evidenceNote: '関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。' };
 const out = path.join(root, 'docs/research/2026-09-08-selection-catalog/catalog-data.json');
-fs.mkdirSync(path.dirname(out), { recursive: true });
-fs.writeFileSync(out, JSON.stringify(result, null, 2) + '\n');
+writeGenerated(out, JSON.stringify(result, null, 2) + '\n');
 const selectionIndex = {
   schema: 'wt-selection-index.v1',
   source: 'catalog-data.json',
@@ -1065,7 +1065,7 @@ const selectionIndex = {
     devices: Object.keys(entry.images).sort(),
   })),
 };
-fs.writeFileSync(path.join(path.dirname(out), 'selection-index.json'), JSON.stringify(selectionIndex, null, 2) + '\n');
+writeGenerated(path.join(path.dirname(out), 'selection-index.json'), JSON.stringify(selectionIndex, null, 2) + '\n');
 const readmePath = path.join(root, 'docs/research/2026-09-08-selection-catalog/README.md');
 const readme = fs.readFileSync(readmePath, 'utf8');
 const currentStart = '<!-- catalog-current:start -->';
@@ -1073,7 +1073,7 @@ const currentEnd = '<!-- catalog-current:end -->';
 const currentPattern = new RegExp(`${currentStart}[\\s\\S]*?${currentEnd}`);
 if (!currentPattern.test(readme)) throw Error('Missing generated catalog-current block in selection catalog README');
 const current = `${currentStart}\n現在の生成結果: ${entries.size}候補 / ${result.screenshotCount}画像 / ${requirements.length}要求 / ${audit.acceptanceCount}受入条件。PoC確認${audit.counts.verified_in_poc}・部分確認${audit.counts.partial}・証跡未対応${audit.counts.missing}・再検証${audit.counts.stale}。全要求完了ではない。\n${currentEnd}`;
-fs.writeFileSync(readmePath, readme.replace(currentPattern, current));
+writeGenerated(readmePath, readme.replace(currentPattern, current));
 console.log(`catalog: ${entries.size} candidates / ${result.screenshotCount} screenshots / ${requirements.length} requirements`);
 // catalog-data を書き出した後に、同じ時点の要求・証跡・候補から完遂backlogも再生成する。
 await import('./build-catalog-completion-backlog.mjs');
