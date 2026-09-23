@@ -25,7 +25,7 @@ const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const hash = file => createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const rows = [];
 const check = (name, fn) => { try { fn(); rows.push({ name, pass: true }); } catch (error) { rows.push({ name, pass: false, details: error instanceof Error ? error.message : String(error) }); } };
-const rejects = (name, fn) => check(name, () => assert.throws(fn));
+const rejects = (name, fn, expectedMessage) => check(name, () => assert.throws(fn, error => error instanceof Error && error.message === expectedMessage));
 
 const index = read(`${survey}/sites-index.json`);
 const analysis = read(`${survey}/results/analysis.json`);
@@ -54,13 +54,73 @@ check('AC-LOOK-03C keeps an open index and refuses completion while it has unobs
 });
 rejects('AC-LOOK-03B rejects a variation sourced from an unobserved pattern', () => {
   const value = structuredClone(fixture); value.variationMap.commerce = ['vivid']; validateContract(value, observed);
-});
+}, 'unobserved pattern has a variation mapping: commerce');
+rejects('AC-LOOK-03B rejects an incomplete variation mapping', () => {
+  const value = structuredClone(fixture); value.variationMap.motion = ['dark']; validateContract(value, observed);
+}, 'variation mapping must cover nine existing styles: 8');
 rejects('AC-LOOK-03B rejects a pattern distribution that is not in the survey', () => {
-  const value = structuredClone(fixture); value.variationMap.motion = []; validateContract(value, observed);
-});
+  const wrongDistribution = observed.map(pattern => pattern === 'motion' ? 'commerce' : pattern);
+  validateContract(fixture, wrongDistribution);
+}, 'look observed pattern vocabulary is invalid');
+rejects('AC-LOOK-03B rejects an extra observed vocabulary entry', () => {
+  validateContract(fixture, [...observed, 'foo']);
+}, 'look observed pattern vocabulary is invalid');
 rejects('AC-LOOK-03C rejects an open pattern that is already observed', () => {
   const value = structuredClone(fixture); value.openPatterns[0].id = 'corporate'; validateContract(value, observed);
-});
+}, 'open pattern is not preserved: corporate');
+rejects('AC-LOOK-03B rejects an invalid schema', () => {
+  const value = structuredClone(fixture); value.schema = 'wrong'; validateContract(value, observed);
+}, 'look pattern ownership or schema is invalid');
+rejects('AC-LOOK-03B rejects an invalid owner', () => {
+  const value = structuredClone(fixture); value.owner = 'other'; validateContract(value, observed);
+}, 'look pattern ownership or schema is invalid');
+for (const path of ['index', 'analysis', 'taxonomy']) {
+  rejects(`AC-LOOK-03B rejects a changed survey ${path} source`, () => {
+    const value = structuredClone(fixture); value.survey[path] = 'wrong'; validateContract(value, observed);
+  }, `look survey source is invalid: ${path}`);
+}
+rejects('AC-LOOK-03B rejects a changed observed pattern vocabulary', () => {
+  validateContract(fixture, observed.filter(pattern => pattern !== 'motion'));
+}, 'look observed pattern vocabulary is invalid');
+rejects('AC-LOOK-03B rejects a missing observed variation mapping', () => {
+  const value = structuredClone(fixture); delete value.variationMap.corporate; validateContract(value, observed);
+}, 'missing variation mapping: corporate');
+rejects('AC-LOOK-03B rejects incomplete consistency gates', () => {
+  const value = structuredClone(fixture); value.gates.gT1b = false; validateContract(value, observed);
+}, 'look consistency gates are incomplete');
+rejects('AC-LOOK-03B rejects an incomplete G-T3 consistency gate', () => {
+  const value = structuredClone(fixture); value.gates.gT3 = false; validateContract(value, observed);
+}, 'look consistency gates are incomplete');
+rejects('AC-LOOK-03B rejects an empty variation while preserving nine styles', () => {
+  const value = structuredClone(fixture);
+  value.variationMap.motion = [];
+  value.variationMap.compare = ['depth', 'dark', 'night-contrast'];
+  validateContract(value, observed);
+}, 'missing variation mapping: motion');
+rejects('AC-LOOK-03C rejects completion marked true', () => {
+  const value = structuredClone(fixture); value.gates.completion = true; validateContract(value, observed);
+}, 'unverified look patterns cannot be complete');
+rejects('AC-LOOK-03C rejects an empty open-pattern index', () => {
+  const value = structuredClone(fixture); value.openPatterns = []; validateContract(value, observed);
+}, 'unobserved pattern index is empty');
+rejects('AC-LOOK-03C rejects a non-array open-pattern index', () => {
+  const value = structuredClone(fixture); value.openPatterns = 'commerce'; validateContract(value, observed);
+}, 'unobserved pattern index is empty');
+rejects('AC-LOOK-03C rejects an open pattern with the wrong status', () => {
+  const value = structuredClone(fixture); value.openPatterns[0].status = 'observed'; validateContract(value, observed);
+}, 'open pattern is not preserved: commerce');
+rejects('AC-LOOK-03C rejects an open pattern without an id', () => {
+  const value = structuredClone(fixture); delete value.openPatterns[0].id; validateContract(value, observed);
+}, 'open pattern is not preserved: undefined');
+rejects('AC-LOOK-03C rejects an open pattern with an observed id', () => {
+  const value = structuredClone(fixture); value.openPatterns[0].id = 'corporate'; validateContract(value, observed);
+}, 'open pattern is not preserved: corporate');
+rejects('AC-LOOK-03C rejects an open pattern with a variation mapping', () => {
+  const value = structuredClone(fixture); value.variationMap.commerce = ['vivid']; validateContract(value, observed);
+}, 'unobserved pattern has a variation mapping: commerce');
+rejects('AC-LOOK-03B rejects an invalid source contract', () => {
+  const value = structuredClone(fixture); value.sourceContract = 'wrong'; validateContract(value, observed);
+}, 'look source contract is invalid');
 check('contract has no transport, model, or decision invocation', () => {
   const source = fs.readFileSync(`${root}/contract.mjs`, 'utf8');
   for (const forbidden of ['fetch(', 'sendBeacon(', 'XMLHttpRequest', 'openai', 'anthropic', 'model.call']) assert(!source.includes(forbidden), forbidden);
