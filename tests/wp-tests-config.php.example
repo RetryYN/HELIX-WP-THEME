@@ -32,5 +32,5 @@ $table_prefix = getenv( 'WP_TESTS_TABLE_PREFIX' ) ?: 'wptests_';
 define( 'WP_DEBUG', true );
 
 // テスト環境の WordPress パス（wp-phpunit が自動解決するため通常変更不要）。
-define( 'ABSPATH',  dirname( dirname( __DIR__ ) ) . '/vendor/wp-phpunit/wp-phpunit/' );
+define( 'ABSPATH',  dirname( __DIR__ ) . '/vendor/wp-phpunit/wp-phpunit/' );
 define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', dirname( __DIR__ ) . '/vendor/yoast/phpunit-polyfills' );

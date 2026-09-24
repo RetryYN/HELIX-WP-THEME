@@ -192,6 +192,21 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
+      - name: Add matching WordPress core to the PHPUnit test library
+        env:
+          WP_VERSION: '7.1.2'
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/wordpress-${WP_VERSION}.zip"
+          extract_dir="$RUNNER_TEMP/wordpress-core"
+          curl --fail --location --retry 3 --silent --show-error \
+            "https://wordpress.org/wordpress-${WP_VERSION}.zip" \
+            --output "$archive"
+          mkdir -p "$extract_dir"
+          unzip -q "$archive" -d "$extract_dir"
+          cp -a "$extract_dir/wordpress/." vendor/wp-phpunit/wp-phpunit/
+          test -f vendor/wp-phpunit/wp-phpunit/wp-settings.php
+
       - name: Create wp-tests-config.php
         run: cp tests/wp-tests-config.php.example tests/wp-tests-config.php
         env:
