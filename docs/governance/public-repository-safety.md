@@ -25,9 +25,13 @@ Issue、PR、CI log、ハーネスメモリへ残ることを防ぐ。
 2. 調査対象は `テーマA`、`サービスB` などの役割名へ置換し、対応表を commit しない。
 3. commit 前に `bash scripts/public-safety-guard.sh --staged` を実行する。
 4. 調査・証跡・PoC artifact の変更時は `.public-safety.local.regex` または
-   `PUBLIC_REDACTION_GUARD_RE` に非公開の検出正規表現を設定する。ファイルは一行一正規表現とする。
-5. PR では本リポの CI（`public-safety` workflow）が base からの差分を検査する。検査で検出した行は公開 CI ログに出るため、検出前に commit しない運用を前提とする。
-6. 検査結果を回避するための分割、難読化、無期限 allowlist、実値を含む allowlist を禁止する。
+   `PUBLIC_REDACTION_GUARD_RE` に非公開の検出正規表現を設定する。ファイルは一行一正規表現とする。不正・読取不能なら公開ガードは失敗する。
+5. 新規・変更されたバイナリはテキスト検査では確認できないため既定で拒否する。判定は blob の内容から行い、`.gitattributes` の diff 設定で変更できない。空でない blob の `file --brief --mime-encoding` が `binary` を返す場合にバイナリとして扱い、空ファイルと通常のテキスト（JSON Lines を含む）は内容検査へ回す。`file(1)` / libmagic は開発環境と CI の両方で必要であり、利用できない場合は失敗する。公開内容を人が確認した後、
+   `config/public-safety-binary-approvals.tsv` へ「リポジトリ相対パス、タブ、対象blobのSHA-256」を1行で記録し、
+   画像等の公開可否とその行をPRでレビューする。調査・証跡のバイナリには
+   これに加えて非公開名の検出用正規表現も必要。内容が同一のrenameは再承認不要。
+6. PR では本リポの CI（`public-safety` workflow）が base からの差分を検査する。検出した内容そのものはログへ出さず、失敗理由だけを出す。
+7. 検査結果を回避するための分割、難読化、無期限 allowlist、実値を含む allowlist を禁止する。
 
 
 初回 clone と `git worktree add` の後は `bash scripts/install-public-safety-hooks.sh` を実行する。

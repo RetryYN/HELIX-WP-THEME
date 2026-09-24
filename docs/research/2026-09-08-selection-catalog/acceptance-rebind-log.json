@@ -4230,6 +4230,74 @@
       ],
       "registry_before_sha256": "fc1b212466efce4d82378d7182ea1f9ec8a092d7bea131e70f2c299cff6aa27f",
       "registry_after_sha256": "6a590cc7aeee914e174f26849eb452e870f7b53166783d7c9a2cced6134979f5"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-NFR-CRED-01A",
+        "WT-AC-NFR-CRED-01B"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "public-safety:verify"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
+          "after": "752b08bbc8ae823d3b6dea060aeaabaa39a4f8cf6a5744764a6d59a22dd1618e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/public-safety-guard.sh",
+          "before": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
+          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
+          "after": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/verify-public-safety.mjs",
+          "before": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
+          "after": "752b08bbc8ae823d3b6dea060aeaabaa39a4f8cf6a5744764a6d59a22dd1618e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/public-safety-guard.sh",
+          "before": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
+          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
+          "after": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-09-public-safety/verify.json",
+          "before_sha256": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0",
+          "after_sha256": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "6a590cc7aeee914e174f26849eb452e870f7b53166783d7c9a2cced6134979f5",
+      "registry_after_sha256": "7a6ef4397dcf5ce36ceed6a65a1526b44352d4157cdb5a7689d05a0cc0f4acad"
     }
   ]
 }
