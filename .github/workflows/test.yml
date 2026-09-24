@@ -156,6 +156,8 @@ jobs:
           MARIADB_USER: wp
           MARIADB_PASSWORD: wp
           MARIADB_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
         options: >-
           --health-cmd="healthcheck.sh --connect --innodb_initialized"
           --health-interval=10s
