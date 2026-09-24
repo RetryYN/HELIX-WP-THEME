@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( ! defined( 'AGENT_NEO_CORE_DIR' ) ) {
-    define( 'AGENT_NEO_CORE_DIR', dirname( __DIR__ ) . '/plugins/agent-neo-core/' );
+    define( 'AGENT_NEO_CORE_DIR', dirname( __DIR__ ) . '/archive/agent-neo/plugins/agent-neo-core/' );
 }
 
 if ( ! defined( 'AGENT_NEO_CORE_FILE' ) ) {

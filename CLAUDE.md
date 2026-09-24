@@ -1,6 +1,8 @@
-# AGENT NEO
+# HELIX-WP-THEME
 
-> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
+現行テーマ PoC は `docs/research/2026-09-05-design-prototype-03/theme/helix-wt/`。以下の AGENT NEO 説明は旧実装の参照情報であり、テーマとプラグインは `archive/agent-neo/` に保管する。
+
+> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/HELIX-WP-THEME）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
 
 ## 共通規律（採用版 2026-09-23）
@@ -32,7 +34,7 @@
 
 ## 概要
 
-AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
+旧 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。旧実装は参照用アーカイブであり、現行テーマ PoC と区別する。現行リポジトリは `RetryYN/HELIX-WP-THEME`。
 
 - **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
 - **要求正本**: `docs/requirements/authority.md`（起点は `docs/planning/L0-agent-controlled-variety.md`）。旧 AGENT NEO 設計書は削除済み（git 履歴のみ）
@@ -47,7 +49,7 @@ AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPre
 ## アーキテクチャ
 
 ```
-themes/agent-neo-theme/     FSE テーマ本体
+archive/agent-neo/themes/agent-neo-theme/     旧 FSE テーマ
   ├── config/               ブロックスタイル等設定
   ├── patterns/             ブロックパターン（home-* / lp-* 等）
   ├── parts/                ヘッダー / フッター parts
@@ -55,12 +57,12 @@ themes/agent-neo-theme/     FSE テーマ本体
   ├── assets/               CSS / JS
   └── templates/            FSE テンプレート
 
-plugins/agent-neo-core/     agent-neo/v1 REST API（57 エンドポイント契約）
+archive/agent-neo/plugins/agent-neo-core/     旧 agent-neo/v1 REST API（57 エンドポイント契約）
   ├── inc/                  コントローラ・サービス層
   ├── schema/               OpenAPI スキーマ
   └── config/               設定
 
-plugins/agent-neo-embed/    AI 生成 HTML 差込ブロック
+archive/agent-neo/plugins/agent-neo-embed/    旧 AI 生成 HTML 差込ブロック
   ├── src/                  ブロック登録・JS
   └── assets/               ビルド成果物
 
@@ -99,7 +101,7 @@ automation SEO（/opt/seo-tool）
 > HELIX-WP-HARNESS の現行プロジェクト進捗ではない。
 > 旧 AGENT NEO kit 由来の工程物（G0.5〜G7 gate、G2 carry register、`.helix/phase.yaml` 等の旧 state、
 > 旧 L1〜L7 文書の「進捗」「passed」表示、`.helix/handover`）は**破棄前提**で、現行の拘束・formal state ではない。
-> 参照してよいのは実装（`themes/` `plugins/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
+> 参照してよいのは旧実装（`archive/agent-neo/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
 > 要求は現行 HELIX の L1→L2→L3 で整理しなおす（入力: `docs/research/` の監査証跡、L0 改定ドラフト）。
 
 | 項目 | 状態 |

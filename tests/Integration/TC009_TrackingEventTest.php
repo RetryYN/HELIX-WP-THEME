@@ -11,7 +11,7 @@
  * テスト DB: wordpress_test（分離済み）
  * ライブ DB: agent_neo（無変更を保証）
  *
- * 実装参照: plugins/agent-neo-core/inc/rest/class-tracking-controller.php
+ * 実装参照: archive/agent-neo/plugins/agent-neo-core/inc/rest/class-tracking-controller.php
  *   - permission_callback: check_tracking_permission()
  *     → validate_tracking_request() で section_id / cta_id / variant_id / event_type を必須検証
  *   - 認証フィールド（site_token / signature / nonce）が欠落した場合は 401（SIGNATURE_INVALID）

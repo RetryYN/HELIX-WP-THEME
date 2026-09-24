@@ -14,7 +14,7 @@
  * ライブ DB: agent_neo（無変更を保証）
  *
  * 実装参照:
- *   plugins/agent-neo-core/inc/rest/class-public-controller.php
+ *   archive/agent-neo/plugins/agent-neo-core/inc/rest/class-public-controller.php
  *     GET /public/pages/{id}/snapshot  → get_page_snapshot()
  *     GET /public/crawl-map            → get_crawl_map()
  *     GET /public/llmo/answers         → get_llmo_answers()

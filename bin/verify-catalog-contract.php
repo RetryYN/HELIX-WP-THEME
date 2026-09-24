@@ -8,7 +8,7 @@
  *
  * 対象: Agent_Neo_Core_Catalog_Update_Producer
  * 参照: 旧 L3-test-plan.md（削除済み、TC 番号は履歴 ID） §3.1 / §17.11
- * 対象ファイル: plugins/agent-neo-core/inc/catalog/class-catalog-update-producer.php
+ * 対象ファイル: archive/agent-neo/plugins/agent-neo-core/inc/catalog/class-catalog-update-producer.php
  *
  * ※ producer 本体は変更しない。
  * ※ pre_http_request フィルタで HTTP 応答をモックする。

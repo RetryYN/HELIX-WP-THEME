@@ -3923,206 +3923,313 @@
     {
       "schema": "wt-acceptance-rebind-transaction.v1",
       "cases": [
-        "WT-AC-NFR-CRED-01A",
-        "WT-AC-NFR-CRED-01B"
+        "WT-AC-NFR-GATE-01A",
+        "WT-AC-NFR-GATE-01B",
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
       ],
       "commands": [
         [
-          "npm",
-          "run",
-          "public-safety:verify"
+          "node",
+          "scripts/verify-gate-contract-poc.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
         ]
       ],
       "changes": [
         {
           "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
-          "after": "07bcf172c401b82e5403bf75efb6835e61b46a8ba23fd195596bdc2acac44b6e"
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
+          "after": "f20ca998046f689db6a74745554ca367ccbe3c61ddfd2511f37db94dfe050b3f"
         },
         {
           "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
-          "after": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669"
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/README.md",
+          "before": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+          "after": "0b7c555964cc69ef08f4191d40591360129135cc85adee2b8606eda758981c52"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "archive/agent-neo/themes/agent-neo-theme/theme.json",
+          "after": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json",
+          "after": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json",
+          "after": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296"
         },
         {
           "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
-          "after": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb"
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6"
         },
         {
           "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
-          "after": "07bcf172c401b82e5403bf75efb6835e61b46a8ba23fd195596bdc2acac44b6e"
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
+          "after": "f20ca998046f689db6a74745554ca367ccbe3c61ddfd2511f37db94dfe050b3f"
         },
         {
           "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
-          "after": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669"
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/README.md",
+          "before": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+          "after": "0b7c555964cc69ef08f4191d40591360129135cc85adee2b8606eda758981c52"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "archive/agent-neo/themes/agent-neo-theme/theme.json",
+          "after": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json",
+          "after": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json",
+          "after": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296"
         },
         {
           "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
-          "after": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb"
+          "case_id": "WT-AC-LOOK-03B",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "scripts/verify-look-pattern-contract-poc.mjs",
+          "before": "2bbf2f34c9c465b50ad54654226203bb8f1dac57c94c4aba1a1178b17deb38e0",
+          "after": "f20ca998046f689db6a74745554ca367ccbe3c61ddfd2511f37db94dfe050b3f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/README.md",
+          "before": "aecae733c47e367e77b40976255e8094abf0e8365c96bd4b4cc6757ad45456b6",
+          "after": "0b7c555964cc69ef08f4191d40591360129135cc85adee2b8606eda758981c52"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "archive/agent-neo/themes/agent-neo-theme/theme.json",
+          "after": "424f8be8cbf0ad94a50c35c2867ab441b67b78af8268c9d65632040c9dfab61a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json",
+          "after": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json",
+          "after": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-03C",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": "8be606ea55615a5a6f2f7ddce58b555e84f5b6095a40b6dc7b36cd61d503f613",
+          "after": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01A",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "bin/check-design-consistency.sh",
+          "before": "57928c7b21c29b7c8bad0ce1ad8da00e9a0380c7843141cd8f50a105dc3e1704",
+          "after": "6bb5c7f59b7b3a0220a854514e47e27ec66df4e8253d86775cd7b8889673750a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-GATE-01B",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362"
         }
       ],
       "proof_writes": [
         {
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before_sha256": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
-          "after_sha256": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb",
+          "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
+          "before_sha256": "e6088e104fc7c0e10c9490a15a385d495b2255f9c4aef386b3f3ad79f48fb8a6",
+          "after_sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "b0e994356db4ee714a43a19a8089661b584f2fd70ad938350be54dfb240bd8bd",
+          "after_sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
           "rewritten": true
         }
       ],
       "registry_before_sha256": "ce21ccfcf870d8c80d3c0984309842719513adc4461007150d36fa25391b8ed4",
-      "registry_after_sha256": "effb4e9489a230876e261a945e0346fec2000de76c0d5d7ca21906ad617aeb6c"
+      "registry_after_sha256": "71ae0ac13426546d9642940a0b028979fd86743b099fd3d0309b93228899337b"
     },
     {
       "schema": "wt-acceptance-rebind-transaction.v1",
       "cases": [
-        "WT-AC-NFR-CRED-01A",
-        "WT-AC-NFR-CRED-01B"
+        "WT-AC-LOOK-03A",
+        "WT-AC-LOOK-03B",
+        "WT-AC-LOOK-03C"
       ],
       "commands": [
         [
-          "npm",
-          "run",
-          "public-safety:verify"
+          "node",
+          "scripts/verify-look-pattern-contract-poc.mjs"
         ]
       ],
       "changes": [
         {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "07bcf172c401b82e5403bf75efb6835e61b46a8ba23fd195596bdc2acac44b6e",
-          "after": "8c9c85d587b67aea2a9fbc29a2cc660825e6384583f4b89c2975d5d3d79b3251"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669",
-          "after": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb",
-          "after": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "07bcf172c401b82e5403bf75efb6835e61b46a8ba23fd195596bdc2acac44b6e",
-          "after": "8c9c85d587b67aea2a9fbc29a2cc660825e6384583f4b89c2975d5d3d79b3251"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "e319d6c7c2a7fb1f4e8c10c5e4aedefd370c67c1a06a7e907fdb4f2ca758e669",
-          "after": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "01c4c3531a73de2e9c4db0f85c59472cbae9ea416970a13e04affdf252cab4eb",
-          "after": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655"
+          "kind": "row_names",
+          "case_id": "WT-AC-LOOK-03A",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before": [
+            "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+            "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+          ],
+          "after": [
+            "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
+            "AC-LOOK-03A checks nine archived reference variations and their historical gates"
+          ]
         }
       ],
       "proof_writes": [
         {
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before_sha256": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655",
-          "after_sha256": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655",
+          "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
+          "before_sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "after_sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
           "rewritten": true
         }
       ],
-      "registry_before_sha256": "effb4e9489a230876e261a945e0346fec2000de76c0d5d7ca21906ad617aeb6c",
-      "registry_after_sha256": "7650fcffdf6853b656b6d8aa8fff5949e860b23c6bf64ded15735e8bea251bd0"
+      "registry_before_sha256": "71ae0ac13426546d9642940a0b028979fd86743b099fd3d0309b93228899337b",
+      "registry_after_sha256": "fc1b212466efce4d82378d7182ea1f9ec8a092d7bea131e70f2c299cff6aa27f"
     },
     {
       "schema": "wt-acceptance-rebind-transaction.v1",
       "cases": [
-        "WT-AC-NFR-CRED-01A",
-        "WT-AC-NFR-CRED-01B"
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D"
       ],
       "commands": [
         [
-          "npm",
-          "run",
-          "public-safety:verify"
+          "node",
+          "docs/research/2026-09-10-reduced-motion/verify.mjs"
         ]
       ],
       "changes": [
         {
           "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "8c9c85d587b67aea2a9fbc29a2cc660825e6384583f4b89c2975d5d3d79b3251",
-          "after": "8b5c87e1fb643dec3319e879d958f7ae00e4bca992475de5de990e597adfb93c"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9",
-          "after": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2"
+          "case_id": "WT-AC-A11Y-02A",
+          "path": ".github/workflows/test.yml",
+          "before": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
+          "after": "736fa20e962d528d04fbc110d84d8e7e9ebaf66ff4117d104b31b2425927e411"
         },
         {
           "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655",
-          "after": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529"
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619"
         },
         {
           "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "8c9c85d587b67aea2a9fbc29a2cc660825e6384583f4b89c2975d5d3d79b3251",
-          "after": "8b5c87e1fb643dec3319e879d958f7ae00e4bca992475de5de990e597adfb93c"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "082b077b6e985af5b183318f2e6e387e41d90c0285ed430bfd31c53925e207f9",
-          "after": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2"
+          "case_id": "WT-AC-A11Y-02B",
+          "path": ".github/workflows/test.yml",
+          "before": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
+          "after": "736fa20e962d528d04fbc110d84d8e7e9ebaf66ff4117d104b31b2425927e411"
         },
         {
           "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "cbf4b046d55a7c0c50fe59a815690d6ac30283b8c74d655d6a261c938bbe2655",
-          "after": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529"
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": ".github/workflows/test.yml",
+          "before": "6fd205cd8f94e7f7117ba166920686f4b9e4e30f3fed9e90434d6014ba47c27f",
+          "after": "736fa20e962d528d04fbc110d84d8e7e9ebaf66ff4117d104b31b2425927e411"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619"
         }
       ],
       "proof_writes": [
         {
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before_sha256": "c0454e564bf59203ef8f986d0d1e85f5bd1e1b83305c26649488e221cc859c09",
-          "after_sha256": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "a5617b264287bdc84835d4620922bf7e33d713c6b1a532ce2110f6953b34564f",
+          "after_sha256": "335a778dd62d8456f83424dcbb6f7d816e88cd0ada762eec174dbfe8f3c6c619",
           "rewritten": true
         }
       ],
-      "registry_before_sha256": "7650fcffdf6853b656b6d8aa8fff5949e860b23c6bf64ded15735e8bea251bd0",
-      "registry_after_sha256": "be0208e19f7d8566cdbdd8d61cf87f4690a8c1f11ea405e476ac58639fe2c6f9"
+      "registry_before_sha256": "fc1b212466efce4d82378d7182ea1f9ec8a092d7bea131e70f2c299cff6aa27f",
+      "registry_after_sha256": "6a590cc7aeee914e174f26849eb452e870f7b53166783d7c9a2cced6134979f5"
     },
     {
       "schema": "wt-acceptance-rebind-transaction.v1",
@@ -4142,204 +4249,42 @@
           "kind": "source",
           "case_id": "WT-AC-NFR-CRED-01A",
           "path": "scripts/verify-public-safety.mjs",
-          "before": "8b5c87e1fb643dec3319e879d958f7ae00e4bca992475de5de990e597adfb93c",
-          "after": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2",
-          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529",
-          "after": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "8b5c87e1fb643dec3319e879d958f7ae00e4bca992475de5de990e597adfb93c",
-          "after": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/public-safety-guard.sh",
-          "before": "b10e219344c85addaa5ab87f0b6306c34717abafe3fb80d023f7e5bbca2169e2",
-          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "d911a618b664626ce2454ea2b82fce0d455954aa6ef02d0449ea2659ddde4529",
-          "after": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e"
-        }
-      ],
-      "proof_writes": [
-        {
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before_sha256": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
-          "after_sha256": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
-          "rewritten": true
-        }
-      ],
-      "registry_before_sha256": "be0208e19f7d8566cdbdd8d61cf87f4690a8c1f11ea405e476ac58639fe2c6f9",
-      "registry_after_sha256": "410119ffb70a41006c163bfd937a493fd9f6e6d1dde059d67b4dff1028bf5496"
-    },
-    {
-      "schema": "wt-acceptance-rebind-transaction.v1",
-      "cases": [
-        "WT-AC-NFR-CRED-01A",
-        "WT-AC-NFR-CRED-01B"
-      ],
-      "commands": [
-        [
-          "npm",
-          "run",
-          "public-safety:verify"
-        ]
-      ],
-      "changes": [
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3",
-          "after": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
-          "after": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "2a17620dc470c2148c4788b58477feac8b2cf51f392327d9bf5c1ce94a0a98f3",
-          "after": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
-          "after": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d"
-        }
-      ],
-      "proof_writes": [
-        {
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before_sha256": "e4c7631b71ebc5c7bbddfc20ad8ad93874aa7931df3d32aa5cd5005fc46a342e",
-          "after_sha256": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
-          "rewritten": true
-        }
-      ],
-      "registry_before_sha256": "410119ffb70a41006c163bfd937a493fd9f6e6d1dde059d67b4dff1028bf5496",
-      "registry_after_sha256": "988bd344d6cfadb9c621b50e8b304ac109dbf38fb71beb992a6ed50f45eb9545"
-    },
-    {
-      "schema": "wt-acceptance-rebind-transaction.v1",
-      "cases": [
-        "WT-AC-NFR-CRED-01A",
-        "WT-AC-NFR-CRED-01B"
-      ],
-      "commands": [
-        [
-          "npm",
-          "run",
-          "public-safety:verify"
-        ]
-      ],
-      "changes": [
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94",
-          "after": "cffa8f736407b9a0f3dc59d034687ada28a50be1f0501398d792d213adfa1000"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
-          "after": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958"
-        },
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "03704b982082558fe49018130ffeccf96c14e829f8cfab8ac0166f8ca8754a94",
-          "after": "cffa8f736407b9a0f3dc59d034687ada28a50be1f0501398d792d213adfa1000"
-        },
-        {
-          "kind": "proof",
-          "case_id": "WT-AC-NFR-CRED-01B",
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
-          "after": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958"
-        }
-      ],
-      "proof_writes": [
-        {
-          "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before_sha256": "a01089338f2c31666f3afc021f436fc93189171fcc5271c1610305b3202d663d",
-          "after_sha256": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958",
-          "rewritten": true
-        }
-      ],
-      "registry_before_sha256": "988bd344d6cfadb9c621b50e8b304ac109dbf38fb71beb992a6ed50f45eb9545",
-      "registry_after_sha256": "038123ce00dfc1fe394b4d657935f85cfa62ef3657c4815a2c98824488f331ef"
-    },
-    {
-      "schema": "wt-acceptance-rebind-transaction.v1",
-      "cases": [
-        "WT-AC-NFR-CRED-01A",
-        "WT-AC-NFR-CRED-01B"
-      ],
-      "commands": [
-        [
-          "npm",
-          "run",
-          "public-safety:verify"
-        ]
-      ],
-      "changes": [
-        {
-          "kind": "source",
-          "case_id": "WT-AC-NFR-CRED-01A",
-          "path": "scripts/verify-public-safety.mjs",
-          "before": "cffa8f736407b9a0f3dc59d034687ada28a50be1f0501398d792d213adfa1000",
+          "before": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
           "after": "752b08bbc8ae823d3b6dea060aeaabaa39a4f8cf6a5744764a6d59a22dd1618e"
         },
         {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01A",
+          "path": "scripts/public-safety-guard.sh",
+          "before": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
+          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        },
+        {
           "kind": "proof",
           "case_id": "WT-AC-NFR-CRED-01A",
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958",
+          "before": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
           "after": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0"
         },
         {
           "kind": "source",
           "case_id": "WT-AC-NFR-CRED-01B",
           "path": "scripts/verify-public-safety.mjs",
-          "before": "cffa8f736407b9a0f3dc59d034687ada28a50be1f0501398d792d213adfa1000",
+          "before": "7bbfcbec027327f254cf5e28f43ac120ea61f018641de4e7ac69221092d79429",
           "after": "752b08bbc8ae823d3b6dea060aeaabaa39a4f8cf6a5744764a6d59a22dd1618e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-CRED-01B",
+          "path": "scripts/public-safety-guard.sh",
+          "before": "665a9dac6382f31caf450e6e4f3e22a9c12d61f35e3b909c61cdca2f859a0e89",
+          "after": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
         },
         {
           "kind": "proof",
           "case_id": "WT-AC-NFR-CRED-01B",
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "before": "55487a64642237a5f50dfc7c40fec776549e4ee136fda576b69b84bb3ad11958",
+          "before": "edead12d376912e28d569b474790bbc1f3c23ddecc0e4cb4fa7b931c52ce7282",
           "after": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0"
         }
       ],
@@ -4351,8 +4296,8 @@
           "rewritten": true
         }
       ],
-      "registry_before_sha256": "038123ce00dfc1fe394b4d657935f85cfa62ef3657c4815a2c98824488f331ef",
-      "registry_after_sha256": "f814555882b6b607a7534397a7ddcd1fe4824cd1cfbf7ead34ca7cc21119a508"
+      "registry_before_sha256": "6a590cc7aeee914e174f26849eb452e870f7b53166783d7c9a2cced6134979f5",
+      "registry_after_sha256": "7a6ef4397dcf5ce36ceed6a65a1526b44352d4157cdb5a7689d05a0cc0f4acad"
     }
   ]
 }

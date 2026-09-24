@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-theme_dir="${1:-themes/agent-neo-theme}"
+theme_dir="${1:-archive/agent-neo/themes/agent-neo-theme}"
 failures=0
 
 if [[ ! -d "$theme_dir" ]]; then

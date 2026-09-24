@@ -91,9 +91,9 @@ function sbom_component_hash( string $dir_path ): array {
 // 2. AGENT NEO コンポーネント定義（ヘッダから動的読み取り）
 // ============================================================
 
-$core_dir   = $repo_root . '/plugins/agent-neo-core';
-$embed_dir  = $repo_root . '/plugins/agent-neo-embed';
-$theme_dir  = $repo_root . '/themes/agent-neo-theme';
+$core_dir   = $repo_root . '/archive/agent-neo/plugins/agent-neo-core';
+$embed_dir  = $repo_root . '/archive/agent-neo/plugins/agent-neo-embed';
+$theme_dir  = $repo_root . '/archive/agent-neo/themes/agent-neo-theme';
 
 $core_version  = sbom_read_header_field( $core_dir  . '/agent-neo-core.php', 'Version' ) ?: '0.1.0';
 $embed_version = sbom_read_header_field( $embed_dir . '/agent-neo-embed.php', 'Version' ) ?: '0.1.0';

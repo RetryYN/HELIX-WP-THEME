@@ -18,7 +18,9 @@ const sourceFiles = [
   'docs/research/2026-09-05-parts-pattern-taxonomy/aggregate.json',
   'docs/research/2026-09-03-design-prototype-01/index.json',
   'bin/check-design-consistency.sh',
-  'themes/agent-neo-theme/theme.json',
+  'archive/agent-neo/themes/agent-neo-theme/theme.json',
+  'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json',
+  'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json',
   'docs/requirements/l3/requirements-ir.json',
 ];
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -30,7 +32,8 @@ const rejects = (name, fn, expectedMessage) => check(name, () => assert.throws(f
 const index = read(`${survey}/sites-index.json`);
 const analysis = read(`${survey}/results/analysis.json`);
 const parts = read(`${taxonomy}/aggregate.json`);
-const styleFiles = fs.readdirSync('themes/agent-neo-theme/styles').filter(file => file.endsWith('.json')).sort();
+const styleFiles = fs.readdirSync('archive/agent-neo/themes/agent-neo-theme/styles').filter(file => file.endsWith('.json')).sort();
+const currentStyleFiles = fs.readdirSync(`${prototype}/theme/helix-wt/styles`).filter(file => file.endsWith('.json')).sort();
 const observed = [...new Set(index.map(item => item.pattern))].sort();
 const expectedCounts = { brand: 35, compare: 66, corporate: 35, motion: 35, portal: 64, service: 34 };
 
@@ -42,11 +45,14 @@ check('AC-LOOK-03A binds the survey vocabulary and pattern distribution', () => 
   assert.equal(parts.n, 730);
   for (const family of ['header.layout', 'hero.type', 'section.types', 'card.style', 'footer.layout', 'heading.h2', 'box.types', 'link.card', 'related.layout']) assert(parts.by_part[family], family);
 });
-check('AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3', () => {
+check('AC-LOOK-03A checks nine archived reference variations and their historical gates', () => {
   assert.deepEqual(styleFiles, ['business.json', 'dark.json', 'depth.json', 'editorial.json', 'light.json', 'mono.json', 'night-contrast.json', 'vivid.json', 'warm.json']);
   const output = execFileSync('bash', ['bin/check-design-consistency.sh'], { encoding: 'utf8' });
   assert.match(output, /G-T1b/); assert.match(output, /G-T3/); assert.match(output, /FAIL=0/);
-  for (const styles of Object.values(fixture.variationMap)) for (const style of styles) assert(fs.existsSync(`themes/agent-neo-theme/styles/${style}.json`), style);
+  for (const styles of Object.values(fixture.variationMap)) for (const style of styles) assert(fs.existsSync(`archive/agent-neo/themes/agent-neo-theme/styles/${style}.json`), style);
+});
+check('current PoC styles are separately identified', () => {
+  assert.deepEqual(currentStyleFiles, ['mincho.json', 'rules.json']);
 });
 check('AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns', () => {
   const view = project(fixture); assert.equal(view.gates.completion, false); assert(view.openPatterns.length >= 4);
@@ -139,19 +145,19 @@ const report = {
     { id: 'pattern-contract', device: 'pc', file: '../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg', sha256: hash(`${prototype}/results/h2-plain-pc.jpg`) },
     { id: 'pattern-contract', device: 'sp', file: '../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg', sha256: hash(`${prototype}/results/h2-plain-sp.jpg`) },
   ],
-  scope: '実サイト調査のパターン分布を現行variationへ対応付け、未観察系統を開いたままカタログ選択へ渡す。',
-  remaining: ['全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。'],
+  scope: '実サイト調査のパターン分布と旧テーマのvariation対応を参照し、現行PoCへの写像は未検証として残す。',
+  remaining: ['旧9 variationと現行PoCのrules/minchoは別資産。現行PoCへのサイトパターン写像、全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。'],
 };
 fs.writeFileSync(`${root}/verification.json`, `${JSON.stringify(report, null, 2)}\n`);
 fs.writeFileSync(`${root}/acceptance-candidate.json`, `${JSON.stringify({
   schema: 'wt-acceptance-candidate.v1',
-  'WT-AC-LOOK-03A': { status: 'partial', scope: '269件のサイト調査、6系統の分布、730件25 familyの部品集計、および9 variationの導出をG-T1b/G-T3へ束ねる。', remaining: report.remaining, proofs: [{ path: `${root}/verification.json`, row_names: rows.filter(row => row.name.startsWith('AC-LOOK-03A')).map(row => row.name) }] },
+  'WT-AC-LOOK-03A': { status: 'partial', scope: '269件のサイト調査、6系統の分布、730件25 familyの部品集計、および旧資産9 variationの参照検査。現行PoCへの写像は未検証。', remaining: report.remaining, proofs: [{ path: `${root}/verification.json`, row_names: rows.filter(row => row.name.startsWith('AC-LOOK-03A')).map(row => row.name) }] },
   'WT-AC-LOOK-03B': { status: 'partial', scope: '調査証跡のないパターンをvariationMapへ入れない負例を固定する。', remaining: report.remaining, proofs: [{ path: `${root}/verification.json`, row_names: rows.filter(row => row.name.startsWith('AC-LOOK-03B')).map(row => row.name) }] },
   'WT-AC-LOOK-03C': { status: 'partial', scope: '未観察パターンをopen indexへ保持し、completion=falseを固定する。', remaining: report.remaining, proofs: [{ path: `${root}/verification.json`, row_names: rows.filter(row => row.name.startsWith('AC-LOOK-03C')).map(row => row.name) }] },
 }, null, 2)}\n`);
 fs.writeFileSync(`${root}/catalog-candidates.json`, `${JSON.stringify({
   schema: 'wt-look-pattern-contract-catalog-candidates.v1',
-  entries: [{ id: 'look-pattern:survey-derived', face: 'article', part: 'look-pattern-contract', label: '見た目：サイトパターン分布からの導出', variant: 'survey-derived', description: '269件のサイト調査と730件の部品語彙集計から6系統を観察済みとして9 variationへ対応付け、未観察系統を開いた索引に残す静的契約PoC。', purpose: '用途に合う型を選ぶ', group: 'ページ・本文', images: { pc: '../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg', sp: '../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg' }, requirementIds: ['WT-FR-LOOK-03'], referenceId: 'wt-look-pattern-contract.v1', evidence: '../2026-09-20-look-pattern-contract-poc/verification.json', selectionFacts: { '対象と判断': '観察済み分布に根拠があるvariationだけを候補にし、未観察系統は索引へ残す。', '実測': '調査269件、部品集計730件25 family、G-T1b/G-T3 FAIL=0。', '未検証': report.remaining.join(' ') } }],
+  entries: [{ id: 'look-pattern:survey-derived', face: 'article', part: 'look-pattern-contract', label: '見た目：サイトパターン分布からの導出', variant: 'survey-derived', description: '269件のサイト調査と730件の部品語彙集計から6系統を観察し、旧テーマの9 variationを参照した静的契約PoC。現行PoCへの写像は未検証。', purpose: '用途に合う型を選ぶ', group: 'ページ・本文', images: { pc: '../2026-09-05-design-prototype-03/results/h2-plain-pc.jpg', sp: '../2026-09-05-design-prototype-03/results/h2-plain-sp.jpg' }, requirementIds: ['WT-FR-LOOK-03'], referenceId: 'wt-look-pattern-contract.v1', evidence: '../2026-09-20-look-pattern-contract-poc/verification.json', selectionFacts: { '対象と判断': '観察済み分布と旧テーマのvariationを参照し、現行PoCへの写像は別に検証する。', '実測': '調査269件、部品集計730件25 family、旧テーマG-T1b/G-T3 FAIL=0。', '未検証': report.remaining.join(' ') } }],
 }, null, 2)}\n`);
 console.log(JSON.stringify({ completed: report.completed, tests: rows.length, survey: report.survey, screenshots: report.shots.length, acceptance: '3 partial candidates' }));
 if (!report.completed) process.exitCode = 1;

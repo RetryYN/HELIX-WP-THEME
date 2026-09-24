@@ -47,7 +47,7 @@ class TC_ThemeSeoTest extends TestCase {
 
 		// テーマ定数（ABSPATH は bootstrap-unit.php で定義済み）。
 		if ( ! defined( 'AGENT_NEO_DIR' ) ) {
-			define( 'AGENT_NEO_DIR', dirname( __DIR__, 2 ) . '/themes/agent-neo-theme/' );
+			define( 'AGENT_NEO_DIR', dirname( __DIR__, 2 ) . '/archive/agent-neo/themes/agent-neo-theme/' );
 		}
 
 		// SEO クラスをロードする。

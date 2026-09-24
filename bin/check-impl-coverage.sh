@@ -25,7 +25,7 @@ set -euo pipefail
 
 readonly EXPECTED_TOTAL=57
 readonly CONTRACT_FILE="docs/design/api-catalog.md"
-readonly SCAN_DIRS=("plugins/agent-neo-core" "themes/agent-neo-theme")
+readonly SCAN_DIRS=("archive/agent-neo/plugins/agent-neo-core" "archive/agent-neo/themes/agent-neo-theme")
 
 fail_under=""
 strict_orphan=0
