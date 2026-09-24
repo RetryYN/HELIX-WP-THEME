@@ -1,0 +1,14 @@
+{
+  "schema_version": "outstanding-snapshot.v1",
+  "decision_count": 1,
+  "plan_ids": [
+    "CONSUMER-SETUP-BOUNDARY"
+  ],
+  "blockers": [
+    "consumer_setup_boundary",
+    "non_terminal_plans"
+  ],
+  "required_actions": [
+    "start or select the project PLAN and record real project acceptance evidence before claiming whole-program completion"
+  ]
+}
