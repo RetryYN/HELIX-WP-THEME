@@ -207,7 +207,6 @@ function plan(options) {
     if (!proof) fail(`row rename proof is not registered: ${rename.proof}`);
     if ((proof.row_names || []).filter(name => name === rename.from).length !== 1 || proof.row_names.includes(rename.to)) fail(`row rename is not one-to-one: ${rename.case}`);
   }
-  if (!staleCount && !options.rowRenames.length) fail('selected cases have no changed source digests or proof rows to rebind');
   for (const [id, evidence] of Object.entries(registry.cases || {})) {
     if (selectedIds.has(id)) continue;
     const stale = Object.entries(evidence.source_digests || {}).find(([source, expected]) => digest(bytes(source)) !== expected);
@@ -215,12 +214,19 @@ function plan(options) {
   }
   const proofs = new Map();
   for (const { evidence } of selected) for (const proof of evidence.proofs || []) proofs.set(proof.path, proof);
+  const proofUpdates = [...proofs].filter(([proofPath, proof]) => digest(bytes(proofPath)) !== proof.sha256);
+  for (const [proofPath] of proofUpdates) {
+    if (!changedPaths.has(proofPath)) fail(`stale proof is not an actual working-tree change: ${proofPath}`);
+  }
+  if (!staleCount && !options.rowRenames.length && !proofUpdates.length) {
+    fail('selected cases have no changed source digests, proof files, or proof rows to rebind');
+  }
   for (const [id, evidence] of Object.entries(registry.cases || {})) {
     if (selectedIds.has(id)) continue;
     const shared = (evidence.proofs || []).find(proof => proofs.has(proof.path));
     if (shared) fail(`all cases sharing a regenerated proof must be selected: ${id} / ${shared.path}`);
   }
-  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
+  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), proof_updates: proofUpdates.map(([path, proof]) => ({ path, before: proof.sha256, observed: digest(bytes(path)) })), row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
   if (!options.apply) {
     console.log(JSON.stringify({ mode: 'dry-run', ...summary }, null, 2));
     return;

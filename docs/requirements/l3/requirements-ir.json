@@ -4208,6 +4208,37 @@
       "revision": 1,
       "owner": "PO",
       "semantic_digest": "9cb6c793907b1cab"
+    },
+    {
+      "id": "WT-FR-UTILITY-INDEX-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-CAND-PARTS",
+        "WT-EVT-0313"
+      ],
+      "statement": "複数の診断・計算・生成ツールを案内する一覧・選択面を持ち、利用目的ごとの分類、各ツールの名称と目的説明、提供主体・利用条件、個別ツール面への直接リンクを示す。一覧は各ツールの入力・結果を扱う詳細面と区別し、提供主体や利用上限を誤認させない。検索・絞り込みはこの候補の範囲に含めない。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-UTILITY-INDEX-01A",
+        "WT-AC-UTILITY-INDEX-01B"
+      ],
+      "test_ids": [
+        "WT-AT-UTILITY-INDEX-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "8d8d90274ce07f7b"
     }
   ]
 }

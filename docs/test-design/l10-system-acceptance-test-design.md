@@ -152,7 +152,7 @@ pair freeze と G3 到達は主張しない。
 
 ## 学習・支援系（WT-EVT-0306）
 
-全134要求・300 AC。
+全135要求・302 AC。
 
 | test ID | 対応要求 | 受入条件 | 検証方法 | 残り |
 | --- | --- | --- | --- | --- |
@@ -167,3 +167,5 @@ WT-EVT-0309: WT-AT-PAGE-01のAC-01A/B/CはJSONからのパターン登録と固�
 WT-EVT-0310: WT-AT-SEARCH-01 → WT-FR-SEARCH-01 / WT-AC-SEARCH-01A/B/C/D。scripts/verify-site-search.mjsとverify-site-search-boundaries.mjsで検索結果・再検索・公開範囲・ページ送りを専用labで確認。未入力専用状態、全権限変更、日本語locale、キーボード、範囲外の復帰までを完了条件とし、既存の73検査だけで達成としない。
 
 WT-EVT-0311: WT-AT-UTILITY-01 → WT-FR-UTILITY-01 / WT-AC-UTILITY-01A/B/C/D。calculator / grader / generator の代表fixtureで、入力・検証・結果・根拠・再入力、PC/SP・キーボード・JS無効、境界値、外部処理失敗、保存なし既定を検査する。フォーム送信や検索結果の証跡を代用しない。
+
+WT-EVT-0313: WT-AT-UTILITY-INDEX-01 → WT-FR-UTILITY-INDEX-01 / WT-AC-UTILITY-INDEX-01A/B。複数ツールの一覧面で用途別の分類、目的説明、提供主体・利用条件と詳細リンクを検査し、一覧から個別入力・結果面への遷移と、提供条件の誤認表示を拒否する。根拠のない検索・絞り込み機能は試験へ加えない。

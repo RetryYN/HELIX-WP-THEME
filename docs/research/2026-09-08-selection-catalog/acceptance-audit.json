@@ -1,9 +1,9 @@
 {
   "schema": "wt-catalog-acceptance-audit.v1",
-  "requirementCount": 134,
-  "acceptanceCount": 300,
+  "requirementCount": 135,
+  "acceptanceCount": 302,
   "counts": {
-    "missing": 166,
+    "missing": 168,
     "partial": 102,
     "verified_in_poc": 32,
     "stale": 0
@@ -163,7 +163,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-          "sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
+          "sha256": "5957ee928e1602f896e630b32621eced82969caecf130fd0d49b9914620201a2",
           "row_names": [
             "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
             "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
@@ -185,7 +185,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-          "sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
+          "sha256": "5957ee928e1602f896e630b32621eced82969caecf130fd0d49b9914620201a2",
           "row_names": [
             "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
             "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
@@ -1645,7 +1645,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+          "sha256": "535cf8a30c5d7086ad56e86590cf9966627bf2692e00c012ce7bcee79542e115",
           "row_names": [
             "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
           ]
@@ -1666,7 +1666,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+          "sha256": "535cf8a30c5d7086ad56e86590cf9966627bf2692e00c012ce7bcee79542e115",
           "row_names": [
             "AC-AGENT-01B records the known input-schema normalization boundary",
             "AC-AGENT-01B rejects a pack with an undeclared ability"
@@ -1968,7 +1968,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+          "sha256": "535cf8a30c5d7086ad56e86590cf9966627bf2692e00c012ce7bcee79542e115",
           "row_names": [
             "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
           ]
@@ -1989,7 +1989,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+          "sha256": "535cf8a30c5d7086ad56e86590cf9966627bf2692e00c012ce7bcee79542e115",
           "row_names": [
             "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
           ]
@@ -2076,7 +2076,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+          "sha256": "535cf8a30c5d7086ad56e86590cf9966627bf2692e00c012ce7bcee79542e115",
           "row_names": [
             "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
             "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -2098,7 +2098,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-          "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+          "sha256": "535cf8a30c5d7086ad56e86590cf9966627bf2692e00c012ce7bcee79542e115",
           "row_names": [
             "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
             "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -2331,7 +2331,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-          "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "sha256": "867a9e382fbd8a4ec0a37a24b0453fe01778052e4458c439b192e54d067ced99",
           "row_names": [
             "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
             "AC-LOOK-03A checks nine archived reference variations and their historical gates"
@@ -2352,7 +2352,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-          "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "sha256": "867a9e382fbd8a4ec0a37a24b0453fe01778052e4458c439b192e54d067ced99",
           "row_names": [
             "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
             "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
@@ -11591,7 +11591,7 @@
       "evidence": [
         {
           "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-          "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+          "sha256": "867a9e382fbd8a4ec0a37a24b0453fe01778052e4458c439b192e54d067ced99",
           "row_names": [
             "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
             "AC-LOOK-03C rejects an open pattern that is already observed"
@@ -14559,6 +14559,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "WT-AC-UTILITY-INDEX-01A",
+      "requirement_id": "WT-FR-UTILITY-INDEX-01",
+      "oracle": "対話型ツールを用途別に一覧し、各項目の名称・説明・提供元と利用条件を示し、個別詳細へ直接移動できる",
+      "polarity": "positive",
+      "status": "missing",
+      "scope": "",
+      "remaining": [
+        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "WT-AC-UTILITY-INDEX-01B",
+      "requirement_id": "WT-FR-UTILITY-INDEX-01",
+      "oracle": "目的に合うツールを判別できない、提供元・利用条件が分からない、または詳細へ移動できなければ FAIL",
+      "polarity": "negative",
+      "status": "missing",
+      "scope": "",
+      "remaining": [
+        "再現手順・操作デモ・実測行と、この受入条件全体の対応付けが必要"
+      ],
+      "evidence": []
     },
     {
       "id": "WT-AC-ADMIN-01E",

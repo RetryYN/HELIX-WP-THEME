@@ -1,7 +1,7 @@
 {
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
-  "generatedAtEventHead": "WT-EVT-0312",
+  "generatedAtEventHead": "WT-EVT-0313",
   "candidateCount": 708,
   "requirements": [
     {
@@ -6541,6 +6541,37 @@
         "utility:grader",
         "utility:generator"
       ]
+    },
+    {
+      "id": "WT-FR-UTILITY-INDEX-01",
+      "priority": "P1",
+      "status": "not_verified",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 2,
+        "counts": {
+          "verified_in_poc": 0,
+          "partial": 0,
+          "missing": 2,
+          "stale": 0
+        },
+        "openAcceptanceIds": [
+          "WT-AC-UTILITY-INDEX-01A",
+          "WT-AC-UTILITY-INDEX-01B"
+        ],
+        "selectionState": "no_candidate"
+      },
+      "acceptance": [
+        {
+          "id": "WT-AC-UTILITY-INDEX-01A",
+          "status": "missing"
+        },
+        {
+          "id": "WT-AC-UTILITY-INDEX-01B",
+          "status": "missing"
+        }
+      ],
+      "relatedEntryIds": []
     }
   ],
   "entries": [

@@ -1,16 +1,16 @@
 {
   "schema": "wt-catalog-completion-backlog.v1",
-  "requirement_count": 134,
-  "acceptance_count": 300,
+  "requirement_count": 135,
+  "acceptance_count": 302,
   "catalog_candidate_count": 708,
   "screenshot_count": 1287,
   "acceptance_counts": {
-    "missing": 166,
+    "missing": 168,
     "partial": 102,
     "verified_in_poc": 32,
     "stale": 0
   },
-  "page_gap_count": 19,
+  "page_gap_count": 20,
   "page_gaps": [
     {
       "type": "事業別 / メディア別トップ",
@@ -34,6 +34,14 @@
       "disposition": "候補",
       "evidence_state": "未観察",
       "evidence": "入力→検証→計算/診断/生成→結果→根拠→再入力を独立面として扱う。通常フォームや検索結果とは目的が異なる。WT-FR-UTILITY-01で候補化。実装・代表PoCは未着手",
+      "order": "C"
+    },
+    {
+      "type": "対話型ツールの一覧・選択面",
+      "source": "追加提案（WT-EVT-0313、Shopify tools / Ahrefs free SEO tools の現行一覧再調査）",
+      "disposition": "候補",
+      "evidence_state": "未観察",
+      "evidence": "複数ツールを用途分類から選び、名称・目的説明・提供主体/利用条件・個別面リンクを確認する一覧。個別ツールの入力・結果面とは表示形式を分ける。WT-FR-UTILITY-INDEX-01の候補ACで要求化。絞り込みや独立PoCは未着手",
       "order": "C"
     },
     {
@@ -1246,6 +1254,22 @@
       "candidate_count": 0,
       "candidates": [],
       "statement": "和文の既定 CSS に line-break: strict、overflow-wrap: anywhere、word-break: normal、text-autospace、text-spacing-trim、見出しの text-wrap: balance / pretty を宣言し、未対応環境では可読性を保つ fallback を使う",
+      "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
+    },
+    {
+      "requirement_id": "WT-FR-UTILITY-INDEX-01",
+      "priority": "P1",
+      "state": "missing",
+      "acceptance": {
+        "total": 2,
+        "missing": 2,
+        "partial": 0,
+        "verified_in_poc": 0,
+        "stale": 0
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "statement": "複数の診断・計算・生成ツールを案内する一覧・選択面を持ち、利用目的ごとの分類、各ツールの名称と目的説明、提供主体・利用条件、個別ツール面への直接リンクを示す。一覧は各ツールの入力・結果を扱う詳細面と区別し、提供主体や利用上限を誤認させない。検索・絞り込みはこの候補の範囲に含めない。",
       "next_action": "調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する"
     },
     {

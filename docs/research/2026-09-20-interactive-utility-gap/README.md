@@ -10,8 +10,14 @@
 
 - Shopify の公式 tools index は、利益率・借入の calculator、名称・スローガン・規約等の generator、画像変換、検索などを同じ「free business tools」の独立カテゴリとして列挙している。参照: https://www.shopify.com/tools （2026-09-20確認）
 - HubSpot の公式説明は Website Grader を URL 入力から performance、mobile readiness、SEO、security の個別評価と改善案を返す独立ツールとして説明している。参照: https://blog.hubspot.com/marketing/website-grader-relaunch （2026-09-20確認）
+- Shopify の現行 tools index は複数ツールを一つの一覧に並べ、各項目に名称・短い目的説明・詳細へのリンクを持つ。参照: https://www.shopify.com/tools （2026-09-24確認）
+- Ahrefs の現行 free SEO tools index は、キーワード調査・リンク構築・順位計測など用途別にツールをまとめ、内製と一部第三者ツールの混在および有料版との利用上限を説明している。参照: https://ahrefs.com/free-seo-tools （2026-09-24確認）
 
 この2例は、読み物、検索結果、リード送信フォームの名前違いではない。入力から派生結果を生成し、結果の意味と次の行動を提示する面である。
+
+### 一覧面と個別ツール面
+
+再調査では、個別ツールの入力・結果面とは別に、複数ツールを利用目的から選ぶ一覧面も確認した。これは個別ツールの `WT-FR-UTILITY-01` が扱う calculator / grader / generator の詳細操作とは別のページ種別であり、既存 `WT-FR-PAGE-02` の一覧 / 詳細軸だけでは、一覧に必要な用途説明・提供主体・利用条件・詳細リンクの受入を検証できない。そこで別の要求候補 `WT-FR-UTILITY-INDEX-01` を追加し、独立した製品UIや絞り込み機能は追加しない。Shopify と Ahrefs の例から確認できた用途分類・短い説明・直接リンク、および提供主体・利用制限の明示に範囲を限る。
 
 ## 境界
 
@@ -23,4 +29,4 @@
 
 ## 要求化
 
-`WT-FR-UTILITY-01` と4受入条件を候補台帳へ追加する。代表 PoC は calculator、grader、generator の3用途を同じ結果契約で比較し、PC/SP、キーボード、JS無効、境界値、再入力、外部処理失敗を検査する。現時点では要求候補化までで、実装・対応済み・G3承認を主張しない。
+`WT-FR-UTILITY-INDEX-01` と2受入条件を候補台帳へ追加する。代表 PoC は calculator、grader、generator の3用途と一覧→詳細の選択経路を区別して比較し、既存の詳細面ACに加えて一覧の表示正確性を検査する。現時点では要求候補化までで、実装・対応済み・G3承認を主張しない。

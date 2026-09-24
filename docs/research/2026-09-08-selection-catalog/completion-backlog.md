@@ -2,11 +2,11 @@
 
 この一覧は要求、受入証跡、既存PoC画像の対応データ、ページ種別台帳を同じ時点で再集計する。独立HTMLカタログは破棄済み。候補数はWordPress上の表示完成数ではない。行数や進捗を手書きしない。
 
-- 要求: 134
-- 受入条件: 300（missing 166 / partial 102 / verified_in_poc 32 / stale 0）
+- 要求: 135
+- 受入条件: 302（missing 168 / partial 102 / verified_in_poc 32 / stale 0）
 - 既存PoC画像の対応候補: 708
 - スクリーンショット: 1287
-- ページ種別の未観察・未検証: 19
+- ページ種別の未観察・未検証: 20
 
 ## 次に閉じる要求
 
@@ -68,6 +68,7 @@
 | WT-FR-SEO-05 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
 | WT-FR-SEO-06 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
 | WT-FR-TYPO-01 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
+| WT-FR-UTILITY-INDEX-01 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
 | WT-FR-VALUE-02 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
 | WT-NFR-A11Y-01 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
 | WT-NFR-CRAWL-01 | P1 | missing | 2 | 0 | 調査結果からWordPress上に代表PoCを作り、表示・操作・負例を検証する |
@@ -143,6 +144,7 @@
 | 事業別 / メディア別トップ | 未検証 | 追加提案（0298） | C |
 | テーマ別ハブ / 編集特集 | 未観察 | PO 明示要求（0296 ③「特集ページ」）。イベントから独立種別に分けるのは追加提案（0298） | C |
 | 診断・計算・生成ツール | 未観察 | 追加提案（WT-EVT-0311、Shopify tools / HubSpot Website Grader の再調査） | C |
+| 対話型ツールの一覧・選択面 | 未観察 | 追加提案（WT-EVT-0313、Shopify tools / Ahrefs free SEO tools の現行一覧再調査） | C |
 | ニュース / コラム | 未検証 | PO 明示要求（0296 ④「ニュース系」「コラム系」）。記事と別種別に分けるのは追加提案（0298） | C |
 | 導入事例 | 未検証 | 追加提案（インタビューと別管理） | C |
 | 実績・作品 | 未検証 | 追加提案 | C |

@@ -1790,6 +1790,18 @@
       "oracle": "PC/SP・キーボード・200%文字拡大・JavaScript無効で説明と入力順を保ち、結果更新を通知し、横溢れや操作不能がない。"
     },
     {
+      "id": "WT-AC-UTILITY-INDEX-01A",
+      "requirement_id": "WT-FR-UTILITY-INDEX-01",
+      "polarity": "positive",
+      "oracle": "対話型ツールを用途別に一覧し、各項目の名称・説明・提供元と利用条件を示し、個別詳細へ直接移動できる"
+    },
+    {
+      "id": "WT-AC-UTILITY-INDEX-01B",
+      "requirement_id": "WT-FR-UTILITY-INDEX-01",
+      "polarity": "negative",
+      "oracle": "目的に合うツールを判別できない、提供元・利用条件が分からない、または詳細へ移動できなければ FAIL"
+    },
+    {
       "id": "WT-AC-ADMIN-01E",
       "requirement_id": "WT-FR-ADMIN-01",
       "polarity": "boundary",

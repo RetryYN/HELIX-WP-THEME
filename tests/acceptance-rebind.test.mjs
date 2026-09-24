@@ -88,6 +88,44 @@ test('apply requires same-execution proof rewrite, updates only stale digest, an
   assert.match(checked.stdout, /3 digest change/u);
 });
 
+test('a proof-only regeneration can be rebound without changing requirement or source digests', async t => {
+  const f = fixture(t);
+  const proof = JSON.parse(fs.readFileSync(path.join(f.root, 'proof.json')));
+  proof.rows.push({ name: 'additional verified observation', pass: true });
+  f.write('proof.json', proof);
+  const dryRun = f.run(['--case', 'A1']);
+  assert.equal(dryRun.status, 0, dryRun.stderr);
+  assert.match(dryRun.stdout, /"proof_updates"/u);
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /proof_updates/u);
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json')));
+  const currentProof = fs.readFileSync(path.join(f.root, 'proof.json'));
+  assert.equal(registry.cases.A1.proofs[0].sha256, hash(currentProof));
+  assert.equal(registry.cases.A1.requirement_digest, 'r1');
+  assert.equal(registry.cases.A1.source_digests['implementation.php'], hash('source-v1\n'));
+  const checked = f.run(['--check', '--base-ref', 'HEAD']);
+  assert.equal(checked.status, 0, checked.stderr);
+  assert.match(checked.stdout, /2 digest change/u);
+});
+
+test('a proof-only regeneration requires selecting every case that shares the proof', t => {
+  const f = fixture(t);
+  const registryPath = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath));
+  registry.cases.A2 = structuredClone(registry.cases.A1);
+  fs.writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
+  spawnSync('git', ['add', '.'], { cwd: f.root });
+  spawnSync('git', ['commit', '-m', 'shared proof case'], { cwd: f.root });
+  const proof = JSON.parse(fs.readFileSync(path.join(f.root, 'proof.json')));
+  proof.rows.push({ name: 'additional verified observation', pass: true });
+  f.write('proof.json', proof);
+  const result = f.run(['--case', 'A1']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /all cases sharing a regenerated proof must be selected: A2 \/ proof.json/u);
+});
+
 test('apply imports newly declared proof source digests into the acceptance registry', async t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
