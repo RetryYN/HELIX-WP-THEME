@@ -49,14 +49,36 @@ test('report-only audit mode keeps stale evidence visible without blocking catal
 
 test('current-theme quality gate runs strict evidence audit for verifier changes on push and pull requests', () => {
   const workflow = fs.readFileSync(new URL('../.github/workflows/theme-quality-gate.yml', import.meta.url), 'utf8');
+  const packageJson = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+  const oracleConfig = JSON.parse(fs.readFileSync(new URL('../config/catalog-admission-oracles.json', import.meta.url), 'utf8'));
   const push = workflow.match(/^  push:\n([\s\S]*?)^  pull_request:/mu)?.[1];
   const pullRequest = workflow.match(/^  pull_request:\n([\s\S]*?)^  workflow_dispatch:/mu)?.[1];
 
   assert.ok(push, 'missing push path filter');
   assert.ok(pullRequest, 'missing pull_request path filter');
   for (const [event, paths] of [['push', push], ['pull_request', pullRequest]]) {
-    assert.match(paths, /^      - 'scripts\/\*\.mjs'$/mu, `${event} must cover top-level verification scripts`);
-    assert.match(paths, /^      - 'docs\/research\/\*\*\/verify\.mjs'$/mu, `${event} must cover research verifiers`);
+    assert.match(paths, /^      - 'scripts\/\*\*\/\*\.mjs'$/mu, `${event} must cover script oracles`);
+    assert.match(paths, /^      - 'docs\/research\/\*\*\/\*\.mjs'$/mu, `${event} must cover research script oracles`);
+  }
+
+  const oracleSources = new Set();
+  const collectSources = command => {
+    if (command?.[0] === 'node' && /\.mjs$/u.test(command[1] || '')) oracleSources.add(command[1]);
+    if (command?.[0] === 'npm' && command[1] === 'run') {
+      const script = packageJson.scripts[command[2]] || '';
+      const source = script.split(/\s+/u).find(argument => /^(?:scripts|docs\/research)\/.+\.mjs$/u.test(argument));
+      if (source) oracleSources.add(source);
+    }
+  };
+  for (const command of Object.values(oracleConfig.commands)) collectSources(command);
+  for (const scriptName of Object.values(packageJson.catalogOracles || {})) {
+    const script = packageJson.scripts[scriptName] || '';
+    const source = script.split(/\s+/u).find(argument => /^(?:scripts|docs\/research)\/.+\.mjs$/u.test(argument));
+    if (source) oracleSources.add(source);
+  }
+  assert.ok(oracleSources.size > 0, 'no catalog oracle source scripts discovered');
+  for (const source of oracleSources) {
+    assert.match(source, /^(?:scripts|docs\/research)\/.+\.mjs$/u, `oracle source needs an explicit CI path filter: ${source}`);
   }
 
   assert.match(workflow, /^          node scripts\/audit-catalog-evidence\.mjs$/mu, 'CI must run the fail-closed audit');
