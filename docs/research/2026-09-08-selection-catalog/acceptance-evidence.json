@@ -9855,14 +9855,14 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/verify-public-safety.mjs": "752b08bbc8ae823d3b6dea060aeaabaa39a4f8cf6a5744764a6d59a22dd1618e",
-        "scripts/public-safety-guard.sh": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        "scripts/verify-public-safety.mjs": "437a33c482cc9ababe83603e1aecaef3851ac131e892e117546948b0656ca12a",
+        "scripts/public-safety-guard.sh": "d50be3b00c1f5c14e8d6c2619c5eff258bc8f1fa164caf35d28b3df5765fc916"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0",
+          "sha256": "6e3869f2808e18eb18e12f486e2bda5c75d140791e9a533a19cba562fae8a452",
           "row_names": [
             "positive:clean-source-accepted",
             "positive:research-with-private-map-accepted"
@@ -9876,14 +9876,14 @@
       "status": "verified_in_poc",
       "requirement_digest": "4ce4817a1f2becff",
       "source_digests": {
-        "scripts/verify-public-safety.mjs": "752b08bbc8ae823d3b6dea060aeaabaa39a4f8cf6a5744764a6d59a22dd1618e",
-        "scripts/public-safety-guard.sh": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+        "scripts/verify-public-safety.mjs": "437a33c482cc9ababe83603e1aecaef3851ac131e892e117546948b0656ca12a",
+        "scripts/public-safety-guard.sh": "d50be3b00c1f5c14e8d6c2619c5eff258bc8f1fa164caf35d28b3df5765fc916"
       },
       "remaining": [],
       "proofs": [
         {
           "path": "docs/research/2026-09-09-public-safety/verify.json",
-          "sha256": "e105f813c3a49bc390dcf281ccc1a80a73a1b8842ab39f983c0e65d8bb8829e0",
+          "sha256": "6e3869f2808e18eb18e12f486e2bda5c75d140791e9a533a19cba562fae8a452",
           "row_names": [
             "negative:private-key-rejected",
             "negative:access-token-rejected",

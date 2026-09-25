@@ -5,9 +5,10 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f",
+  "source_sha256": "d50be3b00c1f5c14e8d6c2619c5eff258bc8f1fa164caf35d28b3df5765fc916",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "57facc61b17d300d85f9e765f97077ebd1a513fa742a50c41bfbdcac4cc41a8f"
+    "scripts/public-safety-guard.sh": "d50be3b00c1f5c14e8d6c2619c5eff258bc8f1fa164caf35d28b3df5765fc916",
+    "scripts/verify-public-safety.mjs": "437a33c482cc9ababe83603e1aecaef3851ac131e892e117546948b0656ca12a"
   },
   "rows": [
     {
@@ -180,6 +181,20 @@
     },
     {
       "name": "negative:nul-in-jsonl-is-binary-and-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:utf16le-bom-clean-text-is-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:utf16le-bom-private-key-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",
