@@ -178,7 +178,7 @@ jobs:
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
       - name: Run Lighthouse CI
-        # Lighthouse page-load lab runs use TBT as an INP proxy; they do not measure field INP.
+        # LCP's 2.5s budget remains a warning pending diagnosis in issue #352; TBT is a lab proxy, not field INP.
         run: lhci autorun --config=./.lighthouserc.json
 
       - name: Upload LHCI report
