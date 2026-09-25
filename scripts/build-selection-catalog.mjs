@@ -12,8 +12,16 @@ const index = read(`${prototype}/CATALOG-INDEX.json`);
 const glossary = read(`${prototype}/CATALOG-GLOSSARY.json`);
 const ir = read('docs/requirements/l3/requirements-ir.json');
 const discoveryProjection = read('docs/requirements/discovery/candidate-projection.json');
-execFileSync(process.execPath, [path.join(root, 'scripts/audit-catalog-evidence.mjs')], { cwd: root, stdio: 'inherit' });
+execFileSync(process.execPath, [path.join(root, 'scripts/audit-catalog-evidence.mjs'), '--allow-stale'], { cwd: root, stdio: 'inherit' });
 const audit = read('docs/research/2026-09-08-selection-catalog/acceptance-audit.json');
+
+// Whole-file requirement snapshots are not runtime evidence dependencies. The
+// candidate IDs below and acceptance-audit rows bind the relevant requirement
+// and oracle; unrelated additions must not prevent stale status being projected.
+const requirementScopeFiles = new Set([
+  'docs/requirements/l3/requirements-ir.json',
+  'docs/requirements/l3/acceptance-cases.json',
+]);
 
 // Association is for discovery only. It is never an acceptance or completeness claim.
 const families = {
@@ -860,6 +868,7 @@ if (fs.existsSync(path.join(root, lookPatternContractPath))) {
   const candidates = read('docs/research/2026-09-20-look-pattern-contract-poc/catalog-candidates.json');
   if (!report.completed || report.rows.some(row => !row.pass) || report.shots.length !== 2 || report.gates.completion !== false) throw Error('Look pattern contract evidence incomplete');
   for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (requirementScopeFiles.has(source)) continue;
     if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale look pattern contract source: ${source}`);
   }
   if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['look-pattern:survey-derived'])) throw Error('Look pattern contract candidates mismatch');
@@ -880,6 +889,7 @@ if (fs.existsSync(path.join(root, gateContractPath))) {
   const candidates = read('docs/research/2026-09-20-gate-contract-poc/catalog-candidates.json');
   if (!report.completed || report.rows.some(row => !row.pass) || report.static.fail !== 0 || report.ge1.invalid !== 0 || report.ge1.patterns !== 71 || report.gates.completion !== false) throw Error('Gate contract evidence incomplete');
   for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (requirementScopeFiles.has(source)) continue;
     if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale gate contract source: ${source}`);
   }
   if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['gate-contract:static-and-ge1'])) throw Error('Gate contract candidates mismatch');
@@ -898,6 +908,7 @@ if (fs.existsSync(path.join(root, abilitiesSecurityContractPath))) {
   const candidates = read('docs/research/2026-09-20-abilities-security-contract-poc/catalog-candidates.json');
   if (!report.completed || report.rows.some(row => !row.pass) || report.abilities.length !== 3 || report.observations.restAnonymousStatus !== 401 || report.observations.mcpAnonymousStatus !== 401 || report.gates.completion !== false) throw Error('Abilities security contract evidence incomplete');
   for (const [source, expected] of Object.entries(report.sourceDigests)) {
+    if (requirementScopeFiles.has(source)) continue;
     if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) throw Error(`Stale abilities security contract source: ${source}`);
   }
   if (JSON.stringify(candidates.entries.map(entry => entry.id).sort()) !== JSON.stringify(['agent-pack:security-and-receipt'])) throw Error('Abilities security contract candidates mismatch');

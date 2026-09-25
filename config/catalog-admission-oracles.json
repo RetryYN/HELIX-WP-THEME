@@ -129,6 +129,10 @@
     "docs/research/2026-09-20-abilities-security-contract-poc/verification.json": [
       "node",
       "scripts/verify-abilities-security-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json": [
+      "node",
+      "scripts/verify-article-purpose-proof-binding.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -314,6 +318,15 @@
     ],
     "WT-AC-NFR-PERM-01B": [
       "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-ARTICLE-01A": [
+      "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+    ],
+    "WT-AC-ARTICLE-01B": [
+      "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+    ],
+    "WT-AC-ARTICLE-01C": [
+      "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
     ]
   }
 }

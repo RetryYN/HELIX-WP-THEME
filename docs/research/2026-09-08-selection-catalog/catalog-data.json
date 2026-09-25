@@ -1,7 +1,7 @@
 {
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
-  "requirementCount": 134,
+  "requirementCount": 135,
   "screenshotCount": 1287,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
@@ -14814,7 +14814,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-              "sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
+              "sha256": "b46ef39b968da32c0cf004486f4a336072dc7927cd68e2e659c46bf49d0a22b4",
               "row_names": [
                 "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
                 "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
@@ -14836,7 +14836,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-              "sha256": "1a23c8a0a36e34081da7265e72d21c3217dc2aaa21ce3f7e68c555018fec8362",
+              "sha256": "b46ef39b968da32c0cf004486f4a336072dc7927cd68e2e659c46bf49d0a22b4",
               "row_names": [
                 "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
                 "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
@@ -17894,7 +17894,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "32182974b37a8dbe9580068a09cc6efae3aa6e11cf8f769bd956b9c69db92a51",
+              "sha256": "94fbadad7a81b0d8fe54b765be77e5b4368673e015a11c4eebc39f341b5c4d24",
               "row_names": [
                 "fixture:positive",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -18228,7 +18228,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+              "sha256": "000167916d34e37a191624d55901fc6ff20ee14de00d341776536052dfb2fe17",
               "row_names": [
                 "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
                 "AC-LOOK-03A checks nine archived reference variations and their historical gates"
@@ -18249,7 +18249,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+              "sha256": "000167916d34e37a191624d55901fc6ff20ee14de00d341776536052dfb2fe17",
               "row_names": [
                 "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
                 "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
@@ -18270,7 +18270,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "c42423f00c73383c8aada843e586799a05c73dc06538b345bc6d5bbfd89155b6",
+              "sha256": "000167916d34e37a191624d55901fc6ff20ee14de00d341776536052dfb2fe17",
               "row_names": [
                 "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
                 "AC-LOOK-03C rejects an open pattern that is already observed"
@@ -19222,7 +19222,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
               ]
@@ -19243,7 +19243,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-AGENT-01B records the known input-schema normalization boundary",
                 "AC-AGENT-01B rejects a pack with an undeclared ability"
@@ -19957,7 +19957,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
               ]
@@ -19978,7 +19978,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
               ]
@@ -20077,7 +20077,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+              "sha256": "525d3a30d4ffedf5336c2779013b531907b843938cb6944ea237120df1ae6b25",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -20097,7 +20097,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+              "sha256": "525d3a30d4ffedf5336c2779013b531907b843938cb6944ea237120df1ae6b25",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -20148,7 +20148,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
                 "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -20170,7 +20170,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "3bac7ac47e21f57de5680397aba25b29596546f5a656d63ff6dd3644210a678d",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
                 "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -25452,7 +25452,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "32182974b37a8dbe9580068a09cc6efae3aa6e11cf8f769bd956b9c69db92a51",
+              "sha256": "94fbadad7a81b0d8fe54b765be77e5b4368673e015a11c4eebc39f341b5c4d24",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -25477,7 +25477,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "32182974b37a8dbe9580068a09cc6efae3aa6e11cf8f769bd956b9c69db92a51",
+              "sha256": "94fbadad7a81b0d8fe54b765be77e5b4368673e015a11c4eebc39f341b5c4d24",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -27616,6 +27616,105 @@
           "WT-AC-PAGE-02B"
         ],
         "selectionState": "candidate_with_open_acceptance"
+      }
+    },
+    {
+      "id": "WT-FR-ARTICLE-01",
+      "family": "ARTICLE",
+      "statement": "記事管理は目的を「検索流入」「ニュース・発表」「教育・信頼形成コラム」等で識別し、その選択に応じた一覧と詳細への導線を提供する。ニュース一覧は日付・分類で過去項目を探せ、コラム一覧は記事目的を説明しテーマ別記事へ移動できる。目的は投稿種別と区別し、共通投稿型の分類としても実装できる。CPT・URL 構造・Discover 掲載保証は本候補で決めない。",
+      "priority": "P1",
+      "revision": 1,
+      "acceptance": [
+        {
+          "id": "WT-AC-ARTICLE-01A",
+          "requirement_id": "WT-FR-ARTICLE-01",
+          "oracle": "記事目的として検索流入 / ニュース・発表 / 教育・信頼形成コラム等を明示分類でき、一覧・詳細で目的を判別できる。共通投稿型の目的分類も許容する",
+          "polarity": "positive",
+          "status": "partial",
+          "scope": "WordPress 7.1.2 の実機で検索流入・ニュース／発表・コラムを分類し、一覧と詳細で目的を表示する。",
+          "remaining": [
+            "編集者が管理画面から目的分類を選択・編集する操作は未検証。"
+          ],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+              "sha256": "32be65a82ac7c0c88d689f06acfc8ac6e98d64d16a2733d09c02231bc6e7ac63",
+              "row_names": [
+                "purpose:search-intent-archive-description-and-classification",
+                "purpose:news-releases-archive-description-and-classification",
+                "purpose:columns-archive-description-and-classification",
+                "archive:news-releases:2025-filter-to-dated-detail",
+                "archive:columns:2025-filter-to-dated-detail",
+                "archive:search-intent:2026-filter-to-dated-detail"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WT-AC-ARTICLE-01B",
+          "requirement_id": "WT-FR-ARTICLE-01",
+          "oracle": "ニュース一覧は公開日・分類から過去項目を探して詳細へ移動でき、コラム一覧は編集目的を説明しテーマ別の記事へ移動できる",
+          "polarity": "positive",
+          "status": "verified_in_poc",
+          "scope": "ニュース一覧は年・分類から日付付き詳細へ移動し、コラム一覧は編集目的を説明してテーマ別記事へ移動することをWordPress 7.1.2実機で検証。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+              "sha256": "32be65a82ac7c0c88d689f06acfc8ac6e98d64d16a2733d09c02231bc6e7ac63",
+              "row_names": [
+                "purpose:news-releases-archive-description-and-classification",
+                "purpose:columns-archive-description-and-classification",
+                "layout:category-guide-in-primary-before-sidebar",
+                "archive:news-releases:2025-filter-to-dated-detail",
+                "archive:columns:2025-filter-to-dated-detail",
+                "topics:news-releases/product-news-child-archive",
+                "topics:news-releases/announcements-child-archive",
+                "topics:columns/organization-child-archive",
+                "topics:columns/data-child-archive"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WT-AC-ARTICLE-01C",
+          "requirement_id": "WT-FR-ARTICLE-01",
+          "oracle": "記事目的を区別する情報や用途別一覧が無い、または目的だけを理由に別CPTを必須化する要求なら FAIL",
+          "polarity": "negative",
+          "status": "partial",
+          "scope": "3つの目的分類を標準 post 型へ付与した実機fixtureで、専用CPTなしに分類・一覧・詳細が成立することを確認。",
+          "remaining": [
+            "目的情報や用途別一覧を除去した負例の拒否検査は未実施。"
+          ],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+              "sha256": "32be65a82ac7c0c88d689f06acfc8ac6e98d64d16a2733d09c02231bc6e7ac63",
+              "row_names": [
+                "type:news-releases-purpose-uses-standard-post",
+                "type:columns-purpose-uses-standard-post",
+                "type:search-intent-purpose-uses-standard-post"
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "partial_poc",
+      "relatedEntryIds": [],
+      "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
+      "pending": [],
+      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
       }
     },
     {
@@ -35325,8 +35424,8 @@
   ],
   "acceptanceAudit": {
     "missing": 166,
-    "partial": 102,
-    "verified_in_poc": 32,
+    "partial": 104,
+    "verified_in_poc": 33,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

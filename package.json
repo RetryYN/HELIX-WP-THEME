@@ -28,7 +28,9 @@
     "postinstall": "node scripts/patch-helix-receipt.mjs && node scripts/patch-helix-consumer-review.mjs",
     "test:helix-patch": "tsx --test tests/unit/helix-receipt-patch.test.mjs tests/unit/helix-consumer-review-patch.test.mjs tests/unit/consumer-receipt-contract.test.mjs tests/unit/consumer-receipt-generator.test.ts",
     "recovery-contract:verify": "node scripts/verify-recovery-contract-poc.mjs",
-    "zone-overrides:verify": "node scripts/verify-zone-overrides-poc.mjs"
+    "zone-overrides:verify": "node scripts/verify-zone-overrides-poc.mjs",
+    "article-purpose:verify": "node docs/research/2026-09-26-news-column-purpose-gap/verify.mjs",
+    "article-purpose:proof": "node scripts/verify-article-purpose-proof-binding.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
@@ -44,6 +46,7 @@
     "docs/research/2026-09-10-reduced-motion/verify.json": "reduced-motion:verify",
     "docs/research/2026-09-13-privacy-boundary/verify.json": "privacy:verify",
     "docs/research/2026-09-20-recovery-contract-poc/verification.json": "recovery-contract:verify",
-    "docs/research/2026-09-20-zone-overrides-poc/verification.json": "zone-overrides:verify"
+    "docs/research/2026-09-20-zone-overrides-poc/verification.json": "zone-overrides:verify",
+    "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json": "article-purpose:proof"
   }
 }

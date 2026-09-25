@@ -1,7 +1,7 @@
 {
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
-  "generatedAtEventHead": "WT-EVT-0312",
+  "generatedAtEventHead": "WT-EVT-0313",
   "candidateCount": 708,
   "requirements": [
     {
@@ -5835,6 +5835,38 @@
         "home-finished:shop-school",
         "home-finished:school-org"
       ]
+    },
+    {
+      "id": "WT-FR-ARTICLE-01",
+      "priority": "P1",
+      "status": "partial_poc",
+      "coverage": {
+        "candidateCount": 0,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "no_candidate"
+      },
+      "acceptance": [
+        {
+          "id": "WT-AC-ARTICLE-01A",
+          "status": "partial"
+        },
+        {
+          "id": "WT-AC-ARTICLE-01B",
+          "status": "verified_in_poc"
+        },
+        {
+          "id": "WT-AC-ARTICLE-01C",
+          "status": "partial"
+        }
+      ],
+      "relatedEntryIds": []
     },
     {
       "id": "WT-FR-HOME-01",

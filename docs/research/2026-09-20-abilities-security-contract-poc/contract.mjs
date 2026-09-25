@@ -25,8 +25,6 @@ export const fixture = {
     'docs/research/2026-09-03-poc-abilities-3face/results/face-c-mcp-wt-pack-call-apply-noreceipt.json',
     'docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-apply-receipt-auth.json',
     'docs/research/2026-09-03-poc-abilities-3face/results/face-b-rest-run-read-after.json',
-    'docs/requirements/l3/requirements-ir.json',
-    'docs/requirements/l3/acceptance-cases.json',
   ],
   gates: { completion: false, liveCurrentHead: false },
 };

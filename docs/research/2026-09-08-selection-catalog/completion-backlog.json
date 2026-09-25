@@ -1,13 +1,13 @@
 {
   "schema": "wt-catalog-completion-backlog.v1",
-  "requirement_count": 134,
-  "acceptance_count": 300,
+  "requirement_count": 135,
+  "acceptance_count": 303,
   "catalog_candidate_count": 708,
   "screenshot_count": 1287,
   "acceptance_counts": {
     "missing": 166,
-    "partial": 102,
-    "verified_in_poc": 32,
+    "partial": 104,
+    "verified_in_poc": 33,
     "stale": 0
   },
   "page_gap_count": 19,
@@ -41,7 +41,7 @@
       "source": "PO 明示要求（0296 ④「ニュース系」「コラム系」）。記事と別種別に分けるのは追加提案（0298）",
       "disposition": "骨格採用",
       "evidence_state": "未検証",
-      "evidence": "home-news の一覧のみ。記事との差（日付主・短文）の面は無い",
+      "evidence": "WT-EVT-0313で目的分類・用途別一覧をL3候補化。home-news の区間一覧はあるが、独立一覧・分類・詳細導線のPoCは無い",
       "order": "C"
     },
     {
@@ -3183,6 +3183,22 @@
         "parts-declaration:site-editor"
       ],
       "statement": "header（ロゴ位置・ナビ形・CTA・検索・固定挙動・透過の制御パターン）/ footer / sidebar / hero の複数案を同一 Block Types のパターン群として持ち、共通宣言を fluid で適用する。device 別差分を宣言し、Site Editor と AI 経路の双方から SP / PC を個別に差し替え・検査できる。主たる確認面はサイト設定で選び、既定は SP 幅とする。footer にサイトマップ枠と関連サイト / ページ枠を選べる（PO 2026-09-05、WT-Q-PARTS-03）",
+      "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
+    },
+    {
+      "requirement_id": "WT-FR-ARTICLE-01",
+      "priority": "P1",
+      "state": "partial",
+      "acceptance": {
+        "total": 3,
+        "missing": 0,
+        "partial": 2,
+        "verified_in_poc": 1,
+        "stale": 0
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "statement": "記事管理は目的を「検索流入」「ニュース・発表」「教育・信頼形成コラム」等で識別し、その選択に応じた一覧と詳細への導線を提供する。ニュース一覧は日付・分類で過去項目を探せ、コラム一覧は記事目的を説明しテーマ別記事へ移動できる。目的は投稿種別と区別し、共通投稿型の分類としても実装できる。CPT・URL 構造・Discover 掲載保証は本候補で決めない。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },
     {
