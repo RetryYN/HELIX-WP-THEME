@@ -164,11 +164,14 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
   assert.deepEqual(recordedAffected, expectedAffected);
   assert.deepEqual(recordedProofs, proofPaths);
   for (const record of impact.proofVerifiers) {
+    const configuredCommand = configuredCommands[record.proof];
+    const packageOracleName = packageJson.catalogOracles?.[record.proof];
+    assert.ok(configuredCommand || packageOracleName, `missing catalog oracle declaration for ${record.proof}`);
+
     for (const sourceFile of record.verifierSources) {
       assert.ok(fs.existsSync(new URL(sourceFile, root)), `missing proof verifier source ${sourceFile}`);
     }
 
-    const configuredCommand = configuredCommands[record.proof];
     if (configuredCommand) {
       const sourceArguments = configuredCommand.filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
       assert.ok(
@@ -177,7 +180,6 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
       );
     }
 
-    const packageOracleName = packageJson.catalogOracles?.[record.proof];
     if (packageOracleName) {
       const packageCommand = packageJson.scripts[packageOracleName];
       assert.ok(packageCommand, `missing package oracle script ${packageOracleName}`);
