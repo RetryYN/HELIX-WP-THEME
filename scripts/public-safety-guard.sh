@@ -191,4 +191,4 @@ if (( failures > 0 )); then
   exit 1
 fi
 
-echo "public safety check: OK ($(wc -l <"$records" | tr -d ' ') added line(s) inspected)"
+echo "public safety check: OK ($(wc -l <"$records" | tr -d ' ') scanned line(s) inspected)"

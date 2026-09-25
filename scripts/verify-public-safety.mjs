@@ -48,9 +48,13 @@ function runFixture(name, relativePath, content, expectedPass, env = {}, options
       env: { ...process.env, ...env },
     });
     const actualPass = result.status === 0;
+    const outputPass = (!options.expectedOutput || result.stdout.includes(options.expectedOutput))
+      && (!options.forbiddenOutput || !result.stdout.includes(options.forbiddenOutput));
     return {
       name,
-      pass: actualPass === expectedPass && (!options.expectedFailure || result.stderr.includes(options.expectedFailure)),
+      pass: actualPass === expectedPass
+        && (!options.expectedFailure || result.stderr.includes(options.expectedFailure))
+        && outputPass,
       expected: expectedPass ? 'accept' : 'reject',
       actual: actualPass ? 'accept' : 'reject',
       exit_code: result.status,
@@ -63,6 +67,13 @@ function runFixture(name, relativePath, content, expectedPass, env = {}, options
 const token = ['gh', 'p_', 'a'.repeat(24)].join('');
 const privateKey = ['-----BEGIN ', 'TEST PRIVATE KEY-----'].join('');
 const utf16 = text => Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from(text, 'utf16le')]);
+const utf32le = text => {
+  const codePoints = Array.from(text, character => character.codePointAt(0));
+  const encoded = Buffer.alloc(4 + codePoints.length * 4);
+  encoded.writeUInt32LE(0xfeff, 0);
+  codePoints.forEach((codePoint, index) => encoded.writeUInt32LE(codePoint, 4 + index * 4));
+  return encoded;
+};
 const personalPath = ['/', 'home', '/fixture-user/private.txt'].join('');
 const trackingUrl = ['https://example.invalid/path?', 'a8', 'mat=value'].join('');
 const rows = [
@@ -93,6 +104,11 @@ const rows = [
   runFixture('negative:nul-in-jsonl-is-binary-and-rejected', 'docs/malformed.jsonl', Buffer.from([0x7b, 0x22, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x3a, 0x00, 0x7d]), false, {}, { expectedFailure: 'changed binary requires' }),
   runFixture('positive:utf16le-bom-clean-text-is-scanned', 'src/notes.txt', utf16('ordinary notes\n'), true),
   runFixture('negative:utf16le-bom-private-key-rejected', 'src/notes.txt', utf16(`${privateKey}\n`), false, {}, { expectedFailure: 'private key material' }),
+  runFixture('positive:utf32le-bom-clean-text-is-scanned', 'src/notes.txt', utf32le('ordinary notes\n'), true, {}, {
+    expectedOutput: 'scanned line(s) inspected',
+    forbiddenOutput: 'added line(s) inspected',
+  }),
+  runFixture('negative:utf32le-bom-private-key-rejected', 'src/notes.txt', utf32le(`${privateKey}\n`), false, {}, { expectedFailure: 'private key material' }),
   runFixture('negative:binary-with-wrong-digest-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong' }),
   runFixture('negative:unstaged-binary-approval-is-ignored', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong', unstagedApproval: true }),
   runFixture('positive:binary-with-reviewed-digest-approval-accepted', 'src/image.bin', Buffer.from([0, 1, 2, 3]), true, {}, { binaryApproval: 'matching' }),

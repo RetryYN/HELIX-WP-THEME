@@ -5,10 +5,10 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "d50be3b00c1f5c14e8d6c2619c5eff258bc8f1fa164caf35d28b3df5765fc916",
+  "source_sha256": "d19d9aed65e153b0dc0a2e984674b9db2ff2232749e8e1b2700a4155032ac6da",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "d50be3b00c1f5c14e8d6c2619c5eff258bc8f1fa164caf35d28b3df5765fc916",
-    "scripts/verify-public-safety.mjs": "437a33c482cc9ababe83603e1aecaef3851ac131e892e117546948b0656ca12a"
+    "scripts/public-safety-guard.sh": "d19d9aed65e153b0dc0a2e984674b9db2ff2232749e8e1b2700a4155032ac6da",
+    "scripts/verify-public-safety.mjs": "daa7f105f40be39f2c2ad388d958b5d21dd035728034c37bfab816e8500cd7c9"
   },
   "rows": [
     {
@@ -195,6 +195,20 @@
     },
     {
       "name": "negative:utf16le-bom-private-key-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:utf32le-bom-clean-text-is-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:utf32le-bom-private-key-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",
