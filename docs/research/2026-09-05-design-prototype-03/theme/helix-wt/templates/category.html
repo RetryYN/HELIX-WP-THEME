@@ -1,4 +1,16 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<!-- wp:html -->
+<style>
+/* Keep the mobile grid readable when WordPress omits the featured-image block. */
+@media (max-width: 599px) {
+  body.wt-cat-list-grid .wt-category .wt-cat-primary-list .wt-cat-card:not(:has(> .wp-block-post-featured-image)) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "terms" "title" "meta" "excerpt";
+    padding: .75rem;
+  }
+}
+</style>
+<!-- /wp:html -->
 <!-- wp:group {"tagName":"main","className":"wt-category","layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|80"}}}} -->
 <main class="wp-block-group wt-category">
 <!-- wp:group {"className":"wt-cat-head","layout":{"type":"default"}} -->
