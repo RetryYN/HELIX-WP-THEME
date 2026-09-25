@@ -272,6 +272,18 @@ test('the generated catalog matches current sources without rewriting tracked ou
   assert.deepEqual(files.map(file => hash(fs.readFileSync(file))), before);
 });
 
+test('article purpose WordPress PoC is represented by three verified screenshot candidates', () => {
+  const root = new URL('../', import.meta.url);
+  const catalog = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/catalog-data.json', root), 'utf8'));
+  const audit = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/acceptance-audit.json', root), 'utf8'));
+  const candidates = catalog.entries.filter(entry => entry.part === 'article-purpose');
+  assert.deepEqual(candidates.map(entry => entry.variant).sort(), ['コラム', 'ニュース・発表', '検索流入']);
+  assert.ok(candidates.every(entry => entry.requirementIds.includes('WT-FR-ARTICLE-01')));
+  assert.ok(candidates.every(entry => entry.images.pc && entry.images.sp && entry.demoRoute));
+  assert.deepEqual(audit.rows.filter(row => row.requirement_id === 'WT-FR-ARTICLE-01').map(row => row.status).sort(),
+    ['partial', 'partial', 'verified_in_poc']);
+});
+
 test('generated-output check rejects stale bytes without overwriting them', t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wt-generated-check-'));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

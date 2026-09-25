@@ -2,7 +2,7 @@
   "schema": "wt-selection-index.v1",
   "source": "catalog-data.json",
   "generatedAtEventHead": "WT-EVT-0313",
-  "candidateCount": 708,
+  "candidateCount": 711,
   "requirements": [
     {
       "id": "WT-TR-CORE-01",
@@ -5841,7 +5841,7 @@
       "priority": "P1",
       "status": "partial_poc",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 1,
@@ -5850,7 +5850,7 @@
           "stale": 0
         },
         "openAcceptanceIds": [],
-        "selectionState": "no_candidate"
+        "selectionState": "candidate_with_partial_evidence"
       },
       "acceptance": [
         {
@@ -5866,7 +5866,11 @@
           "status": "partial"
         }
       ],
-      "relatedEntryIds": []
+      "relatedEntryIds": [
+        "article-purpose:news-releases",
+        "article-purpose:columns",
+        "article-purpose:search-intent"
+      ]
     },
     {
       "id": "WT-FR-HOME-01",
@@ -26806,6 +26810,93 @@
         "next": "関連画像を起点に全受入条件の再現・実測を確認する"
       },
       "evidence": "../2026-09-08-site-search/results/verify.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "article-purpose:news-releases",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "ニュース・発表",
+      "purpose": "新着の発表と過去のお知らせを探す",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "article-purpose:columns",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "コラム",
+      "purpose": "テーマ別の学びと考え方を探す",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json",
+      "devices": [
+        "pc",
+        "sp"
+      ]
+    },
+    {
+      "id": "article-purpose:search-intent",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "検索流入",
+      "purpose": "検索から来た読者を解説へ案内する",
+      "group": "ページ・本文",
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "selectionCoverage": {
+        "status": "partial",
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "next": "関連画像を起点に全受入条件の再現・実測を確認する"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json",
       "devices": [
         "pc",
         "sp"

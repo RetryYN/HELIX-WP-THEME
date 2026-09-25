@@ -172,6 +172,48 @@ if (fs.existsSync(path.join(root, searchLocalePath))) {
     entry.description = '日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。';
   }
 }
+const articlePurposePath = 'docs/research/2026-09-26-news-column-purpose-gap/results/verify.json';
+const articlePurposeCandidatesPath = 'docs/research/2026-09-26-news-column-purpose-gap/catalog-candidates.json';
+if (fs.existsSync(path.join(root, articlePurposePath)) && fs.existsSync(path.join(root, articlePurposeCandidatesPath))) {
+  const evidence = read(articlePurposePath);
+  const candidates = read(articlePurposeCandidatesPath);
+  if (!evidence.completed || evidence.expectedWordPress !== '7.1.2' || evidence.checks.length !== 34 || evidence.checks.some(check => !check.pass)) {
+    throw Error('Article purpose evidence incomplete');
+  }
+  for (const [source, expected] of Object.entries(evidence.sourceDigests)) {
+    if (createHash('sha256').update(fs.readFileSync(path.join(root, source))).digest('hex') !== expected) {
+      throw Error(`Stale article purpose evidence: ${source}`);
+    }
+  }
+  const routePaths = new Set(evidence.routes.map(route => new URL(route.url).pathname));
+  const candidateIds = new Set();
+  for (const candidate of candidates.entries) {
+    if (candidateIds.has(candidate.id) || candidate.part !== 'article-purpose'
+        || JSON.stringify(candidate.requirementIds) !== JSON.stringify(['WT-FR-ARTICLE-01'])
+        || !routePaths.has(candidate.demoRoute)) {
+      throw Error(`Invalid article purpose candidate: ${candidate.id}`);
+    }
+    candidateIds.add(candidate.id);
+    const images = {};
+    for (const [device, image] of Object.entries(candidate.images)) {
+      if (!['pc', 'sp'].includes(device) || !/^[a-z-]+-(?:390|1440)\.jpg$/.test(image.file)) {
+        throw Error(`Invalid article purpose screenshot: ${candidate.id}/${device}`);
+      }
+      const imagePath = `docs/research/2026-09-26-news-column-purpose-gap/results/${image.file}`;
+      if (createHash('sha256').update(fs.readFileSync(path.join(root, imagePath))).digest('hex') !== image.sha256) {
+        throw Error(`Changed article purpose screenshot: ${candidate.id}/${device}`);
+      }
+      images[device] = `../2026-09-26-news-column-purpose-gap/results/${image.file}`;
+    }
+    if (!images.pc || !images.sp) throw Error(`Article purpose candidate needs desktop and mobile screenshots: ${candidate.id}`);
+    entries.set(candidate.id, {
+      ...candidate,
+      images,
+      evidence: '../2026-09-26-news-column-purpose-gap/results/verify.json',
+    });
+  }
+  if (candidateIds.size !== 3) throw Error('Article purpose catalog needs all three purpose variants');
+}
 const eventStatePath = 'docs/research/2026-09-08-event-state/verify.json';
 if (fs.existsSync(path.join(root, eventStatePath))) {
   const evidence = read(eventStatePath);
