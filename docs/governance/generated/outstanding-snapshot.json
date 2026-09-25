@@ -1,0 +1,17 @@
+{
+  "schema_version": "outstanding-snapshot.v1",
+  "decision_count": 2,
+  "plan_ids": [
+    "CONSUMER-SETUP-BOUNDARY",
+    "PLAN-L6-01-wp-integration-ci"
+  ],
+  "blockers": [
+    "active_draft",
+    "consumer_setup_boundary",
+    "non_terminal_plans"
+  ],
+  "required_actions": [
+    "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present",
+    "start or select the project PLAN and record real project acceptance evidence before claiming whole-program completion"
+  ]
+}

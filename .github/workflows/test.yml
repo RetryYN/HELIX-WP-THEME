@@ -139,16 +139,14 @@ jobs:
         run: node docs/research/2026-09-10-current-theme-quality/verify.mjs
 
 # ============================================================
-# job 3: Integration テスト (docker WP 付き / 手動 or push)
+# job 3: Integration テスト (docker WP 付き / push・pull_request・手動)
 #
 # WP DB が必要なため service コンテナを起動する。
-# デフォルトは workflow_dispatch のみ有効。
-# 常時実行が必要になったら on.push の条件を外すこと。
+# PHP/テーマ/プラグイン変更を含む CI では実 WP 統合受入まで実行する。
 # ============================================================
   phpunit-integration:
     name: PHPUnit integration suite (docker WP)
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
 
     services:
       db:
@@ -158,6 +156,8 @@ jobs:
           MARIADB_USER: wp
           MARIADB_PASSWORD: wp
           MARIADB_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
         options: >-
           --health-cmd="healthcheck.sh --connect --innodb_initialized"
           --health-interval=10s
@@ -165,7 +165,7 @@ jobs:
           --health-retries=5
 
       wordpress:
-        image: wordpress:7.1-php8.3-apache
+        image: wordpress:7.1.2-php8.3-apache
         env:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: wp
@@ -194,6 +194,21 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
+      - name: Add matching WordPress core to the PHPUnit test library
+        env:
+          WP_VERSION: '7.1.2'
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/wordpress-${WP_VERSION}.zip"
+          extract_dir="$RUNNER_TEMP/wordpress-core"
+          curl --fail --location --retry 3 --silent --show-error \
+            "https://wordpress.org/wordpress-${WP_VERSION}.zip" \
+            --output "$archive"
+          mkdir -p "$extract_dir"
+          unzip -q "$archive" -d "$extract_dir"
+          cp -a "$extract_dir/wordpress/." vendor/wp-phpunit/wp-phpunit/
+          test -f vendor/wp-phpunit/wp-phpunit/wp-settings.php
+
       - name: Create wp-tests-config.php
         run: cp tests/wp-tests-config.php.example tests/wp-tests-config.php
         env:
@@ -211,7 +226,7 @@ jobs:
           done
 
       - name: Run integration test suite
-        run: vendor/bin/phpunit --testsuite integration --colors=always
+        run: vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap-integration.php --colors=always
         env:
           AGENT_NEO_WP_DB_HOST: 127.0.0.1
           AGENT_NEO_WP_DB_PORT: 3306
