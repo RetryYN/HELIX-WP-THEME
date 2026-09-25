@@ -1,0 +1,370 @@
+{
+  "schema": "helix-news-column-purpose-poc.v1",
+  "baseUrl": "http://127.0.0.1:18112",
+  "expectedWordPress": "7.1.2",
+  "routes": [
+    {
+      "url": "http://127.0.0.1:18112/category/news-releases/",
+      "status": 200,
+      "heading": "ニュース・発表",
+      "description": "新製品の発表と運営からのお知らせを、日付・分類から探せる一覧です。",
+      "primaryTitles": [
+        "架空製品の発表例（2026）",
+        "架空サービスのお知らせ例（2025）"
+      ],
+      "classificationLinks": [
+        "ニュース・発表",
+        "製品発表",
+        "お知らせ",
+        "ニュース・発表"
+      ],
+      "structure": {
+        "guideInPrimaryColumn": true,
+        "guideBeforeSidebar": true
+      }
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/columns/",
+      "status": 200,
+      "heading": "コラム",
+      "description": "実務の学びと考え方をテーマ別に紹介するコラムです。",
+      "primaryTitles": [
+        "架空組織づくりコラム（2026）",
+        "架空データ活用コラム（2025）"
+      ],
+      "classificationLinks": [
+        "コラム",
+        "組織づくり",
+        "コラム",
+        "データ活用"
+      ],
+      "structure": {
+        "guideInPrimaryColumn": true,
+        "guideBeforeSidebar": true
+      }
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/search-intent/",
+      "status": 200,
+      "heading": "検索流入",
+      "description": "検索で訪れた読者の疑問を解決する解説記事です。",
+      "primaryTitles": [
+        "架空導入ガイドの記事例（2026）"
+      ],
+      "classificationLinks": [
+        "導入ガイド",
+        "検索流入"
+      ],
+      "structure": {
+        "guideInPrimaryColumn": true,
+        "guideBeforeSidebar": true
+      }
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/news-releases/?year=2025",
+      "status": 200,
+      "primaryTitles": [
+        "架空サービスのお知らせ例（2025）"
+      ],
+      "followedDetailDate": "2025-12-15",
+      "articleTerms": [
+        "お知らせ",
+        "ニュース・発表"
+      ],
+      "postType": "post"
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/columns/?year=2025",
+      "status": 200,
+      "primaryTitles": [
+        "架空データ活用コラム（2025）"
+      ],
+      "followedDetailDate": "2025-10-02",
+      "articleTerms": [
+        "コラム",
+        "データ活用"
+      ],
+      "postType": "post"
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/search-intent/?year=2026",
+      "status": 200,
+      "primaryTitles": [
+        "架空導入ガイドの記事例（2026）"
+      ],
+      "followedDetailDate": "2026-06-18",
+      "articleTerms": [
+        "導入ガイド",
+        "検索流入"
+      ],
+      "postType": "post"
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/news-releases/product-news/",
+      "status": 200,
+      "primaryTitles": [
+        "架空製品の発表例（2026）"
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/news-releases/announcements/",
+      "status": 200,
+      "primaryTitles": [
+        "架空サービスのお知らせ例（2025）"
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/columns/organization/",
+      "status": 200,
+      "primaryTitles": [
+        "架空組織づくりコラム（2026）"
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/columns/data/",
+      "status": 200,
+      "primaryTitles": [
+        "架空データ活用コラム（2025）"
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:18112/category/search-intent/guides/",
+      "status": 200,
+      "primaryTitles": [
+        "架空導入ガイドの記事例（2026）"
+      ]
+    }
+  ],
+  "viewports": [
+    {
+      "route": "news-releases",
+      "width": 390,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "primaryWidth": 358
+    },
+    {
+      "route": "news-releases",
+      "width": 768,
+      "viewportWidth": 768,
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "primaryWidth": 720
+    },
+    {
+      "route": "news-releases",
+      "width": 1440,
+      "viewportWidth": 1440,
+      "documentWidth": 1440,
+      "mainWidth": 1120,
+      "primaryWidth": 701
+    },
+    {
+      "route": "columns",
+      "width": 390,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "primaryWidth": 358
+    },
+    {
+      "route": "columns",
+      "width": 768,
+      "viewportWidth": 768,
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "primaryWidth": 720
+    },
+    {
+      "route": "columns",
+      "width": 1440,
+      "viewportWidth": 1440,
+      "documentWidth": 1440,
+      "mainWidth": 1120,
+      "primaryWidth": 701
+    },
+    {
+      "route": "search-intent",
+      "width": 390,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "primaryWidth": 358
+    },
+    {
+      "route": "search-intent",
+      "width": 768,
+      "viewportWidth": 768,
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "primaryWidth": 720
+    },
+    {
+      "route": "search-intent",
+      "width": 1440,
+      "viewportWidth": 1440,
+      "documentWidth": 1440,
+      "mainWidth": 1120,
+      "primaryWidth": 701
+    }
+  ],
+  "checks": [
+    {
+      "name": "purpose:news-releases-archive-description-and-classification",
+      "pass": true,
+      "route": "news-releases"
+    },
+    {
+      "name": "layout:category-guide-in-primary-before-sidebar",
+      "pass": true
+    },
+    {
+      "name": "responsive:news-releases:390-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 390,
+      "documentWidth": 390
+    },
+    {
+      "name": "responsive:news-releases:768-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 768,
+      "documentWidth": 768
+    },
+    {
+      "name": "responsive:news-releases:1440-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 1440,
+      "documentWidth": 1440
+    },
+    {
+      "name": "purpose:columns-archive-description-and-classification",
+      "pass": true,
+      "route": "columns"
+    },
+    {
+      "name": "responsive:columns:390-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 390,
+      "documentWidth": 390
+    },
+    {
+      "name": "responsive:columns:768-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 768,
+      "documentWidth": 768
+    },
+    {
+      "name": "responsive:columns:1440-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 1440,
+      "documentWidth": 1440
+    },
+    {
+      "name": "purpose:search-intent-archive-description-and-classification",
+      "pass": true,
+      "route": "search-intent"
+    },
+    {
+      "name": "responsive:search-intent:390-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 390,
+      "documentWidth": 390
+    },
+    {
+      "name": "responsive:search-intent:768-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 768,
+      "documentWidth": 768
+    },
+    {
+      "name": "responsive:search-intent:1440-no-horizontal-overflow",
+      "pass": true,
+      "viewportWidth": 1440,
+      "documentWidth": 1440
+    },
+    {
+      "name": "archive:news-releases:2025-filter-to-dated-detail",
+      "pass": true,
+      "route": "news-releases",
+      "year": "2025",
+      "date": "2025-12-15",
+      "postType": "post"
+    },
+    {
+      "name": "type:news-releases-purpose-uses-standard-post",
+      "pass": true,
+      "route": "news-releases",
+      "postType": "post"
+    },
+    {
+      "name": "archive:columns:2025-filter-to-dated-detail",
+      "pass": true,
+      "route": "columns",
+      "year": "2025",
+      "date": "2025-10-02",
+      "postType": "post"
+    },
+    {
+      "name": "type:columns-purpose-uses-standard-post",
+      "pass": true,
+      "route": "columns",
+      "postType": "post"
+    },
+    {
+      "name": "archive:search-intent:2026-filter-to-dated-detail",
+      "pass": true,
+      "route": "search-intent",
+      "year": "2026",
+      "date": "2026-06-18",
+      "postType": "post"
+    },
+    {
+      "name": "type:search-intent-purpose-uses-standard-post",
+      "pass": true,
+      "route": "search-intent",
+      "postType": "post"
+    },
+    {
+      "name": "topics:news-releases/product-news-child-archive",
+      "pass": true,
+      "route": "news-releases/product-news"
+    },
+    {
+      "name": "topics:news-releases/announcements-child-archive",
+      "pass": true,
+      "route": "news-releases/announcements"
+    },
+    {
+      "name": "topics:columns/organization-child-archive",
+      "pass": true,
+      "route": "columns/organization"
+    },
+    {
+      "name": "topics:columns/data-child-archive",
+      "pass": true,
+      "route": "columns/data"
+    },
+    {
+      "name": "topics:search-intent/guides-child-archive",
+      "pass": true,
+      "route": "search-intent/guides"
+    },
+    {
+      "name": "classification:five-topical-and-notice-child-archives",
+      "pass": true
+    }
+  ],
+  "sourceDigests": {
+    "docs/research/2026-09-26-news-column-purpose-gap/compose.yaml": "6d491cd5d5c104d3829b5b4eb4c5fb2aa5824e8db0cc92712e77a4c5391fc584",
+    "docs/research/2026-09-26-news-column-purpose-gap/seed.php": "62abdd138cdc0781cbd7644bdec5e8e186f0df5096e788e38864b6abfc8ec401",
+    "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs": "d9b448d6e51340ca0c9f8981e8d03fcb82d25c94d2b6dc69583e9455c80ceae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "f5d2803b130e55ac94e41ba26eb419da8f32772eccc34e4b3bb3a1e044909be6",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html": "d7e238cfdcf2c12fc0f583dcca6439189fdceeade0ebc70721c7fab7f5537a26",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3"
+  },
+  "completed": true,
+  "generatedAt": "2026-09-25T18:45:16.625Z"
+}

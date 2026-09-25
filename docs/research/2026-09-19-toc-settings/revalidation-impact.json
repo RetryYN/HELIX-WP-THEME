@@ -187,6 +187,24 @@
       "proofs": [
         "docs/research/2026-09-10-reduced-motion/verify.json"
       ]
+    },
+    {
+      "ac": "WT-AC-ARTICLE-01A",
+      "proofs": [
+        "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+      ]
+    },
+    {
+      "ac": "WT-AC-ARTICLE-01B",
+      "proofs": [
+        "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+      ]
+    },
+    {
+      "ac": "WT-AC-ARTICLE-01C",
+      "proofs": [
+        "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+      ]
     }
   ],
   "proofVerifiers": [
@@ -385,6 +403,13 @@
       "proof": "docs/research/2026-09-20-heading-comparison/verification.json",
       "verifierSources": [
         "scripts/verify-heading-comparison.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+      "verifierSources": [
+        "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs",
+        "scripts/verify-article-purpose-proof-binding.mjs"
       ]
     }
   ]

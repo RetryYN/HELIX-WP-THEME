@@ -108,7 +108,7 @@ function entryDiff(before, after, { allowAdditions = false } = {}) {
     const rightCopy = structuredClone(right);
     const sourceKeys = new Set([...Object.keys(left.source_digests || {}), ...Object.keys(right.source_digests || {})]);
     for (const source of sourceKeys) {
-      if (left.source_digests?.[source] !== right.source_digests?.[source]) changes.push({ kind: 'source', case_id: id, path: source, before: left.source_digests?.[source], after: right.source_digests?.[source] });
+      if (left.source_digests?.[source] !== right.source_digests?.[source]) changes.push({ kind: 'source', case_id: id, path: source, before: left.source_digests?.[source] ?? null, after: right.source_digests?.[source] ?? null });
     }
     const proofKeys = new Set([...(left.proofs || []).map(item => item.path), ...(right.proofs || []).map(item => item.path)]);
     for (const proofPath of proofKeys) {
@@ -140,6 +140,7 @@ function check(baseRef) {
   const currentRaw = bytes(registryPath).toString();
   const base = JSON.parse(baseRaw);
   const current = JSON.parse(currentRaw);
+  const admittedInThisRange = new Set(Object.keys(current.cases || {}).filter(id => !base.cases?.[id]));
   const changes = entryDiff(base, current, { allowAdditions: true });
   const baseLogRaw = (() => { try { return git(['show', `${baseRef}:${logPath}`]); } catch { return ''; } })();
   const currentLog = fs.existsSync(path.join(root, logPath)) ? read(logPath) : { schema: 'wt-acceptance-rebind-log.v1', transactions: [] };
@@ -157,7 +158,11 @@ function check(baseRef) {
   for (const transaction of added) {
     if (transaction.registry_before_sha256 !== expected) fail('rebind transaction chain does not start at the base registry');
     expected = transaction.registry_after_sha256;
-    covered.push(...(transaction.changes || []));
+    // A case admitted after the base already records its complete state via
+    // the admission transaction and candidate digest. Later proof/source
+    // refreshes for that same new case are validated below, but do not create
+    // an additional net change relative to a base that had no such case.
+    covered.push(...(transaction.changes || []).filter(change => change.kind === 'admit' || !admittedInThisRange.has(change.case_id)));
     if (!transaction.commands?.length || !transaction.proof_writes?.length) fail('rebind transaction lacks oracle execution evidence');
     if (transaction.kind && !['rebind', 'admit'].includes(transaction.kind)) fail(`unknown acceptance transaction kind: ${transaction.kind}`);
     if ((transaction.kind ?? 'rebind') === 'admit') {
@@ -201,13 +206,16 @@ function plan(options) {
     return { id, evidence, staleSources };
   });
   const staleCount = selected.reduce((sum, item) => sum + item.staleSources.length, 0);
+  const staleProofs = [...new Map(selected.flatMap(({ id, evidence }) => (evidence.proofs || [])
+    .filter(proof => digest(bytes(proof.path)) !== proof.sha256)
+    .map(proof => [proof.path, { case_id: id, path: proof.path, before: proof.sha256, after: digest(bytes(proof.path)) }]))).values()];
   for (const rename of options.rowRenames) {
     if (!selectedIds.has(rename.case)) fail(`row rename case is not selected: ${rename.case}`);
     const proof = registry.cases[rename.case].proofs?.find(item => item.path === rename.proof);
     if (!proof) fail(`row rename proof is not registered: ${rename.proof}`);
     if ((proof.row_names || []).filter(name => name === rename.from).length !== 1 || proof.row_names.includes(rename.to)) fail(`row rename is not one-to-one: ${rename.case}`);
   }
-  if (!staleCount && !options.rowRenames.length) fail('selected cases have no changed source digests or proof rows to rebind');
+  if (!staleCount && !staleProofs.length && !options.rowRenames.length) fail('selected cases have no changed source digests, proof artifacts, or proof rows to rebind');
   for (const [id, evidence] of Object.entries(registry.cases || {})) {
     if (selectedIds.has(id)) continue;
     const stale = Object.entries(evidence.source_digests || {}).find(([source, expected]) => digest(bytes(source)) !== expected);
@@ -220,7 +228,7 @@ function plan(options) {
     const shared = (evidence.proofs || []).find(proof => proofs.has(proof.path));
     if (shared) fail(`all cases sharing a regenerated proof must be selected: ${id} / ${shared.path}`);
   }
-  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
+  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), proof_digest_updates: staleProofs, row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
   if (!options.apply) {
     console.log(JSON.stringify({ mode: 'dry-run', ...summary }, null, 2));
     return;
@@ -229,7 +237,9 @@ function plan(options) {
   validateOracleCommands(options.commands, proofs.keys());
   const snapshots = new Map([...proofs.keys()].map(proofPath => {
     const stat = fs.statSync(path.join(root, proofPath), { bigint: true });
-    return [proofPath, { sha256: digest(bytes(proofPath)), mtimeNs: stat.mtimeNs, ctimeNs: stat.ctimeNs }];
+    const value = read(proofPath);
+    return [proofPath, { sha256: digest(bytes(proofPath)), mtimeNs: stat.mtimeNs, ctimeNs: stat.ctimeNs,
+      sourceDigests: value.sourceDigests ?? value.source_digests ?? {} }];
   }));
   for (const command of options.commands) {
     const result = spawnSync(command[0], command.slice(1), { cwd: root, stdio: 'inherit' });
@@ -240,6 +250,7 @@ function plan(options) {
     proof.row_names = proof.row_names.map(name => name === rename.from ? rename.to : name);
   }
   const proofWrites = [];
+  const updatedProofSources = new Map();
   for (const [proofPath, proof] of proofs) {
     const stat = fs.statSync(path.join(root, proofPath), { bigint: true });
     const before = snapshots.get(proofPath);
@@ -250,15 +261,26 @@ function plan(options) {
     if (!declared || typeof declared !== 'object' || Array.isArray(declared)) fail(`proof lacks sourceDigests: ${proofPath}`);
     for (const [source, expected] of Object.entries(declared)) {
       if (!fs.existsSync(path.join(root, source)) || digest(bytes(source)) !== expected) fail(`proof source digest mismatch: ${proofPath} / ${source}`);
-      for (const { evidence } of selected) {
-        if ((evidence.proofs || []).some(item => item.path === proofPath)) evidence.source_digests[source] = expected;
-      }
     }
+    updatedProofSources.set(proofPath, declared);
     const after = digest(bytes(proofPath));
     proofWrites.push({ path: proofPath, before_sha256: before.sha256, after_sha256: after, rewritten: true });
     for (const { evidence } of selected) for (const item of evidence.proofs || []) if (item.path === proofPath) item.sha256 = after;
   }
-  for (const item of selected) for (const [source] of item.staleSources) item.evidence.source_digests[source] = digest(bytes(source));
+  for (const item of selected) {
+    const previousProofSources = new Set();
+    const currentProofSources = new Map();
+    for (const proof of item.evidence.proofs || []) {
+      for (const source of Object.keys(snapshots.get(proof.path)?.sourceDigests || {})) previousProofSources.add(source);
+      for (const [source, expected] of Object.entries(updatedProofSources.get(proof.path) || {})) {
+        if (currentProofSources.has(source) && currentProofSources.get(source) !== expected) fail(`shared proofs disagree on source digest: ${item.id} / ${source}`);
+        currentProofSources.set(source, expected);
+      }
+    }
+    for (const [source] of item.staleSources) previousProofSources.add(source);
+    for (const source of previousProofSources) if (!currentProofSources.has(source)) delete item.evidence.source_digests[source];
+    for (const [source, expected] of currentProofSources) item.evidence.source_digests[source] = expected;
+  }
   const afterRaw = Buffer.from(stable(registry));
   const changes = entryDiff(JSON.parse(registryRaw), registry);
   const transaction = {

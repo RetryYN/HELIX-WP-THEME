@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: helix_article_poc
+      MARIADB_USER: wp
+      MARIADB_PASSWORD: ${HELIX_ARTICLE_DB_PASSWORD:?Set HELIX_ARTICLE_DB_PASSWORD in .env}
+      MARIADB_ROOT_PASSWORD: ${HELIX_ARTICLE_ROOT_PASSWORD:?Set HELIX_ARTICLE_ROOT_PASSWORD in .env}
+    volumes:
+      - article_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    image: wordpress:7.1.2-php8.3-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: ${HELIX_ARTICLE_DB_PASSWORD:?Set HELIX_ARTICLE_DB_PASSWORD in .env}
+      WORDPRESS_DB_NAME: helix_article_poc
+      WORDPRESS_DEBUG: "1"
+    ports:
+      - "127.0.0.1:${HELIX_ARTICLE_PORT:-18112}:80"
+    volumes:
+      - article_wp:/var/www/html
+      - ../2026-09-05-design-prototype-03/theme/helix-wt:/var/www/html/wp-content/themes/helix-wt:ro
+
+volumes:
+  article_db:
+  article_wp:

@@ -3849,6 +3849,41 @@
       "semantic_digest": "9491764a5a6503c7"
     },
     {
+      "id": "WT-FR-ARTICLE-01",
+      "kind": "functional",
+      "status": "candidate_inventory",
+      "source_ids": [
+        "WT-FRL1-02",
+        "WT-CAND-ARTICLE",
+        "WT-EVT-0296",
+        "WT-EVT-0299",
+        "WT-EVT-0300",
+        "WT-EVT-0313"
+      ],
+      "statement": "記事管理は目的を「検索流入」「ニュース・発表」「教育・信頼形成コラム」等で識別し、その選択に応じた一覧と詳細への導線を提供する。ニュース一覧は日付・分類で過去項目を探せ、コラム一覧は記事目的を説明しテーマ別記事へ移動できる。目的は投稿種別と区別し、共通投稿型の分類としても実装できる。CPT・URL 構造・Discover 掲載保証は本候補で決めない。",
+      "priority": "P1",
+      "actor_ids": [
+        "EDITOR",
+        "OPERATOR",
+        "AI_AGENT"
+      ],
+      "surface_ids": [
+        "WT-UI-06",
+        "WT-UI-10"
+      ],
+      "acceptance_ids": [
+        "WT-AC-ARTICLE-01A",
+        "WT-AC-ARTICLE-01B",
+        "WT-AC-ARTICLE-01C"
+      ],
+      "test_ids": [
+        "WT-AT-ARTICLE-01"
+      ],
+      "revision": 1,
+      "owner": "PO",
+      "semantic_digest": "ebc8c647e3736669"
+    },
+    {
       "id": "WT-FR-HOME-01",
       "kind": "functional",
       "status": "candidate_inventory",

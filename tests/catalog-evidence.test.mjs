@@ -25,8 +25,8 @@ function fixture(t) {
     proofs: [{ path: 'proof.json', sha256: hash(JSON.stringify(proof)), row_names: ['scenario'] }] };
   const save = data => write('docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', { cases: data });
   save({ A1: record });
-  function run() {
-    const process = spawnSync('node', [path.join(root, 'scripts/audit-catalog-evidence.mjs')], { encoding: 'utf8' });
+  function run(args = []) {
+    const process = spawnSync('node', [path.join(root, 'scripts/audit-catalog-evidence.mjs'), ...args], { encoding: 'utf8' });
     const report = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/2026-09-08-selection-catalog/acceptance-audit.json'), 'utf8'));
     return { status: process.status, report };
   }
@@ -41,6 +41,10 @@ test('successful partial evidence cannot claim overall completion; missing cases
 test('source changes invalidate otherwise successful proof', t => {
   const f = fixture(t); f.write('implementation.php', 'source-v2'); const result = f.run();
   assert.equal(result.status, 1); assert.equal(result.report.counts.stale, 1);
+});
+test('report-only audit mode keeps stale evidence visible without blocking catalog projection', t => {
+  const f = fixture(t); f.write('implementation.php', 'source-v2'); const result = f.run(['--allow-stale']);
+  assert.equal(result.status, 0); assert.equal(result.report.counts.stale, 1); assert.equal(result.report.complete, false);
 });
 test('changed acceptance wording requires reinspection', t => {
   const f = fixture(t); f.write('docs/requirements/l3/acceptance-cases.json', { cases: [{ id: 'A1', requirement_id: 'R1', oracle: 'Stronger behavior', polarity: 'positive' }] });
@@ -159,8 +163,8 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
     .sort((a, b) => a.ac.localeCompare(b.ac));
   const recordedProofs = impact.proofVerifiers.map(record => record.proof).sort();
 
-  assert.equal(affected.length, 27);
-  assert.equal(proofPaths.length, 30);
+  assert.equal(affected.length, 30);
+  assert.equal(proofPaths.length, 31);
   assert.deepEqual(recordedAffected, expectedAffected);
   assert.deepEqual(recordedProofs, proofPaths);
   for (const record of impact.proofVerifiers) {

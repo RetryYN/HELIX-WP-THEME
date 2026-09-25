@@ -67,4 +67,7 @@ const report = { schema: 'wt-catalog-acceptance-audit.v1', requirementCount: ir.
   counts, complete: rows.every(r => r.status === 'verified_in_poc'), rows };
 writeGenerated(path.join(root, 'docs/research/2026-09-08-selection-catalog/acceptance-audit.json'), JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify({ requirements: report.requirementCount, acceptance: report.acceptanceCount, ...counts, complete: report.complete }));
-if (counts.stale) process.exitCode = 1;
+// Catalog projection must be able to display stale evidence so it can be reviewed
+// and repaired. The standalone audit remains fail-closed unless its caller opts
+// into report-only mode explicitly.
+if (counts.stale && !process.argv.includes('--allow-stale')) process.exitCode = 1;

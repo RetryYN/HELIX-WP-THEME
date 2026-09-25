@@ -21,7 +21,6 @@ const sourceFiles = [
   'archive/agent-neo/themes/agent-neo-theme/theme.json',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json',
-  'docs/requirements/l3/requirements-ir.json',
 ];
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const hash = file => createHash('sha256').update(fs.readFileSync(file)).digest('hex');

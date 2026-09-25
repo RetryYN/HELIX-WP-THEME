@@ -98,6 +98,46 @@ test('apply imports newly declared proof source digests into the acceptance regi
   assert.equal(registry.cases.A1.source_digests['new-source.txt'], hash('new-source\n'));
 });
 
+test('a refreshed proof can be rebound when source digests are unchanged', async t => {
+  const f = fixture(t);
+  const proofPath = path.join(f.root, 'proof.json');
+  const proof = JSON.parse(fs.readFileSync(proofPath, 'utf8'));
+  proof.refresh = 'runtime rerun';
+  f.write('proof.json', proof);
+  const preview = f.run(['--case', 'A1']);
+  assert.equal(preview.status, 0, preview.stderr);
+  assert.match(preview.stdout, /proof\.json/u);
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const applied = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(applied.status, 0, applied.stderr);
+  assert.match(applied.stdout, /proof_digest_updates/u);
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json'), 'utf8'));
+  assert.equal(registry.cases.A1.proofs[0].sha256, hash(fs.readFileSync(proofPath)));
+  const checked = f.run(['--check', '--base-ref', 'HEAD']);
+  assert.equal(checked.status, 0, checked.stderr || checked.stdout);
+});
+
+test('apply removes obsolete proof source bindings and records the removal', async t => {
+  const f = fixture(t);
+  const registryPath = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  registry.cases.A1.source_digests['new-source.txt'] = hash('new-source\n');
+  fs.writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
+  assert.equal(spawnSync('git', ['add', 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json'], { cwd: f.root }).status, 0);
+  assert.equal(spawnSync('git', ['commit', '-m', 'record prior proof source set'], { cwd: f.root }).status, 0);
+  f.write('implementation.php', 'source-v2\n');
+  f.write('rewrite-proof.mjs', "import fs from 'node:fs'; import { createHash } from 'node:crypto'; const p=JSON.parse(fs.readFileSync('proof.json')); p.sourceDigests['implementation.php']=createHash('sha256').update(fs.readFileSync('implementation.php')).digest('hex'); delete p.sourceDigests['new-source.txt']; fs.writeFileSync('proof.json', JSON.stringify(p, null, 2)+'\\n');\n");
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  const after = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  assert.equal(after.cases.A1.source_digests['new-source.txt'], undefined);
+  const log = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-rebind-log.json'), 'utf8'));
+  assert.ok(log.transactions[0].changes.some(change => change.kind === 'source' && change.path === 'new-source.txt' && change.after === null));
+  const checked = f.run(['--check', '--base-ref', 'HEAD']);
+  assert.equal(checked.status, 0, checked.stderr || checked.stdout);
+});
+
 test('apply rejects a proof source digest mismatch after the oracle rewrites the proof', async t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
