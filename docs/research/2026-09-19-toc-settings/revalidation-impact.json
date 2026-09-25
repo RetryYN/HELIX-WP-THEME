@@ -115,7 +115,9 @@
     {
       "ac": "WT-AC-LOOK-01B",
       "proofs": [
-        "docs/research/2026-09-10-current-theme-quality/verify.json"
+        "docs/research/2026-09-10-current-theme-quality/verify.json",
+        "docs/research/2026-09-20-heading-fluid/tokens.json",
+        "docs/research/2026-09-20-heading-fluid/verification.json"
       ]
     },
     {
@@ -133,13 +135,15 @@
     {
       "ac": "WT-AC-VOCAB-02A",
       "proofs": [
-        "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json"
+        "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+        "docs/research/2026-09-19-toc-settings/verification.json"
       ]
     },
     {
       "ac": "WT-AC-VOCAB-02B",
       "proofs": [
-        "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json"
+        "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+        "docs/research/2026-09-19-toc-settings/verification.json"
       ]
     },
     {
@@ -165,6 +169,24 @@
       "proofs": [
         "docs/research/2026-09-19-eyecatch-meta/verification.json"
       ]
+    },
+    {
+      "ac": "WT-AC-LOOK-01C",
+      "proofs": [
+        "docs/research/2026-09-19-pricing-cards/verification.json"
+      ]
+    },
+    {
+      "ac": "WT-AC-LOOK-01A",
+      "proofs": [
+        "docs/research/2026-09-20-heading-comparison/verification.json"
+      ]
+    },
+    {
+      "ac": "WT-AC-LOOK-01D",
+      "proofs": [
+        "docs/research/2026-09-10-reduced-motion/verify.json"
+      ]
     }
   ],
   "proofVerifiers": [
@@ -175,119 +197,6 @@
       ]
     },
     {
-      "proof": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-      "verifierSources": [
-        "scripts/verify-event-boundaries.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-event-state/verify.json",
-      "verifierSources": [
-        "scripts/verify-event-state.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-      "verifierSources": [
-        "scripts/verify-form-boundaries.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-      "verifierSources": [
-        "scripts/verify-form-kinds.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-form-flow/slots-verify.json",
-      "verifierSources": [
-        "scripts/verify-form-slots.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-form-flow/steps-verify.json",
-      "verifierSources": [
-        "scripts/verify-form-steps.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-form-flow/verify.json",
-      "verifierSources": [
-        "scripts/verify-form-flow.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/access.json",
-      "verifierSources": [
-        "scripts/verify-site-search-access.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/boundaries.json",
-      "verifierSources": [
-        "scripts/verify-site-search-boundaries.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/input.json",
-      "verifierSources": [
-        "scripts/verify-site-search-input.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/locale.json",
-      "verifierSources": [
-        "scripts/verify-site-search-locale.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/passwords.json",
-      "verifierSources": [
-        "scripts/verify-site-search-passwords.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/performance.json",
-      "verifierSources": [
-        "scripts/verify-site-search-performance.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-08-site-search/results/verify.json",
-      "verifierSources": [
-        "scripts/verify-site-search.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-09-footer-data/editor.json",
-      "verifierSources": [
-        "scripts/verify-footer-editor.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-09-footer-data/rendering.json",
-      "verifierSources": [
-        "scripts/verify-footer-rendering.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-      "verifierSources": [],
-      "note": "既存proofにverifier source宣言なし。手順は当該READMEを再確認する。"
-    },
-    {
-      "proof": "docs/research/2026-09-10-current-theme-quality/verify.json",
-      "verifierSources": [
-        "docs/research/2026-09-10-current-theme-quality/verify.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-10-reduced-motion/verify.json",
-      "verifierSources": [
-        "docs/research/2026-09-10-reduced-motion/verify.mjs"
-      ]
-    },
-    {
       "proof": "docs/research/2026-09-13-header-navigation-complete/verify.json",
       "verifierSources": [
         "scripts/verify-header-navigation-complete.mjs",
@@ -295,16 +204,6 @@
         "scripts/verify-header-navigation-editor.mjs",
         "scripts/verify-header-navigation-static.mjs",
         "scripts/summarize-header-navigation-complete.mjs"
-      ]
-    },
-    {
-      "proof": "docs/research/2026-09-13-notfound-recovery/verify.json",
-      "verifierSources": []
-    },
-    {
-      "proof": "docs/research/2026-09-13-privacy-boundary/verify.json",
-      "verifierSources": [
-        "scripts/verify-privacy-boundary.mjs"
       ]
     },
     {
@@ -324,9 +223,162 @@
       ]
     },
     {
+      "proof": "docs/research/2026-09-08-site-search/results/verify.json",
+      "verifierSources": [
+        "scripts/verify-site-search.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-site-search/results/boundaries.json",
+      "verifierSources": [
+        "scripts/verify-site-search-boundaries.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-site-search/results/access.json",
+      "verifierSources": [
+        "scripts/verify-site-search-access.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-site-search/results/passwords.json",
+      "verifierSources": [
+        "scripts/verify-site-search-passwords.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-site-search/results/performance.json",
+      "verifierSources": [
+        "scripts/verify-site-search-performance.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-site-search/results/input.json",
+      "verifierSources": [
+        "scripts/verify-site-search-input.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-site-search/results/locale.json",
+      "verifierSources": [
+        "scripts/verify-site-search-locale.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-form-flow/verify.json",
+      "verifierSources": [
+        "scripts/verify-form-flow.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-form-flow/kinds-verify.json",
+      "verifierSources": [
+        "scripts/verify-form-kinds.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-form-flow/steps-verify.json",
+      "verifierSources": [
+        "scripts/verify-form-steps.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-form-flow/slots-verify.json",
+      "verifierSources": [
+        "scripts/verify-form-slots.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
+      "verifierSources": [
+        "scripts/verify-form-boundaries.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-event-state/verify.json",
+      "verifierSources": [
+        "scripts/verify-event-state.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-08-event-state/boundaries-verify.json",
+      "verifierSources": [
+        "scripts/verify-event-boundaries.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-09-footer-data/rendering.json",
+      "verifierSources": [
+        "scripts/verify-footer-rendering.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-09-footer-data/editor.json",
+      "verifierSources": [
+        "scripts/verify-footer-editor.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-10-reduced-motion/verify.json",
+      "verifierSources": [
+        "docs/research/2026-09-10-reduced-motion/verify.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-10-current-theme-quality/verify.json",
+      "verifierSources": [
+        "docs/research/2026-09-10-current-theme-quality/verify.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-20-heading-fluid/tokens.json",
+      "verifierSources": [
+        "scripts/check-heading-tokens.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-20-heading-fluid/verification.json",
+      "verifierSources": [
+        "scripts/verify-heading-fluid.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+      "verifierSources": [],
+      "note": "既存proofにverifier source宣言なし。手順は当該READMEを再確認する。"
+    },
+    {
+      "proof": "docs/research/2026-09-19-toc-settings/verification.json",
+      "verifierSources": [
+        "scripts/verify-toc-settings.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-13-privacy-boundary/verify.json",
+      "verifierSources": [
+        "scripts/verify-privacy-boundary.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-13-notfound-recovery/verify.json",
+      "verifierSources": []
+    },
+    {
       "proof": "docs/research/2026-09-19-eyecatch-meta/verification.json",
       "verifierSources": [
         "scripts/verify-eyecatch-meta.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-19-pricing-cards/verification.json",
+      "verifierSources": [
+        "scripts/verify-pricing-cards.mjs"
+      ]
+    },
+    {
+      "proof": "docs/research/2026-09-20-heading-comparison/verification.json",
+      "verifierSources": [
+        "scripts/verify-heading-comparison.mjs"
       ]
     }
   ]
