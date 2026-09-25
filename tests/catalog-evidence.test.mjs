@@ -62,23 +62,45 @@ test('current-theme quality gate runs strict evidence audit for verifier changes
   }
 
   const oracleSources = new Set();
-  const collectSources = command => {
-    if (command?.[0] === 'node' && /\.mjs$/u.test(command[1] || '')) oracleSources.add(command[1]);
-    if (command?.[0] === 'npm' && command[1] === 'run') {
-      const script = packageJson.scripts[command[2]] || '';
-      const source = script.split(/\s+/u).find(argument => /^(?:scripts|docs\/research)\/.+\.mjs$/u.test(argument));
-      if (source) oracleSources.add(source);
-    }
+  const addSource = (source, context) => {
+    assert.match(source, /^(?:scripts|docs\/research)\/.+\.(?:mjs|js|cjs)$/u,
+      `${context} oracle source needs a covered scripts/ or docs/research/ path: ${source}`);
+    oracleSources.add(source);
   };
-  for (const command of Object.values(oracleConfig.commands)) collectSources(command);
-  for (const scriptName of Object.values(packageJson.catalogOracles || {})) {
-    const script = packageJson.scripts[scriptName] || '';
-    const source = script.split(/\s+/u).find(argument => /^(?:scripts|docs\/research)\/.+\.mjs$/u.test(argument));
-    if (source) oracleSources.add(source);
+  const collectScriptSources = (script, context) => {
+    const sources = [...script.matchAll(/(?:^|\s)([^\s"'`]+\.(?:mjs|js|cjs))(?=\s|$)/gu)].map(match => match[1]);
+    assert.ok(sources.length > 0, `${context} must resolve to a JavaScript oracle source`);
+    for (const source of sources) addSource(source, context);
+  };
+  const collectCommandSources = (command, context) => {
+    if (command?.[0] === 'node') {
+      const sources = command.slice(1).filter(argument => /\.(?:mjs|js|cjs)$/u.test(argument));
+      assert.ok(sources.length > 0, `${context} node command must identify a JavaScript oracle source`);
+      for (const source of sources) addSource(source, context);
+      return;
+    }
+    if (command?.[0] === 'npm' && command[1] === 'run') {
+      const script = packageJson.scripts[command[2]];
+      assert.ok(script, `${context} references missing package script ${command[2]}`);
+      collectScriptSources(script, context);
+      return;
+    }
+    assert.fail(`${context} uses an unsupported catalog oracle command: ${JSON.stringify(command)}`);
+  };
+  for (const [proof, command] of Object.entries(oracleConfig.commands)) collectCommandSources(command, proof);
+  for (const [proof, scriptName] of Object.entries(packageJson.catalogOracles || {})) {
+    const script = packageJson.scripts[scriptName];
+    assert.ok(script, `${proof} references missing package script ${scriptName}`);
+    collectScriptSources(script, proof);
   }
   assert.ok(oracleSources.size > 0, 'no catalog oracle source scripts discovered');
   for (const source of oracleSources) {
-    assert.match(source, /^(?:scripts|docs\/research)\/.+\.mjs$/u, `oracle source needs an explicit CI path filter: ${source}`);
+    const extension = path.extname(source).slice(1);
+    const root = source.startsWith('scripts/') ? 'scripts' : 'docs/research';
+    const glob = `${root}/**/*.${extension}`;
+    for (const [event, paths] of [['push', push], ['pull_request', pullRequest]]) {
+      assert.ok(paths.includes(`      - '${glob}'`), `${event} does not cover ${source} with ${glob}`);
+    }
   }
 
   assert.match(workflow, /^          node scripts\/audit-catalog-evidence\.mjs$/mu, 'CI must run the fail-closed audit');
