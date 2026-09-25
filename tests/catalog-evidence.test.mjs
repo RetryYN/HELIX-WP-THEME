@@ -7,6 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { writeGenerated } from '../scripts/lib/generated-output.mjs';
+import { buildFanout } from '../scripts/report-acceptance-evidence-fanout.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 function fixture(t) {
@@ -278,4 +279,31 @@ test('generated-output check rejects stale bytes without overwriting them', t =>
   fs.writeFileSync(file, 'old\n');
   assert.throws(() => writeGenerated(file, 'new\n', { check: true }), /out of date/u);
   assert.equal(fs.readFileSync(file, 'utf8'), 'old\n');
+});
+
+test('declared acceptance fanout counts each case once per source and sorts deterministically', () => {
+  const report = buildFanout({ cases: {
+    B: { source_digests: { 'theme.css': 'one', 'functions.php': 'two' } },
+    A: { source_digests: { 'theme.css': 'three' } },
+    C: { source_digests: { 'functions.php': 'four' } },
+  } });
+  assert.equal(report.case_count, 3);
+  assert.deepEqual(report.bindings, [
+    { path: 'functions.php', case_count: 2, case_ids: ['B', 'C'] },
+    { path: 'theme.css', case_count: 2, case_ids: ['A', 'B'] },
+  ]);
+  assert.match(report.interpretation, /does not claim runtime or behavioral impact/u);
+});
+
+test('current acceptance fanout baseline makes the largest recorded dependencies visible', () => {
+  const registry = JSON.parse(fs.readFileSync(new URL('../docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', import.meta.url), 'utf8'));
+  const report = buildFanout(registry);
+  assert.equal(report.case_count, 137);
+  assert.equal(report.bindings[0].path, 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php');
+  assert.equal(report.bindings[0].case_count, 63);
+  assert.equal(report.bindings.find(item => item.path.endsWith('/assets/css/theme.css'))?.case_count, 30);
+});
+
+test('acceptance fanout rejects malformed source bindings', () => {
+  assert.throws(() => buildFanout({ cases: { A: { source_digests: [] } } }), /source_digests must be an object/u);
 });
