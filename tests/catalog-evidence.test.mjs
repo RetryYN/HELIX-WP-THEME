@@ -140,6 +140,58 @@ test('catalog data stays aligned with canonical requirement and acceptance count
   );
 });
 
+test('theme CSS impact inventory stays aligned with source-bound acceptance proofs', () => {
+  const root = new URL('../', import.meta.url);
+  const evidence = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', root), 'utf8'));
+  const impact = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-19-toc-settings/revalidation-impact.json', root), 'utf8'));
+  const packageJson = JSON.parse(fs.readFileSync(new URL('package.json', root), 'utf8'));
+  const configuredCommands = JSON.parse(fs.readFileSync(new URL('config/catalog-admission-oracles.json', root), 'utf8')).commands;
+  const source = impact.changedSource;
+  const affected = Object.entries(evidence.cases)
+    .filter(([, record]) => Object.hasOwn(record.source_digests || {}, source))
+    .map(([ac, record]) => ({ ac, proofs: [...new Set(record.proofs.map(proof => proof.path))] }));
+  const proofPaths = [...new Set(affected.flatMap(record => record.proofs))].sort();
+  const recordedAffected = [...impact.affected]
+    .map(record => ({ ac: record.ac, proofs: [...new Set(record.proofs)].sort() }))
+    .sort((a, b) => a.ac.localeCompare(b.ac));
+  const expectedAffected = affected
+    .map(record => ({ ac: record.ac, proofs: record.proofs.sort() }))
+    .sort((a, b) => a.ac.localeCompare(b.ac));
+  const recordedProofs = impact.proofVerifiers.map(record => record.proof).sort();
+
+  assert.equal(affected.length, 27);
+  assert.equal(proofPaths.length, 30);
+  assert.deepEqual(recordedAffected, expectedAffected);
+  assert.deepEqual(recordedProofs, proofPaths);
+  for (const record of impact.proofVerifiers) {
+    const configuredCommand = configuredCommands[record.proof];
+    const packageOracleName = packageJson.catalogOracles?.[record.proof];
+    assert.ok(configuredCommand || packageOracleName, `missing catalog oracle declaration for ${record.proof}`);
+
+    for (const sourceFile of record.verifierSources) {
+      assert.ok(fs.existsSync(new URL(sourceFile, root)), `missing proof verifier source ${sourceFile}`);
+    }
+
+    if (configuredCommand) {
+      const sourceArguments = configuredCommand.filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
+      assert.ok(
+        sourceArguments.some(sourceFile => record.verifierSources.includes(sourceFile)),
+        `configured oracle does not match verifier sources for ${record.proof}`,
+      );
+    }
+
+    if (packageOracleName) {
+      const packageCommand = packageJson.scripts[packageOracleName];
+      assert.ok(packageCommand, `missing package oracle script ${packageOracleName}`);
+      const sourceArguments = packageCommand.split(/\s+/u).filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
+      assert.ok(
+        sourceArguments.some(sourceFile => record.verifierSources.includes(sourceFile)),
+        `package oracle does not match verifier sources for ${record.proof}`,
+      );
+    }
+  }
+});
+
 test('the generated catalog matches current sources without rewriting tracked outputs', () => {
   const repoRoot = fileURLToPath(new URL('../', import.meta.url));
   const files = ['acceptance-audit.json', 'catalog-data.json', 'selection-index.json', 'completion-backlog.json', 'completion-backlog.md', 'README.md']

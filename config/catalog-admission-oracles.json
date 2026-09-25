@@ -1,6 +1,29 @@
 {
   "schema": "wt-catalog-admission-oracles.v1",
   "commands": {
+    "docs/research/2026-09-08-content-faces/results/inheritance/verify.json": ["node", "scripts/verify-content-inheritance.mjs"],
+    "docs/research/2026-09-13-header-navigation-complete/verify.json": ["node", "scripts/revalidate-header-navigation-complete.mjs"],
+    "docs/research/2026-09-14-header-navigation-editing/summary.json": ["node", "scripts/revalidate-header-navigation-editing.mjs"],
+    "docs/research/2026-09-08-site-search/results/verify.json": ["node", "scripts/verify-site-search.mjs"],
+    "docs/research/2026-09-08-site-search/results/boundaries.json": ["node", "scripts/verify-site-search-boundaries.mjs"],
+    "docs/research/2026-09-08-site-search/results/access.json": ["node", "scripts/verify-site-search-access.mjs"],
+    "docs/research/2026-09-08-site-search/results/passwords.json": ["node", "scripts/verify-site-search-passwords.mjs"],
+    "docs/research/2026-09-08-site-search/results/performance.json": ["node", "scripts/verify-site-search-performance.mjs"],
+    "docs/research/2026-09-08-site-search/results/input.json": ["node", "scripts/verify-site-search-input.mjs"],
+    "docs/research/2026-09-08-site-search/results/locale.json": ["node", "scripts/verify-site-search-locale.mjs"],
+    "docs/research/2026-09-08-form-flow/verify.json": ["node", "scripts/verify-form-flow.mjs"],
+    "docs/research/2026-09-08-form-flow/kinds-verify.json": ["node", "scripts/verify-form-kinds.mjs"],
+    "docs/research/2026-09-08-form-flow/steps-verify.json": ["node", "scripts/verify-form-steps.mjs"],
+    "docs/research/2026-09-08-form-flow/slots-verify.json": ["node", "scripts/verify-form-slots.mjs"],
+    "docs/research/2026-09-08-form-flow/boundaries-verify.json": ["node", "scripts/verify-form-boundaries.mjs"],
+    "docs/research/2026-09-08-event-state/verify.json": ["node", "scripts/verify-event-state.mjs", "--strict"],
+    "docs/research/2026-09-08-event-state/boundaries-verify.json": ["node", "scripts/verify-event-boundaries.mjs", "--strict"],
+    "docs/research/2026-09-09-footer-data/rendering.json": ["node", "scripts/verify-footer-rendering.mjs"],
+    "docs/research/2026-09-09-footer-data/editor.json": ["node", "scripts/verify-footer-editor.mjs"],
+    "docs/research/2026-09-10-current-theme-quality/verify.json": ["node", "docs/research/2026-09-10-current-theme-quality/verify.mjs"],
+    "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json": ["node", "docs/research/2026-09-10-current-theme-quality/reading-layout/probe.mjs", "after"],
+    "docs/research/2026-09-13-notfound-recovery/verify.json": ["node", "docs/research/2026-09-13-notfound-recovery/probe.mjs"],
+    "docs/research/2026-09-19-eyecatch-meta/verification.json": ["node", "scripts/verify-eyecatch-meta.mjs"],
     "docs/research/2026-09-20-heading-comparison/verification.json": [
       "node",
       "scripts/verify-heading-comparison.mjs"
@@ -16,6 +39,10 @@
     "docs/research/2026-09-19-pricing-cards/verification.json": [
       "node",
       "scripts/verify-pricing-cards.mjs"
+    ],
+    "docs/research/2026-09-19-toc-settings/verification.json": [
+      "node",
+      "scripts/verify-toc-settings.mjs"
     ],
     "docs/research/2026-09-10-reduced-motion/verify.json": [
       "node",
