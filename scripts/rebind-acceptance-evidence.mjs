@@ -58,12 +58,13 @@ function parseArgs(argv) {
     } catch { eventBase = ''; }
   }
   const options = {
-    cases: [], commands: [], rowRenames: [], apply: false, check: false,
+    cases: [], proofs: [], commands: [], rowRenames: [], apply: false, check: false,
     baseRef: process.env.CATALOG_EVIDENCE_BASE_REF || eventBase || (process.env.CI ? 'HEAD^' : 'HEAD'),
   };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--case') options.cases.push(argv[++index]);
+    else if (arg === '--proof') options.proofs.push(argv[++index]);
     else if (arg === '--command-json') options.commands.push(JSON.parse(argv[++index]));
     else if (arg === '--row-rename-json') options.rowRenames.push(JSON.parse(argv[++index]));
     else if (arg === '--base-ref') options.baseRef = argv[++index];
@@ -206,13 +207,22 @@ function plan(options) {
     return { id, evidence, staleSources };
   });
   const staleCount = selected.reduce((sum, item) => sum + item.staleSources.length, 0);
+  const allProofs = new Map();
+  for (const { evidence } of selected) for (const proof of evidence.proofs || []) allProofs.set(proof.path, proof);
+  for (const proofPath of options.proofs) if (!allProofs.has(proofPath)) fail(`selected proof is not registered by the selected cases: ${proofPath}`);
+  const proofs = options.proofs.length
+    ? new Map(options.proofs.map(proofPath => [proofPath, allProofs.get(proofPath)]))
+    : allProofs;
+  if (!proofs.size) fail('selected cases have no registered proofs');
   const staleProofs = [...new Map(selected.flatMap(({ id, evidence }) => (evidence.proofs || [])
     .filter(proof => digest(bytes(proof.path)) !== proof.sha256)
     .map(proof => [proof.path, { case_id: id, path: proof.path, before: proof.sha256, after: digest(bytes(proof.path)) }]))).values()];
+  for (const stale of staleProofs) if (!proofs.has(stale.path)) fail(`stale proof must be selected for revalidation: ${stale.path}`);
   for (const rename of options.rowRenames) {
     if (!selectedIds.has(rename.case)) fail(`row rename case is not selected: ${rename.case}`);
     const proof = registry.cases[rename.case].proofs?.find(item => item.path === rename.proof);
     if (!proof) fail(`row rename proof is not registered: ${rename.proof}`);
+    if (!proofs.has(rename.proof)) fail(`row rename proof must be selected for revalidation: ${rename.proof}`);
     if ((proof.row_names || []).filter(name => name === rename.from).length !== 1 || proof.row_names.includes(rename.to)) fail(`row rename is not one-to-one: ${rename.case}`);
   }
   if (!staleCount && !staleProofs.length && !options.rowRenames.length) fail('selected cases have no changed source digests, proof artifacts, or proof rows to rebind');
@@ -221,8 +231,6 @@ function plan(options) {
     const stale = Object.entries(evidence.source_digests || {}).find(([source, expected]) => digest(bytes(source)) !== expected);
     if (stale) fail(`all cases affected by a changed source must be selected: ${id} / ${stale[0]}`);
   }
-  const proofs = new Map();
-  for (const { evidence } of selected) for (const proof of evidence.proofs || []) proofs.set(proof.path, proof);
   for (const [id, evidence] of Object.entries(registry.cases || {})) {
     if (selectedIds.has(id)) continue;
     const shared = (evidence.proofs || []).find(proof => proofs.has(proof.path));
@@ -235,12 +243,19 @@ function plan(options) {
   }
   if (!options.commands.length) fail('--apply requires at least one --command-json oracle command');
   validateOracleCommands(options.commands, proofs.keys());
-  const snapshots = new Map([...proofs.keys()].map(proofPath => {
+  const snapshots = new Map([...allProofs.keys()].map(proofPath => {
     const stat = fs.statSync(path.join(root, proofPath), { bigint: true });
     const value = read(proofPath);
     return [proofPath, { sha256: digest(bytes(proofPath)), mtimeNs: stat.mtimeNs, ctimeNs: stat.ctimeNs,
       sourceDigests: value.sourceDigests ?? value.source_digests ?? {} }];
   }));
+  for (const [proofPath, snapshot] of snapshots) {
+    if (proofs.has(proofPath)) continue;
+    if (!snapshot.sourceDigests || typeof snapshot.sourceDigests !== 'object' || Array.isArray(snapshot.sourceDigests)) fail(`unselected proof lacks sourceDigests; select it for revalidation: ${proofPath}`);
+    for (const [source, expected] of Object.entries(snapshot.sourceDigests)) {
+      if (!fs.existsSync(path.join(root, source)) || digest(bytes(source)) !== expected) fail(`stale source in unselected proof; select it for revalidation: ${proofPath} / ${source}`);
+    }
+  }
   for (const command of options.commands) {
     const result = spawnSync(command[0], command.slice(1), { cwd: root, stdio: 'inherit' });
     if (result.status !== 0) fail(`oracle command failed: ${JSON.stringify(command)}`);
@@ -271,13 +286,19 @@ function plan(options) {
     const previousProofSources = new Set();
     const currentProofSources = new Map();
     for (const proof of item.evidence.proofs || []) {
-      for (const source of Object.keys(snapshots.get(proof.path)?.sourceDigests || {})) previousProofSources.add(source);
-      for (const [source, expected] of Object.entries(updatedProofSources.get(proof.path) || {})) {
+      const oldSources = snapshots.get(proof.path)?.sourceDigests || {};
+      const currentSources = updatedProofSources.get(proof.path) || oldSources;
+      for (const source of Object.keys(oldSources)) previousProofSources.add(source);
+      for (const [source, expected] of Object.entries(currentSources)) {
         if (currentProofSources.has(source) && currentProofSources.get(source) !== expected) fail(`shared proofs disagree on source digest: ${item.id} / ${source}`);
         currentProofSources.set(source, expected);
       }
     }
-    for (const [source] of item.staleSources) previousProofSources.add(source);
+    for (const [source] of item.staleSources) {
+      if (!currentProofSources.has(source) && !previousProofSources.has(source)) {
+        fail(`stale source is not accounted for by a registered proof: ${item.id} / ${source}`);
+      }
+    }
     for (const source of previousProofSources) if (!currentProofSources.has(source)) delete item.evidence.source_digests[source];
     for (const [source, expected] of currentProofSources) item.evidence.source_digests[source] = expected;
   }

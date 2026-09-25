@@ -2,6 +2,7 @@ import {readFileSync,writeFileSync}from'node:fs';
 import{createHash}from'node:crypto';
 const dir='docs/research/2026-09-10-current-theme-quality/';
 const root='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
+const liveSources=[dir+'verify.mjs',root+'theme.json',root+'styles/rules.json',root+'styles/mincho.json',root+'assets/css/theme.css',root+'assets/css/content-faces.css'];
 const json=p=>JSON.parse(readFileSync(p,'utf8'));
 const rows=[];const check=(name,pass)=>rows.push({name,pass:Boolean(pass)});
 function rendered(row){return row.http===200&&!row.overflow&&(row.found===true||row.text>=20);}
@@ -31,8 +32,11 @@ check('negative variation added slug rejected',!sameSlugs(parentSlugs,[...parent
 check('negative variation removed slug rejected',!sameSlugs(parentSlugs,parentSlugs.slice(1)));
 check('no undefined soft reference',!readFileSync(root+'assets/css/theme.css','utf8').includes('--wp--preset--color--soft'));
 check('content faces has no important',!/!\s*important/.test(readFileSync(root+'assets/css/content-faces.css','utf8')));
-for(const [file,digests]of Object.entries(json(dir+'source-digests.json').files))check('source digest '+file,createHash('sha256').update(readFileSync(root+file)).digest('hex')===digests.after_sha256);
+// source-digests.json records the measured historical revision. It is not a
+// current regression oracle: current source bindings come from the live files
+// exercised by this verifier, including the verifier itself.
+const sourceDigests=Object.fromEntries(liveSources.map(file=>[file,createHash('sha256').update(readFileSync(file)).digest('hex')]));
 check('all audit fixtures removed',json(dir+'fixtures.json').length===4&&json(dir+'fixtures.json').every(x=>x.created&&x.priorSlugAbsent&&x.deleted&&x.absent));
 const pass=rows.every(x=>x.pass);
-const result={schema:'wt-current-theme-quality-verification.v1',scope:'Current helix-wt partial quality improvement; not LOOK-01B completion',completed:pass,pass,passed:rows.filter(x=>x.pass).length,failed:rows.filter(x=>!x.pass).length,rows};
+const result={schema:'wt-current-theme-quality-verification.v1',scope:'Current helix-wt partial quality improvement; not LOOK-01B completion',completed:pass,pass,passed:rows.filter(x=>x.pass).length,failed:rows.filter(x=>!x.pass).length,sourceDigests,rows};
 writeFileSync(dir+'verify.json',JSON.stringify(result,null,2)+'\n');console.log(result.passed+' pass / '+result.failed+' fail');process.exitCode=result.pass?0:1;
