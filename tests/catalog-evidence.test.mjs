@@ -46,6 +46,23 @@ test('report-only audit mode keeps stale evidence visible without blocking catal
   const f = fixture(t); f.write('implementation.php', 'source-v2'); const result = f.run(['--allow-stale']);
   assert.equal(result.status, 0); assert.equal(result.report.counts.stale, 1); assert.equal(result.report.complete, false);
 });
+
+test('current-theme quality gate runs strict evidence audit for verifier changes on push and pull requests', () => {
+  const workflow = fs.readFileSync(new URL('../.github/workflows/theme-quality-gate.yml', import.meta.url), 'utf8');
+  const push = workflow.match(/^  push:\n([\s\S]*?)^  pull_request:/mu)?.[1];
+  const pullRequest = workflow.match(/^  pull_request:\n([\s\S]*?)^  workflow_dispatch:/mu)?.[1];
+
+  assert.ok(push, 'missing push path filter');
+  assert.ok(pullRequest, 'missing pull_request path filter');
+  for (const [event, paths] of [['push', push], ['pull_request', pullRequest]]) {
+    assert.match(paths, /^      - 'scripts\/\*\.mjs'$/mu, `${event} must cover top-level verification scripts`);
+    assert.match(paths, /^      - 'docs\/research\/\*\*\/verify\.mjs'$/mu, `${event} must cover research verifiers`);
+  }
+
+  assert.match(workflow, /^          node scripts\/audit-catalog-evidence\.mjs$/mu, 'CI must run the fail-closed audit');
+  assert.doesNotMatch(workflow, /^          node scripts\/audit-catalog-evidence\.mjs --allow-stale$/mu);
+});
+
 test('changed acceptance wording requires reinspection', t => {
   const f = fixture(t); f.write('docs/requirements/l3/acceptance-cases.json', { cases: [{ id: 'A1', requirement_id: 'R1', oracle: 'Stronger behavior', polarity: 'positive' }] });
   assert.equal(f.run().report.counts.stale, 1);
