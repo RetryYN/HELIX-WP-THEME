@@ -100,6 +100,7 @@ while IFS= read -r -d '' status; do
     continue
   fi
   encoding="$(<"$encoding_file")"
+  encoding_lower="$(printf '%s' "$encoding" | tr '[:upper:]' '[:lower:]')"
   # Empty blobs carry no publishable content; `file` reports their encoding as
   # binary on some libmagic versions, so keep them on the empty-text path.
   if [[ "$encoding" == binary && -s "$content" ]]; then
@@ -117,6 +118,20 @@ while IFS= read -r -d '' status; do
         failures=$((failures + 1))
       fi
       continue
+  fi
+
+  # BOM-marked UTF-16/32 is text, but ASCII-oriented grep cannot inspect the
+  # interleaved NUL bytes in a raw git diff. Decode the new blob before scanning.
+  if [[ "$encoding_lower" == utf-16* || "$encoding_lower" == utf-32* ]]; then
+    decoded="$tmp_dir/decoded"
+    if ! iconv -f "$encoding" -t UTF-8 "$content" >"$decoded" 2>"$tmp_dir/iconv-error"; then
+      echo "FAIL: changed text encoding could not be decoded for inspection" >&2
+      failures=$((failures + 1))
+      continue
+    fi
+    cat "$decoded" >>"$records"
+    printf '\n' >>"$records"
+    continue
   fi
 
   git diff --no-ext-diff --no-textconv --text --no-renames --unified=0 "${diff_args[@]}" -- "$path" |
