@@ -2,7 +2,7 @@
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
   "requirementCount": 135,
-  "screenshotCount": 1287,
+  "screenshotCount": 1293,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12037,6 +12037,81 @@
       "demoRoute": "/?s=",
       "description": "日本語設定で撮影したサイト検索。結果・ゼロ件から再検索し、キーボードでも移動できます。全権限行列、絞り込みは未完了。実機リンク先の言語は検証環境の現在設定に従います。",
       "evidence": "../2026-09-08-site-search/results/verify.json"
+    },
+    {
+      "id": "article-purpose:news-releases",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "ニュース・発表",
+      "description": "新製品の発表と運営からのお知らせを、日付・分類から過去記事へたどるWordPress実機PoC。標準post型を使い、専用CPTを前提にしません。",
+      "purpose": "新着の発表と過去のお知らせを探す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-26-news-column-purpose-gap/results/news-releases-1440.jpg",
+        "sp": "../2026-09-26-news-column-purpose-gap/results/news-releases-390.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "demoRoute": "/category/news-releases/",
+      "selectionFacts": {
+        "一覧と導線": "目的の説明、製品発表・お知らせへの分類導線、年絞り込み、日付付き詳細ページ。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "投稿目的の区分は標準post型とカテゴリで表現できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json"
+    },
+    {
+      "id": "article-purpose:columns",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "コラム",
+      "description": "実務の学びと考え方をテーマ別に紹介する一覧。ニュース・発表面と同じ標準post型で、目的と読者の探し方を分けたWordPress実機PoCです。",
+      "purpose": "テーマ別の学びと考え方を探す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-26-news-column-purpose-gap/results/columns-1440.jpg",
+        "sp": "../2026-09-26-news-column-purpose-gap/results/columns-390.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "demoRoute": "/category/columns/",
+      "selectionFacts": {
+        "一覧と導線": "編集目的の説明、組織づくり・データ活用の分類、年絞り込み、詳細ページを検証。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "コラムの編集目的と分類導線を通常の記事一覧で表現できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json"
+    },
+    {
+      "id": "article-purpose:search-intent",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "検索流入",
+      "description": "検索で訪れた読者の疑問を解決するガイド記事の一覧。ニュース・発表やコラムと比較できるよう、同じカテゴリ面・標準post型で構成したWordPress実機PoCです。",
+      "purpose": "検索から来た読者を解説へ案内する",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-26-news-column-purpose-gap/results/search-intent-1440.jpg",
+        "sp": "../2026-09-26-news-column-purpose-gap/results/search-intent-390.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "demoRoute": "/category/search-intent/",
+      "selectionFacts": {
+        "一覧と導線": "検索流入向けの目的説明、導入ガイド分類、年別一覧、日付付き詳細を検証。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "検索流入向けの記事群を他の編集目的と区別して案内できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json"
     },
     {
       "id": "event-state:before-open",
@@ -27638,7 +27713,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
-              "sha256": "25b189073488e017ee0670669f0650e8ff97761805e22b60dec1a9863416c844",
+              "sha256": "436e585611a914208ea7891f31e36d4f922a3a5ec4e1cb79f46d74329f31a5fb",
               "row_names": [
                 "purpose:search-intent-archive-description-and-classification",
                 "purpose:news-releases-archive-description-and-classification",
@@ -27661,7 +27736,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
-              "sha256": "25b189073488e017ee0670669f0650e8ff97761805e22b60dec1a9863416c844",
+              "sha256": "436e585611a914208ea7891f31e36d4f922a3a5ec4e1cb79f46d74329f31a5fb",
               "row_names": [
                 "purpose:news-releases-archive-description-and-classification",
                 "purpose:columns-archive-description-and-classification",
@@ -27689,7 +27764,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
-              "sha256": "25b189073488e017ee0670669f0650e8ff97761805e22b60dec1a9863416c844",
+              "sha256": "436e585611a914208ea7891f31e36d4f922a3a5ec4e1cb79f46d74329f31a5fb",
               "row_names": [
                 "type:news-releases-purpose-uses-standard-post",
                 "type:columns-purpose-uses-standard-post",
@@ -27700,12 +27775,16 @@
         }
       ],
       "status": "partial_poc",
-      "relatedEntryIds": [],
+      "relatedEntryIds": [
+        "article-purpose:news-releases",
+        "article-purpose:columns",
+        "article-purpose:search-intent"
+      ],
       "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
       "pending": [],
-      "next": "操作・状態・契約を含む再現デモと証跡を追加する",
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
       "coverage": {
-        "candidateCount": 0,
+        "candidateCount": 3,
         "acceptanceCount": 3,
         "counts": {
           "verified_in_poc": 1,
@@ -27714,7 +27793,7 @@
           "stale": 0
         },
         "openAcceptanceIds": [],
-        "selectionState": "no_candidate"
+        "selectionState": "candidate_with_partial_evidence"
       }
     },
     {

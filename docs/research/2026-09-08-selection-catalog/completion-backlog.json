@@ -2,8 +2,8 @@
   "schema": "wt-catalog-completion-backlog.v1",
   "requirement_count": 135,
   "acceptance_count": 303,
-  "catalog_candidate_count": 708,
-  "screenshot_count": 1287,
+  "catalog_candidate_count": 711,
+  "screenshot_count": 1293,
   "acceptance_counts": {
     "missing": 166,
     "partial": 104,
@@ -41,7 +41,7 @@
       "source": "PO 明示要求（0296 ④「ニュース系」「コラム系」）。記事と別種別に分けるのは追加提案（0298）",
       "disposition": "骨格採用",
       "evidence_state": "未検証",
-      "evidence": "WT-EVT-0313で目的分類・用途別一覧をL3候補化。home-news の区間一覧はあるが、独立一覧・分類・詳細導線のPoCは無い",
+      "evidence": "WT-EVT-0313の候補に対し、2026-09-26に独立WP PoCを追加。標準 post 5件、目的別3一覧・年絞り込み・5子一覧・詳細導線を11ルート、390/768/1440pxで検証。対応ACは1件確認・2件部分確認で、編集UI・負例・全条件受入は残る",
       "order": "C"
     },
     {
@@ -3196,8 +3196,12 @@
         "verified_in_poc": 1,
         "stale": 0
       },
-      "candidate_count": 0,
-      "candidates": [],
+      "candidate_count": 3,
+      "candidates": [
+        "article-purpose:news-releases",
+        "article-purpose:columns",
+        "article-purpose:search-intent"
+      ],
       "statement": "記事管理は目的を「検索流入」「ニュース・発表」「教育・信頼形成コラム」等で識別し、その選択に応じた一覧と詳細への導線を提供する。ニュース一覧は日付・分類で過去項目を探せ、コラム一覧は記事目的を説明しテーマ別記事へ移動できる。目的は投稿種別と区別し、共通投稿型の分類としても実装できる。CPT・URL 構造・Discover 掲載保証は本候補で決めない。",
       "next_action": "remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する"
     },

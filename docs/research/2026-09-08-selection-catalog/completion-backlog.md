@@ -4,8 +4,8 @@
 
 - 要求: 135
 - 受入条件: 303（missing 166 / partial 104 / verified_in_poc 33 / stale 0）
-- 既存PoC画像の対応候補: 708
-- スクリーンショット: 1287
+- 既存PoC画像の対応候補: 711
+- スクリーンショット: 1293
 - ページ種別の未観察・未検証: 19
 
 ## 次に閉じる要求
@@ -121,7 +121,7 @@
 | WT-FR-LOOK-01 | P0 | partial | 5 | 104 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-ZONE-01 | P0 | partial | 2 | 116 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-PARTS-01 | P0 | partial | 3 | 169 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
-| WT-FR-ARTICLE-01 | P1 | partial | 3 | 0 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
+| WT-FR-ARTICLE-01 | P1 | partial | 3 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-SEARCH-01 | P1 | partial | 4 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-UTILITY-01 | P1 | partial | 4 | 3 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
 | WT-FR-PAID-01 | P1 | partial | 3 | 9 | remainingを一件ずつ閉じ、未検証範囲を証跡へ追加する |
