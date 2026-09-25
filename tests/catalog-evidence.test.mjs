@@ -354,3 +354,16 @@ test('pinned historical artifacts stay immutable while live source bindings stay
   assert.ok(!result.report.findings.some(row => row.artifact === 'docs/research/2026-09-08-event-state/baseline.json'
     && row.reason === 'historical-artifact-digest'));
 });
+
+test('historical snapshot exclusions never include acceptance-evidence proofs', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const manifest = JSON.parse(fs.readFileSync(path.join(root,
+    'docs/research/2026-09-08-selection-catalog/historical-artifact-snapshots.json'), 'utf8'));
+  const acceptanceEvidence = JSON.parse(fs.readFileSync(path.join(root,
+    'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json'), 'utf8'));
+  const proofPaths = new Set(Object.values(acceptanceEvidence.cases)
+    .flatMap(record => record.proofs.map(proof => proof.path)));
+  const excludedProofPaths = manifest.snapshots.map(snapshot => snapshot.path).filter(snapshotPath => proofPaths.has(snapshotPath));
+
+  assert.deepEqual(excludedProofPaths, [], 'acceptance proofs must stay subject to current evidence validation');
+});
