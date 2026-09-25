@@ -3,8 +3,16 @@
   "scope": "Current helix-wt partial quality improvement; not LOOK-01B completion",
   "completed": true,
   "pass": true,
-  "passed": 140,
+  "passed": 136,
   "failed": 0,
+  "sourceDigests": {
+    "docs/research/2026-09-10-current-theme-quality/verify.mjs": "4bb23ce1fa6b06124849652b46a6c7a550774321161765d2c34e58b122b2bae2",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "f5d2803b130e55ac94e41ba26eb419da8f32772eccc34e4b3bb3a1e044909be6",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "18ab6339fa2da074bba12cdfce849e009b2ce878db0616cbbf2baffbe89b2c3c"
+  },
   "rows": [
     {
       "name": "fixture positive",
@@ -544,22 +552,6 @@
     },
     {
       "name": "content faces has no important",
-      "pass": true
-    },
-    {
-      "name": "source digest assets/css/theme.css",
-      "pass": true
-    },
-    {
-      "name": "source digest assets/css/content-faces.css",
-      "pass": true
-    },
-    {
-      "name": "source digest styles/rules.json",
-      "pass": true
-    },
-    {
-      "name": "source digest styles/mincho.json",
       "pass": true
     },
     {

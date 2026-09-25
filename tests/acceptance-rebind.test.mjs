@@ -46,6 +46,39 @@ function fixture(t) {
   return { root, run, write };
 }
 
+function fixtureWithSecondaryProof(t) {
+  const f = fixture(t);
+  const registryPath = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  const secondary = { completed: true, rows: [{ name: 'secondary scenario', pass: true }], sourceDigests: { 'unrelated.txt': hash('unrelated-v1\n') } };
+  f.write('unrelated.txt', 'unrelated-v1\n');
+  f.write('secondary-proof.json', secondary);
+  f.write('rewrite-secondary-proof.mjs', "import fs from 'node:fs'; import { createHash } from 'node:crypto'; const proof=JSON.parse(fs.readFileSync('secondary-proof.json')); proof.refresh='rerun'; proof.sourceDigests['unrelated.txt']=createHash('sha256').update(fs.readFileSync('unrelated.txt')).digest('hex'); fs.writeFileSync('secondary-proof.json', JSON.stringify(proof, null, 2)+'\\n');\n");
+  registry.cases.A1.source_digests['new-source.txt'] = hash('new-source\n');
+  registry.cases.A1.source_digests['unrelated.txt'] = hash('unrelated-v1\n');
+  registry.cases.A1.proofs.push({ path: 'secondary-proof.json', sha256: hash(`${JSON.stringify(secondary, null, 2)}\n`), row_names: ['secondary scenario'] });
+  f.write('docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', registry);
+  const packageJson = JSON.parse(fs.readFileSync(path.join(f.root, 'package.json'), 'utf8'));
+  packageJson.scripts['fixture:secondary'] = 'node rewrite-secondary-proof.mjs';
+  packageJson.catalogOracles['secondary-proof.json'] = 'fixture:secondary';
+  f.write('package.json', packageJson);
+  assert.equal(spawnSync('git', ['add', '.'], { cwd: f.root }).status, 0);
+  assert.equal(spawnSync('git', ['commit', '-m', 'add independent proof fixture'], { cwd: f.root }).status, 0);
+  return f;
+}
+
+function fixtureWithUnboundCaseSource(t) {
+  const f = fixture(t);
+  f.write('orphan.txt', 'orphan-v1\n');
+  const registryPath = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  registry.cases.A1.source_digests['orphan.txt'] = hash('orphan-v1\n');
+  f.write('docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', registry);
+  assert.equal(spawnSync('git', ['add', '.'], { cwd: f.root }).status, 0);
+  assert.equal(spawnSync('git', ['commit', '-m', 'record unbound source fixture'], { cwd: f.root }).status, 0);
+  return f;
+}
+
 test('dry-run reports exact stale source and leaves registry and proof unchanged', t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');
@@ -57,6 +90,40 @@ test('dry-run reports exact stale source and leaves registry and proof unchanged
   assert.match(result.stdout, /implementation\.php/u);
   assert.deepEqual(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json')), registry);
   assert.equal(fs.statSync(path.join(f.root, 'proof.json')).mtimeMs, proof);
+});
+
+test('selected-proof rebind refreshes one proof and preserves unchanged sibling proof bindings', async t => {
+  const f = fixtureWithSecondaryProof(t);
+  f.write('implementation.php', 'source-v2\n');
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--proof', 'proof.json', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json'), 'utf8'));
+  assert.equal(registry.cases.A1.source_digests['implementation.php'], hash('source-v2\n'));
+  assert.equal(registry.cases.A1.source_digests['unrelated.txt'], hash('unrelated-v1\n'));
+  const log = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-rebind-log.json'), 'utf8'));
+  assert.deepEqual(log.transactions[0].proof_writes.map(write => write.path), ['proof.json']);
+  const checked = f.run(['--check', '--base-ref', 'HEAD']);
+  assert.equal(checked.status, 0, checked.stderr || checked.stdout);
+});
+
+test('selected-proof rebind rejects a stale source owned by an unselected sibling proof', t => {
+  const f = fixtureWithSecondaryProof(t);
+  f.write('unrelated.txt', 'unrelated-v2\n');
+  const result = f.run(['--case', 'A1', '--proof', 'proof.json', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /stale source in unselected proof; select it for revalidation: secondary-proof\.json \/ unrelated\.txt/u);
+});
+
+test('rebind rejects dropping a stale registry source that no proof accounts for', async t => {
+  const f = fixtureWithUnboundCaseSource(t);
+  f.write('orphan.txt', 'orphan-v2\n');
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const result = f.run(['--case', 'A1', '--proof', 'proof.json', '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /stale source is not accounted for by a registered proof: A1 \/ orphan\.txt/u);
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json'), 'utf8'));
+  assert.equal(registry.cases.A1.source_digests['orphan.txt'], hash('orphan-v1\n'));
 });
 
 test('an explicit base ref permits rebind after the source commit', async t => {

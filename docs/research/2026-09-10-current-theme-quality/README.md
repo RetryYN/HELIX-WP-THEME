@@ -12,7 +12,9 @@ font9段、spacing8段、全body軸、raw値は維持した。既存の型を減
 
 ## 実測
 
-- 現行CSSとlab配備CSSのSHA一致を開始時に確認。labはrepoの現行テーマをread-only bind mountしており、編集は自動反映される。docker cpはread-onlyで拒否され、sourceとlabの最終SHA一致を再確認した。
+`before.json` / `after.json` と `source-digests.json` は、当時の比較観察・ソース版を示す歴史記録であり、現在のCSSをその版へ固定する回帰条件ではない。`verify.mjs` は現在のソースに対するpalette、token、motion、CSS不変条件を検査し、実行時のソースdigestを `verify.json#sourceDigests` に出力する。保存済みの描画行は当時の実測であり、このverifierは現在のWordPress画面を描画しない。現在のビジュアル合格には、現ソースを配備した隔離WP labの別証跡が必要である。
+
+- 当時の実測では、開始・終了時にrepo sourceとread-only theme mountのSHA一致を記録した。この歴史記録は、後続の作業用WP labが現HEADをmountしていることの証拠ではない。
 - 独立コンテンツ6経路×PC1440/SP390×editorial/standardの24条件。変更前後の全子孫のfont、色、背景、padding、margin、border、shadow、display、gridを比較。差は意図した獲得LPフォーム補助面4要素の背景のみ。ボタン白文字・組版は維持。
 - 一時fixture4件で記事・LP・イベント・フォームを描画。default/rules/mincho×PC/SPの30条件とSP/JS無効5条件。HTTP200、内容あり、横overflow0。reduced-motionでは測定対象のanimation:none / transition:0s。フォームの2種類×PC/SP×3variationで24要素の補助面背景だけが変わった。
 - 同じ内容・幅のbefore/after画像36枚。WP_Theme_JSONが生成するvariation CSSをブラウザへ適用し比較した。Site Editorからvariationを保存する操作の証跡ではない。

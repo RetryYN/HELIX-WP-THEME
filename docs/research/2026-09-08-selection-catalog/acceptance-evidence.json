@@ -10211,7 +10211,7 @@
       "requirement_digest": "e5b535a0dbfeefc3",
       "oracle_sha256": "6ea0754c95ee8195be2c3f0f5c42f926abee64f9ee4467e31aba34084804b01a",
       "source_digests": {
-        "docs/research/2026-09-10-current-theme-quality/verify.mjs": "0863ceb8f9a96bca1b29058509f0fb85331db74ce89ea8aeea0aa0fc38041da1",
+        "docs/research/2026-09-10-current-theme-quality/verify.mjs": "4bb23ce1fa6b06124849652b46a6c7a550774321161765d2c34e58b122b2bae2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "f5d2803b130e55ac94e41ba26eb419da8f32772eccc34e4b3bb3a1e044909be6",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296",
@@ -10219,7 +10219,8 @@
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css": "18ab6339fa2da074bba12cdfce849e009b2ce878db0616cbbf2baffbe89b2c3c",
         "scripts/check-heading-tokens.mjs": "f8a37b805d486e98be2699be1dc3ad610d27d589dc6d249b2ec1fe58b855d1fa",
         "scripts/verify-heading-fluid.mjs": "ffbba0781995c029174a3b4aca35458e528a6c8818962d86295341cff540be52",
-        "tests/e2e/heading-fluid.spec.ts": "9e14222e578a2c35f75a6e18a678bae8836fab7a50e7d7002a82923f5d109275"
+        "tests/e2e/heading-fluid.spec.ts": "9e14222e578a2c35f75a6e18a678bae8836fab7a50e7d7002a82923f5d109275",
+        "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390"
       },
       "scope": "現行helix-wtの全体品質監査に加え、既存15見出しstyleの装飾寸法・色・余白・行高をtheme.json tokenへ移し、PC/SP/320px、JS有無、100%/200% text scaleで非クリップ・順序・尺度を実測。",
       "remaining": [
@@ -10230,7 +10231,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
-          "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+          "sha256": "c8b9094aa4c97a66c205cf76319a872c61933d55d35a2bfd6d837688ccc48022",
           "row_names": [
             "no undefined soft reference",
             "content faces has no important",
@@ -10276,7 +10277,7 @@
       "requirement_digest": "6e55fd21683dd875",
       "oracle_sha256": "33b2da9ae12ea4b916ed5828b93858650cac17d8c3b696f40acac5feaaf63ec5",
       "source_digests": {
-        "docs/research/2026-09-10-current-theme-quality/verify.mjs": "0863ceb8f9a96bca1b29058509f0fb85331db74ce89ea8aeea0aa0fc38041da1",
+        "docs/research/2026-09-10-current-theme-quality/verify.mjs": "4bb23ce1fa6b06124849652b46a6c7a550774321161765d2c34e58b122b2bae2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "f5d2803b130e55ac94e41ba26eb419da8f32772eccc34e4b3bb3a1e044909be6",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296",
@@ -10288,7 +10289,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
-          "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+          "sha256": "c8b9094aa4c97a66c205cf76319a872c61933d55d35a2bfd6d837688ccc48022",
           "row_names": [
             "variation slugs rules",
             "variation slugs mincho",
@@ -10302,7 +10303,7 @@
       "requirement_digest": "6e55fd21683dd875",
       "oracle_sha256": "e464b66f626239b3e5c606d96657f1c8b8eefd7e2d0c9d32032b7a36245a2078",
       "source_digests": {
-        "docs/research/2026-09-10-current-theme-quality/verify.mjs": "0863ceb8f9a96bca1b29058509f0fb85331db74ce89ea8aeea0aa0fc38041da1",
+        "docs/research/2026-09-10-current-theme-quality/verify.mjs": "4bb23ce1fa6b06124849652b46a6c7a550774321161765d2c34e58b122b2bae2",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "f5d2803b130e55ac94e41ba26eb419da8f32772eccc34e4b3bb3a1e044909be6",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/rules.json": "3555cb8f3959f41ec4470b438f1d1d3efd7cfc45ef8d9398a9749e8dc12c2fae",
         "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/styles/mincho.json": "bb1c5ad9596e211e653222731d3e97358c40b7e966ac67536079d8033b93d296",
@@ -10314,7 +10315,7 @@
       "proofs": [
         {
           "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
-          "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+          "sha256": "c8b9094aa4c97a66c205cf76319a872c61933d55d35a2bfd6d837688ccc48022",
           "row_names": [
             "negative variation added slug rejected",
             "negative variation removed slug rejected"

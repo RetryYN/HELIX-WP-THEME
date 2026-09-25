@@ -300,7 +300,7 @@ test('current acceptance fanout baseline makes the largest recorded dependencies
   const report = buildFanout(registry);
   assert.equal(report.case_count, 137);
   assert.equal(report.bindings[0].path, 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php');
-  assert.equal(report.bindings[0].case_count, 63);
+  assert.equal(report.bindings[0].case_count, 64);
   assert.equal(report.bindings.find(item => item.path.endsWith('/assets/css/theme.css'))?.case_count, 30);
 });
 
