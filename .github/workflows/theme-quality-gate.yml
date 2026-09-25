@@ -51,6 +51,7 @@ jobs:
 
       - name: Verify current theme quality evidence bindings
         run: |
+          node --test tests/lighthouse-ci-contract.test.mjs
           node scripts/audit-catalog-evidence.mjs
           npm run i18n:verify
 
@@ -122,8 +123,8 @@ jobs:
   lhci-gate:
     name: Core Web Vitals (Lighthouse CI)
     runs-on: ubuntu-latest
-    # フル CWV 測定は workflow_dispatch または main へのマージ時のみ実行
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    # PRでも測定し、merge前に判定設定と失敗伝播を検証する。
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
 
     services:
       db:
@@ -177,18 +178,8 @@ jobs:
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
       - name: Run Lighthouse CI
-        run: |
-          lhci autorun \
-            --collect.url=http://localhost:8086/ \
-            --collect.numberOfRuns=3 \
-            --assert.preset=lighthouse:no-pwa \
-            --assert.assertions.largest-contentful-paint.maxNumericValue=2500 \
-            --assert.assertions.interactive.maxNumericValue=200 \
-            --assert.assertions.cumulative-layout-shift.maxNumericValue=0.1 \
-            --assert.assertions.render-blocking-resources=error \
-            --upload.target=temporary-public-storage \
-            2>&1 || true
-          # lhci の結果は artifact に保存（FAIL でも続行し結果を確認）
+        # LCP's 2.5s budget remains a warning pending diagnosis in issue #352; TBT is a lab proxy, not field INP.
+        run: lhci autorun --config=./.lighthouserc.json
 
       - name: Upload LHCI report
         if: always()
@@ -196,4 +187,5 @@ jobs:
         with:
           name: lhci-report
           path: .lighthouseci/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true
