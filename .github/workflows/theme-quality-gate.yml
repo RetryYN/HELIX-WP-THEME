@@ -7,6 +7,8 @@ on:
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
       - 'scripts/verify-i18n-profile.mjs'
+      - 'scripts/*.mjs'
+      - 'docs/research/**/verify.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
@@ -15,6 +17,8 @@ on:
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
       - 'scripts/verify-i18n-profile.mjs'
+      - 'scripts/*.mjs'
+      - 'docs/research/**/verify.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:
