@@ -36,7 +36,7 @@ HELIX_ARTICLE_BASE_URL=http://127.0.0.1:18112 node docs/research/2026-09-26-news
 docker compose -p helix-article-poc-repro-20260926 -f docs/research/2026-09-26-news-column-purpose-gap/compose.yaml down -v
 ```
 
-実機PoCで3目的の表示・導線を確認し、`results/verify.json` に実行結果とPoC・テーマ入力のSHA-256を記録する。`npm run article-purpose:proof` は、記録された結果、全ルート・画面幅・名前付き証拠行、および入力ハッシュを再照合する。WordPress実機試験は `npm run article-purpose:verify` で別途実行する。カタログの受入証拠への登録後も、記事目的候補はPO承認やG3を意味しない。`WT-AC-ARTICLE-01A` と `WT-AC-ARTICLE-01C` は管理画面操作と負例が未検証のため部分扱いで、`WT-AC-ARTICLE-01B` のPoC範囲のみ検証済みとする。現在の `missing` 集計を実装完成へ読み替えない。
+実機PoCで3目的の表示・導線を確認し、`results/verify.json` に実行結果とPoC・テーマ入力のSHA-256を記録する。`npm run article-purpose:verify` はWordPress実機試験を再実行し、結果を生成する。正式な証跡oracleである `npm run article-purpose:proof` は、この実機試験を実行したあと、全ルート・画面幅・名前付き証拠行、および入力ハッシュを照合する。したがって受入証跡の再束縛でも、保存済み結果だけを再検査して実測済みと扱うことはない。カタログの受入証拠への登録後も、記事目的候補はPO承認やG3を意味しない。`WT-AC-ARTICLE-01A` と `WT-AC-ARTICLE-01C` は管理画面操作と負例が未検証のため部分扱いで、`WT-AC-ARTICLE-01B` のPoC範囲のみ検証済みとする。現在の `missing` 集計を実装完成へ読み替えない。
 
 ## 判定と境界
 

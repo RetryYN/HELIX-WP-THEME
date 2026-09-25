@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -6,6 +7,11 @@ import path from 'node:path';
 const root = process.cwd();
 const proofPath = 'docs/research/2026-09-26-news-column-purpose-gap/results/verify.json';
 const proofFile = path.join(root, proofPath);
+execFileSync(process.execPath, ['docs/research/2026-09-26-news-column-purpose-gap/verify.mjs'], {
+  cwd: root,
+  env: { ...process.env, HELIX_ARTICLE_RESULT_PATH: proofPath },
+  stdio: 'inherit',
+});
 const proof = JSON.parse(await fs.readFile(proofFile, 'utf8'));
 const sourcePaths = Object.keys(proof.sourceDigests ?? {});
 assert.equal(proof.schema, 'helix-news-column-purpose-poc.v1');
@@ -38,13 +44,12 @@ const requiredRows = [
   'topics:columns/data-child-archive',
   'topics:search-intent/guides-child-archive',
   'classification:five-topical-and-notice-child-archives',
+  ...['news-releases', 'columns', 'search-intent'].flatMap(slug => [390, 768, 1440].map(width => `visual:${slug}:${width}-purpose-description-visible`)),
   ...['news-releases', 'columns', 'search-intent'].flatMap(slug => [390, 768, 1440].map(width => `responsive:${slug}:${width}-no-horizontal-overflow`)),
 ];
 const rows = new Map(proof.checks.map(row => [row.name, row]));
 for (const name of requiredRows) assert.equal(rows.get(name)?.pass, true, `required proof row missing or failed: ${name}`);
 
-// Preserve the original runtime proof bytes. Rebind/admission calls this
-// verifier to check the saved run and rewrite the file atomically in-place;
-// it must not add a timestamp or otherwise mutate the proof's meaning.
-await fs.writeFile(proofFile, `${JSON.stringify(proof, null, 2)}\n`);
+// The declared rebind oracle performs a fresh WordPress browser run above,
+// then verifies its source bindings and required rows here.
 process.stdout.write(`${JSON.stringify({ proof: proofPath, checksPassed: requiredRows.length }, null, 2)}\n`);

@@ -5177,6 +5177,96 @@
       ],
       "registry_before_sha256": "cec89e0934629a5d502a3eeae39ddd3d709fb73e957cfd4fadeabe2ca3df2f65",
       "registry_after_sha256": "f15d6908ce92fbf8c21cf8dcc3e362918ce9b4a60c917f79d301cdf350336184"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-ARTICLE-01A",
+        "WT-AC-ARTICLE-01B",
+        "WT-AC-ARTICLE-01C"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "article-purpose:proof"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ARTICLE-01A",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/seed.php",
+          "before": "62abdd138cdc0781cbd7644bdec5e8e186f0df5096e788e38864b6abfc8ec401",
+          "after": "f6486e1c9559ca3da6657d1aeb0401cbbac49542104ceeea96dac926327b78b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ARTICLE-01A",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs",
+          "before": "d9b448d6e51340ca0c9f8981e8d03fcb82d25c94d2b6dc69583e9455c80ceae2",
+          "after": "5fa0b11b465fef0d8216b286904b7496f5b3af615fc443adfd73857358d326db"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ARTICLE-01A",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+          "before": "32be65a82ac7c0c88d689f06acfc8ac6e98d64d16a2733d09c02231bc6e7ac63",
+          "after": "2568a49f21c8f50aeac69259b9964e0d65a1c784da73505d3b54dc3781a99a2e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ARTICLE-01B",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/seed.php",
+          "before": "62abdd138cdc0781cbd7644bdec5e8e186f0df5096e788e38864b6abfc8ec401",
+          "after": "f6486e1c9559ca3da6657d1aeb0401cbbac49542104ceeea96dac926327b78b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ARTICLE-01B",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs",
+          "before": "d9b448d6e51340ca0c9f8981e8d03fcb82d25c94d2b6dc69583e9455c80ceae2",
+          "after": "5fa0b11b465fef0d8216b286904b7496f5b3af615fc443adfd73857358d326db"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ARTICLE-01B",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+          "before": "32be65a82ac7c0c88d689f06acfc8ac6e98d64d16a2733d09c02231bc6e7ac63",
+          "after": "2568a49f21c8f50aeac69259b9964e0d65a1c784da73505d3b54dc3781a99a2e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ARTICLE-01C",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/seed.php",
+          "before": "62abdd138cdc0781cbd7644bdec5e8e186f0df5096e788e38864b6abfc8ec401",
+          "after": "f6486e1c9559ca3da6657d1aeb0401cbbac49542104ceeea96dac926327b78b2"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ARTICLE-01C",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs",
+          "before": "d9b448d6e51340ca0c9f8981e8d03fcb82d25c94d2b6dc69583e9455c80ceae2",
+          "after": "5fa0b11b465fef0d8216b286904b7496f5b3af615fc443adfd73857358d326db"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ARTICLE-01C",
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+          "before": "32be65a82ac7c0c88d689f06acfc8ac6e98d64d16a2733d09c02231bc6e7ac63",
+          "after": "2568a49f21c8f50aeac69259b9964e0d65a1c784da73505d3b54dc3781a99a2e"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+          "before_sha256": "9dbfb0d63ad2b8dc3d72d5f5136ede5780172dc5742307986e338e50a1a996a0",
+          "after_sha256": "2568a49f21c8f50aeac69259b9964e0d65a1c784da73505d3b54dc3781a99a2e",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "f15d6908ce92fbf8c21cf8dcc3e362918ce9b4a60c917f79d301cdf350336184",
+      "registry_after_sha256": "9fa61e514521e6f17f3f6201113cfe413e3dc0da922ddb71b390224a09ed3bf1"
     }
   ]
 }

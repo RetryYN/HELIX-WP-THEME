@@ -105,6 +105,8 @@ async function checkArchive({ slug, label, expected, expectedDescription }) {
       primaryWidth: Math.round(document.querySelector('.wt-cat-primary').getBoundingClientRect().width),
     }));
     assert.ok(layout.documentWidth <= layout.viewportWidth, `${slug} horizontal overflow at ${width}px: ${JSON.stringify(layout)}`);
+    assert.ok(await page.locator('main.wt-category .wt-cat-head__desc').isVisible(), `${slug} editorial purpose must be visible at ${width}px`);
+    recordCheck(`visual:${slug}:${width}-purpose-description-visible`);
     evidence.viewports.push({ route: slug, width, ...layout });
     recordCheck(`responsive:${slug}:${width}-no-horizontal-overflow`, { viewportWidth: layout.viewportWidth, documentWidth: layout.documentWidth });
     await page.screenshot({ path: path.join(evidenceDir, `${slug}-${width}.png`), fullPage: true });
