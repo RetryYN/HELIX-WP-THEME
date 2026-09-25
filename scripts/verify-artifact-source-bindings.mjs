@@ -5,30 +5,24 @@ import path from 'node:path';
 const root = process.cwd();
 const researchRoot = path.join(root, 'docs/research');
 
-// Immutable before-state captures. Refreshing these to current bytes would erase
-// comparison evidence. Exact paths keep every newly named artifact gated by default.
-const historicalSnapshots = new Map([
-  ['docs/research/2026-09-08-content-faces/results/header-navigation/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-08-content-faces/results/inheritance/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-08-content-faces/results/site-quality/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-08-form-flow/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-08-form-flow/boundaries-baseline.json', 'pre-fix boundary baseline'],
-  ['docs/research/2026-09-08-form-flow/initial-baseline.json', 'pre-fix initial baseline'],
-  ['docs/research/2026-09-08-form-flow/navigation-baseline.json', 'pre-fix navigation baseline'],
-  ['docs/research/2026-09-08-site-search/results/access-baseline.json', 'pre-fix access baseline'],
-  ['docs/research/2026-09-08-site-search/results/boundaries-baseline.json', 'pre-fix boundary baseline'],
-  ['docs/research/2026-09-08-site-search/results/input-baseline.json', 'pre-fix input baseline'],
-  ['docs/research/2026-09-08-site-search/results/out-of-range-before.json', 'pre-fix range capture'],
-  ['docs/research/2026-09-09-chrome-config/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-09-footer-data/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-09-footer-data/navigation-input-baseline.json', 'pre-fix navigation baseline'],
-  ['docs/research/2026-09-15-event-completion/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-15-home-completion/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-19-pricing-cards/before.json', 'before-state visual evidence'],
-  ['docs/research/2026-09-19-toc-settings/baseline.json', 'pre-fix baseline'],
-  ['docs/research/2026-09-20-heading-comparison/before.json', 'before-state visual evidence'],
-  ['docs/research/2026-09-20-heading-fluid/before.json', 'before-state visual evidence'],
-]);
+// Historical artifacts are pinned by their own bytes. Their sourceDigests keep
+// recording what each comparison measured, while live artifacts remain bound
+// to current source bytes below.
+const historyManifestPath = 'docs/research/2026-09-08-selection-catalog/historical-artifact-snapshots.json';
+const historyManifest = JSON.parse(readFileSync(path.join(root, historyManifestPath), 'utf8'));
+if (historyManifest.schema !== 'wt-historical-artifact-snapshots.v1' || !Array.isArray(historyManifest.snapshots)) {
+  throw new Error(`invalid historical artifact manifest: ${historyManifestPath}`);
+}
+const historicalSnapshots = new Map();
+for (const snapshot of historyManifest.snapshots) {
+  if (!snapshot || typeof snapshot.path !== 'string' || !snapshot.path.startsWith('docs/research/') || !snapshot.path.endsWith('.json')
+    || typeof snapshot.reason !== 'string' || snapshot.reason.length === 0
+    || typeof snapshot.artifactSha256 !== 'string' || !/^[a-f0-9]{64}$/u.test(snapshot.artifactSha256)
+    || historicalSnapshots.has(snapshot.path)) {
+    throw new Error(`invalid or duplicate historical artifact entry: ${JSON.stringify(snapshot)}`);
+  }
+  historicalSnapshots.set(snapshot.path, snapshot);
+}
 
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -68,6 +62,16 @@ for (const absolute of jsonFiles) {
   if (!artifact.sourceDigests || Array.isArray(artifact.sourceDigests) || typeof artifact.sourceDigests !== 'object') continue;
 
   if (historicalSnapshots.has(artifactPath)) {
+    const historical = historicalSnapshots.get(artifactPath);
+    const actualArtifactDigest = digest(absolute);
+    if (actualArtifactDigest !== historical.artifactSha256) {
+      findings.push({
+        artifact: artifactPath,
+        reason: 'historical-artifact-digest',
+        expected: historical.artifactSha256,
+        actual: actualArtifactDigest,
+      });
+    }
     const bindings = Object.entries(artifact.sourceDigests);
     let mismatches = 0;
     for (const [sourcePath, expected] of bindings) {
@@ -80,11 +84,10 @@ for (const absolute of jsonFiles) {
     }
     excluded.push({
       path: artifactPath,
-      reason: historicalSnapshots.get(artifactPath),
+      reason: historical.reason,
       bindings: bindings.length,
       mismatches,
     });
-    if (mismatches === 0) findings.push({ artifact: artifactPath, reason: 'exclusion-not-needed' });
     continue;
   }
 

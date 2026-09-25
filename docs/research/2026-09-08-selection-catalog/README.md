@@ -12,6 +12,10 @@
 
 生成器は画像・候補・受入証跡の参照を更新する。WordPress PoCを実装・表示する代わりにはならない。
 
+## 過去の比較証跡と現行ソース
+
+過去の baseline / before capture は、その時点で計測した `sourceDigests` を保持する。現行ファイルと異なることだけを理由に過去証跡を書き換えたり、現行合格とみなしたりしない。`historical-artifact-snapshots.json` は履歴として扱うファイルを個別列挙し、各JSON自身のSHA-256を固定する。固定後の履歴JSON改変は失敗し、それ以外の source-bound artifact は現在ソースとのdigest一致を要求する。
+
 ```sh
 node scripts/audit-catalog-evidence.mjs
 node scripts/build-selection-catalog.mjs

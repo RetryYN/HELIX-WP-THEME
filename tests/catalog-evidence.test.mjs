@@ -307,3 +307,50 @@ test('current acceptance fanout baseline makes the largest recorded dependencies
 test('acceptance fanout rejects malformed source bindings', () => {
   assert.throws(() => buildFanout({ cases: { A: { source_digests: [] } } }), /source_digests must be an object/u);
 });
+
+test('pinned historical artifacts stay immutable while live source bindings stay strict', t => {
+  const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'wt-artifact-bindings-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const manifestPath = 'docs/research/2026-09-08-selection-catalog/historical-artifact-snapshots.json';
+  const manifest = JSON.parse(fs.readFileSync(path.join(repoRoot, manifestPath), 'utf8'));
+  const copy = relative => {
+    const source = path.join(repoRoot, relative);
+    const target = path.join(root, relative);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.copyFileSync(source, target);
+    return target;
+  };
+  copy('scripts/verify-artifact-source-bindings.mjs');
+  copy(manifestPath);
+  for (const snapshot of manifest.snapshots) copy(snapshot.path);
+  fs.writeFileSync(path.join(root, 'theme.css'), 'current-v1\n');
+  const liveProof = 'docs/research/current-proof.json';
+  const liveProofPath = path.join(root, liveProof);
+  fs.mkdirSync(path.dirname(liveProofPath), { recursive: true });
+  fs.writeFileSync(liveProofPath, JSON.stringify({ sourceDigests: { 'theme.css': hash('current-v1\n') } }, null, 2));
+  const run = () => {
+    const result = spawnSync(process.execPath, ['scripts/verify-artifact-source-bindings.mjs'], { cwd: root, encoding: 'utf8' });
+    return { status: result.status, report: JSON.parse(result.stdout) };
+  };
+
+  let result = run();
+  assert.equal(result.status, 0, JSON.stringify(result.report.findings));
+  assert.equal(result.report.excludedHistoricalSnapshots, 22);
+  assert.ok(result.report.excluded.some(row => row.path === 'docs/research/2026-09-08-event-state/baseline.json'));
+
+  const historicalPath = path.join(root, 'docs/research/2026-09-08-event-state/baseline.json');
+  fs.appendFileSync(historicalPath, ' ');
+  result = run();
+  assert.equal(result.status, 1);
+  assert.ok(result.report.findings.some(row => row.artifact === 'docs/research/2026-09-08-event-state/baseline.json'
+    && row.reason === 'historical-artifact-digest'));
+
+  copy('docs/research/2026-09-08-event-state/baseline.json');
+  fs.writeFileSync(path.join(root, 'theme.css'), 'current-v2\n');
+  result = run();
+  assert.equal(result.status, 1);
+  assert.ok(result.report.findings.some(row => row.artifact === liveProof && row.source === 'theme.css' && row.reason === 'digest'));
+  assert.ok(!result.report.findings.some(row => row.artifact === 'docs/research/2026-09-08-event-state/baseline.json'
+    && row.reason === 'historical-artifact-digest'));
+});
