@@ -144,6 +144,8 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
   const root = new URL('../', import.meta.url);
   const evidence = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-08-selection-catalog/acceptance-evidence.json', root), 'utf8'));
   const impact = JSON.parse(fs.readFileSync(new URL('docs/research/2026-09-19-toc-settings/revalidation-impact.json', root), 'utf8'));
+  const packageJson = JSON.parse(fs.readFileSync(new URL('package.json', root), 'utf8'));
+  const configuredCommands = JSON.parse(fs.readFileSync(new URL('config/catalog-admission-oracles.json', root), 'utf8')).commands;
   const source = impact.changedSource;
   const affected = Object.entries(evidence.cases)
     .filter(([, record]) => Object.hasOwn(record.source_digests || {}, source))
@@ -164,6 +166,26 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
   for (const record of impact.proofVerifiers) {
     for (const sourceFile of record.verifierSources) {
       assert.ok(fs.existsSync(new URL(sourceFile, root)), `missing proof verifier source ${sourceFile}`);
+    }
+
+    const configuredCommand = configuredCommands[record.proof];
+    if (configuredCommand) {
+      const sourceArguments = configuredCommand.filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
+      assert.ok(
+        sourceArguments.some(sourceFile => record.verifierSources.includes(sourceFile)),
+        `configured oracle does not match verifier sources for ${record.proof}`,
+      );
+    }
+
+    const packageOracleName = packageJson.catalogOracles?.[record.proof];
+    if (packageOracleName) {
+      const packageCommand = packageJson.scripts[packageOracleName];
+      assert.ok(packageCommand, `missing package oracle script ${packageOracleName}`);
+      const sourceArguments = packageCommand.split(/\s+/u).filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
+      assert.ok(
+        sourceArguments.some(sourceFile => record.verifierSources.includes(sourceFile)),
+        `package oracle does not match verifier sources for ${record.proof}`,
+      );
     }
   }
 });
