@@ -38,6 +38,8 @@ update_option( 'siteurl', $base_url );
 update_option( 'blog_public', 0 );
 update_option( 'permalink_structure', '/%category%/%postname%/' );
 switch_theme( 'helix-wt' );
+set_theme_mod( 'wt_cat_header', 'name-desc' );
+remove_theme_mod( 'cat_header' );
 set_theme_mod( 'wt_cat_filter', 'year' );
 remove_theme_mod( 'cat_filter' );
 

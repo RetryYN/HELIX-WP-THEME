@@ -220,16 +220,28 @@
       "pass": true
     },
     {
+      "name": "visual:news-releases:390-purpose-description-visible",
+      "pass": true
+    },
+    {
       "name": "responsive:news-releases:390-no-horizontal-overflow",
       "pass": true,
       "viewportWidth": 390,
       "documentWidth": 390
     },
     {
+      "name": "visual:news-releases:768-purpose-description-visible",
+      "pass": true
+    },
+    {
       "name": "responsive:news-releases:768-no-horizontal-overflow",
       "pass": true,
       "viewportWidth": 768,
       "documentWidth": 768
+    },
+    {
+      "name": "visual:news-releases:1440-purpose-description-visible",
+      "pass": true
     },
     {
       "name": "responsive:news-releases:1440-no-horizontal-overflow",
@@ -243,16 +255,28 @@
       "route": "columns"
     },
     {
+      "name": "visual:columns:390-purpose-description-visible",
+      "pass": true
+    },
+    {
       "name": "responsive:columns:390-no-horizontal-overflow",
       "pass": true,
       "viewportWidth": 390,
       "documentWidth": 390
     },
     {
+      "name": "visual:columns:768-purpose-description-visible",
+      "pass": true
+    },
+    {
       "name": "responsive:columns:768-no-horizontal-overflow",
       "pass": true,
       "viewportWidth": 768,
       "documentWidth": 768
+    },
+    {
+      "name": "visual:columns:1440-purpose-description-visible",
+      "pass": true
     },
     {
       "name": "responsive:columns:1440-no-horizontal-overflow",
@@ -266,16 +290,28 @@
       "route": "search-intent"
     },
     {
+      "name": "visual:search-intent:390-purpose-description-visible",
+      "pass": true
+    },
+    {
       "name": "responsive:search-intent:390-no-horizontal-overflow",
       "pass": true,
       "viewportWidth": 390,
       "documentWidth": 390
     },
     {
+      "name": "visual:search-intent:768-purpose-description-visible",
+      "pass": true
+    },
+    {
       "name": "responsive:search-intent:768-no-horizontal-overflow",
       "pass": true,
       "viewportWidth": 768,
       "documentWidth": 768
+    },
+    {
+      "name": "visual:search-intent:1440-purpose-description-visible",
+      "pass": true
     },
     {
       "name": "responsive:search-intent:1440-no-horizontal-overflow",
@@ -357,8 +393,8 @@
   ],
   "sourceDigests": {
     "docs/research/2026-09-26-news-column-purpose-gap/compose.yaml": "6d491cd5d5c104d3829b5b4eb4c5fb2aa5824e8db0cc92712e77a4c5391fc584",
-    "docs/research/2026-09-26-news-column-purpose-gap/seed.php": "62abdd138cdc0781cbd7644bdec5e8e186f0df5096e788e38864b6abfc8ec401",
-    "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs": "d9b448d6e51340ca0c9f8981e8d03fcb82d25c94d2b6dc69583e9455c80ceae2",
+    "docs/research/2026-09-26-news-column-purpose-gap/seed.php": "f6486e1c9559ca3da6657d1aeb0401cbbac49542104ceeea96dac926327b78b2",
+    "docs/research/2026-09-26-news-column-purpose-gap/verify.mjs": "5fa0b11b465fef0d8216b286904b7496f5b3af615fc443adfd73857358d326db",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json": "f5d2803b130e55ac94e41ba26eb419da8f32772eccc34e4b3bb3a1e044909be6",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html": "d7e238cfdcf2c12fc0f583dcca6439189fdceeade0ebc70721c7fab7f5537a26",
@@ -366,5 +402,5 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3"
   },
   "completed": true,
-  "generatedAt": "2026-09-25T18:45:16.625Z"
+  "generatedAt": "2026-09-25T19:24:55.437Z"
 }
