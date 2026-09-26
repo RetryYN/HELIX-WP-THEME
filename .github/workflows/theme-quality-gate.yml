@@ -10,9 +10,11 @@ on:
       - 'scripts/**/*.mjs'
       - 'scripts/**/*.js'
       - 'scripts/**/*.cjs'
+      - 'scripts/**/*.py'
       - 'docs/research/**/*.mjs'
       - 'docs/research/**/*.js'
       - 'docs/research/**/*.cjs'
+      - 'docs/research/**/*.py'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
@@ -24,9 +26,11 @@ on:
       - 'scripts/**/*.mjs'
       - 'scripts/**/*.js'
       - 'scripts/**/*.cjs'
+      - 'scripts/**/*.py'
       - 'docs/research/**/*.mjs'
       - 'docs/research/**/*.js'
       - 'docs/research/**/*.cjs'
+      - 'docs/research/**/*.py'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:

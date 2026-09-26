@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(import.meta.dirname, '..');
 const theme = path.join(root, 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt');
@@ -8,6 +10,7 @@ const profilePath = path.join(theme, 'config/i18n-profile.json');
 const stylePath = path.join(theme, 'style.css');
 const potPath = path.join(theme, 'languages/helix-wt.pot');
 const outputPath = path.join(root, 'docs/research/2026-09-10-i18n-boundary/verify.json');
+const verifierPath = fileURLToPath(import.meta.url);
 const writePot = process.argv.includes('--write-pot');
 
 const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -118,6 +121,17 @@ const sourceCalls = messages.reduce((sum, item) => sum + item.references.length,
 const allGettextCalls = walk(theme).filter(file => file.endsWith('.php')).reduce((sum, file) =>
   sum + [...fs.readFileSync(file, 'utf8').matchAll(/\b(?:__|_e|_x|_ex|_n|_nx|esc_html__|esc_html_e|esc_html_x|esc_attr__|esc_attr_e|esc_attr_x)\s*\(/g)].length, 0);
 const untranslatedCjk = findUntranslatedCjk();
+const sourceFiles = [
+  ...walk(theme).filter(file => file.endsWith('.php') || file.endsWith('.html')),
+  profilePath,
+  stylePath,
+  potPath,
+  verifierPath,
+];
+const sourceDigests = Object.fromEntries(sourceFiles.map(file => [
+  path.relative(root, file).split(path.sep).join('/'),
+  createHash('sha256').update(fs.readFileSync(file)).digest('hex'),
+]));
 
 function evaluate(input) {
   return {
@@ -163,6 +177,7 @@ const result = {
   completed: true,
   requirements: ['WT-NFR-ENV-01'],
   source: 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/config/i18n-profile.json',
+  sourceDigests,
   counts: { source_calls: sourceCalls, unique_messages: messages.length, untranslated_cjk: untranslatedCjk.length },
   rows,
   failed: rows.filter(row => !row.pass).length,

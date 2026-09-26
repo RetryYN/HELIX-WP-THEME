@@ -4,13 +4,27 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { contentLab, contentLabWpCliArgs } from './lib/content-lab-env.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const state = process.env.WTCF_STATE_DIR || path.join(os.tmpdir(), 'helix-content-lab');
-const cli = ['run', '--rm', '--network', 'helix-content-lab', '--env-file', path.join(state, 'wp.env'), '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp'];
+const cli = contentLabWpCliArgs();
 const wp = args => execFileSync('docker', [...cli, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 assert.equal(wp(['option', 'get', 'blogname']), 'HELIX Content Lab');
-const base = 'http://127.0.0.1:8098';
+const base = contentLab.baseUrl;
 const marker = 'INTERVIEW_LIFECYCLE_PRIVATE_SENTINEL';
+const theme = 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt';
+const sourceFiles = [
+  'scripts/verify-interview-lifecycle.mjs',
+  'scripts/lib/content-lab-env.mjs',
+  'scripts/start-content-lab.py',
+  'docs/research/2026-09-08-content-faces/plugin/content-faces.php',
+  'docs/research/2026-09-08-content-faces/plugin/manifest.json',
+  ...['functions.php', 'inc/content-faces.php', 'templates/archive-wt_interview.html', 'templates/single-wt_interview.html']
+    .map(file => `${theme}/${file}`),
+];
+const sourceDigests = Object.fromEntries(sourceFiles.map(file => [
+  file, createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'),
+]));
 const rows = []; let completed = false; let id;
 const check = (name, pass) => rows.push({ name, pass: Boolean(pass) });
 async function inspect(label, published) {
@@ -53,7 +67,7 @@ try {
   completed = true;
 } finally {
   if (id) { wp(['post', 'delete', String(id), '--force']); check('owned-fixture-removed', wp(['post', 'list', '--post_type=wt_interview', '--name=boundary-interview-check', '--post_status=any', '--format=ids']) === ''); }
-  fs.writeFileSync(path.join(root, 'docs/research/2026-09-08-content-faces/results/interview-lifecycle.json'), JSON.stringify({ schema: 'wt-interview-lifecycle.v1', completed, rows }, null, 2) + '\n');
+  fs.writeFileSync(path.join(root, 'docs/research/2026-09-08-content-faces/results/interview-lifecycle.json'), JSON.stringify({ schema: 'wt-interview-lifecycle.v1', completed, rows, sourceDigests }, null, 2) + '\n');
 }
 console.log(`Interview lifecycle: ${rows.filter(r => r.pass).length}/${rows.length} checks passed; owned fixture removed`);
 if (rows.some(r => !r.pass)) process.exitCode = 1;
