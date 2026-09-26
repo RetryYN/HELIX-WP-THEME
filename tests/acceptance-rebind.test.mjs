@@ -126,6 +126,33 @@ test('rebind rejects dropping a stale registry source that no proof accounts for
   assert.equal(registry.cases.A1.source_digests['orphan.txt'], hash('orphan-v1\n'));
 });
 
+test('explicitly detaching an obsolete case source records a reason and is provenance checked', async t => {
+  const f = fixtureWithUnboundCaseSource(t);
+  f.write('orphan.txt', 'orphan-v2\n');
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const detachment = JSON.stringify({ case: 'A1', source: 'orphan.txt', reason: 'The source was incorrectly attached to this proof and is not read by its registered oracle.' });
+  const result = f.run(['--case', 'A1', '--proof', 'proof.json', '--detach-source-json', detachment, '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 0, result.stderr);
+  const registryPath = path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+  assert.equal(registry.cases.A1.source_digests['orphan.txt'], undefined);
+  const log = JSON.parse(fs.readFileSync(path.join(f.root, 'docs/research/2026-09-08-selection-catalog/acceptance-rebind-log.json'), 'utf8'));
+  assert.deepEqual(log.transactions[0].source_detachments, [JSON.parse(detachment)]);
+  assert.ok(log.transactions[0].changes.some(change => change.kind === 'source' && change.path === 'orphan.txt' && change.after === null));
+  const checked = f.run(['--check', '--base-ref', 'HEAD']);
+  assert.equal(checked.status, 0, checked.stderr || checked.stdout);
+});
+
+test('source detachment rejects a source still declared by the regenerated proof', async t => {
+  const f = fixture(t);
+  f.write('implementation.php', 'source-v2\n');
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const detachment = JSON.stringify({ case: 'A1', source: 'implementation.php', reason: 'test invalid detach' });
+  const result = f.run(['--case', 'A1', '--detach-source-json', detachment, '--command-json', '["npm","run","fixture:verify"]', '--apply']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /cannot detach source still declared by a registered proof/u);
+});
+
 test('an explicit base ref permits rebind after the source commit', async t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');

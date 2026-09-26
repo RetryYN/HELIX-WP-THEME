@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -6,8 +7,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const state = process.env.WTCF_STATE_DIR || path.join(os.tmpdir(), 'helix-content-lab');
-const wp = args => execFileSync('docker', ['run', '--rm', '--network', 'helix-content-lab', '--env-file', path.join(state, 'wp.env'), '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+const state = contentLab.stateDir;
+const wp = args => execFileSync('docker', ['run', '--rm', '--network', contentLab.network, '--env-file', path.join(state, 'wp.env'), '--volumes-from', contentLab.wpContainer, '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 if (wp(['option', 'get', 'blogname']) !== 'HELIX Content Lab') throw Error('Dedicated lab required');
 const marker = 'SearchUnlockFixture';
 if (wp(['post', 'list', '--post_type=any', '--post_status=any', '--s=' + marker, '--format=ids'])) throw Error('Reserved fixtures exist');
@@ -18,8 +19,8 @@ sources.push(...['functions.php','inc/footer-navigation.php','parts/footer.html'
 
 const digests = () => Object.fromEntries(sources.map(f => [f, createHash('sha256').update(fs.readFileSync(path.join(root, f))).digest('hex')]));
 const sourceDigests = digests(), rows = [];
-const check = (name, pass) => rows.push({ name, pass: !!pass });
-const base = 'http://127.0.0.1:8098', browser = await chromium.launch();
+const check = (name, pass, detail) => rows.push({ name, pass: !!pass, ...(detail === undefined ? {} : { detail }) });
+const base = `${contentLab.baseUrl}`, browser = await chromium.launch();
 let ids = [], completed = false;
 async function unlock(context, password) {
   await context.request.post(base + '/wp-login.php?action=postpass', { form: { post_password: password }, headers: { referer: base + '/?p=' + ids[1] } });
@@ -58,7 +59,10 @@ try {
     await unlock(context, 'unlock-fixture'); await inspect(page, 'unlocked', 3, label);
     await page.goto(`${base}/?s=${marker}`);
     await page.locator('main .wp-block-query-pagination-next').click();
-    check(`next-page:${label}`, new URL(page.url()).searchParams.get('s') === marker && (await page.locator('main .wp-block-post-template').innerText()).includes('UnlockedBodyOnly'));
+    const nextPageUrl = new URL(page.url());
+    const nextPageContent = await page.locator('main .wp-block-post-template').innerText();
+    const advancedToPageTwo = /\/page\/2\/?$/u.test(nextPageUrl.pathname) || nextPageUrl.searchParams.get('paged') === '2';
+    check(`next-page:${label}`, advancedToPageTwo && nextPageUrl.searchParams.get('s') === marker && nextPageContent.includes('UnlockedBodyOnly'), { url: `${nextPageUrl.pathname}${nextPageUrl.search}`, advancedToPageTwo, containsUnlockedBody: nextPageContent.includes('UnlockedBodyOnly') });
     await context.clearCookies({ name: /^wp-postpass_/ });
     await inspect(page, 'cleared', 1, label);
     await context.close();

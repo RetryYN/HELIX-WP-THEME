@@ -33,7 +33,9 @@ export WTCF_LAB_CREDENTIALS="$WTCF_STATE_DIR/credentials.json"
 npx playwright install chromium
 ```
 
-`WTCF_BASE_URL`はloopbackのHTTP originだけを受け付ける。既定値を使う場合、従来のネットワーク名・コンテナ名・volume名・8098番ポートは変わらない。検証スクリプトは同じ環境変数からWP-CLI接続先とブラウザーURLを得る。
+`WTCF_BASE_URL`は明示ポート付きのloopback HTTP originだけを受け付ける。Dockerのnetwork・container・volume名は、英数字で始まり、英数字・`.`・`_`・`-`だけを受け付ける。JS helperとPython launcherは同じ条件で検査する。既定値を使う場合、従来の名前と8098番ポートを維持する。
+
+content-labを使う検証器とリサーチprobeは、`content-lab-env.mjs`または`content_lab_env.py`から接続先・状態領域を取得する。これによりWP-CLI、PHP、ブラウザーの各経路が同じnetwork・container・portを使う。検証器とlauncherの双方で明示ポートとDocker名を同じ規則で検査する。`scripts/`と`docs/research/`の対象コードをテストで走査し、共有labの直書きが隔離設定を迂回しないことを確認する。
 
 `WTCF_STATE_DIR`を指定した場合は、そのディレクトリの`credentials.json`を検証スクリプトへ渡す。資格情報はリポジトリ外で生成・保持し、ログや公開成果物に含めない。起動スクリプトは既存labを再利用し、専用fixtureだけを再投入する。異なるcheckoutをマウントした同名コンテナは変更せず停止する。
 

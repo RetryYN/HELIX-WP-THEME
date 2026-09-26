@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -14,6 +15,18 @@ const filesBelow = directory => fs.readdirSync(directory, { withFileTypes: true 
   const file = path.join(directory, entry.name);
   return entry.isDirectory() ? filesBelow(file) : [file];
 });
+const sourceFiles = [
+  path.join(root, 'scripts/verify-capability-manifest.mjs'),
+  manifestPath,
+  path.join(themeDir, 'theme.json'),
+  path.join(themeDir, 'config/content-chrome.json'),
+  path.join(themeDir, 'functions.php'),
+  ...filesBelow(path.join(themeDir, 'inc')).filter(file => file.endsWith('.php')),
+  ...filesBelow(path.join(themeDir, 'patterns')).filter(file => file.endsWith('.php')),
+  ...filesBelow(path.join(themeDir, 'parts')),
+  ...filesBelow(path.join(themeDir, 'templates')),
+  ...filesBelow(path.join(themeDir, 'styles')),
+];
 
 function deriveCapabilities() {
   const theme = readJson(path.join(themeDir, 'theme.json'));
@@ -69,6 +82,10 @@ const result = {
   schema: 'wt-capability-manifest-verification.v2',
   requirements: ['WT-TR-CORE-01', 'WT-TR-CORE-02'],
   completed: true,
+  sourceDigests: Object.fromEntries(sourceFiles.map(file => [
+    path.relative(root, file).split(path.sep).join('/'),
+    createHash('sha256').update(fs.readFileSync(file)).digest('hex'),
+  ])),
   source: path.relative(root, manifestPath).split(path.sep).join('/'),
   counts: Object.fromEntries(Object.entries(observed).map(([key, value]) => [key, Array.isArray(value) ? value.length : Object.values(value).reduce((sum, items) => sum + items.length, 0)])),
   rows,

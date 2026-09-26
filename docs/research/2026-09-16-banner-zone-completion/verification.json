@@ -2,7 +2,7 @@
   "schema": "wt-banner-zone-verification.v1",
   "completed": true,
   "sourceDigests": {
-    "scripts/verify-banner-zones.mjs": "6f07e64295435253392dfda381a9d06f2da7fad86e371987ce85abe0c3e61146",
+    "scripts/verify-banner-zones.mjs": "664cbf8c1fba15ec12f05bd9e333bad4ee3ef47bd9aa6676f33b69cadf5bf1b9",
     "scripts/lib/banner-zone-gate.mjs": "85d047fe42133af8ccb3004cc8518b528a12e3e4d2fa043fe24256b0bdc547bd",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b",
@@ -570,7 +570,7 @@
     {
       "name": "product:pc:js:area-cap",
       "pass": true,
-      "details": 0.10640576774691358
+      "details": 0.10602864583333334
     },
     {
       "name": "product:pc:js:disclosure-adjacent",
@@ -615,7 +615,7 @@
     {
       "name": "product:pc:nojs:area-cap",
       "pass": true,
-      "details": 0.10640576774691358
+      "details": 0.10602864583333334
     },
     {
       "name": "product:pc:nojs:disclosure-adjacent",
@@ -660,7 +660,7 @@
     {
       "name": "product:sp:js:area-cap",
       "pass": true,
-      "details": 0.07509476851851851
+      "details": 0.06759958333333334
     },
     {
       "name": "product:sp:js:disclosure-adjacent",
@@ -705,7 +705,7 @@
     {
       "name": "product:sp:nojs:area-cap",
       "pass": true,
-      "details": 0.07509476851851851
+      "details": 0.06759958333333334
     },
     {
       "name": "product:sp:nojs:disclosure-adjacent",
@@ -930,7 +930,7 @@
     {
       "name": "rotation:pc:js:area-cap",
       "pass": true,
-      "details": 0.12111352237654321
+      "details": 0.10640576774691358
     },
     {
       "name": "rotation:pc:js:disclosure-adjacent",
@@ -975,7 +975,7 @@
     {
       "name": "rotation:pc:nojs:area-cap",
       "pass": true,
-      "details": 0.12111352237654321
+      "details": 0.10640576774691358
     },
     {
       "name": "rotation:pc:nojs:disclosure-adjacent",
@@ -1020,7 +1020,7 @@
     {
       "name": "rotation:sp:js:area-cap",
       "pass": true,
-      "details": 0.28621444444444444
+      "details": 0.2577263888888889
     },
     {
       "name": "rotation:sp:js:disclosure-adjacent",
@@ -1065,7 +1065,7 @@
     {
       "name": "rotation:sp:nojs:area-cap",
       "pass": true,
-      "details": 0.28621444444444444
+      "details": 0.2577263888888889
     },
     {
       "name": "rotation:sp:nojs:disclosure-adjacent",
@@ -1824,84 +1824,84 @@
       "label": "お知らせだけを添える",
       "file": "notice-pc.jpg",
       "device": "pc",
-      "sha256": "b160991eaf9e9432958753627e26b195eea3fd4cc568d08289c5b61954234a34"
+      "sha256": "d6aeb75060c90e41398fe7f7d51b96140c1929f1dcd524cbdfc485b27bc7e340"
     },
     {
       "id": "notice",
       "label": "お知らせだけを添える",
       "file": "notice-sp.jpg",
       "device": "sp",
-      "sha256": "95588b16b931f4d35d0c1aad504fa21111e56cf5160b61cd0cf09b28a7d53f98"
+      "sha256": "a3219401e213ad28fd640212831a4ee5b7dbabca069a5773e12d2bf2d16f4a73"
     },
     {
       "id": "guide",
       "label": "本文前に判断材料を置く",
       "file": "guide-pc.jpg",
       "device": "pc",
-      "sha256": "ceeb96230dc26792905db23c31ec949a1b97a30bcbc5095ad1eba2387cc37635"
+      "sha256": "13a8cdbba14be7f507518c825b2e39e355bf6064fa3482dbe207cbaf9d0aa3f4"
     },
     {
       "id": "guide",
       "label": "本文前に判断材料を置く",
       "file": "guide-sp.jpg",
       "device": "sp",
-      "sha256": "3c4e911ad23ae8a1375d4411c86a9e9719f9f22a6f9a90ebeac5dd0370eec42c"
+      "sha256": "49cfe6226b969e1b4a5874030050c8d38e8a6d9f3ab9c12a765c71bf6bcb2695"
     },
     {
       "id": "product",
       "label": "商品正本から案内する",
       "file": "product-pc.jpg",
       "device": "pc",
-      "sha256": "e84eb574dcb83029e4997284f2f630ec87d668b4a9d4b4debaacdff4c462b8d8"
+      "sha256": "d402f507333bc3dfcc0eaf50f51428e474e25642ef06c25bb67921feef9d2310"
     },
     {
       "id": "product",
       "label": "商品正本から案内する",
       "file": "product-sp.jpg",
       "device": "sp",
-      "sha256": "b2bef509e625811dcb5ce63731f97ee562b3e0b732b136239f104d360ee76b4d"
+      "sha256": "49672ca8b4f965179ab4a8e06360ebc4c8ee09f5e806118c739777e4ca9c7114"
     },
     {
       "id": "advertisement",
       "label": "広告の帰属を明示する",
       "file": "advertisement-pc.jpg",
       "device": "pc",
-      "sha256": "f8a4a9b9a4b0e253d8b1a6bb980f8dd0fa5e8661bcea3e2d0b3e811f98009de8"
+      "sha256": "cfae02333abffad78c84d380a50df8eea909df2edf37c04b31dc380be21ac4fb"
     },
     {
       "id": "advertisement",
       "label": "広告の帰属を明示する",
       "file": "advertisement-sp.jpg",
       "device": "sp",
-      "sha256": "6240683d224e560c8de813718c8550a7559e274c19540de9373891ea3608d20d"
+      "sha256": "fe93d3d3a55045919a4815f9a696d9abf98b127f37918b038e4b56d9d3b1d361"
     },
     {
       "id": "rotation",
       "label": "次の訪問で案内を切り替える",
       "file": "rotation-pc.jpg",
       "device": "pc",
-      "sha256": "f8a4a9b9a4b0e253d8b1a6bb980f8dd0fa5e8661bcea3e2d0b3e811f98009de8"
+      "sha256": "13a8cdbba14be7f507518c825b2e39e355bf6064fa3482dbe207cbaf9d0aa3f4"
     },
     {
       "id": "rotation",
       "label": "次の訪問で案内を切り替える",
       "file": "rotation-sp.jpg",
       "device": "sp",
-      "sha256": "6240683d224e560c8de813718c8550a7559e274c19540de9373891ea3608d20d"
+      "sha256": "49cfe6226b969e1b4a5874030050c8d38e8a6d9f3ab9c12a765c71bf6bcb2695"
     },
     {
       "id": "stack",
       "label": "補助操作の重なりを避ける",
       "file": "stack-pc.jpg",
       "device": "pc",
-      "sha256": "22b922f6b5ab5bd436b81cafdfb95fa0aa50ac95a69e96f43f391f1ac4c5fb28"
+      "sha256": "c29ee8a5ab2dffac27839a20835f203a090983e4308d18cda206b65b52278b01"
     },
     {
       "id": "stack",
       "label": "補助操作の重なりを避ける",
       "file": "stack-sp.jpg",
       "device": "sp",
-      "sha256": "fde829d67bc04fa040cda9b0b178399597cb530b103bec6b8a9f8c7c30d257c7"
+      "sha256": "f2791eb693207a27f6236d94e5bfefb7b6fa7820e3599568019248194a2e3bb8"
     }
   ],
   "gateSnapshots": [
@@ -1915,8 +1915,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 706.296875,
-          "bottom": 754.296875
+          "top": 715.921875,
+          "bottom": 763.921875
         }
       }
     },
@@ -1930,8 +1930,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 706.296875,
-          "bottom": 754.296875
+          "top": 715.921875,
+          "bottom": 763.921875
         }
       }
     },
@@ -1945,8 +1945,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 850.484375,
-          "bottom": 898.484375
+          "top": 857.859375,
+          "bottom": 905.859375
         }
       }
     },
@@ -1960,8 +1960,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 844.109375,
-          "bottom": 892.109375
+          "top": 851.484375,
+          "bottom": 899.484375
         }
       }
     },
@@ -1975,8 +1975,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 843.09375,
-          "bottom": 891.09375
+          "top": 852.71875,
+          "bottom": 900.71875
         }
       }
     },
@@ -1990,8 +1990,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 843.09375,
-          "bottom": 891.09375
+          "top": 852.71875,
+          "bottom": 900.71875
         }
       }
     },
@@ -2005,8 +2005,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1031.703125,
-          "bottom": 1079.703125
+          "top": 1039.078125,
+          "bottom": 1087.078125
         }
       }
     },
@@ -2020,68 +2020,68 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1031.703125,
-          "bottom": 1079.703125
+          "top": 1039.078125,
+          "bottom": 1087.078125
         }
       }
     },
     {
       "name": "product:pc:js",
       "snapshot": {
-        "areaRatio": 0.10640576774691358,
+        "areaRatio": 0.10602864583333334,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 624.296875,
-          "bottom": 672.296875
+          "top": 633.921875,
+          "bottom": 681.921875
         }
       }
     },
     {
       "name": "product:pc:nojs",
       "snapshot": {
-        "areaRatio": 0.10640576774691358,
+        "areaRatio": 0.10602864583333334,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 624.296875,
-          "bottom": 672.296875
+          "top": 633.921875,
+          "bottom": 681.921875
         }
       }
     },
     {
       "name": "product:sp:js",
       "snapshot": {
-        "areaRatio": 0.07509476851851851,
+        "areaRatio": 0.06759958333333334,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 762.109375,
-          "bottom": 810.109375
+          "top": 769.484375,
+          "bottom": 817.484375
         }
       }
     },
     {
       "name": "product:sp:nojs",
       "snapshot": {
-        "areaRatio": 0.07509476851851851,
+        "areaRatio": 0.06759958333333334,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 762.109375,
-          "bottom": 810.109375
+          "top": 769.484375,
+          "bottom": 817.484375
         }
       }
     },
@@ -2095,8 +2095,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 871.125,
-          "bottom": 919.125
+          "top": 880.75,
+          "bottom": 928.75
         }
       }
     },
@@ -2110,8 +2110,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 871.125,
-          "bottom": 919.125
+          "top": 880.75,
+          "bottom": 928.75
         }
       }
     },
@@ -2125,8 +2125,8 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1059.734375,
-          "bottom": 1107.734375
+          "top": 1067.109375,
+          "bottom": 1115.109375
         }
       }
     },
@@ -2140,68 +2140,68 @@
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1059.734375,
-          "bottom": 1107.734375
+          "top": 1067.109375,
+          "bottom": 1115.109375
         }
       }
     },
     {
       "name": "rotation:pc:js",
       "snapshot": {
-        "areaRatio": 0.12111352237654321,
+        "areaRatio": 0.10640576774691358,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 871.125,
-          "bottom": 919.125
+          "top": 852.71875,
+          "bottom": 900.71875
         }
       }
     },
     {
       "name": "rotation:pc:nojs",
       "snapshot": {
-        "areaRatio": 0.12111352237654321,
+        "areaRatio": 0.10640576774691358,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 871.125,
-          "bottom": 919.125
+          "top": 852.71875,
+          "bottom": 900.71875
         }
       }
     },
     {
       "name": "rotation:sp:js",
       "snapshot": {
-        "areaRatio": 0.28621444444444444,
+        "areaRatio": 0.2577263888888889,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1059.734375,
-          "bottom": 1107.734375
+          "top": 1039.078125,
+          "bottom": 1087.078125
         }
       }
     },
     {
       "name": "rotation:sp:nojs",
       "snapshot": {
-        "areaRatio": 0.28621444444444444,
+        "areaRatio": 0.2577263888888889,
         "areaCap": 0.6,
         "openPromotionalModals": 0,
         "face": "page",
         "lpException": false,
         "layers": [],
         "cta": {
-          "top": 1059.734375,
-          "bottom": 1107.734375
+          "top": 1039.078125,
+          "bottom": 1087.078125
         }
       }
     },
@@ -2216,23 +2216,23 @@
         "layers": [
           {
             "kind": "consent",
-            "top": 713.953125,
-            "bottom": 776.015625
+            "top": 713.890625,
+            "bottom": 775.953125
           },
           {
             "kind": "menu",
-            "top": 776.015625,
-            "bottom": 838.078125
+            "top": 775.953125,
+            "bottom": 838.015625
           },
           {
             "kind": "share",
-            "top": 838.078125,
-            "bottom": 900.140625
+            "top": 838.015625,
+            "bottom": 900.078125
           }
         ],
         "cta": {
-          "top": 288.296875,
-          "bottom": 336.296875
+          "top": 286.921875,
+          "bottom": 334.921875
         }
       }
     },
@@ -2247,23 +2247,23 @@
         "layers": [
           {
             "kind": "consent",
-            "top": 713.953125,
-            "bottom": 776.015625
+            "top": 713.890625,
+            "bottom": 775.953125
           },
           {
             "kind": "menu",
-            "top": 776.015625,
-            "bottom": 838.078125
+            "top": 775.953125,
+            "bottom": 838.015625
           },
           {
             "kind": "share",
-            "top": 838.078125,
-            "bottom": 900.140625
+            "top": 838.015625,
+            "bottom": 900.078125
           }
         ],
         "cta": {
-          "top": 288.296875,
-          "bottom": 336.296875
+          "top": 286.921875,
+          "bottom": 334.921875
         }
       }
     },
@@ -2293,8 +2293,8 @@
           }
         ],
         "cta": {
-          "top": 274.484375,
-          "bottom": 322.484375
+          "top": 272.859375,
+          "bottom": 320.859375
         }
       }
     },
@@ -2309,23 +2309,23 @@
         "layers": [
           {
             "kind": "consent",
-            "top": 713.796875,
-            "bottom": 775.859375
+            "top": 713.484375,
+            "bottom": 775.546875
           },
           {
             "kind": "menu",
-            "top": 775.859375,
-            "bottom": 837.921875
+            "top": 775.546875,
+            "bottom": 837.609375
           },
           {
             "kind": "share",
-            "top": 837.921875,
-            "bottom": 899.984375
+            "top": 837.609375,
+            "bottom": 899.671875
           }
         ],
         "cta": {
-          "top": 274.109375,
-          "bottom": 322.109375
+          "top": 272.484375,
+          "bottom": 320.484375
         }
       }
     }

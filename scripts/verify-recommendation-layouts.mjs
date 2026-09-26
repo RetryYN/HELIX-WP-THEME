@@ -1,11 +1,12 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash, randomUUID} from 'node:crypto';
-const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-19-recommendation-layouts',state='/tmp/helix-content-lab';
+const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-19-recommendation-layouts',state=contentLab.stateDir;
 const run=randomUUID(),slug='recommendation-layout-fixture',lock=state+'/recommendation-layout-fixture.json';
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',state+'/wp.env','--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',state+'/wp.env','--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
 const reserved=()=>wp(['post','list','--post_type=any','--post_status=any','--name='+slug,'--format=ids']);
 if(wp(['option','get','blogname'])!=='HELIX Content Lab'||reserved()||fs.existsSync(lock))throw Error('Dedicated lab / fixture collision guard');
 const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
@@ -35,7 +36,7 @@ try{
   const data=JSON.parse(raw);contracts.push(data.query);check(mode+':registered',!!data.content);wp(['post','update',String(pageId),'--post_content='+data.content]);
   for(const[device,width]of[['pc',1440],['sp',390]])for(const js of[true,false]){
    const context=await browser.newContext({viewport:{width,height:1000},javaScriptEnabled:js,reducedMotion:'reduce'}),p=await context.newPage(),prefix=mode+':'+device+':'+(js?'js':'nojs');
-   const response=await p.goto('http://127.0.0.1:8098/'+slug+'/?wt=page_fix:off');await p.locator('.wt-recommendation-query').waitFor();await p.locator('.wt-recommendation-query img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));
+   const response=await p.goto(`${contentLab.baseUrl}/`+slug+'/?wt=page_fix:off');await p.locator('.wt-recommendation-query').waitFor();await p.locator('.wt-recommendation-query img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));
    const actual=await p.locator('.wt-recommendation-query .wp-block-post').evaluateAll(es=>es.map(e=>Number([...e.classList].find(c=>/^post-\d+$/.test(c)).slice(5))));
    check(prefix+':same-public-order-count',JSON.stringify(actual)===JSON.stringify(posts),{actual,expected:posts});check(prefix+':private-excluded',!actual.includes(hidden));
    check(prefix+':response',response.status()===200);check(prefix+':no-overflow',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

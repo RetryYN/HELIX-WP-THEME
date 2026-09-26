@@ -25,18 +25,18 @@
   },
   "baseline": {
     "conditions": 1035,
-    "assertions": 5496,
+    "assertions": 5522,
     "note": "Regression conditions overlap new editor/public probes; not a sum of unique configurations."
   },
   "sourceDigests": {
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-navigation.php": "5e45d1eba118b6d0a090ab737a094f35db994252ea0889dda7b8dddea978b530",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
-    "scripts/verify-header-navigation-editing.mjs": "a588b77c193ebeb8603e5ba4b18806e15f31113384ed55db9f288aaf366ced72",
-    "scripts/recover-header-navigation-editing.mjs": "fd73ea3fafbdd30bb302dc999b2d812fd897e32f9abd116615c73ebe53adddb1",
-    "scripts/verify-header-navigation-scope.mjs": "10a7225ea2f5636758d9fbf65dc8d3f6a1b9c4df4f91b50ea534c04c281aca06",
-    "scripts/verify-header-navigation-recovery.mjs": "2e4acb796be58d7ebc9b1494a3d156be0a5c1473067408a0820037487bdc10cb",
-    "scripts/verify-header-navigation-editor-isolation.mjs": "05b11e18fb2c0a64c03b8c3256a0086c038819ca92b9756e9810738a2616f3e0",
+    "scripts/verify-header-navigation-editing.mjs": "9e2ce2a2bb95a4d48ff373d40134d642e8306be840eed57d3c857bcfe680fd7e",
+    "scripts/recover-header-navigation-editing.mjs": "197c8ba89ef4747426db32f83a57e2c5d772c29123fc49646aa776d94605bdee",
+    "scripts/verify-header-navigation-scope.mjs": "ab3380ce7d61d94650d4cc1440f62d76e1ec24f4b8018d069a84b0fe19339528",
+    "scripts/verify-header-navigation-recovery.mjs": "9911bb01d5f0df99c7fb0d4608e7f9603549309c8c3396da76b94e60a5410acc",
+    "scripts/verify-header-navigation-editor-isolation.mjs": "55d5e305612eed26b39c323a1ac5116a50139baa02b2318b65a04fbc3d37fc15",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html": "7057f59e0baa68c897650cccb4606ca126e2812b9274dea96f559876b14aff8a",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html": "02743620b523a3c7abbe5c6cde7f6583a8ef299bd138f73cb3bf6b890f889845",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html": "f35a3701cd9626002c20ba95c46be681b4805e4842952570ce85dfb777308792",
@@ -48,19 +48,19 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html": "658d6dd949aceccad16ca7bfd700cfbfa1490e9faf26be44e44fc5cffe2653d4",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/header-sp-extras.php": "f829abd1cdf19a19a4a7299c513439b05aaaa3e8022e40dfebf2b4307f40b591",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3",
-    "scripts/verify-header-navigation-complete.mjs": "da0ad319830a847d92dad3f630a9ce87274d0b84766e957da96f2daf9c68a7c2",
-    "scripts/verify-header-navigation-boundaries.mjs": "f2931992f9b0691d3cec1aa4e32de9a2daf26017848b61504ae38c417727f78e",
-    "scripts/verify-header-navigation-editor.mjs": "969915821aebb2f387c232274a6712e0ce2c2e966bc3a2937f39a6d0611bab2c",
-    "scripts/verify-header-navigation-static.mjs": "9ed7de5ca98b38764327eb1d3b690fec4825797180427543c08559f97ba1afd0",
+    "scripts/verify-header-navigation-complete.mjs": "75811d8a6e7a0dda6bc3de9ef22bf4d4e529d4822ddcf37d259cbe80c1d47529",
+    "scripts/verify-header-navigation-boundaries.mjs": "c14e3ebd067152b892e934273c28dce80e656100dad4fe5574c439379deced07",
+    "scripts/verify-header-navigation-editor.mjs": "51238031e543a06e59b400eeaba4120f73e568ec638242f91c450c89fffbdf25",
+    "scripts/verify-header-navigation-static.mjs": "33f7ab74099f34feccc2ae0a44a5eab53f5d2e780bcea1993ede759b3a582eb1",
     "scripts/summarize-header-navigation-complete.mjs": "007f04ec515bbd5ab0d5ed0b38fb77fafb0fbdfbf63cbd077023b83f044f0a3e",
     "scripts/summarize-header-navigation-editing.mjs": "5762be9114eab59699af2d39b4d7304bc3f11daa6e10d35367f1f4802a8fd133"
   },
   "artifacts": {
-    "docs/research/2026-09-14-header-navigation-editing/verify.json": "57871d515e8f2e1bee251bd8aaa69d594e91ec95d04120437ba3e3e42f5b4c69",
-    "docs/research/2026-09-14-header-navigation-editing/scope.json": "ba352dc865515f5c4b0ffc05229fa6785301a1cd80f8c49b28cc7c5988a2ecf4",
-    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "77e6782870e11e338c1f3ba944e72305f756c72b050ea7ba66b86239f72eb457",
-    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "2f07b1034eff384dbb44918f871c720eb4c245e1a223877687c53a7dbeaa4279",
-    "docs/research/2026-09-13-header-navigation-complete/verify.json": "8e0a86b48698ff4b303ebff4768bdd6d63266223e71cd8799b04737d8adff6d6"
+    "docs/research/2026-09-14-header-navigation-editing/verify.json": "01d1b643afe16364b74d61b1cb1498be077e59682147474708d686af8137156a",
+    "docs/research/2026-09-14-header-navigation-editing/scope.json": "b9084a534ecd49c3143dff425aad18dc1b655a45a6a1f274919e40a1e3f94783",
+    "docs/research/2026-09-14-header-navigation-editing/recovery.json": "524fa707fca431f45c5ab1bf15ab09e1714103a0287e1a77cab6b94ea0e69c7b",
+    "docs/research/2026-09-14-header-navigation-editing/public-isolation.json": "73c57df5b978192f9bc7fe9fc2382aeb8442f6d16cb8b5531eeb20e32e4d7db3",
+    "docs/research/2026-09-13-header-navigation-complete/verify.json": "0845215e5243bdb61a14533abbe41232b380cd725a92ce0f7a27f02d7ae991e8"
   },
   "rows": [
     {

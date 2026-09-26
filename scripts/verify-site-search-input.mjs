@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { chromium } from 'playwright';
 import fs from 'node:fs';import path from 'node:path';import { fileURLToPath } from 'node:url';import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -12,10 +13,10 @@ const browser=await chromium.launch();let completed=false;
 try {
  for(const [device,width]of[['pc',1440],['sp',375]])for(const js of[true,false]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js});const page=await context.newPage();
-  await page.goto('http://127.0.0.1:8098/?s='+encodeURIComponent(query));
+  await page.goto(`${contentLab.baseUrl}/?s=`+encodeURIComponent(query));
   const expectedCount=await page.locator('main .wp-block-query-total').innerText();
   for(const [name,params]of cases){
-   const label=`${name}:${device}:js-${js}`;const response=await page.goto('http://127.0.0.1:8098/?'+params);
+   const label=`${name}:${device}:js-${js}`;const response=await page.goto(`${contentLab.baseUrl}/?`+params);
    check(`response:${label}`,response.status()===200);
    const input=page.locator('main input[type=search]');check(`search-available:${label}`,await input.count()===1);
    check(`reflow:${label}`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

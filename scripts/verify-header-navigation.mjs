@@ -1,12 +1,13 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { chromium } from 'playwright';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';import path from 'node:path';import os from 'node:os';
 import { fileURLToPath } from 'node:url';import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const state=contentLab.stateDir;
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
-const baseline=process.argv.includes('--baseline');const base='http://127.0.0.1:8098';
+const baseline=process.argv.includes('--baseline');const base=`${contentLab.baseUrl}`;
 const out=path.join(root,'docs/research/2026-09-08-content-faces/results/header-navigation');fs.mkdirSync(out,{recursive:true});
 const original=wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',null));"]);
 const items=[{label:'記事を読む',url:base+'/library/'},{label:'人を知る',url:base+'/voices/'},{label:'学習・ヘルプ',url:base+'/learn/'},{label:'会社案内',url:base+'/site-company/'}];

@@ -1,7 +1,7 @@
 {
   "completed": true,
   "conditionCount": 504,
-  "assertionCount": 3985,
+  "assertionCount": 4011,
   "conditions": [
     {
       "name": "A:native:search:pc:js",
@@ -2882,6 +2882,10 @@
       "pass": true
     },
     {
+      "name": "A:native:announce:search:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "A:native:announce:right:js:http",
       "pass": true
     },
@@ -2922,6 +2926,10 @@
       "pass": true
     },
     {
+      "name": "A:native:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "A:native:announce:left:js:http",
       "pass": true
     },
@@ -2959,6 +2967,10 @@
     },
     {
       "name": "A:native:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:native:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -3010,6 +3022,10 @@
       "pass": true
     },
     {
+      "name": "A:native:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "A:native:announce:text-nav:js:http",
       "pass": true
     },
@@ -3031,6 +3047,10 @@
     },
     {
       "name": "A:native:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:native:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -3071,6 +3091,10 @@
     },
     {
       "name": "A:native:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:native:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -5190,6 +5214,10 @@
       "pass": true
     },
     {
+      "name": "A:shared:announce:pc:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "A:shared:announce:search:js:http",
       "pass": true
     },
@@ -5227,6 +5255,10 @@
     },
     {
       "name": "A:shared:announce:search:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:shared:announce:search:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -5270,6 +5302,10 @@
       "pass": true
     },
     {
+      "name": "A:shared:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "A:shared:announce:left:js:http",
       "pass": true
     },
@@ -5307,6 +5343,10 @@
     },
     {
       "name": "A:shared:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:shared:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -5358,6 +5398,10 @@
       "pass": true
     },
     {
+      "name": "A:shared:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "A:shared:announce:text-nav:js:http",
       "pass": true
     },
@@ -5379,6 +5423,10 @@
     },
     {
       "name": "A:shared:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:shared:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -5419,6 +5467,10 @@
     },
     {
       "name": "A:shared:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "A:shared:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -10806,6 +10858,10 @@
       "pass": true
     },
     {
+      "name": "B:native:announce:search:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "B:native:announce:right:js:http",
       "pass": true
     },
@@ -10846,6 +10902,10 @@
       "pass": true
     },
     {
+      "name": "B:native:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "B:native:announce:left:js:http",
       "pass": true
     },
@@ -10883,6 +10943,10 @@
     },
     {
       "name": "B:native:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:native:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -10934,6 +10998,10 @@
       "pass": true
     },
     {
+      "name": "B:native:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "B:native:announce:text-nav:js:http",
       "pass": true
     },
@@ -10955,6 +11023,10 @@
     },
     {
       "name": "B:native:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:native:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -10995,6 +11067,10 @@
     },
     {
       "name": "B:native:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:native:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -13114,6 +13190,10 @@
       "pass": true
     },
     {
+      "name": "B:shared:announce:pc:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "B:shared:announce:search:js:http",
       "pass": true
     },
@@ -13151,6 +13231,10 @@
     },
     {
       "name": "B:shared:announce:search:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:shared:announce:search:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -13194,6 +13278,10 @@
       "pass": true
     },
     {
+      "name": "B:shared:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "B:shared:announce:left:js:http",
       "pass": true
     },
@@ -13231,6 +13319,10 @@
     },
     {
       "name": "B:shared:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:shared:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -13282,6 +13374,10 @@
       "pass": true
     },
     {
+      "name": "B:shared:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "B:shared:announce:text-nav:js:http",
       "pass": true
     },
@@ -13303,6 +13399,10 @@
     },
     {
       "name": "B:shared:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:shared:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -13343,6 +13443,10 @@
     },
     {
       "name": "B:shared:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "B:shared:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {

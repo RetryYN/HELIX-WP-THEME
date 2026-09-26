@@ -58,7 +58,7 @@ function parseArgs(argv) {
     } catch { eventBase = ''; }
   }
   const options = {
-    cases: [], proofs: [], commands: [], rowRenames: [], apply: false, check: false,
+    cases: [], proofs: [], commands: [], rowRenames: [], sourceDetachments: [], apply: false, check: false,
     baseRef: process.env.CATALOG_EVIDENCE_BASE_REF || eventBase || (process.env.CI ? 'HEAD^' : 'HEAD'),
   };
   for (let index = 0; index < argv.length; index += 1) {
@@ -67,6 +67,7 @@ function parseArgs(argv) {
     else if (arg === '--proof') options.proofs.push(argv[++index]);
     else if (arg === '--command-json') options.commands.push(JSON.parse(argv[++index]));
     else if (arg === '--row-rename-json') options.rowRenames.push(JSON.parse(argv[++index]));
+    else if (arg === '--detach-source-json') options.sourceDetachments.push(JSON.parse(argv[++index]));
     else if (arg === '--base-ref') options.baseRef = argv[++index];
     else if (arg === '--apply') options.apply = true;
     else if (arg === '--check') options.check = true;
@@ -77,6 +78,11 @@ function parseArgs(argv) {
   }
   for (const item of options.rowRenames) {
     if (!item || !['case', 'proof', 'from', 'to'].every(key => typeof item[key] === 'string' && item[key])) fail('--row-rename-json requires case, proof, from, and to');
+  }
+  for (const item of options.sourceDetachments) {
+    if (!item || !['case', 'source', 'reason'].every(key => typeof item[key] === 'string' && item[key].trim())) {
+      fail('--detach-source-json requires case, source, and reason');
+    }
   }
   return options;
 }
@@ -166,6 +172,11 @@ function check(baseRef) {
     covered.push(...(transaction.changes || []).filter(change => change.kind === 'admit' || !admittedInThisRange.has(change.case_id)));
     if (!transaction.commands?.length || !transaction.proof_writes?.length) fail('rebind transaction lacks oracle execution evidence');
     if (transaction.kind && !['rebind', 'admit'].includes(transaction.kind)) fail(`unknown acceptance transaction kind: ${transaction.kind}`);
+    for (const detachment of transaction.source_detachments || []) {
+      if (!detachment || !['case', 'source', 'reason'].every(key => typeof detachment[key] === 'string' && detachment[key].trim())) fail('rebind transaction has an invalid source detachment');
+      const recorded = (transaction.changes || []).some(change => change.kind === 'source' && change.case_id === detachment.case && change.path === detachment.source && change.after === null);
+      if (!recorded) fail(`source detachment lacks a matching registry removal: ${detachment.case} / ${detachment.source}`);
+    }
     if ((transaction.kind ?? 'rebind') === 'admit') {
       if (!Array.isArray(transaction.candidate_paths) || !transaction.candidate_paths.length) fail('admission transaction lacks candidate paths');
       for (const [candidatePath, expected] of Object.entries(transaction.candidate_digests || {})) {
@@ -225,7 +236,16 @@ function plan(options) {
     if (!proofs.has(rename.proof)) fail(`row rename proof must be selected for revalidation: ${rename.proof}`);
     if ((proof.row_names || []).filter(name => name === rename.from).length !== 1 || proof.row_names.includes(rename.to)) fail(`row rename is not one-to-one: ${rename.case}`);
   }
-  if (!staleCount && !staleProofs.length && !options.rowRenames.length) fail('selected cases have no changed source digests, proof artifacts, or proof rows to rebind');
+  if (!staleCount && !staleProofs.length && !options.rowRenames.length && !options.sourceDetachments.length) fail('selected cases have no changed source digests, proof artifacts, or proof rows to rebind');
+  const detachedKeys = new Set();
+  for (const item of options.sourceDetachments) {
+    if (!selectedIds.has(item.case)) fail(`source detachment case is not selected: ${item.case}`);
+    const key = `${item.case}\0${item.source}`;
+    if (detachedKeys.has(key)) fail(`duplicate source detachment: ${item.case} / ${item.source}`);
+    detachedKeys.add(key);
+    const selectedCase = selected.find(candidate => candidate.id === item.case);
+    if (!selectedCase?.staleSources.some(([source]) => source === item.source)) fail(`detached source must be stale for the selected case: ${item.case} / ${item.source}`);
+  }
   for (const [id, evidence] of Object.entries(registry.cases || {})) {
     if (selectedIds.has(id)) continue;
     const stale = Object.entries(evidence.source_digests || {}).find(([source, expected]) => digest(bytes(source)) !== expected);
@@ -236,7 +256,7 @@ function plan(options) {
     const shared = (evidence.proofs || []).find(proof => proofs.has(proof.path));
     if (shared) fail(`all cases sharing a regenerated proof must be selected: ${id} / ${shared.path}`);
   }
-  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), proof_digest_updates: staleProofs, row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
+  const summary = { cases: selected.map(item => item.id), source_updates: selected.flatMap(item => item.staleSources.map(([source, before]) => ({ case_id: item.id, path: source, before, after: digest(bytes(source)) }))), source_detachments: options.sourceDetachments, proof_digest_updates: staleProofs, row_renames: options.rowRenames, proofs: [...proofs.keys()], commands: options.commands };
   if (!options.apply) {
     console.log(JSON.stringify({ mode: 'dry-run', ...summary }, null, 2));
     return;
@@ -296,8 +316,14 @@ function plan(options) {
     }
     for (const [source] of item.staleSources) {
       if (!currentProofSources.has(source) && !previousProofSources.has(source)) {
-        fail(`stale source is not accounted for by a registered proof: ${item.id} / ${source}`);
+        if (!options.sourceDetachments.some(detachment => detachment.case === item.id && detachment.source === source)) {
+          fail(`stale source is not accounted for by a registered proof: ${item.id} / ${source}`);
+        }
       }
+    }
+    for (const detachment of options.sourceDetachments.filter(candidate => candidate.case === item.id)) {
+      if (currentProofSources.has(detachment.source)) fail(`cannot detach source still declared by a registered proof: ${item.id} / ${detachment.source}`);
+      delete item.evidence.source_digests[detachment.source];
     }
     for (const source of previousProofSources) if (!currentProofSources.has(source)) delete item.evidence.source_digests[source];
     for (const [source, expected] of currentProofSources) item.evidence.source_digests[source] = expected;
@@ -310,6 +336,7 @@ function plan(options) {
     commands: options.commands,
     changes,
     proof_writes: proofWrites,
+    source_detachments: options.sourceDetachments,
     registry_before_sha256: digest(registryRaw),
     registry_after_sha256: digest(afterRaw),
   };

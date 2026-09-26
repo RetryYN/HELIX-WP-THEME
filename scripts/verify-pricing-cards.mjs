@@ -1,10 +1,11 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import fs from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
-const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-19-pricing-cards',state='/tmp/helix-content-lab';
+const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-19-pricing-cards',state=contentLab.stateDir;
 const before=process.argv.includes('--before'),run=randomUUID(),slug='pricing-cards-fixture',lock=state+'/pricing-cards-fixture.json';
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',state+'/wp.env','--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',state+'/wp.env','--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
 const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex'),reserved=()=>wp(['post','list','--post_type=any','--post_status=any','--name='+slug,'--format=ids']);
 if(wp(['option','get','blogname'])!=='HELIX Content Lab'||wp(['option','get','stylesheet'])!=='helix-wt'||reserved()||fs.existsSync(lock))throw Error('Dedicated lab / fixture collision');
 const sources=['scripts/verify-pricing-cards.mjs',theme+'patterns/pricing.php',theme+'assets/css/theme.css'],sourceDigests=Object.fromEntries(sources.map(f=>[f,hash(f)])),rows=[],shots=[],ids=[];
@@ -23,7 +24,7 @@ try{
  browser=await chromium.launch();
  for(const[mode,id]of[['standard',ids[0]],['long-copy',ids[1]]])for(const[device,width]of[['pc',1440],['sp',390]])for(const js of[true,false]){
   const context=await browser.newContext({viewport:{width,height:1000},javaScriptEnabled:js,reducedMotion:'reduce'}),p=await context.newPage(),prefix=mode+':'+device+':'+(js?'js':'nojs');
-  const response=await p.goto('http://127.0.0.1:8098/?page_id='+id);const section=p.locator('#pricing');await section.waitFor();await section.scrollIntoViewIfNeeded();
+  const response=await p.goto(`${contentLab.baseUrl}/?page_id=`+id);const section=p.locator('#pricing');await section.waitFor();await section.scrollIntoViewIfNeeded();
   const data=await section.evaluate(e=>{const cards=[...e.querySelectorAll('.wp-block-column > .is-style-wt-card')];return cards.map(c=>{const b=c.getBoundingClientRect(),price=c.querySelector('.wt-price'),unit=price.querySelector('small'),pr=price.getBoundingClientRect(),ur=unit.getBoundingClientRect(),h=c.querySelector('h3'),hb=h.getBoundingClientRect(),a=c.querySelector('.wp-block-button__link'),ab=a.getBoundingClientRect();return {priceFits:price.scrollWidth<=price.clientWidth,unitSameLine:ur.top>=pr.top-1&&ur.bottom<=pr.bottom+1,titleY:hb.y,height:b.height,y:b.y,bottom:b.bottom,buttonBottom:ab.bottom,buttonHeight:ab.height,buttonWidth:ab.width,titleLines:hb.height/parseFloat(getComputedStyle(h).lineHeight),fits:c.scrollWidth<=c.clientWidth&&c.scrollHeight<=c.clientHeight+2,link:a.getAttribute('href')};});});
   check(prefix+':response',response.status()===200);check(prefix+':three-plans',data.length===3);check(prefix+':no-overflow',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));check(prefix+':text-unclipped',data.every(c=>c.fits));check(prefix+':title-single-line',data.every(c=>c.titleLines<1.1));check(prefix+':touch-target',data.every(c=>c.buttonHeight>=44&&c.buttonWidth>=44));check(prefix+':cta-target',data.every(c=>c.link==='#contact'));check(prefix+':price-unit-single-line',data.every(c=>c.priceFits&&c.unitSameLine));check(prefix+':title-baseline',device==='sp'||Math.max(...data.map(c=>c.titleY))-Math.min(...data.map(c=>c.titleY))<2);
   check(prefix+':equal-row-height',device==='sp'||Math.max(...data.map(c=>c.height))-Math.min(...data.map(c=>c.height))<2,data);

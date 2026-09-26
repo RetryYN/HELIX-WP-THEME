@@ -2,11 +2,11 @@
   "schema": "wt-header-navigation-complete.v1",
   "completed": true,
   "conditionCount": 1035,
-  "assertionCount": 5496,
+  "assertionCount": 5522,
   "counts": {
     "matrix": {
       "conditions": 504,
-      "assertions": 3985
+      "assertions": 4011
     },
     "boundaries": {
       "conditions": 459,
@@ -22,8 +22,8 @@
     }
   },
   "artifacts": {
-    "docs/research/2026-09-13-header-navigation-complete/matrix.json": "4f76695a5a0c9f4fe67515f6d1d4734851df7a2112afe9e1fcfbe2edf6000541",
-    "docs/research/2026-09-13-header-navigation-complete/boundaries.json": "71d2906bf8355cceda1a1e8cdf670c3cfbbbb6d13b77344290c5772103fc8b4a",
+    "docs/research/2026-09-13-header-navigation-complete/matrix.json": "792b515aa9d3ccb7dcf6799001c3ca000009c105668e8993041e4000ca46f1e7",
+    "docs/research/2026-09-13-header-navigation-complete/boundaries.json": "7449f9ac15c3819a35bb96bff623a3180a3166307c988a21c021676f1062239d",
     "docs/research/2026-09-13-header-navigation-complete/editor/verify.json": "af04b73660b8eeaaf1052f12dedcdc8571b2925442126a0d9d5883b7bd9ea8fb",
     "docs/research/2026-09-13-header-navigation-complete/static.json": "9e4904226a9674e3ae967156d8411e84353e364b9b8ff1182031bdc4bd296e59"
   },
@@ -42,10 +42,10 @@
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/header-navigation-editor.js": "3fb3027fa0bd58c3ce2044e178993cdf78025eebe157d05bb82cb44493748860",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3",
-    "scripts/verify-header-navigation-complete.mjs": "da0ad319830a847d92dad3f630a9ce87274d0b84766e957da96f2daf9c68a7c2",
-    "scripts/verify-header-navigation-boundaries.mjs": "f2931992f9b0691d3cec1aa4e32de9a2daf26017848b61504ae38c417727f78e",
-    "scripts/verify-header-navigation-editor.mjs": "969915821aebb2f387c232274a6712e0ce2c2e966bc3a2937f39a6d0611bab2c",
-    "scripts/verify-header-navigation-static.mjs": "9ed7de5ca98b38764327eb1d3b690fec4825797180427543c08559f97ba1afd0",
+    "scripts/verify-header-navigation-complete.mjs": "75811d8a6e7a0dda6bc3de9ef22bf4d4e529d4822ddcf37d259cbe80c1d47529",
+    "scripts/verify-header-navigation-boundaries.mjs": "c14e3ebd067152b892e934273c28dce80e656100dad4fe5574c439379deced07",
+    "scripts/verify-header-navigation-editor.mjs": "51238031e543a06e59b400eeaba4120f73e568ec638242f91c450c89fffbdf25",
+    "scripts/verify-header-navigation-static.mjs": "33f7ab74099f34feccc2ae0a44a5eab53f5d2e780bcea1993ede759b3a582eb1",
     "scripts/summarize-header-navigation-complete.mjs": "007f04ec515bbd5ab0d5ed0b38fb77fafb0fbdfbf63cbd077023b83f044f0a3e"
   },
   "rows": [
@@ -918,6 +918,10 @@
       "pass": true
     },
     {
+      "name": "matrix:A:native:announce:search:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:A:native:announce:right:js:http",
       "pass": true
     },
@@ -958,6 +962,10 @@
       "pass": true
     },
     {
+      "name": "matrix:A:native:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:A:native:announce:left:js:http",
       "pass": true
     },
@@ -995,6 +1003,10 @@
     },
     {
       "name": "matrix:A:native:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:native:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -1046,6 +1058,10 @@
       "pass": true
     },
     {
+      "name": "matrix:A:native:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:A:native:announce:text-nav:js:http",
       "pass": true
     },
@@ -1067,6 +1083,10 @@
     },
     {
       "name": "matrix:A:native:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:native:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -1107,6 +1127,10 @@
     },
     {
       "name": "matrix:A:native:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:native:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -3226,6 +3250,10 @@
       "pass": true
     },
     {
+      "name": "matrix:A:shared:announce:pc:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:A:shared:announce:search:js:http",
       "pass": true
     },
@@ -3263,6 +3291,10 @@
     },
     {
       "name": "matrix:A:shared:announce:search:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:shared:announce:search:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -3306,6 +3338,10 @@
       "pass": true
     },
     {
+      "name": "matrix:A:shared:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:A:shared:announce:left:js:http",
       "pass": true
     },
@@ -3343,6 +3379,10 @@
     },
     {
       "name": "matrix:A:shared:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:shared:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -3394,6 +3434,10 @@
       "pass": true
     },
     {
+      "name": "matrix:A:shared:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:A:shared:announce:text-nav:js:http",
       "pass": true
     },
@@ -3415,6 +3459,10 @@
     },
     {
       "name": "matrix:A:shared:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:shared:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -3455,6 +3503,10 @@
     },
     {
       "name": "matrix:A:shared:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:A:shared:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -8842,6 +8894,10 @@
       "pass": true
     },
     {
+      "name": "matrix:B:native:announce:search:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:B:native:announce:right:js:http",
       "pass": true
     },
@@ -8882,6 +8938,10 @@
       "pass": true
     },
     {
+      "name": "matrix:B:native:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:B:native:announce:left:js:http",
       "pass": true
     },
@@ -8919,6 +8979,10 @@
     },
     {
       "name": "matrix:B:native:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:native:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -8970,6 +9034,10 @@
       "pass": true
     },
     {
+      "name": "matrix:B:native:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:B:native:announce:text-nav:js:http",
       "pass": true
     },
@@ -8991,6 +9059,10 @@
     },
     {
       "name": "matrix:B:native:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:native:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -9031,6 +9103,10 @@
     },
     {
       "name": "matrix:B:native:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:native:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -11150,6 +11226,10 @@
       "pass": true
     },
     {
+      "name": "matrix:B:shared:announce:pc:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:B:shared:announce:search:js:http",
       "pass": true
     },
@@ -11187,6 +11267,10 @@
     },
     {
       "name": "matrix:B:shared:announce:search:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:shared:announce:search:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -11230,6 +11314,10 @@
       "pass": true
     },
     {
+      "name": "matrix:B:shared:announce:right:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:B:shared:announce:left:js:http",
       "pass": true
     },
@@ -11267,6 +11355,10 @@
     },
     {
       "name": "matrix:B:shared:announce:left:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:shared:announce:left:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -11318,6 +11410,10 @@
       "pass": true
     },
     {
+      "name": "matrix:B:shared:announce:cta:js:announcement-dismissed",
+      "pass": true
+    },
+    {
       "name": "matrix:B:shared:announce:text-nav:js:http",
       "pass": true
     },
@@ -11339,6 +11435,10 @@
     },
     {
       "name": "matrix:B:shared:announce:text-nav:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:shared:announce:text-nav:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -11379,6 +11479,10 @@
     },
     {
       "name": "matrix:B:shared:announce:center-logo:js:actual-navigation",
+      "pass": true
+    },
+    {
+      "name": "matrix:B:shared:announce:center-logo:js:announcement-dismissed",
       "pass": true
     },
     {
@@ -20298,15 +20402,15 @@
       "pass": true
     },
     {
-      "name": "boundaries:cleanup:14397",
+      "name": "boundaries:cleanup:3380",
       "pass": true
     },
     {
-      "name": "boundaries:cleanup:14398",
+      "name": "boundaries:cleanup:3381",
       "pass": true
     },
     {
-      "name": "boundaries:cleanup:14399",
+      "name": "boundaries:cleanup:3382",
       "pass": true
     },
     {
