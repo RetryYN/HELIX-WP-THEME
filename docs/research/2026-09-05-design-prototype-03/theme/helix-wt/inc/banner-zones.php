@@ -192,6 +192,16 @@ function wt_banner_insert_before_close( $html, $tag, $addition ) {
 	return false === $position ? $html : substr( $html, 0, $position ) . $addition . substr( $html, $position );
 }
 
+function wt_banner_insert_after_close( $html, $tag, $addition ) {
+	$closing  = '</' . $tag . '>';
+	$position = strripos( $html, $closing );
+	if ( false === $position ) {
+		return $html;
+	}
+	$position += strlen( $closing );
+	return substr( $html, 0, $position ) . $addition . substr( $html, $position );
+}
+
 add_action(
 	'wp_enqueue_scripts',
 	function () {
@@ -209,14 +219,18 @@ add_filter(
 			return $html; }
 		$name  = $block['blockName'] ?? '';
 		$attrs = $block['attrs'] ?? array();
-		if ( 'core/template-part' === $name && 'header' === ( $attrs['tagName'] ?? '' ) && ! wt_is_lp_page() ) {
-			return wt_banner_insert_before_close( $html, 'header', wt_banner_zone( 'header-inner' ) ) . wt_banner_zone( 'header-below' );
+		$slug  = $attrs['slug'] ?? '';
+		// ランドマークは part 内にある。外側の div ではなく実際の header/footer に挿入する。
+		if ( 'core/template-part' === $name && ( 'header' === $slug || str_starts_with( $slug, 'header-' ) || 'header' === ( $attrs['tagName'] ?? '' ) ) && ! wt_is_lp_page() ) {
+			$html = wt_banner_insert_before_close( $html, 'header', wt_banner_zone( 'header-inner' ) );
+			return wt_banner_insert_after_close( $html, 'header', wt_banner_zone( 'header-below' ) );
 		}
 		if ( 'core/group' === $name && 'header' === ( $attrs['tagName'] ?? '' ) && wt_is_lp_page() && in_array( 'wt-lp-header--' . wt_opt( 'lp_header' ), explode( ' ', $attrs['className'] ?? '' ), true ) ) {
 			return wt_banner_insert_before_close( $html, 'header', wt_banner_zone( 'header-inner' ) ) . wt_banner_zone( 'header-below' );
 		}
-		if ( 'core/template-part' === $name && 'footer' === ( $attrs['tagName'] ?? '' ) ) {
-			return wt_banner_insert_before_close( $html, 'footer', wt_banner_zone( 'footer' ) . wt_banner_zone( 'page-top' ) ) . wt_banner_zone( 'page-bottom' );
+		if ( 'core/template-part' === $name && ( 'footer' === $slug || 'footer' === ( $attrs['tagName'] ?? '' ) ) ) {
+			$html = wt_banner_insert_before_close( $html, 'footer', wt_banner_zone( 'footer' ) . wt_banner_zone( 'page-top' ) );
+			return wt_banner_insert_after_close( $html, 'footer', wt_banner_zone( 'page-bottom' ) );
 		}
 		if ( 'helix-wt/sidebar' === $name ) {
 			return preg_replace( '/<\/aside>/i', wt_banner_zone( 'sidebar' ) . wt_banner_zone( 'sticky-sidebar' ) . '</aside>', $html, 1 ); }
