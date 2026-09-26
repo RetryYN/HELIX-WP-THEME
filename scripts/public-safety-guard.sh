@@ -47,6 +47,10 @@ else
 fi
 failures=0
 sensitive_changed=0
+if awk -F '\t' 'NF == 2 && $1 !~ /^#/ { if (seen[$1]++) duplicate=1 } END { exit !duplicate }' "$tmp_dir/binary-approvals.tsv"; then
+  echo "FAIL: duplicate path in config/public-safety-binary-approvals.tsv" >&2
+  failures=$((failures + 1))
+fi
 
 # -z keeps quoted/non-ASCII names intact. An identical rename changes only
 # its path; a modified rename is scanned as a new file.

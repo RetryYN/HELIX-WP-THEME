@@ -36,6 +36,10 @@ function runFixture(name, relativePath, content, expectedPass, env = {}, options
       fs.mkdirSync(path.join(fixture, 'config'), { recursive: true });
       fs.writeFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'),
         `${relativePath}\t${options.binaryApproval === 'matching' ? digest : '0'.repeat(64)}\n`);
+      if (options.duplicateApproval) {
+        fs.appendFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'),
+          `${relativePath}\t${'f'.repeat(64)}\n`);
+      }
       execFileSync('git', ['add', 'config/public-safety-binary-approvals.tsv'], { cwd: fixture });
       if (options.unstagedApproval) {
         fs.writeFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'), `${relativePath}\t${digest}\n`);
@@ -112,6 +116,9 @@ const rows = [
   runFixture('negative:binary-with-wrong-digest-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong' }),
   runFixture('negative:unstaged-binary-approval-is-ignored', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong', unstagedApproval: true }),
   runFixture('positive:binary-with-reviewed-digest-approval-accepted', 'src/image.bin', Buffer.from([0, 1, 2, 3]), true, {}, { binaryApproval: 'matching' }),
+  runFixture('negative:duplicate-binary-approval-path-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, {
+    binaryApproval: 'matching', duplicateApproval: true, expectedFailure: 'duplicate path in config/public-safety-binary-approvals.tsv',
+  }),
   runFixture('positive:symlink-target-inspected-as-text', 'src/compat-link', 'safe-target', true, {}, { symlink: true }),
   runFixture('negative:symlink-personal-target-rejected', 'src/compat-link', personalPath, false, {}, { symlink: true }),
 ];
