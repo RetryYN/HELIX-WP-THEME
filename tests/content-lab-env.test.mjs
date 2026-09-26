@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
@@ -40,7 +41,11 @@ value['state_dir'] = str(value['state_dir'])
 value['credentials_file'] = str(value['credentials_file'])
 print(json.dumps(value))
 `) {
-  return spawnSync('python3', ['-c', body], { cwd: path.join(root, 'scripts'), env: environment(overrides), encoding: 'utf8' });
+  return spawnSync('python3', ['-c', body], {
+    cwd: path.join(root, 'scripts'),
+    env: environment({ PYTHONDONTWRITEBYTECODE: '1', ...overrides }),
+    encoding: 'utf8',
+  });
 }
 
 function sourceFiles(directory) {
@@ -123,5 +128,90 @@ test('every verifier with legacy lab references uses the shared configuration he
     const usesNodeHelper = source.includes(`from '${moduleSpecifier}'`)
       && source.includes('contentLab.');
     assert.ok(usesNodeHelper || usesPythonHelper, `${path.relative(root, filename)} can mix isolated credentials with the shared lab`);
+  }
+});
+
+test('credential consumers read the configured credentials file, not the state-dir default', () => {
+  const files = verifierRoots.flatMap(sourceFiles).filter(filename => !sharedHelpers.has(filename));
+  for (const filename of files) {
+    const source = fs.readFileSync(filename, 'utf8');
+    assert.doesNotMatch(source, /path\.join\(\s*(?:contentLab\.stateDir|state)\s*,\s*['"]credentials\.json['"]\s*\)/u,
+      `${path.relative(root, filename)} bypasses WTCF_LAB_CREDENTIALS`);
+    if (/credentials\.json/u.test(source) && /readFileSync|read_text\(/u.test(source)) {
+      assert.match(source, /contentLab\.credentialsFile|lab\.credentials_file/u,
+        `${path.relative(root, filename)} reads credentials without the shared configured path`);
+    }
+  }
+});
+
+test('content-lab launcher honors external credentials and never writes bytecode into the checkout', () => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'helix-content-lab-launcher-test-'));
+  const mockBin = path.join(temp, 'bin');
+  const stateDir = path.join(temp, 'state');
+  const credentialsFile = path.join(temp, 'secrets', 'credentials.json');
+  fs.mkdirSync(mockBin, { recursive: true });
+  const docker = path.join(mockBin, 'docker');
+  fs.writeFileSync(docker, `#!/bin/sh
+case "$1:$2" in
+  network:inspect|inspect:*) exit 1 ;;
+  network:create|exec:*) exit 0 ;;
+  run:*)
+    case "$*" in
+      *"wp core is-installed"*) exit 0 ;;
+      *"wp option get blogname"*) printf '%s\\n' 'HELIX Content Lab' ;;
+      *"wp eval-file /poc/seed.php"*) printf '%s\\n' '{"oneoff":101}' ;;
+      *"wp user get"*) printf '%s\\n' '77' ;;
+      *) exit 0 ;;
+    esac ;;
+  *) exit 2 ;;
+esac
+`);
+  fs.chmodSync(docker, 0o700);
+  try {
+    const result = spawnSync('python3', ['scripts/start-content-lab.py'], {
+      cwd: root,
+      encoding: 'utf8',
+      env: environment({
+        PATH: `${mockBin}${path.delimiter}${process.env.PATH || ''}`,
+        WTCF_BASE_URL: 'http://127.0.0.1:18128',
+        WTCF_STATE_DIR: stateDir,
+        WTCF_DOCKER_NETWORK: 'helix-content-lab-test',
+        WTCF_WP_CONTAINER: 'helix-content-wp-test',
+        WTCF_DB_CONTAINER: 'helix-content-db-test',
+        WTCF_WP_VOLUME: 'helix-content-wp-test',
+        WTCF_DB_VOLUME: 'helix-content-db-test',
+        WTCF_LAB_CREDENTIALS: credentialsFile,
+      }),
+    });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(fs.existsSync(credentialsFile), true);
+    assert.equal(fs.existsSync(path.join(stateDir, 'credentials.json')), false);
+    assert.equal(fs.statSync(credentialsFile).mode & 0o777, 0o600);
+    assert.deepEqual(Object.keys(JSON.parse(fs.readFileSync(credentialsFile, 'utf8'))).sort(),
+      ['admin', 'database', 'expired', 'none', 'oneoff', 'other_product', 'subscription']);
+    assert.equal(result.stdout.includes(credentialsFile), false);
+    assert.equal(fs.existsSync(path.join(root, 'scripts/lib/__pycache__')), false);
+
+    const repositoryCredentials = path.join(root, '.content-lab-credential-test.json');
+    const rejected = spawnSync('python3', ['scripts/start-content-lab.py'], {
+      cwd: root,
+      encoding: 'utf8',
+      env: environment({
+        PATH: `${mockBin}${path.delimiter}${process.env.PATH || ''}`,
+        WTCF_BASE_URL: 'http://127.0.0.1:18128',
+        WTCF_STATE_DIR: path.join(temp, 'rejected-state'),
+        WTCF_DOCKER_NETWORK: 'helix-content-lab-test',
+        WTCF_WP_CONTAINER: 'helix-content-wp-test',
+        WTCF_DB_CONTAINER: 'helix-content-db-test',
+        WTCF_WP_VOLUME: 'helix-content-wp-test',
+        WTCF_DB_VOLUME: 'helix-content-db-test',
+        WTCF_LAB_CREDENTIALS: repositoryCredentials,
+      }),
+    });
+    assert.notEqual(rejected.status, 0);
+    assert.match(rejected.stderr, /must be outside the repository/u);
+    assert.equal(fs.existsSync(repositoryCredentials), false);
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
   }
 });

@@ -10,7 +10,7 @@ const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/research/2026-09-
 const sourceFiles=['scripts/verify-site-page-editor.mjs','scripts/lib/content-lab-env.mjs','scripts/start-content-lab.py','docs/research/2026-09-08-content-faces/plugin/site-pages.json','docs/research/2026-09-08-content-faces/plugin/site-pages.php',...['inc/site-pages.php','theme.json','assets/css/site-pages.css','blocks/site-page/block.json','blocks/site-page/editor.js','blocks/site-page/editor.css','templates/page-site-guide.html'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 const digests=()=>Object.fromEntries(sourceFiles.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests();
-const credentials=JSON.parse(fs.readFileSync(path.join(contentLab.stateDir,'credentials.json')));const base=contentLab.baseUrl;const rows=[];let id,completed=false;
+const credentials=JSON.parse(fs.readFileSync(contentLab.credentialsFile));const base=contentLab.baseUrl;const rows=[];let id,completed=false;
 const check=(name,pass)=>{rows.push({name,pass:Boolean(pass)});assert.ok(pass,name);};
 const browser=await chromium.launch();const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{

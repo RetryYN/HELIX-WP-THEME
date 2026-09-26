@@ -1,21 +1,40 @@
 """Start the isolated, loopback-only WordPress content-face PoC. No production mounts."""
 import json
+import os
 from pathlib import Path
 import secrets
 import subprocess
+import sys
 import time
 from urllib.parse import urlsplit
+
+sys.dont_write_bytecode = True
 from lib.content_lab_env import content_lab_config
 
 root = Path(__file__).resolve().parent.parent
 lab = content_lab_config()
 state = lab.state_dir
 state.mkdir(mode=0o700, parents=True, exist_ok=True)
-credentials_path = state / 'credentials.json'
+credentials_path = lab.credentials_file.expanduser()
+if not credentials_path.is_absolute():
+    credentials_path = root / credentials_path
+credentials_path = credentials_path.resolve()
+try:
+    credentials_path.relative_to(root.resolve())
+except ValueError:
+    pass
+else:
+    raise RuntimeError('WTCF_LAB_CREDENTIALS must be outside the repository')
+credentials_path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
 if not credentials_path.exists():
-    credentials_path.write_text(json.dumps({key: secrets.token_urlsafe(30) for key in
-                                           ['database', 'admin', 'oneoff', 'subscription', 'expired', 'other_product', 'none']}))
-    credentials_path.chmod(0o600)
+    try:
+        credentials_fd = os.open(credentials_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    except FileExistsError:
+        pass
+    else:
+        with os.fdopen(credentials_fd, 'w', encoding='utf-8') as credentials_file:
+            json.dump({key: secrets.token_urlsafe(30) for key in
+                       ['database', 'admin', 'oneoff', 'subscription', 'expired', 'other_product', 'none']}, credentials_file)
 credentials = json.loads(credentials_path.read_text())
 
 
@@ -104,4 +123,4 @@ for role in ['oneoff', 'subscription', 'expired', 'other_product', 'none']:
              'expires': 4102444800 if role == 'subscription' else 1}
     wp(['user', 'meta', 'update', user.stdout.strip(), '_wtcf_entitlement', json.dumps(grant), '--format=json'])
 (state / 'fixture-ids.json').write_text(json.dumps(ids))
-print(f'Content lab ready at {base_url}. Set WTCF_LAB_CREDENTIALS to credentials.json in WTCF_STATE_DIR.')
+print(f'Content lab ready at {base_url}. Credentials use the configured WTCF_LAB_CREDENTIALS path.')
