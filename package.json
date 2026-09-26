@@ -8,7 +8,7 @@
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",
     "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run zone-overrides:verify && npm run catalog-evidence:rebind-test && npm run catalog-evidence:rebind-check && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:quality-contracts && npm run test:codex-inbox && npm run test:content-lab-env",
-    "test:quality-contracts": "node --test tests/lighthouse-ci-contract.test.mjs tests/current-theme-quality-regression.test.mjs",
+    "test:quality-contracts": "node --test tests/lighthouse-ci-contract.test.mjs tests/current-theme-quality-regression.test.mjs tests/a11y-gate-contract.test.mjs",
     "test:codex-inbox": "node --test tests/unit/codex-inbox.test.mjs",
     "test:content-lab-env": "node --test tests/content-lab-env.test.mjs",
     "requirements:validate": "node scripts/validate-requirements.mjs",
@@ -36,6 +36,7 @@
     "article-purpose:proof": "node scripts/verify-article-purpose-proof-binding.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
     "@playwright/test": "^1.61.0",
     "helix": "github:RetryYN/HELIX-HARNESS#19d0bffd",
     "tsx": "^4.19.0",
