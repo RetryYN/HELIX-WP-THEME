@@ -167,6 +167,18 @@ test('an explicit base ref permits rebind after the source commit', async t => {
   assert.equal(f.run(['--check', '--base-ref', 'HEAD^']).status, 0);
 });
 
+test('provenance check reads a base registry larger than the child-process default buffer', t => {
+  const f = fixture(t);
+  const registryPath = 'docs/research/2026-09-08-selection-catalog/acceptance-evidence.json';
+  const registry = JSON.parse(fs.readFileSync(path.join(f.root, registryPath), 'utf8'));
+  registry.largeFixture = 'x'.repeat(1024 * 1024 + 128);
+  f.write(registryPath, registry);
+  assert.equal(spawnSync('git', ['add', registryPath], { cwd: f.root }).status, 0);
+  assert.equal(spawnSync('git', ['commit', '-m', 'add a large registry fixture'], { cwd: f.root }).status, 0);
+  const result = f.run(['--check', '--base-ref', 'HEAD']);
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+});
+
 test('apply requires same-execution proof rewrite, updates only stale digest, and passes provenance check', async t => {
   const f = fixture(t);
   f.write('implementation.php', 'source-v2\n');

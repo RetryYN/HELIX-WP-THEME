@@ -10,7 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const state = contentLab.stateDir;
 const wp = args => execFileSync('docker', ['run', '--rm', '--network', contentLab.network, '--env-file', path.join(state, 'wp.env'), '--volumes-from', contentLab.wpContainer, '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 if (wp(['option', 'get', 'blogname']) !== 'HELIX Content Lab') throw Error('Dedicated lab required');
-const credentials = JSON.parse(fs.readFileSync(path.join(state, 'credentials.json'), 'utf8'));
+const credentials = JSON.parse(fs.readFileSync(contentLab.credentialsFile, 'utf8'));
 const marker = 'SearchAccessFixture', hidden = 'SearchAccessHiddenBody';
 if (wp(['post', 'list', '--post_type=any', '--post_status=any', '--s=' + marker, '--format=ids'])) throw Error('Reserved fixtures exist');
 const sources = ['scripts/verify-site-search-access.mjs', 'docs/research/2026-09-08-content-faces/plugin/search.php', 'docs/research/2026-09-08-content-faces/plugin/content-faces.php', 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html', 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php', 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-faces.php'];

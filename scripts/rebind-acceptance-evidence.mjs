@@ -44,7 +44,7 @@ function validateOracleCommands(commands, proofPaths) {
 }
 
 function git(args) {
-  const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' });
+  const result = spawnSync('git', args, { cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
   if (result.status !== 0) fail(result.stderr || `git ${args.join(' ')} failed`);
   return result.stdout.trim();
 }

@@ -15,7 +15,7 @@ for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{try{await
 for(const event of ['uncaughtException','unhandledRejection'])process.once(event,async error=>{console.error(String(error));try{await browser?.close();recover();}finally{process.exit(1);}});
 browser=await chromium.launch({args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:1440,height:1000}});
 page.setDefaultTimeout(10000);
-const credentials=JSON.parse(fs.readFileSync(path.join(contentLab.stateDir,'credentials.json')));
+const credentials=JSON.parse(fs.readFileSync(contentLab.credentialsFile));
 const login=async(p,user,password)=>{
  await p.goto(`${contentLab.baseUrl}/wp-login.php`);
  const usernameField=p.locator('#user_login');const passwordField=p.locator('#user_pass');

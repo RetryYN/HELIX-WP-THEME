@@ -31,7 +31,7 @@ const sources = [
 const sourceDigests = Object.fromEntries(sources.map(file => [file, digest(file)]));
 const rows = [];
 const check = (name, pass, detail = {}) => rows.push({ name, pass: Boolean(pass), ...detail });
-const credentials = JSON.parse(fs.readFileSync(path.join(state, 'credentials.json'), 'utf8'));
+const credentials = JSON.parse(fs.readFileSync(contentLab.credentialsFile, 'utf8'));
 const browser = await chromium.launch();
 let fixtureIds = {};
 let editorId = 0;

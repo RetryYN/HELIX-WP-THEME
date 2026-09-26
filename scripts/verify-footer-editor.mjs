@@ -23,7 +23,7 @@ try{
  php('wp_get_theme()->delete_pattern_cache();');
  part=Number(php('$content=serialize_blocks(resolve_pattern_blocks(parse_blocks(file_get_contents(get_theme_file_path("parts/footer.html")))));$id=wp_insert_post(wp_slash(array("post_type"=>"wp_template_part","post_status"=>"publish","post_name"=>"footer","post_title"=>"Footer Editor Fixture","post_content"=>$content)));wp_set_object_terms($id,"helix-wt","wp_theme");wp_set_object_terms($id,"footer","wp_template_part_area");echo $id;'));
  assert.ok(Number.isInteger(part)&&part>0);
- const credentials=JSON.parse(fs.readFileSync(path.join(contentLab.stateDir,'credentials.json')));
+ const credentials=JSON.parse(fs.readFileSync(contentLab.credentialsFile));
  await page.goto(`${contentLab.baseUrl}/wp-login.php`);await page.waitForFunction(()=>document.activeElement?.id==='user_login');await page.locator('#user_login').fill('lab_admin');await page.locator('#user_pass').fill(credentials.admin);assert.equal(await page.locator('#user_login').inputValue(),'lab_admin');assert.ok(await page.locator('#user_pass').inputValue()===credentials.admin,'Password field input');await page.locator('#wp-submit').click();await page.waitForURL('**/wp-admin/**');
  const editor=`${contentLab.baseUrl}/wp-admin/site-editor.php?postId=helix-wt%2F%2Ffooter&postType=wp_template_part&canvas=edit`;
  await page.goto(editor);await page.locator('iframe[name="editor-canvas"]').waitFor();await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);

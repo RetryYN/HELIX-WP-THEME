@@ -13,7 +13,7 @@ if (wp(['option', 'get', 'blogname']) !== 'HELIX Content Lab') throw Error('Dedi
 const marker = 'SearchUnlockFixture';
 if (wp(['post', 'list', '--post_type=any', '--post_status=any', '--s=' + marker, '--format=ids'])) throw Error('Reserved fixtures exist');
 const originalSize = wp(['option', 'get', 'posts_per_page']);
-const credentials = JSON.parse(fs.readFileSync(path.join(state, 'credentials.json'), 'utf8'));
+const credentials = JSON.parse(fs.readFileSync(contentLab.credentialsFile, 'utf8'));
 const sources = ['scripts/verify-site-search-passwords.mjs', 'docs/research/2026-09-08-content-faces/plugin/search.php', 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html'];
 sources.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
 
