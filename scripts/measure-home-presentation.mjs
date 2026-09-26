@@ -19,7 +19,7 @@ try{
   measurements.push({device,version,...row,...footer});await context.close();
  }
 }finally{await browser.close();}
-const files=['scripts/measure-home-presentation.mjs','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php'];
+const files=['scripts/measure-home-presentation.mjs','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php'];
 const sourceDigests=Object.fromEntries(files.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const rows=[];for(const device of ['pc','sp']){const before=measurements.find(r=>r.device===device&&r.version==='before'),after=measurements.find(r=>r.device===device&&r.version==='after');rows.push({name:`${device}:hero-body-gap-reduced`,pass:after.heroToBodyGap<before.heroToBodyGap});if(device==='pc')rows.push({name:'pc:sidebar-below-hero',pass:after.sidebarTop>=after.heroBottom});else rows.push({name:'sp:footer-overlap-reproduced-and-fixed',pass:before.fixedVisible&&before.lastFooterLinkBottom>before.fixedTop&&after.fixedVisible&&after.lastFooterLinkBottom<=after.fixedTop});}
 const result={completed:true,sourceDigests,measurements,rows};fs.writeFileSync(path.join(out,'presentation-measurements.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));if(rows.some(r=>!r.pass))process.exitCode=1;

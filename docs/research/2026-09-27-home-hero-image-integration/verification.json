@@ -1,0 +1,1084 @@
+{
+  "schema": "wt-home-hero-image-integration.v1",
+  "completed": true,
+  "scope": "HOME image-loading regression; not WT-NFR-PERF-03 performance acceptance",
+  "sourceDigests": {
+    "scripts/verify-home-hero-images.mjs": "30574fee7a996ca75074fb98bd56641886e962f47f628c49a52bb172f6626729",
+    "scripts/lib/content-lab-env.mjs": "42a81a06d803c6e18bbc53f65cafe538a8ccfe6cf6d95b1ffe49b94713b3beb7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f574816e0191fe41cdef05ba3dd379e2905da8000b9c1e095c1eb56f7670c27e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php": "4ad392afa90d2d73634980298b6328cae8000cd690de07f159f037b47ecae799",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8a2905d7221399558860cdd4ac8dfdd89f225e4aac0323c47b00143f775c9d0a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb"
+  },
+  "runtime": [
+    {
+      "variant": "text-only",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "slider",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "fullbleed",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "split",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "article-grid",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "video",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "cards-carousel",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "product-shot",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "variant": "search-box",
+      "wordpress": "7.1.2",
+      "rows": [
+        {
+          "id": "filter-registered",
+          "pass": true
+        },
+        {
+          "id": "unrelated-unchanged",
+          "pass": true
+        },
+        {
+          "id": "text-only:loading",
+          "pass": true
+        },
+        {
+          "id": "text-only:priority",
+          "pass": true
+        },
+        {
+          "id": "slider:loading",
+          "pass": true
+        },
+        {
+          "id": "slider:priority",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:loading",
+          "pass": true
+        },
+        {
+          "id": "fullbleed:priority",
+          "pass": true
+        },
+        {
+          "id": "split:loading",
+          "pass": true
+        },
+        {
+          "id": "split:priority",
+          "pass": true
+        },
+        {
+          "id": "article-grid:loading",
+          "pass": true
+        },
+        {
+          "id": "article-grid:priority",
+          "pass": true
+        },
+        {
+          "id": "video:loading",
+          "pass": true
+        },
+        {
+          "id": "video:priority",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:loading",
+          "pass": true
+        },
+        {
+          "id": "cards-carousel:priority",
+          "pass": true
+        },
+        {
+          "id": "product-shot:loading",
+          "pass": true
+        },
+        {
+          "id": "product-shot:priority",
+          "pass": true
+        },
+        {
+          "id": "search-box:loading",
+          "pass": true
+        },
+        {
+          "id": "search-box:priority",
+          "pass": true
+        },
+        {
+          "id": "outside:loading",
+          "pass": true
+        },
+        {
+          "id": "outside:priority",
+          "pass": true
+        },
+        {
+          "id": "all-images-preserved",
+          "pass": true
+        },
+        {
+          "id": "hidden-parent-wins",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "browser": [
+    {
+      "width": 390,
+      "variant": "text-only",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 12,
+      "loadedImages": 0,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "slider",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 9,
+      "loadedImages": 3,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "fullbleed",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "split",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "article-grid",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 12,
+      "loadedImages": 0,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "video",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "cards-carousel",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 7,
+      "loadedImages": 5,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "product-shot",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 390,
+      "variant": "search-box",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 12,
+      "loadedImages": 0,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "text-only",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 12,
+      "loadedImages": 0,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "slider",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 9,
+      "loadedImages": 3,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "fullbleed",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "split",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "article-grid",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 12,
+      "loadedImages": 0,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "video",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "cards-carousel",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 7,
+      "loadedImages": 5,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "product-shot",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 11,
+      "loadedImages": 1,
+      "retiredOriginRequests": 0
+    },
+    {
+      "width": 1440,
+      "variant": "search-box",
+      "selectedHeroOnly": true,
+      "inactiveImagesDeferred": 12,
+      "loadedImages": 0,
+      "retiredOriginRequests": 0
+    }
+  ],
+  "wordpressVersion": "7.1.2",
+  "runtimeOrigin": "http://127.0.0.1:18255",
+  "browserVersion": "149.0.7827.55"
+}

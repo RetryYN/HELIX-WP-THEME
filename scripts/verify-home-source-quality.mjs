@@ -8,6 +8,7 @@ const output = path.join(root, 'docs/research/2026-09-15-home-completion/source-
 const budgetPath = path.join(root, 'docs/research/2026-09-15-home-completion/source-quality-budget.json');
 const files = [
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php',
+  'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php',
 ];
