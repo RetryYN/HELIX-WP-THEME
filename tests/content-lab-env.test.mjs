@@ -7,7 +7,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const moduleUrl = new URL('../scripts/lib/content-lab-env.mjs', import.meta.url).href;
-const verifierDirectory = path.join(root, 'scripts');
+const verifierRoots = [path.join(root, 'scripts'), path.join(root, 'docs/research')];
+const sharedHelpers = new Set([
+  path.join(root, 'scripts/lib/content-lab-env.mjs'),
+  path.join(root, 'scripts/lib/content_lab_env.py'),
+]);
 const legacyLabReference = /127\.0\.0\.1:8098|localhost:8098|helix-content-(?:wp|lab|db)|WTCF_/;
 const settingNames = [
   'WTCF_BASE_URL', 'WTCF_STATE_DIR', 'WTCF_DOCKER_NETWORK', 'WTCF_WP_CONTAINER',
@@ -36,7 +40,15 @@ value['state_dir'] = str(value['state_dir'])
 value['credentials_file'] = str(value['credentials_file'])
 print(json.dumps(value))
 `) {
-  return spawnSync('python3', ['-c', body], { cwd: verifierDirectory, env: environment(overrides), encoding: 'utf8' });
+  return spawnSync('python3', ['-c', body], { cwd: path.join(root, 'scripts'), env: environment(overrides), encoding: 'utf8' });
+}
+
+function sourceFiles(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+    const filename = path.join(directory, entry.name);
+    if (entry.isDirectory()) return sourceFiles(filename);
+    return /\.(mjs|py)$/.test(entry.name) ? [filename] : [];
+  });
 }
 
 test('Node and Python helpers resolve the same isolated environment settings', () => {
@@ -100,16 +112,16 @@ test('Node and Python reject missing ports and malformed Docker names consistent
 });
 
 test('every verifier with legacy lab references uses the shared configuration helper', () => {
-  const files = fs.readdirSync(verifierDirectory).filter(name => /\.(mjs|py)$/.test(name));
-  const affected = files.filter(name => legacyLabReference.test(fs.readFileSync(path.join(verifierDirectory, name), 'utf8')));
+  const files = verifierRoots.flatMap(sourceFiles).filter(filename => !sharedHelpers.has(filename));
+  const affected = files.filter(filename => legacyLabReference.test(fs.readFileSync(filename, 'utf8')));
   assert.ok(affected.length > 0);
-  for (const name of affected) {
-    const source = fs.readFileSync(path.join(verifierDirectory, name), 'utf8');
-    const usesHelper = source.includes("from './lib/content-lab-env.mjs'")
-      && source.includes('contentLab.');
-    const usesHelperWithoutProperty = source.includes("from './lib/content-lab-env.mjs'")
-      && source.includes('contentLab');
+  for (const filename of affected) {
+    const source = fs.readFileSync(filename, 'utf8');
     const usesPythonHelper = source.includes('from lib.content_lab_env import content_lab_config');
-    assert.ok(usesHelper || usesHelperWithoutProperty || usesPythonHelper, `${name} can mix isolated credentials with the shared lab`);
+    const relativeHelper = path.relative(path.dirname(filename), path.join(root, 'scripts/lib/content-lab-env.mjs')).split(path.sep).join('/');
+    const moduleSpecifier = relativeHelper.startsWith('.') ? relativeHelper : `./${relativeHelper}`;
+    const usesNodeHelper = source.includes(`from '${moduleSpecifier}'`)
+      && source.includes('contentLab.');
+    assert.ok(usesNodeHelper || usesPythonHelper, `${path.relative(root, filename)} can mix isolated credentials with the shared lab`);
   }
 });

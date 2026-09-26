@@ -11872,6 +11872,196 @@
       ],
       "registry_before_sha256": "31d777fbafbee20c642821a900b5f8e622c5f4737b352936270f5ffcef11b1d2",
       "registry_after_sha256": "7fe5819a01373feb17ce8d1918a333b520a8530c2cd40650eef157589d0c8a20"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-A11Y-02A",
+        "WT-AC-A11Y-02B",
+        "WT-AC-LOOK-01D",
+        "WT-AC-VOCAB-02A",
+        "WT-AC-VOCAB-02B",
+        "WT-AC-LEARN-01D",
+        "WT-AC-TPL-01C"
+      ],
+      "commands": [
+        [
+          "npm",
+          "run",
+          "reduced-motion:verify"
+        ],
+        [
+          "node",
+          "docs/research/2026-09-10-current-theme-quality/reading-layout/probe.mjs",
+          "after"
+        ],
+        [
+          "npm",
+          "run",
+          "learning-navigation-ownership:verify"
+        ],
+        [
+          "node",
+          "docs/research/2026-09-13-notfound-recovery/probe.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "package.json",
+          "before": "4a3b2b3c5bcc6b264ad659f538ef7b46b411cb6d79ac6184eb5fb6612f15a361",
+          "after": "38d434ca9a427e3ad86b5444ced7e1f8307a69f1a537ad07c58adaaaff8559c0"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02A",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "f356929a95dffd1051baffc364aa1b0c96867b8a447113e0797f2b3c376921f6",
+          "after": "b123a5ebc8f8eb3c1585c9299ece4d59c67101cc3ccc6efee47122b8e8c6f7a1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "package.json",
+          "before": "4a3b2b3c5bcc6b264ad659f538ef7b46b411cb6d79ac6184eb5fb6612f15a361",
+          "after": "38d434ca9a427e3ad86b5444ced7e1f8307a69f1a537ad07c58adaaaff8559c0"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-A11Y-02B",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "f356929a95dffd1051baffc364aa1b0c96867b8a447113e0797f2b3c376921f6",
+          "after": "b123a5ebc8f8eb3c1585c9299ece4d59c67101cc3ccc6efee47122b8e8c6f7a1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-VOCAB-02A",
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/probe.mjs",
+          "before": "f7f3b9480031315e7426d544c8a8a682240bdc025ef68a8b0580371c94ad6be2",
+          "after": "836cd8d4f7b3506181ed8452a5d1e3f59accc2f9d5904ada931040a723f204de"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-VOCAB-02A",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "42a81a06d803c6e18bbc53f65cafe538a8ccfe6cf6d95b1ffe49b94713b3beb7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-VOCAB-02A",
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+          "before": "99ea87ed395fb87bcbe280f282ba91fdd6b76cba5f30ddf5716b9c930ef70cfc",
+          "after": "65e260377e41d57d3f864120404b1debe13533f7154178577909740ed412bee8"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-VOCAB-02B",
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/probe.mjs",
+          "before": "f7f3b9480031315e7426d544c8a8a682240bdc025ef68a8b0580371c94ad6be2",
+          "after": "836cd8d4f7b3506181ed8452a5d1e3f59accc2f9d5904ada931040a723f204de"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-VOCAB-02B",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "42a81a06d803c6e18bbc53f65cafe538a8ccfe6cf6d95b1ffe49b94713b3beb7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-VOCAB-02B",
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+          "before": "99ea87ed395fb87bcbe280f282ba91fdd6b76cba5f30ddf5716b9c930ef70cfc",
+          "after": "65e260377e41d57d3f864120404b1debe13533f7154178577909740ed412bee8"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01D",
+          "path": "docs/research/2026-09-13-learning-navigation-ownership/probe.mjs",
+          "before": "ef81939f20c452845aab5b51edffa7569c8052f5bfa171229a0cb3f00def89b8",
+          "after": "3dca76f64ab7f11b0babf452fae2beff4c9890245ffb067366f9ece63d8ebee6"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01D",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "42a81a06d803c6e18bbc53f65cafe538a8ccfe6cf6d95b1ffe49b94713b3beb7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LEARN-01D",
+          "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
+          "before": "5991931e01792f420a44c4bd542ab8731dbeb3bc86093b4c7da748dedd0adc24",
+          "after": "87667c7c2439b18d020b4c48b18195b35bd0e20b0122446031f337d45e5461cb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-TPL-01C",
+          "path": "docs/research/2026-09-13-notfound-recovery/probe.mjs",
+          "before": "835c816b85af37c5ab969472dbc5af657bf200d692c82dd200ab0c8fa5ec831c",
+          "after": "1b568a447333bbb2debeee93bb86767ce8ff47ddb3cf5d5851fae0bcf0b52419"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-TPL-01C",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "42a81a06d803c6e18bbc53f65cafe538a8ccfe6cf6d95b1ffe49b94713b3beb7"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-TPL-01C",
+          "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
+          "before": "67cec21578f8f6ebd152c4424b0d9eaf54531df9bf716870d47a8218502de6b7",
+          "after": "69be6cf1185042a0f61077823ff6317f81a02633dc66e9ce6ff8ad34a9734b50"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "package.json",
+          "before": "4a3b2b3c5bcc6b264ad659f538ef7b46b411cb6d79ac6184eb5fb6612f15a361",
+          "after": "38d434ca9a427e3ad86b5444ced7e1f8307a69f1a537ad07c58adaaaff8559c0"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LOOK-01D",
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before": "f356929a95dffd1051baffc364aa1b0c96867b8a447113e0797f2b3c376921f6",
+          "after": "b123a5ebc8f8eb3c1585c9299ece4d59c67101cc3ccc6efee47122b8e8c6f7a1"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-10-reduced-motion/verify.json",
+          "before_sha256": "b123a5ebc8f8eb3c1585c9299ece4d59c67101cc3ccc6efee47122b8e8c6f7a1",
+          "after_sha256": "b123a5ebc8f8eb3c1585c9299ece4d59c67101cc3ccc6efee47122b8e8c6f7a1",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
+          "before_sha256": "381a4bfa45c6b4305bbbe604d2f89b8097c67c3e2288760a3a7a85a1aeaa2cb4",
+          "after_sha256": "65e260377e41d57d3f864120404b1debe13533f7154178577909740ed412bee8",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
+          "before_sha256": "6b9dfc0032b0b4a6e482a876327ab34ef56c78e069c70b4d6e28a902ea064af2",
+          "after_sha256": "87667c7c2439b18d020b4c48b18195b35bd0e20b0122446031f337d45e5461cb",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
+          "before_sha256": "99712da46da59d114be7b6782288e0fdd49296527fb7fb64bf776d49b005fd7a",
+          "after_sha256": "69be6cf1185042a0f61077823ff6317f81a02633dc66e9ce6ff8ad34a9734b50",
+          "rewritten": true
+        }
+      ],
+      "source_detachments": [],
+      "registry_before_sha256": "7fe5819a01373feb17ce8d1918a333b520a8530c2cd40650eef157589d0c8a20",
+      "registry_after_sha256": "4c23a2eddce7b595f6ebb2f5db3c4a649dc9b2a3ca6f296ea7f2031ff688af0c"
     }
   ]
 }

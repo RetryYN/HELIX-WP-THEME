@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
+import { contentLab } from '../../../scripts/lib/content-lab-env.mjs';
 const dir = new URL('./', import.meta.url);
 const repo = new URL('../../../', import.meta.url);
 const rows = [];
@@ -10,7 +11,7 @@ try {
  for (const variant of ['popular', 'cta', 'suggest']) for (const width of [390, 1440]) for (const noJs of [false, true]) {
   const page = await browser.newPage({ viewport: { width, height: 900 }, javaScriptEnabled: !noJs, reducedMotion: 'reduce' });
   const errors = []; page.on('pageerror', e => errors.push(e.message));
-  const response = await page.goto(`http://127.0.0.1:8098/notfound-recovery-audit/?wt=nf:${variant}`, {waitUntil:'networkidle'});
+  const response = await page.goto(`${contentLab.baseUrl}/notfound-recovery-audit/?wt=nf:${variant}`, {waitUntil:'networkidle'});
   const state = await page.evaluate(() => {
    const visible = e => !!(e.getBoundingClientRect().width && e.getBoundingClientRect().height);
    const main = document.querySelector('main');
@@ -28,12 +29,12 @@ try {
  }
  for (const path of ['/202609130001/','/%E0%A4%A/']) {
   const page=await browser.newPage(); const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('http://127.0.0.1:8098/202609130001/?wt=nf:suggest',{waitUntil:'networkidle'});
+  await page.goto(contentLab.baseUrl+'/202609130001/?wt=nf:suggest',{waitUntil:'networkidle'});
   if(path.includes('%')) { await page.evaluate(path=>history.replaceState(null,'',path),path); await page.addScriptTag({content:readFileSync(new URL('docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/notfound.js',repo),'utf8')}); }
   assert.deepEqual(errors,[]);assert(await page.locator('.wt-suggest a').count()>=2);await page.close();
  }
 } finally { await browser.close(); }
-const sources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/notfound.js','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html'];
+const sources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/notfound.js','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html','scripts/lib/content-lab-env.mjs','docs/research/2026-09-13-notfound-recovery/probe.mjs'];
 const checks=['404:all-three-variants-pc-sp-js-nojs','404:status-and-noindex','404:cv-lp-comparison-contact-visible','404:all-main-targets-44px','404:body-16px-no-overflow','404:suggestion-malformed-and-empty-path-safe'].map(name=>({name,pass:true}));
 writeFileSync(new URL('verify.json',dir),JSON.stringify({
  schema:'wt-notfound-recovery.v1',
