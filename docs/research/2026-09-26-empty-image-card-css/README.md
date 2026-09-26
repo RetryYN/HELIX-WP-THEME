@@ -1,6 +1,6 @@
 # 画像なしカードの共有 CSS
 
-Issue #345 / PR #344 follow-up。現行main `e0b3c0d` を基点とする。`category.html` の Custom HTML style を既存 `theme.css` のモバイルカード定義へ移す。条件は `max-width:599px`、`body.wt-cat-list-grid`、主一覧内の `.wt-cat-card`、直接の featured-image 子要素なしに限定する。
+Issue #345 / PR #344 follow-up。現行main `09dc07c` を基点とする。`category.html` の Custom HTML style を既存 `theme.css` のモバイルカード定義へ移す。条件は `max-width:599px`、`body.wt-cat-list-grid`、主一覧内の `.wt-cat-card`、直接の featured-image 子要素なしに限定する。
 
 `archive.html` は日付をカード直下へ出すため、category の meta wrapper と異なる。未定義の `date` grid area が暗黙列を生成することを現行mainの実機で確認した。同じ画像なし条件の直下日付だけを `meta` area へ配置する。画像ありカード、他の一覧型、600px以上の定義は変更しない。
 
@@ -14,10 +14,13 @@ WordPress の [Template Hierarchy](https://developer.wordpress.org/themes/templa
 
 画像・生の矩形比較はignored `local-evidence/issue345/` に保管し公開証拠には含めない。`verify.mjs` は `HELIX_ARTICLE_BASE_URL` で隔離インスタンスを指定し、配信中CSSのSHA-256とcheckoutのCSSの一致も検査する。再実行しても投稿や設定は変更しない。
 
-再現は既存 `2026-09-26-news-column-purpose-gap/compose.yaml` / `seed.php` で専用ラボを起動し、そのコンテナで本ディレクトリーの `fixture.php` を実行してから次を実行する。fixtureはローカル専用ラボのサイト名を検査する。
+再現時は `2026-09-26-news-column-purpose-gap/compose.yaml` が要求する `HELIX_ARTICLE_DB_PASSWORD`、`HELIX_ARTICLE_ROOT_PASSWORD`、`HELIX_ARTICLE_PORT` をローカル専用の環境ファイルに設定する。共有ラボとの衝突を避けるため一意なCompose project名とloopback専用portを指定し、専用DB/volumeで起動する。以下はport `18145`、project名 `helix-wp-theme-issue345-20260927` の例。`<local-env-file>` はローカルにだけ置き、公開しない。
 
 ```sh
-HELIX_ARTICLE_BASE_URL=http://127.0.0.1:18133 node docs/research/2026-09-26-empty-image-card-css/verify.mjs
+docker compose -p helix-wp-theme-issue345-20260927 --env-file <local-env-file> -f docs/research/2026-09-26-news-column-purpose-gap/compose.yaml up -d
+docker exec -i helix-wp-theme-issue345-20260927-wordpress-1 php < docs/research/2026-09-26-news-column-purpose-gap/seed.php
+docker exec -i helix-wp-theme-issue345-20260927-wordpress-1 php < docs/research/2026-09-26-empty-image-card-css/fixture.php
+HELIX_ARTICLE_BASE_URL=http://127.0.0.1:18145 node docs/research/2026-09-26-empty-image-card-css/verify.mjs
 php -l docs/research/2026-09-26-empty-image-card-css/fixture.php
 ```
 
