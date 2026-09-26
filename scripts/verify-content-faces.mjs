@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'docs/research/2026-09-08-content-faces/results');
-const sources = ['scripts/verify-content-faces.mjs', ...['functions.php','inc/content-faces.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','assets/css/content-faces.css'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p)];
+const sources = ['scripts/verify-content-faces.mjs', 'scripts/start-content-lab.py', ...['functions.php','inc/content-faces.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','assets/css/content-faces.css'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p)];
 sources.push('docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php');
 const sourceDigests=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(fs.readFileSync(path.join(root,p))).digest('hex')]));
 const base = process.env.WTCF_BASE_URL || 'http://127.0.0.1:8098';

@@ -8,6 +8,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { writeGenerated } from '../scripts/lib/generated-output.mjs';
 import { buildFanout } from '../scripts/report-acceptance-evidence-fanout.mjs';
+import './content-lab-env.test.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 function fixture(t) {
@@ -64,7 +65,7 @@ test('current-theme quality gate runs strict evidence audit for verifier changes
 
   const oracleSources = new Set();
   const addSource = (source, context) => {
-    assert.match(source, /^(?:scripts|docs\/research)\/.+\.(?:mjs|js|cjs)$/u,
+    assert.match(source, /^(?:scripts|docs\/research)\/.+\.(?:mjs|js|cjs|py)$/u,
       `${context} oracle source needs a covered scripts/ or docs/research/ path: ${source}`);
     oracleSources.add(source);
   };
@@ -84,6 +85,12 @@ test('current-theme quality gate runs strict evidence audit for verifier changes
       const script = packageJson.scripts[command[2]];
       assert.ok(script, `${context} references missing package script ${command[2]}`);
       collectScriptSources(script, context);
+      return;
+    }
+    if (command?.[0] === 'python3') {
+      const sources = command.slice(1).filter(argument => /\.py$/u.test(argument));
+      assert.ok(sources.length > 0, `${context} python3 command must identify a Python oracle source`);
+      for (const source of sources) addSource(source, context);
       return;
     }
     assert.fail(`${context} uses an unsupported catalog oracle command: ${JSON.stringify(command)}`);
@@ -239,7 +246,7 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
     }
 
     if (configuredCommand) {
-      const sourceArguments = configuredCommand.filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
+      const sourceArguments = configuredCommand.filter(argument => /\.(?:mjs|cjs|js|py)$/u.test(argument));
       assert.ok(
         sourceArguments.some(sourceFile => record.verifierSources.includes(sourceFile)),
         `configured oracle does not match verifier sources for ${record.proof}`,
@@ -249,7 +256,7 @@ test('theme CSS impact inventory stays aligned with source-bound acceptance proo
     if (packageOracleName) {
       const packageCommand = packageJson.scripts[packageOracleName];
       assert.ok(packageCommand, `missing package oracle script ${packageOracleName}`);
-      const sourceArguments = packageCommand.split(/\s+/u).filter(argument => /\.(?:mjs|cjs|js)$/u.test(argument));
+      const sourceArguments = packageCommand.split(/\s+/u).filter(argument => /\.(?:mjs|cjs|js|py)$/u.test(argument));
       assert.ok(
         sourceArguments.some(sourceFile => record.verifierSources.includes(sourceFile)),
         `package oracle does not match verifier sources for ${record.proof}`,
