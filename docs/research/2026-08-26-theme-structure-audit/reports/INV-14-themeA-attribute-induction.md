@@ -37,17 +37,7 @@
 
 ### 2.2 共通属性（他ブロックにも同じ名前で存在すると推定）
 
-```php
-$topMarginPc    = $block_attr['topMarginPcAttribute']    ?: 'auto';
-$bottomMarginPc = $block_attr['bottomMarginPcAttribute'] ?: 'auto';
-$topMarginSp    = $block_attr['topMarginSpAttribute']    ?: 'auto';
-$bottomMarginSp = $block_attr['bottomMarginSpAttribute'] ?: 'auto';
-$displayDevice  = $block_attr['displayDeviceAttribute']  ?: 'all';
-
-$themeABlockClassName     = $block_attr['className'] ?: '';
-$themeABlockCSSAttribute  = $block_attr['themeABlocksCSSAttribute']
-    ? '<style jsx="true">' . $block_attr['themeABlocksCSSAttribute'] . '</style>' : '';
-```
+> 第三者テーマのソース抜粋（9 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 | 属性 | 意味 | 値の性格 |
 |---|---|---|

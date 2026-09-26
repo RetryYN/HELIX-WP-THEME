@@ -157,20 +157,7 @@
 
 `themeA_h2_ads_concert()` から確認できた条件（`evidence/re-themeA-ads.txt`）:
 
-```php
-$post_ads_display_settings = get_post_meta(get_the_ID(), '_themeA_ads_display', true);
-if ($post_ads_display_settings == '1') { return $the_content; }      // 記事単位オプトアウト
-
-$post_type = get_post_type();
-if (is_single() && $post_type == 'post') { …                          // 投稿限定
-
-// カテゴリーが複数設定されている場合、カテゴリーIDの小さい方を読み込むようにする
-$ids = array_column($categories, 'term_id');
-array_multisort($ids, SORT_ASC, $categories);
-$cat_current = $categories[0];                                        // 複数カテゴリの決定規則
-
-if ($themeA_h2_sp_display == '1') { … }                                 // デバイス別
-```
+> 第三者テーマのソース抜粋（12 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **「複数カテゴリなら term_id が小さい方」**という決定規則は、
 正規化スキーマでも明示する必要がある（暗黙にすると移管で挙動が変わる）。

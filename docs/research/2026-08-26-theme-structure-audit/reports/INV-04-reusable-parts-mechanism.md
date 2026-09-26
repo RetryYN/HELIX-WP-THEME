@@ -55,18 +55,7 @@ register_post_type( 'blog_parts', [
 
 `Pre_Parse_Blocks::check_parsed_block()` が参照を辿って**中身を再帰的に展開**する:
 
-```php
-$parts_id = 0;
-if ( 'themeB/blog-parts' === $block_name ) {
-	$parts_id = $block['attrs']['partsID'] ?? 0;
-} elseif ( 'core/block' === $block_name ) {
-	$parts_id = $block['attrs']['ref'] ?? 0;
-}
-$parts = $parts_id ? get_post( $parts_id ) : '';
-if ( $parts ) {
-	self::parse_content( $parts->post_content );   // ← 再帰
-}
-```
+> 第三者テーマのソース抜粋（10 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **再帰の深さ制限が無い**点に注意。循環参照（A がB を、B が A を参照）で無限ループになりうる。
 中間 JSON の解決器には**深さ上限と訪問済み集合**を入れる必要がある。

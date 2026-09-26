@@ -11,27 +11,7 @@
 
 `functions.php` 末尾、ブロック登録の直後に 2 つのグローバル改変がある。
 
-```php
-/**
- * 記事内でページネーションを表示する際、通常ではページネーションのリンク先がページのURLになるが、
- * /pages/2/などのURLになるようにする
- */
-add_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
-function themeA_disable_redirect_canonical($redirect_url)
-{
-	$redirect_url = false;
-	return $redirect_url;
-}
-
-function themeA_init_session_start()
-{
-	if (session_status() !== PHP_SESSION_ACTIVE) {
-		session_start();
-		session_regenerate_id();
-	}
-}
-add_action('template_redirect', 'themeA_init_session_start');
-```
+> 第三者テーマのソース抜粋（19 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 ## 2. ① `redirect_canonical` の無条件無効化 — 解析
 

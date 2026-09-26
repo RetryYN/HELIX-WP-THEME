@@ -159,10 +159,7 @@ topic-A にはセキュリティ系プラグインが入っていない（site-B
 
 ### R-03 正規化リダイレクトの全面停止
 
-```php
-add_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
-function themeA_disable_redirect_canonical($redirect_url) { $redirect_url = false; return $redirect_url; }
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 コメントの意図は「記事内ページネーションの URL 形式」だが、**引数を見ず常に `false`**。
 末尾スラッシュ・`?p=ID`・ページ送り・大文字小文字の正規化がすべて停止する。
@@ -182,10 +179,7 @@ function themeA_disable_redirect_canonical($redirect_url) { $redirect_url = fals
 
 テーマA の render_callback は**未指定属性をカスタマイザ値へフォールバック**する。
 
-```php
-$blogcardDesign = ! empty($block_attr['blogcardDesign']) ? $block_attr['blogcardDesign']
-                                                        : themeA__blogcard_design();
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **同じ保存内容でも、サイト設定が違えば出力が変わる。**
 動的 7 種のうち **6 種は正規化（実効値の解決と固定）で決定論レンダラに載る**が、

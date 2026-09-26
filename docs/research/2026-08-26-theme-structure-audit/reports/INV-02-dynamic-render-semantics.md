@@ -48,16 +48,7 @@
 
 同じ init 関数の末尾で、`core/list` にブロックスタイルを 2 つ登録している。
 
-```php
-register_block_style( 'core/list', array(
-	'name' => 'themeA-checkmark',        'label' => __('チェック１'),
-	'style_handle' => 'themeA-checkmark',
-) );
-register_block_style( 'core/list', array(
-	'name' => 'themeA-checkmark-square', 'label' => __('チェック２'),
-	'style_handle' => 'themeA-checkmark-square',
-) );
-```
+> 第三者テーマのソース抜粋（8 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 初回調査で「テーマA の `register_block_style` は 0」と報告したのは grep の取りこぼし（複数行記法）。
 **`core/list` に `is-style-themeA-checkmark` / `is-style-themeA-checkmark-square` が付いた記事がある**
