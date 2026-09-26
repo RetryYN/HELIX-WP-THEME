@@ -33,7 +33,7 @@ function fakeBrowser({ failingRoutes = [], overflowing = false, violations = [] 
               } };
             },
             async evaluate() {
-              return overflowing ? { viewport: 390, content: 430 } : undefined;
+              return { viewport: 390, content: overflowing ? 430 : 390 };
             },
           };
           return { newPage: async () => page, close: async () => {} };
@@ -67,7 +67,6 @@ test('WordPress CI runs axe on real routes and the negative control', () => {
   assert.match(workflow, /tests\/a11y-gate-contract\.test\.mjs/);
   assert.match(runner, /new Axe\(\{ page \}\)\.withTags\(wcagTags\)\.analyze\(\)/);
   assert.match(runner, /expectedStatus: 404/);
-  assert.match(runner, /horizontalOverflow: viewport\.name === 'mobile'/);
   for (const slug of ['a11y-fixture-lp', 'a11y-fixture-event', 'a11y-fixture-zone-catalog', 'a11y-fixture-canvas']) {
     assert.match(runner, new RegExp(slug));
     assert.match(bootstrap, new RegExp(slug));
@@ -111,6 +110,31 @@ test('404 status is accepted when expected and mobile overflow is recorded as tr
   assert.equal(result.report.scanResults[0].horizontalOverflow, true);
   assert.equal(result.report.completed, false);
   assert.match(result.report.scanResults[0].errors.join(' '), /horizontal overflow/);
+});
+
+test('mobile stores the measured false value while desktop keeps horizontalOverflow null', async () => {
+  const mobile = fakeBrowser();
+  const mobileResult = await runA11yScan({
+    browserType: mobile.browser,
+    Axe: mobile.Axe,
+    scanRoutes: [{ path: '/', expectedStatus: 200 }],
+    scanViewports: [{ name: 'mobile', width: 390, height: 844 }],
+    isNegativeControl: false,
+    urlBase: 'http://fixture.invalid',
+    log: () => {},
+  });
+  const desktop = fakeBrowser();
+  const desktopResult = await runA11yScan({
+    browserType: desktop.browser,
+    Axe: desktop.Axe,
+    scanRoutes: [{ path: '/', expectedStatus: 200 }],
+    scanViewports: [{ name: 'desktop', width: 1440, height: 900 }],
+    isNegativeControl: false,
+    urlBase: 'http://fixture.invalid',
+    log: () => {},
+  });
+  assert.equal(mobileResult.report.scanResults[0].horizontalOverflow, false);
+  assert.equal(desktopResult.report.scanResults[0].horizontalOverflow, null);
 });
 
 test('negative control exits 2 only for its single injected button-name violation', async () => {
