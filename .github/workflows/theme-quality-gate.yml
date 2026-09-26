@@ -162,7 +162,7 @@ jobs:
         with:
           name: a11y-axe-reports
           path: ${{ runner.temp }}/a11y-*.json
-          if-no-files-found: warn
+          if-no-files-found: error
 
   lhci-gate:
     name: Core Web Vitals (Lighthouse CI)

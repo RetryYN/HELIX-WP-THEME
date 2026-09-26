@@ -5,10 +5,10 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "d19d9aed65e153b0dc0a2e984674b9db2ff2232749e8e1b2700a4155032ac6da",
+  "source_sha256": "2aa211ac12ca53eabdcef6f62312338be21d46b44880271b275aa3667ff65ade",
   "sourceDigests": {
-    "scripts/public-safety-guard.sh": "d19d9aed65e153b0dc0a2e984674b9db2ff2232749e8e1b2700a4155032ac6da",
-    "scripts/verify-public-safety.mjs": "daa7f105f40be39f2c2ad388d958b5d21dd035728034c37bfab816e8500cd7c9"
+    "scripts/public-safety-guard.sh": "2aa211ac12ca53eabdcef6f62312338be21d46b44880271b275aa3667ff65ade",
+    "scripts/verify-public-safety.mjs": "b4c9f3ff57db318bf79c23ed863ea4fd253cf5ae02477db30bcde1f3f0040c5c"
   },
   "rows": [
     {
@@ -234,6 +234,13 @@
       "expected": "accept",
       "actual": "accept",
       "exit_code": 0
+    },
+    {
+      "name": "negative:duplicate-binary-approval-path-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
     },
     {
       "name": "positive:symlink-target-inspected-as-text",
