@@ -9,7 +9,7 @@ const out=path.join(root,'docs/research/2026-09-15-home-completion');
 const base=`${contentLab.baseUrl}`;
 const rows=[];const check=(name,pass,details)=>rows.push({name,pass:!!pass,...(details===undefined?{}:{details})});let completed=false;
 const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
-const sourceFiles=['scripts/verify-home-isolation.mjs',...['functions.php','inc/content-chrome.php','inc/content-faces.php','assets/css/home-completion.css','assets/css/theme.css','assets/css/content-chrome.css'].map(f=>theme+f)];
+const sourceFiles=['scripts/verify-home-isolation.mjs',...['functions.php','inc/home-hero-images.php','inc/content-chrome.php','inc/content-faces.php','assets/css/home-completion.css','assets/css/theme.css','assets/css/content-chrome.css'].map(f=>theme+f)];
 const digest=()=>Object.fromEntries(sourceFiles.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));const sourceDigests=digest();
 const browser=await chromium.launch();
 try{

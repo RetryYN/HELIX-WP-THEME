@@ -14669,7 +14669,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "d1b355306aaa649f1211d2db84bcd1432af5397e75d84672ae73be3907830294",
+              "sha256": "c36e219943eb366f5a9317d621463a560873d6a3b78485df35fb54e634ad323a",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source",
                 "manifest:all-capability-kinds",
@@ -14690,7 +14690,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "d1b355306aaa649f1211d2db84bcd1432af5397e75d84672ae73be3907830294",
+              "sha256": "c36e219943eb366f5a9317d621463a560873d6a3b78485df35fb54e634ad323a",
               "row_names": [
                 "negative:undeclared-patterns-fails",
                 "negative:undeclared-template_parts-fails",
@@ -14741,14 +14741,14 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "d1b355306aaa649f1211d2db84bcd1432af5397e75d84672ae73be3907830294",
+              "sha256": "c36e219943eb366f5a9317d621463a560873d6a3b78485df35fb54e634ad323a",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source"
               ]
             },
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "c6f4daa087554cc454237def91eeada9fea63ff3a2b2a354325f1faa7a1b8b45",
+              "sha256": "ba6f8299190848e183508b08a261b40501e97c342803d35d33289464809ba98e",
               "row_names": [
                 "health:loaded",
                 "health:active-current-theme",
@@ -14772,7 +14772,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "c6f4daa087554cc454237def91eeada9fea63ff3a2b2a354325f1faa7a1b8b45",
+              "sha256": "ba6f8299190848e183508b08a261b40501e97c342803d35d33289464809ba98e",
               "row_names": [
                 "negative:unregistered-pattern-reported"
               ]
@@ -14816,7 +14816,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "15c22b90a6da4a8a880526ba52868ec3d2aeb4ca7a0c985ae07de5dd3c0a1053",
+              "sha256": "927e9a3fa64d9abda0e979dc3f24fe67d9c6d6104d9e33848e1d586b652092db",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -14835,7 +14835,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "15c22b90a6da4a8a880526ba52868ec3d2aeb4ca7a0c985ae07de5dd3c0a1053",
+              "sha256": "927e9a3fa64d9abda0e979dc3f24fe67d9c6d6104d9e33848e1d586b652092db",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -15457,7 +15457,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "stack:pc:js:G-E1:cta-clear",
                 "stack:pc:js:G-E1:stack-order",
@@ -15492,7 +15492,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "negative:G-E1:cta-clear",
                 "negative:G-E1:stack-order"
@@ -15513,7 +15513,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "advertisement:pc:js:G-E1:area-cap",
                 "advertisement:pc:js:G-E1:initial-modal",
@@ -15635,7 +15635,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "modal:banner-zone-fixture",
                 "modal:banner-zone-lp-fixture",
@@ -15900,7 +15900,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "cf6c866c0e03c71a52f81c0df6299c7eb936e83c1894f4d715ce8c336328808d",
+              "sha256": "55f0cfecd6c19e50345f10736bffc7c47ccfdace95847f6d5c49cb10fbfbe615",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -15958,7 +15958,7 @@
             },
             {
               "path": "docs/research/2026-09-09-footer-data/editor.json",
-              "sha256": "be5a0fcb48ab45c6ac786f43304cff83da4ee17321f5ee10a06376a918d8e2e3",
+              "sha256": "e03058661977328f14aa7acff8233853e4d58524c9ed75d5e4963a0d45222cf1",
               "row_names": [
                 "initial:valid-blocks",
                 "edit:store-updated",
@@ -16630,7 +16630,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "1c1ff2437be6f026d37ec6bf084e01047845fc509d6bbd06fcfb31fb093e9931",
+              "sha256": "0ff1a817abc84b44c55d1651cbd1e130d4abe5095e44c67b708e6890c013c4ca",
               "row_names": [
                 "box:saved-readback",
                 "float:saved-readback",
@@ -16675,7 +16675,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "1c1ff2437be6f026d37ec6bf084e01047845fc509d6bbd06fcfb31fb093e9931",
+              "sha256": "0ff1a817abc84b44c55d1651cbd1e130d4abe5095e44c67b708e6890c013c4ca",
               "row_names": [
                 "none:saved-readback",
                 "none:pc:js:selected",
@@ -16791,7 +16791,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
-              "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+              "sha256": "9f726c8b0cf3f4b263e07c29fc7c9a3d882c0a5bc5101650a85bfb971dbc0151",
               "row_names": [
                 "AC-VOCAB-03A accepts automatic commercial signal detection",
                 "AC-VOCAB-03A places one subtle notice in the article first view",
@@ -16813,7 +16813,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
-              "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+              "sha256": "9f726c8b0cf3f4b263e07c29fc7c9a3d882c0a5bc5101650a85bfb971dbc0151",
               "row_names": [
                 "AC-VOCAB-03B omits notices from articles with no commercial signal",
                 "AC-VOCAB-03B rejects signal removal from the automatic contract",
@@ -16837,7 +16837,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
-              "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+              "sha256": "9f726c8b0cf3f4b263e07c29fc7c9a3d882c0a5bc5101650a85bfb971dbc0151",
               "row_names": [
                 "AC-VOCAB-03C keeps the PO default wording and avoids component badges",
                 "AC-VOCAB-03C suppresses duplicate positive disclosure in the first three paragraphs",
@@ -17246,7 +17246,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-heading-comparison/verification.json",
-              "sha256": "6578b9ad1fa893a6b9431eae56e94d2adc32fbed4af2fb98d98a9d4b4266546b",
+              "sha256": "6f2dab7682e1d7d2c1a6efc968803718fda4c0854254247cb5a4ef703192bfb9",
               "row_names": [
                 "registry:15-existing-styles",
                 "content:roundtrip",
@@ -17794,7 +17794,7 @@
             },
             {
               "path": "docs/research/2026-09-20-heading-fluid/verification.json",
-              "sha256": "d45ef2e831f73082fd969e569f5bc7570ab0c07aa3cceea8e63644a0bf35f1c9",
+              "sha256": "3113f6753931d80df290a403337f9fdd9bd2dbd8d35b7534928dc347709a19c1",
               "row_names": [
                 "registry:15-existing-styles",
                 "content:roundtrip",
@@ -17969,7 +17969,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "0937544043b7b802520c1e5793825b06a957404658d5c9c95138bca7dcd6b14b",
+              "sha256": "587b81c6fe1c5b89aea888960b0579b21e40ed76cf4d82a610e54567cb535a80",
               "row_names": [
                 "fixture:positive",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -18507,7 +18507,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
-              "sha256": "9dd8f958f9d920df977ff6556669c6ae0ccbbcd2a8e392cc16dfdab87db15855",
+              "sha256": "407ccc3f725658cb52fe122cff2cc2d37d18de1a6f92468e5e62706b1b74a6f6",
               "row_names": [
                 "explicit:overrides-changed-site",
                 "fixtures:cleanup",
@@ -20152,7 +20152,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "5958b91cd184ffdc304a7ba5fc543215ac6003bea8947a5cd4547e37bd53c8fe",
+              "sha256": "aef09570108c62d32849000308fead587fef5f53a7ef925c77a6ee7d6267ce79",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -20172,7 +20172,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "5958b91cd184ffdc304a7ba5fc543215ac6003bea8947a5cd4547e37bd53c8fe",
+              "sha256": "aef09570108c62d32849000308fead587fef5f53a7ef925c77a6ee7d6267ce79",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -22655,7 +22655,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "contract:category-scope",
                 "contract:end-exclusive",
@@ -22721,7 +22721,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "contract:image-budget",
                 "contract:invalid-date",
@@ -22748,7 +22748,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "notice:pc:js:close-persists",
                 "notice:pc:js:one-assignment",
@@ -22775,7 +22775,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "notice:pc:js:close-persists",
                 "notice:pc:nojs:one-assignment",
@@ -22800,7 +22800,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "c4b401b4ec3af92f25f0f376275ba654f96b79b44c7e47fc7b58c1e1ba99ec63",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "geometry:pc:reserved-size",
                 "geometry:sp:reserved-size",
@@ -23302,7 +23302,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
-              "sha256": "1aa9b640afde5e9ce33ee99e0e1e91e0ab2a8bc9a77b8b1037b856ffdfe6e15d",
+              "sha256": "755176f91739a4e2f2ae18b7617c394a49d9c66f04ef1d0bf8efea8ec917bc56",
               "row_names": [
                 "compare:pc:js:contract",
                 "compare:pc:js:table-device-shape",
@@ -23341,7 +23341,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
-              "sha256": "1aa9b640afde5e9ce33ee99e0e1e91e0ab2a8bc9a77b8b1037b856ffdfe6e15d",
+              "sha256": "755176f91739a4e2f2ae18b7617c394a49d9c66f04ef1d0bf8efea8ec917bc56",
               "row_names": [
                 "compare:pc:js:arrow-selects-second",
                 "compare:pc:js:end-selects-last",
@@ -23439,7 +23439,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "65f90b8726977cee31b0e38584deb269a03cf117643ea9035c560ba43b65478d",
+              "sha256": "c320d2dee1014087865f543081ffbb510c99553675d9be04cd28786f10bc42f5",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -23725,7 +23725,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "65f90b8726977cee31b0e38584deb269a03cf117643ea9035c560ba43b65478d",
+              "sha256": "c320d2dee1014087865f543081ffbb510c99553675d9be04cd28786f10bc42f5",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -25527,7 +25527,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "0937544043b7b802520c1e5793825b06a957404658d5c9c95138bca7dcd6b14b",
+              "sha256": "587b81c6fe1c5b89aea888960b0579b21e40ed76cf4d82a610e54567cb535a80",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -25552,7 +25552,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "0937544043b7b802520c1e5793825b06a957404658d5c9c95138bca7dcd6b14b",
+              "sha256": "587b81c6fe1c5b89aea888960b0579b21e40ed76cf4d82a610e54567cb535a80",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -25935,7 +25935,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "3bda47ddfbc39f42dc987360e3e5c008edc67b4a9534fbab7b588323d2853b90",
+              "sha256": "a39c9d91e128e14034307c4dbd6690d369ec925f2cc33c7649eb328f3a859eaa",
               "row_names": [
                 "i18n:source-calls-found",
                 "i18n:all-gettext-calls-extracted",
@@ -25961,7 +25961,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "3bda47ddfbc39f42dc987360e3e5c008edc67b4a9534fbab7b588323d2853b90",
+              "sha256": "a39c9d91e128e14034307c4dbd6690d369ec925f2cc33c7649eb328f3a859eaa",
               "row_names": [
                 "negative:text-domain-drift-fails",
                 "negative:pot-source-drift-fails",
@@ -26094,7 +26094,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "8e2facb7b05f86387fa766e95fa3c9f30aff13a73fc245b7aa34a056e28e4ae9",
+              "sha256": "496f5dad9d59ed10081e38ee85d1a6d820c758cb62e191974372f4c2bbea4ab3",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -26567,7 +26567,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "8e2facb7b05f86387fa766e95fa3c9f30aff13a73fc245b7aa34a056e28e4ae9",
+              "sha256": "496f5dad9d59ed10081e38ee85d1a6d820c758cb62e191974372f4c2bbea4ab3",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -26990,7 +26990,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "8e2facb7b05f86387fa766e95fa3c9f30aff13a73fc245b7aa34a056e28e4ae9",
+              "sha256": "496f5dad9d59ed10081e38ee85d1a6d820c758cb62e191974372f4c2bbea4ab3",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -27713,7 +27713,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
-              "sha256": "b65228a652ef8f27fee7aa1ccc1b99ed547e9113d50a0760e1738deb3a9c74d1",
+              "sha256": "2785aa29f094b304e06adb1025c404634f8ab94a4950553cb975912cdb32fa44",
               "row_names": [
                 "purpose:search-intent-archive-description-and-classification",
                 "purpose:news-releases-archive-description-and-classification",
@@ -27736,7 +27736,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
-              "sha256": "b65228a652ef8f27fee7aa1ccc1b99ed547e9113d50a0760e1738deb3a9c74d1",
+              "sha256": "2785aa29f094b304e06adb1025c404634f8ab94a4950553cb975912cdb32fa44",
               "row_names": [
                 "purpose:news-releases-archive-description-and-classification",
                 "purpose:columns-archive-description-and-classification",
@@ -27764,7 +27764,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
-              "sha256": "b65228a652ef8f27fee7aa1ccc1b99ed547e9113d50a0760e1738deb3a9c74d1",
+              "sha256": "2785aa29f094b304e06adb1025c404634f8ab94a4950553cb975912cdb32fa44",
               "row_names": [
                 "type:news-releases-purpose-uses-standard-post",
                 "type:columns-purpose-uses-standard-post",
@@ -27918,7 +27918,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "021b2df08164e5f36407ec67cab1d65ce92479aba90205e8a0906749d5896a9c",
+              "sha256": "3156ae8cf420f6196b898d9b89b3eb649082fb29938e9efce0a7a87b6736847e",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -28070,7 +28070,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "116dbc199e2521155f60fa8e6f496c00d7cc7a76aff5e2feb68ab6ea9d876d0e",
+              "sha256": "7be2c84ad9192996fb5cf0028bbb42f16424a07e70ae8a2270b3ae4833064c94",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -28432,7 +28432,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "021b2df08164e5f36407ec67cab1d65ce92479aba90205e8a0906749d5896a9c",
+              "sha256": "3156ae8cf420f6196b898d9b89b3eb649082fb29938e9efce0a7a87b6736847e",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -28584,7 +28584,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "116dbc199e2521155f60fa8e6f496c00d7cc7a76aff5e2feb68ab6ea9d876d0e",
+              "sha256": "7be2c84ad9192996fb5cf0028bbb42f16424a07e70ae8a2270b3ae4833064c94",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -29030,7 +29030,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -29112,7 +29112,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -29172,7 +29172,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -29308,7 +29308,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -29339,7 +29339,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -29359,7 +29359,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
-              "sha256": "2e414ee8be0efcb6b2d2083abc7b2487a68ded859c12ecb4916fa2dc525abfc6",
+              "sha256": "d9fe1d113638919c80e036fec16b159214d41d47a247a373a806ef9a65f60cc6",
               "row_names": [
                 "confirmed:status",
                 "confirmed:detail",
@@ -29449,7 +29449,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -29470,7 +29470,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
-              "sha256": "2e414ee8be0efcb6b2d2083abc7b2487a68ded859c12ecb4916fa2dc525abfc6",
+              "sha256": "d9fe1d113638919c80e036fec16b159214d41d47a247a373a806ef9a65f60cc6",
               "row_names": [
                 "confirmed:status",
                 "confirmed:detail",
@@ -29589,7 +29589,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "blp:lp-target",
                 "blp:reasoning"
@@ -29619,7 +29619,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "blp:lp-target",
                 "blp:ownership:inherit",
@@ -29652,7 +29652,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "0f079ce0b1755ccd05b223b96c133579972de50a04b2bdea136cb9c1cd0a6381",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "blp:lp-target",
                 "blp-journey:pc:no-js:decision-content",
@@ -29711,7 +29711,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "6d244f62e0d8b10935d9b0a637c86f43a5059aae05d543662e83619113faffd3",
+              "sha256": "92929c889b7fb215ffbee3fca618e335f4e50bdb48a98b7b528193fd8ff3cc95",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -29935,7 +29935,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "fee5836ecd2b5a9dd62daee554e40b6e934edd89799a12afed233e0aa8fb4d5b",
+              "sha256": "59d1c52e7987b78a76fdb406830e51a6e5f87983208d866d33cbcc74970a075a",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -30223,7 +30223,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "f64c56312b6f5d384a4be883a70f1e76733f294dc0ba4052acc68ea1b5c34e81",
+              "sha256": "35d0b0039a6ae3220b486e5a29f1ca1b14ca1108ce3a2a0f8ae64287555f7485",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -30624,7 +30624,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "d5354fff22c3462195e760a5dee252add208ee0cea0bf30283ff7279090e8acf",
+              "sha256": "76f456eeff5e3dc69743bde9422f9e017e3baa7c0a686edc73e528a0f26163ac",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -30713,7 +30713,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "b3a1759e500ccc1dbfc98015339ebf204094901f962dcf3bbc33ae0bccc07d7b",
+              "sha256": "7eb122822a0fef1ab3cfa791e710cbdcb56ab3facce07dd82d8daa0e16c60641",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -30846,7 +30846,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "6d244f62e0d8b10935d9b0a637c86f43a5059aae05d543662e83619113faffd3",
+              "sha256": "92929c889b7fb215ffbee3fca618e335f4e50bdb48a98b7b528193fd8ff3cc95",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -31070,7 +31070,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "fee5836ecd2b5a9dd62daee554e40b6e934edd89799a12afed233e0aa8fb4d5b",
+              "sha256": "59d1c52e7987b78a76fdb406830e51a6e5f87983208d866d33cbcc74970a075a",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -31358,7 +31358,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "f64c56312b6f5d384a4be883a70f1e76733f294dc0ba4052acc68ea1b5c34e81",
+              "sha256": "35d0b0039a6ae3220b486e5a29f1ca1b14ca1108ce3a2a0f8ae64287555f7485",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -31759,7 +31759,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "d5354fff22c3462195e760a5dee252add208ee0cea0bf30283ff7279090e8acf",
+              "sha256": "76f456eeff5e3dc69743bde9422f9e017e3baa7c0a686edc73e528a0f26163ac",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -31848,7 +31848,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "b3a1759e500ccc1dbfc98015339ebf204094901f962dcf3bbc33ae0bccc07d7b",
+              "sha256": "7eb122822a0fef1ab3cfa791e710cbdcb56ab3facce07dd82d8daa0e16c60641",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -32066,7 +32066,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "5b3f354f79f22e900c5c30561e2d580ee56b7811c85b8687807caea78d64f8c2",
+              "sha256": "96c83cd78417ccb932903547cded4a00d7e6b9ffa0acadd412908ce9d2bc1a46",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -32514,7 +32514,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "5b3f354f79f22e900c5c30561e2d580ee56b7811c85b8687807caea78d64f8c2",
+              "sha256": "96c83cd78417ccb932903547cded4a00d7e6b9ffa0acadd412908ce9d2bc1a46",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -33165,7 +33165,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "919c29b497b25face2df94035b6fe6450dc599601ab058e6f507139edbcca4d6",
+              "sha256": "40c14c021a828c5a6c6d8c2e3fe4894f7fae09b75a526450f651b4412b623e7d",
               "row_names": [
                 "course:three-lessons:pc:js-false",
                 "course:three-lessons:pc:js-true",
@@ -33221,7 +33221,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "919c29b497b25face2df94035b6fe6450dc599601ab058e6f507139edbcca4d6",
+              "sha256": "40c14c021a828c5a6c6d8c2e3fe4894f7fae09b75a526450f651b4412b623e7d",
               "row_names": [
                 "glossary:term-target:pc:js-false",
                 "glossary:term-target:pc:js-true",
@@ -33306,7 +33306,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "919c29b497b25face2df94035b6fe6450dc599601ab058e6f507139edbcca4d6",
+              "sha256": "40c14c021a828c5a6c6d8c2e3fe4894f7fae09b75a526450f651b4412b623e7d",
               "row_names": [
                 "archive:count:pc:js-true",
                 "archive:first-page:pc:js-true",
@@ -33460,7 +33460,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/publication.json",
-              "sha256": "a48feaca61a4336bb24ca1342e911b2d4f3aed3629925d2f502d9c027b1436b9",
+              "sha256": "f3715193926f64874cae525aa58c7753066b1a3184bde0a9b2b2b78e4a9d06b8",
               "row_names": [
                 "published:last-page:pc",
                 "published:last-record:pc",
@@ -33492,7 +33492,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
-              "sha256": "e7cc3f07f776cbd675a13d96eb20050814d1f71cd874ad9d7d285af89d9903d0",
+              "sha256": "18ba320a32f729fceb13d493168ad2ce6bd0fdd8136b68d7df521a94363414ab",
               "row_names": [
                 "navigation:all-owner-combinations",
                 "navigation:site-own-style-separated",
@@ -33558,7 +33558,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "86dc5587ae56f2be934d59a36ba8c0b2818ed37c8008d715199ed24d6d88decc",
+              "sha256": "b26e79d021a1940e189b77ea36c47335ef12e8c2e373bdfdbac7f4327ce363cd",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -33683,7 +33683,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "342f823373e25231869781b34fa22cc555efd476812a050fb3978bf884977253",
+              "sha256": "37895da5183bdd6ab92c681e216ecee489450657f01bf66dd517e8dd1313e405",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -33711,7 +33711,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/access.json",
-              "sha256": "5a1e210d51968489bf3a157bb46723bce070153f08a4d3d290deda1f7be63aa3",
+              "sha256": "ddab91db938239b737822cb636d9facde5a917e8deac92a41b6d2cf5b0f3332c",
               "row_names": [
                 "count:anonymous:pc:js-true:public",
                 "results:anonymous:pc:js-true:public",
@@ -34035,7 +34035,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "63b81f2398f7179cb44ae30ae02e6d926b9c2f1c9a1d9db13d32e22683c44016",
+              "sha256": "e65de70f818a2ee2755b3458142619e896f6bdc4125b0f16933aeaf5d3991a95",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -34360,7 +34360,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/performance.json",
-              "sha256": "7da0df11e62c8fb846583d422da5623471ba80d20e036698c0f29584f3d075c8",
+              "sha256": "badcad85433fa29c40cf1bde7bdd06ca2a98763ca504217e923f687aacfb4bf4",
               "row_names": [
                 "cold-scans-protected:50",
                 "warm-skips-password-checks:50",
@@ -34394,7 +34394,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "342f823373e25231869781b34fa22cc555efd476812a050fb3978bf884977253",
+              "sha256": "37895da5183bdd6ab92c681e216ecee489450657f01bf66dd517e8dd1313e405",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -34438,7 +34438,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "fccdda4f4fff7e875ece2feb096bef6efb671690a5feba3a7d72bddf4fd3189f",
+              "sha256": "7abb2617216081523bc8972a8d861a5d8da0882a71bee41bc17c8ffd55f1d4e0",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -34461,7 +34461,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "63b81f2398f7179cb44ae30ae02e6d926b9c2f1c9a1d9db13d32e22683c44016",
+              "sha256": "e65de70f818a2ee2755b3458142619e896f6bdc4125b0f16933aeaf5d3991a95",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -34797,7 +34797,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "86dc5587ae56f2be934d59a36ba8c0b2818ed37c8008d715199ed24d6d88decc",
+              "sha256": "b26e79d021a1940e189b77ea36c47335ef12e8c2e373bdfdbac7f4327ce363cd",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -34876,7 +34876,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "342f823373e25231869781b34fa22cc555efd476812a050fb3978bf884977253",
+              "sha256": "37895da5183bdd6ab92c681e216ecee489450657f01bf66dd517e8dd1313e405",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -34944,7 +34944,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "fccdda4f4fff7e875ece2feb096bef6efb671690a5feba3a7d72bddf4fd3189f",
+              "sha256": "7abb2617216081523bc8972a8d861a5d8da0882a71bee41bc17c8ffd55f1d4e0",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -35247,7 +35247,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "5c69f3181f82332e92ba9185a70a90568d52a4462028db65525a3c0aca16fc01",
+              "sha256": "5e6e48687921e49e15ec09afdcd4d1279ed1761e4e9ed0daf73e83e01caa0677",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",

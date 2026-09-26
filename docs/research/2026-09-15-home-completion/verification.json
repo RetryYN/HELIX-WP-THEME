@@ -3,9 +3,10 @@
   "completed": true,
   "baselinePresentationDisabled": false,
   "sourceDigests": {
-    "scripts/verify-home-completion.mjs": "59b963961ddfb0005ee09de79ef151cc47f53f9ed72eaf9e115a274370c4af40",
+    "scripts/verify-home-completion.mjs": "b172c38bea4c402f86f89a60126910aca6a9de8b4275047717bf349ea2405ef7",
     "docs/research/2026-09-15-home-completion/choices.json": "e5a7352ba2f7f1d5a67af7e84a294daf1f98cd7315eaae8293867ef5074895c5",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f574816e0191fe41cdef05ba3dd379e2905da8000b9c1e095c1eb56f7670c27e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php": "4ad392afa90d2d73634980298b6328cae8000cd690de07f159f037b47ecae799",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "0af8417bca52087c774b5a94e2fd5413e2c8b790f71261de89ebbdcf6c6a8a65",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html": "249fb8875e71cd1350cfb636477e92f8b0a7eca118f8a521b3077862c4d77f01",
@@ -17875,6 +17876,42 @@
       "pass": true
     },
     {
+      "name": "pc:stress:visible-images-decoded",
+      "pass": true,
+      "details": [
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-1.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-2.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-3.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-factory.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-tax.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-clinic.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        }
+      ]
+    },
+    {
       "name": "pc:tabs:keyboard",
       "pass": true
     },
@@ -17935,6 +17972,42 @@
     {
       "name": "sp:stress:reduced-motion",
       "pass": true
+    },
+    {
+      "name": "sp:stress:visible-images-decoded",
+      "pass": true,
+      "details": [
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-1.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-2.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-3.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-factory.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-tax.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-clinic.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        }
+      ]
     },
     {
       "name": "sp:tabs:keyboard",

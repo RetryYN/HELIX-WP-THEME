@@ -14,7 +14,7 @@ const base=`${contentLab.baseUrl}`;
 const rows=[],shots=[];let completed=false;
 const check=(name,pass,details)=>rows.push({name,pass:!!pass,...(details===undefined?{}:{details})});
 const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
-const files=['scripts/verify-home-completion.mjs','docs/research/2026-09-15-home-completion/choices.json',...['functions.php','patterns/home-hero.php','patterns/home-sections.php','templates/front-page.html','assets/css/theme.css','assets/js/home.js','assets/css/home-completion.css'].filter(f=>fs.existsSync(path.join(root,theme,f))).map(f=>theme+f)];
+const files=['scripts/verify-home-completion.mjs','docs/research/2026-09-15-home-completion/choices.json',...['functions.php','inc/home-hero-images.php','patterns/home-hero.php','patterns/home-sections.php','templates/front-page.html','assets/css/theme.css','assets/js/home.js','assets/css/home-completion.css'].filter(f=>fs.existsSync(path.join(root,theme,f))).map(f=>theme+f)];
 const digests=()=>Object.fromEntries(files.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests();
 const axes={home_hero:['text-only','slider','fullbleed','split','article-grid','video','cards-carousel','product-shot','search-box'],home_hero_cta:['double','single','none','tel-button','search'],home_sections:choices.map(c=>c.id),home_news:['list-with-date','tabs','cards','none'],home_contact:['tel-form','form-only','tel-only','line','none','double-cta'],home_fixed:['none','float-cta','sp-bottom-bar','float-tel'],home_side_layout:['none','right','left','both'],home_side_sticky:['none','whole','last-widget','toc-only'],home_side_sp:['below-content','drawer','hidden'],home_side_set:['media','blog','owned','corporate','minimal','full'],home_side_nav:['none','mega-menu','fixed-left-nav','fixed-right-icons','drawer-pc','toc-side'],side_from:['below-hero','top']};
@@ -104,6 +104,14 @@ for(const [device,width]of [['pc',1440],['sp',375]]){
  check(`${device}:stress:no-image-long-copy-reflow`,!layout.overflow&&layout.headingVisible);
  check(`${device}:stress:same-row-card-height`,layout.cards.every(a=>layout.cards.filter(b=>Math.abs(a.y-b.y)<1).every(b=>Math.abs(a.height-b.height)<1)),layout.cards);
  check(`${device}:stress:reduced-motion`,!layout.animation);
+ const stressImages=await page.locator('img').evaluateAll(async images=>{
+  const visible=images.filter(image=>image.getClientRects().length>0);
+  for(const image of visible){image.scrollIntoView({block:'center'});await image.decode();}
+  window.scrollTo(0,0);
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  return visible.map(image=>({src:image.currentSrc||image.src,complete:image.complete,naturalWidth:image.naturalWidth}));
+ });
+ check(`${device}:stress:visible-images-decoded`,stressImages.length>0&&stressImages.every(image=>image.complete&&image.naturalWidth>0),stressImages);
  const file=`stress-${device}.jpg`;await page.screenshot({path:path.join(out,file),fullPage:true,type:'jpeg',quality:75});
  await page.goto(base+'/?wt=home_sections:corporate,home_news:tabs');
  const tabs=page.locator('.wt-home-tabs [role=tab]');await tabs.first().focus();await page.keyboard.press('ArrowRight');check(`${device}:tabs:keyboard`,await tabs.nth(1).getAttribute('aria-selected')==='true'&&await page.locator('#home-news-tab-news').isVisible());await page.keyboard.press('End');check(`${device}:tabs:last`,await tabs.last().getAttribute('aria-selected')==='true');

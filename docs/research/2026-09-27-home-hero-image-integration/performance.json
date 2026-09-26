@@ -1,0 +1,129 @@
+{
+  "schema": "wt-home-hero-image-normal-rendering-performance.v1",
+  "completed": true,
+  "scope": "three sequential Lighthouse HOME measurements on the current mounted theme; not WT-NFR-PERF-03 performance acceptance",
+  "environment": {
+    "wordpressVersion": "7.1.2",
+    "phpVersion": "8.3.33",
+    "activeTheme": "helix-wt",
+    "origin": "http://127.0.0.1:18255",
+    "chromeVersion": "156.0.8075.0",
+    "lighthouseVersion": "13.5.0"
+  },
+  "runtimeSourceHashes": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f574816e0191fe41cdef05ba3dd379e2905da8000b9c1e095c1eb56f7670c27e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php": "4ad392afa90d2d73634980298b6328cae8000cd690de07f159f037b47ecae799",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8a2905d7221399558860cdd4ac8dfdd89f225e4aac0323c47b00143f775c9d0a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb"
+  },
+  "commandTemplate": "CHROME_PATH=$CHROME_PATH $LIGHTHOUSE_BIN http://127.0.0.1:18255/ --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\" --only-categories=performance --output=json --output-path=$PRIVATE_REPORT --quiet",
+  "runs": [
+    {
+      "trial": 1,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "requestedUrl": "http://127.0.0.1:18255/",
+      "finalDisplayedUrl": "http://127.0.0.1:18255/",
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "simulate",
+      "runtimeError": null,
+      "auditErrors": [],
+      "metrics": {
+        "lcpMs": 2330.7922,
+        "observedLcpMs": 1397,
+        "cls": 0.0002152587160357617,
+        "tbtMs": 0,
+        "transferBytes": 1150892
+      },
+      "passed": true
+    },
+    {
+      "trial": 2,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "requestedUrl": "http://127.0.0.1:18255/",
+      "finalDisplayedUrl": "http://127.0.0.1:18255/",
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "simulate",
+      "runtimeError": null,
+      "auditErrors": [],
+      "metrics": {
+        "lcpMs": 2329.4988000000003,
+        "observedLcpMs": 266,
+        "cls": 0.0002152587160357617,
+        "tbtMs": 0.5,
+        "transferBytes": 1150892
+      },
+      "passed": true
+    },
+    {
+      "trial": 3,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "requestedUrl": "http://127.0.0.1:18255/",
+      "finalDisplayedUrl": "http://127.0.0.1:18255/",
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttlingMethod": "simulate",
+      "runtimeError": null,
+      "auditErrors": [],
+      "metrics": {
+        "lcpMs": 2329.4703999999997,
+        "observedLcpMs": 1363,
+        "cls": 0,
+        "tbtMs": 2.5,
+        "transferBytes": 1150892
+      },
+      "passed": true
+    }
+  ],
+  "sourceDigests": {
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f574816e0191fe41cdef05ba3dd379e2905da8000b9c1e095c1eb56f7670c27e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php": "4ad392afa90d2d73634980298b6328cae8000cd690de07f159f037b47ecae799",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8a2905d7221399558860cdd4ac8dfdd89f225e4aac0323c47b00143f775c9d0a",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb"
+  },
+  "validation": {
+    "allThreeRunsPassed": true,
+    "requestedAndFinalUrlMatch": true,
+    "runtimeErrors": 0,
+    "auditErrors": 0,
+    "finiteRequiredMetrics": true,
+    "screenEmulation": "mobile 412x823, deviceScaleFactor 1.75",
+    "throttlingMethod": "simulate"
+  },
+  "measurementConditions": {
+    "themeMode": "normal current theme; no MU plugin added",
+    "requestedUrl": "http://127.0.0.1:18255/",
+    "mobile": {
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75
+    },
+    "throttlingMethod": "simulate"
+  }
+}
