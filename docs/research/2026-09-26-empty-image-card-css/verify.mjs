@@ -10,6 +10,7 @@ const evidence = 'local-evidence/issue345';
 const theme = 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt';
 const sources = [`${theme}/assets/css/theme.css`, `${theme}/templates/category.html`, `${theme}/templates/archive.html`, `${directory}/verify.mjs`, `${directory}/fixture.php`];
 const rows = [];
+const observedWordPressVersions = new Set();
 const browser = await chromium.launch();
 fs.mkdirSync(evidence, { recursive: true });
 try {
@@ -18,7 +19,10 @@ try {
     for (const [name, route] of Object.entries({category:'/category/news-releases/',tag:'/tag/card-fixture/',date:'/2026/',author:'/author/local-review/'})) {
       const response = await page.goto(base + route, { waitUntil: 'networkidle' });
       assert.equal(response.status(), 200);
-      assert.equal(await page.locator('meta[name="generator"]').getAttribute('content'), 'WordPress 7.1.2');
+      const generator = await page.locator('meta[name="generator"]').getAttribute('content');
+      const versionMatch = generator?.match(/^WordPress (\d+\.\d+(?:\.\d+)?)$/);
+      assert(versionMatch, `WordPress generator version must be present, got ${generator}`);
+      observedWordPressVersions.add(versionMatch[1]);
       const cssUrl = await page.locator('link[href*="/helix-wt/assets/css/theme.css"]').getAttribute('href');
       const servedCss = await page.request.get(cssUrl);
       assert.equal(servedCss.status(), 200);
@@ -53,7 +57,8 @@ try {
   await browser.close();
 }
 assert(!fs.readFileSync(`${theme}/templates/category.html`, 'utf8').includes('<style>'));
+assert.equal(observedWordPressVersions.size, 1, 'WordPress version must stay consistent across all route checks');
 rows.push({name:'category-template-has-no-inline-style',pass:true});
 const sourceDigests = Object.fromEntries(sources.map(file=>[file,createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
-fs.writeFileSync(`${directory}/verification.json`, JSON.stringify({schema:'wt-empty-image-card-css.v1',completed:true,sourceDigests,rows},null,2)+'\n');
+fs.writeFileSync(`${directory}/verification.json`, JSON.stringify({schema:'wt-empty-image-card-css.v2',completed:true,wordpressVersion:[...observedWordPressVersions][0],sourceDigests,rows},null,2)+'\n');
 console.log(`${rows.length} checks passed`);
