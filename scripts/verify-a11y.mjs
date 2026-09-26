@@ -75,7 +75,7 @@ export async function runA11yScan({ browserType = chromium, Axe = AxeBuilder, sc
             expectedStatus: route.expectedStatus,
             httpStatus: null,
             themeActive: null,
-            horizontalOverflow: viewport.name === 'mobile' && !isNegativeControl ? null : null,
+            horizontalOverflow: null,
             violations: [],
             errors: [],
           };
