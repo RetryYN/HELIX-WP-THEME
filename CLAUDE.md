@@ -152,6 +152,8 @@ npx playwright test
 
 ## Claude Code 固有
 
+Claude 宛てハーネス通知の待機 hook は `SessionStart` と `Stop` で起動する。配送済みと扱うのは hook が通知を stderr に出し、session ID に結び付いた `.delivered` ACK を記録した場合だけ。設定変更は既に動いているセッションには遡及しないため、変更後は新しいセッション、または正規の resume で読み込ませる。HELIX consumer patch を更新した checkout では `npm ci` で依存を同期してから使う。未知の依存 hash を許容するためだけに postinstall を単独再実行しない。
+
 - **Edit 前に Read 必須**: 未読ファイルの Edit は失敗する
 - **cwd 取り違え注意**: agent-neo 操作は `cd /opt/agent-neo &&` / `git -C /opt/agent-neo` を明示（/opt/seo-tool に戻る事象あり）
 
