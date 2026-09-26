@@ -1,0 +1,235 @@
+{
+  "schema": "wt-home-hero-image-loading-experiment.v1",
+  "completed": true,
+  "startedAt": "2026-09-26T17:12:03.510Z",
+  "finishedAt": "2026-09-26T17:14:04.190Z",
+  "scope": "isolated WordPress HOME experiment; not acceptance of WT-NFR-PERF-03",
+  "wordpressVersion": "7.1.2",
+  "chromeVersion": "Google Chrome for Testing 156.0.8075.0",
+  "themeTree": "d41ad0832b7944c5ac1b9194dcdc9143645432f7",
+  "sourceDigests": {
+    "docs/research/2026-09-27-home-hero-image-loading/hidden-hero-loading.php": "2eb98b533b99c3abb597718fe29292f9f104f4fe10f8913da368c345386cfc66",
+    "docs/research/2026-09-27-home-hero-image-loading/verify.mjs": "abcab2b65cd53bf5d3339a5bff1b3173164fbad3bba84ae9e0477a61dc013431",
+    "docs/research/2026-09-27-home-hero-image-loading/fixture.php": "ea2913025adaa63a0db2bac83ad4988563932f1914006d3ddb1ac0cf7c6e2f2e"
+  },
+  "comparisons": [
+    {
+      "width": 390,
+      "variant": "text-only",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "dd2703ef9501792745eb16b9024196e1ad4aaf23da829841a38ab8725ac14379",
+      "requestsBefore": 7,
+      "requestsAfter": 1
+    },
+    {
+      "width": 390,
+      "variant": "slider",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "ba4fc3782f0725ddd75edb559a74ea2aed60a03977c37e85c60cfcbeec028172",
+      "requestsBefore": 9,
+      "requestsAfter": 4
+    },
+    {
+      "width": 390,
+      "variant": "fullbleed",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "88f3080616ba487da468fa441cbf29c74c3fa8dc6115cd385b7c07922b101204",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 390,
+      "variant": "split",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "0bdd0260652e01e13194ed4cfe20909b0758898edfcb9a352f8c53d1b881e86c",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 390,
+      "variant": "article-grid",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "81403adbc0a0f1727b9affdcf3abb7bd4830de6b88d1a3f4c103de091ba74318",
+      "requestsBefore": 7,
+      "requestsAfter": 1
+    },
+    {
+      "width": 390,
+      "variant": "video",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "85bbb64d8ba04964711281f5473a470cfc3b9783c811fb2e770740a3683e147c",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 390,
+      "variant": "cards-carousel",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "6cddc981ef0f724f6af1dd1dd278309d0a62abda4c897f3bd0c3fba71aa0ec3f",
+      "requestsBefore": 8,
+      "requestsAfter": 5
+    },
+    {
+      "width": 390,
+      "variant": "product-shot",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "7dd6fa15a4b70756b7e7dd6ba4fd92e03772a04c4d5945d4c0f36f9e44ae1564",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 390,
+      "variant": "search-box",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "8aeeeb8f17609defddd177b644d144f2b4b2f75ee2213a4fefe757c485163303",
+      "requestsBefore": 7,
+      "requestsAfter": 1
+    },
+    {
+      "width": 1440,
+      "variant": "text-only",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "5584991eb4c2ba9a0f43230a3a1744a6a47ed3f5a6bbab624ab56df9ee67e22f",
+      "requestsBefore": 7,
+      "requestsAfter": 1
+    },
+    {
+      "width": 1440,
+      "variant": "slider",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "ecec32946f0811c3314c60e8c9bf41505bd3788c0bed4e102b7cfeae2d5876ca",
+      "requestsBefore": 8,
+      "requestsAfter": 6
+    },
+    {
+      "width": 1440,
+      "variant": "fullbleed",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "d180e3ca287cd2097c9a3559262066644ec7980143a941dcff6253c0b7c0c478",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 1440,
+      "variant": "split",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "b5d12db0161d4028416bfc05a5fb0d8cc5eae0b74a33b746b3a14b2b64b37a33",
+      "requestsBefore": 7,
+      "requestsAfter": 5
+    },
+    {
+      "width": 1440,
+      "variant": "article-grid",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "b3946516614c2e58a417295ec3b2b4502d5da3154de6471c7df57c30efd56809",
+      "requestsBefore": 10,
+      "requestsAfter": 4
+    },
+    {
+      "width": 1440,
+      "variant": "video",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "94204f752790d67534f4565251783371df5e1394e34dbbd112668365ae9f73de",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 1440,
+      "variant": "cards-carousel",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "e60c16ed3c88d5232795407494e741c0320d077e64cbb1c3f8fc49838ac26dd0",
+      "requestsBefore": 12,
+      "requestsAfter": 6
+    },
+    {
+      "width": 1440,
+      "variant": "product-shot",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "46c5d928ace621614578efe497c8da0d93af769f5709c56cc715d231ab28e5fd",
+      "requestsBefore": 7,
+      "requestsAfter": 2
+    },
+    {
+      "width": 1440,
+      "variant": "search-box",
+      "screenshotUnchanged": true,
+      "screenshotSha256": "892b2753b2188142fa6160ad2f311b64bc5dae467d97f5766abf2c09606a7646",
+      "requestsBefore": 7,
+      "requestsAfter": 1
+    }
+  ],
+  "performance": [
+    {
+      "mode": "baseline",
+      "trial": 1,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "throttlingMethod": "simulate",
+      "lcpMs": 17404.19925,
+      "observedLcpMs": 274,
+      "cls": 0.0002275499994717973,
+      "tbtMs": 90,
+      "transferBytes": 3572560
+    },
+    {
+      "mode": "baseline",
+      "trial": 2,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "throttlingMethod": "simulate",
+      "lcpMs": 17404.59435,
+      "observedLcpMs": 251,
+      "cls": 0.0002275499994717973,
+      "tbtMs": 41,
+      "transferBytes": 3572560
+    },
+    {
+      "mode": "baseline",
+      "trial": 3,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "throttlingMethod": "simulate",
+      "lcpMs": 17404.264649999997,
+      "observedLcpMs": 258,
+      "cls": 0.0002275499994717973,
+      "tbtMs": 59,
+      "transferBytes": 3572560
+    },
+    {
+      "mode": "patched",
+      "trial": 1,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "throttlingMethod": "simulate",
+      "lcpMs": 2404.4674999999997,
+      "observedLcpMs": 252,
+      "cls": 0.0002275499994717973,
+      "tbtMs": 0,
+      "transferBytes": 1157988
+    },
+    {
+      "mode": "patched",
+      "trial": 2,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "throttlingMethod": "simulate",
+      "lcpMs": 2403.1725,
+      "observedLcpMs": 236,
+      "cls": 0.0002275499994717973,
+      "tbtMs": 1,
+      "transferBytes": 1157988
+    },
+    {
+      "mode": "patched",
+      "trial": 3,
+      "lighthouseVersion": "13.5.0",
+      "browserVersion": "HeadlessChrome/156.0.0.0",
+      "throttlingMethod": "simulate",
+      "lcpMs": 2479.4138000000003,
+      "observedLcpMs": 239,
+      "cls": 0.0002275499994717973,
+      "tbtMs": 0,
+      "transferBytes": 1538507
+    }
+  ]
+}
