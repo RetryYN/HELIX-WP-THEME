@@ -20,6 +20,7 @@ on:
       - 'docs/research/**/*.py'
       - 'tests/lighthouse-ci-contract.test.mjs'
       - 'tests/current-theme-quality-regression.test.mjs'
+      - 'tests/a11y-gate-contract.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
@@ -41,6 +42,7 @@ on:
       - 'docs/research/**/*.py'
       - 'tests/lighthouse-ci-contract.test.mjs'
       - 'tests/current-theme-quality-regression.test.mjs'
+      - 'tests/a11y-gate-contract.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:
@@ -107,15 +109,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.11'
+          node-version-file: .node-version
+          cache: npm
 
-      - name: Install Playwright
+      - name: Install dependencies and browser
         run: |
-          pip install playwright
-          playwright install chromium
+          npm ci
+          npx playwright install --with-deps chromium
 
       - name: Wait for WordPress to be ready
         run: |
@@ -129,10 +132,37 @@ jobs:
           done
 
       - name: Initialize WordPress and verify target theme
+        id: theme-setup
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
-      - name: Verify current theme is rendered
-        run: curl --fail --silent --show-error http://localhost:8086/ >/dev/null
+      - name: Verify WCAG axe rules and mobile reflow
+        env:
+          A11Y_BASE_URL: http://localhost:8086
+          A11Y_REPORT_PATH: ${{ runner.temp }}/a11y-positive.json
+        run: node scripts/verify-a11y.mjs
+
+      - name: Verify one-violation negative control fails closed
+        if: always() && steps.theme-setup.outcome == 'success'
+        env:
+          A11Y_BASE_URL: http://localhost:8086
+          A11Y_REPORT_PATH: ${{ runner.temp }}/a11y-negative-control.json
+        run: |
+          set +e
+          node scripts/verify-a11y.mjs --negative-control
+          result=$?
+          set -e
+          if [ "$result" -ne 2 ]; then
+            echo "Expected the injected axe violation to produce exit 2, got $result" >&2
+            exit 1
+          fi
+
+      - name: Upload accessibility reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-axe-reports
+          path: ${{ runner.temp }}/a11y-*.json
+          if-no-files-found: warn
 
   lhci-gate:
     name: Core Web Vitals (Lighthouse CI)
