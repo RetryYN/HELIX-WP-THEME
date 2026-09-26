@@ -6,6 +6,9 @@ on:
       - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
+      - '.lighthouserc.json'
+      - 'package.json'
+      - 'package-lock.json'
       - 'scripts/verify-i18n-profile.mjs'
       - 'scripts/**/*.mjs'
       - 'scripts/**/*.js'
@@ -15,6 +18,8 @@ on:
       - 'docs/research/**/*.js'
       - 'docs/research/**/*.cjs'
       - 'docs/research/**/*.py'
+      - 'tests/lighthouse-ci-contract.test.mjs'
+      - 'tests/current-theme-quality-regression.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
@@ -22,6 +27,9 @@ on:
       - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
+      - '.lighthouserc.json'
+      - 'package.json'
+      - 'package-lock.json'
       - 'scripts/verify-i18n-profile.mjs'
       - 'scripts/**/*.mjs'
       - 'scripts/**/*.js'
@@ -31,6 +39,8 @@ on:
       - 'docs/research/**/*.js'
       - 'docs/research/**/*.cjs'
       - 'docs/research/**/*.py'
+      - 'tests/lighthouse-ci-contract.test.mjs'
+      - 'tests/current-theme-quality-regression.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:
@@ -55,7 +65,7 @@ jobs:
 
       - name: Verify current theme quality evidence bindings
         run: |
-          node --test tests/lighthouse-ci-contract.test.mjs
+          node --test tests/lighthouse-ci-contract.test.mjs tests/current-theme-quality-regression.test.mjs
           node scripts/audit-catalog-evidence.mjs
           npm run i18n:verify
 

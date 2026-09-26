@@ -5,6 +5,7 @@ import test from 'node:test';
 const root = new URL('../', import.meta.url);
 const workflow = fs.readFileSync(new URL('.github/workflows/theme-quality-gate.yml', root), 'utf8');
 const config = JSON.parse(fs.readFileSync(new URL('.lighthouserc.json', root), 'utf8'));
+const packageJson = JSON.parse(fs.readFileSync(new URL('package.json', root), 'utf8'));
 
 test('Lighthouse CI keeps the 2.5s LCP target visible as a warning pending issue #352', () => {
   assert.equal(config.ci.collect.numberOfRuns, 3);
@@ -27,4 +28,19 @@ test('the Lighthouse job runs on pull requests and propagates assertion and repo
   assert.match(workflow, /path: \.lighthouseci\//u);
   assert.match(workflow, /if-no-files-found: error/u);
   assert.match(workflow, /include-hidden-files: true/u);
+});
+
+test('Lighthouse settings and contract tests trigger the quality gate and run in the standard test suite', () => {
+  for (const changedPath of [
+    '.lighthouserc.json',
+    'package.json',
+    'package-lock.json',
+    'tests/lighthouse-ci-contract.test.mjs',
+    'tests/current-theme-quality-regression.test.mjs',
+  ]) {
+    assert.equal(workflow.split(`- '${changedPath}'`).length - 1, 2, `${changedPath} must trigger push and pull_request runs`);
+  }
+  assert.match(packageJson.scripts.test, /npm run test:quality-contracts/u);
+  assert.match(packageJson.scripts['test:quality-contracts'], /tests\/lighthouse-ci-contract\.test\.mjs/u);
+  assert.match(packageJson.scripts['test:quality-contracts'], /tests\/current-theme-quality-regression\.test\.mjs/u);
 });
