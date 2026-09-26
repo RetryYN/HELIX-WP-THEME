@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const base = process.env.WTCF_BASE_URL || 'http://127.0.0.1:8098';
+const base = contentLab.baseUrl;
 if (!['127.0.0.1', 'localhost'].includes(new URL(base).hostname)) throw Error('Dedicated loopback lab required');
 const out = path.join(root, 'docs/research/2026-09-08-content-faces/results/learning');
 fs.mkdirSync(out, { recursive: true });

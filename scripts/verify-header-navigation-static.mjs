@@ -1,6 +1,7 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import fs from'node:fs';import{execFileSync}from'node:child_process';import{createHash}from'node:crypto';
 const root='docs/research/2026-09-05-design-prototype-03/theme/helix-wt',out='docs/research/2026-09-13-header-navigation-complete/static.json';const rows=[];const check=(name,pass)=>rows.push({name,pass:!!pass});
-const parse=source=>JSON.parse(execFileSync('docker',['exec','helix-content-wp','php','-r',`require '/var/www/html/wp-load.php';echo wp_json_encode(parse_blocks(base64_decode('${Buffer.from(source).toString('base64')}')));`],{encoding:'utf8'}));
+const parse=source=>JSON.parse(execFileSync('docker',['exec',contentLab.wpContainer,'php','-r',`require '/var/www/html/wp-load.php';echo wp_json_encode(parse_blocks(base64_decode('${Buffer.from(source).toString('base64')}')));`],{encoding:'utf8'}));
 const valid=blocks=>blocks.every(b=>b.blockName!=='core/navigation-link'&&!('contentSize'in(b.attrs?.layout||{}))&&!('wideSize'in(b.attrs?.layout||{}))&&valid(b.innerBlocks||[]));
 const files=fs.readdirSync(root+'/parts').filter(x=>/^header.*\.html$/.test(x));check('nine-header-parts',files.length===9);
 for(const file of files)check('parse:'+file+':no-fixed-links-or-layer1-redefinition',valid(parse(fs.readFileSync(root+'/parts/'+file,'utf8'))));

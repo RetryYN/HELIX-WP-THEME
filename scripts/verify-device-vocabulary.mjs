@@ -1,8 +1,9 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import fs from 'node:fs';import path from 'node:path';import {createHash,randomUUID} from 'node:crypto';
-const root=process.cwd(),theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-16-device-vocabulary',state='/tmp/helix-content-lab',slug='device-vocabulary-fixture',run=randomUUID(),lock=state+'/device-vocabulary-fixture.json';
-const wp=a=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',state+'/wp.env','--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...a],{encoding:'utf8',maxBuffer:16000000}).trim();
+const root=process.cwd(),theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-16-device-vocabulary',state=contentLab.stateDir,slug='device-vocabulary-fixture',run=randomUUID(),lock=state+'/device-vocabulary-fixture.json';
+const wp=a=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',state+'/wp.env','--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...a],{encoding:'utf8',maxBuffer:16000000}).trim();
 const reserved=()=>wp(['post','list','--post_type=any','--post_status=any','--name='+slug,'--format=ids']);
 if(wp(['option','get','blogname'])!=='HELIX Content Lab'||reserved()||fs.existsSync(lock))throw Error('Dedicated lab/fixture collision guard');
 const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex'),sources=['scripts/verify-device-vocabulary.mjs',...['functions.php','inc/device-vocabulary.php','config/device-vocabulary.json','assets/css/device-vocabulary.css','assets/js/device-vocabulary.js','patterns/device-read.php','patterns/device-compare.php'].map(f=>theme+f)],sourceDigests=Object.fromEntries(sources.map(f=>[f,hash(f)])),rows=[],shots=[];
@@ -15,7 +16,7 @@ try{
   wp(['post','update',String(id),'--post_content=<!-- wp:pattern {"slug":"helix-wt/device-'+preset+'"} /-->']);
   for(const[device,width]of[['pc',1280],['sp',390]])for(const js of[true,false]){
    const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js,reducedMotion:'reduce'}),p=await context.newPage(),prefix=preset+':'+device+':'+(js?'js':'nojs');
-   const response=await p.goto('http://127.0.0.1:8098/'+slug+'/?wt=page_fix:off');await p.locator('[data-wt-device-preset]').waitFor();await p.locator('.wt-device-gallery img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));
+   const response=await p.goto(`${contentLab.baseUrl}/`+slug+'/?wt=page_fix:off');await p.locator('[data-wt-device-preset]').waitFor();await p.locator('.wt-device-gallery img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));
    check(prefix+':response',response.status()===200);check(prefix+':no-overflow',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
    check(prefix+':core-panels-in-html',(await response.text()).includes('相談後について'));
    check(prefix+':panel-count',await p.locator('.wt-device-tabs__panel').count()===3);

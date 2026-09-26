@@ -1,10 +1,11 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import fs from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
-const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-20-heading-fluid',state='/tmp/helix-content-lab';
+const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-20-heading-fluid',state=contentLab.stateDir;
 const before=process.argv.includes('--before'),run=randomUUID(),slug='heading-fluid-fixture',lock=state+'/'+slug+'.json';
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',state+'/wp.env','--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',state+'/wp.env','--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
 const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex'),reserved=()=>wp(['post','list','--post_type=any','--post_status=any','--name='+slug,'--format=ids']);
 if(wp(['option','get','blogname'])!=='HELIX Content Lab'||wp(['option','get','stylesheet'])!=='helix-wt'||reserved()||fs.existsSync(lock))throw Error('Dedicated lab / fixture collision');
 const styles={h2:['plain','2tone','icon','bar','underline','band','numbox','barbg','doubleline','label'],h3:['bar-thin','dotted','num','marker','underline-thin']};
@@ -26,7 +27,7 @@ try{
  browser=await chromium.launch();
  for(const[device,width]of[['pc',1440],['sp',390],['narrow',320]])for(const scale of[1,2])for(const js of[true,false]){
   const context=await browser.newContext({viewport:{width,height:1000},javaScriptEnabled:js,reducedMotion:'reduce'}),page=await context.newPage(),prefix=device+':'+scale+'x:'+ (js?'js':'nojs');
-  const response=await page.goto('http://127.0.0.1:8098/?page_id='+id);await page.locator('#scale').waitFor();
+  const response=await page.goto(`${contentLab.baseUrl}/?page_id=`+id);await page.locator('#scale').waitFor();
   const originalSizes=await page.locator('#scale h2,#scale h3,#scale h4').evaluateAll(ns=>ns.map(n=>parseFloat(getComputedStyle(n).fontSize)));
   if(scale===2)await page.locator('.wp-block-post-content').evaluate(root=>{const nodes=[...root.querySelectorAll('h2,h3,h4,p')];const sizes=nodes.map(n=>parseFloat(getComputedStyle(n).fontSize));nodes.forEach((n,i)=>n.style.fontSize=(sizes[i]*2)+'px');});
   check(prefix+':response',response.status()===200);check(prefix+':no-page-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

@@ -1,9 +1,10 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {chromium}from'playwright';import {execFileSync}from'node:child_process';import fs from'node:fs';import path from'node:path';import os from'node:os';import {randomBytes,createHash}from'node:crypto';
 const out='docs/research/2026-09-14-header-navigation-editing';fs.mkdirSync(out,{recursive:true});
-const php=code=>execFileSync('docker',['exec','helix-content-wp','php','-r',`require '/var/www/html/wp-load.php'; ${code}`],{encoding:'utf8'}).trim();const wp=c=>JSON.parse(php(c));
+const php=code=>execFileSync('docker',['exec',contentLab.wpContainer,'php','-r',`require '/var/www/html/wp-load.php'; ${code}`],{encoding:'utf8'}).trim();const wp=c=>JSON.parse(php(c));
 if(php('echo get_option("blogname");')!=='HELIX Content Lab')throw Error('dedicated lab required');
 const original=php('echo wp_json_encode(get_option("theme_mods_helix-wt",null));');const originals=wp('echo wp_json_encode(get_posts(["post_type"=>"wp_template_part","post_status"=>"any","numberposts"=>-1]));');
-const recovery=path.join(os.tmpdir(),'helix-header-editing-restore.json');if(fs.existsSync(recovery))throw Error('Pending lab recovery; run scripts/recover-header-navigation-editing.mjs first');
+const recovery=path.join(contentLab.stateDir,'header-editing-restore.json');if(fs.existsSync(recovery))throw Error('Pending lab recovery; run scripts/recover-header-navigation-editing.mjs first');
 const variants=['header','header-nav','header-cta','header-announce','header-center','header-two-rows','header-overlay','header-tel','header-band'];
 const checks=[],conditions=[],created=[],createdPartIds=[];let lowId;const check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name);};
 let completed=false,cleanupDone=false;
@@ -14,12 +15,23 @@ for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{try{await
 for(const event of ['uncaughtException','unhandledRejection'])process.once(event,async error=>{console.error(String(error));try{await browser?.close();recover();}finally{process.exit(1);}});
 browser=await chromium.launch({args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:1440,height:1000}});
 page.setDefaultTimeout(10000);
-const credentials=JSON.parse(fs.readFileSync(path.join(process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab'),'credentials.json')));
-const login=async(p,user,password)=>{await p.goto('http://127.0.0.1:8098/wp-login.php');await p.locator('#user_login').fill(user);await p.locator('#user_pass').fill(password);await Promise.all([p.waitForURL('**/wp-admin/**',{waitUntil:'domcontentloaded'}),p.locator('#wp-submit').click()]);};
-const openPart=async slug=>{await page.goto(`http://127.0.0.1:8098/wp-admin/site-editor.php?postId=helix-wt%2F%2F${slug}&postType=wp_template_part&canvas=edit`);await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);const start=page.getByRole('button',{name:'Get started',exact:true});if(await start.isVisible())await start.click();const exit=page.getByRole('button',{name:'Exit code editor',exact:true});if(await exit.isVisible())await exit.click();await page.locator('iframe[name="editor-canvas"]').waitFor();};
+const credentials=JSON.parse(fs.readFileSync(path.join(contentLab.stateDir,'credentials.json')));
+const login=async(p,user,password)=>{
+ await p.goto(`${contentLab.baseUrl}/wp-login.php`);
+ const usernameField=p.locator('#user_login');const passwordField=p.locator('#user_pass');
+ await usernameField.fill(user);await passwordField.fill(password);
+ const filled=await Promise.all([usernameField.inputValue(),passwordField.inputValue()]);
+ if(filled[0]!==user||filled[1]!==password)throw Error('WordPress login fields did not retain the supplied values');
+ await Promise.all([
+  p.waitForURL(url=>new URL(url).pathname.startsWith('/wp-admin/'),{waitUntil:'commit',timeout:30000}),
+  p.locator('#wp-submit').click(),
+ ]);
+ await p.locator('#wpadminbar').waitFor({timeout:30000});
+};
+const openPart=async slug=>{await page.goto(`${contentLab.baseUrl}/wp-admin/site-editor.php?postId=helix-wt%2F%2F${slug}&postType=wp_template_part&canvas=edit`);await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);const start=page.getByRole('button',{name:'Get started',exact:true});if(await start.isVisible())await start.click();const exit=page.getByRole('button',{name:'Exit code editor',exact:true});if(await exit.isVisible())await exit.click();await page.locator('iframe[name="editor-canvas"]').waitFor();};
 const savePart=async()=>{await page.getByRole('button',{name:'Save',exact:true}).first().click();const confirm=page.getByRole('dialog').getByRole('button',{name:'Save',exact:true});if(await confirm.waitFor({timeout:1000}).then(()=>true,()=>false))await confirm.click();await page.waitForFunction(()=>!wp.data.select('core/editor').isSavingPost()&&!wp.data.select('core/editor').isEditedPostDirty());for(const id of wp('echo wp_json_encode(wp_list_pluck(get_posts(["post_type"=>"wp_template_part","post_status"=>"any","numberposts"=>-1]),"ID"));'))if(!originals.some(p=>p.ID===id)&&!createdPartIds.includes(id))createdPartIds.push(id);snapshot();};
 try{
- for(const letter of ['A','B','C']){const content='<!-- wp:navigation-link '+JSON.stringify({label:'編集ナビ'+letter,url:'http://127.0.0.1:8098/library/',kind:'custom'})+' /-->';const encoded=Buffer.from(content).toString('base64');const slug='header-editor-nav-'+letter.toLowerCase();const id=Number(php(`if(get_page_by_path('${slug}',OBJECT,'wp_navigation'))throw new Exception('collision');echo wp_insert_post(wp_slash(['post_type'=>'wp_navigation','post_status'=>'publish','post_name'=>'${slug}','post_title'=>'編集ナビ${letter}','post_content'=>base64_decode('${encoded}')]));`));created.push(id);snapshot();}
+ for(const letter of ['A','B','C']){const content='<!-- wp:navigation-link '+JSON.stringify({label:'編集ナビ'+letter,url:`${contentLab.baseUrl}/library/`,kind:'custom'})+' /-->';const encoded=Buffer.from(content).toString('base64');const slug='header-editor-nav-'+letter.toLowerCase();const id=Number(php(`if(get_page_by_path('${slug}',OBJECT,'wp_navigation'))throw new Exception('collision');echo wp_insert_post(wp_slash(['post_type'=>'wp_navigation','post_status'=>'publish','post_name'=>'${slug}','post_title'=>'編集ナビ${letter}','post_content'=>base64_decode('${encoded}')]));`));created.push(id);snapshot();}
  if(process.argv.includes('--test-signal-cleanup')){process.kill(process.pid,'SIGTERM');await new Promise(()=>{});}
  if(process.argv.includes('--test-rejection-cleanup')){Promise.reject(new Error('synthetic cleanup rejection'));await new Promise(()=>{});}
  if(process.argv.includes('--test-exception-cleanup')){setTimeout(()=>{throw Error('synthetic cleanup exception');},0);await new Promise(()=>{});}
@@ -48,7 +60,7 @@ try{
  await history('Undo');await pending.waitFor({state:'hidden'});check('stage:undo-no-post',posts===0);
  await history('Redo');await pending.waitFor();check('stage:redo-no-post',posts===0);
  await savePart();check('explicit-origin:saved-attribute-C',php(`echo get_post_field('post_content',get_page_by_path('header',OBJECT,'wp_template_part'));`).includes(`"ref":${created[2]}`));
- page.on('dialog',d=>d.accept());await page.goto('http://127.0.0.1:8098/wp-admin/index.php');await openPart('header');
+ page.on('dialog',d=>d.accept());await page.goto(`${contentLab.baseUrl}/wp-admin/index.php`);await openPart('header');
  check('stage:leave-without-global-save',Number(php('echo get_theme_mod("wt_content_navigation_ref");'))===created[1]);check('stage:reenter-no-pending',await pending.count()===0);
  await canvas.locator('[data-type="core/navigation"]:visible').first().click();
  if(!await page.getByRole('button',{name:'編集ナビB',exact:true}).first().isVisible())await page.getByRole('button',{name:'Settings',exact:true}).click();
@@ -104,7 +116,7 @@ try{
   if(slug==='header-center')await page.screenshot({path:out+'/saved-header-center.png'});
  }
  const savedHeaderId=Number(php("echo get_page_by_path('header',OBJECT,'wp_template_part')->ID;"));check('db-backed:exists',savedHeaderId>0);
- const direct=await page.goto('http://127.0.0.1:8098/wp-admin/post.php?post='+savedHeaderId+'&action=edit');check('db-backed:numeric-post-php-rejected-by-core',direct.status()===403);
+ const direct=await page.goto(`${contentLab.baseUrl}/wp-admin/post.php?post=`+savedHeaderId+'&action=edit');check('db-backed:numeric-post-php-rejected-by-core',direct.status()===403);
  await openPart('header');await page.frameLocator('iframe[name="editor-canvas"]').getByText('SP専用テキストナビ',{exact:true}).waitFor();
  check('db-backed:site-editor-saved-part',await page.evaluate(()=>wp.data.select('core/editor').getEditedPostContent().includes('検証ヘッダー')));
  const identity=await page.evaluate(()=>({id:wp.data.select('core/editor').getCurrentPostId(),slug:wp.data.select('core/editor').getEditedPostAttribute('slug')}));check('db-backed:slug-available',identity.slug==='header');
@@ -119,7 +131,7 @@ try{
   for(const slug of variants)for(const kind of ['native','shared']){
    const h=slug==='header'?'search':slug.replace('header-','');const name=`saved-db:${slug}:${kind}:${width}:${js}`;conditions.push(name);
    const route=kind==='native'?'/?p=1&wt=':'/library/decision-design/?wt=';
-   await publicPage.goto('http://127.0.0.1:8098'+route+'content_chrome:shared,content_paid_head:site,header:'+h+',sp:search',{waitUntil:'load'});
+   await publicPage.goto(`${contentLab.baseUrl}`+route+'content_chrome:shared,content_paid_head:site,header:'+h+',sp:search',{waitUntil:'load'});
    check(name+':saved-navigation',await publicPage.locator('.wt-header').getByText('保存した共通案内',{exact:true}).count()>0);
    const toggles=publicPage.locator('.wt-header .wp-block-navigation__responsive-container-open:visible');if(js&&await toggles.count())await toggles.first().click();
    check(name+':visible-navigation',await publicPage.locator('.wt-header').getByText('保存した共通案内',{exact:true}).filter({visible:true}).count()>0);
@@ -132,7 +144,7 @@ try{
   const slug=kind==='post'?'header-editor-body':'footer-header-editor-proof';const encoded=Buffer.from(bodyContent).toString('base64');
   const id=Number(php(`if(get_page_by_path('${slug}',OBJECT,'${kind}'))throw new Exception('collision');$id=wp_insert_post(wp_slash(['post_type'=>'${kind}','post_status'=>'publish','post_name'=>'${slug}','post_title'=>'独立ナビ検証','post_content'=>base64_decode('${encoded}')]));if('${kind}'==='wp_template_part')wp_set_object_terms($id,'helix-wt','wp_theme');echo $id;`));created.push(id);snapshot();
   const route=kind==='post'?`post.php?post=${id}&action=edit`:`site-editor.php?postId=helix-wt%2F%2F${slug}&postType=wp_template_part&canvas=edit`;
-  await page.goto('http://127.0.0.1:8098/wp-admin/'+route);await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);
+  await page.goto(`${contentLab.baseUrl}/wp-admin/`+route);await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);
   const exit=page.getByRole('button',{name:'Exit code editor',exact:true});if(await exit.isVisible())await exit.click();
   const frame=page.frameLocator('iframe[name="editor-canvas"]');await frame.getByText('編集ナビA',{exact:true}).first().waitFor();
   check('outside-editor:'+kind+':independent-A',await frame.getByText('保存した共通案内',{exact:true}).count()===0);
@@ -143,12 +155,12 @@ try{
  await openPart('header');
  const before=php('echo get_theme_mod("wt_content_navigation_ref");');
  for(const value of [-1,1.5,'12',[],{},2147483647]){const result=await page.evaluate(async ref=>{try{await wp.apiFetch({path:'/helix-wt/v1/header-navigation',method:'POST',data:{ref}});return 200;}catch(e){return e.data?.status;}},value);check('REST:invalid-'+JSON.stringify(value),result===400);check('REST:unchanged-'+JSON.stringify(value),php('echo get_theme_mod("wt_content_navigation_ref");')===before);}
- for(const nonce of ['', 'invalid']){const response=await page.request.post('http://127.0.0.1:8098/wp-json/helix-wt/v1/header-navigation',{headers:nonce?{'X-WP-Nonce':nonce}:{},data:{ref:0}});check('REST:nonce-'+(nonce||'missing'),[401,403].includes(response.status()));check('REST:nonce-unchanged',php('echo get_theme_mod("wt_content_navigation_ref");')===before);}
+ for(const nonce of ['', 'invalid']){const response=await page.request.post(`${contentLab.baseUrl}/wp-json/helix-wt/v1/header-navigation`,{headers:nonce?{'X-WP-Nonce':nonce}:{},data:{ref:0}});check('REST:nonce-'+(nonce||'missing'),[401,403].includes(response.status()));check('REST:nonce-unchanged',php('echo get_theme_mod("wt_content_navigation_ref");')===before);}
  const password=randomBytes(24).toString('hex');lowId=Number(php(`if(username_exists('header-low-fixture'))throw new Exception('user collision');$id=wp_create_user('header-low-fixture','${password}');if(is_wp_error($id))throw new Exception('user create');(new WP_User($id))->set_role('subscriber');echo $id;`));
  snapshot();const low=await browser.newPage();await login(low,'header-low-fixture',password);const lowResponse=await low.evaluate(async()=>{const nonce=await (await fetch('/wp-admin/admin-ajax.php?action=rest-nonce')).text();const r=await fetch('/wp-json/helix-wt/v1/header-navigation',{method:'POST',headers:{'Content-Type':'application/json','X-WP-Nonce':nonce},body:'{"ref":0}'});return {status:r.status,body:await r.json()};});check('REST:low-permission',lowResponse.status===403&&lowResponse.body.code==='rest_forbidden');check('REST:low-unchanged',php('echo get_theme_mod("wt_content_navigation_ref");')===before);await low.close();
  await openPart('header');await page.getByRole('button',{name:'共通ヘッダーナビ',exact:true}).click();await page.getByLabel('参照するナビゲーション',{exact:true}).selectOption('0');await page.getByRole('button',{name:'参照先を保存',exact:true}).click();await page.locator('.components-notice__content').filter({hasText:'共通ヘッダーナビを保存しました。'}).waitFor();check('UI:none',php('echo get_theme_mod("wt_content_navigation_ref");')==='0');
  completed=true;console.log('editor checks',checks.length);
-}catch(e){await page.screenshot({path:path.join(os.tmpdir(),'helix-header-editor-failure.png')});console.error(e.message);throw e;}
+}catch(e){await page.locator('#user_login').fill('').catch(()=>{});await page.locator('#user_pass').fill('').catch(()=>{});await page.screenshot({path:path.join(os.tmpdir(),'helix-header-editor-failure.png')});console.error(e.message);throw e;}
 finally{
  await browser.close();
  recover();

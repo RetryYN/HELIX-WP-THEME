@@ -1,6 +1,7 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';import { chromium } from 'playwright';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import { fileURLToPath } from 'node:url';import { createHash } from 'node:crypto';
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');const state=contentLab.stateDir;
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
 wp(['language','core','is-installed','ja']);
 const original=wp(['eval',"echo wp_json_encode(get_option('WPLANG',null));"]);
@@ -16,7 +17,7 @@ try{
  for(const [device,width]of[['pc',1440],['sp',375]])for(const js of[true,false]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js});const page=await context.newPage();
   for(const [state,q]of[['results','判断'],['empty','no-match-search-fixture-20260908'],['blank','']]){
-   await page.goto('http://127.0.0.1:8098/?s='+encodeURIComponent(q));const label=`${state}:${device}:js-${js}`;
+   await page.goto(`${contentLab.baseUrl}/?s=`+encodeURIComponent(q));const label=`${state}:${device}:js-${js}`;
    check(`locale:${label}`,await page.locator('html').getAttribute('lang')==='ja');
    const title=state==='blank'?await page.locator('main .wt-search-start h2').innerText():await page.locator('main .wp-block-query-title').innerText();const total=state==='blank'?'':await page.locator('main .wp-block-query-total').innerText();
    check(`translated-title:${label}`,state==='blank'?title==='検索語を入力してください':title.includes('検索結果')&&title.includes(q));

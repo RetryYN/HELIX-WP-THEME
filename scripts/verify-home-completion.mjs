@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';
 import os from 'node:os';
 import { chromium } from 'playwright';
@@ -9,7 +10,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'docs/research/2026-09-15-home-completion');
 const baseline=process.argv.includes('--baseline');
 const choices=JSON.parse(fs.readFileSync(path.join(out,'choices.json'))).choices;
-const base='http://127.0.0.1:8098';
+const base=`${contentLab.baseUrl}`;
 const rows=[],shots=[];let completed=false;
 const check=(name,pass,details)=>rows.push({name,pass:!!pass,...(details===undefined?{}:{details})});
 const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
@@ -21,8 +22,8 @@ const choiceAxes=c=>({home_hero:c.hero,home_hero_cta:c.cta,home_sections:c.id,ho
 const scenarios=choices.map(c=>({id:c.id,values:choiceAxes(c),finished:true}));
 for(const [key,values]of Object.entries(axes))for(const value of values)scenarios.push({id:`${key}-${value}`,values:{...choiceAxes(choices[1]),[key]:value}});
 scenarios.push({id:'risk-both-top',values:{...choiceAxes(choices[1]),home_side_layout:'both',side_from:'top',home_hero:'split'}},{id:'risk-fullbleed-search',values:{...choiceAxes(choices[0]),home_hero:'fullbleed',home_hero_cta:'search'}},{id:'risk-slider-tel',values:{...choiceAxes(choices[0]),home_hero:'slider',home_hero_cta:'tel-button'}});
-const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const state=contentLab.stateDir;
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
 const fixtureIds=[];
 const recoveryPath=path.join(state,'home-completion-fixtures.json');

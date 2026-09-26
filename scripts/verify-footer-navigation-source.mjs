@@ -1,8 +1,9 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 const root = new URL('../', import.meta.url);
-const php = code => execFileSync('docker', ['exec', 'helix-content-wp', 'php', '-r', 'require "/var/www/html/wp-load.php"; ' + code], { encoding: 'utf8' }).trim();
+const php = code => execFileSync('docker', ['exec', contentLab.wpContainer, 'php', '-r', 'require "/var/www/html/wp-load.php"; ' + code], { encoding: 'utf8' }).trim();
 if (php('echo get_option("blogname");') !== 'HELIX Content Lab') throw Error('Dedicated lab required');
 const slug = 'footer-navigation-source-fixture';
 if (php(`echo count(get_posts(array('post_type'=>'wp_navigation','post_status'=>'any','name'=>'${slug}')));`) !== '0') throw Error('Reserved fixture exists');

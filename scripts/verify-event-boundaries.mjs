@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -6,8 +7,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const state=contentLab.stateDir;
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
 const slug='event-boundary-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
@@ -44,7 +45,7 @@ try{
   wp(['post','meta','update',String(id),'_wtcf_event_fixture',JSON.stringify(fixture)]);
   for(const [device,width]of[['pc',1440],['sp',375]])for(const js of [true,false]){
    const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js});const page=await context.newPage();
-   const url='http://127.0.0.1:8098/'+slug+'/?wt=event_apply:block-form,form_fields:minimal,form_thanks:inline';
+   const url=`${contentLab.baseUrl}/`+slug+'/?wt=event_apply:block-form,form_fields:minimal,form_thanks:inline';
    await page.goto(url);
    const label=fixture.name+':'+device+':js-'+js,open=fixture.expected==='受付中';
    const visible=await page.locator('.wt-event-status').evaluateAll(es=>es.filter(e=>e.getBoundingClientRect().height>0).map(e=>e.textContent.trim()));

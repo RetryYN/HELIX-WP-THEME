@@ -16,7 +16,7 @@ const browser=await chromium.launch();const page=await browser.newPage({viewport
 try{
  assert.equal(wp(['post','list','--post_type=page','--name=editor-boundary-fixture','--post_status=any','--format=ids']),'','Reserved fixture exists; inspect before retrying');
  id=Number(wp(['post','create','--post_type=page','--post_status=publish','--post_name=editor-boundary-fixture','--post_title=編集経路の検証','--porcelain']));assert.ok(Number.isInteger(id)&&id>0);
- await page.goto(base+'/wp-login.php');await page.locator('#user_login').fill('lab_admin');await page.locator('#user_pass').fill(credentials.admin);await page.locator('#wp-submit').click();await page.waitForURL('**/wp-admin/**');
+ await page.goto(base+'/wp-login.php');const usernameField=page.locator('#user_login');const passwordField=page.locator('#user_pass');await usernameField.fill('lab_admin');await passwordField.fill(credentials.admin);if(await usernameField.inputValue()!=='lab_admin')throw new Error('Content lab username field was not retained');if(!(await passwordField.inputValue()).length)throw new Error('Content lab password field was empty');await Promise.all([page.waitForURL(url=>new URL(url).pathname.startsWith('/wp-admin/'),{waitUntil:'commit',timeout:30000}),page.locator('#wp-submit').click()]);await page.locator('#wpadminbar').waitFor({timeout:30000});
  await page.goto(`${base}/wp-admin/post.php?post=${id}&action=edit`);await page.waitForFunction(()=>!!window.wp?.blocks?.getBlockType('helix-wt/site-page'));
  const close=page.getByRole('dialog').getByRole('button',{name:'Close',exact:true});
  if(await close.waitFor({state:'visible',timeout:3000}).then(()=>true,()=>false))await close.click();
@@ -55,7 +55,7 @@ try{
  }
  check('editor:sources-unchanged',JSON.stringify(sourceDigests)===JSON.stringify(digests()));
  check('editor:no-runtime-error',errors.length===0);completed=true;
-}catch(error){await page.screenshot({path:path.join(os.tmpdir(),'wt-editor-failure.png')});console.error('Editor verification failed:',error.message);console.error('Visible buttons:',await page.getByRole('button').evaluateAll(bs=>bs.filter(b=>b.getBoundingClientRect().width).map(b=>b.getAttribute('aria-label')||b.textContent)));throw error;
+}catch(error){await page.locator('#user_pass').fill('').catch(()=>{});await page.locator('#user_login').fill('').catch(()=>{});await page.screenshot({path:path.join(os.tmpdir(),'wt-editor-failure.png')});console.error(`Editor verification failed (${error.name}); credentials and field values were redacted`);throw new Error('Content lab editor verification failed; see the sanitized result artifact');
 }finally{
  await browser.close();if(id)wp(['post','delete',String(id),'--force']);
  fs.writeFileSync(path.join(root,'docs/research/2026-09-08-content-faces/results/site-pages/editor.json'),JSON.stringify({schema:'wt-site-page-editor.v1',completed,sourceDigests,rows},null,2)+'\n');

@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -6,8 +7,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const state=contentLab.stateDir;
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
 const marker='SearchBoundaryFixture';
 if(wp(['post','list','--post_type=any','--post_status=any','--s='+marker,'--format=ids']))throw Error('Reserved fixtures exist');
@@ -22,7 +23,7 @@ async function keyboardLink(page,link,label){
  check(`keyboard-link:${label}`,focused);if(!focused)throw Error('Pagination unreachable by keyboard');
  const href=await link.getAttribute('href');await page.keyboard.press('Enter');await page.waitForURL(href);
 }
-const base='http://127.0.0.1:8098';let ids=[],completed=false;
+const base=`${contentLab.baseUrl}`;let ids=[],completed=false;
 const browser=await chromium.launch();
 try {
  ids=JSON.parse(wp(['eval',`$ids=array();try{for($i=0;$i<${size+1};$i++){$p=array('post_type'=>'post','post_status'=>'publish','post_title'=>'${marker} public '.$i,'post_content'=>'PublicSearchFixtureText');$id=wp_insert_post($p,true);if(is_wp_error($id))throw new Exception('Create failed');$ids[]=$id;}foreach(array('draft','private','protected','paid')as $state){$p=array('post_type'=>$state==='paid'?'wt_paid':'post','post_status'=>in_array($state,array('draft','private'),true)?$state:'publish','post_title'=>'${marker} '.$state,'post_content'=>$state==='paid'?'PublicPreviewFixture':'HiddenSearchFixtureText');if($state==='protected')$p['post_password']='fixture-only';if($state==='paid')$p['meta_input']=array('_wtcf_document'=>array('billing'=>'oneoff','body'=>'PurchaseBodyOnlyFixture'));$id=wp_insert_post($p,true);if(is_wp_error($id))throw new Exception('Create failed');$ids[]=$id;}echo wp_json_encode($ids);}catch(Throwable $e){foreach($ids as $id)wp_delete_post($id,true);throw $e;}`]));

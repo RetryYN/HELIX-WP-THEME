@@ -1,13 +1,19 @@
+import { contentLab } from './lib/content-lab-env.mjs';
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import os from 'node:os';
 
 const root = path.resolve(import.meta.dirname, '..');
-const state = process.env.WTCF_STATE_DIR || path.join(os.tmpdir(), 'helix-content-lab');
+const state = contentLab.stateDir;
 const outputPath = path.join(root, 'docs/research/2026-09-09-capability-manifest/runtime.json');
-const wp = args => execFileSync('docker', ['run', '--rm', '--network', 'helix-content-lab', '--env-file', path.join(state, 'wp.env'), '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 16 * 1024 * 1024 }).trim();
+const sourceFiles = ['scripts/verify-capability-health.mjs', 'scripts/lib/content-lab-env.mjs'];
+const sourceDigests = Object.fromEntries(sourceFiles.map(file => [
+  file,
+  createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'),
+]));
+const wp = args => execFileSync('docker', ['run', '--rm', '--network', contentLab.network, '--env-file', path.join(state, 'wp.env'), '--volumes-from', contentLab.wpContainer, '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 16 * 1024 * 1024 }).trim();
 
 const raw = wp(['eval', `
 $before = helix_wt_capability_health();
@@ -40,6 +46,7 @@ const rows = [
 const result = {
   schema: 'wt-capability-health-runtime.v2',
   completed: true,
+  sourceDigests,
   requirements: ['WT-TR-CORE-02'],
   environment: { wordpress: data.wordpress_version, php: data.php_version, active_theme: data.active_theme },
   counts: { declared_patterns: declared.patterns.length, registered_patterns: registered.patterns.length, declared_custom_blocks: declared.custom_blocks.length, registered_custom_blocks: registered.custom_blocks.length, declared_block_styles: declared.block_styles.length, registered_block_styles: registered.block_styles.length },

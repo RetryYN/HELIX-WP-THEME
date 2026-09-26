@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -7,15 +8,15 @@ import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const state = process.env.WTCF_STATE_DIR || path.join(os.tmpdir(), 'helix-content-lab');
-const base = 'http://127.0.0.1:8098';
+const state = contentLab.stateDir;
+const base = `${contentLab.baseUrl}`;
 const marker = 'SearchEntitlementFixture';
 const protectedBody = 'SearchEntitlementProtectedBody';
 const editorLogin = 'lab_search_editor';
 const editorPassword = ['search', 'fixture', 'pass'].join('-');
 const wp = args => execFileSync('docker', [
-  'run', '--rm', '--network', 'helix-content-lab', '--env-file', path.join(state, 'wp.env'),
-  '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args,
+  'run', '--rm', '--network', contentLab.network, '--env-file', path.join(state, 'wp.env'),
+  '--volumes-from', contentLab.wpContainer, '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args,
 ], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 const php = code => wp(['eval', code]);
 const digest = file => createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex');

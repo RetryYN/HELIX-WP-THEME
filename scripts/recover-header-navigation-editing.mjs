@@ -1,8 +1,9 @@
 import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import {execFileSync} from 'node:child_process';
-const file=path.join(os.tmpdir(),'helix-header-editing-restore.json');
+import {contentLab} from './lib/content-lab-env.mjs';
+const file=path.join(contentLab.stateDir,'header-editing-restore.json');
 if(!fs.existsSync(file)){console.log('No pending header editing recovery.');process.exit(0);}
 const state=JSON.parse(fs.readFileSync(file));
-const php=code=>execFileSync('docker',['exec','helix-content-wp','php','-r',`require '/var/www/html/wp-load.php'; ${code}`],{encoding:'utf8'}).trim();
+const php=code=>execFileSync('docker',['exec',contentLab.wpContainer,'php','-r',`require '/var/www/html/wp-load.php'; ${code}`],{encoding:'utf8'}).trim();
 if(php('echo get_option("blogname");')!=='HELIX Content Lab')throw Error('dedicated lab required');
 const encoded=Buffer.from(JSON.stringify(state)).toString('base64');
 php(`$state=json_decode(base64_decode('${encoded}'),true);$variants=['header','header-nav','header-cta','header-announce','header-center','header-two-rows','header-overlay','header-tel','header-band'];

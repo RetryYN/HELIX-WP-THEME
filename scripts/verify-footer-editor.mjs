@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -6,7 +7,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 const root=new URL('../',import.meta.url);
-const php=code=>execFileSync('docker',['exec','helix-content-wp','php','-r','require "/var/www/html/wp-load.php"; '+code],{encoding:'utf8'}).trim();
+const php=code=>execFileSync('docker',['exec',contentLab.wpContainer,'php','-r','require "/var/www/html/wp-load.php"; '+code],{encoding:'utf8'}).trim();
 assert.equal(php('echo get_option("blogname");'),'HELIX Content Lab');
 assert.equal(php('echo count(get_posts(array("post_type"=>"wp_template_part","name"=>"footer","post_status"=>"any")));'),'0','Existing footer override');
 const sources=['scripts/verify-footer-editor.mjs',...['functions.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','inc/footer-navigation.php','theme.json'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
@@ -22,9 +23,9 @@ try{
  php('wp_get_theme()->delete_pattern_cache();');
  part=Number(php('$content=serialize_blocks(resolve_pattern_blocks(parse_blocks(file_get_contents(get_theme_file_path("parts/footer.html")))));$id=wp_insert_post(wp_slash(array("post_type"=>"wp_template_part","post_status"=>"publish","post_name"=>"footer","post_title"=>"Footer Editor Fixture","post_content"=>$content)));wp_set_object_terms($id,"helix-wt","wp_theme");wp_set_object_terms($id,"footer","wp_template_part_area");echo $id;'));
  assert.ok(Number.isInteger(part)&&part>0);
- const credentials=JSON.parse(fs.readFileSync(path.join(process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab'),'credentials.json')));
- await page.goto('http://127.0.0.1:8098/wp-login.php');await page.waitForFunction(()=>document.activeElement?.id==='user_login');await page.locator('#user_login').fill('lab_admin');await page.locator('#user_pass').fill(credentials.admin);assert.equal(await page.locator('#user_login').inputValue(),'lab_admin');assert.ok(await page.locator('#user_pass').inputValue()===credentials.admin,'Password field input');await page.locator('#wp-submit').click();await page.waitForURL('**/wp-admin/**');
- const editor='http://127.0.0.1:8098/wp-admin/site-editor.php?postId=helix-wt%2F%2Ffooter&postType=wp_template_part&canvas=edit';
+ const credentials=JSON.parse(fs.readFileSync(path.join(contentLab.stateDir,'credentials.json')));
+ await page.goto(`${contentLab.baseUrl}/wp-login.php`);await page.waitForFunction(()=>document.activeElement?.id==='user_login');await page.locator('#user_login').fill('lab_admin');await page.locator('#user_pass').fill(credentials.admin);assert.equal(await page.locator('#user_login').inputValue(),'lab_admin');assert.ok(await page.locator('#user_pass').inputValue()===credentials.admin,'Password field input');await page.locator('#wp-submit').click();await page.waitForURL('**/wp-admin/**');
+ const editor=`${contentLab.baseUrl}/wp-admin/site-editor.php?postId=helix-wt%2F%2Ffooter&postType=wp_template_part&canvas=edit`;
  await page.goto(editor);await page.locator('iframe[name="editor-canvas"]').waitFor();await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);
  const start=page.getByRole('button',{name:'Get started',exact:true});if(await start.isVisible())await start.click();
  const before=await validity();check('initial:valid-blocks',before.total>=20&&before.invalid===0);
@@ -36,7 +37,7 @@ try{
  const confirm=page.getByRole('dialog').getByRole('button',{name:'Save',exact:true});if(await confirm.waitFor({timeout:2000}).then(()=>true,()=>false))await confirm.click();
  await page.waitForFunction(()=>!wp.data.select('core/editor').isSavingPost()&&!wp.data.select('core/editor').isEditedPostDirty());
  check('save:database',php(`echo get_post(${part})->post_content;`).includes(text));
- const publicPage=await browser.newPage();await publicPage.goto('http://127.0.0.1:8098/?wt=footer_extra:sites,footer_layout:sitemap');check('save:public-view',await publicPage.locator('.wt-footer__brand p.has-mute-color').innerText()===text);await publicPage.close();
+ const publicPage=await browser.newPage();await publicPage.goto(`${contentLab.baseUrl}/?wt=footer_extra:sites,footer_layout:sitemap`);check('save:public-view',await publicPage.locator('.wt-footer__brand p.has-mute-color').innerText()===text);await publicPage.close();
  await page.reload();await page.locator('iframe[name="editor-canvas"]').waitFor();await page.waitForFunction(()=>window.wp?.data?.select('core/block-editor')?.getBlocks()?.length>0);
  check('reload:content',await canvas.locator('.wt-footer__brand p.has-mute-color').innerText()===text);const after=await validity();check('reload:valid-blocks',after.total>=20&&after.invalid===0);
  check('sources:unchanged',JSON.stringify(sourceDigests)===JSON.stringify(digests()));completed=true;

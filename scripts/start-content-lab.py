@@ -1,15 +1,15 @@
 """Start the isolated, loopback-only WordPress content-face PoC. No production mounts."""
 import json
-import os
 from pathlib import Path
 import secrets
 import subprocess
-import tempfile
 import time
 from urllib.parse import urlsplit
+from lib.content_lab_env import content_lab_config
 
 root = Path(__file__).resolve().parent.parent
-state = Path(os.environ.get('WTCF_STATE_DIR', str(Path(tempfile.gettempdir()) / 'helix-content-lab')))
+lab = content_lab_config()
+state = lab.state_dir
 state.mkdir(mode=0o700, parents=True, exist_ok=True)
 credentials_path = state / 'credentials.json'
 if not credentials_path.exists():
@@ -29,20 +29,13 @@ def run(args, check=True):
     return result
 
 
-network = os.environ.get('WTCF_DOCKER_NETWORK', 'helix-content-lab')
-wp_container = os.environ.get('WTCF_WP_CONTAINER', 'helix-content-wp')
-db_container = os.environ.get('WTCF_DB_CONTAINER', 'helix-content-db')
-wp_volume = os.environ.get('WTCF_WP_VOLUME', wp_container)
-db_volume = os.environ.get('WTCF_DB_VOLUME', db_container)
-base_url = os.environ.get('WTCF_BASE_URL', 'http://127.0.0.1:8098')
-parsed_base = urlsplit(base_url)
-if parsed_base.scheme != 'http' or parsed_base.hostname not in {'127.0.0.1', 'localhost'} or parsed_base.username or parsed_base.password or parsed_base.path not in {'', '/'} or parsed_base.query or parsed_base.fragment or not parsed_base.port:
-    raise RuntimeError('WTCF_BASE_URL must be a loopback HTTP origin with an explicit port')
-base_url = f'{parsed_base.scheme}://{parsed_base.netloc}'
-port = parsed_base.port
-for value in [network, wp_container, db_container, wp_volume, db_volume]:
-    if not value or not all(char.isalnum() or char in '_.-' for char in value):
-        raise RuntimeError('WTCF Docker names may contain only letters, digits, dot, underscore and hyphen')
+network = lab.network
+wp_container = lab.wp_container
+db_container = lab.db_container
+wp_volume = lab.wp_volume
+db_volume = lab.db_volume
+base_url = lab.base_url
+port = int(urlsplit(base_url).port)
 if run(['docker', 'network', 'inspect', network], False).returncode:
     run(['docker', 'network', 'create', network])
 for name, values in [('db.env', ['MARIADB_ROOT_PASSWORD=' + credentials['database'], 'MARIADB_DATABASE=content_lab']),

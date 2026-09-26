@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -5,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'docs/research/2026-09-15-home-completion');
-const base='http://127.0.0.1:8098';
+const base=`${contentLab.baseUrl}`;
 const rows=[];const check=(name,pass,details)=>rows.push({name,pass:!!pass,...(details===undefined?{}:{details})});let completed=false;
 const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
 const sourceFiles=['scripts/verify-home-isolation.mjs',...['functions.php','inc/content-chrome.php','inc/content-faces.php','assets/css/home-completion.css','assets/css/theme.css','assets/css/content-chrome.css'].map(f=>theme+f)];

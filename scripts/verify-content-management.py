@@ -1,15 +1,15 @@
 """Verify independent content management in the dedicated lab. Run without concurrent captures."""
 import json
 import hashlib
-import os
 from pathlib import Path
 import subprocess
-import tempfile
+from lib.content_lab_env import content_lab_config
 
 root = Path(__file__).resolve().parent.parent
-state = Path(os.environ.get('WTCF_STATE_DIR', str(Path(tempfile.gettempdir()) / 'helix-content-lab')))
-network = os.environ.get('WTCF_DOCKER_NETWORK', 'helix-content-lab')
-wp_container = os.environ.get('WTCF_WP_CONTAINER', 'helix-content-wp')
+lab = content_lab_config()
+state = lab.state_dir
+network = lab.network
+wp_container = lab.wp_container
 cli = ['docker', 'run', '--rm', '--network', network, '--env-file', str(state / 'wp.env'),
        '--volumes-from', wp_container, '--user', '33:33', 'wordpress:cli-php8.3', 'wp']
 

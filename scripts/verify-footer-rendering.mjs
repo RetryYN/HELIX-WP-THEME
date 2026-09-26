@@ -1,9 +1,10 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 const root=new URL('../',import.meta.url);
-const php=code=>execFileSync('docker',['exec','helix-content-wp','php','-r','require "/var/www/html/wp-load.php"; '+code],{encoding:'utf8'}).trim();
+const php=code=>execFileSync('docker',['exec',contentLab.wpContainer,'php','-r','require "/var/www/html/wp-load.php"; '+code],{encoding:'utf8'}).trim();
 if(php('echo get_option("blogname");')!=='HELIX Content Lab')throw Error('Dedicated lab required');
 php('wp_get_theme()->delete_pattern_cache();');
 if(php('echo count(get_posts(array("post_type"=>"wp_template_part","name"=>"footer","post_status"=>"any")));')!=='0')throw Error('Existing footer override');
@@ -23,7 +24,7 @@ try{
   php(`wp_update_post(wp_slash(json_decode(base64_decode('${payload}'),true)));`);
   for(const width of [1440,375])for(const js of [true,false]){
    const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js});const page=await context.newPage();
-   await page.goto('http://127.0.0.1:8098/?wt=footer_extra:sites,footer_layout:sitemap');
+   await page.goto(`${contentLab.baseUrl}/?wt=footer_extra:sites,footer_layout:sitemap`);
    const label=`${state}:${width}:js-${js}`;
    const related=page.locator('.wt-footer-extra-slot--sites');
    const groups=page.locator('.wt-footer__sitemap details');
@@ -36,7 +37,7 @@ try{
     if(width===1440){const tops=await groups.locator('summary').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().top));check('aligned-headings:'+label,Math.max(...tops)-Math.min(...tops)<=1);}
     if(js)await page.locator('.wt-footer').screenshot({path:new URL(`docs/research/2026-09-09-footer-data/filled-${width}.png`,root).pathname});
     const summary=groups.first().locator('summary');await summary.focus();const before=await groups.first().getAttribute('open');await page.keyboard.press('Enter');check('keyboard-toggle:'+label,(await groups.first().getAttribute('open'))!==before);
-    await page.goto('http://127.0.0.1:8098/?wt=footer_extra:none,footer_layout:sitemap');check('off-omits-related:'+label,await page.locator('.wt-footer-extra-slot--sites').count()===0);
+    await page.goto(`${contentLab.baseUrl}/?wt=footer_extra:none,footer_layout:sitemap`);check('off-omits-related:'+label,await page.locator('.wt-footer-extra-slot--sites').count()===0);
    }
    await context.close();
   }

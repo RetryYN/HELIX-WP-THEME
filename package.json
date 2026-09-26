@@ -7,9 +7,10 @@
     "test:e2e": "npx playwright test",
     "helix": "tsx node_modules/helix/src/cli.ts",
     "typecheck": "echo \"no typecheck target (WP theme: PHP/CSS)\"",
-    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run zone-overrides:verify && npm run catalog-evidence:rebind-test && npm run catalog-evidence:rebind-check && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:quality-contracts && npm run test:codex-inbox",
+    "test": "npm run requirements:validate && npm run requirements:helix-l1-l2 && npm run requirements:helix-vmodel && npm run capabilities:verify && npm run boundary:verify-ai && npm run privacy:verify && npm run public-safety:verify && npm run artifact-bindings:verify && npm run zone-overrides:verify && npm run catalog-evidence:rebind-test && npm run catalog-evidence:rebind-check && npm run catalog-evidence:audit && npm run i18n:verify && npm run helix -- doctor --profile consumer && npm run test:helix-patch && npm run test:quality-contracts && npm run test:codex-inbox && npm run test:content-lab-env",
     "test:quality-contracts": "node --test tests/lighthouse-ci-contract.test.mjs tests/current-theme-quality-regression.test.mjs",
     "test:codex-inbox": "node --test tests/unit/codex-inbox.test.mjs",
+    "test:content-lab-env": "node --test tests/content-lab-env.test.mjs",
     "requirements:validate": "node scripts/validate-requirements.mjs",
     "requirements:helix-l1-l2": "node scripts/validate-helix-l1-l2.mjs",
     "requirements:helix-vmodel": "npm run helix -- vmodel lint",
@@ -43,6 +44,8 @@
     "node": ">=24.15.0 <25"
   },
   "catalogOracles": {
+    "docs/research/2026-09-09-capability-manifest/runtime.json": "capabilities:verify-runtime",
+    "docs/research/2026-09-09-capability-manifest/verify.json": "capabilities:verify",
     "docs/research/2026-09-09-public-safety/verify.json": "public-safety:verify",
     "docs/research/2026-09-10-reduced-motion/verify.json": "reduced-motion:verify",
     "docs/research/2026-09-13-privacy-boundary/verify.json": "privacy:verify",
