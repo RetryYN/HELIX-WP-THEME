@@ -4,7 +4,7 @@
 
 ## 再現
 
-Docker・Node.js・Pythonを用意し、リポジトリのルートで実行する。既存環境とは別名のコンテナ・DB・volumeを使い、HTTPはloopbackの8098番だけで公開する。
+Docker・Node.js・Pythonを用意し、リポジトリのルートで実行する。既定のHTTP公開先はloopbackの8098番。既に使われている場合は後述のworktree別設定を使う。
 
 ```sh
 python3 scripts/start-content-lab.py
@@ -17,6 +17,23 @@ node scripts/build-selection-catalog.mjs
 ```
 
 管理検査は一時的に専用labのテーマを切り替えて戻すため、撮影と同時実行しない。
+
+複数worktreeで同時に検証する場合は、共有labを使い回さず、worktreeごとにstateディレクトリ・Docker network/container/volume名・loopback portを分ける。例:
+
+```sh
+export WTCF_STATE_DIR="${TMPDIR:-/tmp}/helix-content-lab-review"
+export WTCF_DOCKER_NETWORK=helix-content-lab-review
+export WTCF_WP_CONTAINER=helix-content-wp-review
+export WTCF_DB_CONTAINER=helix-content-db-review
+export WTCF_WP_VOLUME=helix-content-wp-review
+export WTCF_DB_VOLUME=helix-content-db-review
+export WTCF_BASE_URL=http://127.0.0.1:18117
+python3 scripts/start-content-lab.py
+export WTCF_LAB_CREDENTIALS="$WTCF_STATE_DIR/credentials.json"
+npx playwright install chromium
+```
+
+`WTCF_BASE_URL`はloopbackのHTTP originだけを受け付ける。既定値を使う場合、従来のネットワーク名・コンテナ名・volume名・8098番ポートは変わらない。検証スクリプトは同じ環境変数からWP-CLI接続先とブラウザーURLを得る。
 
 `WTCF_STATE_DIR`を指定した場合は、そのディレクトリの`credentials.json`を検証スクリプトへ渡す。資格情報はリポジトリ外で生成・保持し、ログや公開成果物に含めない。起動スクリプトは既存labを再利用し、専用fixtureだけを再投入する。異なるcheckoutをマウントした同名コンテナは変更せず停止する。
 

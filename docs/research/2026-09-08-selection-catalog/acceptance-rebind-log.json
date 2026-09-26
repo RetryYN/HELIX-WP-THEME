@@ -5826,6 +5826,1640 @@
       ],
       "registry_before_sha256": "c904202043ca87f86132ffcd6f56e016c2eae34f0df29228c278fe5388ae9154",
       "registry_after_sha256": "3ad295bfa31762f68dc4cb074a2586d0f012a79bd5ebda5638f382608e9019e8"
+    },
+    {
+      "schema": "wt-acceptance-rebind-transaction.v1",
+      "cases": [
+        "WT-AC-PARTS-01A",
+        "WT-AC-PARTS-01B",
+        "WT-AC-NFR-SP-01A",
+        "WT-AC-NFR-SP-01B",
+        "WT-AC-ENV-01A",
+        "WT-AC-ENV-01B",
+        "WT-AC-PAGE-01A",
+        "WT-AC-PAGE-01B",
+        "WT-AC-PAID-01A",
+        "WT-AC-PAID-01B",
+        "WT-AC-INTERVIEW-01A",
+        "WT-AC-INTERVIEW-01B",
+        "WT-AC-BLP-01A",
+        "WT-AC-BLP-01B",
+        "WT-AC-PARTS-03A",
+        "WT-AC-PARTS-03B",
+        "WT-AC-PAID-01C",
+        "WT-AC-INTERVIEW-01C",
+        "WT-AC-BLP-01C",
+        "WT-AC-LEARN-01A",
+        "WT-AC-LEARN-01B",
+        "WT-AC-LEARN-01C",
+        "WT-AC-PAGE-01C"
+      ],
+      "commands": [
+        [
+          "node",
+          "scripts/verify-parts-declaration.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-parts-editor.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-site-page-quality.mjs"
+        ],
+        [
+          "npm",
+          "run",
+          "i18n:pot"
+        ],
+        [
+          "node",
+          "scripts/verify-site-pages.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-site-page-editor.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-content-faces.mjs"
+        ],
+        [
+          "python3",
+          "scripts/verify-content-management.py"
+        ],
+        [
+          "node",
+          "scripts/verify-interview-lifecycle.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-content-inheritance.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-learning-faces.mjs"
+        ],
+        [
+          "node",
+          "scripts/verify-learning-publication.mjs"
+        ]
+      ],
+      "changes": [
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAID-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01B",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAID-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01C",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAID-01C",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAID-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "scripts/verify-interview-lifecycle.mjs",
+          "before": "b80ed2ed210219be91e4aaab2c5e2251976167318a366b44b65deffa95d8ee10",
+          "after": "005d2744a85e37d2a2e3df56e544bc052f6d89d1c715c815880cb688f0afcb97"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
+          "before": "11e942d840a580441ba5b8ae99b1079ef29266a5ba907f17068d340db6dea8a2",
+          "after": "cc5fcbd7867572ab9da886a4a41bf9a76c5a603a6ca0b65aab278fd3b00a5645"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "scripts/verify-interview-lifecycle.mjs",
+          "before": "b80ed2ed210219be91e4aaab2c5e2251976167318a366b44b65deffa95d8ee10",
+          "after": "005d2744a85e37d2a2e3df56e544bc052f6d89d1c715c815880cb688f0afcb97"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-INTERVIEW-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
+          "before": "11e942d840a580441ba5b8ae99b1079ef29266a5ba907f17068d340db6dea8a2",
+          "after": "cc5fcbd7867572ab9da886a4a41bf9a76c5a603a6ca0b65aab278fd3b00a5645"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-BLP-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-BLP-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01C",
+          "path": "scripts/verify-content-faces.mjs",
+          "before": "8186d7dc86b9cd1cbdbb2994f2dacbf7f487a15f7555d502a6a1ab9c61de47ad",
+          "after": "edb2f9711bcea4eca1bad491fb8d49b694b8abce671f11e960a3f8b4b2783f4f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-BLP-01C",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-BLP-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "scripts/verify-learning-faces.mjs",
+          "before": "535c1bed59a2699885103cc8fd7dfb3e537056775dca28459cf1192388e137d9",
+          "after": "d0f7a249edf07757fc56c36c2bb59703ed65e4610cc15366cc1534bede045f56"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "scripts/verify-content-management.py",
+          "before": "267935f3a119670884a2647b56c446cc87e44dd4241e5a7951a86cf66bd9fdfc",
+          "after": "b796663301def1d38d5f31e8950e849a2507daf533044bb82a5eb3231309439d"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.json",
+          "before": null,
+          "after": "5ea3274aa0f892834fc4fcdcbae256f077ccc9b12178b3ab2497016594b54bbe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "docs/research/2026-09-08-content-faces/plugin/site-pages.php",
+          "before": null,
+          "after": "7ca315d0bc5267a5a2858035df07666f6ef5a3e61c63dbeb04750cf66f17ac78"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "before": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+          "after": "e41eb19111640939ae40b0f1b62898f5538a00bb79bcd9e111e8e956bc1fbf66"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LEARN-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01B",
+          "path": "scripts/verify-learning-faces.mjs",
+          "before": "535c1bed59a2699885103cc8fd7dfb3e537056775dca28459cf1192388e137d9",
+          "after": "d0f7a249edf07757fc56c36c2bb59703ed65e4610cc15366cc1534bede045f56"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LEARN-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "before": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+          "after": "e41eb19111640939ae40b0f1b62898f5538a00bb79bcd9e111e8e956bc1fbf66"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "scripts/verify-learning-faces.mjs",
+          "before": "535c1bed59a2699885103cc8fd7dfb3e537056775dca28459cf1192388e137d9",
+          "after": "d0f7a249edf07757fc56c36c2bb59703ed65e4610cc15366cc1534bede045f56"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "scripts/verify-learning-publication.mjs",
+          "before": "cb0d4944f854b301effdc6563f9414a266983ed8764a02c04372674812b50b82",
+          "after": "8fb7249d6d89b4964e9ac1322fed1d68fa44af8dc2598ea2a807dd15d809924a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_learning.html",
+          "before": null,
+          "after": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_learning.html",
+          "before": null,
+          "after": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "before": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+          "after": "e41eb19111640939ae40b0f1b62898f5538a00bb79bcd9e111e8e956bc1fbf66"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-LEARN-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/learning/publication.json",
+          "before": "c834a075eeee69b95bc161dd9dbdac2a54c8211b88cb804d549081c835360801",
+          "after": "d72b9aec4a058a1ea630bc1419f2e9bdf420bf71abea1fa7abf2602b9d7aee7e"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01A",
+          "path": "scripts/verify-site-pages.mjs",
+          "before": "e646bf6b509cf264a7b12365e3c65a54be39c8ab89ec56ebf1bd17d1a64572d5",
+          "after": "041d9751ac852bbcc087fece2bcb4495ce05be98e0b1e81b155fc212f15d4f5a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01A",
+          "path": "scripts/verify-site-page-editor.mjs",
+          "before": "b783eb3e9e763a55b441b568c3bc703eec916ad4a92192ca8c02045b43c28ebd",
+          "after": "2b070ea9b29b5aab37257e39dcff15368938a1d0bb3fca40ef21f52ce542f3b9"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01A",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAGE-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
+          "before": "724e953ae86e1bceab54a9f6f47e2eb4fbfbf225440e71d7f49ee34bc40bb1e6",
+          "after": "41a077b80af755d06569156d3a55b1d77ef2b67a223ca75408507e54ecce6b8f"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAGE-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/editor.json",
+          "before": "8bd792ed407084a418a6f11ff658c3c81f0c574b0fd2f26dbd1c86b0ed914ad2",
+          "after": "8f8cf364a6875abf65bd2b62e03d23335cfda68e7d80139a0e5f44ce84300676"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01B",
+          "path": "scripts/verify-site-pages.mjs",
+          "before": "e646bf6b509cf264a7b12365e3c65a54be39c8ab89ec56ebf1bd17d1a64572d5",
+          "after": "041d9751ac852bbcc087fece2bcb4495ce05be98e0b1e81b155fc212f15d4f5a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01B",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAGE-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
+          "before": "724e953ae86e1bceab54a9f6f47e2eb4fbfbf225440e71d7f49ee34bc40bb1e6",
+          "after": "41a077b80af755d06569156d3a55b1d77ef2b67a223ca75408507e54ecce6b8f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01C",
+          "path": "scripts/verify-site-pages.mjs",
+          "before": "e646bf6b509cf264a7b12365e3c65a54be39c8ab89ec56ebf1bd17d1a64572d5",
+          "after": "041d9751ac852bbcc087fece2bcb4495ce05be98e0b1e81b155fc212f15d4f5a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01C",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PAGE-01C",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PAGE-01C",
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
+          "before": "724e953ae86e1bceab54a9f6f47e2eb4fbfbf225440e71d7f49ee34bc40bb1e6",
+          "after": "41a077b80af755d06569156d3a55b1d77ef2b67a223ca75408507e54ecce6b8f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SP-01A",
+          "path": "scripts/verify-site-page-quality.mjs",
+          "before": "2aa7e999aaa7a0b4f22f7d42ff401ae84cd21937335803eec683e76aaeffbda8",
+          "after": "95decfe3f2345653c8c64fde48c05207679cbff30b7672d541c5ed82269e62ae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SP-01A",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SP-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-SP-01A",
+          "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
+          "before": "a296696a1f11af80fe27464ddff09e1d1a8e86e78c64f9b28ee91131d81393b8",
+          "after": "d86a60f32040e3239ab57120143f10b5c140886372f21d731a15a74eaccc0470"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SP-01B",
+          "path": "scripts/verify-site-page-quality.mjs",
+          "before": "2aa7e999aaa7a0b4f22f7d42ff401ae84cd21937335803eec683e76aaeffbda8",
+          "after": "95decfe3f2345653c8c64fde48c05207679cbff30b7672d541c5ed82269e62ae"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SP-01B",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-NFR-SP-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-NFR-SP-01B",
+          "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
+          "before": "a296696a1f11af80fe27464ddff09e1d1a8e86e78c64f9b28ee91131d81393b8",
+          "after": "d86a60f32040e3239ab57120143f10b5c140886372f21d731a15a74eaccc0470"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-03A",
+          "path": "scripts/verify-content-inheritance.mjs",
+          "before": "c9b562ac5c5e4bbdb89186faf407a83cc6a52cd6e5cadf6115588bfc99046159",
+          "after": "a77ccd41bad16bb1cc0a08c5f29f64c91cea18b2c1752b151d5eda22ca689562"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-03A",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-03A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PARTS-03A",
+          "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
+          "before": "5a2125d0562949126f5396ac760e9b0e2af7fc9a6d2cf96b6477937fcf84d7d8",
+          "after": "eb6966f48dbaa6bcb1dabd026293b2ebf305003fc5a4ef4eb64cac6e1d060cf0"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-03B",
+          "path": "scripts/verify-content-inheritance.mjs",
+          "before": "c9b562ac5c5e4bbdb89186faf407a83cc6a52cd6e5cadf6115588bfc99046159",
+          "after": "a77ccd41bad16bb1cc0a08c5f29f64c91cea18b2c1752b151d5eda22ca689562"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-03B",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-03B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PARTS-03B",
+          "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
+          "before": "5a2125d0562949126f5396ac760e9b0e2af7fc9a6d2cf96b6477937fcf84d7d8",
+          "after": "eb6966f48dbaa6bcb1dabd026293b2ebf305003fc5a4ef4eb64cac6e1d060cf0"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "scripts/verify-i18n-profile.mjs",
+          "before": "2d3b8f3eace447548185a030ebb8d084738bfc7204e473a7420bcdfc2660020b",
+          "after": "efcefd2203bb3a88e992f714de2481535db3d6710b82e3cf182b0bff7d22450f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php",
+          "before": null,
+          "after": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php",
+          "before": null,
+          "after": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+          "before": null,
+          "after": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php",
+          "before": null,
+          "after": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php",
+          "before": null,
+          "after": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html",
+          "before": null,
+          "after": "48661208aebf4b5a2cca504dd251104a45ea700c2a78c0ef46a616f9dbb797fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html",
+          "before": null,
+          "after": "89525727cafb903324c50b85e133009e2a0786832f6cb76b641b2e883e04e598"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html",
+          "before": null,
+          "after": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html",
+          "before": null,
+          "after": "7057f59e0baa68c897650cccb4606ca126e2812b9274dea96f559876b14aff8a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html",
+          "before": null,
+          "after": "02743620b523a3c7abbe5c6cde7f6583a8ef299bd138f73cb3bf6b890f889845"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html",
+          "before": null,
+          "after": "f35a3701cd9626002c20ba95c46be681b4805e4842952570ce85dfb777308792"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html",
+          "before": null,
+          "after": "d71fe8763c02adf6e944bf104bb0db1377da855fec005259712e5deb77735468"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html",
+          "before": null,
+          "after": "cd0867ef2a66ae6944d68ba21bbdb6aba2dce116d2b59665275f58db139ea35c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html",
+          "before": null,
+          "after": "b867e2c452a0e7ee2963c113bba8fac4ad5c3f341e3ec0139f955e9728371981"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html",
+          "before": null,
+          "after": "0380dc5835fe197e9e2ea8d024fb2de048736ebb3c2b9887686ca5d65b046d35"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html",
+          "before": null,
+          "after": "fda8831b16032f7de7526a6f187092aa69f2c66301db5c1f51fa6f7211417dd8"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html",
+          "before": null,
+          "after": "658d6dd949aceccad16ca7bfd700cfbfa1490e9faf26be44e44fc5cffe2653d4"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php",
+          "before": null,
+          "after": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php",
+          "before": null,
+          "after": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html",
+          "before": null,
+          "after": "55986a539a487037ef04bd3ad206b1f10c217c7af4941bff5c06df8ec90a1240"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_blp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_learning.html",
+          "before": null,
+          "after": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_lp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_paid.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html",
+          "before": null,
+          "after": "4deba10559da617fb4f6c76d86220db8626120f7cc256a1a53fbe1b5efc8de14"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html",
+          "before": null,
+          "after": "2305b2bafde1553ad5b58167b053d6255123ac3458c03b8516e7ecdbc5b14538"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html",
+          "before": null,
+          "after": "a73d193cc2e44c8e11731074617a813f236cd2b83536041229b623b8473000a1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html",
+          "before": null,
+          "after": "50711da545bd4b30377a12e8fedff86550f83a85ff724f66d35baf43cfcb36ee"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-canvas.html",
+          "before": null,
+          "after": "35bfc05f3a51b3df2ae3669db54c3c1a62e1ce8c525f1c853a16cac9d6b7b63f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html",
+          "before": null,
+          "after": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html",
+          "before": null,
+          "after": "90e568c2b15b471d7d90ffca210420ae82e5a7b9a445a7df0a21abcfbdd6643a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html",
+          "before": null,
+          "after": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html",
+          "before": null,
+          "after": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html",
+          "before": null,
+          "after": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html",
+          "before": null,
+          "after": "bd0b86a47cd8d459913d6f36a995ed14f007b348e1ad731eea6063fe62cada2f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html",
+          "before": null,
+          "after": "cbae6a4b6ec61c228b05c2425e2a66ef105715131eef7997961b9f698fdc84bd"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_blp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_learning.html",
+          "before": null,
+          "after": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_lp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_paid.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html",
+          "before": null,
+          "after": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ENV-01A",
+          "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+          "before": "448bf4f1a369d091e0f17946428ffecbd5826e83f961d6160d5af50bad49dfa3",
+          "after": "6b667f7fa3dcd33adc648237388d7b34e1f66bdaba7327416145af37c6a370ca"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "scripts/verify-i18n-profile.mjs",
+          "before": "2d3b8f3eace447548185a030ebb8d084738bfc7204e473a7420bcdfc2660020b",
+          "after": "efcefd2203bb3a88e992f714de2481535db3d6710b82e3cf182b0bff7d22450f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/banner-zones.php",
+          "before": null,
+          "after": "b96edcc818ae824f4609fee3a13349bd5ed99bcf937431073bacc7e76d5b392b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/device-vocabulary.php",
+          "before": null,
+          "after": "a41674506ee738d7d6041f3c9ffde5f0305dad4512a8141b1aca35ff72e1fc33"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/header-navigation-settings.php",
+          "before": null,
+          "after": "0a2fa587e70c06874367e2c3d4a4cc6933389bfd760beb8efe77540d21553e36"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/parts-declaration.php",
+          "before": null,
+          "after": "f5d05c8390ac1a7b44bcae828129f97fda881e679f6fcab74ef1167ae5fa4849"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php",
+          "before": null,
+          "after": "ef0f855ae2f7cdc09cc71b8c3ca1b3b8ae6ac8138f52991b2e1c70a3af319cef"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/article-tail.html",
+          "before": null,
+          "after": "48661208aebf4b5a2cca504dd251104a45ea700c2a78c0ef46a616f9dbb797fb"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/cv-slot.html",
+          "before": null,
+          "after": "89525727cafb903324c50b85e133009e2a0786832f6cb76b641b2e883e04e598"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/footer.html",
+          "before": null,
+          "after": "952bca41c21cb18ce83075664b1a2b85a8287bb2bfe732ab65e2e6cae36ece48"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-announce.html",
+          "before": null,
+          "after": "7057f59e0baa68c897650cccb4606ca126e2812b9274dea96f559876b14aff8a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-band.html",
+          "before": null,
+          "after": "02743620b523a3c7abbe5c6cde7f6583a8ef299bd138f73cb3bf6b890f889845"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-center.html",
+          "before": null,
+          "after": "f35a3701cd9626002c20ba95c46be681b4805e4842952570ce85dfb777308792"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-cta.html",
+          "before": null,
+          "after": "d71fe8763c02adf6e944bf104bb0db1377da855fec005259712e5deb77735468"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-nav.html",
+          "before": null,
+          "after": "cd0867ef2a66ae6944d68ba21bbdb6aba2dce116d2b59665275f58db139ea35c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-overlay.html",
+          "before": null,
+          "after": "b867e2c452a0e7ee2963c113bba8fac4ad5c3f341e3ec0139f955e9728371981"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-tel.html",
+          "before": null,
+          "after": "0380dc5835fe197e9e2ea8d024fb2de048736ebb3c2b9887686ca5d65b046d35"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header-two-rows.html",
+          "before": null,
+          "after": "fda8831b16032f7de7526a6f187092aa69f2c66301db5c1f51fa6f7211417dd8"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/parts/header.html",
+          "before": null,
+          "after": "658d6dd949aceccad16ca7bfd700cfbfa1490e9faf26be44e44fc5cffe2653d4"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-compare.php",
+          "before": null,
+          "after": "cb549655a9ea8805ef869d287566f86b64af514ae802391db349959d7006dbf7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/device-read.php",
+          "before": null,
+          "after": "caaf9c348d46770bc499d2d71a3192334a1fcfcc6ac1f7c4aa4b5fe99b93d626"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/404.html",
+          "before": null,
+          "after": "55986a539a487037ef04bd3ad206b1f10c217c7af4941bff5c06df8ec90a1240"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_blp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_learning.html",
+          "before": null,
+          "after": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_lp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive-wt_paid.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/archive.html",
+          "before": null,
+          "after": "4deba10559da617fb4f6c76d86220db8626120f7cc256a1a53fbe1b5efc8de14"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/category.html",
+          "before": null,
+          "after": "2305b2bafde1553ad5b58167b053d6255123ac3458c03b8516e7ecdbc5b14538"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html",
+          "before": null,
+          "after": "a73d193cc2e44c8e11731074617a813f236cd2b83536041229b623b8473000a1"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/index.html",
+          "before": null,
+          "after": "50711da545bd4b30377a12e8fedff86550f83a85ff724f66d35baf43cfcb36ee"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-canvas.html",
+          "before": null,
+          "after": "35bfc05f3a51b3df2ae3669db54c3c1a62e1ce8c525f1c853a16cac9d6b7b63f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-event.html",
+          "before": null,
+          "after": "e5352d1c396561c61ec2c37f997c94be6b642722aea144c40f8c668f91848cfe"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-lp.html",
+          "before": null,
+          "after": "90e568c2b15b471d7d90ffca210420ae82e5a7b9a445a7df0a21abcfbdd6643a"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-parts-catalog.html",
+          "before": null,
+          "after": "b3e351b20db2f4a39e95eebccd67dfd1a3943aed4ff531c4146980cc4029072b"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-site-guide.html",
+          "before": null,
+          "after": "28437348af8d2e8f939db6c48566b1f95674408bdf92ebe95168333661c548f7"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html",
+          "before": null,
+          "after": "46f4a1f98d52b8e8410595e79ca744f50dd3c32fa3f8944fe8134916be43d362"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page.html",
+          "before": null,
+          "after": "bd0b86a47cd8d459913d6f36a995ed14f007b348e1ad731eea6063fe62cada2f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/search.html",
+          "before": null,
+          "after": "cbae6a4b6ec61c228b05c2425e2a66ef105715131eef7997961b9f698fdc84bd"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_blp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_interview.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_learning.html",
+          "before": null,
+          "after": "797b7ea61a74d7f3da2bb808e798b83247d1aa78e942b15b12e8fbff9e9ba04f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_lp.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single-wt_paid.html",
+          "before": null,
+          "after": "678cd7cae9232a63b7cf7481809c4c1865bd1d3f393d72d436a4dbce0ea4795c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/single.html",
+          "before": null,
+          "after": "f2de0d74d38528436375412658d2f707352e327fee07ee7c79f97668f6e7594a"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-ENV-01B",
+          "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+          "before": "448bf4f1a369d091e0f17946428ffecbd5826e83f961d6160d5af50bad49dfa3",
+          "after": "6b667f7fa3dcd33adc648237388d7b34e1f66bdaba7327416145af37c6a370ca"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01A",
+          "path": "scripts/verify-parts-declaration.mjs",
+          "before": "a4700cbf1918867d531f9778a36fabff37bec7df5c3cde15df157008d77edd95",
+          "after": "23a3dbd29f4ecfa26498fe18a5799c1d5653ea1ed5f58c678d70684b5bdd33be"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01A",
+          "path": "scripts/verify-parts-editor.mjs",
+          "before": "e80916c742907a0d36b5961de2595537b49333bd4768c7b25a192c0ed491edee",
+          "after": "ee5e1858eaaf524e0cf5b91833e3cb9f3dbb74c0054421da86b1bff293070100"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01A",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01A",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PARTS-01A",
+          "path": "docs/research/2026-09-13-parts-declaration/verification.json",
+          "before": "1fe3bc6f60ad82883bd96e49af0fb53527bfaf11e7007daef5e65ed7d30d66c4",
+          "after": "8efabdba0e2134cfce7c7a5d3a2d759792436490756536167c9adb770dc9335c"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PARTS-01A",
+          "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
+          "before": "b74604a9d431dd2f0cc7a2bdc59a1f761e5928ab5f615bcae0f72d13bb50c9b8",
+          "after": "7a1d8bdd5c3b2e34d0f885da43ddae7574b75e1695f3d7356bfacd165d28a27c"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01B",
+          "path": "scripts/verify-parts-declaration.mjs",
+          "before": "a4700cbf1918867d531f9778a36fabff37bec7df5c3cde15df157008d77edd95",
+          "after": "23a3dbd29f4ecfa26498fe18a5799c1d5653ea1ed5f58c678d70684b5bdd33be"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01B",
+          "path": "scripts/verify-parts-editor.mjs",
+          "before": "e80916c742907a0d36b5961de2595537b49333bd4768c7b25a192c0ed491edee",
+          "after": "ee5e1858eaaf524e0cf5b91833e3cb9f3dbb74c0054421da86b1bff293070100"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01B",
+          "path": "scripts/lib/content-lab-env.mjs",
+          "before": null,
+          "after": "beeae42b5de64adf0416180ab0591edf373233f6e33d1066a60c1c8404200c7f"
+        },
+        {
+          "kind": "source",
+          "case_id": "WT-AC-PARTS-01B",
+          "path": "scripts/start-content-lab.py",
+          "before": null,
+          "after": "902d4a2b41dfa1b9158551c11c5adbf6199e8e00324577fd7c43968fecf7170b"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PARTS-01B",
+          "path": "docs/research/2026-09-13-parts-declaration/verification.json",
+          "before": "1fe3bc6f60ad82883bd96e49af0fb53527bfaf11e7007daef5e65ed7d30d66c4",
+          "after": "8efabdba0e2134cfce7c7a5d3a2d759792436490756536167c9adb770dc9335c"
+        },
+        {
+          "kind": "proof",
+          "case_id": "WT-AC-PARTS-01B",
+          "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
+          "before": "b74604a9d431dd2f0cc7a2bdc59a1f761e5928ab5f615bcae0f72d13bb50c9b8",
+          "after": "7a1d8bdd5c3b2e34d0f885da43ddae7574b75e1695f3d7356bfacd165d28a27c"
+        }
+      ],
+      "proof_writes": [
+        {
+          "path": "docs/research/2026-09-13-parts-declaration/verification.json",
+          "before_sha256": "8efabdba0e2134cfce7c7a5d3a2d759792436490756536167c9adb770dc9335c",
+          "after_sha256": "8efabdba0e2134cfce7c7a5d3a2d759792436490756536167c9adb770dc9335c",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
+          "before_sha256": "7a1d8bdd5c3b2e34d0f885da43ddae7574b75e1695f3d7356bfacd165d28a27c",
+          "after_sha256": "7a1d8bdd5c3b2e34d0f885da43ddae7574b75e1695f3d7356bfacd165d28a27c",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
+          "before_sha256": "d86a60f32040e3239ab57120143f10b5c140886372f21d731a15a74eaccc0470",
+          "after_sha256": "d86a60f32040e3239ab57120143f10b5c140886372f21d731a15a74eaccc0470",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
+          "before_sha256": "6b667f7fa3dcd33adc648237388d7b34e1f66bdaba7327416145af37c6a370ca",
+          "after_sha256": "6b667f7fa3dcd33adc648237388d7b34e1f66bdaba7327416145af37c6a370ca",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
+          "before_sha256": "41a077b80af755d06569156d3a55b1d77ef2b67a223ca75408507e54ecce6b8f",
+          "after_sha256": "41a077b80af755d06569156d3a55b1d77ef2b67a223ca75408507e54ecce6b8f",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/site-pages/editor.json",
+          "before_sha256": "8f8cf364a6875abf65bd2b62e03d23335cfda68e7d80139a0e5f44ce84300676",
+          "after_sha256": "8f8cf364a6875abf65bd2b62e03d23335cfda68e7d80139a0e5f44ce84300676",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/verify.json",
+          "before_sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+          "after_sha256": "82414347c297e4af3e84508a3dd5b82e5cd151fc06908ba85eff6dec13da264e",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/management.json",
+          "before_sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+          "after_sha256": "c169fd061a0ae26fb95f02c17208c918efe0809b9e1707ba070f3ee7f38f21fb",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
+          "before_sha256": "11e942d840a580441ba5b8ae99b1079ef29266a5ba907f17068d340db6dea8a2",
+          "after_sha256": "cc5fcbd7867572ab9da886a4a41bf9a76c5a603a6ca0b65aab278fd3b00a5645",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
+          "before_sha256": "5a2125d0562949126f5396ac760e9b0e2af7fc9a6d2cf96b6477937fcf84d7d8",
+          "after_sha256": "eb6966f48dbaa6bcb1dabd026293b2ebf305003fc5a4ef4eb64cac6e1d060cf0",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
+          "before_sha256": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+          "after_sha256": "e41eb19111640939ae40b0f1b62898f5538a00bb79bcd9e111e8e956bc1fbf66",
+          "rewritten": true
+        },
+        {
+          "path": "docs/research/2026-09-08-content-faces/results/learning/publication.json",
+          "before_sha256": "c834a075eeee69b95bc161dd9dbdac2a54c8211b88cb804d549081c835360801",
+          "after_sha256": "d72b9aec4a058a1ea630bc1419f2e9bdf420bf71abea1fa7abf2602b9d7aee7e",
+          "rewritten": true
+        }
+      ],
+      "registry_before_sha256": "3ad295bfa31762f68dc4cb074a2586d0f012a79bd5ebda5638f382608e9019e8",
+      "registry_after_sha256": "31d777fbafbee20c642821a900b5f8e622c5f4737b352936270f5ffcef11b1d2"
     }
   ]
 }

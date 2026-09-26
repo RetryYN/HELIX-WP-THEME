@@ -5,16 +5,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { contentLab, contentLabWpCliArgs } from './lib/content-lab-env.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'docs/research/2026-09-08-content-faces/results/inheritance');fs.mkdirSync(out,{recursive:true});
 const baseline=process.argv.includes('--baseline');
 const faces={content_paid:'/library/decision-design/',content_interview:'/voices/making-room/',content_blp:'/guides/before-redesign/',content_lp:'/start/editorial-session/',content_learning:'/learn/page-design/',content_site:'/site-company/'};
 const rows=[],shots=[];const check=(name,pass)=>rows.push({name,pass:!!pass});let completed=false;
-const state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const wp=args=>execFileSync('docker',[...contentLabWpCliArgs(),...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
 const original=wp(['eval',"echo wp_json_encode(get_option('theme_mods_helix-wt',null));"]);let settingsChanged=false;let navigationId=0;
-const trackedSources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-content-inheritance.mjs','docs/research/2026-09-08-content-faces/plugin/search.php',...['inc/footer-navigation.php','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','inc/content-faces.php','inc/learning.php','inc/site-pages.php','inc/content-chrome.php','inc/content-navigation.php','config/content-chrome.json','theme.json','assets/css/theme.css','assets/css/content-faces.css','assets/css/site-pages.css','assets/css/content-chrome.css','assets/js/header.js','assets/js/footer.js','assets/js/side.js','parts/header-band.html','parts/header-center.html','parts/header-two-rows.html','parts/footer.html'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f),'docs/research/2026-09-08-content-faces/plugin/content-faces.php','docs/research/2026-09-08-content-faces/plugin/manifest.json'];
+const trackedSources=['docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/search.php','scripts/verify-content-inheritance.mjs','scripts/lib/content-lab-env.mjs','scripts/start-content-lab.py','docs/research/2026-09-08-content-faces/plugin/search.php',...['inc/footer-navigation.php','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','inc/content-faces.php','inc/learning.php','inc/site-pages.php','inc/content-chrome.php','inc/content-navigation.php','config/content-chrome.json','theme.json','assets/css/theme.css','assets/css/content-faces.css','assets/css/site-pages.css','assets/css/content-chrome.css','assets/js/header.js','assets/js/footer.js','assets/js/side.js','parts/header-band.html','parts/header-center.html','parts/header-two-rows.html','parts/footer.html'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f),'docs/research/2026-09-08-content-faces/plugin/content-faces.php','docs/research/2026-09-08-content-faces/plugin/manifest.json'];
 const getDigests=()=>Object.fromEntries(trackedSources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=getDigests();
 const browser=await chromium.launch();
@@ -27,7 +27,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:false});const page=await context.newPage();
   for(const [face,route] of Object.entries(faces))for(const mode of ['site','own','off']){
    const wt=['content_chrome:shared',`${face}_head:${mode}`,`${face}_foot:${mode}`,`${face}_fix:${mode}`,`${face}_side:${mode==='site'?'article':mode}`,'header:band',`own_${face}_header:center`,'footer_layout:single-row',`own_${face}_footer_layout:columns-3`,'fixed:float-cta',`own_${face}_fixed:float-tel`,'side_layout:right','side_set:minimal',`own_${face}_side_layout:left`, `own_${face}_side_set:minimal`].join(',');
-   const response=await page.goto('http://127.0.0.1:8098'+route+'?wt='+encodeURIComponent(wt));const label=`${face}:${mode}:${device}`;
+   const response=await page.goto(contentLab.baseUrl+route+'?wt='+encodeURIComponent(wt));const label=`${face}:${mode}:${device}`;
    check(`response:${label}`,response.ok());
    check(`face:${label}`,await page.locator('body').evaluate((e,face)=>e.classList.contains('wt-face-'+face),face));
    check(`header:${label}`,mode==='off'?await page.locator('.wt-header').count()===0:await page.locator('.wt-header').count()===1);
@@ -58,12 +58,12 @@ try{
   wp(['eval',"set_theme_mod('wt_content_chrome','shared');set_theme_mod('wt_header','band');set_theme_mod('wt_content_interview_head','own');set_theme_mod('wt_own_content_interview_header','center');"]);
   const page=await browser.newPage();
   for(const [face,route] of Object.entries(faces)){
-   await page.goto('http://127.0.0.1:8098'+route);
+   await page.goto(contentLab.baseUrl+route);
    check(`saved-settings:${face}`,await page.locator(face==='content_interview'?'.wt-header--center':'.wt-header--band').count()===1);
   }
   wp(['eval',"set_theme_mod('wt_header','two-rows');"]);
   for(const [face,route] of Object.entries(faces)){
-   await page.goto('http://127.0.0.1:8098'+route);
+   await page.goto(contentLab.baseUrl+route);
    check(`shared-update-own-isolation:${face}`,await page.locator(face==='content_interview'?'.wt-header--center':'.wt-header--two-rows').count()===1);
   }
   await page.close();

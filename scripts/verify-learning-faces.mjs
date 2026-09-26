@@ -10,7 +10,7 @@ const base = process.env.WTCF_BASE_URL || 'http://127.0.0.1:8098';
 if (!['127.0.0.1', 'localhost'].includes(new URL(base).hostname)) throw Error('Dedicated loopback lab required');
 const out = path.join(root, 'docs/research/2026-09-08-content-faces/results/learning');
 fs.mkdirSync(out, { recursive: true });
-const sources = ['scripts/verify-learning-faces.mjs', 'docs/research/2026-09-08-content-faces/plugin/learning.php',
+const sources = ['scripts/verify-learning-faces.mjs', 'scripts/start-content-lab.py', 'docs/research/2026-09-08-content-faces/plugin/learning.php',
   'docs/research/2026-09-08-content-faces/plugin/manifest.json', 'docs/research/2026-09-08-content-faces/seed-learning.php',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css'];
