@@ -28,7 +28,7 @@ function wt_defer_inactive_lp_hero_images( $html ) {
 		if ( in_array( $tag, array( 'DIV', 'SECTION' ), true ) ) {
 			if ( $tags->is_tag_closer() ) {
 				if ( empty( $elements ) || $tag !== end( $elements )['tag'] ) {
-					// Keep the stack intact: malformed boundaries invalidate the full fragment, which is returned unchanged.
+					// 境界の不整合は fragment 全体を無効にし、元の HTML を返すため、stack は変更しない。
 					$safe = false;
 					continue;
 				}
