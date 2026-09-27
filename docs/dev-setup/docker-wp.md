@@ -36,7 +36,7 @@ seo-tool-connector は隣接ディレクトリから読み取り専用でマウ�
 | mount 対象 | docker-compose.yml 記載 (Windows 想定) | Linux 環境での実 path |
 |---|---|---|
 | seo-tool-connector | `../seo-tool-v2-docs/Automation SEO/wordpress-plugin/seo-tool-connector` | `../seo-tool/v2/plugin` (= /opt/seo-tool/v2/plugin の隣接想定) |
-| themeB theme | `./themeB-2.16.0/themeB` | 開発環境内で別途配置 (= AGENT-NEO repo 外部) |
+| themeB theme | `./themeB-<version>/themeB` | 開発環境内で別途配置 (= AGENT-NEO repo 外部) |
 | themeB_child | `./themeB_child/themeB_child` | 同上 |
 | themeA-parent | `./themeA-parent/themeA/themeA` | 同上 |
 | themeA-child | `./themeA-child/themeA-child` | 同上 |

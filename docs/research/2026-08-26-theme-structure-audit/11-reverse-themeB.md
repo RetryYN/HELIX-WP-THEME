@@ -6,26 +6,7 @@
 
 `functions.php` は**薄い**。実体は 1 クラス + 順序付き require。
 
-```php
-require lib/check_environment.php     // 動作環境チェック（先頭）
-define T_DIRE / S_DIRE / T_DIRE_URI / S_DIRE_URI
-require lib/autoloader.php            // spl_autoload_register
-require lib/polyfill/php_functions.php
-
-class THEMEB_Theme extends \THEMEB_Theme\Theme_Data {
-    use Utility\Get, Utility\Attrs, Utility\Balloon, Utility\Parts, Utility\Status, Utility\Others;
-    public function __construct() {
-        self::data_init();                 // ① 設定を DB から読み、静的プロパティへ確定
-        require theme_setup / define_const / load_files / customizer / post_type / taxonomy
-              / custom_menu / widget / tiny_mce / output / gutenberg / post_meta / term_meta
-              / shortcode / pluggable / pluggable_parts / overwrite / content_filter
-              / rest_api / hooks / rewrite_html;
-        if ( current_user_can('manage_options') ) require activate / update / updated_action;
-        if ( is_admin() ) { require notice; new Meta_User(); new Admin_Menu(); }
-    }
-}
-new THEMEB_Theme();
-```
+> 第三者テーマのソース抜粋（18 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **観測点**
 - **設定の確定（`data_init`）が最初**。以降のすべてのモジュールが確定済み設定を前提にできる。
@@ -38,15 +19,7 @@ new THEMEB_Theme();
 
 `classes/Theme_Data.php`:
 
-```php
-const DB_NAMES = [
-  'customize' => 'themeB_customizer',   // カスタマイザ由来
-  'options'   => 'themeB_options',     // 設定画面由来（既定 540 キー）
-  'editors'   => 'themeB_editors',     // エディタ設定
-  'others'    => 'themeB_others',
-];
-const DB_TABLES = [ 'balloon' => 'themeB_balloon' ];   // ← 独自テーブル
-```
+> 第三者テーマのソース抜粋（7 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 - 設定は**単一配列 4 本**に集約。既定値は `classes/Data/Default_Settings.php`（667 行）が持ち、
   実値とマージして `THEMEB_Theme::$setting` / `$customize` / `$options` / `$editors` に載る。
@@ -130,10 +103,7 @@ register_themeB_blocks()  // init
   → 属性・supports・スタイルの定義は **block.json が正本**。PHP は配線だけ。
 
 ### 5.2 動的ブロックの中身（`post-link.php` の例）
-```php
-\THEMEB_Theme::register_block('post-link', ['render_callback' => __NAMESPACE__ . '\cb']);
-function cb( $attrs ) { … }
-```
+> 第三者テーマのソース抜粋（2 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 - **属性のバージョン移行がコード内に明示**されている:
   `linkData`（v2 以降: `id` / `url` / `kind` / `type`）があればそれを使い、
   無ければ v1 の `postId` / `externalUrl` にフォールバック。

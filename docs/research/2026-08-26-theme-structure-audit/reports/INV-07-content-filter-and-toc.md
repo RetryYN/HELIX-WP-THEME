@@ -14,11 +14,7 @@
 
 証跡（`evidence/re-themeA-render.txt`、grep 結果そのまま）:
 
-```
-include/custom-functions.php:1250  add_filter('the_content', 'wrap_iframe_in_div');
-include/custom-functions.php:3433  add_filter('the_content', 'themeA_paid_content_display_switch', 9);
-include/custom-functions.php:4523  add_filter('the_content', 'themeA_h2_ads_concert');
-```
+> 第三者テーマのソース抜粋（3 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 | # | 変換 | 優先度 | 内容 | 依存 |
 |---|---|---|---|---|
@@ -119,22 +115,7 @@ include/custom-functions.php:4523  add_filter('the_content', 'themeA_h2_ads_conc
 
 ショートコードは**空のプレースホルダを置くだけ**で、実体は後段が入れる:
 
-```php
-if ( false !== strpos( $content, 'class="themeB-toc-placeholder"' ) ) {
-	$toc = '<div class="p-toc -called-from-sc -' . $SETTING['index_style'] . '">' . … ;
-	$content = str_replace( '<div class="themeB-toc-placeholder"></div>', $toc_content, $content );
-	テーマB::$added_toc = true;
-} elseif ( $is_content_hook ) {
-	if ( テーマB::$added_toc ) return $content;      // 二重生成防止
-	…
-	$tag = '/^<h2.*?>/im';
-	if ( (int) get_query_var( 'page' ) > 1 ) {
-		$content = $toc_content . $content;          // 2ページ目以降は先頭
-	} else {
-		$content = preg_replace( $tag, $toc_content . $tags[0], $content, 1 );
-	}
-}
-```
+> 第三者テーマのソース抜粋（14 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 ### 3.3 採用する規則
 

@@ -19,14 +19,7 @@ depends: なし
 
 ### ① `redirect_canonical` の無条件無効化
 
-```php
-add_filter('redirect_canonical', 'themeA_disable_redirect_canonical');
-function themeA_disable_redirect_canonical($redirect_url)
-{
-	$redirect_url = false;
-	return $redirect_url;
-}
-```
+> 第三者テーマのソース抜粋（6 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 コメントの意図は「記事内ページネーションのリンク先を `/pages/2/` にするため」だが、
 実装は引数を見ずに**常に `false`**。WordPress の正規化リダイレクトが**全面停止**する。
@@ -40,16 +33,7 @@ function themeA_disable_redirect_canonical($redirect_url)
 
 ### ② 全ページでの `session_start()` + `session_regenerate_id()`
 
-```php
-add_action('template_redirect', 'themeA_init_session_start');
-function themeA_init_session_start()
-{
-	if (session_status() !== PHP_SESSION_ACTIVE) {
-		session_start();
-		session_regenerate_id();
-	}
-}
-```
+> 第三者テーマのソース抜粋（8 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 - フロントの**全ページ描画で発火**（有料記事を使わないページでも）
 - `session_regenerate_id()` を毎リクエストで実行 — 通常は権限昇格時のみ呼ぶもの
