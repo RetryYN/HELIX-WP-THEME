@@ -17,8 +17,8 @@ const themeJsonSource=fs.readFileSync(path.join(root,themeJsonPath));
 const themeJson=JSON.parse(themeJsonSource.toString('utf8'));
 const expectedThemeJson=hash(themeJsonSource);
 const accentHex=themeJson.settings?.color?.palette?.find(token=>token.slug==='accent')?.color;
-if(!/^#[0-9a-f]{6}$/iu.test(accentHex??''))throw Error('theme.json accent palette token missing or invalid');
-const accentColor=`rgb(${[1,3,5].map(index=>Number.parseInt(accentHex.slice(index,index+2),16)).join(', ')})`;
+const accentValid=/^#[0-9a-f]{6}$/iu.test(accentHex??'');
+let accentColor=null;
 const expectedSiteCSS=hash(fs.readFileSync(path.join(root,siteCSSPath)));
 const expectedCSS=hash(fs.readFileSync(path.join(root,cssPath)));
 const route='/?wt=home_hero:split,home_sections:service,home_side_layout:right,home_side_set:full,side_from:below-hero,home_fixed:sp-bottom-bar,home_fix:own,home_contact:double-cta';
@@ -31,6 +31,8 @@ let browser,completed=false;const errors=[];
 const save=()=>fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify({kind:'mounted-css-sidebar-regression',completed,errors,sourceDigests:{[cssPath]:expectedCSS,[siteCSSPath]:expectedSiteCSS,[themeJsonPath]:expectedThemeJson,'scripts/verify-sidebar-specificity.mjs':hash(fs.readFileSync(fileURLToPath(import.meta.url)))},bindings,rows,limitations:'Scoped axe only; review incomplete items and screenshots. Numeric banner contrast supplements gradient incomplete results. Not whole-theme accessibility certification.'},null,2)+'\n');
 fs.mkdirSync(out,{recursive:true});save();
 try{
+ if(!accentValid)throw Error('theme.json accent palette token missing or invalid');
+ accentColor=`rgb(${[1,3,5].map(index=>Number.parseInt(accentHex.slice(index,index+2),16)).join(', ')})`;
  browser=await chromium.launch();
  for(const [device,width] of [['pc',1440],['sp',390]])for(const scenario of scenarios){
   const screen=scenario.name+'-'+device;
