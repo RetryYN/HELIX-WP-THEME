@@ -37,7 +37,7 @@ npx playwright install chromium
 
 content-labを使う検証器とリサーチprobeは、`content-lab-env.mjs`または`content_lab_env.py`から接続先・状態領域を取得する。これによりWP-CLI、PHP、ブラウザーの各経路が同じnetwork・container・portを使う。検証器とlauncherの双方で明示ポートとDocker名を同じ規則で検査する。`scripts/`と`docs/research/`の対象コードをテストで走査し、共有labの直書きが隔離設定を迂回しないことを確認する。
 
-`WTCF_STATE_DIR`を指定した場合は、そのディレクトリの`credentials.json`を検証スクリプトへ渡す。資格情報はリポジトリ外で生成・保持し、ログや公開成果物に含めない。ガード付き起動スクリプトは既存labのimage・network・port・volume・bind mountを照合してから既存launcherを実行し、異なる環境は変更しない。専用fixtureの再投入は既存launcherの動作として行う。
+`WTCF_STATE_DIR`を指定した場合は、そのディレクトリの`credentials.json`を検証スクリプトへ渡す。資格情報はリポジトリ外で生成・保持し、ログや公開成果物に含めない。ガード付き起動スクリプトは既存labのimage・network・port・volume・bind mountを照合し、自身で既存コンテナの再利用または作成、必要な停止済みコンテナの起動、fixture seedを行う。不一致やinspectの予期しない失敗ではコンテナ操作をせず終了する。過去証跡がsource bindingする旧 `scripts/start-content-lab.py` はdigest維持のため残しており、ガードを通らないため新しい起動では使わない。二つの起動実装は重複しているので、変更時は両方の整合を確認する。
 
 独立レビューでは既存の資格情報を共有しない。レビュー対象checkoutで `python3 scripts/start-content-lab-guarded.py` を実行すると、`WTCF_STATE_DIR`（未指定なら `${TMPDIR:-/tmp}/helix-content-lab`）へ新しい `credentials.json` がmode 0600で生成される。その直後に上記の `WTCF_LAB_CREDENTIALS=... node scripts/verify-content-faces.mjs` を実行すれば、リポジトリへ秘密値を置かず同じ検査を再現できる。出力JSONとログには資格情報を保存しない。
 
