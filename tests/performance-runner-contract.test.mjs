@@ -1,15 +1,17 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { runProbeProcess } from '../scripts/performance-gate/probe-execution.mjs';
-import { collectThemeInputDigests } from '../scripts/performance-gate/theme-input-manifest.mjs';
+import { collectThemeInputDigests, compareMountedSourceHashes } from '../scripts/performance-gate/theme-input-manifest.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const runner = fs.readFileSync(path.join(root, 'scripts/run-performance-gate.mjs'), 'utf8');
 const workflow = fs.readFileSync(path.join(root, '.github/workflows/theme-quality-gate.yml'), 'utf8');
+const createHashForTest = value => createHash('sha256').update(value).digest('hex');
 
 test('real child execution rejects stale report, child failure, and incomplete fresh report', () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'helix-probe-runner-'));
@@ -96,6 +98,41 @@ test('the source manifest includes all current theme render inputs, including HO
     assert.match(source, /reducedMotion: 'no-preference'/u, `${probe} measures with normal motion preference`);
     assert.match(source, /deviceScaleFactor/u, `${probe} sets explicit SP/PC device scale`);
   }
+});
+
+test('listing probe accepts only an exact mounted theme source-hash match', () => {
+  const themeDir = 'theme/helix-wt';
+  const sourceFiles = ['functions.php', 'assets/js/category.js'];
+  const functionDigest = createHashForTest('function source');
+  const scriptDigest = createHashForTest('category source');
+  const localSourceDigests = {
+    'scripts/performance-gate/listing-loadmore-inp-probe.mjs': createHashForTest('probe source'),
+    [`${themeDir}/functions.php`]: functionDigest,
+    [`${themeDir}/assets/js/category.js`]: scriptDigest,
+  };
+  const runtimeHashes = { 'functions.php': functionDigest, 'assets/js/category.js': scriptDigest };
+  const matching = compareMountedSourceHashes(runtimeHashes, localSourceDigests, themeDir, sourceFiles);
+  assert.equal(matching.matches, true);
+  assert.deepEqual(matching.errors, []);
+
+  const changed = compareMountedSourceHashes({ ...runtimeHashes, 'functions.php': createHashForTest('other function source') },
+    localSourceDigests, themeDir, sourceFiles);
+  assert.equal(changed.matches, false);
+  assert.deepEqual(changed.errors, ['source digest mismatch: functions.php']);
+
+  const missingRuntimeHash = compareMountedSourceHashes({ 'functions.php': functionDigest }, localSourceDigests, themeDir, sourceFiles);
+  assert.equal(missingRuntimeHash.matches, false);
+  assert.match(missingRuntimeHash.errors.join('\n'), /runtime source hash missing: assets\/js\/category\.js/u);
+
+  const missingLocalDigest = compareMountedSourceHashes(runtimeHashes,
+    { [`${themeDir}/functions.php`]: functionDigest }, themeDir, sourceFiles);
+  assert.equal(missingLocalDigest.matches, false);
+  assert.match(missingLocalDigest.errors.join('\n'), /local source digest missing or invalid: assets\/js\/category\.js/u);
+
+  const unexpectedRuntimeHash = compareMountedSourceHashes({ ...runtimeHashes, 'unlisted.php': createHashForTest('extra') },
+    localSourceDigests, themeDir, sourceFiles);
+  assert.equal(unexpectedRuntimeHash.matches, false);
+  assert.match(unexpectedRuntimeHash.errors.join('\n'), /unexpected runtime source hash: unlisted\.php/u);
 });
 
 test('the performance job uses repository Node pin and keeps the HOME regression measurement separate', () => {

@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 import { collectLighthouseRuns } from './lighthouse-collector.mjs';
+import { compareMountedSourceHashes } from './theme-input-manifest.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const evidenceDir = path.resolve(process.env.PERF_GATE_REPORT_DIR ?? path.join(root, '.performance-gate'));
@@ -301,6 +302,11 @@ try {
     postsPerPage: initialRuntime.postsPerPage, sourceHashes: initialRuntime.sourceHashes };
   assert.equal(initialRuntime.theme, 'helix-wt');
   assert.equal(initialRuntime.themeDirectory, '/var/www/html/wp-content/themes/helix-wt');
+  const sourceHashComparison = compareMountedSourceHashes(initialRuntime.sourceHashes, report.sourceDigests, themeDir, sourceFiles);
+  runtimeHashesMatch = sourceHashComparison.matches;
+  report.runtime.sourceHashComparison = sourceHashComparison;
+  check('mounted-theme-source-hashes-match-local-inputs', runtimeHashesMatch, sourceHashComparison);
+  if (!runtimeHashesMatch) throw new Error(`mounted theme source hash comparison failed: ${sourceHashComparison.errors.join('; ')}`);
   assert.equal(initialRuntime.existing.termExists, false, 'generated unique term slug is absent before creation');
   assert.deepEqual(initialRuntime.existing.posts, [], 'generated unique post slugs are absent before creation');
 
