@@ -38,7 +38,7 @@ WTCF_BASE_URL=http://127.0.0.1:18258 node scripts/verify-sidebar-specificity.mjs
 
 Claudeレビュー #380 の指摘に合わせ、検証器はnews/rank/related/eventsのhover色を `theme.json` の独立した `accent` palette token（現在 `#1d4ed8`）と比較する。期待色は検査対象要素のcomputed styleから導かない。この色assertと既存のbanner/CTA固定色assertはtheme.jsonの既定variationを前提とする。`mincho` / `rules` variationを選んだラボでは別のaccentとなるため、この検証器を実行する際は既定variationを使う。tokenが欠落または不正な場合は初期の未完了reportを保存し、errorを記録してnonzeroで終了する。theme JSONと検証器をsource digestへ含め、実配信CSSの待機は明示的な30秒上限と対象stylesheet名・元エラーを含む失敗理由を持たせた。通常の対象操作や色規則は変更していない。
 
-この追補後の検証器は静的構文確認のみで、実マウント再実行・証拠再生成は未実施である。上記430項目の結果は旧検証器の実行結果であり、新しいhover色assertの合格を示さない。TOCの挙動も未検証のまま。この作業では新たなTOC仕様や挙動を加えていない。実マウント結果とsource bindingは後続検証が必要。
+追補直後は静的構文確認のみだった。従来430項目の結果は旧検証器の実行結果であり、新しいhover色assertの合格には用いない。追加assertは後述の「PR #380 再開後の局所検証」で実行した。TOCの挙動は未検証で、新たなTOC仕様や挙動は加えていない。正式証拠の再生成とsource binding更新は引き続き必要である。
 
 ## 通常配信での局所検証結果
 
@@ -53,3 +53,13 @@ Claudeレビュー #380 の指摘に合わせ、検証器はnews/rank/related/ev
 検証器にHOMEとsite own/siteのPC/SP、バナー幅/display、本文リンクの最小タップ領域、site CSSの配信hash照合を追加した。修正前の通常配信では288項目中120項目が不合格となり、例外は0。負例の全画像とreportを `local-evidence/sidebar-specificity/mounted-site-negative/` に保全した。`--site-only` はこのsite4条件のみを実行する。
 
 2セレクタ修正後の通常配信ではHOME/site own/site site × PC/SPの430項目が全合格、例外0。theme/site CSSの配信hashはsourceと一致した。バナー54状態のコントラスト下限6.7016:1、scoped axe違反0、gradientのincomplete54件を数値assertで補完した。本文タップ領域も全4条件で合格。表示画像の未読込みは全6条件で0（HOME各9枚、site各2枚）。代表通常/hover/focus画像と全6末尾画像を実見し、全幅・左寄せ・白文字・focus輪郭と末尾画像表示を確認した。新しい局所結果は `local-evidence/sidebar-specificity/mounted/verification.json`。正式な証拠再生成や全体gateは別工程であり、この結果に含めない。
+
+## PR #380 再開後の局所検証
+
+ソースHEAD `b63a60e1` を既存の隔離WordPressへ読み取り専用で接続し、HOME・site own・site site × PC1440/SP390の6条件を順番に検証した。454項目が成功し、失敗・例外は0。追加したnews/rank/related/eventsのhover accent検査24項目も含む。全6条件で配信CSSのハッシュが検査対象と一致した。
+
+実行環境はWordPress 7.1、Node.js 24.19.0、Playwright 1.61.0、axe 4.12.1、Chrome for Testing 149.0.7827.55。これは表示・操作の局所回帰検査であり、Chrome 156を用いる性能測定とは別である。既定paletteを読み取り確認し、設定を変更せず実行した。実行前後でテーマ205ファイルとWP設定が一致し、検証後に検証用WPとDBを停止した。元WPの定義と停止状態は維持した。
+
+画像は96枚取得した。Astraによる視覚確認は、footer全6枚・banner1の全6画面各3状態（18枚）・HOMEのCTA/SNSのPC/SP各3状態（12枚）の計36枚に限定し、その範囲で指摘なし。未確認60枚、全体a11y、TOC、他variation、正式な受入証拠の更新や公開可否の人による承認へ判定を広げない。
+
+実行記録は非公開の `local-evidence/sidebar-specificity/runtime-attempt-1/`、詳細な検査結果と画像は `local-evidence/sidebar-specificity/mounted/` に保管する。正式証拠の再生成とrebindは未完了である。
