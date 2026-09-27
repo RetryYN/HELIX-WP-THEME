@@ -141,6 +141,13 @@ jobs:
           A11Y_REPORT_PATH: ${{ runner.temp }}/a11y-positive.json
         run: node scripts/verify-a11y.mjs
 
+      - name: Verify LP hero image loading regression (not a CWV acceptance gate)
+        if: always() && steps.theme-setup.outcome == 'success'
+        env:
+          WTCF_BASE_URL: http://localhost:8086
+          WTCF_WP_CONTAINER: ${{ job.services.wordpress.id }}
+        run: node scripts/verify-lp-hero-images.mjs
+
       - name: Verify one-violation negative control fails closed
         if: always() && steps.theme-setup.outcome == 'success'
         env:
@@ -162,6 +169,14 @@ jobs:
         with:
           name: a11y-axe-reports
           path: ${{ runner.temp }}/a11y-*.json
+          if-no-files-found: error
+
+      - name: Upload LP hero image regression evidence
+        if: always() && steps.theme-setup.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp-hero-image-regression
+          path: local-evidence/lp-hero-images/**
           if-no-files-found: error
 
   lhci-gate:
