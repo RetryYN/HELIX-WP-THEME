@@ -28,6 +28,7 @@ function wt_defer_inactive_lp_hero_images( $html ) {
 		if ( in_array( $tag, array( 'DIV', 'SECTION' ), true ) ) {
 			if ( $tags->is_tag_closer() ) {
 				if ( empty( $elements ) || $tag !== end( $elements )['tag'] ) {
+					// Keep the stack intact: malformed boundaries invalidate the full fragment, which is returned unchanged.
 					$safe = false;
 					continue;
 				}
