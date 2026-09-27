@@ -1,20 +1,39 @@
 {
-  "ci": {
-    "collect": {
-      "url": ["http://localhost:8086/"],
-      "numberOfRuns": 3
-    },
-    "assert": {
-      "assertions": {
-        "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
-        "total-blocking-time": ["error", { "maxNumericValue": 200 }],
-        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
-        "render-blocking-resources": ["error", { "maxLength": 0 }]
-      }
-    },
-    "upload": {
-      "target": "filesystem",
-      "outputDir": ".lighthouseci"
-    }
+  "schema": "helix-lighthouse-performance-gate.v1",
+  "versions": {
+    "lighthouse": "13.5.0",
+    "chrome": "156.0.8075.0",
+    "webVitals": "6.2.2"
+  },
+  "runsPerCondition": 3,
+  "aggregation": "maximum-of-all-three-runs",
+  "thresholds": {
+    "largest-contentful-paint": { "maxNumericValue": 2500 },
+    "interaction-to-next-paint": { "maxNumericValue": 200 },
+    "cumulative-layout-shift": { "maxNumericValue": 0.1 }
+  },
+  "insightIds": [
+    "lcp-discovery-insight",
+    "lcp-breakdown-insight",
+    "cls-culprits-insight",
+    "inp-breakdown-insight"
+  ],
+  "conditions": {
+    "article": "created-by-owned-fixture",
+    "landing-page": "/a11y-fixture-lp/",
+    "listing": "created-by-owned-fixture",
+    "comparison": "created-by-owned-fixture"
+  },
+  "homeRegression": {
+    "url": "/",
+    "device": "mobile",
+    "runs": 3,
+    "screenEmulation": { "width": 412, "height": 823, "deviceScaleFactor": 1.75 },
+    "lcpMaxNumericValue": 2500,
+    "renderBlockingInsight": { "maxLength": 0 }
+  },
+  "devices": {
+    "sp": { "width": 390, "height": 844, "deviceScaleFactor": 3 },
+    "pc": { "width": 1440, "height": 900, "deviceScaleFactor": 1 }
   }
 }
