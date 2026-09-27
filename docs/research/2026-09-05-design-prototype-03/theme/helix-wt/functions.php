@@ -10,6 +10,7 @@ require_once __DIR__ . '/inc/zone-slots.php';
 require_once __DIR__ . '/inc/banner-zones.php';
 require_once __DIR__ . '/inc/device-vocabulary.php';
 require_once __DIR__ . '/inc/home-hero-images.php';
+require_once __DIR__ . '/inc/lp-hero-images.php';
 
 // ---------- 選択軸（キー => [既定, 許容値]） ----------
 function wt_axes() {
