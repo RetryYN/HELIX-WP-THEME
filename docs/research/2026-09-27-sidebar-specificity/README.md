@@ -34,6 +34,12 @@ WTCF_BASE_URL=http://127.0.0.1:18258 node scripts/verify-sidebar-specificity.mjs
 
 正式merge済みHOME変更 `2a4ca879` へ未commit修正を保持して前進した。専用Content Labの既存データvolumeを保全し、本worktreeのthemeをread-only mountして局所検証する。全件rebind、commit/pushは局所結果の検収後に別工程で行う。
 
+## レビュー追補
+
+Claudeレビュー #380 の指摘に合わせ、検証器はnews/rank/related/eventsのhover色を `theme.json` の独立した `accent` palette token（現在 `#1d4ed8`）と比較する。期待色は検査対象要素のcomputed styleから導かない。theme JSONと検証器をsource digestへ含め、実配信CSSの待機は明示的な30秒上限と対象stylesheet名・元エラーを含む失敗理由を持たせた。通常の対象操作や色規則は変更していない。
+
+この追補後の検証器は静的構文確認のみで、実マウント再実行・証拠再生成は未実施である。上記430項目の結果は旧検証器の実行結果であり、新しいhover色assertの合格を示さない。TOCの挙動も未検証のまま。この作業では新たなTOC仕様や挙動を加えていない。実マウント結果とsource bindingは後続検証が必要。
+
 ## 通常配信での局所検証結果
 
 `2a4ca879` を基点に、修正CSSを専用ラボへread-only mountして実行した。レスポンス差替えなしで配信CSSとsourceのSHA-256一致をPC/SPとも確認し、124検査が全合格した。3バナーの通常/hover/focus全18状態の見出しコントラスト下限は6.7016:1。scoped axeのviolationsは0、gradientのcolor-contrast incompleteは18件あり、これらを数値assertと画像実見で補完した。PC/SPそれぞれ表示画像9枚の未読込みは0。バナーの白文字・左寄せ、CTA/SNSの色・focus輪郭、footer末尾と固定バーの非重複を画像で確認した。

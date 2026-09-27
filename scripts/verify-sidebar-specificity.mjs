@@ -12,6 +12,13 @@ const out=path.join(root,'local-evidence/sidebar-specificity/mounted');
 const cssPath='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const siteCSSPath=cssPath.replace('theme.css','site-pages.css');
+const themeJsonPath='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/theme.json';
+const themeJsonSource=fs.readFileSync(path.join(root,themeJsonPath));
+const themeJson=JSON.parse(themeJsonSource.toString('utf8'));
+const expectedThemeJson=hash(themeJsonSource);
+const accentHex=themeJson.settings?.color?.palette?.find(token=>token.slug==='accent')?.color;
+if(!/^#[0-9a-f]{6}$/iu.test(accentHex??''))throw Error('theme.json accent palette token missing or invalid');
+const accentColor=`rgb(${[1,3,5].map(index=>Number.parseInt(accentHex.slice(index,index+2),16)).join(', ')})`;
 const expectedSiteCSS=hash(fs.readFileSync(path.join(root,siteCSSPath)));
 const expectedCSS=hash(fs.readFileSync(path.join(root,cssPath)));
 const route='/?wt=home_hero:split,home_sections:service,home_side_layout:right,home_side_set:full,side_from:below-hero,home_fixed:sp-bottom-bar,home_fix:own,home_contact:double-cta';
@@ -21,7 +28,7 @@ const rows=[],bindings=[];const check=(name,pass,details)=>rows.push({name,pass,
 const luminance=rgb=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;}).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
 const contrast=(a,b)=>(Math.max(luminance(a),luminance(b))+.05)/(Math.min(luminance(a),luminance(b))+.05);
 let browser,completed=false;const errors=[];
-const save=()=>fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify({kind:'mounted-css-sidebar-regression',completed,errors,sourceDigests:{[cssPath]:expectedCSS,[siteCSSPath]:expectedSiteCSS,'scripts/verify-sidebar-specificity.mjs':hash(fs.readFileSync(fileURLToPath(import.meta.url)))},bindings,rows,limitations:'Scoped axe only; review incomplete items and screenshots. Numeric banner contrast supplements gradient incomplete results. Not whole-theme accessibility certification.'},null,2)+'\n');
+const save=()=>fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify({kind:'mounted-css-sidebar-regression',completed,errors,sourceDigests:{[cssPath]:expectedCSS,[siteCSSPath]:expectedSiteCSS,[themeJsonPath]:expectedThemeJson,'scripts/verify-sidebar-specificity.mjs':hash(fs.readFileSync(fileURLToPath(import.meta.url)))},bindings,rows,limitations:'Scoped axe only; review incomplete items and screenshots. Numeric banner contrast supplements gradient incomplete results. Not whole-theme accessibility certification.'},null,2)+'\n');
 fs.mkdirSync(out,{recursive:true});save();
 try{
  browser=await chromium.launch();
@@ -29,11 +36,14 @@ try{
   const screen=scenario.name+'-'+device;
   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
   const page=await context.newPage();
-  const cssResponse=page.waitForResponse(r=>new URL(r.url()).pathname.endsWith('/assets/css/theme.css'));
-  const siteResponse=scenario.name==='home'?null:page.waitForResponse(r=>new URL(r.url()).pathname.endsWith('/assets/css/site-pages.css'));
-  const response=await page.goto(contentLab.baseUrl+scenario.route);const served=await cssResponse;
+  const waitForStylesheet=(filename)=>page.waitForResponse(r=>new URL(r.url()).pathname.endsWith(`/assets/css/${filename}`),{timeout:30000}).catch(error=>{throw new Error(`${screen}: expected ${filename} response was not received: ${error.message}`);});
+  const cssResponse=waitForStylesheet('theme.css');
+  const siteResponse=scenario.name==='home'?null:waitForStylesheet('site-pages.css');
+  const pending=[page.goto(contentLab.baseUrl+scenario.route),cssResponse];
+  if(siteResponse)pending.push(siteResponse);
+  const [response,served,servedSite]=await Promise.all(pending);
   const servedCSS=hash(await served.body());
-  const servedSiteCSS=siteResponse?hash(await (await siteResponse).body()):null;
+  const servedSiteCSS=servedSite?hash(await servedSite.body()):null;
   bindings.push({device,scenario:scenario.name,route:scenario.route,servedSiteCSSSHA256:servedSiteCSS,htmlSHA256:hash(await response.body()),servedCSSSHA256:servedCSS,expectedCSSSHA256:expectedCSS});
   if(servedCSS!==expectedCSS)throw Error('Mounted CSS differs from checked source');
   if(siteResponse&&servedSiteCSS!==expectedSiteCSS)throw Error('Mounted site CSS differs from checked source');
@@ -52,6 +62,7 @@ try{
     else if(part==='cta')check(label+':cta-colors',style.color==='rgb(255, 255, 255)'&&style.background==='rgb(194, 65, 12)'&&style.minHeight==='48px',style);
     else if(part==='sns')check(label+':sns-colors',style.color==='rgb(255, 255, 255)'&&style.background==='rgb(23, 28, 34)'&&style.justify==='center',style);
     else check(label+':widget-layout',part==='news'?style.align==='flex-start':style.justify==='flex-start',style);
+    if(state==='hover'&&['news','rank','related','events'].includes(part))check(label+':hover-accent',style.color===accentColor,{...style,expectedAccent:accentColor,accentToken:accentHex});
     if(part.startsWith('banner')){
      check(label+':full-width-flex',style.display==='flex'&&Math.abs(style.width-style.parentWidth)<=1,style);
      // 現行の不透明2色gradientに限定。全RGB成分が明端以下なので白文字の下限を明端で算定できる。
