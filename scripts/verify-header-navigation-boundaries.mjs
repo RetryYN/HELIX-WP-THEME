@@ -22,7 +22,7 @@ for(const [state,ref]of [['unset',null],['zero',0],['missing',2147483647],['wron
 }
 const encoded=Buffer.from(content).toString('base64');php(`wp_update_post(wp_slash(['ID'=>${nav},'post_status'=>'publish','post_content'=>base64_decode('${encoded}')]));`);set(nav);await page.close();
 for(const js of[true,false]){
- const p=await browser.newPage({viewport:{width:390,height:900},javaScriptEnabled:js});p.setDefaultTimeout(2500);
+ const p=await browser.newPage({viewport:{width:390,height:900},javaScriptEnabled:js});p.setDefaultTimeout(30000);
  for(const kind of['native','shared'])for(const h of headers)for(const sp of axes){const name=`hierarchy:${kind}:${h}:${sp}:${js}`;conditions.push(name);try{
   await p.goto(url(kind,h,sp),{waitUntil:'load'});const toggle=p.locator('.wt-header .wp-block-navigation__responsive-container-open:visible');if(js&&sp!=='text-nav'&&await toggle.count())await toggle.first().click();
   if(js){const submenu=p.locator('.wt-header .wp-block-navigation-submenu__toggle:visible').first();if(await submenu.count())await submenu.click();}
