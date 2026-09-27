@@ -1,6 +1,7 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import{chromium}from'playwright';import{execFileSync}from'node:child_process';import fs from'node:fs';
 const out='docs/research/2026-09-13-header-navigation-complete';const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt';
-const php=c=>execFileSync('docker',['exec','helix-content-wp','php','-r',`require '/var/www/html/wp-load.php';${c}`],{encoding:'utf8'}).trim();const wp=c=>JSON.parse(php(c));if(php('echo get_option("blogname");')!=='HELIX Content Lab')throw Error('lab');
+const php=c=>execFileSync('docker',['exec',contentLab.wpContainer,'php','-r',`require '/var/www/html/wp-load.php';${c}`],{encoding:'utf8'}).trim();const wp=c=>JSON.parse(php(c));if(php('echo get_option("blogname");')!=='HELIX Content Lab')throw Error('lab');
 const original=php('echo wp_json_encode(get_option("theme_mods_helix-wt",null));');const rows=[],conditions=[],created=[];const check=(name,pass,detail)=>rows.push({name,pass:!!pass,...(!pass?{detail}:{})});const set=ref=>php(`set_theme_mod('wt_content_navigation_ref',json_decode(base64_decode('${Buffer.from(JSON.stringify(ref)).toString('base64')}'),true));`);
 const insert=(type,slug,content)=>{const encoded=Buffer.from(JSON.stringify({post_type:type,post_name:slug,post_status:'publish',post_title:slug,post_content:content})).toString('base64');const id=Number(php(`if(get_page_by_path('${slug}',OBJECT,'${type}'))throw new Exception('collision');echo wp_insert_post(wp_slash(json_decode(base64_decode('${encoded}'),true)));`));created.push(id);return id;};
 const headers=['search','nav','cta','announce','center','two-rows','overlay','tel','band'],axes=['search','right','left','cta','text-nav','center-logo'];
@@ -10,7 +11,7 @@ const content='<!-- wp:navigation-submenu {"label":"読みもの","url":"/librar
 const nav=insert('wp_navigation','header-boundary-nav',content), other=insert('wp_navigation','header-boundary-other','<!-- wp:navigation-link {"label":"本文専用の案内","url":"/learn/"} /-->');
 const native=insert('post','header-boundary-native','<!-- wp:navigation {"ref":'+other+',"overlayMenu":"never"} /-->');
 const nativePath=wp(`echo wp_json_encode(wp_parse_url(get_permalink(${native}),PHP_URL_PATH));`);
-const url=(kind,h,sp='cta')=>'http://127.0.0.1:8098'+(kind==='native'?nativePath:'/library/decision-design/')+'?wt=content_chrome:shared,content_paid_head:site,header:'+h+',sp:'+sp;
+const url=(kind,h,sp='cta')=>`${contentLab.baseUrl}`+(kind==='native'?nativePath:'/library/decision-design/')+'?wt=content_chrome:shared,content_paid_head:site,header:'+h+',sp:'+sp;
 // 不正参照は全型・両経路で確認。JS無効でも固定リンクや暗黙一覧が出ない。
 const page=await browser.newPage({viewport:{width:390,height:900},javaScriptEnabled:false});
 for(const [state,ref]of [['unset',null],['zero',0],['missing',2147483647],['wrong-type',native],['malformed','abc'],['array',[nav]],['draft',nav],['private',nav],['trash',nav],['empty',nav]]){

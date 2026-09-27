@@ -1,14 +1,17 @@
 """Verify independent content management in the dedicated lab. Run without concurrent captures."""
 import json
-import os
+import hashlib
 from pathlib import Path
 import subprocess
-import tempfile
+from lib.content_lab_env import content_lab_config
 
 root = Path(__file__).resolve().parent.parent
-state = Path(os.environ.get('WTCF_STATE_DIR', str(Path(tempfile.gettempdir()) / 'helix-content-lab')))
-cli = ['docker', 'run', '--rm', '--network', 'helix-content-lab', '--env-file', str(state / 'wp.env'),
-       '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp']
+lab = content_lab_config()
+state = lab.state_dir
+network = lab.network
+wp_container = lab.wp_container
+cli = ['docker', 'run', '--rm', '--network', network, '--env-file', str(state / 'wp.env'),
+       '--volumes-from', wp_container, '--user', '33:33', 'wordpress:cli-php8.3', 'wp']
 
 
 def wp(args):
@@ -59,6 +62,11 @@ result = {'schema': 'wt-content-management-evidence.v1', 'completed': True,
               'all-declared-independent-admin-and-rest-types', 'unconfirmed-interview-remains-draft',
               'theme-switch-preserves-types-record-identities-and-content', 'learning-parent-order-and-standard-block-body', 'original-theme-restored']],
           'fixture_count': len(before), 'type_count': int(wp(['eval', 'echo count(wtcf_manifest()["types"]);']))}
+sources = [Path(__file__), root / 'scripts/start-content-lab.py'] + sorted((root / 'docs/research/2026-09-08-content-faces/plugin').rglob('*'))
+result['sourceDigests'] = {
+    path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+    for path in sources if path.is_file()
+}
 out = root / 'docs/research/2026-09-08-content-faces/results/management.json'
 out.write_text(json.dumps(result, indent=2) + '\n')
 print('Content management: 5 checks passed; independent records and content preserved; original theme restored')

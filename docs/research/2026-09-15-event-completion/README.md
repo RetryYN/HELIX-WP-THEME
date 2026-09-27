@@ -30,8 +30,9 @@ node scripts/verify-home-pattern-reuse.mjs
 node scripts/verify-event-completion.mjs --baseline --finished-only
 node scripts/verify-event-completion.mjs
 node scripts/build-selection-catalog.mjs
-npx playwright test tests/e2e/selection-catalog.spec.ts tests/e2e/home-selection-catalog.spec.ts tests/e2e/event-selection-catalog.spec.ts --workers=1
 ```
+
+独立HTMLカタログとその専用E2Eは破棄済み。完成構成の表示は検証用WordPressで確認する。以下のカタログE2Eに関する記録は、破棄前の履歴である。
 
 event検証器はblognameと予約slug不在を確認し、作成IDにUUID所有markerを付ける。fixture mode optionは存在有無を含めてsnapshotし、finallyで復元。作成IDの所有を再確認して削除し、予約slug不在を検査する。強制終了時のlockが残った場合は自動再作成せず停止する。記録PIDが終了したこと、所有IDとoption snapshotを確認したうえで回収する。
 

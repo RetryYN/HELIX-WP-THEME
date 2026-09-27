@@ -33,16 +33,16 @@
     </testsuites>
 
     <!-- ================================================================
-         カバレッジ対象: plugins/agent-neo-core/inc/
+         カバレッジ対象: archive/agent-neo/plugins/agent-neo-core/inc/
          除外: vendor / tests 自身 / bootstrap / WP-CLI アダプタ
          ================================================================ -->
     <coverage>
         <include>
-            <directory suffix=".php">plugins/agent-neo-core/inc</directory>
+            <directory suffix=".php">archive/agent-neo/plugins/agent-neo-core/inc</directory>
         </include>
         <exclude>
-            <file>plugins/agent-neo-core/inc/bootstrap.php</file>
-            <directory>plugins/agent-neo-core/inc/cli</directory>
+            <file>archive/agent-neo/plugins/agent-neo-core/inc/bootstrap.php</file>
+            <directory>archive/agent-neo/plugins/agent-neo-core/inc/cli</directory>
         </exclude>
         <report>
             <clover outputFile="tests/coverage/clover.xml"/>

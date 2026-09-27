@@ -1,0 +1,89 @@
+{
+  "schema": "wt-news-column-purpose-catalog-candidates.v1",
+  "entries": [
+    {
+      "id": "article-purpose:news-releases",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "ニュース・発表",
+      "description": "新製品の発表と運営からのお知らせを、日付・分類から過去記事へたどるWordPress実機PoC。標準post型を使い、専用CPTを前提にしません。",
+      "purpose": "新着の発表と過去のお知らせを探す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": {
+          "file": "news-releases-1440.jpg",
+          "sha256": "fe67c2a95746fd38f9491cb5507dbee3843a06200d1b1e1808bbfaad97ae7130"
+        },
+        "sp": {
+          "file": "news-releases-390.jpg",
+          "sha256": "3db376a9aef3e12828dbe514ac6e9a20b123c67b448a52f08bf1407392e7398b"
+        }
+      },
+      "requirementIds": ["WT-FR-ARTICLE-01"],
+      "demoRoute": "/category/news-releases/",
+      "selectionFacts": {
+        "一覧と導線": "目的の説明、製品発表・お知らせへの分類導線、年絞り込み、日付付き詳細ページ。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "投稿目的の区分は標準post型とカテゴリで表現できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      }
+    },
+    {
+      "id": "article-purpose:columns",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "コラム",
+      "description": "実務の学びと考え方をテーマ別に紹介する一覧。ニュース・発表面と同じ標準post型で、目的と読者の探し方を分けたWordPress実機PoCです。",
+      "purpose": "テーマ別の学びと考え方を探す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": {
+          "file": "columns-1440.jpg",
+          "sha256": "9574ec977f96ddbbb4616daf4985633a7e8849c42c08108d740e40c8e6a80369"
+        },
+        "sp": {
+          "file": "columns-390.jpg",
+          "sha256": "7af4e75d9fe6c71c3e46b9e4afcade09887ab4cb84bbe7c0dcada2158339d81d"
+        }
+      },
+      "requirementIds": ["WT-FR-ARTICLE-01"],
+      "demoRoute": "/category/columns/",
+      "selectionFacts": {
+        "一覧と導線": "編集目的の説明、組織づくり・データ活用の分類、年絞り込み、詳細ページを検証。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "コラムの編集目的と分類導線を通常の記事一覧で表現できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      }
+    },
+    {
+      "id": "article-purpose:search-intent",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "検索流入",
+      "description": "検索で訪れた読者の疑問を解決するガイド記事の一覧。ニュース・発表やコラムと比較できるよう、同じカテゴリ面・標準post型で構成したWordPress実機PoCです。",
+      "purpose": "検索から来た読者を解説へ案内する",
+      "group": "ページ・本文",
+      "images": {
+        "pc": {
+          "file": "search-intent-1440.jpg",
+          "sha256": "2d507c4d05a4925d0aae5da4fa669acc9a33982bad1b07af35e3667ecf74d67d"
+        },
+        "sp": {
+          "file": "search-intent-390.jpg",
+          "sha256": "f9ecf55a3fd50a304e381847178685dc43ce3bb86952942597b5782ee4b6e645"
+        }
+      },
+      "requirementIds": ["WT-FR-ARTICLE-01"],
+      "demoRoute": "/category/search-intent/",
+      "selectionFacts": {
+        "一覧と導線": "検索流入向けの目的説明、導入ガイド分類、年別一覧、日付付き詳細を検証。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "検索流入向けの記事群を他の編集目的と区別して案内できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      }
+    }
+  ]
+}

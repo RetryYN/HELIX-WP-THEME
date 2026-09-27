@@ -19,6 +19,12 @@ define( 'DB_HOST',     getenv( 'AGENT_NEO_WP_DB_HOST' )     ?: '127.0.0.1:3308' 
 define( 'DB_CHARSET',  'utf8mb4' );
 define( 'DB_COLLATE',  '' );
 
+// wp-phpunit の bootstrap が要求するテストサイト情報。
+define( 'WP_TESTS_DOMAIN', getenv( 'WP_TESTS_DOMAIN' ) ?: 'example.org' );
+define( 'WP_TESTS_EMAIL', getenv( 'WP_TESTS_EMAIL' ) ?: 'admin@example.org' );
+define( 'WP_TESTS_TITLE', getenv( 'WP_TESTS_TITLE' ) ?: 'HELIX Integration Tests' );
+define( 'WP_PHP_BINARY', getenv( 'WP_PHP_BINARY' ) ?: 'php' );
+
 // テーブルプレフィックス（本番 wp_ と衝突しないよう変更する）。
 $table_prefix = getenv( 'WP_TESTS_TABLE_PREFIX' ) ?: 'wptests_';
 
@@ -26,5 +32,5 @@ $table_prefix = getenv( 'WP_TESTS_TABLE_PREFIX' ) ?: 'wptests_';
 define( 'WP_DEBUG', true );
 
 // テスト環境の WordPress パス（wp-phpunit が自動解決するため通常変更不要）。
-define( 'ABSPATH',  dirname( dirname( __DIR__ ) ) . '/vendor/wp-phpunit/wp-phpunit/' );
+define( 'ABSPATH',  dirname( __DIR__ ) . '/vendor/wp-phpunit/wp-phpunit/' );
 define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', dirname( __DIR__ ) . '/vendor/yoast/phpunit-polyfills' );

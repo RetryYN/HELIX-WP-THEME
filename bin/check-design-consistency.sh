@@ -19,7 +19,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-THEME_DIR="${REPO_ROOT}/themes/agent-neo-theme"
+THEME_DIR="${REPO_ROOT}/archive/agent-neo/themes/agent-neo-theme"
 THEME_JSON="${THEME_DIR}/theme.json"
 BASELINE="${THEME_DIR}/config/design-consistency-baseline.json"
 CHILD_JSON_GLOB="${REPO_ROOT}/themes/*/theme.json"
@@ -155,8 +155,8 @@ case "$T3" in *"(未定義)"*) warn "styles.elements に fontSize 未定義の�
 title "G-S1 骨格境界（子テーマ theme.json）"
 S1_FOUND=0
 for f in $CHILD_JSON_GLOB; do
-  [[ "$f" == "$THEME_JSON" ]] && continue
   [[ -f "$f" ]] || continue
+  [[ "$(readlink -f "$f")" == "$(readlink -f "$THEME_JSON")" ]] && continue
   S1_FOUND=1
   BAD=$(php -r '$t=json_decode(file_get_contents($argv[1]),true); $s=$t["settings"]??[]; $bad=[]; foreach(["typography","spacing","color"] as $k){ if(isset($s[$k])) $bad[]=$k; } echo implode(",",$bad);' "$f")
   if [[ -z "$BAD" ]]; then pass "子テーマ $(basename "$(dirname "$f")") は層 1 を再定義していない"; else fail "子テーマ $(basename "$(dirname "$f")") が settings.{$BAD} を再定義している（層 1 の正本は親 theme.json のみ）"; fi

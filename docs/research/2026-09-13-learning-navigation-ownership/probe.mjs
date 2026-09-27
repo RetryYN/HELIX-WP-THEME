@@ -3,11 +3,12 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
+import { contentLab } from '../../../scripts/lib/content-lab-env.mjs';
 
-const base = 'http://127.0.0.1:8098';
+const base = contentLab.baseUrl;
 const dir = new URL('./', import.meta.url);
 const repo = new URL('../../../', import.meta.url);
-const wp = code => JSON.parse(execFileSync('docker', ['exec', 'helix-content-wp', 'php', '-r', `require '/var/www/html/wp-load.php';${code}`], { encoding: 'utf8' }));
+const wp = code => JSON.parse(execFileSync('docker', ['exec', contentLab.wpContainer, 'php', '-r', `require '/var/www/html/wp-load.php';${code}`], { encoding: 'utf8' }));
 const suffix = 'learning-nav-ownership-audit';
 const fixtures = wp(`
 $slugs=['${suffix}-course','${suffix}-first','${suffix}-middle','${suffix}-last','${suffix}-draft','${suffix}-protected'];
@@ -81,6 +82,8 @@ const sources = [
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/learning.php',
   'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/content-faces.css',
   'docs/research/2026-09-08-content-faces/plugin/learning.php',
+  'scripts/lib/content-lab-env.mjs',
+  'docs/research/2026-09-13-learning-navigation-ownership/probe.mjs',
 ];
 const sourceDigests = Object.fromEntries(sources.map(file => [file, createHash('sha256').update(readFileSync(new URL(file, repo))).digest('hex')]));
 const completed = rows.length === 44 && rows.every(row => row.http === (row.kind === 'draft' ? 404 : 200)) && Object.values(fixtures).every(row => row.absent) && directBoundary.draft && directBoundary.protected;

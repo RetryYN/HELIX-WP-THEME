@@ -14,7 +14,7 @@
 
 - `node scripts/check-heading-tokens.mjs`: 10検査。15型の存在、装飾の生寸法（1px例外）・生色・!importantの不在、参照解決、margin参照、unitless行間、既存fluid rem尺度。
 - `node scripts/verify-heading-fluid.mjs`: 1204検査。1440/390/320幅×100/200%文字×JS有無。専用WordPress lab上で15登録style、保存本文一致、意味上のタグ、全文、文字領域、順序、サイズ階層、横溢れ、counter、reduced-motionを検査。所有者付きfixtureはfinallyで回収。
-- `npx playwright test tests/e2e/heading-fluid.spec.ts tests/e2e/heading-selection-catalog.spec.ts`: 実WordPress上の独立fixtureで12条件、カタログ検索・3候補比較・PC/SP切替・選択説明で1条件。
+- `npx playwright test tests/e2e/heading-fluid.spec.ts`: 実WordPress上の独立fixtureで12条件。破棄済み独立HTMLカタログの1条件は過去の検証記録であり、再実行対象ではない。
 - `npm test`: exit 0。要件・boundary・privacy・public-safety fixture・i18n・consumer health・31 unit検査を含む。実diffのpublic-safety guardとは別。
 - `git diff --check`: 成功。
 

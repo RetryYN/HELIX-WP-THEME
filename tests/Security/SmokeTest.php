@@ -45,7 +45,7 @@ class SmokeTest extends TestCase {
     // ------------------------------------------------------------------
 
     /**
-     * plugins/agent-neo-core/inc/rest/ に *-controller.php が 1 本以上あること。
+     * archive/agent-neo/plugins/agent-neo-core/inc/rest/ に *-controller.php が 1 本以上あること。
      *
      * @return void
      */

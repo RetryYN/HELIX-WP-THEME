@@ -6,7 +6,21 @@ on:
       - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
+      - '.lighthouserc.json'
+      - 'package.json'
+      - 'package-lock.json'
       - 'scripts/verify-i18n-profile.mjs'
+      - 'scripts/**/*.mjs'
+      - 'scripts/**/*.js'
+      - 'scripts/**/*.cjs'
+      - 'scripts/**/*.py'
+      - 'docs/research/**/*.mjs'
+      - 'docs/research/**/*.js'
+      - 'docs/research/**/*.cjs'
+      - 'docs/research/**/*.py'
+      - 'tests/lighthouse-ci-contract.test.mjs'
+      - 'tests/current-theme-quality-regression.test.mjs'
+      - 'tests/a11y-gate-contract.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   pull_request:
@@ -14,7 +28,21 @@ on:
       - 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/**'
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
+      - '.lighthouserc.json'
+      - 'package.json'
+      - 'package-lock.json'
       - 'scripts/verify-i18n-profile.mjs'
+      - 'scripts/**/*.mjs'
+      - 'scripts/**/*.js'
+      - 'scripts/**/*.cjs'
+      - 'scripts/**/*.py'
+      - 'docs/research/**/*.mjs'
+      - 'docs/research/**/*.js'
+      - 'docs/research/**/*.cjs'
+      - 'docs/research/**/*.py'
+      - 'tests/lighthouse-ci-contract.test.mjs'
+      - 'tests/current-theme-quality-regression.test.mjs'
+      - 'tests/a11y-gate-contract.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
       - '.github/workflows/theme-quality-gate.yml'
   workflow_dispatch:
@@ -39,6 +67,7 @@ jobs:
 
       - name: Verify current theme quality evidence bindings
         run: |
+          npm run test:quality-contracts
           node scripts/audit-catalog-evidence.mjs
           npm run i18n:verify
 
@@ -80,15 +109,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.11'
+          node-version-file: .node-version
+          cache: npm
 
-      - name: Install Playwright
+      - name: Install dependencies and browser
         run: |
-          pip install playwright
-          playwright install chromium
+          npm ci
+          npx playwright install --with-deps chromium
 
       - name: Wait for WordPress to be ready
         run: |
@@ -102,16 +132,43 @@ jobs:
           done
 
       - name: Initialize WordPress and verify target theme
+        id: theme-setup
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
-      - name: Verify current theme is rendered
-        run: curl --fail --silent --show-error http://localhost:8086/ >/dev/null
+      - name: Verify WCAG axe rules and mobile reflow
+        env:
+          A11Y_BASE_URL: http://localhost:8086
+          A11Y_REPORT_PATH: ${{ runner.temp }}/a11y-positive.json
+        run: node scripts/verify-a11y.mjs
+
+      - name: Verify one-violation negative control fails closed
+        if: always() && steps.theme-setup.outcome == 'success'
+        env:
+          A11Y_BASE_URL: http://localhost:8086
+          A11Y_REPORT_PATH: ${{ runner.temp }}/a11y-negative-control.json
+        run: |
+          set +e
+          node scripts/verify-a11y.mjs --negative-control
+          result=$?
+          set -e
+          if [ "$result" -ne 2 ]; then
+            echo "Expected the injected axe violation to produce exit 2, got $result" >&2
+            exit 1
+          fi
+
+      - name: Upload accessibility reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-axe-reports
+          path: ${{ runner.temp }}/a11y-*.json
+          if-no-files-found: error
 
   lhci-gate:
     name: Core Web Vitals (Lighthouse CI)
     runs-on: ubuntu-latest
-    # フル CWV 測定は workflow_dispatch または main へのマージ時のみ実行
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    # PRでも測定し、merge前に判定設定と失敗伝播を検証する。
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
 
     services:
       db:
@@ -165,18 +222,8 @@ jobs:
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
       - name: Run Lighthouse CI
-        run: |
-          lhci autorun \
-            --collect.url=http://localhost:8086/ \
-            --collect.numberOfRuns=3 \
-            --assert.preset=lighthouse:no-pwa \
-            --assert.assertions.largest-contentful-paint.maxNumericValue=2500 \
-            --assert.assertions.interactive.maxNumericValue=200 \
-            --assert.assertions.cumulative-layout-shift.maxNumericValue=0.1 \
-            --assert.assertions.render-blocking-resources=error \
-            --upload.target=temporary-public-storage \
-            2>&1 || true
-          # lhci の結果は artifact に保存（FAIL でも続行し結果を確認）
+        # LCP's 2.5s budget remains a warning pending diagnosis in issue #352; TBT is a lab proxy, not field INP.
+        run: lhci autorun --config=./.lighthouserc.json
 
       - name: Upload LHCI report
         if: always()
@@ -184,4 +231,5 @@ jobs:
         with:
           name: lhci-report
           path: .lighthouseci/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true

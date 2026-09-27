@@ -3,13 +3,14 @@
   "completed": true,
   "baselinePresentationDisabled": false,
   "sourceDigests": {
-    "scripts/verify-home-completion.mjs": "0d2e90422527f989bb8de2484defe1b7c16a59b68bd06e465477289132dfd6f2",
+    "scripts/verify-home-completion.mjs": "b172c38bea4c402f86f89a60126910aca6a9de8b4275047717bf349ea2405ef7",
     "docs/research/2026-09-15-home-completion/choices.json": "e5a7352ba2f7f1d5a67af7e84a294daf1f98cd7315eaae8293867ef5074895c5",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "49ac3d321262788c95bb0c7504b62b29fa14c0fa65b3c0943104b18f04e3b390",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/functions.php": "f574816e0191fe41cdef05ba3dd379e2905da8000b9c1e095c1eb56f7670c27e",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/home-hero-images.php": "4ad392afa90d2d73634980298b6328cae8000cd690de07f159f037b47ecae799",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-hero.php": "efc09fe2a08ee004b515dac376d30b443639e231b1b07a27feb1e90272a09705",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "bb583557833ad9d5553f3daee44a2c5c6c6694d5b17a83ec4517e1a0006085f1",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html": "a73d193cc2e44c8e11731074617a813f236cd2b83536041229b623b8473000a1",
-    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "346667a0e88401eece881f81bd7fabdf1f0fbeb71eb3dfaa90fe90c5c5f503e3",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/patterns/home-sections.php": "0af8417bca52087c774b5a94e2fd5413e2c8b790f71261de89ebbdcf6c6a8a65",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/front-page.html": "249fb8875e71cd1350cfb636477e92f8b0a7eca118f8a521b3077862c4d77f01",
+    "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css": "8a2905d7221399558860cdd4ac8dfdd89f225e4aac0323c47b00143f775c9d0a",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/js/home.js": "47a603f2167c25d631e77341371ae1d42451a58b96e7ed9160dff09b5a1cf1bb",
     "docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/home-completion.css": "4da669d45f6451a12e79ff4e8b53e2774ef66dd76c53de0a8e04bc1128be32c7"
   },
@@ -17875,6 +17876,42 @@
       "pass": true
     },
     {
+      "name": "pc:stress:visible-images-decoded",
+      "pass": true,
+      "details": [
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-1.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-2.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-3.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-factory.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-tax.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-clinic.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        }
+      ]
+    },
+    {
       "name": "pc:tabs:keyboard",
       "pass": true
     },
@@ -17935,6 +17972,42 @@
     {
       "name": "sp:stress:reduced-motion",
       "pass": true
+    },
+    {
+      "name": "sp:stress:visible-images-decoded",
+      "pass": true,
+      "details": [
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-1.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-2.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/feature-3.png",
+          "complete": true,
+          "naturalWidth": 600
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-factory.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-tax.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        },
+        {
+          "src": "http://127.0.0.1:18258/wp-content/themes/helix-wt/assets/img/case-clinic.jpg",
+          "complete": true,
+          "naturalWidth": 1200
+        }
+      ]
     },
     {
       "name": "sp:tabs:keyboard",
@@ -17998,7 +18071,7 @@
         "access",
         "contact"
       ],
-      "sha256": "cd5d421a4a69e0cff3e2cd86876306dc9c8febfc4904227564b70e74c5129963"
+      "sha256": "532409a4a78625d9a9a869295bc32657aafed6d9ad33ec5030746c166def4cd4"
     },
     {
       "file": "after-service-pc.jpg",
@@ -18016,7 +18089,7 @@
         "cta",
         "contact"
       ],
-      "sha256": "38e73c033b9d184b78637593082eefa75d0b0216f932134d1a010feaf6b66f3a"
+      "sha256": "5674229504023b62fed1f946dc5a55901e06c85e2c7872c8f99382e7e1524a7f"
     },
     {
       "file": "after-media-pc.jpg",
@@ -18031,7 +18104,7 @@
         "news",
         "cta"
       ],
-      "sha256": "18fb0e1a65bec3c824dca6ddf822c7ade46c8bdcdcada51cd4dcb0476cf8a6d6"
+      "sha256": "446c27deabf87e3ccce4f16e5875759a1bd8196ad8bca2b18fc645e8d7039366"
     },
     {
       "file": "after-shop-school-pc.jpg",
@@ -18051,7 +18124,7 @@
         "access",
         "contact"
       ],
-      "sha256": "2f2a4d6d5d567f9989cd2270bb34a7cf37d71447b710f1d0385b7937977c4267"
+      "sha256": "eef53081a196cc3412068948aeeeb5f9c717c0257f9880cfc76f00c8a50abddc"
     },
     {
       "file": "after-school-org-pc.jpg",
@@ -18072,7 +18145,7 @@
         "cta",
         "contact"
       ],
-      "sha256": "71e2e8673139dcf766d989ea67d2d6c1b9a185743280f632884979081584c05c"
+      "sha256": "367dd8307090e998fb080ca21ebe166889920eb03003c11b0bbd02769d0727b4"
     },
     {
       "file": "after-corporate-sp.jpg",
@@ -18090,7 +18163,7 @@
         "access",
         "contact"
       ],
-      "sha256": "a82d97c61446431c08383f62c5eda90c63599ca8e0576c42d80f0ecbf925f858"
+      "sha256": "9f123ef9e5705ea5d30ed5a0a6fe8a407163239b325e986fa32c9cc963d75d67"
     },
     {
       "file": "after-service-sp.jpg",
@@ -18108,7 +18181,7 @@
         "cta",
         "contact"
       ],
-      "sha256": "b6d080b9675772f778e0b1b19d4df590f8d04c75c50e7ef1b23c98912449b8b2"
+      "sha256": "d914333c3b4d28b336e84c93774cc71e6752a199a902fccdec65d7eac29b02b2"
     },
     {
       "file": "after-media-sp.jpg",
@@ -18123,7 +18196,7 @@
         "news",
         "cta"
       ],
-      "sha256": "477d4680633caf88fdd4c30319304e209f2fec57977805ba77cbe7dde50318a1"
+      "sha256": "a77e42f1128f91d800cbc6534473f78ed2de6482484ddc5bd88968593169869f"
     },
     {
       "file": "after-shop-school-sp.jpg",
@@ -18143,7 +18216,7 @@
         "access",
         "contact"
       ],
-      "sha256": "c40fab25eb0959d4fe392733e3300aafe0b19cbc2aa297249c1c1cef905e755e"
+      "sha256": "7df922ee91db7ed21205802d119e55a3bbd7889f5649b049d18ece7a0cf9e1ce"
     },
     {
       "file": "after-school-org-sp.jpg",
@@ -18164,7 +18237,7 @@
         "cta",
         "contact"
       ],
-      "sha256": "0a10af09bebbc0011cd521d62f87d4015255d48fce7c2a9889c0486d136251b7"
+      "sha256": "114475250ffe69160218d8677071a9930a2fd8113de0a801cf289228eada1d5f"
     }
   ]
 }

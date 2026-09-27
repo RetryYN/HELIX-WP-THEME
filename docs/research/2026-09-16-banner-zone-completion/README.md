@@ -2,7 +2,24 @@
 
 6候補（お知らせ、本文前、商品派生、広告、リクエスト時rotation、補助積層）をPC/SPの全体画像で比較する。正本・描画・検証は現在の `theme/helix-wt` のみ。管理画面での登録UI、実配信、同意取得を完了した証拠ではない。
 
-## 検証結果
+## 2026-09-27: テンプレートパーツの外側タグ変更への追従
+
+main `2b1b205` を専用WordPressラボで検査すると、最初のお知らせ配置で
+`.wt-banner-zone` が現れず失敗した。アクセシビリティ修正で template-part の外側が
+`div` になった一方、バナー挿入処理が `tagName: header/footer` を前提としていたため。
+
+part の slug からヘッダー・フッターを判別し、描画済みの実ランドマークの内側・直後へ挿入する。
+外側を再び `header/footer` に戻さず、ランドマークの二重化を避ける。
+part が非表示ならバナーも挿入しない。
+
+修正後の検査は **513項目PASS**。既存403項目に、9種類のヘッダー×PC/SPの配置・重複検査と、
+ヘッダー／フッター非表示時の孤立バナー抑止を追加した。
+各面のテンプレートとヘッダー／フッターpartも `sourceDigests` に含める。
+現在の結果は `verification.json`、再実行は `node scripts/verify-banner-zones.mjs`。
+専用ラボを変更する場合は、起動時の `WTCF_*` 環境変数を同じ値で渡す。
+受入状態は引き続きpartialであり、要求全体の完了を意味しない。
+
+## 初回PoCの検証記録（2026-09-16）
 
 `node scripts/verify-banner-zones.mjs`: **403/403 PASS**。`verification.json` にsource digest、各測定、画像hashを保存。12枚の完成画像と4枚の画像読込前後画像。6面×PC/SPで14slot到達と重複なしを確認。fixture/optionのfinally回収とsource不変を確認。PHP WordPress-Core PHPCS、i18n POT生成・検査もPASS。
 

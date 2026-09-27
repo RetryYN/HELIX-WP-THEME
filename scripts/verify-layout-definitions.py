@@ -4,12 +4,14 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from lib.content_lab_env import content_lab_config
 
 ROOT = Path(__file__).resolve().parent.parent
 THEME = ROOT / 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt'
+lab = content_lab_config()
 
 def php(code):
-    return subprocess.check_output(['docker', 'exec', 'helix-content-wp', 'php', '-r',
+    return subprocess.check_output(['docker', 'exec', lab.wp_container, 'php', '-r',
                                    'require "/var/www/html/wp-load.php"; ' + code], text=True).strip()
 
 assert php('echo get_option("blogname");') == 'HELIX Content Lab'

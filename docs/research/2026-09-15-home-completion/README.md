@@ -30,12 +30,7 @@ node scripts/verify-home-completion.mjs
 
 main検証器は専用lab名を照合し、実行ごとにUUIDで所有する架空記事6件と画像6件を作成する。画像はWordPressの正規取込みでmetadata/thumbnailを生成する。正常終了・例外時に同じ所有markerのIDだけを削除し、不在を確認する。プロセス強制終了時はlabの一時state内にrun/PIDを残し、次回実行を止める。記録されたプロセスが終了したことを確認した上で `node scripts/verify-home-completion.mjs --recover` を実行する。生きたプロセスのfixtureは回収しない。テーマ設定・既存記事は書き換えない。
 
-既存証拠の再検証後にカタログを生成して、静的サーバー経由で操作を検証する。
-
-```sh
-node scripts/build-selection-catalog.mjs
-npx playwright test tests/e2e/selection-catalog.spec.ts tests/e2e/home-selection-catalog.spec.ts --workers=1
-```
+画面の確認は検証用WordPress上で行う。別HTMLの選択カタログは使用しない。PoC操作の再現には上記の `verify-home-completion.mjs` を使う。
 
 ## 範囲と残件
 
@@ -64,7 +59,7 @@ WordPressの編集導線は[Site Editor](https://wordpress.org/documentation/art
 - reduced-motion既存検証は **20/20 PASS**。`home.js` の追加によって全文digest fenceが作動したため、旧コード全体が完全なprefixとして残り、60秒countdownのcallbackが不変、追加timer呼出し0であることを再監査した。`timer-review.json` の記録に基づき監査済みdigestだけ更新し、timer禁止の条件は緩めていない。
 - 検証用の記事6件・画像6件は所有markerで全削除し、復旧markerも不在。WordPressの既存記事・theme_modは変更していない。
 
-最終カタログE2Eは **27/27 PASS（25.3秒）**。候補選択→完成比較→理由保存→reloadと、完成HOMEタイルの幅いっぱいプレビューをPC/SPで確認した。再生成は638候補・1,147画像・133要求。受入監査はmissing 236 / partial 26 / verified-in-PoC 32 / stale 0で、全体未完了のまま。`catalog-e2e.json` に画像hashと検収結果を記録する。`regression-pending.json` は41件の再検証・再束縛完了と最終stale 0を記録しており、現時点の未解消一覧ではない。
+破棄前の独立HTMLカタログE2Eは **27/27 PASS（25.3秒）**。候補選択→完成比較→理由保存→reloadと、完成HOMEタイルの幅いっぱいプレビューをPC/SPで確認した。再生成は638候補・1,147画像・133要求。受入監査はmissing 236 / partial 26 / verified-in-PoC 32 / stale 0で、全体未完了のまま。`catalog-e2e.json` に画像hashと検収結果を記録する。`regression-pending.json` は41件の再検証・再束縛完了と最終stale 0を記録しており、現時点の未解消一覧ではない。
 
 ## カタログ目視で見つけた追加修正
 

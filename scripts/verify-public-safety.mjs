@@ -6,10 +6,12 @@ import { execFileSync, spawnSync } from 'node:child_process';
 
 const root = path.resolve(import.meta.dirname, '..');
 const guardSource = path.join(root, 'scripts/public-safety-guard.sh');
+const verifierSource = path.join(root, 'scripts/verify-public-safety.mjs');
 const evidencePath = path.join(root, 'docs/research/2026-09-09-public-safety/verify.json');
 const sha256 = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const fileCommandVersion = execFileSync('file', ['--version'], { encoding: 'utf8' }).trim().split(/\r?\n/, 1)[0];
 
-function runFixture(name, relativePath, content, expectedPass, env = {}) {
+function runFixture(name, relativePath, content, expectedPass, env = {}, options = {}) {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'wt-public-safety-'));
   try {
     fs.mkdirSync(path.join(fixture, 'scripts'), { recursive: true });
@@ -22,17 +24,41 @@ function runFixture(name, relativePath, content, expectedPass, env = {}) {
     execFileSync('git', ['commit', '-qm', 'baseline'], { cwd: fixture });
     const target = path.join(fixture, relativePath);
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.writeFileSync(target, content);
-    execFileSync('git', ['add', relativePath], { cwd: fixture });
-    const result = spawnSync('bash', ['scripts/check-public-safety.sh', '--staged'], {
+    if (options.symlink) fs.symlinkSync(content, target);
+    else fs.writeFileSync(target, content);
+    execFileSync('git', ['add', '--', relativePath], { cwd: fixture, env: { ...process.env, GIT_LITERAL_PATHSPECS: '1' } });
+    if (options.gitattributes) {
+      fs.writeFileSync(path.join(fixture, '.gitattributes'), options.gitattributes);
+      execFileSync('git', ['add', '.gitattributes'], { cwd: fixture });
+    }
+    if (options.binaryApproval) {
+      const digest = sha256(target);
+      fs.mkdirSync(path.join(fixture, 'config'), { recursive: true });
+      fs.writeFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'),
+        `${relativePath}\t${options.binaryApproval === 'matching' ? digest : '0'.repeat(64)}\n`);
+      if (options.duplicateApproval) {
+        fs.appendFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'),
+          `${relativePath}\t${'f'.repeat(64)}\n`);
+      }
+      execFileSync('git', ['add', 'config/public-safety-binary-approvals.tsv'], { cwd: fixture });
+      if (options.unstagedApproval) {
+        fs.writeFileSync(path.join(fixture, 'config/public-safety-binary-approvals.tsv'), `${relativePath}\t${digest}\n`);
+      }
+    }
+    if (options.range) execFileSync('git', ['commit', '-qm', 'candidate'], { cwd: fixture });
+    const result = spawnSync('bash', ['scripts/check-public-safety.sh', ...(options.range ? ['--base-ref', 'HEAD^', 'HEAD'] : ['--staged'])], {
       cwd: fixture,
       encoding: 'utf8',
       env: { ...process.env, ...env },
     });
     const actualPass = result.status === 0;
+    const outputPass = (!options.expectedOutput || result.stdout.includes(options.expectedOutput))
+      && (!options.forbiddenOutput || !result.stdout.includes(options.forbiddenOutput));
     return {
       name,
-      pass: actualPass === expectedPass,
+      pass: actualPass === expectedPass
+        && (!options.expectedFailure || result.stderr.includes(options.expectedFailure))
+        && outputPass,
       expected: expectedPass ? 'accept' : 'reject',
       actual: actualPass ? 'accept' : 'reject',
       exit_code: result.status,
@@ -44,11 +70,29 @@ function runFixture(name, relativePath, content, expectedPass, env = {}) {
 
 const token = ['gh', 'p_', 'a'.repeat(24)].join('');
 const privateKey = ['-----BEGIN ', 'TEST PRIVATE KEY-----'].join('');
+const utf16 = text => Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from(text, 'utf16le')]);
+const utf32le = text => {
+  const codePoints = Array.from(text, character => character.codePointAt(0));
+  const encoded = Buffer.alloc(4 + codePoints.length * 4);
+  encoded.writeUInt32LE(0xfeff, 0);
+  codePoints.forEach((codePoint, index) => encoded.writeUInt32LE(codePoint, 4 + index * 4));
+  return encoded;
+};
 const personalPath = ['/', 'home', '/fixture-user/private.txt'].join('');
 const trackingUrl = ['https://example.invalid/path?', 'a8', 'mat=value'].join('');
 const rows = [
   runFixture('positive:clean-source-accepted', 'src/clean.php', '<?php echo "safe";\n', true),
+  runFixture('positive:ndjson-is-text-and-scanned', 'docs/events.jsonl', '{"event":"one"}\n{"event":"two"}\n', true),
+  runFixture('negative:access-token-in-ndjson-rejected', 'docs/events.jsonl', `{"token":"${token}"}\n`, false, {}, { expectedFailure: 'well-known access token format' }),
+  runFixture('positive:empty-file-is-text-and-scanned', 'docs/.gitkeep', '', true),
   runFixture('negative:private-key-rejected', 'src/key.txt', `${privateKey}\n`, false),
+  runFixture('negative:private-key-in-Japanese-path-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:private-key-in-Japanese-path-range-rejected', 'src/日本語の証跡.txt', `${privateKey}\n`, false, {}, { range: true, expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-exclude-magic-rejected', ':(exclude)*', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-short-exclude-magic-rejected', ':!x', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-wildcard-name-rejected', '*', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:pathspec-bracket-name-rejected', '[ab]', `${privateKey}\n`, false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:control-character-path-rejected', 'src/line\nbreak.txt', 'ordinary text\n', false),
   runFixture('negative:access-token-rejected', 'src/token.txt', `${token}\n`, false),
   runFixture('negative:credential-assignment-rejected', 'src/config.txt', `client_${'secret'}=abcdefghijklmnop\n`, false),
   runFixture('negative:personal-path-rejected', 'src/path.txt', `${personalPath}\n`, false),
@@ -57,6 +101,26 @@ const rows = [
   runFixture('negative:large-research-requires-private-map', 'docs/research/large-note.md', 'public observation\n'.repeat(25000), false),
   runFixture('positive:research-with-private-map-accepted', 'docs/research/note.md', 'public observation\n', true, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
   runFixture('negative:custom-private-map-rejected', 'docs/research/note.md', 'private-client-name\n', false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
+  runFixture('negative:invalid-private-map-regex-rejected', 'src/clean.txt', 'ordinary text\n', false, { PUBLIC_REDACTION_GUARD_RE: '[' }),
+  runFixture('negative:binary-research-without-map-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false),
+  runFixture('negative:binary-research-with-map-only-rejected', 'docs/research/image.bin', Buffer.from([0, 1, 2, 3]), false, { PUBLIC_REDACTION_GUARD_RE: 'private-client-name' }),
+  runFixture('negative:binary-forced-text-by-gitattributes-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { gitattributes: '*.bin diff\n' }),
+  runFixture('negative:nul-in-jsonl-is-binary-and-rejected', 'docs/malformed.jsonl', Buffer.from([0x7b, 0x22, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x3a, 0x00, 0x7d]), false, {}, { expectedFailure: 'changed binary requires' }),
+  runFixture('positive:utf16le-bom-clean-text-is-scanned', 'src/notes.txt', utf16('ordinary notes\n'), true),
+  runFixture('negative:utf16le-bom-private-key-rejected', 'src/notes.txt', utf16(`${privateKey}\n`), false, {}, { expectedFailure: 'private key material' }),
+  runFixture('positive:utf32le-bom-clean-text-is-scanned', 'src/notes.txt', utf32le('ordinary notes\n'), true, {}, {
+    expectedOutput: 'scanned line(s) inspected',
+    forbiddenOutput: 'added line(s) inspected',
+  }),
+  runFixture('negative:utf32le-bom-private-key-rejected', 'src/notes.txt', utf32le(`${privateKey}\n`), false, {}, { expectedFailure: 'private key material' }),
+  runFixture('negative:binary-with-wrong-digest-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong' }),
+  runFixture('negative:unstaged-binary-approval-is-ignored', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, { binaryApproval: 'wrong', unstagedApproval: true }),
+  runFixture('positive:binary-with-reviewed-digest-approval-accepted', 'src/image.bin', Buffer.from([0, 1, 2, 3]), true, {}, { binaryApproval: 'matching' }),
+  runFixture('negative:duplicate-binary-approval-path-rejected', 'src/image.bin', Buffer.from([0, 1, 2, 3]), false, {}, {
+    binaryApproval: 'matching', duplicateApproval: true, expectedFailure: 'duplicate path in config/public-safety-binary-approvals.tsv',
+  }),
+  runFixture('positive:symlink-target-inspected-as-text', 'src/compat-link', 'safe-target', true, {}, { symlink: true }),
+  runFixture('negative:symlink-personal-target-rejected', 'src/compat-link', personalPath, false, {}, { symlink: true }),
 ];
 
 const report = {
@@ -65,10 +129,15 @@ const report = {
   completed: rows.every(row => row.pass),
   source: 'scripts/public-safety-guard.sh',
   source_sha256: sha256(guardSource),
+  sourceDigests: {
+    'scripts/public-safety-guard.sh': sha256(guardSource),
+    'scripts/verify-public-safety.mjs': sha256(verifierSource),
+  },
   rows,
   failed: rows.filter(row => !row.pass).length,
 };
 fs.mkdirSync(path.dirname(evidencePath), { recursive: true });
 fs.writeFileSync(evidencePath, `${JSON.stringify(report, null, 2)}\n`);
+console.log(`public-safety verifier toolchain: ${fileCommandVersion}`);
 console.log(JSON.stringify(report, null, 2));
 if (!report.completed) process.exitCode = 1;

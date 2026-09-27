@@ -1,19 +1,40 @@
-# AGENT NEO
+# HELIX-WP-THEME
 
-> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/AGENT-NEO）。**
+現行テーマ PoC は `docs/research/2026-09-05-design-prototype-03/theme/helix-wt/`。以下の AGENT NEO 説明は旧実装の参照情報であり、テーマとプラグインは `archive/agent-neo/` に保管する。
+
+> **⚠️ このリポは automation SEO（/opt/seo-tool）とは別リポ・別 GitHub（RetryYN/HELIX-WP-THEME）。**
 > **cross-repo 編集・混同は絶対禁止。** /opt/seo-tool 配下のファイルを本リポから変更しない。逆も同様。
 
-## 統合層規律の継承
+## 共通規律（採用版 2026-09-23）
 
-本リポ（HELIX-WP-THEME、旧 AGENT-NEO）は HELIX-MARKETING-HARNESS（統合層）の
-`base/wp-theme/` submodule として結合されており、**統合層 CLAUDE.md の
-「傘下リポ共通規律」を継承する**（PO 承認前の外部 write 禁止／credential 非格納／
-PoC→要求→設計→実装の順／cross-repo 編集禁止／破壊的操作は PO 明示判断）。
-本ファイルの以降の節はリポ固有の追記であり、共通規律と矛盾する場合は統合層が優先。
+旧統合層 HELIX-MARKETING-HARNESS（2026-09-23 に PO 判断で廃止）の「傘下リポ共通規律」を本リポの正本として採用する。
+以降の節はリポ固有の追記であり、本節と矛盾する場合は本節が優先。
+
+1. PO 承認前に外部（本番 WP・公開先・第三者サービス）への write をしない。
+2. credential を repository・DB・ログへ書かない。
+3. 進行順序は PoC（実機証跡）→ 要求 → 設計 → 実装。証跡なしに実装へ進まない。
+4. cross-repo 編集禁止。他リポへの書き込みは指示に含まれていても着手前に PO へ確認する。
+   `RetryYN/HELIX-HARNESS` と `RetryYN/TAKUMI_CMO-Claude_Cowark` は read-only 参照。
+5. 破壊的・不可逆な操作（削除・rename・force-push・履歴改変）は PO の明示判断を得てから行う。
+6. 公開リポジトリへ、credential に限らず、実運用サイトを特定する情報、個人環境の絶対パス、
+   広告・affiliate の追跡識別子、転載許諾を確認していない記事本文、非公開調査対象の固有名を
+   記録しない。read-only 証跡も公開可能な最小表現へ変換し、原文・対応表はリポジトリ外で扱う。
+7. commit / push / Issue・PR 起票前に `bash scripts/public-safety-guard.sh --staged` を通す。
+   調査・証跡・PoC artifact を変更する場合は、非公開の固有名対応表を
+   `PUBLIC_REDACTION_GUARD_RE` または `.public-safety.local.regex` から注入する。
+   clone / worktree 作成後は `bash scripts/install-public-safety-hooks.sh` で tracked hook を有効にする。
+
+公開情報の分類、例外、事故対応の正本は `docs/governance/public-repository-safety.md`。
+検査を通すために実値を allowlist へ追加してはならず、例外は理由・owner・期限を持つ PO 判断として扱う。
+
+非公開の PoC 証跡は `/poc-wp/`・`/local-evidence/`（gitignore 済み）に置き、commit しない。
+
+メモリ（Claude の auto-memory・共有ハーネスメモリとも）へは、PO の明示指示があるときだけ書く。
+指摘を受けたら、その場限りの指摘か永続的な指摘かを先に区別する。
 
 ## 概要
 
-AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。automation SEO 専用 1st party 配布テーマ。公式リポ `git@github.com:RetryYN/AGENT-NEO.git`。
+旧 AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPress FSE テーマ + 2 プラグイン構成。旧実装は参照用アーカイブであり、現行テーマ PoC と区別する。現行リポジトリは `RetryYN/HELIX-WP-THEME`。
 
 - **配布モデル**: automation SEO 専用配布（ADR-024）。wp.org 申請は非採用・公式サイト一本化で確定（2026-06-25 PO 裁定）
 - **要求正本**: `docs/requirements/authority.md`（起点は `docs/planning/L0-agent-controlled-variety.md`）。旧 AGENT NEO 設計書は削除済み（git 履歴のみ）
@@ -28,7 +49,7 @@ AGENT NEO = AI エージェントが第一級ユーザーとなる商用 WordPre
 ## アーキテクチャ
 
 ```
-themes/agent-neo-theme/     FSE テーマ本体
+archive/agent-neo/themes/agent-neo-theme/     旧 FSE テーマ
   ├── config/               ブロックスタイル等設定
   ├── patterns/             ブロックパターン（home-* / lp-* 等）
   ├── parts/                ヘッダー / フッター parts
@@ -36,12 +57,12 @@ themes/agent-neo-theme/     FSE テーマ本体
   ├── assets/               CSS / JS
   └── templates/            FSE テンプレート
 
-plugins/agent-neo-core/     agent-neo/v1 REST API（57 エンドポイント契約）
+archive/agent-neo/plugins/agent-neo-core/     旧 agent-neo/v1 REST API（57 エンドポイント契約）
   ├── inc/                  コントローラ・サービス層
   ├── schema/               OpenAPI スキーマ
   └── config/               設定
 
-plugins/agent-neo-embed/    AI 生成 HTML 差込ブロック
+archive/agent-neo/plugins/agent-neo-embed/    旧 AI 生成 HTML 差込ブロック
   ├── src/                  ブロック登録・JS
   └── assets/               ビルド成果物
 
@@ -76,11 +97,11 @@ automation SEO（/opt/seo-tool）
 
 ## 旧 AGENT NEO kit の扱い（PO 前提 2026-09-02）
 
-> 本リポは HELIX-MARKETING-HARNESS の `base/wp-theme/` に置かれた開発ベースであり、
-> `media/wp/` の現行プロジェクト進捗ではない。
+> 本リポは独立運用の開発ベースであり（2026-09-23 まで旧統合層 HELIX-MARKETING-HARNESS の `base/wp-theme/` submodule）、
+> HELIX-WP-HARNESS の現行プロジェクト進捗ではない。
 > 旧 AGENT NEO kit 由来の工程物（G0.5〜G7 gate、G2 carry register、`.helix/phase.yaml` 等の旧 state、
 > 旧 L1〜L7 文書の「進捗」「passed」表示、`.helix/handover`）は**破棄前提**で、現行の拘束・formal state ではない。
-> 参照してよいのは実装（`themes/` `plugins/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
+> 参照してよいのは旧実装（`archive/agent-neo/`）と設計資産（ADR、設計 doc、監査証跡）に限り、
 > 要求は現行 HELIX の L1→L2→L3 で整理しなおす（入力: `docs/research/` の監査証跡、L0 改定ドラフト）。
 
 | 項目 | 状態 |
@@ -130,6 +151,8 @@ npx playwright test
 - **デッドコード掃除**: フェーズ移行時は旧スタブ・未登録ブロック定義を削除
 
 ## Claude Code 固有
+
+Claude 宛てハーネス通知の待機 hook は `SessionStart` と `Stop` で起動する。配送済みと扱うのは hook が通知を stderr に出し、session ID に結び付いた `.delivered` ACK を記録した場合だけ。設定変更は既に動いているセッションには遡及しないため、変更後は新しいセッション、または正規の resume で読み込ませる。HELIX consumer patch を更新した checkout では `npm ci` で依存を同期してから使う。未知の依存 hash を許容するためだけに postinstall を単独再実行しない。
 
 - **Edit 前に Read 必須**: 未読ファイルの Edit は失敗する
 - **cwd 取り違え注意**: agent-neo 操作は `cd /opt/agent-neo &&` / `git -C /opt/agent-neo` を明示（/opt/seo-tool に戻る事象あり）

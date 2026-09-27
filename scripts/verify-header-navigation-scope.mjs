@@ -1,6 +1,7 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import fs from 'node:fs';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';
 const out='docs/research/2026-09-14-header-navigation-editing';fs.mkdirSync(out,{recursive:true});
-const php=code=>execFileSync('docker',['exec','helix-content-wp','php','-r',`require '/var/www/html/wp-load.php'; ${code}`],{encoding:'utf8'}).trim();
+const php=code=>execFileSync('docker',['exec',contentLab.wpContainer,'php','-r',`require '/var/www/html/wp-load.php'; ${code}`],{encoding:'utf8'}).trim();
 if(php('echo get_option("blogname");')!=='HELIX Content Lab')throw Error('dedicated lab required');
 const rows=[];const check=(name,pass)=>rows.push({name,pass:!!pass});
 const data=JSON.parse(php(`$original=get_option('theme_mods_helix-wt',null);$ids=[];$out=[];

@@ -3,12 +3,12 @@ name: embed-isolation-gate
 on:
   push:
     paths:
-      - 'plugins/agent-neo-embed/**'
+      - 'archive/agent-neo/plugins/agent-neo-embed/**'
       - 'poc/embed-isolation/**'
       - '.github/workflows/embed-isolation.yml'
   pull_request:
     paths:
-      - 'plugins/agent-neo-embed/**'
+      - 'archive/agent-neo/plugins/agent-neo-embed/**'
       - 'poc/embed-isolation/**'
       - '.github/workflows/embed-isolation.yml'
   workflow_dispatch:

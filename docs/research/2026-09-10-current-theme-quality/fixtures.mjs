@@ -1,6 +1,7 @@
 import{readFileSync,writeFileSync}from'node:fs';import{execFileSync}from'node:child_process';
+import { contentLab } from '../../../scripts/lib/content-lab-env.mjs';
 const path='docs/research/2026-09-10-current-theme-quality/fixtures.json';
-const wp=code=>JSON.parse(execFileSync('docker',['exec','helix-content-wp','php','-r',"require '/var/www/html/wp-load.php';"+code],{encoding:'utf8'}));
+const wp=code=>JSON.parse(execFileSync('docker',['exec',contentLab.wpContainer,'php','-r',"require '/var/www/html/wp-load.php';"+code],{encoding:'utf8'}));
 if(process.argv[2]==='create'){
  const rows=[];
  try{

@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import fs from 'node:fs';
@@ -6,7 +7,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 const root=process.cwd(),out=path.join(root,'docs/research/2026-09-13-zone-slots');
 fs.mkdirSync(out,{recursive:true});
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab'),'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(contentLab.stateDir,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab'||wp(['option','get','stylesheet'])!=='helix-wt')throw Error('Dedicated current-theme lab required');
 const slug='zone-selection-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
@@ -34,7 +35,7 @@ id=wp(['post','create','--post_type=page','--post_status=publish','--post_name='
 wp(['post','meta','update',id,'_wp_page_template','page-zone-catalog']);
 for(const [device,width]of[['pc',1440],['sp',390]])for(const js of[true,false]) {
 const context=await browser.newContext({viewport:{width,height:960},javaScriptEnabled:js,isMobile:device==='sp',extraHTTPHeaders:{'Sec-CH-UA-Mobile':device==='sp'?'?1':'?0'},userAgent:device==='sp'?'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36'});
-const page=await context.newPage();await page.goto('http://127.0.0.1:8098/'+slug+'/?wt=page_side:none,content_chrome:shared');await page.evaluate(()=>document.fonts.ready);
+const page=await context.newPage();await page.goto(`${contentLab.baseUrl}/`+slug+'/?wt=page_side:none,content_chrome:shared');await page.evaluate(()=>document.fonts.ready);
 const name=device+'-'+(js?'js':'nojs');
 const expected=ids.filter(x=>device==='pc'?x!=='sp-bottom':x!=='sticky-sidebar');
 check(name+':placement-order',JSON.stringify(await page.locator('[data-wt-zone]').evaluateAll(es=>es.map(e=>e.dataset.wtZone)))===JSON.stringify(expected));
@@ -50,7 +51,7 @@ const image=name+'.png';await page.screenshot({path:path.join(out,image),fullPag
 // 同じ実機面を空宣言に置換。見出し・ラッパー・カード全体が返らないことを確認。
 const empty=ids.map(slot=>'<!-- wp:helix-wt/zone-slot '+JSON.stringify({slot,common:[]})+' /-->').join('');
 wp(['post','update',id,'--post_content='+empty]);
-for(const mobile of[false,true]) {const context=await browser.newContext({javaScriptEnabled:false,userAgent:mobile?'Mobile iPhone':'Desktop'});const page=await context.newPage();await page.goto('http://127.0.0.1:8098/'+slug+'/');check('empty-dom-'+mobile,await page.locator('[data-wt-zone],.wt-zone__card,.wt-zone__eyebrow').count()===0);await context.close();}
+for(const mobile of[false,true]) {const context=await browser.newContext({javaScriptEnabled:false,userAgent:mobile?'Mobile iPhone':'Desktop'});const page=await context.newPage();await page.goto(`${contentLab.baseUrl}/`+slug+'/');check('empty-dom-'+mobile,await page.locator('[data-wt-zone],.wt-zone__card,.wt-zone__eyebrow').count()===0);await context.close();}
 } finally {if(id){wp(['post','delete',id,'--force']);check('fixture-cleanup',!wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']));}await browser.close();}
 const sources=['scripts/verify-zone-slots.mjs','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/templates/page-zone-catalog.html','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/zone-slots.php','docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/zone-slots.css'];
 const sourceDigests=Object.fromEntries(sources.map(p=>[p,createHash('sha256').update(fs.readFileSync(p)).digest('hex')]));

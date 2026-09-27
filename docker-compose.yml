@@ -40,8 +40,8 @@ services:
         define('WP_ENVIRONMENT_TYPE', 'development');
     volumes:
       - wp_core:/var/www/html
-      - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
-      - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
+      - ./archive/agent-neo/themes:/var/www/html/wp-content/themes/agent-neo-themes:ro
+      - ./archive/agent-neo/plugins:/var/www/html/wp-content/plugins/agent-neo-plugins:ro
       - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
       # 第三者テーマ（解析対象）の mount 先は .env で与える（.env.example 参照）
       - ${THEME_B_PARENT_DIR:-./vendor-themes/theme-b}:/var/www/html/wp-content/themes/${THEME_B_SLUG:-theme-b}:ro
@@ -64,8 +64,8 @@ services:
       WP_CLI_CACHE_DIR: /tmp/host/wp-cli-cache
     volumes:
       - wp_core:/var/www/html
-      - ./themes:/var/www/html/wp-content/themes/agent-neo-themes
-      - ./plugins:/var/www/html/wp-content/plugins/agent-neo-plugins
+      - ./archive/agent-neo/themes:/var/www/html/wp-content/themes/agent-neo-themes:ro
+      - ./archive/agent-neo/plugins:/var/www/html/wp-content/plugins/agent-neo-plugins:ro
       - ../seo-tool/v2/plugin:/var/www/html/wp-content/plugins/seo-tool-connector:ro
       # 第三者テーマ（解析対象）の mount 先は .env で与える（.env.example 参照）
       - ${THEME_B_PARENT_DIR:-./vendor-themes/theme-b}:/var/www/html/wp-content/themes/${THEME_B_SLUG:-theme-b}:ro

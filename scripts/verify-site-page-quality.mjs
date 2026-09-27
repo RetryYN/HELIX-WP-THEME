@@ -3,16 +3,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { contentLab } from './lib/content-lab-env.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const baseline=process.argv.includes('--baseline');
 const out=path.join(root,'docs/research/2026-09-08-content-faces/results/site-quality');
 fs.mkdirSync(out,{recursive:true});
-const sourceFiles=['scripts/verify-site-page-quality.mjs','docs/research/2026-09-08-content-faces/plugin/site-pages.json',...['theme.json','inc/site-pages.php','assets/css/site-pages.css'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
+const manifestPath='docs/research/2026-09-08-content-faces/plugin/site-pages.json';
+const sourceFiles=['scripts/verify-site-page-quality.mjs','scripts/lib/content-lab-env.mjs','scripts/start-content-lab.py',manifestPath,...['theme.json','inc/site-pages.php','assets/css/site-pages.css'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 sourceFiles.push(...['functions.php','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php'].map(p=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+p));
 const digest=f=>createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex');
 sourceFiles.push('docs/research/2026-09-05-design-prototype-03/theme/helix-wt/inc/content-chrome.php');
 const sourceDigests=Object.fromEntries(sourceFiles.map(f=>[f,digest(f)]));
-const manifest=JSON.parse(fs.readFileSync(path.join(root,sourceFiles[1])));
+const manifest=JSON.parse(fs.readFileSync(path.join(root,manifestPath)));
 const rows=[],measurements=[],shots=[];let completed=false;
 const browser=await chromium.launch();
 const check=(name,pass)=>rows.push({name,pass:!!pass});
@@ -21,7 +23,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js,reducedMotion:'reduce'});
   const page=await context.newPage();
   for(const key of Object.keys(manifest.pages)){
-   const response=await page.goto(`http://127.0.0.1:8098/site-${key}/`,{waitUntil:'load'});
+   const response=await page.goto(`${contentLab.baseUrl}/site-${key}/`,{waitUntil:'load'});
    const label=`${key}:${device}:js-${js}`;
    check(`response:${label}`,response.ok());
    const result=await page.evaluate(()=>{
@@ -40,7 +42,7 @@ try{
    await page.keyboard.press('Enter');
    check(`skip-target:${label}`,await page.evaluate(()=>document.activeElement.id==='site-main'));
    if(js&&['company','pricing'].includes(key)){
-    await page.goto(`http://127.0.0.1:8098/site-${key}/`);
+    await page.goto(`${contentLab.baseUrl}/site-${key}/`);
     const file=`${baseline?'before':'after'}-${key}-${device}.jpg`;
     await page.screenshot({path:path.join(out,file),fullPage:true,type:'jpeg',quality:82});shots.push({file,key,device,width});
    }

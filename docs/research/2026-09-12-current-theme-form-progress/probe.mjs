@@ -3,11 +3,12 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
+import { contentLab } from '../../../scripts/lib/content-lab-env.mjs';
 
 const mode = process.argv[2] || 'before';
 const root = new URL('../../../', import.meta.url);
 const out = new URL('./', import.meta.url);
-const wp = code => JSON.parse(execFileSync('docker', ['exec', 'helix-content-wp', 'php', '-r', `require '/var/www/html/wp-load.php';${code}`], { encoding: 'utf8' }));
+const wp = code => JSON.parse(execFileSync('docker', ['exec', contentLab.wpContainer, 'php', '-r', `require '/var/www/html/wp-load.php';${code}`], { encoding: 'utf8' }));
 const slug = 'form-progress-visual-audit';
 const fixture = wp(`if(get_page_by_path('${slug}',OBJECT,'page'))throw new Exception('collision');$id=wp_insert_post(['post_type'=>'page','post_name'=>'${slug}','post_title'=>'入力ステップの確認','post_status'=>'publish','post_content'=>'<!-- wp:helix-wt/form /-->'],true);if(is_wp_error($id))throw new Exception('create failed');update_post_meta($id,'_wp_page_template','page-canvas');echo wp_json_encode(['id'=>$id,'slug'=>'${slug}']);`);
 const results = [];
@@ -15,7 +16,7 @@ const browser = await chromium.launch({ args: ['--no-sandbox'] });
 try {
   for (const width of [390, 1440]) for (const noJs of [false, true]) {
     const page = await browser.newPage({ viewport: { width, height: 900 }, javaScriptEnabled: !noJs });
-    const response = await page.goto(`http://127.0.0.1:8098/${slug}/?wt=form_layout:steps,form_captcha:question,form_side:tel`, { waitUntil: noJs ? 'load' : 'networkidle' });
+    const response = await page.goto(`${contentLab.baseUrl}/${slug}/?wt=form_layout:steps,form_captcha:question,form_side:tel`, { waitUntil: noJs ? 'load' : 'networkidle' });
     const state = await page.evaluate(() => {
       const steps = [...document.querySelectorAll('.wt-form__steps li')];
       const stepBox = document.querySelector('.wt-form__steps')?.getBoundingClientRect();

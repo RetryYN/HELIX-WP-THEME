@@ -1586,6 +1586,24 @@
       "oracle": "未観察を範囲外へ落とす、骨格採用を個別設計の承認と扱う、または未検証を対応済みと表示すれば FAIL"
     },
     {
+      "id": "WT-AC-ARTICLE-01A",
+      "requirement_id": "WT-FR-ARTICLE-01",
+      "polarity": "positive",
+      "oracle": "記事目的として検索流入 / ニュース・発表 / 教育・信頼形成コラム等を明示分類でき、一覧・詳細で目的を判別できる。共通投稿型の目的分類も許容する"
+    },
+    {
+      "id": "WT-AC-ARTICLE-01B",
+      "requirement_id": "WT-FR-ARTICLE-01",
+      "polarity": "positive",
+      "oracle": "ニュース一覧は公開日・分類から過去項目を探して詳細へ移動でき、コラム一覧は編集目的を説明しテーマ別の記事へ移動できる"
+    },
+    {
+      "id": "WT-AC-ARTICLE-01C",
+      "requirement_id": "WT-FR-ARTICLE-01",
+      "polarity": "negative",
+      "oracle": "記事目的を区別する情報や用途別一覧が無い、または目的だけを理由に別CPTを必須化する要求なら FAIL"
+    },
+    {
       "id": "WT-AC-HOME-01A",
       "requirement_id": "WT-FR-HOME-01",
       "polarity": "positive",

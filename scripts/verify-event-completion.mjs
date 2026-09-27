@@ -1,7 +1,8 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import{execFileSync}from'node:child_process';import{chromium}from'playwright';import fs from'node:fs';import os from'node:os';import path from'node:path';import{fileURLToPath}from'node:url';import{createHash,randomUUID}from'node:crypto';
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'docs/research/2026-09-15-event-completion'),state=process.env.WTCF_STATE_DIR||path.join(os.tmpdir(),'helix-content-lab');
-const baseline=process.argv.includes('--baseline'),finishedOnly=process.argv.includes('--finished-only'),base='http://127.0.0.1:8098',slug='event-completion-fixture',run=randomUUID();
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',path.join(state,'wp.env'),'--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'docs/research/2026-09-15-event-completion'),state=contentLab.stateDir;
+const baseline=process.argv.includes('--baseline'),finishedOnly=process.argv.includes('--finished-only'),base=`${contentLab.baseUrl}`,slug='event-completion-fixture',run=randomUUID();
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
 const reserved=()=>wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']);if(reserved())throw Error('Reserved fixture exists');
 const lock=path.join(state,'event-completion-fixture.json');if(fs.existsSync(lock))throw Error('Previous run requires ownership recovery');fs.writeFileSync(lock,JSON.stringify({run,pid:process.pid}),{flag:'wx'});

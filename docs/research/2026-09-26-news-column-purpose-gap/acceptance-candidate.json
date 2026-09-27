@@ -1,0 +1,61 @@
+{
+  "schema": "wt-acceptance-candidate.v1",
+  "WT-AC-ARTICLE-01A": {
+    "status": "partial",
+    "scope": "WordPress 7.1.2 の実機で検索流入・ニュース／発表・コラムを分類し、一覧と詳細で目的を表示する。",
+    "remaining": [
+      "編集者が管理画面から目的分類を選択・編集する操作は未検証。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+        "row_names": [
+          "purpose:search-intent-archive-description-and-classification",
+          "purpose:news-releases-archive-description-and-classification",
+          "purpose:columns-archive-description-and-classification",
+          "archive:news-releases:2025-filter-to-dated-detail",
+          "archive:columns:2025-filter-to-dated-detail",
+          "archive:search-intent:2026-filter-to-dated-detail"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ARTICLE-01B": {
+    "status": "verified_in_poc",
+    "scope": "ニュース一覧は年・分類から日付付き詳細へ移動し、コラム一覧は編集目的を説明してテーマ別記事へ移動することをWordPress 7.1.2実機で検証。",
+    "remaining": [],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+        "row_names": [
+          "purpose:news-releases-archive-description-and-classification",
+          "purpose:columns-archive-description-and-classification",
+          "layout:category-guide-in-primary-before-sidebar",
+          "archive:news-releases:2025-filter-to-dated-detail",
+          "archive:columns:2025-filter-to-dated-detail",
+          "topics:news-releases/product-news-child-archive",
+          "topics:news-releases/announcements-child-archive",
+          "topics:columns/organization-child-archive",
+          "topics:columns/data-child-archive"
+        ]
+      }
+    ]
+  },
+  "WT-AC-ARTICLE-01C": {
+    "status": "partial",
+    "scope": "3つの目的分類を標準 post 型へ付与した実機fixtureで、専用CPTなしに分類・一覧・詳細が成立することを確認。",
+    "remaining": [
+      "目的情報や用途別一覧を除去した負例の拒否検査は未実施。"
+    ],
+    "proofs": [
+      {
+        "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+        "row_names": [
+          "type:news-releases-purpose-uses-standard-post",
+          "type:columns-purpose-uses-standard-post",
+          "type:search-intent-purpose-uses-standard-post"
+        ]
+      }
+    ]
+  }
+}

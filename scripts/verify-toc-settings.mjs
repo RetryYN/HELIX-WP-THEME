@@ -1,10 +1,11 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import fs from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
-const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-19-toc-settings',state='/tmp/helix-content-lab';
+const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/',out='docs/research/2026-09-19-toc-settings',state=contentLab.stateDir;
 const run=randomUUID(),slug='toc-settings-fixture',lock=state+'/toc-settings-fixture.json';
-const wp=args=>execFileSync('docker',['run','--rm','--network','helix-content-lab','--env-file',state+'/wp.env','--volumes-from','helix-content-wp','--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
+const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',state+'/wp.env','--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',maxBuffer:16000000}).trim();
 const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const reserved=()=>wp(['post','list','--post_type=any','--post_status=any','--name='+slug,'--format=ids']);
 if(wp(['option','get','blogname'])!=='HELIX Content Lab'||reserved()||fs.existsSync(lock))throw Error('Dedicated lab / fixture collision');

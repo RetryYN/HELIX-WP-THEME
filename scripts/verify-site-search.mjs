@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,7 +18,7 @@ try {
  for(const [device,width] of [['pc',1440],['sp',375]])for(const js of [true,false]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js});const page=await context.newPage();
   for(const [state,q] of [['results','判断'],['empty','no-match-search-fixture-20260908'],['blank',''],['whitespace','　 ']]){
-   const response=await page.goto('http://127.0.0.1:8098/?s='+encodeURIComponent(q));const label=`${state}:${device}:js-${js}`;
+   const response=await page.goto(`${contentLab.baseUrl}/?s=`+encodeURIComponent(q));const label=`${state}:${device}:js-${js}`;
    check(`response:${label}`,response.status()===200);
    check(`search-heading:${label}`,await page.locator('main h1').count()===1&&(await page.locator('main h1').innerText())==='サイト内検索');
    const input=page.locator('main input[type=search]');check(`editable-query:${label}`,await input.count()===1&&await input.inputValue()===q);
@@ -29,7 +30,7 @@ try {
    if(['blank','whitespace'].includes(state)){check(`unentered:${label}`,await page.locator('main .wt-search-start').count()===1&&await page.locator('main .wp-block-post-title, main .wp-block-query-total').count()===0);check(`not-zero:${label}`,await page.locator('main .wp-block-query-no-results').count()===0);}
    if(!js&&state!=='whitespace'){const file=`after-${state}-${device}.jpg`;await page.screenshot({path:path.join(out,file),type:'jpeg',quality:80,fullPage:true});shots.push({file,device,state,query:q});}
   }
-  await page.goto('http://127.0.0.1:8098/?s=no-match-search-fixture-20260908');
+  await page.goto(`${contentLab.baseUrl}/?s=no-match-search-fixture-20260908`);
   await page.locator('main input[type=search]').fill('判断');await page.locator('main').getByRole('button',{name:'検索する'}).click();
   check(`recover:${device}:js-${js}`,new URL(page.url()).searchParams.get('s')==='判断'&&await page.locator('main .wp-block-post-title a').count()>0);
   const link=page.locator('main .wp-block-post-title a').first();const href=await link.getAttribute('href');await link.click();

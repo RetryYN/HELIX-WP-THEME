@@ -1,10 +1,11 @@
 import { chromium } from '@playwright/test';
 import { readFileSync,writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { contentLab } from '../../../scripts/lib/content-lab-env.mjs';
 const dir='docs/research/2026-09-10-current-theme-quality/';
 const theme='docs/research/2026-09-05-design-prototype-03/theme/helix-wt/';
 const mode=process.argv[2]??'before';
-const base='http://127.0.0.1:8098';
+const base=contentLab.baseUrl;
 const urls=['/library/decision-design/','/voices/making-room/','/guides/before-redesign/','/start/editorial-session/','/library/','/learn/'];
 const rows=[];const browser=await chromium.launch();
 try{

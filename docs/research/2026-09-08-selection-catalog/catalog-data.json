@@ -1,8 +1,8 @@
 {
   "schema": "wt-selection-catalog.v1",
   "source": "docs/research/2026-09-05-design-prototype-03",
-  "requirementCount": 134,
-  "screenshotCount": 1287,
+  "requirementCount": 135,
+  "screenshotCount": 1293,
   "faces": {
     "404": "404 面: 存在しない URL から検索や回遊へ戻す案内面。",
     "article": "記事面: 本文、目次、記事末部品、比較用の軸を確認する面。段 10 で共通サイドバー（配置 / 追尾 / SP / セット）とサイドナビを追加。",
@@ -12039,6 +12039,81 @@
       "evidence": "../2026-09-08-site-search/results/verify.json"
     },
     {
+      "id": "article-purpose:news-releases",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "ニュース・発表",
+      "description": "新製品の発表と運営からのお知らせを、日付・分類から過去記事へたどるWordPress実機PoC。標準post型を使い、専用CPTを前提にしません。",
+      "purpose": "新着の発表と過去のお知らせを探す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-26-news-column-purpose-gap/results/news-releases-1440.jpg",
+        "sp": "../2026-09-26-news-column-purpose-gap/results/news-releases-390.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "demoRoute": "/category/news-releases/",
+      "selectionFacts": {
+        "一覧と導線": "目的の説明、製品発表・お知らせへの分類導線、年絞り込み、日付付き詳細ページ。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "投稿目的の区分は標準post型とカテゴリで表現できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json"
+    },
+    {
+      "id": "article-purpose:columns",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "コラム",
+      "description": "実務の学びと考え方をテーマ別に紹介する一覧。ニュース・発表面と同じ標準post型で、目的と読者の探し方を分けたWordPress実機PoCです。",
+      "purpose": "テーマ別の学びと考え方を探す",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-26-news-column-purpose-gap/results/columns-1440.jpg",
+        "sp": "../2026-09-26-news-column-purpose-gap/results/columns-390.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "demoRoute": "/category/columns/",
+      "selectionFacts": {
+        "一覧と導線": "編集目的の説明、組織づくり・データ活用の分類、年絞り込み、詳細ページを検証。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "コラムの編集目的と分類導線を通常の記事一覧で表現できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json"
+    },
+    {
+      "id": "article-purpose:search-intent",
+      "face": "category",
+      "part": "article-purpose",
+      "label": "記事目的別一覧",
+      "variant": "検索流入",
+      "description": "検索で訪れた読者の疑問を解決するガイド記事の一覧。ニュース・発表やコラムと比較できるよう、同じカテゴリ面・標準post型で構成したWordPress実機PoCです。",
+      "purpose": "検索から来た読者を解説へ案内する",
+      "group": "ページ・本文",
+      "images": {
+        "pc": "../2026-09-26-news-column-purpose-gap/results/search-intent-1440.jpg",
+        "sp": "../2026-09-26-news-column-purpose-gap/results/search-intent-390.jpg"
+      },
+      "requirementIds": [
+        "WT-FR-ARTICLE-01"
+      ],
+      "demoRoute": "/category/search-intent/",
+      "selectionFacts": {
+        "一覧と導線": "検索流入向けの目的説明、導入ガイド分類、年別一覧、日付付き詳細を検証。",
+        "実測範囲": "WordPress 7.1.2、390/768/1440px、親一覧・年別一覧・分類別一覧・詳細を検証。",
+        "判断できること": "検索流入向けの記事群を他の編集目的と区別して案内できる。",
+        "未検証": "編集者の管理画面操作、分類・一覧を失ったときの負例、CPT/URLの最終選択、外部検索サービス上の掲載。"
+      },
+      "evidence": "../2026-09-26-news-column-purpose-gap/results/verify.json"
+    },
+    {
       "id": "event-state:before-open",
       "face": "event",
       "part": "event-state-fixture",
@@ -14379,7 +14454,7 @@
       "part": "look-pattern-contract",
       "label": "見た目：サイトパターン分布からの導出",
       "variant": "survey-derived",
-      "description": "269件のサイト調査と730件の部品語彙集計から6系統を観察済みとして9 variationへ対応付け、未観察系統を開いた索引に残す静的契約PoC。",
+      "description": "269件のサイト調査と730件の部品語彙集計から6系統を観察し、旧テーマの9 variationを参照した静的契約PoC。現行PoCへの写像は未検証。",
       "purpose": "用途に合う型を選ぶ",
       "group": "ページ・本文",
       "images": {
@@ -14392,9 +14467,9 @@
       "referenceId": "wt-look-pattern-contract.v1",
       "evidence": "../2026-09-20-look-pattern-contract-poc/verification.json",
       "selectionFacts": {
-        "対象と判断": "観察済み分布に根拠があるvariationだけを候補にし、未観察系統は索引へ残す。",
-        "実測": "調査269件、部品集計730件25 family、G-T1b/G-T3 FAIL=0。",
-        "未検証": "全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
+        "対象と判断": "観察済み分布と旧テーマのvariationを参照し、現行PoCへの写像は別に検証する。",
+        "実測": "調査269件、部品集計730件25 family、旧テーマG-T1b/G-T3 FAIL=0。",
+        "未検証": "旧9 variationと現行PoCのrules/minchoは別資産。現行PoCへのサイトパターン写像、全style variationの編集画面保存・REST/MCP経路、未観察系統の実サイト再調査、常時アニメーションの資産層は未接続。"
       }
     },
     {
@@ -14594,7 +14669,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "3df6bfc43f37bd42751585d236ec3eae5990ed6904a046c53087fb8d642a2fe4",
+              "sha256": "c36e219943eb366f5a9317d621463a560873d6a3b78485df35fb54e634ad323a",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source",
                 "manifest:all-capability-kinds",
@@ -14615,7 +14690,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "3df6bfc43f37bd42751585d236ec3eae5990ed6904a046c53087fb8d642a2fe4",
+              "sha256": "c36e219943eb366f5a9317d621463a560873d6a3b78485df35fb54e634ad323a",
               "row_names": [
                 "negative:undeclared-patterns-fails",
                 "negative:undeclared-template_parts-fails",
@@ -14666,14 +14741,14 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/verify.json",
-              "sha256": "3df6bfc43f37bd42751585d236ec3eae5990ed6904a046c53087fb8d642a2fe4",
+              "sha256": "c36e219943eb366f5a9317d621463a560873d6a3b78485df35fb54e634ad323a",
               "row_names": [
                 "manifest:declared-equals-current-helix-wt-source"
               ]
             },
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "32ef1b76f98d3da60d105d75b1c327d95ee5147404e58cd1a796a02d5a1cf93b",
+              "sha256": "ba6f8299190848e183508b08a261b40501e97c342803d35d33289464809ba98e",
               "row_names": [
                 "health:loaded",
                 "health:active-current-theme",
@@ -14697,7 +14772,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-capability-manifest/runtime.json",
-              "sha256": "32ef1b76f98d3da60d105d75b1c327d95ee5147404e58cd1a796a02d5a1cf93b",
+              "sha256": "ba6f8299190848e183508b08a261b40501e97c342803d35d33289464809ba98e",
               "row_names": [
                 "negative:unregistered-pattern-reported"
               ]
@@ -14741,7 +14816,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "ab0292e44a395686397e79465c41363088a8557cbc7a605e9afa74150e474a41",
+              "sha256": "927e9a3fa64d9abda0e979dc3f24fe67d9c6d6104d9e33848e1d586b652092db",
               "row_names": [
                 "boundary:production-findings-zero",
                 "boundary:manifest-denies-local-ai-logic"
@@ -14760,7 +14835,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-ai-boundary/verify.json",
-              "sha256": "ab0292e44a395686397e79465c41363088a8557cbc7a605e9afa74150e474a41",
+              "sha256": "927e9a3fa64d9abda0e979dc3f24fe67d9c6d6104d9e33848e1d586b652092db",
               "row_names": [
                 "negative:sdk-import-js-fails",
                 "negative:sdk-import-php-fails",
@@ -14814,7 +14889,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-              "sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+              "sha256": "b46ef39b968da32c0cf004486f4a336072dc7927cd68e2e659c46bf49d0a22b4",
               "row_names": [
                 "AC-NFR-GATE-01A binds all six static gates and G-E1 invalid=0",
                 "AC-NFR-GATE-01A records the known static baseline and G-E1 scope"
@@ -14836,7 +14911,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-gate-contract-poc/verification.json",
-              "sha256": "6a16e1b8c3e84d2570619d87fe060a2ce6b9f7cbd81c24e6315d2d7815390ee7",
+              "sha256": "b46ef39b968da32c0cf004486f4a336072dc7927cd68e2e659c46bf49d0a22b4",
               "row_names": [
                 "AC-NFR-GATE-01B keeps completion false for historical G-E1 evidence",
                 "AC-NFR-GATE-01B rejects static PASS with a nonzero FAIL count",
@@ -14994,7 +15069,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-zone-slots/verification.json",
-              "sha256": "d50a7b32a74ed3e96090b2a59887b94ea918fd5e188992b0ea0c2e6b22c5b946",
+              "sha256": "5c2af8aac5ddb2ff27030d6c87cfaf9a02c9055a52612a8f8587624bc4d409d4",
               "row_names": [
                 "pc-js:placement-order",
                 "pc-js:device-difference",
@@ -15021,7 +15096,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-zone-slots/verification.json",
-              "sha256": "d50a7b32a74ed3e96090b2a59887b94ea918fd5e188992b0ea0c2e6b22c5b946",
+              "sha256": "5c2af8aac5ddb2ff27030d6c87cfaf9a02c9055a52612a8f8587624bc4d409d4",
               "row_names": [
                 "pc-js:opposite-heavy-absent",
                 "sp-js:opposite-heavy-absent",
@@ -15382,7 +15457,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "stack:pc:js:G-E1:cta-clear",
                 "stack:pc:js:G-E1:stack-order",
@@ -15417,7 +15492,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "negative:G-E1:cta-clear",
                 "negative:G-E1:stack-order"
@@ -15438,7 +15513,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "advertisement:pc:js:G-E1:area-cap",
                 "advertisement:pc:js:G-E1:initial-modal",
@@ -15560,7 +15635,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "modal:banner-zone-fixture",
                 "modal:banner-zone-lp-fixture",
@@ -15735,7 +15810,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-parts-declaration/verification.json",
-              "sha256": "1fe3bc6f60ad82883bd96e49af0fb53527bfaf11e7007daef5e65ed7d30d66c4",
+              "sha256": "24fe6d93f294ccb35d364169786083b406149d3cd20b4f30db3e83fc27964c37",
               "row_names": [
                 "initial:saved-declaration-roundtrip",
                 "initial-pc-js:selected-reference-visible",
@@ -15751,7 +15826,7 @@
             },
             {
               "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
-              "sha256": "b74604a9d431dd2f0cc7a2bdc59a1f761e5928ab5f615bcae0f72d13bb50c9b8",
+              "sha256": "5dec58cc3ad8fd13942edda5b0565f1393b50d878fdfd3b77f6254f05c2b31cb",
               "row_names": [
                 "client:attribute-registered",
                 "inspector:store-updated",
@@ -15781,7 +15856,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-parts-declaration/verification.json",
-              "sha256": "1fe3bc6f60ad82883bd96e49af0fb53527bfaf11e7007daef5e65ed7d30d66c4",
+              "sha256": "24fe6d93f294ccb35d364169786083b406149d3cd20b4f30db3e83fc27964c37",
               "row_names": [
                 "missingReference:validator-rejects",
                 "missingReference:public-rejects",
@@ -15798,7 +15873,7 @@
             },
             {
               "path": "docs/research/2026-09-13-parts-declaration/editor/verification.json",
-              "sha256": "b74604a9d431dd2f0cc7a2bdc59a1f761e5928ab5f615bcae0f72d13bb50c9b8",
+              "sha256": "5dec58cc3ad8fd13942edda5b0565f1393b50d878fdfd3b77f6254f05c2b31cb",
               "row_names": [
                 "missingReference:rest-rejected",
                 "missingReference:database-unchanged",
@@ -15825,7 +15900,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-footer-data/rendering.json",
-              "sha256": "2a11ce67ee0dfbfd9613282b6cc1777b1e4a600a7f45b9e61b3d8c0e7c486d13",
+              "sha256": "55f0cfecd6c19e50345f10736bffc7c47ccfdace95847f6d5c49cb10fbfbe615",
               "row_names": [
                 "related-group:empty:1440:js-true",
                 "sitemap-groups:empty:1440:js-true",
@@ -15883,7 +15958,7 @@
             },
             {
               "path": "docs/research/2026-09-09-footer-data/editor.json",
-              "sha256": "2fd9a30e1b0808c4fd53bd0f8438958bb0d5dabd5c1c205a61035c064da164d9",
+              "sha256": "e03058661977328f14aa7acff8233853e4d58524c9ed75d5e4963a0d45222cf1",
               "row_names": [
                 "initial:valid-blocks",
                 "edit:store-updated",
@@ -16104,7 +16179,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "8e0a86b48698ff4b303ebff4768bdd6d63266223e71cd8799b04737d8adff6d6",
+              "sha256": "e3185c126a2e6e47d3b26353a41fe72c79b7e6692af228a5a0de17ab53153d43",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -16118,7 +16193,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "a50e85d345f599add7f04e288ea6f3d45a6617982d9cb9b18749b19934f5d63e",
+              "sha256": "926ae3d7a58b6efda5f4e1ca73bd12e773379cd7ff7e0f89e82fb5207fa4a830",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -16140,7 +16215,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-header-navigation-complete/verify.json",
-              "sha256": "8e0a86b48698ff4b303ebff4768bdd6d63266223e71cd8799b04737d8adff6d6",
+              "sha256": "e3185c126a2e6e47d3b26353a41fe72c79b7e6692af228a5a0de17ab53153d43",
               "row_names": [
                 "matrix:expected-condition-count",
                 "matrix:all-assertions-pass",
@@ -16154,7 +16229,7 @@
             },
             {
               "path": "docs/research/2026-09-14-header-navigation-editing/summary.json",
-              "sha256": "a50e85d345f599add7f04e288ea6f3d45a6617982d9cb9b18749b19934f5d63e",
+              "sha256": "926ae3d7a58b6efda5f4e1ca73bd12e773379cd7ff7e0f89e82fb5207fa4a830",
               "row_names": [
                 "verify:completed",
                 "scope:completed",
@@ -16546,7 +16621,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-              "sha256": "99ea87ed395fb87bcbe280f282ba91fdd6b76cba5f30ddf5716b9c930ef70cfc",
+              "sha256": "a6b422062b4ecea6156d4331f582754ee762b4878dad606775b36600204db0de",
               "row_names": [
                 "reading-layout:all-widths-reflow",
                 "reading-layout:single-derived-article-toc",
@@ -16555,7 +16630,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "fe5f24368ea85b22079b3f713be00dc6431d0ebbc15a67c955c3103ef9491040",
+              "sha256": "0ff1a817abc84b44c55d1651cbd1e130d4abe5095e44c67b708e6890c013c4ca",
               "row_names": [
                 "box:saved-readback",
                 "float:saved-readback",
@@ -16591,7 +16666,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json",
-              "sha256": "99ea87ed395fb87bcbe280f282ba91fdd6b76cba5f30ddf5716b9c930ef70cfc",
+              "sha256": "a6b422062b4ecea6156d4331f582754ee762b4878dad606775b36600204db0de",
               "row_names": [
                 "reading-layout:single-derived-article-toc",
                 "reading-layout:toc-none-removes-derived-toc",
@@ -16600,7 +16675,7 @@
             },
             {
               "path": "docs/research/2026-09-19-toc-settings/verification.json",
-              "sha256": "fe5f24368ea85b22079b3f713be00dc6431d0ebbc15a67c955c3103ef9491040",
+              "sha256": "0ff1a817abc84b44c55d1651cbd1e130d4abe5095e44c67b708e6890c013c4ca",
               "row_names": [
                 "none:saved-readback",
                 "none:pc:js:selected",
@@ -16716,7 +16791,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
-              "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+              "sha256": "9f726c8b0cf3f4b263e07c29fc7c9a3d882c0a5bc5101650a85bfb971dbc0151",
               "row_names": [
                 "AC-VOCAB-03A accepts automatic commercial signal detection",
                 "AC-VOCAB-03A places one subtle notice in the article first view",
@@ -16738,7 +16813,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
-              "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+              "sha256": "9f726c8b0cf3f4b263e07c29fc7c9a3d882c0a5bc5101650a85bfb971dbc0151",
               "row_names": [
                 "AC-VOCAB-03B omits notices from articles with no commercial signal",
                 "AC-VOCAB-03B rejects signal removal from the automatic contract",
@@ -16762,7 +16837,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-pr-disclosure-contract-poc/verification.json",
-              "sha256": "eef48899d642a236ed16b035c6d502986fae2d47aeb2757c115f83a602be2793",
+              "sha256": "9f726c8b0cf3f4b263e07c29fc7c9a3d882c0a5bc5101650a85bfb971dbc0151",
               "row_names": [
                 "AC-VOCAB-03C keeps the PO default wording and avoids component badges",
                 "AC-VOCAB-03C suppresses duplicate positive disclosure in the first three paragraphs",
@@ -17171,7 +17246,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-heading-comparison/verification.json",
-              "sha256": "f45c3c2a9db317b58001d51d44cb7a412a77cad6f6fd6ed09a6e953e0614d960",
+              "sha256": "6f2dab7682e1d7d2c1a6efc968803718fda4c0854254247cb5a4ef703192bfb9",
               "row_names": [
                 "registry:15-existing-styles",
                 "content:roundtrip",
@@ -17694,7 +17769,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
-              "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+              "sha256": "7e76879313b982adc5daedd3490230801d3bd94e702f4dfad823dd32e720271b",
               "row_names": [
                 "no undefined soft reference",
                 "content faces has no important",
@@ -17703,7 +17778,7 @@
             },
             {
               "path": "docs/research/2026-09-20-heading-fluid/tokens.json",
-              "sha256": "75f7aa6753f1760ac9ea230884f65b8dba54ed2ea098f166c1c004d91ad99117",
+              "sha256": "18703dd231ffd813d01d68307f6287b9dc0a492fd8e005ea8fd0c2c1b4b67dc4",
               "row_names": [
                 "15-existing-styles",
                 "decoration:no-raw-dimensions-except-1px",
@@ -17719,7 +17794,7 @@
             },
             {
               "path": "docs/research/2026-09-20-heading-fluid/verification.json",
-              "sha256": "71e7018ae56bb0a731d1a5f7ca2c44ed56acb04e26ca7d007815c02cf64671b3",
+              "sha256": "3113f6753931d80df290a403337f9fdd9bd2dbd8d35b7534928dc347709a19c1",
               "row_names": [
                 "registry:15-existing-styles",
                 "content:roundtrip",
@@ -17749,7 +17824,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-pricing-cards/verification.json",
-              "sha256": "6b76f2a8c9bbbaba61ec5a800177943f8aa97994f0ad00ee476fb34a6f00e8ca",
+              "sha256": "392ea6c57de19052305155ad3090d570e66b5247a58882e3b6bf610f5b098bcd",
               "row_names": [
                 "standard:saved-content-roundtrip",
                 "long-copy:saved-content-roundtrip",
@@ -17894,7 +17969,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+              "sha256": "587b81c6fe1c5b89aea888960b0579b21e40ed76cf4d82a610e54567cb535a80",
               "row_names": [
                 "fixture:positive",
                 "css:docs/research/2026-09-05-design-prototype-03/theme/helix-wt/assets/css/theme.css",
@@ -18071,7 +18146,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
-              "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+              "sha256": "7e76879313b982adc5daedd3490230801d3bd94e702f4dfad823dd32e720271b",
               "row_names": [
                 "variation slugs rules",
                 "variation slugs mincho",
@@ -18091,7 +18166,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-current-theme-quality/verify.json",
-              "sha256": "af4c9e29b7a4aa7228066bed0d3d18289e38f7a2c8a6aa955dd44426aef9c886",
+              "sha256": "7e76879313b982adc5daedd3490230801d3bd94e702f4dfad823dd32e720271b",
               "row_names": [
                 "negative variation added slug rejected",
                 "negative variation removed slug rejected"
@@ -18228,10 +18303,10 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+              "sha256": "000167916d34e37a191624d55901fc6ff20ee14de00d341776536052dfb2fe17",
               "row_names": [
                 "AC-LOOK-03A binds the survey vocabulary and pattern distribution",
-                "AC-LOOK-03A derives the nine current variations and passes G-T1b/G-T3"
+                "AC-LOOK-03A checks nine archived reference variations and their historical gates"
               ]
             }
           ]
@@ -18249,7 +18324,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+              "sha256": "000167916d34e37a191624d55901fc6ff20ee14de00d341776536052dfb2fe17",
               "row_names": [
                 "AC-LOOK-03B rejects a variation sourced from an unobserved pattern",
                 "AC-LOOK-03B rejects a pattern distribution that is not in the survey"
@@ -18270,7 +18345,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-look-pattern-contract-poc/verification.json",
-              "sha256": "4bd1b497368c54f2c2e4640c0c5c75882cbbb5af6756607127b1ca2f20a10373",
+              "sha256": "000167916d34e37a191624d55901fc6ff20ee14de00d341776536052dfb2fe17",
               "row_names": [
                 "AC-LOOK-03C keeps an open index and refuses completion while it has unobserved patterns",
                 "AC-LOOK-03C rejects an open pattern that is already observed"
@@ -18432,7 +18507,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-eyecatch-meta/verification.json",
-              "sha256": "93c8c859684355f63ec29352bd3af7c0f4f435913d3edd28053300eb589a8b88",
+              "sha256": "407ccc3f725658cb52fe122cff2cc2d37d18de1a6f92468e5e62706b1b74a6f6",
               "row_names": [
                 "explicit:overrides-changed-site",
                 "fixtures:cleanup",
@@ -19222,7 +19297,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-AGENT-01A binds one pack across CLI, REST, MCP and receipt flow"
               ]
@@ -19243,7 +19318,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-AGENT-01B records the known input-schema normalization boundary",
                 "AC-AGENT-01B rejects a pack with an undeclared ability"
@@ -19957,7 +20032,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-SEC-01A records the anonymous REST/MCP boundary without claiming full audit"
               ]
@@ -19978,7 +20053,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-SEC-01B rejects an anonymous endpoint that is not forbidden"
               ]
@@ -20077,7 +20152,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+              "sha256": "aef09570108c62d32849000308fead587fef5f53a7ef925c77a6ee7d6267ce79",
               "row_names": [
                 "privacy:production-tracking-ids-zero",
                 "privacy:production-ad-code-zero",
@@ -20097,7 +20172,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-privacy-boundary/verify.json",
-              "sha256": "338593ba0d56ea4a0b03af34d87c335adc68af6184cac643168d82564eb81ea5",
+              "sha256": "aef09570108c62d32849000308fead587fef5f53a7ef925c77a6ee7d6267ce79",
               "row_names": [
                 "negative:ga4-measurement-id-fails",
                 "negative:tag-manager-id-fails",
@@ -20148,7 +20223,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
                 "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -20170,7 +20245,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-20-abilities-security-contract-poc/verification.json",
-              "sha256": "678d0559056f69c5cbbbb4e2b8ff9bf0f6ee1c54af90453fa51210b0a2613526",
+              "sha256": "b6251446287cd29af3519679668f63cc1ea6fe21a7c361a2a10226c82e06f821",
               "row_names": [
                 "AC-NFR-PERM-01A/B proves receipt and anonymous permission fences",
                 "AC-NFR-PERM-01B rejects receipt-less apply evidence"
@@ -20506,7 +20581,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-public-safety/verify.json",
-              "sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+              "sha256": "ac1e744c6f73b7cb608dfa8ada38f8195420e39d1decde77c7b32ffa9d64d254",
               "row_names": [
                 "positive:clean-source-accepted",
                 "positive:research-with-private-map-accepted"
@@ -20525,7 +20600,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-09-public-safety/verify.json",
-              "sha256": "a1b822cd8309ebb74ce9579a8cdb4111e1f4e3a78d8262bc423401d6ce90453f",
+              "sha256": "ac1e744c6f73b7cb608dfa8ada38f8195420e39d1decde77c7b32ffa9d64d254",
               "row_names": [
                 "negative:private-key-rejected",
                 "negative:access-token-rejected",
@@ -22580,7 +22655,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "contract:category-scope",
                 "contract:end-exclusive",
@@ -22646,7 +22721,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "contract:image-budget",
                 "contract:invalid-date",
@@ -22673,7 +22748,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "notice:pc:js:close-persists",
                 "notice:pc:js:one-assignment",
@@ -22700,7 +22775,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "notice:pc:js:close-persists",
                 "notice:pc:nojs:one-assignment",
@@ -22725,7 +22800,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-banner-zone-completion/verification.json",
-              "sha256": "cc2512d5577fa40d109352dd142ff0e8a482e1834b6475bbe932ba73c5073fa7",
+              "sha256": "93e549a448b174d701744620413007693c84adc8ed284b6c9d99aec0b75ccc3e",
               "row_names": [
                 "geometry:pc:reserved-size",
                 "geometry:sp:reserved-size",
@@ -23227,7 +23302,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
-              "sha256": "cd59a5b8057e42d31640f385d8de655ad50b2835c9445f88c617ca3a41c41b9d",
+              "sha256": "755176f91739a4e2f2ae18b7617c394a49d9c66f04ef1d0bf8efea8ec917bc56",
               "row_names": [
                 "compare:pc:js:contract",
                 "compare:pc:js:table-device-shape",
@@ -23266,7 +23341,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-16-device-vocabulary/verification.json",
-              "sha256": "cd59a5b8057e42d31640f385d8de655ad50b2835c9445f88c617ca3a41c41b9d",
+              "sha256": "755176f91739a4e2f2ae18b7617c394a49d9c66f04ef1d0bf8efea8ec917bc56",
               "row_names": [
                 "compare:pc:js:arrow-selects-second",
                 "compare:pc:js:end-selects-last",
@@ -23364,7 +23439,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "a296696a1f11af80fe27464ddff09e1d1a8e86e78c64f9b28ee91131d81393b8",
+              "sha256": "c320d2dee1014087865f543081ffbb510c99553675d9be04cd28786f10bc42f5",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -23650,7 +23725,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-quality/verify.json",
-              "sha256": "a296696a1f11af80fe27464ddff09e1d1a8e86e78c64f9b28ee91131d81393b8",
+              "sha256": "c320d2dee1014087865f543081ffbb510c99553675d9be04cd28786f10bc42f5",
               "row_names": [
                 "response:company:pc:js-true",
                 "target-size:company:pc:js-true",
@@ -24693,7 +24768,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-19-recommendation-layouts/verification.json",
-              "sha256": "d60af8ebdc84faccc8278472e83c4d17982580c0884b2d683716f18263238bd4",
+              "sha256": "5e2542ad3295b56ef7bebdba812619dc27564047a5b6f88ac56086b15886444e",
               "row_names": [
                 "cards:pc:js:private-excluded",
                 "cards:pc:js:same-public-order-count",
@@ -25452,7 +25527,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+              "sha256": "587b81c6fe1c5b89aea888960b0579b21e40ed76cf4d82a610e54567cb535a80",
               "row_names": [
                 "source:no-autoplay:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
                 "source:no-automatic-scroll-timer:docs/research/2026-09-05-design-prototype-03/theme/helix-wt",
@@ -25477,7 +25552,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-reduced-motion/verify.json",
-              "sha256": "17cf2080ee41ef41c878cf820afb7f7ac50540d358e6f3b70812cf68082920b3",
+              "sha256": "587b81c6fe1c5b89aea888960b0579b21e40ed76cf4d82a610e54567cb535a80",
               "row_names": [
                 "fixture:negative:animation",
                 "fixture:negative:transition",
@@ -25860,7 +25935,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "448bf4f1a369d091e0f17946428ffecbd5826e83f961d6160d5af50bad49dfa3",
+              "sha256": "a39c9d91e128e14034307c4dbd6690d369ec925f2cc33c7649eb328f3a859eaa",
               "row_names": [
                 "i18n:source-calls-found",
                 "i18n:all-gettext-calls-extracted",
@@ -25886,7 +25961,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-10-i18n-boundary/verify.json",
-              "sha256": "448bf4f1a369d091e0f17946428ffecbd5826e83f961d6160d5af50bad49dfa3",
+              "sha256": "a39c9d91e128e14034307c4dbd6690d369ec925f2cc33c7649eb328f3a859eaa",
               "row_names": [
                 "negative:text-domain-drift-fails",
                 "negative:pot-source-drift-fails",
@@ -25960,7 +26035,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-notfound-recovery/verify.json",
-              "sha256": "67cec21578f8f6ebd152c4424b0d9eaf54531df9bf716870d47a8218502de6b7",
+              "sha256": "bd8a403a0a7cc9d2618f85643feee33e46733355b4695d8565ad3a2af8e6de01",
               "row_names": [
                 "404:all-three-variants-pc-sp-js-nojs",
                 "404:status-and-noindex",
@@ -26019,7 +26094,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "724e953ae86e1bceab54a9f6f47e2eb4fbfbf225440e71d7f49ee34bc40bb1e6",
+              "sha256": "496f5dad9d59ed10081e38ee85d1a6d820c758cb62e191974372f4c2bbea4ab3",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -26431,7 +26506,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/editor.json",
-              "sha256": "8bd792ed407084a418a6f11ff658c3c81f0c574b0fd2f26dbd1c86b0ed914ad2",
+              "sha256": "778b97cf1bc17b4d2f786d4ebf6e1867e61cdba0507f8249a2f3a9a5f4ec06e4",
               "row_names": [
                 "pattern:ui-inserted",
                 "template:explicit-apply",
@@ -26492,7 +26567,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "724e953ae86e1bceab54a9f6f47e2eb4fbfbf225440e71d7f49ee34bc40bb1e6",
+              "sha256": "496f5dad9d59ed10081e38ee85d1a6d820c758cb62e191974372f4c2bbea4ab3",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -26915,7 +26990,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/site-pages/verify.json",
-              "sha256": "724e953ae86e1bceab54a9f6f47e2eb4fbfbf225440e71d7f49ee34bc40bb1e6",
+              "sha256": "496f5dad9d59ed10081e38ee85d1a6d820c758cb62e191974372f4c2bbea4ab3",
               "row_names": [
                 "handoff:origin-owned-by-manifest",
                 "handoff:valid-origin-and-path",
@@ -27619,6 +27694,109 @@
       }
     },
     {
+      "id": "WT-FR-ARTICLE-01",
+      "family": "ARTICLE",
+      "statement": "記事管理は目的を「検索流入」「ニュース・発表」「教育・信頼形成コラム」等で識別し、その選択に応じた一覧と詳細への導線を提供する。ニュース一覧は日付・分類で過去項目を探せ、コラム一覧は記事目的を説明しテーマ別記事へ移動できる。目的は投稿種別と区別し、共通投稿型の分類としても実装できる。CPT・URL 構造・Discover 掲載保証は本候補で決めない。",
+      "priority": "P1",
+      "revision": 1,
+      "acceptance": [
+        {
+          "id": "WT-AC-ARTICLE-01A",
+          "requirement_id": "WT-FR-ARTICLE-01",
+          "oracle": "記事目的として検索流入 / ニュース・発表 / 教育・信頼形成コラム等を明示分類でき、一覧・詳細で目的を判別できる。共通投稿型の目的分類も許容する",
+          "polarity": "positive",
+          "status": "partial",
+          "scope": "WordPress 7.1.2 の実機で検索流入・ニュース／発表・コラムを分類し、一覧と詳細で目的を表示する。",
+          "remaining": [
+            "編集者が管理画面から目的分類を選択・編集する操作は未検証。"
+          ],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+              "sha256": "2785aa29f094b304e06adb1025c404634f8ab94a4950553cb975912cdb32fa44",
+              "row_names": [
+                "purpose:search-intent-archive-description-and-classification",
+                "purpose:news-releases-archive-description-and-classification",
+                "purpose:columns-archive-description-and-classification",
+                "archive:news-releases:2025-filter-to-dated-detail",
+                "archive:columns:2025-filter-to-dated-detail",
+                "archive:search-intent:2026-filter-to-dated-detail"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WT-AC-ARTICLE-01B",
+          "requirement_id": "WT-FR-ARTICLE-01",
+          "oracle": "ニュース一覧は公開日・分類から過去項目を探して詳細へ移動でき、コラム一覧は編集目的を説明しテーマ別の記事へ移動できる",
+          "polarity": "positive",
+          "status": "verified_in_poc",
+          "scope": "ニュース一覧は年・分類から日付付き詳細へ移動し、コラム一覧は編集目的を説明してテーマ別記事へ移動することをWordPress 7.1.2実機で検証。",
+          "remaining": [],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+              "sha256": "2785aa29f094b304e06adb1025c404634f8ab94a4950553cb975912cdb32fa44",
+              "row_names": [
+                "purpose:news-releases-archive-description-and-classification",
+                "purpose:columns-archive-description-and-classification",
+                "layout:category-guide-in-primary-before-sidebar",
+                "archive:news-releases:2025-filter-to-dated-detail",
+                "archive:columns:2025-filter-to-dated-detail",
+                "topics:news-releases/product-news-child-archive",
+                "topics:news-releases/announcements-child-archive",
+                "topics:columns/organization-child-archive",
+                "topics:columns/data-child-archive"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WT-AC-ARTICLE-01C",
+          "requirement_id": "WT-FR-ARTICLE-01",
+          "oracle": "記事目的を区別する情報や用途別一覧が無い、または目的だけを理由に別CPTを必須化する要求なら FAIL",
+          "polarity": "negative",
+          "status": "partial",
+          "scope": "3つの目的分類を標準 post 型へ付与した実機fixtureで、専用CPTなしに分類・一覧・詳細が成立することを確認。",
+          "remaining": [
+            "目的情報や用途別一覧を除去した負例の拒否検査は未実施。"
+          ],
+          "evidence": [
+            {
+              "path": "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json",
+              "sha256": "2785aa29f094b304e06adb1025c404634f8ab94a4950553cb975912cdb32fa44",
+              "row_names": [
+                "type:news-releases-purpose-uses-standard-post",
+                "type:columns-purpose-uses-standard-post",
+                "type:search-intent-purpose-uses-standard-post"
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "partial_poc",
+      "relatedEntryIds": [
+        "article-purpose:news-releases",
+        "article-purpose:columns",
+        "article-purpose:search-intent"
+      ],
+      "evidence": "../2026-09-08-selection-catalog/acceptance-audit.json",
+      "pending": [],
+      "next": "関連画像を起点に全受入条件の再現・実測を確認する",
+      "coverage": {
+        "candidateCount": 3,
+        "acceptanceCount": 3,
+        "counts": {
+          "verified_in_poc": 1,
+          "partial": 2,
+          "missing": 0,
+          "stale": 0
+        },
+        "openAcceptanceIds": [],
+        "selectionState": "candidate_with_partial_evidence"
+      }
+    },
+    {
       "id": "WT-FR-HOME-01",
       "family": "HOME",
       "statement": "HOME はサイトの目的を示す入口として、CV 獲得と案内の構成、hero・区間セット・お知らせ・固定導線・再利用できる固定ページパーツを選べる。PC サイドバーは first view より下から配置でき、共通 / 個別 / 非表示を区別する。型の拡張を既定値の決定だけに置き換えない。",
@@ -27740,7 +27918,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "d61dd0092c7c4ea8cf982f77b94b040fe94d54ee4adc5e3cd7bc3b98aaee8dd4",
+              "sha256": "3156ae8cf420f6196b898d9b89b3eb649082fb29938e9efce0a7a87b6736847e",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -27892,7 +28070,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "e174faa73c1d38faa7b4829651cc9d982adbebc5835dd1de7035eb926be3fa23",
+              "sha256": "7be2c84ad9192996fb5cf0028bbb42f16424a07e70ae8a2270b3ae4833064c94",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -28254,7 +28432,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-event-state/verify.json",
-              "sha256": "d61dd0092c7c4ea8cf982f77b94b040fe94d54ee4adc5e3cd7bc3b98aaee8dd4",
+              "sha256": "3156ae8cf420f6196b898d9b89b3eb649082fb29938e9efce0a7a87b6736847e",
               "row_names": [
                 "fixture-mode:blogname-does-not-enable-observed-time",
                 "state:before-open:pc:js-true",
@@ -28406,7 +28584,7 @@
             },
             {
               "path": "docs/research/2026-09-08-event-state/boundaries-verify.json",
-              "sha256": "e174faa73c1d38faa7b4829651cc9d982adbebc5835dd1de7035eb926be3fa23",
+              "sha256": "7be2c84ad9192996fb5cf0028bbb42f16424a07e70ae8a2270b3ae4833064c94",
               "row_names": [
                 "state:japan-start:pc:js-true",
                 "form-availability:japan-start:pc:js-true",
@@ -28852,7 +29030,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -28910,7 +29088,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -28934,7 +29112,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -28994,7 +29172,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "access:anonymous:oneoff:body",
                 "access:anonymous:oneoff:preview",
@@ -29130,7 +29308,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -29139,7 +29317,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -29161,7 +29339,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -29170,7 +29348,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -29181,7 +29359,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
-              "sha256": "11e942d840a580441ba5b8ae99b1079ef29266a5ba907f17068d340db6dea8a2",
+              "sha256": "d9fe1d113638919c80e036fec16b159214d41d47a247a373a806ef9a65f60cc6",
               "row_names": [
                 "confirmed:status",
                 "confirmed:detail",
@@ -29271,7 +29449,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "interview:confirmation",
                 "interview:embedded-reference",
@@ -29281,7 +29459,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -29292,7 +29470,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json",
-              "sha256": "11e942d840a580441ba5b8ae99b1079ef29266a5ba907f17068d340db6dea8a2",
+              "sha256": "d9fe1d113638919c80e036fec16b159214d41d47a247a373a806ef9a65f60cc6",
               "row_names": [
                 "confirmed:status",
                 "confirmed:detail",
@@ -29411,7 +29589,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "blp:lp-target",
                 "blp:reasoning"
@@ -29419,7 +29597,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -29441,7 +29619,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "blp:lp-target",
                 "blp:ownership:inherit",
@@ -29452,7 +29630,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -29474,7 +29652,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/verify.json",
-              "sha256": "22ce162614fdf4078c2095230d551fc6fb5c04e697e09acf62621d1300898077",
+              "sha256": "6f417b89412f308555dad85be8b7caa1c2f47046017869f07920bdcbdb60b5f9",
               "row_names": [
                 "blp:lp-target",
                 "blp-journey:pc:no-js:decision-content",
@@ -29533,7 +29711,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "508411c15d95ebbb4d1dd0c8a93e321f378a895e3e18fed54bededc848c55e24",
+              "sha256": "92929c889b7fb215ffbee3fca618e335f4e50bdb48a98b7b528193fd8ff3cc95",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -29757,7 +29935,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "a2ea6b09148967276cb6e13db62bc674a91902473082ea0f9ebc74ee60212d71",
+              "sha256": "59d1c52e7987b78a76fdb406830e51a6e5f87983208d866d33cbcc74970a075a",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -30045,7 +30223,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "f0f01e672fc1f203c5fc376cbfbab2aa05e628af20da4096c4455776379faaba",
+              "sha256": "35d0b0039a6ae3220b486e5a29f1ca1b14ca1108ce3a2a0f8ae64287555f7485",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -30446,7 +30624,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "d13c69e7ad2e527b47f8f935a67a402cae160b509f5812d8ed65bdc736df4b9f",
+              "sha256": "76f456eeff5e3dc69743bde9422f9e017e3baa7c0a686edc73e528a0f26163ac",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -30535,7 +30713,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "8b44627510e2b69d956608767a078ffd877cc2a2c0575ef54041951097ec870f",
+              "sha256": "7eb122822a0fef1ab3cfa791e710cbdcb56ab3facce07dd82d8daa0e16c60641",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -30668,7 +30846,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-form-flow/verify.json",
-              "sha256": "508411c15d95ebbb4d1dd0c8a93e321f378a895e3e18fed54bededc848c55e24",
+              "sha256": "92929c889b7fb215ffbee3fca618e335f4e50bdb48a98b7b528193fd8ff3cc95",
               "row_names": [
                 "form-present:pc:js-true:yes",
                 "required-errors:pc:js-true:yes",
@@ -30892,7 +31070,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/kinds-verify.json",
-              "sha256": "a2ea6b09148967276cb6e13db62bc674a91902473082ea0f9ebc74ee60212d71",
+              "sha256": "59d1c52e7987b78a76fdb406830e51a6e5f87983208d866d33cbcc74970a075a",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -31180,7 +31358,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/steps-verify.json",
-              "sha256": "f0f01e672fc1f203c5fc376cbfbab2aa05e628af20da4096c4455776379faaba",
+              "sha256": "35d0b0039a6ae3220b486e5a29f1ca1b14ca1108ce3a2a0f8ae64287555f7485",
               "row_names": [
                 "kind:pc:js-true:contact",
                 "empty-rejected:pc:js-true:contact",
@@ -31581,7 +31759,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/slots-verify.json",
-              "sha256": "d13c69e7ad2e527b47f8f935a67a402cae160b509f5812d8ed65bdc736df4b9f",
+              "sha256": "76f456eeff5e3dc69743bde9422f9e017e3baa7c0a686edc73e528a0f26163ac",
               "row_names": [
                 "default-no-form:pc:js-true:lp",
                 "kind:pc:js-true:lp",
@@ -31670,7 +31848,7 @@
             },
             {
               "path": "docs/research/2026-09-08-form-flow/boundaries-verify.json",
-              "sha256": "8b44627510e2b69d956608767a078ffd877cc2a2c0575ef54041951097ec870f",
+              "sha256": "7eb122822a0fef1ab3cfa791e710cbdcb56ab3facce07dd82d8daa0e16c60641",
               "row_names": [
                 "kind:pc:js-true:full",
                 "empty-rejected:pc:js-true:full",
@@ -31888,7 +32066,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "5a2125d0562949126f5396ac760e9b0e2af7fc9a6d2cf96b6477937fcf84d7d8",
+              "sha256": "96c83cd78417ccb932903547cded4a00d7e6b9ffa0acadd412908ce9d2bc1a46",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -32336,7 +32514,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/inheritance/verify.json",
-              "sha256": "5a2125d0562949126f5396ac760e9b0e2af7fc9a6d2cf96b6477937fcf84d7d8",
+              "sha256": "96c83cd78417ccb932903547cded4a00d7e6b9ffa0acadd412908ce9d2bc1a46",
               "row_names": [
                 "response:content_paid:site:pc",
                 "face:content_paid:site:pc",
@@ -32987,7 +33165,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+              "sha256": "40c14c021a828c5a6c6d8c2e3fe4894f7fae09b75a526450f651b4412b623e7d",
               "row_names": [
                 "course:three-lessons:pc:js-false",
                 "course:three-lessons:pc:js-true",
@@ -33021,7 +33199,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/management.json",
-              "sha256": "cdbf4be1ce9cc94989bcc69a341bdaf25e1351708e8a143abfc72af248358701",
+              "sha256": "fbeeb6dfd42f4024984d0d1065a2ce13c38e7c59f731e32afd1242f2280cd350",
               "row_names": [
                 "all-declared-independent-admin-and-rest-types",
                 "learning-parent-order-and-standard-block-body",
@@ -33043,7 +33221,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+              "sha256": "40c14c021a828c5a6c6d8c2e3fe4894f7fae09b75a526450f651b4412b623e7d",
               "row_names": [
                 "glossary:term-target:pc:js-false",
                 "glossary:term-target:pc:js-true",
@@ -33128,7 +33306,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/verify.json",
-              "sha256": "42072230ae30734e06112060ed15d09bb59379ebbf3e9efa7ae34af73e82865e",
+              "sha256": "40c14c021a828c5a6c6d8c2e3fe4894f7fae09b75a526450f651b4412b623e7d",
               "row_names": [
                 "archive:count:pc:js-true",
                 "archive:first-page:pc:js-true",
@@ -33282,7 +33460,7 @@
             },
             {
               "path": "docs/research/2026-09-08-content-faces/results/learning/publication.json",
-              "sha256": "c834a075eeee69b95bc161dd9dbdac2a54c8211b88cb804d549081c835360801",
+              "sha256": "f3715193926f64874cae525aa58c7753066b1a3184bde0a9b2b2b78e4a9d06b8",
               "row_names": [
                 "published:last-page:pc",
                 "published:last-record:pc",
@@ -33314,7 +33492,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-13-learning-navigation-ownership/verify.json",
-              "sha256": "5991931e01792f420a44c4bd542ab8731dbeb3bc86093b4c7da748dedd0adc24",
+              "sha256": "18ba320a32f729fceb13d493168ad2ce6bd0fdd8136b68d7df521a94363414ab",
               "row_names": [
                 "navigation:all-owner-combinations",
                 "navigation:site-own-style-separated",
@@ -33380,7 +33558,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "ad0eead7197ab7c0991c21556ecc77cde0e960b37dc904e335bafa75531e80e5",
+              "sha256": "b26e79d021a1940e189b77ea36c47335ef12e8c2e373bdfdbac7f4327ce363cd",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -33505,7 +33683,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "4fdf682551cf8d2b01a86a76dcfc1d7eb4eaa16983343c805a56a95d2fc3fd95",
+              "sha256": "37895da5183bdd6ab92c681e216ecee489450657f01bf66dd517e8dd1313e405",
               "row_names": [
                 "public-count:pc:js-true",
                 "private-excluded:pc:js-true",
@@ -33533,7 +33711,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/access.json",
-              "sha256": "497a4947cdf8f3ec02adcc8abcac8bdad8287b6b177636b48de55ba1c8aa3ecc",
+              "sha256": "ddab91db938239b737822cb636d9facde5a917e8deac92a41b6d2cf5b0f3332c",
               "row_names": [
                 "count:anonymous:pc:js-true:public",
                 "results:anonymous:pc:js-true:public",
@@ -33857,7 +34035,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "d6775fce99c7f9d76a717b7bcb9faaf1cb6939b0ed2711bd03eb71c0a2e1235a",
+              "sha256": "e65de70f818a2ee2755b3458142619e896f6bdc4125b0f16933aeaf5d3991a95",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -34182,7 +34360,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/performance.json",
-              "sha256": "1241f90fa0b0bd681412410edf2bb01a876b856c6fa01423b6e561e3f461ebac",
+              "sha256": "badcad85433fa29c40cf1bde7bdd06ca2a98763ca504217e923f687aacfb4bf4",
               "row_names": [
                 "cold-scans-protected:50",
                 "warm-skips-password-checks:50",
@@ -34216,7 +34394,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "4fdf682551cf8d2b01a86a76dcfc1d7eb4eaa16983343c805a56a95d2fc3fd95",
+              "sha256": "37895da5183bdd6ab92c681e216ecee489450657f01bf66dd517e8dd1313e405",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -34260,7 +34438,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "d9b8a790a6fca026d0f0cf960573da8dbb4bd098201dd78c110d2040b3124b08",
+              "sha256": "7abb2617216081523bc8972a8d861a5d8da0882a71bee41bc17c8ffd55f1d4e0",
               "row_names": [
                 "page-count-preserved:page-array:pc:js-true",
                 "page-count-preserved:page-negative:pc:js-true",
@@ -34283,7 +34461,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/passwords.json",
-              "sha256": "d6775fce99c7f9d76a717b7bcb9faaf1cb6939b0ed2711bd03eb71c0a2e1235a",
+              "sha256": "e65de70f818a2ee2755b3458142619e896f6bdc4125b0f16933aeaf5d3991a95",
               "row_names": [
                 "secondary-query-unchanged",
                 "admin-query-unchanged",
@@ -34619,7 +34797,7 @@
           "evidence": [
             {
               "path": "docs/research/2026-09-08-site-search/results/verify.json",
-              "sha256": "ad0eead7197ab7c0991c21556ecc77cde0e960b37dc904e335bafa75531e80e5",
+              "sha256": "b26e79d021a1940e189b77ea36c47335ef12e8c2e373bdfdbac7f4327ce363cd",
               "row_names": [
                 "response:results:pc:js-true",
                 "search-heading:results:pc:js-true",
@@ -34698,7 +34876,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/boundaries.json",
-              "sha256": "4fdf682551cf8d2b01a86a76dcfc1d7eb4eaa16983343c805a56a95d2fc3fd95",
+              "sha256": "37895da5183bdd6ab92c681e216ecee489450657f01bf66dd517e8dd1313e405",
               "row_names": [
                 "public-count:pc:js-true",
                 "first-page:pc:js-true",
@@ -34766,7 +34944,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/input.json",
-              "sha256": "d9b8a790a6fca026d0f0cf960573da8dbb4bd098201dd78c110d2040b3124b08",
+              "sha256": "7abb2617216081523bc8972a8d861a5d8da0882a71bee41bc17c8ffd55f1d4e0",
               "row_names": [
                 "response:query-array:pc:js-true",
                 "search-available:query-array:pc:js-true",
@@ -35069,7 +35247,7 @@
             },
             {
               "path": "docs/research/2026-09-08-site-search/results/locale.json",
-              "sha256": "c4a1293f7284d72e15a5bef42af2c72350b11c1a56e1da797afc61c698a1a818",
+              "sha256": "5e6e48687921e49e15ec09afdcd4d1279ed1761e4e9ed0daf73e83e01caa0677",
               "row_names": [
                 "locale:results:pc:js-true",
                 "translated-title:results:pc:js-true",
@@ -35325,8 +35503,8 @@
   ],
   "acceptanceAudit": {
     "missing": 166,
-    "partial": 102,
-    "verified_in_poc": 32,
+    "partial": 104,
+    "verified_in_poc": 33,
     "stale": 0
   },
   "evidenceNote": "関連画像は探すための手掛かりです。全受入条件の再現完了を表しません。"

@@ -1,3 +1,4 @@
+import { contentLab } from './lib/content-lab-env.mjs';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
@@ -8,12 +9,12 @@ import { createHash } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const state = process.env.WTCF_STATE_DIR || path.join(os.tmpdir(), 'helix-content-lab');
-const wp = args => execFileSync('docker', ['run', '--rm', '--network', 'helix-content-lab', '--env-file', path.join(state, 'wp.env'), '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+const state = contentLab.stateDir;
+const wp = args => execFileSync('docker', ['run', '--rm', '--network', contentLab.network, '--env-file', path.join(state, 'wp.env'), '--volumes-from', contentLab.wpContainer, '--user', '33:33', 'wordpress:cli-php8.3', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 if (wp(['option', 'get', 'blogname']) !== 'HELIX Content Lab') throw Error('Dedicated lab required');
 
 const marker = 'SearchPerfFixture';
-const base = 'http://127.0.0.1:8098';
+const base = `${contentLab.baseUrl}`;
 const sources = ['scripts/verify-site-search-performance.mjs', 'docs/research/2026-09-08-content-faces/plugin/search.php'];
 const digests = () => Object.fromEntries(sources.map(file => [file, createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex')]));
 const sourceDigests = digests();

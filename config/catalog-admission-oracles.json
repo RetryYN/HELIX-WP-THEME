@@ -1,6 +1,44 @@
 {
   "schema": "wt-catalog-admission-oracles.v1",
   "commands": {
+    "docs/research/2026-09-27-home-hero-image-integration/verification.json": ["node", "scripts/verify-home-hero-images.mjs"],
+    "docs/research/2026-09-08-content-faces/results/verify.json": ["node", "scripts/verify-content-faces.mjs"],
+    "docs/research/2026-09-08-content-faces/results/management.json": ["python3", "scripts/verify-content-management.py"],
+    "docs/research/2026-09-08-content-faces/results/interview-lifecycle.json": ["node", "scripts/verify-interview-lifecycle.mjs"],
+    "docs/research/2026-09-08-content-faces/results/learning/verify.json": ["node", "scripts/verify-learning-faces.mjs"],
+    "docs/research/2026-09-08-content-faces/results/learning/publication.json": ["node", "scripts/verify-learning-publication.mjs"],
+    "docs/research/2026-09-08-content-faces/results/passwords.json": ["node", "scripts/verify-content-passwords.mjs"],
+    "docs/research/2026-09-08-content-faces/results/site-pages/verify.json": ["node", "scripts/verify-site-pages.mjs"],
+    "docs/research/2026-09-08-content-faces/results/site-pages/editor.json": ["node", "scripts/verify-site-page-editor.mjs"],
+    "docs/research/2026-09-08-content-faces/results/site-quality/verify.json": ["node", "scripts/verify-site-page-quality.mjs"],
+    "docs/research/2026-09-09-ai-boundary/verify.json": ["npm", "run", "boundary:verify-ai"],
+    "docs/research/2026-09-10-i18n-boundary/verify.json": ["npm", "run", "i18n:pot"],
+    "docs/research/2026-09-13-parts-declaration/verification.json": ["node", "scripts/verify-parts-declaration.mjs"],
+    "docs/research/2026-09-13-parts-declaration/editor/verification.json": ["node", "scripts/verify-parts-editor.mjs"],
+    "docs/research/2026-09-08-content-faces/results/inheritance/verify.json": ["node", "scripts/verify-content-inheritance.mjs"],
+    "docs/research/2026-09-13-header-navigation-complete/verify.json": ["node", "scripts/revalidate-header-navigation-complete.mjs"],
+    "docs/research/2026-09-14-header-navigation-editing/summary.json": ["node", "scripts/revalidate-header-navigation-editing.mjs"],
+    "docs/research/2026-09-08-site-search/results/verify.json": ["node", "scripts/verify-site-search.mjs"],
+    "docs/research/2026-09-08-site-search/results/boundaries.json": ["node", "scripts/verify-site-search-boundaries.mjs"],
+    "docs/research/2026-09-08-site-search/results/access.json": ["node", "scripts/verify-site-search-access.mjs"],
+    "docs/research/2026-09-08-site-search/results/passwords.json": ["node", "scripts/verify-site-search-passwords.mjs"],
+    "docs/research/2026-09-08-site-search/results/performance.json": ["node", "scripts/verify-site-search-performance.mjs"],
+    "docs/research/2026-09-08-site-search/results/input.json": ["node", "scripts/verify-site-search-input.mjs"],
+    "docs/research/2026-09-08-site-search/results/locale.json": ["node", "scripts/verify-site-search-locale.mjs"],
+    "docs/research/2026-09-08-form-flow/verify.json": ["node", "scripts/verify-form-flow.mjs"],
+    "docs/research/2026-09-08-form-flow/kinds-verify.json": ["node", "scripts/verify-form-kinds.mjs"],
+    "docs/research/2026-09-08-form-flow/steps-verify.json": ["node", "scripts/verify-form-steps.mjs"],
+    "docs/research/2026-09-08-form-flow/slots-verify.json": ["node", "scripts/verify-form-slots.mjs"],
+    "docs/research/2026-09-08-form-flow/boundaries-verify.json": ["node", "scripts/verify-form-boundaries.mjs"],
+    "docs/research/2026-09-08-event-state/verify.json": ["node", "scripts/verify-event-state.mjs", "--strict"],
+    "docs/research/2026-09-08-event-state/boundaries-verify.json": ["node", "scripts/verify-event-boundaries.mjs", "--strict"],
+    "docs/research/2026-09-09-footer-data/rendering.json": ["node", "scripts/verify-footer-rendering.mjs"],
+    "docs/research/2026-09-09-footer-data/editor.json": ["node", "scripts/verify-footer-editor.mjs"],
+    "docs/research/2026-09-10-current-theme-quality/verify.json": ["node", "docs/research/2026-09-10-current-theme-quality/verify.mjs"],
+    "docs/research/2026-09-10-current-theme-quality/reading-layout/verify.json": ["node", "docs/research/2026-09-10-current-theme-quality/reading-layout/probe.mjs", "after"],
+    "docs/research/2026-09-13-learning-navigation-ownership/verify.json": ["node", "docs/research/2026-09-13-learning-navigation-ownership/probe.mjs"],
+    "docs/research/2026-09-13-notfound-recovery/verify.json": ["node", "docs/research/2026-09-13-notfound-recovery/probe.mjs"],
+    "docs/research/2026-09-19-eyecatch-meta/verification.json": ["node", "scripts/verify-eyecatch-meta.mjs"],
     "docs/research/2026-09-20-heading-comparison/verification.json": [
       "node",
       "scripts/verify-heading-comparison.mjs"
@@ -16,6 +54,26 @@
     "docs/research/2026-09-19-pricing-cards/verification.json": [
       "node",
       "scripts/verify-pricing-cards.mjs"
+    ],
+    "docs/research/2026-09-19-toc-settings/verification.json": [
+      "node",
+      "scripts/verify-toc-settings.mjs"
+    ],
+    "docs/research/2026-09-13-zone-slots/verification.json": [
+      "node",
+      "scripts/verify-zone-slots.mjs"
+    ],
+    "docs/research/2026-09-16-banner-zone-completion/verification.json": [
+      "node",
+      "scripts/verify-banner-zones.mjs"
+    ],
+    "docs/research/2026-09-16-device-vocabulary/verification.json": [
+      "node",
+      "scripts/verify-device-vocabulary.mjs"
+    ],
+    "docs/research/2026-09-19-recommendation-layouts/verification.json": [
+      "node",
+      "scripts/verify-recommendation-layouts.mjs"
     ],
     "docs/research/2026-09-10-reduced-motion/verify.json": [
       "node",
@@ -102,6 +160,10 @@
     "docs/research/2026-09-20-abilities-security-contract-poc/verification.json": [
       "node",
       "scripts/verify-abilities-security-contract-poc.mjs"
+    ],
+    "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json": [
+      "node",
+      "scripts/verify-article-purpose-proof-binding.mjs"
     ]
   },
   "acceptanceProofs": {
@@ -287,6 +349,15 @@
     ],
     "WT-AC-NFR-PERM-01B": [
       "docs/research/2026-09-20-abilities-security-contract-poc/verification.json"
+    ],
+    "WT-AC-ARTICLE-01A": [
+      "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+    ],
+    "WT-AC-ARTICLE-01B": [
+      "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
+    ],
+    "WT-AC-ARTICLE-01C": [
+      "docs/research/2026-09-26-news-column-purpose-gap/results/verify.json"
     ]
   }
 }

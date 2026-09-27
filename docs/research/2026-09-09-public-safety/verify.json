@@ -5,7 +5,11 @@
   ],
   "completed": true,
   "source": "scripts/public-safety-guard.sh",
-  "source_sha256": "7b6dd35180b83ca78906cfe2c434f57ebbf47ccb7e3b298c00e9cec9ab763eba",
+  "source_sha256": "2aa211ac12ca53eabdcef6f62312338be21d46b44880271b275aa3667ff65ade",
+  "sourceDigests": {
+    "scripts/public-safety-guard.sh": "2aa211ac12ca53eabdcef6f62312338be21d46b44880271b275aa3667ff65ade",
+    "scripts/verify-public-safety.mjs": "b4c9f3ff57db318bf79c23ed863ea4fd253cf5ae02477db30bcde1f3f0040c5c"
+  },
   "rows": [
     {
       "name": "positive:clean-source-accepted",
@@ -15,7 +19,77 @@
       "exit_code": 0
     },
     {
+      "name": "positive:ndjson-is-text-and-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:access-token-in-ndjson-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:empty-file-is-text-and-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
       "name": "negative:private-key-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:private-key-in-Japanese-path-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:private-key-in-Japanese-path-range-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-exclude-magic-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-short-exclude-magic-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-wildcard-name-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:pathspec-bracket-name-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:control-character-path-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",
@@ -72,6 +146,111 @@
     },
     {
       "name": "negative:custom-private-map-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:invalid-private-map-regex-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-research-without-map-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-research-with-map-only-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-forced-text-by-gitattributes-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:nul-in-jsonl-is-binary-and-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:utf16le-bom-clean-text-is-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:utf16le-bom-private-key-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:utf32le-bom-clean-text-is-scanned",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:utf32le-bom-private-key-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:binary-with-wrong-digest-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "negative:unstaged-binary-approval-is-ignored",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:binary-with-reviewed-digest-approval-accepted",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:duplicate-binary-approval-path-rejected",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "exit_code": 1
+    },
+    {
+      "name": "positive:symlink-target-inspected-as-text",
+      "pass": true,
+      "expected": "accept",
+      "actual": "accept",
+      "exit_code": 0
+    },
+    {
+      "name": "negative:symlink-personal-target-rejected",
       "pass": true,
       "expected": "reject",
       "actual": "reject",

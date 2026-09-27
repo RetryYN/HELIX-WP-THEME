@@ -14,8 +14,6 @@ export const fixture = {
     'bin/check-design-consistency.sh',
     'docs/research/2026-08-29-ge1-local/README.md',
     'docs/research/2026-08-29-ge1-local/editor-validate-2026-08-29.json',
-    'docs/requirements/l3/requirements-ir.json',
-    'docs/requirements/l3/acceptance-cases.json',
   ],
   gates: { completion: false, exactHeadReceipt: false },
 };

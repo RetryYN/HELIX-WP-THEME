@@ -5,17 +5,31 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { contentLab, contentLabWpCliArgs } from './lib/content-lab-env.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const state = process.env.WTCF_STATE_DIR || path.join(os.tmpdir(), 'helix-content-lab');
-const cli = ['run', '--rm', '--network', 'helix-content-lab', '--env-file', path.join(state, 'wp.env'), '--volumes-from', 'helix-content-wp', '--user', '33:33', 'wordpress:cli-php8.3', 'wp'];
+const cli = contentLabWpCliArgs();
 const wp = args => execFileSync('docker', [...cli, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 assert.equal(wp(['option', 'get', 'blogname']), 'HELIX Content Lab');
 const marker = 'LearningPublicationFixture';
+const theme = 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt';
+const sourceFiles = [
+  'scripts/verify-learning-publication.mjs',
+  'scripts/lib/content-lab-env.mjs',
+  'scripts/start-content-lab.py',
+  'docs/research/2026-09-08-content-faces/plugin/learning.php',
+  'docs/research/2026-09-08-content-faces/plugin/manifest.json',
+  ...['functions.php', 'inc/learning.php', 'templates/archive-wt_learning.html', 'templates/single-wt_learning.html']
+    .map(file => `${theme}/${file}`),
+];
+const sourceDigests = Object.fromEntries(sourceFiles.map(file => [
+  file, createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'),
+]));
 assert.equal(wp(['post', 'list', '--post_type=wt_learning', '--post_status=any', '--s=' + marker, '--format=ids']), '', 'Reserved fixture exists; inspect before retrying');
 const rows = []; let ids = [], completed = false;
 const check = (name, pass) => { rows.push({ name, pass: Boolean(pass) }); assert.ok(pass, name); };
 const browser = await chromium.launch();
-const base = 'http://127.0.0.1:8098';
+const base = contentLab.baseUrl;
 try {
   ids = JSON.parse(wp(['eval', `$ids=array(); for($i=1;$i<=7;$i++){ $ids[]=wp_insert_post(array('post_type'=>'wt_learning','post_status'=>'publish','post_title'=>'${marker} '.$i,'post_content'=>'${marker}','menu_order'=>$i)); } echo wp_json_encode($ids);`]));
   assert.ok(ids.length === 7 && ids.every(id => Number.isInteger(id) && id > 0));
@@ -46,6 +60,6 @@ try {
   await browser.close();
   if (ids.length) wp(['post', 'delete', ...ids.map(String), '--force']);
   check('owned-fixtures-removed', wp(['post', 'list', '--post_type=wt_learning', '--post_status=any', '--s=' + marker, '--format=ids']) === '');
-  fs.writeFileSync(path.join(root, 'docs/research/2026-09-08-content-faces/results/learning/publication.json'), JSON.stringify({ schema: 'wt-learning-publication.v1', completed, rows }, null, 2) + '\n');
+  fs.writeFileSync(path.join(root, 'docs/research/2026-09-08-content-faces/results/learning/publication.json'), JSON.stringify({ schema: 'wt-learning-publication.v1', completed, rows, sourceDigests }, null, 2) + '\n');
 }
 console.log(`Learning publication changes: ${rows.length} checks passed; owned fixtures removed`);

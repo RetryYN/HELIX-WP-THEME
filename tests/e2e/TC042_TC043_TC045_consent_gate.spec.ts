@@ -3,9 +3,9 @@
  *
  * テスト設計 SSOT: 旧 L3-test-plan.md（削除済み、TC 番号は履歴 ID） §8.3（line 181-184 付近）
  * 実装根拠:
- *   - themes/agent-neo-theme/inc/assets/class-third-party-manager.php
- *   - themes/agent-neo-theme/assets/js/consent.js
- *   - themes/agent-neo-theme/config/third-party-tags.json
+ *   - archive/agent-neo/themes/agent-neo-theme/inc/assets/class-third-party-manager.php
+ *   - archive/agent-neo/themes/agent-neo-theme/assets/js/consent.js
+ *   - archive/agent-neo/themes/agent-neo-theme/config/third-party-tags.json
  *
  * 検証方式:
  *   page.route() で Google 系ホスト（googletagmanager.com / google-analytics.com）への
