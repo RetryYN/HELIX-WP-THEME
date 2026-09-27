@@ -74,19 +74,85 @@ containers = {
                          '-v', str(plugin) + ':/var/www/html/wp-content/plugins/helix-content-faces:ro',
                          'wordpress:7.1-php8.3-apache'],
 }
+expected_mounts = {
+    db_container: [
+        {'Type': 'volume', 'Name': db_volume, 'Destination': '/var/lib/mysql', 'RW': True},
+    ],
+    wp_container: [
+        {'Type': 'volume', 'Name': wp_volume, 'Destination': '/var/www/html', 'RW': True},
+        {'Type': 'bind', 'Source': str(theme), 'Destination': '/var/www/html/wp-content/themes/helix-wt', 'RW': False},
+        {'Type': 'bind', 'Source': str(plugin), 'Destination': '/var/www/html/wp-content/plugins/helix-content-faces', 'RW': False},
+    ],
+}
+expected_ports = {
+    db_container: {},
+    wp_container: {'80/tcp': [{'HostIp': '127.0.0.1', 'HostPort': str(port)}]},
+}
+
+
+def mount_signature(mount):
+    kind = mount.get('Type')
+    return json.dumps({
+        'Type': kind,
+        'Name': mount.get('Name') if kind == 'volume' else None,
+        'Source': mount.get('Source') if kind == 'bind' else None,
+        'Destination': mount.get('Destination'),
+        'RW': mount.get('RW'),
+    }, sort_keys=True)
+
+
+def existing_container_mismatch(name, data, image):
+    try:
+        actual_networks = data['NetworkSettings']['Networks']
+        actual_mounts = data['Mounts']
+        actual_ports = data['HostConfig'].get('PortBindings') or {}
+        publish_all_ports = data['HostConfig'].get('PublishAllPorts')
+        actual_image = data['Config']['Image']
+        running = data['State']['Running']
+    except (KeyError, TypeError, AttributeError):
+        return 'inspect data'
+    if not isinstance(actual_networks, dict) or set(actual_networks) != {network}:
+        return 'network attachments'
+    if not isinstance(running, bool):
+        return 'running state'
+    if actual_image != image:
+        return 'image'
+    if not isinstance(actual_mounts, list):
+        return 'mounts'
+    if actual_ports != expected_ports[name]:
+        return 'published ports'
+    if publish_all_ports is not False:
+        return 'PublishAllPorts'
+    expected = sorted(mount_signature(mount) for mount in expected_mounts[name])
+    actual = sorted(
+        mount_signature(mount) for mount in actual_mounts if isinstance(mount, dict)
+    )
+    if len(actual) != len(actual_mounts) or actual != expected:
+        return 'mounts'
+    return None
+
+
+existing_containers = {}
 for name, args in containers.items():
     existing = run(['docker', 'inspect', name], False)
     if not existing.returncode:
         data = json.loads(existing.stdout)[0]
-        mounts = data['Mounts']
-        if network not in data['NetworkSettings']['Networks'] or data['Config']['Image'] != args[-1]:
-            raise RuntimeError('Container name already belongs to a different environment')
-        if name == wp_container and not any(m['Source'] == str(theme) and not m['RW'] for m in mounts):
-            raise RuntimeError('Existing lab uses another checkout; keep it intact and inspect the worktree')
-        if not data['State']['Running']:
-            run(['docker', 'start', name])
+        mismatch = existing_container_mismatch(name, data, args[-1])
+        if mismatch:
+            raise RuntimeError(f'Existing container {name} has incompatible {mismatch}; preserve it and inspect the environment')
+        existing_containers[name] = data
     else:
+        if 'no such object' not in existing.stderr.lower():
+            raise RuntimeError('Could not inspect the content lab; no container was started, created, or seeded')
+        existing_containers[name] = None
+
+# Validate every existing handle before starting or creating any container.
+for name, args in containers.items():
+    existing = existing_containers[name]
+    if existing is None:
         run(['docker', 'run', '-d', '--name', name, '--network', network] + args)
+    elif not existing['State']['Running']:
+        run(['docker', 'start', name])
 
 cli = ['docker', 'run', '--rm', '--network', network, '--env-file', str(state / 'wp.env'),
        '--volumes-from', wp_container, '-v', str(root / 'docs/research/2026-09-08-content-faces') + ':/poc:ro',

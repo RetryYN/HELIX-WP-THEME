@@ -153,7 +153,8 @@ test('content-lab launcher honors external credentials and never writes bytecode
   const docker = path.join(mockBin, 'docker');
   fs.writeFileSync(docker, `#!/bin/sh
 case "$1:$2" in
-  network:inspect|inspect:*) exit 1 ;;
+  network:inspect) exit 1 ;;
+  inspect:*) printf 'Error: No such object: %s\\n' "$2" >&2; exit 1 ;;
   network:create|exec:*) exit 0 ;;
   run:*)
     case "$*" in
@@ -168,7 +169,7 @@ esac
 `);
   fs.chmodSync(docker, 0o700);
   try {
-    const result = spawnSync('python3', ['scripts/start-content-lab.py'], {
+    const result = spawnSync('python3', ['scripts/start-content-lab-guarded.py'], {
       cwd: root,
       encoding: 'utf8',
       env: environment({
@@ -193,7 +194,7 @@ esac
     assert.equal(fs.existsSync(path.join(root, 'scripts/lib/__pycache__')), false);
 
     const repositoryCredentials = path.join(root, '.content-lab-credential-test.json');
-    const rejected = spawnSync('python3', ['scripts/start-content-lab.py'], {
+    const rejected = spawnSync('python3', ['scripts/start-content-lab-guarded.py'], {
       cwd: root,
       encoding: 'utf8',
       env: environment({
@@ -216,7 +217,7 @@ esac
   }
 });
 
-function runExistingLab({ mutate = () => {}, databaseRunning = true, databaseExists = true } = {}) {
+function runExistingLab({ mutate = () => {}, databaseRunning = true, databaseExists = true, inspectError = false } = {}) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'helix-content-lab-reuse-test-'));
   const mockBin = path.join(temp, 'bin');
   const stateDir = path.join(temp, 'state');
@@ -259,10 +260,11 @@ function runExistingLab({ mutate = () => {}, databaseRunning = true, databaseExi
     'case \"$1:$2\" in',
     '  network:inspect) exit 0 ;;',
     '  inspect:*)',
+    '    if [ "$MOCK_INSPECT_ERROR" = "1" ]; then printf \'Cannot connect to the Docker daemon\\n\' >&2; exit 1; fi',
     '    case \"$2\" in',
     '      \"$MOCK_WP\") cat \"$MOCK_DOCKER_STATE/wp.json\" ;;',
     '      \"$MOCK_DB\") [ -f \"$MOCK_DOCKER_STATE/db.json\" ] && cat \"$MOCK_DOCKER_STATE/db.json\" ;;',
-    '      *) exit 1 ;;',
+    '      *) printf \'Error: No such object: %s\\n\' "$2" >&2; exit 1 ;;',
     '    esac ;;',
     '  exec:*) exit 0 ;;',
     '  start:*) exit 0 ;;',
@@ -280,13 +282,14 @@ function runExistingLab({ mutate = () => {}, databaseRunning = true, databaseExi
   ].join('\n');
   fs.writeFileSync(docker, dockerScript);
   fs.chmodSync(docker, 0o700);
-  const result = spawnSync('python3', ['scripts/start-content-lab.py'], {
+  const result = spawnSync('python3', ['scripts/start-content-lab-guarded.py'], {
     cwd: root,
     encoding: 'utf8',
     env: environment({
       PATH: mockBin + path.delimiter + (process.env.PATH || ''),
       MOCK_DOCKER_LOG: path.join(temp, 'docker.log'),
       MOCK_DOCKER_STATE: temp,
+      MOCK_INSPECT_ERROR: inspectError ? '1' : '0',
       MOCK_WP: wpName,
       MOCK_DB: dbName,
       WTCF_BASE_URL: 'http://127.0.0.1:' + port,
@@ -316,6 +319,7 @@ test('existing content lab rejects mismatched port, mounts, and theme destinatio
     ['database volume', ({ db }) => { db.Mounts[0].Name = 'another-db-volume'; }],
     ['database volume destination', ({ db }) => { db.Mounts[0].Destination = '/var/lib/mysql/other'; }],
     ['database published port', ({ db }) => { db.HostConfig.PortBindings = { '3306/tcp': [{ HostIp: '0.0.0.0', HostPort: '3306' }] }; }],
+    ['additional network attachment', ({ wp }) => { wp.NetworkSettings.Networks.bridge = {}; }],
     ['database PublishAllPorts with an external network port', ({ db }) => {
       db.HostConfig.PublishAllPorts = true;
       db.NetworkSettings.Ports = { '3306/tcp': [{ HostIp: '0.0.0.0', HostPort: '3306' }] };
@@ -361,6 +365,18 @@ test('existing content lab reuses exact expected container bindings', () => {
     assert.equal(fixture.result.status, 0, fixture.result.stderr);
     assert.equal(fixture.calls.filter(call => /wp eval-file \/poc\/seed\.php/u.test(call)).length, 1);
     assert.doesNotMatch(fixture.calls.join('\n'), /^(?:start\s|run\s+-d\b)/mu);
+  } finally {
+    fs.rmSync(fixture.temp, { recursive: true, force: true });
+  }
+});
+
+test('container inspection errors fail closed before starting, creating, or seeding', () => {
+  const fixture = runExistingLab({ inspectError: true });
+  try {
+    assert.notEqual(fixture.result.status, 0);
+    assert.match(fixture.result.stderr, /Could not inspect the content lab/u);
+    assert.doesNotMatch(fixture.calls.join('\n'), /^(?:start\s|run\s+-d\b)/mu);
+    assert.doesNotMatch(fixture.calls.join('\n'), /wp eval-file \/poc\/seed\.php/u);
   } finally {
     fs.rmSync(fixture.temp, { recursive: true, force: true });
   }
