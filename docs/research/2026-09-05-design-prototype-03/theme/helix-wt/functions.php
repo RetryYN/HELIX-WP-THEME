@@ -1149,6 +1149,43 @@ function wt_render_category_filter() {
 	return $out . '</div>';
 }
 
+// 同一日時のカテゴリ投稿でもページ境界を安定させ、load-more の重複・欠落を防ぐ。
+add_filter(
+	'posts_orderby',
+	static function ( $orderby_sql, $query ) {
+		global $wpdb;
+
+		if ( is_admin() || ! $query->is_main_query() || ! $query->is_category() || $query->is_feed() ) {
+			return $orderby_sql;
+		}
+
+		$columns = array(
+			'date'     => 'post_date',
+			'modified' => 'post_modified',
+			'title'    => 'post_title',
+		);
+
+		$orderby   = $query->get( 'orderby' );
+		$orderby   = '' === $orderby ? 'date' : $orderby;
+		$direction = strtoupper( (string) $query->get( 'order' ) );
+		$direction = '' === $direction ? 'DESC' : $direction;
+
+		if ( ! is_string( $orderby ) || ! isset( $columns[ $orderby ] ) || ! in_array( $direction, array( 'ASC', 'DESC' ), true ) ) {
+			return $orderby_sql;
+		}
+
+		$primary_order      = $wpdb->posts . '.' . $columns[ $orderby ] . ' ' . $direction;
+		$normalized_orderby = strtolower( (string) preg_replace( '/\s+/', ' ', trim( $orderby_sql ) ) );
+		if ( strcasecmp( $normalized_orderby, $primary_order ) !== 0 ) {
+			return $orderby_sql;
+		}
+
+		return $orderby_sql . ', ' . $wpdb->posts . '.ID DESC';
+	},
+	20,
+	2
+);
+
 function wt_render_category_sidebar() {
 	$term = wt_current_category_term();
 	if ( ! $term ) {
