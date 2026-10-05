@@ -5,6 +5,8 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import './fixture-lifecycle.test.mjs';
+import './fixture-verifiers.test.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const moduleUrl = new URL('../scripts/lib/content-lab-env.mjs', import.meta.url).href;
