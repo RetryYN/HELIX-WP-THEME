@@ -1,8 +1,8 @@
 import { contentLab } from './lib/content-lab-env.mjs';
+import { createFixtureLifecycle } from './lib/fixture-lifecycle.mjs';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -13,7 +13,7 @@ if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated 
 const slug='event-boundary-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
 const out=path.join(root,'docs/research/2026-09-08-event-state');fs.mkdirSync(out,{recursive:true});
-const sources=['scripts/verify-event-boundaries.mjs',...['patterns/event.php','templates/page-event.html','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','assets/css/event-state.css','inc/event-state.php','inc/form.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
+const sources=['scripts/verify-event-boundaries.mjs','scripts/lib/fixture-lifecycle.mjs',...['patterns/event.php','templates/page-event.html','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','assets/css/event-state.css','inc/event-state.php','inc/form.php'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 const sourceDigests=Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const defaults={opens_at:'2026-10-01T09:00:00Z',closes_at:'2026-10-14T09:00:00Z',observed_at:'2026-10-02T09:00:00Z',capacity:50,registered:0};
 const fixtures=[
@@ -35,9 +35,11 @@ const fixtures=[
  {name:'zero-capacity',capacity:0,expected:'満席'},
  {name:'over-capacity',registered:51,expected:'満席'}
 ].map(f=>({...defaults,expected:'受付情報を確認中',...f}));
-const browser=await chromium.launch();let id,completed=false;const rows=[];
+let browser,id,completed=false;const rows=[];
+const lifecycle=createFixtureLifecycle(wp);
 try{
- id=Number(wp(['post','create','--post_type=page','--post_status=publish','--post_name='+slug,'--post_title=Event Boundary Fixture','--porcelain']));
+ browser=await chromium.launch();
+ id=lifecycle.createPost(['post','create','--post_type=page','--post_status=publish','--post_name='+slug,'--post_title=Event Boundary Fixture','--porcelain']);
  wp(['post','meta','update',String(id),'_wp_page_template','page-event']);
  wp(['option','update','wtcf_event_fixture_mode','1']);
  const nonce=wp(['eval','echo wp_create_nonce("wt_form");']);
@@ -63,8 +65,7 @@ try{
  }
  completed=true;
 }finally{
- await browser.close();wp(['option','update','wtcf_event_fixture_mode','1']);if(id)wp(['post','delete',String(id),'--force']);
- rows.push({name:'owned-fixture-removed',pass:wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids'])===''});
+ await lifecycle.cleanup(browser,rows);
  fs.writeFileSync(path.join(out,process.argv.includes('--strict')?'boundaries-verify.json':'boundaries-baseline.json'),JSON.stringify({completed,sourceDigests,fixtures,rows,limitation:'時刻・残席の専用fixture入力。観測時刻・残席による表示とPOST可否を照合。業務予約・定員更新・実送信は対象外。'},null,2)+'\n');
  console.log(JSON.stringify({completed,checks:rows.length,failed:rows.filter(r=>!r.pass).length}));
 }

@@ -1,8 +1,8 @@
 import { contentLab } from './lib/content-lab-env.mjs';
+import { createFixtureLifecycle } from './lib/fixture-lifecycle.mjs';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -10,17 +10,19 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const state=contentLab.stateDir;
 const wp=args=>execFileSync('docker',['run','--rm','--network',contentLab.network,'--env-file',path.join(state,'wp.env'),'--volumes-from',contentLab.wpContainer,'--user','33:33','wordpress:cli-php8.3','wp',...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
 if(wp(['option','get','blogname'])!=='HELIX Content Lab')throw Error('Dedicated lab required');
-wp(['option','update','wtcf_event_fixture_mode','1']);
 const slug='form-flow-fixture';
 if(wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids']))throw Error('Reserved fixture exists');
-const sources=['scripts/verify-form-flow.mjs',...['inc/form.php','inc/event-state.php','assets/js/form.js','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','assets/css/event-state.css'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
+const sources=['scripts/verify-form-flow.mjs','scripts/lib/fixture-lifecycle.mjs',...['inc/form.php','inc/event-state.php','assets/js/form.js','inc/footer-navigation.php','parts/footer.html','patterns/footer-sitemap.php','patterns/footer-related.php','functions.php','assets/css/theme.css','assets/css/event-state.css'].map(f=>'docs/research/2026-09-05-design-prototype-03/theme/helix-wt/'+f)];
 const digests=()=>Object.fromEntries(sources.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const sourceDigests=digests(),rows=[];const check=(name,pass)=>rows.push({name,pass:!!pass});
 const out=path.join(root,'docs/research/2026-09-08-form-flow');fs.mkdirSync(out,{recursive:true});
-const browser=await chromium.launch(),base=`${contentLab.baseUrl}`;let id,completed=false;
+const base=`${contentLab.baseUrl}`;let browser,id,completed=false;
 const values={name:'検証用の名前',email:'reader@example.com',message:'確認用の本文\n改行も保持する'};
+const lifecycle=createFixtureLifecycle(wp);
 try{
- id=Number(wp(['post','create','--post_type=page','--post_status=publish','--post_name='+slug,'--post_title=Form Flow Fixture','--post_content=<!-- wp:helix-wt/form /-->','--porcelain']));
+ browser=await chromium.launch();
+ wp(['option','update','wtcf_event_fixture_mode','1']);
+ id=lifecycle.createPost(['post','create','--post_type=page','--post_status=publish','--post_name='+slug,'--post_title=Form Flow Fixture','--post_content=<!-- wp:helix-wt/form /-->','--porcelain']);
  for(const [device,width]of[['pc',1440],['sp',375]])for(const js of[true,false])for(const mode of['yes','no','inline-review']){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js});const page=await context.newPage();let externalPosts=0;
   await context.route('**/*',async route=>{const req=route.request();if(req.method()==='POST'&&new URL(req.url()).origin!==base){externalPosts++;await route.abort();}else await route.continue();});
@@ -74,8 +76,7 @@ try{
  }
  completed=true;
 }finally{
- await browser.close();if(id)wp(['post','delete',String(id),'--force']);
- check('owned-fixture-removed',wp(['post','list','--post_type=page','--post_status=any','--name='+slug,'--format=ids'])==='');
+ await lifecycle.cleanup(browser,rows);
  check('sources-unchanged',JSON.stringify(sourceDigests)===JSON.stringify(digests()));
  fs.writeFileSync(path.join(out,process.argv.includes('--baseline')?'baseline.json':'verify.json'),JSON.stringify({completed,sourceDigests,rows},null,2)+'\n');
  console.log(JSON.stringify({completed,checks:rows.length,failed:rows.filter(r=>!r.pass).length}));
