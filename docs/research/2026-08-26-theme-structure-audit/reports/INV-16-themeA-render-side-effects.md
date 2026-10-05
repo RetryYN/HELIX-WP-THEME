@@ -26,41 +26,11 @@
 | 4 | `themeA__text_color() == false` | `themeA__text_color` | `#555555` | L288-290 |
 | 5 | `themeA__bg_color() == false` | `themeA__bg_color` | `#f7faff` | L293-295 |
 
-```php
-function themeA_customize_inline_style()
-{
-	$sp          = 'max-width: 551px';
-	…
-	$bg_image                 = themeA__bg_image();
-	if (themeA__theme_color() == false) {
-		set_theme_mod('themeA__theme_color', '#407FED');
-	}
-	$theme_color              = themeA__theme_color();
-	…
-	if (themeA__header_bg_color() == false) {
-		set_theme_mod('themeA__header_bg_color', '#407FED');
-	}
-	…
-	if (themeA__header_menu_color() == false) {
-		set_theme_mod('themeA__header_menu_color', '#22327a');
-	}
-	…
-	if (themeA__text_color() == false) {
-		set_theme_mod('themeA__text_color', '#555555');
-	}
-	…
-	if (themeA__bg_color() == false) {
-		set_theme_mod('themeA__bg_color', '#f7faff');
-	}
-```
+> 第三者テーマのソース抜粋（25 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 フック登録（同ファイル末尾、`evidence/re-themeA-boot.txt` の関数リスト部）:
 
-```
-2:    function themeA_customize_inline_style()
-2099: add_action('wp_head',    'themeA_customize_inline_style');
-2100: add_action('admin_head', 'themeA_customize_inline_style');
-```
+> 第三者テーマのソース抜粋（3 行）は公開リポジトリから除去した。原本はリポジトリ外のローカル保管庫で扱う。
 
 **関数は 2,098 行 1 本**。`wp_head` と `admin_head` の両方に同じ関数が刺さっているため、
 フロント表示でも管理画面表示でも同じ書き込みが発火しうる。

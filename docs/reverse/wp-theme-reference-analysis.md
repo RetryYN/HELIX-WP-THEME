@@ -8,7 +8,7 @@
 
 | 対象 | 種別 | 状態 |
 |---|---|---|
-| `themeB-2.16.0/themeB` | 親テーマ | 主解析対象 |
+| `themeB-<version>/themeB` | 親テーマ | 主解析対象 |
 | `themeB_child/themeB_child` | 子テーマ | 差分小。CSS読み込みテンプレート相当 |
 | `themeA-child/themeA-child` | 子テーマ | 差分小。親CSS enqueueのみ |
 | `themeA-parent/themeA/themeA` | 親テーマ | SEO統合設計、プリセットUX、classic template制約の解析対象 |
