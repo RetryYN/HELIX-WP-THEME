@@ -153,7 +153,8 @@ test('content-lab launcher honors external credentials and never writes bytecode
   const docker = path.join(mockBin, 'docker');
   fs.writeFileSync(docker, `#!/bin/sh
 case "$1:$2" in
-  network:inspect|inspect:*) exit 1 ;;
+  network:inspect) exit 1 ;;
+  inspect:*) printf 'Error: No such object: %s\\n' "$2" >&2; exit 1 ;;
   network:create|exec:*) exit 0 ;;
   run:*)
     case "$*" in
@@ -168,7 +169,7 @@ esac
 `);
   fs.chmodSync(docker, 0o700);
   try {
-    const result = spawnSync('python3', ['scripts/start-content-lab.py'], {
+    const result = spawnSync('python3', ['scripts/start-content-lab-guarded.py'], {
       cwd: root,
       encoding: 'utf8',
       env: environment({
@@ -193,7 +194,7 @@ esac
     assert.equal(fs.existsSync(path.join(root, 'scripts/lib/__pycache__')), false);
 
     const repositoryCredentials = path.join(root, '.content-lab-credential-test.json');
-    const rejected = spawnSync('python3', ['scripts/start-content-lab.py'], {
+    const rejected = spawnSync('python3', ['scripts/start-content-lab-guarded.py'], {
       cwd: root,
       encoding: 'utf8',
       env: environment({
@@ -213,5 +214,182 @@ esac
     assert.equal(fs.existsSync(repositoryCredentials), false);
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
+
+function runExistingLab({ mutate = () => {}, databaseRunning = true, databaseExists = true, inspectError = false } = {}) {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'helix-content-lab-reuse-test-'));
+  const mockBin = path.join(temp, 'bin');
+  const stateDir = path.join(temp, 'state');
+  const credentialsFile = path.join(temp, 'secrets', 'credentials.json');
+  const wpName = 'helix-content-wp-reuse-test';
+  const dbName = 'helix-content-db-reuse-test';
+  const wpVolume = 'helix-content-wp-data-reuse-test';
+  const dbVolume = 'helix-content-db-data-reuse-test';
+  const network = 'helix-content-lab-reuse-test';
+  const port = '18147';
+  const theme = path.join(root, 'docs/research/2026-09-05-design-prototype-03/theme/helix-wt');
+  const plugin = path.join(root, 'docs/research/2026-09-08-content-faces/plugin');
+  const wp = {
+    Config: { Image: 'wordpress:7.1-php8.3-apache' },
+    State: { Running: true },
+    HostConfig: { PortBindings: { '80/tcp': [{ HostIp: '127.0.0.1', HostPort: port }] }, PublishAllPorts: false },
+    NetworkSettings: { Networks: { [network]: {} } },
+    Mounts: [
+      { Type: 'volume', Name: wpVolume, Source: '/var/lib/docker/volumes/' + wpVolume + '/_data', Destination: '/var/www/html', RW: true },
+      { Type: 'bind', Source: theme, Destination: '/var/www/html/wp-content/themes/helix-wt', RW: false },
+      { Type: 'bind', Source: plugin, Destination: '/var/www/html/wp-content/plugins/helix-content-faces', RW: false },
+    ],
+  };
+  const db = {
+    Config: { Image: 'mariadb:10.11' },
+    State: { Running: databaseRunning },
+    HostConfig: { PortBindings: null, PublishAllPorts: false },
+    NetworkSettings: { Networks: { [network]: {} } },
+    Mounts: [{ Type: 'volume', Name: dbVolume, Source: '/var/lib/docker/volumes/' + dbVolume + '/_data', Destination: '/var/lib/mysql', RW: true }],
+  };
+  mutate({ wp, db });
+  fs.mkdirSync(mockBin, { recursive: true });
+  fs.mkdirSync(stateDir, { recursive: true });
+  fs.writeFileSync(path.join(temp, 'wp.json'), JSON.stringify([wp]));
+  if (databaseExists) fs.writeFileSync(path.join(temp, 'db.json'), JSON.stringify([db]));
+  const docker = path.join(mockBin, 'docker');
+  const dockerScript = [
+    '#!/bin/sh',
+    "printf '%s\\n' \"$*\" >> \"$MOCK_DOCKER_LOG\"",
+    'case \"$1:$2\" in',
+    '  network:inspect) exit 0 ;;',
+    '  inspect:*)',
+    '    if [ "$MOCK_INSPECT_ERROR" = "1" ]; then printf \'Cannot connect to the Docker daemon\\n\' >&2; exit 1; fi',
+    '    case \"$2\" in',
+    '      \"$MOCK_WP\") cat \"$MOCK_DOCKER_STATE/wp.json\" ;;',
+    '      \"$MOCK_DB\") [ -f \"$MOCK_DOCKER_STATE/db.json\" ] && cat \"$MOCK_DOCKER_STATE/db.json\" ;;',
+    '      *) printf \'Error: No such object: %s\\n\' "$2" >&2; exit 1 ;;',
+    '    esac ;;',
+    '  exec:*) exit 0 ;;',
+    '  start:*) exit 0 ;;',
+    '  run:*)',
+    '    case \"$*\" in',
+    '      *\"wp core is-installed\"*) exit 0 ;;',
+    "      *\"wp option get blogname\"*) printf '%s\\n' 'HELIX Content Lab' ;;",
+    "      *\"wp eval-file /poc/seed.php\"*) printf '%s\\n' '{\"oneoff\":101}' ;;",
+    "      *\"wp user get\"*) printf '%s\\n' '77' ;;",
+    '      *) exit 0 ;;',
+    '    esac ;;',
+    '  *) exit 2 ;;',
+    'esac',
+    '',
+  ].join('\n');
+  fs.writeFileSync(docker, dockerScript);
+  fs.chmodSync(docker, 0o700);
+  const result = spawnSync('python3', ['scripts/start-content-lab-guarded.py'], {
+    cwd: root,
+    encoding: 'utf8',
+    env: environment({
+      PATH: mockBin + path.delimiter + (process.env.PATH || ''),
+      MOCK_DOCKER_LOG: path.join(temp, 'docker.log'),
+      MOCK_DOCKER_STATE: temp,
+      MOCK_INSPECT_ERROR: inspectError ? '1' : '0',
+      MOCK_WP: wpName,
+      MOCK_DB: dbName,
+      WTCF_BASE_URL: 'http://127.0.0.1:' + port,
+      WTCF_STATE_DIR: stateDir,
+      WTCF_DOCKER_NETWORK: network,
+      WTCF_WP_CONTAINER: wpName,
+      WTCF_DB_CONTAINER: dbName,
+      WTCF_WP_VOLUME: wpVolume,
+      WTCF_DB_VOLUME: dbVolume,
+      WTCF_LAB_CREDENTIALS: credentialsFile,
+    }),
+  });
+  const calls = fs.readFileSync(path.join(temp, 'docker.log'), 'utf8').trim().split('\n');
+  return { temp, result, calls };
+}
+
+test('existing content lab rejects mismatched port, mounts, and theme destination before starting or seeding', () => {
+  const mismatches = [
+    ['host port', ({ wp }) => { wp.HostConfig.PortBindings['80/tcp'][0].HostPort = '18148'; }],
+    ['non-loopback host binding', ({ wp }) => { wp.HostConfig.PortBindings['80/tcp'][0].HostIp = '0.0.0.0'; }],
+    ['WordPress PublishAllPorts with an external network port', ({ wp }) => {
+      wp.HostConfig.PublishAllPorts = true;
+      wp.NetworkSettings.Ports = { '80/tcp': [{ HostIp: '0.0.0.0', HostPort: '18200' }] };
+    }],
+    ['WordPress data volume', ({ wp }) => { wp.Mounts[0].Name = 'another-wp-volume'; }],
+    ['WordPress volume destination', ({ wp }) => { wp.Mounts[0].Destination = '/var/www/html/other'; }],
+    ['database volume', ({ db }) => { db.Mounts[0].Name = 'another-db-volume'; }],
+    ['database volume destination', ({ db }) => { db.Mounts[0].Destination = '/var/lib/mysql/other'; }],
+    ['database published port', ({ db }) => { db.HostConfig.PortBindings = { '3306/tcp': [{ HostIp: '0.0.0.0', HostPort: '3306' }] }; }],
+    ['additional network attachment', ({ wp }) => { wp.NetworkSettings.Networks.bridge = {}; }],
+    ['database PublishAllPorts with an external network port', ({ db }) => {
+      db.HostConfig.PublishAllPorts = true;
+      db.NetworkSettings.Ports = { '3306/tcp': [{ HostIp: '0.0.0.0', HostPort: '3306' }] };
+    }],
+    ['theme mount destination', ({ wp }) => { wp.Mounts[1].Destination = '/var/www/html/wp-content/themes/other'; }],
+    ['plugin bind source', ({ wp }) => { wp.Mounts[2].Source = wp.Mounts[2].Source + '-other'; }],
+    ['plugin bind destination', ({ wp }) => { wp.Mounts[2].Destination = '/var/www/html/wp-content/plugins/other'; }],
+    ['plugin bind mode', ({ wp }) => { wp.Mounts[2].RW = true; }],
+  ];
+  for (const [label, mutate] of mismatches) {
+    const fixture = runExistingLab({
+      databaseRunning: label === 'theme mount destination' ? false : true,
+      mutate,
+    });
+    try {
+      const seedInvoked = fixture.calls.some(call => /wp eval-file \/poc\/seed\.php/u.test(call));
+      assert.notEqual(fixture.result.status, 0, 'accepted mismatched ' + label + '; seedInvoked=' + seedInvoked);
+      assert.doesNotMatch(fixture.calls.join('\n'), /^(?:start\s|run\s+-d\b)/mu,
+        'started or created a container after detecting ' + label);
+      assert.doesNotMatch(fixture.calls.join('\n'), /wp eval-file \/poc\/seed\.php/u,
+        'seeded after detecting ' + label);
+    } finally {
+      fs.rmSync(fixture.temp, { recursive: true, force: true });
+    }
+  }
+
+  const missingDatabase = runExistingLab({
+    databaseExists: false,
+    mutate: ({ wp }) => { wp.Mounts[1].Destination = '/var/www/html/wp-content/themes/other'; },
+  });
+  try {
+    assert.notEqual(missingDatabase.result.status, 0);
+    assert.doesNotMatch(missingDatabase.calls.join('\n'), /^(?:start\s|run\s+-d\b)/mu);
+    assert.doesNotMatch(missingDatabase.calls.join('\n'), /wp eval-file \/poc\/seed\.php/u);
+  } finally {
+    fs.rmSync(missingDatabase.temp, { recursive: true, force: true });
+  }
+});
+
+test('existing content lab reuses exact expected container bindings', () => {
+  const fixture = runExistingLab();
+  try {
+    assert.equal(fixture.result.status, 0, fixture.result.stderr);
+    assert.equal(fixture.calls.filter(call => /wp eval-file \/poc\/seed\.php/u.test(call)).length, 1);
+    assert.doesNotMatch(fixture.calls.join('\n'), /^(?:start\s|run\s+-d\b)/mu);
+  } finally {
+    fs.rmSync(fixture.temp, { recursive: true, force: true });
+  }
+});
+
+test('container inspection errors fail closed before starting, creating, or seeding', () => {
+  const fixture = runExistingLab({ inspectError: true });
+  try {
+    assert.notEqual(fixture.result.status, 0);
+    assert.match(fixture.result.stderr, /Could not inspect the content lab/u);
+    assert.doesNotMatch(fixture.calls.join('\n'), /^(?:start\s|run\s+-d\b)/mu);
+    assert.doesNotMatch(fixture.calls.join('\n'), /wp eval-file \/poc\/seed\.php/u);
+  } finally {
+    fs.rmSync(fixture.temp, { recursive: true, force: true });
+  }
+});
+
+test('existing correctly bound stopped content-lab database is restarted after preflight', () => {
+  const fixture = runExistingLab({ databaseRunning: false });
+  try {
+    assert.equal(fixture.result.status, 0, fixture.result.stderr);
+    assert.equal(fixture.calls.filter(call => call === 'start helix-content-db-reuse-test').length, 1);
+    assert.equal(fixture.calls.filter(call => /wp eval-file \/poc\/seed\.php/u.test(call)).length, 1);
+    assert.doesNotMatch(fixture.calls.join('\n'), /^run\s+-d\b/mu);
+  } finally {
+    fs.rmSync(fixture.temp, { recursive: true, force: true });
   }
 });
