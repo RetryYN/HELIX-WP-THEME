@@ -143,5 +143,5 @@ try {
 }
 process.stdout.write(JSON.stringify({
   error, calls: fake.calls, stages: fake.stages, posts: [...fake.posts.entries()], option: fake.option,
-  exitCode: runnerProcess.exitCode || 0, reports, browserCalls, logs,
+  lock: fake.lock, exitCode: runnerProcess.exitCode || 0, reports, browserCalls, logs,
 }));

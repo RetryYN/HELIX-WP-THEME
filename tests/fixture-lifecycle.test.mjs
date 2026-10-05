@@ -45,7 +45,7 @@ for (const [label, initial] of states) for (const abnormal of [false, true]) {
   });
 }
 
-test('backup errors and malformed responses fail closed without mutation', () => {
+test('backup errors and malformed responses release only the acquired lock without fixture mutation', () => {
   const outputs = ['', 'null', '{}', 'false', '{"exists":false}',
     JSON.stringify({ ...absentOption, exists: 'false' }),
     JSON.stringify({ ...absentOption, valueBase64: '' }),
@@ -56,12 +56,14 @@ test('backup errors and malformed responses fail closed without mutation', () =>
   for (const snapshotOutput of outputs) {
     const fake = mockWp(option('0'), { snapshotOutput });
     assert.throws(() => createFixtureLifecycle(fake.wp));
-    assert.deepEqual(fake.stages, ['snapshot']);
+    assert.deepEqual(fake.stages, ['lock-acquire', 'lock-acquire-after', 'snapshot', 'lock-release', 'lock-release-after']);
     assert.deepEqual(fake.option, option('0'));
+    assert.equal(fake.lock, undefined);
   }
   const fake = mockWp(absentOption, { fail: stage => stage === 'snapshot' });
   assert.throws(() => createFixtureLifecycle(fake.wp), /snapshot failure/);
-  assert.deepEqual(fake.stages, ['snapshot']);
+  assert.deepEqual(fake.stages, ['lock-acquire', 'lock-acquire-after', 'snapshot', 'lock-release', 'lock-release-after']);
+  assert.equal(fake.lock, undefined);
   assert.deepEqual(snapshotFixtureMode(mockWp(absentOption).wp), absentOption);
 });
 
@@ -87,6 +89,159 @@ for (const createOutput of ['', '0', 'NaN', '100 101', '9007199254740992']) {
     assert.deepEqual(fake.option, option('0'));
   });
 }
+
+test('a concurrent lifecycle cannot snapshot the enabled temporary value', async () => {
+  const fake = mockWp(absentOption);
+  const first = createFixtureLifecycle(fake.wp);
+  const firstOwner = fake.lock;
+  fake.wp(['option', 'update', 'wtcf_event_fixture_mode', '1']);
+  assert.throws(() => createFixtureLifecycle(fake.wp), /lock unavailable/);
+  assert.equal(fake.stages.filter(stage => stage === 'snapshot').length, 1);
+  assert.equal(fake.lock, firstOwner);
+  assert.equal(await first.cleanup(undefined, []), true);
+  assert.deepEqual(fake.option, absentOption);
+  assert.equal(fake.lock, undefined);
+  const second = createFixtureLifecycle(fake.wp);
+  fake.wp(['option', 'update', 'wtcf_event_fixture_mode', '1']);
+  assert.equal(await second.cleanup(undefined, []), true);
+  assert.deepEqual(fake.option, absentOption);
+  assert.equal(fake.lock, undefined);
+});
+
+for (const config of [
+  { fail: stage => stage === 'lock-acquire' },
+  { fail: stage => stage === 'lock-acquire-after' },
+  { acquireOutput: '' },
+]) {
+  test('failed or unacknowledged lock acquisition never reaches snapshot', () => {
+    const fake = mockWp(option('0'), config);
+    assert.throws(() => createFixtureLifecycle(fake.wp));
+    assert.equal(fake.stages.includes('snapshot'), false);
+    assert.equal(fake.lock, undefined);
+    assert.deepEqual(fake.option, option('0'));
+  });
+}
+
+test('backup failure with failed lock release requires manual recovery and blocks new snapshots', () => {
+  const fake = mockWp(option('0'), { fail: stage => stage === 'snapshot' || stage === 'lock-release' });
+  assert.throws(() => createFixtureLifecycle(fake.wp), /manual recovery required/);
+  const owner = fake.lock;
+  assert.ok(owner);
+  assert.throws(() => createFixtureLifecycle(fake.wp), /manual recovery required/);
+  assert.equal(fake.lock, owner);
+  assert.equal(fake.stages.filter(stage => stage === 'snapshot').length, 1);
+  assert.deepEqual(fake.option, option('0'));
+});
+
+test('an owner change after lookup is rejected inside the deletion command', async () => {
+  const previousExitCode = process.exitCode;
+  try {
+    const fake = mockWp(option('0'), { afterOwnedList: (posts, ids) => {
+      if (ids) posts.get(ids).token = 'replacement-owner';
+    } });
+    const lifecycle = createFixtureLifecycle(fake.wp);
+    const id = lifecycle.createPost(createArgs('fixture'));
+    const rows = [];
+    assert.equal(await lifecycle.cleanup(undefined, rows), false);
+    assert.equal(fake.posts.get(String(id)).token, 'replacement-owner');
+    assert.ok(rows.some(row => row.name === 'owned-fixture-delete' && !row.pass));
+    assert.ok(rows.some(row => row.name === 'fixture-mode-restored' && row.pass));
+    assert.equal(fake.lock, undefined);
+  } finally { process.exitCode = previousExitCode; }
+});
+
+test('the deletion command locks both the post and owner before invoking native deletion', async () => {
+  let competingUpdate;
+  const fake = mockWp(option('0'), { duringDelete: (id, changeOwner) => {
+    competingUpdate = changeOwner(id, 'replacement-owner');
+  } });
+  const lifecycle = createFixtureLifecycle(fake.wp);
+  lifecycle.createPost(createArgs('fixture'));
+  assert.equal(await lifecycle.cleanup(undefined, []), true);
+  assert.equal(competingUpdate, 'blocked');
+  const php = fake.calls.find(args => args[1]?.includes('/* fixture owned-post-delete */'))[1];
+  // mock はDBロックの成立を証明しない。実DBへ渡す保護区間の欠落も検知する。
+  assert.match(php, /SET TRANSACTION ISOLATION LEVEL SERIALIZABLE/);
+  assert.match(php, /strcasecmp\(\(string\) \$engine, 'InnoDB'\)/);
+  const begin = php.indexOf('START TRANSACTION');
+  const postLock = php.indexOf("post_type = 'page' FOR UPDATE");
+  const ownerLock = php.indexOf('meta_key = %s FOR UPDATE');
+  const ownerCheck = php.indexOf('$owners !== array($fixture_owner)');
+  const nativeDelete = php.indexOf('wp_delete_post($fixture_id, true)');
+  const commit = php.indexOf("$wpdb->query('COMMIT')");
+  assert.ok(begin < postLock && postLock < ownerLock && ownerLock < ownerCheck && ownerCheck < nativeDelete && nativeDelete < commit);
+  assert.match(php, /query\('ROLLBACK'\)/);
+  assert.equal(fake.posts.size, 0);
+});
+
+for (const [label, config] of [
+  ['restore mismatch', { restoreNoop: true }],
+  ['recheck error', { fail: (stage, args, count) => stage === 'snapshot' && count === 2 }],
+]) {
+  test(`${label} retains the lock and prevents another lifecycle from accepting dirty state`, async () => {
+    const previousExitCode = process.exitCode;
+    try {
+      const fake = mockWp(option('0'), config);
+      const lifecycle = createFixtureLifecycle(fake.wp);
+      const owner = fake.lock;
+      fake.wp(['option', 'update', 'wtcf_event_fixture_mode', '1']);
+      const rows = [];
+      assert.equal(await lifecycle.cleanup(undefined, rows), false);
+      assert.equal(fake.lock, owner);
+      assert.ok(rows.some(row => row.name === 'fixture-mode-lock-retained' && row.manualRecoveryRequired));
+      const snapshots = fake.stages.filter(stage => stage === 'snapshot').length;
+      assert.throws(() => createFixtureLifecycle(fake.wp), /lock unavailable/);
+      assert.equal(fake.stages.filter(stage => stage === 'snapshot').length, snapshots);
+      assert.equal(fake.lock, owner);
+    } finally { process.exitCode = previousExitCode; }
+  });
+}
+
+test('restore failure after commit releases the lock only after independent exact recheck', async () => {
+  const previousExitCode = process.exitCode;
+  try {
+    const fake = mockWp(option('0'), { fail: stage => stage === 'restore-after' });
+    const lifecycle = createFixtureLifecycle(fake.wp);
+    fake.wp(['option', 'update', 'wtcf_event_fixture_mode', '1']);
+    const rows = [];
+    assert.equal(await lifecycle.cleanup(undefined, rows), false);
+    assert.ok(rows.some(row => row.name === 'fixture-mode-restore' && !row.pass));
+    assert.ok(rows.some(row => row.name === 'fixture-mode-restored' && row.pass));
+    assert.ok(rows.some(row => row.name === 'fixture-mode-lock-release' && row.pass));
+    assert.equal(fake.lock, undefined);
+    assert.deepEqual(fake.option, option('0'));
+  } finally { process.exitCode = previousExitCode; }
+});
+
+test('a stolen lock forbids restoring or releasing another owner state', async () => {
+  const previousExitCode = process.exitCode;
+  try {
+    const fake = mockWp(option('0'));
+    const lifecycle = createFixtureLifecycle(fake.wp);
+    fake.lock = 'replacement-owner';
+    fake.option = option('replacement-state');
+    const rows = [];
+    assert.equal(await lifecycle.cleanup(undefined, rows), false);
+    assert.deepEqual(fake.option, option('replacement-state'));
+    assert.equal(fake.lock, 'replacement-owner');
+    assert.equal(fake.stages.includes('lock-release'), false);
+    assert.ok(rows.some(row => row.name === 'fixture-mode-lock-retained' && row.manualRecoveryRequired));
+  } finally { process.exitCode = previousExitCode; }
+});
+
+test('lock release failure is reported and prevents a new lifecycle', async () => {
+  const previousExitCode = process.exitCode;
+  try {
+    const fake = mockWp(option('0'), { fail: stage => stage === 'lock-release' });
+    const lifecycle = createFixtureLifecycle(fake.wp);
+    const rows = [];
+    assert.equal(await lifecycle.cleanup(undefined, rows), false);
+    assert.ok(rows.some(row => row.name === 'fixture-mode-lock-release' && !row.pass && row.manualRecoveryRequired));
+    const snapshots = fake.stages.filter(stage => stage === 'snapshot').length;
+    assert.throws(() => createFixtureLifecycle(fake.wp), /manual recovery required/);
+    assert.equal(fake.stages.filter(stage => stage === 'snapshot').length, snapshots);
+  } finally { process.exitCode = previousExitCode; }
+});
 
 const failures = [
   ['browser close', {}, true, 'browser-closed'],

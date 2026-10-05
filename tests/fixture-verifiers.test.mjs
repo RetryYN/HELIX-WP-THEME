@@ -28,7 +28,7 @@ const assertRestored = (result, initial = option('0')) => {
 };
 
 for (const name of scripts) {
-  test(`${name}: backup failure aborts before launch or mutation`, () => {
+  test(`${name}: backup failure releases its lock before launch or fixture mutation`, () => {
     for (const config of [{ failStage: 'snapshot', failCount: 1 }, { snapshotOutput: '' }]) {
       const result = run(name, config);
       assert.ok(result.error);
@@ -36,7 +36,17 @@ for (const name of scripts) {
       assert.equal(mutations(result).length, 0);
       assert.deepEqual(result.browserCalls, []);
       assert.deepEqual(result.option, option('0'));
+      assert.equal(result.lock, undefined);
     }
+  });
+  test(`${name}: an existing lifecycle lock prevents snapshot and temporary mode adoption`, () => {
+    const result = run(name, { existingLock: 'another-verifier' });
+    assert.equal(result.error, 'Fixture lifecycle lock unavailable');
+    assert.equal(result.stages.includes('snapshot'), false);
+    assert.equal(mutations(result).length, 0);
+    assert.deepEqual(result.browserCalls, []);
+    assert.deepEqual(result.option, option('0'));
+    assert.equal(result.lock, 'another-verifier');
   });
   test(`${name}: a reserved fixture is preserved before any option mutation`, () => {
     const slug = name === 'event-boundaries' ? 'event-boundary-fixture' : name + '-fixture';
@@ -92,6 +102,7 @@ for (const name of scripts) {
     assert.equal(result.posts.length, 0);
     assert.ok(result.reports[0].sourceDigests['scripts/lib/fixture-lifecycle.mjs']);
     assert.ok(result.reports[0].rows.filter(row => row.cleanup).every(row => row.pass));
+    assert.equal(result.lock, undefined);
   });
   test(`${name}: cleanup failure remains a failure after normal completion, including baseline`, () => {
     const result = run(name, { closeFails: true });
@@ -122,6 +133,10 @@ for (const name of scripts) {
       assert.ok(result.stages.includes('restore'));
       assert.equal(result.stages.filter(stage => stage === 'snapshot').length, 2);
       if (failStage !== 'restore') assert.deepEqual(result.option, option('0'));
+      if (['restore', 'snapshot'].includes(failStage)) {
+        assert.ok(result.lock);
+        assert.ok(result.reports[0].rows.some(row => row.manualRecoveryRequired));
+      } else assert.equal(result.lock, undefined);
     }
   });
   test(`${name}: report write failure occurs after cleanup and restoration`, () => {
