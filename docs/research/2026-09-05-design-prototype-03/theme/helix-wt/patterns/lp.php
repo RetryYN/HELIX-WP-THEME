@@ -22,12 +22,12 @@ $u = get_theme_file_uri( 'assets/img' );
         </form>
         <p class="wt-lp-hero__note"><?php esc_html_e( '相談は無料・入力は 1 分ほど', 'helix-wt' ); ?></p>
       </div>
-      <div class="wt-lp-hero__media"><img src="<?php echo esc_url( $u ); ?>/hero.png" alt="" width="720" height="540" fetchpriority="high" loading="eager" decoding="async"></div>
+      <div class="wt-lp-hero__media"><img src="<?php echo esc_url( $u ); ?>/hero-q85.webp" alt="" width="720" height="540" fetchpriority="high" loading="eager" decoding="async"></div>
     </div>
   </section>
 
   <section class="wt-lp-hero wt-lp-hero--fullbleed" data-wt-scrim aria-labelledby="lp-hero-fullbleed-title">
-    <img class="wt-lp-hero__background" src="<?php echo esc_url( $u ); ?>/hero.png" alt="" width="1440" height="820" fetchpriority="high" loading="eager" decoding="async">
+    <img class="wt-lp-hero__background" src="<?php echo esc_url( $u ); ?>/hero-q85.webp" alt="" width="1440" height="820" fetchpriority="high" loading="eager" decoding="async">
     <div class="wt-lp-hero__content">
       <p class="wt-eyebrow">COMPARE GUIDE</p>
       <h1 id="lp-hero-fullbleed-title"><?php esc_html_e( '選ぶための情報を、次の行動につなげる。', 'helix-wt' ); ?></h1>
