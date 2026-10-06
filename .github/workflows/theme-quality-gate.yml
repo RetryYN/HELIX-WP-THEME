@@ -7,6 +7,9 @@ on:
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
       - '.lighthouserc.json'
+      - 'scripts/run-performance-gate.mjs'
+      - 'scripts/validate-performance-evidence.mjs'
+      - 'scripts/performance-gate/**'
       - 'package.json'
       - 'package-lock.json'
       - 'scripts/verify-i18n-profile.mjs'
@@ -19,6 +22,8 @@ on:
       - 'docs/research/**/*.cjs'
       - 'docs/research/**/*.py'
       - 'tests/lighthouse-ci-contract.test.mjs'
+      - 'tests/performance-evidence-validator.test.mjs'
+      - 'tests/performance-runner-contract.test.mjs'
       - 'tests/current-theme-quality-regression.test.mjs'
       - 'tests/a11y-gate-contract.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
@@ -29,6 +34,9 @@ on:
       - 'docs/research/2026-09-10-current-theme-quality/**'
       - 'docs/research/2026-09-10-reduced-motion/**'
       - '.lighthouserc.json'
+      - 'scripts/run-performance-gate.mjs'
+      - 'scripts/validate-performance-evidence.mjs'
+      - 'scripts/performance-gate/**'
       - 'package.json'
       - 'package-lock.json'
       - 'scripts/verify-i18n-profile.mjs'
@@ -41,6 +49,8 @@ on:
       - 'docs/research/**/*.cjs'
       - 'docs/research/**/*.py'
       - 'tests/lighthouse-ci-contract.test.mjs'
+      - 'tests/performance-evidence-validator.test.mjs'
+      - 'tests/performance-runner-contract.test.mjs'
       - 'tests/current-theme-quality-regression.test.mjs'
       - 'tests/a11y-gate-contract.test.mjs'
       - 'scripts/bootstrap-quality-wordpress.sh'
@@ -164,8 +174,8 @@ jobs:
           path: ${{ runner.temp }}/a11y-*.json
           if-no-files-found: error
 
-  lhci-gate:
-    name: Core Web Vitals (Lighthouse CI)
+  performance-gate:
+    name: Core Web Vitals (Lighthouse)
     runs-on: ubuntu-latest
     # PRでも測定し、merge前に判定設定と失敗伝播を検証する。
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
@@ -206,10 +216,29 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: .node-version
 
-      - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.14.x
+      - name: Install exact performance dependencies
+        run: npm ci
+
+      - name: Install pinned Chrome for Testing
+        env:
+          CHROME_VERSION: 156.0.8075.0
+        run: |
+          chrome_root="${RUNNER_TEMP}/chrome-for-testing-${CHROME_VERSION}"
+          mkdir -p "$chrome_root"
+          curl --fail --location --silent --show-error \
+            "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chrome-linux64.zip" \
+            --output "${RUNNER_TEMP}/chrome-for-testing.zip"
+          unzip -q "${RUNNER_TEMP}/chrome-for-testing.zip" -d "$chrome_root"
+          chrome_path="${chrome_root}/chrome-linux64/chrome"
+          chmod +x "$chrome_path"
+          actual_version="$("$chrome_path" --version)"
+          [[ "$actual_version" == *"${CHROME_VERSION}"* ]] || {
+            echo 'Downloaded Chrome version does not match the pinned build' >&2
+            exit 1
+          }
+          echo "PERF_GATE_CHROME_PATH=${chrome_path}" >> "$GITHUB_ENV"
 
       - name: Wait for WordPress
         run: |
@@ -221,15 +250,18 @@ jobs:
       - name: Initialize WordPress and verify target theme
         run: bash scripts/bootstrap-quality-wordpress.sh "${{ job.services.wordpress.id }}"
 
-      - name: Run Lighthouse CI
-        # LCP's 2.5s budget remains a warning pending diagnosis in issue #352; TBT is a lab proxy, not field INP.
-        run: lhci autorun --config=./.lighthouserc.json
+      - name: Run fail-closed eight-condition performance gate
+        env:
+          PERF_GATE_BASE_URL: http://localhost:8086
+          PERF_GATE_WP_CONTAINER: ${{ job.services.wordpress.id }}
+          PERF_GATE_REPORT_DIR: ${{ runner.temp }}/performance-gate
+        run: npm run performance:gate
 
-      - name: Upload LHCI report
+      - name: Upload Lighthouse and interaction reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lhci-report
-          path: .lighthouseci/
+          name: performance-gate-reports
+          path: ${{ runner.temp }}/performance-gate/
           if-no-files-found: error
           include-hidden-files: true
